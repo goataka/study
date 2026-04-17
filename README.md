@@ -1,4 +1,4 @@
-# drills-for-children
+# study
 
 ## 英語ドリル一覧
 
