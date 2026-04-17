@@ -17,12 +17,12 @@
 | `th`ank | 　　　　　　　　　　　　 |
 | `ph`one | 　　　　　　　　　　　　 |
 | `wh`ale | 　　　　　　　　　　　　 |
-| `oo`d | 　　　　　　　　　　　　 |
+| g`oo`d | 　　　　　　　　　　　　 |
 | b`oo`k | 　　　　　　　　　　　　 |
 | m`oo`n | 　　　　　　　　　　　　 |
-| `ee`p | 　　　　　　　　　　　　 |
+| d`ee`p | 　　　　　　　　　　　　 |
 | gr`ee`n | 　　　　　　　　　　　　 |
-| `ai`n | 　　　　　　　　　　　　 |
+| r`ai`n | 　　　　　　　　　　　　 |
 | tr`ai`n | 　　　　　　　　　　　　 |
 | b`oa`t | 　　　　　　　　　　　　 |
 | c`oa`t | 　　　　　　　　　　　　 |
@@ -31,11 +31,11 @@
 
 | 単語 | 音 |
 |------|------|
-| c`a`k`e` | 　　　　　　　　　　　　 |
-| n`a`m`e` | 　　　　　　　　　　　　 |
-| k`i`t`e` | 　　　　　　　　　　　　 |
-| b`i`k`e` | 　　　　　　　　　　　　 |
-| n`o`t`e` | 　　　　　　　　　　　　 |
-| h`o`m`e` | 　　　　　　　　　　　　 |
-| c`u`t`e` | 　　　　　　　　　　　　 |
-| t`u`b`e` | 　　　　　　　　　　　　 |
+| c`a`ke | 　　　　　　　　　　　　 |
+| n`a`me | 　　　　　　　　　　　　 |
+| k`i`te | 　　　　　　　　　　　　 |
+| b`i`ke | 　　　　　　　　　　　　 |
+| n`o`te | 　　　　　　　　　　　　 |
+| h`o`me | 　　　　　　　　　　　　 |
+| c`u`te | 　　　　　　　　　　　　 |
+| t`u`be | 　　　　　　　　　　　　 |

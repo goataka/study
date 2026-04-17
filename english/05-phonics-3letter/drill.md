@@ -6,13 +6,13 @@
 
 | 単語 | 音 |
 |------|------|
-| `tch`in | 　　　　　　　　　　　　 |
+| ki`tch`en | 　　　　　　　　　　　　 |
 | ma`tch` | 　　　　　　　　　　　　 |
 | ca`tch` | 　　　　　　　　　　　　 |
-| `dge`ar | 　　　　　　　　　　　　 |
+| e`dge` | 　　　　　　　　　　　　 |
 | bri`dge` | 　　　　　　　　　　　　 |
 | ju`dge` | 　　　　　　　　　　　　 |
-| `igh`t | 　　　　　　　　　　　　 |
+| f`igh`t | 　　　　　　　　　　　　 |
 | n`igh`t | 　　　　　　　　　　　　 |
 | l`igh`t | 　　　　　　　　　　　　 |
 | `sch`ool | 　　　　　　　　　　　　 |
