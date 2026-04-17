@@ -8,34 +8,34 @@
 
 | 単語 | 音 |
 |------|------|
-| <u>sh</u>oe | |
-| fi<u>sh</u> | |
-| <u>ch</u>air | |
-| mu<u>ch</u> | |
-| <u>th</u>at | |
-| ba<u>th</u> | |
-| <u>th</u>ank | |
-| <u>ph</u>one | |
-| <u>wh</u>ale | |
-| <u>oo</u>d | |
-| b<u>oo</u>k | |
-| m<u>oo</u>n | |
-| <u>ee</u>p | |
-| gr<u>ee</u>n | |
-| <u>ai</u>n | |
-| tr<u>ai</u>n | |
-| b<u>oa</u>t | |
-| c<u>oa</u>t | |
+| **sh**oe | |
+| fi**sh** | |
+| **ch**air | |
+| mu**ch** | |
+| **th**at | |
+| ba**th** | |
+| **th**ank | |
+| **ph**one | |
+| **wh**ale | |
+| **oo**d | |
+| b**oo**k | |
+| m**oo**n | |
+| **ee**p | |
+| gr**ee**n | |
+| **ai**n | |
+| tr**ai**n | |
+| b**oa**t | |
+| c**oa**t | |
 
 ### マジックE
 
 | 単語 | 音 |
 |------|------|
-| c<u>a</u>k<u>e</u> | |
-| n<u>a</u>m<u>e</u> | |
-| k<u>i</u>t<u>e</u> | |
-| b<u>i</u>k<u>e</u> | |
-| n<u>o</u>t<u>e</u> | |
-| h<u>o</u>m<u>e</u> | |
-| c<u>u</u>t<u>e</u> | |
-| t<u>u</u>b<u>e</u> | |
+| c**a**k**e** | |
+| n**a**m**e** | |
+| k**i**t**e** | |
+| b**i**k**e** | |
+| n**o**t**e** | |
+| h**o**m**e** | |
+| c**u**t**e** | |
+| t**u**b**e** | |

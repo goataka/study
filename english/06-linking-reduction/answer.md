@@ -47,15 +47,15 @@ t/dがラ行になる
 | party | パーリー |
 
 ### アシミレーション（Assimilation）
-音が混ざる
+となりの音に引っ張られて音が変わる
 
-| フレーズ | 音 |
-|----------|------|
-| want you | ワンチュー |
-| did you | ディジュー |
-| would you | ウッジュー |
-| miss you | ミッシュー |
-| nice to meet you | ナイストゥミーチュー |
-| let me | レミー |
-| get you | ゲチュー |
-| don't you | ドンチュー |
+| フレーズ | 変化 | 音 |
+|----------|------|------|
+| meet you | t+y→チュ | ミーチュー |
+| can't you | t+y→チュ | キャンチュー |
+| would you | d+y→ジュ | ウッジュー |
+| could you | d+y→ジュ | クッジュー |
+| miss you | s+y→シュ | ミッシュー |
+| bless you | s+y→シュ | ブレッシュー |
+| ten people | n→m（唇音の前） | テムピープル |
+| in Paris | n→m（唇音の前） | イムパリ |

@@ -47,15 +47,15 @@ t/dがラ行になる
 | party | |
 
 ### アシミレーション（Assimilation）
-音が混ざる
+となりの音に引っ張られて音が変わる
 
-| フレーズ | 音 |
-|----------|------|
-| want you | |
-| did you | |
-| would you | |
-| miss you | |
-| nice to meet you | |
-| let me | |
-| get you | |
-| don't you | |
+| フレーズ | 変化 | 音 |
+|----------|------|------|
+| meet you | t+y→チュ | |
+| can't you | t+y→チュ | |
+| would you | d+y→ジュ | |
+| could you | d+y→ジュ | |
+| miss you | s+y→シュ | |
+| bless you | s+y→シュ | |
+| ten people | n→m（唇音の前） | |
+| in Paris | n→m（唇音の前） | |
