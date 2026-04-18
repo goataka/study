@@ -144,7 +144,13 @@ class QuizApp {
   }
 
   private pickRandom<T>(arr: T[], n: number): T[] {
-    return [...arr].sort(() => Math.random() - 0.5).slice(0, Math.min(n, arr.length));
+    const count = Math.min(n, arr.length);
+    const shuffled = [...arr];
+    for (let i = 0; i < count; i++) {
+      const j = i + Math.floor(Math.random() * (shuffled.length - i));
+      [shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!];
+    }
+    return shuffled.slice(0, count);
   }
 
   // ─── 問題表示 ──────────────────────────────────────────────────────────────
@@ -284,18 +290,52 @@ class QuizApp {
     const { question, userAnswerIndex, isCorrect } = r;
     const div = document.createElement("div");
     div.className = `result-item ${isCorrect ? "correct" : "incorrect"}`;
-    div.innerHTML = `
-      <div class="result-header">
-        <span class="result-icon">${isCorrect ? "✓" : "✗"}</span>
-        <span class="result-question">${question.question}</span>
-        <span class="result-topic">[${question.categoryName}]</span>
-      </div>
-      <div class="result-answer">
-        <div>あなたの解答: <strong>${question.choices[userAnswerIndex] ?? "未回答"}</strong></div>
-        ${!isCorrect ? `<div>正解: <strong>${question.choices[question.correct]}</strong></div>` : ""}
-        <div class="explanation">${question.explanation}</div>
-      </div>
-    `;
+
+    const header = document.createElement("div");
+    header.className = "result-header";
+
+    const icon = document.createElement("span");
+    icon.className = "result-icon";
+    icon.textContent = isCorrect ? "✓" : "✗";
+
+    const questionText = document.createElement("span");
+    questionText.className = "result-question";
+    questionText.textContent = question.question;
+
+    const topic = document.createElement("span");
+    topic.className = "result-topic";
+    topic.textContent = `[${question.categoryName}]`;
+
+    header.appendChild(icon);
+    header.appendChild(questionText);
+    header.appendChild(topic);
+
+    const answer = document.createElement("div");
+    answer.className = "result-answer";
+
+    const userAnswerDiv = document.createElement("div");
+    userAnswerDiv.appendChild(document.createTextNode("あなたの解答: "));
+    const userAnswerValue = document.createElement("strong");
+    userAnswerValue.textContent = question.choices[userAnswerIndex] ?? "未回答";
+    userAnswerDiv.appendChild(userAnswerValue);
+    answer.appendChild(userAnswerDiv);
+
+    if (!isCorrect) {
+      const correctDiv = document.createElement("div");
+      correctDiv.appendChild(document.createTextNode("正解: "));
+      const correctValue = document.createElement("strong");
+      correctValue.textContent = question.choices[question.correct] ?? "";
+      correctDiv.appendChild(correctValue);
+      answer.appendChild(correctDiv);
+    }
+
+    const explanation = document.createElement("div");
+    explanation.className = "explanation";
+    explanation.textContent = question.explanation;
+    answer.appendChild(explanation);
+
+    div.appendChild(header);
+    div.appendChild(answer);
     return div;
   }
 

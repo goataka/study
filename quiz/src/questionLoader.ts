@@ -20,9 +20,10 @@ export async function loadAllQuestions(baseUrl = "questions"): Promise<Question[
 
   const results = await Promise.all(
     manifest.questionFiles.map((file) =>
-      fetchJson<QuestionFile>(`${baseUrl}/${file}`).then((qf) =>
-        expandQuestions(qf)
-      )
+      fetchJson<QuestionFile>(`${baseUrl}/${file}`).then((qf) => {
+        validateQuestionFile(qf);
+        return expandQuestions(qf);
+      })
     )
   );
 
@@ -34,6 +35,7 @@ export async function loadAllQuestions(baseUrl = "questions"): Promise<Question[
  */
 export async function loadQuestionFile(url: string): Promise<Question[]> {
   const qf = await fetchJson<QuestionFile>(url);
+  validateQuestionFile(qf);
   return expandQuestions(qf);
 }
 
@@ -73,6 +75,33 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
   }
   if (!Array.isArray(qf.questions)) {
     throw new Error('QuestionFile must have a "questions" array');
+  }
+  for (const [i, q] of (qf.questions as unknown[]).entries()) {
+    if (!q || typeof q !== "object") {
+      throw new Error(`Question at index ${i} must be an object`);
+    }
+    const qObj = q as Record<string, unknown>;
+    for (const field of ["id", "question", "explanation"]) {
+      if (typeof qObj[field] !== "string" || (qObj[field] as string).length === 0) {
+        throw new Error(`Question[${i}].${field} must be a non-empty string`);
+      }
+    }
+    if (!Array.isArray(qObj.choices) || qObj.choices.length !== 4) {
+      throw new Error(`Question[${i}].choices must be an array of exactly 4 elements`);
+    }
+    for (const [ci, choice] of (qObj.choices as unknown[]).entries()) {
+      if (typeof choice !== "string" || choice.trim().length === 0) {
+        throw new Error(`Question[${i}].choices[${ci}] must be a non-empty string`);
+      }
+    }
+    if (
+      typeof qObj.correct !== "number" ||
+      !Number.isInteger(qObj.correct) ||
+      qObj.correct < 0 ||
+      qObj.correct > 3
+    ) {
+      throw new Error(`Question[${i}].correct must be an integer between 0 and 3`);
+    }
   }
 }
 

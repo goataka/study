@@ -9,6 +9,7 @@
 
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 // ─── ヘルパー型 ─────────────────────────────────────────────────────────────
 
@@ -36,6 +37,7 @@ interface QuestionsManifest {
 
 // ─── パス定義 ────────────────────────────────────────────────────────────────
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const QUESTIONS_DIR = path.join(__dirname, "..", "public", "questions");
 const INDEX_FILE = path.join(QUESTIONS_DIR, "index.json");
 
