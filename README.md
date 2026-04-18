@@ -5,6 +5,7 @@
 ## コンテンツ
 
 - [英語ドリル一覧](contents/README.md)
+- [英語クイズ](contents/quiz/index.html) - 4択クイズ形式で学習
 
 ## GitHub Pages
 

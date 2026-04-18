@@ -1,0 +1,324 @@
+{
+  "questions": [
+    {
+      "id": "phonics-1-a",
+      "topic": "フォニックス（1文字）",
+      "question": "「apple」の「a」の音は？",
+      "choices": ["ア", "エ", "イ", "オ"],
+      "correct": 0,
+      "explanation": "apple = ア プル"
+    },
+    {
+      "id": "phonics-1-b",
+      "topic": "フォニックス（1文字）",
+      "question": "「ball」の「b」の音は？",
+      "choices": ["ブ", "プ", "ム", "ドゥ"],
+      "correct": 0,
+      "explanation": "ball = ブ オール"
+    },
+    {
+      "id": "phonics-1-c",
+      "topic": "フォニックス（1文字）",
+      "question": "「cat」の「c」の音は？",
+      "choices": ["ク", "ス", "チ", "シュ"],
+      "correct": 0,
+      "explanation": "cat = ク ア ト"
+    },
+    {
+      "id": "phonics-1-d",
+      "topic": "フォニックス（1文字）",
+      "question": "「dog」の「d」の音は？",
+      "choices": ["ドゥ", "トゥ", "ブ", "グ"],
+      "correct": 0,
+      "explanation": "dog = ドゥ オ グ"
+    },
+    {
+      "id": "phonics-1-e",
+      "topic": "フォニックス（1文字）",
+      "question": "「egg」の「e」の音は？",
+      "choices": ["エ", "ア", "イ", "オ"],
+      "correct": 0,
+      "explanation": "egg = エ グ"
+    },
+    {
+      "id": "phonics-1-f",
+      "topic": "フォニックス（1文字）",
+      "question": "「fish」の「f」の音は？",
+      "choices": ["フ", "ス", "シュ", "ヴ"],
+      "correct": 0,
+      "explanation": "fish = フ イ シュ"
+    },
+    {
+      "id": "phonics-1-g",
+      "topic": "フォニックス（1文字）",
+      "question": "「girl」の「g」の音は？",
+      "choices": ["グ", "ク", "ジュ", "ガ"],
+      "correct": 0,
+      "explanation": "girl = グ アール"
+    },
+    {
+      "id": "phonics-1-h",
+      "topic": "フォニックス（1文字）",
+      "question": "「hat」の「h」の音は？",
+      "choices": ["ハ", "ア", "フ", "ヘ"],
+      "correct": 0,
+      "explanation": "hat = ハ ア ト"
+    },
+    {
+      "id": "phonics-1-i",
+      "topic": "フォニックス（1文字）",
+      "question": "「ink」の「i」の音は？",
+      "choices": ["イ", "ア", "エ", "アイ"],
+      "correct": 0,
+      "explanation": "ink = イ ン ク"
+    },
+    {
+      "id": "phonics-1-j",
+      "topic": "フォニックス（1文字）",
+      "question": "「jam」の「j」の音は？",
+      "choices": ["ジュ", "ジ", "チュ", "ヤ"],
+      "correct": 0,
+      "explanation": "jam = ジュ ア ム"
+    },
+    {
+      "id": "phonics-1-k",
+      "topic": "フォニックス（1文字）",
+      "question": "「kite」の「k」の音は？",
+      "choices": ["ク", "キ", "ケ", "カ"],
+      "correct": 0,
+      "explanation": "kite = ク アイ ト"
+    },
+    {
+      "id": "phonics-1-l",
+      "topic": "フォニックス（1文字）",
+      "question": "「lion」の「l」の音は？",
+      "choices": ["ル", "リ", "ラ", "レ"],
+      "correct": 0,
+      "explanation": "lion = ル アイ オン"
+    },
+    {
+      "id": "phonics-1-m",
+      "topic": "フォニックス（1文字）",
+      "question": "「map」の「m」の音は？",
+      "choices": ["ム", "マ", "ミ", "メ"],
+      "correct": 0,
+      "explanation": "map = ム ア プ"
+    },
+    {
+      "id": "phonics-1-n",
+      "topic": "フォニックス（1文字）",
+      "question": "「net」の「n」の音は？",
+      "choices": ["ヌ", "ナ", "ニ", "ネ"],
+      "correct": 0,
+      "explanation": "net = ヌ エ ト"
+    },
+    {
+      "id": "phonics-1-o",
+      "topic": "フォニックス（1文字）",
+      "question": "「orange」の「o」の音は？",
+      "choices": ["ア", "オ", "ウ", "エ"],
+      "correct": 0,
+      "explanation": "orange = ア リン ジュ"
+    },
+    {
+      "id": "phonics-1-p",
+      "topic": "フォニックス（1文字）",
+      "question": "「pen」の「p」の音は？",
+      "choices": ["プ", "ブ", "ペ", "パ"],
+      "correct": 0,
+      "explanation": "pen = プ エ ヌ"
+    },
+    {
+      "id": "phonics-1-r",
+      "topic": "フォニックス（1文字）",
+      "question": "「red」の「r」の音は？",
+      "choices": ["ル", "ラ", "リ", "レ"],
+      "correct": 0,
+      "explanation": "red = ル エ ドゥ"
+    },
+    {
+      "id": "phonics-1-s",
+      "topic": "フォニックス（1文字）",
+      "question": "「sun」の「s」の音は？",
+      "choices": ["ス", "シュ", "ズ", "サ"],
+      "correct": 0,
+      "explanation": "sun = ス ア ヌ"
+    },
+    {
+      "id": "phonics-1-t",
+      "topic": "フォニックス（1文字）",
+      "question": "「tiger」の「t」の音は？",
+      "choices": ["トゥ", "タ", "チ", "ドゥ"],
+      "correct": 0,
+      "explanation": "tiger = トゥ アイ ガー"
+    },
+    {
+      "id": "phonics-1-u",
+      "topic": "フォニックス（1文字）",
+      "question": "「up」の「u」の音は？",
+      "choices": ["ア", "ウ", "オ", "ユ"],
+      "correct": 0,
+      "explanation": "up = ア プ"
+    },
+    {
+      "id": "phonics-2-sh1",
+      "topic": "フォニックス（2文字）",
+      "question": "「shoe」の「sh」の音は？",
+      "choices": ["シュ", "ス", "チ", "ジュ"],
+      "correct": 0,
+      "explanation": "shoe = シュ ウー"
+    },
+    {
+      "id": "phonics-2-sh2",
+      "topic": "フォニックス（2文字）",
+      "question": "「fish」の「sh」の音は？",
+      "choices": ["シュ", "ス", "チ", "ジュ"],
+      "correct": 0,
+      "explanation": "fish = フ イ シュ"
+    },
+    {
+      "id": "phonics-2-ch1",
+      "topic": "フォニックス（2文字）",
+      "question": "「chair」の「ch」の音は？",
+      "choices": ["チ", "シュ", "ク", "ジュ"],
+      "correct": 0,
+      "explanation": "chair = チ エ アー"
+    },
+    {
+      "id": "phonics-2-ch2",
+      "topic": "フォニックス（2文字）",
+      "question": "「much」の「ch」の音は？",
+      "choices": ["チ", "シュ", "ク", "ス"],
+      "correct": 0,
+      "explanation": "much = ム ア チ"
+    },
+    {
+      "id": "phonics-2-th1",
+      "topic": "フォニックス（2文字）",
+      "question": "「that」の「th」の音は？",
+      "choices": ["ザ", "ス", "ダ", "ザッ"],
+      "correct": 0,
+      "explanation": "that = ザ ア ト"
+    },
+    {
+      "id": "phonics-2-th2",
+      "topic": "フォニックス（2文字）",
+      "question": "「bath」の「th」の音は？",
+      "choices": ["ス", "ザ", "ト", "サ"],
+      "correct": 0,
+      "explanation": "bath = ブ ア ス"
+    },
+    {
+      "id": "phonics-2-oo1",
+      "topic": "フォニックス（2文字）",
+      "question": "「book」の「oo」の音は？",
+      "choices": ["ウ", "ウー", "オ", "オー"],
+      "correct": 0,
+      "explanation": "book = ブ ウ ク"
+    },
+    {
+      "id": "phonics-2-oo2",
+      "topic": "フォニックス（2文字）",
+      "question": "「moon」の「oo」の音は？",
+      "choices": ["ウー", "ウ", "オー", "オ"],
+      "correct": 0,
+      "explanation": "moon = ム ウー ヌ"
+    },
+    {
+      "id": "phonics-2-ee1",
+      "topic": "フォニックス（2文字）",
+      "question": "「deep」の「ee」の音は？",
+      "choices": ["イー", "エ", "エー", "イ"],
+      "correct": 0,
+      "explanation": "deep = ドゥ イー プ"
+    },
+    {
+      "id": "phonics-2-ai1",
+      "topic": "フォニックス（2文字）",
+      "question": "「rain」の「ai」の音は？",
+      "choices": ["エイ", "アイ", "エ", "ア"],
+      "correct": 0,
+      "explanation": "rain = ル エイ ヌ"
+    },
+    {
+      "id": "phonics-2-oa1",
+      "topic": "フォニックス（2文字）",
+      "question": "「boat」の「oa」の音は？",
+      "choices": ["オウ", "オ", "オー", "ア"],
+      "correct": 0,
+      "explanation": "boat = ブ オウ ト"
+    },
+    {
+      "id": "phonics-2-magic-a",
+      "topic": "フォニックス（2文字・マジックE）",
+      "question": "「cake」の「a」の音は？（マジックE）",
+      "choices": ["エイ", "ア", "エ", "アイ"],
+      "correct": 0,
+      "explanation": "cake = ク エイ ク"
+    },
+    {
+      "id": "phonics-2-magic-i",
+      "topic": "フォニックス（2文字・マジックE）",
+      "question": "「kite」の「i」の音は？（マジックE）",
+      "choices": ["アイ", "イ", "エイ", "エ"],
+      "correct": 0,
+      "explanation": "kite = ク アイ ト"
+    },
+    {
+      "id": "phonics-2-magic-o",
+      "topic": "フォニックス（2文字・マジックE）",
+      "question": "「note」の「o」の音は？（マジックE）",
+      "choices": ["オウ", "オ", "ア", "ウ"],
+      "correct": 0,
+      "explanation": "note = ヌ オウ ト"
+    },
+    {
+      "id": "phonics-2-magic-u",
+      "topic": "フォニックス（2文字・マジックE）",
+      "question": "「cute」の「u」の音は？（マジックE）",
+      "choices": ["ユー", "ア", "ウ", "ウー"],
+      "correct": 0,
+      "explanation": "cute = ク ユー ト"
+    },
+    {
+      "id": "phonics-3-tch1",
+      "topic": "フォニックス（3文字）",
+      "question": "「kitchen」の「tch」の音は？",
+      "choices": ["チ", "ク", "チュ", "ツ"],
+      "correct": 0,
+      "explanation": "kitchen = ク イ チ エ ヌ"
+    },
+    {
+      "id": "phonics-3-dge1",
+      "topic": "フォニックス（3文字）",
+      "question": "「edge」の「dge」の音は？",
+      "choices": ["ジ", "ジュ", "グ", "ドゥ"],
+      "correct": 0,
+      "explanation": "edge = エ ジ"
+    },
+    {
+      "id": "phonics-3-igh1",
+      "topic": "フォニックス（3文字）",
+      "question": "「night」の「igh」の音は？",
+      "choices": ["アイ", "イ", "エイ", "イー"],
+      "correct": 0,
+      "explanation": "night = ヌ アイ ト"
+    },
+    {
+      "id": "phonics-3-thr1",
+      "topic": "フォニックス（3文字）",
+      "question": "「three」の「thr」の音は？",
+      "choices": ["スル", "ス", "トゥル", "サ"],
+      "correct": 0,
+      "explanation": "three = スル イー"
+    },
+    {
+      "id": "phonics-3-str1",
+      "topic": "フォニックス（3文字）",
+      "question": "「street」の「str」の音は？",
+      "choices": ["ストゥル", "スル", "ス", "ストゥ"],
+      "correct": 0,
+      "explanation": "street = ストゥル イー ト"
+    }
+  ]
+}
