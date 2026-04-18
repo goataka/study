@@ -16,19 +16,26 @@
 
 ## 数学ドリル
 
-| 内容 | 参考学年 | 解説 | 練習 | 解答 |
+| 内容 | 参考学年 | 練習 | 解答 | 解説 |
 |------|----------|------|------|------|
-| 01. たし算 | 小学1年 | [guide](math/01-addition/guide.md) | [drill](math/01-addition/drill.md) | [answer](math/01-addition/answer.md) |
-| 02. ひき算 | 小学1年 | [guide](math/02-subtraction/guide.md) | [drill](math/02-subtraction/drill.md) | [answer](math/02-subtraction/answer.md) |
-| 03. かけ算 | 小学2年 | [guide](math/03-multiplication/guide.md) | [drill](math/03-multiplication/drill.md) | [answer](math/03-multiplication/answer.md) |
-| 04. わり算 | 小学3年 | [guide](math/04-division/guide.md) | [drill](math/04-division/drill.md) | [answer](math/04-division/answer.md) |
-| 05. 分数 | 小学4年 | [guide](math/05-fractions/guide.md) | [drill](math/05-fractions/drill.md) | [answer](math/05-fractions/answer.md) |
-| 06. 小数 | 小学5年 | [guide](math/06-decimals/guide.md) | [drill](math/06-decimals/drill.md) | [answer](math/06-decimals/answer.md) |
-| 07. 比と割合 | 小学6年 | [guide](math/07-ratio/guide.md) | [drill](math/07-ratio/drill.md) | [answer](math/07-ratio/answer.md) |
-| 08. 正負の数 | 中学1年 | [guide](math/08-positive-negative/guide.md) | [drill](math/08-positive-negative/drill.md) | [answer](math/08-positive-negative/answer.md) |
-| 09. 連立方程式 | 中学2年 | [guide](math/09-simultaneous-eq/guide.md) | [drill](math/09-simultaneous-eq/drill.md) | [answer](math/09-simultaneous-eq/answer.md) |
-| 10. 二次方程式 | 中学3年 | [guide](math/10-quadratic-eq/guide.md) | [drill](math/10-quadratic-eq/drill.md) | [answer](math/10-quadratic-eq/answer.md) |
-| 11. 二次関数 | 高校1年 | [guide](math/11-quadratic-func/guide.md) | [drill](math/11-quadratic-func/drill.md) | [answer](math/11-quadratic-func/answer.md) |
-| 12. 三角関数 | 高校2年 | [guide](math/12-trigonometry/guide.md) | [drill](math/12-trigonometry/drill.md) | [answer](math/12-trigonometry/answer.md) |
-| 13. 微分 | 高校3年 | [guide](math/13-differentiation/guide.md) | [drill](math/13-differentiation/drill.md) | [answer](math/13-differentiation/answer.md) |
-| 14. 積分 | 高校3年 | [guide](math/14-integration/guide.md) | [drill](math/14-integration/drill.md) | [answer](math/14-integration/answer.md) |
+| 01. たし算（くり上がりなし） | 小学1年 | [drill](math/01-addition-no-carry/drill.md) | [answer](math/01-addition-no-carry/answer.md) | [guide](math/01-addition-no-carry/guide.md) |
+| 02. たし算（くり上がりあり） | 小学1年 | [drill](math/02-addition-carry/drill.md) | [answer](math/02-addition-carry/answer.md) | [guide](math/02-addition-carry/guide.md) |
+| 03. たし算（まとめ） | 小学1年 | [drill](math/03-addition-mixed/drill.md) | [answer](math/03-addition-mixed/answer.md) | [guide](math/03-addition-mixed/guide.md) |
+| 04. ひき算（くり下がりなし） | 小学1年 | [drill](math/04-subtraction-no-borrow/drill.md) | [answer](math/04-subtraction-no-borrow/answer.md) | [guide](math/04-subtraction-no-borrow/guide.md) |
+| 05. ひき算（くり下がりあり） | 小学1年 | [drill](math/05-subtraction-borrow/drill.md) | [answer](math/05-subtraction-borrow/answer.md) | [guide](math/05-subtraction-borrow/guide.md) |
+| 06. ひき算（まとめ） | 小学1年 | [drill](math/06-subtraction-mixed/drill.md) | [answer](math/06-subtraction-mixed/answer.md) | [guide](math/06-subtraction-mixed/guide.md) |
+| 07. かけ算 | 小学2年 | [drill](math/07-multiplication/drill.md) | [answer](math/07-multiplication/answer.md) | [guide](math/07-multiplication/guide.md) |
+| 08. わり算（あまりなし） | 小学3年 | [drill](math/08-division-no-remainder/drill.md) | [answer](math/08-division-no-remainder/answer.md) | [guide](math/08-division-no-remainder/guide.md) |
+| 09. わり算（あまりあり） | 小学3年 | [drill](math/09-division-remainder/drill.md) | [answer](math/09-division-remainder/answer.md) | [guide](math/09-division-remainder/guide.md) |
+| 10. わり算（まとめ） | 小学3年 | [drill](math/10-division-mixed/drill.md) | [answer](math/10-division-mixed/answer.md) | [guide](math/10-division-mixed/guide.md) |
+| 11. 分数 | 小学4年 | [drill](math/11-fractions/drill.md) | [answer](math/11-fractions/answer.md) | [guide](math/11-fractions/guide.md) |
+| 12. 小数 | 小学5年 | [drill](math/12-decimals/drill.md) | [answer](math/12-decimals/answer.md) | [guide](math/12-decimals/guide.md) |
+| 13. 比 | 小学6年 | [drill](math/13-ratio/drill.md) | [answer](math/13-ratio/answer.md) | [guide](math/13-ratio/guide.md) |
+| 14. 割合 | 小学6年 | [drill](math/14-percentage/drill.md) | [answer](math/14-percentage/answer.md) | [guide](math/14-percentage/guide.md) |
+| 15. 正負の数 | 中学1年 | [drill](math/15-positive-negative/drill.md) | [answer](math/15-positive-negative/answer.md) | [guide](math/15-positive-negative/guide.md) |
+| 16. 連立方程式 | 中学2年 | [drill](math/16-simultaneous-eq/drill.md) | [answer](math/16-simultaneous-eq/answer.md) | [guide](math/16-simultaneous-eq/guide.md) |
+| 17. 二次方程式 | 中学3年 | [drill](math/17-quadratic-eq/drill.md) | [answer](math/17-quadratic-eq/answer.md) | [guide](math/17-quadratic-eq/guide.md) |
+| 18. 二次関数 | 高校1年 | [drill](math/18-quadratic-func/drill.md) | [answer](math/18-quadratic-func/answer.md) | [guide](math/18-quadratic-func/guide.md) |
+| 19. 三角関数 | 高校2年 | [drill](math/19-trigonometry/drill.md) | [answer](math/19-trigonometry/answer.md) | [guide](math/19-trigonometry/guide.md) |
+| 20. 微分 | 高校3年 | [drill](math/20-differentiation/drill.md) | [answer](math/20-differentiation/answer.md) | [guide](math/20-differentiation/guide.md) |
+| 21. 積分 | 高校3年 | [drill](math/21-integration/drill.md) | [answer](math/21-integration/answer.md) | [guide](math/21-integration/guide.md) |
