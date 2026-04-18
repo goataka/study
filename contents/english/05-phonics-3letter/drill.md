@@ -24,3 +24,7 @@
 | `spr`ing | 　　　　　　　　　　　　 |
 | `spl`ash | 　　　　　　　　　　　　 |
 | `scr`een | 　　　　　　　　　　　　 |
+
+---
+
+[解答を見る](answer.md) | [目次に戻る](../../README.md)

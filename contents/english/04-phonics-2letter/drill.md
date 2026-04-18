@@ -39,3 +39,7 @@
 | h`o`me | 　　　　　　　　　　　　 |
 | c`u`te | 　　　　　　　　　　　　 |
 | t`u`be | 　　　　　　　　　　　　 |
+
+---
+
+[解答を見る](answer.md) | [目次に戻る](../../README.md)
