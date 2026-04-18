@@ -2,111 +2,100 @@
 
 このディレクトリには、クイズシステムのデータ整合性とアプリケーション動作を検証するテストが含まれています。
 
+## 実行方法
+
+```bash
+cd contents/quiz
+npm install        # 初回のみ
+npm test           # Jest でテストを実行
+npm run typecheck  # TypeScript 型チェック
+npm run build      # ブラウザ向けバンドル生成 (quiz.js)
+```
+
 ## テストファイル
 
-### 1. validate-questions.js
+### `questionData.test.ts`
 
-Node.jsスクリプトで、questions.jsonのデータ構造と整合性を検証します。
-
-**実行方法:**
-```bash
-cd contents/quiz/tests
-node validate-questions.js
-```
-
-**チェック項目:**
-- データ構造の妥当性（subjects, categories, questions）
-- 必須フィールドの存在確認（id, question, choices, correct, explanation）
-- 問題IDの一意性
-- 選択肢が正確に4つあるか
-- 正解インデックスが0-3の範囲内か
-- 問題文・解説の長さ
-
-**終了コード:**
-- 0: すべてのチェックが成功
-- 1: エラーが検出された
-
-### 2. test.html
-
-ブラウザで実行できるテストスイート。questions.jsonを読み込んで、データの妥当性を確認します。
-
-**実行方法:**
-1. ブラウザで `test.html` を開く
-2. 自動的にテストが実行され、結果が表示されます
+`questions/` ディレクトリ以下のデータ整合性を TypeScript + Jest で検証します。
 
 **テスト内容:**
-- データ読み込み
-- データ構造の検証
-- 問題フォーマットの検証
-- IDの一意性チェック
-- 選択肢の検証
 
-## CI/CDへの統合
+- `questions/index.json` (マニフェスト) の構造検証
+  - version / subjects / questionFiles フィールドの存在確認
+  - 各ファイルが実際に存在するか
+- 各カテゴリファイルのスキーマ検証
+  - 必須フィールド (subject, category, questions) の存在
+  - 全問題の必須フィールド (id, question, choices, correct, explanation)
+  - choices がちょうど 4 つで空でないこと
+  - correct が 0〜3 の整数であること
+- 問題 ID のグローバル一意性チェック
+- データ統計 (英語・数学それぞれの問題数)
+- 後方互換性 (`questions.json` が存在する場合、同じ ID セットを含むか)
 
-GitHubActionsなどのCI/CDパイプラインに統合する場合:
+### `questionLoader.test.ts`
 
-```yaml
-- name: Validate Quiz Data
-  run: |
-    cd contents/quiz/tests
-    node validate-questions.js
+`src/questionLoader.ts` の純粋関数ロジックを検証します。
+
+**テスト内容:**
+
+- `validateManifest()` — 有効・無効なデータの受け入れ/拒否
+- `validateQuestionFile()` — 有効・無効なデータの受け入れ/拒否
+
+### `validate-questions.js` (レガシー)
+
+Node.js で直接実行できる旧バリデータです。新しいテストと同等の検証を行います。
+
+```bash
+cd contents/quiz
+node tests/validate-questions.js
 ```
 
-## テスト結果の例
+### `test.html` (レガシー)
 
+ブラウザで実行できる旧テストスイートです。開発時のデバッグに使用できます。
+
+## データフォーマット
+
+### `questions/index.json` (マニフェスト)
+
+```json
+{
+  "version": "2.0.0",
+  "subjects": {
+    "english": { "name": "英語" },
+    "math": { "name": "数学" }
+  },
+  "questionFiles": [
+    "english/phonics-1.json",
+    "english/phonics-2.json"
+  ]
+}
 ```
-✅ All checks passed! ✨
 
-📊 Statistics:
-Total questions: 92
+### `questions/{subject}/{category}.json` (カテゴリファイル)
 
-英語 (60 questions):
-  - フォニックス（1文字）: 20 questions
-  - フォニックス（2文字・マジックE）: 15 questions
-  - フォニックス（3文字）: 5 questions
-  - 音声変化 - リンキング: 5 questions
-  - 音声変化 - リダクション: 5 questions
-  - 音声変化 - フラッピング: 5 questions
-  - 音声変化 - アシミレーション: 5 questions
-
-数学 (32 questions):
-  - たし算: 8 questions
-  - ひき算: 8 questions
-  - かけ算: 8 questions
-  - わり算: 8 questions
+```json
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonics-1",
+  "categoryName": "フォニックス（1文字）",
+  "questions": [
+    {
+      "id": "unique-id",
+      "question": "問題文",
+      "choices": ["選択肢1", "選択肢2", "選択肢3", "選択肢4"],
+      "correct": 0,
+      "explanation": "解説"
+    }
+  ]
+}
 ```
 
 ## 新しい問題を追加する場合
 
-1. `questions.json`に問題を追加
-2. テストを実行して整合性を確認
-3. すべてのテストが通過することを確認してからコミット
+1. 対応するカテゴリファイル (`questions/{subject}/{category}.json`) に問題を追加
+2. 新しいカテゴリの場合は、ファイルを作成して `questions/index.json` の `questionFiles` に追加
+3. `npm test` でテストを実行して整合性を確認
+4. すべてのテストが通過することを確認してからコミット
 
-## データフォーマット
-
-questions.jsonの構造:
-
-```json
-{
-  "version": "1.0.0",
-  "subjects": {
-    "subject_id": {
-      "name": "教科名",
-      "categories": {
-        "category_id": {
-          "name": "カテゴリ名",
-          "questions": [
-            {
-              "id": "unique-id",
-              "question": "問題文",
-              "choices": ["選択肢1", "選択肢2", "選択肢3", "選択肢4"],
-              "correct": 0,
-              "explanation": "解説"
-            }
-          ]
-        }
-      }
-    }
-  }
-}
-```

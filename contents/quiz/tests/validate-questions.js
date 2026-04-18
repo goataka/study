@@ -215,11 +215,42 @@ class QuizValidator {
 
 // CLI実行
 if (require.main === module) {
-    const questionsPath = path.join(__dirname, '..', 'questions.json');
-    const validator = new QuizValidator();
-    const isValid = validator.validate(questionsPath);
+    const questionsDir = path.join(__dirname, '..', 'questions');
+    const indexPath = path.join(questionsDir, 'index.json');
 
-    process.exit(isValid ? 0 : 1);
+    try {
+        const manifest = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+        const validator = new QuizValidator();
+
+        // マニフェストを検証（合成した全体データとして扱う）
+        const combined = {
+            version: manifest.version,
+            subjects: {}
+        };
+
+        for (const file of manifest.questionFiles) {
+            const filePath = path.join(questionsDir, file);
+            const qf = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+            if (!combined.subjects[qf.subject]) {
+                combined.subjects[qf.subject] = {
+                    name: qf.subjectName,
+                    categories: {}
+                };
+            }
+            combined.subjects[qf.subject].categories[qf.category] = {
+                name: qf.categoryName,
+                questions: qf.questions
+            };
+        }
+
+        validator.validateStructure(combined);
+        const isValid = validator.printSummary();
+        process.exit(isValid ? 0 : 1);
+    } catch (error) {
+        console.error(`\x1b[31m❌ ERROR: ${error.message}\x1b[0m`);
+        process.exit(1);
+    }
 }
 
 module.exports = QuizValidator;

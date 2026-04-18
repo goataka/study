@@ -1,0 +1,188 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonics-2",
+  "categoryName": "フォニックス（2文字・マジックE）",
+  "questions": [
+    {
+      "id": "phonics-2-sh1",
+      "question": "「shoe」の「sh」の音は？",
+      "choices": [
+        "シュ",
+        "ス",
+        "チ",
+        "ジュ"
+      ],
+      "correct": 0,
+      "explanation": "shoe = シュ ウー"
+    },
+    {
+      "id": "phonics-2-sh2",
+      "question": "「fish」の「sh」の音は？",
+      "choices": [
+        "シュ",
+        "ス",
+        "チ",
+        "ジュ"
+      ],
+      "correct": 0,
+      "explanation": "fish = フ イ シュ"
+    },
+    {
+      "id": "phonics-2-ch1",
+      "question": "「chair」の「ch」の音は？",
+      "choices": [
+        "チ",
+        "シュ",
+        "ク",
+        "ジュ"
+      ],
+      "correct": 0,
+      "explanation": "chair = チ エ アー"
+    },
+    {
+      "id": "phonics-2-ch2",
+      "question": "「much」の「ch」の音は？",
+      "choices": [
+        "チ",
+        "シュ",
+        "ク",
+        "ス"
+      ],
+      "correct": 0,
+      "explanation": "much = ム ア チ"
+    },
+    {
+      "id": "phonics-2-th1",
+      "question": "「that」の「th」の音は？",
+      "choices": [
+        "ザ",
+        "ス",
+        "ダ",
+        "ザッ"
+      ],
+      "correct": 0,
+      "explanation": "that = ザ ア ト"
+    },
+    {
+      "id": "phonics-2-th2",
+      "question": "「bath」の「th」の音は？",
+      "choices": [
+        "ス",
+        "ザ",
+        "ト",
+        "サ"
+      ],
+      "correct": 0,
+      "explanation": "bath = ブ ア ス"
+    },
+    {
+      "id": "phonics-2-oo1",
+      "question": "「book」の「oo」の音は？",
+      "choices": [
+        "ウ",
+        "ウー",
+        "オ",
+        "オー"
+      ],
+      "correct": 0,
+      "explanation": "book = ブ ウ ク"
+    },
+    {
+      "id": "phonics-2-oo2",
+      "question": "「moon」の「oo」の音は？",
+      "choices": [
+        "ウー",
+        "ウ",
+        "オー",
+        "オ"
+      ],
+      "correct": 0,
+      "explanation": "moon = ム ウー ヌ"
+    },
+    {
+      "id": "phonics-2-ee1",
+      "question": "「deep」の「ee」の音は？",
+      "choices": [
+        "イー",
+        "エ",
+        "エー",
+        "イ"
+      ],
+      "correct": 0,
+      "explanation": "deep = ドゥ イー プ"
+    },
+    {
+      "id": "phonics-2-ai1",
+      "question": "「rain」の「ai」の音は？",
+      "choices": [
+        "エイ",
+        "アイ",
+        "エ",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "rain = ル エイ ヌ"
+    },
+    {
+      "id": "phonics-2-oa1",
+      "question": "「boat」の「oa」の音は？",
+      "choices": [
+        "オウ",
+        "オ",
+        "オー",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "boat = ブ オウ ト"
+    },
+    {
+      "id": "phonics-2-magic-a",
+      "question": "「cake」の「a」の音は？（マジックE）",
+      "choices": [
+        "エイ",
+        "ア",
+        "エ",
+        "アイ"
+      ],
+      "correct": 0,
+      "explanation": "cake = ク エイ ク"
+    },
+    {
+      "id": "phonics-2-magic-i",
+      "question": "「kite」の「i」の音は？（マジックE）",
+      "choices": [
+        "アイ",
+        "イ",
+        "エイ",
+        "エ"
+      ],
+      "correct": 0,
+      "explanation": "kite = ク アイ ト"
+    },
+    {
+      "id": "phonics-2-magic-o",
+      "question": "「note」の「o」の音は？（マジックE）",
+      "choices": [
+        "オウ",
+        "オ",
+        "ア",
+        "ウ"
+      ],
+      "correct": 0,
+      "explanation": "note = ヌ オウ ト"
+    },
+    {
+      "id": "phonics-2-magic-u",
+      "question": "「cute」の「u」の音は？（マジックE）",
+      "choices": [
+        "ユー",
+        "ア",
+        "ウ",
+        "ウー"
+      ],
+      "correct": 0,
+      "explanation": "cute = ク ユー ト"
+    }
+  ]
+}

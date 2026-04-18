@@ -1,0 +1,68 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "reduction",
+  "categoryName": "音声変化 - リダクション",
+  "questions": [
+    {
+      "id": "reduction-1",
+      "question": "「want to」はどう発音する？",
+      "choices": [
+        "ワナ",
+        "ウォント トゥ",
+        "ワント",
+        "ウォナ"
+      ],
+      "correct": 0,
+      "explanation": "t が消失して、ワナ"
+    },
+    {
+      "id": "reduction-2",
+      "question": "「going to」はどう発音する？",
+      "choices": [
+        "ゴナ / ガナ",
+        "ゴーイング トゥ",
+        "ゴイントゥ",
+        "ゴウトゥ"
+      ],
+      "correct": 0,
+      "explanation": "ing to → na となり、ゴナ / ガナ"
+    },
+    {
+      "id": "reduction-3",
+      "question": "「have to」はどう発音する？",
+      "choices": [
+        "ハフタ",
+        "ハブ トゥ",
+        "ハブタ",
+        "ハフトゥ"
+      ],
+      "correct": 0,
+      "explanation": "ve が弱化して、ハフタ"
+    },
+    {
+      "id": "reduction-4",
+      "question": "「kind of」はどう発音する？",
+      "choices": [
+        "カインダ",
+        "カインド オブ",
+        "カイノブ",
+        "カインドブ"
+      ],
+      "correct": 0,
+      "explanation": "d が弱化して、カインダ"
+    },
+    {
+      "id": "reduction-5",
+      "question": "「sort of」はどう発音する？",
+      "choices": [
+        "ソータ",
+        "ソート オブ",
+        "ソトブ",
+        "ソートブ"
+      ],
+      "correct": 0,
+      "explanation": "t が消失して、ソータ"
+    }
+  ]
+}

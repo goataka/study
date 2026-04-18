@@ -78,12 +78,30 @@
             async testDataLoading() {
                 const suite = 'Data Loading';
                 try {
-                    const response = await fetch('../questions.json');
-                    const data = await response.json();
-                    this.data = data;
-                    this.addTest(suite, 'Load questions.json', true, 'Successfully loaded');
+                    const manifestRes = await fetch('../questions/index.json');
+                    const manifest = await manifestRes.json();
+                    this.manifest = manifest;
+
+                    // Load all question files and merge
+                    const allQuestionFiles = await Promise.all(
+                        manifest.questionFiles.map(f => fetch(`../questions/${f}`).then(r => r.json()))
+                    );
+
+                    // Build a combined data structure for downstream tests
+                    this.data = { version: manifest.version, subjects: {} };
+                    for (const qf of allQuestionFiles) {
+                        if (!this.data.subjects[qf.subject]) {
+                            this.data.subjects[qf.subject] = { name: qf.subjectName, categories: {} };
+                        }
+                        this.data.subjects[qf.subject].categories[qf.category] = {
+                            name: qf.categoryName, questions: qf.questions
+                        };
+                    }
+
+                    this.addTest(suite, 'Load questions/index.json', true, `Loaded manifest (${manifest.questionFiles.length} files)`);
+                    this.addTest(suite, 'Load all question files', true, `Loaded ${allQuestionFiles.length} category files`);
                 } catch (error) {
-                    this.addTest(suite, 'Load questions.json', false, error.message);
+                    this.addTest(suite, 'Load question data', false, error.message);
                 }
             }
 
