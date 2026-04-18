@@ -21,5 +21,6 @@
 | lim(x→∞) (2x+1)/(3x-1) = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: ベクトル](../35-vectors/drill.md) | **極限** | [次へ: 微分](../37-differentiation/drill.md)

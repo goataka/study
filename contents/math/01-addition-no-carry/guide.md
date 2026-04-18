@@ -34,5 +34,6 @@
 - 0をたしても数は変わらない → `5 + 0 = 5`
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 **たし算（くり上がりなし）** | [次へ: たし算（くり上がりあり）](../02-addition-carry/drill.md)

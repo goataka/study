@@ -35,5 +35,6 @@
 - ある数 × その逆数 = **1** になる
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: 分数のかけ算](../15-fractions-multiply/drill.md) | **分数のわり算** | [次へ: 小数のたし算](../17-decimals-addition/drill.md)

@@ -16,5 +16,6 @@
 | 26 ÷ 8 = | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: わり算（あまりあり）](../09-division-remainder/drill.md) | **わり算（まとめ）** | [次へ: 分数のたし算（同分母）](../11-fractions-same-add/drill.md)

@@ -25,5 +25,6 @@
 | 5(2a - 3) + 4a = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 正負の数](../22-positive-negative/drill.md) | **文字式** | [次へ: 一次方程式](../24-linear-eq/drill.md)

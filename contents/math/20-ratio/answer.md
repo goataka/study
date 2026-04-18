@@ -16,5 +16,6 @@
 💡 両方の数を **最大公約数** でわります。`4:6` → 両方を2でわる → **2:3**。`14:21` → 両方を7でわる → **2:3**
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+
 [前へ: 小数のかけ算](../19-decimals-multiplication/drill.md) | **比** | [次へ: 割合](../21-percentage/drill.md)

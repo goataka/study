@@ -25,5 +25,6 @@
 | √12 + √27 = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 確率](../27-probability/drill.md) | **平方根** | [次へ: 二次方程式](../29-quadratic-eq/drill.md)

@@ -19,5 +19,6 @@
 | f(x) = -x³ + 3x² + 1 | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 極限](../36-limits/drill.md) | **微分** | [次へ: 積分](../38-integration/drill.md)

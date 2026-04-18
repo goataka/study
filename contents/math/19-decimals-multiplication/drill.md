@@ -18,5 +18,6 @@
 | 4.2 × 2.5 = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 小数のひき算](../18-decimals-subtraction/drill.md) | **小数のかけ算** | [次へ: 比](../20-ratio/drill.md)

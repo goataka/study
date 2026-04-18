@@ -43,5 +43,6 @@
 - 定積分では **C は不要**（差を取るので消える）
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: 微分](../37-differentiation/drill.md) | **積分**

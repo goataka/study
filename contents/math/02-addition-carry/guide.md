@@ -37,5 +37,6 @@
 - 大きい方の数にたして10にする → 残りをたす
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: たし算（くり上がりなし）](../01-addition-no-carry/drill.md) | **たし算（くり上がりあり）** | [次へ: たし算（まとめ）](../03-addition-mixed/drill.md)

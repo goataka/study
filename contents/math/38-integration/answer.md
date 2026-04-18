@@ -24,5 +24,6 @@
 💡 不定積分を求めて上端・下端の差。`[x³+x²]₀² = (8+4)-(0+0) = 12`
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+
 [前へ: 微分](../37-differentiation/drill.md) | **積分**

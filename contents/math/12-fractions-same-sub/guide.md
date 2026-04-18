@@ -30,5 +30,6 @@
 - 答えが0になることもある → 3/5 - 3/5 = **0**
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: 分数のたし算（同分母）](../11-fractions-same-add/drill.md) | **分数のひき算（同分母）** | [次へ: 分数のたし算（通分あり）](../13-fractions-diff-add/drill.md)

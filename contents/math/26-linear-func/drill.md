@@ -27,5 +27,6 @@ y = 2x + 1 のとき、次の x の値に対する y を求めましょう。
 | 傾き3、(1, 5)を通る | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 連立方程式](../25-simultaneous-eq/drill.md) | **一次関数** | [次へ: 確率](../27-probability/drill.md)

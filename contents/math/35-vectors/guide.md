@@ -40,5 +40,6 @@
 - 内積 = 0 → **直交（垂直）** ⊥
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: 数列](../34-sequences/drill.md) | **ベクトル** | [次へ: 極限](../36-limits/drill.md)

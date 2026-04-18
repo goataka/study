@@ -39,5 +39,6 @@
 - 「起きない確率」= 1 - 「起きる確率」
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: 一次関数](../26-linear-func/drill.md) | **確率** | [次へ: 平方根](../28-square-roots/drill.md)

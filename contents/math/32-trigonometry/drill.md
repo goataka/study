@@ -30,5 +30,6 @@
 | sin(α - β) = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 不等式](../31-inequalities/drill.md) | **三角関数** | [次へ: 指数・対数](../33-exponents-logarithms/drill.md)

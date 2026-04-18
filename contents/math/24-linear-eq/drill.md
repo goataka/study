@@ -18,5 +18,6 @@
 | (x + 3)/2 = 4 | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 文字式](../23-algebraic-expressions/drill.md) | **一次方程式** | [次へ: 連立方程式](../25-simultaneous-eq/drill.md)

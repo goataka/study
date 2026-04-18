@@ -18,5 +18,6 @@
 💡 **ポイント**: 分母が違うときは、まず通分して分母をそろえてからたします。
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+
 [前へ: 分数のひき算（同分母）](../12-fractions-same-sub/drill.md) | **分数のたし算（通分あり）** | [次へ: 分数のひき算（通分あり）](../14-fractions-diff-sub/drill.md)

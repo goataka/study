@@ -23,5 +23,6 @@
 | log₃9 - log₃3 = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 三角関数](../32-trigonometry/drill.md) | **指数・対数** | [次へ: 数列](../34-sequences/drill.md)

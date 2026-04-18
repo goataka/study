@@ -29,5 +29,6 @@
 | (-20) ÷ (-4) = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 割合](../21-percentage/drill.md) | **正負の数** | [次へ: 文字式](../23-algebraic-expressions/drill.md)

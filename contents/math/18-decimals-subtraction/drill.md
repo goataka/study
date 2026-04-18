@@ -18,5 +18,6 @@
 | 8.1 - 0.45 = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: 小数のたし算](../17-decimals-addition/drill.md) | **小数のひき算** | [次へ: 小数のかけ算](../19-decimals-multiplication/drill.md)

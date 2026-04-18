@@ -18,5 +18,6 @@
 | 14 - 6 = | 　　　　　　　　　　　　 |
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+
 [前へ: ひき算（くり下がりあり）](../05-subtraction-borrow/drill.md) | **ひき算（まとめ）** | [次へ: かけ算](../07-multiplication/drill.md)

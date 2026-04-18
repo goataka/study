@@ -24,5 +24,6 @@
 💡 平方完成する。`x²-4x+5 = (x-2)²+1` → 下に凸なので最小値 **1**（x=2）
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+
 [前へ: 二次方程式](../29-quadratic-eq/drill.md) | **二次関数** | [次へ: 不等式](../31-inequalities/drill.md)

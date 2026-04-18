@@ -29,5 +29,6 @@
 | くり上がりあり | 合計が10以上 | 8 + 5 = 13 |
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: たし算（くり上がりあり）](../02-addition-carry/drill.md) | **たし算（まとめ）** | [次へ: ひき算（くり下がりなし）](../04-subtraction-no-borrow/drill.md)

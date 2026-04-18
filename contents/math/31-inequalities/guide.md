@@ -35,5 +35,6 @@ x < 2 ✅  ← ⚠️ 負の数でわると不等号が逆転！
 - 正の数なら向きはそのまま
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: 二次関数](../30-quadratic-func/drill.md) | **不等式** | [次へ: 三角関数](../32-trigonometry/drill.md)

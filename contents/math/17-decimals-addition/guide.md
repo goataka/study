@@ -36,5 +36,6 @@
 - くり上がりにも注意 → `0.7 + 0.6 = 1.3`
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+
 [前へ: 分数のわり算](../16-fractions-divide/drill.md) | **小数のたし算** | [次へ: 小数のひき算](../18-decimals-subtraction/drill.md)
