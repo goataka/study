@@ -8,7 +8,10 @@
     "build": "tsc --noEmit --project tsconfig.build.json && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:report": "vitest run --reporter=json --outputFile=test-results.json",
+    "generate-evidence": "node scripts/generate-evidence.mjs",
+    "test:evidence": "npm run test:report && npm run generate-evidence"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
