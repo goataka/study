@@ -1,10 +1,12 @@
 # Goataka Study
 
-子供向け英語学習ドリルのリポジトリです。
+子供向け学習ドリルのリポジトリです。
 
 ## コンテンツ
 
-- [英語ドリル一覧](contents/README.md)
+- [学習ドリル一覧](contents/README.md)
+  - 英語ドリル
+  - 数学ドリル（小学校〜高校）
 
 ## GitHub Pages
 
