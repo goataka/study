@@ -24,88 +24,123 @@
 
 ### 4. 時制（動詞の変化）
 
-- [一般動詞の現在形](11-tenses-regular-present/drill.md) — I `play` games.
-- [一般動詞の過去形](12-tenses-regular-past/drill.md) — I `played` games.
-- [一般動詞の未来形](13-tenses-regular-future/drill.md) — I `will play` games.
-- [be動詞の過去形](14-tenses-be-past/drill.md) — I `was` happy.
-- [be動詞の未来形](15-tenses-be-future/drill.md) — I `will be` happy.
-- [不規則動詞の過去形](16-tenses-irregular/drill.md) — I `went` to school.
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [一般動詞の現在形](11-tenses-regular-present/drill.md) | I `play` games. | 私はゲームをします。 |
+| [一般動詞の過去形](12-tenses-regular-past/drill.md) | I `played` games. | 私はゲームをしました。 |
+| [一般動詞の未来形](13-tenses-regular-future/drill.md) | I `will play` games. | 私はゲームをするでしょう。 |
+| [be動詞の現在形](14-tenses-be-present/drill.md) | I `am` happy. | 私は幸せです。 |
+| [be動詞の過去形](15-tenses-be-past/drill.md) | I `was` happy. | 私は幸せでした。 |
+| [be動詞の未来形](16-tenses-be-future/drill.md) | I `will be` happy. | 私は幸せになるでしょう。 |
+| [不規則動詞の過去形](17-tenses-irregular/drill.md) | I `went` to school. | 私は学校に行きました。 |
 
-### 5. 進行形・完了形
+### 5. 品詞（語の種類と使い方）
 
-- [進行形](17-progressive/drill.md) — I `am playing` games.
-- [-ing形の作り方](18-progressive-ing/drill.md) — play → `playing`, run → `running`
-- [完了形](19-perfect/drill.md) — I `have played` games.
-- [過去分詞の変化](20-perfect-participles/drill.md) — play → `played`, go → `gone`
-- [完了形の用法](21-perfect-usage/drill.md) — 経験・完了・継続の使い分け
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [冠詞](18-articles/drill.md) | I have `a` book. / I read `the` book. | 私は本を持っています。/ 私はその本を読みます。 |
+| [形容詞](19-adjectives/drill.md) | I play `fun` games. | 私は楽しいゲームをします。 |
+| [副詞](20-adverbs/drill.md) | I `always` play games. | 私はいつもゲームをします。 |
+| [前置詞](21-prepositions/drill.md) | I play games `at` home. | 私は家でゲームをします。 |
+| [接続詞](22-conjunctions/drill.md) | I play games `and` study English. | 私はゲームをして英語を勉強します。 |
 
-### 6. 助動詞
+### 6. 進行形・完了形
 
-- [助動詞の使い分け](22-modals-basic/drill.md) — I `can play` games.
-- [助動詞の否定形](23-modals-negative/drill.md) — I `cannot play` games.
-- [助動詞の過去形](24-modals-past/drill.md) — I `could play` games.
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [進行形](23-progressive/drill.md) | I `am playing` games. | 私はゲームをしています。 |
+| [-ing形の作り方](24-progressive-ing/drill.md) | play → `playing`, run → `running` | — |
+| [完了形](25-perfect/drill.md) | I `have played` games. | 私はゲームをしたことがあります。 |
+| [過去分詞の変化](26-perfect-participles/drill.md) | play → `played`, go → `gone` | — |
+| [完了形の用法](27-perfect-usage/drill.md) | I `have lived` here for 3 years. | 私は3年間ここに住んでいます。 |
 
-### 7. 受動態
+### 7. 助動詞
 
-- [受動態](25-passive/drill.md) — Games `are played` by me.
-- [助動詞の受動態](26-passive-modals/drill.md) — Games `can be played` by anyone.
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [助動詞の使い分け](28-modals-basic/drill.md) | I `can play` games. | 私はゲームができます。 |
+| [助動詞の否定形](29-modals-negative/drill.md) | I `cannot play` games. | 私はゲームができません。 |
+| [助動詞の過去形](30-modals-past/drill.md) | I `could play` games. | 私はゲームができました。 |
 
-### 8. 仮定法・条件文
+### 8. 受動態
 
-- [条件文](27-conditionals-if/drill.md) — If I `had` time, I `would play` games.
-- [I wish](28-conditionals-wish/drill.md) — I wish I `could play` games.
-- [unless](29-conditionals-unless/drill.md) — I play games `unless` I am busy.
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [受動態](31-passive/drill.md) | Games `are played` by me. | ゲームは私によってされます。 |
+| [助動詞の受動態](32-passive-modals/drill.md) | Games `can be played` by anyone. | ゲームは誰でもできます。 |
 
-### 9. 疑問文・否定文
+### 9. 仮定法・条件文
 
-- [疑問文](30-questions/drill.md) — `Do` you play games?
-- [否定文](31-negatives/drill.md) — I `do not play` games.
-- [疑問詞](32-questions-wh/drill.md) — `What` do you play?
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [条件文](33-conditionals-if/drill.md) | If I `had` time, I `would play` games. | もし時間があれば、ゲームをするのに。 |
+| [I wish](34-conditionals-wish/drill.md) | I wish I `could play` games. | ゲームができたらいいのに。 |
+| [unless](35-conditionals-unless/drill.md) | I play games `unless` I am busy. | 忙しくない限り、私はゲームをします。 |
 
-### 10. 比較
+### 10. 疑問文・否定文
 
-- [比較級](33-comparatives-er/drill.md) — This game is `more interesting` than that one.
-- [最上級](34-comparatives-est/drill.md) — This game is `the most interesting`.
-- [不規則な比較変化](35-comparatives-irregular/drill.md) — This is `better` than that.
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [疑問文](36-questions/drill.md) | `Do` you play games? | あなたはゲームをしますか？ |
+| [否定文](37-negatives/drill.md) | I `do not play` games. | 私はゲームをしません。 |
+| [疑問詞](38-questions-wh/drill.md) | `What` do you play? | あなたは何をしますか？ |
 
-### 11. 関係代名詞・関係副詞
+### 11. 比較
 
-- [主格の関係代名詞](36-relative-subject/drill.md) — The boy `who` plays games is my friend.
-- [目的格の関係代名詞](37-relative-object/drill.md) — The game `which` I play is fun.
-- [所有格の関係代名詞](38-relative-possessive/drill.md) — The boy `whose` game I borrowed is kind.
-- [関係副詞](39-relative-adverb/drill.md) — The place `where` I play games is quiet.
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [比較級](39-comparatives-er/drill.md) | This game is `more interesting` than that one. | このゲームはあれより面白いです。 |
+| [最上級](40-comparatives-est/drill.md) | This game is `the most interesting`. | このゲームが一番面白いです。 |
+| [不規則な比較変化](41-comparatives-irregular/drill.md) | This is `better` than that. | これはあれより良いです。 |
 
-### 12. 間接話法（話法の転換）
+### 12. 関係代名詞・関係副詞
 
-- [時制の一致](40-reported-tense/drill.md) — He said he `played` games.
-- [疑問文の間接話法](41-reported-question/drill.md) — He asked if I `played` games.
-- [命令文の間接話法](42-reported-imperative/drill.md) — He told me `to play` games.
-- [指示語の変化](43-reported-expressions/drill.md) — He said he would come `the next day`.
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [主格の関係代名詞](42-relative-subject/drill.md) | The boy `who` plays games is my friend. | ゲームをする少年は私の友達です。 |
+| [目的格の関係代名詞](43-relative-object/drill.md) | The game `which` I play is fun. | 私がするゲームは楽しいです。 |
+| [所有格の関係代名詞](44-relative-possessive/drill.md) | The boy `whose` game I borrowed is kind. | 私がゲームを借りた少年は親切です。 |
+| [関係副詞](45-relative-adverb/drill.md) | The place `where` I play games is quiet. | 私がゲームをする場所は静かです。 |
+
+### 13. 間接話法（話法の転換）
+
+| 文法項目 | 例文 | 日本語 |
+|----------|------|--------|
+| [時制の一致](46-reported-tense/drill.md) | He said he `played` games. | 彼はゲームをしたと言いました。 |
+| [疑問文の間接話法](47-reported-question/drill.md) | He asked if I `played` games. | 彼は私がゲームをするか尋ねました。 |
+| [命令文の間接話法](48-reported-imperative/drill.md) | He told me `to play` games. | 彼は私にゲームをするよう言いました。 |
+| [指示語の変化](49-reported-expressions/drill.md) | He said he would come `the next day`. | 彼は翌日来ると言いました。 |
 
 ## 文法一覧（例文の変化）
 
 同じ文（I play games.）を変化させた形で文法の違いを示します。
 
-| 文法項目 | 例文 | 解説 |
-|----------|------|------|
-| 現在形 | I `play` games. | [解説](11-tenses-regular-present/guide.md) |
-| 過去形 | I `played` games. | [解説](12-tenses-regular-past/guide.md) |
-| 未来形 | I `will play` games. | [解説](13-tenses-regular-future/guide.md) |
-| 現在進行形 | I `am playing` games. | [解説](17-progressive/guide.md) |
-| 過去進行形 | I `was playing` games. | [解説](17-progressive/guide.md) |
-| 現在完了形 | I `have played` games. | [解説](19-perfect/guide.md) |
-| 過去完了形 | I `had played` games. | [解説](19-perfect/guide.md) |
-| 助動詞（can） | I `can play` games. | [解説](22-modals-basic/guide.md) |
-| 助動詞の否定 | I `cannot play` games. | [解説](23-modals-negative/guide.md) |
-| 助動詞の過去 | I `could play` games. | [解説](24-modals-past/guide.md) |
-| 受動態 | Games `are played` by me. | [解説](25-passive/guide.md) |
-| 疑問文 | `Do` you play games? | [解説](30-questions/guide.md) |
-| 否定文 | I `do not play` games. | [解説](31-negatives/guide.md) |
-| 疑問詞 | `What` do you play? | [解説](32-questions-wh/guide.md) |
-| 仮定法 | If I `had` time, I `would play` games. | [解説](27-conditionals-if/guide.md) |
-| 比較級 | I play games `more` than you. | [解説](33-comparatives-er/guide.md) |
-| 関係代名詞 | The game `which` I play is fun. | [解説](36-relative-subject/guide.md) |
-| 間接話法 | He said he `played` games. | [解説](40-reported-tense/guide.md) |
+| 文法項目 | 例文 | 日本語 | 解説 |
+|----------|------|--------|------|
+| 現在形 | I `play` games. | 私はゲームをします。 | [解説](11-tenses-regular-present/guide.md) |
+| 過去形 | I `played` games. | 私はゲームをしました。 | [解説](12-tenses-regular-past/guide.md) |
+| 未来形 | I `will play` games. | 私はゲームをするでしょう。 | [解説](13-tenses-regular-future/guide.md) |
+| be動詞 | I `am` happy. | 私は幸せです。 | [解説](14-tenses-be-present/guide.md) |
+| 冠詞 | I play `a` game. | 私はゲームをします。 | [解説](18-articles/guide.md) |
+| 形容詞 | I play `fun` games. | 私は楽しいゲームをします。 | [解説](19-adjectives/guide.md) |
+| 副詞 | I `always` play games. | 私はいつもゲームをします。 | [解説](20-adverbs/guide.md) |
+| 前置詞 | I play games `at` home. | 私は家でゲームをします。 | [解説](21-prepositions/guide.md) |
+| 接続詞 | I play games `and` study. | 私はゲームをして勉強します。 | [解説](22-conjunctions/guide.md) |
+| 現在進行形 | I `am playing` games. | 私はゲームをしています。 | [解説](23-progressive/guide.md) |
+| 過去進行形 | I `was playing` games. | 私はゲームをしていました。 | [解説](23-progressive/guide.md) |
+| 現在完了形 | I `have played` games. | 私はゲームをしたことがあります。 | [解説](25-perfect/guide.md) |
+| 過去完了形 | I `had played` games. | 私はゲームをしていました。 | [解説](25-perfect/guide.md) |
+| 助動詞（can） | I `can play` games. | 私はゲームができます。 | [解説](28-modals-basic/guide.md) |
+| 助動詞の否定 | I `cannot play` games. | 私はゲームができません。 | [解説](29-modals-negative/guide.md) |
+| 助動詞の過去 | I `could play` games. | 私はゲームができました。 | [解説](30-modals-past/guide.md) |
+| 受動態 | Games `are played` by me. | ゲームは私によってされます。 | [解説](31-passive/guide.md) |
+| 疑問文 | `Do` you play games? | あなたはゲームをしますか？ | [解説](36-questions/guide.md) |
+| 否定文 | I `do not play` games. | 私はゲームをしません。 | [解説](37-negatives/guide.md) |
+| 疑問詞 | `What` do you play? | あなたは何をしますか？ | [解説](38-questions-wh/guide.md) |
+| 仮定法 | If I `had` time, I `would play` games. | もし時間があれば、ゲームをするのに。 | [解説](33-conditionals-if/guide.md) |
+| 比較級 | I play games `more` than you. | 私はあなたよりゲームをします。 | [解説](39-comparatives-er/guide.md) |
+| 関係代名詞 | The game `which` I play is fun. | 私がするゲームは楽しいです。 | [解説](42-relative-subject/guide.md) |
+| 間接話法 | He said he `played` games. | 彼はゲームをしたと言いました。 | [解説](46-reported-tense/guide.md) |
 
 ## 学習の前後関係
 
@@ -114,27 +149,29 @@ graph TD
     A[読み書きの基礎] --> B[フォニックス]
     B --> C[音声変化]
     A --> D[時制]
-    D --> E[進行形・完了形]
-    D --> F[疑問文・否定文]
-    E --> G[助動詞]
-    G --> H[受動態]
-    G --> I[仮定法・条件文]
-    F --> J[疑問詞]
-    D --> K[比較]
-    D --> L[関係代名詞・関係副詞]
-    D --> M[間接話法]
+    D --> E[品詞]
+    E --> F[進行形・完了形]
+    D --> G[疑問文・否定文]
+    F --> H[助動詞]
+    H --> I[受動態]
+    H --> J[仮定法・条件文]
+    G --> K[疑問詞]
+    D --> L[比較]
+    D --> M[関係代名詞・関係副詞]
+    D --> N[間接話法]
 
     click A "01-alphabet/drill.md"
     click B "03-phonics-1letter/drill.md"
     click C "07-linking/drill.md"
     click D "11-tenses-regular-present/drill.md"
-    click E "17-progressive/drill.md"
-    click F "30-questions/drill.md"
-    click G "22-modals-basic/drill.md"
-    click H "25-passive/drill.md"
-    click I "27-conditionals-if/drill.md"
-    click J "32-questions-wh/drill.md"
-    click K "33-comparatives-er/drill.md"
-    click L "36-relative-subject/drill.md"
-    click M "40-reported-tense/drill.md"
+    click E "18-articles/drill.md"
+    click F "23-progressive/drill.md"
+    click G "36-questions/drill.md"
+    click H "28-modals-basic/drill.md"
+    click I "31-passive/drill.md"
+    click J "33-conditionals-if/drill.md"
+    click K "38-questions-wh/drill.md"
+    click L "39-comparatives-er/drill.md"
+    click M "42-relative-subject/drill.md"
+    click N "46-reported-tense/drill.md"
 ```
