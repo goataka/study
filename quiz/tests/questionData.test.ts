@@ -36,7 +36,7 @@ interface QuestionsManifest {
 
 // ─── パス定義 ────────────────────────────────────────────────────────────────
 
-const QUESTIONS_DIR = path.join(__dirname, "..", "questions");
+const QUESTIONS_DIR = path.join(__dirname, "..", "public", "questions");
 const INDEX_FILE = path.join(QUESTIONS_DIR, "index.json");
 
 // ─── ユーティリティ ──────────────────────────────────────────────────────────

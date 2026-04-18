@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英語クイズ - Goataka Study</title>
+  <link rel="stylesheet" href="/quiz.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>英語クイズ</h1>
+      <nav>
+        <a href="../">目次に戻る</a>
+      </nav>
+    </header>
+
+    <!-- スタート画面 -->
+    <div id="startScreen" class="screen">
+      <h2>クイズモード選択</h2>
+      <div class="filter-section">
+        <label for="subjectFilter">教科:</label>
+        <select id="subjectFilter">
+          <option value="all">すべて</option>
+          <option value="english">英語</option>
+          <option value="math">数学</option>
+        </select>
+        <label for="categoryFilter">カテゴリ:</label>
+        <select id="categoryFilter">
+          <option value="all">すべてのカテゴリ</option>
+        </select>
+      </div>
+      <div class="button-group">
+        <button id="startRandomBtn" class="primary-btn">ランダム10問</button>
+        <button id="startRetryBtn" class="secondary-btn">間違えた問題だけ</button>
+      </div>
+      <div id="statsInfo" class="stats-info"></div>
+    </div>
+
+    <!-- クイズ画面 -->
+    <div id="quizScreen" class="screen hidden">
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+      <div class="question-info">
+        <span id="questionNumber"></span>
+        <span id="topicName" class="topic-badge"></span>
+      </div>
+      <div id="questionText" class="question-text"></div>
+      <div id="choicesContainer" class="choices-container"></div>
+      <div class="navigation-buttons">
+        <button id="prevBtn" class="nav-btn" disabled>前へ</button>
+        <button id="nextBtn" class="nav-btn">次へ</button>
+        <button id="submitBtn" class="submit-btn hidden">採点する</button>
+      </div>
+    </div>
+
+    <!-- 結果画面 -->
+    <div id="resultScreen" class="screen hidden">
+      <h2>クイズ結果</h2>
+      <div id="scoreDisplay" class="score-display"></div>
+      <div id="resultDetails" class="result-details"></div>
+      <div class="button-group">
+        <button id="retryAllBtn" class="primary-btn">もう一度全問</button>
+        <button id="retryWrongBtn" class="secondary-btn">間違えた問題だけ</button>
+        <button id="backToStartBtn" class="tertiary-btn">スタート画面に戻る</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/quiz.ts"></script>
+</body>
+</html>
