@@ -24,4 +24,4 @@
 
 [目次](../../README.md) | [練習](drill.md) | 回答 | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md)
 
-[前へ: be動詞の未来形](../15-tenses-be-future/drill.md) | 不規則動詞の過去形 | [次へ: 時制のまとめ](../17-tenses-composition/drill.md)
+[前へ: be動詞の未来形](../15-tenses-be-future/drill.md) | 不規則動詞の過去形 | [次へ: 進行形](../17-progressive/drill.md)
