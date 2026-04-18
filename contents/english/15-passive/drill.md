@@ -1,82 +1,49 @@
 # 受動態ドリル
 
-## 能動態と受動態の違い
+## 穴埋め問題
 
-能動態を受動態に変えましょう。
+( ) に正しい語を入れましょう。
 
-| 能動態 | 受動態 | 日本語訳（受動態） |
-|--------|--------|---------------------|
-| I play games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He plays the piano. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She writes a letter. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They speak English. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I eat an apple. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He reads the book. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She makes a cake. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| We clean the room. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+### 受動態の時制変化
 
-## 過去形の受動態
+基本文: Games are played by me.
 
-| 能動態（過去形） | 受動態（過去形） | 日本語訳（受動態） |
-|------------------|------------------|---------------------|
-| I played games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He wrote the letter. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She took the photo. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They built this house. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I made this cake. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He painted this picture. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She sang the song. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| パターン | 文 |
+|----------|------|
+| 現在形 | Games (　　　　　　) played by me. |
+| 過去形 | Games (　　　　　　) played by me. |
+| 未来形 | Games (　　　　　　) played by me. |
+| 現在完了 | Games (　　　　　　) played by me. |
 
-## 未来形の受動態
+### 能動態→受動態
 
-| 能動態（未来形） | 受動態（未来形） | 日本語訳（受動態） |
-|------------------|------------------|---------------------|
-| I will play games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He will write a letter. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She will make a cake. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They will build a house. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| 能動態 | 受動態 |
+|--------|--------|
+| I play games. | Games (　　　　　　) by me. |
+| I wrote a letter. | A letter (　　　　　　) by me. |
+| I will make a cake. | A cake (　　　　　　) by me. |
+| I have read the book. | The book (　　　　　　) by me. |
 
-## 助動詞を使った受動態
+### 助動詞の受動態
 
-| 能動態 | 受動態 | 日本語訳（受動態） |
-|--------|--------|---------------------|
-| I can play the piano. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He can speak English. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She must finish the work. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They should clean the room. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| You may use this pen. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| 能動態 | 受動態 |
+|--------|--------|
+| I can play the piano. | The piano (　　　　　　) by me. |
+| I must finish the work. | The work (　　　　　　) by me. |
+| I should clean the room. | The room (　　　　　　) by me. |
 
-## By を使った受動態
+## 英作文
 
-下の受動態の文を日本語に訳しましょう。
+日本語を英語にしましょう。
 
-| 英文 | 日本語訳 |
-|------|----------|
-| This book was written by Shakespeare. | 　　　　　　　　　　　　 |
-| The letter was written by my friend. | 　　　　　　　　　　　　 |
-| This picture was painted by Picasso. | 　　　　　　　　　　　　 |
-| The cake was made by my mother. | 　　　　　　　　　　　　 |
-| English is spoken by many people. | 　　　　　　　　　　　　 |
-| This house was built by my father. | 　　　　　　　　　　　　 |
-| The song was sung by a famous singer. | 　　　　　　　　　　　　 |
-
-## 進行形の受動態
-
-| 能動態（進行形） | 受動態（進行形） | 日本語訳（受動態） |
-|------------------|------------------|---------------------|
-| I am writing a letter. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He is making a cake. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She is cleaning the room. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They are building a house. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-
-## 完了形の受動態
-
-| 能動態（完了形） | 受動態（完了形） | 日本語訳（受動態） |
-|------------------|------------------|---------------------|
-| I have written a letter. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He has finished the work. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She has made a cake. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They have built a house. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| 日本語 | 英語 |
+|--------|------|
+| ゲームは私によってプレイされる。 | 　　　　　　　　　　　　 |
+| 手紙は私によって書かれた。 | 　　　　　　　　　　　　 |
+| ケーキは私によって作られるだろう。 | 　　　　　　　　　　　　 |
+| 英語は多くの人に話されている。 | 　　　　　　　　　　　　 |
+| この本は100年前に書かれた。 | 　　　　　　　　　　　　 |
+| その部屋は掃除されなければならない。 | 　　　　　　　　　　　　 |
 
 ---
 

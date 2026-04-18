@@ -1,91 +1,59 @@
 # 助動詞ドリル
 
-## Can / Could の使い方
+## 穴埋め問題
 
-下の文を日本語に訳しましょう。
+( ) に正しい助動詞を入れましょう。
 
-| 英文 | 日本語訳 |
-|------|----------|
-| I can play the piano. | 　　　　　　　　　　　　 |
-| You can play the piano. | 　　　　　　　　　　　　 |
-| He can play the piano. | 　　　　　　　　　　　　 |
-| She can swim. | 　　　　　　　　　　　　 |
-| We can speak English. | 　　　　　　　　　　　　 |
-| They can run fast. | 　　　　　　　　　　　　 |
-| I could play the piano when I was young. | 　　　　　　　　　　　　 |
-| He could swim when he was a child. | 　　　　　　　　　　　　 |
-| Could you help me? | 　　　　　　　　　　　　 |
-| Could I use your pen? | 　　　　　　　　　　　　 |
+### 助動詞の使い分け
 
-## Will / Would の使い方
+| 意味 | 文 |
+|------|------|
+| ～できる | I (　　　　　　) play the piano. |
+| ～してもよい | I (　　　　　　) go now. |
+| ～しなければならない | I (　　　　　　) study hard. |
+| ～すべきだ | I (　　　　　　) go to bed early. |
+| ～するでしょう | I (　　　　　　) help you. |
+| ～かもしれない | I (　　　　　　) be late. |
 
-| 英文 | 日本語訳 |
-|------|----------|
-| I will help you. | 　　　　　　　　　　　　 |
-| He will come tomorrow. | 　　　　　　　　　　　　 |
-| She will be happy. | 　　　　　　　　　　　　 |
-| It will rain tomorrow. | 　　　　　　　　　　　　 |
-| Would you like some tea? | 　　　　　　　　　　　　 |
-| I would like to go. | 　　　　　　　　　　　　 |
-| Would you help me? | 　　　　　　　　　　　　 |
-| I would go if I had time. | 　　　　　　　　　　　　 |
+### 助動詞の否定形
 
-## May / Might の使い方
+| 肯定文 | 否定文 |
+|--------|--------|
+| I can swim. | I (　　　　　　) swim. |
+| I must go. | I (　　　　　　) go. |
+| I will come. | I (　　　　　　) come. |
+| I should stay. | I (　　　　　　) stay. |
+| I may leave. | I (　　　　　　) leave. |
 
-| 英文 | 日本語訳 |
-|------|----------|
-| May I help you? | 　　　　　　　　　　　　 |
-| You may go now. | 　　　　　　　　　　　　 |
-| It may rain tomorrow. | 　　　　　　　　　　　　 |
-| He may be sick. | 　　　　　　　　　　　　 |
-| She might come. | 　　　　　　　　　　　　 |
-| They might be late. | 　　　　　　　　　　　　 |
-| It might snow tonight. | 　　　　　　　　　　　　 |
+### 助動詞の過去形
 
-## Must / Have to の使い方
+| 現在 | 過去 |
+|------|------|
+| I can swim. | I (　　　　　　) swim. |
+| I will help. | I (　　　　　　) help. |
+| I must go. | I (　　　　　　) go. |
 
-| 英文 | 日本語訳 |
-|------|----------|
-| I must go now. | 　　　　　　　　　　　　 |
-| You must study hard. | 　　　　　　　　　　　　 |
-| He must be tired. | 　　　　　　　　　　　　 |
-| She must be happy. | 　　　　　　　　　　　　 |
-| I have to go now. | 　　　　　　　　　　　　 |
-| You have to study hard. | 　　　　　　　　　　　　 |
-| He has to work today. | 　　　　　　　　　　　　 |
-| We had to leave early. | 　　　　　　　　　　　　 |
+### must と have to の違い
 
-## Should / Ought to の使い方
+| 意味 | 文 |
+|------|------|
+| ～しなければならない（義務） | I (　　　　　　) study hard. |
+| ～しなければならない（必要性） | I (　　　　　　) study hard. |
+| ～する必要はない | I (　　　　　　) study today. |
+| ～してはいけない | I (　　　　　　) cheat. |
 
-| 英文 | 日本語訳 |
-|------|----------|
-| You should study more. | 　　　　　　　　　　　　 |
-| He should go to bed early. | 　　　　　　　　　　　　 |
-| She should see a doctor. | 　　　　　　　　　　　　 |
-| We should help each other. | 　　　　　　　　　　　　 |
-| You ought to tell the truth. | 　　　　　　　　　　　　 |
-| He ought to apologize. | 　　　　　　　　　　　　 |
+## 英作文
 
-## 助動詞の過去形
+日本語を英語にしましょう。
 
-| 現在形 | 過去形 | 日本語訳（過去形） |
-|--------|--------|---------------------|
-| I can swim. | I could swim. | 　　　　　　　　　　　　 |
-| I may go. | I might go. | 　　　　　　　　　　　　 |
-| I will help. | I would help. | 　　　　　　　　　　　　 |
-| I must leave. | I had to leave. | 　　　　　　　　　　　　 |
-
-## 助動詞の否定形
-
-| 肯定文 | 否定文 | 日本語訳（否定文） |
-|--------|--------|---------------------|
-| I can swim. | I cannot swim. | 　　　　　　　　　　　　 |
-| I can swim. | I can't swim. | 　　　　　　　　　　　　 |
-| You must go. | You must not go. | 　　　　　　　　　　　　 |
-| You must go. | You don't have to go. | 　　　　　　　　　　　　 |
-| He will come. | He will not come. | 　　　　　　　　　　　　 |
-| She should go. | She should not go. | 　　　　　　　　　　　　 |
-| They may leave. | They may not leave. | 　　　　　　　　　　　　 |
+| 日本語 | 英語 |
+|--------|------|
+| 私はピアノを弾くことができる。 | 　　　　　　　　　　　　 |
+| 私は行かなければならない。 | 　　　　　　　　　　　　 |
+| 私は早く寝るべきだ。 | 　　　　　　　　　　　　 |
+| 私は遅れるかもしれない。 | 　　　　　　　　　　　　 |
+| 私は泳ぐことができなかった。 | 　　　　　　　　　　　　 |
+| 私は今日勉強する必要はない。 | 　　　　　　　　　　　　 |
 
 ---
 

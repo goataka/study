@@ -1,83 +1,51 @@
 # 完了形ドリル
 
-## 現在完了形の文を作りましょう
+## 穴埋め問題
 
-下の文を日本語に訳しましょう。
+( ) に正しい語を入れましょう。
 
-| 英文 | 日本語訳 |
-|------|----------|
-| I have played games. | 　　　　　　　　　　　　 |
-| You have played games. | 　　　　　　　　　　　　 |
-| He has played games. | 　　　　　　　　　　　　 |
-| She has played games. | 　　　　　　　　　　　　 |
-| We have played games. | 　　　　　　　　　　　　 |
-| They have played games. | 　　　　　　　　　　　　 |
-| I have been to Tokyo. | 　　　　　　　　　　　　 |
-| He has been to Tokyo. | 　　　　　　　　　　　　 |
-| She has visited Kyoto. | 　　　　　　　　　　　　 |
-| We have finished our homework. | 　　　　　　　　　　　　 |
+### have/hadの変化
 
-## 過去形と現在完了形の違い
+| パターン | 文 |
+|----------|------|
+| 現在完了 | I (　　　　　　) played games. |
+| 過去完了 | I (　　　　　　) played games. |
+| 未来完了 | I (　　　　　　) played games. |
 
-違いを理解しましょう。
+### 過去分詞の変化
 
-| 過去形 | 現在完了形 | 日本語訳（完了形） |
-|--------|------------|---------------------|
-| I played games. | I have played games. | 　　　　　　　　　　　　 |
-| He visited Tokyo. | He has visited Tokyo. | 　　　　　　　　　　　　 |
-| She studied English. | She has studied English. | 　　　　　　　　　　　　 |
-| They finished the work. | They have finished the work. | 　　　　　　　　　　　　 |
-| I ate lunch. | I have eaten lunch. | 　　　　　　　　　　　　 |
-| We saw that movie. | We have seen that movie. | 　　　　　　　　　　　　 |
-| He read the book. | He has read the book. | 　　　　　　　　　　　　 |
-| She wrote a letter. | She has written a letter. | 　　　　　　　　　　　　 |
+| 原形 | 文 |
+|------|------|
+| play | I have (　　　　　　) games. |
+| go | I have (　　　　　　) to school. |
+| eat | I have (　　　　　　) breakfast. |
+| write | I have (　　　　　　) a letter. |
+| see | I have (　　　　　　) the movie. |
+| read | I have (　　　　　　) the book. |
+| take | I have (　　　　　　) the bus. |
+| make | I have (　　　　　　) a cake. |
 
-## 経験・継続・完了を表す現在完了形
+### 完了形の用法
 
-| 英文 | 用法 | 日本語訳 |
-|------|------|----------|
-| I have been to Paris. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I have never been to Paris. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I have lived here for 5 years. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I have lived here since 2020. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I have just finished my homework. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She has already left. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| Have you ever visited Japan? | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| How long have you studied English? | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| 用法 | 文 |
+|------|------|
+| 経験 | I have (　　　　　　) to Tokyo before. |
+| 継続 | I have (　　　　　　) here for three years. |
+| 完了 | I have just (　　　　　　) my homework. |
+| 結果 | I have (　　　　　　) my key. |
 
-## 過去完了形
+## 英作文
 
-過去完了形の文を日本語に訳しましょう。
+日本語を英語にしましょう。
 
-| 英文 | 日本語訳 |
-|------|----------|
-| I had played games. | 　　　　　　　　　　　　 |
-| He had finished his homework. | 　　　　　　　　　　　　 |
-| She had already left when I arrived. | 　　　　　　　　　　　　 |
-| They had lived there for 10 years. | 　　　　　　　　　　　　 |
-| I had never seen such a beautiful place. | 　　　　　　　　　　　　 |
-| We had been waiting for an hour. | 　　　　　　　　　　　　 |
-
-## 未来完了形
-
-未来完了形の文を日本語に訳しましょう。
-
-| 英文 | 日本語訳 |
-|------|----------|
-| I will have finished by then. | 　　　　　　　　　　　　 |
-| He will have left by noon. | 　　　　　　　　　　　　 |
-| She will have completed the project by Friday. | 　　　　　　　　　　　　 |
-| We will have lived here for 20 years next month. | 　　　　　　　　　　　　 |
-
-## 現在完了進行形
-
-| 英文 | 日本語訳 |
-|------|----------|
-| I have been studying for 3 hours. | 　　　　　　　　　　　　 |
-| He has been playing games all day. | 　　　　　　　　　　　　 |
-| She has been waiting since morning. | 　　　　　　　　　　　　 |
-| They have been working here for 5 years. | 　　　　　　　　　　　　 |
-| It has been raining since yesterday. | 　　　　　　　　　　　　 |
+| 日本語 | 英語 |
+|--------|------|
+| 私はゲームをしたことがある。 | 　　　　　　　　　　　　 |
+| 私はその映画を見たことがある。 | 　　　　　　　　　　　　 |
+| 私は3年間ここに住んでいる。 | 　　　　　　　　　　　　 |
+| 私はちょうど宿題を終えた。 | 　　　　　　　　　　　　 |
+| 私は鍵をなくしてしまった。 | 　　　　　　　　　　　　 |
+| 私は朝食を食べたところだ。 | 　　　　　　　　　　　　 |
 
 ---
 

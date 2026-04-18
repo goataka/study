@@ -1,62 +1,52 @@
 # 基本時制ドリル
 
-## 現在形・過去形・未来形を使い分けましょう
+## 穴埋め問題
 
-下の文を日本語に訳しましょう。
+( ) に正しい語を入れましょう。
 
-| 英文 | 日本語訳 |
-|------|----------|
-| I play games. | 　　　　　　　　　　　　 |
-| You play games. | 　　　　　　　　　　　　 |
-| He plays games. | 　　　　　　　　　　　　 |
-| She plays games. | 　　　　　　　　　　　　 |
-| We play games. | 　　　　　　　　　　　　 |
-| They play games. | 　　　　　　　　　　　　 |
-| I played games. | 　　　　　　　　　　　　 |
-| You played games. | 　　　　　　　　　　　　 |
-| He played games. | 　　　　　　　　　　　　 |
-| We played games. | 　　　　　　　　　　　　 |
-| I will play games. | 　　　　　　　　　　　　 |
-| You will play games. | 　　　　　　　　　　　　 |
-| He will play games. | 　　　　　　　　　　　　 |
-| They will play games. | 　　　　　　　　　　　　 |
+### 一般動詞の時制変化
 
-## 動詞の変化パターン
+| パターン | 文 |
+|----------|------|
+| 現在形 | I (　　　　　　) games. |
+| 過去形 | I (　　　　　　) games. |
+| 未来形 | I (　　　　　　) games. |
 
-同じ文の時制を変えて書きましょう。
+### be動詞の時制変化
 
-| 現在形 | 過去形 | 未来形 |
-|--------|--------|--------|
-| I study English. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She studies English. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I watch TV. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He watches TV. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I go to school. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She goes to school. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I eat breakfast. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He eats breakfast. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I have a dog. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She has a dog. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I run fast. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He runs fast. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I write a letter. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She writes a letter. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I read books. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He reads books. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| パターン | 文 |
+|----------|------|
+| 現在形 | I (　　　　　　) happy. |
+| 過去形 | I (　　　　　　) happy. |
+| 未来形 | I (　　　　　　) happy. |
 
-## Be動詞の変化
+### 不規則動詞の過去形
 
-Be動詞を使った文の時制変化を書きましょう。
+| 現在形 | 過去形 |
+|--------|--------|
+| I go to school. | I (　　　　　　) to school. |
+| I eat breakfast. | I (　　　　　　) breakfast. |
+| I write a letter. | I (　　　　　　) a letter. |
+| I run fast. | I (　　　　　　) fast. |
+| I have a dog. | I (　　　　　　) a dog. |
+| I read books. | I (　　　　　　) books. |
+| I see a bird. | I (　　　　　　) a bird. |
+| I take the bus. | I (　　　　　　) the bus. |
 
-| 現在形 | 過去形 | 未来形 |
-|--------|--------|--------|
-| I am happy. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| You are happy. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He is happy. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| We are happy. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I am a student. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She is a student. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They are students. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+## 英作文
+
+日本語を英語にしましょう。
+
+| 日本語 | 英語 |
+|--------|------|
+| 私はゲームをします。 | 　　　　　　　　　　　　 |
+| 私はゲームをしました。 | 　　　　　　　　　　　　 |
+| 私はゲームをするでしょう。 | 　　　　　　　　　　　　 |
+| 私は幸せです。 | 　　　　　　　　　　　　 |
+| 私は幸せでした。 | 　　　　　　　　　　　　 |
+| 私は学校に行きます。 | 　　　　　　　　　　　　 |
+| 私は学校に行きました。 | 　　　　　　　　　　　　 |
+| 私は手紙を書きます。 | 　　　　　　　　　　　　 |
 
 ---
 

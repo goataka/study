@@ -1,80 +1,50 @@
 # 進行形ドリル
 
-## 進行形の文を作りましょう
+## 穴埋め問題
 
-下の文を日本語に訳しましょう。
+( ) に正しい語を入れましょう。
 
-| 英文 | 日本語訳 |
-|------|----------|
-| I am playing a game. | 　　　　　　　　　　　　 |
-| You are playing a game. | 　　　　　　　　　　　　 |
-| He is playing a game. | 　　　　　　　　　　　　 |
-| She is playing a game. | 　　　　　　　　　　　　 |
-| We are playing games. | 　　　　　　　　　　　　 |
-| They are playing games. | 　　　　　　　　　　　　 |
-| I was playing a game. | 　　　　　　　　　　　　 |
-| You were playing a game. | 　　　　　　　　　　　　 |
-| He was playing a game. | 　　　　　　　　　　　　 |
-| We were playing games. | 　　　　　　　　　　　　 |
-| I will be playing a game. | 　　　　　　　　　　　　 |
-| She will be playing a game. | 　　　　　　　　　　　　 |
-| They will be playing games. | 　　　　　　　　　　　　 |
+### be動詞の変化
 
-## 冠詞の違い
+| パターン | 文 |
+|----------|------|
+| 現在進行形 | I (　　　　　　) playing games. |
+| 過去進行形 | I (　　　　　　) playing games. |
+| 未来進行形 | I (　　　　　　) playing games. |
 
-冠詞の使い分けを理解しましょう。
+### -ing形の作り方
 
-| 英文 | 日本語訳 |
-|------|----------|
-| I am playing a game. | 　　　　　　　　　　　　 |
-| I am playing the game. | 　　　　　　　　　　　　 |
-| I am playing games. | 　　　　　　　　　　　　 |
-| He is reading a book. | 　　　　　　　　　　　　 |
-| He is reading the book. | 　　　　　　　　　　　　 |
-| He is reading books. | 　　　　　　　　　　　　 |
-| She is watching a movie. | 　　　　　　　　　　　　 |
-| She is watching the movie. | 　　　　　　　　　　　　 |
-| She is watching movies. | 　　　　　　　　　　　　 |
+| 原形 | 文 |
+|------|------|
+| play | I am (　　　　　　) games. |
+| study | I am (　　　　　　) English. |
+| run | I am (　　　　　　) fast. |
+| swim | I am (　　　　　　) in the pool. |
+| write | I am (　　　　　　) a letter. |
+| make | I am (　　　　　　) a cake. |
+| sit | I am (　　　　　　) on the chair. |
+| dance | I am (　　　　　　) now. |
 
-## 進行形の練習
+### 冠詞の違い
 
-現在形を進行形に変えましょう。
+| パターン | 文 |
+|----------|------|
+| 不特定の1つ | I am playing (　　　　　　) game. |
+| 特定のもの | I am playing (　　　　　　) game. |
+| 複数 | I am playing (　　　　　　). |
 
-| 現在形 | 現在進行形 | 過去進行形 |
-|--------|------------|------------|
-| I study. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He studies. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I eat lunch. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She eats lunch. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I write. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They write. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I run. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He runs. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I sleep. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She sleeps. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I walk. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They walk. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I swim. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He swims. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I dance. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She dances. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+## 英作文
 
-## 様々な動詞の進行形
+日本語を英語にしましょう。
 
-進行形の文を完成させましょう。
-
-| 基本形 | 現在進行形 |
-|--------|------------|
-| talk | I am 　　　　　　　　　　　　 to my friend. |
-| cook | She is 　　　　　　　　　　　　 dinner. |
-| listen | They are 　　　　　　　　　　　　 to music. |
-| watch | He is 　　　　　　　　　　　　 TV. |
-| do | I am 　　　　　　　　　　　　 my homework. |
-| make | We are 　　　　　　　　　　　　 a cake. |
-| take | She is 　　　　　　　　　　　　 a bath. |
-| drive | He is 　　　　　　　　　　　　 a car. |
-| clean | They are 　　　　　　　　　　　　 the room. |
-| wait | I am 　　　　　　　　　　　　 for you. |
+| 日本語 | 英語 |
+|--------|------|
+| 私はゲームをしています。 | 　　　　　　　　　　　　 |
+| 私はゲームをしていました。 | 　　　　　　　　　　　　 |
+| 私は英語を勉強しています。 | 　　　　　　　　　　　　 |
+| 私は手紙を書いています。 | 　　　　　　　　　　　　 |
+| 私はケーキを作っています。 | 　　　　　　　　　　　　 |
+| 私はプールで泳いでいます。 | 　　　　　　　　　　　　 |
 
 ---
 

@@ -1,106 +1,62 @@
 # 疑問文・否定文ドリル
 
-## 肯定文・否定文・疑問文の変化
+## 穴埋め問題
 
-肯定文を否定文と疑問文に変えましょう。
+( ) に正しい語を入れましょう。
 
-| 肯定文 | 否定文 | 疑問文 |
-|--------|--------|--------|
-| I play games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| You play games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He plays games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She plays games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| We play games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They play games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+### 一般動詞の疑問文
 
-## 過去形の疑問文と否定文
+| 肯定文 | 疑問文 |
+|--------|--------|
+| I play games. | (　　　　　　) I play games? |
+| I played games. | (　　　　　　) I play games? |
+| I will play games. | (　　　　　　) I play games? |
 
-| 肯定文（過去形） | 否定文 | 疑問文 |
-|------------------|--------|--------|
-| I played games. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He studied English. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She watched TV. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They went to school. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| We ate lunch. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+### be動詞の疑問文
 
-## Be動詞の疑問文と否定文
+| 肯定文 | 疑問文 |
+|--------|--------|
+| I am happy. | (　　　　　　) I happy? |
+| I was happy. | (　　　　　　) I happy? |
+| I am playing games. | (　　　　　　) I playing games? |
 
-| 肯定文 | 否定文 | 疑問文 |
-|--------|--------|--------|
-| I am happy. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| You are happy. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He is happy. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She is a student. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They are students. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| I was tired. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He was busy. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+### 一般動詞の否定文
 
-## 疑問詞を使った疑問文
+| 肯定文 | 否定文 |
+|--------|--------|
+| I play games. | I (　　　　　　) play games. |
+| I played games. | I (　　　　　　) play games. |
+| I will play games. | I (　　　　　　) play games. |
 
-下の文を日本語に訳しましょう。
+### be動詞の否定文
 
-| 英文 | 日本語訳 |
-|------|----------|
-| What do you do? | 　　　　　　　　　　　　 |
-| What did you do? | 　　　　　　　　　　　　 |
-| When do you study? | 　　　　　　　　　　　　 |
-| When did you study? | 　　　　　　　　　　　　 |
-| Where do you live? | 　　　　　　　　　　　　 |
-| Where did you go? | 　　　　　　　　　　　　 |
-| Who is he? | 　　　　　　　　　　　　 |
-| Who did you meet? | 　　　　　　　　　　　　 |
-| Why do you study English? | 　　　　　　　　　　　　 |
-| Why did you come here? | 　　　　　　　　　　　　 |
-| How do you go to school? | 　　　　　　　　　　　　 |
-| How did you know that? | 　　　　　　　　　　　　 |
-| Which do you like? | 　　　　　　　　　　　　 |
-| Whose book is this? | 　　　　　　　　　　　　 |
+| 肯定文 | 否定文 |
+|--------|--------|
+| I am happy. | I (　　　　　　) happy. |
+| I was happy. | I (　　　　　　) happy. |
+| I am playing games. | I (　　　　　　) playing games. |
 
-## How + 形容詞/副詞の疑問文
+### 疑問詞を使った疑問文
 
-| 英文 | 日本語訳 |
-|------|----------|
-| How old are you? | 　　　　　　　　　　　　 |
-| How tall is he? | 　　　　　　　　　　　　 |
-| How long have you lived here? | 　　　　　　　　　　　　 |
-| How far is it from here? | 　　　　　　　　　　　　 |
-| How often do you exercise? | 　　　　　　　　　　　　 |
-| How much is this? | 　　　　　　　　　　　　 |
-| How many books do you have? | 　　　　　　　　　　　　 |
+| 答え | 疑問文 |
+|------|--------|
+| I play games.（何を？） | (　　　　　　) do I play? |
+| I play games at home.（どこで？） | (　　　　　　) do I play games? |
+| I play games every day.（いつ？） | (　　　　　　) do I play games? |
+| I play games because it's fun.（なぜ？） | (　　　　　　) do I play games? |
 
-## 助動詞の疑問文と否定文
+## 英作文
 
-| 肯定文 | 否定文 | 疑問文 |
-|--------|--------|--------|
-| I can swim. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He will come. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She should study. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They must go. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| You may leave. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+日本語を英語にしましょう。
 
-## 完了形の疑問文と否定文
-
-| 肯定文 | 否定文 | 疑問文 |
-|--------|--------|--------|
-| I have finished. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| He has visited Tokyo. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| She has studied English. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-| They have been there. | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
-
-## 付加疑問文
-
-肯定文・否定文に付加疑問をつけましょう。
-
-| 文 | 付加疑問文 |
-|----|------------|
-| You like music, | 　　　　　　　　　　　　 |
-| He is a student, | 　　　　　　　　　　　　 |
-| She can swim, | 　　　　　　　　　　　　 |
-| They will come, | 　　　　　　　　　　　　 |
-| You don't like music, | 　　　　　　　　　　　　 |
-| He isn't a student, | 　　　　　　　　　　　　 |
-| She can't swim, | 　　　　　　　　　　　　 |
-| They won't come, | 　　　　　　　　　　　　 |
+| 日本語 | 英語 |
+|--------|------|
+| 私はゲームをしますか？ | 　　　　　　　　　　　　 |
+| 私はゲームをしません。 | 　　　　　　　　　　　　 |
+| 私はゲームをしませんでした。 | 　　　　　　　　　　　　 |
+| 私は何をしますか？ | 　　　　　　　　　　　　 |
+| 私はなぜゲームをしますか？ | 　　　　　　　　　　　　 |
+| 私は幸せではありません。 | 　　　　　　　　　　　　 |
 
 ---
 
