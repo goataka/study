@@ -13,6 +13,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 回答 | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md)
 
 [前へ: 前置詞](../21-prepositions/drill.md) | 接続詞 | [次へ: 進行形](../23-progressive/drill.md)

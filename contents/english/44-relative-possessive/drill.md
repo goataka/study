@@ -16,6 +16,6 @@ I have a friend. His father is a doctor.
 
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md)
 
 [前へ: 目的格の関係代名詞](../43-relative-object/drill.md) | 所有格の関係代名詞 | [次へ: 関係副詞](../45-relative-adverb/drill.md)

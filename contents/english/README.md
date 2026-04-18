@@ -1,3 +1,5 @@
+[Top](../README.md)
+
 # 英語学習ガイド
 
 ## 学習の流れ
@@ -29,16 +31,16 @@
 | [一般動詞の現在形](11-tenses-regular-present/drill.md) | I `play` games. | 私はゲームをします。 |
 | [一般動詞の過去形](12-tenses-regular-past/drill.md) | I `played` games. | 私はゲームをしました。 |
 | [一般動詞の未来形](13-tenses-regular-future/drill.md) | I `will play` games. | 私はゲームをするでしょう。 |
-| [be動詞の現在形](14-tenses-be-present/drill.md) | I `am` happy. | 私は幸せです。 |
-| [be動詞の過去形](15-tenses-be-past/drill.md) | I `was` happy. | 私は幸せでした。 |
-| [be動詞の未来形](16-tenses-be-future/drill.md) | I `will be` happy. | 私は幸せになるでしょう。 |
-| [不規則動詞の過去形](17-tenses-irregular/drill.md) | I `went` to school. | 私は学校に行きました。 |
+| [be動詞の現在形](14-tenses-be-present/drill.md) | The game `is` fun. | ゲームは楽しいです。 |
+| [be動詞の過去形](15-tenses-be-past/drill.md) | The game `was` fun. | ゲームは楽しかったです。 |
+| [be動詞の未来形](16-tenses-be-future/drill.md) | The game `will be` fun. | ゲームは楽しくなるでしょう。 |
+| [不規則動詞の過去形](17-tenses-irregular/drill.md) | I `bought` games. | 私はゲームを買いました。 |
 
 ### 5. 品詞（語の種類と使い方）
 
 | 文法項目 | 例文 | 日本語 |
 |----------|------|--------|
-| [冠詞](18-articles/drill.md) | I have `a` book. / I read `the` book. | 私は本を持っています。/ 私はその本を読みます。 |
+| [冠詞](18-articles/drill.md) | I play `a` game. / I play `the` game. | 私はゲームをします。/ 私はそのゲームをします。 |
 | [形容詞](19-adjectives/drill.md) | I play `fun` games. | 私は楽しいゲームをします。 |
 | [副詞](20-adverbs/drill.md) | I `always` play games. | 私はいつもゲームをします。 |
 | [前置詞](21-prepositions/drill.md) | I play games `at` home. | 私は家でゲームをします。 |
@@ -52,7 +54,7 @@
 | [-ing形の作り方](24-progressive-ing/drill.md) | play → `playing`, run → `running` | — |
 | [完了形](25-perfect/drill.md) | I `have played` games. | 私はゲームをしたことがあります。 |
 | [過去分詞の変化](26-perfect-participles/drill.md) | play → `played`, go → `gone` | — |
-| [完了形の用法](27-perfect-usage/drill.md) | I `have lived` here for 3 years. | 私は3年間ここに住んでいます。 |
+| [完了形の用法](27-perfect-usage/drill.md) | I `have played` games `for` 3 years. | 私は3年間ゲームをしています。 |
 
 ### 7. 助動詞
 
@@ -83,15 +85,15 @@
 |----------|------|--------|
 | [疑問文](36-questions/drill.md) | `Do` you play games? | あなたはゲームをしますか？ |
 | [否定文](37-negatives/drill.md) | I `do not play` games. | 私はゲームをしません。 |
-| [疑問詞](38-questions-wh/drill.md) | `What` do you play? | あなたは何をしますか？ |
+| [疑問詞](38-questions-wh/drill.md) | `What` games do you play? | あなたは何のゲームをしますか？ |
 
 ### 11. 比較
 
 | 文法項目 | 例文 | 日本語 |
 |----------|------|--------|
-| [比較級](39-comparatives-er/drill.md) | This game is `more interesting` than that one. | このゲームはあれより面白いです。 |
-| [最上級](40-comparatives-est/drill.md) | This game is `the most interesting`. | このゲームが一番面白いです。 |
-| [不規則な比較変化](41-comparatives-irregular/drill.md) | This is `better` than that. | これはあれより良いです。 |
+| [比較級](39-comparatives-er/drill.md) | I play games `more` than you. | 私はあなたよりゲームをします。 |
+| [最上級](40-comparatives-est/drill.md) | I play games `the most`. | 私が一番ゲームをします。 |
+| [不規則な比較変化](41-comparatives-irregular/drill.md) | I play games `better` than you. | 私はあなたよりゲームが上手です。 |
 
 ### 12. 関係代名詞・関係副詞
 
@@ -99,7 +101,7 @@
 |----------|------|--------|
 | [主格の関係代名詞](42-relative-subject/drill.md) | The boy `who` plays games is my friend. | ゲームをする少年は私の友達です。 |
 | [目的格の関係代名詞](43-relative-object/drill.md) | The game `which` I play is fun. | 私がするゲームは楽しいです。 |
-| [所有格の関係代名詞](44-relative-possessive/drill.md) | The boy `whose` game I borrowed is kind. | 私がゲームを借りた少年は親切です。 |
+| [所有格の関係代名詞](44-relative-possessive/drill.md) | The boy `whose` games I play is my friend. | 私がゲームをする少年は私の友達です。 |
 | [関係副詞](45-relative-adverb/drill.md) | The place `where` I play games is quiet. | 私がゲームをする場所は静かです。 |
 
 ### 13. 間接話法（話法の転換）
@@ -109,7 +111,7 @@
 | [時制の一致](46-reported-tense/drill.md) | He said he `played` games. | 彼はゲームをしたと言いました。 |
 | [疑問文の間接話法](47-reported-question/drill.md) | He asked if I `played` games. | 彼は私がゲームをするか尋ねました。 |
 | [命令文の間接話法](48-reported-imperative/drill.md) | He told me `to play` games. | 彼は私にゲームをするよう言いました。 |
-| [指示語の変化](49-reported-expressions/drill.md) | He said he would come `the next day`. | 彼は翌日来ると言いました。 |
+| [指示語の変化](49-reported-expressions/drill.md) | He said he would play games `the next day`. | 彼は翌日ゲームをすると言いました。 |
 
 ## 文法一覧（例文の変化）
 
@@ -120,7 +122,7 @@
 | 現在形 | I `play` games. | 私はゲームをします。 | [解説](11-tenses-regular-present/guide.md) |
 | 過去形 | I `played` games. | 私はゲームをしました。 | [解説](12-tenses-regular-past/guide.md) |
 | 未来形 | I `will play` games. | 私はゲームをするでしょう。 | [解説](13-tenses-regular-future/guide.md) |
-| be動詞 | I `am` happy. | 私は幸せです。 | [解説](14-tenses-be-present/guide.md) |
+| be動詞 | The game `is` fun. | ゲームは楽しいです。 | [解説](14-tenses-be-present/guide.md) |
 | 冠詞 | I play `a` game. | 私はゲームをします。 | [解説](18-articles/guide.md) |
 | 形容詞 | I play `fun` games. | 私は楽しいゲームをします。 | [解説](19-adjectives/guide.md) |
 | 副詞 | I `always` play games. | 私はいつもゲームをします。 | [解説](20-adverbs/guide.md) |
@@ -136,7 +138,7 @@
 | 受動態 | Games `are played` by me. | ゲームは私によってされます。 | [解説](31-passive/guide.md) |
 | 疑問文 | `Do` you play games? | あなたはゲームをしますか？ | [解説](36-questions/guide.md) |
 | 否定文 | I `do not play` games. | 私はゲームをしません。 | [解説](37-negatives/guide.md) |
-| 疑問詞 | `What` do you play? | あなたは何をしますか？ | [解説](38-questions-wh/guide.md) |
+| 疑問詞 | `What` games do you play? | あなたは何のゲームをしますか？ | [解説](38-questions-wh/guide.md) |
 | 仮定法 | If I `had` time, I `would play` games. | もし時間があれば、ゲームをするのに。 | [解説](33-conditionals-if/guide.md) |
 | 比較級 | I play games `more` than you. | 私はあなたよりゲームをします。 | [解説](39-comparatives-er/guide.md) |
 | 関係代名詞 | The game `which` I play is fun. | 私がするゲームは楽しいです。 | [解説](42-relative-subject/guide.md) |

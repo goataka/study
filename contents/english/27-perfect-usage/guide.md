@@ -27,6 +27,6 @@ I `have lived` here for three years.（3年間ここに住んでいる）
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説
 
 [前へ: 過去分詞の変化](../26-perfect-participles/drill.md) | 完了形の用法 | [次へ: 助動詞の使い分け](../28-modals-basic/drill.md)

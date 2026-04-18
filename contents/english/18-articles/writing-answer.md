@@ -11,6 +11,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md)
 
 [前へ: 不規則動詞の過去形](../17-tenses-irregular/drill.md) | 冠詞 | [次へ: 形容詞](../19-adjectives/drill.md)

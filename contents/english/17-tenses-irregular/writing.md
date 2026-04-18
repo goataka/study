@@ -13,6 +13,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 英作文 | [英作文解答](writing-answer.md) | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 英作文 | [英作文解答](writing-answer.md) | [解説](guide.md)
 
 [前へ: be動詞の未来形](../16-tenses-be-future/drill.md) | 不規則動詞の過去形 | [次へ: 冠詞](../18-articles/drill.md)

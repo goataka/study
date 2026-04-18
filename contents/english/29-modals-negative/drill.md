@@ -14,6 +14,6 @@
 
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md)
 
 [前へ: 助動詞の使い分け](../28-modals-basic/drill.md) | 助動詞の否定形 | [次へ: 助動詞の過去形](../30-modals-past/drill.md)
