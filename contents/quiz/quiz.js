@@ -1,11 +1,14 @@
 // クイズアプリケーション
 class QuizApp {
     constructor() {
+        this.questionData = null;
         this.allQuestions = [];
         this.currentQuestions = [];
         this.currentQuestionIndex = 0;
         this.userAnswers = [];
         this.wrongQuestions = this.loadWrongQuestions();
+        this.selectedSubject = 'all';
+        this.selectedCategory = 'all';
 
         this.init();
     }
@@ -20,17 +23,72 @@ class QuizApp {
         try {
             const response = await fetch('questions.json');
             const data = await response.json();
-            this.allQuestions = data.questions;
+
+            // 新しいフォーマットか古いフォーマットかを判定
+            if (data.subjects) {
+                // 新フォーマット
+                this.questionData = data;
+                this.allQuestions = this.flattenQuestions(data.subjects);
+            } else if (data.questions) {
+                // 旧フォーマット（後方互換性）
+                this.allQuestions = data.questions.map(q => ({
+                    ...q,
+                    subject: 'english',
+                    category: q.topic || 'general'
+                }));
+            } else {
+                throw new Error('Invalid question format');
+            }
         } catch (error) {
             console.error('問題の読み込みに失敗しました:', error);
             alert('問題の読み込みに失敗しました。ページを再読み込みしてください。');
         }
     }
 
+    // 新フォーマットの問題をフラット化
+    flattenQuestions(subjects) {
+        const questions = [];
+
+        for (const [subjectId, subjectData] of Object.entries(subjects)) {
+            for (const [categoryId, categoryData] of Object.entries(subjectData.categories)) {
+                categoryData.questions.forEach(q => {
+                    questions.push({
+                        ...q,
+                        subject: subjectId,
+                        subjectName: subjectData.name,
+                        category: categoryId,
+                        categoryName: categoryData.name
+                    });
+                });
+            }
+        }
+
+        return questions;
+    }
+
     setupEventListeners() {
         // スタート画面
         document.getElementById('startRandomBtn').addEventListener('click', () => this.startQuiz('random'));
         document.getElementById('startRetryBtn').addEventListener('click', () => this.startQuiz('retry'));
+
+        // フィルター（存在する場合）
+        const subjectFilter = document.getElementById('subjectFilter');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        if (subjectFilter) {
+            subjectFilter.addEventListener('change', (e) => {
+                this.selectedSubject = e.target.value;
+                this.updateCategoryFilter();
+                this.updateStartScreen();
+            });
+        }
+
+        if (categoryFilter) {
+            categoryFilter.addEventListener('change', (e) => {
+                this.selectedCategory = e.target.value;
+                this.updateStartScreen();
+            });
+        }
 
         // クイズ画面
         document.getElementById('prevBtn').addEventListener('click', () => this.navigateQuestion(-1));
@@ -43,31 +101,74 @@ class QuizApp {
         document.getElementById('backToStartBtn').addEventListener('click', () => this.showScreen('start'));
     }
 
+    updateCategoryFilter() {
+        const categoryFilter = document.getElementById('categoryFilter');
+        if (!categoryFilter || !this.questionData) return;
+
+        categoryFilter.innerHTML = '<option value="all">すべてのカテゴリ</option>';
+
+        if (this.selectedSubject !== 'all' && this.questionData.subjects[this.selectedSubject]) {
+            const categories = this.questionData.subjects[this.selectedSubject].categories;
+            for (const [categoryId, categoryData] of Object.entries(categories)) {
+                const option = document.createElement('option');
+                option.value = categoryId;
+                option.textContent = categoryData.name;
+                categoryFilter.appendChild(option);
+            }
+        }
+
+        this.selectedCategory = 'all';
+    }
+
+    getFilteredQuestions() {
+        let filtered = [...this.allQuestions];
+
+        if (this.selectedSubject !== 'all') {
+            filtered = filtered.filter(q => q.subject === this.selectedSubject);
+        }
+
+        if (this.selectedCategory !== 'all') {
+            filtered = filtered.filter(q => q.category === this.selectedCategory);
+        }
+
+        return filtered;
+    }
+
     updateStartScreen() {
         const statsInfo = document.getElementById('statsInfo');
         const retryBtn = document.getElementById('startRetryBtn');
 
-        if (this.wrongQuestions.length > 0) {
-            statsInfo.textContent = `間違えた問題が${this.wrongQuestions.length}問あります`;
+        const filteredQuestions = this.getFilteredQuestions();
+        const wrongCount = this.wrongQuestions.filter(id =>
+            filteredQuestions.some(q => q.id === id)
+        ).length;
+
+        let infoText = `全${filteredQuestions.length}問`;
+        if (wrongCount > 0) {
+            infoText += ` / 間違えた問題が${wrongCount}問あります`;
             retryBtn.disabled = false;
         } else {
-            statsInfo.textContent = '間違えた問題はありません';
+            infoText += ` / 間違えた問題はありません`;
             retryBtn.disabled = true;
         }
+
+        statsInfo.textContent = infoText;
     }
 
     startQuiz(mode) {
         this.currentQuestionIndex = 0;
         this.userAnswers = [];
 
+        const filteredQuestions = this.getFilteredQuestions();
+
         if (mode === 'random') {
             // ランダムに10問選択
-            this.currentQuestions = this.getRandomQuestions(10);
+            this.currentQuestions = this.getRandomQuestions(filteredQuestions, 10);
         } else if (mode === 'retry') {
             // 間違えた問題のみ
-            this.currentQuestions = this.wrongQuestions.map(id =>
-                this.allQuestions.find(q => q.id === id)
-            ).filter(q => q !== undefined);
+            this.currentQuestions = this.wrongQuestions
+                .map(id => filteredQuestions.find(q => q.id === id))
+                .filter(q => q !== undefined);
 
             if (this.currentQuestions.length === 0) {
                 alert('間違えた問題がありません');
@@ -79,8 +180,8 @@ class QuizApp {
         this.displayQuestion();
     }
 
-    getRandomQuestions(count) {
-        const shuffled = [...this.allQuestions].sort(() => Math.random() - 0.5);
+    getRandomQuestions(questions, count) {
+        const shuffled = [...questions].sort(() => Math.random() - 0.5);
         return shuffled.slice(0, Math.min(count, shuffled.length));
     }
 
@@ -90,7 +191,9 @@ class QuizApp {
         // 問題番号とトピック
         document.getElementById('questionNumber').textContent =
             `問題 ${this.currentQuestionIndex + 1} / ${this.currentQuestions.length}`;
-        document.getElementById('topicName').textContent = question.topic;
+
+        const topicText = question.categoryName || question.topic || question.category;
+        document.getElementById('topicName').textContent = topicText;
 
         // 進捗バー
         const progress = ((this.currentQuestionIndex + 1) / this.currentQuestions.length) * 100;
@@ -209,10 +312,14 @@ class QuizApp {
 
             const resultItem = document.createElement('div');
             resultItem.className = `result-item ${isCorrect ? 'correct' : 'incorrect'}`;
+
+            const topicText = question.categoryName || question.topic || '';
+
             resultItem.innerHTML = `
                 <div class="result-header">
                     <span class="result-icon">${isCorrect ? '✓' : '✗'}</span>
                     <span class="result-question">${question.question}</span>
+                    ${topicText ? `<span class="result-topic">[${topicText}]</span>` : ''}
                 </div>
                 <div class="result-answer">
                     <div>あなたの解答: <strong>${question.choices[userAnswer]}</strong></div>

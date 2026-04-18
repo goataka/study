@@ -65,6 +65,41 @@ header nav a:hover {
     font-size: 24px;
 }
 
+.filter-section {
+    display: grid;
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 10px 15px;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9ff;
+    border-radius: 8px;
+}
+
+.filter-section label {
+    font-weight: bold;
+    color: #667eea;
+}
+
+.filter-section select {
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.filter-section select:hover {
+    border-color: #667eea;
+}
+
+.filter-section select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
 .button-group {
     display: flex;
     flex-direction: column;
@@ -339,6 +374,16 @@ button:disabled {
     font-size: 16px;
     color: #333;
     font-weight: bold;
+    flex: 1;
+}
+
+.result-topic {
+    font-size: 12px;
+    color: #667eea;
+    background: #f8f9ff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 10px;
 }
 
 .result-answer {
@@ -378,6 +423,15 @@ button:disabled {
 
     .screen {
         padding: 20px;
+    }
+
+    .filter-section {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .filter-section label {
+        margin-top: 10px;
     }
 
     .question-text {

@@ -18,6 +18,18 @@
         <!-- スタート画面 -->
         <div id="startScreen" class="screen">
             <h2>クイズモード選択</h2>
+            <div class="filter-section">
+                <label for="subjectFilter">教科:</label>
+                <select id="subjectFilter">
+                    <option value="all">すべて</option>
+                    <option value="english">英語</option>
+                    <option value="math">数学</option>
+                </select>
+                <label for="categoryFilter">カテゴリ:</label>
+                <select id="categoryFilter">
+                    <option value="all">すべてのカテゴリ</option>
+                </select>
+            </div>
             <div class="button-group">
                 <button id="startRandomBtn" class="primary-btn">ランダム10問</button>
                 <button id="startRetryBtn" class="secondary-btn">間違えた問題だけ</button>
