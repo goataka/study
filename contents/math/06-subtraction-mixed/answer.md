@@ -16,7 +16,7 @@
 | 14 - 6 = | 8 |
 
 💡 **ポイント**: 一の位でひけるか確認 → ひけなければくり下がり。どちらもスラスラ解けるようになりましょう！
-
 ---
 
-[目次](../../README.md) | [前へ: ひき算（くり下がりあり）](../05-subtraction-borrow/drill.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [次へ: かけ算](../07-multiplication/drill.md)
+[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[前へ: ひき算（くり下がりあり）](../05-subtraction-borrow/drill.md) | **ひき算（まとめ）** | [次へ: かけ算](../07-multiplication/drill.md)

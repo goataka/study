@@ -16,7 +16,7 @@
 | 6 + 9 = | 　　　　　　　　　　　　 |
 | 1 + 7 = | 　　　　　　　　　　　　 |
 | 9 + 6 = | 　　　　　　　　　　　　 |
-
 ---
 
-[目次](../../README.md) | [前へ: たし算（くり上がりあり）](../02-addition-carry/drill.md) | 練習 | [回答](answer.md) | [解説](guide.md) | [次へ: ひき算（くり下がりなし）](../04-subtraction-no-borrow/drill.md)
+[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[前へ: たし算（くり上がりあり）](../02-addition-carry/drill.md) | **たし算（まとめ）** | [次へ: ひき算（くり下がりなし）](../04-subtraction-no-borrow/drill.md)

@@ -16,7 +16,7 @@
 | 6 + 3 = | 　　　　　　　　　　　　 |
 | 2 + 4 = | 　　　　　　　　　　　　 |
 | 1 + 8 = | 　　　　　　　　　　　　 |
-
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md) | [次へ: たし算（くり上がりあり）](../02-addition-carry/drill.md)
+[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+**たし算（くり上がりなし）** | [次へ: たし算（くり上がりあり）](../02-addition-carry/drill.md)

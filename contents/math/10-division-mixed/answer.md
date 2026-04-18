@@ -14,7 +14,7 @@
 | 26 ÷ 8 = | 3 | 2 |
 
 💡 **ポイント**: あまりが0なら割り切れる、0でなければあまりあり。確認 → わる数 × 答え + あまり = もとの数
-
 ---
 
-[目次](../../README.md) | [前へ: わり算（あまりあり）](../09-division-remainder/drill.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [次へ: 分数](../11-fractions/drill.md)
+[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[前へ: わり算（あまりあり）](../09-division-remainder/drill.md) | **わり算（まとめ）** | [次へ: 分数のたし算（同分母）](../11-fractions-same-add/drill.md)

@@ -16,7 +16,7 @@
 | 45 ÷ 5 = | 9 |
 
 💡 **ポイント**: 九九を逆に使います。`15 ÷ 3` は「3 × ? = 15」→ 3 × 5 = 15 なので **答えは5**
-
 ---
 
-[目次](../../README.md) | [前へ: かけ算](../07-multiplication/drill.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [次へ: わり算（あまりあり）](../09-division-remainder/drill.md)
+[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[前へ: かけ算](../07-multiplication/drill.md) | **わり算（あまりなし）** | [次へ: わり算（あまりあり）](../09-division-remainder/drill.md)

@@ -16,7 +16,7 @@
 | 14 - 5 = | 9 |
 
 💡 **ポイント**: 10のまとまりからひきます。例えば `13 - 5` → 10から5をひいて5、5 + 3 = **8**
-
 ---
 
-[目次](../../README.md) | [前へ: ひき算（くり下がりなし）](../04-subtraction-no-borrow/drill.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [次へ: ひき算（まとめ）](../06-subtraction-mixed/drill.md)
+[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[前へ: ひき算（くり下がりなし）](../04-subtraction-no-borrow/drill.md) | **ひき算（くり下がりあり）** | [次へ: ひき算（まとめ）](../06-subtraction-mixed/drill.md)
