@@ -19,6 +19,7 @@
 | lim(x→0) sin(x)/x = | 　　　　　　　　　　　　 |
 | lim(x→1) (x²-1)/(x-1) = | 　　　　　　　　　　　　 |
 | lim(x→∞) (2x+1)/(3x-1) = | 　　　　　　　　　　　　 |
+
 ---
 
 [目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)

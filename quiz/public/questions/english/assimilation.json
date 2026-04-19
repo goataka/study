@@ -1,0 +1,68 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "assimilation",
+  "categoryName": "音声変化 - アシミレーション",
+  "questions": [
+    {
+      "id": "assimilation-1",
+      "question": "「meet you」はどう発音する？",
+      "choices": [
+        "ミー チュー",
+        "ミート ユー",
+        "ミーチュ",
+        "ミトユ"
+      ],
+      "correct": 0,
+      "explanation": "t + y → チュ となり、ミー チュー"
+    },
+    {
+      "id": "assimilation-2",
+      "question": "「would you」はどう発音する？",
+      "choices": [
+        "ウッ ジュー",
+        "ウッド ユー",
+        "ウジュ",
+        "ウドユ"
+      ],
+      "correct": 0,
+      "explanation": "d + y → ジュ となり、ウッ ジュー"
+    },
+    {
+      "id": "assimilation-3",
+      "question": "「miss you」はどう発音する？",
+      "choices": [
+        "ミッ シュー",
+        "ミス ユー",
+        "ミシュ",
+        "ミスユ"
+      ],
+      "correct": 0,
+      "explanation": "s + y → シュ となり、ミッ シュー"
+    },
+    {
+      "id": "assimilation-4",
+      "question": "「ten people」はどう発音する？",
+      "choices": [
+        "テム ピー プル",
+        "テン ピー プル",
+        "テンピプル",
+        "テムピプル"
+      ],
+      "correct": 0,
+      "explanation": "n → m（唇音の前）となり、テム ピー プル"
+    },
+    {
+      "id": "assimilation-5",
+      "question": "「in Paris」はどう発音する？",
+      "choices": [
+        "イム パ リ",
+        "イン パ リ",
+        "インパリ",
+        "イムパリ"
+      ],
+      "correct": 0,
+      "explanation": "n → m（唇音の前）となり、イム パ リ"
+    }
+  ]
+}

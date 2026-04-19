@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "subjects": {
+    "english": {
+      "name": "英語"
+    },
+    "math": {
+      "name": "数学"
+    }
+  },
+  "questionFiles": [
+    "english/phonics-1.json",
+    "english/phonics-2.json",
+    "english/phonics-3.json",
+    "english/linking.json",
+    "english/reduction.json",
+    "english/flapping.json",
+    "english/assimilation.json",
+    "math/addition.json",
+    "math/subtraction.json",
+    "math/multiplication.json",
+    "math/division.json"
+  ]
+}

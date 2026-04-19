@@ -21,6 +21,7 @@
 | log₁₀100 = | 　　　　　　　　　　　　 |
 | log₂4 + log₂8 = | 　　　　　　　　　　　　 |
 | log₃9 - log₃3 = | 　　　　　　　　　　　　 |
+
 ---
 
 [目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)

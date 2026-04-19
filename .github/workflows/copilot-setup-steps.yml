@@ -1,0 +1,38 @@
+name: "Copilot Setup Steps"
+
+# 手動実行のみ（Copilotエージェントのセットアップ確認用）
+on:
+  workflow_dispatch:
+
+jobs:
+  # ジョブ名は `copilot-setup-steps` である必要がある（Copilotが認識するため）
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quiz
+    permissions:
+      contents: read
+
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js のセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: quiz/package-lock.json
+
+      - name: quiz 依存関係のインストール
+        run: npm ci
+
+      # テストを実行してエビデンスファイルを生成する。
+      # AIエージェントはこのステップが成功してから作業を開始する。
+      # quiz フォルダを変更した場合は必ず npm run test:evidence を実行し、
+      # TEST_EVIDENCE.md をコミットに含めること。
+      - name: 単体テスト実行・エビデンス生成
+        run: npm run test:evidence
+
+

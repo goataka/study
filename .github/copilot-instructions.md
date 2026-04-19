@@ -161,6 +161,96 @@ I `played` games.
 | 過去形 | 動詞 + ed | I `played` |
 ```
 
+## クイズ（quiz/）のルール
+
+### 動作保証とエビデンス
+
+`quiz/` フォルダのコードを変更した場合は、必ず以下の手順を守ること：
+
+1. **テストとエビデンス生成を実行する**
+
+   ```bash
+   cd quiz && npm run test:evidence
+   ```
+
+2. **`quiz/TEST_EVIDENCE.md` をコミットに含める**
+   - エビデンスファイルは AI が作業したことと、テストが通ったことの証拠
+   - タイムスタンプ・コミットハッシュ・全テスト結果が自動記録される
+   - **改ざん防止**: テスト結果JSONのSHA256ハッシュがエビデンスに記録される（`sha256sum test-results.json` で検証可能）
+   - このファイルを更新せずにコミットしてはならない
+
+3. **E2E テスト結果もエビデンスに含まれる**
+   - CI の `e2e` ジョブ実行後、`e2e-results.json` が存在すれば `TEST_EVIDENCE.md` に E2E 結果が追記される
+   - ローカルで E2E も含めてエビデンスを生成する場合: `npm run build && npm run test:e2e && npm run generate-evidence`
+
+4. **CI でも自動更新される**
+   - `ci.yml` の `test-and-build` ジョブが PR マージ前にテストとエビデンスを再生成する
+   - `e2e` ジョブが E2E 実行後にエビデンスを再生成して `[skip ci]` コミットで保存する
+
+5. **本番デプロイ後に自動E2Eが実行される**
+   - `jekyll-gh-pages.yml` の `e2e-production` ジョブがデプロイ後に本番URLに対してE2Eを実行する
+   - 失敗した場合は `copilot` ラベル付きのIssueが自動作成され、Copilotエージェントが修正PRを作成する
+
+### コードの言語規則
+
+- **コードコメント・ファイルヘッダー**: 日本語で記述する
+- **変数名・関数名・型名**: 英語（TypeScript の慣習に従う）
+- **CI ワークフローのステップ名**: 日本語で記述する
+- **テストの `it()` / `describe()` 名**: 日本語の仕様表現で記述する（例: `it("初回ロード時は空配列を返す", ...)`）
+
+### テスト追加のルール
+
+- 新しいソースファイルを追加する場合は、**同一フォルダに対応するテストファイルを必ず作成すること**
+  - 例: `src/infrastructure/foo.ts` → `src/infrastructure/foo.test.ts`
+- インターフェースのみのファイル（`ports.ts` など）はテスト不要だが、その旨をコメントに記載する
+- 新しい問題カテゴリ（JSONファイル）を追加したら、必ず `npm run test:evidence` でデータ整合性テストが通ることを確認する
+- バリデーション関数を変更した場合は `src/domain/question.test.ts` のテストも更新する
+
+### DDD アーキテクチャ構造
+
+`quiz/src/` は DDD（ドメイン駆動設計）のレイヤー構造で整理されている：
+
+```
+quiz/src/
+  domain/           # ビジネスロジック（純粋関数・エンティティ・集約）
+    question.ts     # Question エンティティ、型定義、バリデーション関数
+    question.test.ts
+    quizSession.ts  # QuizSession 集約（問題選択・回答・採点）
+    quizSession.test.ts
+  application/      # ユースケース（ポートに依存、実装には依存しない）
+    ports.ts        # IQuestionRepository / IProgressRepository インターフェース
+    quizUseCase.ts  # クイズの開始・採点・進捗保存を統括
+    quizUseCase.test.ts
+  infrastructure/   # 外部システムとの接続（fetch、localStorage）
+    remoteQuestionRepository.ts       # IQuestionRepository の実装（fetch）
+    remoteQuestionRepository.test.ts
+    localStorageProgressRepository.ts # IProgressRepository の実装（localStorage）
+    questionData.test.ts              # JSON データ整合性テスト
+  presentation/     # UI コントローラー（DOM 操作）
+    quizApp.ts      # QuizUseCase を使う UI コントローラー
+```
+
+### テストの配置ルール（コロケーション）
+
+- テストファイルは対象ソースファイルと同じディレクトリに配置する（`*.test.ts`）
+- `tests/` ディレクトリは廃止済み。`src/` 内のコロケーションテストを使用すること
+- テストは **仕様テストスタイル**（Behavior-Driven）で記述し、`it("〇〇できる", ...)` のように日本語で仕様を表現する
+
+### E2E テスト（Playwright + Gherkin）
+
+```bash
+cd quiz && npm run test:e2e     # Gherkin シナリオを実行
+cd quiz && npm run test:e2e:ui  # UI モードで実行
+```
+
+- フィーチャーファイル: `e2e/features/**/*.feature`
+- ステップ定義: `e2e/steps/**/*.ts`
+- E2E は CI の `e2e` ジョブで自動実行される
+
+### Lint エラーの自動修正
+
+- CI の `markdownlint` ジョブが自動的に Markdown の問題を修正してコミットする
+- 修正できない問題は `reviewdog` がPRにコメントを投稿するので、対応すること
 ## 数学ドリル固有ルール
 
 ### ファイル構成

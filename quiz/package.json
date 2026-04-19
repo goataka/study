@@ -1,0 +1,30 @@
+{
+  "name": "quiz",
+  "version": "2.0.0",
+  "description": "子供向け学習クイズ",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit --project tsconfig.build.json && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:report": "vitest run --reporter=json --outputFile=test-results.json",
+    "generate-evidence": "node scripts/generate-evidence.mjs",
+    "test:evidence": "npm run test:report && npm run generate-evidence",
+    "test:e2e": "bddgen && playwright test",
+    "test:e2e:ui": "bddgen && playwright test --ui",
+    "prepare": "cd .. && lefthook install"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/jsdom": "^28.0.1",
+    "@types/node": "^22.0.0",
+    "jsdom": "^29.0.2",
+    "lefthook": "^2.1.6",
+    "playwright-bdd": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.4.2",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "flapping",
+  "categoryName": "音声変化 - フラッピング",
+  "questions": [
+    {
+      "id": "flapping-1",
+      "question": "「water」の「t」はどう発音される？",
+      "choices": [
+        "ラ",
+        "ト",
+        "タ",
+        "ダ"
+      ],
+      "correct": 0,
+      "explanation": "t → ラ となり、ワ ラー"
+    },
+    {
+      "id": "flapping-2",
+      "question": "「better」の「tt」はどう発音される？",
+      "choices": [
+        "ラ",
+        "ト",
+        "タ",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "tt → ラ となり、ベ ラー"
+    },
+    {
+      "id": "flapping-3",
+      "question": "「little」の「tt」はどう発音される？",
+      "choices": [
+        "ロ",
+        "ト",
+        "ル",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "tt → ロ となり、リ ロー"
+    },
+    {
+      "id": "flapping-4",
+      "question": "「city」の「t」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "チ",
+        "ティ"
+      ],
+      "correct": 0,
+      "explanation": "t → リ となり、シ リー"
+    },
+    {
+      "id": "flapping-5",
+      "question": "「party」の「t」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "チ",
+        "ティ"
+      ],
+      "correct": 0,
+      "explanation": "t → リ となり、パー リー"
+    }
+  ]
+}
