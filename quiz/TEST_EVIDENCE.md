@@ -8,10 +8,10 @@
 | 項目 | 値 |
 |------|------|
 | **ステータス** | ✅ PASSED |
-| **最終更新** | 2026-04-19 10:26:30 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `b4220e5` |
-| **コミットメッセージ** | fix(quiz): address code review feedback |
+| **最終更新** | 2026-04-19 11:32:36 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `7ad523e` |
+| **コミットメッセージ** | refactor(quiz): DDD, E2E Gherkin, CSS relocation, Node 22, co-located tests, lefthook hooks |
 
 ## テスト結果サマリー
 
@@ -20,7 +20,7 @@
 | テストスイート（合格 / 合計） | 25 / 25 |
 | テストケース（合格 / 合計） | 65 / 65 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.09s |
+| 実行時間 | 0.07s |
 
 ## テストスイート詳細
 
