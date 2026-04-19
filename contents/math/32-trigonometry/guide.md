@@ -44,6 +44,7 @@ cos θ = 4/5 ✅ (0°<θ<90°なので正)
 
 - sin(α ± β) = sin α cos β **±** cos α sin β
 - cos(α ± β) = cos α cos β **∓** sin α sin β
+
 ---
 
 [目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説

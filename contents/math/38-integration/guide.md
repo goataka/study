@@ -41,8 +41,9 @@
 - ∫[a→b] f(x)dx = **F(b) - F(a)**
 - F(x) は f(x) の不定積分
 - 定積分では **C は不要**（差を取るので消える）
+
 ---
 
 [目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
-[前へ: 微分](../37-differentiation/drill.md) | **積分** | 
+[前へ: 微分](../37-differentiation/drill.md) | **積分** |
