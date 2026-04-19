@@ -8,90 +8,120 @@ on:
 
 jobs:
   test-and-build:
-    name: Test & Build (quiz)
+    name: 単体テスト・ビルド（quiz）
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Checkout
+      - name: コードのチェックアウト
         uses: actions/checkout@v4
         with:
-          # PRでは実際のブランチheadをチェックアウト（証拠ファイルのプッシュ用）
+          # PRでは実際のブランチheadをチェックアウト（エビデンスファイルのプッシュ用）
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
+      - name: Node.js のセットアップ
         uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: "npm"
           cache-dependency-path: quiz/package-lock.json
 
-      - name: Install dependencies
+      - name: 依存関係のインストール
         run: cd quiz && npm ci
 
-      - name: Run tests with evidence generation
+      - name: 単体テスト実行・エビデンス生成
         run: cd quiz && npm run test:evidence
 
-      - name: Commit test evidence (PR only)
+      - name: テストエビデンスのコミット（PRのみ）
         if: github.event_name == 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet quiz/TEST_EVIDENCE.md; then
             git add quiz/TEST_EVIDENCE.md
-            git commit -m "ci: update test evidence [skip ci]"
+            git commit -m "ci: テストエビデンスを更新 [skip ci]"
             git push
           fi
 
-      - name: Build
+      - name: Viteビルド
         run: cd quiz && npm run build
 
   e2e:
-    name: E2E Tests (quiz)
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: "npm"
-          cache-dependency-path: quiz/package-lock.json
-      - run: cd quiz && npm ci
-      - run: cd quiz && npx playwright install --with-deps chromium
-      - run: cd quiz && npm run build
-      - run: cd quiz && npm run test:e2e
-
-  markdownlint:
-    name: Markdown Lint
+    name: E2Eテスト（quiz）
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
     steps:
-      - name: Checkout
+      - name: コードのチェックアウト
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Auto-fix markdownlint issues
+      - name: Node.js のセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: quiz/package-lock.json
+
+      - name: 依存関係のインストール
+        run: cd quiz && npm ci
+
+      - name: Playwright ブラウザのインストール
+        run: cd quiz && npx playwright install --with-deps chromium
+
+      - name: Viteビルド（E2E用）
+        run: cd quiz && npm run build
+
+      - name: E2Eテスト実行（Gherkin シナリオ）
+        run: cd quiz && npm run test:e2e
+
+      - name: E2Eエビデンスのコミット（PRのみ）
+        if: github.event_name == 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # e2e-results.json が存在する場合のみエビデンスを再生成してコミット
+          if [ -f quiz/e2e-results.json ]; then
+            node quiz/scripts/generate-evidence.mjs
+            if ! git diff --quiet quiz/TEST_EVIDENCE.md; then
+              git add quiz/TEST_EVIDENCE.md
+              git commit -m "ci: E2Eエビデンスを更新 [skip ci]"
+              git push
+            fi
+          fi
+
+  markdownlint:
+    name: Markdownリント
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Markdownの自動修正
         run: |
           npx --yes markdownlint-cli --fix "**/*.md" --ignore node_modules --ignore quiz/node_modules 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet; then
             git add -A
-            git commit -m "ci: auto-fix markdownlint issues [skip ci]"
+            git commit -m "ci: markdownlint の自動修正 [skip ci]"
             git push
           fi
 
-      - name: Run markdownlint with reviewdog
+      - name: reviewdog による Markdown チェック
         uses: reviewdog/action-markdownlint@v0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           fail_level: warning
           markdownlint_flags: "."
+

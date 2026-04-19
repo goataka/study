@@ -1,6 +1,6 @@
 name: "Copilot Setup Steps"
 
-# Automatically validate setup steps when changed, and allow manual testing
+# セットアップステップが変更された際に自動検証し、手動テストも可能にする
 on:
   workflow_dispatch:
   push:
@@ -11,29 +11,30 @@ on:
       - .github/workflows/copilot-setup-steps.yml
 
 jobs:
-  # The job MUST be called `copilot-setup-steps` to be picked up by Copilot.
+  # ジョブ名は `copilot-setup-steps` である必要がある（Copilotが認識するため）
   copilot-setup-steps:
     runs-on: ubuntu-latest
     permissions:
       contents: read
 
     steps:
-      - name: Checkout code
+      - name: コードのチェックアウト
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Node.js のセットアップ
         uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: "npm"
           cache-dependency-path: quiz/package-lock.json
 
-      - name: Install quiz dependencies
+      - name: quiz 依存関係のインストール
         run: cd quiz && npm ci
 
       # テストを実行してエビデンスファイルを生成する。
       # AIエージェントはこのステップが成功してから作業を開始する。
       # quiz フォルダを変更した場合は必ず npm run test:evidence を実行し、
       # TEST_EVIDENCE.md をコミットに含めること。
-      - name: Run tests with evidence generation
+      - name: 単体テスト実行・エビデンス生成
         run: cd quiz && npm run test:evidence
+

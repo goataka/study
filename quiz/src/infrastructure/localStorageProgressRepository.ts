@@ -1,5 +1,6 @@
 /**
- * LocalStorageProgressRepository — persists wrong question IDs via localStorage.
+ * LocalStorageProgressRepository — localStorageを使って間違えた問題IDを永続化する。
+ * IProgressRepository の実装。
  */
 
 import type { IProgressRepository } from "../application/ports";

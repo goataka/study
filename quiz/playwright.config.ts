@@ -9,6 +9,11 @@ const testDir = defineBddConfig({
 export default defineConfig({
   testDir,
   timeout: 30_000,
+  // JSONレポーター: エビデンス生成スクリプトが読み込む
+  reporter: [
+    ["list"],
+    ["json", { outputFile: "e2e-results.json" }],
+  ],
   use: {
     baseURL: "http://localhost:4173",
     headless: true,

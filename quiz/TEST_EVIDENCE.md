@@ -7,22 +7,28 @@
 
 | 項目 | 値 |
 |------|------|
-| **ステータス** | ✅ PASSED |
-| **最終更新** | 2026-04-19 11:32:36 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `7ad523e` |
-| **コミットメッセージ** | refactor(quiz): DDD, E2E Gherkin, CSS relocation, Node 22, co-located tests, lefthook hooks |
+| **ステータス（単体テスト）** | ✅ PASSED |
+| **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
+| **最終更新** | 2026-04-19 11:41:46 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `d4ea2a6` |
+| **コミットメッセージ** | ci: auto-fix markdownlint issues [skip ci] |
 
-## テスト結果サマリー
+## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 25 / 25 |
-| テストケース（合格 / 合計） | 65 / 65 |
+| テストスイート（合格 / 合計） | 30 / 30 |
+| テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.07s |
+| 実行時間 | 0.12s |
 
-## テストスイート詳細
+## E2Eテスト結果サマリー（Playwright + Gherkin）
+
+> E2Eテストは CI の `e2e` ジョブで実行されます。
+> ローカルで実行する場合: `npm run build && npm run test:e2e`
+
+## 単体テストスイート詳細
 
 ### ✅ `src/application/quizUseCase.test.ts` (8/8)
 
@@ -78,6 +84,17 @@
 | ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
 | ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
 
+### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (6/6)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 初回ロード時は空配列を返す |
+| ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 保存したIDリストを正しく読み込める |
+| ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 空配列を保存した後は空配列を返す |
+| ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 上書き保存が正しく機能する |
+| ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 別のインスタンスからも同じデータを読み込める（永続化確認） |
+| ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > localStorageに不正なJSONが入っていてもロード時に空配列を返す |
+
 ### ✅ `src/infrastructure/questionData.test.ts` (17/17)
 
 | 結果 | テスト名 |
@@ -113,6 +130,14 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > null を拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
+
+### ✅ `src/presentation/quizApp.test.ts` (3/3)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | QuizApp — 初期化仕様 > DOM が揃っていればエラーなしでインスタンス化できる |
+| ✅ | QuizApp — 初期化仕様 > 初期状態では「間違えた問題」ボタンが無効化されている |
+| ✅ | QuizApp — 問題ロード後の仕様 > 問題のロードが完了したら statsInfo に問題数が表示される |
 
 ---
 

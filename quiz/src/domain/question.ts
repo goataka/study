@@ -1,5 +1,5 @@
 /**
- * Question domain entity and related types/validation.
+ * Question ドメインエンティティ・型定義・バリデーション関数。
  */
 
 /** 問題データ（表示用にメタ情報を付加したもの） */

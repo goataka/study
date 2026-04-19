@@ -1,6 +1,6 @@
 /**
- * QuizUseCase — orchestrates loading questions, starting quiz sessions,
- * and persisting progress. Depends on ports (interfaces), not implementations.
+ * QuizUseCase — 問題のロード・クイズセッションの開始・進捗の保存を統括する。
+ * ポート（インターフェース）に依存し、具体的な実装には依存しない。
  */
 
 import type { Question } from "../domain/question";

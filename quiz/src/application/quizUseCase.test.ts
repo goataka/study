@@ -1,14 +1,14 @@
 /**
- * QuizUseCase — specification tests
+ * QuizUseCase — 仕様テスト
  *
- * Uses in-memory test doubles (stubs) for ports.
+ * ポートのテストダブル（スタブ）を使い、ユースケース層を独立して検証します。
  */
 
 import { QuizUseCase } from "./quizUseCase";
 import type { IQuestionRepository, IProgressRepository } from "./ports";
 import type { Question } from "../domain/question";
 
-// ─── Test doubles ────────────────────────────────────────────────────────────
+// ─── テストダブル（スタブ） ──────────────────────────────────────────────────
 
 const makeQuestion = (id: string, subject = "english", category = "phonics"): Question => ({
   id,
@@ -45,7 +45,7 @@ class StubProgressRepository implements IProgressRepository {
   }
 }
 
-// ─── Tests ───────────────────────────────────────────────────────────────────
+// ─── テスト ──────────────────────────────────────────────────────────────────
 
 describe("QuizUseCase — 初期化仕様", () => {
   it("initialize() で全問題をロードする", async () => {

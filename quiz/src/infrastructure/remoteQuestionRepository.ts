@@ -1,6 +1,6 @@
 /**
- * RemoteQuestionRepository — fetches question data from the server.
- * Implements IQuestionRepository via fetch API.
+ * RemoteQuestionRepository — fetch API を使ってサーバーから問題データを取得する。
+ * IQuestionRepository の実装。
  */
 
 import { validateManifest, validateQuestionFile, expandQuestions } from "../domain/question";

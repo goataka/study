@@ -1,6 +1,6 @@
 /**
- * RemoteQuestionRepository — unit tests
- * Tests the validation functions used by the repository (domain logic).
+ * RemoteQuestionRepository — 仕様テスト
+ * リポジトリが使用するバリデーション関数（ドメインロジック）を検証します。
  */
 
 import { validateManifest, validateQuestionFile } from "../domain/question";

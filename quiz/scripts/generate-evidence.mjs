@@ -6,7 +6,8 @@
  *   node scripts/generate-evidence.mjs
  *
  * 前提:
- *   vitest run --reporter=json --outputFile=test-results.json が実行済み
+ *   単体テスト: vitest run --reporter=json --outputFile=test-results.json が実行済み
+ *   E2Eテスト（任意）: playwright test が実行済みで e2e-results.json が存在する場合は含める
  */
 
 import fs from "fs";
@@ -17,6 +18,7 @@ import { execSync } from "child_process";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, "..");
 const resultsFile = path.join(rootDir, "test-results.json");
+const e2eResultsFile = path.join(rootDir, "e2e-results.json");
 const evidenceFile = path.join(rootDir, "TEST_EVIDENCE.md");
 
 // ─── Git 情報取得 ────────────────────────────────────────────────────────────
@@ -54,7 +56,7 @@ const timestamp = new Intl.DateTimeFormat("ja-JP", {
   .format(new Date())
   .replace(/\//g, "-") + " JST";
 
-// ─── テスト結果読み込み ───────────────────────────────────────────────────────
+// ─── 単体テスト結果読み込み ───────────────────────────────────────────────────
 
 if (!fs.existsSync(resultsFile)) {
   console.error(`Error: ${resultsFile} が見つかりません。`);
@@ -64,16 +66,57 @@ if (!fs.existsSync(resultsFile)) {
 
 const results = JSON.parse(fs.readFileSync(resultsFile, "utf-8"));
 
-// ─── 実行時間計算 ─────────────────────────────────────────────────────────────
+// ─── E2Eテスト結果読み込み（任意） ───────────────────────────────────────────
+
+const e2eResults = fs.existsSync(e2eResultsFile)
+  ? JSON.parse(fs.readFileSync(e2eResultsFile, "utf-8"))
+  : null;
+
+// ─── 実行時間計算（単体テスト） ───────────────────────────────────────────────
 
 const durationMs = results.testResults.reduce((sum, suite) => {
   return sum + Math.max(0, (suite.endTime ?? 0) - (suite.startTime ?? 0));
 }, 0);
 const durationSec = (durationMs / 1000).toFixed(2);
 
+// ─── E2E 統計計算 ─────────────────────────────────────────────────────────────
+
+/** Playwright の JSON 出力から合格・失敗・合計数を算出する */
+function calcE2eStats(e2e) {
+  if (!e2e?.suites) return { passed: 0, failed: 0, total: 0 };
+  let passed = 0;
+  let failed = 0;
+
+  function walkSuites(suites) {
+    for (const suite of suites) {
+      for (const spec of suite.specs ?? []) {
+        for (const test of spec.tests ?? []) {
+          const results = test.results;
+          // results が空の場合は失敗扱い（実行されなかったケース）
+          if (!results || results.length === 0) {
+            failed++;
+          } else if (results.every((r) => r.status === "passed")) {
+            passed++;
+          } else {
+            failed++;
+          }
+        }
+      }
+      if (suite.suites) walkSuites(suite.suites);
+    }
+  }
+  walkSuites(e2e.suites);
+  return { passed, failed, total: passed + failed };
+}
+
+const e2eStats = e2eResults ? calcE2eStats(e2eResults) : null;
+
 // ─── エビデンスMarkdown生成 ──────────────────────────────────────────────────
 
-const statusBadge = results.success ? "✅ PASSED" : "❌ FAILED";
+const unitStatus = results.success ? "✅ PASSED" : "❌ FAILED";
+const e2eStatus = e2eStats
+  ? e2eStats.failed === 0 ? "✅ PASSED" : "❌ FAILED"
+  : "⏭ 未実行（CIで実行）";
 
 const lines = [
   "# クイズ動作検証エビデンス",
@@ -85,13 +128,14 @@ const lines = [
   "",
   "| 項目 | 値 |",
   "|------|------|",
-  `| **ステータス** | ${statusBadge} |`,
+  `| **ステータス（単体テスト）** | ${unitStatus} |`,
+  `| **ステータス（E2Eテスト）** | ${e2eStatus} |`,
   `| **最終更新** | ${timestamp} |`,
   `| **更新者** | ${runner} |`,
   `| **コミット** | \`${commitHash}\` |`,
   `| **コミットメッセージ** | ${commitMessage} |`,
   "",
-  "## テスト結果サマリー",
+  "## 単体テスト結果サマリー",
   "",
   "| 項目 | 結果 |",
   "|------|------|",
@@ -100,9 +144,51 @@ const lines = [
   `| 失敗テスト | ${results.numFailedTests} |`,
   `| 実行時間 | ${durationSec}s |`,
   "",
-  "## テストスイート詳細",
-  "",
 ];
+
+// E2Eサマリー
+if (e2eStats) {
+  lines.push("## E2Eテスト結果サマリー（Playwright + Gherkin）", "");
+  lines.push("| 項目 | 結果 |");
+  lines.push("|------|------|");
+  lines.push(`| シナリオ（合格 / 合計） | ${e2eStats.passed} / ${e2eStats.total} |`);
+  lines.push(`| 失敗シナリオ | ${e2eStats.failed} |`);
+  if (e2eResults?.duration) {
+    lines.push(`| 実行時間 | ${(e2eResults.duration / 1000).toFixed(2)}s |`);
+  }
+  lines.push("");
+
+  // E2Eシナリオ詳細
+  lines.push("### E2Eシナリオ詳細", "");
+
+  function renderSuites(suites, depth = 0) {
+    for (const suite of suites) {
+      const indent = "  ".repeat(depth);
+      if (suite.title) {
+        lines.push(`${indent}#### 📋 ${suite.title}`, "");
+        lines.push(`${indent}| 結果 | シナリオ名 |`);
+        lines.push(`${indent}|------|---------|`);
+      }
+      for (const spec of suite.specs ?? []) {
+        const results = spec.tests?.flatMap((t) => t.results ?? []);
+        const ok = results && results.length > 0 && results.every((r) => r.status === "passed");
+        const icon = ok ? "✅" : "❌";
+        lines.push(`${indent}| ${icon} | ${spec.title} |`);
+      }
+      if ((suite.specs ?? []).length > 0) lines.push("");
+      if (suite.suites) renderSuites(suite.suites, depth + 1);
+    }
+  }
+
+  if (e2eResults?.suites) renderSuites(e2eResults.suites);
+} else {
+  lines.push("## E2Eテスト結果サマリー（Playwright + Gherkin）", "");
+  lines.push("> E2Eテストは CI の `e2e` ジョブで実行されます。");
+  lines.push("> ローカルで実行する場合: `npm run build && npm run test:e2e`");
+  lines.push("");
+}
+
+lines.push("## 単体テストスイート詳細", "");
 
 const MAX_ERROR_MESSAGE_LENGTH = 500;
 
@@ -143,10 +229,16 @@ lines.push("> このファイルを更新し、コミットに含めること（
 fs.writeFileSync(evidenceFile, lines.join("\n"), "utf-8");
 console.log(
   `✅ エビデンスファイルを生成しました: TEST_EVIDENCE.md` +
-    ` (${results.numPassedTests}/${results.numTotalTests} テスト合格)`
+    ` (単体テスト: ${results.numPassedTests}/${results.numTotalTests} 合格` +
+    (e2eStats ? ` / E2E: ${e2eStats.passed}/${e2eStats.total} 合格)` : ")")
 );
 
 if (!results.success) {
-  console.error("❌ テストが失敗しています。コードを修正してください。");
+  console.error("❌ 単体テストが失敗しています。コードを修正してください。");
   process.exit(1);
 }
+if (e2eStats && e2eStats.failed > 0) {
+  console.error("❌ E2Eテストが失敗しています。コードを修正してください。");
+  process.exit(1);
+}
+

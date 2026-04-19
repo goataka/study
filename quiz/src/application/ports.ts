@@ -1,5 +1,6 @@
 /**
- * Application ports (interfaces) — dependency inversion boundaries.
+ * アプリケーション層のポート（インターフェース） — 依存性逆転の境界。
+ * インフラ層の実装に依存せず、このインターフェースを通じてやり取りする。
  */
 
 import type { Question } from "../domain/question";

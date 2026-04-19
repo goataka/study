@@ -1,6 +1,6 @@
 /**
- * QuizApp — UI controller (presentation layer).
- * Delegates all business logic to QuizUseCase.
+ * QuizApp — プレゼンテーション層の UI コントローラー。
+ * ビジネスロジックはすべて QuizUseCase に委譲する。
  */
 
 import { QuizUseCase } from "../application/quizUseCase";

@@ -1,6 +1,6 @@
 /**
- * QuizSession aggregate — manages question selection, answer tracking, and scoring.
- * Pure business logic with no DOM or fetch dependencies.
+ * QuizSession 集約 — 問題の選択・回答の追跡・採点を管理する。
+ * DOM や fetch への依存がない純粋なビジネスロジック。
  */
 
 import type { Question } from "./question";
