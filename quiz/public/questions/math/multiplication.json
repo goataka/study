@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "multiplication",
+  "categoryName": "かけ算",
+  "questions": [
+    {
+      "id": "mul-1",
+      "question": "2 × 3 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "2 × 3 = 6"
+    },
+    {
+      "id": "mul-2",
+      "question": "4 × 5 = ?",
+      "choices": [
+        "20",
+        "19",
+        "21",
+        "18"
+      ],
+      "correct": 0,
+      "explanation": "4 × 5 = 20"
+    },
+    {
+      "id": "mul-3",
+      "question": "3 × 7 = ?",
+      "choices": [
+        "21",
+        "20",
+        "22",
+        "19"
+      ],
+      "correct": 0,
+      "explanation": "3 × 7 = 21"
+    },
+    {
+      "id": "mul-4",
+      "question": "6 × 6 = ?",
+      "choices": [
+        "36",
+        "35",
+        "37",
+        "34"
+      ],
+      "correct": 0,
+      "explanation": "6 × 6 = 36"
+    },
+    {
+      "id": "mul-5",
+      "question": "7 × 8 = ?",
+      "choices": [
+        "56",
+        "55",
+        "57",
+        "54"
+      ],
+      "correct": 0,
+      "explanation": "7 × 8 = 56"
+    },
+    {
+      "id": "mul-6",
+      "question": "9 × 4 = ?",
+      "choices": [
+        "36",
+        "35",
+        "37",
+        "34"
+      ],
+      "correct": 0,
+      "explanation": "9 × 4 = 36"
+    },
+    {
+      "id": "mul-7",
+      "question": "8 × 7 = ?",
+      "choices": [
+        "56",
+        "55",
+        "57",
+        "54"
+      ],
+      "correct": 0,
+      "explanation": "8 × 7 = 56"
+    },
+    {
+      "id": "mul-8",
+      "question": "9 × 9 = ?",
+      "choices": [
+        "81",
+        "80",
+        "82",
+        "79"
+      ],
+      "correct": 0,
+      "explanation": "9 × 9 = 81"
+    }
+  ]
+}

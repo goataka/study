@@ -1,0 +1,68 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonics-3",
+  "categoryName": "フォニックス（3文字）",
+  "questions": [
+    {
+      "id": "phonics-3-tch1",
+      "question": "「kitchen」の「tch」の音は？",
+      "choices": [
+        "チ",
+        "ク",
+        "チュ",
+        "ツ"
+      ],
+      "correct": 0,
+      "explanation": "kitchen = ク イ チ エ ヌ"
+    },
+    {
+      "id": "phonics-3-dge1",
+      "question": "「edge」の「dge」の音は？",
+      "choices": [
+        "ジ",
+        "ジュ",
+        "グ",
+        "ドゥ"
+      ],
+      "correct": 0,
+      "explanation": "edge = エ ジ"
+    },
+    {
+      "id": "phonics-3-igh1",
+      "question": "「night」の「igh」の音は？",
+      "choices": [
+        "アイ",
+        "イ",
+        "エイ",
+        "イー"
+      ],
+      "correct": 0,
+      "explanation": "night = ヌ アイ ト"
+    },
+    {
+      "id": "phonics-3-thr1",
+      "question": "「three」の「thr」の音は？",
+      "choices": [
+        "スル",
+        "ス",
+        "トゥル",
+        "サ"
+      ],
+      "correct": 0,
+      "explanation": "three = スル イー"
+    },
+    {
+      "id": "phonics-3-str1",
+      "question": "「street」の「str」の音は？",
+      "choices": [
+        "ストゥル",
+        "スル",
+        "ス",
+        "ストゥ"
+      ],
+      "correct": 0,
+      "explanation": "street = ストゥル イー ト"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "linking",
+  "categoryName": "音声変化 - リンキング",
+  "questions": [
+    {
+      "id": "linking-1",
+      "question": "「check it out」はどう発音する？",
+      "choices": [
+        "チェキットアウト",
+        "チェック イット アウト",
+        "チェキッタウト",
+        "チェック アウト"
+      ],
+      "correct": 0,
+      "explanation": "k + i → キ となり、チェキットアウト"
+    },
+    {
+      "id": "linking-2",
+      "question": "「turn it off」はどう発音する？",
+      "choices": [
+        "ターニットオフ",
+        "ターン イット オフ",
+        "タニトオフ",
+        "ターン オフ"
+      ],
+      "correct": 0,
+      "explanation": "n + i → ニ となり、ターニットオフ"
+    },
+    {
+      "id": "linking-3",
+      "question": "「put it on」はどう発音する？",
+      "choices": [
+        "プティットオン",
+        "プット イット オン",
+        "プリトン",
+        "プット オン"
+      ],
+      "correct": 0,
+      "explanation": "t + i → ティ となり、プティットオン"
+    },
+    {
+      "id": "linking-4",
+      "question": "「take a look」はどう発音する？",
+      "choices": [
+        "テイカルック",
+        "テイク ア ルック",
+        "テカルック",
+        "テイク ルック"
+      ],
+      "correct": 0,
+      "explanation": "k + ə → カ となり、テイカルック"
+    },
+    {
+      "id": "linking-5",
+      "question": "「an apple」はどう発音する？",
+      "choices": [
+        "アナップル",
+        "アン アップル",
+        "アンアプル",
+        "アップル"
+      ],
+      "correct": 0,
+      "explanation": "n + a → ナ となり、アナップル"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "division",
+  "categoryName": "わり算",
+  "questions": [
+    {
+      "id": "div-1",
+      "question": "12 ÷ 3 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "12 ÷ 3 = 4"
+    },
+    {
+      "id": "div-2",
+      "question": "20 ÷ 4 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "20 ÷ 4 = 5"
+    },
+    {
+      "id": "div-3",
+      "question": "24 ÷ 6 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "24 ÷ 6 = 4"
+    },
+    {
+      "id": "div-4",
+      "question": "35 ÷ 7 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "35 ÷ 7 = 5"
+    },
+    {
+      "id": "div-5",
+      "question": "48 ÷ 8 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "8"
+      ],
+      "correct": 0,
+      "explanation": "48 ÷ 8 = 6"
+    },
+    {
+      "id": "div-6",
+      "question": "56 ÷ 7 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "56 ÷ 7 = 8"
+    },
+    {
+      "id": "div-7",
+      "question": "63 ÷ 9 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "9"
+      ],
+      "correct": 0,
+      "explanation": "63 ÷ 9 = 7"
+    },
+    {
+      "id": "div-8",
+      "question": "81 ÷ 9 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "81 ÷ 9 = 9"
+    }
+  ]
+}

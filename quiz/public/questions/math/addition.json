@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition",
+  "categoryName": "たし算",
+  "questions": [
+    {
+      "id": "add-1",
+      "question": "3 + 5 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "3 + 5 = 8"
+    },
+    {
+      "id": "add-2",
+      "question": "7 + 4 = ?",
+      "choices": [
+        "11",
+        "10",
+        "12",
+        "9"
+      ],
+      "correct": 0,
+      "explanation": "7 + 4 = 11"
+    },
+    {
+      "id": "add-3",
+      "question": "12 + 8 = ?",
+      "choices": [
+        "20",
+        "19",
+        "21",
+        "18"
+      ],
+      "correct": 0,
+      "explanation": "12 + 8 = 20"
+    },
+    {
+      "id": "add-4",
+      "question": "15 + 15 = ?",
+      "choices": [
+        "30",
+        "25",
+        "35",
+        "20"
+      ],
+      "correct": 0,
+      "explanation": "15 + 15 = 30"
+    },
+    {
+      "id": "add-5",
+      "question": "23 + 17 = ?",
+      "choices": [
+        "40",
+        "39",
+        "41",
+        "38"
+      ],
+      "correct": 0,
+      "explanation": "23 + 17 = 40"
+    },
+    {
+      "id": "add-6",
+      "question": "46 + 28 = ?",
+      "choices": [
+        "74",
+        "73",
+        "75",
+        "72"
+      ],
+      "correct": 0,
+      "explanation": "46 + 28 = 74"
+    },
+    {
+      "id": "add-7",
+      "question": "55 + 35 = ?",
+      "choices": [
+        "90",
+        "85",
+        "95",
+        "80"
+      ],
+      "correct": 0,
+      "explanation": "55 + 35 = 90"
+    },
+    {
+      "id": "add-8",
+      "question": "67 + 23 = ?",
+      "choices": [
+        "90",
+        "89",
+        "91",
+        "88"
+      ],
+      "correct": 0,
+      "explanation": "67 + 23 = 90"
+    }
+  ]
+}

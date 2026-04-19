@@ -1,0 +1,5 @@
+pre-push:
+  commands:
+    test-evidence:
+      run: npm run test:evidence
+      root: quiz/
