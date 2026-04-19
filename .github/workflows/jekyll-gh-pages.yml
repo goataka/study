@@ -50,9 +50,8 @@ jobs:
       - name: クイズビルドをサイトにコピー
         working-directory: ${{ github.workspace }}
         run: |
-          chmod -R u+w _site
-          mkdir -p _site/quiz
-          cp -r quiz/dist/. _site/quiz/
+          sudo mkdir -p _site/quiz
+          sudo cp -r quiz/dist/. _site/quiz/
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v3
@@ -70,6 +69,66 @@ jobs:
       - name: GitHub Pages へデプロイ
         id: deployment
         uses: actions/deploy-pages@v5
+
+  handle-deploy-failure:
+    name: デプロイ失敗時の処理
+    runs-on: ubuntu-latest
+    needs: [build, deploy]
+    if: failure()
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: デプロイ失敗時 Copilotエージェントに修正を依頼するIssueを作成
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const runUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
+            const commitSha = '${{ github.sha }}'.substring(0, 7);
+
+            const issueBody = [
+              '## GitHub Pages デプロイ失敗',
+              '',
+              `GitHub Pagesへのデプロイ処理が失敗しました。`,
+              '',
+              '### 失敗情報',
+              '',
+              `| 項目 | 値 |`,
+              `|------|------|`,
+              `| **コミット** | \`${commitSha}\` |`,
+              `| **CIログ** | [ワークフロー実行を確認](${runUrl}) |`,
+              '',
+              '### 修正依頼',
+              '',
+              '以下の手順で調査・修正してください：',
+              '',
+              '1. GitHub Actions のログを確認する',
+              `   - ワークフローログ: ${runUrl}`,
+              '2. エラーの原因を特定する',
+              '   - ビルドエラーの場合: Jekyll または Vite のビルド設定を確認',
+              '   - 権限エラーの場合: ファイルのパーミッション設定を確認',
+              '   - デプロイエラーの場合: GitHub Pages の設定を確認',
+              '3. ローカルでビルドを実行して再現確認する',
+              '   ```bash',
+              '   # Jekyllビルド確認',
+              '   cd contents && bundle exec jekyll build',
+              '   # Viteビルド確認',
+              '   cd quiz && npm ci && npm run build',
+              '   ```',
+              '4. 原因を特定して修正する',
+              '5. PRを作成する',
+            ].join('\n');
+
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 GitHub Pages デプロイ失敗 (${commitSha})`,
+              body: issueBody,
+              labels: ['bug', 'copilot', 'deployment'],
+            });
+
+            console.log(`Issue #${issue.data.number} を作成しました: ${issue.data.html_url}`);
 
   e2e-production:
     name: 本番環境E2Eテスト
