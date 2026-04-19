@@ -8,10 +8,10 @@
 | 項目 | 値 |
 |------|------|
 | **ステータス** | ✅ PASSED |
-| **最終更新** | 2026-04-18 22:59:13 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `19e66c4` |
-| **コミットメッセージ** | Fix: PR review feedback - XSS, Fisher-Yates, base path, validation, ESM imports |
+| **最終更新** | 2026-04-19 09:23:23 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `e823a68` |
+| **コミットメッセージ** | feat: add AI operation guarantee - evidence system, auto-lint-fix CI |
 
 ## テスト結果サマリー
 
@@ -20,7 +20,7 @@
 | テストスイート（合格 / 合計） | 9 / 9 |
 | テストケース（合格 / 合計） | 26 / 26 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.05s |
+| 実行時間 | 0.06s |
 
 ## テストスイート詳細
 
