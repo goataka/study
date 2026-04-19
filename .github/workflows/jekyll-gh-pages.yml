@@ -50,8 +50,9 @@ jobs:
       - name: クイズビルドをサイトにコピー
         working-directory: ${{ github.workspace }}
         run: |
+          chmod -R u+w _site
           mkdir -p _site/quiz
-          cp -r quiz/dist/* _site/quiz/
+          cp -r quiz/dist/. _site/quiz/
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v3
