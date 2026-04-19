@@ -1,11 +1,13 @@
 # Goataka Study
 
-子供向け英語学習ドリルのリポジトリです。
+子供向け学習ドリルのリポジトリです。
 
 ## コンテンツ
 
-- [英語ドリル一覧](contents/README.md)
-- [英語クイズ](quiz/index.html) - 4択クイズ形式で学習
+- [学習ドリル一覧](contents/README.md)
+  - 英語ドリル
+  - 数学ドリル（小学校〜高校）
+- [学習クイズ](https://goataka.github.io/study/quiz/) - 4択クイズ形式で学習
 
 ## GitHub Pages
 
