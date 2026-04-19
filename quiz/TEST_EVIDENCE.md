@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-19 20:52:34 JST |
+| **最終更新** | 2026-04-19 22:23:10 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `ecb44dc` |
-| **コミットメッセージ** | fix: GHAの2つのエラーを修正（playwright-bdd v8対応 & Jekyll workflow working-directory修正） |
+| **コミット** | `3877eab` |
+| **コミットメッセージ** | Merge branch 'main' into claude/create-example-sentences |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `c97fda5a6838a5f775b8e9178c323944022f27268b4861e2f8a536a0a91dc4c0` |
+| `test-results.json` | `e422297afaff22a529c354e0729e76350ba5af870a4e33e10d86233a9cbcec62` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 30 / 30 |
 | テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.12s |
+| 実行時間 | 0.13s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
