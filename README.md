@@ -11,6 +11,6 @@
 
 GitHub Actions により、`contents/` フォルダの内容と `quiz/` アプリが自動的に GitHub Pages へデプロイされます。
 
-- **Pages URL**: https://goataka.github.io/study/
-- **クイズ URL**: https://goataka.github.io/study/quiz/
+- **Pages URL**: <https://goataka.github.io/study/>
+- **クイズ URL**: <https://goataka.github.io/study/quiz/>
 - **ワークフロー**: `.github/workflows/jekyll-gh-pages.yml`
