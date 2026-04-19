@@ -5,7 +5,7 @@
 | 日本語 | 英語 |
 |--------|------|
 | 彼は私にゲームをするかと聞いた。 | He asked if I played games. |
-| 彼は私に何をしたか聞いた。 | He asked what I played. |
+| 彼は私に何のゲームをしたか聞いた。 | He asked what games I played. |
 
 ---
 

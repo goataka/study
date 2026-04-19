@@ -101,7 +101,7 @@
 |----------|------|--------|
 | [主格の関係代名詞](42-relative-subject/drill.md) | The boy `who` plays games is my friend. | ゲームをする少年は私の友達です。 |
 | [目的格の関係代名詞](43-relative-object/drill.md) | The game `which` I play is fun. | 私がするゲームは楽しいです。 |
-| [所有格の関係代名詞](44-relative-possessive/drill.md) | The boy `whose` games I play is my friend. | 私がゲームをする少年は私の友達です。 |
+| [所有格の関係代名詞](44-relative-possessive/drill.md) | The boy `whose` father plays games is my friend. | お父さんがゲームをする少年は私の友達です。 |
 | [関係副詞](45-relative-adverb/drill.md) | The place `where` I play games is quiet. | 私がゲームをする場所は静かです。 |
 
 ### 13. 間接話法（話法の転換）
@@ -141,7 +141,7 @@
 | 疑問詞 | `What` games do you play? | あなたは何のゲームをしますか？ | [解説](38-questions-wh/guide.md) |
 | 仮定法 | If I `had` time, I `would play` games. | もし時間があれば、ゲームをするのに。 | [解説](33-conditionals-if/guide.md) |
 | 比較級 | I play games `more` than you. | 私はあなたよりゲームをします。 | [解説](39-comparatives-er/guide.md) |
-| 関係代名詞 | The game `which` I play is fun. | 私がするゲームは楽しいです。 | [解説](42-relative-subject/guide.md) |
+| 関係代名詞 | The game `which` I play is fun. | 私がするゲームは楽しいです。 | [解説](43-relative-object/guide.md) |
 | 間接話法 | He said he `played` games. | 彼はゲームをしたと言いました。 | [解説](46-reported-tense/guide.md) |
 
 ## 学習の前後関係

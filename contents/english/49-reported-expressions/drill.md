@@ -9,7 +9,7 @@
 | 直接話法 | 間接話法 |
 |----------|----------|
 | "I will come tomorrow." | He said he would come (　　　　　　). |
-| "I came here yesterday." | He said he had gone (　　　　　　) the day before. |
+| "I came here yesterday." | He said he had come (　　　　　　) the day before. |
 | "I am busy now." | He said he was busy (　　　　　　). |
 | "I like this book." | He said he liked (　　　　　　) book. |
 | "I will do it today." | He said he would do it (　　　　　　). |
