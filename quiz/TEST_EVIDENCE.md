@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-19 19:05:31 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `864acbf` |
-| **コミットメッセージ** | merge: mainブランチのマージコンフリクトを解消（数学ドリルルール・README統合） |
+| **最終更新** | 2026-04-19 20:53:22 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `1c0f05f` |
+| **コミットメッセージ** | Merge origin/main: resolve conflicts in copilot-instructions.md and contents/README.md |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `7f7e5a3f4085c947339602206715e28a86058369bba3b784270316fd4e60ac4a` |
+| `test-results.json` | `758c924858f12797d00afd2b0210d703cd2031db8b43cbe8a19a92d1dd582823` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 30 / 30 |
 | テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.13s |
+| 実行時間 | 0.08s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
