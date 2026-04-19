@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-19 20:53:22 JST |
+| **最終更新** | 2026-04-19 22:23:10 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `1c0f05f` |
-| **コミットメッセージ** | Merge origin/main: resolve conflicts in copilot-instructions.md and contents/README.md |
+| **コミット** | `3877eab` |
+| **コミットメッセージ** | Merge branch 'main' into claude/create-example-sentences |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `758c924858f12797d00afd2b0210d703cd2031db8b43cbe8a19a92d1dd582823` |
+| `test-results.json` | `e422297afaff22a529c354e0729e76350ba5af870a4e33e10d86233a9cbcec62` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 30 / 30 |
 | テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.08s |
+| 実行時間 | 0.13s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
