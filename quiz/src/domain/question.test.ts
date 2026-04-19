@@ -1,7 +1,7 @@
 /**
- * Question domain — specification tests
+ * Question ドメイン — 仕様テスト
  *
- * These tests describe the validation rules as executable specifications.
+ * バリデーション規則を実行可能な仕様として記述します。
  */
 
 import { validateManifest, validateQuestionFile, expandQuestions } from "./question";

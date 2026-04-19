@@ -10,6 +10,9 @@ jobs:
   test-and-build:
     name: 単体テスト・ビルド（quiz）
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quiz
     permissions:
       contents: write
     steps:
@@ -28,13 +31,14 @@ jobs:
           cache-dependency-path: quiz/package-lock.json
 
       - name: 依存関係のインストール
-        run: cd quiz && npm ci
+        run: npm ci
 
       - name: 単体テスト実行・エビデンス生成
-        run: cd quiz && npm run test:evidence
+        run: npm run test:evidence
 
       - name: テストエビデンスのコミット（PRのみ）
         if: github.event_name == 'pull_request'
+        working-directory: ${{ github.workspace }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -45,11 +49,14 @@ jobs:
           fi
 
       - name: Viteビルド
-        run: cd quiz && npm run build
+        run: npm run build
 
   e2e:
     name: E2Eテスト（quiz）
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quiz
     permissions:
       contents: write
     steps:
@@ -67,19 +74,20 @@ jobs:
           cache-dependency-path: quiz/package-lock.json
 
       - name: 依存関係のインストール
-        run: cd quiz && npm ci
+        run: npm ci
 
       - name: Playwright ブラウザのインストール
-        run: cd quiz && npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Viteビルド（E2E用）
-        run: cd quiz && npm run build
+        run: npm run build
 
       - name: E2Eテスト実行（Gherkin シナリオ）
-        run: cd quiz && npm run test:e2e
+        run: npm run test:e2e
 
       - name: E2Eエビデンスのコミット（PRのみ）
         if: github.event_name == 'pull_request'
+        working-directory: ${{ github.workspace }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -124,4 +132,3 @@ jobs:
           reporter: github-pr-review
           fail_level: warning
           markdownlint_flags: "."
-

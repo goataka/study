@@ -8,10 +8,15 @@
  * 前提:
  *   単体テスト: vitest run --reporter=json --outputFile=test-results.json が実行済み
  *   E2Eテスト（任意）: playwright test が実行済みで e2e-results.json が存在する場合は含める
+ *
+ * 改ざん防止:
+ *   テスト結果JSONのSHA256ハッシュをエビデンスに記録する。
+ *   ハッシュと結果JSONを照合することでエビデンスの真正性を検証できる。
  */
 
 import fs from "fs";
 import path from "path";
+import crypto from "crypto";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 
@@ -64,13 +69,25 @@ if (!fs.existsSync(resultsFile)) {
   process.exit(1);
 }
 
-const results = JSON.parse(fs.readFileSync(resultsFile, "utf-8"));
+const resultsRaw = fs.readFileSync(resultsFile, "utf-8");
+const results = JSON.parse(resultsRaw);
 
 // ─── E2Eテスト結果読み込み（任意） ───────────────────────────────────────────
 
-const e2eResults = fs.existsSync(e2eResultsFile)
-  ? JSON.parse(fs.readFileSync(e2eResultsFile, "utf-8"))
+const e2eResultsRaw = fs.existsSync(e2eResultsFile)
+  ? fs.readFileSync(e2eResultsFile, "utf-8")
   : null;
+const e2eResults = e2eResultsRaw ? JSON.parse(e2eResultsRaw) : null;
+
+// ─── SHA256ハッシュ計算（改ざん防止） ────────────────────────────────────────
+
+/** テスト結果JSONのSHA256ハッシュを計算する */
+function sha256(content) {
+  return crypto.createHash("sha256").update(content, "utf-8").digest("hex");
+}
+
+const unitHash = sha256(resultsRaw);
+const e2eHash = e2eResultsRaw ? sha256(e2eResultsRaw) : null;
 
 // ─── 実行時間計算（単体テスト） ───────────────────────────────────────────────
 
@@ -123,6 +140,7 @@ const lines = [
   "",
   "<!-- このファイルはAIエージェントが自動生成します。手動編集不要です。 -->",
   "<!-- AIの作業時・CI実行時に必ず更新されます。 -->",
+  "<!-- 改ざん検証: 各テスト結果JSONのSHA256ハッシュをこのファイルに記録しています。 -->",
   "",
   "## 概要",
   "",
@@ -134,6 +152,18 @@ const lines = [
   `| **更新者** | ${runner} |`,
   `| **コミット** | \`${commitHash}\` |`,
   `| **コミットメッセージ** | ${commitMessage} |`,
+  "",
+  "## 改ざん防止チェックサム",
+  "",
+  "テスト結果JSONファイルのSHA256ハッシュです。",
+  "`sha256sum test-results.json e2e-results.json` で検証できます。",
+  "",
+  "| ファイル | SHA256 |",
+  "|------|------|",
+  `| \`test-results.json\` | \`${unitHash}\` |`,
+  e2eHash
+    ? `| \`e2e-results.json\` | \`${e2eHash}\` |`
+    : `| \`e2e-results.json\` | 未実行 |`,
   "",
   "## 単体テスト結果サマリー",
   "",

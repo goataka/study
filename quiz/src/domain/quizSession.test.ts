@@ -1,5 +1,5 @@
 /**
- * QuizSession aggregate — specification tests
+ * QuizSession 集約 — 仕様テスト
  */
 
 import { QuizSession } from "./quizSession";

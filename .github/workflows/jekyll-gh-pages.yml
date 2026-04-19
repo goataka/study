@@ -1,8 +1,4 @@
-# Workflow for building and deploying to GitHub Pages
-# - Jekyll builds the contents/ drills
-# - Vite builds the quiz/ app
-# Both are combined into a single GitHub Pages deployment
-
+# Jekyllサイト（contents/）とViteクイズアプリ（quiz/）をGitHub Pagesにデプロイするワークフロー
 name: Deploy to GitHub Pages
 
 on:
@@ -21,47 +17,156 @@ concurrency:
 
 jobs:
   build:
+    name: ビルド（Jekyll + Vite）
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quiz
     steps:
-      - name: Checkout
+      - name: コードのチェックアウト
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Node.js のセットアップ
         uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: "npm"
           cache-dependency-path: quiz/package-lock.json
 
-      - name: Install quiz dependencies
-        run: cd quiz && npm ci
+      - name: 依存関係のインストール
+        run: npm ci
 
-      - name: Build quiz (Vite)
-        run: cd quiz && npm run build
+      - name: Viteビルド
+        run: npm run build
 
-      - name: Setup Pages
+      - name: GitHub Pages のセットアップ
         uses: actions/configure-pages@v5
 
-      - name: Build Jekyll site (contents/)
+      - name: Jekyllサイトのビルド（contents/）
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./contents
           destination: ./_site
 
-      - name: Copy quiz build into site
+      - name: クイズビルドをサイトにコピー
+        working-directory: ${{ github.workspace }}
         run: cp -r quiz/dist/ _site/quiz/
 
-      - name: Upload Pages artifact
+      - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v3
 
   deploy:
+    name: GitHub Pages へデプロイ
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - name: GitHub Pages へデプロイ
         id: deployment
         uses: actions/deploy-pages@v5
+
+  e2e-production:
+    name: 本番環境E2Eテスト
+    runs-on: ubuntu-latest
+    needs: deploy
+    defaults:
+      run:
+        working-directory: quiz
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js のセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: quiz/package-lock.json
+
+      - name: 依存関係のインストール
+        run: npm ci
+
+      - name: Playwright ブラウザのインストール
+        run: npx playwright install --with-deps chromium
+
+      - name: 本番環境E2Eテスト実行
+        env:
+          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}quiz/
+        run: npm run test:e2e
+
+      - name: 本番E2Eエビデンスのコミット
+        if: success()
+        working-directory: ${{ github.workspace }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f quiz/e2e-results.json ]; then
+            node quiz/scripts/generate-evidence.mjs
+            if ! git diff --quiet quiz/TEST_EVIDENCE.md; then
+              git add quiz/TEST_EVIDENCE.md
+              git commit -m "ci: 本番E2Eエビデンスを更新 [skip ci]"
+              git push
+            fi
+          fi
+
+      - name: 本番E2E失敗時: Copilotエージェントに修正を依頼するIssueを作成
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pageUrl = '${{ needs.deploy.outputs.page_url }}';
+            const quizUrl = `${pageUrl}quiz/`;
+            const runUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
+            const commitSha = '${{ github.sha }}'.substring(0, 7);
+
+            const issueBody = [
+              '## 本番環境E2Eテスト失敗',
+              '',
+              `デプロイ後の本番環境E2Eテストが失敗しました。`,
+              '',
+              '### 失敗情報',
+              '',
+              `| 項目 | 値 |`,
+              `|------|------|`,
+              `| **本番URL** | ${quizUrl} |`,
+              `| **コミット** | \`${commitSha}\` |`,
+              `| **CIログ** | [ワークフロー実行を確認](${runUrl}) |`,
+              '',
+              '### 修正依頼',
+              '',
+              '以下の手順で調査・修正してください：',
+              '',
+              '1. `quiz/` ディレクトリのE2Eテストを確認する',
+              '   - `quiz/e2e/features/**/*.feature` のシナリオを確認',
+              '   - `quiz/e2e/steps/**/*.ts` のステップ定義を確認',
+              '2. 本番URLでの動作を確認する',
+              `   - 本番URL: ${quizUrl}`,
+              '3. ローカルでE2Eテストを実行して再現確認する',
+              '   ```bash',
+              '   cd quiz && npm ci',
+              '   npm run build && npm run test:e2e',
+              '   ```',
+              '4. 原因を特定して修正する',
+              '5. `npm run test:evidence` を実行してエビデンスを更新する',
+              '6. PRを作成する',
+            ].join('\n');
+
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 本番環境E2Eテスト失敗 (${commitSha})`,
+              body: issueBody,
+              labels: ['bug', 'copilot'],
+            });
+
+            console.log(`Issue #${issue.data.number} を作成しました: ${issue.data.html_url}`);
+
 
