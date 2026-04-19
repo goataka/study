@@ -1,5 +1,7 @@
-import { Given, When, Then } from "playwright-bdd";
+import { createBdd } from "playwright-bdd";
 import { expect } from "@playwright/test";
+
+const { Given, When, Then } = createBdd();
 
 const STATS_LOAD_TIMEOUT = 10_000;
 

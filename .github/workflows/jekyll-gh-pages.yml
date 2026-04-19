@@ -19,9 +19,6 @@ jobs:
   build:
     name: ビルド（Jekyll + Vite）
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: quiz
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
@@ -35,9 +32,11 @@ jobs:
 
       - name: 依存関係のインストール
         run: npm ci
+        working-directory: quiz
 
       - name: Viteビルド
         run: npm run build
+        working-directory: quiz
 
       - name: GitHub Pages のセットアップ
         uses: actions/configure-pages@v5
@@ -116,7 +115,7 @@ jobs:
             fi
           fi
 
-      - name: 本番E2E失敗時: Copilotエージェントに修正を依頼するIssueを作成
+      - name: 本番E2E失敗時 Copilotエージェントに修正を依頼するIssueを作成
         if: failure()
         uses: actions/github-script@v7
         with:
