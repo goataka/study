@@ -65,7 +65,7 @@ describe("validateQuestionFile — リモートリポジトリで使用するバ
   });
 
   it("subject がない場合に拒否する", () => {
-    const { subject: _subject, ...rest } = validQF;
+    const { subject: _removedField, ...rest } = validQF;
     expect(() => validateQuestionFile(rest)).toThrow();
   });
 

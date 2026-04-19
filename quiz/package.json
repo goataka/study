@@ -14,7 +14,7 @@
     "test:evidence": "npm run test:report && npm run generate-evidence",
     "test:e2e": "bddgen && playwright test",
     "test:e2e:ui": "bddgen && playwright test --ui",
-    "prepare": "lefthook install"
+    "prepare": "cd .. && lefthook install"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
