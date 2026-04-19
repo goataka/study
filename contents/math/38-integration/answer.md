@@ -26,4 +26,4 @@
 
 [目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
-[前へ: 微分](../37-differentiation/drill.md) | **積分**
+[前へ: 微分](../37-differentiation/drill.md) | **積分** | 
