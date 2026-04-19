@@ -26,7 +26,7 @@ jobs:
           cache-dependency-path: quiz/package-lock.json
 
       - name: quiz 依存関係のインストール
-        run: cd quiz & npm ci
+        run: npm ci
 
       # テストを実行してエビデンスファイルを生成する。
       # AIエージェントはこのステップが成功してから作業を開始する。
