@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-19 22:23:10 JST |
+| **最終更新** | 2026-04-20 08:10:57 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `3877eab` |
-| **コミットメッセージ** | Merge branch 'main' into claude/create-example-sentences |
+| **コミット** | `b78a22c` |
+| **コミットメッセージ** | Fix GitHub Pages deployment permission issue |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `e422297afaff22a529c354e0729e76350ba5af870a4e33e10d86233a9cbcec62` |
+| `test-results.json` | `1578dbed704f8714edd476b2af6b3f3ff449c9381eb913a870051202867c26bb` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 30 / 30 |
 | テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.13s |
+| 実行時間 | 0.12s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
