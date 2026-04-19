@@ -82,7 +82,7 @@ describe("questions/index.json — マニフェスト構造", () => {
   });
 
   it("subjects の各エントリに name がある", () => {
-    for (const [_id, subject] of Object.entries(manifest.subjects)) {
+    for (const [, subject] of Object.entries(manifest.subjects)) {
       expect(typeof subject.name).toBe("string");
       expect(subject.name.length).toBeGreaterThan(0);
     }

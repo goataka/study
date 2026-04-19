@@ -65,13 +65,13 @@ describe("QuizSession — ナビゲーション仕様", () => {
 
   it("先頭より前には進めない", () => {
     const session = new QuizSession([q1, q2]);
-    expect(() => session.navigate(-1)).toThrow("Cannot navigate");
+    expect(() => session.navigate(-1)).toThrow("Cannot navigate to index -1");
   });
 
   it("末尾より後には進めない", () => {
     const session = new QuizSession([q1, q2]);
     session.navigate(1);
-    expect(() => session.navigate(1)).toThrow("Cannot navigate");
+    expect(() => session.navigate(1)).toThrow("Cannot navigate to index 2");
   });
 });
 

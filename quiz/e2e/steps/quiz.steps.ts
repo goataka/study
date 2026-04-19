@@ -1,10 +1,11 @@
 import { Given, When, Then } from "playwright-bdd";
 import { expect } from "@playwright/test";
 
+const STATS_LOAD_TIMEOUT = 10_000;
+
 Given("the quiz application is loaded", async ({ page }) => {
   await page.goto("/");
-  // 問題データのロードを待機
-  await page.waitForSelector("#statsInfo", { state: "visible", timeout: 10_000 });
+  await page.waitForSelector("#statsInfo", { state: "visible", timeout: STATS_LOAD_TIMEOUT });
 });
 
 Then("the start screen should be visible", async ({ page }) => {

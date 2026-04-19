@@ -8,10 +8,10 @@
 | 項目 | 値 |
 |------|------|
 | **ステータス** | ✅ PASSED |
-| **最終更新** | 2026-04-19 10:21:56 JST |
+| **最終更新** | 2026-04-19 10:23:53 JST |
 | **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `d4b6e46` |
-| **コミットメッセージ** | ci: auto-fix markdownlint issues [skip ci] |
+| **コミット** | `438cc42` |
+| **コミットメッセージ** | refactor(quiz): DDD restructuring, E2E setup, Node 22, CSS relocation |
 
 ## テスト結果サマリー
 
@@ -20,7 +20,7 @@
 | テストスイート（合格 / 合計） | 25 / 25 |
 | テストケース（合格 / 合計） | 65 / 65 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.09s |
+| 実行時間 | 0.07s |
 
 ## テストスイート詳細
 
