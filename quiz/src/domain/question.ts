@@ -1,42 +1,43 @@
 /**
- * 問題データローダー
- * questions/index.json を読み込み、各カテゴリファイルをフェッチして統合します。
+ * Question domain entity and related types/validation.
  */
 
-import type { Question, QuestionFile, QuestionsManifest } from "./types";
-
-/** 既知の教科メタ情報（型ガード用） */
-export interface SubjectInfo {
-  name: string;
+/** 問題データ（表示用にメタ情報を付加したもの） */
+export interface Question {
+  id: string;
+  question: string;
+  choices: string[];
+  correct: number;
+  explanation: string;
+  subject: string;
+  subjectName: string;
+  category: string;
+  categoryName: string;
 }
 
-/**
- * 問題データを全件読み込む。
- * @param baseUrl questions ディレクトリへのベースURL（デフォルト: "questions"）
- */
-export async function loadAllQuestions(baseUrl = "questions"): Promise<Question[]> {
-  const manifest = await fetchJson<QuestionsManifest>(`${baseUrl}/index.json`);
-  validateManifest(manifest);
-
-  const results = await Promise.all(
-    manifest.questionFiles.map((file) =>
-      fetchJson<QuestionFile>(`${baseUrl}/${file}`).then((qf) => {
-        validateQuestionFile(qf);
-        return expandQuestions(qf);
-      })
-    )
-  );
-
-  return results.flat();
+/** 各問題ファイルの生データ（メタ情報なし） */
+export interface RawQuestion {
+  id: string;
+  question: string;
+  choices: string[];
+  correct: number;
+  explanation: string;
 }
 
-/**
- * 単一の問題ファイルを読み込む（テスト・デバッグ用）。
- */
-export async function loadQuestionFile(url: string): Promise<Question[]> {
-  const qf = await fetchJson<QuestionFile>(url);
-  validateQuestionFile(qf);
-  return expandQuestions(qf);
+/** 問題ファイル1件のスキーマ */
+export interface QuestionFile {
+  subject: string;
+  subjectName: string;
+  category: string;
+  categoryName: string;
+  questions: RawQuestion[];
+}
+
+/** questions/index.json のスキーマ */
+export interface QuestionsManifest {
+  version: string;
+  subjects: Record<string, { name: string }>;
+  questionFiles: string[];
 }
 
 /**
@@ -105,17 +106,10 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
   }
 }
 
-// ─── 内部ヘルパー ──────────────────────────────────────────────────────────────
-
-async function fetchJson<T>(url: string): Promise<T> {
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch "${url}": ${res.status} ${res.statusText}`);
-  }
-  return res.json() as Promise<T>;
-}
-
-function expandQuestions(qf: QuestionFile): Question[] {
+/**
+ * QuestionFile を Question[] に展開する（メタ情報を各問題に付加）。
+ */
+export function expandQuestions(qf: QuestionFile): Question[] {
   return qf.questions.map((q) => ({
     ...q,
     subject: qf.subject,

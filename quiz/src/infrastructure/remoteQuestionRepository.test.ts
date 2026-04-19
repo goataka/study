@@ -1,12 +1,12 @@
 /**
- * questionLoader.ts の純粋関数ロジックのテスト
- * （fetch を使う関数はブラウザ環境が必要なためここでは対象外）
+ * RemoteQuestionRepository — unit tests
+ * Tests the validation functions used by the repository (domain logic).
  */
 
-import { validateManifest, validateQuestionFile } from "../src/questionLoader";
+import { validateManifest, validateQuestionFile } from "../domain/question";
 
-describe("validateManifest", () => {
-  test("有効なマニフェストを受け入れる", () => {
+describe("validateManifest — リモートリポジトリで使用するバリデーション仕様", () => {
+  it("有効なマニフェストを受け入れる", () => {
     expect(() =>
       validateManifest({
         version: "2.0.0",
@@ -16,30 +16,30 @@ describe("validateManifest", () => {
     ).not.toThrow();
   });
 
-  test("null を拒否する", () => {
+  it("null を拒否する", () => {
     expect(() => validateManifest(null)).toThrow();
   });
 
-  test("version がない場合に拒否する", () => {
+  it("version がない場合に拒否する", () => {
     expect(() =>
       validateManifest({ subjects: {}, questionFiles: [] })
     ).toThrow();
   });
 
-  test("subjects がない場合に拒否する", () => {
+  it("subjects がない場合に拒否する", () => {
     expect(() =>
       validateManifest({ version: "1.0.0", questionFiles: [] })
     ).toThrow();
   });
 
-  test("questionFiles が配列でない場合に拒否する", () => {
+  it("questionFiles が配列でない場合に拒否する", () => {
     expect(() =>
       validateManifest({ version: "1.0.0", subjects: {}, questionFiles: "not-an-array" })
     ).toThrow();
   });
 });
 
-describe("validateQuestionFile", () => {
+describe("validateQuestionFile — リモートリポジトリで使用するバリデーション仕様", () => {
   const validQF = {
     subject: "english",
     subjectName: "英語",
@@ -56,20 +56,20 @@ describe("validateQuestionFile", () => {
     ],
   };
 
-  test("有効な問題ファイルを受け入れる", () => {
+  it("有効な問題ファイルを受け入れる", () => {
     expect(() => validateQuestionFile(validQF)).not.toThrow();
   });
 
-  test("null を拒否する", () => {
+  it("null を拒否する", () => {
     expect(() => validateQuestionFile(null)).toThrow();
   });
 
-  test("subject がない場合に拒否する", () => {
-    const { subject, ...rest } = validQF;
+  it("subject がない場合に拒否する", () => {
+    const { subject: _subject, ...rest } = validQF;
     expect(() => validateQuestionFile(rest)).toThrow();
   });
 
-  test("questions が配列でない場合に拒否する", () => {
+  it("questions が配列でない場合に拒否する", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, questions: "not-an-array" })
     ).toThrow();

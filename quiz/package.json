@@ -11,10 +11,16 @@
     "test:watch": "vitest",
     "test:report": "vitest run --reporter=json --outputFile=test-results.json",
     "generate-evidence": "node scripts/generate-evidence.mjs",
-    "test:evidence": "npm run test:report && npm run generate-evidence"
+    "test:evidence": "npm run test:report && npm run generate-evidence",
+    "test:e2e": "bddgen && playwright test",
+    "test:e2e:ui": "bddgen && playwright test --ui",
+    "prepare": "lefthook install"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@types/node": "^22.0.0",
+    "lefthook": "^2.1.6",
+    "playwright-bdd": "^8.5.0",
     "typescript": "^5.8.3",
     "vite": "^6.4.2",
     "vitest": "^3.2.4"

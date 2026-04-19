@@ -1,37 +1,39 @@
 /**
- * クイズアプリケーション
+ * QuizApp — UI controller (presentation layer).
+ * Delegates all business logic to QuizUseCase.
  */
 
-import { loadAllQuestions } from "./questionLoader";
-import type { Question, QuizMode, QuizFilter, AnswerResult } from "./types";
+import { QuizUseCase } from "../application/quizUseCase";
+import type { QuizMode, QuizFilter, AnswerResult } from "../application/quizUseCase";
+import { QuizSession } from "../domain/quizSession";
+import type { Question } from "../domain/question";
+import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
+import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
 
-class QuizApp {
-  private allQuestions: Question[] = [];
-  private currentQuestions: Question[] = [];
-  private currentQuestionIndex = 0;
-  private userAnswers: (number | undefined)[] = [];
-  private wrongQuestions: string[] = this.loadWrongQuestions();
+export class QuizApp {
+  private readonly useCase: QuizUseCase;
+  private currentSession: QuizSession | null = null;
   private filter: QuizFilter = { subject: "all", category: "all" };
 
   constructor() {
+    this.useCase = new QuizUseCase(
+      new RemoteQuestionRepository("questions"),
+      new LocalStorageProgressRepository()
+    );
     this.init();
   }
 
   // ─── 初期化 ────────────────────────────────────────────────────────────────
 
   private async init(): Promise<void> {
-    await this.fetchQuestions();
-    this.setupEventListeners();
-    this.updateStartScreen();
-  }
-
-  private async fetchQuestions(): Promise<void> {
     try {
-      this.allQuestions = await loadAllQuestions("questions");
+      await this.useCase.initialize();
     } catch (error) {
       console.error("問題の読み込みに失敗しました:", error);
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
+    this.setupEventListeners();
+    this.updateStartScreen();
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -39,8 +41,8 @@ class QuizApp {
   private setupEventListeners(): void {
     this.on("startRandomBtn", "click", () => this.startQuiz("random"));
     this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
-    this.on("prevBtn", "click", () => this.navigateQuestion(-1));
-    this.on("nextBtn", "click", () => this.navigateQuestion(1));
+    this.on("prevBtn", "click", () => this.navigate(-1));
+    this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
@@ -51,6 +53,7 @@ class QuizApp {
 
     subjectFilter?.addEventListener("change", (e) => {
       this.filter.subject = (e.target as HTMLSelectElement).value;
+      this.filter.category = "all";
       this.updateCategoryFilter();
       this.updateStartScreen();
     });
@@ -70,7 +73,7 @@ class QuizApp {
     categoryFilter.innerHTML = '<option value="all">すべてのカテゴリ</option>';
 
     if (this.filter.subject !== "all") {
-      const categories = this.getCategoriesForSubject(this.filter.subject);
+      const categories = this.useCase.getCategoriesForSubject(this.filter.subject);
       for (const [categoryId, categoryName] of Object.entries(categories)) {
         const option = document.createElement("option");
         option.value = categoryId;
@@ -78,26 +81,6 @@ class QuizApp {
         categoryFilter.appendChild(option);
       }
     }
-
-    this.filter.category = "all";
-  }
-
-  private getCategoriesForSubject(subject: string): Record<string, string> {
-    const categories: Record<string, string> = {};
-    for (const q of this.allQuestions) {
-      if (q.subject === subject && !(q.category in categories)) {
-        categories[q.category] = q.categoryName;
-      }
-    }
-    return categories;
-  }
-
-  private getFilteredQuestions(): Question[] {
-    return this.allQuestions.filter(
-      (q) =>
-        (this.filter.subject === "all" || q.subject === this.filter.subject) &&
-        (this.filter.category === "all" || q.category === this.filter.category)
-    );
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -107,15 +90,13 @@ class QuizApp {
     const retryBtn = document.getElementById("startRetryBtn") as HTMLButtonElement | null;
     if (!statsInfo || !retryBtn) return;
 
-    const filtered = this.getFilteredQuestions();
-    const wrongCount = this.wrongQuestions.filter((id) =>
-      filtered.some((q) => q.id === id)
-    ).length;
+    const filteredCount = this.useCase.getFilteredQuestions(this.filter).length;
+    const wrongCount = this.useCase.getWrongCount(this.filter);
 
     statsInfo.textContent =
       wrongCount > 0
-        ? `全${filtered.length}問 / 間違えた問題が${wrongCount}問あります`
-        : `全${filtered.length}問 / 間違えた問題はありません`;
+        ? `全${filteredCount}問 / 間違えた問題が${wrongCount}問あります`
+        : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
   }
@@ -123,43 +104,25 @@ class QuizApp {
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
 
   private startQuiz(mode: QuizMode): void {
-    this.currentQuestionIndex = 0;
-    this.userAnswers = [];
-
-    const filtered = this.getFilteredQuestions();
-
-    if (mode === "random") {
-      this.currentQuestions = this.pickRandom(filtered, 10);
-    } else {
-      const retrySet = new Set(this.wrongQuestions);
-      this.currentQuestions = filtered.filter((q) => retrySet.has(q.id));
-      if (this.currentQuestions.length === 0) {
-        alert("間違えた問題がありません");
-        return;
-      }
+    try {
+      this.currentSession = this.useCase.startSession(mode, this.filter);
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "エラーが発生しました");
+      return;
     }
-
     this.showScreen("quiz");
     this.renderQuestion();
-  }
-
-  private pickRandom<T>(arr: T[], n: number): T[] {
-    const count = Math.min(n, arr.length);
-    const shuffled = [...arr];
-    for (let i = 0; i < count; i++) {
-      const j = i + Math.floor(Math.random() * (shuffled.length - i));
-      [shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!];
-    }
-    return shuffled.slice(0, count);
   }
 
   // ─── 問題表示 ──────────────────────────────────────────────────────────────
 
   private renderQuestion(): void {
-    const question = this.currentQuestions[this.currentQuestionIndex];
-    if (!question) return;
-    const total = this.currentQuestions.length;
-    const idx = this.currentQuestionIndex;
+    const session = this.currentSession;
+    if (!session) return;
+
+    const question = session.currentQuestion;
+    const total = session.totalCount;
+    const idx = session.currentIndex;
 
     this.setText("questionNumber", `問題 ${idx + 1} / ${total}`);
     this.setText("topicName", question.categoryName ?? question.category);
@@ -168,11 +131,11 @@ class QuizApp {
     (document.getElementById("progressFill") as HTMLElement).style.width = `${progress}%`;
 
     this.setText("questionText", question.question);
-    this.renderChoices(question);
-    this.updateNavigationButtons();
+    this.renderChoices(question, session);
+    this.updateNavigationButtons(session);
   }
 
-  private renderChoices(question: Question): void {
+  private renderChoices(question: Question, session: QuizSession): void {
     const container = document.getElementById("choicesContainer");
     if (!container) return;
     container.innerHTML = "";
@@ -185,8 +148,11 @@ class QuizApp {
       input.type = "radio";
       input.name = "answer";
       input.value = String(index);
-      input.checked = this.userAnswers[this.currentQuestionIndex] === index;
-      input.addEventListener("change", () => this.selectAnswer(index));
+      input.checked = session.getAnswer(session.currentIndex) === index;
+      input.addEventListener("change", () => {
+        session.selectAnswer(session.currentIndex, index);
+        this.updateNavigationButtons(session);
+      });
 
       const span = document.createElement("span");
       span.className = "choice-text";
@@ -198,56 +164,38 @@ class QuizApp {
     });
   }
 
-  private selectAnswer(choiceIndex: number): void {
-    this.userAnswers[this.currentQuestionIndex] = choiceIndex;
-    this.updateNavigationButtons();
-  }
-
-  private navigateQuestion(direction: number): void {
-    this.currentQuestionIndex += direction;
+  private navigate(direction: 1 | -1): void {
+    const session = this.currentSession;
+    if (!session) return;
+    session.navigate(direction);
     this.renderQuestion();
   }
 
-  private updateNavigationButtons(): void {
+  private updateNavigationButtons(session: QuizSession): void {
     const prevBtn = document.getElementById("prevBtn") as HTMLButtonElement;
     const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
     const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
-    const isLast = this.currentQuestionIndex === this.currentQuestions.length - 1;
+    const isLast = session.currentIndex === session.totalCount - 1;
 
-    prevBtn.disabled = this.currentQuestionIndex === 0;
+    prevBtn.disabled = session.currentIndex === 0;
 
     if (isLast) {
       nextBtn.classList.add("hidden");
       submitBtn.classList.remove("hidden");
-      submitBtn.disabled = this.userAnswers.length !== this.currentQuestions.length;
+      submitBtn.disabled = !session.canSubmit();
     } else {
       nextBtn.classList.remove("hidden");
       submitBtn.classList.add("hidden");
-      nextBtn.disabled = this.userAnswers[this.currentQuestionIndex] === undefined;
+      nextBtn.disabled = session.getAnswer(session.currentIndex) === undefined;
     }
   }
 
   // ─── 採点 ──────────────────────────────────────────────────────────────────
 
   private submitQuiz(): void {
-    const results: AnswerResult[] = this.currentQuestions.map((q, i) => ({
-      question: q,
-      userAnswerIndex: this.userAnswers[i] ?? -1,
-      isCorrect: this.userAnswers[i] === q.correct,
-    }));
-
-    const newlyWrong: string[] = [];
-
-    for (const r of results) {
-      if (r.isCorrect) {
-        this.wrongQuestions = this.wrongQuestions.filter((id) => id !== r.question.id);
-      } else if (!this.wrongQuestions.includes(r.question.id)) {
-        newlyWrong.push(r.question.id);
-      }
-    }
-
-    this.wrongQuestions.push(...newlyWrong);
-    this.saveWrongQuestions();
+    const session = this.currentSession;
+    if (!session) return;
+    const results = this.useCase.submitSession(session);
     this.showResultScreen(results);
   }
 
@@ -274,12 +222,13 @@ class QuizApp {
       results.forEach((r) => resultDetails.appendChild(this.buildResultItem(r)));
     }
 
+    const wrongCount = this.useCase.wrongQuestionIds.length;
     const retryWrongBtn = document.getElementById("retryWrongBtn") as HTMLButtonElement | null;
     if (retryWrongBtn) {
-      retryWrongBtn.disabled = this.wrongQuestions.length === 0;
+      retryWrongBtn.disabled = wrongCount === 0;
       retryWrongBtn.textContent =
-        this.wrongQuestions.length > 0
-          ? `間違えた問題だけ (${this.wrongQuestions.length}問)`
+        wrongCount > 0
+          ? `間違えた問題だけ (${wrongCount}問)`
           : "間違えた問題だけ";
     }
 
@@ -348,25 +297,6 @@ class QuizApp {
 
     if (screenName === "start") {
       this.updateStartScreen();
-    }
-  }
-
-  // ─── LocalStorage ──────────────────────────────────────────────────────────
-
-  private loadWrongQuestions(): string[] {
-    try {
-      const saved = localStorage.getItem("wrongQuestions");
-      return saved ? (JSON.parse(saved) as string[]) : [];
-    } catch {
-      return [];
-    }
-  }
-
-  private saveWrongQuestions(): void {
-    try {
-      localStorage.setItem("wrongQuestions", JSON.stringify(this.wrongQuestions));
-    } catch (error) {
-      console.error("データの保存に失敗しました:", error);
     }
   }
 

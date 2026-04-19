@@ -23,7 +23,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: quiz/package-lock.json
 
@@ -46,6 +46,23 @@ jobs:
 
       - name: Build
         run: cd quiz && npm run build
+
+  e2e:
+    name: E2E Tests (quiz)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: quiz/package-lock.json
+      - run: cd quiz && npm ci
+      - run: cd quiz && npx playwright install --with-deps chromium
+      - run: cd quiz && npm run build
+      - run: cd quiz && npm run test:e2e
 
   markdownlint:
     name: Markdown Lint

@@ -38,7 +38,7 @@ interface QuestionsManifest {
 // ─── パス定義 ────────────────────────────────────────────────────────────────
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const QUESTIONS_DIR = path.join(__dirname, "..", "public", "questions");
+const QUESTIONS_DIR = path.join(__dirname, "..", "..", "public", "questions");
 const INDEX_FILE = path.join(QUESTIONS_DIR, "index.json");
 
 // ─── ユーティリティ ──────────────────────────────────────────────────────────
@@ -67,33 +67,33 @@ describe("questions/index.json — マニフェスト構造", () => {
     manifest = loadManifest();
   });
 
-  test("index.json が存在する", () => {
+  it("index.json が存在する", () => {
     expect(fs.existsSync(INDEX_FILE)).toBe(true);
   });
 
-  test("version フィールドが文字列", () => {
+  it("version フィールドが文字列", () => {
     expect(typeof manifest.version).toBe("string");
     expect(manifest.version.length).toBeGreaterThan(0);
   });
 
-  test("subjects オブジェクトが存在する", () => {
+  it("subjects オブジェクトが存在する", () => {
     expect(manifest.subjects).toBeDefined();
     expect(typeof manifest.subjects).toBe("object");
   });
 
-  test("subjects の各エントリに name がある", () => {
-    for (const [id, subject] of Object.entries(manifest.subjects)) {
+  it("subjects の各エントリに name がある", () => {
+    for (const [_id, subject] of Object.entries(manifest.subjects)) {
       expect(typeof subject.name).toBe("string");
       expect(subject.name.length).toBeGreaterThan(0);
     }
   });
 
-  test("questionFiles が配列", () => {
+  it("questionFiles が配列", () => {
     expect(Array.isArray(manifest.questionFiles)).toBe(true);
     expect(manifest.questionFiles.length).toBeGreaterThan(0);
   });
 
-  test("questionFiles の全ファイルが実際に存在する", () => {
+  it("questionFiles の全ファイルが実際に存在する", () => {
     for (const file of manifest.questionFiles) {
       const fullPath = path.join(QUESTIONS_DIR, file);
       expect(fs.existsSync(fullPath)).toBe(true);
@@ -110,7 +110,7 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     questionFiles = loadAllQuestionFiles(manifest);
   });
 
-  test("全ファイルに subject・subjectName・category・categoryName がある", () => {
+  it("全ファイルに subject・subjectName・category・categoryName がある", () => {
     for (const qf of questionFiles) {
       expect(typeof qf.subject).toBe("string");
       expect(typeof qf.subjectName).toBe("string");
@@ -119,14 +119,14 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     }
   });
 
-  test("全ファイルに questions 配列がある", () => {
+  it("全ファイルに questions 配列がある", () => {
     for (const qf of questionFiles) {
       expect(Array.isArray(qf.questions)).toBe(true);
       expect(qf.questions.length).toBeGreaterThan(0);
     }
   });
 
-  test("全問題に必須フィールド (id, question, choices, correct, explanation) がある", () => {
+  it("全問題に必須フィールド (id, question, choices, correct, explanation) がある", () => {
     for (const qf of questionFiles) {
       for (const q of qf.questions) {
         expect(typeof q.id).toBe("string");
@@ -140,7 +140,7 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     }
   });
 
-  test("全問題の choices がちょうど 4 つ", () => {
+  it("全問題の choices がちょうど 4 つ", () => {
     for (const qf of questionFiles) {
       for (const q of qf.questions) {
         expect(q.choices).toHaveLength(4);
@@ -148,7 +148,7 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     }
   });
 
-  test("全問題の choices が空でない", () => {
+  it("全問題の choices が空でない", () => {
     for (const qf of questionFiles) {
       for (const q of qf.questions) {
         for (const choice of q.choices) {
@@ -158,7 +158,7 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     }
   });
 
-  test("correct が 0〜3 の整数", () => {
+  it("correct が 0〜3 の整数", () => {
     for (const qf of questionFiles) {
       for (const q of qf.questions) {
         expect(q.correct).toBeGreaterThanOrEqual(0);
@@ -170,7 +170,7 @@ describe("各カテゴリファイル — スキーマ検証", () => {
 });
 
 describe("問題ID — グローバル一意性", () => {
-  test("全ファイルを通じて問題IDが重複しない", () => {
+  it("全ファイルを通じて問題IDが重複しない", () => {
     const manifest = loadManifest();
     const questionFiles = loadAllQuestionFiles(manifest);
     const ids = new Set<string>();
@@ -198,21 +198,21 @@ describe("データ統計 — 問題数チェック", () => {
     questionFiles = loadAllQuestionFiles(manifest);
   });
 
-  test("英語の問題が 1 件以上ある", () => {
+  it("英語の問題が 1 件以上ある", () => {
     const englishQuestions = questionFiles
       .filter((qf) => qf.subject === "english")
       .flatMap((qf) => qf.questions);
     expect(englishQuestions.length).toBeGreaterThan(0);
   });
 
-  test("数学の問題が 1 件以上ある", () => {
+  it("数学の問題が 1 件以上ある", () => {
     const mathQuestions = questionFiles
       .filter((qf) => qf.subject === "math")
       .flatMap((qf) => qf.questions);
     expect(mathQuestions.length).toBeGreaterThan(0);
   });
 
-  test("全問題数が manifest の subjects に記載された教科を網羅している", () => {
+  it("全問題数が manifest の subjects に記載された教科を網羅している", () => {
     const subjectsInManifest = new Set(Object.keys(manifest.subjects));
     const subjectsInFiles = new Set(questionFiles.map((qf) => qf.subject));
     for (const subjectId of subjectsInManifest) {
@@ -222,11 +222,10 @@ describe("データ統計 — 問題数チェック", () => {
 });
 
 describe("後方互換性 — questions.json との整合性", () => {
-  const LEGACY_FILE = path.join(__dirname, "..", "questions.json");
+  const LEGACY_FILE = path.join(__dirname, "..", "..", "questions.json");
 
-  test("旧 questions.json が存在する場合、同じ問題IDセットを含む", () => {
+  it("旧 questions.json が存在する場合、同じ問題IDセットを含む", () => {
     if (!fs.existsSync(LEGACY_FILE)) {
-      // 旧ファイルが削除されている場合はスキップ
       return;
     }
 

@@ -8,23 +8,77 @@
 | 項目 | 値 |
 |------|------|
 | **ステータス** | ✅ PASSED |
-| **最終更新** | 2026-04-19 09:23:23 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `e823a68` |
-| **コミットメッセージ** | feat: add AI operation guarantee - evidence system, auto-lint-fix CI |
+| **最終更新** | 2026-04-19 10:21:56 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `d4b6e46` |
+| **コミットメッセージ** | ci: auto-fix markdownlint issues [skip ci] |
 
 ## テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 9 / 9 |
-| テストケース（合格 / 合計） | 26 / 26 |
+| テストスイート（合格 / 合計） | 25 / 25 |
+| テストケース（合格 / 合計） | 65 / 65 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.06s |
+| 実行時間 | 0.09s |
 
 ## テストスイート詳細
 
-### ✅ `tests/questionData.test.ts` (17/17)
+### ✅ `src/application/quizUseCase.test.ts` (8/8)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | QuizUseCase — 初期化仕様 > initialize() で全問題をロードする |
+| ✅ | QuizUseCase — フィルター仕様 > 教科フィルターが機能する |
+| ✅ | QuizUseCase — フィルター仕様 > 教科の categories が取得できる |
+| ✅ | QuizUseCase — セッション開始仕様 > randomモードで最大10問のセッションが開始される |
+| ✅ | QuizUseCase — セッション開始仕様 > retryモードで間違えた問題がなければエラー |
+| ✅ | QuizUseCase — セッション開始仕様 > retryモードで間違えた問題のみが出題される |
+| ✅ | QuizUseCase — 採点・進捗保存仕様 > 正解した問題は wrongIds から除かれる |
+| ✅ | QuizUseCase — 採点・進捗保存仕様 > 不正解の問題は wrongIds に追加される |
+
+### ✅ `src/domain/question.test.ts` (13/13)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | validateManifest — マニフェスト検証仕様 > 有効なマニフェストを受け入れる |
+| ✅ | validateManifest — マニフェスト検証仕様 > null を拒否する |
+| ✅ | validateManifest — マニフェスト検証仕様 > version フィールドがない場合に拒否する |
+| ✅ | validateManifest — マニフェスト検証仕様 > subjects フィールドがない場合に拒否する |
+| ✅ | validateManifest — マニフェスト検証仕様 > questionFiles が配列でない場合に拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > 有効な問題ファイルを受け入れる |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > null を拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > subject フィールドがない場合に拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > questions が配列でない場合に拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > 選択肢が4つでない場合に拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > correct が範囲外の場合に拒否する |
+| ✅ | expandQuestions — 問題展開仕様 > 各問題にメタ情報（subject, category など）が付加される |
+| ✅ | expandQuestions — 問題展開仕様 > 元の問題フィールドが保持される |
+
+### ✅ `src/domain/quizSession.test.ts` (18/18)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | QuizSession — セッション初期化仕様 > 少なくとも1問が必要 |
+| ✅ | QuizSession — セッション初期化仕様 > 問題リストが正しく設定される |
+| ✅ | QuizSession — セッション初期化仕様 > 最初の問題インデックスは0 |
+| ✅ | QuizSession — 回答仕様 > 有効な回答を記録できる |
+| ✅ | QuizSession — 回答仕様 > 無効な問題インデックスはエラー |
+| ✅ | QuizSession — 回答仕様 > 無効な選択肢インデックスはエラー |
+| ✅ | QuizSession — ナビゲーション仕様 > 次の問題に進める |
+| ✅ | QuizSession — ナビゲーション仕様 > 先頭より前には進めない |
+| ✅ | QuizSession — ナビゲーション仕様 > 末尾より後には進めない |
+| ✅ | QuizSession — 採点仕様 > 全問回答前は採点できない（canSubmit = false） |
+| ✅ | QuizSession — 採点仕様 > 全問回答後は採点できる（canSubmit = true） |
+| ✅ | QuizSession — 採点仕様 > 正解数を正確に計算する |
+| ✅ | QuizSession — 採点仕様 > 結果に各問の正誤が含まれる |
+| ✅ | QuizSession.pickRandom — ランダム選択仕様 > 指定した件数を返す |
+| ✅ | QuizSession.pickRandom — ランダム選択仕様 > 問題数より多くは返さない |
+| ✅ | QuizSession.filter — フィルター仕様 > 教科でフィルターできる |
+| ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
+| ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
+
+### ✅ `src/infrastructure/questionData.test.ts` (17/17)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -46,19 +100,19 @@
 | ✅ | データ統計 — 問題数チェック > 全問題数が manifest の subjects に記載された教科を網羅している |
 | ✅ | 後方互換性 — questions.json との整合性 > 旧 questions.json が存在する場合、同じ問題IDセットを含む |
 
-### ✅ `tests/questionLoader.test.ts` (9/9)
+### ✅ `src/infrastructure/remoteQuestionRepository.test.ts` (9/9)
 
 | 結果 | テスト名 |
 |------|---------|
-| ✅ | validateManifest > 有効なマニフェストを受け入れる |
-| ✅ | validateManifest > null を拒否する |
-| ✅ | validateManifest > version がない場合に拒否する |
-| ✅ | validateManifest > subjects がない場合に拒否する |
-| ✅ | validateManifest > questionFiles が配列でない場合に拒否する |
-| ✅ | validateQuestionFile > 有効な問題ファイルを受け入れる |
-| ✅ | validateQuestionFile > null を拒否する |
-| ✅ | validateQuestionFile > subject がない場合に拒否する |
-| ✅ | validateQuestionFile > questions が配列でない場合に拒否する |
+| ✅ | validateManifest — リモートリポジトリで使用するバリデーション仕様 > 有効なマニフェストを受け入れる |
+| ✅ | validateManifest — リモートリポジトリで使用するバリデーション仕様 > null を拒否する |
+| ✅ | validateManifest — リモートリポジトリで使用するバリデーション仕様 > version がない場合に拒否する |
+| ✅ | validateManifest — リモートリポジトリで使用するバリデーション仕様 > subjects がない場合に拒否する |
+| ✅ | validateManifest — リモートリポジトリで使用するバリデーション仕様 > questionFiles が配列でない場合に拒否する |
+| ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > 有効な問題ファイルを受け入れる |
+| ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > null を拒否する |
+| ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
+| ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
 ---
 
