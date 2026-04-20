@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "comparatives-irregular",
+  "categoryName": "不規則な比較変化",
+  "questions": [
+    {
+      "id": "comparatives-irregular-1",
+      "question": "good の比較級は？",
+      "choices": [
+        "better",
+        "gooder",
+        "more good",
+        "best"
+      ],
+      "correct": 0,
+      "explanation": "goodの比較級は better です"
+    },
+    {
+      "id": "comparatives-irregular-2",
+      "question": "good の最上級は？",
+      "choices": [
+        "best",
+        "goodest",
+        "most good",
+        "better"
+      ],
+      "correct": 0,
+      "explanation": "goodの最上級は best です"
+    },
+    {
+      "id": "comparatives-irregular-3",
+      "question": "bad の比較級は？",
+      "choices": [
+        "worse",
+        "badder",
+        "more bad",
+        "worst"
+      ],
+      "correct": 0,
+      "explanation": "badの比較級は worse です"
+    },
+    {
+      "id": "comparatives-irregular-4",
+      "question": "bad の最上級は？",
+      "choices": [
+        "worst",
+        "baddest",
+        "most bad",
+        "worse"
+      ],
+      "correct": 0,
+      "explanation": "badの最上級は worst です"
+    },
+    {
+      "id": "comparatives-irregular-5",
+      "question": "many/much の比較級は？",
+      "choices": [
+        "more",
+        "manyer",
+        "mucher",
+        "most"
+      ],
+      "correct": 0,
+      "explanation": "many/muchの比較級は more です"
+    },
+    {
+      "id": "comparatives-irregular-6",
+      "question": "many/much の最上級は？",
+      "choices": [
+        "most",
+        "manyest",
+        "muchest",
+        "more"
+      ],
+      "correct": 0,
+      "explanation": "many/muchの最上級は most です"
+    },
+    {
+      "id": "comparatives-irregular-7",
+      "question": "This is ___ than that. (good)",
+      "choices": [
+        "better",
+        "gooder",
+        "more good",
+        "best"
+      ],
+      "correct": 0,
+      "explanation": "goodの比較級は better を使います"
+    },
+    {
+      "id": "comparatives-irregular-8",
+      "question": "This is the ___ of all. (bad)",
+      "choices": [
+        "worst",
+        "baddest",
+        "most bad",
+        "worse"
+      ],
+      "correct": 0,
+      "explanation": "badの最上級は worst を使います"
+    }
+  ]
+}

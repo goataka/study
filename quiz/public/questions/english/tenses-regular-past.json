@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "tenses-regular-past",
+  "categoryName": "一般動詞の過去形",
+  "questions": [
+    {
+      "id": "tenses-regular-past-1",
+      "question": "I ___ games yesterday. (play)",
+      "choices": [
+        "played",
+        "play",
+        "plays",
+        "playing"
+      ],
+      "correct": 0,
+      "explanation": "過去形には -ed をつけます"
+    },
+    {
+      "id": "tenses-regular-past-2",
+      "question": "I ___ English last night. (study)",
+      "choices": [
+        "studied",
+        "study",
+        "studyed",
+        "studies"
+      ],
+      "correct": 0,
+      "explanation": "子音+yで終わる語は、yをiに変えて -ed をつけます"
+    },
+    {
+      "id": "tenses-regular-past-3",
+      "question": "I ___ TV this morning. (watch)",
+      "choices": [
+        "watched",
+        "watch",
+        "watches",
+        "watching"
+      ],
+      "correct": 0,
+      "explanation": "過去形には -ed をつけます"
+    },
+    {
+      "id": "tenses-regular-past-4",
+      "question": "I ___ music yesterday. (like)",
+      "choices": [
+        "liked",
+        "like",
+        "likeed",
+        "likes"
+      ],
+      "correct": 0,
+      "explanation": "eで終わる語には -d をつけます"
+    },
+    {
+      "id": "tenses-regular-past-5",
+      "question": "I ___ to school yesterday. (walk)",
+      "choices": [
+        "walked",
+        "walk",
+        "walks",
+        "walking"
+      ],
+      "correct": 0,
+      "explanation": "過去形には -ed をつけます"
+    },
+    {
+      "id": "tenses-regular-past-6",
+      "question": "She ___ tennis last week. (play)",
+      "choices": [
+        "played",
+        "play",
+        "plays",
+        "playing"
+      ],
+      "correct": 0,
+      "explanation": "過去形には主語に関わらず -ed をつけます"
+    },
+    {
+      "id": "tenses-regular-past-7",
+      "question": "They ___ the movie yesterday. (watch)",
+      "choices": [
+        "watched",
+        "watch",
+        "watches",
+        "watching"
+      ],
+      "correct": 0,
+      "explanation": "過去形には -ed をつけます"
+    },
+    {
+      "id": "tenses-regular-past-8",
+      "question": "He ___ hard last month. (study)",
+      "choices": [
+        "studied",
+        "study",
+        "studyed",
+        "studies"
+      ],
+      "correct": 0,
+      "explanation": "子音+yで終わる語は、yをiに変えて -ed をつけます"
+    }
+  ]
+}

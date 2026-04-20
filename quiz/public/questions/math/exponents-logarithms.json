@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "exponents-logarithms",
+  "categoryName": "指数・対数",
+  "questions": [
+    {
+      "id": "exp-log-1",
+      "question": "2³ × 2⁴ = ?",
+      "choices": [
+        "2⁷",
+        "2¹²",
+        "4⁷",
+        "2¹"
+      ],
+      "correct": 0,
+      "explanation": "同じ底の指数の積は、指数をたします。2³ × 2⁴ = 2⁽³⁺⁴⁾ = 2⁷ = 128"
+    },
+    {
+      "id": "exp-log-2",
+      "question": "3⁵ ÷ 3² = ?",
+      "choices": [
+        "3³",
+        "3⁷",
+        "1",
+        "3¹⁰"
+      ],
+      "correct": 0,
+      "explanation": "同じ底の指数の商は、指数をひきます。3⁵ ÷ 3² = 3⁽⁵⁻²⁾ = 3³ = 27"
+    },
+    {
+      "id": "exp-log-3",
+      "question": "(2³)² = ?",
+      "choices": [
+        "2⁶",
+        "2⁵",
+        "4⁶",
+        "2⁹"
+      ],
+      "correct": 0,
+      "explanation": "累乗の累乗は、指数をかけます。(2³)² = 2⁽³ˣ²⁾ = 2⁶ = 64"
+    },
+    {
+      "id": "exp-log-4",
+      "question": "log₂8 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "8"
+      ],
+      "correct": 0,
+      "explanation": "2を何乗したら8になるか。2³ = 8なので、log₂8 = 3"
+    },
+    {
+      "id": "exp-log-5",
+      "question": "log₃27 = ?",
+      "choices": [
+        "3",
+        "2",
+        "9",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "3を何乗したら27になるか。3³ = 27なので、log₃27 = 3"
+    },
+    {
+      "id": "exp-log-6",
+      "question": "log₁₀100 = ?",
+      "choices": [
+        "2",
+        "10",
+        "100",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "10を何乗したら100になるか。10² = 100なので、log₁₀100 = 2"
+    },
+    {
+      "id": "exp-log-7",
+      "question": "log₂4 + log₂8 = ?",
+      "choices": [
+        "5",
+        "3",
+        "7",
+        "12"
+      ],
+      "correct": 0,
+      "explanation": "log₂4 = 2、log₂8 = 3なので、2 + 3 = 5"
+    },
+    {
+      "id": "exp-log-8",
+      "question": "4^(1/2) = ?",
+      "choices": [
+        "2",
+        "4",
+        "8",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "4^(1/2) = √4 = 2。分数の指数は累乗根を表します"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "progressive-ing",
+  "categoryName": "-ing形の作り方",
+  "questions": [
+    {
+      "id": "progressive-ing-1",
+      "question": "study の-ing形は？",
+      "choices": [
+        "studying",
+        "studyying",
+        "studing",
+        "stuying"
+      ],
+      "correct": 0,
+      "explanation": "yで終わる語はそのまま -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-2",
+      "question": "run の-ing形は？",
+      "choices": [
+        "running",
+        "runing",
+        "runnning",
+        "run"
+      ],
+      "correct": 0,
+      "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-3",
+      "question": "swim の-ing形は？",
+      "choices": [
+        "swimming",
+        "swiming",
+        "swimmming",
+        "swam"
+      ],
+      "correct": 0,
+      "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-4",
+      "question": "write の-ing形は？",
+      "choices": [
+        "writing",
+        "writeing",
+        "writting",
+        "wrote"
+      ],
+      "correct": 0,
+      "explanation": "eで終わる語はeを取って -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-5",
+      "question": "make の-ing形は？",
+      "choices": [
+        "making",
+        "makeing",
+        "makking",
+        "made"
+      ],
+      "correct": 0,
+      "explanation": "eで終わる語はeを取って -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-6",
+      "question": "sit の-ing形は？",
+      "choices": [
+        "sitting",
+        "siting",
+        "sittting",
+        "sat"
+      ],
+      "correct": 0,
+      "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-7",
+      "question": "dance の-ing形は？",
+      "choices": [
+        "dancing",
+        "danceing",
+        "danccing",
+        "danced"
+      ],
+      "correct": 0,
+      "explanation": "eで終わる語はeを取って -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-8",
+      "question": "come の-ing形は？",
+      "choices": [
+        "coming",
+        "comeing",
+        "comming",
+        "came"
+      ],
+      "correct": 0,
+      "explanation": "eで終わる語はeを取って -ing をつけます"
+    }
+  ]
+}

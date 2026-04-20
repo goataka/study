@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "multiplication-basic",
+  "categoryName": "かけ算",
+  "questions": [
+    {
+      "id": "mult-basic-1",
+      "question": "2 × 3 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 3 = 6"
+    },
+    {
+      "id": "mult-basic-2",
+      "question": "3 × 4 = ?",
+      "choices": [
+        "12",
+        "10",
+        "14",
+        "9"
+      ],
+      "correct": 0,
+      "explanation": "3の段。3 × 4 = 12"
+    },
+    {
+      "id": "mult-basic-3",
+      "question": "5 × 5 = ?",
+      "choices": [
+        "25",
+        "20",
+        "30",
+        "15"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 5 = 25"
+    },
+    {
+      "id": "mult-basic-4",
+      "question": "6 × 4 = ?",
+      "choices": [
+        "24",
+        "20",
+        "28",
+        "18"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 4 = 24"
+    },
+    {
+      "id": "mult-basic-5",
+      "question": "7 × 3 = ?",
+      "choices": [
+        "21",
+        "18",
+        "24",
+        "14"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 3 = 21"
+    },
+    {
+      "id": "mult-basic-6",
+      "question": "8 × 6 = ?",
+      "choices": [
+        "48",
+        "42",
+        "54",
+        "40"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 6 = 48"
+    },
+    {
+      "id": "mult-basic-7",
+      "question": "9 × 4 = ?",
+      "choices": [
+        "36",
+        "32",
+        "40",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 4 = 36"
+    },
+    {
+      "id": "mult-basic-8",
+      "question": "4 × 7 = ?",
+      "choices": [
+        "28",
+        "24",
+        "32",
+        "21"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 7 = 28"
+    }
+  ]
+}

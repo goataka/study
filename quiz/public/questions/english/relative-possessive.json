@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "relative-possessive",
+  "categoryName": "所有格の関係代名詞",
+  "questions": [
+    {
+      "id": "relative-possessive-1",
+      "question": "I have a friend ___ father is a doctor. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "whom",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-2",
+      "question": "I have a book ___ cover is red. (所有格)",
+      "choices": [
+        "whose",
+        "which",
+        "that",
+        "what"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-3",
+      "question": "I have a friend ___ mother is a teacher. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "whom",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-4",
+      "question": "The boy ___ bike was stolen is crying. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "whom",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-5",
+      "question": "I know a girl ___ sister is a singer. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "whom",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-6",
+      "question": "This is the house ___ roof is blue. (所有格)",
+      "choices": [
+        "whose",
+        "which",
+        "that",
+        "where"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-7",
+      "question": "The student ___ name is Tom is my friend. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "whom",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-8",
+      "question": "whoseは人にも物にも使える？",
+      "choices": [
+        "はい",
+        "いいえ",
+        "人だけ",
+        "物だけ"
+      ],
+      "correct": 0,
+      "explanation": "whoseは人にも物にも使えます"
+    }
+  ]
+}

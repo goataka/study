@@ -1,0 +1,128 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "tenses-irregular",
+  "categoryName": "不規則動詞の過去形",
+  "questions": [
+    {
+      "id": "tenses-irregular-1",
+      "question": "I ___ to school yesterday. (go)",
+      "choices": [
+        "went",
+        "go",
+        "goes",
+        "gone"
+      ],
+      "correct": 0,
+      "explanation": "goの過去形は went です"
+    },
+    {
+      "id": "tenses-irregular-2",
+      "question": "I ___ breakfast this morning. (eat)",
+      "choices": [
+        "ate",
+        "eat",
+        "eats",
+        "eaten"
+      ],
+      "correct": 0,
+      "explanation": "eatの過去形は ate です"
+    },
+    {
+      "id": "tenses-irregular-3",
+      "question": "I ___ a letter yesterday. (write)",
+      "choices": [
+        "wrote",
+        "write",
+        "writes",
+        "written"
+      ],
+      "correct": 0,
+      "explanation": "writeの過去形は wrote です"
+    },
+    {
+      "id": "tenses-irregular-4",
+      "question": "I ___ fast yesterday. (run)",
+      "choices": [
+        "ran",
+        "run",
+        "runs",
+        "runned"
+      ],
+      "correct": 0,
+      "explanation": "runの過去形は ran です"
+    },
+    {
+      "id": "tenses-irregular-5",
+      "question": "I ___ a dog when I was young. (have)",
+      "choices": [
+        "had",
+        "have",
+        "has",
+        "haved"
+      ],
+      "correct": 0,
+      "explanation": "haveの過去形は had です"
+    },
+    {
+      "id": "tenses-irregular-6",
+      "question": "I ___ books yesterday. (read)",
+      "choices": [
+        "read",
+        "readed",
+        "reads",
+        "red"
+      ],
+      "correct": 0,
+      "explanation": "readの過去形は read（発音は「レッド」）です"
+    },
+    {
+      "id": "tenses-irregular-7",
+      "question": "I ___ a bird this morning. (see)",
+      "choices": [
+        "saw",
+        "see",
+        "sees",
+        "seen"
+      ],
+      "correct": 0,
+      "explanation": "seeの過去形は saw です"
+    },
+    {
+      "id": "tenses-irregular-8",
+      "question": "I ___ the bus yesterday. (take)",
+      "choices": [
+        "took",
+        "take",
+        "takes",
+        "taken"
+      ],
+      "correct": 0,
+      "explanation": "takeの過去形は took です"
+    },
+    {
+      "id": "tenses-irregular-9",
+      "question": "I ___ home early yesterday. (come)",
+      "choices": [
+        "came",
+        "come",
+        "comes",
+        "comed"
+      ],
+      "correct": 0,
+      "explanation": "comeの過去形は came です"
+    },
+    {
+      "id": "tenses-irregular-10",
+      "question": "I ___ a cake last week. (make)",
+      "choices": [
+        "made",
+        "make",
+        "makes",
+        "maked"
+      ],
+      "correct": 0,
+      "explanation": "makeの過去形は made です"
+    }
+  ]
+}

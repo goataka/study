@@ -1,0 +1,128 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "alphabet",
+  "categoryName": "アルファベット",
+  "questions": [
+    {
+      "id": "alphabet-1",
+      "question": "「A」の読み方は？",
+      "choices": [
+        "えー",
+        "あー",
+        "いー",
+        "えい"
+      ],
+      "correct": 0,
+      "explanation": "Aは「えー」と読みます"
+    },
+    {
+      "id": "alphabet-2",
+      "question": "「B」の読み方は？",
+      "choices": [
+        "びー",
+        "ぶー",
+        "べー",
+        "ぼー"
+      ],
+      "correct": 0,
+      "explanation": "Bは「びー」と読みます"
+    },
+    {
+      "id": "alphabet-3",
+      "question": "「C」の読み方は？",
+      "choices": [
+        "しー",
+        "けー",
+        "せー",
+        "くー"
+      ],
+      "correct": 0,
+      "explanation": "Cは「しー」と読みます"
+    },
+    {
+      "id": "alphabet-4",
+      "question": "「G」の読み方は？",
+      "choices": [
+        "じー",
+        "げー",
+        "ぐー",
+        "ぎー"
+      ],
+      "correct": 0,
+      "explanation": "Gは「じー」と読みます"
+    },
+    {
+      "id": "alphabet-5",
+      "question": "「H」の読み方は？",
+      "choices": [
+        "えいち",
+        "へー",
+        "はー",
+        "ほー"
+      ],
+      "correct": 0,
+      "explanation": "Hは「えいち」と読みます"
+    },
+    {
+      "id": "alphabet-6",
+      "question": "「I」の読み方は？",
+      "choices": [
+        "あい",
+        "いー",
+        "あー",
+        "えー"
+      ],
+      "correct": 0,
+      "explanation": "Iは「あい」と読みます"
+    },
+    {
+      "id": "alphabet-7",
+      "question": "「Q」の読み方は？",
+      "choices": [
+        "きゅー",
+        "くー",
+        "けー",
+        "こー"
+      ],
+      "correct": 0,
+      "explanation": "Qは「きゅー」と読みます"
+    },
+    {
+      "id": "alphabet-8",
+      "question": "「R」の読み方は？",
+      "choices": [
+        "あーる",
+        "あー",
+        "える",
+        "おーる"
+      ],
+      "correct": 0,
+      "explanation": "Rは「あーる」と読みます"
+    },
+    {
+      "id": "alphabet-9",
+      "question": "「W」の読み方は？",
+      "choices": [
+        "だぶりゅー",
+        "わー",
+        "うー",
+        "ゆー"
+      ],
+      "correct": 0,
+      "explanation": "Wは「だぶりゅー」と読みます"
+    },
+    {
+      "id": "alphabet-10",
+      "question": "「Y」の読み方は？",
+      "choices": [
+        "わい",
+        "やー",
+        "ゆー",
+        "よー"
+      ],
+      "correct": 0,
+      "explanation": "Yは「わい」と読みます"
+    }
+  ]
+}

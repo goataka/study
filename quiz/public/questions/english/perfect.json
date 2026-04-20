@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "perfect",
+  "categoryName": "完了形",
+  "questions": [
+    {
+      "id": "perfect-1",
+      "question": "I ___ played games. (過去完了)",
+      "choices": [
+        "had",
+        "have",
+        "will have",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "過去完了は had + 過去分詞です"
+    },
+    {
+      "id": "perfect-2",
+      "question": "I ___ played games by next week. (未来完了)",
+      "choices": [
+        "will have",
+        "have",
+        "had",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来完了は will have + 過去分詞です"
+    },
+    {
+      "id": "perfect-3",
+      "question": "I ___ lived here for three years. (現在完了)",
+      "choices": [
+        "have",
+        "had",
+        "will have",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "現在完了は have/has + 過去分詞です"
+    },
+    {
+      "id": "perfect-4",
+      "question": "She ___ lived here for three years. (現在完了)",
+      "choices": [
+        "has",
+        "have",
+        "had",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の現在完了は has + 過去分詞です"
+    },
+    {
+      "id": "perfect-5",
+      "question": "I ___ studied English before I came here. (過去完了)",
+      "choices": [
+        "had",
+        "have",
+        "will have",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "過去完了は had + 過去分詞です"
+    },
+    {
+      "id": "perfect-6",
+      "question": "They ___ finished the work by tomorrow. (未来完了)",
+      "choices": [
+        "will have",
+        "have",
+        "had",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "未来完了は will have + 過去分詞です"
+    },
+    {
+      "id": "perfect-7",
+      "question": "He ___ just finished homework. (現在完了)",
+      "choices": [
+        "has",
+        "have",
+        "had",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の現在完了は has + 過去分詞です"
+    },
+    {
+      "id": "perfect-8",
+      "question": "We ___ been friends for ten years. (現在完了)",
+      "choices": [
+        "have",
+        "has",
+        "had",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "複数形の現在完了は have + 過去分詞です"
+    }
+  ]
+}

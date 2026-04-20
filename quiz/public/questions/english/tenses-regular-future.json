@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "tenses-regular-future",
+  "categoryName": "一般動詞の未来形",
+  "questions": [
+    {
+      "id": "tenses-regular-future-1",
+      "question": "I ___ games tomorrow. (play)",
+      "choices": [
+        "will play",
+        "play",
+        "played",
+        "plays"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "tenses-regular-future-2",
+      "question": "I ___ English next week. (study)",
+      "choices": [
+        "will study",
+        "study",
+        "studied",
+        "studies"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "tenses-regular-future-3",
+      "question": "I ___ TV tonight. (watch)",
+      "choices": [
+        "will watch",
+        "watch",
+        "watched",
+        "watches"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "tenses-regular-future-4",
+      "question": "She ___ music tomorrow. (like)",
+      "choices": [
+        "will like",
+        "like",
+        "likes",
+        "liked"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "tenses-regular-future-5",
+      "question": "He ___ to school tomorrow. (walk)",
+      "choices": [
+        "will walk",
+        "walk",
+        "walks",
+        "walked"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "tenses-regular-future-6",
+      "question": "They ___ tennis next Sunday. (play)",
+      "choices": [
+        "will play",
+        "play",
+        "plays",
+        "played"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "tenses-regular-future-7",
+      "question": "We ___ the movie next week. (watch)",
+      "choices": [
+        "will watch",
+        "watch",
+        "watches",
+        "watched"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "tenses-regular-future-8",
+      "question": "I ___ hard next month. (study)",
+      "choices": [
+        "will study",
+        "study",
+        "studies",
+        "studied"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will + 動詞の原形を使います"
+    }
+  ]
+}

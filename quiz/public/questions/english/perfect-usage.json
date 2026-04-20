@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "perfect-usage",
+  "categoryName": "完了形の用法",
+  "questions": [
+    {
+      "id": "perfect-usage-1",
+      "question": "I have been to Tokyo before. この文の用法は？",
+      "choices": [
+        "経験",
+        "継続",
+        "完了",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "before があるので経験を表します"
+    },
+    {
+      "id": "perfect-usage-2",
+      "question": "I have lived here for three years. この文の用法は？",
+      "choices": [
+        "継続",
+        "経験",
+        "完了",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "for three years があるので継続を表します"
+    },
+    {
+      "id": "perfect-usage-3",
+      "question": "I have just finished my homework. この文の用法は？",
+      "choices": [
+        "完了",
+        "経験",
+        "継続",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "just があるので完了を表します"
+    },
+    {
+      "id": "perfect-usage-4",
+      "question": "I have lost my key. この文の用法は？",
+      "choices": [
+        "結果",
+        "経験",
+        "継続",
+        "完了"
+      ],
+      "correct": 0,
+      "explanation": "失くした結果、今もない状態を表します"
+    },
+    {
+      "id": "perfect-usage-5",
+      "question": "I have never seen a lion. この文の用法は？",
+      "choices": [
+        "経験",
+        "継続",
+        "完了",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "never があるので経験を表します"
+    },
+    {
+      "id": "perfect-usage-6",
+      "question": "I have already eaten lunch. この文の用法は？",
+      "choices": [
+        "完了",
+        "経験",
+        "継続",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "already があるので完了を表します"
+    },
+    {
+      "id": "perfect-usage-7",
+      "question": "I have studied English since 2020. この文の用法は？",
+      "choices": [
+        "継続",
+        "経験",
+        "完了",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "since があるので継続を表します"
+    },
+    {
+      "id": "perfect-usage-8",
+      "question": "I have been to Paris twice. この文の用法は？",
+      "choices": [
+        "経験",
+        "継続",
+        "完了",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "twice があるので経験を表します"
+    }
+  ]
+}
