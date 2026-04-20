@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 12:23:31 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `f1f6599` |
-| **コミットメッセージ** | Add choice shuffling to randomize answer positions |
+| **最終更新** | 2026-04-20 13:37:56 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `5ed0bae` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `c9e0b6610d4b9f5a86d44ede9144ae767cbdcca93ab73976068155307f4372fb` |
+| `test-results.json` | `6b2dcf3fa8d1074578bc7ee6a43f0b5c34a0bec83e2f87a977dad6d6cafa8b0d` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 31 / 31 |
 | テストケース（合格 / 合計） | 80 / 80 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.18s |
+| 実行時間 | 0.13s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -71,7 +71,7 @@
 | ✅ | validateQuestionFile — 問題ファイル検証仕様 > correct が範囲外の場合に拒否する |
 | ✅ | expandQuestions — 問題展開仕様 > 各問題にメタ情報（subject, category など）が付加される |
 | ✅ | expandQuestions — 問題展開仕様 > 元の問題フィールドが保持される |
-| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 選択肢がシャッフルされる |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 元の問題を変更せず、同じ要素数の選択肢を返す |
 | ✅ | shuffleChoices — 選択肢シャッフル仕様 > すべての選択肢が保持される |
 | ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解のインデックスが正しく更新される |
 | ✅ | shuffleChoices — 選択肢シャッフル仕様 > 同じIDの問題は常に同じシャッフル結果を返す（決定論的） |

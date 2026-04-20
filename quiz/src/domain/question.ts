@@ -173,6 +173,6 @@ function createSeededRandom(seed: number): () => number {
   return () => {
     // Linear Congruential Generator
     state = (state * 1103515245 + 12345) & 0x7fffffff;
-    return state / 0x7fffffff;
+    return state / 0x80000000;
   };
 }

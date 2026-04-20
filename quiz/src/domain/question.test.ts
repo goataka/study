@@ -137,11 +137,12 @@ describe("shuffleChoices — 選択肢シャッフル仕様", () => {
     categoryName: "テストカテゴリ",
   };
 
-  it("選択肢がシャッフルされる", () => {
+  it("元の問題を変更せず、同じ要素数の選択肢を返す", () => {
+    const originalChoices = [...question.choices];
     const shuffled = shuffleChoices(question);
-    // 元の配列と異なる順序になっているかチェック
-    // 同じIDは常に同じシャッフル結果になるため、決定論的にテスト可能
-    expect(shuffled.choices).not.toEqual(question.choices);
+    expect(shuffled).not.toBe(question);
+    expect(question.choices).toEqual(originalChoices);
+    expect(shuffled.choices).toHaveLength(question.choices.length);
   });
 
   it("すべての選択肢が保持される", () => {
@@ -172,9 +173,10 @@ describe("shuffleChoices — 選択肢シャッフル仕様", () => {
     const question2 = { ...question, id: "test-shuffle-2" };
     const shuffled1 = shuffleChoices(question);
     const shuffled2 = shuffleChoices(question2);
-    // 異なるIDなので、異なる順序になる可能性が高い（100%ではないが）
-    // 少なくとも同じシャッフルロジックが適用されていることを確認
-    expect(shuffled2.choices).toHaveLength(4);
+    // 異なるIDでは、choices または correct の少なくとも一方が変わることを確認する
+    const isSameChoices = shuffled1.choices.every((choice, index) => choice === shuffled2.choices[index]);
+    const isSameCorrect = shuffled1.correct === shuffled2.correct;
+    expect(isSameChoices && isSameCorrect).toBe(false);
   });
 
   it("正解が最後の位置にある場合も正しくシャッフルされる", () => {
