@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 19:40:28 JST |
+| **最終更新** | 2026-04-20 19:53:23 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `6170260` |
-| **コミットメッセージ** | Merge branch 'main' into claude/change-layout-explorer-navigation |
+| **コミット** | `30b579c` |
+| **コミットメッセージ** | Initial plan |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `cc2bef851ac1ef089f4686700dc0890d7ea763f011a847444c8718e225fd3734` |
+| `test-results.json` | `bc48674a04129bb286874aaaba655d2c8e570301906520400d1678d5e5825910` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
