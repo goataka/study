@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "tenses-regular-present",
+  "categoryName": "一般動詞の現在形",
+  "questions": [
+    {
+      "id": "tenses-regular-present-1",
+      "question": "He ___ games. (play)",
+      "choices": [
+        "plays",
+        "play",
+        "played",
+        "playing"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在形には -s をつけます"
+    },
+    {
+      "id": "tenses-regular-present-2",
+      "question": "She ___ English. (study)",
+      "choices": [
+        "studies",
+        "study",
+        "studys",
+        "studied"
+      ],
+      "correct": 0,
+      "explanation": "子音+yで終わる語は、yをiに変えて -es をつけます"
+    },
+    {
+      "id": "tenses-regular-present-3",
+      "question": "He ___ TV. (watch)",
+      "choices": [
+        "watches",
+        "watch",
+        "watchs",
+        "watched"
+      ],
+      "correct": 0,
+      "explanation": "ch で終わる語には -es をつけます"
+    },
+    {
+      "id": "tenses-regular-present-4",
+      "question": "She ___ music. (like)",
+      "choices": [
+        "likes",
+        "like",
+        "liking",
+        "liked"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在形には -s をつけます"
+    },
+    {
+      "id": "tenses-regular-present-5",
+      "question": "He ___ to school. (walk)",
+      "choices": [
+        "walks",
+        "walk",
+        "walking",
+        "walked"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在形には -s をつけます"
+    },
+    {
+      "id": "tenses-regular-present-6",
+      "question": "I ___ games. (play)",
+      "choices": [
+        "play",
+        "plays",
+        "played",
+        "playing"
+      ],
+      "correct": 0,
+      "explanation": "Iには原形を使います"
+    },
+    {
+      "id": "tenses-regular-present-7",
+      "question": "They ___ English. (study)",
+      "choices": [
+        "study",
+        "studies",
+        "studys",
+        "studied"
+      ],
+      "correct": 0,
+      "explanation": "複数形には原形を使います"
+    },
+    {
+      "id": "tenses-regular-present-8",
+      "question": "She ___ tennis. (play)",
+      "choices": [
+        "plays",
+        "play",
+        "played",
+        "playing"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在形には -s をつけます"
+    }
+  ]
+}

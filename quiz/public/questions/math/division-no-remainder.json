@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "division-no-remainder",
+  "categoryName": "わり算（あまりなし）",
+  "questions": [
+    {
+      "id": "div-no-rem-1",
+      "question": "6 ÷ 2 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "2 × 3 = 6なので、6 ÷ 2 = 3"
+    },
+    {
+      "id": "div-no-rem-2",
+      "question": "8 ÷ 4 = ?",
+      "choices": [
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "4 × 2 = 8なので、8 ÷ 4 = 2"
+    },
+    {
+      "id": "div-no-rem-3",
+      "question": "15 ÷ 3 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "3 × 5 = 15なので、15 ÷ 3 = 5"
+    },
+    {
+      "id": "div-no-rem-4",
+      "question": "20 ÷ 5 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "5 × 4 = 20なので、20 ÷ 5 = 4"
+    },
+    {
+      "id": "div-no-rem-5",
+      "question": "18 ÷ 6 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "6 × 3 = 18なので、18 ÷ 6 = 3"
+    },
+    {
+      "id": "div-no-rem-6",
+      "question": "21 ÷ 7 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "7 × 3 = 21なので、21 ÷ 7 = 3"
+    },
+    {
+      "id": "div-no-rem-7",
+      "question": "24 ÷ 8 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "8 × 3 = 24なので、24 ÷ 8 = 3"
+    },
+    {
+      "id": "div-no-rem-8",
+      "question": "27 ÷ 9 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "9 × 3 = 27なので、27 ÷ 9 = 3"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "questions-wh",
+  "categoryName": "疑問詞",
+  "questions": [
+    {
+      "id": "questions-wh-1",
+      "question": "___ do you play? (何を？)",
+      "choices": [
+        "What",
+        "Where",
+        "When",
+        "Why"
+      ],
+      "correct": 0,
+      "explanation": "「何を？」は What を使います"
+    },
+    {
+      "id": "questions-wh-2",
+      "question": "___ do you play games? (どこで？)",
+      "choices": [
+        "Where",
+        "What",
+        "When",
+        "Why"
+      ],
+      "correct": 0,
+      "explanation": "「どこで？」は Where を使います"
+    },
+    {
+      "id": "questions-wh-3",
+      "question": "___ do you play games? (いつ？)",
+      "choices": [
+        "When",
+        "What",
+        "Where",
+        "Why"
+      ],
+      "correct": 0,
+      "explanation": "「いつ？」は When を使います"
+    },
+    {
+      "id": "questions-wh-4",
+      "question": "___ do you play games? (なぜ？)",
+      "choices": [
+        "Why",
+        "What",
+        "Where",
+        "When"
+      ],
+      "correct": 0,
+      "explanation": "「なぜ？」は Why を使います"
+    },
+    {
+      "id": "questions-wh-5",
+      "question": "___ do you play games? (どのように？)",
+      "choices": [
+        "How",
+        "What",
+        "Where",
+        "When"
+      ],
+      "correct": 0,
+      "explanation": "「どのように？」は How を使います"
+    },
+    {
+      "id": "questions-wh-6",
+      "question": "___ is your name? (誰？)",
+      "choices": [
+        "What",
+        "Who",
+        "Where",
+        "When"
+      ],
+      "correct": 0,
+      "explanation": "「名前は何？」は What を使います"
+    },
+    {
+      "id": "questions-wh-7",
+      "question": "___ is that boy? (誰？)",
+      "choices": [
+        "Who",
+        "What",
+        "Where",
+        "When"
+      ],
+      "correct": 0,
+      "explanation": "「誰？」は Who を使います"
+    },
+    {
+      "id": "questions-wh-8",
+      "question": "___ book is this? (誰の？)",
+      "choices": [
+        "Whose",
+        "Who",
+        "What",
+        "Which"
+      ],
+      "correct": 0,
+      "explanation": "「誰の？」は Whose を使います"
+    }
+  ]
+}

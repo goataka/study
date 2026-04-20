@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "subtraction-borrow",
+  "categoryName": "ひき算（くり下がりあり）",
+  "questions": [
+    {
+      "id": "sub-borrow-1",
+      "question": "13 - 5 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から5をひいて5、5+3=8"
+    },
+    {
+      "id": "sub-borrow-2",
+      "question": "15 - 7 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から7をひいて3、3+5=8"
+    },
+    {
+      "id": "sub-borrow-3",
+      "question": "12 - 8 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から8をひいて2、2+2=4"
+    },
+    {
+      "id": "sub-borrow-4",
+      "question": "14 - 6 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から6をひいて4、4+4=8"
+    },
+    {
+      "id": "sub-borrow-5",
+      "question": "11 - 9 = ?",
+      "choices": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "10から9をひいて1、1+1=2"
+    },
+    {
+      "id": "sub-borrow-6",
+      "question": "16 - 8 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から8をひいて2、2+6=8"
+    },
+    {
+      "id": "sub-borrow-7",
+      "question": "13 - 7 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "10から7をひいて3、3+3=6"
+    },
+    {
+      "id": "sub-borrow-8",
+      "question": "15 - 9 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "10から9をひいて1、1+5=6"
+    }
+  ]
+}

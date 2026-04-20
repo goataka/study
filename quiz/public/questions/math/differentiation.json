@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "differentiation",
+  "categoryName": "微分",
+  "questions": [
+    {
+      "id": "diff-1",
+      "question": "f(x) = 3x² + 2x + 1 の導関数 f'(x) = ?",
+      "choices": [
+        "6x + 2",
+        "3x + 2",
+        "6x²",
+        "3x² + 2"
+      ],
+      "correct": 0,
+      "explanation": "(xⁿ)' = nxⁿ⁻¹。(3x²)' = 6x、(2x)' = 2、(1)' = 0。よって f'(x) = 6x + 2"
+    },
+    {
+      "id": "diff-2",
+      "question": "f(x) = x³ - 4x² + 5x の導関数 f'(x) = ?",
+      "choices": [
+        "3x² - 8x + 5",
+        "x² - 4x + 5",
+        "3x² - 8x",
+        "3x³ - 4x² + 5"
+      ],
+      "correct": 0,
+      "explanation": "(x³)' = 3x²、(-4x²)' = -8x、(5x)' = 5。よって f'(x) = 3x² - 8x + 5"
+    },
+    {
+      "id": "diff-3",
+      "question": "f(x) = 2x⁴ - 3x³ + x の導関数 f'(x) = ?",
+      "choices": [
+        "8x³ - 9x² + 1",
+        "8x³ - 3x² + 1",
+        "2x³ - 9x² + 1",
+        "8x⁴ - 9x³ + x"
+      ],
+      "correct": 0,
+      "explanation": "(2x⁴)' = 8x³、(-3x³)' = -9x²、(x)' = 1。よって f'(x) = 8x³ - 9x² + 1"
+    },
+    {
+      "id": "diff-4",
+      "question": "f(x) = 5x³ + 2x² - 7 の導関数 f'(x) = ?",
+      "choices": [
+        "15x² + 4x",
+        "5x² + 2x",
+        "15x² + 4x - 7",
+        "15x³ + 4x²"
+      ],
+      "correct": 0,
+      "explanation": "(5x³)' = 15x²、(2x²)' = 4x、(-7)' = 0。よって f'(x) = 15x² + 4x"
+    },
+    {
+      "id": "diff-5",
+      "question": "f(x) = x³ - 3x² + 4 のx=0における極値は？",
+      "choices": [
+        "極大値 4",
+        "極小値 4",
+        "極大値 0",
+        "極小値 0"
+      ],
+      "correct": 0,
+      "explanation": "f'(x) = 3x² - 6x = 3x(x-2) = 0よりx=0,2。x=0で符号が正→負なので極大。f(0) = 4"
+    },
+    {
+      "id": "diff-6",
+      "question": "f(x) = x³ - 3x² + 4 のx=2における極値は？",
+      "choices": [
+        "極小値 0",
+        "極大値 0",
+        "極小値 4",
+        "極大値 4"
+      ],
+      "correct": 0,
+      "explanation": "x=2で符号が負→正なので極小。f(2) = 8 - 12 + 4 = 0"
+    },
+    {
+      "id": "diff-7",
+      "question": "f(x) = x² + 4x + 3 の導関数 f'(x) = ?",
+      "choices": [
+        "2x + 4",
+        "x + 4",
+        "2x²",
+        "2x + 3"
+      ],
+      "correct": 0,
+      "explanation": "(x²)' = 2x、(4x)' = 4、(3)' = 0。よって f'(x) = 2x + 4"
+    },
+    {
+      "id": "diff-8",
+      "question": "f(x) = -x³ + 3x² + 1 のx=2における極値は？",
+      "choices": [
+        "極大値 5",
+        "極小値 5",
+        "極大値 1",
+        "極小値 1"
+      ],
+      "correct": 0,
+      "explanation": "f'(x) = -3x² + 6x = -3x(x-2) = 0よりx=0,2。x=2で符号が負→正→負なので極大。f(2) = -8 + 12 + 1 = 5"
+    }
+  ]
+}

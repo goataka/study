@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "tenses-be-present",
+  "categoryName": "be動詞の現在形",
+  "questions": [
+    {
+      "id": "tenses-be-present-1",
+      "question": "He ___ happy.",
+      "choices": [
+        "is",
+        "am",
+        "are",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数には is を使います"
+    },
+    {
+      "id": "tenses-be-present-2",
+      "question": "She ___ a student.",
+      "choices": [
+        "is",
+        "am",
+        "are",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数には is を使います"
+    },
+    {
+      "id": "tenses-be-present-3",
+      "question": "They ___ friends.",
+      "choices": [
+        "are",
+        "is",
+        "am",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "複数形には are を使います"
+    },
+    {
+      "id": "tenses-be-present-4",
+      "question": "We ___ tired.",
+      "choices": [
+        "are",
+        "is",
+        "am",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "複数形には are を使います"
+    },
+    {
+      "id": "tenses-be-present-5",
+      "question": "It ___ cold.",
+      "choices": [
+        "is",
+        "am",
+        "are",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数には is を使います"
+    },
+    {
+      "id": "tenses-be-present-6",
+      "question": "I ___ happy.",
+      "choices": [
+        "am",
+        "is",
+        "are",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "Iには am を使います"
+    },
+    {
+      "id": "tenses-be-present-7",
+      "question": "You ___ a student.",
+      "choices": [
+        "are",
+        "is",
+        "am",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "Youには are を使います"
+    },
+    {
+      "id": "tenses-be-present-8",
+      "question": "The book ___ interesting.",
+      "choices": [
+        "is",
+        "am",
+        "are",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数には is を使います"
+    }
+  ]
+}

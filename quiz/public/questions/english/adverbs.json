@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "adverbs",
+  "categoryName": "副詞",
+  "questions": [
+    {
+      "id": "adverbs-1",
+      "question": "I ___ play games. (sometimes)",
+      "choices": [
+        "sometimes",
+        "sometime",
+        "some time",
+        "some times"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "adverbs-2",
+      "question": "I play games ___. (well)",
+      "choices": [
+        "well",
+        "good",
+        "better",
+        "best"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は文末に置きます"
+    },
+    {
+      "id": "adverbs-3",
+      "question": "I ___ study English. (usually)",
+      "choices": [
+        "usually",
+        "usual",
+        "usuality",
+        "usualness"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "adverbs-4",
+      "question": "She sings ___. (beautifully)",
+      "choices": [
+        "beautifully",
+        "beautiful",
+        "beauty",
+        "beautify"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は文末に置きます"
+    },
+    {
+      "id": "adverbs-5",
+      "question": "I played games ___. (yesterday)",
+      "choices": [
+        "yesterday",
+        "tomorrow",
+        "today",
+        "everyday"
+      ],
+      "correct": 0,
+      "explanation": "時を表す副詞は文末に置きます"
+    },
+    {
+      "id": "adverbs-6",
+      "question": "He ___ eats breakfast. (always)",
+      "choices": [
+        "always",
+        "all ways",
+        "allway",
+        "allways"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "adverbs-7",
+      "question": "She runs ___. (quickly)",
+      "choices": [
+        "quickly",
+        "quick",
+        "quicker",
+        "quickest"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は文末に置きます"
+    },
+    {
+      "id": "adverbs-8",
+      "question": "I ___ go to school by bus. (often)",
+      "choices": [
+        "often",
+        "frequent",
+        "frequently",
+        "ofter"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    }
+  ]
+}

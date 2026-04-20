@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "adjectives",
+  "categoryName": "形容詞",
+  "questions": [
+    {
+      "id": "adjectives-1",
+      "question": "I read a ___ book. (new)",
+      "choices": [
+        "new",
+        "newly",
+        "news",
+        "newer"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-2",
+      "question": "The game is ___. (fun)",
+      "choices": [
+        "fun",
+        "funny",
+        "funnily",
+        "funnier"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の後には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-3",
+      "question": "She has ___ hair. (long)",
+      "choices": [
+        "long",
+        "length",
+        "longer",
+        "longest"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-4",
+      "question": "The book is ___. (interesting)",
+      "choices": [
+        "interesting",
+        "interest",
+        "interested",
+        "interestingly"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の後には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-5",
+      "question": "He is a ___ boy. (tall)",
+      "choices": [
+        "tall",
+        "taller",
+        "tallest",
+        "height"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-6",
+      "question": "This is a ___ car. (fast)",
+      "choices": [
+        "fast",
+        "faster",
+        "fastest",
+        "speed"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-7",
+      "question": "The weather is ___. (beautiful)",
+      "choices": [
+        "beautiful",
+        "beauty",
+        "beautifully",
+        "beautify"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の後には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-8",
+      "question": "She is a ___ student. (smart)",
+      "choices": [
+        "smart",
+        "smarter",
+        "smartest",
+        "smartly"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    }
+  ]
+}

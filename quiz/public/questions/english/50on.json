@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "50on",
+  "categoryName": "五十音ローマ字",
+  "questions": [
+    {
+      "id": "50on-1",
+      "question": "「し」のローマ字は？",
+      "choices": [
+        "shi",
+        "si",
+        "ci",
+        "chi"
+      ],
+      "correct": 0,
+      "explanation": "「し」は shi と書きます"
+    },
+    {
+      "id": "50on-2",
+      "question": "「ち」のローマ字は？",
+      "choices": [
+        "chi",
+        "ti",
+        "ci",
+        "shi"
+      ],
+      "correct": 0,
+      "explanation": "「ち」は chi と書きます"
+    },
+    {
+      "id": "50on-3",
+      "question": "「つ」のローマ字は？",
+      "choices": [
+        "tsu",
+        "tu",
+        "su",
+        "zu"
+      ],
+      "correct": 0,
+      "explanation": "「つ」は tsu と書きます"
+    },
+    {
+      "id": "50on-4",
+      "question": "「ふ」のローマ字は？",
+      "choices": [
+        "fu",
+        "hu",
+        "pu",
+        "bu"
+      ],
+      "correct": 0,
+      "explanation": "「ふ」は fu と書きます"
+    },
+    {
+      "id": "50on-5",
+      "question": "「を」のローマ字は？",
+      "choices": [
+        "wo",
+        "o",
+        "woo",
+        "uo"
+      ],
+      "correct": 0,
+      "explanation": "「を」は wo と書きます"
+    },
+    {
+      "id": "50on-6",
+      "question": "「ん」のローマ字は？",
+      "choices": [
+        "n",
+        "nn",
+        "m",
+        "ng"
+      ],
+      "correct": 0,
+      "explanation": "「ん」は n と書きます"
+    },
+    {
+      "id": "50on-7",
+      "question": "「か」のローマ字は？",
+      "choices": [
+        "ka",
+        "ca",
+        "ga",
+        "qa"
+      ],
+      "correct": 0,
+      "explanation": "「か」は ka と書きます"
+    },
+    {
+      "id": "50on-8",
+      "question": "「さ」のローマ字は？",
+      "choices": [
+        "sa",
+        "za",
+        "tha",
+        "sha"
+      ],
+      "correct": 0,
+      "explanation": "「さ」は sa と書きます"
+    }
+  ]
+}

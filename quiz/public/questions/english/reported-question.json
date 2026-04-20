@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "reported-question",
+  "categoryName": "疑問文の間接話法",
+  "questions": [
+    {
+      "id": "reported-question-1",
+      "question": "He asked, \"Do you play games?\" → He asked ___ I played games.",
+      "choices": [
+        "if",
+        "that",
+        "what",
+        "how"
+      ],
+      "correct": 0,
+      "explanation": "Yes/No疑問文は if/whether を使います"
+    },
+    {
+      "id": "reported-question-2",
+      "question": "He asked, \"What do you play?\" → He asked ___ I played.",
+      "choices": [
+        "what",
+        "if",
+        "that",
+        "how"
+      ],
+      "correct": 0,
+      "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
+    },
+    {
+      "id": "reported-question-3",
+      "question": "He asked, \"Where do you play?\" → He asked ___ I played.",
+      "choices": [
+        "where",
+        "if",
+        "that",
+        "what"
+      ],
+      "correct": 0,
+      "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
+    },
+    {
+      "id": "reported-question-4",
+      "question": "She asked, \"Are you happy?\" → She asked ___ I was happy.",
+      "choices": [
+        "if",
+        "that",
+        "what",
+        "how"
+      ],
+      "correct": 0,
+      "explanation": "Yes/No疑問文は if/whether を使います"
+    },
+    {
+      "id": "reported-question-5",
+      "question": "He asked, \"When will you come?\" → He asked ___ I would come.",
+      "choices": [
+        "when",
+        "if",
+        "that",
+        "what"
+      ],
+      "correct": 0,
+      "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
+    },
+    {
+      "id": "reported-question-6",
+      "question": "She asked, \"Why are you late?\" → She asked ___ I was late.",
+      "choices": [
+        "why",
+        "if",
+        "that",
+        "what"
+      ],
+      "correct": 0,
+      "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
+    },
+    {
+      "id": "reported-question-7",
+      "question": "He asked, \"Can you help me?\" → He asked ___ I could help him.",
+      "choices": [
+        "if",
+        "that",
+        "what",
+        "how"
+      ],
+      "correct": 0,
+      "explanation": "Yes/No疑問文は if/whether を使います"
+    },
+    {
+      "id": "reported-question-8",
+      "question": "間接疑問文の語順は？",
+      "choices": [
+        "主語 + 動詞",
+        "動詞 + 主語",
+        "疑問詞 + 動詞",
+        "助動詞 + 主語"
+      ],
+      "correct": 0,
+      "explanation": "間接疑問文では平叙文の語順（主語+動詞）になります"
+    }
+  ]
+}

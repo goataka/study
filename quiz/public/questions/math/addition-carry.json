@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition-carry",
+  "categoryName": "たし算（くり上がりあり）",
+  "questions": [
+    {
+      "id": "add-carry-1",
+      "question": "8 + 5 = ?",
+      "choices": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correct": 0,
+      "explanation": "10のまとまりを作ります。8+2=10、10+3=13"
+    },
+    {
+      "id": "add-carry-2",
+      "question": "7 + 6 = ?",
+      "choices": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correct": 0,
+      "explanation": "7+3=10、10+3=13"
+    },
+    {
+      "id": "add-carry-3",
+      "question": "9 + 4 = ?",
+      "choices": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correct": 0,
+      "explanation": "9+1=10、10+3=13"
+    },
+    {
+      "id": "add-carry-4",
+      "question": "6 + 7 = ?",
+      "choices": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correct": 0,
+      "explanation": "6+4=10、10+3=13"
+    },
+    {
+      "id": "add-carry-5",
+      "question": "8 + 8 = ?",
+      "choices": [
+        "16",
+        "15",
+        "17",
+        "14"
+      ],
+      "correct": 0,
+      "explanation": "8+2=10、10+6=16"
+    },
+    {
+      "id": "add-carry-6",
+      "question": "9 + 9 = ?",
+      "choices": [
+        "18",
+        "17",
+        "19",
+        "16"
+      ],
+      "correct": 0,
+      "explanation": "9+1=10、10+8=18"
+    },
+    {
+      "id": "add-carry-7",
+      "question": "5 + 7 = ?",
+      "choices": [
+        "12",
+        "11",
+        "13",
+        "10"
+      ],
+      "correct": 0,
+      "explanation": "5+5=10、10+2=12"
+    },
+    {
+      "id": "add-carry-8",
+      "question": "6 + 8 = ?",
+      "choices": [
+        "14",
+        "13",
+        "15",
+        "12"
+      ],
+      "correct": 0,
+      "explanation": "6+4=10、10+4=14"
+    }
+  ]
+}
