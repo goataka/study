@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 12:17:42 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `2a3429d` |
-| **コミットメッセージ** | Initial plan |
+| **最終更新** | 2026-04-20 12:23:06 JST |
+| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
+| **コミット** | `eb925e0` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `cb24bd957eda0d0c699f0c834ad64a08c8d8c02a2c883e068a06174b548a0893` |
+| `test-results.json` | `42164418daefed92cb5382e980854ffa3466faef1ca8a6ce12a25500ce7ac560` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 30 / 30 |
-| テストケース（合格 / 合計） | 74 / 74 |
+| テストスイート（合格 / 合計） | 31 / 31 |
+| テストケース（合格 / 合計） | 80 / 80 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.17s |
+| 実行時間 | 0.14s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -54,7 +54,7 @@
 | ✅ | QuizUseCase — 採点・進捗保存仕様 > 正解した問題は wrongIds から除かれる |
 | ✅ | QuizUseCase — 採点・進捗保存仕様 > 不正解の問題は wrongIds に追加される |
 
-### ✅ `src/domain/question.test.ts` (13/13)
+### ✅ `src/domain/question.test.ts` (19/19)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -71,6 +71,12 @@
 | ✅ | validateQuestionFile — 問題ファイル検証仕様 > correct が範囲外の場合に拒否する |
 | ✅ | expandQuestions — 問題展開仕様 > 各問題にメタ情報（subject, category など）が付加される |
 | ✅ | expandQuestions — 問題展開仕様 > 元の問題フィールドが保持される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 選択肢がシャッフルされる |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > すべての選択肢が保持される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解のインデックスが正しく更新される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 同じIDの問題は常に同じシャッフル結果を返す（決定論的） |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 異なるIDの問題は異なるシャッフル結果を返す |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解が最後の位置にある場合も正しくシャッフルされる |
 
 ### ✅ `src/domain/quizSession.test.ts` (18/18)
 
