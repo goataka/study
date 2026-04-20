@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 12:26:16 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `3bb3f9a` |
-| **コミットメッセージ** | Implement explorer-style navigation with subject statistics |
+| **最終更新** | 2026-04-20 13:19:37 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `f4f2763` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `596148b3c04407dec3b11f93571a544b4b722ca5a7091382b9f5e2c44aff72dd` |
+| `test-results.json` | `154421aec9fd07a3988e3f498b0a1da2db5dbe529f1a8babaa433a506f32021b` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
