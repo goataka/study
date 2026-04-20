@@ -9,9 +9,6 @@ branding:
   color: "red"
 
 inputs:
-  github-token:
-    description: "GitHub認証用トークン（GITHUB_TOKEN）"
-    required: true
   copilot-token:
     description: "Copilotエージェント用トークン（COPILOT_TOKEN）"
     required: true
@@ -23,6 +20,26 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: 前提コマンドの確認
+      shell: bash
+      run: |
+        # jq の存在確認
+        if ! command -v jq &>/dev/null; then
+          echo "::error::jq が見つかりません。ubuntu-latest 以外のrunnerを使用している場合は jq をインストールしてください。"
+          exit 1
+        fi
+        # gh CLI の存在確認
+        if ! command -v gh &>/dev/null; then
+          echo "::error::gh CLI が見つかりません。ubuntu-latest 以外のrunnerを使用している場合は gh CLI をインストールしてください。"
+          exit 1
+        fi
+        # gh agent-task サブコマンドの確認
+        if ! gh agent-task --help &>/dev/null; then
+          echo "::error::gh agent-task サブコマンドが利用できません。gh CLI のバージョンを確認してください。"
+          exit 1
+        fi
+        echo "::notice::前提コマンド (jq, gh, gh agent-task) の確認が完了しました"
+
     - name: エラー情報の収集
       id: collect-error
       shell: bash

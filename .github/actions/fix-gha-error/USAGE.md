@@ -1,94 +1,66 @@
 # Fix GHA Error コンポジットアクションの使用例
 
-このディレクトリには、実際のワークフローで使用できる例が含まれています。
+このアクションは `workflow_run` イベントと組み合わせて使用します。
+同一ワークフロー内での `if: failure()` ステップとしては使用できません。
 
-## 使用例
+## 基本的な使い方
 
-### 例1: 既存のCI/CDワークフローに追加
-
-既存の `.github/workflows/ci.yml` に以下のステップを追加するだけです：
-
-```yaml
-jobs:
-  test-and-build:
-    runs-on: ubuntu-latest
-    steps:
-      # ... 既存のステップ ...
-
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
-        uses: ./.github/actions/fix-gha-error
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "test-and-build"
-```
-
-### 例2: 本番環境テストの失敗を自動修正
-
-デプロイ後のE2Eテスト失敗時に使用：
+監視したいワークフロー名を `workflows:` に列挙した専用ワークフローを作成します。
 
 ```yaml
-jobs:
-  e2e-production:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - name: 本番環境E2Eテスト実行
-        run: npm run test:e2e
+name: Fix GHA Error
 
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
+on:
+  workflow_run:
+    workflows:
+      - "CI"
+    types:
+      - completed
+
+jobs:
+  fix-error:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copilotエージェントタスクを作成
         uses: ./.github/actions/fix-gha-error
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "e2e-production"
-          error-context: "本番環境でのE2Eテストが失敗しました"
 ```
 
-### 例3: 複数ジョブでの使用
+## 複数のワークフローを監視する
 
 ```yaml
+name: Fix GHA Error
+
+on:
+  workflow_run:
+    workflows:
+      - "CI"
+      - "Build"
+      - "Release"
+    types:
+      - completed
+
 jobs:
-  lint:
+  fix-error:
     runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
+    permissions:
+      contents: read
     steps:
-      - name: Lint実行
-        run: npm run lint
+      - uses: actions/checkout@v4
 
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
+      - name: Copilotエージェントタスクを作成
         uses: ./.github/actions/fix-gha-error
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "lint"
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: テスト実行
-        run: npm test
-
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
-        uses: ./.github/actions/fix-gha-error
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "test"
+          error-context: "詳細なエラー情報をここに記載"
 ```
-
-## 重要なポイント
-
-1. **`if: failure()`**: ステップやジョブが失敗した時のみ実行されます
-2. **`job-name`**: わかりやすいジョブ名を指定してください
-3. **`copilot-token`**: リポジトリのSecretsに `COPILOT_TOKEN` を設定する必要があります
 
 ## セットアップ手順
 
@@ -102,8 +74,15 @@ jobs:
    Value: (取得したトークン)
    ```
 
-3. **ワークフローに追加**
-   - 上記の例を参考に、各ジョブの最後に追加
+3. **ワークフローを作成**
+   - `.github/workflows/fix-gha-error.yml` を上記の例を参考に作成
+   - 監視するワークフロー名を `workflows:` に列挙
 
 4. **動作確認**
-   - わざとテストを失敗させて、Issueが自動作成されることを確認
+   - 監視対象のワークフローが失敗したときにエージェントタスクが作成されることを確認
+
+## 重要なポイント
+
+1. **`workflow_run` イベント必須**: このアクションは `workflow_run` コンテキストに依存しているため、他のイベントトリガーでは動作しません
+2. **fork対策**: `github.event.workflow_run.head_repository.full_name == github.repository` の条件で、forkからのワークフロー実行によるタスクスパムを防ぎます
+3. **`copilot-token`**: リポジトリのSecretsに `COPILOT_TOKEN` を設定する必要があります

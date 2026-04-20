@@ -11,6 +11,17 @@ GitHub Actionsのワークフローがエラーになった場合に、`gh agent
   - ブランチベースの実行: 失敗したワークフローの`head_branch`をターゲットにする
 - **詳細なエラー情報**: ワークフロー名、コミット情報、実行ログURLを自動収集
 
+## 前提条件
+
+このアクションを実行するrunnerには、以下のコマンドが利用可能である必要があります：
+
+- `gh` CLI がインストールされていること
+- `gh agent-task` サブコマンドが利用可能であること
+- `jq` がインストールされていること
+
+`ubuntu-latest` では標準でこれらのコマンドが利用可能です。
+カスタムイメージを使用する場合は、事前にこれらをセットアップしてください。
+
 ## 使用方法
 
 ### 基本的な使い方
@@ -33,17 +44,15 @@ on:
 jobs:
   fix-error:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'failure'
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
     permissions:
       contents: read
-      issues: write
     steps:
       - uses: actions/checkout@v4
 
       - name: エラー時にCopilotに修正を依頼
         uses: ./.github/actions/fix-gha-error
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
 ```
 
@@ -51,7 +60,6 @@ jobs:
 
 | 名前 | 必須 | デフォルト | 説明 |
 |------|------|-----------|------|
-| `github-token` | ✅ | - | GitHub認証用トークン（`GITHUB_TOKEN`） |
 | `copilot-token` | ✅ | - | Copilotエージェント用トークン（`COPILOT_TOKEN`） |
 | `error-context` | ❌ | `""` | エラーの詳細情報（オプション） |
 
@@ -120,16 +128,14 @@ on:
 jobs:
   fix-error:
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'failure'
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
     permissions:
       contents: read
-      issues: write
     steps:
       - uses: actions/checkout@v4
 
       - uses: ./.github/actions/fix-gha-error
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
 ```
 

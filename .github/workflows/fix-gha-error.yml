@@ -6,9 +6,9 @@ name: Fix GHA Error
 on:
   workflow_run:
     # ここに監視するワークフロー名を列挙する（各ワークフローの name: フィールドと完全一致が必要）
+    # "Deploy to GitHub Pages" は jekyll-gh-pages.yml 側で失敗時の Issue 作成を行うため除外
     workflows:
       - "CI"
-      - "Deploy to GitHub Pages"
     types:
       - completed
 
@@ -16,11 +16,10 @@ jobs:
   fix-error:
     name: Copilotエージェントタスクを作成
     runs-on: ubuntu-latest
-    # ワークフローが失敗で完了した場合のみ実行する
-    if: github.event.workflow_run.conclusion == 'failure'
+    # ワークフローが失敗で完了し、かつトリガー元が同一リポジトリの場合のみ実行する（fork対策）
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
     permissions:
       contents: read
-      issues: write
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
@@ -28,5 +27,4 @@ jobs:
       - name: Copilotエージェントタスクを作成
         uses: ./.github/actions/fix-gha-error
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
