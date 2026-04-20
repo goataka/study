@@ -34,7 +34,7 @@ graph TD
 
     click A "01-alphabet/drill.md"
     click B "03-phonics-1letter/drill.md"
-    click C "07-linking/drill.md"
+    click C "06-linking-reduction/drill.md"
 ```
 
 ## 発音ドリル一覧
