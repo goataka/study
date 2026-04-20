@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "tenses-be-past",
+  "categoryName": "be動詞の過去形",
+  "questions": [
+    {
+      "id": "tenses-be-past-1",
+      "question": "I ___ happy yesterday.",
+      "choices": [
+        "was",
+        "am",
+        "were",
+        "is"
+      ],
+      "correct": 0,
+      "explanation": "Iの過去形には was を使います"
+    },
+    {
+      "id": "tenses-be-past-2",
+      "question": "I ___ a student last year.",
+      "choices": [
+        "was",
+        "am",
+        "were",
+        "is"
+      ],
+      "correct": 0,
+      "explanation": "Iの過去形には was を使います"
+    },
+    {
+      "id": "tenses-be-past-3",
+      "question": "I ___ tired yesterday.",
+      "choices": [
+        "was",
+        "am",
+        "were",
+        "is"
+      ],
+      "correct": 0,
+      "explanation": "Iの過去形には was を使います"
+    },
+    {
+      "id": "tenses-be-past-4",
+      "question": "They ___ at home yesterday.",
+      "choices": [
+        "were",
+        "was",
+        "are",
+        "is"
+      ],
+      "correct": 0,
+      "explanation": "複数形の過去形には were を使います"
+    },
+    {
+      "id": "tenses-be-past-5",
+      "question": "He ___ hungry this morning.",
+      "choices": [
+        "was",
+        "were",
+        "is",
+        "am"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の過去形には was を使います"
+    },
+    {
+      "id": "tenses-be-past-6",
+      "question": "She ___ happy yesterday.",
+      "choices": [
+        "was",
+        "were",
+        "is",
+        "am"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の過去形には was を使います"
+    },
+    {
+      "id": "tenses-be-past-7",
+      "question": "We ___ students last year.",
+      "choices": [
+        "were",
+        "was",
+        "are",
+        "is"
+      ],
+      "correct": 0,
+      "explanation": "複数形の過去形には were を使います"
+    },
+    {
+      "id": "tenses-be-past-8",
+      "question": "You ___ tired yesterday.",
+      "choices": [
+        "were",
+        "was",
+        "are",
+        "is"
+      ],
+      "correct": 0,
+      "explanation": "Youの過去形には were を使います"
+    }
+  ]
+}

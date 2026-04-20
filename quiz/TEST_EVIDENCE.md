@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 19:43:05 JST |
-| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
-| **コミット** | `99c6ff2` |
-| **コミットメッセージ** | クイズの正答をすべての問題で表示するように変更 |
+| **最終更新** | 2026-04-20 22:26:34 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `8b39eae` |
+| **コミットメッセージ** | Apply suggestion from @Copilot |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `2425d06441a9ea5857410657ceca3649109bf9411f629ebac235fcf4f60b9048` |
+| `test-results.json` | `0d9a713502913bc1f88793ea86a7d6992ea6a954dfe2857ca9f1e8376641dc4d` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 31 / 31 |
-| テストケース（合格 / 合計） | 80 / 80 |
+| テストスイート（合格 / 合計） | 33 / 33 |
+| テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.14s |
+| 実行時間 | 0.65s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -101,7 +101,7 @@
 | ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
 | ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
 
-### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (6/6)
+### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (10/10)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -111,6 +111,10 @@
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 上書き保存が正しく機能する |
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 別のインスタンスからも同じデータを読み込める（永続化確認） |
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > localStorageに不正なJSONが入っていてもロード時に空配列を返す |
+| ✅ | LocalStorageProgressRepository — ユーザー名永続化仕様 > 初回ロード時はnullを返す |
+| ✅ | LocalStorageProgressRepository — ユーザー名永続化仕様 > 保存したユーザー名を正しく読み込める |
+| ✅ | LocalStorageProgressRepository — ユーザー名永続化仕様 > 上書き保存が正しく機能する |
+| ✅ | LocalStorageProgressRepository — ユーザー名永続化仕様 > 別のインスタンスからも同じデータを読み込める（永続化確認） |
 
 ### ✅ `src/infrastructure/questionData.test.ts` (17/17)
 
@@ -148,13 +152,22 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
-### ✅ `src/presentation/quizApp.test.ts` (3/3)
+### ✅ `src/presentation/quizApp.test.ts` (12/12)
 
 | 結果 | テスト名 |
 |------|---------|
 | ✅ | QuizApp — 初期化仕様 > DOM が揃っていればエラーなしでインスタンス化できる |
 | ✅ | QuizApp — 初期化仕様 > 初期状態では「間違えた問題」ボタンが無効化されている |
 | ✅ | QuizApp — 問題ロード後の仕様 > 問題のロードが完了したら statsInfo に問題数が表示される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 問題ロード後にツリーに教科ノード（すべて・英語・数学）が3件描画される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 問題ロード後にカテゴリノードが描画される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードのヘッダーに role=button と tabindex=0 が設定されている |
+| ✅ | QuizApp — カテゴリツリー仕様 > 展開可能な教科ノードには aria-controls が設定されている |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると statsInfo がその教科の問題数に更新される |
+| ✅ | QuizApp — カテゴリツリー仕様 > カテゴリノードをクリックすると statsInfo がそのカテゴリの問題数に更新される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
+| ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
+| ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
 
 ---
 

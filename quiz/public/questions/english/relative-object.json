@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "relative-object",
+  "categoryName": "目的格の関係代名詞",
+  "questions": [
+    {
+      "id": "relative-object-1",
+      "question": "I have a friend ___ I met yesterday. (人・目的格)",
+      "choices": [
+        "whom",
+        "whose",
+        "where",
+        "when"
+      ],
+      "correct": 0,
+      "explanation": "人が目的語の場合は whom を使います"
+    },
+    {
+      "id": "relative-object-2",
+      "question": "I have a book ___ I bought yesterday. (物・目的格)",
+      "choices": [
+        "which",
+        "who",
+        "whose",
+        "where"
+      ],
+      "correct": 0,
+      "explanation": "物が目的語の場合は which を使います"
+    },
+    {
+      "id": "relative-object-3",
+      "question": "I have a pen ___ I use every day. (物・目的格)",
+      "choices": [
+        "that",
+        "whose",
+        "where",
+        "when"
+      ],
+      "correct": 0,
+      "explanation": "物が目的語の場合は that を使えます"
+    },
+    {
+      "id": "relative-object-4",
+      "question": "The girl ___ you saw yesterday is my sister. (人・目的格)",
+      "choices": [
+        "whom",
+        "whose",
+        "which",
+        "where"
+      ],
+      "correct": 0,
+      "explanation": "人が目的語の場合は whom を使います"
+    },
+    {
+      "id": "relative-object-5",
+      "question": "This is the book ___ I was looking for. (物・目的格)",
+      "choices": [
+        "which",
+        "who",
+        "whose",
+        "where"
+      ],
+      "correct": 0,
+      "explanation": "物が目的語の場合は which を使います"
+    },
+    {
+      "id": "relative-object-6",
+      "question": "The teacher ___ I respect most is Mr. Smith. (人・目的格)",
+      "choices": [
+        "whom",
+        "whose",
+        "which",
+        "where"
+      ],
+      "correct": 0,
+      "explanation": "人が目的語の場合は whom を使います"
+    },
+    {
+      "id": "relative-object-7",
+      "question": "The movie ___ we watched was great. (物・目的格)",
+      "choices": [
+        "that",
+        "whose",
+        "who",
+        "where"
+      ],
+      "correct": 0,
+      "explanation": "物が目的語の場合は that を使えます"
+    },
+    {
+      "id": "relative-object-8",
+      "question": "目的格の関係代名詞は省略できる？",
+      "choices": [
+        "はい",
+        "いいえ",
+        "人の場合だけ",
+        "物の場合だけ"
+      ],
+      "correct": 0,
+      "explanation": "目的格の関係代名詞は省略可能です"
+    }
+  ]
+}

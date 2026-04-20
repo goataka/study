@@ -42,6 +42,35 @@ function setupMinimalDom(): void {
   `;
 }
 
+/** ツリーUIを含むフルレイアウトのDOM */
+function setupTreeDom(): void {
+  document.body.innerHTML = `
+    <div id="startScreen" class="screen active">
+      <div class="subject-tree"></div>
+      <div id="statsInfo"></div>
+      <button id="startRandomBtn">ランダム10問</button>
+      <button id="startRetryBtn" disabled>間違えた問題</button>
+    </div>
+    <div id="quizScreen" class="screen">
+      <div id="questionNumber"></div>
+      <div id="topicName"></div>
+      <div id="progressFill" style="width:0%"></div>
+      <div id="questionText"></div>
+      <div id="choicesContainer"></div>
+      <button id="prevBtn" disabled>前へ</button>
+      <button id="nextBtn">次へ</button>
+      <button id="submitBtn" disabled>提出</button>
+    </div>
+    <div id="resultScreen" class="screen">
+      <div id="resultScore"></div>
+      <div id="resultDetails"></div>
+      <button id="retryAllBtn">全問やり直す</button>
+      <button id="retryWrongBtn">間違えた問題</button>
+      <button id="backToStartBtn">トップへ戻る</button>
+    </div>
+  `;
+}
+
 // ─── fetch モック（問題JSONの読み込みを回避） ─────────────────────────────
 
 const mockManifest = {
@@ -121,6 +150,121 @@ describe("QuizApp — 問題ロード後の仕様", () => {
     new QuizApp();
     // init() は非同期なので Promiseのキューが流れるまで待つ
     await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("全5問");
+  });
+});
+
+describe("QuizApp — カテゴリツリー仕様", () => {
+  beforeEach(() => {
+    setupTreeDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("問題ロード後にツリーに教科ノード（すべて・英語・数学）が3件描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const subjectNodes = document.querySelectorAll(".tree-item[data-subject]:not([data-category])");
+    expect(subjectNodes.length).toBe(3);
+  });
+
+  it("問題ロード後にカテゴリノードが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // mockQuestionFile は phonics-1 のみなので1ノード
+    const categoryNodes = document.querySelectorAll(".tree-item[data-category]");
+    expect(categoryNodes.length).toBe(1);
+  });
+
+  it("教科ノードのヘッダーに role=button と tabindex=0 が設定されている", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const headers = document.querySelectorAll(".tree-node-header");
+    headers.forEach((h) => {
+      expect(h.getAttribute("role")).toBe("button");
+      expect(h.getAttribute("tabindex")).toBe("0");
+    });
+  });
+
+  it("展開可能な教科ノードには aria-controls が設定されている", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishHeader = document.querySelector(
+      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
+    );
+    expect(englishHeader?.getAttribute("aria-controls")).toBe("tree-children-english");
+  });
+
+  it("教科ノードをクリックすると statsInfo がその教科の問題数に更新される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishHeader = document.querySelector(
+      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
+    ) as HTMLElement;
+    englishHeader?.click();
+
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("全5問");
+  });
+
+  it("カテゴリノードをクリックすると statsInfo がそのカテゴリの問題数に更新される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const catHeader = document.querySelector(
+      '.tree-item[data-category="phonics-1"] > .tree-node-header'
+    ) as HTMLElement;
+    catHeader?.click();
+
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("全5問");
+  });
+
+  it("教科ノードをクリックすると aria-expanded が true になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishHeader = document.querySelector(
+      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
+    ) as HTMLElement;
+    expect(englishHeader?.getAttribute("aria-expanded")).toBe("false");
+
+    englishHeader?.click();
+    expect(englishHeader?.getAttribute("aria-expanded")).toBe("true");
+  });
+
+  it("Enter キーで教科ノードを操作できる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishHeader = document.querySelector(
+      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
+    ) as HTMLElement;
+    englishHeader?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("全5問");
+  });
+
+  it("Space キーで教科ノードを操作できる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishHeader = document.querySelector(
+      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
+    ) as HTMLElement;
+    englishHeader?.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
 
     const statsInfo = document.getElementById("statsInfo");
     expect(statsInfo?.textContent).toContain("全5問");

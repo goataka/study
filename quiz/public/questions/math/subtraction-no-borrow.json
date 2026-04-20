@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "subtraction-no-borrow",
+  "categoryName": "ひき算（くり下がりなし）",
+  "questions": [
+    {
+      "id": "sub-no-borrow-1",
+      "question": "5 - 2 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "5 - 2 = 3"
+    },
+    {
+      "id": "sub-no-borrow-2",
+      "question": "8 - 3 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "8 - 3 = 5"
+    },
+    {
+      "id": "sub-no-borrow-3",
+      "question": "7 - 4 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "7 - 4 = 3"
+    },
+    {
+      "id": "sub-no-borrow-4",
+      "question": "9 - 5 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "9 - 5 = 4"
+    },
+    {
+      "id": "sub-no-borrow-5",
+      "question": "6 - 1 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "6 - 1 = 5"
+    },
+    {
+      "id": "sub-no-borrow-6",
+      "question": "10 - 6 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10 - 6 = 4"
+    },
+    {
+      "id": "sub-no-borrow-7",
+      "question": "8 - 7 = ?",
+      "choices": [
+        "1",
+        "2",
+        "0",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "8 - 7 = 1"
+    },
+    {
+      "id": "sub-no-borrow-8",
+      "question": "9 - 3 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "9 - 3 = 6"
+    }
+  ]
+}

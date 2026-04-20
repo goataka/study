@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "modals-basic",
+  "categoryName": "助動詞の使い分け",
+  "questions": [
+    {
+      "id": "modals-basic-1",
+      "question": "I ___ play the piano. (～できる)",
+      "choices": [
+        "can",
+        "may",
+        "must",
+        "should"
+      ],
+      "correct": 0,
+      "explanation": "「できる」は can を使います"
+    },
+    {
+      "id": "modals-basic-2",
+      "question": "I ___ go now. (～してもよい)",
+      "choices": [
+        "may",
+        "can",
+        "must",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "「してもよい」は may を使います"
+    },
+    {
+      "id": "modals-basic-3",
+      "question": "I ___ study hard. (～しなければならない)",
+      "choices": [
+        "must",
+        "can",
+        "may",
+        "might"
+      ],
+      "correct": 0,
+      "explanation": "「しなければならない」は must を使います"
+    },
+    {
+      "id": "modals-basic-4",
+      "question": "I ___ go to bed early. (～すべきだ)",
+      "choices": [
+        "should",
+        "can",
+        "may",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "「すべきだ」は should を使います"
+    },
+    {
+      "id": "modals-basic-5",
+      "question": "I ___ help you. (～するでしょう)",
+      "choices": [
+        "will",
+        "can",
+        "may",
+        "must"
+      ],
+      "correct": 0,
+      "explanation": "「するでしょう」は will を使います"
+    },
+    {
+      "id": "modals-basic-6",
+      "question": "I ___ be late. (～かもしれない)",
+      "choices": [
+        "might",
+        "must",
+        "will",
+        "should"
+      ],
+      "correct": 0,
+      "explanation": "「かもしれない」は might を使います"
+    },
+    {
+      "id": "modals-basic-7",
+      "question": "You ___ not smoke here. (～してはいけない)",
+      "choices": [
+        "must",
+        "can",
+        "may",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "「してはいけない」は must not を使います"
+    },
+    {
+      "id": "modals-basic-8",
+      "question": "___ you open the window? (～してくれませんか)",
+      "choices": [
+        "Could",
+        "Must",
+        "Should",
+        "Might"
+      ],
+      "correct": 0,
+      "explanation": "丁寧な依頼には Could を使います"
+    }
+  ]
+}

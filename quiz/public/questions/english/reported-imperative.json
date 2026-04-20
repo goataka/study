@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "reported-imperative",
+  "categoryName": "命令文の間接話法",
+  "questions": [
+    {
+      "id": "reported-imperative-1",
+      "question": "He said, \"Play games.\" → He told me ___ games.",
+      "choices": [
+        "to play",
+        "play",
+        "playing",
+        "played"
+      ],
+      "correct": 0,
+      "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-2",
+      "question": "He said, \"Don't play games.\" → He told me ___ games.",
+      "choices": [
+        "not to play",
+        "don't play",
+        "not playing",
+        "didn't play"
+      ],
+      "correct": 0,
+      "explanation": "否定の命令文は not to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-3",
+      "question": "He said, \"Study hard.\" → He told me ___ hard.",
+      "choices": [
+        "to study",
+        "study",
+        "studying",
+        "studied"
+      ],
+      "correct": 0,
+      "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-4",
+      "question": "He said, \"Don't be late.\" → He told me ___ late.",
+      "choices": [
+        "not to be",
+        "don't be",
+        "not being",
+        "wasn't"
+      ],
+      "correct": 0,
+      "explanation": "否定の命令文は not to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-5",
+      "question": "She said, \"Be quiet.\" → She told me ___ quiet.",
+      "choices": [
+        "to be",
+        "be",
+        "being",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-6",
+      "question": "He said, \"Help me.\" → He asked me ___ him.",
+      "choices": [
+        "to help",
+        "help",
+        "helping",
+        "helped"
+      ],
+      "correct": 0,
+      "explanation": "依頼の命令文は asked + 人 + to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-7",
+      "question": "She said, \"Don't touch that.\" → She told me ___ that.",
+      "choices": [
+        "not to touch",
+        "don't touch",
+        "not touching",
+        "didn't touch"
+      ],
+      "correct": 0,
+      "explanation": "否定の命令文は not to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-8",
+      "question": "命令文の間接話法で使う動詞は？",
+      "choices": [
+        "told/asked",
+        "said",
+        "spoke",
+        "talked"
+      ],
+      "correct": 0,
+      "explanation": "命令文の間接話法は told または asked を使います"
+    }
+  ]
+}

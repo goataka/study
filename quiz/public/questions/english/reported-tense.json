@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "reported-tense",
+  "categoryName": "時制の一致",
+  "questions": [
+    {
+      "id": "reported-tense-1",
+      "question": "He said, \"I play games.\" → He said that he ___ games.",
+      "choices": [
+        "played",
+        "play",
+        "plays",
+        "had played"
+      ],
+      "correct": 0,
+      "explanation": "現在形は過去形に変わります"
+    },
+    {
+      "id": "reported-tense-2",
+      "question": "He said, \"I am playing games.\" → He said that he ___ games.",
+      "choices": [
+        "was playing",
+        "is playing",
+        "played",
+        "had played"
+      ],
+      "correct": 0,
+      "explanation": "現在進行形は過去進行形に変わります"
+    },
+    {
+      "id": "reported-tense-3",
+      "question": "He said, \"I played games.\" → He said that he ___ games.",
+      "choices": [
+        "had played",
+        "played",
+        "plays",
+        "was playing"
+      ],
+      "correct": 0,
+      "explanation": "過去形は過去完了形に変わります"
+    },
+    {
+      "id": "reported-tense-4",
+      "question": "He said, \"I will play games.\" → He said that he ___ games.",
+      "choices": [
+        "would play",
+        "will play",
+        "played",
+        "had played"
+      ],
+      "correct": 0,
+      "explanation": "willはwouldに変わります"
+    },
+    {
+      "id": "reported-tense-5",
+      "question": "He said, \"I can play games.\" → He said that he ___ games.",
+      "choices": [
+        "could play",
+        "can play",
+        "played",
+        "had played"
+      ],
+      "correct": 0,
+      "explanation": "canはcouldに変わります"
+    },
+    {
+      "id": "reported-tense-6",
+      "question": "She said, \"I am happy.\" → She said that she ___ happy.",
+      "choices": [
+        "was",
+        "is",
+        "were",
+        "had been"
+      ],
+      "correct": 0,
+      "explanation": "現在形のbe動詞は過去形に変わります"
+    },
+    {
+      "id": "reported-tense-7",
+      "question": "He said, \"I have finished.\" → He said that he ___.",
+      "choices": [
+        "had finished",
+        "has finished",
+        "finished",
+        "would finish"
+      ],
+      "correct": 0,
+      "explanation": "現在完了形は過去完了形に変わります"
+    },
+    {
+      "id": "reported-tense-8",
+      "question": "She said, \"I may go.\" → She said that she ___ go.",
+      "choices": [
+        "might",
+        "may",
+        "would",
+        "could"
+      ],
+      "correct": 0,
+      "explanation": "mayはmightに変わります"
+    }
+  ]
+}

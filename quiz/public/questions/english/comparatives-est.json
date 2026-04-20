@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "comparatives-est",
+  "categoryName": "最上級",
+  "questions": [
+    {
+      "id": "comparatives-est-1",
+      "question": "I am the ___ in the class. (tall)",
+      "choices": [
+        "tallest",
+        "most tall",
+        "taller",
+        "more tall"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の最上級は the -est です"
+    },
+    {
+      "id": "comparatives-est-2",
+      "question": "I am the ___ in the class. (big)",
+      "choices": [
+        "biggest",
+        "most big",
+        "bigger",
+        "bigest"
+      ],
+      "correct": 0,
+      "explanation": "短母音+子音字で終わる語は子音字を重ねて -est をつけます"
+    },
+    {
+      "id": "comparatives-est-3",
+      "question": "I am the ___ to talk to in the class. (easy)",
+      "choices": [
+        "easiest",
+        "most easy",
+        "easier",
+        "easyest"
+      ],
+      "correct": 0,
+      "explanation": "子音+yで終わる語は、yをiに変えて -est をつけます"
+    },
+    {
+      "id": "comparatives-est-4",
+      "question": "This game is the ___ of all. (interesting)",
+      "choices": [
+        "most interesting",
+        "interestingest",
+        "more interesting",
+        "interestinger"
+      ],
+      "correct": 0,
+      "explanation": "長い形容詞の最上級は the most + 形容詞です"
+    },
+    {
+      "id": "comparatives-est-5",
+      "question": "This problem is the ___ of all. (difficult)",
+      "choices": [
+        "most difficult",
+        "difficultest",
+        "more difficult",
+        "difficulter"
+      ],
+      "correct": 0,
+      "explanation": "長い形容詞の最上級は the most + 形容詞です"
+    },
+    {
+      "id": "comparatives-est-6",
+      "question": "This flower is the ___ of all. (beautiful)",
+      "choices": [
+        "most beautiful",
+        "beautifulest",
+        "more beautiful",
+        "beautifuler"
+      ],
+      "correct": 0,
+      "explanation": "長い形容詞の最上級は the most + 形容詞です"
+    },
+    {
+      "id": "comparatives-est-7",
+      "question": "Mt. Fuji is the ___ mountain in Japan. (high)",
+      "choices": [
+        "highest",
+        "most high",
+        "higher",
+        "more high"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の最上級は the -est です"
+    },
+    {
+      "id": "comparatives-est-8",
+      "question": "This is the ___ book I have ever read. (good)",
+      "choices": [
+        "best",
+        "goodest",
+        "better",
+        "most good"
+      ],
+      "correct": 0,
+      "explanation": "goodの最上級は best です（不規則変化）"
+    }
+  ]
+}

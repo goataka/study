@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "tenses-be-future",
+  "categoryName": "be動詞の未来形",
+  "questions": [
+    {
+      "id": "tenses-be-future-1",
+      "question": "I ___ happy tomorrow.",
+      "choices": [
+        "will be",
+        "am",
+        "was",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "tenses-be-future-2",
+      "question": "I ___ a student next year.",
+      "choices": [
+        "will be",
+        "am",
+        "was",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "tenses-be-future-3",
+      "question": "He ___ tired tomorrow.",
+      "choices": [
+        "will be",
+        "is",
+        "was",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "tenses-be-future-4",
+      "question": "They ___ at home tomorrow.",
+      "choices": [
+        "will be",
+        "are",
+        "were",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "tenses-be-future-5",
+      "question": "She ___ hungry later.",
+      "choices": [
+        "will be",
+        "is",
+        "was",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "tenses-be-future-6",
+      "question": "We ___ ready soon.",
+      "choices": [
+        "will be",
+        "are",
+        "were",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "tenses-be-future-7",
+      "question": "You ___ happy tomorrow.",
+      "choices": [
+        "will be",
+        "are",
+        "were",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "tenses-be-future-8",
+      "question": "It ___ cold tomorrow.",
+      "choices": [
+        "will be",
+        "is",
+        "was",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "未来形には will be を使います"
+    }
+  ]
+}

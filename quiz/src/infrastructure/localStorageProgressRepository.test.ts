@@ -53,3 +53,35 @@ describe("LocalStorageProgressRepository — 間違えた問題ID永続化仕様
     expect(repo.loadWrongIds()).toEqual([]);
   });
 });
+
+describe("LocalStorageProgressRepository — ユーザー名永続化仕様", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("初回ロード時はnullを返す", () => {
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadUserName()).toBeNull();
+  });
+
+  it("保存したユーザー名を正しく読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveUserName("太郎");
+    expect(repo.loadUserName()).toBe("太郎");
+  });
+
+  it("上書き保存が正しく機能する", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveUserName("太郎");
+    repo.saveUserName("花子");
+    expect(repo.loadUserName()).toBe("花子");
+  });
+
+  it("別のインスタンスからも同じデータを読み込める（永続化確認）", () => {
+    const repo1 = new LocalStorageProgressRepository();
+    repo1.saveUserName("次郎");
+
+    const repo2 = new LocalStorageProgressRepository();
+    expect(repo2.loadUserName()).toBe("次郎");
+  });
+});

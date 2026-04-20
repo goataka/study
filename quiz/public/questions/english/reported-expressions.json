@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "reported-expressions",
+  "categoryName": "指示語の変化",
+  "questions": [
+    {
+      "id": "reported-expressions-1",
+      "question": "\"I will come tomorrow.\" → He said he would come ___.",
+      "choices": [
+        "the next day",
+        "tomorrow",
+        "yesterday",
+        "today"
+      ],
+      "correct": 0,
+      "explanation": "tomorrowは the next day に変わります"
+    },
+    {
+      "id": "reported-expressions-2",
+      "question": "\"I came here yesterday.\" → He said he had come ___ the day before.",
+      "choices": [
+        "there",
+        "here",
+        "where",
+        "everywhere"
+      ],
+      "correct": 0,
+      "explanation": "hereは there に変わります"
+    },
+    {
+      "id": "reported-expressions-3",
+      "question": "\"I am busy now.\" → He said he was busy ___.",
+      "choices": [
+        "then",
+        "now",
+        "today",
+        "yesterday"
+      ],
+      "correct": 0,
+      "explanation": "nowは then に変わります"
+    },
+    {
+      "id": "reported-expressions-4",
+      "question": "\"I like this book.\" → He said he liked ___ book.",
+      "choices": [
+        "that",
+        "this",
+        "these",
+        "the"
+      ],
+      "correct": 0,
+      "explanation": "thisは that に変わります"
+    },
+    {
+      "id": "reported-expressions-5",
+      "question": "\"I will do it today.\" → He said he would do it ___.",
+      "choices": [
+        "that day",
+        "today",
+        "this day",
+        "the day"
+      ],
+      "correct": 0,
+      "explanation": "todayは that day に変わります"
+    },
+    {
+      "id": "reported-expressions-6",
+      "question": "yesterdayは間接話法で何に変わる？",
+      "choices": [
+        "the day before",
+        "the next day",
+        "that day",
+        "yesterday"
+      ],
+      "correct": 0,
+      "explanation": "yesterdayは the day before に変わります"
+    },
+    {
+      "id": "reported-expressions-7",
+      "question": "\"I was here last week.\" → He said he had been ___ the week before.",
+      "choices": [
+        "there",
+        "here",
+        "where",
+        "everywhere"
+      ],
+      "correct": 0,
+      "explanation": "hereは there に変わります"
+    },
+    {
+      "id": "reported-expressions-8",
+      "question": "\"I want these books.\" → He said he wanted ___ books.",
+      "choices": [
+        "those",
+        "these",
+        "this",
+        "the"
+      ],
+      "correct": 0,
+      "explanation": "theseは those に変わります"
+    }
+  ]
+}
