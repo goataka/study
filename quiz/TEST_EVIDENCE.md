@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 09:39:39 JST |
+| **最終更新** | 2026-04-20 09:47:47 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `4ce3552` |
-| **コミットメッセージ** | docs: Add implementation summary document |
+| **コミット** | `afb9403` |
+| **コミットメッセージ** | refactor: Create agent-task directly instead of Issue |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `f7f731bdcc7e81add92c13751470f30deec976cf75fb1556e589b858842adb91` |
+| `test-results.json` | `2ce51c7792ab79a2d5b8ea71cc5ebbcc52706182200e049bcca99e44fec07f68` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 30 / 30 |
 | テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.18s |
+| 実行時間 | 0.12s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
