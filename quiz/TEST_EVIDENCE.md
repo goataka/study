@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 20:01:12 JST |
+| **最終更新** | 2026-04-20 22:21:56 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `8a3a909` |
-| **コミットメッセージ** | Add comprehensive quiz content matching all markdown drills |
+| **コミット** | `41ecbd5` |
+| **コミットメッセージ** | Merge branch 'main' into claude/update-quiz-content-md |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `11ffbce6bea8e21b36ff74d60128aa90d79f637b1f4f0ba0417dd52ac543de53` |
+| `test-results.json` | `cb484a705e9fea671f0d61ece883b72acb39cb0f8d0eb851a4023759490da987` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.48s |
+| 実行時間 | 0.56s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
