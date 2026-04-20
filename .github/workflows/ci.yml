@@ -45,7 +45,10 @@ jobs:
           if ! git diff --quiet quiz/TEST_EVIDENCE.md; then
             git add quiz/TEST_EVIDENCE.md
             git commit -m "ci: テストエビデンスを更新 [skip ci]"
-            git push
+            # Pull with rebase and retry push up to 3 times to handle concurrent updates
+            for i in {1..3}; do
+              git pull --rebase origin ${{ github.head_ref }} && git push && break || sleep 2
+            done
           fi
 
       - name: Viteビルド
@@ -97,7 +100,10 @@ jobs:
             if ! git diff --quiet quiz/TEST_EVIDENCE.md; then
               git add quiz/TEST_EVIDENCE.md
               git commit -m "ci: E2Eエビデンスを更新 [skip ci]"
-              git push
+              # Pull with rebase and retry push up to 3 times to handle concurrent updates
+              for i in {1..3}; do
+                git pull --rebase origin ${{ github.head_ref }} && git push && break || sleep 2
+              done
             fi
           fi
 

@@ -186,6 +186,8 @@ I `played` games.
 4. **CI でも自動更新される**
    - `ci.yml` の `test-and-build` ジョブが PR マージ前にテストとエビデンスを再生成する
    - `e2e` ジョブが E2E 実行後にエビデンスを再生成して `[skip ci]` コミットで保存する
+   - **コンフリクト防止**: `.gitattributes` で `merge=ours` 戦略を設定し、並行更新時には最新版を優先する
+   - CI ジョブは pull-rebase-push のリトライロジックで並行更新を安全に処理する
 
 5. **本番デプロイ後に自動E2Eが実行される**
    - `jekyll-gh-pages.yml` の `e2e-production` ジョブがデプロイ後に本番URLに対してE2Eを実行する

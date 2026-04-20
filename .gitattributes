@@ -1,0 +1,6 @@
+# Git attributes for handling merge conflicts
+
+# TEST_EVIDENCE.md: Auto-generated file that should use "ours" merge strategy
+# This prevents merge conflicts when multiple CI jobs update the file
+# The most recent update always wins
+quiz/TEST_EVIDENCE.md merge=ours
