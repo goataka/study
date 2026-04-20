@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 22:43:43 JST |
+| **最終更新** | 2026-04-20 22:44:20 JST |
 | **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
-| **コミット** | `18b4f43` |
-| **コミットメッセージ** | feat: Add quiz links to all content pages (English & Math) |
+| **コミット** | `8fbeb6d` |
+| **コミットメッセージ** | chore: Update test evidence |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `fddd1631ddd488e38937baedf05795d28aa7529b4e5b176b8fb9c17759b18fae` |
+| `test-results.json` | `f4e33f984211db5e6c4d6aed76c7678206578aaa33037a19e916de456e42a7f5` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -53,53 +53,6 @@
 | ✅ | QuizUseCase — セッション開始仕様 > retryモードで間違えた問題のみが出題される |
 | ✅ | QuizUseCase — 採点・進捗保存仕様 > 正解した問題は wrongIds から除かれる |
 | ✅ | QuizUseCase — 採点・進捗保存仕様 > 不正解の問題は wrongIds に追加される |
-
-### ✅ `src/domain/question.test.ts` (19/19)
-
-| 結果 | テスト名 |
-|------|---------|
-| ✅ | validateManifest — マニフェスト検証仕様 > 有効なマニフェストを受け入れる |
-| ✅ | validateManifest — マニフェスト検証仕様 > null を拒否する |
-| ✅ | validateManifest — マニフェスト検証仕様 > version フィールドがない場合に拒否する |
-| ✅ | validateManifest — マニフェスト検証仕様 > subjects フィールドがない場合に拒否する |
-| ✅ | validateManifest — マニフェスト検証仕様 > questionFiles が配列でない場合に拒否する |
-| ✅ | validateQuestionFile — 問題ファイル検証仕様 > 有効な問題ファイルを受け入れる |
-| ✅ | validateQuestionFile — 問題ファイル検証仕様 > null を拒否する |
-| ✅ | validateQuestionFile — 問題ファイル検証仕様 > subject フィールドがない場合に拒否する |
-| ✅ | validateQuestionFile — 問題ファイル検証仕様 > questions が配列でない場合に拒否する |
-| ✅ | validateQuestionFile — 問題ファイル検証仕様 > 選択肢が4つでない場合に拒否する |
-| ✅ | validateQuestionFile — 問題ファイル検証仕様 > correct が範囲外の場合に拒否する |
-| ✅ | expandQuestions — 問題展開仕様 > 各問題にメタ情報（subject, category など）が付加される |
-| ✅ | expandQuestions — 問題展開仕様 > 元の問題フィールドが保持される |
-| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 元の問題を変更せず、同じ要素数の選択肢を返す |
-| ✅ | shuffleChoices — 選択肢シャッフル仕様 > すべての選択肢が保持される |
-| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解のインデックスが正しく更新される |
-| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 同じIDの問題は常に同じシャッフル結果を返す（決定論的） |
-| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 異なるIDの問題は異なるシャッフル結果を返す |
-| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解が最後の位置にある場合も正しくシャッフルされる |
-
-### ✅ `src/domain/quizSession.test.ts` (18/18)
-
-| 結果 | テスト名 |
-|------|---------|
-| ✅ | QuizSession — セッション初期化仕様 > 少なくとも1問が必要 |
-| ✅ | QuizSession — セッション初期化仕様 > 問題リストが正しく設定される |
-| ✅ | QuizSession — セッション初期化仕様 > 最初の問題インデックスは0 |
-| ✅ | QuizSession — 回答仕様 > 有効な回答を記録できる |
-| ✅ | QuizSession — 回答仕様 > 無効な問題インデックスはエラー |
-| ✅ | QuizSession — 回答仕様 > 無効な選択肢インデックスはエラー |
-| ✅ | QuizSession — ナビゲーション仕様 > 次の問題に進める |
-| ✅ | QuizSession — ナビゲーション仕様 > 先頭より前には進めない |
-| ✅ | QuizSession — ナビゲーション仕様 > 末尾より後には進めない |
-| ✅ | QuizSession — 採点仕様 > 全問回答前は採点できない（canSubmit = false） |
-| ✅ | QuizSession — 採点仕様 > 全問回答後は採点できる（canSubmit = true） |
-| ✅ | QuizSession — 採点仕様 > 正解数を正確に計算する |
-| ✅ | QuizSession — 採点仕様 > 結果に各問の正誤が含まれる |
-| ✅ | QuizSession.pickRandom — ランダム選択仕様 > 指定した件数を返す |
-| ✅ | QuizSession.pickRandom — ランダム選択仕様 > 問題数より多くは返さない |
-| ✅ | QuizSession.filter — フィルター仕様 > 教科でフィルターできる |
-| ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
-| ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
 
 ### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (10/10)
 
@@ -168,6 +121,53 @@
 | ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
+
+### ✅ `src/domain/question.test.ts` (19/19)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | validateManifest — マニフェスト検証仕様 > 有効なマニフェストを受け入れる |
+| ✅ | validateManifest — マニフェスト検証仕様 > null を拒否する |
+| ✅ | validateManifest — マニフェスト検証仕様 > version フィールドがない場合に拒否する |
+| ✅ | validateManifest — マニフェスト検証仕様 > subjects フィールドがない場合に拒否する |
+| ✅ | validateManifest — マニフェスト検証仕様 > questionFiles が配列でない場合に拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > 有効な問題ファイルを受け入れる |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > null を拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > subject フィールドがない場合に拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > questions が配列でない場合に拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > 選択肢が4つでない場合に拒否する |
+| ✅ | validateQuestionFile — 問題ファイル検証仕様 > correct が範囲外の場合に拒否する |
+| ✅ | expandQuestions — 問題展開仕様 > 各問題にメタ情報（subject, category など）が付加される |
+| ✅ | expandQuestions — 問題展開仕様 > 元の問題フィールドが保持される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 元の問題を変更せず、同じ要素数の選択肢を返す |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > すべての選択肢が保持される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解のインデックスが正しく更新される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 同じIDの問題は常に同じシャッフル結果を返す（決定論的） |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 異なるIDの問題は異なるシャッフル結果を返す |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解が最後の位置にある場合も正しくシャッフルされる |
+
+### ✅ `src/domain/quizSession.test.ts` (18/18)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | QuizSession — セッション初期化仕様 > 少なくとも1問が必要 |
+| ✅ | QuizSession — セッション初期化仕様 > 問題リストが正しく設定される |
+| ✅ | QuizSession — セッション初期化仕様 > 最初の問題インデックスは0 |
+| ✅ | QuizSession — 回答仕様 > 有効な回答を記録できる |
+| ✅ | QuizSession — 回答仕様 > 無効な問題インデックスはエラー |
+| ✅ | QuizSession — 回答仕様 > 無効な選択肢インデックスはエラー |
+| ✅ | QuizSession — ナビゲーション仕様 > 次の問題に進める |
+| ✅ | QuizSession — ナビゲーション仕様 > 先頭より前には進めない |
+| ✅ | QuizSession — ナビゲーション仕様 > 末尾より後には進めない |
+| ✅ | QuizSession — 採点仕様 > 全問回答前は採点できない（canSubmit = false） |
+| ✅ | QuizSession — 採点仕様 > 全問回答後は採点できる（canSubmit = true） |
+| ✅ | QuizSession — 採点仕様 > 正解数を正確に計算する |
+| ✅ | QuizSession — 採点仕様 > 結果に各問の正誤が含まれる |
+| ✅ | QuizSession.pickRandom — ランダム選択仕様 > 指定した件数を返す |
+| ✅ | QuizSession.pickRandom — ランダム選択仕様 > 問題数より多くは返さない |
+| ✅ | QuizSession.filter — フィルター仕様 > 教科でフィルターできる |
+| ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
+| ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
 
 ---
 
