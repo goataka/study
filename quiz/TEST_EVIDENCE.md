@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 21:30:24 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `8d44535` |
-| **コミットメッセージ** | ci: テストエビデンスを更新 [skip ci] |
+| **最終更新** | 2026-04-20 22:17:32 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `77fe38f` |
+| **コミットメッセージ** | Merge branch 'main' into claude/fix-action-error |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `1fa03125924fc68a6bd9db49df79323ebd97d5282003f753cb40837c7da1d730` |
+| `test-results.json` | `f795d02513ecee015e386aaf9ae1ec94463aa73d8d8e64de8800e830799ed282` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.25s |
+| 実行時間 | 0.31s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
