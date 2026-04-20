@@ -254,6 +254,37 @@ button:disabled {
     margin-top: 20px;
 }
 
+/* 進捗データ管理 */
+.progress-management {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e1e4e8;
+}
+
+.progress-management h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.progress-management .button-group {
+    flex-direction: row;
+    gap: 10px;
+}
+
+.progress-management .tertiary-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+.help-text {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+}
+
 /* クイズ画面 */
 .progress-bar {
     width: 100%;

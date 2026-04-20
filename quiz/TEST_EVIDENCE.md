@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 19:55:29 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `2da8588` |
-| **コミットメッセージ** | Initial plan |
+| **最終更新** | 2026-04-20 19:59:38 JST |
+| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
+| **コミット** | `1a28843` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `ade0c013d6fe82407c957a44923946a088155eef417b9188b2ffb1e973fdc43d` |
+| `test-results.json` | `d60e37d5a91b51d0b7452379b9b5b245e08a6b2ea90e01df4e4a09f23f62f0c1` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 32 / 32 |
-| テストケース（合格 / 合計） | 89 / 89 |
+| テストスイート（合格 / 合計） | 38 / 38 |
+| テストケース（合格 / 合計） | 103 / 103 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.38s |
+| 実行時間 | 0.29s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -111,6 +111,30 @@
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 上書き保存が正しく機能する |
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 別のインスタンスからも同じデータを読み込める（永続化確認） |
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > localStorageに不正なJSONが入っていてもロード時に空配列を返す |
+
+### ✅ `src/infrastructure/progressExporter.test.ts` (4/4)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | ProgressExporter > serialize > 空の配列を正しくシリアライズできる |
+| ✅ | ProgressExporter > serialize > 問題IDのリストを正しくシリアライズできる |
+| ✅ | ProgressExporter > serialize > exportedAtが現在時刻のISO文字列である |
+| ✅ | ProgressExporter > serialize > JSONフォーマットが整形されている（インデント付き） |
+
+### ✅ `src/infrastructure/progressImporter.test.ts` (10/10)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | ProgressImporter > parse > 正しいJSON形式のデータをパースできる |
+| ✅ | ProgressImporter > parse > 空の問題IDリストをパースできる |
+| ✅ | ProgressImporter > parse > 不正なJSON文字列の場合はエラーをスローする |
+| ✅ | ProgressImporter > parse > versionフィールドがない場合はエラーをスローする |
+| ✅ | ProgressImporter > parse > exportedAtフィールドがない場合はエラーをスローする |
+| ✅ | ProgressImporter > parse > wrongQuestionIdsフィールドがない場合はエラーをスローする |
+| ✅ | ProgressImporter > parse > wrongQuestionIdsが配列でない場合はエラーをスローする |
+| ✅ | ProgressImporter > parse > wrongQuestionIdsの要素が文字列でない場合はエラーをスローする |
+| ✅ | ProgressImporter > parse > データがnullの場合はエラーをスローする |
+| ✅ | ProgressImporter > parse > データがプリミティブ型の場合はエラーをスローする |
 
 ### ✅ `src/infrastructure/questionData.test.ts` (17/17)
 

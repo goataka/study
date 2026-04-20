@@ -9,6 +9,8 @@ import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
+import { ProgressExporter } from "../infrastructure/progressExporter";
+import { ProgressImporter } from "../infrastructure/progressImporter";
 
 export class QuizApp {
   private readonly useCase: QuizUseCase;
@@ -178,6 +180,8 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
+    this.on("downloadProgressBtn", "click", () => this.downloadProgress());
+    this.on("uploadProgressBtn", "click", () => this.uploadProgress());
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -437,6 +441,40 @@ export class QuizApp {
 
     if (screenName === "start") {
       this.updateStartScreen();
+    }
+  }
+
+  // ─── 進捗データの管理 ──────────────────────────────────────────────────────
+
+  private downloadProgress(): void {
+    try {
+      const wrongIds = this.useCase.wrongQuestionIds;
+      ProgressExporter.download(wrongIds);
+    } catch (error) {
+      console.error("ダウンロードに失敗しました:", error);
+      alert("ダウンロードに失敗しました");
+    }
+  }
+
+  private async uploadProgress(): Promise<void> {
+    try {
+      const wrongIds = await ProgressImporter.importFromFile();
+
+      // 進捗データを保存
+      const progressRepo = new LocalStorageProgressRepository();
+      progressRepo.saveWrongIds(wrongIds);
+
+      // useCase の wrongIds を再読み込み
+      await this.useCase.initialize();
+
+      // 画面を更新
+      this.updateStartScreen();
+
+      alert(`進捗データをインポートしました（${wrongIds.length}問の間違いを復元）`);
+    } catch (error) {
+      console.error("アップロードに失敗しました:", error);
+      const message = error instanceof Error ? error.message : "アップロードに失敗しました";
+      alert(message);
     }
   }
 
