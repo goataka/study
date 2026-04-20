@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 22:50:03 JST |
-| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
-| **コミット** | `f39fdf4` |
-| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
+| **最終更新** | 2026-04-20 22:50:37 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `16b5240` |
+| **コミットメッセージ** | Show correct answer and explanation after each question |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `fa0539bf2dc8c916095af46e5ababf11b17389495ce64e124d8a2975b0827de0` |
+| `test-results.json` | `2ddb90ba45d7c4f8cb91fc06b9b5f37708de52d1525697ed2683f63e05cdadb0` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.37s |
+| 実行時間 | 0.55s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
