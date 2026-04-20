@@ -303,6 +303,15 @@ export class QuizApp {
 
     this.setText("questionText", question.question);
     this.renderChoices(question, session);
+
+    // 既に回答済みの場合はフィードバックを表示、未回答の場合は非表示
+    const userAnswer = session.getAnswer(session.currentIndex);
+    if (userAnswer !== undefined) {
+      this.showAnswerFeedback(question, userAnswer);
+    } else {
+      this.hideAnswerFeedback();
+    }
+
     this.updateNavigationButtons(session);
   }
 
@@ -322,6 +331,7 @@ export class QuizApp {
       input.checked = session.getAnswer(session.currentIndex) === index;
       input.addEventListener("change", () => {
         session.selectAnswer(session.currentIndex, index);
+        this.showAnswerFeedback(question, index);
         this.updateNavigationButtons(session);
       });
 
@@ -340,6 +350,38 @@ export class QuizApp {
     if (!session) return;
     session.navigate(direction);
     this.renderQuestion();
+  }
+
+  private showAnswerFeedback(question: Question, userAnswerIndex: number): void {
+    const feedbackDiv = document.getElementById("answerFeedback");
+    if (!feedbackDiv) return;
+
+    const isCorrect = question.correct === userAnswerIndex;
+    const resultDiv = document.getElementById("feedbackResult");
+    const explanationDiv = document.getElementById("feedbackExplanation");
+
+    if (resultDiv) {
+      if (isCorrect) {
+        resultDiv.innerHTML = "✅ 正解です！";
+      } else {
+        const correctAnswer = question.choices[question.correct];
+        resultDiv.innerHTML = `❌ 不正解です。正解は「${correctAnswer}」です。`;
+      }
+    }
+
+    if (explanationDiv) {
+      explanationDiv.textContent = question.explanation;
+    }
+
+    feedbackDiv.className = "answer-feedback";
+    feedbackDiv.classList.add(isCorrect ? "correct" : "incorrect");
+  }
+
+  private hideAnswerFeedback(): void {
+    const feedbackDiv = document.getElementById("answerFeedback");
+    if (feedbackDiv) {
+      feedbackDiv.classList.add("hidden");
+    }
   }
 
   private updateNavigationButtons(session: QuizSession): void {
