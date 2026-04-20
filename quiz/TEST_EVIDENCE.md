@@ -10,9 +10,9 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 22:43:07 JST |
+| **最終更新** | 2026-04-20 22:43:43 JST |
 | **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
-| **コミット** | `f81edbb` |
+| **コミット** | `18b4f43` |
 | **コミットメッセージ** | feat: Add quiz links to all content pages (English & Math) |
 
 ## 改ざん防止チェックサム
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `0b6d30b2b5cc8195c981b7d148c71105e07c92e4fd1975faaf87a663422129b1` |
+| `test-results.json` | `fddd1631ddd488e38937baedf05795d28aa7529b4e5b176b8fb9c17759b18fae` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.45s |
+| 実行時間 | 0.48s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
