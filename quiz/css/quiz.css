@@ -7,7 +7,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ffffff;
     min-height: 100vh;
     padding: 20px;
 }
@@ -29,12 +29,12 @@ header {
 }
 
 header h1 {
-    color: #667eea;
+    color: #0366d6;
     font-size: 28px;
 }
 
 header nav a {
-    color: #667eea;
+    color: #0366d6;
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 5px;
@@ -65,39 +65,132 @@ header nav a:hover {
     font-size: 24px;
 }
 
-.filter-section {
+/* エクスプローラ風レイアウト */
+.explorer-layout {
     display: grid;
-    grid-template-columns: auto 1fr auto 1fr;
-    gap: 10px 15px;
-    align-items: center;
-    margin-bottom: 30px;
-    padding: 20px;
-    background: #f8f9ff;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+    min-height: 400px;
+}
+
+/* 左側: 教科選択パネル */
+.subject-explorer {
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
     border-radius: 8px;
+    padding: 16px;
 }
 
-.filter-section label {
-    font-weight: bold;
-    color: #667eea;
-}
-
-.filter-section select {
-    padding: 8px 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 5px;
+.subject-explorer h2 {
     font-size: 14px;
-    background: white;
+    color: #586069;
+    margin-bottom: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ツリー構造 */
+.subject-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tree-item {
+    user-select: none;
+}
+
+.tree-node-header {
+    display: flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: border-color 0.3s;
+    transition: background 0.15s;
+    gap: 6px;
 }
 
-.filter-section select:hover {
-    border-color: #667eea;
+.tree-node-header:hover {
+    background: #e8f0fe;
 }
 
-.filter-section select:focus {
-    outline: none;
-    border-color: #667eea;
+.tree-item.active > .tree-node-header {
+    background: #0366d6;
+    color: white;
+}
+
+.tree-item.active > .tree-node-header .tree-node-label,
+.tree-item.active > .tree-node-header .tree-toggle,
+.tree-item.active > .tree-node-header .tree-node-stats {
+    color: white;
+}
+
+.tree-toggle {
+    font-size: 9px;
+    color: #586069;
+    transition: transform 0.2s;
+    min-width: 12px;
+    display: inline-block;
+}
+
+.tree-item.expanded > .tree-node-header .tree-toggle {
+    transform: rotate(90deg);
+}
+
+.tree-node-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #24292e;
+    flex: 1;
+}
+
+.category-node .tree-node-label {
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.tree-node-stats {
+    font-size: 11px;
+    color: #586069;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 1px 6px;
+    border-radius: 10px;
+}
+
+.tree-item.active > .tree-node-header .tree-node-stats {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* カテゴリの子リスト */
+.tree-children {
+    margin-left: 18px;
+    border-left: 2px solid #e1e4e8;
+    padding-left: 4px;
+    margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tree-children.hidden {
+    display: none;
+}
+
+/* 右側: クイズパネル */
+.quiz-panel {
+    background: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.quiz-panel h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .button-group {
@@ -120,13 +213,14 @@ header nav a:hover {
 }
 
 .primary-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #0366d6;
     color: white;
 }
 
 .primary-btn:hover:not(:disabled) {
+    background: #0255b8;
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 12px rgba(3, 102, 214, 0.4);
 }
 
 .secondary-btn {
@@ -140,8 +234,8 @@ header nav a:hover {
 
 .tertiary-btn {
     background: white;
-    color: #667eea;
-    border: 2px solid #667eea;
+    color: #0366d6;
+    border: 2px solid #0366d6;
 }
 
 .tertiary-btn:hover {
@@ -172,7 +266,7 @@ button:disabled {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: #0366d6;
     transition: width 0.3s ease;
 }
 
@@ -190,7 +284,7 @@ button:disabled {
 }
 
 .topic-badge {
-    background: #667eea;
+    background: #0366d6;
     color: white;
     padding: 4px 12px;
     border-radius: 12px;
@@ -223,8 +317,8 @@ button:disabled {
 }
 
 .choice-label:hover {
-    border-color: #667eea;
-    background: #f8f9ff;
+    border-color: #0366d6;
+    background: #f0f7ff;
 }
 
 .choice-label input[type="radio"] {
@@ -235,7 +329,7 @@ button:disabled {
 }
 
 .choice-label input[type="radio"]:checked + .choice-text {
-    color: #667eea;
+    color: #0366d6;
     font-weight: bold;
 }
 
@@ -272,13 +366,14 @@ button:disabled {
 }
 
 .submit-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #0366d6;
     color: white;
 }
 
 .submit-btn:hover:not(:disabled) {
+    background: #0255b8;
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 12px rgba(3, 102, 214, 0.4);
 }
 
 /* 結果画面 */
@@ -379,8 +474,8 @@ button:disabled {
 
 .result-topic {
     font-size: 12px;
-    color: #667eea;
-    background: #f8f9ff;
+    color: #0366d6;
+    background: #f0f7ff;
     padding: 2px 8px;
     border-radius: 10px;
     margin-left: 10px;
@@ -403,10 +498,10 @@ button:disabled {
 .explanation {
     margin-top: 8px;
     padding: 8px 12px;
-    background: white;
+    background: #f0f7ff;
     border-radius: 4px;
     font-style: italic;
-    color: #667eea;
+    color: #0366d6;
 }
 
 /* レスポンシブ対応 */
@@ -425,13 +520,17 @@ button:disabled {
         padding: 20px;
     }
 
-    .filter-section {
+    /* エクスプローラレイアウトをスタック表示に */
+    .explorer-layout {
         grid-template-columns: 1fr;
-        gap: 8px;
     }
 
-    .filter-section label {
-        margin-top: 10px;
+    .subject-explorer {
+        order: 1;
+    }
+
+    .quiz-panel {
+        order: 2;
     }
 
     .question-text {
