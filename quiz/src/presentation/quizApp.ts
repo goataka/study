@@ -59,8 +59,12 @@ export class QuizApp {
       item.className = "tree-item";
       item.dataset.subject = subject.id;
 
+      const childrenId = `tree-children-${subject.id}`;
+
       const header = document.createElement("div");
       header.className = "tree-node-header";
+      header.setAttribute("role", "button");
+      header.setAttribute("tabindex", "0");
 
       if (hasChildren) {
         const toggle = document.createElement("span");
@@ -68,10 +72,8 @@ export class QuizApp {
         toggle.textContent = "▶";
         toggle.setAttribute("aria-hidden", "true");
         header.appendChild(toggle);
-      }
-
-      if (hasChildren) {
         header.setAttribute("aria-expanded", "false");
+        header.setAttribute("aria-controls", childrenId);
       }
 
       const label = document.createElement("span");
@@ -88,6 +90,7 @@ export class QuizApp {
       if (hasChildren && Object.keys(categories).length > 0) {
         const children = document.createElement("div");
         children.className = "tree-children hidden";
+        children.id = childrenId;
 
         for (const [categoryId, categoryName] of Object.entries(categories)) {
           const catItem = document.createElement("div");
@@ -97,6 +100,8 @@ export class QuizApp {
 
           const catHeader = document.createElement("div");
           catHeader.className = "tree-node-header";
+          catHeader.setAttribute("role", "button");
+          catHeader.setAttribute("tabindex", "0");
 
           const catLabel = document.createElement("span");
           catLabel.className = "tree-node-label";
@@ -124,7 +129,7 @@ export class QuizApp {
       const nodeHeader = el.querySelector(":scope > .tree-node-header") as HTMLElement | null;
       if (!nodeHeader) return;
 
-      nodeHeader.addEventListener("click", (e) => {
+      const handleActivate = (e: Event): void => {
         e.stopPropagation();
         const subject = el.dataset.subject || "all";
         const category = el.dataset.category;
@@ -146,6 +151,14 @@ export class QuizApp {
         this.filter.subject = subject;
         this.filter.category = category ?? "all";
         this.updateStartScreen();
+      };
+
+      nodeHeader.addEventListener("click", handleActivate);
+      nodeHeader.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleActivate(e);
+        }
       });
     });
 
@@ -187,26 +200,43 @@ export class QuizApp {
   }
 
   private updateSubjectStats(): void {
-    const treeItems = document.querySelectorAll(".tree-item[data-subject]");
+    // 全問題を1回だけ走査して subject/category ごとの統計を集計する
+    const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
+    const wrongSet = new Set(this.useCase.wrongQuestionIds);
 
+    const statsMap = new Map<string, { total: number; wrong: number }>();
+    const addStat = (key: string, isWrong: boolean): void => {
+      const s = statsMap.get(key) ?? { total: 0, wrong: 0 };
+      s.total++;
+      if (isWrong) s.wrong++;
+      statsMap.set(key, s);
+    };
+
+    for (const q of allQuestions) {
+      const isWrong = wrongSet.has(q.id);
+      addStat("all::all", isWrong);
+      addStat(`${q.subject}::all`, isWrong);
+      addStat(`${q.subject}::${q.category}`, isWrong);
+    }
+
+    // DOM を一括更新
+    const treeItems = document.querySelectorAll(".tree-item[data-subject]");
     treeItems.forEach((node) => {
       const el = node as HTMLElement;
       const subject = el.dataset.subject || "all";
-      const category = el.dataset.category;
+      const category = el.dataset.category ?? "all";
+      const key = `${subject}::${category}`;
+      const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
 
       const statsEl = el.querySelector(":scope > .tree-node-header > .tree-node-stats");
       if (!statsEl) return;
 
-      const filter: QuizFilter = { subject, category: category ?? "all" };
-      const totalCount = this.useCase.getFilteredQuestions(filter).length;
-      const wrongCount = this.useCase.getWrongCount(filter);
-
-      if (totalCount === 0) {
+      if (stat.total === 0) {
         statsEl.textContent = "";
-      } else if (wrongCount > 0) {
-        statsEl.textContent = `${wrongCount}/${totalCount}`;
+      } else if (stat.wrong > 0) {
+        statsEl.textContent = `${stat.wrong}/${stat.total}`;
       } else {
-        statsEl.textContent = `${totalCount}問`;
+        statsEl.textContent = `${stat.total}問`;
       }
     });
   }

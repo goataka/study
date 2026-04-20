@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 13:36:00 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `b9b279a` |
-| **コミットメッセージ** | Add collapsible category tree to left navigation panel |
+| **最終更新** | 2026-04-20 16:19:18 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `2541b70` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `e67cd209da41898a3a4e0432bbc8bc700cdc9e6af3fc314d15af1df2eaff8063` |
+| `test-results.json` | `c5f925b4b7672ac7f31711aa1b1a3a341661a8b48cad65faf156dea5b409e835` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 30 / 30 |
-| テストケース（合格 / 合計） | 74 / 74 |
+| テストスイート（合格 / 合計） | 31 / 31 |
+| テストケース（合格 / 合計） | 83 / 83 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.17s |
+| 実行時間 | 0.32s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -142,13 +142,22 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
-### ✅ `src/presentation/quizApp.test.ts` (3/3)
+### ✅ `src/presentation/quizApp.test.ts` (12/12)
 
 | 結果 | テスト名 |
 |------|---------|
 | ✅ | QuizApp — 初期化仕様 > DOM が揃っていればエラーなしでインスタンス化できる |
 | ✅ | QuizApp — 初期化仕様 > 初期状態では「間違えた問題」ボタンが無効化されている |
 | ✅ | QuizApp — 問題ロード後の仕様 > 問題のロードが完了したら statsInfo に問題数が表示される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 問題ロード後にツリーに教科ノード（すべて・英語・数学）が3件描画される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 問題ロード後にカテゴリノードが描画される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードのヘッダーに role=button と tabindex=0 が設定されている |
+| ✅ | QuizApp — カテゴリツリー仕様 > 展開可能な教科ノードには aria-controls が設定されている |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると statsInfo がその教科の問題数に更新される |
+| ✅ | QuizApp — カテゴリツリー仕様 > カテゴリノードをクリックすると statsInfo がそのカテゴリの問題数に更新される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
+| ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
+| ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
 
 ---
 
