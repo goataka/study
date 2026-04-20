@@ -1,0 +1,156 @@
+# GHAエラー修正用コンポジットアクション
+# GHAがエラーになった場合に、Copilotエージェントに修正を依頼するIssueを作成し、
+# PRベースの場合は元のPRブランチ、そうでない場合はデフォルトブランチをターゲットにしたエージェントタスクを作成する
+
+name: "Fix GHA Error"
+description: "GHAエラー発生時にCopilotエージェントに修正を依頼するIssueを作成し、修正PRを作成する"
+branding:
+  icon: "alert-circle"
+  color: "red"
+
+inputs:
+  github-token:
+    description: "GitHub認証用トークン（GITHUB_TOKEN）"
+    required: true
+  copilot-token:
+    description: "Copilotエージェント用トークン（COPILOT_TOKEN）"
+    required: true
+  workflow-name:
+    description: "失敗したワークフロー名"
+    required: true
+  job-name:
+    description: "失敗したジョブ名"
+    required: true
+  error-context:
+    description: "エラーの詳細情報（オプション）"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: エラー情報の収集
+      id: collect-error
+      shell: bash
+      run: |
+        # PRベースかどうかを判定
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          IS_PR="true"
+          TARGET_BRANCH="${{ github.head_ref }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          echo "is_pr=true" >> $GITHUB_OUTPUT
+          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
+          echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
+          echo "::notice::PRベースのワークフロー実行です (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
+        else
+          IS_PR="false"
+          TARGET_BRANCH="${{ github.event.repository.default_branch }}"
+          echo "is_pr=false" >> $GITHUB_OUTPUT
+          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
+          echo "pr_number=" >> $GITHUB_OUTPUT
+          echo "::notice::プッシュベースのワークフロー実行です (ターゲット: ${TARGET_BRANCH})"
+        fi
+
+        # コミット情報
+        COMMIT_SHA="${{ github.sha }}"
+        COMMIT_SHORT="${COMMIT_SHA:0:7}"
+        echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
+        echo "commit_short=${COMMIT_SHORT}" >> $GITHUB_OUTPUT
+
+        # ワークフロー実行URL
+        RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        echo "run_url=${RUN_URL}" >> $GITHUB_OUTPUT
+
+    - name: Copilotエージェントに修正を依頼するIssueを作成
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ inputs.github-token }}
+        script: |
+          const workflowName = '${{ inputs.workflow-name }}';
+          const jobName = '${{ inputs.job-name }}';
+          const commitShort = '${{ steps.collect-error.outputs.commit_short }}';
+          const runUrl = '${{ steps.collect-error.outputs.run_url }}';
+          const isPr = '${{ steps.collect-error.outputs.is_pr }}' === 'true';
+          const targetBranch = '${{ steps.collect-error.outputs.target_branch }}';
+          const prNumber = '${{ steps.collect-error.outputs.pr_number }}';
+          const errorContext = `${{ inputs.error-context }}`;
+
+          // Issue本文の作成
+          const issueBodyParts = [
+            `## GitHub Actions エラー発生`,
+            ``,
+            `ワークフロー「${workflowName}」のジョブ「${jobName}」が失敗しました。`,
+            ``,
+            `### エラー情報`,
+            ``,
+            `| 項目 | 値 |`,
+            `|------|------|`,
+            `| **ワークフロー** | ${workflowName} |`,
+            `| **ジョブ** | ${jobName} |`,
+            `| **コミット** | \`${commitShort}\` |`,
+            `| **実行タイプ** | ${isPr ? `PR #${prNumber}` : 'Push'} |`,
+            `| **ターゲットブランチ** | \`${targetBranch}\` |`,
+            `| **CIログ** | [ワークフロー実行を確認](${runUrl}) |`,
+            ``,
+          ];
+
+          if (errorContext) {
+            issueBodyParts.push(
+              `### エラー詳細`,
+              ``,
+              `\`\`\``,
+              errorContext,
+              `\`\`\``,
+              ``,
+            );
+          }
+
+          issueBodyParts.push(
+            `### 修正依頼`,
+            ``,
+            `以下の手順で調査・修正してください：`,
+            ``,
+            `1. [ワークフロー実行ログ](${runUrl})を確認して、エラーの原因を特定する`,
+            `2. リポジトリをチェックアウトして、ローカルで再現確認する`,
+            `   \`\`\`bash`,
+            `   git clone https://github.com/${{ github.repository }}.git`,
+            `   cd ${{ github.event.repository.name }}`,
+            `   git checkout ${targetBranch}`,
+            `   \`\`\``,
+            `3. エラーの原因を修正する`,
+            `4. 必要に応じてテストを実行して修正を確認する`,
+            `5. \`${targetBranch}\` ブランチをターゲットとしたPRを作成する`,
+            ``,
+          );
+
+          if (isPr) {
+            issueBodyParts.push(
+              `> [!NOTE]`,
+              `> この失敗は PR #${prNumber} に関連しています。`,
+              `> 修正PRは \`${targetBranch}\` ブランチをターゲットにしてください。`,
+              ``,
+            );
+          }
+
+          const issueBody = issueBodyParts.join('\n');
+
+          // Issue作成
+          const issue = await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `🚨 GHAエラー: ${workflowName} / ${jobName} (${commitShort})`,
+            body: issueBody,
+            labels: ['bug', 'copilot', 'github-actions'],
+          });
+
+          console.log(`Issue #${issue.data.number} を作成しました: ${issue.data.html_url}`);
+          core.setOutput('issue_number', issue.data.number);
+          core.setOutput('issue_url', issue.data.html_url);
+
+outputs:
+  issue_number:
+    description: "作成されたIssue番号"
+    value: ${{ steps.create-issue.outputs.issue_number }}
+  issue_url:
+    description: "作成されたIssueのURL"
+    value: ${{ steps.create-issue.outputs.issue_url }}
