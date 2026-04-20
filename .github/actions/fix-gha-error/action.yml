@@ -65,8 +65,7 @@ runs:
       id: create-agent-task
       shell: bash
       env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
-        COPILOT_TOKEN: ${{ inputs.copilot-token }}
+        GH_TOKEN: ${{ inputs.copilot-token }}
       run: |
         WORKFLOW_NAME="${{ inputs.workflow-name }}"
         JOB_NAME="${{ inputs.job-name }}"
@@ -77,15 +76,31 @@ runs:
         PR_NUMBER="${{ steps.collect-error.outputs.pr_number }}"
         ERROR_CONTEXT="${{ inputs.error-context }}"
 
-        # エージェントタスクの説明を作成
-        TASK_DESCRIPTION="GitHub Actionsワークフロー「${WORKFLOW_NAME}」のジョブ「${JOB_NAME}」が失敗しました (コミット: ${COMMIT_SHORT})。"
+        # タスク説明を作成
+        TASK_DESCRIPTION="GitHub Actionsワークフロー「${WORKFLOW_NAME}」のジョブ「${JOB_NAME}」が失敗しました (コミット: ${COMMIT_SHORT})。
+
+## エラー情報
+
+- **ワークフロー**: ${WORKFLOW_NAME}
+- **ジョブ**: ${JOB_NAME}
+- **コミット**: ${COMMIT_SHORT}
+- **CIログ**: ${RUN_URL}"
 
         if [ "$IS_PR" = "true" ]; then
-          TASK_DESCRIPTION="${TASK_DESCRIPTION} この失敗はPR #${PR_NUMBER}に関連しています。"
+          TASK_DESCRIPTION="${TASK_DESCRIPTION}
+- **PR**: #${PR_NUMBER}
+
+この失敗はPR #${PR_NUMBER}に関連しています。修正PRは元のPRのブランチ (\`${TARGET_BRANCH}\`) をターゲットにしてください。"
         fi
 
-        # 詳細な指示を作成
-        TASK_INSTRUCTIONS="以下の手順でエラーを調査・修正してください：
+        if [ -n "$ERROR_CONTEXT" ]; then
+          TASK_DESCRIPTION="${TASK_DESCRIPTION}
+- **エラー詳細**: ${ERROR_CONTEXT}"
+        fi
+
+        TASK_DESCRIPTION="${TASK_DESCRIPTION}
+
+## 修正手順
 
 1. ワークフロー実行ログを確認してエラーの原因を特定する
    - ログURL: ${RUN_URL}
@@ -96,132 +111,23 @@ runs:
    \`\`\`
 
 3. エラーの原因を修正する
-   - ワークフロー: ${WORKFLOW_NAME}
-   - ジョブ: ${JOB_NAME}
-   - コミット: ${COMMIT_SHORT}"
-
-        if [ -n "$ERROR_CONTEXT" ]; then
-          TASK_INSTRUCTIONS="${TASK_INSTRUCTIONS}
-   - エラー詳細: ${ERROR_CONTEXT}"
-        fi
-
-        TASK_INSTRUCTIONS="${TASK_INSTRUCTIONS}
 
 4. 必要に応じてテストを実行して修正を確認する
 
 5. \`${TARGET_BRANCH}\` ブランチをターゲットとしたPRを作成する"
 
-        if [ "$IS_PR" = "true" ]; then
-          TASK_INSTRUCTIONS="${TASK_INSTRUCTIONS}
-   - 修正PRは元のPR #${PR_NUMBER}のブランチ (\`${TARGET_BRANCH}\`) をターゲットにしてください"
-        fi
+        # タスク説明を一時ファイルに保存
+        TASK_FILE=$(mktemp)
+        echo "$TASK_DESCRIPTION" > "$TASK_FILE"
 
-        # エージェントタスクのペイロードを作成
-        PAYLOAD=$(cat <<EOF
-{
-  "base": "${TARGET_BRANCH}",
-  "task": "${TASK_DESCRIPTION}",
-  "instructions": $(echo "$TASK_INSTRUCTIONS" | jq -Rs .),
-  "context": {
-    "workflow": "${WORKFLOW_NAME}",
-    "job": "${JOB_NAME}",
-    "commit": "${COMMIT_SHORT}",
-    "run_url": "${RUN_URL}",
-    "is_pr": ${IS_PR},
-    "pr_number": "${PR_NUMBER}"
-  }
-}
-EOF
-)
+        # gh agent-task create でエージェントタスクを作成
+        echo "::notice::エージェントタスクを作成しています (base: ${TARGET_BRANCH})..."
+        gh agent-task create \
+          --base "${TARGET_BRANCH}" \
+          --repo "${{ github.repository }}" \
+          -F "$TASK_FILE"
 
-        # GitHub API を使用してエージェントタスクを作成
-        RESPONSE=$(curl -L -X POST \
-          -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${COPILOT_TOKEN}" \
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-          "https://api.github.com/repos/${{ github.repository }}/copilot/tasks" \
-          -d "$PAYLOAD" 2>&1)
+        # 一時ファイルを削除
+        rm -f "$TASK_FILE"
 
-        CURL_EXIT_CODE=$?
-
-        if [ $CURL_EXIT_CODE -ne 0 ]; then
-          echo "::error::エージェントタスクの作成に失敗しました (curl exit code: $CURL_EXIT_CODE)"
-          echo "::error::Response: $RESPONSE"
-
-          # Fallback: Issue を作成
-          echo "::warning::代わりにIssueを作成します"
-
-          ISSUE_BODY="## GitHub Actions エラー発生
-
-ワークフロー「${WORKFLOW_NAME}」のジョブ「${JOB_NAME}」が失敗しました。
-
-### エラー情報
-
-| 項目 | 値 |
-|------|------|
-| **ワークフロー** | ${WORKFLOW_NAME} |
-| **ジョブ** | ${JOB_NAME} |
-| **コミット** | \`${COMMIT_SHORT}\` |
-| **実行タイプ** | $([ "$IS_PR" = "true" ] && echo "PR #${PR_NUMBER}" || echo "Push") |
-| **ターゲットブランチ** | \`${TARGET_BRANCH}\` |
-| **CIログ** | [ワークフロー実行を確認](${RUN_URL}) |
-
-${TASK_INSTRUCTIONS}"
-
-          ISSUE_PAYLOAD=$(cat <<EOF
-{
-  "title": "🚨 GHAエラー: ${WORKFLOW_NAME} / ${JOB_NAME} (${COMMIT_SHORT})",
-  "body": $(echo "$ISSUE_BODY" | jq -Rs .),
-  "labels": ["bug", "copilot", "github-actions"]
-}
-EOF
-)
-
-          ISSUE_RESPONSE=$(curl -L -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/${{ github.repository }}/issues" \
-            -d "$ISSUE_PAYLOAD")
-
-          ISSUE_NUMBER=$(echo "$ISSUE_RESPONSE" | jq -r '.number')
-          ISSUE_URL=$(echo "$ISSUE_RESPONSE" | jq -r '.html_url')
-
-          echo "task_id=" >> $GITHUB_OUTPUT
-          echo "task_url=" >> $GITHUB_OUTPUT
-          echo "issue_number=${ISSUE_NUMBER}" >> $GITHUB_OUTPUT
-          echo "issue_url=${ISSUE_URL}" >> $GITHUB_OUTPUT
-
-          echo "::notice::Issue #${ISSUE_NUMBER} を作成しました: ${ISSUE_URL}"
-        else
-          # 成功時の処理
-          TASK_ID=$(echo "$RESPONSE" | jq -r '.id // empty')
-          TASK_URL=$(echo "$RESPONSE" | jq -r '.html_url // empty')
-
-          if [ -z "$TASK_ID" ]; then
-            echo "::error::エージェントタスクIDを取得できませんでした"
-            echo "::error::Response: $RESPONSE"
-            exit 1
-          fi
-
-          echo "task_id=${TASK_ID}" >> $GITHUB_OUTPUT
-          echo "task_url=${TASK_URL}" >> $GITHUB_OUTPUT
-          echo "issue_number=" >> $GITHUB_OUTPUT
-          echo "issue_url=" >> $GITHUB_OUTPUT
-
-          echo "::notice::エージェントタスク ${TASK_ID} を作成しました: ${TASK_URL}"
-        fi
-
-outputs:
-  task_id:
-    description: "作成されたエージェントタスクID"
-    value: ${{ steps.create-agent-task.outputs.task_id }}
-  task_url:
-    description: "作成されたエージェントタスクのURL"
-    value: ${{ steps.create-agent-task.outputs.task_url }}
-  issue_number:
-    description: "作成されたIssue番号（Fallback時のみ）"
-    value: ${{ steps.create-agent-task.outputs.issue_number }}
-  issue_url:
-    description: "作成されたIssueのURL（Fallback時のみ）"
-    value: ${{ steps.create-agent-task.outputs.issue_url }}
+        echo "::notice::エージェントタスクを作成しました"
