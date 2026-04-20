@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 13:37:56 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `5ed0bae` |
-| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
+| **最終更新** | 2026-04-20 14:13:16 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `1977588` |
+| **コミットメッセージ** | refactor: Rename example workflow to production fix-gha-error.yml |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `6b2dcf3fa8d1074578bc7ee6a43f0b5c34a0bec83e2f87a977dad6d6cafa8b0d` |
+| `test-results.json` | `84047dac76fd39c76117f7279d8569ba95ed2eab06767112f2c8e2ab359cf4bc` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 31 / 31 |
 | テストケース（合格 / 合計） | 80 / 80 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.13s |
+| 実行時間 | 0.12s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 

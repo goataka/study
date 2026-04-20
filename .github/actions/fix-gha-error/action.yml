@@ -1,0 +1,158 @@
+# GHAエラー修正用コンポジットアクション
+# workflow_runイベントで失敗したワークフローを検知し、Copilotエージェントタスクを作成して修正を依頼する
+# PRベースの場合は元のPRブランチ、そうでない場合はhead_branchをターゲットにする
+
+name: "Fix GHA Error"
+description: "GHAエラー発生時にCopilotエージェントタスクを作成し、自動的に修正PRを作成する"
+branding:
+  icon: "alert-circle"
+  color: "red"
+
+inputs:
+  copilot-token:
+    description: "Copilotエージェント用トークン（COPILOT_TOKEN）"
+    required: true
+  error-context:
+    description: "エラーの詳細情報（オプション）"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: 前提コマンドの確認
+      shell: bash
+      run: |
+        # jq の存在確認
+        if ! command -v jq &>/dev/null; then
+          echo "::error::jq が見つかりません。ubuntu-latest 以外のrunnerを使用している場合は jq をインストールしてください。"
+          exit 1
+        fi
+        # gh CLI の存在確認
+        if ! command -v gh &>/dev/null; then
+          echo "::error::gh CLI が見つかりません。ubuntu-latest 以外のrunnerを使用している場合は gh CLI をインストールしてください。"
+          exit 1
+        fi
+        # gh agent-task サブコマンドの確認
+        if ! gh agent-task --help &>/dev/null; then
+          echo "::error::gh agent-task サブコマンドが利用できません。gh CLI のバージョンを確認してください。"
+          exit 1
+        fi
+        echo "::notice::前提コマンド (jq, gh, gh agent-task) の確認が完了しました"
+
+    - name: エラー情報の収集
+      id: collect-error
+      shell: bash
+      env:
+        WF_NAME: ${{ github.event.workflow_run.name }}
+        WF_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        WF_HTML_URL: ${{ github.event.workflow_run.html_url }}
+        WF_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+        WF_PULL_REQUESTS: ${{ toJson(github.event.workflow_run.pull_requests) }}
+      run: |
+        # workflow_runイベントから情報を取得（環境変数経由でインジェクション防止）
+        WORKFLOW_NAME="${WF_NAME}"
+        COMMIT_SHA="${WF_HEAD_SHA}"
+        COMMIT_SHORT="${COMMIT_SHA:0:7}"
+        RUN_URL="${WF_HTML_URL}"
+
+        echo "workflow_name=${WORKFLOW_NAME}" >> $GITHUB_OUTPUT
+        echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
+        echo "commit_short=${COMMIT_SHORT}" >> $GITHUB_OUTPUT
+        echo "run_url=${RUN_URL}" >> $GITHUB_OUTPUT
+
+        # PRが関連しているかチェック
+        PR_COUNT=$(echo "${WF_PULL_REQUESTS}" | jq 'length // 0')
+        if [ "$PR_COUNT" -gt 0 ]; then
+          TARGET_BRANCH=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].head.ref // empty')
+          PR_NUMBER=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].number // empty')
+          if [ -n "$TARGET_BRANCH" ] && [ -n "$PR_NUMBER" ]; then
+            echo "is_pr=true" >> $GITHUB_OUTPUT
+            echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
+            echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
+            echo "::notice::PRベースのワークフロー実行です (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
+          else
+            echo "is_pr=false" >> $GITHUB_OUTPUT
+            echo "target_branch=${WF_HEAD_BRANCH}" >> $GITHUB_OUTPUT
+            echo "pr_number=" >> $GITHUB_OUTPUT
+            echo "::notice::ブランチベースのワークフロー実行です (ターゲット: ${WF_HEAD_BRANCH})"
+          fi
+        else
+          TARGET_BRANCH="${WF_HEAD_BRANCH}"
+          if [ -z "$TARGET_BRANCH" ]; then
+            echo "::error::ターゲットブランチを特定できませんでした"
+            exit 1
+          fi
+          echo "is_pr=false" >> $GITHUB_OUTPUT
+          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
+          echo "pr_number=" >> $GITHUB_OUTPUT
+          echo "::notice::ブランチベースのワークフロー実行です (ターゲット: ${TARGET_BRANCH})"
+        fi
+
+    - name: Copilotエージェントタスクを作成
+      id: create-agent-task
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.copilot-token }}
+        WORKFLOW_NAME: ${{ steps.collect-error.outputs.workflow_name }}
+        COMMIT_SHORT: ${{ steps.collect-error.outputs.commit_short }}
+        RUN_URL: ${{ steps.collect-error.outputs.run_url }}
+        IS_PR: ${{ steps.collect-error.outputs.is_pr }}
+        TARGET_BRANCH: ${{ steps.collect-error.outputs.target_branch }}
+        PR_NUMBER: ${{ steps.collect-error.outputs.pr_number }}
+        ERROR_CONTEXT: ${{ inputs.error-context }}
+      run: |
+        # タスク説明を作成（すべての値は環境変数経由でインジェクション防止）
+        TASK_DESCRIPTION="GitHub Actionsワークフロー「${WORKFLOW_NAME}」が失敗しました (コミット: ${COMMIT_SHORT})。
+
+## エラー情報
+
+- **ワークフロー**: ${WORKFLOW_NAME}
+- **コミット**: ${COMMIT_SHORT}
+- **CIログ**: ${RUN_URL}"
+
+        if [ "$IS_PR" = "true" ]; then
+          TASK_DESCRIPTION="${TASK_DESCRIPTION}
+- **PR**: #${PR_NUMBER}
+
+この失敗はPR #${PR_NUMBER}に関連しています。修正PRは元のPRのブランチ (\`${TARGET_BRANCH}\`) をターゲットにしてください。"
+        fi
+
+        if [ -n "$ERROR_CONTEXT" ]; then
+          TASK_DESCRIPTION="${TASK_DESCRIPTION}
+- **エラー詳細**: ${ERROR_CONTEXT}"
+        fi
+
+        TASK_DESCRIPTION="${TASK_DESCRIPTION}
+
+## 修正手順
+
+1. ワークフロー実行ログを確認してエラーの原因を特定する
+   - ログURL: ${RUN_URL}
+
+2. リポジトリをチェックアウトして、ローカルで再現確認する
+   \`\`\`bash
+   git checkout ${TARGET_BRANCH}
+   \`\`\`
+
+3. エラーの原因を修正する
+
+4. 必要に応じてテストを実行して修正を確認する
+
+5. \`${TARGET_BRANCH}\` ブランチをターゲットとしたPRを作成する"
+
+        # タスク説明を一時ファイルに保存
+        TASK_FILE=$(mktemp)
+        echo "$TASK_DESCRIPTION" > "$TASK_FILE"
+
+        # gh agent-task create でエージェントタスクを作成
+        echo "::notice::エージェントタスクを作成しています (base: ${TARGET_BRANCH})..."
+        gh agent-task create \
+          --base "${TARGET_BRANCH}" \
+          --repo "${{ github.repository }}" \
+          -F "$TASK_FILE"
+
+        # 一時ファイルを削除
+        rm -f "$TASK_FILE"
+
+        echo "::notice::エージェントタスクを作成しました"
