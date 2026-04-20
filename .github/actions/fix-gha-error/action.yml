@@ -145,7 +145,7 @@ runs:
         cat >>"$TASK_FILE" <<'EOF'
            ```bash
         EOF
-        echo "   git checkout ${TARGET_BRANCH}" >>"$TASK_FILE"
+        printf '   git checkout %s\n' "${TARGET_BRANCH}" >>"$TASK_FILE"
         cat >>"$TASK_FILE" <<'EOF'
            ```
 
