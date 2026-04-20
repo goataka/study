@@ -1,81 +1,32 @@
-# Fix GHA Error アクションの使用例ワークフロー
-# このワークフローは、コンポジットアクションの使い方を示すサンプルです
+# Fix GHA Error ワークフロー
+# 監視対象のワークフローが失敗で完了した場合に発動し、Copilotエージェントタスクを作成する
 
-name: Example - Fix GHA Error
+name: Fix GHA Error
 
 on:
-  workflow_dispatch:  # 手動実行用
-  pull_request:
-    paths:
-      - ".github/actions/fix-gha-error/**"
-  push:
-    paths:
-      - ".github/actions/fix-gha-error/**"
-    branches:
-      - main
+  workflow_run:
+    # ここに監視するワークフロー名を列挙する（各ワークフローの name: フィールドと完全一致が必要）
+    workflows:
+      - "CI"
+      - "Deploy to GitHub Pages"
+    types:
+      - completed
 
 jobs:
-  example-job:
-    name: サンプルジョブ（fix-gha-error デモ）
+  fix-error:
+    name: Copilotエージェントタスクを作成
     runs-on: ubuntu-latest
+    # ワークフローが失敗で完了した場合のみ実行する
+    if: github.event.workflow_run.conclusion == 'failure'
+    permissions:
+      contents: read
+      issues: write
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
 
-      - name: 成功するステップ
-        run: echo "このステップは成功します"
-
-      - name: サンプルタスク（成功）
-        run: |
-          echo "通常のタスクを実行中..."
-          echo "✅ タスク完了"
-
-      # 注意: このステップは意図的にコメントアウトしています
-      # 実際にテストする場合は、以下のコメントを外してください
-      # - name: 意図的に失敗させるステップ（テスト用）
-      #   run: |
-      #     echo "❌ このステップは失敗します"
-      #     exit 1
-
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
+      - name: Copilotエージェントタスクを作成
         uses: ./.github/actions/fix-gha-error
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "example-job"
-          error-context: "これはfix-gha-errorアクションのデモ実行です"
-
-  # 実際の使用例: テストジョブ
-  test-example:
-    name: テストの例
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: quiz
-    steps:
-      - name: コードのチェックアウト
-        uses: actions/checkout@v4
-
-      - name: Node.js のセットアップ
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: "npm"
-          cache-dependency-path: quiz/package-lock.json
-
-      - name: 依存関係のインストール
-        run: npm ci
-
-      - name: テスト実行
-        run: npm test
-
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
-        uses: ./.github/actions/fix-gha-error
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "test-example"

@@ -5,43 +5,46 @@ GitHub Actionsのワークフローがエラーになった場合に、`gh agent
 ## 機能
 
 - **エージェントタスクの自動作成**: `gh` CLIを使用してCopilotエージェントタスクを直接作成し、自動的に修正PRを作成
+- **`workflow_run`イベント連携**: 他のワークフローが失敗で完了したときに発動
 - **ターゲットブランチの自動判定**:
   - PRベースの実行: 元のPRのブランチをターゲットにする
-  - Pushベースの実行: デフォルトブランチ（main）をターゲットにする
-- **詳細なエラー情報**: ワークフロー名、ジョブ名、コミット情報、実行ログURLを自動収集
+  - ブランチベースの実行: 失敗したワークフローの`head_branch`をターゲットにする
+- **詳細なエラー情報**: ワークフロー名、コミット情報、実行ログURLを自動収集
 
 ## 使用方法
 
 ### 基本的な使い方
 
-```yaml
-- name: エラー時にCopilotに修正を依頼
-  if: failure()
-  uses: ./.github/actions/fix-gha-error
-  with:
-    github-token: ${{ secrets.GITHUB_TOKEN }}
-    copilot-token: ${{ secrets.COPILOT_TOKEN }}
-    workflow-name: ${{ github.workflow }}
-    job-name: "ジョブ名"
-```
-
-### エラー詳細情報を含める場合
+このアクションは `workflow_run` イベントと組み合わせて使用します。
+監視するワークフロー名はトリガー側の `workflows:` で指定します。
 
 ```yaml
-- name: テスト実行
-  id: test
-  run: npm test
-  continue-on-error: true
+name: Fix GHA Error
 
-- name: エラー時にCopilotに修正を依頼
-  if: steps.test.outcome == 'failure'
-  uses: ./.github/actions/fix-gha-error
-  with:
-    github-token: ${{ secrets.GITHUB_TOKEN }}
-    copilot-token: ${{ secrets.COPILOT_TOKEN }}
-    workflow-name: ${{ github.workflow }}
-    job-name: "テスト実行"
-    error-context: ${{ steps.test.outputs.error }}
+on:
+  workflow_run:
+    # 監視するワークフロー名をここに列挙する
+    workflows:
+      - "CI"
+      - "Deploy to GitHub Pages"
+    types:
+      - completed
+
+jobs:
+  fix-error:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'failure'
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: エラー時にCopilotに修正を依頼
+        uses: ./.github/actions/fix-gha-error
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          copilot-token: ${{ secrets.COPILOT_TOKEN }}
 ```
 
 ## Inputs
@@ -50,35 +53,37 @@ GitHub Actionsのワークフローがエラーになった場合に、`gh agent
 |------|------|-----------|------|
 | `github-token` | ✅ | - | GitHub認証用トークン（`GITHUB_TOKEN`） |
 | `copilot-token` | ✅ | - | Copilotエージェント用トークン（`COPILOT_TOKEN`） |
-| `workflow-name` | ✅ | - | 失敗したワークフロー名（`${{ github.workflow }}`を推奨） |
-| `job-name` | ✅ | - | 失敗したジョブ名 |
 | `error-context` | ❌ | `""` | エラーの詳細情報（オプション） |
 
 ## 動作の詳細
 
+### トリガー条件
+
+このアクションは `workflow_run` イベントで発動します。監視するワークフロー名と `if: github.event.workflow_run.conclusion == 'failure'` 条件をワークフロー側で指定してください。
+
 ### ターゲットブランチの判定
 
-このアクションは、ワークフローの実行タイプに応じて適切なターゲットブランチを自動判定します：
+このアクションは、失敗したワークフロー実行に関連するPRを自動検出してターゲットブランチを判定します：
 
-#### PRベースの実行（`pull_request`イベント）
+#### PRベースの実行
 
-- ターゲット: 元のPRのブランチ（`github.head_ref`）
+- ターゲット: 関連するPRのhead branch
 - エージェントタスク: PR番号とブランチ名を含む
 - 修正PR: 元のPRブランチをターゲットにする
 
-#### Pushベースの実行（`push`イベント）
+#### ブランチベースの実行
 
-- ターゲット: デフォルトブランチ（`main`または`master`）
-- エージェントタスク: デフォルトブランチをターゲットにする
-- 修正PR: デフォルトブランチをターゲットにする
+- ターゲット: 失敗したワークフローの `head_branch`
+- エージェントタスク: ブランチ名を含む
+- 修正PR: そのブランチをターゲットにする
 
 ### 作成されるエージェントタスク
 
 `gh agent-task create` コマンドを使用してエージェントタスクを作成します。タスクには以下の情報が含まれます：
 
-- **ベースブランチ**: ターゲットブランチ（PRブランチまたはデフォルトブランチ）
+- **ベースブランチ**: ターゲットブランチ
 - **タスク説明**:
-  - ワークフロー名とジョブ名
+  - ワークフロー名
   - コミット情報
   - CIログURL
   - PR情報（PRベースの場合）
@@ -97,89 +102,40 @@ GitHub Actionsのワークフローがエラーになった場合に、`gh agent
 4. Value: あなたのCopilot Token
 5. `Add secret` をクリック
 
-### 2. ワークフローでの使用
+### 2. ワークフローの作成
 
-既存のワークフローに以下のステップを追加します：
-
-```yaml
-jobs:
-  your-job:
-    runs-on: ubuntu-latest
-    steps:
-      # ... 既存のステップ ...
-
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
-        uses: ./.github/actions/fix-gha-error
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "your-job"
-```
-
-## 実装例
-
-### CI ワークフローでの使用
+監視したいワークフロー名を `workflows:` に列挙した専用ワークフローを作成します：
 
 ```yaml
-name: CI
+name: Fix GHA Error
 
 on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
+  workflow_run:
+    workflows:
+      - "CI"
+      - "Deploy to GitHub Pages"
+    types:
+      - completed
 
 jobs:
-  test:
+  fix-error:
     runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'failure'
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: テスト実行
-        run: npm test
-
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
-        uses: ./.github/actions/fix-gha-error
+      - uses: ./.github/actions/fix-gha-error
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "test"
-```
-
-### デプロイワークフローでの使用
-
-```yaml
-name: Deploy
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: デプロイ実行
-        run: ./deploy.sh
-
-      - name: エラー時にCopilotに修正を依頼
-        if: failure()
-        uses: ./.github/actions/fix-gha-error
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
-          workflow-name: ${{ github.workflow }}
-          job-name: "deploy"
 ```
 
 ## 参考資料
 
 - [Composite Actionsの作成](https://docs.github.com/ja/actions/creating-actions/creating-a-composite-action)
 - [GitHub Actions コンテキスト](https://docs.github.com/ja/actions/learn-github-actions/contexts)
+- [workflow_runイベント](https://docs.github.com/ja/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#workflow_run)
 - [Qiitaの参考記事](https://qiita.com/s0ukada025/items/ab4308b2dbd833298be9)
