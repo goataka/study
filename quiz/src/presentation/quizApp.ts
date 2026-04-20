@@ -33,7 +33,138 @@ export class QuizApp {
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
     this.setupEventListeners();
+    this.buildCategoryTree();
     this.updateStartScreen();
+  }
+
+  private buildCategoryTree(): void {
+    const treeContainer = document.querySelector(".subject-tree");
+    if (!treeContainer) return;
+
+    treeContainer.innerHTML = "";
+
+    const subjects = [
+      { id: "all", name: "すべて", icon: "📋" },
+      { id: "english", name: "英語", icon: "📚" },
+      { id: "math", name: "数学", icon: "🔢" },
+    ];
+
+    subjects.forEach((subject) => {
+      const hasChildren = subject.id !== "all";
+      const categories = hasChildren
+        ? this.useCase.getCategoriesForSubject(subject.id)
+        : {};
+
+      const item = document.createElement("div");
+      item.className = "tree-item";
+      item.dataset.subject = subject.id;
+
+      const childrenId = `tree-children-${subject.id}`;
+
+      const header = document.createElement("div");
+      header.className = "tree-node-header";
+      header.setAttribute("role", "button");
+      header.setAttribute("tabindex", "0");
+
+      if (hasChildren) {
+        const toggle = document.createElement("span");
+        toggle.className = "tree-toggle";
+        toggle.textContent = "▶";
+        toggle.setAttribute("aria-hidden", "true");
+        header.appendChild(toggle);
+        header.setAttribute("aria-expanded", "false");
+        header.setAttribute("aria-controls", childrenId);
+      }
+
+      const label = document.createElement("span");
+      label.className = "tree-node-label";
+      label.textContent = `${subject.icon} ${subject.name}`;
+      header.appendChild(label);
+
+      const stats = document.createElement("span");
+      stats.className = "tree-node-stats";
+      header.appendChild(stats);
+
+      item.appendChild(header);
+
+      if (hasChildren && Object.keys(categories).length > 0) {
+        const children = document.createElement("div");
+        children.className = "tree-children hidden";
+        children.id = childrenId;
+
+        for (const [categoryId, categoryName] of Object.entries(categories)) {
+          const catItem = document.createElement("div");
+          catItem.className = "tree-item category-node";
+          catItem.dataset.subject = subject.id;
+          catItem.dataset.category = categoryId;
+
+          const catHeader = document.createElement("div");
+          catHeader.className = "tree-node-header";
+          catHeader.setAttribute("role", "button");
+          catHeader.setAttribute("tabindex", "0");
+
+          const catLabel = document.createElement("span");
+          catLabel.className = "tree-node-label";
+          catLabel.textContent = categoryName;
+          catHeader.appendChild(catLabel);
+
+          const catStats = document.createElement("span");
+          catStats.className = "tree-node-stats";
+          catHeader.appendChild(catStats);
+
+          catItem.appendChild(catHeader);
+          children.appendChild(catItem);
+        }
+
+        item.appendChild(children);
+      }
+
+      treeContainer.appendChild(item);
+    });
+
+    // イベントリスナーをツリーアイテムに設定
+    const treeItems = treeContainer.querySelectorAll(".tree-item");
+    treeItems.forEach((node) => {
+      const el = node as HTMLElement;
+      const nodeHeader = el.querySelector(":scope > .tree-node-header") as HTMLElement | null;
+      if (!nodeHeader) return;
+
+      const handleActivate = (e: Event): void => {
+        e.stopPropagation();
+        const subject = el.dataset.subject || "all";
+        const category = el.dataset.category;
+
+        // 教科ノード（カテゴリでない）の場合は展開/折りたたみをトグル
+        if (!category && subject !== "all") {
+          el.classList.toggle("expanded");
+          const isExpanded = el.classList.contains("expanded");
+          nodeHeader.setAttribute("aria-expanded", String(isExpanded));
+          const childrenEl = el.querySelector(":scope > .tree-children");
+          childrenEl?.classList.toggle("hidden");
+        }
+
+        // アクティブ状態を更新
+        treeItems.forEach((t) => t.classList.remove("active"));
+        el.classList.add("active");
+
+        // フィルターを更新
+        this.filter.subject = subject;
+        this.filter.category = category ?? "all";
+        this.updateStartScreen();
+      };
+
+      nodeHeader.addEventListener("click", handleActivate);
+      nodeHeader.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleActivate(e);
+        }
+      });
+    });
+
+    // 初期状態で「すべて」を選択
+    const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
+    allNode?.classList.add("active");
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -47,45 +178,12 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
-
-    const subjectFilter = document.getElementById("subjectFilter") as HTMLSelectElement | null;
-    const categoryFilter = document.getElementById("categoryFilter") as HTMLSelectElement | null;
-
-    subjectFilter?.addEventListener("change", (e) => {
-      this.filter.subject = (e.target as HTMLSelectElement).value;
-      this.filter.category = "all";
-      this.updateCategoryFilter();
-      this.updateStartScreen();
-    });
-
-    categoryFilter?.addEventListener("change", (e) => {
-      this.filter.category = (e.target as HTMLSelectElement).value;
-      this.updateStartScreen();
-    });
-  }
-
-  // ─── フィルター ────────────────────────────────────────────────────────────
-
-  private updateCategoryFilter(): void {
-    const categoryFilter = document.getElementById("categoryFilter") as HTMLSelectElement | null;
-    if (!categoryFilter) return;
-
-    categoryFilter.innerHTML = '<option value="all">すべてのカテゴリ</option>';
-
-    if (this.filter.subject !== "all") {
-      const categories = this.useCase.getCategoriesForSubject(this.filter.subject);
-      for (const [categoryId, categoryName] of Object.entries(categories)) {
-        const option = document.createElement("option");
-        option.value = categoryId;
-        option.textContent = categoryName;
-        categoryFilter.appendChild(option);
-      }
-    }
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
 
   private updateStartScreen(): void {
+    this.updateSubjectStats();
     const statsInfo = document.getElementById("statsInfo");
     const retryBtn = document.getElementById("startRetryBtn") as HTMLButtonElement | null;
     if (!statsInfo || !retryBtn) return;
@@ -99,6 +197,48 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
+  }
+
+  private updateSubjectStats(): void {
+    // 全問題を1回だけ走査して subject/category ごとの統計を集計する
+    const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
+    const wrongSet = new Set(this.useCase.wrongQuestionIds);
+
+    const statsMap = new Map<string, { total: number; wrong: number }>();
+    const addStat = (key: string, isWrong: boolean): void => {
+      const s = statsMap.get(key) ?? { total: 0, wrong: 0 };
+      s.total++;
+      if (isWrong) s.wrong++;
+      statsMap.set(key, s);
+    };
+
+    for (const q of allQuestions) {
+      const isWrong = wrongSet.has(q.id);
+      addStat("all::all", isWrong);
+      addStat(`${q.subject}::all`, isWrong);
+      addStat(`${q.subject}::${q.category}`, isWrong);
+    }
+
+    // DOM を一括更新
+    const treeItems = document.querySelectorAll(".tree-item[data-subject]");
+    treeItems.forEach((node) => {
+      const el = node as HTMLElement;
+      const subject = el.dataset.subject || "all";
+      const category = el.dataset.category ?? "all";
+      const key = `${subject}::${category}`;
+      const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
+
+      const statsEl = el.querySelector(":scope > .tree-node-header > .tree-node-stats");
+      if (!statsEl) return;
+
+      if (stat.total === 0) {
+        statsEl.textContent = "";
+      } else if (stat.wrong > 0) {
+        statsEl.textContent = `${stat.wrong}/${stat.total}`;
+      } else {
+        statsEl.textContent = `${stat.total}問`;
+      }
+    });
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────

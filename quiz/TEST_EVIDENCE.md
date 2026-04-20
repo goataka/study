@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 16:12:35 JST |
+| **最終更新** | 2026-04-20 19:40:28 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `8360bea` |
-| **コミットメッセージ** | Merge branch 'main' into claude/fix-quiz-answer-position |
+| **コミット** | `6170260` |
+| **コミットメッセージ** | Merge branch 'main' into claude/change-layout-explorer-navigation |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `f1ecba519267723a807e1c28074a4d7bb7d33b238bea2fd39f4c7bb2d3fdd961` |
+| `test-results.json` | `cc2bef851ac1ef089f4686700dc0890d7ea763f011a847444c8718e225fd3734` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 31 / 31 |
-| テストケース（合格 / 合計） | 80 / 80 |
+| テストスイート（合格 / 合計） | 32 / 32 |
+| テストケース（合格 / 合計） | 89 / 89 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.13s |
+| 実行時間 | 0.30s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -148,13 +148,22 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
-### ✅ `src/presentation/quizApp.test.ts` (3/3)
+### ✅ `src/presentation/quizApp.test.ts` (12/12)
 
 | 結果 | テスト名 |
 |------|---------|
 | ✅ | QuizApp — 初期化仕様 > DOM が揃っていればエラーなしでインスタンス化できる |
 | ✅ | QuizApp — 初期化仕様 > 初期状態では「間違えた問題」ボタンが無効化されている |
 | ✅ | QuizApp — 問題ロード後の仕様 > 問題のロードが完了したら statsInfo に問題数が表示される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 問題ロード後にツリーに教科ノード（すべて・英語・数学）が3件描画される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 問題ロード後にカテゴリノードが描画される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードのヘッダーに role=button と tabindex=0 が設定されている |
+| ✅ | QuizApp — カテゴリツリー仕様 > 展開可能な教科ノードには aria-controls が設定されている |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると statsInfo がその教科の問題数に更新される |
+| ✅ | QuizApp — カテゴリツリー仕様 > カテゴリノードをクリックすると statsInfo がそのカテゴリの問題数に更新される |
+| ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
+| ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
+| ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
 
 ---
 
