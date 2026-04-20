@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 13:19:37 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `f4f2763` |
-| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
+| **最終更新** | 2026-04-20 13:36:00 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `b9b279a` |
+| **コミットメッセージ** | Add collapsible category tree to left navigation panel |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `154421aec9fd07a3988e3f498b0a1da2db5dbe529f1a8babaa433a506f32021b` |
+| `test-results.json` | `e67cd209da41898a3a4e0432bbc8bc700cdc9e6af3fc314d15af1df2eaff8063` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 30 / 30 |
 | テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.14s |
+| 実行時間 | 0.17s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
