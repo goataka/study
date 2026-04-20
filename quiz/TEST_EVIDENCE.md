@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 08:30:36 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `7b2af9d` |
-| **コミットメッセージ** | Add quiz navigation from content pages with URL parameter filtering |
+| **最終更新** | 2026-04-21 08:32:26 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `0d0a32a` |
+| **コミットメッセージ** | Merge origin/main: resolve conflicts and update test evidence |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `d81f0a0401f152aa2ea381877dd2808549859541ac6554642d5acff499a9fa75` |
+| `test-results.json` | `2c4fe4a051de599b953024845091139aef1e834f24cf195bec064f4eda09acc5` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.57s |
+| 実行時間 | 0.53s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
