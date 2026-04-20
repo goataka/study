@@ -54,7 +54,7 @@
 | ✅ | QuizUseCase — 採点・進捗保存仕様 > 正解した問題は wrongIds から除かれる |
 | ✅ | QuizUseCase — 採点・進捗保存仕様 > 不正解の問題は wrongIds に追加される |
 
-### ✅ `src/domain/question.test.ts` (13/13)
+### ✅ `src/domain/question.test.ts` (19/19)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -71,6 +71,12 @@
 | ✅ | validateQuestionFile — 問題ファイル検証仕様 > correct が範囲外の場合に拒否する |
 | ✅ | expandQuestions — 問題展開仕様 > 各問題にメタ情報（subject, category など）が付加される |
 | ✅ | expandQuestions — 問題展開仕様 > 元の問題フィールドが保持される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 元の問題を変更せず、同じ要素数の選択肢を返す |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > すべての選択肢が保持される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解のインデックスが正しく更新される |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 同じIDの問題は常に同じシャッフル結果を返す（決定論的） |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 異なるIDの問題は異なるシャッフル結果を返す |
+| ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解が最後の位置にある場合も正しくシャッフルされる |
 
 ### ✅ `src/domain/quizSession.test.ts` (18/18)
 

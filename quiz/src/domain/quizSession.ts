@@ -4,6 +4,7 @@
  */
 
 import type { Question } from "./question";
+import { shuffleChoices } from "./question";
 
 export type QuizMode = "random" | "retry";
 
@@ -27,7 +28,8 @@ export class QuizSession {
     if (questions.length === 0) {
       throw new Error("QuizSession requires at least one question");
     }
-    this._questions = [...questions];
+    // 選択肢をシャッフルして保存（問題IDに基づく決定論的シャッフル）
+    this._questions = questions.map(q => shuffleChoices(q));
   }
 
   get questions(): Question[] {
