@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 14:13:16 JST |
+| **最終更新** | 2026-04-20 16:12:35 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `1977588` |
-| **コミットメッセージ** | refactor: Rename example workflow to production fix-gha-error.yml |
+| **コミット** | `8360bea` |
+| **コミットメッセージ** | Merge branch 'main' into claude/fix-quiz-answer-position |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `84047dac76fd39c76117f7279d8569ba95ed2eab06767112f2c8e2ab359cf4bc` |
+| `test-results.json` | `f1ecba519267723a807e1c28074a4d7bb7d33b238bea2fd39f4c7bb2d3fdd961` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 31 / 31 |
 | テストケース（合格 / 合計） | 80 / 80 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.12s |
+| 実行時間 | 0.13s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
