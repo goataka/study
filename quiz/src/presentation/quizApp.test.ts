@@ -188,7 +188,8 @@ describe("QuizApp — カテゴリツリー仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const headers = document.querySelectorAll(".tree-node-header");
+    // 教科・カテゴリノードのヘッダーのみを対象とする（問題ノードは除く）
+    const headers = document.querySelectorAll(".tree-node-header:not(.question-header)");
     headers.forEach((h) => {
       expect(h.getAttribute("role")).toBe("button");
       expect(h.getAttribute("tabindex")).toBe("0");

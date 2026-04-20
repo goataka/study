@@ -103,6 +103,13 @@ export class QuizApp {
           catHeader.setAttribute("role", "button");
           catHeader.setAttribute("tabindex", "0");
 
+          // カテゴリにもトグルボタンを追加
+          const catToggle = document.createElement("span");
+          catToggle.className = "tree-toggle";
+          catToggle.textContent = "▶";
+          catToggle.setAttribute("aria-hidden", "true");
+          catHeader.appendChild(catToggle);
+
           const catLabel = document.createElement("span");
           catLabel.className = "tree-node-label";
           catLabel.textContent = categoryName;
@@ -113,6 +120,11 @@ export class QuizApp {
           catHeader.appendChild(catStats);
 
           catItem.appendChild(catHeader);
+
+          // カテゴリの問題リストを追加
+          const questionList = this.buildQuestionList(subject.id, categoryId);
+          catItem.appendChild(questionList);
+
           children.appendChild(catItem);
         }
 
@@ -134,8 +146,8 @@ export class QuizApp {
         const subject = el.dataset.subject || "all";
         const category = el.dataset.category;
 
-        // 教科ノード（カテゴリでない）の場合は展開/折りたたみをトグル
-        if (!category && subject !== "all") {
+        // 教科ノードまたはカテゴリノードの展開/折りたたみをトグル
+        if (subject !== "all") {
           el.classList.toggle("expanded");
           const isExpanded = el.classList.contains("expanded");
           nodeHeader.setAttribute("aria-expanded", String(isExpanded));
@@ -165,6 +177,51 @@ export class QuizApp {
     // 初期状態で「すべて」を選択
     const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
     allNode?.classList.add("active");
+  }
+
+  private buildQuestionList(subject: string, category: string): HTMLElement {
+    const questionList = document.createElement("div");
+    questionList.className = "tree-children question-list hidden";
+    questionList.id = `questions-${subject}-${category}`;
+
+    const questions = this.useCase.getFilteredQuestions({ subject, category });
+    const wrongSet = new Set(this.useCase.wrongQuestionIds);
+    const correctSet = new Set(this.useCase.correctQuestionIds);
+
+    questions.forEach((question, index) => {
+      const questionItem = document.createElement("div");
+      questionItem.className = "tree-item question-item";
+      questionItem.dataset.questionId = question.id;
+
+      const questionHeader = document.createElement("div");
+      questionHeader.className = "tree-node-header question-header";
+
+      // 状態アイコン
+      const statusIcon = document.createElement("span");
+      statusIcon.className = "question-status-icon";
+      if (wrongSet.has(question.id)) {
+        statusIcon.textContent = "✗";
+        statusIcon.classList.add("wrong");
+      } else if (correctSet.has(question.id)) {
+        statusIcon.textContent = "✓";
+        statusIcon.classList.add("correct");
+      } else {
+        statusIcon.textContent = "○";
+        statusIcon.classList.add("unattempted");
+      }
+      questionHeader.appendChild(statusIcon);
+
+      // 問題番号とテキスト
+      const questionLabel = document.createElement("span");
+      questionLabel.className = "tree-node-label question-label";
+      questionLabel.textContent = `${index + 1}. ${question.question}`;
+      questionHeader.appendChild(questionLabel);
+
+      questionItem.appendChild(questionHeader);
+      questionList.appendChild(questionItem);
+    });
+
+    return questionList;
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -371,6 +428,9 @@ export class QuizApp {
           ? `間違えた問題だけ (${wrongCount}問)`
           : "間違えた問題だけ";
     }
+
+    // ツリーを再構築して状態を更新
+    this.buildCategoryTree();
 
     this.showScreen("result");
   }

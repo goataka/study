@@ -13,12 +13,14 @@ export type { QuizMode, QuizFilter, AnswerResult };
 export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
+  private correctIds: string[];
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
     private readonly progressRepo: IProgressRepository
   ) {
     this.wrongIds = this.progressRepo.loadWrongIds();
+    this.correctIds = this.progressRepo.loadCorrectIds();
   }
 
   async initialize(): Promise<void> {
@@ -66,17 +68,30 @@ export class QuizUseCase {
 
     for (const r of results) {
       if (r.isCorrect) {
+        // 正解の場合：wrongIdsから削除し、correctIdsに追加
         this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
-      } else if (!this.wrongIds.includes(r.question.id)) {
-        this.wrongIds.push(r.question.id);
+        if (!this.correctIds.includes(r.question.id)) {
+          this.correctIds.push(r.question.id);
+        }
+      } else {
+        // 不正解の場合：correctIdsから削除し、wrongIdsに追加
+        this.correctIds = this.correctIds.filter((id) => id !== r.question.id);
+        if (!this.wrongIds.includes(r.question.id)) {
+          this.wrongIds.push(r.question.id);
+        }
       }
     }
 
     this.progressRepo.saveWrongIds(this.wrongIds);
+    this.progressRepo.saveCorrectIds(this.correctIds);
     return results;
   }
 
   get wrongQuestionIds(): string[] {
     return [...this.wrongIds];
+  }
+
+  get correctQuestionIds(): string[] {
+    return [...this.correctIds];
   }
 }

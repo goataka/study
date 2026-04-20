@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 19:57:00 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `675a941` |
-| **コミットメッセージ** | Initial plan |
+| **最終更新** | 2026-04-20 20:05:50 JST |
+| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
+| **コミット** | `a3256e0` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `d1ec9d11303b61085178b89a5e0dfc987d95cc378c6d18dd32253c8db7fad29d` |
+| `test-results.json` | `e5cec560e158d745e23055eefa60ed67cf25fd29c9c8debf48fe2aa9b56e49c0` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 32 / 32 |
-| テストケース（合格 / 合計） | 89 / 89 |
+| テストスイート（合格 / 合計） | 33 / 33 |
+| テストケース（合格 / 合計） | 96 / 96 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.35s |
+| 実行時間 | 0.29s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -101,7 +101,7 @@
 | ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
 | ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
 
-### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (6/6)
+### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (13/13)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -111,6 +111,13 @@
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 上書き保存が正しく機能する |
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 別のインスタンスからも同じデータを読み込める（永続化確認） |
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > localStorageに不正なJSONが入っていてもロード時に空配列を返す |
+| ✅ | LocalStorageProgressRepository — 正解した問題ID永続化仕様 > 初回ロード時は空配列を返す |
+| ✅ | LocalStorageProgressRepository — 正解した問題ID永続化仕様 > 保存したIDリストを正しく読み込める |
+| ✅ | LocalStorageProgressRepository — 正解した問題ID永続化仕様 > 空配列を保存した後は空配列を返す |
+| ✅ | LocalStorageProgressRepository — 正解した問題ID永続化仕様 > 上書き保存が正しく機能する |
+| ✅ | LocalStorageProgressRepository — 正解した問題ID永続化仕様 > 別のインスタンスからも同じデータを読み込める（永続化確認） |
+| ✅ | LocalStorageProgressRepository — 正解した問題ID永続化仕様 > localStorageに不正なJSONが入っていてもロード時に空配列を返す |
+| ✅ | LocalStorageProgressRepository — 正解した問題ID永続化仕様 > wrongIdsとcorrectIdsは独立して管理される |
 
 ### ✅ `src/infrastructure/questionData.test.ts` (17/17)
 

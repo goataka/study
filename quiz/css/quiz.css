@@ -178,6 +178,50 @@ header nav a:hover {
     display: none;
 }
 
+/* 問題リスト */
+.question-list {
+    margin-left: 12px;
+    border-left: 2px solid #d0d7de;
+}
+
+.question-item {
+    font-size: 13px;
+}
+
+.question-header {
+    padding: 5px 8px;
+    gap: 8px;
+}
+
+.question-label {
+    font-weight: 400;
+    font-size: 13px;
+    color: #57606a;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+}
+
+/* 状態アイコン */
+.question-status-icon {
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 16px;
+    text-align: center;
+}
+
+.question-status-icon.correct {
+    color: #1a7f37;
+}
+
+.question-status-icon.wrong {
+    color: #cf222e;
+}
+
+.question-status-icon.unattempted {
+    color: #8c959f;
+}
+
 /* 右側: クイズパネル */
 .quiz-panel {
     background: white;

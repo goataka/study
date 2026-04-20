@@ -30,18 +30,29 @@ class StubQuestionRepository implements IQuestionRepository {
 }
 
 class StubProgressRepository implements IProgressRepository {
-  private ids: string[];
-  constructor(initialIds: string[] = []) {
-    this.ids = [...initialIds];
+  private wrongIds: string[];
+  private correctIds: string[];
+  constructor(initialWrongIds: string[] = [], initialCorrectIds: string[] = []) {
+    this.wrongIds = [...initialWrongIds];
+    this.correctIds = [...initialCorrectIds];
   }
   loadWrongIds(): string[] {
-    return [...this.ids];
+    return [...this.wrongIds];
   }
   saveWrongIds(ids: string[]): void {
-    this.ids = [...ids];
+    this.wrongIds = [...ids];
   }
-  getStoredIds(): string[] {
-    return [...this.ids];
+  loadCorrectIds(): string[] {
+    return [...this.correctIds];
+  }
+  saveCorrectIds(ids: string[]): void {
+    this.correctIds = [...ids];
+  }
+  getStoredWrongIds(): string[] {
+    return [...this.wrongIds];
+  }
+  getStoredCorrectIds(): string[] {
+    return [...this.correctIds];
   }
 }
 
@@ -131,7 +142,7 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
     session.selectAnswer(0, session.questions[0]!.correct); // 正解
     useCase.submitSession(session);
 
-    expect(progressRepo.getStoredIds()).not.toContain("q1");
+    expect(progressRepo.getStoredWrongIds()).not.toContain("q1");
   });
 
   it("不正解の問題は wrongIds に追加される", async () => {
@@ -147,6 +158,6 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
     session.selectAnswer(0, wrongIndex); // 不正解
     useCase.submitSession(session);
 
-    expect(progressRepo.getStoredIds()).toContain("q1");
+    expect(progressRepo.getStoredWrongIds()).toContain("q1");
   });
 });
