@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 12:23:27 JST |
+| **最終更新** | 2026-04-20 12:32:08 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `58ead6d` |
-| **コミットメッセージ** | Initial plan |
+| **コミット** | `cca84a1` |
+| **コミットメッセージ** | Separate English content into pronunciation and grammar categories |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `9d2ae13821092c08a9c666e9dddb0ad596aafa368cc0a7d2447c06f2a9e20061` |
+| `test-results.json` | `d30ad2b251d1b7d1a1a8030dbaf648339c68c28ccbe37c2dfb9ffbb07cad9f7f` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 30 / 30 |
 | テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.15s |
+| 実行時間 | 0.17s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
