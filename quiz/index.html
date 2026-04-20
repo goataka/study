@@ -26,6 +26,10 @@
 
         <!-- 右側: クイズ開始パネル -->
         <main class="quiz-panel">
+          <div class="user-name-section">
+            <label for="userNameInput">名前：</label>
+            <input type="text" id="userNameInput" placeholder="名前を入力してください" maxlength="20">
+          </div>
           <h2>クイズモード選択</h2>
           <div class="button-group">
             <button id="startRandomBtn" class="primary-btn">ランダム10問</button>
@@ -38,6 +42,9 @@
 
     <!-- クイズ画面 -->
     <div id="quizScreen" class="screen hidden">
+      <div class="user-info">
+        <span id="quizUserName"></span>
+      </div>
       <div class="progress-bar">
         <div id="progressFill" class="progress-fill"></div>
       </div>
@@ -56,6 +63,9 @@
 
     <!-- 結果画面 -->
     <div id="resultScreen" class="screen hidden">
+      <div class="user-info">
+        <span id="resultUserName"></span>
+      </div>
       <h2>クイズ結果</h2>
       <div id="scoreDisplay" class="score-display"></div>
       <div id="resultDetails" class="result-details"></div>

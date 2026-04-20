@@ -14,6 +14,7 @@ export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
   private filter: QuizFilter = { subject: "all", category: "all" };
+  private userName: string = "";
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -32,9 +33,34 @@ export class QuizApp {
       console.error("問題の読み込みに失敗しました:", error);
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
+    this.loadUserName();
     this.setupEventListeners();
     this.buildCategoryTree();
     this.updateStartScreen();
+  }
+
+  private loadUserName(): void {
+    const progressRepo = new LocalStorageProgressRepository();
+    const savedName = progressRepo.loadUserName();
+    if (savedName) {
+      this.userName = savedName;
+      const input = document.getElementById("userNameInput") as HTMLInputElement | null;
+      if (input) {
+        input.value = savedName;
+      }
+    }
+  }
+
+  private saveUserName(): void {
+    const input = document.getElementById("userNameInput") as HTMLInputElement | null;
+    if (input) {
+      const name = input.value.trim();
+      if (name) {
+        this.userName = name;
+        const progressRepo = new LocalStorageProgressRepository();
+        progressRepo.saveUserName(name);
+      }
+    }
   }
 
   private buildCategoryTree(): void {
@@ -178,6 +204,10 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
+
+    // ユーザー名入力の変更を監視
+    const userNameInput = document.getElementById("userNameInput");
+    userNameInput?.addEventListener("input", () => this.saveUserName());
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -251,6 +281,7 @@ export class QuizApp {
       return;
     }
     this.showScreen("quiz");
+    this.updateUserNameDisplay("quizUserName");
     this.renderQuestion();
   }
 
@@ -373,6 +404,7 @@ export class QuizApp {
     }
 
     this.showScreen("result");
+    this.updateUserNameDisplay("resultUserName");
   }
 
   private buildResultItem(r: AnswerResult): HTMLElement {
@@ -441,6 +473,13 @@ export class QuizApp {
   }
 
   // ─── ユーティリティ ────────────────────────────────────────────────────────
+
+  private updateUserNameDisplay(elementId: string): void {
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.textContent = this.userName ? `👤 ${this.userName}` : "";
+    }
+  }
 
   private setText(id: string, text: string): void {
     const el = document.getElementById(id);
