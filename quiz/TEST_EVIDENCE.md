@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 09:47:47 JST |
+| **最終更新** | 2026-04-20 09:58:05 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `afb9403` |
-| **コミットメッセージ** | refactor: Create agent-task directly instead of Issue |
+| **コミット** | `683c113` |
+| **コミットメッセージ** | refactor: Use gh agent-task create instead of API |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `2ce51c7792ab79a2d5b8ea71cc5ebbcc52706182200e049bcca99e44fec07f68` |
+| `test-results.json` | `f30ae15faa93f17857573b85c162484505551f63be7772f3b8c59f3f9c0956d6` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 30 / 30 |
 | テストケース（合格 / 合計） | 74 / 74 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.12s |
+| 実行時間 | 0.11s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -95,6 +95,14 @@
 | ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
 | ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
 
+### ✅ `src/presentation/quizApp.test.ts` (3/3)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | QuizApp — 初期化仕様 > DOM が揃っていればエラーなしでインスタンス化できる |
+| ✅ | QuizApp — 初期化仕様 > 初期状態では「間違えた問題」ボタンが無効化されている |
+| ✅ | QuizApp — 問題ロード後の仕様 > 問題のロードが完了したら statsInfo に問題数が表示される |
+
 ### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (6/6)
 
 | 結果 | テスト名 |
@@ -141,14 +149,6 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > null を拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
-
-### ✅ `src/presentation/quizApp.test.ts` (3/3)
-
-| 結果 | テスト名 |
-|------|---------|
-| ✅ | QuizApp — 初期化仕様 > DOM が揃っていればエラーなしでインスタンス化できる |
-| ✅ | QuizApp — 初期化仕様 > 初期状態では「間違えた問題」ボタンが無効化されている |
-| ✅ | QuizApp — 問題ロード後の仕様 > 問題のロードが完了したら statsInfo に問題数が表示される |
 
 ---
 
