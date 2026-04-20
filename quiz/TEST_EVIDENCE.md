@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 16:19:18 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `2541b70` |
-| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
+| **最終更新** | 2026-04-20 19:40:28 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `6170260` |
+| **コミットメッセージ** | Merge branch 'main' into claude/change-layout-explorer-navigation |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `c5f925b4b7672ac7f31711aa1b1a3a341661a8b48cad65faf156dea5b409e835` |
+| `test-results.json` | `cc2bef851ac1ef089f4686700dc0890d7ea763f011a847444c8718e225fd3734` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 31 / 31 |
-| テストケース（合格 / 合計） | 83 / 83 |
+| テストスイート（合格 / 合計） | 32 / 32 |
+| テストケース（合格 / 合計） | 89 / 89 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.32s |
+| 実行時間 | 0.30s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
