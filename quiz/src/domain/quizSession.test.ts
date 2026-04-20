@@ -91,16 +91,22 @@ describe("QuizSession — 採点仕様", () => {
 
   it("正解数を正確に計算する", () => {
     const session = new QuizSession([q1, q2, q3]);
-    session.selectAnswer(0, 0); // correct (q1.correct=0)
-    session.selectAnswer(1, 0); // wrong  (q2.correct=1)
-    session.selectAnswer(2, 2); // correct (q3.correct=2)
+    // シャッフル後の正解インデックスを使用
+    session.selectAnswer(0, session.questions[0]!.correct); // correct
+    // 確実に不正解を選ぶ（正解と異なるインデックス）
+    const wrongIndex1 = session.questions[1]!.correct === 0 ? 1 : 0;
+    session.selectAnswer(1, wrongIndex1); // wrong
+    session.selectAnswer(2, session.questions[2]!.correct); // correct
     expect(session.score()).toBe(2);
   });
 
   it("結果に各問の正誤が含まれる", () => {
     const session = new QuizSession([q1, q2]);
-    session.selectAnswer(0, 0); // correct
-    session.selectAnswer(1, 0); // wrong
+    // シャッフル後の正解インデックスを取得して使用
+    session.selectAnswer(0, session.questions[0]!.correct); // correct
+    // 確実に不正解を選ぶ（正解と異なるインデックス）
+    const wrongIndex = session.questions[1]!.correct === 0 ? 1 : 0;
+    session.selectAnswer(1, wrongIndex); // wrong
     const results = session.getResults();
     expect(results[0]!.isCorrect).toBe(true);
     expect(results[1]!.isCorrect).toBe(false);

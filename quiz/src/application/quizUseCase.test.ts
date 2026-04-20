@@ -127,7 +127,8 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
     await useCase.initialize();
 
     const session = useCase.startSession("retry", { subject: "all", category: "all" });
-    session.selectAnswer(0, q.correct); // 正解
+    // シャッフル後の正解インデックスを使用
+    session.selectAnswer(0, session.questions[0]!.correct); // 正解
     useCase.submitSession(session);
 
     expect(progressRepo.getStoredIds()).not.toContain("q1");
@@ -141,7 +142,9 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
     await useCase.initialize();
 
     const session = useCase.startSession("random", { subject: "all", category: "all" });
-    session.selectAnswer(0, 3); // 不正解
+    // シャッフル後の正解とは異なるインデックスを選ぶ
+    const wrongIndex = session.questions[0]!.correct === 0 ? 1 : 0;
+    session.selectAnswer(0, wrongIndex); // 不正解
     useCase.submitSession(session);
 
     expect(progressRepo.getStoredIds()).toContain("q1");
