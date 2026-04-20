@@ -33,7 +33,16 @@ export class QuizApp {
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
     this.setupEventListeners();
+    this.initializeSubjectSelection();
     this.updateStartScreen();
+  }
+
+  private initializeSubjectSelection(): void {
+    // 初期状態で「すべて」を選択
+    const allSubjectItem = document.querySelector('.subject-item[data-subject="all"]');
+    if (allSubjectItem) {
+      allSubjectItem.classList.add("active");
+    }
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -48,15 +57,26 @@ export class QuizApp {
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
 
-    const subjectFilter = document.getElementById("subjectFilter") as HTMLSelectElement | null;
-    const categoryFilter = document.getElementById("categoryFilter") as HTMLSelectElement | null;
+    // エクスプローラ風の教科選択
+    const subjectItems = document.querySelectorAll(".subject-item");
+    subjectItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const subject = target.dataset.subject || "all";
 
-    subjectFilter?.addEventListener("change", (e) => {
-      this.filter.subject = (e.target as HTMLSelectElement).value;
-      this.filter.category = "all";
-      this.updateCategoryFilter();
-      this.updateStartScreen();
+        // アクティブクラスの切り替え
+        subjectItems.forEach((s) => s.classList.remove("active"));
+        target.classList.add("active");
+
+        // フィルター更新
+        this.filter.subject = subject;
+        this.filter.category = "all";
+        this.updateCategoryFilter();
+        this.updateStartScreen();
+      });
     });
+
+    const categoryFilter = document.getElementById("categoryFilter") as HTMLSelectElement | null;
 
     categoryFilter?.addEventListener("change", (e) => {
       this.filter.category = (e.target as HTMLSelectElement).value;
@@ -86,6 +106,7 @@ export class QuizApp {
   // ─── スタート画面 ──────────────────────────────────────────────────────────
 
   private updateStartScreen(): void {
+    this.updateSubjectStats();
     const statsInfo = document.getElementById("statsInfo");
     const retryBtn = document.getElementById("startRetryBtn") as HTMLButtonElement | null;
     if (!statsInfo || !retryBtn) return;
@@ -99,6 +120,32 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
+  }
+
+  private updateSubjectStats(): void {
+    const subjects = ["all", "english", "math"];
+
+    subjects.forEach((subject) => {
+      const filter: QuizFilter = { subject, category: "all" };
+      const totalCount = this.useCase.getFilteredQuestions(filter).length;
+      const wrongCount = this.useCase.getWrongCount(filter);
+
+      const subjectItem = document.querySelector(
+        `.subject-item[data-subject="${subject}"]`
+      ) as HTMLElement | null;
+      if (!subjectItem) return;
+
+      const statsEl = subjectItem.querySelector(".subject-stats");
+      if (!statsEl) return;
+
+      if (totalCount === 0) {
+        statsEl.textContent = "問題なし";
+      } else if (wrongCount > 0) {
+        statsEl.textContent = `${totalCount}問中 ${wrongCount}問が要復習`;
+      } else {
+        statsEl.textContent = `${totalCount}問`;
+      }
+    });
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
