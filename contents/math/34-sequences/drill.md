@@ -22,6 +22,6 @@
 
 ---
 
-[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=sequences)
 
 [前へ: 指数・対数](../33-exponents-logarithms/drill.md) | **数列** | [次へ: ベクトル](../35-vectors/drill.md)

@@ -19,6 +19,6 @@
 
 ---
 
-[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=addition-carry)
 
 [前へ: たし算（くり上がりなし）](../01-addition-no-carry/drill.md) | **たし算（くり上がりあり）** | [次へ: たし算（まとめ）](../03-addition-mixed/drill.md)

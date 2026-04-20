@@ -27,6 +27,6 @@
 💡 **ポイント**: √の中を素因数分解して、ペアになった数を外に出します
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=square-roots)
 
 [前へ: 確率](../27-probability/drill.md) | **平方根** | [次へ: 二次方程式](../29-quadratic-eq/drill.md)

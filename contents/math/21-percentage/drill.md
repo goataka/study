@@ -21,6 +21,6 @@
 
 ---
 
-[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=percentage)
 
 [前へ: 比](../20-ratio/drill.md) | **割合** | [次へ: 正負の数](../22-positive-negative/drill.md)

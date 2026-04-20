@@ -10,8 +10,8 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 22:40:45 JST |
-| **更新者** | GitHub Actions (CI) |
+| **最終更新** | 2026-04-20 22:40:22 JST |
+| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
 | **コミット** | `5c594bd` |
 | **コミットメッセージ** | feat: Add URL parameter support to quiz app for direct category filtering |
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `c0db8257267f8686de9a4a9c08d4fd2f34c84d506c2ea6d2c311e124b3377aa0` |
+| `test-results.json` | `acadbb387d14c9a1399fa0c31ba85e17ed595fe8758fa9b8bd70d9039bd32b07` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.59s |
+| 実行時間 | 0.43s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 

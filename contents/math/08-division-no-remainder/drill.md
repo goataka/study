@@ -19,6 +19,6 @@
 
 ---
 
-[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)
 
 [前へ: かけ算](../07-multiplication/drill.md) | **わり算（あまりなし）** | [次へ: わり算（あまりあり）](../09-division-remainder/drill.md)

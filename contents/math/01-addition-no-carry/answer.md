@@ -18,6 +18,6 @@
 💡 **ポイント**: 答えが10より小さいたし算です。指を使ったり、数を数えたりして確認しましょう
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)
 
  | **たし算（くり上がりなし）** | [次へ: たし算（くり上がりあり）](../02-addition-carry/drill.md)

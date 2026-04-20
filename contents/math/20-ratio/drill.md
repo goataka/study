@@ -17,6 +17,6 @@
 
 ---
 
-[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=ratio)
 
 [前へ: 小数のかけ算](../19-decimals-multiplication/drill.md) | **比** | [次へ: 割合](../21-percentage/drill.md)

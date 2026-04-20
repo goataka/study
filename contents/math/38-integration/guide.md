@@ -44,6 +44,6 @@
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=integration)
 
 [前へ: 微分](../37-differentiation/drill.md) | **積分** |

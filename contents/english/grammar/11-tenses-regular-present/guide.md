@@ -23,6 +23,6 @@ He `plays` games.
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-regular-present)
 
 一般動詞の現在形 | [次へ: 一般動詞の過去形](../12-tenses-regular-past/drill.md)

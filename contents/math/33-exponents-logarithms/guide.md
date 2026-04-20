@@ -44,6 +44,6 @@ log₂4 + log₂8 = log₂(4×8) = log₂32 = 5
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=exponents-logarithms)
 
 [前へ: 三角関数](../32-trigonometry/drill.md) | **指数・対数** | [次へ: 数列](../34-sequences/drill.md)

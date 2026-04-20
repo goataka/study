@@ -25,6 +25,6 @@
 💡 **ポイント**: 同じ文字の項どうしをまとめます。数字は数字で、aはaで、bはbで
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=algebraic-expressions)
 
 [前へ: 正負の数](../22-positive-negative/drill.md) | **文字式** | [次へ: 一次方程式](../24-linear-eq/drill.md)

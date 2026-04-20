@@ -48,6 +48,6 @@
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=multiplication)
 
 [前へ: ひき算（まとめ）](../06-subtraction-mixed/drill.md) | **かけ算** | [次へ: わり算（あまりなし）](../08-division-no-remainder/drill.md)

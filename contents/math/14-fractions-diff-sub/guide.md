@@ -37,6 +37,6 @@
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-diff-sub)
 
 [前へ: 分数のたし算（通分あり）](../13-fractions-diff-add/drill.md) | **分数のひき算（通分あり）** | [次へ: 分数のかけ算](../15-fractions-multiply/drill.md)

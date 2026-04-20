@@ -35,4 +35,4 @@
 
 ---
 
-[解答](answer.md) | [目次](../../README.md)
+[解答](answer.md) | [目次](../../README.md) | [クイズ](../../../quiz/index.html?subject=english&category=phonics-1)

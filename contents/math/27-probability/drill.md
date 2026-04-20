@@ -17,6 +17,6 @@
 
 ---
 
-[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=probability)
 
 [前へ: 一次関数](../26-linear-func/drill.md) | **確率** | [次へ: 平方根](../28-square-roots/drill.md)
