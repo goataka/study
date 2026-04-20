@@ -122,20 +122,25 @@ git config --get merge.ours.driver
 ### それでもコンフリクトが発生する場合
 
 1. **`.gitattributes` の確認**:
+
    ```bash
    cat .gitattributes | grep TEST_EVIDENCE
    ```
 
 2. **マージドライバーの設定確認**:
+
    ```bash
    git config merge.ours.driver
    ```
+
    出力が `true` でない場合:
+
    ```bash
    git config merge.ours.driver true
    ```
 
 3. **手動でのコンフリクト解決**:
+
    ```bash
    # 最新のエビデンスを再生成
    cd quiz
