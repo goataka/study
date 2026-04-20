@@ -10,9 +10,9 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 19:43:37 JST |
+| **最終更新** | 2026-04-20 21:22:05 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `dae244b` |
+| **コミット** | `e5abb8c` |
 | **コミットメッセージ** | Merge branch 'main' into claude/separate-content-by-pronunciation-grammar |
 
 ## 改ざん防止チェックサム
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `78583b7009b316ca25e3fcd5bf0738c700eb21f8a623a268685b4ff6d975e5e8` |
+| `test-results.json` | `644ecaa5d9b0ef3be9a4837b3d0526b9cb68ac4f349a1f676f1bcda3b9214981` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 32 / 32 |
 | テストケース（合格 / 合計） | 89 / 89 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.30s |
+| 実行時間 | 0.29s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
