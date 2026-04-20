@@ -17,4 +17,7 @@ t/dがラ行になる部分の音をカタカナで書きましょう。
 
 ---
 
-[練習に戻る](drill.md) | [目次に戻る](../../README.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [クイズ](../../quiz/index.html?subject=english&category=flapping)
+
+[前へ: リダクション](../08-reduction/answer.md) | フラッピング | [次へ: アシミレーション](../10-assimilation/answer.md)
+

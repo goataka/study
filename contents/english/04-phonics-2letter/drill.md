@@ -42,4 +42,7 @@
 
 ---
 
-[解答を見る](answer.md) | [目次に戻る](../../README.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-2)
+
+[前へ: フォニックス（1文字）](../03-phonics-1letter/drill.md) | フォニックス（2文字・マジックE） | [次へ: フォニックス（3文字）](../05-phonics-3letter/drill.md)
+

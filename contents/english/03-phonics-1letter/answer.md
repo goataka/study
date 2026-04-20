@@ -35,4 +35,7 @@
 
 ---
 
-[練習に戻る](drill.md) | [目次に戻る](../../README.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [クイズ](../../quiz/index.html?subject=english&category=phonics-1)
+
+[前へ: 50音](../02-50on/answer.md) | フォニックス（1文字） | [次へ: フォニックス（2文字・マジックE）](../04-phonics-2letter/answer.md)
+

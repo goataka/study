@@ -17,4 +17,7 @@
 
 ---
 
-[解答を見る](answer.md) | [目次に戻る](../../README.md)
+[目次](../README.md) | 練習 | [回答](answer.md) | [クイズ](../../quiz/index.html?subject=english&category=reduction)
+
+[前へ: リンキング](../07-linking/drill.md) | リダクション | [次へ: フラッピング](../09-flapping/drill.md)
+

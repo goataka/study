@@ -32,9 +32,27 @@ export class QuizApp {
       console.error("問題の読み込みに失敗しました:", error);
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
+    this.loadFilterFromURL();
     this.setupEventListeners();
     this.buildCategoryTree();
     this.updateStartScreen();
+  }
+
+  /**
+   * URL パラメータから subject と category を読み取り、フィルターを設定する。
+   * 例: ?subject=english&category=linking
+   */
+  private loadFilterFromURL(): void {
+    const params = new URLSearchParams(window.location.search);
+    const subject = params.get("subject");
+    const category = params.get("category");
+
+    if (subject) {
+      this.filter.subject = subject;
+    }
+    if (category) {
+      this.filter.category = category;
+    }
   }
 
   private buildCategoryTree(): void {
@@ -162,7 +180,50 @@ export class QuizApp {
       });
     });
 
-    // 初期状態で「すべて」を選択
+    // フィルターに基づいてノードを選択・展開
+    this.selectAndExpandTreeNode(treeContainer);
+  }
+
+  /**
+   * フィルターに基づいて、対応するツリーノードを選択して展開する。
+   */
+  private selectAndExpandTreeNode(treeContainer: Element): void {
+    const { subject, category } = this.filter;
+
+    // カテゴリが指定されている場合は、そのカテゴリノードを選択
+    if (category && category !== "all") {
+      const categoryNode = treeContainer.querySelector(
+        `.tree-item[data-subject="${subject}"][data-category="${category}"]`
+      );
+      if (categoryNode) {
+        categoryNode.classList.add("active");
+        // 親の subject ノードを展開
+        const subjectNode = treeContainer.querySelector(
+          `.tree-item[data-subject="${subject}"]:not([data-category])`
+        );
+        if (subjectNode) {
+          subjectNode.classList.add("expanded");
+          const header = subjectNode.querySelector(".tree-node-header");
+          header?.setAttribute("aria-expanded", "true");
+          const children = subjectNode.querySelector(".tree-children");
+          children?.classList.remove("hidden");
+        }
+        return;
+      }
+    }
+
+    // カテゴリが指定されていない場合は、subject ノードを選択
+    if (subject && subject !== "all") {
+      const subjectNode = treeContainer.querySelector(
+        `.tree-item[data-subject="${subject}"]:not([data-category])`
+      );
+      if (subjectNode) {
+        subjectNode.classList.add("active");
+        return;
+      }
+    }
+
+    // デフォルトは「すべて」を選択
     const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
     allNode?.classList.add("active");
   }

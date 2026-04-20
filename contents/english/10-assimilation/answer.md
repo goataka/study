@@ -17,4 +17,7 @@
 
 ---
 
-[練習に戻る](drill.md) | [目次に戻る](../../README.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [クイズ](../../quiz/index.html?subject=english&category=assimilation)
+
+[前へ: フラッピング](../09-flapping/answer.md) | アシミレーション | [次へ: 一般動詞の現在形](../11-tenses-regular-present/answer.md)
+

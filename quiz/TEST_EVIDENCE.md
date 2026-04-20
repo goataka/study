@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 19:57:32 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `7033dae` |
-| **コミットメッセージ** | Initial plan |
+| **最終更新** | 2026-04-20 20:08:44 JST |
+| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
+| **コミット** | `fa162e0` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `6d78ef11224f9e982ea3f93b3687b25dbcab61938b9148a0e538a34fe65b532b` |
+| `test-results.json` | `30efd839a86bb4907be3f0d3596df00c4a5c73e0b7b28697a29e340da9e680e4` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 32 / 32 |
-| テストケース（合格 / 合計） | 89 / 89 |
+| テストスイート（合格 / 合計） | 33 / 33 |
+| テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.28s |
+| 実行時間 | 0.22s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -148,7 +148,7 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
-### ✅ `src/presentation/quizApp.test.ts` (12/12)
+### ✅ `src/presentation/quizApp.test.ts` (16/16)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -164,6 +164,10 @@
 | ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
+| ✅ | QuizApp — URL パラメータ仕様 > URL に ?subject=english が指定されている場合、英語ノードが選択される |
+| ✅ | QuizApp — URL パラメータ仕様 > URL に ?subject=english&category=phonics-1 が指定されている場合、カテゴリノードが選択され親ノードが展開される |
+| ✅ | QuizApp — URL パラメータ仕様 > URL パラメータがない場合、デフォルトで「すべて」ノードが選択される |
+| ✅ | QuizApp — URL パラメータ仕様 > URL に存在しないカテゴリが指定されている場合、subject ノードが選択される |
 
 ---
 

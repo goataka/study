@@ -27,4 +27,7 @@
 
 ---
 
-[練習に戻る](drill.md) | [目次に戻る](../../README.md)
+[目次](../README.md) | [練習](drill.md) | 回答 | [クイズ](../../quiz/index.html?subject=english&category=phonics-3)
+
+[前へ: フォニックス（2文字・マジックE）](../04-phonics-2letter/answer.md) | フォニックス（3文字） | [次へ: リンキング・リダクション まとめ](../06-linking-reduction/answer.md)
+

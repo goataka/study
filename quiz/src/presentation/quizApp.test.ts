@@ -270,3 +270,75 @@ describe("QuizApp — カテゴリツリー仕様", () => {
     expect(statsInfo?.textContent).toContain("全5問");
   });
 });
+
+describe("QuizApp — URL パラメータ仕様", () => {
+  beforeEach(() => {
+    setupTreeDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    // URLをリセット
+    window.history.replaceState({}, "", window.location.pathname);
+  });
+
+  it("URL に ?subject=english が指定されている場合、英語ノードが選択される", async () => {
+    // URLパラメータを設定
+    window.history.replaceState({}, "", "?subject=english");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishNode = document.querySelector(
+      '.tree-item[data-subject="english"]:not([data-category])'
+    );
+    expect(englishNode?.classList.contains("active")).toBe(true);
+  });
+
+  it("URL に ?subject=english&category=phonics-1 が指定されている場合、カテゴリノードが選択され親ノードが展開される", async () => {
+    window.history.replaceState({}, "", "?subject=english&category=phonics-1");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // カテゴリノードが選択されている
+    const categoryNode = document.querySelector(
+      '.tree-item[data-subject="english"][data-category="phonics-1"]'
+    );
+    expect(categoryNode?.classList.contains("active")).toBe(true);
+
+    // 親の英語ノードが展開されている
+    const englishNode = document.querySelector(
+      '.tree-item[data-subject="english"]:not([data-category])'
+    );
+    expect(englishNode?.classList.contains("expanded")).toBe(true);
+
+    const englishHeader = englishNode?.querySelector(".tree-node-header");
+    expect(englishHeader?.getAttribute("aria-expanded")).toBe("true");
+
+    const children = englishNode?.querySelector(".tree-children");
+    expect(children?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("URL パラメータがない場合、デフォルトで「すべて」ノードが選択される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const allNode = document.querySelector('.tree-item[data-subject="all"]');
+    expect(allNode?.classList.contains("active")).toBe(true);
+  });
+
+  it("URL に存在しないカテゴリが指定されている場合、subject ノードが選択される", async () => {
+    window.history.replaceState({}, "", "?subject=english&category=nonexistent");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // カテゴリが存在しないので、subject ノード（英語）が選択される
+    const englishNode = document.querySelector('.tree-item[data-subject="english"]:not([data-category])');
+    expect(englishNode?.classList.contains("active")).toBe(true);
+  });
+});
+
