@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 16:12:35 JST |
+| **最終更新** | 2026-04-20 19:43:37 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `8360bea` |
-| **コミットメッセージ** | Merge branch 'main' into claude/fix-quiz-answer-position |
+| **コミット** | `dae244b` |
+| **コミットメッセージ** | Merge branch 'main' into claude/separate-content-by-pronunciation-grammar |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `f1ecba519267723a807e1c28074a4d7bb7d33b238bea2fd39f4c7bb2d3fdd961` |
+| `test-results.json` | `78583b7009b316ca25e3fcd5bf0738c700eb21f8a623a268685b4ff6d975e5e8` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
