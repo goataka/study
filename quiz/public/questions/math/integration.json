@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "integration",
+  "categoryName": "積分",
+  "questions": [
+    {
+      "id": "int-1",
+      "question": "∫(3x² + 2x)dx = ?",
+      "choices": [
+        "x³ + x² + C",
+        "6x + 2 + C",
+        "3x³ + 2x² + C",
+        "x³ + 2x + C"
+      ],
+      "correct": 0,
+      "explanation": "∫xⁿdx = xⁿ⁺¹/(n+1) + C。∫3x²dx = x³、∫2xdx = x²。よって x³ + x² + C"
+    },
+    {
+      "id": "int-2",
+      "question": "∫(2x³ - 4x)dx = ?",
+      "choices": [
+        "(1/2)x⁴ - 2x² + C",
+        "6x² - 4 + C",
+        "2x⁴ - 4x² + C",
+        "x⁴ - 2x² + C"
+      ],
+      "correct": 0,
+      "explanation": "∫2x³dx = 2×(x⁴/4) = (1/2)x⁴、∫-4xdx = -4×(x²/2) = -2x²。よって (1/2)x⁴ - 2x² + C"
+    },
+    {
+      "id": "int-3",
+      "question": "∫(x² + 3x + 2)dx = ?",
+      "choices": [
+        "(1/3)x³ + (3/2)x² + 2x + C",
+        "2x + 3 + C",
+        "x³ + 3x² + 2x + C",
+        "(1/3)x³ + x² + 2x + C"
+      ],
+      "correct": 0,
+      "explanation": "∫x²dx = x³/3、∫3xdx = 3x²/2、∫2dx = 2x。よって (1/3)x³ + (3/2)x² + 2x + C"
+    },
+    {
+      "id": "int-4",
+      "question": "∫(4x³ + 6x²)dx = ?",
+      "choices": [
+        "x⁴ + 2x³ + C",
+        "12x² + 12x + C",
+        "4x⁴ + 6x³ + C",
+        "x⁴ + 3x³ + C"
+      ],
+      "correct": 0,
+      "explanation": "∫4x³dx = 4×(x⁴/4) = x⁴、∫6x²dx = 6×(x³/3) = 2x³。よって x⁴ + 2x³ + C"
+    },
+    {
+      "id": "int-5",
+      "question": "∫[0→2] (3x² + 2x)dx = ?",
+      "choices": [
+        "12",
+        "8",
+        "16",
+        "10"
+      ],
+      "correct": 0,
+      "explanation": "[x³ + x²]₀² = (8 + 4) - (0 + 0) = 12"
+    },
+    {
+      "id": "int-6",
+      "question": "∫[1→3] (2x + 1)dx = ?",
+      "choices": [
+        "10",
+        "8",
+        "12",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "∫(2x + 1)dx = x² + x。[x² + x]₁³ = (9 + 3) - (1 + 1) = 12 - 2 = 10"
+    },
+    {
+      "id": "int-7",
+      "question": "∫[0→1] (x² + x)dx = ?",
+      "choices": [
+        "5/6",
+        "1",
+        "2/3",
+        "1/2"
+      ],
+      "correct": 0,
+      "explanation": "∫(x² + x)dx = x³/3 + x²/2。[x³/3 + x²/2]₀¹ = (1/3 + 1/2) - 0 = 2/6 + 3/6 = 5/6"
+    },
+    {
+      "id": "int-8",
+      "question": "∫(5x⁴)dx = ?",
+      "choices": [
+        "x⁵ + C",
+        "20x³ + C",
+        "5x⁵ + C",
+        "(5/4)x⁵ + C"
+      ],
+      "correct": 0,
+      "explanation": "∫5x⁴dx = 5×(x⁵/5) = x⁵ + C"
+    }
+  ]
+}

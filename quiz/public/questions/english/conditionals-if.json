@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "conditionals-if",
+  "categoryName": "条件文",
+  "questions": [
+    {
+      "id": "conditionals-if-1",
+      "question": "If I ___ time, I would play games. (第2条件文)",
+      "choices": [
+        "had",
+        "have",
+        "had had",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "第2条件文の条件節は過去形を使います"
+    },
+    {
+      "id": "conditionals-if-2",
+      "question": "If I ___ time, I would have played games. (第3条件文)",
+      "choices": [
+        "had had",
+        "had",
+        "have",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "第3条件文の条件節は過去完了形を使います"
+    },
+    {
+      "id": "conditionals-if-3",
+      "question": "If I had time, I ___ play games. (第2条件文)",
+      "choices": [
+        "would",
+        "will",
+        "would have",
+        "have"
+      ],
+      "correct": 0,
+      "explanation": "第2条件文の帰結節は would + 動詞の原形です"
+    },
+    {
+      "id": "conditionals-if-4",
+      "question": "If I had had time, I ___ played games. (第3条件文)",
+      "choices": [
+        "would have",
+        "would",
+        "will",
+        "have"
+      ],
+      "correct": 0,
+      "explanation": "第3条件文の帰結節は would have + 過去分詞です"
+    },
+    {
+      "id": "conditionals-if-5",
+      "question": "If I have time, I ___ play games. (第1条件文)",
+      "choices": [
+        "will",
+        "would",
+        "would have",
+        "had"
+      ],
+      "correct": 0,
+      "explanation": "第1条件文の帰結節は will + 動詞の原形です"
+    },
+    {
+      "id": "conditionals-if-6",
+      "question": "If it rains tomorrow, I ___ stay home. (第1条件文)",
+      "choices": [
+        "will",
+        "would",
+        "would have",
+        "had"
+      ],
+      "correct": 0,
+      "explanation": "第1条件文の帰結節は will + 動詞の原形です"
+    },
+    {
+      "id": "conditionals-if-7",
+      "question": "If I ___ rich, I would buy a car. (第2条件文)",
+      "choices": [
+        "were",
+        "am",
+        "was",
+        "will be"
+      ],
+      "correct": 0,
+      "explanation": "第2条件文では be動詞は were を使います"
+    },
+    {
+      "id": "conditionals-if-8",
+      "question": "If I had studied harder, I ___ passed the test. (第3条件文)",
+      "choices": [
+        "would have",
+        "would",
+        "will",
+        "have"
+      ],
+      "correct": 0,
+      "explanation": "第3条件文の帰結節は would have + 過去分詞です"
+    }
+  ]
+}

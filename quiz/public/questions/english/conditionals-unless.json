@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "conditionals-unless",
+  "categoryName": "unless",
+  "questions": [
+    {
+      "id": "conditionals-unless-1",
+      "question": "I will go ___ it rains. (～しない限り)",
+      "choices": [
+        "unless",
+        "if",
+        "when",
+        "because"
+      ],
+      "correct": 0,
+      "explanation": "「～しない限り」は unless を使います"
+    },
+    {
+      "id": "conditionals-unless-2",
+      "question": "___ you study hard, you will fail. (～しない限り)",
+      "choices": [
+        "Unless",
+        "If",
+        "When",
+        "Because"
+      ],
+      "correct": 0,
+      "explanation": "「～しない限り」は unless を使います"
+    },
+    {
+      "id": "conditionals-unless-3",
+      "question": "I won't go unless you ___ with me. (come)",
+      "choices": [
+        "come",
+        "comes",
+        "came",
+        "will come"
+      ],
+      "correct": 0,
+      "explanation": "unless節では現在形を使います"
+    },
+    {
+      "id": "conditionals-unless-4",
+      "question": "Unless you hurry, you ___ be late.",
+      "choices": [
+        "will",
+        "would",
+        "can",
+        "must"
+      ],
+      "correct": 0,
+      "explanation": "未来のことでも主節は will を使います"
+    },
+    {
+      "id": "conditionals-unless-5",
+      "question": "I won't help you ___ you ask me nicely.",
+      "choices": [
+        "unless",
+        "if",
+        "when",
+        "because"
+      ],
+      "correct": 0,
+      "explanation": "「～しない限り」は unless を使います"
+    },
+    {
+      "id": "conditionals-unless-6",
+      "question": "___ it stops raining, we can't go out.",
+      "choices": [
+        "Unless",
+        "If",
+        "When",
+        "Because"
+      ],
+      "correct": 0,
+      "explanation": "「～しない限り」は unless を使います"
+    },
+    {
+      "id": "conditionals-unless-7",
+      "question": "Unless = if ___",
+      "choices": [
+        "not",
+        "only",
+        "when",
+        "then"
+      ],
+      "correct": 0,
+      "explanation": "unless は if not と同じ意味です"
+    },
+    {
+      "id": "conditionals-unless-8",
+      "question": "I will stay home unless the weather ___ good. (be)",
+      "choices": [
+        "is",
+        "will be",
+        "was",
+        "were"
+      ],
+      "correct": 0,
+      "explanation": "unless節では現在形を使います"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition-no-carry",
+  "categoryName": "たし算（くり上がりなし）",
+  "questions": [
+    {
+      "id": "add-no-carry-1",
+      "question": "1 + 2 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "1 + 2 = 3"
+    },
+    {
+      "id": "add-no-carry-2",
+      "question": "3 + 4 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "3 + 4 = 7"
+    },
+    {
+      "id": "add-no-carry-3",
+      "question": "5 + 1 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "5 + 1 = 6"
+    },
+    {
+      "id": "add-no-carry-4",
+      "question": "2 + 6 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "2 + 6 = 8"
+    },
+    {
+      "id": "add-no-carry-5",
+      "question": "4 + 3 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "4 + 3 = 7"
+    },
+    {
+      "id": "add-no-carry-6",
+      "question": "7 + 2 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "7 + 2 = 9"
+    },
+    {
+      "id": "add-no-carry-7",
+      "question": "3 + 5 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "3 + 5 = 8"
+    },
+    {
+      "id": "add-no-carry-8",
+      "question": "6 + 3 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "6 + 3 = 9"
+    }
+  ]
+}

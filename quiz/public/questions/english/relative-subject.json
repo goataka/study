@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "relative-subject",
+  "categoryName": "主格の関係代名詞",
+  "questions": [
+    {
+      "id": "relative-subject-1",
+      "question": "I have a friend ___ speaks English. (人・主格)",
+      "choices": [
+        "who",
+        "whom",
+        "which",
+        "whose"
+      ],
+      "correct": 0,
+      "explanation": "人が主語の場合は who を使います"
+    },
+    {
+      "id": "relative-subject-2",
+      "question": "I have a book ___ is very interesting. (物・主格)",
+      "choices": [
+        "which",
+        "who",
+        "whom",
+        "whose"
+      ],
+      "correct": 0,
+      "explanation": "物が主語の場合は which を使います"
+    },
+    {
+      "id": "relative-subject-3",
+      "question": "I have a friend ___ lives in Tokyo. (人・主格)",
+      "choices": [
+        "that",
+        "whose",
+        "where",
+        "when"
+      ],
+      "correct": 0,
+      "explanation": "人・物どちらでも that を使えます"
+    },
+    {
+      "id": "relative-subject-4",
+      "question": "I have a cat ___ is very cute. (物・主格)",
+      "choices": [
+        "which",
+        "who",
+        "whom",
+        "whose"
+      ],
+      "correct": 0,
+      "explanation": "物が主語の場合は which を使います"
+    },
+    {
+      "id": "relative-subject-5",
+      "question": "The boy ___ is playing there is my brother. (人・主格)",
+      "choices": [
+        "who",
+        "whom",
+        "which",
+        "whose"
+      ],
+      "correct": 0,
+      "explanation": "人が主語の場合は who を使います"
+    },
+    {
+      "id": "relative-subject-6",
+      "question": "The car ___ is parked there is mine. (物・主格)",
+      "choices": [
+        "which",
+        "who",
+        "whom",
+        "whose"
+      ],
+      "correct": 0,
+      "explanation": "物が主語の場合は which を使います"
+    },
+    {
+      "id": "relative-subject-7",
+      "question": "I know a teacher ___ teaches English. (人・主格)",
+      "choices": [
+        "who",
+        "whom",
+        "which",
+        "whose"
+      ],
+      "correct": 0,
+      "explanation": "人が主語の場合は who を使います"
+    },
+    {
+      "id": "relative-subject-8",
+      "question": "This is a dog ___ can swim. (物・主格)",
+      "choices": [
+        "that",
+        "whom",
+        "whose",
+        "where"
+      ],
+      "correct": 0,
+      "explanation": "物が主語の場合は that を使えます"
+    }
+  ]
+}

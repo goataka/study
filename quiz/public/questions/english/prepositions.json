@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "prepositions",
+  "categoryName": "前置詞",
+  "questions": [
+    {
+      "id": "prepositions-1",
+      "question": "I play games ___ the park.",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "広い場所には in を使います"
+    },
+    {
+      "id": "prepositions-2",
+      "question": "I play games ___ Sunday.",
+      "choices": [
+        "on",
+        "in",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "曜日には on を使います"
+    },
+    {
+      "id": "prepositions-3",
+      "question": "I play games ___ the morning.",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "morning/afternoon/evening には in を使います"
+    },
+    {
+      "id": "prepositions-4",
+      "question": "I go ___ school.",
+      "choices": [
+        "to",
+        "in",
+        "on",
+        "at"
+      ],
+      "correct": 0,
+      "explanation": "方向には to を使います"
+    },
+    {
+      "id": "prepositions-5",
+      "question": "I go to school ___ bus.",
+      "choices": [
+        "by",
+        "in",
+        "on",
+        "with"
+      ],
+      "correct": 0,
+      "explanation": "交通手段には by を使います"
+    },
+    {
+      "id": "prepositions-6",
+      "question": "The book is ___ the desk.",
+      "choices": [
+        "on",
+        "in",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "表面に接している場合は on を使います"
+    },
+    {
+      "id": "prepositions-7",
+      "question": "I study ___ night.",
+      "choices": [
+        "at",
+        "in",
+        "on",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "night には at を使います"
+    },
+    {
+      "id": "prepositions-8",
+      "question": "I live ___ Tokyo.",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "都市・国には in を使います"
+    }
+  ]
+}

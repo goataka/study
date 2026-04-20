@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "questions",
+  "categoryName": "疑問文",
+  "questions": [
+    {
+      "id": "questions-1",
+      "question": "___ you play games? (一般動詞・現在)",
+      "choices": [
+        "Do",
+        "Does",
+        "Did",
+        "Are"
+      ],
+      "correct": 0,
+      "explanation": "一般動詞の現在形の疑問文は Do/Does で始めます"
+    },
+    {
+      "id": "questions-2",
+      "question": "___ you play games yesterday? (一般動詞・過去)",
+      "choices": [
+        "Did",
+        "Do",
+        "Does",
+        "Were"
+      ],
+      "correct": 0,
+      "explanation": "一般動詞の過去形の疑問文は Did で始めます"
+    },
+    {
+      "id": "questions-3",
+      "question": "___ you play games tomorrow? (一般動詞・未来)",
+      "choices": [
+        "Will",
+        "Do",
+        "Did",
+        "Are"
+      ],
+      "correct": 0,
+      "explanation": "一般動詞の未来形の疑問文は Will で始めます"
+    },
+    {
+      "id": "questions-4",
+      "question": "___ you happy? (be動詞・現在)",
+      "choices": [
+        "Are",
+        "Do",
+        "Is",
+        "Were"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の疑問文はbe動詞を前に出します"
+    },
+    {
+      "id": "questions-5",
+      "question": "___ you happy yesterday? (be動詞・過去)",
+      "choices": [
+        "Were",
+        "Are",
+        "Was",
+        "Did"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の疑問文はbe動詞を前に出します"
+    },
+    {
+      "id": "questions-6",
+      "question": "___ you playing games now? (進行形)",
+      "choices": [
+        "Are",
+        "Do",
+        "Is",
+        "Were"
+      ],
+      "correct": 0,
+      "explanation": "進行形の疑問文はbe動詞を前に出します"
+    },
+    {
+      "id": "questions-7",
+      "question": "___ she play games? (三人称・現在)",
+      "choices": [
+        "Does",
+        "Do",
+        "Did",
+        "Is"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の疑問文は Does で始めます"
+    },
+    {
+      "id": "questions-8",
+      "question": "___ he happy? (be動詞・現在)",
+      "choices": [
+        "Is",
+        "Are",
+        "Does",
+        "Do"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数のbe動詞の疑問文は Is で始めます"
+    }
+  ]
+}

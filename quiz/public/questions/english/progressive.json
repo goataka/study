@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "progressive",
+  "categoryName": "進行形",
+  "questions": [
+    {
+      "id": "progressive-1",
+      "question": "I ___ playing games yesterday at 3pm. (過去進行形)",
+      "choices": [
+        "was",
+        "am",
+        "will be",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "過去進行形は was/were + -ing です"
+    },
+    {
+      "id": "progressive-2",
+      "question": "I ___ playing games tomorrow at 3pm. (未来進行形)",
+      "choices": [
+        "will be",
+        "am",
+        "was",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "未来進行形は will be + -ing です"
+    },
+    {
+      "id": "progressive-3",
+      "question": "I ___ studying English now. (現在進行形)",
+      "choices": [
+        "am",
+        "was",
+        "will be",
+        "have"
+      ],
+      "correct": 0,
+      "explanation": "現在進行形は am/is/are + -ing です"
+    },
+    {
+      "id": "progressive-4",
+      "question": "She ___ studying English yesterday. (過去進行形)",
+      "choices": [
+        "was",
+        "is",
+        "will be",
+        "has been"
+      ],
+      "correct": 0,
+      "explanation": "過去進行形は was/were + -ing です"
+    },
+    {
+      "id": "progressive-5",
+      "question": "They ___ writing letters tomorrow. (未来進行形)",
+      "choices": [
+        "will be",
+        "are",
+        "were",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "未来進行形は will be + -ing です"
+    },
+    {
+      "id": "progressive-6",
+      "question": "He ___ playing soccer now. (現在進行形)",
+      "choices": [
+        "is",
+        "was",
+        "will be",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "現在進行形は am/is/are + -ing です"
+    },
+    {
+      "id": "progressive-7",
+      "question": "We ___ watching TV yesterday evening. (過去進行形)",
+      "choices": [
+        "were",
+        "are",
+        "will be",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "過去進行形は was/were + -ing です"
+    },
+    {
+      "id": "progressive-8",
+      "question": "You ___ reading a book now. (現在進行形)",
+      "choices": [
+        "are",
+        "were",
+        "will be",
+        "have"
+      ],
+      "correct": 0,
+      "explanation": "現在進行形は am/is/are + -ing です"
+    }
+  ]
+}

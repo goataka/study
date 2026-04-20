@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "simultaneous-eq",
+  "categoryName": "連立方程式",
+  "questions": [
+    {
+      "id": "simul-eq-1",
+      "question": "x + y = 5, x - y = 1 を解くと x = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "2式を足すと2x = 6。x = 3"
+    },
+    {
+      "id": "simul-eq-2",
+      "question": "x + y = 5, x - y = 1 を解くと y = ?",
+      "choices": [
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "x = 3を代入。3 + y = 5なので、y = 2"
+    },
+    {
+      "id": "simul-eq-3",
+      "question": "2x + y = 7, x + y = 4 を解くと x = ?",
+      "choices": [
+        "3",
+        "2",
+        "1",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "1式目から2式目を引くと x = 3"
+    },
+    {
+      "id": "simul-eq-4",
+      "question": "x + 2y = 8, x - y = 2 を解くと x = ?",
+      "choices": [
+        "4",
+        "2",
+        "3",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "1式目から2式目を引くと3y = 6。y = 2。代入してx = 4"
+    },
+    {
+      "id": "simul-eq-5",
+      "question": "3x + y = 11, x + y = 5 を解くと x = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "1式目から2式目を引くと2x = 6。x = 3"
+    },
+    {
+      "id": "simul-eq-6",
+      "question": "2x + 3y = 13, x + 2y = 8 を解くと x = ?",
+      "choices": [
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "2式目を2倍して引くと、-y = -3。y = 3。代入してx = 2"
+    },
+    {
+      "id": "simul-eq-7",
+      "question": "りんご1個とみかん1個で180円、りんご2個とみかん1個で260円。りんご1個は何円？",
+      "choices": [
+        "80円",
+        "100円",
+        "60円",
+        "90円"
+      ],
+      "correct": 0,
+      "explanation": "りんご=x、みかん=yとすると、x+y=180、2x+y=260。2式目-1式目でx=80円"
+    },
+    {
+      "id": "simul-eq-8",
+      "question": "同じ条件で、みかん1個は何円？",
+      "choices": [
+        "100円",
+        "80円",
+        "120円",
+        "90円"
+      ],
+      "correct": 0,
+      "explanation": "りんご=80円を代入。80+y=180なので、y=100円"
+    }
+  ]
+}

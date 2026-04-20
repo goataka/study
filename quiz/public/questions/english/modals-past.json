@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "modals-past",
+  "categoryName": "助動詞の過去形",
+  "questions": [
+    {
+      "id": "modals-past-1",
+      "question": "I ___ play the piano when I was young. (～できた)",
+      "choices": [
+        "could",
+        "can",
+        "would",
+        "should"
+      ],
+      "correct": 0,
+      "explanation": "canの過去形は could です"
+    },
+    {
+      "id": "modals-past-2",
+      "question": "I ___ visit my grandmother every Sunday. (よく～した)",
+      "choices": [
+        "would",
+        "could",
+        "might",
+        "should"
+      ],
+      "correct": 0,
+      "explanation": "過去の習慣は would を使います"
+    },
+    {
+      "id": "modals-past-3",
+      "question": "She ___ be a teacher. (～だったかもしれない)",
+      "choices": [
+        "might have been",
+        "might be",
+        "could be",
+        "would be"
+      ],
+      "correct": 0,
+      "explanation": "過去の推量は might have been を使います"
+    },
+    {
+      "id": "modals-past-4",
+      "question": "You ___ studied harder. (～すべきだった)",
+      "choices": [
+        "should have",
+        "should",
+        "could",
+        "would"
+      ],
+      "correct": 0,
+      "explanation": "過去の後悔は should have + 過去分詞です"
+    },
+    {
+      "id": "modals-past-5",
+      "question": "I ___ finish my homework yesterday. (～できなかった)",
+      "choices": [
+        "could not",
+        "cannot",
+        "would not",
+        "should not"
+      ],
+      "correct": 0,
+      "explanation": "過去の能力がないは could not を使います"
+    },
+    {
+      "id": "modals-past-6",
+      "question": "He ___ done his homework. (～したかもしれない)",
+      "choices": [
+        "may have",
+        "may",
+        "can have",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "過去の推量は may have + 過去分詞です"
+    },
+    {
+      "id": "modals-past-7",
+      "question": "I ___ swim when I was a child. (～できた)",
+      "choices": [
+        "could",
+        "can",
+        "would",
+        "might"
+      ],
+      "correct": 0,
+      "explanation": "過去の能力は could を使います"
+    },
+    {
+      "id": "modals-past-8",
+      "question": "You ___ told me earlier. (～すべきだった)",
+      "choices": [
+        "should have",
+        "should",
+        "could",
+        "would"
+      ],
+      "correct": 0,
+      "explanation": "過去の後悔は should have + 過去分詞です"
+    }
+  ]
+}

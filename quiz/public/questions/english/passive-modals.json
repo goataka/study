@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "passive-modals",
+  "categoryName": "助動詞の受動態",
+  "questions": [
+    {
+      "id": "passive-modals-1",
+      "question": "The work ___ finished tomorrow. (can + 受動態)",
+      "choices": [
+        "can be",
+        "can",
+        "is",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-2",
+      "question": "The problem ___ solved easily. (must + 受動態)",
+      "choices": [
+        "must be",
+        "must",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-3",
+      "question": "The letter ___ sent tomorrow. (should + 受動態)",
+      "choices": [
+        "should be",
+        "should",
+        "is",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-4",
+      "question": "The book ___ read by everyone. (may + 受動態)",
+      "choices": [
+        "may be",
+        "may",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-5",
+      "question": "The work ___ done by next week. (will + 受動態)",
+      "choices": [
+        "will be",
+        "will",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-6",
+      "question": "The rule ___ followed. (must + 受動態)",
+      "choices": [
+        "must be",
+        "must",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-7",
+      "question": "The cake ___ eaten by tomorrow. (should + 受動態)",
+      "choices": [
+        "should be",
+        "should",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-8",
+      "question": "The door ___ opened with this key. (can + 受動態)",
+      "choices": [
+        "can be",
+        "can",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    }
+  ]
+}

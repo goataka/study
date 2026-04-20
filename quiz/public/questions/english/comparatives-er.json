@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "comparatives-er",
+  "categoryName": "比較級",
+  "questions": [
+    {
+      "id": "comparatives-er-1",
+      "question": "I am ___ than him. (tall)",
+      "choices": [
+        "taller",
+        "more tall",
+        "tallest",
+        "most tall"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の比較級は -er をつけます"
+    },
+    {
+      "id": "comparatives-er-2",
+      "question": "I am ___ than him. (big)",
+      "choices": [
+        "bigger",
+        "more big",
+        "biggest",
+        "biger"
+      ],
+      "correct": 0,
+      "explanation": "短母音+子音字で終わる語は子音字を重ねて -er をつけます"
+    },
+    {
+      "id": "comparatives-er-3",
+      "question": "I am ___ to talk to than him. (easy)",
+      "choices": [
+        "easier",
+        "more easy",
+        "easyer",
+        "easiest"
+      ],
+      "correct": 0,
+      "explanation": "子音+yで終わる語は、yをiに変えて -er をつけます"
+    },
+    {
+      "id": "comparatives-er-4",
+      "question": "It is ___ than yesterday. (hot)",
+      "choices": [
+        "hotter",
+        "more hot",
+        "hoter",
+        "hottest"
+      ],
+      "correct": 0,
+      "explanation": "短母音+子音字で終わる語は子音字を重ねて -er をつけます"
+    },
+    {
+      "id": "comparatives-er-5",
+      "question": "This game is ___ than that one. (interesting)",
+      "choices": [
+        "more interesting",
+        "interestinger",
+        "most interesting",
+        "interestingest"
+      ],
+      "correct": 0,
+      "explanation": "長い形容詞の比較級は more + 形容詞です"
+    },
+    {
+      "id": "comparatives-er-6",
+      "question": "This problem is ___ than that one. (difficult)",
+      "choices": [
+        "more difficult",
+        "difficulter",
+        "most difficult",
+        "difficultest"
+      ],
+      "correct": 0,
+      "explanation": "長い形容詞の比較級は more + 形容詞です"
+    },
+    {
+      "id": "comparatives-er-7",
+      "question": "This flower is ___ than that one. (beautiful)",
+      "choices": [
+        "more beautiful",
+        "beautifuler",
+        "most beautiful",
+        "beautifulest"
+      ],
+      "correct": 0,
+      "explanation": "長い形容詞の比較級は more + 形容詞です"
+    },
+    {
+      "id": "comparatives-er-8",
+      "question": "This book is ___ than that one. (cheap)",
+      "choices": [
+        "cheaper",
+        "more cheap",
+        "cheapest",
+        "most cheap"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の比較級は -er をつけます"
+    }
+  ]
+}

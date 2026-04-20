@@ -1,0 +1,104 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "modals-negative",
+  "categoryName": "助動詞の否定形",
+  "questions": [
+    {
+      "id": "modals-negative-1",
+      "question": "I ___ play the piano. (～できない)",
+      "choices": [
+        "cannot",
+        "may not",
+        "must not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「できない」は cannot を使います"
+    },
+    {
+      "id": "modals-negative-2",
+      "question": "You ___ smoke here. (～してはいけない)",
+      "choices": [
+        "must not",
+        "cannot",
+        "may not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「してはいけない」は must not を使います"
+    },
+    {
+      "id": "modals-negative-3",
+      "question": "I ___ go. (～するつもりはない)",
+      "choices": [
+        "will not",
+        "cannot",
+        "must not",
+        "may not"
+      ],
+      "correct": 0,
+      "explanation": "「するつもりはない」は will not を使います"
+    },
+    {
+      "id": "modals-negative-4",
+      "question": "You ___ worry. (～する必要はない)",
+      "choices": [
+        "need not",
+        "cannot",
+        "must not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「する必要はない」は need not を使います"
+    },
+    {
+      "id": "modals-negative-5",
+      "question": "She ___ come. (～しないかもしれない)",
+      "choices": [
+        "may not",
+        "cannot",
+        "must not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「しないかもしれない」は may not を使います"
+    },
+    {
+      "id": "modals-negative-6",
+      "question": "You ___ be late. (～すべきでない)",
+      "choices": [
+        "should not",
+        "cannot",
+        "must not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「すべきでない」は should not を使います"
+    },
+    {
+      "id": "modals-negative-7",
+      "question": "I ___ swim. (～できない)",
+      "choices": [
+        "cannot",
+        "may not",
+        "must not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「できない」は cannot を使います"
+    },
+    {
+      "id": "modals-negative-8",
+      "question": "You ___ touch that. (～してはいけない)",
+      "choices": [
+        "must not",
+        "cannot",
+        "may not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "禁止を表すには must not を使います"
+    }
+  ]
+}

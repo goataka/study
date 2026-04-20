@@ -1,0 +1,104 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition-mixed",
+  "categoryName": "たし算（まとめ）",
+  "questions": [
+    {
+      "id": "add-mixed-1",
+      "question": "3 + 5 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "くり上がりなし。3 + 5 = 8"
+    },
+    {
+      "id": "add-mixed-2",
+      "question": "7 + 8 = ?",
+      "choices": [
+        "15",
+        "14",
+        "16",
+        "13"
+      ],
+      "correct": 0,
+      "explanation": "くり上がりあり。7+3=10、10+5=15"
+    },
+    {
+      "id": "add-mixed-3",
+      "question": "4 + 5 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "くり上がりなし。4 + 5 = 9"
+    },
+    {
+      "id": "add-mixed-4",
+      "question": "9 + 6 = ?",
+      "choices": [
+        "15",
+        "14",
+        "16",
+        "13"
+      ],
+      "correct": 0,
+      "explanation": "くり上がりあり。9+1=10、10+5=15"
+    },
+    {
+      "id": "add-mixed-5",
+      "question": "2 + 6 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "くり上がりなし。2 + 6 = 8"
+    },
+    {
+      "id": "add-mixed-6",
+      "question": "8 + 7 = ?",
+      "choices": [
+        "15",
+        "14",
+        "16",
+        "13"
+      ],
+      "correct": 0,
+      "explanation": "くり上がりあり。8+2=10、10+5=15"
+    },
+    {
+      "id": "add-mixed-7",
+      "question": "1 + 7 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "くり上がりなし。1 + 7 = 8"
+    },
+    {
+      "id": "add-mixed-8",
+      "question": "6 + 9 = ?",
+      "choices": [
+        "15",
+        "14",
+        "16",
+        "13"
+      ],
+      "correct": 0,
+      "explanation": "くり上がりあり。6+4=10、10+5=15"
+    }
+  ]
+}
