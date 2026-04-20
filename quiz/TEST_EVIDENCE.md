@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 21:28:33 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `2e1cc1f` |
-| **コミットメッセージ** | Fix mermaid click target for 音声変化 to 06-linking-reduction |
+| **最終更新** | 2026-04-20 21:30:24 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `8d44535` |
+| **コミットメッセージ** | ci: テストエビデンスを更新 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `853a4fbc59e61ab3eceab6c0bd343f4b859a2dd4758d02a965be668ecf687466` |
+| `test-results.json` | `1fa03125924fc68a6bd9db49df79323ebd97d5282003f753cb40837c7da1d730` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 32 / 32 |
-| テストケース（合格 / 合計） | 89 / 89 |
+| テストスイート（合格 / 合計） | 33 / 33 |
+| テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.31s |
+| 実行時間 | 0.25s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -101,7 +101,7 @@
 | ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
 | ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
 
-### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (6/6)
+### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (10/10)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -111,6 +111,10 @@
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 上書き保存が正しく機能する |
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > 別のインスタンスからも同じデータを読み込める（永続化確認） |
 | ✅ | LocalStorageProgressRepository — 間違えた問題ID永続化仕様 > localStorageに不正なJSONが入っていてもロード時に空配列を返す |
+| ✅ | LocalStorageProgressRepository — ユーザー名永続化仕様 > 初回ロード時はnullを返す |
+| ✅ | LocalStorageProgressRepository — ユーザー名永続化仕様 > 保存したユーザー名を正しく読み込める |
+| ✅ | LocalStorageProgressRepository — ユーザー名永続化仕様 > 上書き保存が正しく機能する |
+| ✅ | LocalStorageProgressRepository — ユーザー名永続化仕様 > 別のインスタンスからも同じデータを読み込める（永続化確認） |
 
 ### ✅ `src/infrastructure/questionData.test.ts` (17/17)
 
