@@ -269,14 +269,12 @@ export class QuizApp {
     userAnswerDiv.appendChild(userAnswerValue);
     answer.appendChild(userAnswerDiv);
 
-    if (!isCorrect) {
-      const correctDiv = document.createElement("div");
-      correctDiv.appendChild(document.createTextNode("正解: "));
-      const correctValue = document.createElement("strong");
-      correctValue.textContent = question.choices[question.correct] ?? "";
-      correctDiv.appendChild(correctValue);
-      answer.appendChild(correctDiv);
-    }
+    const correctDiv = document.createElement("div");
+    correctDiv.appendChild(document.createTextNode("正解: "));
+    const correctValue = document.createElement("strong");
+    correctValue.textContent = question.choices[question.correct] ?? "";
+    correctDiv.appendChild(correctValue);
+    answer.appendChild(correctDiv);
 
     const explanation = document.createElement("div");
     explanation.className = "explanation";

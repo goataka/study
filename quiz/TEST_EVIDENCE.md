@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 19:40:40 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `c5ebf2e` |
-| **コミットメッセージ** | Initial plan |
+| **最終更新** | 2026-04-20 19:42:45 JST |
+| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
+| **コミット** | `45bef3c` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `e06f7816dd9685f5189df814ed59a427351b4ad97273f5600c2b83abfd4c6776` |
+| `test-results.json` | `2ce153e21ccb1b9f135e7b10dc878e9a9fb2e86d8fc59c572efd4201724e32c5` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
