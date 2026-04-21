@@ -266,7 +266,7 @@ export class QuizApp {
       } else if (stat.wrong > 0) {
         statsEl.textContent = `${stat.wrong}/${stat.total}`;
       } else {
-        statsEl.textContent = `${stat.total}問`;
+        statsEl.textContent = `0/${stat.total}`;
       }
     });
   }
