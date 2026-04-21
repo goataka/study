@@ -42,11 +42,11 @@ header nav a {
 }
 
 header nav a:hover,
-.top-nav-btn:hover {
+header nav .top-nav-btn:hover {
     background-color: #f0f0f0;
 }
 
-.top-nav-btn {
+header nav .top-nav-btn {
     color: #0366d6;
     background: none;
     border: none;
