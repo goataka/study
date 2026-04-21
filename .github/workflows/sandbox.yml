@@ -24,7 +24,7 @@ jobs:
           echo "GH_TOKEN=${COPILOT_TOKEN}" >> "$GITHUB_ENV"
 
           TASK_FILE=$(mktemp)
-          echo 'モデル名を教えて" >>"$TASK_FILE"
+          echo "モデル名を教えて" >>"$TASK_FILE"
           
           gh agent-task create \
             --base "main" \
