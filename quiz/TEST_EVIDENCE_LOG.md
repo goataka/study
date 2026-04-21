@@ -216,6 +216,7 @@
 - **更新者**: GitHub Actions (CI)
 - **コミット**: `1b0c78c`
 - **コミットメッセージ**: Merge origin/main: resolve conflicts - keep hierarchy nav links and add quiz links
+
 ## 実行記録: 2026-04-21 20:08:17 JST
 
 - **更新者**: GitHub Actions (CI)
