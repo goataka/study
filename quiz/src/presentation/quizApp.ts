@@ -80,7 +80,18 @@ export class QuizApp {
         this.userName = name;
         const progressRepo = new LocalStorageProgressRepository();
         progressRepo.saveUserName(name);
+        this.showSaveFeedback();
       }
+    }
+  }
+
+  private showSaveFeedback(): void {
+    const feedback = document.getElementById("saveUserNameFeedback");
+    if (feedback) {
+      feedback.classList.remove("hidden");
+      setTimeout(() => {
+        feedback.classList.add("hidden");
+      }, 2000);
     }
   }
 
