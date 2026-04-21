@@ -198,9 +198,6 @@ export class QuizApp {
       parentHeader.setAttribute("aria-expanded", "false");
       parentHeader.setAttribute("aria-controls", childrenId);
 
-      parentHeader.appendChild(parentLabel);
-      parentHeader.appendChild(parentStats);
-
       const catChildren = document.createElement("div");
       catChildren.className = "tree-children hidden";
       catChildren.id = childrenId;
@@ -211,10 +208,10 @@ export class QuizApp {
       }
 
       parentItem.appendChild(catChildren);
-    } else {
-      parentHeader.appendChild(parentLabel);
-      parentHeader.appendChild(parentStats);
     }
+
+    parentHeader.appendChild(parentLabel);
+    parentHeader.appendChild(parentStats);
 
     return parentItem;
   }
