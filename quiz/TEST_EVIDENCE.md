@@ -21,6 +21,7 @@
 | **更新者** | GitHub Actions (CI) |
 | **コミット** | `53fbdd7` |
 | **コミットメッセージ** | merge: origin/main との競合を解消 |
+
 >>>>>>> main
 
 ## 改ざん防止チェックサム
@@ -36,6 +37,7 @@
 =======
 | `test-results.json` | `31d853554eec487ce2780ff0a92e29be4c9742af5d4c3829de6369a1c4e86d8b` |
 | `e2e-results.json` | 未実行 |
+
 >>>>>>> main
 
 ## 単体テスト結果サマリー
@@ -49,6 +51,7 @@
 | 実行時間 | 0.37s |
 =======
 | 実行時間 | 0.51s |
+
 >>>>>>> main
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
