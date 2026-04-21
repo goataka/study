@@ -35,4 +35,6 @@
 
 ---
 
-[解答](answer.md) | [目次](../../README.md)
+[目次](../../README.md) | 練習 | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=phonics-1)
+
+[前へ: 五十音ローマ字](../02-50on/drill.md) | **フォニックス練習ドリル（1文字）** | [次へ: フォニックス（2文字）](../04-phonics-2letter/drill.md)

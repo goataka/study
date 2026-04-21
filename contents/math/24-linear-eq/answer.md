@@ -21,3 +21,5 @@
 [目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
 [前へ: 文字式](../23-algebraic-expressions/drill.md) | **一次方程式** | [次へ: 連立方程式](../25-simultaneous-eq/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=linear-eq)
