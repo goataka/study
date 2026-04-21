@@ -211,6 +211,12 @@
 
 ---
 
+## 実行記録: 2026-04-21 20:09:49 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `1b0c78c`
+- **コミットメッセージ**: Merge origin/main: resolve conflicts - keep hierarchy nav links and add quiz links
+
 ## 実行記録: 2026-04-21 20:09:28 JST
 
 - **更新者**: GitHub Actions (CI)
@@ -226,6 +232,12 @@
 - **E2Eテスト**: ⏭ 未実行（CIで実行）
 
 ---
+
+## 実行記録: 2026-04-21 20:11:30 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `fee3462`
+- **コミットメッセージ**: Merge branch 'main' into claude/add-sentence-structure-for-arithmetic
 
 ## 実行記録: 2026-04-21 20:10:55 JST
 
@@ -243,4 +255,10 @@
 - **コミット**: `8f8f5e4`
 - **コミットメッセージ**: Merge branch 'main' into claude/add-pronunciation-and-grammar-to-category-tree
 - **単体テスト**: ✅ PASSED (133/133 合格)
+## 実行記録: 2026-04-21 20:13:01 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `eda5d12`
+- **コミットメッセージ**: Merge branch 'main' into claude/add-sentence-structure-for-arithmetic
+- **単体テスト**: ✅ PASSED (113/113 合格)
 - **E2Eテスト**: ⏭ 未実行（CIで実行）
