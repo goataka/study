@@ -1,0 +1,37 @@
+name: Sandbox
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix-error:
+    name: Copilotエージェントタスクを作成
+    runs-on: ubuntu-latest
+    # ワークフローが失敗で完了し、かつトリガー元が同一リポジトリの場合のみ実行する（fork対策）
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Copilotエージェントタスクを作成
+        shell: bash
+        env:
+          COPILOT_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+        run: |
+          set -euo pipefail
+          echo "${COPILOT_TOKEN}" | gh auth login --with-token --hostname github.com
+          
+          gh auth status --hostname github.com
+          echo "GH_TOKEN=${COPILOT_TOKEN}" >> "$GITHUB_ENV"
+
+          TASK_FILE=$(mktemp)
+          echo 'モデル名を教えて" >>"$TASK_FILE"
+          
+          gh agent-task create \
+            --base "main" \
+            --repo "${{ github.repository }}" \
+            -F "$TASK_FILE"
+
+          # 一時ファイルを削除
+          rm -f "$TASK_FILE"
