@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "percentage",
   "categoryName": "割合",
+  "guideUrl": "../contents/math/arithmetic/21-percentage/guide",
   "questions": [
     {
       "id": "percent-1",

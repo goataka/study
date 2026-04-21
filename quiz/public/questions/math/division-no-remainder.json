@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "division-no-remainder",
   "categoryName": "わり算（あまりなし）",
+  "guideUrl": "../contents/math/arithmetic/08-division-no-remainder/guide",
   "questions": [
     {
       "id": "div-no-rem-1",

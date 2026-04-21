@@ -5,6 +5,7 @@
   "categoryName": "条件文",
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
+  "guideUrl": "../contents/english/grammar/33-conditionals-if/guide",
   "questions": [
     {
       "id": "conditionals-if-1",

@@ -35,7 +35,7 @@
           </div>
           <h2>クイズモード選択</h2>
           <div class="button-group">
-            <button id="startRandomBtn" class="primary-btn">ランダム10問</button>
+            <button id="startRandomBtn" class="primary-btn">ランダム20問</button>
             <button id="startRetryBtn" class="secondary-btn">間違えた問題だけ</button>
           </div>
           <div id="statsInfo" class="stats-info"></div>
@@ -45,51 +45,59 @@
 
     <!-- クイズ画面 -->
     <div id="quizScreen" class="screen hidden">
-      <div class="user-info">
-        <span id="quizUserName"></span>
-      </div>
-      <div class="progress-bar">
-        <div id="progressFill" class="progress-fill"></div>
-      </div>
-      <div class="question-info">
-        <span id="questionNumber"></span>
-        <span id="topicName" class="topic-badge"></span>
-      </div>
-      <div id="questionText" class="question-text"></div>
-      <div id="choicesContainer" class="choices-container"></div>
+      <div class="quiz-landscape-layout">
+        <!-- 左列: 問題・選択肢・ナビゲーション -->
+        <div class="quiz-main-col">
+          <div class="user-info">
+            <span id="quizUserName"></span>
+          </div>
+          <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <div class="question-info">
+            <span id="questionNumber"></span>
+            <span id="topicName" class="topic-badge"></span>
+            <a id="guideLink" class="guide-link hidden" target="_blank" rel="noopener noreferrer">📖 解説</a>
+          </div>
+          <div id="questionText" class="question-text"></div>
+          <div id="choicesContainer" class="choices-container"></div>
 
-      <!-- メモエリア -->
-      <div class="notes-area">
-        <div class="notes-header">
-          <span class="notes-title">📝 メモ（タッチペンで書けます）</span>
-          <div class="notes-controls">
-            <button id="clearNotesBtn" class="notes-btn" type="button" title="メモをクリア" aria-label="メモをクリア">🗑️</button>
-            <select id="penSizeSelect" class="pen-size-select" title="線の太さ" aria-label="線の太さ">
-              <option value="2">細い</option>
-              <option value="4" selected>普通</option>
-              <option value="6">太い</option>
-            </select>
-            <select id="penColorSelect" class="pen-color-select" title="色" aria-label="線の色">
-              <option value="#000000">黒</option>
-              <option value="#0366d6">青</option>
-              <option value="#dc3545">赤</option>
-              <option value="#28a745">緑</option>
-            </select>
+          <div id="answerFeedback" class="answer-feedback hidden">
+            <div class="feedback-content">
+              <div id="feedbackResult" class="feedback-result"></div>
+              <div id="feedbackExplanation" class="feedback-explanation"></div>
+            </div>
+          </div>
+          <div class="navigation-buttons">
+            <button id="prevBtn" class="nav-btn" disabled>前へ</button>
+            <button id="nextBtn" class="nav-btn">次へ</button>
+            <button id="submitBtn" class="submit-btn hidden">採点する</button>
           </div>
         </div>
-        <canvas id="notesCanvas" class="notes-canvas"></canvas>
-      </div>
 
-      <div id="answerFeedback" class="answer-feedback hidden">
-        <div class="feedback-content">
-          <div id="feedbackResult" class="feedback-result"></div>
-          <div id="feedbackExplanation" class="feedback-explanation"></div>
+        <!-- 右列: メモエリア -->
+        <div class="quiz-notes-col">
+          <div class="notes-area">
+            <div class="notes-header">
+              <span class="notes-title">📝 メモ（タッチペンで書けます）</span>
+              <div class="notes-controls">
+                <button id="clearNotesBtn" class="notes-btn" type="button" title="メモをクリア" aria-label="メモをクリア">🗑️</button>
+                <select id="penSizeSelect" class="pen-size-select" title="線の太さ" aria-label="線の太さ">
+                  <option value="2">細い</option>
+                  <option value="4" selected>普通</option>
+                  <option value="6">太い</option>
+                </select>
+                <select id="penColorSelect" class="pen-color-select" title="色" aria-label="線の色">
+                  <option value="#000000">黒</option>
+                  <option value="#0366d6">青</option>
+                  <option value="#dc3545">赤</option>
+                  <option value="#28a745">緑</option>
+                </select>
+              </div>
+            </div>
+            <canvas id="notesCanvas" class="notes-canvas"></canvas>
+          </div>
         </div>
-      </div>
-      <div class="navigation-buttons">
-        <button id="prevBtn" class="nav-btn" disabled>前へ</button>
-        <button id="nextBtn" class="nav-btn">次へ</button>
-        <button id="submitBtn" class="submit-btn hidden">採点する</button>
       </div>
     </div>
 

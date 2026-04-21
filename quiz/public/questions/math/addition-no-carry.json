@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "addition-no-carry",
   "categoryName": "たし算（くり上がりなし）",
+  "guideUrl": "../contents/math/arithmetic/01-addition-no-carry/guide",
   "questions": [
     {
       "id": "add-no-carry-1",

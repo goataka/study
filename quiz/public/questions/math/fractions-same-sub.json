@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "fractions-same-sub",
   "categoryName": "分数のひき算（同分母）",
+  "guideUrl": "../contents/math/arithmetic/12-fractions-same-sub/guide",
   "questions": [
     {
       "id": "frac-same-sub-1",

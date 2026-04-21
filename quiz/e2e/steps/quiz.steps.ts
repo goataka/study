@@ -19,9 +19,21 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
 });
 
 When("I scroll the category tree", async ({ page }) => {
-  // カテゴリツリーが表示され、実際にスクロール可能になるまで待つ
+  // カテゴリツリーが表示されていることを確認
   const subjectTree = page.locator(".subject-tree");
   await expect(subjectTree).toBeVisible();
+
+  // 英語・数学ノードを展開してツリーを長くする
+  const englishNode = subjectTree.locator('.tree-item[data-subject="english"] > .tree-node-header').first();
+  if (await englishNode.isVisible()) {
+    await englishNode.click();
+  }
+  const mathNode = subjectTree.locator('.tree-item[data-subject="math"] > .tree-node-header').first();
+  if (await mathNode.isVisible()) {
+    await mathNode.click();
+  }
+
+  // ノード展開後にスクロール可能になるまで待つ
   await expect
     .poll(
       async () =>
@@ -94,7 +106,7 @@ Then("the {string} button should be enabled", async ({ page }, buttonText: strin
 });
 
 When("I answer all questions", async ({ page }) => {
-  // 全問題に回答する（最大10問）
+  // 全問題に回答する（最大20問）
   let hasNext = true;
   while (hasNext) {
     // 最初の選択肢を選ぶ

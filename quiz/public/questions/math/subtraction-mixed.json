@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "subtraction-mixed",
   "categoryName": "ひき算（まとめ）",
+  "guideUrl": "../contents/math/arithmetic/06-subtraction-mixed/guide",
   "questions": [
     {
       "id": "sub-mixed-1",

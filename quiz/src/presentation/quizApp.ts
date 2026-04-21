@@ -396,7 +396,7 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
-    this.on("topBtn", "click", () => this.showScreen("start"));
+    this.on("topBtn", "click", () => this.navigateToTop());
 
     // ユーザー名入力の変更を監視
     const userNameInput = document.getElementById("userNameInput");
@@ -530,6 +530,17 @@ export class QuizApp {
 
     const progress = ((idx + 1) / total) * 100;
     (document.getElementById("progressFill") as HTMLElement).style.width = `${progress}%`;
+
+    // 解説リンクを更新
+    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement | null;
+    if (guideLink) {
+      if (question.guideUrl) {
+        guideLink.href = question.guideUrl;
+        guideLink.classList.remove("hidden");
+      } else {
+        guideLink.classList.add("hidden");
+      }
+    }
 
     this.setText("questionText", question.question);
     this.renderChoices(question, session);
@@ -738,7 +749,26 @@ export class QuizApp {
     return div;
   }
 
-  // ─── 画面切替 ──────────────────────────────────────────────────────────────
+  // ─── 画面切替・ナビゲーション ──────────────────────────────────────────────
+
+  /**
+   * クイズが進行中かどうかを返す（クイズ画面かつ未採点）
+   */
+  private isQuizInProgress(): boolean {
+    const quizScreen = document.getElementById("quizScreen");
+    return !!this.currentSession && !quizScreen?.classList.contains("hidden");
+  }
+
+  /**
+   * 学習トップページへ遷移する。クイズ進行中は確認ダイアログを表示する。
+   */
+  private navigateToTop(): void {
+    if (this.isQuizInProgress()) {
+      const confirmed = window.confirm("クイズが途中です。学習トップに戻りますか？（進行状況は保存されません）");
+      if (!confirmed) return;
+    }
+    window.location.href = "../";
+  }
 
   private showScreen(screenName: "start" | "quiz" | "result"): void {
     document.querySelectorAll(".screen").forEach((s) => s.classList.add("hidden"));

@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "subtraction-borrow",
   "categoryName": "ひき算（くり下がりあり）",
+  "guideUrl": "../contents/math/arithmetic/05-subtraction-borrow/guide",
   "questions": [
     {
       "id": "sub-borrow-1",
