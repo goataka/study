@@ -373,7 +373,6 @@ export class QuizApp {
       explanationDiv.textContent = question.explanation;
     }
 
-    feedbackDiv.classList.add("answer-feedback");
     feedbackDiv.classList.remove("hidden");
     feedbackDiv.classList.toggle("correct", isCorrect);
     feedbackDiv.classList.toggle("incorrect", !isCorrect);

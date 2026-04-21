@@ -371,13 +371,45 @@ describe("QuizApp — 回答フィードバック仕様", () => {
   });
 
   it("フィードバックのテキストはtextContentで設定されXSSリスクがない", async () => {
-    await startQuiz();
-    const radios = document.querySelectorAll<HTMLInputElement>('input[name="answer"]');
-    radios[0]?.click();
+    // HTMLタグを含む選択肢が正解の場合でも安全に描画されることを確認する
+    const xssPayload = '<img src=x onerror=alert(1)>';
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockManifest),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            ...mockQuestionFile,
+            questions: mockQuestionFile.questions.map((q) => ({
+              ...q,
+              choices: [xssPayload, "イ", "ウ", "エ"],
+              correct: 0, // xssPayload が正解
+            })),
+          }),
+      } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    // xssPayload 以外のラジオボタンをクリックして不正解フィードバックを表示させる
+    const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
+    const wrongLabel = Array.from(labels).find(
+      (l) => l.querySelector(".choice-text")?.textContent !== xssPayload
+    );
+    wrongLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
 
     const resultDiv = document.getElementById("feedbackResult");
-    // innerHTML ではなく textContent で設定されているため、文字列として格納される
-    expect(resultDiv?.textContent).toBeTruthy();
-    expect(resultDiv?.innerHTML).toBe(resultDiv?.textContent);
+    // textContent にはプレーンテキストとして格納される（HTMLとして解析されない）
+    expect(resultDiv?.textContent).toContain(xssPayload);
+    // img 要素が DOM に生成されていないことを確認
+    expect(resultDiv?.querySelector("img")).toBeNull();
   });
 });
