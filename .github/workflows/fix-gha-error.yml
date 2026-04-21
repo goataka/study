@@ -30,3 +30,4 @@ jobs:
         uses: ./.github/actions/fix-gha-error
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          copilot-token: ${{ secrets.copilot_token }}

@@ -12,6 +12,9 @@ inputs:
   github-token:
     description: "GitHub token for authentication (GITHUB_TOKEN)"
     required: true
+  copilot-token:
+    description: "OAuth token for gh agent-task (secrets.copilot_token)"
+    required: true
   error-context:
     description: "エラーの詳細情報（オプション）"
     required: false
@@ -33,7 +36,19 @@ runs:
           echo "::error::gh CLI が見つかりません。ubuntu-latest 以外のrunnerを使用している場合は gh CLI をインストールしてください。"
           exit 1
         fi
-        echo "::notice::前提コマンド (jq, gh) の確認が完了しました"
+        # gh agent-task サブコマンドの確認
+        if ! gh agent-task --help &>/dev/null; then
+          echo "::error::gh agent-task サブコマンドが利用できません。gh CLI のバージョンを確認してください。"
+          exit 1
+        fi
+        echo "::notice::前提コマンド (jq, gh, gh agent-task) の確認が完了しました"
+
+    - name: gh CLI の認証
+      shell: bash
+      env:
+        COPILOT_TOKEN: ${{ inputs.copilot-token }}
+      run: |
+        echo "${COPILOT_TOKEN}" | gh auth login --with-token
 
     - name: エラー情報の収集
       id: collect-error
@@ -88,7 +103,6 @@ runs:
       id: create-agent-task
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.github-token }}
         WORKFLOW_NAME: ${{ steps.collect-error.outputs.workflow_name }}
         COMMIT_SHORT: ${{ steps.collect-error.outputs.commit_short }}
         RUN_URL: ${{ steps.collect-error.outputs.run_url }}
@@ -151,14 +165,12 @@ runs:
         EOF
         printf '5. `%s` ブランチをターゲットとしたPRを作成する\n' "${TARGET_BRANCH}" >>"$TASK_FILE"
 
-        # copilot ラベル付き Issue でエージェントタスクを作成（GITHUB_TOKEN で動作）
-        ISSUE_TITLE="🚨 GHAエラー: ${WORKFLOW_NAME} (${COMMIT_SHORT})"
+        # gh agent-task create でエージェントタスクを作成
         echo "::notice::エージェントタスクを作成しています (base: ${TARGET_BRANCH})..."
-        gh issue create \
+        gh agent-task create \
+          --base "${TARGET_BRANCH}" \
           --repo "${{ github.repository }}" \
-          --title "${ISSUE_TITLE}" \
-          --body-file "$TASK_FILE" \
-          --label "copilot"
+          -F "$TASK_FILE"
 
         # 一時ファイルを削除
         rm -f "$TASK_FILE"
