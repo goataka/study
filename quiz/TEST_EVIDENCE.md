@@ -10,6 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
+| **最終更新** | 2026-04-21 17:32:34 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `3922108` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 | **最終更新** | 2026-04-21 19:52:03 JST |
 | **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
 | **コミット** | `62b3ac5` |
@@ -22,6 +26,7 @@
 
 | ファイル | SHA256 |
 |------|------|
+| `test-results.json` | `acc2e4873b51b2582d4a529ac1d910d50870ec30124f63dfd3335068a41281cd` |
 | `test-results.json` | `c43da3fd4818f2b180844e0d061597d65d6d54282b572a14bc6dba13b7c2c177` |
 | `e2e-results.json` | 未実行 |
 
@@ -32,7 +37,7 @@
 | テストスイート（合格 / 合計） | 41 / 41 |
 | テストケース（合格 / 合計） | 112 / 112 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.57s |
+| 実行時間 | 0.52s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -196,7 +201,6 @@
 
 ---
 
-> **ルール**: quizフォルダのコードを変更した後は必ず `npm run test:evidence` を実行して
 > このファイルを更新し、コミットに含めること（AI・CI共通）。
 
 [📜 エビデンス履歴を見る](TEST_EVIDENCE_LOG.md)
