@@ -47,9 +47,10 @@ jobs:
           source: ./contents
           destination: ./_site
 
-      - name: クイズビルドをサイトにコピー
+      - name: ルートindex.htmlとクイズビルドをサイトにコピー
         working-directory: ${{ github.workspace }}
         run: |
+          sudo cp index.html _site/index.html
           sudo mkdir -p _site/quiz
           sudo cp -r quiz/dist/. _site/quiz/
 
