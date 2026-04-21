@@ -42,3 +42,13 @@
 - **コミットメッセージ**: ci: テストエビデンスを更新 [skip ci]
 - **単体テスト**: ✅ PASSED (93/93 合格)
 - **E2Eテスト**: ⏭ 未実行（CIで実行）
+
+---
+
+## 実行記録: 2026-04-21 14:49:51 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `40f95e1`
+- **コミットメッセージ**: Merge branch 'main' into claude/resolve-evidence-recording-issue
+- **単体テスト**: ✅ PASSED (93/93 合格)
+- **E2Eテスト**: ⏭ 未実行（CIで実行）
