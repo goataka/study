@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "adverbs",
   "categoryName": "副詞",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "adverbs-1",

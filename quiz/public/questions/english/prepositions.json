@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "prepositions",
   "categoryName": "前置詞",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "prepositions-1",

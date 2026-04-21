@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "assimilation",
   "categoryName": "音声変化 - アシミレーション",
+  "parentCategory": "pronunciation",
+  "parentCategoryName": "発音",
   "questions": [
     {
       "id": "assimilation-1",

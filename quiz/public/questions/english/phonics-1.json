@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "phonics-1",
   "categoryName": "フォニックス（1文字）",
+  "parentCategory": "pronunciation",
+  "parentCategoryName": "発音",
   "questions": [
     {
       "id": "phonics-1-a",

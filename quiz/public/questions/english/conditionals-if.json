@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "conditionals-if",
   "categoryName": "条件文",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "conditionals-if-1",

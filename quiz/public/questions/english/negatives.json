@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "negatives",
   "categoryName": "否定文",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "negatives-1",

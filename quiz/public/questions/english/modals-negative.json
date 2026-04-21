@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "modals-negative",
   "categoryName": "助動詞の否定形",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "modals-negative-1",

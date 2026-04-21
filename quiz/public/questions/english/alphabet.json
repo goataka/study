@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "alphabet",
   "categoryName": "アルファベット",
+  "parentCategory": "pronunciation",
+  "parentCategoryName": "発音",
   "questions": [
     {
       "id": "alphabet-1",

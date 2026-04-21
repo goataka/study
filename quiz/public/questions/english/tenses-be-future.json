@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "tenses-be-future",
   "categoryName": "be動詞の未来形",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "tenses-be-future-1",

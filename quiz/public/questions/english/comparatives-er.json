@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "comparatives-er",
   "categoryName": "比較級",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "comparatives-er-1",

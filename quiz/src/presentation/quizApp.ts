@@ -13,7 +13,7 @@ import { LocalStorageProgressRepository } from "../infrastructure/localStoragePr
 export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
-  private filter: QuizFilter = { subject: "all", category: "all" };
+  private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "";
 
   constructor() {
@@ -77,9 +77,6 @@ export class QuizApp {
 
     subjects.forEach((subject) => {
       const hasChildren = subject.id !== "all";
-      const categories = hasChildren
-        ? this.useCase.getCategoriesForSubject(subject.id)
-        : {};
 
       const item = document.createElement("div");
       item.className = "tree-item";
@@ -113,33 +110,46 @@ export class QuizApp {
 
       item.appendChild(header);
 
-      if (hasChildren && Object.keys(categories).length > 0) {
+      if (hasChildren) {
         const children = document.createElement("div");
         children.className = "tree-children hidden";
         children.id = childrenId;
 
-        for (const [categoryId, categoryName] of Object.entries(categories)) {
-          const catItem = document.createElement("div");
-          catItem.className = "tree-item category-node";
-          catItem.dataset.subject = subject.id;
-          catItem.dataset.category = categoryId;
+        // 親カテゴリを取得
+        const parentCategories = this.useCase.getParentCategoriesForSubject(subject.id);
 
-          const catHeader = document.createElement("div");
-          catHeader.className = "tree-node-header";
-          catHeader.setAttribute("role", "button");
-          catHeader.setAttribute("tabindex", "0");
+        if (Object.keys(parentCategories).length > 0) {
+          // 親カテゴリがある場合は階層構造で表示
+          for (const [parentCatId, parentCatName] of Object.entries(parentCategories)) {
+            const parentItem = this.createParentCategoryNode(subject.id, parentCatId, parentCatName);
+            children.appendChild(parentItem);
+          }
+        }
 
-          const catLabel = document.createElement("span");
-          catLabel.className = "tree-node-label";
-          catLabel.textContent = categoryName;
-          catHeader.appendChild(catLabel);
+        // 親カテゴリがない問題も表示（レガシー互換）
+        const categoriesWithoutParent = this.useCase.getCategoriesForSubject(subject.id);
+        const parentCategoryIds = new Set(Object.keys(parentCategories));
+        const categoriesForParent: Record<string, Set<string>> = {};
 
-          const catStats = document.createElement("span");
-          catStats.className = "tree-node-stats";
-          catHeader.appendChild(catStats);
+        // 各親カテゴリに属するカテゴリを収集
+        for (const [parentCatId] of Object.entries(parentCategories)) {
+          const cats = this.useCase.getCategoriesForParent(subject.id, parentCatId);
+          categoriesForParent[parentCatId] = new Set(Object.keys(cats));
+        }
 
-          catItem.appendChild(catHeader);
-          children.appendChild(catItem);
+        // 親カテゴリに属さないカテゴリのみ表示
+        for (const [categoryId, categoryName] of Object.entries(categoriesWithoutParent)) {
+          let belongsToParent = false;
+          for (const catSet of Object.values(categoriesForParent)) {
+            if (catSet.has(categoryId)) {
+              belongsToParent = true;
+              break;
+            }
+          }
+          if (!belongsToParent) {
+            const catItem = this.createCategoryNode(subject.id, categoryId, categoryName);
+            children.appendChild(catItem);
+          }
         }
 
         item.appendChild(children);
@@ -149,6 +159,91 @@ export class QuizApp {
     });
 
     // イベントリスナーをツリーアイテムに設定
+    this.attachTreeEventListeners(treeContainer);
+
+    // 初期状態で「すべて」を選択
+    const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
+    allNode?.classList.add("active");
+  }
+
+  private createParentCategoryNode(subject: string, parentCatId: string, parentCatName: string): HTMLElement {
+    const parentItem = document.createElement("div");
+    parentItem.className = "tree-item parent-category-node";
+    parentItem.dataset.subject = subject;
+    parentItem.dataset.parentCategory = parentCatId;
+
+    const childrenId = `tree-children-${subject}-${parentCatId}`;
+
+    const parentHeader = document.createElement("div");
+    parentHeader.className = "tree-node-header";
+    parentHeader.setAttribute("role", "button");
+    parentHeader.setAttribute("tabindex", "0");
+
+    const parentToggle = document.createElement("span");
+    parentToggle.className = "tree-toggle";
+    parentToggle.textContent = "▶";
+    parentToggle.setAttribute("aria-hidden", "true");
+    parentHeader.appendChild(parentToggle);
+    parentHeader.setAttribute("aria-expanded", "false");
+    parentHeader.setAttribute("aria-controls", childrenId);
+
+    const parentLabel = document.createElement("span");
+    parentLabel.className = "tree-node-label";
+    parentLabel.textContent = parentCatName;
+    parentHeader.appendChild(parentLabel);
+
+    const parentStats = document.createElement("span");
+    parentStats.className = "tree-node-stats";
+    parentHeader.appendChild(parentStats);
+
+    parentItem.appendChild(parentHeader);
+
+    // 子カテゴリを追加
+    const categories = this.useCase.getCategoriesForParent(subject, parentCatId);
+    if (Object.keys(categories).length > 0) {
+      const catChildren = document.createElement("div");
+      catChildren.className = "tree-children hidden";
+      catChildren.id = childrenId;
+
+      for (const [categoryId, categoryName] of Object.entries(categories)) {
+        const catItem = this.createCategoryNode(subject, categoryId, categoryName, parentCatId);
+        catChildren.appendChild(catItem);
+      }
+
+      parentItem.appendChild(catChildren);
+    }
+
+    return parentItem;
+  }
+
+  private createCategoryNode(subject: string, categoryId: string, categoryName: string, parentCatId?: string): HTMLElement {
+    const catItem = document.createElement("div");
+    catItem.className = "tree-item category-node";
+    catItem.dataset.subject = subject;
+    catItem.dataset.category = categoryId;
+    if (parentCatId) {
+      catItem.dataset.parentCategory = parentCatId;
+    }
+
+    const catHeader = document.createElement("div");
+    catHeader.className = "tree-node-header";
+    catHeader.setAttribute("role", "button");
+    catHeader.setAttribute("tabindex", "0");
+
+    const catLabel = document.createElement("span");
+    catLabel.className = "tree-node-label";
+    catLabel.textContent = categoryName;
+    catHeader.appendChild(catLabel);
+
+    const catStats = document.createElement("span");
+    catStats.className = "tree-node-stats";
+    catHeader.appendChild(catStats);
+
+    catItem.appendChild(catHeader);
+    return catItem;
+  }
+
+  private attachTreeEventListeners(treeContainer: Element): void {
     const treeItems = treeContainer.querySelectorAll(".tree-item");
     treeItems.forEach((node) => {
       const el = node as HTMLElement;
@@ -159,9 +254,10 @@ export class QuizApp {
         e.stopPropagation();
         const subject = el.dataset.subject || "all";
         const category = el.dataset.category;
+        const parentCategory = el.dataset.parentCategory;
 
-        // 教科ノード（カテゴリでない）の場合は展開/折りたたみをトグル
-        if (!category && subject !== "all") {
+        // 教科ノードまたは親カテゴリノード（カテゴリでない）の場合は展開/折りたたみをトグル
+        if (!category && (subject !== "all" || parentCategory)) {
           el.classList.toggle("expanded");
           const isExpanded = el.classList.contains("expanded");
           nodeHeader.setAttribute("aria-expanded", String(isExpanded));
@@ -175,7 +271,19 @@ export class QuizApp {
 
         // フィルターを更新
         this.filter.subject = subject;
-        this.filter.category = category ?? "all";
+        if (category) {
+          // カテゴリノードがクリックされた場合
+          this.filter.category = category;
+          this.filter.parentCategory = parentCategory;
+        } else if (parentCategory && subject !== "all") {
+          // 親カテゴリノードがクリックされた場合
+          this.filter.category = "all";
+          this.filter.parentCategory = parentCategory;
+        } else {
+          // 教科ノードまたは「すべて」がクリックされた場合
+          this.filter.category = "all";
+          this.filter.parentCategory = undefined;
+        }
         this.updateStartScreen();
       };
 
@@ -187,10 +295,6 @@ export class QuizApp {
         }
       });
     });
-
-    // 初期状態で「すべて」を選択
-    const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
-    allNode?.classList.add("active");
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -230,7 +334,7 @@ export class QuizApp {
   }
 
   private updateSubjectStats(): void {
-    // 全問題を1回だけ走査して subject/category ごとの統計を集計する
+    // 全問題を1回だけ走査して subject/category/parentCategory ごとの統計を集計する
     const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
     const wrongSet = new Set(this.useCase.wrongQuestionIds);
 
@@ -247,6 +351,9 @@ export class QuizApp {
       addStat("all::all", isWrong);
       addStat(`${q.subject}::all`, isWrong);
       addStat(`${q.subject}::${q.category}`, isWrong);
+      if (q.parentCategory) {
+        addStat(`${q.subject}::parent::${q.parentCategory}`, isWrong);
+      }
     }
 
     // DOM を一括更新
@@ -254,8 +361,21 @@ export class QuizApp {
     treeItems.forEach((node) => {
       const el = node as HTMLElement;
       const subject = el.dataset.subject || "all";
-      const category = el.dataset.category ?? "all";
-      const key = `${subject}::${category}`;
+      const category = el.dataset.category;
+      const parentCategory = el.dataset.parentCategory;
+
+      let key: string;
+      if (category) {
+        // カテゴリノード
+        key = `${subject}::${category}`;
+      } else if (parentCategory) {
+        // 親カテゴリノード
+        key = `${subject}::parent::${parentCategory}`;
+      } else {
+        // 教科ノードまたは「すべて」
+        key = `${subject}::all`;
+      }
+
       const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
 
       const statsEl = el.querySelector(":scope > .tree-node-header > .tree-node-stats");
