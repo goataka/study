@@ -34,9 +34,30 @@ export class QuizApp {
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
     this.loadUserName();
+    this.loadFilterFromURL();
     this.setupEventListeners();
     this.buildCategoryTree();
     this.updateStartScreen();
+  }
+
+  /**
+   * URL パラメータからフィルターを読み込む
+   * 例: ?subject=english&category=tenses-regular-present
+   */
+  private loadFilterFromURL(): void {
+    const params = new URLSearchParams(window.location.search);
+    const subject = params.get("subject");
+    const category = params.get("category");
+
+    if (subject) {
+      this.filter.subject = subject;
+    }
+    if (category && category !== "all") {
+      this.filter.category = category;
+    } else if (subject) {
+      // subjectが指定されているがcategoryがない場合は"all"
+      this.filter.category = "all";
+    }
   }
 
   private loadUserName(): void {
@@ -188,7 +209,55 @@ export class QuizApp {
       });
     });
 
-    // 初期状態で「すべて」を選択
+    // フィルターに基づいて初期選択を設定
+    this.selectTreeItemByFilter();
+  }
+
+  /**
+   * 現在のフィルター設定に基づいてツリーアイテムを選択する
+   */
+  private selectTreeItemByFilter(): void {
+    const treeContainer = document.querySelector(".subject-tree");
+    if (!treeContainer) return;
+
+    const treeItems = treeContainer.querySelectorAll(".tree-item");
+
+    // まず全てのアクティブ状態をクリア
+    treeItems.forEach((item) => item.classList.remove("active"));
+
+    // フィルターに一致するアイテムを探して選択
+    if (this.filter.category !== "all") {
+      // カテゴリが指定されている場合、そのカテゴリを選択
+      const categoryNode = treeContainer.querySelector(
+        `.tree-item[data-subject="${this.filter.subject}"][data-category="${this.filter.category}"]`
+      );
+      if (categoryNode) {
+        categoryNode.classList.add("active");
+        // 親の教科ノードを展開
+        const parentSubject = categoryNode.closest('.tree-item[data-subject]:not([data-category])');
+        if (parentSubject) {
+          parentSubject.classList.add("expanded");
+          const header = parentSubject.querySelector(".tree-node-header");
+          header?.setAttribute("aria-expanded", "true");
+          const children = parentSubject.querySelector(":scope > .tree-children");
+          children?.classList.remove("hidden");
+        }
+        return;
+      }
+    }
+
+    // カテゴリが見つからない、またはsubjectのみの場合
+    if (this.filter.subject !== "all") {
+      const subjectNode = treeContainer.querySelector(
+        `.tree-item[data-subject="${this.filter.subject}"]:not([data-category])`
+      );
+      if (subjectNode) {
+        subjectNode.classList.add("active");
+        return;
+      }
+    }
+
+    // デフォルトは「すべて」を選択
     const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
     allNode?.classList.add("active");
   }

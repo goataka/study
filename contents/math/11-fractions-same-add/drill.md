@@ -22,3 +22,5 @@
 [目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
 
 [前へ: わり算（まとめ）](../10-division-mixed/drill.md) | **分数のたし算（同分母）** | [次へ: 分数のひき算（同分母）](../12-fractions-same-sub/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=fractions-same-add)
