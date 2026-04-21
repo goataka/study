@@ -10,14 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 17:32:34 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `3922108` |
-| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
-| **最終更新** | 2026-04-21 19:52:03 JST |
-| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `62b3ac5` |
-| **コミットメッセージ** | Apply review feedback: Japanese warnings, aria-labels, passive touch, restore race fix, comprehensive tests |
+| **最終更新** | 2026-04-21 09:14:01 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `6b95de0` |
+| **コミットメッセージ** | feat: add hierarchical structure to math drills (arithmetic/algebra/calculus) |
 
 ## 改ざん防止チェックサム
 
@@ -26,8 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `acc2e4873b51b2582d4a529ac1d910d50870ec30124f63dfd3335068a41281cd` |
-| `test-results.json` | `c43da3fd4818f2b180844e0d061597d65d6d54282b572a14bc6dba13b7c2c177` |
+| `test-results.json` | `bee6e62fd7d03d26f632048394929761e63325e680f3c3bd2e922ad95e363df9` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -37,7 +32,7 @@
 | テストスイート（合格 / 合計） | 41 / 41 |
 | テストケース（合格 / 合計） | 112 / 112 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.52s |
+| 実行時間 | 0.46s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
