@@ -18,6 +18,38 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
   await expect(page.locator("h1")).toHaveText(title);
 });
 
+When("I scroll the category tree", async ({ page }) => {
+  // カテゴリツリーをスクロール
+  const subjectTree = page.locator(".subject-tree");
+  await subjectTree.evaluate((el) => {
+    el.scrollTop = el.scrollHeight;
+  });
+  // スクロールが完了するまで少し待つ
+  await page.waitForTimeout(100);
+});
+
+Then("the header should remain visible", async ({ page }) => {
+  // ヘッダーが表示されていることを確認
+  const header = page.locator("header");
+  await expect(header).toBeVisible();
+
+  // ヘッダーがビューポート内に存在することを確認
+  const headerBox = await header.boundingBox();
+  expect(headerBox).not.toBeNull();
+  expect(headerBox!.y).toBeGreaterThanOrEqual(0);
+});
+
+Then("the quiz panel should remain visible", async ({ page }) => {
+  // クイズパネルが表示されていることを確認
+  const quizPanel = page.locator(".quiz-panel");
+  await expect(quizPanel).toBeVisible();
+
+  // クイズパネルがビューポート内に存在することを確認
+  const panelBox = await quizPanel.boundingBox();
+  expect(panelBox).not.toBeNull();
+  expect(panelBox!.y).toBeGreaterThanOrEqual(0);
+});
+
 When("I click the {string} button", async ({ page }, buttonText: string) => {
   await page.getByRole("button", { name: buttonText }).click();
 });
