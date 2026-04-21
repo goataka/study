@@ -22,7 +22,7 @@ jobs:
           
           gh auth status --hostname github.com
           
-          # export GH_TOKEN="${COPILOT_TOKEN}"
+          export GH_TOKEN="${COPILOT_TOKEN}"
 
           TASK_FILE=$(mktemp)
           echo "モデル名を教えて" >>"$TASK_FILE"
