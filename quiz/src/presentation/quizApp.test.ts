@@ -274,19 +274,22 @@ describe("QuizApp — カテゴリツリー仕様", () => {
     expect(statsInfo?.textContent).toContain("全5問");
   });
 
-  it("1問も解いていないときの統計表示は「0/総数」の形式である", async () => {
+  it("間違えた問題が0件のときの統計表示は「0/総数」の形式である", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 間違えた問題がない状態（localStorage が空）でツリーの統計表示を確認
     const statsEls = document.querySelectorAll(".tree-node-stats");
-    statsEls.forEach((el) => {
-      const text = el.textContent || "";
-      // 総数が0でなければ「0/総数」の形式であること
-      if (text !== "") {
-        expect(text).toMatch(/^\d+\/\d+$/);
-        expect(text).not.toContain("問");
-      }
+    const nonEmptyTexts = Array.from(statsEls)
+      .map((el) => el.textContent?.trim() || "")
+      .filter((text) => text !== "");
+
+    // 少なくとも1つは統計表示が描画されていること
+    expect(nonEmptyTexts.length).toBeGreaterThan(0);
+
+    nonEmptyTexts.forEach((text) => {
+      expect(text).toMatch(/^0\/\d+$/);
+      expect(text).not.toContain("問");
     });
   });
 });
