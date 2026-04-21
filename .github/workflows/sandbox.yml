@@ -12,25 +12,24 @@ jobs:
       pull-requests: write
       issues: write
     steps:
-      - name: Copilotエージェントタスクを作成
-        shell: bash
-        env:
-          COPILOT_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Copilot CLI & MCP Server
         run: |
-          set -euo pipefail
-          # echo "${COPILOT_TOKEN}" | gh auth login --with-token --hostname github.com
-          
-          # gh auth status --hostname github.com
-          
-          export GH_TOKEN="${COPILOT_TOKEN}"
+          npm install -g @githubnext/github-copilot-cli
+          npm install -g @modelcontextprotocol/server-github
 
-          TASK_FILE=$(mktemp)
-          echo "モデル名を教えて" >>"$TASK_FILE"
-          
-          gh agent-task create \
-            --base "main" \
-            --repo "${{ github.repository }}" \
-            -F "$TASK_FILE"
-
-          # 一時ファイルを削除
-          rm -f "$TASK_FILE"
+      - name: Run Copilot Agent Task
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
+          GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
+        run: |
+          # エージェントタスクの実行
+          # --allow-all-tools: エージェントが自律的にMCPツールを叩くことを許可
+          copilot agent task \
+            "モデルのバージョンを教えて。" \
+            --allow-all-tools \
+            --mcp-server "npx -y @modelcontextprotocol/server-github"
