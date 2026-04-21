@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 08:32:26 JST |
+| **最終更新** | 2026-04-21 09:18:49 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `0d0a32a` |
-| **コミットメッセージ** | Merge origin/main: resolve conflicts and update test evidence |
+| **コミット** | `5ce8aca` |
+| **コミットメッセージ** | refactor: Move quiz links per reviewer feedback - math on own line, pronunciation 2-line format |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `2c4fe4a051de599b953024845091139aef1e834f24cf195bec064f4eda09acc5` |
+| `test-results.json` | `bfd05701f705cbc242612f954a26a78fffb5a1ce6cbf1772ed4734d31717e10e` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.53s |
+| 実行時間 | 0.54s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
