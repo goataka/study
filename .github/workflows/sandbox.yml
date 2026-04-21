@@ -28,3 +28,4 @@ jobs:
           copilot -p \
             "goataka/studyのmainブランチのREADMにある一覧の文字をなくすPRを作成するエージェントセッションを作成して。"
             --autopilot
+            --remote
