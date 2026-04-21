@@ -13,6 +13,8 @@ export interface Question {
   subjectName: string;
   category: string;
   categoryName: string;
+  parentCategory?: string;
+  parentCategoryName?: string;
 }
 
 /** 各問題ファイルの生データ（メタ情報なし） */
@@ -30,6 +32,8 @@ export interface QuestionFile {
   subjectName: string;
   category: string;
   categoryName: string;
+  parentCategory?: string;
+  parentCategoryName?: string;
   questions: RawQuestion[];
 }
 
@@ -74,6 +78,12 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       throw new Error(`QuestionFile must have a "${field}" string field`);
     }
   }
+  // parentCategory と parentCategoryName はオプション（両方あるか両方ないか）
+  if (qf.parentCategory !== undefined || qf.parentCategoryName !== undefined) {
+    if (typeof qf.parentCategory !== "string" || typeof qf.parentCategoryName !== "string") {
+      throw new Error('If parentCategory or parentCategoryName is present, both must be strings');
+    }
+  }
   if (!Array.isArray(qf.questions)) {
     throw new Error('QuestionFile must have a "questions" array');
   }
@@ -116,6 +126,8 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     subjectName: qf.subjectName,
     category: qf.category,
     categoryName: qf.categoryName,
+    parentCategory: qf.parentCategory,
+    parentCategoryName: qf.parentCategoryName,
   }));
 }
 

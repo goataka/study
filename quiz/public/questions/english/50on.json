@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "50on",
   "categoryName": "五十音ローマ字",
+  "parentCategory": "pronunciation",
+  "parentCategoryName": "発音",
   "questions": [
     {
       "id": "50on-1",

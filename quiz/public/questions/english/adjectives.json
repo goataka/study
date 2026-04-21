@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "adjectives",
   "categoryName": "形容詞",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "adjectives-1",

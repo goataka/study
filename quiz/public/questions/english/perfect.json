@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "perfect",
   "categoryName": "完了形",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "perfect-1",

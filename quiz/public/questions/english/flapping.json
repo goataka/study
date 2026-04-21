@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "flapping",
   "categoryName": "音声変化 - フラッピング",
+  "parentCategory": "pronunciation",
+  "parentCategoryName": "発音",
   "questions": [
     {
       "id": "flapping-1",
