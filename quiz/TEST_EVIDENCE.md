@@ -169,7 +169,7 @@
 | ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > restoreは例外を投げない |
 | ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > destroyの後はsaveがnullを返す |
 
-### ✅ `src/presentation/quizApp.test.ts` (19/19)
+### ✅ `src/presentation/quizApp.test.ts` (20/20)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -185,6 +185,7 @@
 | ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
+| ✅ | QuizApp — カテゴリツリー仕様 > 間違えた問題が0件のときの統計表示は「0/総数」の形式である |
 | ✅ | QuizApp — 回答フィードバック仕様 > 未回答の問題ではフィードバック領域が非表示になっている |
 | ✅ | QuizApp — 回答フィードバック仕様 > 回答を選択するとフィードバック領域が表示される |
 | ✅ | QuizApp — 回答フィードバック仕様 > 正解を選択すると correct クラスが付与される |
