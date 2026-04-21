@@ -33,12 +33,7 @@ runs:
           echo "::error::gh CLI が見つかりません。ubuntu-latest 以外のrunnerを使用している場合は gh CLI をインストールしてください。"
           exit 1
         fi
-        # gh agent-task サブコマンドの確認
-        if ! gh agent-task --help &>/dev/null; then
-          echo "::error::gh agent-task サブコマンドが利用できません。gh CLI のバージョンを確認してください。"
-          exit 1
-        fi
-        echo "::notice::前提コマンド (jq, gh, gh agent-task) の確認が完了しました"
+        echo "::notice::前提コマンド (jq, gh) の確認が完了しました"
 
     - name: エラー情報の収集
       id: collect-error
@@ -156,12 +151,14 @@ runs:
         EOF
         printf '5. `%s` ブランチをターゲットとしたPRを作成する\n' "${TARGET_BRANCH}" >>"$TASK_FILE"
 
-        # gh agent-task create でエージェントタスクを作成
+        # copilot ラベル付き Issue でエージェントタスクを作成（GITHUB_TOKEN で動作）
+        ISSUE_TITLE="🚨 GHAエラー: ${WORKFLOW_NAME} (${COMMIT_SHORT})"
         echo "::notice::エージェントタスクを作成しています (base: ${TARGET_BRANCH})..."
-        gh agent-task create \
-          --base "${TARGET_BRANCH}" \
+        gh issue create \
           --repo "${{ github.repository }}" \
-          -F "$TASK_FILE"
+          --title "${ISSUE_TITLE}" \
+          --body-file "$TASK_FILE" \
+          --label "copilot"
 
         # 一時ファイルを削除
         rm -f "$TASK_FILE"
