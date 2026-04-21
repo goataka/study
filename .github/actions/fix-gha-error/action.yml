@@ -9,8 +9,8 @@ branding:
   color: "red"
 
 inputs:
-  copilot-token:
-    description: "Copilotエージェント用トークン（COPILOT_TOKEN）"
+  github-token:
+    description: "GitHub token for authentication (GITHUB_TOKEN)"
     required: true
   error-context:
     description: "エラーの詳細情報（オプション）"
@@ -93,7 +93,7 @@ runs:
       id: create-agent-task
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.copilot-token }}
+        GH_TOKEN: ${{ inputs.github-token }}
         WORKFLOW_NAME: ${{ steps.collect-error.outputs.workflow_name }}
         COMMIT_SHORT: ${{ steps.collect-error.outputs.commit_short }}
         RUN_URL: ${{ steps.collect-error.outputs.run_url }}
