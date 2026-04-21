@@ -128,7 +128,6 @@ export class QuizApp {
 
         // 親カテゴリがない問題も表示（レガシー互換）
         const categoriesWithoutParent = this.useCase.getCategoriesForSubject(subject.id);
-        const parentCategoryIds = new Set(Object.keys(parentCategories));
         const categoriesForParent: Record<string, Set<string>> = {};
 
         // 各親カテゴリに属するカテゴリを収集
@@ -179,28 +178,29 @@ export class QuizApp {
     parentHeader.setAttribute("role", "button");
     parentHeader.setAttribute("tabindex", "0");
 
-    const parentToggle = document.createElement("span");
-    parentToggle.className = "tree-toggle";
-    parentToggle.textContent = "▶";
-    parentToggle.setAttribute("aria-hidden", "true");
-    parentHeader.appendChild(parentToggle);
-    parentHeader.setAttribute("aria-expanded", "false");
-    parentHeader.setAttribute("aria-controls", childrenId);
-
     const parentLabel = document.createElement("span");
     parentLabel.className = "tree-node-label";
     parentLabel.textContent = parentCatName;
-    parentHeader.appendChild(parentLabel);
 
     const parentStats = document.createElement("span");
     parentStats.className = "tree-node-stats";
-    parentHeader.appendChild(parentStats);
 
     parentItem.appendChild(parentHeader);
 
     // 子カテゴリを追加
     const categories = this.useCase.getCategoriesForParent(subject, parentCatId);
     if (Object.keys(categories).length > 0) {
+      const parentToggle = document.createElement("span");
+      parentToggle.className = "tree-toggle";
+      parentToggle.textContent = "▶";
+      parentToggle.setAttribute("aria-hidden", "true");
+      parentHeader.appendChild(parentToggle);
+      parentHeader.setAttribute("aria-expanded", "false");
+      parentHeader.setAttribute("aria-controls", childrenId);
+
+      parentHeader.appendChild(parentLabel);
+      parentHeader.appendChild(parentStats);
+
       const catChildren = document.createElement("div");
       catChildren.className = "tree-children hidden";
       catChildren.id = childrenId;
@@ -211,6 +211,9 @@ export class QuizApp {
       }
 
       parentItem.appendChild(catChildren);
+    } else {
+      parentHeader.appendChild(parentLabel);
+      parentHeader.appendChild(parentStats);
     }
 
     return parentItem;

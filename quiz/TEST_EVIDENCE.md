@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 09:11:16 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `8eb2c6d` |
-| **コミットメッセージ** | Add parent category hierarchy to quiz (pronunciation and grammar) |
+| **最終更新** | 2026-04-21 20:08:21 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `1e6c15c` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `e74e818cde5e95412cd6a215608529b48c24bc21f1680df72fcd21388a6ccdbe` |
+| `test-results.json` | `df4830699199347b25a2746b60dca9db49da21db2bb2962b529adad858e47ae7` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 33 / 33 |
-| テストケース（合格 / 合計） | 93 / 93 |
+| テストスイート（合格 / 合計） | 37 / 37 |
+| テストケース（合格 / 合計） | 113 / 113 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.55s |
+| 実行時間 | 0.41s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -41,20 +41,26 @@
 
 ## 単体テストスイート詳細
 
-### ✅ `src/application/quizUseCase.test.ts` (8/8)
+### ✅ `src/application/quizUseCase.test.ts` (14/14)
 
 | 結果 | テスト名 |
 |------|---------|
 | ✅ | QuizUseCase — 初期化仕様 > initialize() で全問題をロードする |
 | ✅ | QuizUseCase — フィルター仕様 > 教科フィルターが機能する |
 | ✅ | QuizUseCase — フィルター仕様 > 教科の categories が取得できる |
+| ✅ | QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent 仕様 > getParentCategoriesForSubject で親カテゴリが重複なく取得できる |
+| ✅ | QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent 仕様 > getParentCategoriesForSubject で parentCategoryName がない場合は ID をフォールバックとして使う |
+| ✅ | QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent 仕様 > getParentCategoriesForSubject で親カテゴリのない教科は空オブジェクトを返す |
+| ✅ | QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent 仕様 > getCategoriesForParent で指定した親カテゴリ配下のカテゴリのみ返る |
+| ✅ | QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent 仕様 > getCategoriesForParent で重複なくカテゴリが返る |
+| ✅ | QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent 仕様 > getCategoriesForParent で存在しない親カテゴリは空オブジェクトを返す |
 | ✅ | QuizUseCase — セッション開始仕様 > randomモードで最大10問のセッションが開始される |
 | ✅ | QuizUseCase — セッション開始仕様 > retryモードで間違えた問題がなければエラー |
 | ✅ | QuizUseCase — セッション開始仕様 > retryモードで間違えた問題のみが出題される |
 | ✅ | QuizUseCase — 採点・進捗保存仕様 > 正解した問題は wrongIds から除かれる |
 | ✅ | QuizUseCase — 採点・進捗保存仕様 > 不正解の問題は wrongIds に追加される |
 
-### ✅ `src/domain/question.test.ts` (19/19)
+### ✅ `src/domain/question.test.ts` (23/23)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -77,8 +83,12 @@
 | ✅ | shuffleChoices — 選択肢シャッフル仕様 > 同じIDの問題は常に同じシャッフル結果を返す（決定論的） |
 | ✅ | shuffleChoices — 選択肢シャッフル仕様 > 異なるIDの問題は異なるシャッフル結果を返す |
 | ✅ | shuffleChoices — 選択肢シャッフル仕様 > 正解が最後の位置にある場合も正しくシャッフルされる |
+| ✅ | validateQuestionFile — parentCategory/parentCategoryName 検証仕様 > parentCategory と parentCategoryName が両方文字列なら受け入れる |
+| ✅ | validateQuestionFile — parentCategory/parentCategoryName 検証仕様 > parentCategory だけ存在し parentCategoryName がない場合は拒否する |
+| ✅ | validateQuestionFile — parentCategory/parentCategoryName 検証仕様 > parentCategoryName だけ存在し parentCategory がない場合は拒否する |
+| ✅ | validateQuestionFile — parentCategory/parentCategoryName 検証仕様 > どちらも省略した場合は受け入れる |
 
-### ✅ `src/domain/quizSession.test.ts` (18/18)
+### ✅ `src/domain/quizSession.test.ts` (23/23)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -100,6 +110,11 @@
 | ✅ | QuizSession.filter — フィルター仕様 > 教科でフィルターできる |
 | ✅ | QuizSession.filter — フィルター仕様 > カテゴリでフィルターできる |
 | ✅ | QuizSession.filter — フィルター仕様 > all を指定すると全件返る |
+| ✅ | QuizSession.filter — parentCategory フィルター仕様 > parentCategory でフィルターできる |
+| ✅ | QuizSession.filter — parentCategory フィルター仕様 > parentCategory が 'all' のときは全件返る |
+| ✅ | QuizSession.filter — parentCategory フィルター仕様 > parentCategory を指定しない場合は全件返る（未設定問題も含む） |
+| ✅ | QuizSession.filter — parentCategory フィルター仕様 > parentCategory と subject を組み合わせてフィルターできる |
+| ✅ | QuizSession.filter — parentCategory フィルター仕様 > 一致する parentCategory がない場合は0件返る |
 
 ### ✅ `src/infrastructure/localStorageProgressRepository.test.ts` (10/10)
 
@@ -152,7 +167,7 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
-### ✅ `src/presentation/quizApp.test.ts` (12/12)
+### ✅ `src/presentation/quizApp.test.ts` (17/17)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -168,6 +183,11 @@
 | ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
+| ✅ | QuizApp — 親カテゴリツリー仕様 > 親カテゴリノードが描画される |
+| ✅ | QuizApp — 親カテゴリツリー仕様 > 親カテゴリノードに aria-controls と aria-expanded が設定されている（子あり） |
+| ✅ | QuizApp — 親カテゴリツリー仕様 > 親カテゴリノードをクリックすると statsInfo がその配下全問題数に更新される |
+| ✅ | QuizApp — 親カテゴリツリー仕様 > 親カテゴリノードをクリックすると配下の子カテゴリノードが表示される |
+| ✅ | QuizApp — 親カテゴリツリー仕様 > 親カテゴリノードをクリックすると aria-expanded が true になる |
 
 ---
 
