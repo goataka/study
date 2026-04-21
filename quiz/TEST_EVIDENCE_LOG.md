@@ -71,6 +71,13 @@
 - **コミット**: `fad2b77`
 - **コミットメッセージ**: Merge branch 'main' into claude/fix-category-tree-scroll-behavior
 - **単体テスト**: ✅ PASSED (100/100 合格)
+## 実行記録: 2026-04-21 17:55:16 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `ecf2a97`
+- **コミットメッセージ**: Merge branch 'main' into claude/add
+- **単体テスト**: ✅ PASSED (100/100 合格)
+
 ## 実行記録: 2026-04-21 17:27:15 JST
 
 - **更新者**: GitHub Actions (CI)
@@ -221,5 +228,58 @@
 - **更新者**: GitHub Actions (dynamic/copilot-swe-agent/copilot)
 - **コミット**: `f380c41`
 - **コミットメッセージ**: fix: address PR review feedback - CSS variable, E2E improvements, remove TEST_EVIDENCE.md
+## 実行記録: 2026-04-21 20:09:49 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `1b0c78c`
+- **コミットメッセージ**: Merge origin/main: resolve conflicts - keep hierarchy nav links and add quiz links
+
+## 実行記録: 2026-04-21 20:09:28 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `894f474`
+- **コミットメッセージ**: Merge branch 'main' into claude/update-index-html-for-quiz-top
+
+## 実行記録: 2026-04-21 20:08:17 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `4b92ed5`
+- **コミットメッセージ**: Merge branch 'main' into claude/add
+- **単体テスト**: ✅ PASSED (113/113 合格)
+- **E2Eテスト**: ⏭ 未実行（CIで実行）
+
+---
+
+## 実行記録: 2026-04-21 20:11:30 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `fee3462`
+- **コミットメッセージ**: Merge branch 'main' into claude/add-sentence-structure-for-arithmetic
+
+## 実行記録: 2026-04-21 20:10:55 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `18f6c49`
+- **コミットメッセージ**: Merge branch 'main' into claude/update-index-html-for-quiz-top
+- **単体テスト**: ✅ PASSED (113/113 合格)
+- **E2Eテスト**: ⏭ 未実行（CIで実行）
+
+---
+
+## 実行記録: 2026-04-21 20:13:01 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `eda5d12`
+- **コミットメッセージ**: Merge branch 'main' into claude/add-sentence-structure-for-arithmetic
+- **単体テスト**: ✅ PASSED (113/113 合格)
+- **E2Eテスト**: ⏭ 未実行（CIで実行）
+
+---
+
+## 実行記録: 2026-04-21 20:17:58 JST
+
+- **更新者**: GitHub Actions (dynamic/copilot-swe-agent/copilot)
+- **コミット**: `55d4459`
+- **コミットメッセージ**: merge: origin/main との競合を解消
 - **単体テスト**: ✅ PASSED (113/113 合格)
 - **E2Eテスト**: ⏭ 未実行（CIで実行）

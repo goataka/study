@@ -23,6 +23,6 @@
 
 [目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
 
-[前へ: 二次方程式](../29-quadratic-eq/drill.md) | **二次関数** | [次へ: 不等式](../31-inequalities/drill.md)
+[前へ: 二次方程式](../../algebra/29-quadratic-eq/drill.md) | **二次関数** | [次へ: 不等式](../31-inequalities/drill.md)
 
 [クイズ](../../quiz/index.html?subject=math&category=quadratic-func)
