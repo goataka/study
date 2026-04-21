@@ -10,6 +10,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md)
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=comparatives-er)
 
 [前へ: 疑問詞](../38-questions-wh/drill.md) | 比較級 | [次へ: 最上級](../40-comparatives-est/drill.md)

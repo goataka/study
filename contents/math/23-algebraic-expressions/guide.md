@@ -40,3 +40,5 @@ bの仲間: 3b - b = 2b
 [目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
 [前へ: 正負の数](../22-positive-negative/drill.md) | **文字式** | [次へ: 一次方程式](../24-linear-eq/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=algebraic-expressions)
