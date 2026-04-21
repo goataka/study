@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 09:10:42 JST |
-| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
-| **コミット** | `d5d4a73` |
-| **コミットメッセージ** | ci: テストエビデンスを更新 [skip ci] |
+| **最終更新** | 2026-04-21 09:11:16 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `8eb2c6d` |
+| **コミットメッセージ** | Add parent category hierarchy to quiz (pronunciation and grammar) |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `c8417a3334d560c40ccf58826725f78ab0a5f2cce3538648958e4dc49ad58afb` |
+| `test-results.json` | `e74e818cde5e95412cd6a215608529b48c24bc21f1680df72fcd21388a6ccdbe` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.40s |
+| 実行時間 | 0.55s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
