@@ -15,7 +15,7 @@ jobs:
       - name: Copilotエージェントタスクを作成
         shell: bash
         env:
-          COPILOT_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+          COPILOT_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
         run: |
           set -euo pipefail
           echo "${COPILOT_TOKEN}" | gh auth login --with-token --hostname github.com
