@@ -173,21 +173,28 @@ I `played` games.
    cd quiz && npm run test:evidence
    ```
 
-2. **`quiz/TEST_EVIDENCE.md` をコミットに含める**
+2. **エビデンスファイルをコミットに含める**
+   - `quiz/TEST_EVIDENCE_LOG.md` - 全テスト実行の履歴（追記専用）
    - エビデンスファイルは AI が作業したことと、テストが通ったことの証拠
    - タイムスタンプ・コミットハッシュ・全テスト結果が自動記録される
    - **改ざん防止**: テスト結果JSONのSHA256ハッシュがエビデンスに記録される（`sha256sum test-results.json` で検証可能）
    - このファイルを更新せずにコミットしてはならない
 
-3. **E2E テスト結果もエビデンスに含まれる**
-   - CI の `e2e` ジョブ実行後、`e2e-results.json` が存在すれば `TEST_EVIDENCE.md` に E2E 結果が追記される
+3. **エビデンスの記録方式（コンフリクト回避）**
+   - `TEST_EVIDENCE_LOG.md` は各テスト実行時にエントリーを追記（Git コンフリクトを回避）
+   - 複数のCIジョブが並行実行されても、追記方式により安全に履歴が記録される
+   - `TEST_EVIDENCE.md` はローカル確認用に生成されるが、CI ではコミットしない（コンフリクト回避）
+
+4. **E2E テスト結果もエビデンスに含まれる**
+   - CI の `e2e` ジョブ実行後、`e2e-results.json` が存在すれば `TEST_EVIDENCE_LOG.md` に E2E 結果が含まれる
    - ローカルで E2E も含めてエビデンスを生成する場合: `npm run build && npm run test:e2e && npm run generate-evidence`
 
-4. **CI でも自動更新される**
+5. **CI でも自動更新される**
    - `ci.yml` の `test-and-build` ジョブが PR マージ前にテストとエビデンスを再生成する
    - `e2e` ジョブが E2E 実行後にエビデンスを再生成して `[skip ci]` コミットで保存する
+   - `TEST_EVIDENCE_LOG.md` のみが自動的にコミットされる（`TEST_EVIDENCE.md` はコンフリクト回避のためコミットしない）
 
-5. **本番デプロイ後に自動E2Eが実行される**
+6. **本番デプロイ後に自動E2Eが実行される**
    - `jekyll-gh-pages.yml` の `e2e-production` ジョブがデプロイ後に本番URLに対してE2Eを実行する
    - 失敗した場合は `copilot` ラベル付きのIssueが自動作成され、Copilotエージェントが修正PRを作成する
 
