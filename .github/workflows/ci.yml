@@ -42,8 +42,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet quiz/TEST_EVIDENCE.md; then
-            git add quiz/TEST_EVIDENCE.md
+          # エビデンスファイルまたはログファイルが更新されていればコミット
+          if ! git diff --quiet quiz/TEST_EVIDENCE.md quiz/TEST_EVIDENCE_LOG.md 2>/dev/null; then
+            git add quiz/TEST_EVIDENCE.md quiz/TEST_EVIDENCE_LOG.md
             git commit -m "ci: テストエビデンスを更新 [skip ci]"
             git push
           fi
@@ -94,8 +95,9 @@ jobs:
           # e2e-results.json が存在する場合のみエビデンスを再生成してコミット
           if [ -f quiz/e2e-results.json ]; then
             node quiz/scripts/generate-evidence.mjs
-            if ! git diff --quiet quiz/TEST_EVIDENCE.md; then
-              git add quiz/TEST_EVIDENCE.md
+            # エビデンスファイルまたはログファイルが更新されていればコミット
+            if ! git diff --quiet quiz/TEST_EVIDENCE.md quiz/TEST_EVIDENCE_LOG.md 2>/dev/null; then
+              git add quiz/TEST_EVIDENCE.md quiz/TEST_EVIDENCE_LOG.md
               git commit -m "ci: E2Eエビデンスを更新 [skip ci]"
               git push
             fi

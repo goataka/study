@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 09:33:28 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `6f772b3` |
-| **コミットメッセージ** | Initial plan |
+| **最終更新** | 2026-04-21 09:37:23 JST |
+| **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
+| **コミット** | `edbda4a` |
+| **コミットメッセージ** | ci: markdownlint の自動修正 [skip ci] |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `d411b552b816de183a063e24981cad5bb1445ed73244fdccb27d85699a3c85af` |
+| `test-results.json` | `bf397d0e0b039fd61512402709fe81c79159da66692beb698cd21dd1df65db26` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.48s |
+| 実行時間 | 0.46s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -173,3 +173,5 @@
 
 > **ルール**: quizフォルダのコードを変更した後は必ず `npm run test:evidence` を実行して
 > このファイルを更新し、コミットに含めること（AI・CI共通）。
+
+[📜 エビデンス履歴を見る](TEST_EVIDENCE_LOG.md)
