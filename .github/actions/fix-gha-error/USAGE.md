@@ -29,6 +29,7 @@ jobs:
       - name: Copilotエージェントタスクを作成
         uses: ./.github/actions/fix-gha-error
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
 ```
 
@@ -58,6 +59,7 @@ jobs:
       - name: Copilotエージェントタスクを作成
         uses: ./.github/actions/fix-gha-error
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
           error-context: "詳細なエラー情報をここに記載"
 ```
@@ -86,3 +88,4 @@ jobs:
 1. **`workflow_run` イベント必須**: このアクションは `workflow_run` コンテキストに依存しているため、他のイベントトリガーでは動作しません
 2. **fork対策**: `github.event.workflow_run.head_repository.full_name == github.repository` の条件で、forkからのワークフロー実行によるタスクスパムを防ぎます
 3. **`copilot-token`**: リポジトリのSecretsに `COPILOT_TOKEN` を設定する必要があります
+4. **認証とステータス出力**: `github-token` には `${{ secrets.GITHUB_TOKEN }}` を渡し、`gh auth status` や入力値の検証結果をログに残して失敗時の原因特定を容易にします

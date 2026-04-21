@@ -53,6 +53,7 @@ jobs:
       - name: エラー時にCopilotに修正を依頼
         uses: ./.github/actions/fix-gha-error
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
 ```
 
@@ -60,6 +61,7 @@ jobs:
 
 | 名前 | 必須 | デフォルト | 説明 |
 |------|------|-----------|------|
+| `github-token` | ✅ | - | GitHub Actions 用のトークン（`GITHUB_TOKEN`） |
 | `copilot-token` | ✅ | - | Copilotエージェント用トークン（`COPILOT_TOKEN`） |
 | `error-context` | ❌ | `""` | エラーの詳細情報（オプション） |
 
@@ -85,6 +87,12 @@ jobs:
 - エージェントタスク: ブランチ名を含む
 - 修正PR: そのブランチをターゲットにする
 
+### 認証とステータス出力
+
+- `github-token` と `copilot-token` が空でないかを事前に検証し、欠落時はエラーで停止
+- `gh auth status` を実行して認証状態をログ出力し、`GH_TOKEN` をエクスポートして `gh agent-task create` が確実にトークンを利用できるようにする
+- `workflow_run` から取得したワークフロー名・コミット・ログURL・ターゲットブランチが空の場合は早期にエラーを出力
+
 ### 作成されるエージェントタスク
 
 `gh agent-task create` コマンドを使用してエージェントタスクを作成します。タスクには以下の情報が含まれます：
@@ -109,6 +117,7 @@ jobs:
 3. Name: `COPILOT_TOKEN`
 4. Value: あなたのCopilot Token
 5. `Add secret` をクリック
+6. `GITHUB_TOKEN` は GitHub が自動で付与するため追加作業は不要です。`with.github-token` に `${{ secrets.GITHUB_TOKEN }}` を指定してください。
 
 ### 2. ワークフローの作成
 
@@ -136,6 +145,7 @@ jobs:
 
       - uses: ./.github/actions/fix-gha-error
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           copilot-token: ${{ secrets.COPILOT_TOKEN }}
 ```
 
