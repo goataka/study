@@ -21,7 +21,7 @@ jobs:
           echo "${COPILOT_TOKEN}" | gh auth login --with-token --hostname github.com
           
           gh auth status --hostname github.com
-          echo "GH_TOKEN=${COPILOT_TOKEN}" >> "$GITHUB_ENV"
+          export GH_TOKEN="${COPILOT_TOKEN}"
 
           TASK_FILE=$(mktemp)
           echo "モデル名を教えて" >>"$TASK_FILE"
