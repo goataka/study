@@ -17,4 +17,6 @@
 
 ---
 
-[解答](answer.md) | [目次](../../README.md) | [クイズ](../../../quiz/index.html?subject=english&category=linking)
+[目次](../../README.md) | 練習 | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=linking)
+
+[前へ: リンキング・リダクション](../06-linking-reduction/drill.md) | **リンキング練習ドリル** | [次へ: リダクション](../08-reduction/drill.md)

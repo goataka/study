@@ -23,6 +23,8 @@
 💡 **ポイント**: 内積が0のとき、2つのベクトルは直交（垂直）です
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=vectors)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
 [前へ: 数列](../34-sequences/drill.md) | **ベクトル** | [次へ: 極限](../36-limits/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=vectors)

@@ -16,6 +16,8 @@
 💡 **ポイント**: わる数の九九で、わられる数を **超えない最大の数** を見つけます。`10 ÷ 3` → 3×3=9（10を超えない）→ 答え3、あまり 10-9=**1**
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=division-remainder)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
 [前へ: わり算（あまりなし）](../08-division-no-remainder/drill.md) | **わり算（あまりあり）** | [次へ: わり算（まとめ）](../10-division-mixed/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=division-remainder)

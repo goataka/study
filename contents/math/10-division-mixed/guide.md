@@ -25,6 +25,8 @@
 確認: 5 × 4 + 3 = 23 ✅
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-mixed)
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
 [前へ: わり算（あまりあり）](../09-division-remainder/drill.md) | **わり算（まとめ）** | [次へ: 分数のたし算（同分母）](../11-fractions-same-add/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=division-mixed)

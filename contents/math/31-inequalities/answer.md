@@ -16,6 +16,8 @@
 💡 **ポイント**: 方程式と同じ解き方。ただし負の数でかける・わるときは不等号の向きが逆転します
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=inequalities)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
 [前へ: 二次関数](../30-quadratic-func/drill.md) | **不等式** | [次へ: 三角関数](../32-trigonometry/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=inequalities)

@@ -30,6 +30,8 @@
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=addition-mixed)
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
 [前へ: たし算（くり上がりあり）](../02-addition-carry/drill.md) | **たし算（まとめ）** | [次へ: ひき算（くり下がりなし）](../04-subtraction-no-borrow/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=addition-mixed)

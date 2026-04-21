@@ -25,6 +25,8 @@
 💡 **ポイント**: log_a(b) は「aを何乗したらbになるか」。対数の性質を使うと計算がラクに
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../quiz/index.html?subject=math&category=exponents-logarithms)
+[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
 [前へ: 三角関数](../32-trigonometry/drill.md) | **指数・対数** | [次へ: 数列](../34-sequences/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=exponents-logarithms)

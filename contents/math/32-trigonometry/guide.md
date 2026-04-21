@@ -47,6 +47,8 @@ cos θ = 4/5 ✅ (0°<θ<90°なので正)
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=trigonometry)
+[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
 [前へ: 不等式](../31-inequalities/drill.md) | **三角関数** | [次へ: 指数・対数](../33-exponents-logarithms/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=trigonometry)
