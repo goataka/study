@@ -14,14 +14,10 @@ jobs:
       run:
         working-directory: quiz
     permissions:
-      contents: write
+      contents: read
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
-        with:
-          # PRでは実際のブランチheadをチェックアウト（エビデンスファイルのプッシュ用）
-          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Node.js のセットアップ
         uses: actions/setup-node@v4
@@ -33,21 +29,8 @@ jobs:
       - name: 依存関係のインストール
         run: npm ci
 
-      - name: 単体テスト実行・エビデンス生成
-        run: npm run test:evidence
-
-      - name: テストエビデンスのコミット（PRのみ）
-        if: github.event_name == 'pull_request'
-        working-directory: ${{ github.workspace }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # ログファイルが更新されていればコミット（TEST_EVIDENCE.mdはコンフリクト回避のため除外）
-          if ! git diff --quiet quiz/TEST_EVIDENCE_LOG.md 2>/dev/null; then
-            git add quiz/TEST_EVIDENCE_LOG.md
-            git commit -m "ci: テストエビデンスを更新 [skip ci]"
-            git push
-          fi
+      - name: 単体テスト実行
+        run: npm run test
 
       - name: Viteビルド
         run: npm run build
@@ -59,13 +42,10 @@ jobs:
       run:
         working-directory: quiz
     permissions:
-      contents: write
+      contents: read
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Node.js のセットアップ
         uses: actions/setup-node@v4
@@ -85,23 +65,6 @@ jobs:
 
       - name: E2Eテスト実行（Gherkin シナリオ）
         run: npm run test:e2e
-
-      - name: E2Eエビデンスのコミット（PRのみ）
-        if: github.event_name == 'pull_request'
-        working-directory: ${{ github.workspace }}
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # e2e-results.json が存在する場合のみエビデンスを再生成してコミット
-          if [ -f quiz/e2e-results.json ]; then
-            node quiz/scripts/generate-evidence.mjs
-            # ログファイルが更新されていればコミット（TEST_EVIDENCE.mdはコンフリクト回避のため除外）
-            if ! git diff --quiet quiz/TEST_EVIDENCE_LOG.md 2>/dev/null; then
-              git add quiz/TEST_EVIDENCE_LOG.md
-              git commit -m "ci: E2Eエビデンスを更新 [skip ci]"
-              git push
-            fi
-          fi
 
   markdownlint:
     name: Markdownリント
