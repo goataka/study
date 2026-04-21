@@ -20,3 +20,5 @@
 [目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
 
 [前へ: 二次関数](../30-quadratic-func/drill.md) | **不等式** | [次へ: 三角関数](../32-trigonometry/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=inequalities)

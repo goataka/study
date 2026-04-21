@@ -38,3 +38,5 @@
 [目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
  | **たし算（くり上がりなし）** | [次へ: たし算（くり上がりあり）](../02-addition-carry/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)

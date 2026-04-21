@@ -47,3 +47,5 @@
 [目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
 [前へ: 比](../20-ratio/drill.md) | **割合** | [次へ: 正負の数](../../algebra/22-positive-negative/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=percentage)

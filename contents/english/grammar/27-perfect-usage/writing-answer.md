@@ -11,6 +11,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md)
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=perfect-usage)
 
 [前へ: 過去分詞の変化](../26-perfect-participles/drill.md) | 完了形の用法 | [次へ: 助動詞の使い分け](../28-modals-basic/drill.md)

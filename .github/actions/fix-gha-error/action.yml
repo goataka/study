@@ -9,8 +9,11 @@ branding:
   color: "red"
 
 inputs:
+  github-token:
+    description: "GitHub token for authentication (GITHUB_TOKEN)"
+    required: true
   copilot-token:
-    description: "Copilotエージェント用トークン（COPILOT_TOKEN）"
+    description: "OAuth token for gh agent-task (secrets.COPILOT_TOKEN)"
     required: true
   error-context:
     description: "エラーの詳細情報（オプション）"
@@ -39,6 +42,13 @@ runs:
           exit 1
         fi
         echo "::notice::前提コマンド (jq, gh, gh agent-task) の確認が完了しました"
+
+    - name: gh CLI の認証
+      shell: bash
+      env:
+        COPILOT_TOKEN: ${{ inputs.copilot-token }}
+      run: |
+        echo "${COPILOT_TOKEN}" | gh auth login --with-token
 
     - name: エラー情報の収集
       id: collect-error
@@ -93,7 +103,6 @@ runs:
       id: create-agent-task
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.copilot-token }}
         WORKFLOW_NAME: ${{ steps.collect-error.outputs.workflow_name }}
         COMMIT_SHORT: ${{ steps.collect-error.outputs.commit_short }}
         RUN_URL: ${{ steps.collect-error.outputs.run_url }}
@@ -102,48 +111,59 @@ runs:
         PR_NUMBER: ${{ steps.collect-error.outputs.pr_number }}
         ERROR_CONTEXT: ${{ inputs.error-context }}
       run: |
-        # タスク説明を作成（すべての値は環境変数経由でインジェクション防止）
-        TASK_DESCRIPTION="GitHub Actionsワークフロー「${WORKFLOW_NAME}」が失敗しました (コミット: ${COMMIT_SHORT})。
+        # タスク説明をヒアドキュメントで一時ファイルに書き込む（すべての値は環境変数経由でインジェクション防止）
+        TASK_FILE=$(mktemp)
 
-## エラー情報
+        # ベース情報（変数あり）
+        cat >"$TASK_FILE" <<EOF
+        GitHub Actionsワークフロー「${WORKFLOW_NAME}」が失敗しました (コミット: ${COMMIT_SHORT})。
 
-- **ワークフロー**: ${WORKFLOW_NAME}
-- **コミット**: ${COMMIT_SHORT}
-- **CIログ**: ${RUN_URL}"
+        ## エラー情報
+
+        - **ワークフロー**: ${WORKFLOW_NAME}
+        - **コミット**: ${COMMIT_SHORT}
+        - **CIログ**: ${RUN_URL}
+        EOF
 
         if [ "$IS_PR" = "true" ]; then
-          TASK_DESCRIPTION="${TASK_DESCRIPTION}
-- **PR**: #${PR_NUMBER}
+          cat >>"$TASK_FILE" <<EOF
 
-この失敗はPR #${PR_NUMBER}に関連しています。修正PRは元のPRのブランチ (\`${TARGET_BRANCH}\`) をターゲットにしてください。"
+        - **PR**: #${PR_NUMBER}
+
+        この失敗はPR #${PR_NUMBER}に関連しています。修正PRは元のPRのブランチ (\`${TARGET_BRANCH}\`) をターゲットにしてください。
+        EOF
         fi
 
         if [ -n "$ERROR_CONTEXT" ]; then
-          TASK_DESCRIPTION="${TASK_DESCRIPTION}
-- **エラー詳細**: ${ERROR_CONTEXT}"
+          cat >>"$TASK_FILE" <<EOF
+
+        - **エラー詳細**: ${ERROR_CONTEXT}
+        EOF
         fi
 
-        TASK_DESCRIPTION="${TASK_DESCRIPTION}
+        # 修正手順（コードフェンスはシングルクォートのヒアドキュメントでバッククォートを安全に出力）
+        cat >>"$TASK_FILE" <<EOF
 
-## 修正手順
+        ## 修正手順
 
-1. ワークフロー実行ログを確認してエラーの原因を特定する
-   - ログURL: ${RUN_URL}
+        1. ワークフロー実行ログを確認してエラーの原因を特定する
+           - ログURL: ${RUN_URL}
 
-2. リポジトリをチェックアウトして、ローカルで再現確認する
-   \`\`\`bash
-   git checkout ${TARGET_BRANCH}
-   \`\`\`
+        2. リポジトリをチェックアウトして、ローカルで再現確認する
+        EOF
+        cat >>"$TASK_FILE" <<'EOF'
+           ```bash
+        EOF
+        printf '   git checkout %s\n' "${TARGET_BRANCH}" >>"$TASK_FILE"
+        cat >>"$TASK_FILE" <<'EOF'
+           ```
 
-3. エラーの原因を修正する
+        3. エラーの原因を修正する
 
-4. 必要に応じてテストを実行して修正を確認する
+        4. 必要に応じてテストを実行して修正を確認する
 
-5. \`${TARGET_BRANCH}\` ブランチをターゲットとしたPRを作成する"
-
-        # タスク説明を一時ファイルに保存
-        TASK_FILE=$(mktemp)
-        echo "$TASK_DESCRIPTION" > "$TASK_FILE"
+        EOF
+        printf '5. `%s` ブランチをターゲットとしたPRを作成する\n' "${TARGET_BRANCH}" >>"$TASK_FILE"
 
         # gh agent-task create でエージェントタスクを作成
         echo "::notice::エージェントタスクを作成しています (base: ${TARGET_BRANCH})..."

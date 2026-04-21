@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>学習クイズ - Goataka Study</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="stylesheet" href="./css/quiz.css">
 </head>
 <body>
@@ -29,6 +31,7 @@
           <div class="user-name-section">
             <label for="userNameInput">名前：</label>
             <input type="text" id="userNameInput" placeholder="名前を入力してください" maxlength="20">
+            <span id="saveUserNameFeedback" class="save-feedback hidden">✓ 保存しました</span>
           </div>
           <h2>クイズモード選択</h2>
           <div class="button-group">
@@ -54,6 +57,35 @@
       </div>
       <div id="questionText" class="question-text"></div>
       <div id="choicesContainer" class="choices-container"></div>
+
+      <!-- メモエリア -->
+      <div class="notes-area">
+        <div class="notes-header">
+          <span class="notes-title">📝 メモ（タッチペンで書けます）</span>
+          <div class="notes-controls">
+            <button id="clearNotesBtn" class="notes-btn" type="button" title="メモをクリア" aria-label="メモをクリア">🗑️</button>
+            <select id="penSizeSelect" class="pen-size-select" title="線の太さ" aria-label="線の太さ">
+              <option value="2">細い</option>
+              <option value="4" selected>普通</option>
+              <option value="6">太い</option>
+            </select>
+            <select id="penColorSelect" class="pen-color-select" title="色" aria-label="線の色">
+              <option value="#000000">黒</option>
+              <option value="#0366d6">青</option>
+              <option value="#dc3545">赤</option>
+              <option value="#28a745">緑</option>
+            </select>
+          </div>
+        </div>
+        <canvas id="notesCanvas" class="notes-canvas"></canvas>
+      </div>
+
+      <div id="answerFeedback" class="answer-feedback hidden">
+        <div class="feedback-content">
+          <div id="feedbackResult" class="feedback-result"></div>
+          <div id="feedbackExplanation" class="feedback-explanation"></div>
+        </div>
+      </div>
       <div class="navigation-buttons">
         <button id="prevBtn" class="nav-btn" disabled>前へ</button>
         <button id="nextBtn" class="nav-btn">次へ</button>
