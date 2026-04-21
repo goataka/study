@@ -53,4 +53,6 @@
 
 ---
 
-[解答](answer.md) | [目次](../../README.md)
+[目次](../../README.md) | 練習 | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=50on)
+
+[前へ: アルファベット](../01-alphabet/drill.md) | **五十音ローマ字練習ドリル** | [次へ: フォニックス（1文字）](../03-phonics-1letter/drill.md)

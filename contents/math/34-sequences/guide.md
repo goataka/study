@@ -46,3 +46,5 @@ a₅ = 2 × 3⁴
 [目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
 [前へ: 指数・対数](../33-exponents-logarithms/drill.md) | **数列** | [次へ: ベクトル](../35-vectors/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=sequences)

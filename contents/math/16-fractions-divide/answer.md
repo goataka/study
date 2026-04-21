@@ -21,3 +21,5 @@
 [目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
 [前へ: 分数のかけ算](../15-fractions-multiply/drill.md) | **分数のわり算** | [次へ: 小数のたし算](../17-decimals-addition/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=fractions-divide)
