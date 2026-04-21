@@ -12,6 +12,10 @@
  * 改ざん防止:
  *   テスト結果JSONのSHA256ハッシュをエビデンスに記録する。
  *   ハッシュと結果JSONを照合することでエビデンスの真正性を検証できる。
+ *
+ * コンフリクト回避:
+ *   エビデンスは TEST_EVIDENCE_LOG.md に追記され、TEST_EVIDENCE.md は最新エントリーへのシンボリックリンクとして機能する。
+ *   複数のCIジョブが同時に実行されても、追記方式によりコンフリクトを回避できる。
  */
 
 import fs from "fs";
@@ -25,6 +29,7 @@ const rootDir = path.join(__dirname, "..");
 const resultsFile = path.join(rootDir, "test-results.json");
 const e2eResultsFile = path.join(rootDir, "e2e-results.json");
 const evidenceFile = path.join(rootDir, "TEST_EVIDENCE.md");
+const evidenceLogFile = path.join(rootDir, "TEST_EVIDENCE_LOG.md");
 
 // ─── Git 情報取得 ────────────────────────────────────────────────────────────
 
@@ -255,13 +260,52 @@ lines.push("---");
 lines.push("");
 lines.push("> **ルール**: quizフォルダのコードを変更した後は必ず `npm run test:evidence` を実行して");
 lines.push("> このファイルを更新し、コミットに含めること（AI・CI共通）。");
+lines.push("");
+lines.push("[📜 エビデンス履歴を見る](TEST_EVIDENCE_LOG.md)");
+
+// ─── エビデンスファイル書き込み（最新の結果） ────────────────────────────────
 
 fs.writeFileSync(evidenceFile, lines.join("\n"), "utf-8");
+
+// ─── エビデンスログファイルに追記（履歴保存） ────────────────────────────────
+
+const logEntry = [
+  "",
+  "---",
+  "",
+  `## 実行記録: ${timestamp}`,
+  "",
+  `- **更新者**: ${runner}`,
+  `- **コミット**: \`${commitHash}\``,
+  `- **コミットメッセージ**: ${commitMessage}`,
+  `- **単体テスト**: ${unitStatus} (${results.numPassedTests}/${results.numTotalTests} 合格)`,
+  e2eStats
+    ? `- **E2Eテスト**: ${e2eStatus} (${e2eStats.passed}/${e2eStats.total} 合格)`
+    : `- **E2Eテスト**: ${e2eStatus}`,
+  "",
+].join("\n");
+
+// ログファイルが存在しない場合はヘッダーを作成
+if (!fs.existsSync(evidenceLogFile)) {
+  const logHeader = [
+    "# テストエビデンス実行履歴",
+    "",
+    "<!-- このファイルは各テスト実行時に自動追記されます -->",
+    "<!-- 最新のエビデンス詳細は TEST_EVIDENCE.md を参照してください -->",
+    "",
+  ].join("\n");
+  fs.writeFileSync(evidenceLogFile, logHeader, "utf-8");
+}
+
+// ログエントリーを追記
+fs.appendFileSync(evidenceLogFile, logEntry, "utf-8");
+
 console.log(
   `✅ エビデンスファイルを生成しました: TEST_EVIDENCE.md` +
     ` (単体テスト: ${results.numPassedTests}/${results.numTotalTests} 合格` +
     (e2eStats ? ` / E2E: ${e2eStats.passed}/${e2eStats.total} 合格)` : ")")
 );
+console.log(`📜 履歴を TEST_EVIDENCE_LOG.md に追記しました`);
 
 if (!results.success) {
   console.error("❌ 単体テストが失敗しています。コードを修正してください。");
@@ -271,4 +315,3 @@ if (e2eStats && e2eStats.failed > 0) {
   console.error("❌ E2Eテストが失敗しています。コードを修正してください。");
   process.exit(1);
 }
-

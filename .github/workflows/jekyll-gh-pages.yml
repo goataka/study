@@ -110,8 +110,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ -f quiz/e2e-results.json ]; then
             node quiz/scripts/generate-evidence.mjs
-            if ! git diff --quiet quiz/TEST_EVIDENCE.md; then
-              git add quiz/TEST_EVIDENCE.md
+            # ログファイルが更新されていればコミット（TEST_EVIDENCE.mdはコンフリクト回避のため除外）
+            if ! git diff --quiet quiz/TEST_EVIDENCE_LOG.md 2>/dev/null; then
+              git add quiz/TEST_EVIDENCE_LOG.md
               git commit -m "ci: 本番E2Eエビデンスを更新 [skip ci]"
               git push
             fi
