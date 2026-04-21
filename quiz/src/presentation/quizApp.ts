@@ -362,10 +362,10 @@ export class QuizApp {
 
     if (resultDiv) {
       if (isCorrect) {
-        resultDiv.innerHTML = "✅ 正解です！";
+        resultDiv.textContent = "✅ 正解です！";
       } else {
         const correctAnswer = question.choices[question.correct];
-        resultDiv.innerHTML = `❌ 不正解です。正解は「${correctAnswer}」です。`;
+        resultDiv.textContent = `❌ 不正解です。正解は「${correctAnswer}」です。`;
       }
     }
 
@@ -373,8 +373,10 @@ export class QuizApp {
       explanationDiv.textContent = question.explanation;
     }
 
-    feedbackDiv.className = "answer-feedback";
-    feedbackDiv.classList.add(isCorrect ? "correct" : "incorrect");
+    feedbackDiv.classList.add("answer-feedback");
+    feedbackDiv.classList.remove("hidden");
+    feedbackDiv.classList.toggle("correct", isCorrect);
+    feedbackDiv.classList.toggle("incorrect", !isCorrect);
   }
 
   private hideAnswerFeedback(): void {
