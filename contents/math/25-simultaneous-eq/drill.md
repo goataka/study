@@ -24,3 +24,5 @@
 [目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
 
 [前へ: 一次方程式](../24-linear-eq/drill.md) | **連立方程式** | [次へ: 一次関数](../26-linear-func/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=simultaneous-eq)

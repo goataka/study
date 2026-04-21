@@ -9,12 +9,16 @@ import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
+import { NotesCanvas } from "./notesCanvas";
+import type { DrawingState } from "./notesCanvas";
 
 export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
   private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "";
+  private notesCanvas: NotesCanvas | null = null;
+  private notesStates: Map<number, DrawingState> = new Map();
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -34,9 +38,30 @@ export class QuizApp {
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
     this.loadUserName();
+    this.loadFilterFromURL();
     this.setupEventListeners();
     this.buildCategoryTree();
     this.updateStartScreen();
+  }
+
+  /**
+   * URL パラメータからフィルターを読み込む
+   * 例: ?subject=english&category=tenses-regular-present
+   */
+  private loadFilterFromURL(): void {
+    const params = new URLSearchParams(window.location.search);
+    const subject = params.get("subject");
+    const category = params.get("category");
+
+    if (subject) {
+      this.filter.subject = subject;
+    }
+    if (category && category !== "all") {
+      this.filter.category = category;
+    } else if (subject) {
+      // subjectが指定されているがcategoryがない場合は"all"
+      this.filter.category = "all";
+    }
   }
 
   private loadUserName(): void {
@@ -59,7 +84,18 @@ export class QuizApp {
         this.userName = name;
         const progressRepo = new LocalStorageProgressRepository();
         progressRepo.saveUserName(name);
+        this.showSaveFeedback();
       }
+    }
+  }
+
+  private showSaveFeedback(): void {
+    const feedback = document.getElementById("saveUserNameFeedback");
+    if (feedback) {
+      feedback.classList.remove("hidden");
+      setTimeout(() => {
+        feedback.classList.add("hidden");
+      }, 2000);
     }
   }
 
@@ -295,6 +331,58 @@ export class QuizApp {
         }
       });
     });
+
+    // フィルターに基づいて初期選択を設定
+    this.selectTreeItemByFilter();
+  }
+
+  /**
+   * 現在のフィルター設定に基づいてツリーアイテムを選択する
+   */
+  private selectTreeItemByFilter(): void {
+    const treeContainer = document.querySelector(".subject-tree");
+    if (!treeContainer) return;
+
+    const treeItems = treeContainer.querySelectorAll(".tree-item");
+
+    // まず全てのアクティブ状態をクリア
+    treeItems.forEach((item) => item.classList.remove("active"));
+
+    // フィルターに一致するアイテムを探して選択
+    if (this.filter.category !== "all") {
+      // カテゴリが指定されている場合、そのカテゴリを選択
+      const categoryNode = treeContainer.querySelector(
+        `.tree-item[data-subject="${this.filter.subject}"][data-category="${this.filter.category}"]`
+      );
+      if (categoryNode) {
+        categoryNode.classList.add("active");
+        // 親の教科ノードを展開
+        const parentSubject = categoryNode.closest('.tree-item[data-subject]:not([data-category])');
+        if (parentSubject) {
+          parentSubject.classList.add("expanded");
+          const header = parentSubject.querySelector(".tree-node-header");
+          header?.setAttribute("aria-expanded", "true");
+          const children = parentSubject.querySelector(":scope > .tree-children");
+          children?.classList.remove("hidden");
+        }
+        return;
+      }
+    }
+
+    // カテゴリが見つからない、またはsubjectのみの場合
+    if (this.filter.subject !== "all") {
+      const subjectNode = treeContainer.querySelector(
+        `.tree-item[data-subject="${this.filter.subject}"]:not([data-category])`
+      );
+      if (subjectNode) {
+        subjectNode.classList.add("active");
+        return;
+      }
+    }
+
+    // デフォルトは「すべて」を選択
+    const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
+    allNode?.classList.add("active");
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -308,10 +396,26 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
+    this.on("topBtn", "click", () => this.showScreen("start"));
 
     // ユーザー名入力の変更を監視
     const userNameInput = document.getElementById("userNameInput");
     userNameInput?.addEventListener("input", () => this.saveUserName());
+
+    // メモエリアのコントロール
+    this.on("clearNotesBtn", "click", () => this.clearNotes());
+
+    const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
+    penSizeSelect?.addEventListener("change", (e) => {
+      const size = parseInt((e.target as HTMLSelectElement).value);
+      this.notesCanvas?.setPenSize(size);
+    });
+
+    const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
+    penColorSelect?.addEventListener("change", (e) => {
+      const color = (e.target as HTMLSelectElement).value;
+      this.notesCanvas?.setPenColor(color);
+    });
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -386,7 +490,7 @@ export class QuizApp {
       } else if (stat.wrong > 0) {
         statsEl.textContent = `${stat.wrong}/${stat.total}`;
       } else {
-        statsEl.textContent = `${stat.total}問`;
+        statsEl.textContent = `0/${stat.total}`;
       }
     });
   }
@@ -400,8 +504,14 @@ export class QuizApp {
       alert(error instanceof Error ? error.message : "エラーが発生しました");
       return;
     }
+
+    // メモ状態をリセット
+    this.notesStates.clear();
+
     this.showScreen("quiz");
     this.updateUserNameDisplay("quizUserName");
+    this.initializeNotesCanvas();
+    this.notesCanvas.clear();
     this.renderQuestion();
   }
 
@@ -423,6 +533,15 @@ export class QuizApp {
 
     this.setText("questionText", question.question);
     this.renderChoices(question, session);
+
+    // 既に回答済みの場合はフィードバックを表示、未回答の場合は非表示
+    const userAnswer = session.getAnswer(session.currentIndex);
+    if (userAnswer !== undefined) {
+      this.showAnswerFeedback(question, userAnswer);
+    } else {
+      this.hideAnswerFeedback();
+    }
+
     this.updateNavigationButtons(session);
   }
 
@@ -442,6 +561,7 @@ export class QuizApp {
       input.checked = session.getAnswer(session.currentIndex) === index;
       input.addEventListener("change", () => {
         session.selectAnswer(session.currentIndex, index);
+        this.showAnswerFeedback(question, index);
         this.updateNavigationButtons(session);
       });
 
@@ -458,8 +578,48 @@ export class QuizApp {
   private navigate(direction: 1 | -1): void {
     const session = this.currentSession;
     if (!session) return;
+
+    // 現在のメモ状態を保存
+    this.saveNotesState(session.currentIndex);
+
     session.navigate(direction);
     this.renderQuestion();
+
+    // 新しい問題のメモ状態を復元
+    this.restoreNotesState(session.currentIndex);
+  }
+
+  private showAnswerFeedback(question: Question, userAnswerIndex: number): void {
+    const feedbackDiv = document.getElementById("answerFeedback");
+    if (!feedbackDiv) return;
+
+    const isCorrect = question.correct === userAnswerIndex;
+    const resultDiv = document.getElementById("feedbackResult");
+    const explanationDiv = document.getElementById("feedbackExplanation");
+
+    if (resultDiv) {
+      if (isCorrect) {
+        resultDiv.textContent = "✅ 正解です！";
+      } else {
+        const correctAnswer = question.choices[question.correct];
+        resultDiv.textContent = `❌ 不正解です。正解は「${correctAnswer}」です。`;
+      }
+    }
+
+    if (explanationDiv) {
+      explanationDiv.textContent = question.explanation;
+    }
+
+    feedbackDiv.classList.remove("hidden");
+    feedbackDiv.classList.toggle("correct", isCorrect);
+    feedbackDiv.classList.toggle("incorrect", !isCorrect);
+  }
+
+  private hideAnswerFeedback(): void {
+    const feedbackDiv = document.getElementById("answerFeedback");
+    if (feedbackDiv) {
+      feedbackDiv.classList.add("hidden");
+    }
   }
 
   private updateNavigationButtons(session: QuizSession): void {
@@ -606,6 +766,50 @@ export class QuizApp {
 
   private on(id: string, event: string, handler: () => void): void {
     document.getElementById(id)?.addEventListener(event, handler);
+  }
+
+  // ─── メモエリア管理 ────────────────────────────────────────────────────────
+
+  private initializeNotesCanvas(): void {
+    if (!this.notesCanvas) {
+      this.notesCanvas = new NotesCanvas();
+      this.notesCanvas.initialize("notesCanvas");
+
+      // デフォルト設定を適用
+      const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
+      const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
+
+      if (penSizeSelect) {
+        this.notesCanvas.setPenSize(parseInt(penSizeSelect.value));
+      }
+      if (penColorSelect) {
+        this.notesCanvas.setPenColor(penColorSelect.value);
+      }
+    }
+  }
+
+  private saveNotesState(questionIndex: number): void {
+    const state = this.notesCanvas?.save();
+    if (state) {
+      this.notesStates.set(questionIndex, state);
+    }
+  }
+
+  private restoreNotesState(questionIndex: number): void {
+    const state = this.notesStates.get(questionIndex);
+    if (state) {
+      this.notesCanvas?.restore(state);
+    } else {
+      this.notesCanvas?.clear();
+    }
+  }
+
+  private clearNotes(): void {
+    if (this.currentSession) {
+      // 現在の問題のメモ状態を削除
+      this.notesStates.delete(this.currentSession.currentIndex);
+    }
+    this.notesCanvas?.clear();
   }
 }
 

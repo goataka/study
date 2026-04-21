@@ -22,3 +22,5 @@
 [目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
 
 [前へ: たし算（まとめ）](../03-addition-mixed/drill.md) | **ひき算（くり下がりなし）** | [次へ: ひき算（くり下がりあり）](../05-subtraction-borrow/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)

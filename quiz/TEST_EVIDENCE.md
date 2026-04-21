@@ -167,7 +167,24 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
-### ✅ `src/presentation/quizApp.test.ts` (17/17)
+### ✅ `src/presentation/notesCanvas.test.ts` (12/12)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | NotesCanvas > インスタンス生成 > NotesCanvasクラスをインスタンス化できる |
+| ✅ | NotesCanvas > 公開メソッドの存在確認 > 必要なメソッドがすべて存在する |
+| ✅ | NotesCanvas > パラメータの型確認 > setPenSizeは数値を受け取る |
+| ✅ | NotesCanvas > パラメータの型確認 > setPenColorは文字列を受け取る |
+| ✅ | NotesCanvas > canvas未初期化時の安全な振る舞い > clearはcanvasが未設定でも例外を投げない |
+| ✅ | NotesCanvas > canvas未初期化時の安全な振る舞い > saveはcanvasが未設定のときnullを返す |
+| ✅ | NotesCanvas > canvas未初期化時の安全な振る舞い > restoreはcanvasが未設定でも例外を投げない |
+| ✅ | NotesCanvas > canvas未初期化時の安全な振る舞い > destroyはcanvasが未設定でも例外を投げない |
+| ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > clearはclearRectを呼び出す |
+| ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > saveはdataUrlを含むオブジェクトを返す |
+| ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > restoreは例外を投げない |
+| ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > destroyの後はsaveがnullを返す |
+
+### ✅ `src/presentation/quizApp.test.ts` (20/20)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -188,8 +205,17 @@
 | ✅ | QuizApp — 親カテゴリツリー仕様 > 親カテゴリノードをクリックすると statsInfo がその配下全問題数に更新される |
 | ✅ | QuizApp — 親カテゴリツリー仕様 > 親カテゴリノードをクリックすると配下の子カテゴリノードが表示される |
 | ✅ | QuizApp — 親カテゴリツリー仕様 > 親カテゴリノードをクリックすると aria-expanded が true になる |
+| ✅ | QuizApp — カテゴリツリー仕様 > 間違えた問題が0件のときの統計表示は「0/総数」の形式である |
+| ✅ | QuizApp — 回答フィードバック仕様 > 未回答の問題ではフィードバック領域が非表示になっている |
+| ✅ | QuizApp — 回答フィードバック仕様 > 回答を選択するとフィードバック領域が表示される |
+| ✅ | QuizApp — 回答フィードバック仕様 > 正解を選択すると correct クラスが付与される |
+| ✅ | QuizApp — 回答フィードバック仕様 > 不正解を選択すると incorrect クラスが付与される |
+| ✅ | QuizApp — 回答フィードバック仕様 > 回答後に次の問題へ移動するとフィードバックが非表示になる |
+| ✅ | QuizApp — 回答フィードバック仕様 > 回答済みの問題に戻るとフィードバックが再表示される |
+| ✅ | QuizApp — 回答フィードバック仕様 > フィードバックのテキストはtextContentで設定されXSSリスクがない |
 
 ---
 
-> **ルール**: quizフォルダのコードを変更した後は必ず `npm run test:evidence` を実行して
 > このファイルを更新し、コミットに含めること（AI・CI共通）。
+
+[📜 エビデンス履歴を見る](TEST_EVIDENCE_LOG.md)

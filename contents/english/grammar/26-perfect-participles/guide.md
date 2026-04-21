@@ -27,6 +27,6 @@ go → went → `gone`
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=perfect-participles)
 
 [前へ: 完了形](../25-perfect/drill.md) | 過去分詞の変化 | [次へ: 完了形の用法](../27-perfect-usage/drill.md)

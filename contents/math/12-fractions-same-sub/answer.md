@@ -21,3 +21,5 @@
 [目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
 [前へ: 分数のたし算（同分母）](../11-fractions-same-add/drill.md) | **分数のひき算（同分母）** | [次へ: 分数のたし算（通分あり）](../13-fractions-diff-add/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=fractions-same-sub)
