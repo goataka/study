@@ -9,6 +9,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md)
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=reported-imperative)
 
 [前へ: 疑問文の間接話法](../47-reported-question/drill.md) | 命令文の間接話法 | [次へ: 指示語の変化](../49-reported-expressions/drill.md)
