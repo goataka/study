@@ -19,4 +19,4 @@
 
 [目次](../../README.md) | 練習 | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=assimilation)
 
-[前へ: フラッピング](../09-flapping/drill.md) | **アシミレーション練習ドリル** | 
+[前へ: フラッピング](../09-flapping/drill.md) | **アシミレーション練習ドリル** |
