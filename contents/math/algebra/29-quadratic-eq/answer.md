@@ -28,4 +28,4 @@
 
 [目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
-[前へ: 平方根](../28-square-roots/drill.md) | **二次方程式** | [次へ: 二次関数](../30-quadratic-func/drill.md)
+[前へ: 平方根](../28-square-roots/drill.md) | **二次方程式** | [次へ: 二次関数](../../calculus/30-quadratic-func/drill.md)
