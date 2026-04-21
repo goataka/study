@@ -9,11 +9,19 @@
 | 項目 | 値 |
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
+<<<<<<< claude/fix-category-tree-scroll-behavior
 | **ステータス（E2Eテスト）** | ❌ FAILED |
 | **最終更新** | 2026-04-21 09:15:49 JST |
 | **更新者** | GitHub Actions (dynamic/agents/anthropic-code-agent) |
 | **コミット** | `2858f90` |
 | **コミットメッセージ** | ci: テストエビデンスを更新 [skip ci] |
+=======
+| **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
+| **最終更新** | 2026-04-21 14:44:52 JST |
+| **更新者** | GitHub Actions (CI) |
+| **コミット** | `53fbdd7` |
+| **コミットメッセージ** | merge: origin/main との競合を解消 |
+>>>>>>> main
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +30,26 @@
 
 | ファイル | SHA256 |
 |------|------|
+<<<<<<< claude/fix-category-tree-scroll-behavior
 | `test-results.json` | `d8c1acb31e58531f12d0f768ee64a8c2415b625a667bad73ba40a758a15e8131` |
 | `e2e-results.json` | `57e721bf8775f5ab6d4b53d1b63272425ced8822bcd4ee26c8a9a69293556088` |
+=======
+| `test-results.json` | `31d853554eec487ce2780ff0a92e29be4c9742af5d4c3829de6369a1c4e86d8b` |
+| `e2e-results.json` | 未実行 |
+>>>>>>> main
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 33 / 33 |
-| テストケース（合格 / 合計） | 93 / 93 |
+| テストスイート（合格 / 合計） | 34 / 34 |
+| テストケース（合格 / 合計） | 100 / 100 |
 | 失敗テスト | 0 |
+<<<<<<< claude/fix-category-tree-scroll-behavior
 | 実行時間 | 0.37s |
+=======
+| 実行時間 | 0.51s |
+>>>>>>> main
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -171,7 +188,7 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
-### ✅ `src/presentation/quizApp.test.ts` (12/12)
+### ✅ `src/presentation/quizApp.test.ts` (19/19)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -187,6 +204,13 @@
 | ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
+| ✅ | QuizApp — 回答フィードバック仕様 > 未回答の問題ではフィードバック領域が非表示になっている |
+| ✅ | QuizApp — 回答フィードバック仕様 > 回答を選択するとフィードバック領域が表示される |
+| ✅ | QuizApp — 回答フィードバック仕様 > 正解を選択すると correct クラスが付与される |
+| ✅ | QuizApp — 回答フィードバック仕様 > 不正解を選択すると incorrect クラスが付与される |
+| ✅ | QuizApp — 回答フィードバック仕様 > 回答後に次の問題へ移動するとフィードバックが非表示になる |
+| ✅ | QuizApp — 回答フィードバック仕様 > 回答済みの問題に戻るとフィードバックが再表示される |
+| ✅ | QuizApp — 回答フィードバック仕様 > フィードバックのテキストはtextContentで設定されXSSリスクがない |
 
 ---
 

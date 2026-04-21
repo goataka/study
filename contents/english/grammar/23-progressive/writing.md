@@ -12,6 +12,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 英作文 | [英作文解答](writing-answer.md) | [解説](guide.md)
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 英作文 | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=progressive)
 
 [前へ: 接続詞](../22-conjunctions/drill.md) | 進行形 | [次へ: -ing形の作り方](../24-progressive-ing/drill.md)

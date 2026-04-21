@@ -34,9 +34,30 @@ export class QuizApp {
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
     this.loadUserName();
+    this.loadFilterFromURL();
     this.setupEventListeners();
     this.buildCategoryTree();
     this.updateStartScreen();
+  }
+
+  /**
+   * URL パラメータからフィルターを読み込む
+   * 例: ?subject=english&category=tenses-regular-present
+   */
+  private loadFilterFromURL(): void {
+    const params = new URLSearchParams(window.location.search);
+    const subject = params.get("subject");
+    const category = params.get("category");
+
+    if (subject) {
+      this.filter.subject = subject;
+    }
+    if (category && category !== "all") {
+      this.filter.category = category;
+    } else if (subject) {
+      // subjectが指定されているがcategoryがない場合は"all"
+      this.filter.category = "all";
+    }
   }
 
   private loadUserName(): void {
@@ -59,7 +80,18 @@ export class QuizApp {
         this.userName = name;
         const progressRepo = new LocalStorageProgressRepository();
         progressRepo.saveUserName(name);
+        this.showSaveFeedback();
       }
+    }
+  }
+
+  private showSaveFeedback(): void {
+    const feedback = document.getElementById("saveUserNameFeedback");
+    if (feedback) {
+      feedback.classList.remove("hidden");
+      setTimeout(() => {
+        feedback.classList.add("hidden");
+      }, 2000);
     }
   }
 
@@ -188,7 +220,55 @@ export class QuizApp {
       });
     });
 
-    // 初期状態で「すべて」を選択
+    // フィルターに基づいて初期選択を設定
+    this.selectTreeItemByFilter();
+  }
+
+  /**
+   * 現在のフィルター設定に基づいてツリーアイテムを選択する
+   */
+  private selectTreeItemByFilter(): void {
+    const treeContainer = document.querySelector(".subject-tree");
+    if (!treeContainer) return;
+
+    const treeItems = treeContainer.querySelectorAll(".tree-item");
+
+    // まず全てのアクティブ状態をクリア
+    treeItems.forEach((item) => item.classList.remove("active"));
+
+    // フィルターに一致するアイテムを探して選択
+    if (this.filter.category !== "all") {
+      // カテゴリが指定されている場合、そのカテゴリを選択
+      const categoryNode = treeContainer.querySelector(
+        `.tree-item[data-subject="${this.filter.subject}"][data-category="${this.filter.category}"]`
+      );
+      if (categoryNode) {
+        categoryNode.classList.add("active");
+        // 親の教科ノードを展開
+        const parentSubject = categoryNode.closest('.tree-item[data-subject]:not([data-category])');
+        if (parentSubject) {
+          parentSubject.classList.add("expanded");
+          const header = parentSubject.querySelector(".tree-node-header");
+          header?.setAttribute("aria-expanded", "true");
+          const children = parentSubject.querySelector(":scope > .tree-children");
+          children?.classList.remove("hidden");
+        }
+        return;
+      }
+    }
+
+    // カテゴリが見つからない、またはsubjectのみの場合
+    if (this.filter.subject !== "all") {
+      const subjectNode = treeContainer.querySelector(
+        `.tree-item[data-subject="${this.filter.subject}"]:not([data-category])`
+      );
+      if (subjectNode) {
+        subjectNode.classList.add("active");
+        return;
+      }
+    }
+
+    // デフォルトは「すべて」を選択
     const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
     allNode?.classList.add("active");
   }
@@ -303,6 +383,15 @@ export class QuizApp {
 
     this.setText("questionText", question.question);
     this.renderChoices(question, session);
+
+    // 既に回答済みの場合はフィードバックを表示、未回答の場合は非表示
+    const userAnswer = session.getAnswer(session.currentIndex);
+    if (userAnswer !== undefined) {
+      this.showAnswerFeedback(question, userAnswer);
+    } else {
+      this.hideAnswerFeedback();
+    }
+
     this.updateNavigationButtons(session);
   }
 
@@ -322,6 +411,7 @@ export class QuizApp {
       input.checked = session.getAnswer(session.currentIndex) === index;
       input.addEventListener("change", () => {
         session.selectAnswer(session.currentIndex, index);
+        this.showAnswerFeedback(question, index);
         this.updateNavigationButtons(session);
       });
 
@@ -340,6 +430,39 @@ export class QuizApp {
     if (!session) return;
     session.navigate(direction);
     this.renderQuestion();
+  }
+
+  private showAnswerFeedback(question: Question, userAnswerIndex: number): void {
+    const feedbackDiv = document.getElementById("answerFeedback");
+    if (!feedbackDiv) return;
+
+    const isCorrect = question.correct === userAnswerIndex;
+    const resultDiv = document.getElementById("feedbackResult");
+    const explanationDiv = document.getElementById("feedbackExplanation");
+
+    if (resultDiv) {
+      if (isCorrect) {
+        resultDiv.textContent = "✅ 正解です！";
+      } else {
+        const correctAnswer = question.choices[question.correct];
+        resultDiv.textContent = `❌ 不正解です。正解は「${correctAnswer}」です。`;
+      }
+    }
+
+    if (explanationDiv) {
+      explanationDiv.textContent = question.explanation;
+    }
+
+    feedbackDiv.classList.remove("hidden");
+    feedbackDiv.classList.toggle("correct", isCorrect);
+    feedbackDiv.classList.toggle("incorrect", !isCorrect);
+  }
+
+  private hideAnswerFeedback(): void {
+    const feedbackDiv = document.getElementById("answerFeedback");
+    if (feedbackDiv) {
+      feedbackDiv.classList.add("hidden");
+    }
   }
 
   private updateNavigationButtons(session: QuizSession): void {

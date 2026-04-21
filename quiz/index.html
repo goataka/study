@@ -29,6 +29,7 @@
           <div class="user-name-section">
             <label for="userNameInput">名前：</label>
             <input type="text" id="userNameInput" placeholder="名前を入力してください" maxlength="20">
+            <span id="saveUserNameFeedback" class="save-feedback hidden">✓ 保存しました</span>
           </div>
           <h2>クイズモード選択</h2>
           <div class="button-group">
@@ -54,6 +55,12 @@
       </div>
       <div id="questionText" class="question-text"></div>
       <div id="choicesContainer" class="choices-container"></div>
+      <div id="answerFeedback" class="answer-feedback hidden">
+        <div class="feedback-content">
+          <div id="feedbackResult" class="feedback-result"></div>
+          <div id="feedbackExplanation" class="feedback-explanation"></div>
+        </div>
+      </div>
       <div class="navigation-buttons">
         <button id="prevBtn" class="nav-btn" disabled>前へ</button>
         <button id="nextBtn" class="nav-btn">次へ</button>
