@@ -62,3 +62,13 @@
 - **コミットメッセージ**: Merge branch 'main' into claude/fix-quiz-answer-per-question
 - **単体テスト**: ✅ PASSED (100/100 合格)
 - **E2Eテスト**: ⏭ 未実行（CIで実行）
+
+---
+
+## 実行記録: 2026-04-21 17:56:04 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `fad2b77`
+- **コミットメッセージ**: Merge branch 'main' into claude/fix-category-tree-scroll-behavior
+- **単体テスト**: ✅ PASSED (100/100 合格)
+- **E2Eテスト**: ⏭ 未実行（CIで実行）
