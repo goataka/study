@@ -7,7 +7,10 @@ const STATS_LOAD_TIMEOUT = 10_000;
 
 Given("the quiz application is loaded", async ({ page }) => {
   await page.goto("/");
-  await page.waitForSelector("#statsInfo", { state: "visible", timeout: STATS_LOAD_TIMEOUT });
+  // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ
+  await expect(page.locator("#statsInfo")).toContainText(/全\d+問/, {
+    timeout: STATS_LOAD_TIMEOUT,
+  });
 });
 
 Then("the start screen should be visible", async ({ page }) => {
@@ -19,9 +22,21 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
 });
 
 When("I scroll the category tree", async ({ page }) => {
-  // カテゴリツリーが表示され、実際にスクロール可能になるまで待つ
+  // カテゴリツリーが表示されるまで待つ
   const subjectTree = page.locator(".subject-tree");
   await expect(subjectTree).toBeVisible();
+
+  // 英語ノードをクリックして展開し、ツリーを十分な高さにする
+  // .subject-tree の直接の子に限定することで、ネストされた子要素にマッチしない
+  const englishNode = page.locator('.subject-tree > .tree-item[data-subject="english"] > .tree-node-header');
+  // 未展開の場合のみクリックする（展開済みの場合は折りたたまないよう防止）
+  const isExpanded = await englishNode.getAttribute("aria-expanded");
+  if (isExpanded !== "true") {
+    await englishNode.click();
+    await expect(englishNode).toHaveAttribute("aria-expanded", "true");
+  }
+
+  // ツリーがスクロール可能になるまで待つ（展開後）
   await expect
     .poll(
       async () =>
