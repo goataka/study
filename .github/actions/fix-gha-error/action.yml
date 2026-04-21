@@ -26,6 +26,8 @@ runs:
     - name: 前提コマンドの確認
       shell: bash
       run: |
+        set -euo pipefail
+
         # jq の存在確認
         if ! command -v jq &>/dev/null; then
           echo "::error::jq が見つかりません。ubuntu-latest 以外のrunnerを使用している場合は jq をインストールしてください。"
@@ -43,12 +45,56 @@ runs:
         fi
         echo "::notice::前提コマンド (jq, gh, gh agent-task) の確認が完了しました"
 
+    - name: 入力値とコンテキストのチェック
+      id: validate-input
+      shell: bash
+      env:
+        COPILOT_TOKEN: ${{ inputs.copilot-token }}
+        GITHUB_TOKEN_INPUT: ${{ inputs.github-token }}
+        WF_NAME: ${{ github.event.workflow_run.name }}
+        WF_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        WF_HTML_URL: ${{ github.event.workflow_run.html_url }}
+        WF_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+      run: |
+        set -euo pipefail
+
+        echo "::add-mask::${COPILOT_TOKEN}"
+        echo "::add-mask::${GITHUB_TOKEN_INPUT}"
+
+        required=(COPILOT_TOKEN GITHUB_TOKEN_INPUT WF_NAME WF_HEAD_SHA WF_HTML_URL)
+        missing=()
+
+        for key in "${required[@]}"; do
+          if [ -z "${!key:-}" ]; then
+            missing+=("$key")
+          fi
+        done
+
+        if [ "${#missing[@]}" -gt 0 ]; then
+          echo "::error::必須の値が空です: ${missing[*]}"
+          exit 1
+        fi
+
+        if [ -z "${WF_HEAD_BRANCH:-}" ]; then
+          echo "::warning::workflow_run.head_branch が空です。PR情報から後続で判定します。"
+        fi
+
+        echo "::notice::入力値とコンテキストの基本チェックが完了しました (workflow=${WF_NAME}, commit=${WF_HEAD_SHA:0:7})"
+
     - name: gh CLI の認証
       shell: bash
       env:
         COPILOT_TOKEN: ${{ inputs.copilot-token }}
       run: |
-        echo "${COPILOT_TOKEN}" | gh auth login --with-token
+        set -euo pipefail
+
+        echo "::add-mask::${COPILOT_TOKEN}"
+        echo "${COPILOT_TOKEN}" | gh auth login --with-token --hostname github.com
+        gh auth status --hostname github.com
+
+        # gh が認証情報を参照できるよう GH_TOKEN をエクスポート
+        echo "GH_TOKEN=${COPILOT_TOKEN}" >> "$GITHUB_ENV"
+        echo "::notice::gh auth status を確認しました (host=github.com)"
 
     - name: エラー情報の収集
       id: collect-error
@@ -60,6 +106,8 @@ runs:
         WF_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
         WF_PULL_REQUESTS: ${{ toJson(github.event.workflow_run.pull_requests) }}
       run: |
+        set -euo pipefail
+
         # workflow_runイベントから情報を取得（環境変数経由でインジェクション防止）
         WORKFLOW_NAME="${WF_NAME}"
         COMMIT_SHA="${WF_HEAD_SHA}"
@@ -99,6 +147,13 @@ runs:
           echo "::notice::ブランチベースのワークフロー実行です (ターゲット: ${TARGET_BRANCH})"
         fi
 
+        if [ -z "${RUN_URL}" ] || [ -z "${COMMIT_SHORT}" ] || [ -z "${WORKFLOW_NAME}" ]; then
+          echo "::error::ワークフロー名・コミット・ログURLのいずれかが取得できませんでした"
+          exit 1
+        fi
+
+        echo "::notice::収集した情報: workflow=${WORKFLOW_NAME}, commit=${COMMIT_SHORT}, target_branch=${TARGET_BRANCH}, pr_count=${PR_COUNT:-0}"
+
     - name: Copilotエージェントタスクを作成
       id: create-agent-task
       shell: bash
@@ -110,7 +165,21 @@ runs:
         TARGET_BRANCH: ${{ steps.collect-error.outputs.target_branch }}
         PR_NUMBER: ${{ steps.collect-error.outputs.pr_number }}
         ERROR_CONTEXT: ${{ inputs.error-context }}
+        GH_TOKEN: ${{ inputs.copilot-token }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
       run: |
+        set -euo pipefail
+
+        if ! gh auth status --hostname github.com >/dev/null 2>&1; then
+          echo "::error::gh auth status に失敗しました。copilot-token が有効か確認してください。"
+          exit 1
+        fi
+
+        if [ -z "${TARGET_BRANCH}" ]; then
+          echo "::error::ターゲットブランチを特定できませんでした"
+          exit 1
+        fi
+
         # タスク説明をヒアドキュメントで一時ファイルに書き込む（すべての値は環境変数経由でインジェクション防止）
         TASK_FILE=$(mktemp)
 

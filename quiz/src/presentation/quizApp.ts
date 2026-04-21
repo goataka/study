@@ -511,7 +511,7 @@ export class QuizApp {
     this.showScreen("quiz");
     this.updateUserNameDisplay("quizUserName");
     this.initializeNotesCanvas();
-    this.notesCanvas.clear();
+    this.notesCanvas?.clear();
     this.renderQuestion();
   }
 
