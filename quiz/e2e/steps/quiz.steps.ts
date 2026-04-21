@@ -19,9 +19,15 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
 });
 
 When("I scroll the category tree", async ({ page }) => {
-  // カテゴリツリーが表示され、実際にスクロール可能になるまで待つ
+  // カテゴリツリーが表示されるまで待つ
   const subjectTree = page.locator(".subject-tree");
   await expect(subjectTree).toBeVisible();
+
+  // 英語ノードをクリックして展開し、ツリーを十分な高さにする
+  const englishNode = page.locator('.tree-item[data-subject="english"] > .tree-node-header');
+  await englishNode.click();
+
+  // ツリーがスクロール可能になるまで待つ（展開後）
   await expect
     .poll(
       async () =>
