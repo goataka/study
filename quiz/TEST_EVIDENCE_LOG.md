@@ -201,3 +201,13 @@
 - **コミットメッセージ**: Merge branch 'main' into claude/add-notes-area-for-touch-pen
 - **単体テスト**: ✅ PASSED (113/113 合格)
 - **E2Eテスト**: ⏭ 未実行（CIで実行）
+
+---
+
+## 実行記録: 2026-04-21 20:09:49 JST
+
+- **更新者**: GitHub Actions (CI)
+- **コミット**: `1b0c78c`
+- **コミットメッセージ**: Merge origin/main: resolve conflicts - keep hierarchy nav links and add quiz links
+- **単体テスト**: ✅ PASSED (113/113 合格)
+- **E2Eテスト**: ⏭ 未実行（CIで実行）
