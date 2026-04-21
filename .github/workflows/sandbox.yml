@@ -3,33 +3,29 @@ name: Sandbox
 on:
   workflow_dispatch:
 
+
 jobs:
-  fix-error:
-    name: Copilotエージェントタスクを作成
+  sandbox:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-      issues: write
     steps:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install Copilot CLI & MCP Server
+      - name: Install Copilot & MCP Server
         run: |
-          npm install -g @githubnext/github-copilot-cli
+          npm install -g @github/copilot
           npm install -g @modelcontextprotocol/server-github
 
       - name: Run Copilot Agent Task
         env:
-          GH_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
+          # Copilotの認証と推論に使用
+          GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+          # MCPサーバーがGitHubを操作するために使用
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
         run: |
-          # エージェントタスクの実行
-          # --allow-all-tools: エージェントが自律的にMCPツールを叩くことを許可
-          copilot agent task \
-            "モデルのバージョンを教えて。" \
-            --allow-all-tools \
-            --mcp-server "npx -y @modelcontextprotocol/server-github"
+          copilot-agent task \
+            "goataka/studyのmainブランチのREADMにある一覧の文字をなくすPRを作成して。" \
+            --mcp "npx -y @modelcontextprotocol/server-github" \
+            --yes
