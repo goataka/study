@@ -141,8 +141,7 @@ jobs:
               '   npm run build && npm run test:e2e',
               '   ```',
               '4. 原因を特定して修正する',
-              '5. `npm run test:evidence` を実行してエビデンスを更新する',
-              '6. PRを作成する',
+              '5. PRを作成する',
             ].join('\n');
 
             const issue = await github.rest.issues.create({
