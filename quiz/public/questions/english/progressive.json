@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "progressive",
   "categoryName": "進行形",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "progressive-1",

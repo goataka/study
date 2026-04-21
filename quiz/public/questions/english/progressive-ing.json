@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "progressive-ing",
   "categoryName": "-ing形の作り方",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "progressive-ing-1",

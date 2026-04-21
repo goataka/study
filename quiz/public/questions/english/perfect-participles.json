@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "perfect-participles",
   "categoryName": "過去分詞の変化",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "perfect-participles-1",

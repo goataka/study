@@ -11,6 +11,7 @@ export type QuizMode = "random" | "retry";
 export interface QuizFilter {
   subject: string;
   category: string;
+  parentCategory?: string;
 }
 
 export interface AnswerResult {
@@ -106,7 +107,8 @@ export class QuizSession {
     return questions.filter(
       (q) =>
         (filter.subject === "all" || q.subject === filter.subject) &&
-        (filter.category === "all" || q.category === filter.category)
+        (filter.category === "all" || q.category === filter.category) &&
+        (!filter.parentCategory || filter.parentCategory === "all" || q.parentCategory === filter.parentCategory)
     );
   }
 }

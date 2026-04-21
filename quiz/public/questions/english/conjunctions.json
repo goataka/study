@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "conjunctions",
   "categoryName": "接続詞",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "conjunctions-1",

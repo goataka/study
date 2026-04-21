@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "tenses-be-past",
   "categoryName": "be動詞の過去形",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "tenses-be-past-1",

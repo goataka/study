@@ -149,3 +149,39 @@ describe("QuizSession.filter — フィルター仕様", () => {
     expect(filtered).toHaveLength(3);
   });
 });
+
+describe("QuizSession.filter — parentCategory フィルター仕様", () => {
+  const qs: Question[] = [
+    { ...q1, subject: "english", category: "tenses-past", parentCategory: "grammar" },
+    { ...q2, subject: "english", category: "phonics-1", parentCategory: "phonics" },
+    { ...q3, subject: "english", category: "phonics-2", parentCategory: "phonics" },
+    { ...makeQuestion("q4"), subject: "english", category: "linking" },
+  ];
+
+  it("parentCategory でフィルターできる", () => {
+    const filtered = QuizSession.filter(qs, { subject: "all", category: "all", parentCategory: "phonics" });
+    expect(filtered).toHaveLength(2);
+    expect(filtered.every((q) => q.parentCategory === "phonics")).toBe(true);
+  });
+
+  it("parentCategory が 'all' のときは全件返る", () => {
+    const filtered = QuizSession.filter(qs, { subject: "all", category: "all", parentCategory: "all" });
+    expect(filtered).toHaveLength(4);
+  });
+
+  it("parentCategory を指定しない場合は全件返る（未設定問題も含む）", () => {
+    const filtered = QuizSession.filter(qs, { subject: "all", category: "all" });
+    expect(filtered).toHaveLength(4);
+  });
+
+  it("parentCategory と subject を組み合わせてフィルターできる", () => {
+    const filtered = QuizSession.filter(qs, { subject: "english", category: "all", parentCategory: "grammar" });
+    expect(filtered).toHaveLength(1);
+    expect(filtered[0]!.category).toBe("tenses-past");
+  });
+
+  it("一致する parentCategory がない場合は0件返る", () => {
+    const filtered = QuizSession.filter(qs, { subject: "all", category: "all", parentCategory: "nonexistent" });
+    expect(filtered).toHaveLength(0);
+  });
+});

@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "reported-imperative",
   "categoryName": "命令文の間接話法",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "reported-imperative-1",

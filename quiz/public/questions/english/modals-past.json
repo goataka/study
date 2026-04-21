@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "modals-past",
   "categoryName": "助動詞の過去形",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "modals-past-1",

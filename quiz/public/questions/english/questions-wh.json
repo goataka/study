@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "questions-wh",
   "categoryName": "疑問詞",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "questions-wh-1",
