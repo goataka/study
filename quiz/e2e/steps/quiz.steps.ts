@@ -19,13 +19,31 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
 });
 
 When("I scroll the category tree", async ({ page }) => {
-  // カテゴリツリーをスクロール
+  // カテゴリツリーが表示され、実際にスクロール可能になるまで待つ
   const subjectTree = page.locator(".subject-tree");
+  await expect(subjectTree).toBeVisible();
+  await expect
+    .poll(
+      async () =>
+        await subjectTree.evaluate((el) => el.scrollHeight > el.clientHeight),
+      { timeout: STATS_LOAD_TIMEOUT }
+    )
+    .toBe(true);
+
+  const initialScrollTop = await subjectTree.evaluate((el) => el.scrollTop);
+
+  // カテゴリツリーをスクロール
   await subjectTree.evaluate((el) => {
     el.scrollTop = el.scrollHeight;
   });
-  // スクロールが完了するまで少し待つ
-  await page.waitForTimeout(100);
+
+  // 実際にスクロール位置が進んだことを確認
+  await expect
+    .poll(
+      async () => await subjectTree.evaluate((el) => el.scrollTop),
+      { timeout: STATS_LOAD_TIMEOUT }
+    )
+    .toBeGreaterThan(initialScrollTop);
 });
 
 Then("the header should remain visible", async ({ page }) => {
@@ -33,10 +51,12 @@ Then("the header should remain visible", async ({ page }) => {
   const header = page.locator("header");
   await expect(header).toBeVisible();
 
-  // ヘッダーがビューポート内に存在することを確認
+  // ヘッダーがビューポート内に完全に収まっていることを確認
+  const viewportSize = page.viewportSize();
   const headerBox = await header.boundingBox();
   expect(headerBox).not.toBeNull();
   expect(headerBox!.y).toBeGreaterThanOrEqual(0);
+  expect(headerBox!.y + headerBox!.height).toBeLessThanOrEqual(viewportSize!.height);
 });
 
 Then("the quiz panel should remain visible", async ({ page }) => {
@@ -44,10 +64,12 @@ Then("the quiz panel should remain visible", async ({ page }) => {
   const quizPanel = page.locator(".quiz-panel");
   await expect(quizPanel).toBeVisible();
 
-  // クイズパネルがビューポート内に存在することを確認
+  // クイズパネルがビューポート内に完全に収まっていることを確認
+  const viewportSize = page.viewportSize();
   const panelBox = await quizPanel.boundingBox();
   expect(panelBox).not.toBeNull();
   expect(panelBox!.y).toBeGreaterThanOrEqual(0);
+  expect(panelBox!.y + panelBox!.height).toBeLessThanOrEqual(viewportSize!.height);
 });
 
 When("I click the {string} button", async ({ page }, buttonText: string) => {

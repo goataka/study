@@ -211,7 +211,7 @@ header nav a:hover {
     padding: 30px;
     align-self: start;
     position: sticky;
-    top: 120px;
+    top: var(--quiz-panel-sticky-top, 120px);
 }
 
 .quiz-panel h2 {
@@ -619,6 +619,8 @@ button:disabled {
 
     .quiz-panel {
         order: 2;
+        position: static;
+        top: auto;
     }
 
     .question-text {

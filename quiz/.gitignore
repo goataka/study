@@ -4,3 +4,4 @@ test-results.json
 e2e-results.json
 test-results/
 .features-gen/
+TEST_EVIDENCE.md
