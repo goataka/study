@@ -23,6 +23,6 @@ I `play` games.
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=questions)
 
 [前へ: unless](../35-conditionals-unless/drill.md) | 疑問文 | [次へ: 否定文](../37-negatives/drill.md)

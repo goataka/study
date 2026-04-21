@@ -41,3 +41,5 @@ x→2 を代入: 2+2 = 4 ✅
 [目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
 [前へ: ベクトル](../35-vectors/drill.md) | **極限** | [次へ: 微分](../37-differentiation/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=limits)
