@@ -163,38 +163,23 @@ I `played` games.
 
 ## クイズ（quiz/）のルール
 
-### 動作保証とエビデンス
+### 動作保証
 
 `quiz/` フォルダのコードを変更した場合は、必ず以下の手順を守ること：
 
-1. **テストとエビデンス生成を実行する**
+1. **コミット前にテストを実行する**
 
    ```bash
-   cd quiz && npm run test:evidence
+   cd quiz && npm run build && npm run test && npm run test:e2e
    ```
 
-2. **エビデンスファイルをコミットに含める**
-   - `quiz/TEST_EVIDENCE_LOG.md` - 全テスト実行の履歴（追記専用）
-   - エビデンスファイルは AI が作業したことと、テストが通ったことの証拠
-   - タイムスタンプ・コミットハッシュ・全テスト結果が自動記録される
-   - **改ざん防止**: テスト結果JSONのSHA256ハッシュがエビデンスに記録される（`sha256sum test-results.json` で検証可能）
-   - このファイルを更新せずにコミットしてはならない
+   lefthook の `pre-commit` フックが自動的にこのコマンドを実行するため、`lefthook install` 済みの環境ではコミット時に自動チェックされる。
 
-3. **エビデンスの記録方式（コンフリクト回避）**
-   - `TEST_EVIDENCE_LOG.md` は各テスト実行時にエントリーを追記（Git コンフリクトを回避）
-   - 複数のCIジョブが並行実行されても、追記方式により安全に履歴が記録される
-   - `TEST_EVIDENCE.md` はローカル確認用に生成されるが、CI ではコミットしない（コンフリクト回避）
+2. **CI でも自動検証される**
+   - `ci.yml` の `test-and-build` ジョブが単体テストとビルドを実行する
+   - `e2e` ジョブが E2E テストを実行する
 
-4. **E2E テスト結果もエビデンスに含まれる**
-   - CI の `e2e` ジョブ実行後、`e2e-results.json` が存在すれば `TEST_EVIDENCE_LOG.md` に E2E 結果が含まれる
-   - ローカルで E2E も含めてエビデンスを生成する場合: `npm run build && npm run test:e2e && npm run generate-evidence`
-
-5. **CI でも自動更新される**
-   - `ci.yml` の `test-and-build` ジョブが PR マージ前にテストとエビデンスを再生成する
-   - `e2e` ジョブが E2E 実行後にエビデンスを再生成して `[skip ci]` コミットで保存する
-   - `TEST_EVIDENCE_LOG.md` のみが自動的にコミットされる（`TEST_EVIDENCE.md` はコンフリクト回避のためコミットしない）
-
-6. **本番デプロイ後に自動E2Eが実行される**
+3. **本番デプロイ後に自動E2Eが実行される**
    - `jekyll-gh-pages.yml` の `e2e-production` ジョブがデプロイ後に本番URLに対してE2Eを実行する
    - 失敗した場合は `copilot` ラベル付きのIssueが自動作成され、Copilotエージェントが修正PRを作成する
 
@@ -210,7 +195,7 @@ I `played` games.
 - 新しいソースファイルを追加する場合は、**同一フォルダに対応するテストファイルを必ず作成すること**
   - 例: `src/infrastructure/foo.ts` → `src/infrastructure/foo.test.ts`
 - インターフェースのみのファイル（`ports.ts` など）はテスト不要だが、その旨をコメントに記載する
-- 新しい問題カテゴリ（JSONファイル）を追加したら、必ず `npm run test:evidence` でデータ整合性テストが通ることを確認する
+- 新しい問題カテゴリ（JSONファイル）を追加したら、必ず `npm run test` でデータ整合性テストが通ることを確認する
 - バリデーション関数を変更した場合は `src/domain/question.test.ts` のテストも更新する
 
 ### DDD アーキテクチャ構造
