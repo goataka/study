@@ -8,6 +8,8 @@ const STATS_LOAD_TIMEOUT = 10_000;
 Given("the quiz application is loaded", async ({ page }) => {
   await page.goto("/");
   await page.waitForSelector("#statsInfo", { state: "visible", timeout: STATS_LOAD_TIMEOUT });
+  // 問題データが読み込まれ、統計情報が表示されたことを確認
+  await expect(page.locator("#statsInfo")).toHaveText(/全\d+問/, { timeout: STATS_LOAD_TIMEOUT });
 });
 
 Then("the start screen should be visible", async ({ page }) => {
@@ -23,14 +25,20 @@ When("I scroll the category tree", async ({ page }) => {
   const subjectTree = page.locator(".subject-tree");
   await expect(subjectTree).toBeVisible();
 
-  // 英語・数学ノードを展開してツリーを長くする
+  // 英語・数学ノードを展開してツリーを長くする（未展開の場合のみ）
   const englishNode = subjectTree.locator('.tree-item[data-subject="english"] > .tree-node-header').first();
   if (await englishNode.isVisible()) {
-    await englishNode.click();
+    const isExpanded = await englishNode.getAttribute("aria-expanded");
+    if (isExpanded !== "true") {
+      await englishNode.click();
+    }
   }
   const mathNode = subjectTree.locator('.tree-item[data-subject="math"] > .tree-node-header').first();
   if (await mathNode.isVisible()) {
-    await mathNode.click();
+    const isExpanded = await mathNode.getAttribute("aria-expanded");
+    if (isExpanded !== "true") {
+      await mathNode.click();
+    }
   }
 
   // ノード展開後にスクロール可能になるまで待つ
