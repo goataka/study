@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 14:44:52 JST |
-| **更新者** | GitHub Actions (CI) |
-| **コミット** | `53fbdd7` |
-| **コミットメッセージ** | merge: origin/main との競合を解消 |
+| **最終更新** | 2026-04-21 19:52:03 JST |
+| **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
+| **コミット** | `62b3ac5` |
+| **コミットメッセージ** | Apply review feedback: Japanese warnings, aria-labels, passive touch, restore race fix, comprehensive tests |
 
 ## 改ざん防止チェックサム
 
@@ -22,17 +22,17 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `31d853554eec487ce2780ff0a92e29be4c9742af5d4c3829de6369a1c4e86d8b` |
+| `test-results.json` | `c43da3fd4818f2b180844e0d061597d65d6d54282b572a14bc6dba13b7c2c177` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
 
 | 項目 | 結果 |
 |------|------|
-| テストスイート（合格 / 合計） | 34 / 34 |
-| テストケース（合格 / 合計） | 100 / 100 |
+| テストスイート（合格 / 合計） | 41 / 41 |
+| テストケース（合格 / 合計） | 112 / 112 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.51s |
+| 実行時間 | 0.57s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
@@ -152,7 +152,24 @@
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > subject がない場合に拒否する |
 | ✅ | validateQuestionFile — リモートリポジトリで使用するバリデーション仕様 > questions が配列でない場合に拒否する |
 
-### ✅ `src/presentation/quizApp.test.ts` (19/19)
+### ✅ `src/presentation/notesCanvas.test.ts` (12/12)
+
+| 結果 | テスト名 |
+|------|---------|
+| ✅ | NotesCanvas > インスタンス生成 > NotesCanvasクラスをインスタンス化できる |
+| ✅ | NotesCanvas > 公開メソッドの存在確認 > 必要なメソッドがすべて存在する |
+| ✅ | NotesCanvas > パラメータの型確認 > setPenSizeは数値を受け取る |
+| ✅ | NotesCanvas > パラメータの型確認 > setPenColorは文字列を受け取る |
+| ✅ | NotesCanvas > canvas未初期化時の安全な振る舞い > clearはcanvasが未設定でも例外を投げない |
+| ✅ | NotesCanvas > canvas未初期化時の安全な振る舞い > saveはcanvasが未設定のときnullを返す |
+| ✅ | NotesCanvas > canvas未初期化時の安全な振る舞い > restoreはcanvasが未設定でも例外を投げない |
+| ✅ | NotesCanvas > canvas未初期化時の安全な振る舞い > destroyはcanvasが未設定でも例外を投げない |
+| ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > clearはclearRectを呼び出す |
+| ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > saveはdataUrlを含むオブジェクトを返す |
+| ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > restoreは例外を投げない |
+| ✅ | NotesCanvas > canvasスタブを使った状態操作の検証 > destroyの後はsaveがnullを返す |
+
+### ✅ `src/presentation/quizApp.test.ts` (20/20)
 
 | 結果 | テスト名 |
 |------|---------|
@@ -168,6 +185,7 @@
 | ✅ | QuizApp — カテゴリツリー仕様 > 教科ノードをクリックすると aria-expanded が true になる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Enter キーで教科ノードを操作できる |
 | ✅ | QuizApp — カテゴリツリー仕様 > Space キーで教科ノードを操作できる |
+| ✅ | QuizApp — カテゴリツリー仕様 > 間違えた問題が0件のときの統計表示は「0/総数」の形式である |
 | ✅ | QuizApp — 回答フィードバック仕様 > 未回答の問題ではフィードバック領域が非表示になっている |
 | ✅ | QuizApp — 回答フィードバック仕様 > 回答を選択するとフィードバック領域が表示される |
 | ✅ | QuizApp — 回答フィードバック仕様 > 正解を選択すると correct クラスが付与される |
@@ -180,3 +198,5 @@
 
 > **ルール**: quizフォルダのコードを変更した後は必ず `npm run test:evidence` を実行して
 > このファイルを更新し、コミットに含めること（AI・CI共通）。
+
+[📜 エビデンス履歴を見る](TEST_EVIDENCE_LOG.md)
