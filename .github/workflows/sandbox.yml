@@ -18,9 +18,9 @@ jobs:
           COPILOT_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
         run: |
           set -euo pipefail
-          echo "${COPILOT_TOKEN}" | gh auth login --with-token --hostname github.com
+          # echo "${COPILOT_TOKEN}" | gh auth login --with-token --hostname github.com
           
-          gh auth status --hostname github.com
+          # gh auth status --hostname github.com
           
           export GH_TOKEN="${COPILOT_TOKEN}"
 
