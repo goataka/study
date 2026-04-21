@@ -97,6 +97,45 @@ const mockQuestionFile = {
   })),
 };
 
+/** parentCategory 付き問題ファイル（文法・発音の階層付き） */
+const mockManifestWithParent = {
+  version: "2.0.0",
+  subjects: { english: { name: "英語" } },
+  questionFiles: ["english/grammar.json", "english/phonics.json"],
+};
+
+const mockGrammarFile = {
+  subject: "english",
+  subjectName: "英語",
+  category: "tenses-past",
+  categoryName: "過去形",
+  parentCategory: "grammar",
+  parentCategoryName: "文法",
+  questions: Array.from({ length: 3 }, (_, i) => ({
+    id: `g${i + 1}`,
+    question: `文法問題 ${i + 1}`,
+    choices: ["A", "B", "C", "D"],
+    correct: 0,
+    explanation: `解説 ${i + 1}`,
+  })),
+};
+
+const mockPhonicsFile = {
+  subject: "english",
+  subjectName: "英語",
+  category: "phonics-1",
+  categoryName: "フォニックス（1文字）",
+  parentCategory: "phonics",
+  parentCategoryName: "発音",
+  questions: Array.from({ length: 4 }, (_, i) => ({
+    id: `p${i + 1}`,
+    question: `発音問題 ${i + 1}`,
+    choices: ["ア", "イ", "ウ", "エ"],
+    correct: 0,
+    explanation: `解説 ${i + 1}`,
+  })),
+};
+
 function setupFetchMock(): void {
   global.fetch = vi.fn((url: string) => {
     const urlStr = String(url);
@@ -109,6 +148,28 @@ function setupFetchMock(): void {
     return Promise.resolve({
       ok: true,
       json: () => Promise.resolve(mockQuestionFile),
+    } as Response);
+  });
+}
+
+function setupFetchMockWithParent(): void {
+  global.fetch = vi.fn((url: string) => {
+    const urlStr = String(url);
+    if (urlStr.includes("index.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockManifestWithParent),
+      } as Response);
+    }
+    if (urlStr.includes("grammar.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockGrammarFile),
+      } as Response);
+    }
+    return Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(mockPhonicsFile),
     } as Response);
   });
 }
@@ -430,5 +491,76 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     expect(resultDiv?.textContent).toContain(xssPayload);
     // img 要素が DOM に生成されていないことを確認
     expect(resultDiv?.querySelector("img")).toBeNull();
+  });
+});
+
+describe("QuizApp — 親カテゴリツリー仕様", () => {
+  beforeEach(() => {
+    setupTreeDom();
+    setupFetchMockWithParent();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("親カテゴリノードが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const parentNodes = document.querySelectorAll(".parent-category-node");
+    expect(parentNodes.length).toBe(2); // grammar, phonics
+  });
+
+  it("親カテゴリノードに aria-controls と aria-expanded が設定されている（子あり）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const grammarHeader = document.querySelector(
+      '.parent-category-node[data-parent-category="grammar"] > .tree-node-header'
+    );
+    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("false");
+    expect(grammarHeader?.getAttribute("aria-controls")).toContain("grammar");
+  });
+
+  it("親カテゴリノードをクリックすると statsInfo がその配下全問題数に更新される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const grammarHeader = document.querySelector(
+      '.parent-category-node[data-parent-category="grammar"] > .tree-node-header'
+    ) as HTMLElement;
+    grammarHeader?.click();
+
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("全3問");
+  });
+
+  it("親カテゴリノードをクリックすると配下の子カテゴリノードが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const grammarHeader = document.querySelector(
+      '.parent-category-node[data-parent-category="grammar"] > .tree-node-header'
+    ) as HTMLElement;
+    grammarHeader?.click();
+
+    const grammarChildren = document.querySelector(
+      '.parent-category-node[data-parent-category="grammar"] > .tree-children'
+    );
+    expect(grammarChildren?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("親カテゴリノードをクリックすると aria-expanded が true になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const grammarHeader = document.querySelector(
+      '.parent-category-node[data-parent-category="grammar"] > .tree-node-header'
+    ) as HTMLElement;
+    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("false");
+    grammarHeader?.click();
+    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("true");
   });
 });

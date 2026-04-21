@@ -45,6 +45,26 @@ export class QuizUseCase {
     return categories;
   }
 
+  getParentCategoriesForSubject(subject: string): Record<string, string> {
+    const parentCategories: Record<string, string> = {};
+    for (const q of this.allQuestions) {
+      if (q.subject === subject && q.parentCategory && !(q.parentCategory in parentCategories)) {
+        parentCategories[q.parentCategory] = q.parentCategoryName ?? q.parentCategory;
+      }
+    }
+    return parentCategories;
+  }
+
+  getCategoriesForParent(subject: string, parentCategory: string): Record<string, string> {
+    const categories: Record<string, string> = {};
+    for (const q of this.allQuestions) {
+      if (q.subject === subject && q.parentCategory === parentCategory && !(q.category in categories)) {
+        categories[q.category] = q.categoryName;
+      }
+    }
+    return categories;
+  }
+
   startSession(mode: QuizMode, filter: QuizFilter): QuizSession {
     const filtered = this.getFilteredQuestions(filter);
 

@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "linking",
   "categoryName": "音声変化 - リンキング",
+  "parentCategory": "pronunciation",
+  "parentCategoryName": "発音",
   "questions": [
     {
       "id": "linking-1",

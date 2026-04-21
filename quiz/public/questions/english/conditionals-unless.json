@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "conditionals-unless",
   "categoryName": "unless",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "conditionals-unless-1",

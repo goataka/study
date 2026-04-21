@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "conditionals-wish",
   "categoryName": "I wish",
+  "parentCategory": "grammar",
+  "parentCategoryName": "文法",
   "questions": [
     {
       "id": "conditionals-wish-1",

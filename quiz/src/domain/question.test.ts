@@ -187,3 +187,47 @@ describe("shuffleChoices — 選択肢シャッフル仕様", () => {
     expect(shuffledCorrectChoice).toBe(originalCorrectChoice);
   });
 });
+
+describe("validateQuestionFile — parentCategory/parentCategoryName 検証仕様", () => {
+  const validQFBase = {
+    subject: "english",
+    subjectName: "英語",
+    category: "tenses",
+    categoryName: "時制",
+    questions: [
+      {
+        id: "test-1",
+        question: "テスト問題",
+        choices: ["ア", "イ", "ウ", "エ"],
+        correct: 0,
+        explanation: "解説",
+      },
+    ],
+  };
+
+  it("parentCategory と parentCategoryName が両方文字列なら受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({
+        ...validQFBase,
+        parentCategory: "grammar",
+        parentCategoryName: "文法",
+      })
+    ).not.toThrow();
+  });
+
+  it("parentCategory だけ存在し parentCategoryName がない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQFBase, parentCategory: "grammar" })
+    ).toThrow("both must be strings");
+  });
+
+  it("parentCategoryName だけ存在し parentCategory がない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQFBase, parentCategoryName: "文法" })
+    ).toThrow("both must be strings");
+  });
+
+  it("どちらも省略した場合は受け入れる", () => {
+    expect(() => validateQuestionFile(validQFBase)).not.toThrow();
+  });
+});
