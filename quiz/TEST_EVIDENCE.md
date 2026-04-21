@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 19:50:25 JST |
+| **最終更新** | 2026-04-21 19:52:03 JST |
 | **更新者** | GitHub Actions (dynamic/copilot-swe-agent/copilot) |
-| **コミット** | `18076b0` |
-| **コミットメッセージ** | ci: テストエビデンスを更新 [skip ci] |
+| **コミット** | `62b3ac5` |
+| **コミットメッセージ** | Apply review feedback: Japanese warnings, aria-labels, passive touch, restore race fix, comprehensive tests |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `df776bf75ca5067864daebbc04305bc33fe3af7e23a28516645859a04089e5b6` |
+| `test-results.json` | `c43da3fd4818f2b180844e0d061597d65d6d54282b572a14bc6dba13b7c2c177` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 41 / 41 |
 | テストケース（合格 / 合計） | 112 / 112 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.49s |
+| 実行時間 | 0.57s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
