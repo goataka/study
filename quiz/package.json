@@ -12,6 +12,7 @@
     "test:report": "vitest run --reporter=json --outputFile=test-results.json",
     "generate-evidence": "node scripts/generate-evidence.mjs",
     "test:evidence": "npm run test:report && npm run generate-evidence",
+    "test:verify": "npm run test:report && node scripts/generate-evidence.mjs --no-log",
     "test:e2e": "bddgen && playwright test",
     "test:e2e:ui": "bddgen && playwright test --ui",
     "prepare": "cd .. && lefthook install"

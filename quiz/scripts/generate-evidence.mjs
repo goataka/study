@@ -3,7 +3,8 @@
  * テスト実行結果をエビデンスファイル (TEST_EVIDENCE.md) として生成するスクリプト
  *
  * 使用方法:
- *   node scripts/generate-evidence.mjs
+ *   node scripts/generate-evidence.mjs           # 通常モード（TEST_EVIDENCE_LOG.md に追記）
+ *   node scripts/generate-evidence.mjs --no-log  # 検証モード（TEST_EVIDENCE.md のみ更新、ログ追記なし）
  *
  * 前提:
  *   単体テスト: vitest run --reporter=json --outputFile=test-results.json が実行済み
@@ -30,6 +31,11 @@ const resultsFile = path.join(rootDir, "test-results.json");
 const e2eResultsFile = path.join(rootDir, "e2e-results.json");
 const evidenceFile = path.join(rootDir, "TEST_EVIDENCE.md");
 const evidenceLogFile = path.join(rootDir, "TEST_EVIDENCE_LOG.md");
+
+// ─── 実行モード判定 ──────────────────────────────────────────────────────────
+// --no-log: TEST_EVIDENCE.md のみ更新し、TEST_EVIDENCE_LOG.md への追記を行わない
+// セッション開始時の初期状態確認など、ログを残したくない場合に使用する
+const noLog = process.argv.includes("--no-log");
 
 // ─── Git 情報取得 ────────────────────────────────────────────────────────────
 
@@ -268,44 +274,49 @@ lines.push("[📜 エビデンス履歴を見る](TEST_EVIDENCE_LOG.md)");
 fs.writeFileSync(evidenceFile, lines.join("\n"), "utf-8");
 
 // ─── エビデンスログファイルに追記（履歴保存） ────────────────────────────────
+// --no-log フラグが指定された場合はログへの追記をスキップする
 
-const logEntry = [
-  "",
-  "---",
-  "",
-  `## 実行記録: ${timestamp}`,
-  "",
-  `- **更新者**: ${runner}`,
-  `- **コミット**: \`${commitHash}\``,
-  `- **コミットメッセージ**: ${commitMessage}`,
-  `- **単体テスト**: ${unitStatus} (${results.numPassedTests}/${results.numTotalTests} 合格)`,
-  e2eStats
-    ? `- **E2Eテスト**: ${e2eStatus} (${e2eStats.passed}/${e2eStats.total} 合格)`
-    : `- **E2Eテスト**: ${e2eStatus}`,
-  "",
-].join("\n");
-
-// ログファイルが存在しない場合はヘッダーを作成
-if (!fs.existsSync(evidenceLogFile)) {
-  const logHeader = [
-    "# テストエビデンス実行履歴",
+if (!noLog) {
+  const logEntry = [
     "",
-    "<!-- このファイルは各テスト実行時に自動追記されます -->",
-    "<!-- 最新のエビデンス詳細は TEST_EVIDENCE.md を参照してください -->",
+    "---",
+    "",
+    `## 実行記録: ${timestamp}`,
+    "",
+    `- **更新者**: ${runner}`,
+    `- **コミット**: \`${commitHash}\``,
+    `- **コミットメッセージ**: ${commitMessage}`,
+    `- **単体テスト**: ${unitStatus} (${results.numPassedTests}/${results.numTotalTests} 合格)`,
+    e2eStats
+      ? `- **E2Eテスト**: ${e2eStatus} (${e2eStats.passed}/${e2eStats.total} 合格)`
+      : `- **E2Eテスト**: ${e2eStatus}`,
     "",
   ].join("\n");
-  fs.writeFileSync(evidenceLogFile, logHeader, "utf-8");
-}
 
-// ログエントリーを追記
-fs.appendFileSync(evidenceLogFile, logEntry, "utf-8");
+  // ログファイルが存在しない場合はヘッダーを作成
+  if (!fs.existsSync(evidenceLogFile)) {
+    const logHeader = [
+      "# テストエビデンス実行履歴",
+      "",
+      "<!-- このファイルは各テスト実行時に自動追記されます -->",
+      "<!-- 最新のエビデンス詳細は TEST_EVIDENCE.md を参照してください -->",
+      "",
+    ].join("\n");
+    fs.writeFileSync(evidenceLogFile, logHeader, "utf-8");
+  }
+
+  // ログエントリーを追記
+  fs.appendFileSync(evidenceLogFile, logEntry, "utf-8");
+}
 
 console.log(
   `✅ エビデンスファイルを生成しました: TEST_EVIDENCE.md` +
     ` (単体テスト: ${results.numPassedTests}/${results.numTotalTests} 合格` +
     (e2eStats ? ` / E2E: ${e2eStats.passed}/${e2eStats.total} 合格)` : ")")
 );
-console.log(`📜 履歴を TEST_EVIDENCE_LOG.md に追記しました`);
+if (!noLog) {
+  console.log(`📜 履歴を TEST_EVIDENCE_LOG.md に追記しました`);
+}
 
 if (!results.success) {
   console.error("❌ 単体テストが失敗しています。コードを修正してください。");

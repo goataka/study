@@ -198,6 +198,11 @@ I `played` games.
    - `jekyll-gh-pages.yml` の `e2e-production` ジョブがデプロイ後に本番URLに対してE2Eを実行する
    - 失敗した場合は `copilot` ラベル付きのIssueが自動作成され、Copilotエージェントが修正PRを作成する
 
+7. **セッション開始時の初期状態確認**
+   - セッション開始時や変更前の状態確認には `npm run test:verify` を使用すること
+   - `test:verify` はテストを実行して `TEST_EVIDENCE.md` を更新するが、`TEST_EVIDENCE_LOG.md` には追記しない
+   - `TEST_EVIDENCE_LOG.md` への追記は **コードを変更した後の `npm run test:evidence` 実行時のみ** 行うこと
+
 ### コードの言語規則
 
 - **コードコメント・ファイルヘッダー**: 日本語で記述する
