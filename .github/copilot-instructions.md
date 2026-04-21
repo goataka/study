@@ -286,7 +286,6 @@ I `played` games.
 
 6. **本番デプロイ後に自動E2Eが実行される**
    - `jekyll-gh-pages.yml` の `e2e-production` ジョブがデプロイ後に本番URLに対してE2Eを実行する
-   - 失敗した場合は `copilot` ラベル付きのIssueが自動作成され、Copilotエージェントが修正PRを作成する
 
 ### コードの言語規則
 
