@@ -26,3 +26,5 @@
 [目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
 
 [前へ: 極限](../36-limits/drill.md) | **微分** | [次へ: 積分](../38-integration/drill.md)
+
+[クイズ](../../quiz/index.html?subject=math&category=differentiation)
