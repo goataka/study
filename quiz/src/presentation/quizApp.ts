@@ -204,6 +204,7 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
+    this.on("topBtn", "click", () => this.showScreen("start"));
 
     // ユーザー名入力の変更を監視
     const userNameInput = document.getElementById("userNameInput");
