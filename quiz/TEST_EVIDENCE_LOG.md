@@ -296,3 +296,13 @@
 - **コミットメッセージ**: Merge branch 'main' into claude/add-pronunciation-and-grammar-to-category-tree
 - **単体テスト**: ✅ PASSED (133/133 合格)
 - **E2Eテスト**: ⏭ 未実行（CIで実行）
+
+---
+
+## 実行記録: 2026-04-21 20:40:49 JST
+
+- **更新者**: GitHub Actions (dynamic/copilot-swe-agent/copilot)
+- **コミット**: `10c6fd2`
+- **コミットメッセージ**: merge: origin/main との競合を解消 (3回目)
+- **単体テスト**: ✅ PASSED (133/133 合格)
+- **E2Eテスト**: ⏭ 未実行（CIで実行）
