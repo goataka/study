@@ -25,7 +25,5 @@ jobs:
           # MCPサーバーがGitHubを操作するために使用
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
         run: |
-          copilot-agent task \
-            "goataka/studyのmainブランチのREADMにある一覧の文字をなくすPRを作成して。" \
-            --mcp "npx -y @modelcontextprotocol/server-github" \
-            --yes
+          copilot -p \
+            "goataka/studyのmainブランチのREADMにある一覧の文字をなくすPRを作成するエージェントセッションを作成して。"
