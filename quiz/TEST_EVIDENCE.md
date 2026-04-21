@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-20 22:37:34 JST |
+| **最終更新** | 2026-04-21 09:04:04 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `c8a0948` |
-| **コミットメッセージ** | Merge branch 'main' into claude/update-quiz-answer-visibility |
+| **コミット** | `f9457c7` |
+| **コミットメッセージ** | Initial plan |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `cb9f39e57f450d1f871dd35457d24c1382cee7361c748b2c49eefa6c3cee5e18` |
+| `test-results.json` | `38e4fed9d08adee0f2b56277cd528cb924e6d86e0fbfa0ec449aa334cc3ceacd` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.47s |
+| 実行時間 | 0.58s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
