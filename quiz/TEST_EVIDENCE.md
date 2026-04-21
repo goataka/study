@@ -10,10 +10,10 @@
 |------|------|
 | **ステータス（単体テスト）** | ✅ PASSED |
 | **ステータス（E2Eテスト）** | ⏭ 未実行（CIで実行） |
-| **最終更新** | 2026-04-21 09:08:59 JST |
+| **最終更新** | 2026-04-21 09:14:01 JST |
 | **更新者** | GitHub Actions (CI) |
-| **コミット** | `51a661c` |
-| **コミットメッセージ** | Initial plan |
+| **コミット** | `6b95de0` |
+| **コミットメッセージ** | feat: add hierarchical structure to math drills (arithmetic/algebra/calculus) |
 
 ## 改ざん防止チェックサム
 
@@ -22,7 +22,7 @@
 
 | ファイル | SHA256 |
 |------|------|
-| `test-results.json` | `ad8682a9c8f6ec6aadb384410f16ecdb824378f61fd5ecb924b0ef16f369532b` |
+| `test-results.json` | `bee6e62fd7d03d26f632048394929761e63325e680f3c3bd2e922ad95e363df9` |
 | `e2e-results.json` | 未実行 |
 
 ## 単体テスト結果サマリー
@@ -32,7 +32,7 @@
 | テストスイート（合格 / 合計） | 33 / 33 |
 | テストケース（合格 / 合計） | 93 / 93 |
 | 失敗テスト | 0 |
-| 実行時間 | 0.68s |
+| 実行時間 | 0.46s |
 
 ## E2Eテスト結果サマリー（Playwright + Gherkin）
 
