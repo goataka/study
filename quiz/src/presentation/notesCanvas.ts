@@ -15,19 +15,20 @@ export class NotesCanvas {
   private lastY = 0;
   private penSize = 4;
   private penColor = "#000000";
+  private restoreToken = 0;
 
   // ─── 初期化 ────────────────────────────────────────────────────────────────
 
   public initialize(canvasId: string): void {
     this.canvas = document.getElementById(canvasId) as HTMLCanvasElement | null;
     if (!this.canvas) {
-      console.warn(`Canvas element with id '${canvasId}' not found`);
+      console.warn(`指定したIDのcanvas要素が見つかりません: ${canvasId}`);
       return;
     }
 
     this.ctx = this.canvas.getContext("2d");
     if (!this.ctx) {
-      console.warn("Failed to get 2D context from canvas");
+      console.warn("canvas要素から2Dコンテキストを取得できませんでした");
       return;
     }
 
@@ -64,8 +65,8 @@ export class NotesCanvas {
     this.canvas.addEventListener("mouseout", this.handleEnd.bind(this));
 
     // タッチイベント
-    this.canvas.addEventListener("touchstart", this.handleStart.bind(this));
-    this.canvas.addEventListener("touchmove", this.handleMove.bind(this));
+    this.canvas.addEventListener("touchstart", this.handleStart.bind(this), { passive: false });
+    this.canvas.addEventListener("touchmove", this.handleMove.bind(this), { passive: false });
     this.canvas.addEventListener("touchend", this.handleEnd.bind(this));
     this.canvas.addEventListener("touchcancel", this.handleEnd.bind(this));
 
@@ -166,9 +167,11 @@ export class NotesCanvas {
   public restore(state: DrawingState): void {
     if (!this.canvas || !this.ctx) return;
 
+    const token = ++this.restoreToken;
     const img = new Image();
     img.onload = () => {
       if (!this.ctx || !this.canvas) return;
+      if (token !== this.restoreToken) return; // 古い呼び出しはスキップ
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       const rect = this.canvas.getBoundingClientRect();
       this.ctx.drawImage(img, 0, 0, rect.width, rect.height);
