@@ -9,8 +9,11 @@ branding:
   color: "red"
 
 inputs:
+  github-token:
+    description: "GitHub token for authentication (GITHUB_TOKEN)"
+    required: true
   copilot-token:
-    description: "Copilotエージェント用トークン（COPILOT_TOKEN）"
+    description: "OAuth token for gh agent-task (secrets.COPILOT_TOKEN)"
     required: true
   error-context:
     description: "エラーの詳細情報（オプション）"
@@ -39,6 +42,13 @@ runs:
           exit 1
         fi
         echo "::notice::前提コマンド (jq, gh, gh agent-task) の確認が完了しました"
+
+    - name: gh CLI の認証
+      shell: bash
+      env:
+        COPILOT_TOKEN: ${{ inputs.copilot-token }}
+      run: |
+        echo "${COPILOT_TOKEN}" | gh auth login --with-token
 
     - name: エラー情報の収集
       id: collect-error
@@ -93,7 +103,6 @@ runs:
       id: create-agent-task
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.copilot-token }}
         WORKFLOW_NAME: ${{ steps.collect-error.outputs.workflow_name }}
         COMMIT_SHORT: ${{ steps.collect-error.outputs.commit_short }}
         RUN_URL: ${{ steps.collect-error.outputs.run_url }}

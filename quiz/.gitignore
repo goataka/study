@@ -2,6 +2,6 @@ node_modules/
 dist/
 test-results.json
 e2e-results.json
-test-results/
 .features-gen/
+test-results/
 TEST_EVIDENCE.md
