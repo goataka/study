@@ -100,6 +100,102 @@
       ],
       "correct": 0,
       "explanation": "6 + 3 = 9"
+    },
+    {
+      "id": "add-no-carry-9",
+      "question": "12 + 35 = ?",
+      "choices": [
+        "46",
+        "47",
+        "48",
+        "45"
+      ],
+      "correct": 1,
+      "explanation": "12 + 35 = 47"
+    },
+    {
+      "id": "add-no-carry-10",
+      "question": "23 + 46 = ?",
+      "choices": [
+        "68",
+        "70",
+        "67",
+        "69"
+      ],
+      "correct": 3,
+      "explanation": "23 + 46 = 69"
+    },
+    {
+      "id": "add-no-carry-11",
+      "question": "41 + 53 = ?",
+      "choices": [
+        "95",
+        "93",
+        "96",
+        "94"
+      ],
+      "correct": 3,
+      "explanation": "41 + 53 = 94"
+    },
+    {
+      "id": "add-no-carry-12",
+      "question": "30 + 47 = ?",
+      "choices": [
+        "77",
+        "78",
+        "76",
+        "75"
+      ],
+      "correct": 0,
+      "explanation": "30 + 47 = 77"
+    },
+    {
+      "id": "add-no-carry-13",
+      "question": "21 + 63 = ?",
+      "choices": [
+        "83",
+        "85",
+        "84",
+        "86"
+      ],
+      "correct": 2,
+      "explanation": "21 + 63 = 84"
+    },
+    {
+      "id": "add-no-carry-14",
+      "question": "123 + 456 = ?",
+      "choices": [
+        "580",
+        "578",
+        "579",
+        "577"
+      ],
+      "correct": 2,
+      "explanation": "123 + 456 = 579"
+    },
+    {
+      "id": "add-no-carry-15",
+      "question": "231 + 548 = ?",
+      "choices": [
+        "778",
+        "780",
+        "781",
+        "779"
+      ],
+      "correct": 3,
+      "explanation": "231 + 548 = 779"
+    },
+    {
+      "id": "add-no-carry-16",
+      "question": "304 + 295 = ?",
+      "choices": [
+        "599",
+        "598",
+        "601",
+        "600"
+      ],
+      "correct": 0,
+      "explanation": "304 + 295 = 599"
     }
   ]
 }

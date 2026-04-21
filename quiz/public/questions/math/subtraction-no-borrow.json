@@ -100,6 +100,102 @@
       ],
       "correct": 0,
       "explanation": "9 - 3 = 6"
+    },
+    {
+      "id": "sub-no-borrow-9",
+      "question": "57 - 23 = ?",
+      "choices": [
+        "33",
+        "34",
+        "32",
+        "35"
+      ],
+      "correct": 1,
+      "explanation": "57 - 23 = 34"
+    },
+    {
+      "id": "sub-no-borrow-10",
+      "question": "79 - 46 = ?",
+      "choices": [
+        "34",
+        "31",
+        "33",
+        "32"
+      ],
+      "correct": 2,
+      "explanation": "79 - 46 = 33"
+    },
+    {
+      "id": "sub-no-borrow-11",
+      "question": "68 - 45 = ?",
+      "choices": [
+        "24",
+        "22",
+        "21",
+        "23"
+      ],
+      "correct": 3,
+      "explanation": "68 - 45 = 23"
+    },
+    {
+      "id": "sub-no-borrow-12",
+      "question": "97 - 62 = ?",
+      "choices": [
+        "35",
+        "34",
+        "36",
+        "33"
+      ],
+      "correct": 0,
+      "explanation": "97 - 62 = 35"
+    },
+    {
+      "id": "sub-no-borrow-13",
+      "question": "456 - 123 = ?",
+      "choices": [
+        "334",
+        "332",
+        "333",
+        "331"
+      ],
+      "correct": 2,
+      "explanation": "456 - 123 = 333"
+    },
+    {
+      "id": "sub-no-borrow-14",
+      "question": "789 - 465 = ?",
+      "choices": [
+        "325",
+        "322",
+        "326",
+        "324"
+      ],
+      "correct": 3,
+      "explanation": "789 - 465 = 324"
+    },
+    {
+      "id": "sub-no-borrow-15",
+      "question": "968 - 435 = ?",
+      "choices": [
+        "534",
+        "531",
+        "532",
+        "533"
+      ],
+      "correct": 3,
+      "explanation": "968 - 435 = 533"
+    },
+    {
+      "id": "sub-no-borrow-16",
+      "question": "847 - 624 = ?",
+      "choices": [
+        "223",
+        "224",
+        "221",
+        "222"
+      ],
+      "correct": 0,
+      "explanation": "847 - 624 = 223"
     }
   ]
 }

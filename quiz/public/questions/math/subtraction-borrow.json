@@ -100,6 +100,102 @@
       ],
       "correct": 0,
       "explanation": "10から9をひいて1、1+5=6"
+    },
+    {
+      "id": "sub-borrow-9",
+      "question": "42 - 17 = ?",
+      "choices": [
+        "26",
+        "25",
+        "24",
+        "27"
+      ],
+      "correct": 1,
+      "explanation": "42 - 17 = 25"
+    },
+    {
+      "id": "sub-borrow-10",
+      "question": "61 - 34 = ?",
+      "choices": [
+        "28",
+        "26",
+        "27",
+        "29"
+      ],
+      "correct": 2,
+      "explanation": "61 - 34 = 27"
+    },
+    {
+      "id": "sub-borrow-11",
+      "question": "84 - 56 = ?",
+      "choices": [
+        "29",
+        "27",
+        "30",
+        "28"
+      ],
+      "correct": 3,
+      "explanation": "84 - 56 = 28"
+    },
+    {
+      "id": "sub-borrow-12",
+      "question": "93 - 47 = ?",
+      "choices": [
+        "46",
+        "45",
+        "47",
+        "44"
+      ],
+      "correct": 0,
+      "explanation": "93 - 47 = 46"
+    },
+    {
+      "id": "sub-borrow-13",
+      "question": "301 - 156 = ?",
+      "choices": [
+        "146",
+        "143",
+        "145",
+        "144"
+      ],
+      "correct": 2,
+      "explanation": "301 - 156 = 145"
+    },
+    {
+      "id": "sub-borrow-14",
+      "question": "423 - 178 = ?",
+      "choices": [
+        "246",
+        "244",
+        "245",
+        "247"
+      ],
+      "correct": 2,
+      "explanation": "423 - 178 = 245"
+    },
+    {
+      "id": "sub-borrow-15",
+      "question": "602 - 347 = ?",
+      "choices": [
+        "256",
+        "253",
+        "257",
+        "255"
+      ],
+      "correct": 3,
+      "explanation": "602 - 347 = 255"
+    },
+    {
+      "id": "sub-borrow-16",
+      "question": "735 - 489 = ?",
+      "choices": [
+        "246",
+        "248",
+        "245",
+        "247"
+      ],
+      "correct": 0,
+      "explanation": "735 - 489 = 246"
     }
   ]
 }
