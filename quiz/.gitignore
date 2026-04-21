@@ -2,3 +2,5 @@ node_modules/
 dist/
 test-results.json
 e2e-results.json
+pr-comment.md
+TEST_EVIDENCE.md
