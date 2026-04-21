@@ -9,12 +9,16 @@ import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
+import { NotesCanvas } from "./notesCanvas";
+import type { DrawingState } from "./notesCanvas";
 
 export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
   private filter: QuizFilter = { subject: "all", category: "all" };
   private userName: string = "";
+  private notesCanvas: NotesCanvas | null = null;
+  private notesStates: Map<number, DrawingState> = new Map();
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -208,6 +212,21 @@ export class QuizApp {
     // ユーザー名入力の変更を監視
     const userNameInput = document.getElementById("userNameInput");
     userNameInput?.addEventListener("input", () => this.saveUserName());
+
+    // メモエリアのコントロール
+    this.on("clearNotesBtn", "click", () => this.clearNotes());
+
+    const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
+    penSizeSelect?.addEventListener("change", (e) => {
+      const size = parseInt((e.target as HTMLSelectElement).value);
+      this.notesCanvas?.setPenSize(size);
+    });
+
+    const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
+    penColorSelect?.addEventListener("change", (e) => {
+      const color = (e.target as HTMLSelectElement).value;
+      this.notesCanvas?.setPenColor(color);
+    });
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -280,8 +299,13 @@ export class QuizApp {
       alert(error instanceof Error ? error.message : "エラーが発生しました");
       return;
     }
+
+    // メモ状態をリセット
+    this.notesStates.clear();
+
     this.showScreen("quiz");
     this.updateUserNameDisplay("quizUserName");
+    this.initializeNotesCanvas();
     this.renderQuestion();
   }
 
@@ -338,8 +362,15 @@ export class QuizApp {
   private navigate(direction: 1 | -1): void {
     const session = this.currentSession;
     if (!session) return;
+
+    // 現在のメモ状態を保存
+    this.saveNotesState(session.currentIndex);
+
     session.navigate(direction);
     this.renderQuestion();
+
+    // 新しい問題のメモ状態を復元
+    this.restoreNotesState(session.currentIndex);
   }
 
   private updateNavigationButtons(session: QuizSession): void {
@@ -486,6 +517,50 @@ export class QuizApp {
 
   private on(id: string, event: string, handler: () => void): void {
     document.getElementById(id)?.addEventListener(event, handler);
+  }
+
+  // ─── メモエリア管理 ────────────────────────────────────────────────────────
+
+  private initializeNotesCanvas(): void {
+    if (!this.notesCanvas) {
+      this.notesCanvas = new NotesCanvas();
+      this.notesCanvas.initialize("notesCanvas");
+
+      // デフォルト設定を適用
+      const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
+      const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
+
+      if (penSizeSelect) {
+        this.notesCanvas.setPenSize(parseInt(penSizeSelect.value));
+      }
+      if (penColorSelect) {
+        this.notesCanvas.setPenColor(penColorSelect.value);
+      }
+    }
+  }
+
+  private saveNotesState(questionIndex: number): void {
+    const state = this.notesCanvas?.save();
+    if (state) {
+      this.notesStates.set(questionIndex, state);
+    }
+  }
+
+  private restoreNotesState(questionIndex: number): void {
+    const state = this.notesStates.get(questionIndex);
+    if (state) {
+      this.notesCanvas?.restore(state);
+    } else {
+      this.notesCanvas?.clear();
+    }
+  }
+
+  private clearNotes(): void {
+    if (this.currentSession) {
+      // 現在の問題のメモ状態を削除
+      this.notesStates.delete(this.currentSession.currentIndex);
+    }
+    this.notesCanvas?.clear();
   }
 }
 
