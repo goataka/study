@@ -26,6 +26,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 header h1 {
@@ -107,6 +110,28 @@ header nav .top-nav-btn {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* カスタムスクロールバー（Webkit系ブラウザ用） */
+.subject-tree::-webkit-scrollbar {
+    width: 8px;
+}
+
+.subject-tree::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.subject-tree::-webkit-scrollbar-thumb {
+    background: #c1c7cd;
+    border-radius: 4px;
+}
+
+.subject-tree::-webkit-scrollbar-thumb:hover {
+    background: #a8adb3;
 }
 
 .tree-item {
@@ -196,6 +221,9 @@ header nav .top-nav-btn {
     border: 1px solid #e1e4e8;
     border-radius: 8px;
     padding: 30px;
+    align-self: start;
+    position: sticky;
+    top: var(--quiz-panel-sticky-top, 120px);
 }
 
 .quiz-panel h2 {
@@ -603,6 +631,8 @@ button:disabled {
 
     .quiz-panel {
         order: 2;
+        position: static;
+        top: auto;
     }
 
     .question-text {

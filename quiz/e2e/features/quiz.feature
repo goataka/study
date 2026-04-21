@@ -7,6 +7,13 @@ Feature: 学習クイズ
     Then the start screen should be visible
     And the quiz title should be "学習クイズ"
 
+  Scenario: カテゴリツリーをスクロールしてもヘッダーとクイズパネルが表示されたまま
+    Then the start screen should be visible
+    And the quiz title should be "学習クイズ"
+    When I scroll the category tree
+    Then the header should remain visible
+    And the quiz panel should remain visible
+
   Scenario: ランダムクイズを開始できる
     When I click the "ランダム10問" button
     Then the quiz screen should be visible

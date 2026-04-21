@@ -18,6 +18,60 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
   await expect(page.locator("h1")).toHaveText(title);
 });
 
+When("I scroll the category tree", async ({ page }) => {
+  // カテゴリツリーが表示され、実際にスクロール可能になるまで待つ
+  const subjectTree = page.locator(".subject-tree");
+  await expect(subjectTree).toBeVisible();
+  await expect
+    .poll(
+      async () =>
+        await subjectTree.evaluate((el) => el.scrollHeight > el.clientHeight),
+      { timeout: STATS_LOAD_TIMEOUT }
+    )
+    .toBe(true);
+
+  const initialScrollTop = await subjectTree.evaluate((el) => el.scrollTop);
+
+  // カテゴリツリーをスクロール
+  await subjectTree.evaluate((el) => {
+    el.scrollTop = el.scrollHeight;
+  });
+
+  // 実際にスクロール位置が進んだことを確認
+  await expect
+    .poll(
+      async () => await subjectTree.evaluate((el) => el.scrollTop),
+      { timeout: STATS_LOAD_TIMEOUT }
+    )
+    .toBeGreaterThan(initialScrollTop);
+});
+
+Then("the header should remain visible", async ({ page }) => {
+  // ヘッダーが表示されていることを確認
+  const header = page.locator("header");
+  await expect(header).toBeVisible();
+
+  // ヘッダーがビューポート内に完全に収まっていることを確認
+  const viewportSize = page.viewportSize();
+  const headerBox = await header.boundingBox();
+  expect(headerBox).not.toBeNull();
+  expect(headerBox!.y).toBeGreaterThanOrEqual(0);
+  expect(headerBox!.y + headerBox!.height).toBeLessThanOrEqual(viewportSize!.height);
+});
+
+Then("the quiz panel should remain visible", async ({ page }) => {
+  // クイズパネルが表示されていることを確認
+  const quizPanel = page.locator(".quiz-panel");
+  await expect(quizPanel).toBeVisible();
+
+  // クイズパネルがビューポート内に完全に収まっていることを確認
+  const viewportSize = page.viewportSize();
+  const panelBox = await quizPanel.boundingBox();
+  expect(panelBox).not.toBeNull();
+  expect(panelBox!.y).toBeGreaterThanOrEqual(0);
+  expect(panelBox!.y + panelBox!.height).toBeLessThanOrEqual(viewportSize!.height);
+});
+
 When("I click the {string} button", async ({ page }, buttonText: string) => {
   await page.getByRole("button", { name: buttonText }).click();
 });
