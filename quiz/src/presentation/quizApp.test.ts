@@ -19,7 +19,7 @@ function setupMinimalDom(): void {
       <select id="subjectFilter"><option value="all">すべての教科</option></select>
       <select id="categoryFilter"><option value="all">すべてのカテゴリ</option></select>
       <div id="statsInfo"></div>
-      <button id="startRandomBtn">ランダム20問</button>
+      <button id="startRandomBtn">ランダム10問</button>
       <button id="startRetryBtn" disabled>間違えた問題</button>
     </div>
     <div id="quizScreen" class="screen">
@@ -53,7 +53,7 @@ function setupTreeDom(): void {
     <div id="startScreen" class="screen active">
       <div class="subject-tree"></div>
       <div id="statsInfo"></div>
-      <button id="startRandomBtn">ランダム20問</button>
+      <button id="startRandomBtn">ランダム10問</button>
       <button id="startRetryBtn" disabled>間違えた問題</button>
     </div>
     <div id="quizScreen" class="screen">

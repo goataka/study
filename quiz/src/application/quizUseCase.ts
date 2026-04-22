@@ -69,7 +69,7 @@ export class QuizUseCase {
     const filtered = this.getFilteredQuestions(filter);
 
     if (mode === "random") {
-      const questions = QuizSession.pickRandom(filtered, 20);
+      const questions = QuizSession.pickRandom(filtered, 10);
       return new QuizSession(questions);
     } else {
       const wrongSet = new Set(this.wrongIds);

@@ -179,9 +179,9 @@ describe("QuizUseCase — セッション開始仕様", () => {
     await useCase.initialize();
   });
 
-  it("randomモードで最大20問のセッションが開始される", () => {
+  it("randomモードで最大10問のセッションが開始される", () => {
     const session = useCase.startSession("random", { subject: "all", category: "all" });
-    expect(session.totalCount).toBeLessThanOrEqual(20);
+    expect(session.totalCount).toBeLessThanOrEqual(10);
   });
 
   it("retryモードで間違えた問題がなければエラー", () => {
