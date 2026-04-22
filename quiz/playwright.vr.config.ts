@@ -14,9 +14,7 @@ const isExternalUrl = baseURL.startsWith("https://");
 export default defineConfig({
   testDir,
   timeout: 60_000,
-  // スナップショットの保存先（ベースライン画像をリポジトリで管理）
-  snapshotDir: "e2e/snapshots",
-  // スナップショットのパステンプレート（OS/ブラウザごとにファイル名を分ける）
+  // スナップショットのパステンプレート（保存先とOS/ブラウザごとのファイル名を定義）
   snapshotPathTemplate: "e2e/snapshots/{arg}-{projectName}-{platform}{ext}",
   expect: {
     toHaveScreenshot: {
