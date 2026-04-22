@@ -7,23 +7,15 @@
 
 ## 前提条件
 
-### 1. COPILOT_TOKEN の設定
+### 必要な権限
 
-リポジトリのSecretsに `COPILOT_TOKEN` を追加する必要があります：
-
-```
-Settings > Secrets and variables > Actions > New repository secret
-Name: COPILOT_TOKEN
-Value: (あなたのCopilot Token)
-```
-
-### 2. 必要な権限
-
-監視用ワークフローには以下の権限のみ必要です：
+監視用ワークフローには以下の権限が必要です：
 
 ```yaml
 permissions:
   contents: read
+  pull-requests: write  # PRコメント投稿に必要
+  issues: write         # Issue作成・コメントに必要
 ```
 
 ## 統合方法
@@ -48,13 +40,15 @@ jobs:
     if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
     permissions:
       contents: read
+      pull-requests: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: Copilotエージェントタスクを作成
+      - name: CopilotにCI修正を依頼
         uses: ./.github/actions/fix-gha-error
         with:
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### 複数のワークフローを監視する
@@ -79,30 +73,32 @@ jobs:
     if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
     permissions:
       contents: read
+      pull-requests: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: Copilotエージェントタスクを作成
+      - name: CopilotにCI修正を依頼
         uses: ./.github/actions/fix-gha-error
         with:
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### エラーコンテキストを追加する
 
-`error-context` 入力でタスクに追加情報を付与できます：
+`error-context` 入力でコメント・Issueに追加情報を付与できます：
 
 ```yaml
-      - name: Copilotエージェントタスクを作成
+      - name: CopilotにCI修正を依頼
         uses: ./.github/actions/fix-gha-error
         with:
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           error-context: "このワークフローはCI/CDパイプラインの一部です"
 ```
 
 ## 注意事項
 
-### 重複タスクを避ける
+### 重複処理を避ける
 
 既に失敗時のIssue/タスク作成処理が存在するワークフローは監視対象から除外してください。
 例えばこのリポジトリでは `Deploy to GitHub Pages` ワークフローが
@@ -111,14 +107,14 @@ jobs:
 ### fork からの実行への対処
 
 `if` 条件に `github.event.workflow_run.head_repository.full_name == github.repository` を
-必ず含めてください。これにより、forkリポジトリからのワークフロー実行によるタスクスパムを防げます。
+必ず含めてください。これにより、forkリポジトリからのワークフロー実行によるスパムを防げます。
 
 ## トラブルシューティング
 
-### エージェントタスクが作成されない
+### コメント・Issueが作成されない
 
-1. **`COPILOT_TOKEN` の確認**
-   - SecretsにCOPILOT_TOKENが正しく設定されているか確認
+1. **権限の確認**
+   - ワークフローに `pull-requests: write` と `issues: write` が設定されているか確認
 
 2. **ワークフロー名の確認**
    - `workflows:` に指定したワークフロー名が監視対象ワークフローの `name:` フィールドと完全一致しているか確認
@@ -126,10 +122,6 @@ jobs:
 3. **fork対策条件の確認**
    - `if` 条件の `full_name == github.repository` が正しいか確認
    - 想定外のforkからの実行でないか確認
-
-4. **gh agent-task の確認**
-   - `gh agent-task --help` が実行できるか確認
-   - ランナーに `gh` CLIがインストールされているか確認
 
 ## 参考リンク
 

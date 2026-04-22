@@ -1,14 +1,14 @@
 # Fix GHA Error コンポジットアクション
 
-GitHub Actionsのワークフローがエラーになった場合に、`gh agent-task create` コマンドを使用してCopilotエージェントタスクを直接作成し、自動的に修正を依頼するコンポジットアクションです。
+GitHub Actionsのワークフローがエラーになった場合に、Copilotに修正を依頼するコンポジットアクションです。
 
 ## 機能
 
-- **エージェントタスクの自動作成**: `gh` CLIを使用してCopilotエージェントタスクを直接作成し、自動的に修正PRを作成
 - **`workflow_run`イベント連携**: 他のワークフローが失敗で完了したときに発動
-- **ターゲットブランチの自動判定**:
-  - PRベースの実行: 元のPRのブランチをターゲットにする
-  - ブランチベースの実行: 失敗したワークフローの`head_branch`をターゲットにする
+- **PRがある場合**: 対象PRに `@copilot` をメンションしてコメントを投稿
+- **PRがない場合**:
+  - 同一ワークフローのオープンIssueが存在する場合は既存IssueにCopilotをメンションしてコメントを追加
+  - 存在しない場合は新規Issueを作成してCopilotをアサイン
 - **詳細なエラー情報**: ワークフロー名、コミット情報、実行ログURLを自動収集
 
 ## 前提条件
@@ -16,7 +16,6 @@ GitHub Actionsのワークフローがエラーになった場合に、`gh agent
 このアクションを実行するrunnerには、以下のコマンドが利用可能である必要があります：
 
 - `gh` CLI がインストールされていること
-- `gh agent-task` サブコマンドが利用可能であること
 - `jq` がインストールされていること
 
 `ubuntu-latest` では標準でこれらのコマンドが利用可能です。
@@ -37,7 +36,6 @@ on:
     # 監視するワークフロー名をここに列挙する
     workflows:
       - "CI"
-      - "Deploy to GitHub Pages"
     types:
       - completed
 
@@ -47,14 +45,15 @@ jobs:
     if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
     permissions:
       contents: read
+      pull-requests: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
 
-      - name: エラー時にCopilotに修正を依頼
+      - name: CopilotにCI修正を依頼
         uses: ./.github/actions/fix-gha-error
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
 ```
 
 ## Inputs
@@ -62,7 +61,6 @@ jobs:
 | 名前 | 必須 | デフォルト | 説明 |
 |------|------|-----------|------|
 | `github-token` | ✅ | - | GitHub Actions 用のトークン（`GITHUB_TOKEN`） |
-| `copilot-token` | ✅ | - | Copilotエージェント用トークン（`COPILOT_TOKEN`） |
 | `error-context` | ❌ | `""` | エラーの詳細情報（オプション） |
 
 ## 動作の詳細
@@ -71,55 +69,33 @@ jobs:
 
 このアクションは `workflow_run` イベントで発動します。監視するワークフロー名と `if: github.event.workflow_run.conclusion == 'failure'` 条件をワークフロー側で指定してください。
 
-### ターゲットブランチの判定
+### PRの有無による分岐
 
-このアクションは、失敗したワークフロー実行に関連するPRを自動検出してターゲットブランチを判定します：
+このアクションは、失敗したワークフロー実行に関連するPRを自動検出して動作を分岐します：
 
-#### PRベースの実行
+#### PRがある場合
 
-- ターゲット: 関連するPRのhead branch
-- エージェントタスク: PR番号とブランチ名を含む
-- 修正PR: 元のPRブランチをターゲットにする
+- 対象PRに `@copilot` をメンションするコメントを投稿
+- コメントには、ワークフロー名・コミット・PR番号・CIログURLが含まれる
 
-#### ブランチベースの実行
+#### PRがない場合
 
-- ターゲット: 失敗したワークフローの `head_branch`
-- エージェントタスク: ブランチ名を含む
-- 修正PR: そのブランチをターゲットにする
+- タイトル `[CI失敗] {ワークフロー名}` でオープンなIssueを検索
+- **既存Issueあり**: そのIssueに `@copilot` をメンションするコメントを追加
+- **既存Issueなし**: 新規Issueを作成してCopilotをアサインし、`@copilot` をメンション
 
-### 認証とステータス出力
+### 必要な権限
 
-- `github-token` と `copilot-token` が空でないかを事前に検証し、欠落時はエラーで停止
-- `gh auth status` を実行して認証状態をログ出力し、`GH_TOKEN` をエクスポートして `gh agent-task create` が確実にトークンを利用できるようにする
-- `workflow_run` から取得したワークフロー名・コミット・ログURL・ターゲットブランチが空の場合は早期にエラーを出力
-
-### 作成されるエージェントタスク
-
-`gh agent-task create` コマンドを使用してエージェントタスクを作成します。タスクには以下の情報が含まれます：
-
-- **ベースブランチ**: ターゲットブランチ
-- **タスク説明**:
-  - ワークフロー名
-  - コミット情報
-  - CIログURL
-  - PR情報（PRベースの場合）
-  - エラー詳細（提供された場合）
-  - 詳細な修正手順
+```yaml
+permissions:
+  contents: read
+  pull-requests: write  # PRコメント投稿に必要
+  issues: write         # Issue作成・コメントに必要
+```
 
 ## セットアップ
 
-### 1. Copilot Tokenの設定
-
-リポジトリのSecretsに `COPILOT_TOKEN` を追加してください：
-
-1. GitHub リポジトリの `Settings` > `Secrets and variables` > `Actions`
-2. `New repository secret` をクリック
-3. Name: `COPILOT_TOKEN`
-4. Value: あなたのCopilot Token
-5. `Add secret` をクリック
-6. `GITHUB_TOKEN` は GitHub が自動で付与するため追加作業は不要です。`with.github-token` に `${{ secrets.GITHUB_TOKEN }}` を指定してください。
-
-### 2. ワークフローの作成
+### ワークフローの作成
 
 監視したいワークフロー名を `workflows:` に列挙した専用ワークフローを作成します：
 
@@ -130,7 +106,6 @@ on:
   workflow_run:
     workflows:
       - "CI"
-      - "Deploy to GitHub Pages"
     types:
       - completed
 
@@ -140,13 +115,14 @@ jobs:
     if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.head_repository.full_name == github.repository
     permissions:
       contents: read
+      pull-requests: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
 
       - uses: ./.github/actions/fix-gha-error
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          copilot-token: ${{ secrets.COPILOT_TOKEN }}
 ```
 
 ## 参考資料
@@ -154,4 +130,3 @@ jobs:
 - [Composite Actionsの作成](https://docs.github.com/ja/actions/creating-actions/creating-a-composite-action)
 - [GitHub Actions コンテキスト](https://docs.github.com/ja/actions/learn-github-actions/contexts)
 - [workflow_runイベント](https://docs.github.com/ja/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#workflow_run)
-- [Qiitaの参考記事](https://qiita.com/s0ukada025/items/ab4308b2dbd833298be9)

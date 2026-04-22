@@ -1,9 +1,11 @@
 # GHAエラー修正用コンポジットアクション
-# workflow_runイベントで失敗したワークフローを検知し、Copilotエージェントタスクを作成して修正を依頼する
-# PRベースの場合は元のPRブランチ、そうでない場合はhead_branchをターゲットにする
+# workflow_runイベントで失敗したワークフローを検知し、Copilotに修正を依頼する
+# PRがある場合はPRにCopilotをメンションしてコメント、
+# PRがない場合は同一ワークフローのオープンIssueを検索して
+# 存在すればコメントを追加、なければ新規Issueを作成してCopilotをアサインする
 
 name: "Fix GHA Error"
-description: "GHAエラー発生時にCopilotエージェントタスクを作成し、自動的に修正PRを作成する"
+description: "GHAエラー発生時にCopilotに修正を依頼する（PRコメント or Issue作成）"
 branding:
   icon: "alert-circle"
   color: "red"
@@ -11,9 +13,6 @@ branding:
 inputs:
   github-token:
     description: "GitHub token for authentication (GITHUB_TOKEN)"
-    required: true
-  copilot-token:
-    description: "OAuth token for gh agent-task (secrets.COPILOT_TOKEN)"
     required: true
   error-context:
     description: "エラーの詳細情報（オプション）"
@@ -38,18 +37,12 @@ runs:
           echo "::error::gh CLI が見つかりません。ubuntu-latest 以外のrunnerを使用している場合は gh CLI をインストールしてください。"
           exit 1
         fi
-        # gh agent-task サブコマンドの確認
-        if ! gh agent-task --help &>/dev/null; then
-          echo "::error::gh agent-task サブコマンドが利用できません。gh CLI のバージョンを確認してください。"
-          exit 1
-        fi
-        echo "::notice::前提コマンド (jq, gh, gh agent-task) の確認が完了しました"
+        echo "::notice::前提コマンド (jq, gh) の確認が完了しました"
 
     - name: 入力値とコンテキストのチェック
       id: validate-input
       shell: bash
       env:
-        COPILOT_TOKEN: ${{ inputs.copilot-token }}
         GITHUB_TOKEN_INPUT: ${{ inputs.github-token }}
         WF_NAME: ${{ github.event.workflow_run.name }}
         WF_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
@@ -58,10 +51,9 @@ runs:
       run: |
         set -euo pipefail
 
-        echo "::add-mask::${COPILOT_TOKEN}"
         echo "::add-mask::${GITHUB_TOKEN_INPUT}"
 
-        required=(COPILOT_TOKEN GITHUB_TOKEN_INPUT WF_NAME WF_HEAD_SHA WF_HTML_URL)
+        required=(GITHUB_TOKEN_INPUT WF_NAME WF_HEAD_SHA WF_HTML_URL)
         missing=()
 
         for key in "${required[@]}"; do
@@ -80,21 +72,6 @@ runs:
         fi
 
         echo "::notice::入力値とコンテキストの基本チェックが完了しました (workflow=${WF_NAME}, commit=${WF_HEAD_SHA:0:7})"
-
-    - name: gh CLI の認証
-      shell: bash
-      env:
-        COPILOT_TOKEN: ${{ inputs.copilot-token }}
-      run: |
-        set -euo pipefail
-
-        echo "::add-mask::${COPILOT_TOKEN}"
-        echo "${COPILOT_TOKEN}" | gh auth login --with-token --hostname github.com
-        gh auth status --hostname github.com
-
-        # gh が認証情報を参照できるよう GH_TOKEN をエクスポート
-        echo "GH_TOKEN=${COPILOT_TOKEN}" >> "$GITHUB_ENV"
-        echo "::notice::gh auth status を確認しました (host=github.com)"
 
     - name: エラー情報の収集
       id: collect-error
@@ -154,8 +131,8 @@ runs:
 
         echo "::notice::収集した情報: workflow=${WORKFLOW_NAME}, commit=${COMMIT_SHORT}, target_branch=${TARGET_BRANCH}, pr_count=${PR_COUNT:-0}"
 
-    - name: Copilotエージェントタスクを作成
-      id: create-agent-task
+    - name: CopilotにCI修正を依頼
+      id: request-fix
       shell: bash
       env:
         WORKFLOW_NAME: ${{ steps.collect-error.outputs.workflow_name }}
@@ -165,83 +142,106 @@ runs:
         TARGET_BRANCH: ${{ steps.collect-error.outputs.target_branch }}
         PR_NUMBER: ${{ steps.collect-error.outputs.pr_number }}
         ERROR_CONTEXT: ${{ inputs.error-context }}
-        GH_TOKEN: ${{ inputs.copilot-token }}
-        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GH_TOKEN: ${{ inputs.github-token }}
+        GH_REPO: ${{ github.repository }}
       run: |
         set -euo pipefail
-
-        if ! gh auth status --hostname github.com >/dev/null 2>&1; then
-          echo "::error::gh auth status に失敗しました。copilot-token が有効か確認してください。"
-          exit 1
-        fi
 
         if [ -z "${TARGET_BRANCH}" ]; then
           echo "::error::ターゲットブランチを特定できませんでした"
           exit 1
         fi
 
-        # タスク説明をヒアドキュメントで一時ファイルに書き込む（すべての値は環境変数経由でインジェクション防止）
-        TASK_FILE=$(mktemp)
+        # 本文をヒアドキュメントで一時ファイルに書き込む（すべての値は環境変数経由でインジェクション防止）
+        BODY_FILE=$(mktemp)
 
-        # ベース情報（変数あり）
-        cat >"$TASK_FILE" <<EOF
-        GitHub Actionsワークフロー「${WORKFLOW_NAME}」が失敗しました (コミット: ${COMMIT_SHORT})。
+        if [ "$IS_PR" = "true" ]; then
+          # PRがある場合: PRにCopilotをメンションしてコメントを投稿
+          cat >"$BODY_FILE" <<EOF
+        @copilot GitHub Actionsワークフロー「${WORKFLOW_NAME}」が失敗しました (コミット: ${COMMIT_SHORT})。CIエラーを確認して修正をお願いします。
+
+        ## エラー情報
+
+        - **ワークフロー**: ${WORKFLOW_NAME}
+        - **コミット**: ${COMMIT_SHORT}
+        - **PR**: #${PR_NUMBER}
+        - **CIログ**: ${RUN_URL}
+        EOF
+
+          if [ -n "${ERROR_CONTEXT}" ]; then
+            printf -- '- **エラー詳細**: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
+          fi
+
+          gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
+          echo "::notice::PR #${PR_NUMBER} にCopilotメンションコメントを投稿しました"
+        else
+          # PRがない場合: 同一ワークフローのオープンIssueを検索
+          ISSUE_TITLE="[CI失敗] ${WORKFLOW_NAME}"
+
+          EXISTING_ISSUE_NUMBER=$(gh issue list \
+            --state open \
+            --search "${ISSUE_TITLE} in:title" \
+            --limit 1000 \
+            --json number,title \
+            | jq -r --arg title "${ISSUE_TITLE}" '.[] | select(.title == $title) | .number' \
+            | head -1)
+
+          if [ -n "${EXISTING_ISSUE_NUMBER}" ]; then
+            # 既存Issueがある場合: コメントを追加してCopilotをメンション
+            cat >"$BODY_FILE" <<EOF
+        @copilot ワークフロー「${WORKFLOW_NAME}」が再度失敗しました (コミット: ${COMMIT_SHORT})。引き続き対応をお願いします。
+
+        - **CIログ**: ${RUN_URL}
+        - **ブランチ**: ${TARGET_BRANCH}
+        EOF
+
+            if [ -n "${ERROR_CONTEXT}" ]; then
+              printf -- '- **エラー詳細**: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
+            fi
+
+            gh issue comment "${EXISTING_ISSUE_NUMBER}" --body-file "$BODY_FILE"
+            echo "::notice::既存Issue #${EXISTING_ISSUE_NUMBER} にCopilotメンションコメントを追加しました"
+          else
+            # 既存Issueがない場合: 新規Issueを作成してCopilotをアサイン
+            cat >"$BODY_FILE" <<EOF
+        @copilot GitHub Actionsワークフロー「${WORKFLOW_NAME}」が失敗しました。対応をお願いします。
 
         ## エラー情報
 
         - **ワークフロー**: ${WORKFLOW_NAME}
         - **コミット**: ${COMMIT_SHORT}
         - **CIログ**: ${RUN_URL}
+        - **ブランチ**: ${TARGET_BRANCH}
         EOF
 
-        if [ "$IS_PR" = "true" ]; then
-          cat >>"$TASK_FILE" <<EOF
+            if [ -n "${ERROR_CONTEXT}" ]; then
+              printf -- '- **エラー詳細**: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
+            fi
 
-        - **PR**: #${PR_NUMBER}
-
-        この失敗はPR #${PR_NUMBER}に関連しています。修正PRは元のPRのブランチ (\`${TARGET_BRANCH}\`) をターゲットにしてください。
-        EOF
-        fi
-
-        if [ -n "$ERROR_CONTEXT" ]; then
-          cat >>"$TASK_FILE" <<EOF
-
-        - **エラー詳細**: ${ERROR_CONTEXT}
-        EOF
-        fi
-
-        # 修正手順（コードフェンスはシングルクォートのヒアドキュメントでバッククォートを安全に出力）
-        cat >>"$TASK_FILE" <<EOF
+            cat >>"$BODY_FILE" <<EOF
 
         ## 修正手順
 
         1. ワークフロー実行ログを確認してエラーの原因を特定する
            - ログURL: ${RUN_URL}
 
-        2. リポジトリをチェックアウトして、ローカルで再現確認する
+        2. エラーの原因を修正する
+
+        3. 必要に応じてテストを実行して修正を確認する
+
+        4. \`${TARGET_BRANCH}\` ブランチをターゲットとしたPRを作成する
         EOF
-        cat >>"$TASK_FILE" <<'EOF'
-           ```bash
-        EOF
-        printf '   git checkout %s\n' "${TARGET_BRANCH}" >>"$TASK_FILE"
-        cat >>"$TASK_FILE" <<'EOF'
-           ```
 
-        3. エラーの原因を修正する
-
-        4. 必要に応じてテストを実行して修正を確認する
-
-        EOF
-        printf '5. `%s` ブランチをターゲットとしたPRを作成する\n' "${TARGET_BRANCH}" >>"$TASK_FILE"
-
-        # gh agent-task create でエージェントタスクを作成
-        echo "::notice::エージェントタスクを作成しています (base: ${TARGET_BRANCH})..."
-        gh agent-task create \
-          --base "${TARGET_BRANCH}" \
-          --repo "${{ github.repository }}" \
-          -F "$TASK_FILE"
+            gh issue create \
+              --title "${ISSUE_TITLE}" \
+              --body-file "$BODY_FILE" \
+              --assignee "copilot" \
+            || gh issue create \
+              --title "${ISSUE_TITLE}" \
+              --body-file "$BODY_FILE"
+            echo "::notice::新規Issue「${ISSUE_TITLE}」を作成してCopilotをアサインしました"
+          fi
+        fi
 
         # 一時ファイルを削除
-        rm -f "$TASK_FILE"
-
-        echo "::notice::エージェントタスクを作成しました"
+        rm -f "$BODY_FILE"
