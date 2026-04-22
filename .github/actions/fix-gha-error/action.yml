@@ -161,7 +161,7 @@ runs:
           gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
           echo "::notice::PR #${PR_NUMBER} にCopilotメンションコメントを投稿しました"
         else
-          ISSUE_TITLE="[CI失敗] ${WORKFLOW_NAME}"
+          ISSUE_TITLE="[GHA失敗] ${WORKFLOW_NAME}"
           EXISTING_ISSUE_NUMBER=$(gh issue list \
             --state open \
             --search "${ISSUE_TITLE} in:title" \
@@ -180,14 +180,18 @@ runs:
             printf '@copilot ワークフロー「%s」が失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
               "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
             [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
-            gh issue create \
+            # まずIssueを作成してURLを取得（作成失敗時はここでexit）
+            CREATED_URL=$(gh issue create \
               --title "${ISSUE_TITLE}" \
-              --body-file "$BODY_FILE" \
-              --assignee "copilot" \
-            || gh issue create \
-              --title "${ISSUE_TITLE}" \
-              --body-file "$BODY_FILE"
-            echo "::notice::新規Issue「${ISSUE_TITLE}」を作成してCopilotをアサインしました"
+              --body-file "$BODY_FILE")
+            echo "::notice::新規Issue「${ISSUE_TITLE}」を作成しました: ${CREATED_URL}"
+            # Issue番号を取得してCopilotをアサイン（アサイン失敗時はワーニングのみ）
+            CREATED_NUM=$(basename "${CREATED_URL}")
+            if [ -n "${CREATED_NUM}" ]; then
+              gh issue edit "${CREATED_NUM}" --add-assignee "copilot" && \
+                echo "::notice::Issue #${CREATED_NUM} にCopilotをアサインしました" || \
+                echo "::warning::Copilotのアサインに失敗しました。Issue #${CREATED_NUM} を手動でアサインしてください。"
+            fi
           fi
         fi
 
