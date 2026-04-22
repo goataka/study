@@ -91,7 +91,8 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (typeof qf.guideUrl !== "string") {
       throw new Error('"guideUrl" must be a string if present');
     }
-    // 安全なスキームのみ許可：../ で始まる相対パス（1階層上のみ）または http/https の絶対URL
+    // 安全なスキームのみ許可：../ で始まる相対パス（1階層上のみ、直後が . や / でない）または http/https の絶対URL
+    // 例: ../math/arithmetic/... は許可, ..//path や ../.path, ../../../ は拒否
     const isRelative = /^\.\.\/[^./]/.test(qf.guideUrl);
     const isAbsolute = /^https?:\/\//i.test(qf.guideUrl);
     if (!isRelative && !isAbsolute) {

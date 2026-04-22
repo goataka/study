@@ -17,6 +17,7 @@ export class NotesCanvas {
   private penColor = "#000000";
   private eraserMode = false;
   private restoreToken = 0;
+  private static readonly ERASER_SIZE_MULTIPLIER = 4;
 
   // ─── 初期化 ────────────────────────────────────────────────────────────────
 
@@ -99,7 +100,7 @@ export class NotesCanvas {
     this.ctx.beginPath();
     if (this.eraserMode) {
       this.ctx.globalCompositeOperation = "destination-out";
-      this.ctx.lineWidth = this.penSize * 4;
+      this.ctx.lineWidth = this.penSize * NotesCanvas.ERASER_SIZE_MULTIPLIER;
     } else {
       this.ctx.globalCompositeOperation = "source-over";
       this.ctx.strokeStyle = this.penColor;

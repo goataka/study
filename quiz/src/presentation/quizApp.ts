@@ -419,8 +419,11 @@ export class QuizApp {
     // 問題数選択の変更を監視
     const countInputs = document.querySelectorAll<HTMLInputElement>('input[name="questionCount"]');
     countInputs.forEach((input) => {
-      input.addEventListener("change", () => {
-        this.questionCount = parseInt(input.value);
+      input.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.checked) {
+          this.questionCount = parseInt(target.value);
+        }
       });
     });
 
