@@ -36,6 +36,15 @@ When("I scroll the category tree", async ({ page }) => {
     await expect(englishNode).toHaveAttribute("aria-expanded", "true");
   }
 
+  // 英語ツリーの文法（grammar）親カテゴリも展開して十分な子要素を表示する
+  // （英語は grammar/pronunciation の親カテゴリ構造を持つため、親カテゴリを展開しないとスクロール不可能）
+  const grammarNode = page.locator('.subject-tree .tree-item.parent-category-node[data-subject="english"][data-parent-category="grammar"] > .tree-node-header');
+  const isGrammarExpanded = await grammarNode.getAttribute("aria-expanded");
+  if (isGrammarExpanded !== "true") {
+    await grammarNode.click();
+    await expect(grammarNode).toHaveAttribute("aria-expanded", "true");
+  }
+
   // ツリーがスクロール可能になるまで待つ（展開後）
   await expect
     .poll(
