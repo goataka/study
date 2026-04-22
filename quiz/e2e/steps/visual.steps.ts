@@ -3,6 +3,8 @@ import { expect } from "@playwright/test";
 
 const { Then } = createBdd();
 
+// 問題データのロード完了を待つタイムアウト（ms）
+// statsInfo に "全X問" が表示されるまで最大10秒待つ
 const STATS_LOAD_TIMEOUT = 10_000;
 
 // スタート画面のスクリーンショット比較

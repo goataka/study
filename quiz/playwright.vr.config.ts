@@ -8,7 +8,7 @@ const testDir = defineBddConfig({
 });
 
 // 本番E2E時は PLAYWRIGHT_BASE_URL 環境変数でURLを上書きできる
-const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:4173";
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://localhost:4173"; // Viteのデフォルトpreviewポート
 const isExternalUrl = baseURL.startsWith("https://");
 
 export default defineConfig({
@@ -20,7 +20,7 @@ export default defineConfig({
   snapshotPathTemplate: "e2e/snapshots/{arg}-{projectName}-{platform}{ext}",
   expect: {
     toHaveScreenshot: {
-      // ピクセル差分の許容割合（フォントレンダリングの微細な差異を許容）
+      // ピクセル差分の許容割合: フォントレンダリングの微細な差異（~2%）を許容する
       maxDiffPixelRatio: 0.02,
       // CSS アニメーションを無効化して安定したスクリーンショットを取得
       animations: "disabled",
@@ -44,6 +44,6 @@ export default defineConfig({
         command: "npm run preview",
         url: "http://localhost:4173",
         reuseExistingServer: !process.env.CI,
-        timeout: 30_000,
+        timeout: 30_000, // previewサーバーの起動を最大30秒待つ
       },
 });
