@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "linear-eq",
   "categoryName": "一次方程式",
-  "guideUrl": "../contents/math/algebra/24-linear-eq/guide",
+  "guideUrl": "../math/algebra/24-linear-eq/guide",
   "questions": [
     {
       "id": "linear-eq-1",

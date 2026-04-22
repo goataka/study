@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "simultaneous-eq",
   "categoryName": "連立方程式",
-  "guideUrl": "../contents/math/algebra/25-simultaneous-eq/guide",
+  "guideUrl": "../math/algebra/25-simultaneous-eq/guide",
   "questions": [
     {
       "id": "simul-eq-1",

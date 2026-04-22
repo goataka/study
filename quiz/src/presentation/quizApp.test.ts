@@ -15,11 +15,16 @@ import { QuizApp } from "./quizApp";
 /** テストに必要な最小限のHTML要素を生成する */
 function setupMinimalDom(): void {
   document.body.innerHTML = `
+    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+    <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <select id="subjectFilter"><option value="all">すべての教科</option></select>
       <select id="categoryFilter"><option value="all">すべてのカテゴリ</option></select>
       <div id="statsInfo"></div>
-      <button id="startRandomBtn">ランダム20問</button>
+      <input type="radio" name="questionCount" value="5">
+      <input type="radio" name="questionCount" value="10">
+      <input type="radio" name="questionCount" value="20" checked>
+      <button id="startRandomBtn">ランダム</button>
       <button id="startRetryBtn" disabled>間違えた問題</button>
     </div>
     <div id="quizScreen" class="screen">
@@ -40,9 +45,9 @@ function setupMinimalDom(): void {
     <div id="resultScreen" class="screen">
       <div id="resultScore"></div>
       <div id="resultDetails"></div>
-      <button id="retryAllBtn">全問やり直す</button>
+      <button id="retryAllBtn">もう一度</button>
       <button id="retryWrongBtn">間違えた問題</button>
-      <button id="backToStartBtn">トップへ戻る</button>
+      <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
   `;
 }
@@ -50,10 +55,15 @@ function setupMinimalDom(): void {
 /** ツリーUIを含むフルレイアウトのDOM */
 function setupTreeDom(): void {
   document.body.innerHTML = `
+    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+    <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <div class="subject-tree"></div>
       <div id="statsInfo"></div>
-      <button id="startRandomBtn">ランダム20問</button>
+      <input type="radio" name="questionCount" value="5">
+      <input type="radio" name="questionCount" value="10">
+      <input type="radio" name="questionCount" value="20" checked>
+      <button id="startRandomBtn">ランダム</button>
       <button id="startRetryBtn" disabled>間違えた問題</button>
     </div>
     <div id="quizScreen" class="screen">
@@ -69,9 +79,9 @@ function setupTreeDom(): void {
     <div id="resultScreen" class="screen">
       <div id="resultScore"></div>
       <div id="resultDetails"></div>
-      <button id="retryAllBtn">全問やり直す</button>
+      <button id="retryAllBtn">もう一度</button>
       <button id="retryWrongBtn">間違えた問題</button>
-      <button id="backToStartBtn">トップへ戻る</button>
+      <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
   `;
 }
@@ -579,7 +589,7 @@ describe("QuizApp — 解説リンク仕様", () => {
     subjectName: "英語",
     category: "alphabet",
     categoryName: "アルファベット",
-    guideUrl: "../contents/english/pronunciation/01-alphabet/guide",
+    guideUrl: "../english/pronunciation/01-alphabet/guide",
     questions: Array.from({ length: 5 }, (_, i) => ({
       id: `qa${i + 1}`,
       question: `問題 ${i + 1}`,
@@ -609,7 +619,7 @@ describe("QuizApp — 解説リンク仕様", () => {
     localStorage.clear();
   });
 
-  it("guideUrl ありの問題ファイルでクイズ開始すると #guideLink が表示されURLに .md が補完される", async () => {
+  it("guideUrl ありの問題ファイルでクイズ開始すると #guideLink が表示されURLがそのまま設定される", async () => {
     setupMinimalDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -626,7 +636,8 @@ describe("QuizApp — 解説リンク仕様", () => {
     const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
     expect(guideLink).not.toBeNull();
     expect(guideLink.classList.contains("hidden")).toBe(false);
-    expect(guideLink.href).toContain("guide.md");
+    expect(guideLink.href).toContain("guide");
+    expect(guideLink.href).not.toContain("guide.md");
   });
 
   it("guideUrl なしの問題ファイルでクイズ開始すると #guideLink が hidden のまま", async () => {
@@ -648,7 +659,7 @@ describe("QuizApp — 解説リンク仕様", () => {
     expect(guideLink.classList.contains("hidden")).toBe(true);
   });
 
-  it("guideUrl にクエリパラメータが付いていても拡張子なしなら .md が補完される", async () => {
+  it("guideUrl にクエリパラメータが付いていてもURLがそのまま設定される", async () => {
     setupMinimalDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -660,7 +671,7 @@ describe("QuizApp — 解説リンク仕様", () => {
         json: () =>
           Promise.resolve({
             ...mockQuestionFileWithGuide,
-            guideUrl: "../contents/english/pronunciation/01-alphabet/guide?version=1",
+            guideUrl: "../english/pronunciation/01-alphabet/guide?version=1",
           }),
       } as Response);
     });
@@ -670,11 +681,12 @@ describe("QuizApp — 解説リンク仕様", () => {
     document.getElementById("startRandomBtn")?.click();
 
     const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink.href).toContain("guide.md");
+    expect(guideLink.href).toContain("guide");
     expect(guideLink.href).toContain("?version=1");
+    expect(guideLink.href).not.toContain("guide.md");
   });
 
-  it("guideUrl にフラグメントが付いていても拡張子なしなら .md が補完される", async () => {
+  it("guideUrl にフラグメントが付いていてもURLがそのまま設定される", async () => {
     setupMinimalDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -686,7 +698,7 @@ describe("QuizApp — 解説リンク仕様", () => {
         json: () =>
           Promise.resolve({
             ...mockQuestionFileWithGuide,
-            guideUrl: "../contents/english/pronunciation/01-alphabet/guide#section",
+            guideUrl: "../english/pronunciation/01-alphabet/guide#section",
           }),
       } as Response);
     });
@@ -696,7 +708,8 @@ describe("QuizApp — 解説リンク仕様", () => {
     document.getElementById("startRandomBtn")?.click();
 
     const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink.href).toContain("guide.md");
+    expect(guideLink.href).toContain("guide");
     expect(guideLink.href).toContain("#section");
+    expect(guideLink.href).not.toContain("guide.md");
   });
 });

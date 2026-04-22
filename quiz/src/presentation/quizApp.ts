@@ -17,6 +17,7 @@ export class QuizApp {
   private currentSession: QuizSession | null = null;
   private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "";
+  private questionCount: number = 20;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
 
@@ -42,6 +43,7 @@ export class QuizApp {
     this.setupEventListeners();
     this.buildCategoryTree();
     this.updateStartScreen();
+    this.updateUserNameDisplay("headerUserName");
   }
 
   /**
@@ -85,6 +87,7 @@ export class QuizApp {
         const progressRepo = new LocalStorageProgressRepository();
         progressRepo.saveUserName(name);
         this.showSaveFeedback();
+        this.updateUserNameDisplay("headerUserName");
       }
     }
   }
@@ -396,14 +399,34 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
-    this.on("topBtn", "click", () => this.navigateToTop());
+
+    // タイトルクリックでスタート画面へ
+    const titleBtn = document.getElementById("titleBtn");
+    if (titleBtn) {
+      titleBtn.addEventListener("click", () => this.navigateToStart());
+      titleBtn.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.navigateToStart();
+        }
+      });
+    }
 
     // ユーザー名入力の変更を監視
     const userNameInput = document.getElementById("userNameInput");
     userNameInput?.addEventListener("input", () => this.saveUserName());
 
+    // 問題数選択の変更を監視
+    const countInputs = document.querySelectorAll<HTMLInputElement>('input[name="questionCount"]');
+    countInputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        this.questionCount = parseInt(input.value);
+      });
+    });
+
     // メモエリアのコントロール
     this.on("clearNotesBtn", "click", () => this.clearNotes());
+    this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
     const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
     penSizeSelect?.addEventListener("change", (e) => {
@@ -499,7 +522,7 @@ export class QuizApp {
 
   private startQuiz(mode: QuizMode): void {
     try {
-      this.currentSession = this.useCase.startSession(mode, this.filter);
+      this.currentSession = this.useCase.startSession(mode, this.filter, this.questionCount);
     } catch (error) {
       alert(error instanceof Error ? error.message : "エラーが発生しました");
       return;
@@ -509,7 +532,6 @@ export class QuizApp {
     this.notesStates.clear();
 
     this.showScreen("quiz");
-    this.updateUserNameDisplay("quizUserName");
     this.initializeNotesCanvas();
     this.notesCanvas?.clear();
     this.renderQuestion();
@@ -535,17 +557,7 @@ export class QuizApp {
     const guideLink = document.getElementById("guideLink") as HTMLAnchorElement | null;
     if (guideLink) {
       if (question.guideUrl) {
-        // クエリ・フラグメントを除いたパス部分で拡張子を判定し、なければ .md を補完する
-        const url = question.guideUrl;
-        const pathPart = url.split(/[?#]/)[0] ?? url;
-        const lastSegment = pathPart.split("/").pop() ?? "";
-        if (/\.[^.]+$/.test(lastSegment)) {
-          guideLink.href = url;
-        } else {
-          // .md をパス部分の後・クエリ/フラグメントの前に挿入する
-          const rest = url.slice(pathPart.length);
-          guideLink.href = pathPart + ".md" + rest;
-        }
+        guideLink.href = question.guideUrl;
         guideLink.classList.remove("hidden");
       } else {
         guideLink.classList.add("hidden");
@@ -571,6 +583,8 @@ export class QuizApp {
     if (!container) return;
     container.innerHTML = "";
 
+    const existingAnswer = session.getAnswer(session.currentIndex);
+
     question.choices.forEach((choice, index) => {
       const label = document.createElement("label");
       label.className = "choice-label";
@@ -579,11 +593,16 @@ export class QuizApp {
       input.type = "radio";
       input.name = "answer";
       input.value = String(index);
-      input.checked = session.getAnswer(session.currentIndex) === index;
+      input.checked = existingAnswer === index;
+      input.disabled = existingAnswer !== undefined;
       input.addEventListener("change", () => {
         session.selectAnswer(session.currentIndex, index);
         this.showAnswerFeedback(question, index);
         this.updateNavigationButtons(session);
+        // 回答後は全選択肢を無効化して変更不可に
+        container.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((r) => {
+          r.disabled = true;
+        });
       });
 
       const span = document.createElement("span");
@@ -705,7 +724,6 @@ export class QuizApp {
     }
 
     this.showScreen("result");
-    this.updateUserNameDisplay("resultUserName");
   }
 
   private buildResultItem(r: AnswerResult): HTMLElement {
@@ -770,14 +788,14 @@ export class QuizApp {
   }
 
   /**
-   * 学習トップページへ遷移する。クイズ進行中は確認ダイアログを表示する。
+   * スタート画面へ遷移する。クイズ進行中は確認ダイアログを表示する。
    */
-  private navigateToTop(): void {
+  private navigateToStart(): void {
     if (this.isQuizInProgress()) {
-      const confirmed = window.confirm("クイズが途中です。学習トップに戻りますか？（進行状況は保存されません）");
+      const confirmed = window.confirm("クイズが途中です。スタート画面に戻りますか？（進行状況は保存されません）");
       if (!confirmed) return;
     }
-    window.location.href = "../";
+    this.showScreen("start");
   }
 
   private showScreen(screenName: "start" | "quiz" | "result"): void {
@@ -850,6 +868,17 @@ export class QuizApp {
       this.notesStates.delete(this.currentSession.currentIndex);
     }
     this.notesCanvas?.clear();
+  }
+
+  private toggleEraserMode(): void {
+    if (!this.notesCanvas) return;
+    const isEraser = !this.notesCanvas.isEraserMode;
+    this.notesCanvas.setEraserMode(isEraser);
+    const eraserBtn = document.getElementById("eraserBtn");
+    if (eraserBtn) {
+      eraserBtn.classList.toggle("eraser-active", isEraser);
+      eraserBtn.title = isEraser ? "ペンに戻す" : "消しゴム";
+    }
   }
 }
 

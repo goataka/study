@@ -5,7 +5,7 @@
   "categoryName": "フォニックス（3文字）",
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
-  "guideUrl": "../contents/english/pronunciation/05-phonics-3letter/guide",
+  "guideUrl": "../english/pronunciation/05-phonics-3letter/guide",
   "questions": [
     {
       "id": "phonics-3-tch1",

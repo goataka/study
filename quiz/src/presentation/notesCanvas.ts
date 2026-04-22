@@ -13,8 +13,9 @@ export class NotesCanvas {
   private isDrawing = false;
   private lastX = 0;
   private lastY = 0;
-  private penSize = 4;
+  private penSize = 5;
   private penColor = "#000000";
+  private eraserMode = false;
   private restoreToken = 0;
 
   // ─── 初期化 ────────────────────────────────────────────────────────────────
@@ -96,11 +97,18 @@ export class NotesCanvas {
     const coords = this.getCoordinates(e);
 
     this.ctx.beginPath();
-    this.ctx.strokeStyle = this.penColor;
-    this.ctx.lineWidth = this.penSize;
+    if (this.eraserMode) {
+      this.ctx.globalCompositeOperation = "destination-out";
+      this.ctx.lineWidth = this.penSize * 4;
+    } else {
+      this.ctx.globalCompositeOperation = "source-over";
+      this.ctx.strokeStyle = this.penColor;
+      this.ctx.lineWidth = this.penSize;
+    }
     this.ctx.moveTo(this.lastX, this.lastY);
     this.ctx.lineTo(coords.x, coords.y);
     this.ctx.stroke();
+    this.ctx.globalCompositeOperation = "source-over";
 
     this.lastX = coords.x;
     this.lastY = coords.y;
@@ -145,6 +153,14 @@ export class NotesCanvas {
 
   public setPenColor(color: string): void {
     this.penColor = color;
+  }
+
+  public setEraserMode(enabled: boolean): void {
+    this.eraserMode = enabled;
+  }
+
+  public get isEraserMode(): boolean {
+    return this.eraserMode;
   }
 
   // ─── キャンバス操作 ────────────────────────────────────────────────────────

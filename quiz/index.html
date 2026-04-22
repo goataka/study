@@ -11,10 +11,8 @@
 <body>
   <div class="container">
     <header>
-      <h1>学習クイズ</h1>
-      <nav>
-        <button id="topBtn" type="button" class="top-nav-btn">トップ</button>
-      </nav>
+      <h1 id="titleBtn" role="button" tabindex="0" class="title-btn" title="スタート画面へ戻る">学習クイズ</h1>
+      <span id="headerUserName" class="header-user-name"></span>
     </header>
 
     <!-- スタート画面 -->
@@ -34,8 +32,16 @@
             <span id="saveUserNameFeedback" class="save-feedback hidden">✓ 保存しました</span>
           </div>
           <h2>クイズモード選択</h2>
+          <div class="question-count-section">
+            <span class="question-count-label">問題数：</span>
+            <div class="question-count-group">
+              <label class="count-label"><input type="radio" name="questionCount" value="5"> 5問</label>
+              <label class="count-label"><input type="radio" name="questionCount" value="10"> 10問</label>
+              <label class="count-label"><input type="radio" name="questionCount" value="20" checked> 20問</label>
+            </div>
+          </div>
           <div class="button-group">
-            <button id="startRandomBtn" class="primary-btn">ランダム20問</button>
+            <button id="startRandomBtn" class="primary-btn">ランダム</button>
             <button id="startRetryBtn" class="secondary-btn">間違えた問題だけ</button>
           </div>
           <div id="statsInfo" class="stats-info">読み込み中...</div>
@@ -48,9 +54,6 @@
       <div class="quiz-landscape-layout">
         <!-- 左列: 問題・選択肢・ナビゲーション -->
         <div class="quiz-main-col">
-          <div class="user-info">
-            <span id="quizUserName"></span>
-          </div>
           <div class="progress-bar">
             <div id="progressFill" class="progress-fill"></div>
           </div>
@@ -82,10 +85,11 @@
               <span class="notes-title">📝 メモ（タッチペンで書けます）</span>
               <div class="notes-controls">
                 <button id="clearNotesBtn" class="notes-btn" type="button" title="メモをクリア" aria-label="メモをクリア">🗑️</button>
+                <button id="eraserBtn" class="notes-btn" type="button" title="消しゴム" aria-label="消しゴム">🧹</button>
                 <select id="penSizeSelect" class="pen-size-select" title="線の太さ" aria-label="線の太さ">
-                  <option value="2">細い</option>
-                  <option value="4" selected>普通</option>
-                  <option value="6">太い</option>
+                  <option value="3">細い</option>
+                  <option value="5" selected>普通</option>
+                  <option value="9">太い</option>
                 </select>
                 <select id="penColorSelect" class="pen-color-select" title="色" aria-label="線の色">
                   <option value="#000000">黒</option>
@@ -103,14 +107,11 @@
 
     <!-- 結果画面 -->
     <div id="resultScreen" class="screen hidden">
-      <div class="user-info">
-        <span id="resultUserName"></span>
-      </div>
       <h2>クイズ結果</h2>
       <div id="scoreDisplay" class="score-display"></div>
       <div id="resultDetails" class="result-details"></div>
       <div class="button-group">
-        <button id="retryAllBtn" class="primary-btn">もう一度全問</button>
+        <button id="retryAllBtn" class="primary-btn">もう一度</button>
         <button id="retryWrongBtn" class="secondary-btn">間違えた問題だけ</button>
         <button id="backToStartBtn" class="tertiary-btn">スタート画面に戻る</button>
       </div>

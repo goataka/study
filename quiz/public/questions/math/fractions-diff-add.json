@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "fractions-diff-add",
   "categoryName": "分数のたし算（通分あり）",
-  "guideUrl": "../contents/math/arithmetic/13-fractions-diff-add/guide",
+  "guideUrl": "../math/arithmetic/13-fractions-diff-add/guide",
   "questions": [
     {
       "id": "frac-diff-add-1",

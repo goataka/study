@@ -99,9 +99,15 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
     ).toThrow('"guideUrl" must be a string if present');
   });
 
-  it("guideUrl が ../contents/ 相対パスの場合は受け入れる", () => {
+  it("guideUrl が ../math/ 相対パスの場合は受け入れる", () => {
     expect(() =>
-      validateQuestionFile({ ...validQF, guideUrl: "../contents/english/pronunciation/01-alphabet/guide" })
+      validateQuestionFile({ ...validQF, guideUrl: "../math/arithmetic/01-addition-no-carry/guide" })
+    ).not.toThrow();
+  });
+
+  it("guideUrl が ../english/ 相対パスの場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "../english/pronunciation/01-alphabet/guide" })
     ).not.toThrow();
   });
 
@@ -114,30 +120,30 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
   it("guideUrl が javascript: スキームの場合は拒否する", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, guideUrl: "javascript:alert(1)" })
-    ).toThrow('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+    ).toThrow('"guideUrl" must be a relative path starting with "../" or an http/https URL');
   });
 
   it("guideUrl が data: スキームの場合は拒否する", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, guideUrl: "data:text/html,<script>alert(1)</script>" })
-    ).toThrow('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+    ).toThrow('"guideUrl" must be a relative path starting with "../" or an http/https URL');
   });
 
   it("guideUrl が想定外の相対パスの場合は拒否する", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, guideUrl: "./guide.md" })
-    ).toThrow('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+    ).toThrow('"guideUrl" must be a relative path starting with "../" or an http/https URL');
   });
 
   it("guideUrl にパストラバーサルが含まれる場合は拒否する", () => {
     expect(() =>
-      validateQuestionFile({ ...validQF, guideUrl: "../contents/english/../../etc/passwd" })
+      validateQuestionFile({ ...validQF, guideUrl: "../math/../../etc/passwd" })
     ).toThrow('"guideUrl" must not contain path traversal sequences');
   });
 
   it("guideUrl に URL エンコードされたパストラバーサルが含まれる場合は拒否する", () => {
     expect(() =>
-      validateQuestionFile({ ...validQF, guideUrl: "../contents/english/%2e%2e/etc/passwd" })
+      validateQuestionFile({ ...validQF, guideUrl: "../math/%2e%2e/etc/passwd" })
     ).toThrow('"guideUrl" must not contain path traversal sequences');
   });
 });

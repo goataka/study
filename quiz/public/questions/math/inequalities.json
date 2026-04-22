@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "inequalities",
   "categoryName": "不等式",
-  "guideUrl": "../contents/math/calculus/31-inequalities/guide",
+  "guideUrl": "../math/calculus/31-inequalities/guide",
   "questions": [
     {
       "id": "ineq-1",

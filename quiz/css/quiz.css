@@ -14,6 +14,7 @@ body {
 
 .container {
     max-width: 800px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -34,6 +35,28 @@ header {
 header h1 {
     color: #0366d6;
     font-size: 28px;
+}
+
+.title-btn {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.title-btn:hover,
+.title-btn:focus {
+    color: #0255b8;
+    outline: none;
+    text-decoration: underline;
+}
+
+.header-user-name {
+    font-size: 15px;
+    color: #586069;
+    font-weight: 600;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 header nav a {
@@ -701,13 +724,14 @@ button:disabled {
 
 /* ユーザー名入力セクション */
 .user-name-section {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 15px;
     background: #f6f8fa;
     border-radius: 8px;
     border: 1px solid #e1e4e8;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -822,15 +846,20 @@ button:disabled {
 .notes-canvas {
     display: block;
     width: 100%;
-    height: 300px;
+    height: 480px;
     cursor: crosshair;
     touch-action: none; /* タッチイベントのデフォルト動作を無効化 */
+}
+
+.notes-btn.eraser-active {
+    background: #ffe8b3;
+    border-color: #f0a800;
 }
 
 /* モバイル対応 */
 @media (max-width: 600px) {
     .notes-canvas {
-        height: 250px;
+        height: 400px;
     }
 
     .notes-header {
@@ -842,5 +871,50 @@ button:disabled {
     .notes-controls {
         width: 100%;
         justify-content: space-between;
+    }
+}
+
+/* 問題数選択 */
+.question-count-section {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.question-count-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.question-count-group {
+    display: flex;
+    gap: 16px;
+}
+
+.count-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    color: #333;
+    cursor: pointer;
+}
+
+.count-label input[type="radio"] {
+    cursor: pointer;
+    accent-color: #0366d6;
+}
+
+@media (max-width: 600px) {
+    .question-count-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-user-name {
+        max-width: 120px;
     }
 }

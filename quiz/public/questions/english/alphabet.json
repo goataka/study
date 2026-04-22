@@ -5,7 +5,7 @@
   "categoryName": "アルファベット",
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
-  "guideUrl": "../contents/english/pronunciation/01-alphabet/guide",
+  "guideUrl": "../english/pronunciation/01-alphabet/guide",
   "questions": [
     {
       "id": "alphabet-1",

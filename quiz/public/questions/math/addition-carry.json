@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "addition-carry",
   "categoryName": "たし算（くり上がりあり）",
-  "guideUrl": "../contents/math/arithmetic/02-addition-carry/guide",
+  "guideUrl": "../math/arithmetic/02-addition-carry/guide",
   "questions": [
     {
       "id": "add-carry-1",
