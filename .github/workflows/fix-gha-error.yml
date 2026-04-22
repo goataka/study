@@ -8,9 +8,9 @@ name: Fix GHA Error
 on:
   workflow_run:
     # ここに監視するワークフロー名を列挙する（各ワークフローの name: フィールドと完全一致が必要）
-    # "Deploy to GitHub Pages" は jekyll-gh-pages.yml 側で失敗時の Issue 作成を行うため除外
     workflows:
       - "CI"
+      - "Deploy to GitHub Pages"
     types:
       - completed
 
