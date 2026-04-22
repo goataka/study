@@ -14,6 +14,8 @@ export interface IQuestionRepository {
 export interface IProgressRepository {
   loadWrongIds(): string[];
   saveWrongIds(ids: string[]): void;
+  loadDoneCategories(): string[];
+  saveDoneCategories(keys: string[]): void;
   loadUserName(): string | null;
   saveUserName(name: string): void;
 }

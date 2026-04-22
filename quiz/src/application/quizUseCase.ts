@@ -13,16 +13,32 @@ export type { QuizMode, QuizFilter, AnswerResult };
 export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
+  private doneCategoryKeys: Set<string>;
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
     private readonly progressRepo: IProgressRepository
   ) {
     this.wrongIds = this.progressRepo.loadWrongIds();
+    this.doneCategoryKeys = new Set(this.progressRepo.loadDoneCategories());
   }
 
   async initialize(): Promise<void> {
     this.allQuestions = await this.questionRepo.loadAll();
+    this.pruneStaleWrongIds();
+  }
+
+  /**
+   * ロード済みの問題に存在しない wrongId を削除する。
+   * 問題のIDが変わった場合に古いIDが残り続けるのを防ぐ。
+   */
+  private pruneStaleWrongIds(): void {
+    const existingIds = new Set(this.allQuestions.map((q) => q.id));
+    const pruned = this.wrongIds.filter((id) => existingIds.has(id));
+    if (pruned.length !== this.wrongIds.length) {
+      this.wrongIds = pruned;
+      this.progressRepo.saveWrongIds(this.wrongIds);
+    }
   }
 
   getFilteredQuestions(filter: QuizFilter): Question[] {
@@ -96,7 +112,25 @@ export class QuizUseCase {
     return results;
   }
 
+  /**
+   * 指定フィルターの単元を「実施済み」としてマークする。
+   * カテゴリが "all" の場合は記録しない。
+   * カテゴリIDはIDベースで保存するため、問題の番号が変わっても失われない。
+   */
+  markCategoryDone(filter: QuizFilter): void {
+    if (filter.subject === "all" || filter.category === "all") return;
+    const key = `${filter.subject}::${filter.category}`;
+    if (!this.doneCategoryKeys.has(key)) {
+      this.doneCategoryKeys.add(key);
+      this.progressRepo.saveDoneCategories([...this.doneCategoryKeys]);
+    }
+  }
+
   get wrongQuestionIds(): string[] {
     return [...this.wrongIds];
+  }
+
+  get doneCategoryKeysList(): string[] {
+    return [...this.doneCategoryKeys];
   }
 }

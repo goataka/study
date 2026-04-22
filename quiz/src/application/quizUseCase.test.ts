@@ -31,8 +31,10 @@ class StubQuestionRepository implements IQuestionRepository {
 
 class StubProgressRepository implements IProgressRepository {
   private ids: string[];
-  constructor(initialIds: string[] = []) {
+  private doneKeys: string[];
+  constructor(initialIds: string[] = [], initialDoneKeys: string[] = []) {
     this.ids = [...initialIds];
+    this.doneKeys = [...initialDoneKeys];
   }
   loadWrongIds(): string[] {
     return [...this.ids];
@@ -40,8 +42,23 @@ class StubProgressRepository implements IProgressRepository {
   saveWrongIds(ids: string[]): void {
     this.ids = [...ids];
   }
+  loadDoneCategories(): string[] {
+    return [...this.doneKeys];
+  }
+  saveDoneCategories(keys: string[]): void {
+    this.doneKeys = [...keys];
+  }
+  loadUserName(): string | null {
+    return null;
+  }
+  saveUserName(_name: string): void {
+    // stub
+  }
   getStoredIds(): string[] {
     return [...this.ids];
+  }
+  getStoredDoneKeys(): string[] {
+    return [...this.doneKeys];
   }
 }
 
@@ -232,5 +249,92 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
     useCase.submitSession(session);
 
     expect(progressRepo.getStoredIds()).toContain("q1");
+  });
+
+  it("initialize() 時に存在しない問題IDの wrongId は削除される", async () => {
+    const q = makeQuestion("q1");
+    const progressRepo = new StubProgressRepository(["q1", "stale-id"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    expect(progressRepo.getStoredIds()).toContain("q1");
+    expect(progressRepo.getStoredIds()).not.toContain("stale-id");
+  });
+
+  it("initialize() 時に全IDが有効であれば wrongIds は変更されない", async () => {
+    const q = makeQuestion("q1");
+    const progressRepo = new StubProgressRepository(["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    expect(progressRepo.getStoredIds()).toEqual(["q1"]);
+  });
+});
+
+describe("QuizUseCase — 単元実施状況仕様", () => {
+  const questions = [
+    makeQuestion("q1", "english", "phonics"),
+    makeQuestion("q2", "english", "linking"),
+  ];
+
+  it("特定カテゴリを対象に markCategoryDone を呼ぶと doneCategoryKeys に追加される", async () => {
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryDone({ subject: "english", category: "phonics" });
+
+    expect(progressRepo.getStoredDoneKeys()).toContain("english::phonics");
+  });
+
+  it("subject が 'all' の場合は doneCategoryKeys に追加されない", async () => {
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryDone({ subject: "all", category: "all" });
+
+    expect(progressRepo.getStoredDoneKeys()).toHaveLength(0);
+  });
+
+  it("category が 'all' の場合は doneCategoryKeys に追加されない", async () => {
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryDone({ subject: "english", category: "all" });
+
+    expect(progressRepo.getStoredDoneKeys()).toHaveLength(0);
+  });
+
+  it("同じカテゴリを複数回 markCategoryDone しても重複しない", async () => {
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryDone({ subject: "english", category: "phonics" });
+    useCase.markCategoryDone({ subject: "english", category: "phonics" });
+
+    expect(progressRepo.getStoredDoneKeys()).toHaveLength(1);
+  });
+
+  it("doneCategoryKeysList に初期ロード済みのキーが含まれる", async () => {
+    const progressRepo = new StubProgressRepository([], ["english::phonics"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    expect(useCase.doneCategoryKeysList).toContain("english::phonics");
+  });
+
+  it("問題IDが変わっても doneCategoryKeys はカテゴリIDで保持される", async () => {
+    // 旧問題 (q1 → phonics) が存在した状態で done を記録
+    const progressRepo = new StubProgressRepository([], ["english::phonics"]);
+    // 新しい問題セット（問題のIDが変更された想定）
+    const newQuestions = [makeQuestion("q1-renamed", "english", "phonics")];
+    const useCase = new QuizUseCase(new StubQuestionRepository(newQuestions), progressRepo);
+    await useCase.initialize();
+
+    // カテゴリキーは変わっていないので done が保持される
+    expect(useCase.doneCategoryKeysList).toContain("english::phonics");
   });
 });

@@ -6,6 +6,7 @@
 import type { IProgressRepository } from "../application/ports";
 
 const STORAGE_KEY = "wrongQuestions";
+const DONE_CATEGORIES_KEY = "doneCategories";
 const USER_NAME_KEY = "userName";
 
 export class LocalStorageProgressRepository implements IProgressRepository {
@@ -21,6 +22,23 @@ export class LocalStorageProgressRepository implements IProgressRepository {
   saveWrongIds(ids: string[]): void {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+    } catch (error) {
+      console.error("データの保存に失敗しました:", error);
+    }
+  }
+
+  loadDoneCategories(): string[] {
+    try {
+      const saved = localStorage.getItem(DONE_CATEGORIES_KEY);
+      return saved ? (JSON.parse(saved) as string[]) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  saveDoneCategories(keys: string[]): void {
+    try {
+      localStorage.setItem(DONE_CATEGORIES_KEY, JSON.stringify(keys));
     } catch (error) {
       console.error("データの保存に失敗しました:", error);
     }

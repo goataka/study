@@ -441,6 +441,7 @@ export class QuizApp {
     // 全問題を1回だけ走査して subject/category/parentCategory ごとの統計を集計する
     const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
     const wrongSet = new Set(this.useCase.wrongQuestionIds);
+    const doneKeys = new Set(this.useCase.doneCategoryKeysList);
 
     const statsMap = new Map<string, { total: number; wrong: number }>();
     const addStat = (key: string, isWrong: boolean): void => {
@@ -481,6 +482,8 @@ export class QuizApp {
       }
 
       const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
+      // カテゴリノードのみ「実施済み」チェックを行う
+      const isDone = category !== undefined && doneKeys.has(key);
 
       const statsEl = el.querySelector(":scope > .tree-node-header > .tree-node-stats");
       if (!statsEl) return;
@@ -489,6 +492,8 @@ export class QuizApp {
         statsEl.textContent = "";
       } else if (stat.wrong > 0) {
         statsEl.textContent = `${stat.wrong}/${stat.total}`;
+      } else if (isDone) {
+        statsEl.textContent = `✓`;
       } else {
         statsEl.textContent = `0/${stat.total}`;
       }
@@ -668,6 +673,7 @@ export class QuizApp {
     const session = this.currentSession;
     if (!session) return;
     const results = this.useCase.submitSession(session);
+    this.useCase.markCategoryDone(this.filter);
     this.showResultScreen(results);
   }
 

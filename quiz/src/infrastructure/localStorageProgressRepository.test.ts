@@ -85,3 +85,41 @@ describe("LocalStorageProgressRepository — ユーザー名永続化仕様", ()
     expect(repo2.loadUserName()).toBe("次郎");
   });
 });
+
+describe("LocalStorageProgressRepository — 単元実施済みカテゴリ永続化仕様", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("初回ロード時は空配列を返す", () => {
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadDoneCategories()).toEqual([]);
+  });
+
+  it("保存したカテゴリキーリストを正しく読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveDoneCategories(["english::phonics-1", "math::addition-no-carry"]);
+    expect(repo.loadDoneCategories()).toEqual(["english::phonics-1", "math::addition-no-carry"]);
+  });
+
+  it("空配列を保存した後は空配列を返す", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveDoneCategories(["english::phonics-1"]);
+    repo.saveDoneCategories([]);
+    expect(repo.loadDoneCategories()).toEqual([]);
+  });
+
+  it("別のインスタンスからも同じデータを読み込める（永続化確認）", () => {
+    const repo1 = new LocalStorageProgressRepository();
+    repo1.saveDoneCategories(["english::phonics-1"]);
+
+    const repo2 = new LocalStorageProgressRepository();
+    expect(repo2.loadDoneCategories()).toEqual(["english::phonics-1"]);
+  });
+
+  it("localStorageに不正なJSONが入っていてもロード時に空配列を返す", () => {
+    localStorage.setItem("doneCategories", "invalid json{{{");
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadDoneCategories()).toEqual([]);
+  });
+});
