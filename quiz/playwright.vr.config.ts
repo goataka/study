@@ -2,8 +2,9 @@ import { defineConfig, devices } from "@playwright/test";
 import { defineBddConfig } from "playwright-bdd";
 
 const testDir = defineBddConfig({
-  features: "e2e/features/*.feature",
-  steps: "e2e/steps/**/*.ts",
+  features: "e2e/features/vr/**/*.feature",
+  steps: ["e2e/steps/visual.steps.ts", "e2e/steps/quiz.steps.ts"],
+  outputDir: ".features-gen/vr",
 });
 
 // 本番E2E時は PLAYWRIGHT_BASE_URL 環境変数でURLを上書きできる
@@ -13,10 +14,21 @@ const isExternalUrl = baseURL.startsWith("https://");
 export default defineConfig({
   testDir,
   timeout: 60_000,
-  // JSONレポーター: エビデンス生成スクリプトが読み込む
+  // スナップショットの保存先（ベースライン画像をリポジトリで管理）
+  snapshotDir: "e2e/snapshots",
+  // スナップショットのパステンプレート（OS/ブラウザごとにファイル名を分ける）
+  snapshotPathTemplate: "e2e/snapshots/{arg}-{projectName}-{platform}{ext}",
+  expect: {
+    toHaveScreenshot: {
+      // ピクセル差分の許容割合（フォントレンダリングの微細な差異を許容）
+      maxDiffPixelRatio: 0.02,
+      // CSS アニメーションを無効化して安定したスクリーンショットを取得
+      animations: "disabled",
+    },
+  },
   reporter: [
     ["list"],
-    ["json", { outputFile: "e2e-results.json" }],
+    ["html", { open: "never", outputFolder: "vr-report" }],
   ],
   use: {
     baseURL,

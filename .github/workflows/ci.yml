@@ -66,6 +66,45 @@ jobs:
       - name: E2Eテスト実行（Gherkin シナリオ）
         run: npm run test:e2e
 
+  visual-regression:
+    name: ビジュアルリグレッションテスト（quiz）
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: quiz
+    permissions:
+      contents: read
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js のセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: quiz/package-lock.json
+
+      - name: 依存関係のインストール
+        run: npm ci
+
+      - name: Playwright ブラウザのインストール
+        run: npx playwright install --with-deps chromium
+
+      - name: Viteビルド（VR用）
+        run: npm run build
+
+      - name: ビジュアルリグレッションテスト実行
+        run: npm run test:e2e:vr
+
+      - name: VRレポートのアップロード（失敗時）
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vr-report
+          path: quiz/vr-report/
+          retention-days: 7
+
   markdownlint:
     name: Markdownリント
     runs-on: ubuntu-latest
