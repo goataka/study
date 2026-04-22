@@ -130,7 +130,7 @@ export class QuizUseCase {
     return [...this.wrongIds];
   }
 
-  get doneCategoryKeysList(): string[] {
+  get doneCategoryKeyList(): string[] {
     return [...this.doneCategoryKeys];
   }
 }

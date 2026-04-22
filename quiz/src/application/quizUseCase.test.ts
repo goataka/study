@@ -318,15 +318,15 @@ describe("QuizUseCase — 単元実施状況仕様", () => {
     expect(progressRepo.getStoredDoneKeys()).toHaveLength(1);
   });
 
-  it("doneCategoryKeysList に初期ロード済みのキーが含まれる", async () => {
+  it("doneCategoryKeyList に初期ロード済みのキーが含まれる", async () => {
     const progressRepo = new StubProgressRepository([], ["english::phonics"]);
     const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
     await useCase.initialize();
 
-    expect(useCase.doneCategoryKeysList).toContain("english::phonics");
+    expect(useCase.doneCategoryKeyList).toContain("english::phonics");
   });
 
-  it("問題IDが変わっても doneCategoryKeys はカテゴリIDで保持される", async () => {
+  it("問題IDが変わっても doneCategoryKeyList はカテゴリIDで保持される", async () => {
     // 旧問題 (q1 → phonics) が存在した状態で done を記録
     const progressRepo = new StubProgressRepository([], ["english::phonics"]);
     // 新しい問題セット（問題のIDが変更された想定）
@@ -335,6 +335,6 @@ describe("QuizUseCase — 単元実施状況仕様", () => {
     await useCase.initialize();
 
     // カテゴリキーは変わっていないので done が保持される
-    expect(useCase.doneCategoryKeysList).toContain("english::phonics");
+    expect(useCase.doneCategoryKeyList).toContain("english::phonics");
   });
 });

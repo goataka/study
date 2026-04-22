@@ -441,7 +441,7 @@ export class QuizApp {
     // 全問題を1回だけ走査して subject/category/parentCategory ごとの統計を集計する
     const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
     const wrongSet = new Set(this.useCase.wrongQuestionIds);
-    const doneKeys = new Set(this.useCase.doneCategoryKeysList);
+    const doneKeys = new Set(this.useCase.doneCategoryKeyList);
 
     const statsMap = new Map<string, { total: number; wrong: number }>();
     const addStat = (key: string, isWrong: boolean): void => {

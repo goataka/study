@@ -7,7 +7,7 @@
 
 // @vitest-environment jsdom
 
-import { LocalStorageProgressRepository } from "./localStorageProgressRepository";
+import { LocalStorageProgressRepository, DONE_CATEGORIES_KEY } from "./localStorageProgressRepository";
 
 describe("LocalStorageProgressRepository — 間違えた問題ID永続化仕様", () => {
   beforeEach(() => {
@@ -118,8 +118,20 @@ describe("LocalStorageProgressRepository — 単元実施済みカテゴリ永�
   });
 
   it("localStorageに不正なJSONが入っていてもロード時に空配列を返す", () => {
-    localStorage.setItem("doneCategories", "invalid json{{{");
+    localStorage.setItem(DONE_CATEGORIES_KEY, "invalid json{{{");
     const repo = new LocalStorageProgressRepository();
     expect(repo.loadDoneCategories()).toEqual([]);
+  });
+
+  it("localStorageに配列以外のJSONが入っていてもロード時に空配列を返す", () => {
+    localStorage.setItem(DONE_CATEGORIES_KEY, JSON.stringify({ key: "value" }));
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadDoneCategories()).toEqual([]);
+  });
+
+  it("配列の要素にstring以外が含まれている場合はstring要素のみ返す", () => {
+    localStorage.setItem(DONE_CATEGORIES_KEY, JSON.stringify(["english::phonics-1", 42, null, "math::addition"]));
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadDoneCategories()).toEqual(["english::phonics-1", "math::addition"]);
   });
 });

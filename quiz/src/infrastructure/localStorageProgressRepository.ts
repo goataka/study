@@ -6,14 +6,17 @@
 import type { IProgressRepository } from "../application/ports";
 
 const STORAGE_KEY = "wrongQuestions";
-const DONE_CATEGORIES_KEY = "doneCategories";
+export const DONE_CATEGORIES_KEY = "doneCategories";
 const USER_NAME_KEY = "userName";
 
 export class LocalStorageProgressRepository implements IProgressRepository {
   loadWrongIds(): string[] {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? (JSON.parse(saved) as string[]) : [];
+      if (!saved) return [];
+      const parsed: unknown = JSON.parse(saved);
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter((v): v is string => typeof v === "string");
     } catch {
       return [];
     }
@@ -30,7 +33,10 @@ export class LocalStorageProgressRepository implements IProgressRepository {
   loadDoneCategories(): string[] {
     try {
       const saved = localStorage.getItem(DONE_CATEGORIES_KEY);
-      return saved ? (JSON.parse(saved) as string[]) : [];
+      if (!saved) return [];
+      const parsed: unknown = JSON.parse(saved);
+      if (!Array.isArray(parsed)) return [];
+      return parsed.filter((v): v is string => typeof v === "string");
     } catch {
       return [];
     }
