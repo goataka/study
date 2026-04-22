@@ -109,7 +109,7 @@ Then("the {string} button should be enabled", async ({ page }, buttonText: strin
 });
 
 When("I answer all questions", async ({ page }) => {
-  // 全問題に回答する（最大10問）
+  // 全問題に回答する（最大20問）
   let hasNext = true;
   while (hasNext) {
     // 最初の選択肢を選ぶ

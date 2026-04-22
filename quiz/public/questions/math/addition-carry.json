@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "addition-carry",
   "categoryName": "たし算（くり上がりあり）",
+  "guideUrl": "../contents/math/arithmetic/02-addition-carry/guide",
   "questions": [
     {
       "id": "add-carry-1",
@@ -99,6 +100,102 @@
       ],
       "correct": 0,
       "explanation": "6+4=10、10+4=14"
+    },
+    {
+      "id": "add-carry-9",
+      "question": "37 + 45 = ?",
+      "choices": [
+        "83",
+        "82",
+        "81",
+        "84"
+      ],
+      "correct": 1,
+      "explanation": "37 + 45 = 82"
+    },
+    {
+      "id": "add-carry-10",
+      "question": "28 + 36 = ?",
+      "choices": [
+        "63",
+        "65",
+        "64",
+        "66"
+      ],
+      "correct": 2,
+      "explanation": "28 + 36 = 64"
+    },
+    {
+      "id": "add-carry-11",
+      "question": "54 + 38 = ?",
+      "choices": [
+        "91",
+        "93",
+        "90",
+        "92"
+      ],
+      "correct": 3,
+      "explanation": "54 + 38 = 92"
+    },
+    {
+      "id": "add-carry-12",
+      "question": "75 + 16 = ?",
+      "choices": [
+        "91",
+        "92",
+        "90",
+        "93"
+      ],
+      "correct": 0,
+      "explanation": "75 + 16 = 91"
+    },
+    {
+      "id": "add-carry-13",
+      "question": "156 + 278 = ?",
+      "choices": [
+        "433",
+        "435",
+        "432",
+        "434"
+      ],
+      "correct": 3,
+      "explanation": "156 + 278 = 434"
+    },
+    {
+      "id": "add-carry-14",
+      "question": "248 + 175 = ?",
+      "choices": [
+        "422",
+        "424",
+        "423",
+        "421"
+      ],
+      "correct": 2,
+      "explanation": "248 + 175 = 423"
+    },
+    {
+      "id": "add-carry-15",
+      "question": "367 + 245 = ?",
+      "choices": [
+        "613",
+        "611",
+        "614",
+        "612"
+      ],
+      "correct": 3,
+      "explanation": "367 + 245 = 612"
+    },
+    {
+      "id": "add-carry-16",
+      "question": "189 + 236 = ?",
+      "choices": [
+        "425",
+        "427",
+        "424",
+        "426"
+      ],
+      "correct": 0,
+      "explanation": "189 + 236 = 425"
     }
   ]
 }

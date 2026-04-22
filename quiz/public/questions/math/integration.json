@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "integration",
   "categoryName": "積分",
+  "guideUrl": "../contents/math/calculus/38-integration/guide",
   "questions": [
     {
       "id": "int-1",

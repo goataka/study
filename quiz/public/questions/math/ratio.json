@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "ratio",
   "categoryName": "比",
+  "guideUrl": "../contents/math/arithmetic/20-ratio/guide",
   "questions": [
     {
       "id": "ratio-1",

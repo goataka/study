@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "division-remainder",
   "categoryName": "わり算（あまりあり）",
+  "guideUrl": "../contents/math/arithmetic/09-division-remainder/guide",
   "questions": [
     {
       "id": "div-rem-1",
@@ -99,6 +100,102 @@
       ],
       "correct": 0,
       "explanation": "9 × 3 = 27。29 - 27 = 2。答え 3 あまり 2"
+    },
+    {
+      "id": "div-rem-9",
+      "question": "27 ÷ 4 = ? あまり ?",
+      "choices": [
+        "5 あまり 3",
+        "6 あまり 3",
+        "6 あまり 2",
+        "7 あまり 1"
+      ],
+      "correct": 1,
+      "explanation": "4 × 6 = 24。27 - 24 = 3。答え 6 あまり 3"
+    },
+    {
+      "id": "div-rem-10",
+      "question": "35 ÷ 6 = ? あまり ?",
+      "choices": [
+        "5 あまり 4",
+        "6 あまり 1",
+        "5 あまり 5",
+        "6 あまり 5"
+      ],
+      "correct": 2,
+      "explanation": "6 × 5 = 30。35 - 30 = 5。答え 5 あまり 5"
+    },
+    {
+      "id": "div-rem-11",
+      "question": "43 ÷ 7 = ? あまり ?",
+      "choices": [
+        "5 あまり 3",
+        "5 あまり 1",
+        "7 あまり 1",
+        "6 あまり 1"
+      ],
+      "correct": 3,
+      "explanation": "7 × 6 = 42。43 - 42 = 1。答え 6 あまり 1"
+    },
+    {
+      "id": "div-rem-12",
+      "question": "50 ÷ 8 = ? あまり ?",
+      "choices": [
+        "6 あまり 2",
+        "6 あまり 3",
+        "6 あまり 4",
+        "5 あまり 10"
+      ],
+      "correct": 0,
+      "explanation": "8 × 6 = 48。50 - 48 = 2。答え 6 あまり 2"
+    },
+    {
+      "id": "div-rem-13",
+      "question": "37 ÷ 5 = ? あまり ?",
+      "choices": [
+        "6 あまり 2",
+        "7 あまり 2",
+        "6 あまり 7",
+        "8 あまり 2"
+      ],
+      "correct": 1,
+      "explanation": "5 × 7 = 35。37 - 35 = 2。答え 7 あまり 2"
+    },
+    {
+      "id": "div-rem-14",
+      "question": "53 ÷ 6 = ? あまり ?",
+      "choices": [
+        "7 あまり 5",
+        "9 あまり 2",
+        "8 あまり 5",
+        "8 あまり 4"
+      ],
+      "correct": 2,
+      "explanation": "6 × 8 = 48。53 - 48 = 5。答え 8 あまり 5"
+    },
+    {
+      "id": "div-rem-15",
+      "question": "67 ÷ 9 = ? あまり ?",
+      "choices": [
+        "8 あまり 3",
+        "6 あまり 4",
+        "8 あまり 5",
+        "7 あまり 4"
+      ],
+      "correct": 3,
+      "explanation": "9 × 7 = 63。67 - 63 = 4。答え 7 あまり 4"
+    },
+    {
+      "id": "div-rem-16",
+      "question": "45 ÷ 7 = ? あまり ?",
+      "choices": [
+        "6 あまり 3",
+        "5 あまり 10",
+        "7 あまり 1",
+        "6 あまり 5"
+      ],
+      "correct": 0,
+      "explanation": "7 × 6 = 42。45 - 42 = 3。答え 6 あまり 3"
     }
   ]
 }

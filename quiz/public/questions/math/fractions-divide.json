@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "fractions-divide",
   "categoryName": "分数のわり算",
+  "guideUrl": "../contents/math/arithmetic/16-fractions-divide/guide",
   "questions": [
     {
       "id": "frac-div-1",

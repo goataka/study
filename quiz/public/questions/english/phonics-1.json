@@ -5,6 +5,7 @@
   "categoryName": "フォニックス（1文字）",
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
+  "guideUrl": "../contents/english/pronunciation/03-phonics-1letter/guide",
   "questions": [
     {
       "id": "phonics-1-a",

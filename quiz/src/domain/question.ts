@@ -15,6 +15,7 @@ export interface Question {
   categoryName: string;
   parentCategory?: string;
   parentCategoryName?: string;
+  guideUrl?: string;
 }
 
 /** 各問題ファイルの生データ（メタ情報なし） */
@@ -34,6 +35,7 @@ export interface QuestionFile {
   categoryName: string;
   parentCategory?: string;
   parentCategoryName?: string;
+  guideUrl?: string;
   questions: RawQuestion[];
 }
 
@@ -84,6 +86,30 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       throw new Error('If parentCategory or parentCategoryName is present, both must be strings');
     }
   }
+  // guideUrl はオプションの文字列フィールド
+  if (qf.guideUrl !== undefined) {
+    if (typeof qf.guideUrl !== "string") {
+      throw new Error('"guideUrl" must be a string if present');
+    }
+    // 安全なスキームのみ許可：../contents/ 配下の相対パスまたは http/https の絶対URL
+    const isRelative = qf.guideUrl.startsWith("../contents/");
+    const isAbsolute = /^https?:\/\//i.test(qf.guideUrl);
+    if (!isRelative && !isAbsolute) {
+      throw new Error('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+    }
+    // パストラバーサル防止：URL デコード後に ../contents/ 以降に .. が含まれないことを確認
+    if (isRelative) {
+      let decoded = qf.guideUrl;
+      try {
+        decoded = decodeURIComponent(qf.guideUrl);
+      } catch {
+        // デコード失敗の場合は元の文字列で検証
+      }
+      if (decoded.slice("../contents/".length).includes("..")) {
+        throw new Error('"guideUrl" must not contain path traversal sequences');
+      }
+    }
+  }
   if (!Array.isArray(qf.questions)) {
     throw new Error('QuestionFile must have a "questions" array');
   }
@@ -128,6 +154,7 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     categoryName: qf.categoryName,
     parentCategory: qf.parentCategory,
     parentCategoryName: qf.parentCategoryName,
+    guideUrl: qf.guideUrl,
   }));
 }
 

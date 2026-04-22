@@ -19,7 +19,7 @@ function setupMinimalDom(): void {
       <select id="subjectFilter"><option value="all">すべての教科</option></select>
       <select id="categoryFilter"><option value="all">すべてのカテゴリ</option></select>
       <div id="statsInfo"></div>
-      <button id="startRandomBtn">ランダム10問</button>
+      <button id="startRandomBtn">ランダム20問</button>
       <button id="startRetryBtn" disabled>間違えた問題</button>
     </div>
     <div id="quizScreen" class="screen">
@@ -35,6 +35,7 @@ function setupMinimalDom(): void {
       <button id="prevBtn" disabled>前へ</button>
       <button id="nextBtn">次へ</button>
       <button id="submitBtn" disabled>提出</button>
+      <a id="guideLink" class="hidden" href="#">解説</a>
     </div>
     <div id="resultScreen" class="screen">
       <div id="resultScore"></div>
@@ -52,7 +53,7 @@ function setupTreeDom(): void {
     <div id="startScreen" class="screen active">
       <div class="subject-tree"></div>
       <div id="statsInfo"></div>
-      <button id="startRandomBtn">ランダム10問</button>
+      <button id="startRandomBtn">ランダム20問</button>
       <button id="startRetryBtn" disabled>間違えた問題</button>
     </div>
     <div id="quizScreen" class="screen">
@@ -562,5 +563,140 @@ describe("QuizApp — 親カテゴリツリー仕様", () => {
     expect(grammarHeader?.getAttribute("aria-expanded")).toBe("false");
     grammarHeader?.click();
     expect(grammarHeader?.getAttribute("aria-expanded")).toBe("true");
+  });
+});
+
+describe("QuizApp — 解説リンク仕様", () => {
+  /** guideUrl ありの問題ファイル */
+  const mockManifestForGuide = {
+    version: "2.0.0",
+    subjects: { english: { name: "英語" } },
+    questionFiles: ["english/alphabet.json"],
+  };
+
+  const mockQuestionFileWithGuide = {
+    subject: "english",
+    subjectName: "英語",
+    category: "alphabet",
+    categoryName: "アルファベット",
+    guideUrl: "../contents/english/pronunciation/01-alphabet/guide",
+    questions: Array.from({ length: 5 }, (_, i) => ({
+      id: `qa${i + 1}`,
+      question: `問題 ${i + 1}`,
+      choices: ["ア", "イ", "ウ", "エ"],
+      correct: 0,
+      explanation: `解説 ${i + 1}`,
+    })),
+  };
+
+  /** guideUrl なしの問題ファイル */
+  const mockQuestionFileWithoutGuide = {
+    subject: "english",
+    subjectName: "英語",
+    category: "phonics-1",
+    categoryName: "フォニックス（1文字）",
+    questions: Array.from({ length: 5 }, (_, i) => ({
+      id: `qp${i + 1}`,
+      question: `問題 ${i + 1}`,
+      choices: ["ア", "イ", "ウ", "エ"],
+      correct: 0,
+      explanation: `解説 ${i + 1}`,
+    })),
+  };
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    localStorage.clear();
+  });
+
+  it("guideUrl ありの問題ファイルでクイズ開始すると #guideLink が表示されURLに .md が補完される", async () => {
+    setupMinimalDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
+    expect(guideLink).not.toBeNull();
+    expect(guideLink.classList.contains("hidden")).toBe(false);
+    expect(guideLink.href).toContain("guide.md");
+  });
+
+  it("guideUrl なしの問題ファイルでクイズ開始すると #guideLink が hidden のまま", async () => {
+    setupMinimalDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithoutGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
+    expect(guideLink).not.toBeNull();
+    expect(guideLink.classList.contains("hidden")).toBe(true);
+  });
+
+  it("guideUrl にクエリパラメータが付いていても拡張子なしなら .md が補完される", async () => {
+    setupMinimalDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            ...mockQuestionFileWithGuide,
+            guideUrl: "../contents/english/pronunciation/01-alphabet/guide?version=1",
+          }),
+      } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
+    expect(guideLink.href).toContain("guide.md");
+    expect(guideLink.href).toContain("?version=1");
+  });
+
+  it("guideUrl にフラグメントが付いていても拡張子なしなら .md が補完される", async () => {
+    setupMinimalDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            ...mockQuestionFileWithGuide,
+            guideUrl: "../contents/english/pronunciation/01-alphabet/guide#section",
+          }),
+      } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
+    expect(guideLink.href).toContain("guide.md");
+    expect(guideLink.href).toContain("#section");
   });
 });

@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "multiplication-basic",
   "categoryName": "かけ算",
+  "guideUrl": "../contents/math/arithmetic/07-multiplication/guide",
   "questions": [
     {
       "id": "mult-basic-1",
@@ -99,6 +100,102 @@
       ],
       "correct": 0,
       "explanation": "4の段。4 × 7 = 28"
+    },
+    {
+      "id": "mult-basic-9",
+      "question": "12 × 4 = ?",
+      "choices": [
+        "50",
+        "48",
+        "46",
+        "52"
+      ],
+      "correct": 1,
+      "explanation": "12 × 4 = 48"
+    },
+    {
+      "id": "mult-basic-10",
+      "question": "23 × 3 = ?",
+      "choices": [
+        "66",
+        "71",
+        "69",
+        "67"
+      ],
+      "correct": 2,
+      "explanation": "23 × 3 = 69"
+    },
+    {
+      "id": "mult-basic-11",
+      "question": "34 × 5 = ?",
+      "choices": [
+        "165",
+        "175",
+        "168",
+        "170"
+      ],
+      "correct": 3,
+      "explanation": "34 × 5 = 170"
+    },
+    {
+      "id": "mult-basic-12",
+      "question": "42 × 7 = ?",
+      "choices": [
+        "294",
+        "288",
+        "300",
+        "291"
+      ],
+      "correct": 0,
+      "explanation": "42 × 7 = 294"
+    },
+    {
+      "id": "mult-basic-13",
+      "question": "23 × 12 = ?",
+      "choices": [
+        "274",
+        "278",
+        "276",
+        "280"
+      ],
+      "correct": 2,
+      "explanation": "23 × 12 = 276"
+    },
+    {
+      "id": "mult-basic-14",
+      "question": "15 × 14 = ?",
+      "choices": [
+        "208",
+        "212",
+        "206",
+        "210"
+      ],
+      "correct": 3,
+      "explanation": "15 × 14 = 210"
+    },
+    {
+      "id": "mult-basic-15",
+      "question": "24 × 13 = ?",
+      "choices": [
+        "310",
+        "314",
+        "308",
+        "312"
+      ],
+      "correct": 3,
+      "explanation": "24 × 13 = 312"
+    },
+    {
+      "id": "mult-basic-16",
+      "question": "32 × 21 = ?",
+      "choices": [
+        "672",
+        "668",
+        "676",
+        "670"
+      ],
+      "correct": 0,
+      "explanation": "32 × 21 = 672"
     }
   ]
 }

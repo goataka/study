@@ -63,3 +63,9 @@ t/dがラ行になる
 | bless you | s+y→シュ | ブレッシュー |
 | ten people | n→m（唇音の前） | テムピープル |
 | in Paris | n→m（唇音の前） | イムパリ |
+
+---
+
+[目次](../../README.md) | [練習](drill.md) | 解答 | [解説](guide.md)
+
+[前へ: フォニックス（3文字）](../05-phonics-3letter/answer.md) | **音声変化練習ドリル** | [次へ: リンキング](../07-linking/answer.md)

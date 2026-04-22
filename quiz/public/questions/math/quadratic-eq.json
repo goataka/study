@@ -3,6 +3,7 @@
   "subjectName": "数学",
   "category": "quadratic-eq",
   "categoryName": "二次方程式",
+  "guideUrl": "../contents/math/algebra/29-quadratic-eq/guide",
   "questions": [
     {
       "id": "quad-eq-1",
