@@ -97,6 +97,10 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (!isRelative && !isAbsolute) {
       throw new Error('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
     }
+    // パストラバーサル防止：../contents/ の後に .. が含まれないことを確認
+    if (isRelative && qf.guideUrl.slice("../contents/".length).includes("..")) {
+      throw new Error('"guideUrl" must not contain path traversal sequences');
+    }
   }
   if (!Array.isArray(qf.questions)) {
     throw new Error('QuestionFile must have a "questions" array');

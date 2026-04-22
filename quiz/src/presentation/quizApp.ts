@@ -535,10 +535,11 @@ export class QuizApp {
     const guideLink = document.getElementById("guideLink") as HTMLAnchorElement | null;
     if (guideLink) {
       if (question.guideUrl) {
-        // 拡張子がない場合は .md を補完する
+        // クエリ・フラグメントを除いたパス部分で拡張子を判定し、なければ .md を補完する
         const url = question.guideUrl;
-        const lastSegment = url.split("/").pop() ?? "";
-        guideLink.href = lastSegment.includes(".") ? url : url + ".md";
+        const pathPart = url.split(/[?#]/)[0] ?? url;
+        const lastSegment = pathPart.split("/").pop() ?? "";
+        guideLink.href = /\.[^.]+$/.test(lastSegment) ? url : url + ".md";
         guideLink.classList.remove("hidden");
       } else {
         guideLink.classList.add("hidden");
