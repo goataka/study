@@ -537,7 +537,7 @@ export class QuizApp {
       if (question.guideUrl) {
         // クエリ・フラグメントを除いたパス部分で拡張子を判定し、なければ .md を補完する
         const url = question.guideUrl;
-        const pathPart = url.split(/[?#]/)[0];
+        const pathPart = url.split(/[?#]/)[0] ?? url;
         const lastSegment = pathPart.split("/").pop() ?? "";
         if (/\.[^.]+$/.test(lastSegment)) {
           guideLink.href = url;

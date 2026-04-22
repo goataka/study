@@ -36,7 +36,7 @@
 
 🔄 `meet you` → ミーチュー
 
-```
+```text
 meet  you
     ↘↗
    チュ

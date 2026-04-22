@@ -18,7 +18,7 @@
 
 🔗 `check it out`
 
-```
+```text
 check  it  out
      ↘↗   ↘↗
  チェ キッ ト アウ ト
@@ -27,7 +27,7 @@ check  it  out
 
 🔗 `not at all`
 
-```
+```text
 not  at  all
    ↘↗  ↘↗
 ノ タッ ト オー ル
