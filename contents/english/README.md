@@ -30,7 +30,7 @@
 | 04 | フォニックス（2文字・マジックE） | [練習](pronunciation/04-phonics-2letter/drill.md) | [回答](pronunciation/04-phonics-2letter/answer.md) | [解説](pronunciation/04-phonics-2letter/guide.md) | `a_e`→/eɪ/ (cake) |
 | 05 | フォニックス（3文字） | [練習](pronunciation/05-phonics-3letter/drill.md) | [回答](pronunciation/05-phonics-3letter/answer.md) | [解説](pronunciation/05-phonics-3letter/guide.md) | `igh`→/aɪ/ (night) |
 | 06 | リンキング・リダクション | [練習](pronunciation/06-linking-reduction/drill.md) | [回答](pronunciation/06-linking-reduction/answer.md) | [解説](pronunciation/06-linking-reduction/guide.md) | (まとめ) |
-| 07 | リンキング | [練習](pronunciation/07-linking/drill.md) | [回答](pronunciation/07-linking/answer.md) | [解説](pronunciation/07-linking/guide.md) | check\_it→チェキッ |
+| 07 | リンキング | [練習](pronunciation/07-linking/drill.md) | [回答](pronunciation/07-linking/answer.md) | [解説](pronunciation/07-linking/guide.md) | check_it→チェキッ |
 | 08 | リダクション | [練習](pronunciation/08-reduction/drill.md) | [回答](pronunciation/08-reduction/answer.md) | [解説](pronunciation/08-reduction/guide.md) | for→/fər/ |
 | 09 | フラッピング | [練習](pronunciation/09-flapping/drill.md) | [回答](pronunciation/09-flapping/answer.md) | [解説](pronunciation/09-flapping/guide.md) | water→ウォダー |
 | 10 | アシミレーション | [練習](pronunciation/10-assimilation/drill.md) | [回答](pronunciation/10-assimilation/answer.md) | [解説](pronunciation/10-assimilation/guide.md) | meet you→ミーチュー |
