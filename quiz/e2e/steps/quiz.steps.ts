@@ -7,9 +7,10 @@ const STATS_LOAD_TIMEOUT = 10_000;
 
 Given("the quiz application is loaded", async ({ page }) => {
   await page.goto("/");
-  await page.waitForSelector("#statsInfo", { state: "visible", timeout: STATS_LOAD_TIMEOUT });
-  // 問題データが読み込まれ、統計情報が表示されたことを確認
-  await expect(page.locator("#statsInfo")).toHaveText(/全\d+問/, { timeout: STATS_LOAD_TIMEOUT });
+  // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ
+  await expect(page.locator("#statsInfo")).toContainText(/全\d+問/, {
+    timeout: STATS_LOAD_TIMEOUT,
+  });
 });
 
 Then("the start screen should be visible", async ({ page }) => {
@@ -21,27 +22,26 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
 });
 
 When("I scroll the category tree", async ({ page }) => {
-  // カテゴリツリーが表示されていることを確認
+  // カテゴリツリーが表示されるまで待つ
   const subjectTree = page.locator(".subject-tree");
   await expect(subjectTree).toBeVisible();
 
-  // 英語・数学ノードを展開してツリーを長くする（未展開の場合のみ）
-  const englishNode = subjectTree.locator('.tree-item[data-subject="english"] > .tree-node-header').first();
-  if (await englishNode.isVisible()) {
-    const isExpanded = await englishNode.getAttribute("aria-expanded");
-    if (isExpanded !== "true") {
-      await englishNode.click();
-    }
+  // 英語・数学ノードを展開してツリーを十分な高さにする
+  // .subject-tree の直接の子に限定することで、ネストされた子要素にマッチしない
+  const englishNode = page.locator('.subject-tree > .tree-item[data-subject="english"] > .tree-node-header');
+  const isEnglishExpanded = await englishNode.getAttribute("aria-expanded");
+  if (isEnglishExpanded !== "true") {
+    await englishNode.click();
+    await expect(englishNode).toHaveAttribute("aria-expanded", "true");
   }
-  const mathNode = subjectTree.locator('.tree-item[data-subject="math"] > .tree-node-header').first();
-  if (await mathNode.isVisible()) {
-    const isExpanded = await mathNode.getAttribute("aria-expanded");
-    if (isExpanded !== "true") {
-      await mathNode.click();
-    }
+  const mathNode = page.locator('.subject-tree > .tree-item[data-subject="math"] > .tree-node-header');
+  const isMathExpanded = await mathNode.getAttribute("aria-expanded");
+  if (isMathExpanded !== "true") {
+    await mathNode.click();
+    await expect(mathNode).toHaveAttribute("aria-expanded", "true");
   }
 
-  // ノード展開後にスクロール可能になるまで待つ
+  // ツリーがスクロール可能になるまで待つ（展開後）
   await expect
     .poll(
       async () =>
