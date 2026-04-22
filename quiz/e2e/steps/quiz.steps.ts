@@ -26,19 +26,14 @@ When("I scroll the category tree", async ({ page }) => {
   const subjectTree = page.locator(".subject-tree");
   await expect(subjectTree).toBeVisible();
 
-  // 英語・数学ノードを展開してツリーを十分な高さにする
+  // 英語ノードをクリックして展開し、ツリーを十分な高さにする
   // .subject-tree の直接の子に限定することで、ネストされた子要素にマッチしない
   const englishNode = page.locator('.subject-tree > .tree-item[data-subject="english"] > .tree-node-header');
-  const isEnglishExpanded = await englishNode.getAttribute("aria-expanded");
-  if (isEnglishExpanded !== "true") {
+  // 未展開の場合のみクリックする（展開済みの場合は折りたたまないよう防止）
+  const isExpanded = await englishNode.getAttribute("aria-expanded");
+  if (isExpanded !== "true") {
     await englishNode.click();
     await expect(englishNode).toHaveAttribute("aria-expanded", "true");
-  }
-  const mathNode = page.locator('.subject-tree > .tree-item[data-subject="math"] > .tree-node-header');
-  const isMathExpanded = await mathNode.getAttribute("aria-expanded");
-  if (isMathExpanded !== "true") {
-    await mathNode.click();
-    await expect(mathNode).toHaveAttribute("aria-expanded", "true");
   }
 
   // ツリーがスクロール可能になるまで待つ（展開後）
