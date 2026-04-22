@@ -87,8 +87,16 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     }
   }
   // guideUrl はオプションの文字列フィールド
-  if (qf.guideUrl !== undefined && typeof qf.guideUrl !== "string") {
-    throw new Error('"guideUrl" must be a string if present');
+  if (qf.guideUrl !== undefined) {
+    if (typeof qf.guideUrl !== "string") {
+      throw new Error('"guideUrl" must be a string if present');
+    }
+    // 安全なスキームのみ許可：../contents/ 配下の相対パスまたは http/https の絶対URL
+    const isRelative = qf.guideUrl.startsWith("../contents/");
+    const isAbsolute = /^https?:\/\//i.test(qf.guideUrl);
+    if (!isRelative && !isAbsolute) {
+      throw new Error('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+    }
   }
   if (!Array.isArray(qf.questions)) {
     throw new Error('QuestionFile must have a "questions" array');

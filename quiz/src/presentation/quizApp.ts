@@ -535,7 +535,10 @@ export class QuizApp {
     const guideLink = document.getElementById("guideLink") as HTMLAnchorElement | null;
     if (guideLink) {
       if (question.guideUrl) {
-        guideLink.href = question.guideUrl;
+        // 拡張子がない場合は .md を補完する
+        const url = question.guideUrl;
+        const lastSegment = url.split("/").pop() ?? "";
+        guideLink.href = lastSegment.includes(".") ? url : url + ".md";
         guideLink.classList.remove("hidden");
       } else {
         guideLink.classList.add("hidden");

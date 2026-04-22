@@ -92,6 +92,42 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
     };
     expect(() => validateQuestionFile(badQF)).toThrow("integer between 0 and 3");
   });
+
+  it("guideUrl が文字列でない場合に拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: 123 })
+    ).toThrow('"guideUrl" must be a string if present');
+  });
+
+  it("guideUrl が ../contents/ 相対パスの場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "../contents/english/pronunciation/01-alphabet/guide" })
+    ).not.toThrow();
+  });
+
+  it("guideUrl が https URL の場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "https://example.com/guide" })
+    ).not.toThrow();
+  });
+
+  it("guideUrl が javascript: スキームの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "javascript:alert(1)" })
+    ).toThrow('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+  });
+
+  it("guideUrl が data: スキームの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "data:text/html,<script>alert(1)</script>" })
+    ).toThrow('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+  });
+
+  it("guideUrl が想定外の相対パスの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "./guide.md" })
+    ).toThrow('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+  });
 });
 
 describe("expandQuestions — 問題展開仕様", () => {
