@@ -152,32 +152,16 @@ runs:
           exit 1
         fi
 
-        # 本文をヒアドキュメントで一時ファイルに書き込む（すべての値は環境変数経由でインジェクション防止）
         BODY_FILE=$(mktemp)
 
         if [ "$IS_PR" = "true" ]; then
-          # PRがある場合: PRにCopilotをメンションしてコメントを投稿
-          cat >"$BODY_FILE" <<EOF
-        @copilot GitHub Actionsワークフロー「${WORKFLOW_NAME}」が失敗しました (コミット: ${COMMIT_SHORT})。CIエラーを確認して修正をお願いします。
-
-        ## エラー情報
-
-        - **ワークフロー**: ${WORKFLOW_NAME}
-        - **コミット**: ${COMMIT_SHORT}
-        - **PR**: #${PR_NUMBER}
-        - **CIログ**: ${RUN_URL}
-        EOF
-
-          if [ -n "${ERROR_CONTEXT}" ]; then
-            printf -- '- **エラー詳細**: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
-          fi
-
+          printf '@copilot ワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nCIログ: %s\n' \
+            "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${PR_NUMBER}" "${RUN_URL}" >"$BODY_FILE"
+          [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
           gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
           echo "::notice::PR #${PR_NUMBER} にCopilotメンションコメントを投稿しました"
         else
-          # PRがない場合: 同一ワークフローのオープンIssueを検索
           ISSUE_TITLE="[CI失敗] ${WORKFLOW_NAME}"
-
           EXISTING_ISSUE_NUMBER=$(gh issue list \
             --state open \
             --search "${ISSUE_TITLE} in:title" \
@@ -187,51 +171,15 @@ runs:
             | head -1)
 
           if [ -n "${EXISTING_ISSUE_NUMBER}" ]; then
-            # 既存Issueがある場合: コメントを追加してCopilotをメンション
-            cat >"$BODY_FILE" <<EOF
-        @copilot ワークフロー「${WORKFLOW_NAME}」が再度失敗しました (コミット: ${COMMIT_SHORT})。引き続き対応をお願いします。
-
-        - **CIログ**: ${RUN_URL}
-        - **ブランチ**: ${TARGET_BRANCH}
-        EOF
-
-            if [ -n "${ERROR_CONTEXT}" ]; then
-              printf -- '- **エラー詳細**: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
-            fi
-
+            printf '@copilot ワークフロー「%s」が再度失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
+              "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
+            [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
             gh issue comment "${EXISTING_ISSUE_NUMBER}" --body-file "$BODY_FILE"
             echo "::notice::既存Issue #${EXISTING_ISSUE_NUMBER} にCopilotメンションコメントを追加しました"
           else
-            # 既存Issueがない場合: 新規Issueを作成してCopilotをアサイン
-            cat >"$BODY_FILE" <<EOF
-        @copilot GitHub Actionsワークフロー「${WORKFLOW_NAME}」が失敗しました。対応をお願いします。
-
-        ## エラー情報
-
-        - **ワークフロー**: ${WORKFLOW_NAME}
-        - **コミット**: ${COMMIT_SHORT}
-        - **CIログ**: ${RUN_URL}
-        - **ブランチ**: ${TARGET_BRANCH}
-        EOF
-
-            if [ -n "${ERROR_CONTEXT}" ]; then
-              printf -- '- **エラー詳細**: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
-            fi
-
-            cat >>"$BODY_FILE" <<EOF
-
-        ## 修正手順
-
-        1. ワークフロー実行ログを確認してエラーの原因を特定する
-           - ログURL: ${RUN_URL}
-
-        2. エラーの原因を修正する
-
-        3. 必要に応じてテストを実行して修正を確認する
-
-        4. \`${TARGET_BRANCH}\` ブランチをターゲットとしたPRを作成する
-        EOF
-
+            printf '@copilot ワークフロー「%s」が失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
+              "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
+            [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
             gh issue create \
               --title "${ISSUE_TITLE}" \
               --body-file "$BODY_FILE" \
@@ -243,5 +191,4 @@ runs:
           fi
         fi
 
-        # 一時ファイルを削除
         rm -f "$BODY_FILE"
