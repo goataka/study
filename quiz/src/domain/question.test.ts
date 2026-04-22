@@ -134,6 +134,12 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
       validateQuestionFile({ ...validQF, guideUrl: "../contents/english/../../etc/passwd" })
     ).toThrow('"guideUrl" must not contain path traversal sequences');
   });
+
+  it("guideUrl に URL エンコードされたパストラバーサルが含まれる場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "../contents/english/%2e%2e/etc/passwd" })
+    ).toThrow('"guideUrl" must not contain path traversal sequences');
+  });
 });
 
 describe("expandQuestions — 問題展開仕様", () => {

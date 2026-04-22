@@ -647,4 +647,56 @@ describe("QuizApp — 解説リンク仕様", () => {
     expect(guideLink).not.toBeNull();
     expect(guideLink.classList.contains("hidden")).toBe(true);
   });
+
+  it("guideUrl にクエリパラメータが付いていても拡張子なしなら .md が補完される", async () => {
+    setupMinimalDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            ...mockQuestionFileWithGuide,
+            guideUrl: "../contents/english/pronunciation/01-alphabet/guide?version=1",
+          }),
+      } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
+    expect(guideLink.href).toContain("guide.md");
+    expect(guideLink.href).toContain("?version=1");
+  });
+
+  it("guideUrl にフラグメントが付いていても拡張子なしなら .md が補完される", async () => {
+    setupMinimalDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            ...mockQuestionFileWithGuide,
+            guideUrl: "../contents/english/pronunciation/01-alphabet/guide#section",
+          }),
+      } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
+    expect(guideLink.href).toContain("guide.md");
+    expect(guideLink.href).toContain("#section");
+  });
 });

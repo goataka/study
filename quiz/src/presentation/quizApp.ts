@@ -537,9 +537,15 @@ export class QuizApp {
       if (question.guideUrl) {
         // クエリ・フラグメントを除いたパス部分で拡張子を判定し、なければ .md を補完する
         const url = question.guideUrl;
-        const pathPart = url.split(/[?#]/)[0] ?? url;
+        const pathPart = url.split(/[?#]/)[0];
         const lastSegment = pathPart.split("/").pop() ?? "";
-        guideLink.href = /\.[^.]+$/.test(lastSegment) ? url : url + ".md";
+        if (/\.[^.]+$/.test(lastSegment)) {
+          guideLink.href = url;
+        } else {
+          // .md をパス部分の後・クエリ/フラグメントの前に挿入する
+          const rest = url.slice(pathPart.length);
+          guideLink.href = pathPart + ".md" + rest;
+        }
         guideLink.classList.remove("hidden");
       } else {
         guideLink.classList.add("hidden");

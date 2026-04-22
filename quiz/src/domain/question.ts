@@ -97,9 +97,17 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (!isRelative && !isAbsolute) {
       throw new Error('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
     }
-    // パストラバーサル防止：../contents/ の後に .. が含まれないことを確認
-    if (isRelative && qf.guideUrl.slice("../contents/".length).includes("..")) {
-      throw new Error('"guideUrl" must not contain path traversal sequences');
+    // パストラバーサル防止：URL デコード後に ../contents/ 以降に .. が含まれないことを確認
+    if (isRelative) {
+      let decoded = qf.guideUrl;
+      try {
+        decoded = decodeURIComponent(qf.guideUrl);
+      } catch {
+        // デコード失敗の場合は元の文字列で検証
+      }
+      if (decoded.slice("../contents/".length).includes("..")) {
+        throw new Error('"guideUrl" must not contain path traversal sequences');
+      }
     }
   }
   if (!Array.isArray(qf.questions)) {
