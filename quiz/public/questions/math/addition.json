@@ -99,6 +99,54 @@
       ],
       "correct": 0,
       "explanation": "67 + 23 = 90"
+    },
+    {
+      "id": "add-9",
+      "question": "32 + 25 = ?",
+      "choices": [
+        "57",
+        "56",
+        "58",
+        "55"
+      ],
+      "correct": 0,
+      "explanation": "32 + 25 = 57"
+    },
+    {
+      "id": "add-10",
+      "question": "48 + 16 = ?",
+      "choices": [
+        "64",
+        "63",
+        "65",
+        "62"
+      ],
+      "correct": 0,
+      "explanation": "48 + 16 = 64"
+    },
+    {
+      "id": "add-11",
+      "question": "75 + 18 = ?",
+      "choices": [
+        "93",
+        "92",
+        "94",
+        "91"
+      ],
+      "correct": 0,
+      "explanation": "75 + 18 = 93"
+    },
+    {
+      "id": "add-12",
+      "question": "56 + 29 = ?",
+      "choices": [
+        "85",
+        "84",
+        "86",
+        "83"
+      ],
+      "correct": 0,
+      "explanation": "56 + 29 = 85"
     }
   ]
 }

@@ -99,6 +99,54 @@
       ],
       "correct": 0,
       "explanation": "9 × 9 = 81"
+    },
+    {
+      "id": "mul-9",
+      "question": "5 × 6 = ?",
+      "choices": [
+        "30",
+        "25",
+        "35",
+        "20"
+      ],
+      "correct": 0,
+      "explanation": "5 × 6 = 30"
+    },
+    {
+      "id": "mul-10",
+      "question": "4 × 8 = ?",
+      "choices": [
+        "32",
+        "28",
+        "36",
+        "24"
+      ],
+      "correct": 0,
+      "explanation": "4 × 8 = 32"
+    },
+    {
+      "id": "mul-11",
+      "question": "6 × 7 = ?",
+      "choices": [
+        "42",
+        "36",
+        "48",
+        "49"
+      ],
+      "correct": 0,
+      "explanation": "6 × 7 = 42"
+    },
+    {
+      "id": "mul-12",
+      "question": "3 × 9 = ?",
+      "choices": [
+        "27",
+        "24",
+        "30",
+        "18"
+      ],
+      "correct": 0,
+      "explanation": "3 × 9 = 27"
     }
   ]
 }

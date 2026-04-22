@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "三人称単数には is を使います"
+    },
+    {
+      "id": "tenses-be-present-9",
+      "question": "The flowers ___ beautiful.",
+      "choices": [
+        "are",
+        "is",
+        "am",
+        "were"
+      ],
+      "correct": 0,
+      "explanation": "複数形のbe動詞は are です"
+    },
+    {
+      "id": "tenses-be-present-10",
+      "question": "My sister ___ a nurse.",
+      "choices": [
+        "is",
+        "are",
+        "am",
+        "be"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数のbe動詞は is です"
+    },
+    {
+      "id": "tenses-be-present-11",
+      "question": "I ___ from Japan.",
+      "choices": [
+        "am",
+        "is",
+        "are",
+        "be"
+      ],
+      "correct": 0,
+      "explanation": "一人称単数のbe動詞は am です"
+    },
+    {
+      "id": "tenses-be-present-12",
+      "question": "The children ___ playing outside.",
+      "choices": [
+        "are",
+        "is",
+        "am",
+        "were"
+      ],
+      "correct": 0,
+      "explanation": "複数形のbe動詞は are です"
     }
   ]
 }

@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "禁止を表すには must not を使います"
+    },
+    {
+      "id": "modals-negative-9",
+      "question": "You ___ drive after drinking. (してはいけない)",
+      "choices": [
+        "must not",
+        "cannot",
+        "may not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "禁止を表すには must not を使います"
+    },
+    {
+      "id": "modals-negative-10",
+      "question": "She ___ be right. (はずがない)",
+      "choices": [
+        "cannot",
+        "must not",
+        "may not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「はずがない」は cannot を使います"
+    },
+    {
+      "id": "modals-negative-11",
+      "question": "He ___ come tomorrow. (しないかもしれない)",
+      "choices": [
+        "might not",
+        "must not",
+        "cannot",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「しないかもしれない」は might not を使います"
+    },
+    {
+      "id": "modals-negative-12",
+      "question": "We ___ go out in this weather. (しないほうがいい)",
+      "choices": [
+        "should not",
+        "cannot",
+        "must not",
+        "will not"
+      ],
+      "correct": 0,
+      "explanation": "「しないほうがいい」は should not を使います"
     }
   ]
 }

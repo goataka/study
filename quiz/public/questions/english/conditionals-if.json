@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "第3条件文の帰結節は would have + 過去分詞です"
+    },
+    {
+      "id": "conditionals-if-9",
+      "question": "If I ___ harder, I would get better grades. (第2条件文 / work)",
+      "choices": [
+        "worked",
+        "work",
+        "had worked",
+        "will work"
+      ],
+      "correct": 0,
+      "explanation": "第2条件文の条件節は過去形を使います"
+    },
+    {
+      "id": "conditionals-if-10",
+      "question": "If I ___ earlier, I would have caught the train. (第3条件文 / leave)",
+      "choices": [
+        "had left",
+        "left",
+        "have left",
+        "will leave"
+      ],
+      "correct": 0,
+      "explanation": "第3条件文の条件節は過去完了形を使います"
+    },
+    {
+      "id": "conditionals-if-11",
+      "question": "If she studies hard, she ___ pass the exam. (第1条件文)",
+      "choices": [
+        "will",
+        "would",
+        "would have",
+        "had"
+      ],
+      "correct": 0,
+      "explanation": "第1条件文の帰結節は will + 動詞の原形です"
+    },
+    {
+      "id": "conditionals-if-12",
+      "question": "If I were you, I ___ take the job. (第2条件文)",
+      "choices": [
+        "would",
+        "will",
+        "would have",
+        "had"
+      ],
+      "correct": 0,
+      "explanation": "第2条件文の帰結節は would + 動詞の原形です"
     }
   ]
 }

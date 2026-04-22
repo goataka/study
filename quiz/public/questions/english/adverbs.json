@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "adverbs-9",
+      "question": "She speaks English ___. (fluently)",
+      "choices": [
+        "fluently",
+        "fluent",
+        "fluency",
+        "fluenting"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は文末に置きます"
+    },
+    {
+      "id": "adverbs-10",
+      "question": "I ___ watch TV. (never)",
+      "choices": [
+        "never",
+        "no",
+        "not",
+        "none"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "adverbs-11",
+      "question": "He drives ___. (carefully)",
+      "choices": [
+        "carefully",
+        "careful",
+        "care",
+        "careless"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は文末に置きます"
+    },
+    {
+      "id": "adverbs-12",
+      "question": "She will arrive ___. (soon)",
+      "choices": [
+        "soon",
+        "early",
+        "late",
+        "quickly"
+      ],
+      "correct": 0,
+      "explanation": "時を表す副詞は文末に置きます"
     }
   ]
 }

@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "twice があるので経験を表します"
+    },
+    {
+      "id": "perfect-usage-9",
+      "question": "I have known her for many years. この文の用法は？",
+      "choices": [
+        "継続",
+        "経験",
+        "完了",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "for many years があるので継続を表します"
+    },
+    {
+      "id": "perfect-usage-10",
+      "question": "I have visited London three times. この文の用法は？",
+      "choices": [
+        "経験",
+        "継続",
+        "完了",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "three times があるので経験を表します"
+    },
+    {
+      "id": "perfect-usage-11",
+      "question": "I have just arrived. この文の用法は？",
+      "choices": [
+        "完了",
+        "経験",
+        "継続",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "just があるので完了を表します"
+    },
+    {
+      "id": "perfect-usage-12",
+      "question": "He has gone to America. この文の用法は？",
+      "choices": [
+        "結果",
+        "経験",
+        "継続",
+        "完了"
+      ],
+      "correct": 0,
+      "explanation": "行ってしまった結果、今ここにいない状態を表します"
     }
   ]
 }

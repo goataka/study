@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "3 + 4 = 7なので、7/10"
+    },
+    {
+      "id": "frac-same-add-9",
+      "question": "1/5 + 3/5 = ?",
+      "choices": [
+        "4/5",
+        "2/5",
+        "3/5",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "分母が同じなので分子を足す：1/5 + 3/5 = 4/5"
+    },
+    {
+      "id": "frac-same-add-10",
+      "question": "2/9 + 4/9 = ?",
+      "choices": [
+        "2/3",
+        "6/18",
+        "6/9",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "2/9 + 4/9 = 6/9 = 2/3"
+    },
+    {
+      "id": "frac-same-add-11",
+      "question": "3/11 + 5/11 = ?",
+      "choices": [
+        "8/11",
+        "8/22",
+        "1",
+        "2/11"
+      ],
+      "correct": 0,
+      "explanation": "分母が同じなので分子を足す：3/11 + 5/11 = 8/11"
+    },
+    {
+      "id": "frac-same-add-12",
+      "question": "1/8 + 5/8 = ?",
+      "choices": [
+        "3/4",
+        "6/16",
+        "6/8",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "1/8 + 5/8 = 6/8 = 3/4"
     }
   ]
 }

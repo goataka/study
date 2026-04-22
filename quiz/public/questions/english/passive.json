@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "過去形の受動態は was/were + 過去分詞です"
+    },
+    {
+      "id": "passive-9",
+      "question": "Dinner ___ cooked by her every evening. (現在形の受動態)",
+      "choices": [
+        "is",
+        "was",
+        "will be",
+        "has been"
+      ],
+      "correct": 0,
+      "explanation": "現在形の受動態は is/are + 過去分詞です"
+    },
+    {
+      "id": "passive-10",
+      "question": "The room ___ cleaned yesterday. (過去形の受動態)",
+      "choices": [
+        "was",
+        "is",
+        "will be",
+        "has been"
+      ],
+      "correct": 0,
+      "explanation": "過去形の受動態は was/were + 過去分詞です"
+    },
+    {
+      "id": "passive-11",
+      "question": "The bridge ___ built in 1990. (過去形の受動態)",
+      "choices": [
+        "was",
+        "is",
+        "will be",
+        "has been"
+      ],
+      "correct": 0,
+      "explanation": "過去形の受動態は was/were + 過去分詞です"
+    },
+    {
+      "id": "passive-12",
+      "question": "The report ___ written by Tom. (現在完了の受動態)",
+      "choices": [
+        "has been",
+        "was",
+        "is",
+        "will be"
+      ],
+      "correct": 0,
+      "explanation": "現在完了の受動態は has/have been + 過去分詞です"
     }
   ]
 }

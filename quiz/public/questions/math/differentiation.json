@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "f'(x) = -3x² + 6x = -3x(x-2) = 0よりx=0,2。x=2で符号が負→正→負なので極大。f(2) = -8 + 12 + 1 = 5"
+    },
+    {
+      "id": "diff-9",
+      "question": "f(x) = 4x³ + 6x の導関数 f'(x) = ?",
+      "choices": [
+        "12x² + 6",
+        "4x² + 6",
+        "12x³ + 6x",
+        "12x + 6"
+      ],
+      "correct": 0,
+      "explanation": "(4x³)' = 12x²、(6x)' = 6。よって f'(x) = 12x² + 6"
+    },
+    {
+      "id": "diff-10",
+      "question": "f(x) = x² - 6x + 9 の導関数 f'(x) = ?",
+      "choices": [
+        "2x - 6",
+        "x - 6",
+        "2x² - 6",
+        "2x - 6x"
+      ],
+      "correct": 0,
+      "explanation": "(x²)' = 2x、(-6x)' = -6、(9)' = 0。よって f'(x) = 2x - 6"
+    },
+    {
+      "id": "diff-11",
+      "question": "f(x) = -2x³ + 3x の導関数 f'(x) = ?",
+      "choices": [
+        "-6x² + 3",
+        "-2x² + 3",
+        "-6x³ + 3",
+        "-6x² + 3x"
+      ],
+      "correct": 0,
+      "explanation": "(-2x³)' = -6x²、(3x)' = 3。よって f'(x) = -6x² + 3"
+    },
+    {
+      "id": "diff-12",
+      "question": "f(x) = x⁴ の導関数 f'(x) = ?",
+      "choices": [
+        "4x³",
+        "x³",
+        "4x⁴",
+        "4x"
+      ],
+      "correct": 0,
+      "explanation": "(xⁿ)' = nxⁿ⁻¹。(x⁴)' = 4x³"
     }
   ]
 }

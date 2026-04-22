@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-9",
+      "question": "The event ___ canceled if it rains. (might + 受動態)",
+      "choices": [
+        "might be",
+        "might",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-10",
+      "question": "The mistake ___ avoided. (could + 受動態)",
+      "choices": [
+        "could be",
+        "could",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-11",
+      "question": "The bridge ___ repaired next month. (will + 受動態)",
+      "choices": [
+        "will be",
+        "will",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "passive-modals-12",
+      "question": "The document ___ signed by Friday. (must + 受動態)",
+      "choices": [
+        "must be",
+        "must",
+        "is",
+        "was"
+      ],
+      "correct": 0,
+      "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     }
   ]
 }

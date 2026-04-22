@@ -66,6 +66,66 @@
       ],
       "correct": 0,
       "explanation": "t が消失して、ソータ"
+    },
+    {
+      "id": "reduction-6",
+      "question": "「got to」はどう発音する？",
+      "choices": [
+        "ガタ",
+        "ゴット トゥ",
+        "ゴタ",
+        "ガット"
+      ],
+      "correct": 0,
+      "explanation": "t が消失して、ガタ"
+    },
+    {
+      "id": "reduction-7",
+      "question": "「out of」はどう発音する？",
+      "choices": [
+        "アウラ",
+        "アウト オブ",
+        "アウトブ",
+        "アウトフ"
+      ],
+      "correct": 0,
+      "explanation": "t が消失して、アウラ"
+    },
+    {
+      "id": "reduction-8",
+      "question": "「a lot of」はどう発音する？",
+      "choices": [
+        "ア ロラ",
+        "ア ロット オブ",
+        "アロットフ",
+        "アロタ"
+      ],
+      "correct": 0,
+      "explanation": "t が消失して、ア ロラ"
+    },
+    {
+      "id": "reduction-9",
+      "question": "「used to」はどう発音する？",
+      "choices": [
+        "ユース タ",
+        "ユーズド トゥ",
+        "ユーズタ",
+        "ユーストゥ"
+      ],
+      "correct": 0,
+      "explanation": "d が消失して、ユース タ"
+    },
+    {
+      "id": "reduction-10",
+      "question": "「ought to」はどう発音する？",
+      "choices": [
+        "オータ",
+        "オート トゥ",
+        "オートゥ",
+        "オウトゥ"
+      ],
+      "correct": 0,
+      "explanation": "t が消失して、オータ"
     }
   ]
 }

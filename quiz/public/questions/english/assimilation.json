@@ -66,6 +66,66 @@
       ],
       "correct": 0,
       "explanation": "n → m（唇音の前）となり、イム パ リ"
+    },
+    {
+      "id": "assimilation-6",
+      "question": "「don't you」はどう発音する？",
+      "choices": [
+        "ドウン チュー",
+        "ドウント ユー",
+        "ドウンチュ",
+        "ドントユ"
+      ],
+      "correct": 0,
+      "explanation": "t + y → チュ となり、ドウン チュー"
+    },
+    {
+      "id": "assimilation-7",
+      "question": "「need you」はどう発音する？",
+      "choices": [
+        "ニー ジュー",
+        "ニード ユー",
+        "ニージュ",
+        "ニドユ"
+      ],
+      "correct": 0,
+      "explanation": "d + y → ジュ となり、ニー ジュー"
+    },
+    {
+      "id": "assimilation-8",
+      "question": "「last year」はどう発音する？",
+      "choices": [
+        "ラス チュア",
+        "ラスト イヤー",
+        "ラスチュア",
+        "ラストイア"
+      ],
+      "correct": 0,
+      "explanation": "t + y → チュ となり、ラス チュア"
+    },
+    {
+      "id": "assimilation-9",
+      "question": "「this year」はどう発音する？",
+      "choices": [
+        "ディ シュア",
+        "ディス イヤー",
+        "ディシュア",
+        "ディスイア"
+      ],
+      "correct": 0,
+      "explanation": "s + y → シュ となり、ディ シュア"
+    },
+    {
+      "id": "assimilation-10",
+      "question": "「one more」はどう発音する？",
+      "choices": [
+        "ワム モア",
+        "ワン モア",
+        "ワンモア",
+        "ウォンモア"
+      ],
+      "correct": 0,
+      "explanation": "n → m（唇音の前）となり、ワム モア"
     }
   ]
 }

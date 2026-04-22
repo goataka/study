@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "「さ」は sa と書きます"
+    },
+    {
+      "id": "50on-9",
+      "question": "「た」のローマ字は？",
+      "choices": [
+        "ta",
+        "da",
+        "tha",
+        "sa"
+      ],
+      "correct": 0,
+      "explanation": "「た」は ta と書きます"
+    },
+    {
+      "id": "50on-10",
+      "question": "「な」のローマ字は？",
+      "choices": [
+        "na",
+        "ma",
+        "ha",
+        "ra"
+      ],
+      "correct": 0,
+      "explanation": "「な」は na と書きます"
+    },
+    {
+      "id": "50on-11",
+      "question": "「は」のローマ字は？",
+      "choices": [
+        "ha",
+        "wa",
+        "ba",
+        "fa"
+      ],
+      "correct": 0,
+      "explanation": "「は」は ha と書きます"
+    },
+    {
+      "id": "50on-12",
+      "question": "「ま」のローマ字は？",
+      "choices": [
+        "ma",
+        "na",
+        "ba",
+        "pa"
+      ],
+      "correct": 0,
+      "explanation": "「ま」は ma と書きます"
     }
   ]
 }

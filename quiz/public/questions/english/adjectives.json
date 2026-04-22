@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-9",
+      "question": "This is a ___ story. (exciting)",
+      "choices": [
+        "exciting",
+        "excite",
+        "excitingly",
+        "excited"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-10",
+      "question": "The soup is ___. (hot)",
+      "choices": [
+        "hot",
+        "heat",
+        "hotly",
+        "hotter"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の後には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-11",
+      "question": "He has a ___ voice. (loud)",
+      "choices": [
+        "loud",
+        "loudly",
+        "louder",
+        "loudest"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "adjectives-12",
+      "question": "She feels ___. (tired)",
+      "choices": [
+        "tired",
+        "tire",
+        "tiredly",
+        "tiring"
+      ],
+      "correct": 0,
+      "explanation": "感覚動詞（feel）の後には形容詞を置きます"
     }
   ]
 }

@@ -99,6 +99,54 @@
       ],
       "correct": 0,
       "explanation": "81 ÷ 9 = 9"
+    },
+    {
+      "id": "div-9",
+      "question": "45 ÷ 9 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "9 × 5 = 45なので、45 ÷ 9 = 5"
+    },
+    {
+      "id": "div-10",
+      "question": "36 ÷ 4 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "4 × 9 = 36なので、36 ÷ 4 = 9"
+    },
+    {
+      "id": "div-11",
+      "question": "72 ÷ 8 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "8 × 9 = 72なので、72 ÷ 8 = 9"
+    },
+    {
+      "id": "div-12",
+      "question": "42 ÷ 6 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "6 × 7 = 42なので、42 ÷ 6 = 7"
     }
   ]
 }

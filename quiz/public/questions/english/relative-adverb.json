@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "時を表す関係副詞は when です"
+    },
+    {
+      "id": "relative-adverb-9",
+      "question": "This is the city ___ I grew up. (場所)",
+      "choices": [
+        "where",
+        "when",
+        "why",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "場所を表す関係副詞は where です"
+    },
+    {
+      "id": "relative-adverb-10",
+      "question": "I don't know the reason ___ he quit. (理由)",
+      "choices": [
+        "why",
+        "where",
+        "when",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "理由を表す関係副詞は why です"
+    },
+    {
+      "id": "relative-adverb-11",
+      "question": "Do you remember the day ___ we first met? (時)",
+      "choices": [
+        "when",
+        "where",
+        "why",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "時を表す関係副詞は when です"
+    },
+    {
+      "id": "relative-adverb-12",
+      "question": "This is the school ___ I studied. (場所)",
+      "choices": [
+        "where",
+        "when",
+        "why",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "場所を表す関係副詞は where です"
     }
   ]
 }

@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "goodの最上級は best です（不規則変化）"
+    },
+    {
+      "id": "comparatives-est-9",
+      "question": "She is the ___ girl in the school. (young)",
+      "choices": [
+        "youngest",
+        "most young",
+        "younger",
+        "more young"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の最上級は the -est です"
+    },
+    {
+      "id": "comparatives-est-10",
+      "question": "This is the ___ river in the country. (long)",
+      "choices": [
+        "longest",
+        "most long",
+        "longer",
+        "more long"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の最上級は the -est です"
+    },
+    {
+      "id": "comparatives-est-11",
+      "question": "This is the ___ film I have ever seen. (exciting)",
+      "choices": [
+        "most exciting",
+        "excitingest",
+        "more exciting",
+        "excitinger"
+      ],
+      "correct": 0,
+      "explanation": "長い形容詞の最上級は the most + 形容詞です"
+    },
+    {
+      "id": "comparatives-est-12",
+      "question": "He runs the ___ in the team. (fast)",
+      "choices": [
+        "fastest",
+        "most fast",
+        "faster",
+        "more fast"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の最上級は the -est です"
     }
   ]
 }

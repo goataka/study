@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "eで終わる語はeを取って -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-9",
+      "question": "get の-ing形は？",
+      "choices": [
+        "getting",
+        "geting",
+        "getting",
+        "get"
+      ],
+      "correct": 0,
+      "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-10",
+      "question": "eat の-ing形は？",
+      "choices": [
+        "eating",
+        "eatting",
+        "eattng",
+        "ate"
+      ],
+      "correct": 0,
+      "explanation": "通常の語はそのまま -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-11",
+      "question": "begin の-ing形は？",
+      "choices": [
+        "beginning",
+        "begining",
+        "beginng",
+        "began"
+      ],
+      "correct": 0,
+      "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
+    },
+    {
+      "id": "progressive-ing-12",
+      "question": "play の-ing形は？",
+      "choices": [
+        "playing",
+        "playin",
+        "playying",
+        "plaid"
+      ],
+      "correct": 0,
+      "explanation": "通常の語はそのまま -ing をつけます"
     }
   ]
 }

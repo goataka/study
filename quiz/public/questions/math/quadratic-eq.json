@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "因数分解すると(x+4)(x-2) = 0。よって x = -4, 2"
+    },
+    {
+      "id": "quad-eq-9",
+      "question": "x² - 4x + 4 = 0 を解くと？",
+      "choices": [
+        "x = 2",
+        "x = -2",
+        "x = 4, x = 0",
+        "x = 1, x = 3"
+      ],
+      "correct": 0,
+      "explanation": "(x-2)² = 0。よって x = 2（重解）"
+    },
+    {
+      "id": "quad-eq-10",
+      "question": "x² + 6x + 9 = 0 を解くと？",
+      "choices": [
+        "x = -3",
+        "x = 3",
+        "x = -9, x = 0",
+        "x = -1, x = -6"
+      ],
+      "correct": 0,
+      "explanation": "(x+3)² = 0。よって x = -3（重解）"
+    },
+    {
+      "id": "quad-eq-11",
+      "question": "x² - 16 = 0 を解くと？",
+      "choices": [
+        "x = ±4",
+        "x = 4",
+        "x = -4",
+        "x = ±8"
+      ],
+      "correct": 0,
+      "explanation": "x² = 16。よって x = ±4"
+    },
+    {
+      "id": "quad-eq-12",
+      "question": "x² - 3x - 10 = 0 を解くと？",
+      "choices": [
+        "x = 5, x = -2",
+        "x = 5, x = 2",
+        "x = -5, x = 2",
+        "x = -5, x = -2"
+      ],
+      "correct": 0,
+      "explanation": "(x-5)(x+2) = 0。よって x = 5, x = -2"
     }
   ]
 }

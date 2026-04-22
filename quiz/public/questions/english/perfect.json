@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "複数形の現在完了は have + 過去分詞です"
+    },
+    {
+      "id": "perfect-9",
+      "question": "I ___ never seen snow. (現在完了)",
+      "choices": [
+        "have",
+        "had",
+        "will have",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "現在完了は have/has + 過去分詞です"
+    },
+    {
+      "id": "perfect-10",
+      "question": "By the time she arrived, I ___ already eaten. (過去完了)",
+      "choices": [
+        "had",
+        "have",
+        "will have",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "過去完了は had + 過去分詞です"
+    },
+    {
+      "id": "perfect-11",
+      "question": "He ___ been waiting for an hour. (現在完了)",
+      "choices": [
+        "has",
+        "have",
+        "had",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の現在完了は has + 過去分詞です"
+    },
+    {
+      "id": "perfect-12",
+      "question": "They ___ finished by next Monday. (未来完了)",
+      "choices": [
+        "will have",
+        "have",
+        "had",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "未来完了は will have + 過去分詞です"
     }
   ]
 }

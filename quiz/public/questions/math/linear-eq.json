@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "両辺を3で割って x + 2 = 5。x = 5 - 2 = 3"
+    },
+    {
+      "id": "linear-eq-9",
+      "question": "x/3 + 2 = 5 を解くと x = ?",
+      "choices": [
+        "9",
+        "6",
+        "3",
+        "15"
+      ],
+      "correct": 0,
+      "explanation": "x/3 = 3, x = 9"
+    },
+    {
+      "id": "linear-eq-10",
+      "question": "2(x - 4) = 6 を解くと x = ?",
+      "choices": [
+        "7",
+        "5",
+        "8",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "2x - 8 = 6, 2x = 14, x = 7"
+    },
+    {
+      "id": "linear-eq-11",
+      "question": "5x + 3 = 3x + 11 を解くと x = ?",
+      "choices": [
+        "4",
+        "2",
+        "8",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "2x = 8, x = 4"
+    },
+    {
+      "id": "linear-eq-12",
+      "question": "4(x + 1) - 3x = 7 を解くと x = ?",
+      "choices": [
+        "3",
+        "4",
+        "5",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "4x + 4 - 3x = 7, x = 3"
     }
   ]
 }

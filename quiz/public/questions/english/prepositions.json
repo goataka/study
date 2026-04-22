@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "都市・国には in を使います"
+    },
+    {
+      "id": "prepositions-9",
+      "question": "I study English ___ weekdays.",
+      "choices": [
+        "on",
+        "in",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "曜日・特定の日には on を使います"
+    },
+    {
+      "id": "prepositions-10",
+      "question": "The cat is ___ the box.",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "内側には in を使います"
+    },
+    {
+      "id": "prepositions-11",
+      "question": "I meet her ___ noon.",
+      "choices": [
+        "at",
+        "in",
+        "on",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "特定の時刻には at を使います"
+    },
+    {
+      "id": "prepositions-12",
+      "question": "I wake up ___ six o'clock.",
+      "choices": [
+        "at",
+        "in",
+        "on",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "特定の時刻には at を使います"
     }
   ]
 }

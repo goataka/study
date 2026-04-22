@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "短い形容詞の比較級は -er をつけます"
+    },
+    {
+      "id": "comparatives-er-9",
+      "question": "She is ___ than me. (young)",
+      "choices": [
+        "younger",
+        "more young",
+        "youngest",
+        "most young"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の比較級は -er をつけます"
+    },
+    {
+      "id": "comparatives-er-10",
+      "question": "This road is ___ than that one. (wide)",
+      "choices": [
+        "wider",
+        "more wide",
+        "widest",
+        "wided"
+      ],
+      "correct": 0,
+      "explanation": "eで終わる語は r だけをつけます"
+    },
+    {
+      "id": "comparatives-er-11",
+      "question": "This film is ___ than that one. (exciting)",
+      "choices": [
+        "more exciting",
+        "excitinger",
+        "most exciting",
+        "excitingest"
+      ],
+      "correct": 0,
+      "explanation": "長い形容詞の比較級は more + 形容詞です"
+    },
+    {
+      "id": "comparatives-er-12",
+      "question": "He runs ___ than me. (fast)",
+      "choices": [
+        "faster",
+        "more fast",
+        "fastest",
+        "most fast"
+      ],
+      "correct": 0,
+      "explanation": "短い形容詞の比較級は -er をつけます"
     }
   ]
 }

@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "複数形のbe動詞の否定文は are not です"
+    },
+    {
+      "id": "negatives-9",
+      "question": "He ___ happy yesterday. (三人称・過去・be動詞否定)",
+      "choices": [
+        "was not",
+        "is not",
+        "were not",
+        "did not"
+      ],
+      "correct": 0,
+      "explanation": "過去のbe動詞（三人称単数）の否定文は was not です"
+    },
+    {
+      "id": "negatives-10",
+      "question": "She ___ like coffee. (三人称・現在・否定)",
+      "choices": [
+        "does not",
+        "do not",
+        "did not",
+        "is not"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の否定文は does not + 動詞の原形です"
+    },
+    {
+      "id": "negatives-11",
+      "question": "I ___ going to sleep now. (未来の予定・否定)",
+      "choices": [
+        "am not",
+        "will not",
+        "do not",
+        "did not"
+      ],
+      "correct": 0,
+      "explanation": "be going to の否定文は be動詞 + not です"
+    },
+    {
+      "id": "negatives-12",
+      "question": "They ___ watching TV then. (過去進行形・否定)",
+      "choices": [
+        "were not",
+        "are not",
+        "do not",
+        "did not"
+      ],
+      "correct": 0,
+      "explanation": "過去進行形の否定文は were/was + not + -ing です"
     }
   ]
 }

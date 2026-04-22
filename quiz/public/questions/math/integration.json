@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "∫5x⁴dx = 5×(x⁵/5) = x⁵ + C"
+    },
+    {
+      "id": "int-9",
+      "question": "∫(6x² + 4x)dx = ?",
+      "choices": [
+        "2x³ + 2x² + C",
+        "6x³ + 4x² + C",
+        "2x³ + 4x² + C",
+        "3x² + 2x + C"
+      ],
+      "correct": 0,
+      "explanation": "∫6x²dx = 2x³、∫4xdx = 2x²。よって 2x³ + 2x² + C"
+    },
+    {
+      "id": "int-10",
+      "question": "∫[0→3] (2x + 1)dx = ?",
+      "choices": [
+        "12",
+        "6",
+        "9",
+        "15"
+      ],
+      "correct": 0,
+      "explanation": "[x² + x]₀³ = (9 + 3) - 0 = 12"
+    },
+    {
+      "id": "int-11",
+      "question": "∫(x + 2)dx = ?",
+      "choices": [
+        "x²/2 + 2x + C",
+        "x² + 2x + C",
+        "x²/2 + 2 + C",
+        "x + 2x + C"
+      ],
+      "correct": 0,
+      "explanation": "∫xdx = x²/2、∫2dx = 2x。よって x²/2 + 2x + C"
+    },
+    {
+      "id": "int-12",
+      "question": "∫[1→2] (3x²)dx = ?",
+      "choices": [
+        "7",
+        "3",
+        "8",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "[x³]₁² = 8 - 1 = 7"
     }
   ]
 }

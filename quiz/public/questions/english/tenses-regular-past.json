@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "子音+yで終わる語は、yをiに変えて -ed をつけます"
+    },
+    {
+      "id": "tenses-regular-past-9",
+      "question": "I ___ my room last weekend. (clean)",
+      "choices": [
+        "cleaned",
+        "clean",
+        "will clean",
+        "am cleaning"
+      ],
+      "correct": 0,
+      "explanation": "規則動詞の過去形は動詞 + ed です"
+    },
+    {
+      "id": "tenses-regular-past-10",
+      "question": "She ___ her friend yesterday. (call)",
+      "choices": [
+        "called",
+        "calls",
+        "will call",
+        "is calling"
+      ],
+      "correct": 0,
+      "explanation": "規則動詞の過去形は動詞 + ed です"
+    },
+    {
+      "id": "tenses-regular-past-11",
+      "question": "They ___ the game last night. (finish)",
+      "choices": [
+        "finished",
+        "finish",
+        "will finish",
+        "are finishing"
+      ],
+      "correct": 0,
+      "explanation": "規則動詞の過去形は動詞 + ed です"
+    },
+    {
+      "id": "tenses-regular-past-12",
+      "question": "He ___ the car last Sunday. (wash)",
+      "choices": [
+        "washed",
+        "washes",
+        "will wash",
+        "is washing"
+      ],
+      "correct": 0,
+      "explanation": "規則動詞の過去形は動詞 + ed です"
     }
   ]
 }

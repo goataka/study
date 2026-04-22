@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "現在進行形は am/is/are + -ing です"
+    },
+    {
+      "id": "progressive-9",
+      "question": "I ___ learning a new language this year. (現在進行形)",
+      "choices": [
+        "am",
+        "was",
+        "will be",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "現在進行形は am/is/are + -ing です"
+    },
+    {
+      "id": "progressive-10",
+      "question": "She ___ traveling tomorrow at this time. (未来進行形)",
+      "choices": [
+        "will be",
+        "is",
+        "was",
+        "has been"
+      ],
+      "correct": 0,
+      "explanation": "未来進行形は will be + -ing です"
+    },
+    {
+      "id": "progressive-11",
+      "question": "They ___ watching a movie when I called. (過去進行形)",
+      "choices": [
+        "were",
+        "are",
+        "will be",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "過去進行形は was/were + -ing です"
+    },
+    {
+      "id": "progressive-12",
+      "question": "He ___ working right now. (現在進行形)",
+      "choices": [
+        "is",
+        "was",
+        "will be",
+        "has"
+      ],
+      "correct": 0,
+      "explanation": "現在進行形は am/is/are + -ing です"
     }
   ]
 }

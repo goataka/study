@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "逆接を表すには Although を使います"
+    },
+    {
+      "id": "conjunctions-9",
+      "question": "Study hard, ___ you will fail. (さもないと)",
+      "choices": [
+        "or",
+        "and",
+        "but",
+        "because"
+      ],
+      "correct": 0,
+      "explanation": "「さもないと」は or を使います"
+    },
+    {
+      "id": "conjunctions-10",
+      "question": "I'll wait here ___ you come back. (時)",
+      "choices": [
+        "until",
+        "before",
+        "after",
+        "when"
+      ],
+      "correct": 0,
+      "explanation": "「〜するまで」は until を使います"
+    },
+    {
+      "id": "conjunctions-11",
+      "question": "I'll call you ___ I arrive. (時)",
+      "choices": [
+        "when",
+        "if",
+        "because",
+        "but"
+      ],
+      "correct": 0,
+      "explanation": "「〜するとき」は when を使います"
+    },
+    {
+      "id": "conjunctions-12",
+      "question": "I brush my teeth ___ I go to bed. (時)",
+      "choices": [
+        "before",
+        "after",
+        "when",
+        "if"
+      ],
+      "correct": 0,
+      "explanation": "「〜の前に」は before を使います"
     }
   ]
 }

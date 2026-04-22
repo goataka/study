@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "Youの過去形には were を使います"
+    },
+    {
+      "id": "tenses-be-past-9",
+      "question": "He ___ sick last week.",
+      "choices": [
+        "was",
+        "is",
+        "will be",
+        "were"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の過去のbe動詞は was です"
+    },
+    {
+      "id": "tenses-be-past-10",
+      "question": "They ___ at school yesterday.",
+      "choices": [
+        "were",
+        "was",
+        "are",
+        "had"
+      ],
+      "correct": 0,
+      "explanation": "複数形の過去のbe動詞は were です"
+    },
+    {
+      "id": "tenses-be-past-11",
+      "question": "The weather ___ cold last night.",
+      "choices": [
+        "was",
+        "is",
+        "will be",
+        "were"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の過去のbe動詞は was です"
+    },
+    {
+      "id": "tenses-be-past-12",
+      "question": "I ___ home all day yesterday.",
+      "choices": [
+        "was",
+        "am",
+        "will be",
+        "were"
+      ],
+      "correct": 0,
+      "explanation": "一人称単数の過去のbe動詞は was です"
     }
   ]
 }

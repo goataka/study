@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "tenses-regular-future-9",
+      "question": "I ___ breakfast tomorrow morning. (cook)",
+      "choices": [
+        "will cook",
+        "cook",
+        "cooked",
+        "am cooking"
+      ],
+      "correct": 0,
+      "explanation": "未来形は will + 動詞の原形です"
+    },
+    {
+      "id": "tenses-regular-future-10",
+      "question": "She ___ her friend next week. (visit)",
+      "choices": [
+        "will visit",
+        "visits",
+        "visited",
+        "is visiting"
+      ],
+      "correct": 0,
+      "explanation": "未来形は will + 動詞の原形です"
+    },
+    {
+      "id": "tenses-regular-future-11",
+      "question": "They ___ to the beach next summer. (travel)",
+      "choices": [
+        "will travel",
+        "travel",
+        "traveled",
+        "are traveling"
+      ],
+      "correct": 0,
+      "explanation": "未来形は will + 動詞の原形です"
+    },
+    {
+      "id": "tenses-regular-future-12",
+      "question": "He ___ a new book next month. (buy)",
+      "choices": [
+        "will buy",
+        "buys",
+        "bought",
+        "is buying"
+      ],
+      "correct": 0,
+      "explanation": "未来形は will + 動詞の原形です"
     }
   ]
 }

@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "丁寧な依頼には Could を使います"
+    },
+    {
+      "id": "modals-basic-9",
+      "question": "___ I use your phone? (〜してもいいですか)",
+      "choices": [
+        "May",
+        "Must",
+        "Should",
+        "Will"
+      ],
+      "correct": 0,
+      "explanation": "許可を求めるには May を使います"
+    },
+    {
+      "id": "modals-basic-10",
+      "question": "You ___ exercise more. (〜したほうがいい)",
+      "choices": [
+        "should",
+        "can",
+        "must",
+        "might"
+      ],
+      "correct": 0,
+      "explanation": "「したほうがいい」は should を使います"
+    },
+    {
+      "id": "modals-basic-11",
+      "question": "It ___ snow tomorrow. (〜するかもしれない)",
+      "choices": [
+        "might",
+        "must",
+        "will",
+        "should"
+      ],
+      "correct": 0,
+      "explanation": "「かもしれない」は might を使います"
+    },
+    {
+      "id": "modals-basic-12",
+      "question": "She ___ speak three languages. (できる)",
+      "choices": [
+        "can",
+        "may",
+        "must",
+        "should"
+      ],
+      "correct": 0,
+      "explanation": "「できる」は can を使います"
     }
   ]
 }

@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "「誰の？」は Whose を使います"
+    },
+    {
+      "id": "questions-wh-9",
+      "question": "___ time is it? (何時？)",
+      "choices": [
+        "What",
+        "When",
+        "Which",
+        "How"
+      ],
+      "correct": 0,
+      "explanation": "「何時？」は What time を使います"
+    },
+    {
+      "id": "questions-wh-10",
+      "question": "___ did you go on vacation? (どこへ？)",
+      "choices": [
+        "Where",
+        "When",
+        "What",
+        "Why"
+      ],
+      "correct": 0,
+      "explanation": "「どこへ？」は Where を使います"
+    },
+    {
+      "id": "questions-wh-11",
+      "question": "___ far is it to the station? (どのくらい遠い？)",
+      "choices": [
+        "How",
+        "What",
+        "Where",
+        "Which"
+      ],
+      "correct": 0,
+      "explanation": "「どのくらい」は How を使います"
+    },
+    {
+      "id": "questions-wh-12",
+      "question": "___ did you come here? (なぜ？)",
+      "choices": [
+        "Why",
+        "When",
+        "What",
+        "How"
+      ],
+      "correct": 0,
+      "explanation": "「なぜ？」は Why を使います"
     }
   ]
 }

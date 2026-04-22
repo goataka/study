@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "42 × 25 = 1050。小数2桁（1桁+1桁）なので、10.50"
+    },
+    {
+      "id": "dec-mult-9",
+      "question": "0.6 × 4 = ?",
+      "choices": [
+        "2.4",
+        "2.0",
+        "2.8",
+        "1.6"
+      ],
+      "correct": 0,
+      "explanation": "0.6 × 4 = 2.4"
+    },
+    {
+      "id": "dec-mult-10",
+      "question": "2.4 × 3 = ?",
+      "choices": [
+        "7.2",
+        "6.2",
+        "8.2",
+        "7.0"
+      ],
+      "correct": 0,
+      "explanation": "2.4 × 3 = 7.2"
+    },
+    {
+      "id": "dec-mult-11",
+      "question": "1.1 × 1.1 = ?",
+      "choices": [
+        "1.21",
+        "1.11",
+        "1.01",
+        "1.22"
+      ],
+      "correct": 0,
+      "explanation": "1.1 × 1.1 = 1.21"
+    },
+    {
+      "id": "dec-mult-12",
+      "question": "0.4 × 0.4 = ?",
+      "choices": [
+        "0.16",
+        "0.08",
+        "0.4",
+        "0.44"
+      ],
+      "correct": 0,
+      "explanation": "0.4 × 0.4 = 0.16"
     }
   ]
 }

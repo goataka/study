@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "物が主語の場合は that を使えます"
+    },
+    {
+      "id": "relative-subject-9",
+      "question": "I have a friend ___ can cook well. (人・主格)",
+      "choices": [
+        "who",
+        "which",
+        "whose",
+        "whom"
+      ],
+      "correct": 0,
+      "explanation": "人を先行詞とする主格の関係代名詞は who/that です"
+    },
+    {
+      "id": "relative-subject-10",
+      "question": "There is a cat ___ sleeps in the garden. (物・主格)",
+      "choices": [
+        "that",
+        "who",
+        "whose",
+        "whom"
+      ],
+      "correct": 0,
+      "explanation": "物を先行詞とする主格の関係代名詞は that/which です"
+    },
+    {
+      "id": "relative-subject-11",
+      "question": "She knows a boy ___ won the race. (人・主格)",
+      "choices": [
+        "who",
+        "which",
+        "whose",
+        "whom"
+      ],
+      "correct": 0,
+      "explanation": "人を先行詞とする主格の関係代名詞は who/that です"
+    },
+    {
+      "id": "relative-subject-12",
+      "question": "I bought a book ___ is very useful. (物・主格)",
+      "choices": [
+        "which",
+        "who",
+        "whose",
+        "whom"
+      ],
+      "correct": 0,
+      "explanation": "物を先行詞とする主格の関係代名詞は which/that です"
     }
   ]
 }

@@ -66,6 +66,66 @@
       ],
       "correct": 0,
       "explanation": "n + a → ナ となり、アナップル"
+    },
+    {
+      "id": "linking-6",
+      "question": "「get up」はどう発音する？",
+      "choices": [
+        "ゲ タッ プ",
+        "ゲット アップ",
+        "ゲタップ",
+        "ゲットプ"
+      ],
+      "correct": 0,
+      "explanation": "t + u → タ となり、ゲ タッ プ"
+    },
+    {
+      "id": "linking-7",
+      "question": "「come on」はどう発音する？",
+      "choices": [
+        "カモン",
+        "カム オン",
+        "カムオン",
+        "コモン"
+      ],
+      "correct": 0,
+      "explanation": "m + o → モ となり、カモン"
+    },
+    {
+      "id": "linking-8",
+      "question": "「it is」はどう発音する？",
+      "choices": [
+        "イ ティ ズ",
+        "イット イズ",
+        "イッイズ",
+        "イティズ"
+      ],
+      "correct": 0,
+      "explanation": "t + i → ティ となり、イ ティ ズ"
+    },
+    {
+      "id": "linking-9",
+      "question": "「hold on」はどう発音する？",
+      "choices": [
+        "ホウ ロン",
+        "ホールド オン",
+        "ホールドン",
+        "ホウルドン"
+      ],
+      "correct": 0,
+      "explanation": "d + o → ロ となり、ホウ ロン"
+    },
+    {
+      "id": "linking-10",
+      "question": "「not at all」はどう発音する？",
+      "choices": [
+        "ノッ タッ トール",
+        "ノット アット オール",
+        "ノタトール",
+        "ノタール"
+      ],
+      "correct": 0,
+      "explanation": "t + a → タ、t + a → タ となり、ノッ タッ トール"
     }
   ]
 }

@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "tenses-be-future-9",
+      "question": "The weather ___ nice tomorrow.",
+      "choices": [
+        "will be",
+        "is",
+        "was",
+        "would be"
+      ],
+      "correct": 0,
+      "explanation": "未来のbe動詞は will be です"
+    },
+    {
+      "id": "tenses-be-future-10",
+      "question": "My parents ___ proud of me.",
+      "choices": [
+        "will be",
+        "are",
+        "were",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "未来のbe動詞は will be です"
+    },
+    {
+      "id": "tenses-be-future-11",
+      "question": "The store ___ open next Monday.",
+      "choices": [
+        "will be",
+        "is",
+        "was",
+        "be"
+      ],
+      "correct": 0,
+      "explanation": "未来のbe動詞は will be です"
+    },
+    {
+      "id": "tenses-be-future-12",
+      "question": "I ___ at home tomorrow evening.",
+      "choices": [
+        "will be",
+        "am",
+        "was",
+        "been"
+      ],
+      "correct": 0,
+      "explanation": "未来のbe動詞は will be です"
     }
   ]
 }

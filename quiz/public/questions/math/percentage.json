@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "400 × 0.1 = 40。10%は0.1と同じです"
+    },
+    {
+      "id": "percent-9",
+      "question": "500の5%はいくつですか？",
+      "choices": [
+        "25",
+        "50",
+        "100",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "500 × 0.05 = 25"
+    },
+    {
+      "id": "percent-10",
+      "question": "80の40%はいくつですか？",
+      "choices": [
+        "32",
+        "40",
+        "20",
+        "8"
+      ],
+      "correct": 0,
+      "explanation": "80 × 0.4 = 32"
+    },
+    {
+      "id": "percent-11",
+      "question": "時速50kmで3時間走った距離は？",
+      "choices": [
+        "150km",
+        "200km",
+        "100km",
+        "250km"
+      ],
+      "correct": 0,
+      "explanation": "距離 = 速さ × 時間 = 50 × 3 = 150km"
+    },
+    {
+      "id": "percent-12",
+      "question": "240kmを4時間で走った速さは？",
+      "choices": [
+        "時速60km",
+        "時速80km",
+        "時速40km",
+        "時速120km"
+      ],
+      "correct": 0,
+      "explanation": "速さ = 距離 ÷ 時間 = 240 ÷ 4 = 60km/h"
     }
   ]
 }

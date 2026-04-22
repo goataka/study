@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "speakの過去分詞は spoken です"
+    },
+    {
+      "id": "perfect-participles-9",
+      "question": "know の過去分詞は？",
+      "choices": [
+        "known",
+        "knew",
+        "know",
+        "knowed"
+      ],
+      "correct": 0,
+      "explanation": "knowの過去分詞は known です"
+    },
+    {
+      "id": "perfect-participles-10",
+      "question": "give の過去分詞は？",
+      "choices": [
+        "given",
+        "gave",
+        "give",
+        "gived"
+      ],
+      "correct": 0,
+      "explanation": "giveの過去分詞は given です"
+    },
+    {
+      "id": "perfect-participles-11",
+      "question": "break の過去分詞は？",
+      "choices": [
+        "broken",
+        "broke",
+        "break",
+        "breaked"
+      ],
+      "correct": 0,
+      "explanation": "breakの過去分詞は broken です"
+    },
+    {
+      "id": "perfect-participles-12",
+      "question": "choose の過去分詞は？",
+      "choices": [
+        "chosen",
+        "chose",
+        "choose",
+        "choosed"
+      ],
+      "correct": 0,
+      "explanation": "chooseの過去分詞は chosen です"
     }
   ]
 }

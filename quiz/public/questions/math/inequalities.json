@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "x/2 > 2。両辺を2倍して x > 4"
+    },
+    {
+      "id": "ineq-9",
+      "question": "3x + 5 > 11 を解くと？",
+      "choices": [
+        "x > 2",
+        "x < 2",
+        "x > 3",
+        "x < 3"
+      ],
+      "correct": 0,
+      "explanation": "3x > 6, x > 2"
+    },
+    {
+      "id": "ineq-10",
+      "question": "2x - 4 ≤ 6 を解くと？",
+      "choices": [
+        "x ≤ 5",
+        "x ≥ 5",
+        "x ≤ 1",
+        "x ≥ 1"
+      ],
+      "correct": 0,
+      "explanation": "2x ≤ 10, x ≤ 5"
+    },
+    {
+      "id": "ineq-11",
+      "question": "-4x + 8 > 0 を解くと？",
+      "choices": [
+        "x < 2",
+        "x > 2",
+        "x < -2",
+        "x > -2"
+      ],
+      "correct": 0,
+      "explanation": "-4x > -8, 両辺を-4で割ると不等号が逆転: x < 2"
+    },
+    {
+      "id": "ineq-12",
+      "question": "6x - 3 ≥ 4x + 7 を解くと？",
+      "choices": [
+        "x ≥ 5",
+        "x ≤ 5",
+        "x ≥ 2",
+        "x ≤ 2"
+      ],
+      "correct": 0,
+      "explanation": "2x ≥ 10, x ≥ 5"
     }
   ]
 }

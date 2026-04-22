@@ -66,6 +66,66 @@
       ],
       "correct": 0,
       "explanation": "t → リ となり、パー リー"
+    },
+    {
+      "id": "flapping-6",
+      "question": "「butter」の「tt」はどう発音される？",
+      "choices": [
+        "ラ",
+        "ト",
+        "タ",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "tt → ラ となり、バ ラー"
+    },
+    {
+      "id": "flapping-7",
+      "question": "「letter」の「tt」はどう発音される？",
+      "choices": [
+        "ラ",
+        "ト",
+        "タ",
+        "ル"
+      ],
+      "correct": 0,
+      "explanation": "tt → ラ となり、レ ラー"
+    },
+    {
+      "id": "flapping-8",
+      "question": "「bottle」の「tt」はどう発音される？",
+      "choices": [
+        "ロ",
+        "ト",
+        "ル",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "tt → ロ となり、ボ ロー"
+    },
+    {
+      "id": "flapping-9",
+      "question": "「later」の「t」はどう発音される？",
+      "choices": [
+        "ラ",
+        "ト",
+        "タ",
+        "ダ"
+      ],
+      "correct": 0,
+      "explanation": "t → ラ となり、レイ ラー"
+    },
+    {
+      "id": "flapping-10",
+      "question": "「total」の二番目の「t」はどう発音される？",
+      "choices": [
+        "ロ",
+        "ト",
+        "ル",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "母音に挟まれた t → ロ となり、トウ ロー"
     }
   ]
 }

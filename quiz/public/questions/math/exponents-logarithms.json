@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "4^(1/2) = √4 = 2。分数の指数は累乗根を表します"
+    },
+    {
+      "id": "exp-log-9",
+      "question": "2⁰ = ?",
+      "choices": [
+        "1",
+        "0",
+        "2",
+        "1/2"
+      ],
+      "correct": 0,
+      "explanation": "任意の数の0乗は1です"
+    },
+    {
+      "id": "exp-log-10",
+      "question": "log₂(1/4) = ?",
+      "choices": [
+        "-2",
+        "-1",
+        "2",
+        "1/4"
+      ],
+      "correct": 0,
+      "explanation": "1/4 = 2⁻²なので log₂(1/4) = -2"
+    },
+    {
+      "id": "exp-log-11",
+      "question": "log₁₀1000 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1/3"
+      ],
+      "correct": 0,
+      "explanation": "1000 = 10³なので log₁₀1000 = 3"
+    },
+    {
+      "id": "exp-log-12",
+      "question": "8^(1/3) = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "1/2"
+      ],
+      "correct": 0,
+      "explanation": "8^(1/3) = ∛8 = 2"
     }
   ]
 }

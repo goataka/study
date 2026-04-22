@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "間接疑問文では平叙文の語順（主語+動詞）になります"
+    },
+    {
+      "id": "reported-question-9",
+      "question": "He asked, \"How old are you?\" → He asked ___ I was.",
+      "choices": [
+        "how old",
+        "how",
+        "what age",
+        "how much"
+      ],
+      "correct": 0,
+      "explanation": "how old はそのまま使います"
+    },
+    {
+      "id": "reported-question-10",
+      "question": "She asked, \"Who is that?\" → She asked ___ that was.",
+      "choices": [
+        "who",
+        "whom",
+        "whose",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "who はそのまま使います"
+    },
+    {
+      "id": "reported-question-11",
+      "question": "He asked, \"Have you eaten?\" → He asked ___ I had eaten.",
+      "choices": [
+        "if",
+        "whether",
+        "that",
+        "what"
+      ],
+      "correct": 0,
+      "explanation": "Yes/No疑問文の間接話法は if/whether を使います"
+    },
+    {
+      "id": "reported-question-12",
+      "question": "She asked, \"What time does it start?\" → She asked ___ it started.",
+      "choices": [
+        "what time",
+        "when",
+        "how",
+        "what"
+      ],
+      "correct": 0,
+      "explanation": "what time はそのまま使います"
     }
   ]
 }

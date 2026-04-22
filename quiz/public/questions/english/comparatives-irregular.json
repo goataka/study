@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "badの最上級は worst を使います"
+    },
+    {
+      "id": "comparatives-irregular-9",
+      "question": "little の比較級は？",
+      "choices": [
+        "less",
+        "littler",
+        "more little",
+        "least"
+      ],
+      "correct": 0,
+      "explanation": "littleの比較級は less です"
+    },
+    {
+      "id": "comparatives-irregular-10",
+      "question": "little の最上級は？",
+      "choices": [
+        "least",
+        "littlest",
+        "most little",
+        "less"
+      ],
+      "correct": 0,
+      "explanation": "littleの最上級は least です"
+    },
+    {
+      "id": "comparatives-irregular-11",
+      "question": "This is ___ than that. (little)",
+      "choices": [
+        "less",
+        "littler",
+        "more little",
+        "least"
+      ],
+      "correct": 0,
+      "explanation": "littleの比較級は less を使います"
+    },
+    {
+      "id": "comparatives-irregular-12",
+      "question": "He has the ___ free time of all. (little)",
+      "choices": [
+        "least",
+        "less",
+        "littlest",
+        "most little"
+      ],
+      "correct": 0,
+      "explanation": "littleの最上級は least を使います"
     }
   ]
 }

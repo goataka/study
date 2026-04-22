@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "月のような唯一のものには the を使います"
+    },
+    {
+      "id": "articles-9",
+      "question": "I play ___ violin.",
+      "choices": [
+        "the",
+        "a",
+        "an",
+        "（なし）"
+      ],
+      "correct": 0,
+      "explanation": "楽器名の前には the を使います"
+    },
+    {
+      "id": "articles-10",
+      "question": "___ sky is blue.",
+      "choices": [
+        "The",
+        "A",
+        "An",
+        "（なし）"
+      ],
+      "correct": 0,
+      "explanation": "唯一のものには the を使います"
+    },
+    {
+      "id": "articles-11",
+      "question": "She wants to be ___ engineer.",
+      "choices": [
+        "an",
+        "a",
+        "the",
+        "（なし）"
+      ],
+      "correct": 0,
+      "explanation": "母音で始まる単語の前には an を使います"
+    },
+    {
+      "id": "articles-12",
+      "question": "I go to ___ school every day.",
+      "choices": [
+        "（なし）",
+        "a",
+        "an",
+        "the"
+      ],
+      "correct": 0,
+      "explanation": "施設を目的として使う場合は冠詞を付けません"
     }
   ]
 }

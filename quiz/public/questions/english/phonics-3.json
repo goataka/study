@@ -66,6 +66,66 @@
       ],
       "correct": 0,
       "explanation": "street = ストゥル イー ト"
+    },
+    {
+      "id": "phonics-3-shr1",
+      "question": "「shrink」の「shr」の音は？",
+      "choices": [
+        "シュル",
+        "シ",
+        "スル",
+        "チュル"
+      ],
+      "correct": 0,
+      "explanation": "shrink = シュル イン ク"
+    },
+    {
+      "id": "phonics-3-spl1",
+      "question": "「split」の「spl」の音は？",
+      "choices": [
+        "スプル",
+        "スル",
+        "プル",
+        "スプ"
+      ],
+      "correct": 0,
+      "explanation": "split = スプル イッ ト"
+    },
+    {
+      "id": "phonics-3-spr1",
+      "question": "「spring」の「spr」の音は？",
+      "choices": [
+        "スプル",
+        "スル",
+        "プル",
+        "スプ"
+      ],
+      "correct": 0,
+      "explanation": "spring = スプル イン グ"
+    },
+    {
+      "id": "phonics-3-nch1",
+      "question": "「lunch」の「nch」の音は？",
+      "choices": [
+        "ンチ",
+        "ン",
+        "チ",
+        "ンク"
+      ],
+      "correct": 0,
+      "explanation": "lunch = ラン チ"
+    },
+    {
+      "id": "phonics-3-squ1",
+      "question": "「square」の「squ」の音は？",
+      "choices": [
+        "スクウ",
+        "スク",
+        "クウ",
+        "ス"
+      ],
+      "correct": 0,
+      "explanation": "square = スクウ エア"
     }
   ]
 }

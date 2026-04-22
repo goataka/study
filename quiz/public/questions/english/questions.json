@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "三人称単数のbe動詞の疑問文は Is で始めます"
+    },
+    {
+      "id": "questions-9",
+      "question": "___ you been to Paris? (現在完了)",
+      "choices": [
+        "Have",
+        "Had",
+        "Did",
+        "Are"
+      ],
+      "correct": 0,
+      "explanation": "現在完了の疑問文は Have/Has で始めます"
+    },
+    {
+      "id": "questions-10",
+      "question": "___ she a doctor? (be動詞・現在・三人称)",
+      "choices": [
+        "Is",
+        "Are",
+        "Does",
+        "Was"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数のbe動詞の疑問文は Is で始めます"
+    },
+    {
+      "id": "questions-11",
+      "question": "___ they watching TV now? (進行形)",
+      "choices": [
+        "Are",
+        "Is",
+        "Do",
+        "Were"
+      ],
+      "correct": 0,
+      "explanation": "進行形の疑問文はbe動詞を前に出します"
+    },
+    {
+      "id": "questions-12",
+      "question": "___ he finish by tomorrow? (未来)",
+      "choices": [
+        "Will",
+        "Does",
+        "Did",
+        "Is"
+      ],
+      "correct": 0,
+      "explanation": "未来の疑問文は Will で始めます"
     }
   ]
 }

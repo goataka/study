@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "過去の後悔は should have + 過去分詞です"
+    },
+    {
+      "id": "modals-past-9",
+      "question": "I ___ play tennis when I was young. (できた)",
+      "choices": [
+        "could",
+        "can",
+        "would",
+        "should"
+      ],
+      "correct": 0,
+      "explanation": "過去の能力は could を使います"
+    },
+    {
+      "id": "modals-past-10",
+      "question": "He ___ stayed home that day. (すべきだった)",
+      "choices": [
+        "should have",
+        "should",
+        "could",
+        "would"
+      ],
+      "correct": 0,
+      "explanation": "過去の後悔は should have + 過去分詞です"
+    },
+    {
+      "id": "modals-past-11",
+      "question": "It ___ been very hot that day. (だったに違いない)",
+      "choices": [
+        "must have",
+        "must",
+        "should have",
+        "would have"
+      ],
+      "correct": 0,
+      "explanation": "過去の強い推量は must have + 過去分詞です"
+    },
+    {
+      "id": "modals-past-12",
+      "question": "You ___ worried so much. (する必要はなかった)",
+      "choices": [
+        "need not have",
+        "need not",
+        "should not",
+        "must not"
+      ],
+      "correct": 0,
+      "explanation": "不必要な過去の行為は need not have + 過去分詞です"
     }
   ]
 }

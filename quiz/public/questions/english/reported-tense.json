@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "mayはmightに変わります"
+    },
+    {
+      "id": "reported-tense-9",
+      "question": "He said, \"I must go.\" → He said that he ___ go.",
+      "choices": [
+        "had to",
+        "must",
+        "has to",
+        "would"
+      ],
+      "correct": 0,
+      "explanation": "must は間接話法で had to に変わります"
+    },
+    {
+      "id": "reported-tense-10",
+      "question": "She said, \"I was eating.\" → She said that she ___ eating.",
+      "choices": [
+        "had been",
+        "was",
+        "has been",
+        "would be"
+      ],
+      "correct": 0,
+      "explanation": "過去進行形は間接話法で過去完了進行形 had been に変わります"
+    },
+    {
+      "id": "reported-tense-11",
+      "question": "He said, \"I have been here.\" → He said that he ___ been there.",
+      "choices": [
+        "had",
+        "has",
+        "have",
+        "would have"
+      ],
+      "correct": 0,
+      "explanation": "現在完了形は間接話法で過去完了形 had に変わります"
+    },
+    {
+      "id": "reported-tense-12",
+      "question": "She said, \"I am going to travel.\" → She said that she ___ going to travel.",
+      "choices": [
+        "was",
+        "is",
+        "will be",
+        "had been"
+      ],
+      "correct": 0,
+      "explanation": "am は間接話法で was に変わります"
     }
   ]
 }

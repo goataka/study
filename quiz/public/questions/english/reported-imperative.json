@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "命令文の間接話法は told または asked を使います"
+    },
+    {
+      "id": "reported-imperative-9",
+      "question": "She said, \"Close the door.\" → She told me ___ the door.",
+      "choices": [
+        "to close",
+        "close",
+        "closing",
+        "closed"
+      ],
+      "correct": 0,
+      "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-10",
+      "question": "He said, \"Don't eat that.\" → He told me ___ that.",
+      "choices": [
+        "not to eat",
+        "not eat",
+        "to not eat",
+        "don't eat"
+      ],
+      "correct": 0,
+      "explanation": "否定命令文の間接話法は told + 人 + not to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-11",
+      "question": "She said, \"Wait here.\" → She told me ___ there.",
+      "choices": [
+        "to wait",
+        "wait",
+        "waiting",
+        "waited"
+      ],
+      "correct": 0,
+      "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
+    },
+    {
+      "id": "reported-imperative-12",
+      "question": "He said, \"Please sit down.\" → He asked me ___ down.",
+      "choices": [
+        "to sit",
+        "sit",
+        "sitting",
+        "sat"
+      ],
+      "correct": 0,
+      "explanation": "依頼の命令文の間接話法は asked + 人 + to + 動詞の原形です"
     }
   ]
 }

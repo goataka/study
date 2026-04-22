@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "りんご=80円を代入。80+y=180なので、y=100円"
+    },
+    {
+      "id": "simul-eq-9",
+      "question": "x + y = 8, 2x + y = 13 を解くと x = ?",
+      "choices": [
+        "5",
+        "3",
+        "8",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "引き算：x = 5"
+    },
+    {
+      "id": "simul-eq-10",
+      "question": "x + y = 8, 2x + y = 13 を解くと y = ?",
+      "choices": [
+        "3",
+        "5",
+        "8",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "x=5を代入：5+y=8, y=3"
+    },
+    {
+      "id": "simul-eq-11",
+      "question": "3x + 2y = 14, x + 2y = 6 を解くと x = ?",
+      "choices": [
+        "4",
+        "2",
+        "3",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "引き算：2x=8, x=4"
+    },
+    {
+      "id": "simul-eq-12",
+      "question": "えんぴつ1本とノート1冊で220円、えんぴつ3本とノート1冊で380円。えんぴつ1本は何円？",
+      "choices": [
+        "80円",
+        "60円",
+        "100円",
+        "120円"
+      ],
+      "correct": 0,
+      "explanation": "差を取ると：2本分=160円、1本=80円"
     }
   ]
 }

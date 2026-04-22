@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "目的格の関係代名詞は省略可能です"
+    },
+    {
+      "id": "relative-object-9",
+      "question": "The cake ___ she made was delicious. (物・目的格)",
+      "choices": [
+        "that",
+        "who",
+        "whose",
+        "whom"
+      ],
+      "correct": 0,
+      "explanation": "物を先行詞とする目的格の関係代名詞は that/which です"
+    },
+    {
+      "id": "relative-object-10",
+      "question": "The woman ___ he married is a doctor. (人・目的格)",
+      "choices": [
+        "who",
+        "which",
+        "whose",
+        "that"
+      ],
+      "correct": 0,
+      "explanation": "人を先行詞とする目的格の関係代名詞は who/whom/that です"
+    },
+    {
+      "id": "relative-object-11",
+      "question": "The song ___ I like best is by Beatles. (物・目的格)",
+      "choices": [
+        "that",
+        "who",
+        "whose",
+        "whom"
+      ],
+      "correct": 0,
+      "explanation": "物を先行詞とする目的格の関係代名詞は that/which です"
+    },
+    {
+      "id": "relative-object-12",
+      "question": "The student ___ the teacher praised is Tom. (人・目的格)",
+      "choices": [
+        "whom",
+        "which",
+        "whose",
+        "that"
+      ],
+      "correct": 0,
+      "explanation": "人を先行詞とする目的格の関係代名詞は whom/who/that です"
     }
   ]
 }

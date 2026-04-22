@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "theseは those に変わります"
+    },
+    {
+      "id": "reported-expressions-9",
+      "question": "\"I live here.\" → He said he lived ___.",
+      "choices": [
+        "there",
+        "here",
+        "that",
+        "this"
+      ],
+      "correct": 0,
+      "explanation": "here は間接話法で there に変わります"
+    },
+    {
+      "id": "reported-expressions-10",
+      "question": "\"I will come next week.\" → He said he would come ___ following week.",
+      "choices": [
+        "the",
+        "a",
+        "that",
+        "this"
+      ],
+      "correct": 0,
+      "explanation": "next は間接話法で the following に変わります"
+    },
+    {
+      "id": "reported-expressions-11",
+      "question": "this morning は間接話法で何に変わる？",
+      "choices": [
+        "that morning",
+        "this morning",
+        "the morning",
+        "that day"
+      ],
+      "correct": 0,
+      "explanation": "this morning は that morning に変わります"
+    },
+    {
+      "id": "reported-expressions-12",
+      "question": "tonight は間接話法で何に変わる？",
+      "choices": [
+        "that night",
+        "this night",
+        "tonight",
+        "the night"
+      ],
+      "correct": 0,
+      "explanation": "tonight は that night に変わります"
     }
   ]
 }

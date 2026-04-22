@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "平方完成すると y = 2(x-2)² + 2。下に凸なので最小値は2（x=2のとき）"
+    },
+    {
+      "id": "quad-func-9",
+      "question": "y = (x - 4)² - 3 の頂点は？",
+      "choices": [
+        "(4, -3)",
+        "(-4, -3)",
+        "(4, 3)",
+        "(-4, 3)"
+      ],
+      "correct": 0,
+      "explanation": "y = (x-4)²-3 の頂点は (4, -3)"
+    },
+    {
+      "id": "quad-func-10",
+      "question": "y = 3(x + 1)² - 5 の頂点は？",
+      "choices": [
+        "(-1, -5)",
+        "(1, -5)",
+        "(-1, 5)",
+        "(1, 5)"
+      ],
+      "correct": 0,
+      "explanation": "y = 3(x+1)²-5 の頂点は (-1, -5)"
+    },
+    {
+      "id": "quad-func-11",
+      "question": "y = x² + 2x + 3 の最小値は？",
+      "choices": [
+        "2",
+        "3",
+        "1",
+        "0"
+      ],
+      "correct": 0,
+      "explanation": "y = (x+1)² + 2 と変形。最小値は x = -1 のとき y = 2"
+    },
+    {
+      "id": "quad-func-12",
+      "question": "y = (x + 3)² - 7 の軸は？",
+      "choices": [
+        "x = -3",
+        "x = 3",
+        "x = -7",
+        "x = 7"
+      ],
+      "correct": 0,
+      "explanation": "y = (x+3)²-7 の軸は x = -3"
     }
   ]
 }

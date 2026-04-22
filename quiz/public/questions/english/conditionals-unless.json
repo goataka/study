@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "unless節では現在形を使います"
+    },
+    {
+      "id": "conditionals-unless-9",
+      "question": "We'll miss the bus ___ we leave now.",
+      "choices": [
+        "unless",
+        "if",
+        "when",
+        "because"
+      ],
+      "correct": 0,
+      "explanation": "「〜しない限り」は unless を使います"
+    },
+    {
+      "id": "conditionals-unless-10",
+      "question": "___ you have a ticket, you can't enter.",
+      "choices": [
+        "Unless",
+        "If",
+        "When",
+        "Because"
+      ],
+      "correct": 0,
+      "explanation": "「〜しない限り」は unless を使います"
+    },
+    {
+      "id": "conditionals-unless-11",
+      "question": "I won't lend you money ___ you promise to pay it back.",
+      "choices": [
+        "unless",
+        "if",
+        "when",
+        "until"
+      ],
+      "correct": 0,
+      "explanation": "「〜しない限り」は unless を使います"
+    },
+    {
+      "id": "conditionals-unless-12",
+      "question": "Unless she ___ now, she'll be late. (hurry)",
+      "choices": [
+        "hurries",
+        "hurry",
+        "hurried",
+        "will hurry"
+      ],
+      "correct": 0,
+      "explanation": "unless節では現在形を使います（三人称単数は -es）"
     }
   ]
 }

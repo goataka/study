@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "まず分配法則。5×2a=10a、5×(-3)=-15。10a-15+4a=14a-15"
+    },
+    {
+      "id": "alg-expr-9",
+      "question": "3(x - 4) = ?",
+      "choices": [
+        "3x - 12",
+        "3x - 4",
+        "3x + 12",
+        "x - 12"
+      ],
+      "correct": 0,
+      "explanation": "分配法則：3 × x = 3x、3 × (-4) = -12"
+    },
+    {
+      "id": "alg-expr-10",
+      "question": "2a + 3b - a + 2b = ?",
+      "choices": [
+        "a + 5b",
+        "3a + 5b",
+        "a + b",
+        "3a + b"
+      ],
+      "correct": 0,
+      "explanation": "同類項をまとめる：(2a-a) + (3b+2b) = a + 5b"
+    },
+    {
+      "id": "alg-expr-11",
+      "question": "4(2x + 3) - 2x = ?",
+      "choices": [
+        "6x + 12",
+        "8x + 12",
+        "6x + 3",
+        "8x + 3"
+      ],
+      "correct": 0,
+      "explanation": "4(2x+3) = 8x+12。8x+12-2x = 6x+12"
+    },
+    {
+      "id": "alg-expr-12",
+      "question": "x ÷ 5 を文字式のルールで書くと？",
+      "choices": [
+        "x/5",
+        "5x",
+        "x5",
+        "5/x"
+      ],
+      "correct": 0,
+      "explanation": "割り算は分数の形で書きます"
     }
   ]
 }

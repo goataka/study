@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "三人称単数現在形には -s をつけます"
+    },
+    {
+      "id": "tenses-regular-present-9",
+      "question": "She ___ to the gym every day. (go)",
+      "choices": [
+        "goes",
+        "go",
+        "went",
+        "is going"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在形は動詞 + es/s です"
+    },
+    {
+      "id": "tenses-regular-present-10",
+      "question": "I ___ English every morning. (practice)",
+      "choices": [
+        "practice",
+        "practices",
+        "practiced",
+        "am practicing"
+      ],
+      "correct": 0,
+      "explanation": "一人称現在形は動詞の原形です"
+    },
+    {
+      "id": "tenses-regular-present-11",
+      "question": "He ___ breakfast every day. (cook)",
+      "choices": [
+        "cooks",
+        "cook",
+        "cooked",
+        "is cooking"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在形は動詞 + s です"
+    },
+    {
+      "id": "tenses-regular-present-12",
+      "question": "They ___ to music every evening. (listen)",
+      "choices": [
+        "listen",
+        "listens",
+        "listened",
+        "are listening"
+      ],
+      "correct": 0,
+      "explanation": "複数形の現在形は動詞の原形です"
     }
   ]
 }

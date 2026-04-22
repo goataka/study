@@ -100,6 +100,54 @@
       ],
       "correct": 0,
       "explanation": "分子分母をxで割ると、(2+1/x)/(3-1/x)。x→∞で極限は2/3"
+    },
+    {
+      "id": "lim-9",
+      "question": "lim(n→∞) (5n + 2)/n = ?",
+      "choices": [
+        "5",
+        "2",
+        "0",
+        "∞"
+      ],
+      "correct": 0,
+      "explanation": "(5n+2)/n = 5 + 2/n → 5 (n→∞)"
+    },
+    {
+      "id": "lim-10",
+      "question": "lim(x→3) (x² - 9)/(x - 3) = ?",
+      "choices": [
+        "6",
+        "3",
+        "9",
+        "0"
+      ],
+      "correct": 0,
+      "explanation": "(x²-9)/(x-3) = (x+3)(x-3)/(x-3) = x+3 → 6 (x→3)"
+    },
+    {
+      "id": "lim-11",
+      "question": "lim(n→∞) 3/n² = ?",
+      "choices": [
+        "0",
+        "3",
+        "∞",
+        "1/3"
+      ],
+      "correct": 0,
+      "explanation": "n→∞ のとき 3/n² → 0"
+    },
+    {
+      "id": "lim-12",
+      "question": "lim(x→0) (1 - cos x)/x² = ?",
+      "choices": [
+        "1/2",
+        "1",
+        "0",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "テイラー展開より cos x ≈ 1 - x²/2、(1-cosx)/x² → 1/2"
     }
   ]
 }

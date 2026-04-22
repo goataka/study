@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "未来の願望には would を使います"
+    },
+    {
+      "id": "conditionals-wish-9",
+      "question": "I wish I ___ there with you yesterday. (過去の願望 / be)",
+      "choices": [
+        "had been",
+        "was",
+        "were",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "過去の願望には過去完了形を使います"
+    },
+    {
+      "id": "conditionals-wish-10",
+      "question": "I wish I ___ the answer. (現在の願望 / know)",
+      "choices": [
+        "knew",
+        "know",
+        "had known",
+        "will know"
+      ],
+      "correct": 0,
+      "explanation": "現在の願望には過去形を使います"
+    },
+    {
+      "id": "conditionals-wish-11",
+      "question": "I wish she ___ here now. (現在の願望 / be)",
+      "choices": [
+        "were",
+        "is",
+        "was",
+        "will be"
+      ],
+      "correct": 0,
+      "explanation": "I wishの後のbe動詞は were を使います"
+    },
+    {
+      "id": "conditionals-wish-12",
+      "question": "I wish I ___ the test last year. (過去の願望 / pass)",
+      "choices": [
+        "had passed",
+        "passed",
+        "have passed",
+        "would pass"
+      ],
+      "correct": 0,
+      "explanation": "過去の願望には過去完了形を使います"
     }
   ]
 }

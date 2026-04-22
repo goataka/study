@@ -102,6 +102,54 @@
       ],
       "correct": 0,
       "explanation": "whoseは人にも物にも使えます"
+    },
+    {
+      "id": "relative-possessive-9",
+      "question": "I saw a bird ___ wings are colorful. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "which",
+        "that"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です（人にも物にも使えます）"
+    },
+    {
+      "id": "relative-possessive-10",
+      "question": "He is the man ___ car was stolen. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "which",
+        "that"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-11",
+      "question": "I have a dog ___ fur is white. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "which",
+        "that"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
+    },
+    {
+      "id": "relative-possessive-12",
+      "question": "She is the teacher ___ class I enjoy. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "which",
+        "that"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose です"
     }
   ]
 }
