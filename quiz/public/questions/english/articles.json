@@ -9,7 +9,19 @@
   "questions": [
     {
       "id": "articles-1",
-      "question": "I eat ___ apple.",
+      "question": "I play ___ game.",
+      "choices": [
+        "a",
+        "an",
+        "the",
+        "（なし）"
+      ],
+      "correct": 0,
+      "explanation": "子音で始まる単語の前には a を使います"
+    },
+    {
+      "id": "articles-2",
+      "question": "I play ___ exciting game.",
       "choices": [
         "an",
         "a",
@@ -20,8 +32,8 @@
       "explanation": "母音で始まる単語の前には an を使います"
     },
     {
-      "id": "articles-2",
-      "question": "I read ___ book on the desk.",
+      "id": "articles-3",
+      "question": "I play ___ game every day.",
       "choices": [
         "the",
         "a",
@@ -29,11 +41,11 @@
         "（なし）"
       ],
       "correct": 0,
-      "explanation": "特定のもの（机の上の本）には the を使います"
+      "explanation": "特定のゲームには the を使います"
     },
     {
-      "id": "articles-3",
-      "question": "She is ___ teacher.",
+      "id": "articles-4",
+      "question": "She plays ___ game.",
       "choices": [
         "a",
         "an",
@@ -44,8 +56,8 @@
       "explanation": "不特定の単数名詞には a を使います"
     },
     {
-      "id": "articles-4",
-      "question": "He is ___ old man.",
+      "id": "articles-5",
+      "question": "He plays ___ old game.",
       "choices": [
         "an",
         "a",
@@ -56,8 +68,8 @@
       "explanation": "母音で始まる単語の前には an を使います"
     },
     {
-      "id": "articles-5",
-      "question": "___ sun is bright.",
+      "id": "articles-6",
+      "question": "___ game is fun.",
       "choices": [
         "The",
         "A",
@@ -65,23 +77,11 @@
         "（なし）"
       ],
       "correct": 0,
-      "explanation": "太陽のような唯一のものには the を使います"
-    },
-    {
-      "id": "articles-6",
-      "question": "I have ___ dog.",
-      "choices": [
-        "a",
-        "an",
-        "the",
-        "（なし）"
-      ],
-      "correct": 0,
-      "explanation": "不特定の単数名詞には a を使います"
+      "explanation": "特定のゲームには the を使います"
     },
     {
       "id": "articles-7",
-      "question": "I saw ___ elephant at the zoo.",
+      "question": "I play ___ online game.",
       "choices": [
         "an",
         "a",
@@ -93,15 +93,15 @@
     },
     {
       "id": "articles-8",
-      "question": "___ moon is beautiful tonight.",
+      "question": "I play ___ games.",
       "choices": [
-        "The",
-        "A",
-        "An",
-        "（なし）"
+        "（なし）",
+        "a",
+        "an",
+        "the"
       ],
       "correct": 0,
-      "explanation": "月のような唯一のものには the を使います"
+      "explanation": "複数形の一般的な名詞には冠詞は不要です"
     }
   ]
 }

@@ -4,10 +4,10 @@
 
 | 日本語 | 英語 |
 |--------|------|
-| 私は本を持っています。 | I have a book. |
-| 私はりんごを食べます。 | I eat an apple. |
-| その本は面白いです。 | The book is interesting. |
-| 彼は先生です。 | He is a teacher. |
+| 私はゲームをします。 | I play a game. |
+| 私はわくわくするゲームをします。 | I play an exciting game. |
+| そのゲームは楽しいです。 | The game is fun. |
+| 彼女はゲームをします。 | She plays a game. |
 
 ---
 

@@ -4,17 +4,17 @@
 
 ## 不定冠詞 `a` / `an`
 
-I have `a` book.
+I play `a` game.
 
-I eat `an` apple.
+I play `an` exciting game.
 
 - 不特定の単数名詞に使う
-- 子音で始まる語の前: `a` → a book, a cat
-- 母音で始まる語の前: `an` → an apple, an egg
+- 子音で始まる語の前: `a` → a game, a book
+- 母音で始まる語の前: `an` → an exciting game, an apple
 
 ## 定冠詞 `the`
 
-I read `the` book on the desk.
+I play `the` game every day.
 
 - 特定のもの、すでに話題に出たものに使う
 - 世界に1つしかないもの: the sun, the moon
@@ -23,10 +23,10 @@ I read `the` book on the desk.
 
 | 冠詞 | 使い方 | 例 |
 |------|--------|------|
-| `a` | 不特定・子音の前 | `a` book |
-| `an` | 不特定・母音の前 | `an` apple |
-| `the` | 特定のもの | `the` book on the desk |
-| なし | 複数形・不可算名詞（一般的） | I like books. |
+| `a` | 不特定・子音の前 | `a` game |
+| `an` | 不特定・母音の前 | `an` exciting game |
+| `the` | 特定のもの | `the` game every day |
+| なし | 複数形・不可算名詞（一般的） | I play games. |
 
 ---
 
