@@ -11,6 +11,8 @@
     "test:watch": "vitest",
     "test:e2e": "bddgen && playwright test",
     "test:e2e:ui": "bddgen && playwright test --ui",
+    "test:e2e:vr": "bddgen --config playwright.vr.config.ts && playwright test --config playwright.vr.config.ts",
+    "test:e2e:vr:update": "bddgen --config playwright.vr.config.ts && playwright test --config playwright.vr.config.ts --update-snapshots",
     "prepare": "cd .. && lefthook install"
   },
   "devDependencies": {
