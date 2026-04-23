@@ -180,17 +180,11 @@ runs:
             printf '@copilot ワークフロー「%s」が失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
               "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
             [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
-            # まずIssueを作成し、次にCopilotをアサインする（2ステップに分けて重複作成を防ぐ）
             NEW_ISSUE_URL=$(gh issue create \
               --title "${ISSUE_TITLE}" \
-              --body-file "$BODY_FILE")
-            echo "::notice::新規Issue「${ISSUE_TITLE}」を作成しました: ${NEW_ISSUE_URL}"
-            NEW_ISSUE_NUMBER=$(echo "${NEW_ISSUE_URL}" | grep -oE '[0-9]+$')
-            if gh issue edit "${NEW_ISSUE_NUMBER}" --add-assignee "Copilot"; then
-              echo "::notice::Issue #${NEW_ISSUE_NUMBER} にCopilotをアサインしました"
-            else
-              echo "::warning::CopilotのアサインができませんでしたがIssueは作成済みです: #${NEW_ISSUE_NUMBER}"
-            fi
+              --body-file "$BODY_FILE" \
+              --assignee "copilot")
+            echo "::notice::新規Issue「${ISSUE_TITLE}」を作成しました（Copilotアサイン済み）: ${NEW_ISSUE_URL}"
           fi
         fi
 
