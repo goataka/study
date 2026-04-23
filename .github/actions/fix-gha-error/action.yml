@@ -14,6 +14,10 @@ inputs:
   github-token:
     description: "GitHub token for authentication (GITHUB_TOKEN)"
     required: true
+  copilot-token:
+    description: "Copilot classic token for assigning Copilot to issues (COPILOT_CLASSIC)"
+    required: false
+    default: ""
   error-context:
     description: "エラーの詳細情報（オプション）"
     required: false
@@ -143,6 +147,7 @@ runs:
         PR_NUMBER: ${{ steps.collect-error.outputs.pr_number }}
         ERROR_CONTEXT: ${{ inputs.error-context }}
         GH_TOKEN: ${{ inputs.github-token }}
+        COPILOT_TOKEN: ${{ inputs.copilot-token }}
         GH_REPO: ${{ github.repository }}
       run: |
         set -euo pipefail
@@ -186,7 +191,7 @@ runs:
               --body-file "$BODY_FILE")
             echo "::notice::新規Issue「${ISSUE_TITLE}」を作成しました: ${NEW_ISSUE_URL}"
             NEW_ISSUE_NUMBER=$(echo "${NEW_ISSUE_URL}" | grep -oE '[0-9]+$')
-            if gh issue edit "${NEW_ISSUE_NUMBER}" --add-assignee "Copilot"; then
+            if GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh issue edit "${NEW_ISSUE_NUMBER}" --add-assignee "@copilot"; then
               echo "::notice::Issue #${NEW_ISSUE_NUMBER} にCopilotをアサインしました"
             else
               echo "::warning::CopilotのアサインができませんでしたがIssueは作成済みです: #${NEW_ISSUE_NUMBER}"
