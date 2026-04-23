@@ -65,7 +65,7 @@ export class QuizUseCase {
     return categories;
   }
 
-  startSession(mode: QuizMode, filter: QuizFilter, count = 20): QuizSession {
+  startSession(mode: QuizMode, filter: QuizFilter, count = 10): QuizSession {
     const filtered = this.getFilteredQuestions(filter);
 
     if (mode === "random") {
