@@ -4,12 +4,12 @@
 
 | パターン | 文 |
 |----------|------|
-| 不特定・単数 | I have a book. |
-| 母音の前 | I eat (`an`) apple. |
-| 特定のもの | I read (`the`) book on the desk. |
-| 不特定・単数 | She is (`a`) teacher. |
-| 母音の前 | He is (`an`) old man. |
-| 特定のもの | (`The`) sun is bright. |
+| 不特定・単数 | I play a game. |
+| 母音の前 | I play (`an`) exciting game. |
+| 特定のもの | I play (`the`) game every day. |
+| 不特定・単数 | She plays (`a`) game. |
+| 母音の前 | He plays (`an`) old game. |
+| 特定のもの | (`The`) game is fun. |
 
 ---
 

@@ -6,12 +6,12 @@
 
 | パターン | 文 |
 |----------|------|
-| 不特定・単数 | I have a book. |
-| 母音の前 | I eat (　　　　　　) apple. |
-| 特定のもの | I read (　　　　　　) book on the desk. |
-| 不特定・単数 | She is (　　　　　　) teacher. |
-| 母音の前 | He is (　　　　　　) old man. |
-| 特定のもの | (　　　　　　) sun is bright. |
+| 不特定・単数 | I play a game. |
+| 母音の前 | I play (　　　　　　) exciting game. |
+| 特定のもの | I play (　　　　　　) game every day. |
+| 不特定・単数 | She plays (　　　　　　) game. |
+| 母音の前 | He plays (　　　　　　) old game. |
+| 特定のもの | (　　　　　　) game is fun. |
 
 ---
 
