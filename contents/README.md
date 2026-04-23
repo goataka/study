@@ -1,15 +1,18 @@
-# 学習ドリル一覧
+# 学習ドリル
 
 ## 📝 クイズで学ぶ
 
-- [英語クイズ](quiz/?subject=english) - 英語の4択クイズ
-- [数学クイズ](quiz/?subject=math) - 数学の4択クイズ
+- [英語クイズ](quiz/index.html) - ランダム10問の4択クイズ形式で学習できます
+  - [英語クイズ](quiz/?subject=english) - 英語の4択クイズ
+  - [数学クイズ](quiz/?subject=math) - 数学の4択クイズ
 
-## 英語ドリル
+## ドリル
+
+### 英語ドリル
 
 [英語学習ガイド](english/README.md)
 
-### 📢 発音ドリル
+#### 📢 発音ドリル
 
 | # | ドリル | 練習 | 回答 | 解説 | クイズ | 例 |
 |---|--------|------|------|------|--------|-----|
@@ -24,7 +27,7 @@
 | 09 | フラッピング | [練習](english/pronunciation/09-flapping/drill.md) | [回答](english/pronunciation/09-flapping/answer.md) | [解説](english/pronunciation/09-flapping/guide.md) | [クイズ](quiz/?subject=english&category=flapping) | water→ウォダー |
 | 10 | アシミレーション | [練習](english/pronunciation/10-assimilation/drill.md) | [回答](english/pronunciation/10-assimilation/answer.md) | [解説](english/pronunciation/10-assimilation/guide.md) | [クイズ](quiz/?subject=english&category=assimilation) | meet you→ミーチュー |
 
-### 📝 文法ドリル
+#### 📝 文法ドリル
 
 | # | ドリル | 練習 | 回答 | 英作文 | 英作文解答 | 解説 | クイズ | 例 |
 |---|--------|------|------|--------|-----------|------|--------|-----|
@@ -68,11 +71,11 @@
 | 48 | 命令文の間接話法 | [練習](english/grammar/48-reported-imperative/drill.md) | [回答](english/grammar/48-reported-imperative/answer.md) | [英作文](english/grammar/48-reported-imperative/writing.md) | [英作文解答](english/grammar/48-reported-imperative/writing-answer.md) | [解説](english/grammar/48-reported-imperative/guide.md) | [クイズ](quiz/?subject=english&category=reported-imperative) | He told me `to` go. |
 | 49 | 指示語の変化 | [練習](english/grammar/49-reported-expressions/drill.md) | [回答](english/grammar/49-reported-expressions/answer.md) | [英作文](english/grammar/49-reported-expressions/writing.md) | [英作文解答](english/grammar/49-reported-expressions/writing-answer.md) | [解説](english/grammar/49-reported-expressions/guide.md) | [クイズ](quiz/?subject=english&category=reported-expressions) | `this`→`that` |
 
-## 数学ドリル
+### 数学ドリル
 
 学習の流れや前提関係の詳細は [数学ドリル目次](math/README.md) を参照してください。
 
-### 📊 算数・基本計算
+#### 📊 算数・基本計算
 
 | # | 内容 | 参考学年 | 練習 | 回答 | 解説 | クイズ | 例 |
 |---|------|----------|------|------|------|--------|-----|
@@ -98,7 +101,7 @@
 | 20 | 比 | 小学6年 | [練習](math/arithmetic/20-ratio/drill.md) | [回答](math/arithmetic/20-ratio/answer.md) | [解説](math/arithmetic/20-ratio/guide.md) | [クイズ](quiz/?subject=math&category=ratio) | 4:6 = 2:3 |
 | 21 | 割合 | 小学5年 | [練習](math/arithmetic/21-percentage/drill.md) | [回答](math/arithmetic/21-percentage/answer.md) | [解説](math/arithmetic/21-percentage/guide.md) | [クイズ](quiz/?subject=math&category=percentage) | 60人の30% = 18人 |
 
-### 📐 代数
+#### 📐 代数
 
 | # | 内容 | 参考学年 | 練習 | 回答 | 解説 | クイズ | 例 |
 |---|------|----------|------|------|------|--------|-----|
@@ -111,7 +114,7 @@
 | 28 | 平方根 | 中学3年 | [練習](math/algebra/28-square-roots/drill.md) | [回答](math/algebra/28-square-roots/answer.md) | [解説](math/algebra/28-square-roots/guide.md) | [クイズ](quiz/?subject=math&category=square-roots) | √12 = 2√3 |
 | 29 | 二次方程式 | 中学3年 | [練習](math/algebra/29-quadratic-eq/drill.md) | [回答](math/algebra/29-quadratic-eq/answer.md) | [解説](math/algebra/29-quadratic-eq/guide.md) | [クイズ](quiz/?subject=math&category=quadratic-eq) | x²-5x+6=0 → x=2,3 |
 
-### 📈 解析・高校数学
+#### 📈 解析・高校数学
 
 | # | 内容 | 参考学年 | 練習 | 回答 | 解説 | クイズ | 例 |
 |---|------|----------|------|------|------|--------|-----|
