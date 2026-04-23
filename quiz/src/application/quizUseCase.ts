@@ -13,12 +13,14 @@ export type { QuizMode, QuizFilter, AnswerResult, QuizRecord };
 export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
+  private correctStreaks: Record<string, number>;
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
     private readonly progressRepo: IProgressRepository
   ) {
     this.wrongIds = this.progressRepo.loadWrongIds();
+    this.correctStreaks = this.progressRepo.loadCorrectStreaks();
   }
 
   async initialize(): Promise<void> {
@@ -102,13 +104,27 @@ export class QuizUseCase {
 
     for (const r of results) {
       if (r.isCorrect) {
-        this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
-      } else if (!this.wrongIds.includes(r.question.id)) {
-        this.wrongIds.push(r.question.id);
+        if (this.wrongIds.includes(r.question.id)) {
+          // 間違えた問題を正解した場合、連続正解数をカウント
+          this.correctStreaks[r.question.id] = (this.correctStreaks[r.question.id] ?? 0) + 1;
+          const streak = this.correctStreaks[r.question.id] ?? 0;
+          if (streak >= 3) {
+            // 3回正解で学習済みとして wrongIds から除く
+            this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
+            delete this.correctStreaks[r.question.id];
+          }
+        }
+      } else {
+        if (!this.wrongIds.includes(r.question.id)) {
+          this.wrongIds.push(r.question.id);
+        }
+        // 不正解の場合、連続正解数をリセット
+        this.correctStreaks[r.question.id] = 0;
       }
     }
 
     this.progressRepo.saveWrongIds(this.wrongIds);
+    this.progressRepo.saveCorrectStreaks(this.correctStreaks);
     return results;
   }
 
