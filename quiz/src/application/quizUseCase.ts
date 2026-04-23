@@ -6,9 +6,9 @@
 import type { Question } from "../domain/question";
 import { QuizSession } from "../domain/quizSession";
 import type { QuizMode, QuizFilter, AnswerResult } from "../domain/quizSession";
-import type { IQuestionRepository, IProgressRepository } from "./ports";
+import type { IQuestionRepository, IProgressRepository, QuizRecord } from "./ports";
 
-export type { QuizMode, QuizFilter, AnswerResult };
+export type { QuizMode, QuizFilter, AnswerResult, QuizRecord };
 
 export class QuizUseCase {
   private allQuestions: Question[] = [];
@@ -94,6 +94,48 @@ export class QuizUseCase {
 
     this.progressRepo.saveWrongIds(this.wrongIds);
     return results;
+  }
+
+  /**
+   * クイズ結果を履歴に追加して保存する。
+   */
+  addHistoryRecord(results: AnswerResult[], filter: QuizFilter, mode: QuizMode): void {
+    if (results.length === 0) return;
+
+    const firstQuestion = results[0]!.question;
+    const subjectName = firstQuestion.subjectName ?? firstQuestion.subject;
+    const categoryName = firstQuestion.categoryName ?? firstQuestion.category;
+
+    const correctCount = results.filter((r) => r.isCorrect).length;
+    const record: QuizRecord = {
+      id: new Date().toISOString(),
+      date: new Date().toISOString(),
+      subject: filter.subject,
+      subjectName,
+      category: filter.category,
+      categoryName: filter.category === "all" ? `${subjectName} 全体` : categoryName,
+      mode,
+      totalCount: results.length,
+      correctCount,
+      entries: results.map((r) => ({
+        questionId: r.question.id,
+        questionText: r.question.question,
+        isCorrect: r.isCorrect,
+        userAnswerIndex: r.userAnswerIndex,
+        correctAnswerIndex: r.question.correct,
+        choices: [...r.question.choices],
+        explanation: r.question.explanation,
+        categoryName: r.question.categoryName ?? r.question.category,
+      })),
+    };
+
+    const history = this.progressRepo.loadHistory();
+    history.unshift(record);
+    this.progressRepo.saveHistory(history);
+  }
+
+  getHistory(): QuizRecord[] {
+    return this.progressRepo.loadHistory();
   }
 
   get wrongQuestionIds(): string[] {

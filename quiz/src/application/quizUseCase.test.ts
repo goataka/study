@@ -43,6 +43,14 @@ class StubProgressRepository implements IProgressRepository {
   getStoredIds(): string[] {
     return [...this.ids];
   }
+  loadUserName(): string | null {
+    return null;
+  }
+  saveUserName(_name: string): void {}
+  loadHistory() {
+    return [];
+  }
+  saveHistory(_records: unknown[]): void {}
 }
 
 // ─── テスト ──────────────────────────────────────────────────────────────────

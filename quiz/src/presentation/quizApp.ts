@@ -4,7 +4,7 @@
  */
 
 import { QuizUseCase } from "../application/quizUseCase";
-import type { QuizMode, QuizFilter, AnswerResult } from "../application/quizUseCase";
+import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
 import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
@@ -21,11 +21,13 @@ const SUBJECTS = [
 export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
+  private currentMode: QuizMode = "random";
   private filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
   private questionCount: number = 20;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
+  private activeTab: "subject" | "history" = "subject";
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -150,12 +152,35 @@ export class QuizApp {
         tab.classList.add("active");
         tab.setAttribute("aria-selected", "true");
 
+        this.activeTab = "subject";
+        this.showStartTabContent("subject");
         this.renderCategoryList();
         this.updateStartScreen();
       });
 
       tabsContainer.appendChild(tab);
     });
+
+    // 記録タブを追加
+    const historyTab = document.createElement("button");
+    historyTab.className = "subject-tab history-tab";
+    historyTab.dataset.tab = "history";
+    historyTab.setAttribute("role", "tab");
+    historyTab.setAttribute("type", "button");
+    historyTab.setAttribute("aria-selected", "false");
+    historyTab.textContent = "📊 記録";
+    historyTab.addEventListener("click", () => {
+      tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
+        t.classList.remove("active");
+        t.setAttribute("aria-selected", "false");
+      });
+      historyTab.classList.add("active");
+      historyTab.setAttribute("aria-selected", "true");
+      this.activeTab = "history";
+      this.showStartTabContent("history");
+      this.renderHistoryList();
+    });
+    tabsContainer.appendChild(historyTab);
 
     // フィルターに基づいてアクティブタブを設定
     this.selectTabByFilter();
@@ -295,6 +320,150 @@ export class QuizApp {
         el.dataset.category === this.filter.category;
       el.classList.toggle("active", isActive);
     });
+  }
+
+  /**
+   * スタート画面のタブコンテンツ表示を切り替える
+   */
+  private showStartTabContent(tab: "subject" | "history"): void {
+    const subjectContent = document.getElementById("subjectContent");
+    const historyContent = document.getElementById("historyContent");
+    if (tab === "subject") {
+      subjectContent?.classList.remove("hidden");
+      historyContent?.classList.add("hidden");
+    } else {
+      subjectContent?.classList.add("hidden");
+      historyContent?.classList.remove("hidden");
+    }
+  }
+
+  // ─── 回答記録 ──────────────────────────────────────────────────────────────
+
+  /**
+   * 回答記録一覧を描画する
+   */
+  private renderHistoryList(): void {
+    const historyList = document.getElementById("historyList");
+    if (!historyList) return;
+
+    const records = this.useCase.getHistory();
+    historyList.innerHTML = "";
+
+    if (records.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "history-empty";
+      empty.textContent = "まだ回答記録がありません。クイズを解いてみましょう！";
+      historyList.appendChild(empty);
+      return;
+    }
+
+    records.forEach((record) => {
+      historyList.appendChild(this.buildHistoryItem(record));
+    });
+  }
+
+  private buildHistoryItem(record: QuizRecord): HTMLElement {
+    const item = document.createElement("div");
+    item.className = "history-item";
+
+    // ヘッダー行（日時・教科・スコア）
+    const header = document.createElement("div");
+    header.className = "history-item-header";
+    header.setAttribute("role", "button");
+    header.setAttribute("tabindex", "0");
+    header.setAttribute("aria-expanded", "false");
+
+    const date = new Date(record.date);
+    const dateStr = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+
+    const pct = Math.round((record.correctCount / record.totalCount) * 100);
+
+    const metaDiv = document.createElement("div");
+    metaDiv.className = "history-meta";
+
+    const dateSpan = document.createElement("span");
+    dateSpan.className = "history-date";
+    dateSpan.textContent = dateStr;
+
+    const subjectSpan = document.createElement("span");
+    subjectSpan.className = "history-subject";
+    subjectSpan.textContent = record.categoryName;
+
+    const modeSpan = document.createElement("span");
+    modeSpan.className = "history-mode";
+    modeSpan.textContent = record.mode === "retry" ? "復習" : "ランダム";
+
+    metaDiv.appendChild(dateSpan);
+    metaDiv.appendChild(subjectSpan);
+    metaDiv.appendChild(modeSpan);
+
+    const scoreSpan = document.createElement("span");
+    scoreSpan.className = `history-score ${pct >= 70 ? "pass" : "fail"}`;
+    scoreSpan.textContent = `${record.correctCount}/${record.totalCount} (${pct}%)`;
+
+    const toggleSpan = document.createElement("span");
+    toggleSpan.className = "history-toggle";
+    toggleSpan.textContent = "▶";
+
+    header.appendChild(metaDiv);
+    header.appendChild(scoreSpan);
+    header.appendChild(toggleSpan);
+
+    // 詳細（折りたたみ）
+    const detail = document.createElement("div");
+    detail.className = "history-detail hidden";
+
+    record.entries.forEach((entry) => {
+      const entryDiv = document.createElement("div");
+      entryDiv.className = `history-entry ${entry.isCorrect ? "correct" : "incorrect"}`;
+
+      const iconSpan = document.createElement("span");
+      iconSpan.className = "history-entry-icon";
+      iconSpan.textContent = entry.isCorrect ? "✓" : "✗";
+
+      const contentDiv = document.createElement("div");
+      contentDiv.className = "history-entry-content";
+
+      const questionP = document.createElement("p");
+      questionP.className = "history-entry-question";
+      questionP.textContent = entry.questionText;
+
+      const answerP = document.createElement("p");
+      answerP.className = "history-entry-answer";
+      const userAnswer = entry.choices[entry.userAnswerIndex] ?? "未回答";
+      const correctAnswer = entry.choices[entry.correctAnswerIndex] ?? "";
+      if (entry.isCorrect) {
+        answerP.textContent = `正解: ${correctAnswer}`;
+      } else {
+        answerP.textContent = `あなたの回答: ${userAnswer} → 正解: ${correctAnswer}`;
+      }
+
+      contentDiv.appendChild(questionP);
+      contentDiv.appendChild(answerP);
+      entryDiv.appendChild(iconSpan);
+      entryDiv.appendChild(contentDiv);
+      detail.appendChild(entryDiv);
+    });
+
+    // 折りたたみ切り替え
+    const toggleDetail = (): void => {
+      const isExpanded = !detail.classList.contains("hidden");
+      detail.classList.toggle("hidden", isExpanded);
+      toggleSpan.textContent = isExpanded ? "▶" : "▼";
+      header.setAttribute("aria-expanded", String(!isExpanded));
+    };
+
+    header.addEventListener("click", toggleDetail);
+    header.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleDetail();
+      }
+    });
+
+    item.appendChild(header);
+    item.appendChild(detail);
+    return item;
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -470,6 +639,8 @@ export class QuizApp {
       return;
     }
 
+    this.currentMode = mode;
+
     // メモ状態をリセット
     this.notesStates.clear();
 
@@ -629,6 +800,7 @@ export class QuizApp {
     const session = this.currentSession;
     if (!session) return;
     const results = this.useCase.submitSession(session);
+    this.useCase.addHistoryRecord(results, this.filter, this.currentMode);
     this.showResultScreen(results);
   }
 
@@ -746,6 +918,7 @@ export class QuizApp {
     document.getElementById(idMap[screenName])?.classList.remove("hidden");
 
     if (screenName === "start") {
+      this.showStartTabContent(this.activeTab);
       this.updateStartScreen();
     }
   }

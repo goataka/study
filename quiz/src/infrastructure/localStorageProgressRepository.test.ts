@@ -8,6 +8,7 @@
 // @vitest-environment jsdom
 
 import { LocalStorageProgressRepository } from "./localStorageProgressRepository";
+import type { QuizRecord } from "../application/ports";
 
 describe("LocalStorageProgressRepository — 間違えた問題ID永続化仕様", () => {
   beforeEach(() => {
@@ -83,5 +84,59 @@ describe("LocalStorageProgressRepository — ユーザー名永続化仕様", ()
 
     const repo2 = new LocalStorageProgressRepository();
     expect(repo2.loadUserName()).toBe("次郎");
+  });
+});
+
+describe("LocalStorageProgressRepository — 回答履歴永続化仕様", () => {
+  const makeRecord = (id: string): QuizRecord => ({
+    id,
+    date: new Date().toISOString(),
+    subject: "english",
+    subjectName: "英語",
+    category: "all",
+    categoryName: "英語 全体",
+    mode: "random",
+    totalCount: 5,
+    correctCount: 3,
+    entries: [],
+  });
+
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("初回ロード時は空配列を返す", () => {
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadHistory()).toEqual([]);
+  });
+
+  it("保存した履歴を正しく読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    const records = [makeRecord("r1"), makeRecord("r2")];
+    repo.saveHistory(records);
+    expect(repo.loadHistory()).toHaveLength(2);
+    expect(repo.loadHistory()[0]!.id).toBe("r1");
+  });
+
+  it("100件を超える履歴は切り詰められる", () => {
+    const repo = new LocalStorageProgressRepository();
+    const records = Array.from({ length: 110 }, (_, i) => makeRecord(`r${i}`));
+    repo.saveHistory(records);
+    expect(repo.loadHistory()).toHaveLength(100);
+  });
+
+  it("不正なJSONが入っていてもロード時に空配列を返す", () => {
+    localStorage.setItem("quizHistory", "invalid{{{");
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadHistory()).toEqual([]);
+  });
+
+  it("別のインスタンスからも同じデータを読み込める（永続化確認）", () => {
+    const repo1 = new LocalStorageProgressRepository();
+    repo1.saveHistory([makeRecord("r1")]);
+
+    const repo2 = new LocalStorageProgressRepository();
+    expect(repo2.loadHistory()).toHaveLength(1);
+    expect(repo2.loadHistory()[0]!.id).toBe("r1");
   });
 });
