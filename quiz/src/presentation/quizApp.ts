@@ -12,6 +12,13 @@ import { LocalStorageProgressRepository } from "../infrastructure/localStoragePr
 import { NotesCanvas } from "./notesCanvas";
 import type { DrawingState } from "./notesCanvas";
 
+/** 教科一覧（タブ表示用） */
+const SUBJECTS = [
+  { id: "all", name: "すべて", icon: "📋" },
+  { id: "english", name: "英語", icon: "📚" },
+  { id: "math", name: "数学", icon: "🔢" },
+] as const;
+
 export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
@@ -99,19 +106,13 @@ export class QuizApp {
     }
   }
 
-  private readonly subjects = [
-    { id: "all", name: "すべて", icon: "📋" },
-    { id: "english", name: "英語", icon: "📚" },
-    { id: "math", name: "数学", icon: "🔢" },
-  ];
-
   private buildSubjectTabs(): void {
     const tabsContainer = document.querySelector(".subject-tabs");
     if (!tabsContainer) return;
 
     tabsContainer.innerHTML = "";
 
-    this.subjects.forEach((subject) => {
+    SUBJECTS.forEach((subject) => {
       const tab = document.createElement("button");
       tab.className = "subject-tab";
       tab.dataset.subject = subject.id;
@@ -181,7 +182,8 @@ export class QuizApp {
     const subject = this.filter.subject;
 
     if (subject === "all") {
-      // 「すべて」タブではカテゴリ選択不要
+      // 「すべて」タブではカテゴリを細分化しないため、リストは空のまま
+      categoryList.innerHTML = "";
       return;
     }
 
@@ -214,13 +216,7 @@ export class QuizApp {
     // 親カテゴリに属さないスタンドアロンカテゴリ
     const allCategories = this.useCase.getCategoriesForSubject(subject);
     for (const [catId, catName] of Object.entries(allCategories)) {
-      let belongsToParent = false;
-      for (const catSet of Object.values(categoriesForParent)) {
-        if (catSet.has(catId)) {
-          belongsToParent = true;
-          break;
-        }
-      }
+      const belongsToParent = Object.values(categoriesForParent).some((catSet) => catSet.has(catId));
       if (!belongsToParent) {
         const catItem = this.createCategoryItem(subject, catId, catName);
         categoryList.appendChild(catItem);
