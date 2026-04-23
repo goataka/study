@@ -65,6 +65,19 @@ export class QuizUseCase {
     return categories;
   }
 
+  /**
+   * 一度でもクイズを実施したカテゴリのキー（"subject::category" 形式）を返す。
+   * カテゴリの学習状態絵文字の判定に使用する。
+   */
+  getStudiedCategoryKeys(): Set<string> {
+    const history = this.progressRepo.loadHistory();
+    const keys = new Set<string>();
+    for (const record of history) {
+      keys.add(`${record.subject}::${record.category}`);
+    }
+    return keys;
+  }
+
   startSession(mode: QuizMode, filter: QuizFilter, count = 10): QuizSession {
     const filtered = this.getFilteredQuestions(filter);
 
