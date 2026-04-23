@@ -17,6 +17,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=assimilation)
+[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=assimilation)
 
 [前へ: フラッピング](../09-flapping/answer.md) | **アシミレーション練習ドリル** |

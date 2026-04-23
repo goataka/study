@@ -17,6 +17,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=reduction)
+[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=reduction)
 
 [前へ: リンキング](../07-linking/answer.md) | **リダクション練習ドリル** | [次へ: フラッピング](../09-flapping/answer.md)

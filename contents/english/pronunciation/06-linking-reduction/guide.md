@@ -41,6 +41,6 @@ t / d が「母音 + t/d + 母音」のパターンでラ行になる
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
 
 [前へ: フォニックス（3文字）](../05-phonics-3letter/drill.md) | **音声変化練習ドリル** | [次へ: リンキング](../07-linking/drill.md)

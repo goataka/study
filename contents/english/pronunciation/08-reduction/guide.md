@@ -39,6 +39,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reduction)
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reduction)
 
 [前へ: リンキング](../07-linking/drill.md) | **リダクション練習ドリル** | [次へ: フラッピング](../09-flapping/drill.md)

@@ -51,6 +51,6 @@ meet  you
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=assimilation)
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=assimilation)
 
 [前へ: フラッピング](../09-flapping/drill.md) | **アシミレーション練習ドリル** |

@@ -47,6 +47,6 @@ wa - t - er
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=flapping)
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=flapping)
 
 [前へ: リダクション](../08-reduction/drill.md) | **フラッピング練習ドリル** | [次へ: アシミレーション](../10-assimilation/drill.md)

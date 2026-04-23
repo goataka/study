@@ -31,6 +31,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=50on)
+[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=50on)
 
 [前へ: アルファベット](../01-alphabet/drill.md) | **五十音ローマ字練習ドリル** | [次へ: フォニックス（1文字）](../03-phonics-1letter/drill.md)
