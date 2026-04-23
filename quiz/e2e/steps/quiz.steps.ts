@@ -6,7 +6,7 @@ const { Given, When, Then } = createBdd();
 const STATS_LOAD_TIMEOUT = 10_000;
 
 Given("the quiz application is loaded", async ({ page }) => {
-  await page.goto("/");
+  await page.goto(".");
   // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ
   await expect(page.locator("#statsInfo")).toContainText(/全\d+問/, {
     timeout: STATS_LOAD_TIMEOUT,

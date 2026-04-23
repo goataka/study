@@ -1,11 +1,11 @@
 # 比較級 - 解説
 
 原級:
-I am `tall`.
+I play games `well`.
 
 ## 比較級
 
-I am `taller` than you.
+I play games `better` than you.
 
 - 形容詞・副詞に `-er` をつける（短い語）
 - 長い語は `more` + 原級
@@ -14,11 +14,11 @@ I am `taller` than you.
 
 | ルール | 変化 | 例 |
 |--------|------|------|
-| 短い語 | + er | tall → `taller` |
+| 短い語 | + er | fast → `faster` |
 | e で終わる | + r | large → `larger` |
-| 子音 + y | y → ier | happy → `happier` |
+| 子音 + y | y → ier | early → `earlier` |
 | 短母音 + 子音 | 子音を重ねて + er | big → `bigger` |
-| 長い語 | more + 原級 | beautiful → `more beautiful` |
+| 長い語 | more + 原級 | often → `more often` |
 
 ---
 

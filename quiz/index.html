@@ -12,7 +12,13 @@
   <div class="container">
     <header>
       <h1 id="titleBtn" role="button" tabindex="0" class="title-btn" title="スタート画面へ戻る">学習クイズ</h1>
-      <span id="headerUserName" class="header-user-name"></span>
+      <div class="header-user-area">
+        <button id="headerUserName" class="header-user-name" title="名前を変更する（クリック）" aria-label="名前を変更する"></button>
+        <div id="headerUserEdit" class="header-user-edit hidden">
+          <input type="text" id="headerUserNameInput" class="header-user-name-input" maxlength="20" placeholder="名前を入力">
+          <button id="headerUserNameSaveBtn" class="header-user-save-btn" aria-label="保存">✓</button>
+        </div>
+      </div>
     </header>
 
     <!-- スタート画面 -->
@@ -29,11 +35,6 @@
 
         <!-- クイズ開始パネル -->
         <main class="quiz-panel">
-          <div class="user-name-section">
-            <label for="userNameInput">名前：</label>
-            <input type="text" id="userNameInput" placeholder="名前を入力してください" maxlength="20">
-            <span id="saveUserNameFeedback" class="save-feedback hidden">✓ 保存しました</span>
-          </div>
           <h2>クイズモード選択</h2>
           <div class="question-count-section">
             <span class="question-count-label">問題数：</span>

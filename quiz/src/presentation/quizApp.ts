@@ -22,7 +22,7 @@ export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
   private filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
-  private userName: string = "";
+  private userName: string = "ゲスト";
   private questionCount: number = 20;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
@@ -77,35 +77,41 @@ export class QuizApp {
     const savedName = progressRepo.loadUserName();
     if (savedName) {
       this.userName = savedName;
-      const input = document.getElementById("userNameInput") as HTMLInputElement | null;
-      if (input) {
-        input.value = savedName;
-      }
     }
   }
 
-  private saveUserName(): void {
-    const input = document.getElementById("userNameInput") as HTMLInputElement | null;
-    if (input) {
-      const name = input.value.trim();
-      if (name) {
-        this.userName = name;
-        const progressRepo = new LocalStorageProgressRepository();
-        progressRepo.saveUserName(name);
-        this.showSaveFeedback();
-        this.updateUserNameDisplay("headerUserName");
-      }
-    }
+  private openUserNameEdit(): void {
+    const nameBtn = document.getElementById("headerUserName");
+    const editArea = document.getElementById("headerUserEdit");
+    const input = document.getElementById("headerUserNameInput") as HTMLInputElement | null;
+    if (!nameBtn || !editArea || !input) return;
+
+    input.value = this.userName === "ゲスト" ? "" : this.userName;
+    nameBtn.classList.add("hidden");
+    editArea.classList.remove("hidden");
+    input.focus();
+    input.select();
   }
 
-  private showSaveFeedback(): void {
-    const feedback = document.getElementById("saveUserNameFeedback");
-    if (feedback) {
-      feedback.classList.remove("hidden");
-      setTimeout(() => {
-        feedback.classList.add("hidden");
-      }, 2000);
-    }
+  private closeUserNameEdit(): void {
+    const nameBtn = document.getElementById("headerUserName");
+    const editArea = document.getElementById("headerUserEdit");
+    if (!nameBtn || !editArea) return;
+
+    editArea.classList.add("hidden");
+    nameBtn.classList.remove("hidden");
+  }
+
+  private saveHeaderUserName(): void {
+    const input = document.getElementById("headerUserNameInput") as HTMLInputElement | null;
+    if (!input) return;
+
+    const name = input.value.trim();
+    this.userName = name || "ゲスト";
+    const progressRepo = new LocalStorageProgressRepository();
+    progressRepo.saveUserName(this.userName);
+    this.updateUserNameDisplay("headerUserName");
+    this.closeUserNameEdit();
   }
 
   private buildSubjectTabs(): void {
@@ -315,9 +321,37 @@ export class QuizApp {
       });
     }
 
-    // ユーザー名入力の変更を監視
-    const userNameInput = document.getElementById("userNameInput");
-    userNameInput?.addEventListener("input", () => this.saveUserName());
+    // ヘッダーのユーザー名ボタン：クリックで編集モードを開く
+    const headerUserName = document.getElementById("headerUserName");
+    headerUserName?.addEventListener("click", () => this.openUserNameEdit());
+    headerUserName?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        this.openUserNameEdit();
+      }
+    });
+
+    // 保存ボタン
+    const headerUserNameSaveBtn = document.getElementById("headerUserNameSaveBtn");
+    headerUserNameSaveBtn?.addEventListener("click", () => this.saveHeaderUserName());
+
+    // 入力フィールド：Enterで保存、Escapeでキャンセル
+    const headerUserNameInput = document.getElementById("headerUserNameInput");
+    headerUserNameInput?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        this.saveHeaderUserName();
+      } else if (e.key === "Escape") {
+        this.closeUserNameEdit();
+      }
+    });
+    headerUserNameInput?.addEventListener("blur", (e: FocusEvent) => {
+      // 保存ボタンへのフォーカス移動はスキップ（保存ボタンのclickが先に発火するため）
+      const relatedTarget = e.relatedTarget as HTMLElement | null;
+      if (relatedTarget?.id !== "headerUserNameSaveBtn") {
+        this.saveHeaderUserName();
+      }
+    });
 
     // 問題数選択の変更を監視
     const countInputs = document.querySelectorAll<HTMLInputElement>('input[name="questionCount"]');
@@ -721,7 +755,7 @@ export class QuizApp {
   private updateUserNameDisplay(elementId: string): void {
     const el = document.getElementById(elementId);
     if (el) {
-      el.textContent = this.userName ? `👤 ${this.userName}` : "";
+      el.textContent = `👤 ${this.userName}`;
     }
   }
 

@@ -1,11 +1,11 @@
 # be動詞の過去形 - 解説
 
 現在形:
-I `am` happy.
+The game `is` fun.
 
 ## 過去形
 
-I `was` happy.
+The game `was` fun.
 
 - I / he / she / it → `was`
 - you / we / they → `were`
@@ -14,10 +14,10 @@ I `was` happy.
 
 | 時制 | 主語 | be動詞 | 例 |
 |------|------|--------|------|
-| 現在形 | I | `am` | I `am` happy. |
-| 現在形 | he/she | `is` | He `is` happy. |
-| 過去形 | I/he/she | `was` | I `was` happy. |
-| 過去形 | you/we/they | `were` | You `were` happy. |
+| 現在形 | I | `am` | I `am` a player. |
+| 現在形 | he/she | `is` | The game `is` fun. |
+| 過去形 | I/he/she | `was` | The game `was` fun. |
+| 過去形 | you/we/they | `were` | Games `were` fun. |
 
 ---
 

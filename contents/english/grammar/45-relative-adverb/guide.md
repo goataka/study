@@ -1,11 +1,11 @@
 # 関係副詞 - 解説
 
 2つの文:
-This is the place. I was born there.
+This is the place. I play games there.
 
 ## 関係副詞
 
-This is the place `where` I was born.
+The place `where` I play games is quiet.
 
 - 場所 → `where`
 - 時 → `when`
@@ -15,9 +15,9 @@ This is the place `where` I was born.
 
 | 意味 | 関係副詞 | 例 |
 |------|---------|------|
-| 場所 | `where` | the place `where` I was born |
-| 時 | `when` | the day `when` I met you |
-| 理由 | `why` | the reason `why` I came |
+| 場所 | `where` | the place `where` I play games |
+| 時 | `when` | the day `when` I play games |
+| 理由 | `why` | the reason `why` I play games |
 
 ---
 

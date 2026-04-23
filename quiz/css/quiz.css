@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: min(1200px, calc(100vh * 4 / 3));
     width: 100%;
     margin: 0 auto;
 }
@@ -49,15 +49,6 @@ header h1 {
     text-decoration: underline;
 }
 
-.header-user-name {
-    font-size: 15px;
-    color: #586069;
-    font-weight: 600;
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
 header nav a {
     color: #0366d6;
@@ -156,7 +147,7 @@ header nav .top-nav-btn {
 /* スタートコンテンツレイアウト */
 .start-content-layout {
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
     align-items: start;
 }
@@ -751,51 +742,66 @@ button:disabled {
     }
 }
 
-/* ユーザー名入力セクション */
-.user-name-section {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #f6f8fa;
-    border-radius: 8px;
-    border: 1px solid #e1e4e8;
+/* ヘッダーのユーザー名エリア */
+.header-user-area {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
 }
 
-.user-name-section label {
+.header-user-name {
+    font-size: 15px;
+    color: #586069;
     font-weight: 600;
-    color: #333;
-    font-size: 16px;
-}
-
-.user-name-section input {
-    padding: 8px 12px;
-    border: 1px solid #d1d5da;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: none;
+    border: 1px solid transparent;
     border-radius: 6px;
-    font-size: 16px;
-    width: 250px;
-    transition: border-color 0.2s;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
 }
 
-.user-name-section input:focus {
+.header-user-name:hover,
+.header-user-name:focus {
+    border-color: #d1d5da;
+    background: #f6f8fa;
     outline: none;
-    border-color: #0366d6;
-    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
 }
 
-/* 保存フィードバック */
-.save-feedback {
-    color: #28a745;
+.header-user-edit {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.header-user-name-input {
+    padding: 4px 8px;
+    border: 1px solid #0366d6;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 140px;
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+    outline: none;
+}
+
+.header-user-save-btn {
+    padding: 4px 8px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     font-size: 14px;
     font-weight: 600;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: background 0.2s;
 }
 
-.save-feedback:not(.hidden) {
-    opacity: 1;
+.header-user-save-btn:hover {
+    background: #218838;
 }
 
 /* ユーザー情報表示 */
