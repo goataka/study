@@ -4,14 +4,15 @@
 
 ## 学習ドリル
 
-- [学習ドリル一覧](contents/README.md)
+- [学習ドリル](contents/README.md)
   - [英語ドリル](contents/english/README.md)
   - [数学ドリル](contents/math/README.md)（小学校〜高校）
 
-## クイズ
+## 学習クイズ
 
-- [英語クイズ](https://goataka.github.io/study/quiz/?subject=english) - 英語の4択クイズ
-- [数学クイズ](https://goataka.github.io/study/quiz/?subject=math) - 数学の4択クイズ
+- [学習クイズ](https://goataka.github.io/study/quiz/) - 4択クイズ形式で学習
+  - [英語クイズ](https://goataka.github.io/study/quiz/?subject=english) - 英語の4択クイズ
+  - [数学クイズ](https://goataka.github.io/study/quiz/?subject=math) - 数学の4択クイズ
 
 ## GitHub Pages
 
