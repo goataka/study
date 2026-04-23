@@ -19,4 +19,4 @@
 
 [目次](../../README.md) | [練習](drill.md) | 解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=linking)
 
-[前へ: 音声変化まとめ](../06-linking-reduction/answer.md) | **リンキング練習ドリル** | [次へ: リダクション](../08-reduction/answer.md)
+[前へ: フォニックス（3文字）](../05-phonics-3letter/answer.md) | **リンキング練習ドリル** | [次へ: リダクション](../08-reduction/answer.md)
