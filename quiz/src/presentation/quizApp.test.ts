@@ -760,6 +760,92 @@ describe("QuizApp — 記録タブ仕様", () => {
     const historyContent = document.getElementById("historyContent");
     expect(historyContent?.classList.contains("hidden")).toBe(false);
   });
+
+  it("教科タブを選択すると選択した教科の記録のみ表示される", async () => {
+    // 英語と数学の両方の記録をlocalStorageに追加
+    const records = [
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+      {
+        id: "r2",
+        date: new Date().toISOString(),
+        subject: "math",
+        subjectName: "数学",
+        category: "all",
+        categoryName: "数学 全体",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 4,
+        entries: [],
+      },
+    ];
+    localStorage.setItem("quizHistory", JSON.stringify(records));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリック（デフォルトで英語が選択されているが明示的にクリック）
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const historyList = document.getElementById("historyList");
+    const items = historyList?.querySelectorAll(".history-item");
+    // 英語の記録のみ表示される
+    expect(items?.length).toBe(1);
+  });
+
+  it("「記録」タブをクリックするとすべての教科の記録が表示される", async () => {
+    // 英語と数学の両方の記録をlocalStorageに追加
+    const records = [
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+      {
+        id: "r2",
+        date: new Date().toISOString(),
+        subject: "math",
+        subjectName: "数学",
+        category: "all",
+        categoryName: "数学 全体",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 4,
+        entries: [],
+      },
+    ];
+    localStorage.setItem("quizHistory", JSON.stringify(records));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 記録タブをクリック
+    const historyTab = document.querySelector('.subject-tab[data-tab="history"]') as HTMLElement;
+    historyTab?.click();
+
+    const historyList = document.getElementById("historyList");
+    const items = historyList?.querySelectorAll(".history-item");
+    // すべての教科の記録が表示される
+    expect(items?.length).toBe(2);
+  });
 });
 
 describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
