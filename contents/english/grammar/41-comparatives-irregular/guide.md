@@ -1,12 +1,12 @@
 # 不規則な比較変化 - 解説
 
 原級:
-This is `good`.
+This game is `good`.
 
 ## 比較級・最上級
 
-This is `better` than that.
-This is `the best`.
+This game is `better` than that.
+This game is `the best`.
 
 - 一部の形容詞は不規則に変化する
 
