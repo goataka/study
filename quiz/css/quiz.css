@@ -80,114 +80,142 @@ header nav .top-nav-btn {
     font-size: 24px;
 }
 
-/* エクスプローラ風レイアウト */
-.explorer-layout {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 20px;
-    min-height: 400px;
+/* 教科タブ */
+.subject-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #e1e4e8;
+    margin-bottom: 20px;
+    overflow-x: auto;
 }
 
-/* 左側: 教科選択パネル */
-.subject-explorer {
+.subject-tab {
+    padding: 10px 20px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #586069;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.subject-tab:hover {
+    color: #0366d6;
+    background: #f6f8fa;
+}
+
+.subject-tab.active {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+}
+
+.tab-stats {
+    font-size: 11px;
+    color: #586069;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 1px 6px;
+    border-radius: 10px;
+}
+
+.subject-tab.active .tab-stats {
+    background: rgba(3, 102, 214, 0.1);
+    color: #0366d6;
+}
+
+/* スタートコンテンツレイアウト */
+.start-content-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 20px;
+    align-items: start;
+}
+
+/* カテゴリパネル */
+.category-panel {
     background: #f6f8fa;
     border: 1px solid #e1e4e8;
     border-radius: 8px;
-    padding: 16px;
-}
-
-.subject-explorer h2 {
-    font-size: 14px;
-    color: #586069;
-    margin-bottom: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* ツリー構造 */
-.subject-tree {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    max-height: 600px;
+    padding: 12px;
+    min-height: 200px;
+    max-height: 500px;
     overflow-y: auto;
-    overflow-x: hidden;
 }
 
 /* カスタムスクロールバー（Webkit系ブラウザ用） */
-.subject-tree::-webkit-scrollbar {
+.category-panel::-webkit-scrollbar {
     width: 8px;
 }
 
-.subject-tree::-webkit-scrollbar-track {
+.category-panel::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
 }
 
-.subject-tree::-webkit-scrollbar-thumb {
+.category-panel::-webkit-scrollbar-thumb {
     background: #c1c7cd;
     border-radius: 4px;
 }
 
-.subject-tree::-webkit-scrollbar-thumb:hover {
+.category-panel::-webkit-scrollbar-thumb:hover {
     background: #a8adb3;
 }
 
-.tree-item {
-    user-select: none;
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
-.tree-node-header {
+.category-group-header {
+    font-size: 12px;
+    font-weight: 600;
+    color: #586069;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 10px 4px;
+    margin-top: 4px;
+}
+
+.category-item {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     padding: 7px 10px;
     border-radius: 6px;
     cursor: pointer;
+    user-select: none;
     transition: background 0.15s;
-    gap: 6px;
 }
 
-.tree-node-header:hover {
+.category-item:hover {
     background: #e8f0fe;
 }
 
-.tree-item.active > .tree-node-header {
+.category-item.active {
     background: #0366d6;
     color: white;
 }
 
-.tree-item.active > .tree-node-header .tree-node-label,
-.tree-item.active > .tree-node-header .tree-toggle,
-.tree-item.active > .tree-node-header .tree-node-stats {
-    color: white;
-}
-
-.tree-toggle {
-    font-size: 9px;
-    color: #586069;
-    transition: transform 0.2s;
-    min-width: 12px;
-    display: inline-block;
-}
-
-.tree-item.expanded > .tree-node-header .tree-toggle {
-    transform: rotate(90deg);
-}
-
-.tree-node-label {
-    font-weight: 600;
-    font-size: 14px;
+.category-name {
+    font-size: 13px;
     color: #24292e;
     flex: 1;
 }
 
-.category-node .tree-node-label {
-    font-weight: 400;
-    font-size: 13px;
+.category-item.active .category-name {
+    color: white;
 }
 
-.tree-node-stats {
+.category-stats {
     font-size: 11px;
     color: #586069;
     white-space: nowrap;
@@ -196,23 +224,9 @@ header nav .top-nav-btn {
     border-radius: 10px;
 }
 
-.tree-item.active > .tree-node-header .tree-node-stats {
+.category-item.active .category-stats {
     background: rgba(255, 255, 255, 0.25);
-}
-
-/* カテゴリの子リスト */
-.tree-children {
-    margin-left: 18px;
-    border-left: 2px solid #e1e4e8;
-    padding-left: 4px;
-    margin-top: 2px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.tree-children.hidden {
-    display: none;
+    color: white;
 }
 
 /* 右側: クイズパネル */
@@ -661,17 +675,12 @@ button:disabled {
         padding: 20px;
     }
 
-    /* エクスプローラレイアウトをスタック表示に */
-    .explorer-layout {
+    /* スタートコンテンツレイアウトをスタック表示に */
+    .start-content-layout {
         grid-template-columns: 1fr;
     }
 
-    .subject-explorer {
-        order: 1;
-    }
-
     .quiz-panel {
-        order: 2;
         position: static;
         top: auto;
     }

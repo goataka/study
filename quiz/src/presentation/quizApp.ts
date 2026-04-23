@@ -40,7 +40,7 @@ export class QuizApp {
     this.loadUserName();
     this.loadFilterFromURL();
     this.setupEventListeners();
-    this.buildCategoryTree();
+    this.buildSubjectTabs();
     this.updateStartScreen();
   }
 
@@ -99,290 +99,198 @@ export class QuizApp {
     }
   }
 
-  private buildCategoryTree(): void {
-    const treeContainer = document.querySelector(".subject-tree");
-    if (!treeContainer) return;
+  private readonly subjects = [
+    { id: "all", name: "すべて", icon: "📋" },
+    { id: "english", name: "英語", icon: "📚" },
+    { id: "math", name: "数学", icon: "🔢" },
+  ];
 
-    treeContainer.innerHTML = "";
+  private buildSubjectTabs(): void {
+    const tabsContainer = document.querySelector(".subject-tabs");
+    if (!tabsContainer) return;
 
-    const subjects = [
-      { id: "all", name: "すべて", icon: "📋" },
-      { id: "english", name: "英語", icon: "📚" },
-      { id: "math", name: "数学", icon: "🔢" },
-    ];
+    tabsContainer.innerHTML = "";
 
-    subjects.forEach((subject) => {
-      const hasChildren = subject.id !== "all";
+    this.subjects.forEach((subject) => {
+      const tab = document.createElement("button");
+      tab.className = "subject-tab";
+      tab.dataset.subject = subject.id;
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("type", "button");
+      tab.setAttribute("aria-selected", "false");
 
-      const item = document.createElement("div");
-      item.className = "tree-item";
-      item.dataset.subject = subject.id;
+      const labelSpan = document.createElement("span");
+      labelSpan.className = "tab-label";
+      labelSpan.textContent = `${subject.icon} ${subject.name}`;
 
-      const childrenId = `tree-children-${subject.id}`;
+      const statsSpan = document.createElement("span");
+      statsSpan.className = "tab-stats";
 
-      const header = document.createElement("div");
-      header.className = "tree-node-header";
-      header.setAttribute("role", "button");
-      header.setAttribute("tabindex", "0");
+      tab.appendChild(labelSpan);
+      tab.appendChild(statsSpan);
 
-      if (hasChildren) {
-        const toggle = document.createElement("span");
-        toggle.className = "tree-toggle";
-        toggle.textContent = "▶";
-        toggle.setAttribute("aria-hidden", "true");
-        header.appendChild(toggle);
-        header.setAttribute("aria-expanded", "false");
-        header.setAttribute("aria-controls", childrenId);
-      }
+      tab.addEventListener("click", () => {
+        this.filter.subject = subject.id;
+        this.filter.category = "all";
+        this.filter.parentCategory = undefined;
 
-      const label = document.createElement("span");
-      label.className = "tree-node-label";
-      label.textContent = `${subject.icon} ${subject.name}`;
-      header.appendChild(label);
+        tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
+          t.classList.remove("active");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
 
-      const stats = document.createElement("span");
-      stats.className = "tree-node-stats";
-      header.appendChild(stats);
-
-      item.appendChild(header);
-
-      if (hasChildren) {
-        const children = document.createElement("div");
-        children.className = "tree-children hidden";
-        children.id = childrenId;
-
-        // 親カテゴリを取得
-        const parentCategories = this.useCase.getParentCategoriesForSubject(subject.id);
-
-        if (Object.keys(parentCategories).length > 0) {
-          // 親カテゴリがある場合は階層構造で表示
-          for (const [parentCatId, parentCatName] of Object.entries(parentCategories)) {
-            const parentItem = this.createParentCategoryNode(subject.id, parentCatId, parentCatName);
-            children.appendChild(parentItem);
-          }
-        }
-
-        // 親カテゴリがない問題も表示（レガシー互換）
-        const categoriesWithoutParent = this.useCase.getCategoriesForSubject(subject.id);
-        const categoriesForParent: Record<string, Set<string>> = {};
-
-        // 各親カテゴリに属するカテゴリを収集
-        for (const [parentCatId] of Object.entries(parentCategories)) {
-          const cats = this.useCase.getCategoriesForParent(subject.id, parentCatId);
-          categoriesForParent[parentCatId] = new Set(Object.keys(cats));
-        }
-
-        // 親カテゴリに属さないカテゴリのみ表示
-        for (const [categoryId, categoryName] of Object.entries(categoriesWithoutParent)) {
-          let belongsToParent = false;
-          for (const catSet of Object.values(categoriesForParent)) {
-            if (catSet.has(categoryId)) {
-              belongsToParent = true;
-              break;
-            }
-          }
-          if (!belongsToParent) {
-            const catItem = this.createCategoryNode(subject.id, categoryId, categoryName);
-            children.appendChild(catItem);
-          }
-        }
-
-        item.appendChild(children);
-      }
-
-      treeContainer.appendChild(item);
-    });
-
-    // イベントリスナーをツリーアイテムに設定
-    this.attachTreeEventListeners(treeContainer);
-
-    // 初期状態で「すべて」を選択
-    const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
-    allNode?.classList.add("active");
-  }
-
-  private createParentCategoryNode(subject: string, parentCatId: string, parentCatName: string): HTMLElement {
-    const parentItem = document.createElement("div");
-    parentItem.className = "tree-item parent-category-node";
-    parentItem.dataset.subject = subject;
-    parentItem.dataset.parentCategory = parentCatId;
-
-    const childrenId = `tree-children-${subject}-${parentCatId}`;
-
-    const parentHeader = document.createElement("div");
-    parentHeader.className = "tree-node-header";
-    parentHeader.setAttribute("role", "button");
-    parentHeader.setAttribute("tabindex", "0");
-
-    const parentLabel = document.createElement("span");
-    parentLabel.className = "tree-node-label";
-    parentLabel.textContent = parentCatName;
-
-    const parentStats = document.createElement("span");
-    parentStats.className = "tree-node-stats";
-
-    parentItem.appendChild(parentHeader);
-
-    // 子カテゴリを追加
-    const categories = this.useCase.getCategoriesForParent(subject, parentCatId);
-    if (Object.keys(categories).length > 0) {
-      const parentToggle = document.createElement("span");
-      parentToggle.className = "tree-toggle";
-      parentToggle.textContent = "▶";
-      parentToggle.setAttribute("aria-hidden", "true");
-      parentHeader.appendChild(parentToggle);
-      parentHeader.setAttribute("aria-expanded", "false");
-      parentHeader.setAttribute("aria-controls", childrenId);
-
-      const catChildren = document.createElement("div");
-      catChildren.className = "tree-children hidden";
-      catChildren.id = childrenId;
-
-      for (const [categoryId, categoryName] of Object.entries(categories)) {
-        const catItem = this.createCategoryNode(subject, categoryId, categoryName, parentCatId);
-        catChildren.appendChild(catItem);
-      }
-
-      parentItem.appendChild(catChildren);
-    }
-
-    parentHeader.appendChild(parentLabel);
-    parentHeader.appendChild(parentStats);
-
-    return parentItem;
-  }
-
-  private createCategoryNode(subject: string, categoryId: string, categoryName: string, parentCatId?: string): HTMLElement {
-    const catItem = document.createElement("div");
-    catItem.className = "tree-item category-node";
-    catItem.dataset.subject = subject;
-    catItem.dataset.category = categoryId;
-    if (parentCatId) {
-      catItem.dataset.parentCategory = parentCatId;
-    }
-
-    const catHeader = document.createElement("div");
-    catHeader.className = "tree-node-header";
-    catHeader.setAttribute("role", "button");
-    catHeader.setAttribute("tabindex", "0");
-
-    const catLabel = document.createElement("span");
-    catLabel.className = "tree-node-label";
-    catLabel.textContent = categoryName;
-    catHeader.appendChild(catLabel);
-
-    const catStats = document.createElement("span");
-    catStats.className = "tree-node-stats";
-    catHeader.appendChild(catStats);
-
-    catItem.appendChild(catHeader);
-    return catItem;
-  }
-
-  private attachTreeEventListeners(treeContainer: Element): void {
-    const treeItems = treeContainer.querySelectorAll(".tree-item");
-    treeItems.forEach((node) => {
-      const el = node as HTMLElement;
-      const nodeHeader = el.querySelector(":scope > .tree-node-header") as HTMLElement | null;
-      if (!nodeHeader) return;
-
-      const handleActivate = (e: Event): void => {
-        e.stopPropagation();
-        const subject = el.dataset.subject || "all";
-        const category = el.dataset.category;
-        const parentCategory = el.dataset.parentCategory;
-
-        // 教科ノードまたは親カテゴリノード（カテゴリでない）の場合は展開/折りたたみをトグル
-        if (!category && (subject !== "all" || parentCategory)) {
-          el.classList.toggle("expanded");
-          const isExpanded = el.classList.contains("expanded");
-          nodeHeader.setAttribute("aria-expanded", String(isExpanded));
-          const childrenEl = el.querySelector(":scope > .tree-children");
-          childrenEl?.classList.toggle("hidden");
-        }
-
-        // アクティブ状態を更新
-        treeItems.forEach((t) => t.classList.remove("active"));
-        el.classList.add("active");
-
-        // フィルターを更新
-        this.filter.subject = subject;
-        if (category) {
-          // カテゴリノードがクリックされた場合
-          this.filter.category = category;
-          this.filter.parentCategory = parentCategory;
-        } else if (parentCategory && subject !== "all") {
-          // 親カテゴリノードがクリックされた場合
-          this.filter.category = "all";
-          this.filter.parentCategory = parentCategory;
-        } else {
-          // 教科ノードまたは「すべて」がクリックされた場合
-          this.filter.category = "all";
-          this.filter.parentCategory = undefined;
-        }
+        this.renderCategoryList();
         this.updateStartScreen();
-      };
-
-      nodeHeader.addEventListener("click", handleActivate);
-      nodeHeader.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleActivate(e);
-        }
       });
+
+      tabsContainer.appendChild(tab);
     });
 
-    // フィルターに基づいて初期選択を設定
-    this.selectTreeItemByFilter();
+    // フィルターに基づいてアクティブタブを設定
+    this.selectTabByFilter();
+    // カテゴリリストを描画
+    this.renderCategoryList();
   }
 
   /**
-   * 現在のフィルター設定に基づいてツリーアイテムを選択する
+   * 現在のフィルター設定に基づいてアクティブタブを設定する
    */
-  private selectTreeItemByFilter(): void {
-    const treeContainer = document.querySelector(".subject-tree");
-    if (!treeContainer) return;
+  private selectTabByFilter(): void {
+    const tabsContainer = document.querySelector(".subject-tabs");
+    if (!tabsContainer) return;
 
-    const treeItems = treeContainer.querySelectorAll(".tree-item");
+    tabsContainer.querySelectorAll(".subject-tab").forEach((tab) => {
+      const el = tab as HTMLElement;
+      const isActive = el.dataset.subject === this.filter.subject;
+      el.classList.toggle("active", isActive);
+      el.setAttribute("aria-selected", String(isActive));
+    });
+  }
 
-    // まず全てのアクティブ状態をクリア
-    treeItems.forEach((item) => item.classList.remove("active"));
+  /**
+   * 現在の教科フィルターに応じてカテゴリリストを描画する
+   */
+  private renderCategoryList(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
 
-    // フィルターに一致するアイテムを探して選択
-    if (this.filter.category !== "all") {
-      // カテゴリが指定されている場合、そのカテゴリを選択
-      const categoryNode = treeContainer.querySelector(
-        `.tree-item[data-subject="${this.filter.subject}"][data-category="${this.filter.category}"]`
-      );
-      if (categoryNode) {
-        categoryNode.classList.add("active");
-        // 親の教科ノードを展開
-        const parentSubject = categoryNode.closest('.tree-item[data-subject]:not([data-category])');
-        if (parentSubject) {
-          parentSubject.classList.add("expanded");
-          const header = parentSubject.querySelector(".tree-node-header");
-          header?.setAttribute("aria-expanded", "true");
-          const children = parentSubject.querySelector(":scope > .tree-children");
-          children?.classList.remove("hidden");
+    categoryList.innerHTML = "";
+
+    const subject = this.filter.subject;
+
+    if (subject === "all") {
+      // 「すべて」タブではカテゴリ選択不要
+      return;
+    }
+
+    // 「すべて」アイテム（この教科全問）
+    const allItem = this.createCategoryItem(subject, "all", "すべて");
+    categoryList.appendChild(allItem);
+
+    // 親カテゴリとその配下のカテゴリを収集
+    const parentCategories = this.useCase.getParentCategoriesForSubject(subject);
+    const categoriesForParent: Record<string, Set<string>> = {};
+    for (const [parentCatId] of Object.entries(parentCategories)) {
+      const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
+      categoriesForParent[parentCatId] = new Set(Object.keys(cats));
+    }
+
+    // 親カテゴリがある場合はグループヘッダー付きで表示
+    for (const [parentCatId, parentCatName] of Object.entries(parentCategories)) {
+      const groupHeader = document.createElement("div");
+      groupHeader.className = "category-group-header";
+      groupHeader.textContent = parentCatName;
+      categoryList.appendChild(groupHeader);
+
+      const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
+      for (const [catId, catName] of Object.entries(cats)) {
+        const catItem = this.createCategoryItem(subject, catId, catName, parentCatId);
+        categoryList.appendChild(catItem);
+      }
+    }
+
+    // 親カテゴリに属さないスタンドアロンカテゴリ
+    const allCategories = this.useCase.getCategoriesForSubject(subject);
+    for (const [catId, catName] of Object.entries(allCategories)) {
+      let belongsToParent = false;
+      for (const catSet of Object.values(categoriesForParent)) {
+        if (catSet.has(catId)) {
+          belongsToParent = true;
+          break;
         }
-        return;
+      }
+      if (!belongsToParent) {
+        const catItem = this.createCategoryItem(subject, catId, catName);
+        categoryList.appendChild(catItem);
       }
     }
 
-    // カテゴリが見つからない、またはsubjectのみの場合
-    if (this.filter.subject !== "all") {
-      const subjectNode = treeContainer.querySelector(
-        `.tree-item[data-subject="${this.filter.subject}"]:not([data-category])`
-      );
-      if (subjectNode) {
-        subjectNode.classList.add("active");
-        return;
-      }
-    }
+    // アクティブ状態を更新
+    this.updateCategoryListActive();
+  }
 
-    // デフォルトは「すべて」を選択
-    const allNode = treeContainer.querySelector('.tree-item[data-subject="all"]');
-    allNode?.classList.add("active");
+  private createCategoryItem(
+    subject: string,
+    categoryId: string,
+    categoryName: string,
+    parentCatId?: string
+  ): HTMLElement {
+    const item = document.createElement("div");
+    item.className = "category-item";
+    item.dataset.subject = subject;
+    item.dataset.category = categoryId;
+    if (parentCatId) {
+      item.dataset.parentCategory = parentCatId;
+    }
+    item.setAttribute("role", "button");
+    item.setAttribute("tabindex", "0");
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "category-name";
+    nameSpan.textContent = categoryName;
+
+    const statsSpan = document.createElement("span");
+    statsSpan.className = "category-stats";
+
+    item.appendChild(nameSpan);
+    item.appendChild(statsSpan);
+
+    const handleActivate = (e: Event): void => {
+      e.stopPropagation();
+      this.filter.subject = subject;
+      this.filter.category = categoryId;
+      this.filter.parentCategory = parentCatId;
+      this.updateCategoryListActive();
+      this.updateStartScreen();
+    };
+
+    item.addEventListener("click", handleActivate);
+    item.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleActivate(e);
+      }
+    });
+
+    return item;
+  }
+
+  /**
+   * 現在のフィルターに基づいてカテゴリアイテムのアクティブ状態を更新する
+   */
+  private updateCategoryListActive(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    categoryList.querySelectorAll(".category-item").forEach((item) => {
+      const el = item as HTMLElement;
+      const isActive =
+        el.dataset.subject === this.filter.subject &&
+        el.dataset.category === this.filter.category;
+      el.classList.toggle("active", isActive);
+    });
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -460,37 +368,39 @@ export class QuizApp {
       }
     }
 
-    // DOM を一括更新
-    const treeItems = document.querySelectorAll(".tree-item[data-subject]");
-    treeItems.forEach((node) => {
-      const el = node as HTMLElement;
+    const formatStats = (stat: { total: number; wrong: number }): string => {
+      if (stat.total === 0) return "";
+      return `${stat.wrong}/${stat.total}`;
+    };
+
+    // タブの統計を更新
+    document.querySelectorAll(".subject-tab[data-subject]").forEach((tab) => {
+      const el = tab as HTMLElement;
       const subject = el.dataset.subject || "all";
-      const category = el.dataset.category;
-      const parentCategory = el.dataset.parentCategory;
+      const stat = statsMap.get(`${subject}::all`) ?? { total: 0, wrong: 0 };
+      const statsEl = el.querySelector(".tab-stats");
+      if (statsEl) {
+        statsEl.textContent = formatStats(stat);
+      }
+    });
+
+    // カテゴリアイテムの統計を更新
+    document.querySelectorAll(".category-item[data-subject]").forEach((item) => {
+      const el = item as HTMLElement;
+      const subject = el.dataset.subject || "";
+      const category = el.dataset.category || "all";
 
       let key: string;
-      if (category) {
-        // カテゴリノード
+      if (category !== "all") {
         key = `${subject}::${category}`;
-      } else if (parentCategory) {
-        // 親カテゴリノード
-        key = `${subject}::parent::${parentCategory}`;
       } else {
-        // 教科ノードまたは「すべて」
         key = `${subject}::all`;
       }
 
       const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
-
-      const statsEl = el.querySelector(":scope > .tree-node-header > .tree-node-stats");
-      if (!statsEl) return;
-
-      if (stat.total === 0) {
-        statsEl.textContent = "";
-      } else if (stat.wrong > 0) {
-        statsEl.textContent = `${stat.wrong}/${stat.total}`;
-      } else {
-        statsEl.textContent = `0/${stat.total}`;
+      const statsEl = el.querySelector(".category-stats");
+      if (statsEl) {
+        statsEl.textContent = formatStats(stat);
       }
     });
   }

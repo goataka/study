@@ -21,53 +21,12 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
   await expect(page.locator("h1")).toHaveText(title);
 });
 
-When("I scroll the category tree", async ({ page }) => {
-  // カテゴリツリーが表示されるまで待つ
-  const subjectTree = page.locator(".subject-tree");
-  await expect(subjectTree).toBeVisible();
-
-  // 英語ノードをクリックして展開し、ツリーを十分な高さにする
-  // .subject-tree の直接の子に限定することで、ネストされた子要素にマッチしない
-  const englishNode = page.locator('.subject-tree > .tree-item[data-subject="english"] > .tree-node-header');
-  // 未展開の場合のみクリックする（展開済みの場合は折りたたまないよう防止）
-  const isExpanded = await englishNode.getAttribute("aria-expanded");
-  if (isExpanded !== "true") {
-    await englishNode.click();
-    await expect(englishNode).toHaveAttribute("aria-expanded", "true");
-  }
-
-  // 英語ツリーの文法（grammar）親カテゴリも展開して十分な子要素を表示する
-  // （英語は grammar/pronunciation の親カテゴリ構造を持つため、親カテゴリを展開しないとスクロール不可能）
-  const grammarNode = page.locator('.subject-tree .tree-item.parent-category-node[data-subject="english"][data-parent-category="grammar"] > .tree-node-header');
-  const isGrammarExpanded = await grammarNode.getAttribute("aria-expanded");
-  if (isGrammarExpanded !== "true") {
-    await grammarNode.click();
-    await expect(grammarNode).toHaveAttribute("aria-expanded", "true");
-  }
-
-  // ツリーがスクロール可能になるまで待つ（展開後）
-  await expect
-    .poll(
-      async () =>
-        await subjectTree.evaluate((el) => el.scrollHeight > el.clientHeight),
-      { timeout: STATS_LOAD_TIMEOUT }
-    )
-    .toBe(true);
-
-  const initialScrollTop = await subjectTree.evaluate((el) => el.scrollTop);
-
-  // カテゴリツリーをスクロール
-  await subjectTree.evaluate((el) => {
-    el.scrollTop = el.scrollHeight;
-  });
-
-  // 実際にスクロール位置が進んだことを確認
-  await expect
-    .poll(
-      async () => await subjectTree.evaluate((el) => el.scrollTop),
-      { timeout: STATS_LOAD_TIMEOUT }
-    )
-    .toBeGreaterThan(initialScrollTop);
+When("I click the {string} tab", async ({ page }, tabText: string) => {
+  // タブボタンをクリック
+  const tab = page.locator(".subject-tab").filter({ hasText: tabText });
+  await tab.click();
+  // タブがアクティブになるまで待つ
+  await expect(tab).toHaveClass(/active/);
 });
 
 Then("the header should remain visible", async ({ page }) => {
