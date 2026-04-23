@@ -40,6 +40,8 @@ export interface QuizRecord {
 export interface IProgressRepository {
   loadWrongIds(): string[];
   saveWrongIds(ids: string[]): void;
+  loadCorrectStreaks(): Record<string, number>;
+  saveCorrectStreaks(streaks: Record<string, number>): void;
   loadUserName(): string | null;
   saveUserName(name: string): void;
   loadHistory(): QuizRecord[];

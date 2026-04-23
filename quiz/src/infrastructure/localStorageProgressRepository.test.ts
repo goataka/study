@@ -140,3 +140,41 @@ describe("LocalStorageProgressRepository — 回答履歴永続化仕様", () =>
     expect(repo2.loadHistory()[0]!.id).toBe("r1");
   });
 });
+
+describe("LocalStorageProgressRepository — 正解連続数永続化仕様", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("初回ロード時は空オブジェクトを返す", () => {
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadCorrectStreaks()).toEqual({});
+  });
+
+  it("保存した正解連続数を正しく読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveCorrectStreaks({ q1: 1, q2: 2 });
+    expect(repo.loadCorrectStreaks()).toEqual({ q1: 1, q2: 2 });
+  });
+
+  it("上書き保存が正しく機能する", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveCorrectStreaks({ q1: 1 });
+    repo.saveCorrectStreaks({ q1: 2 });
+    expect(repo.loadCorrectStreaks()).toEqual({ q1: 2 });
+  });
+
+  it("別のインスタンスからも同じデータを読み込める（永続化確認）", () => {
+    const repo1 = new LocalStorageProgressRepository();
+    repo1.saveCorrectStreaks({ q1: 1, q2: 2 });
+
+    const repo2 = new LocalStorageProgressRepository();
+    expect(repo2.loadCorrectStreaks()).toEqual({ q1: 1, q2: 2 });
+  });
+
+  it("localStorageに不正なJSONが入っていてもロード時に空オブジェクトを返す", () => {
+    localStorage.setItem("correctStreaks", "invalid{{{");
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadCorrectStreaks()).toEqual({});
+  });
+});
