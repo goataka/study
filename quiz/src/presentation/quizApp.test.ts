@@ -292,8 +292,8 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(englishTab?.classList.contains("active")).toBe(true);
     expect(englishTab?.getAttribute("aria-selected")).toBe("true");
 
-    const allTab = document.querySelector('.subject-tab[data-subject="all"]');
-    expect(allTab?.classList.contains("active")).toBe(false);
+    const mathTab = document.querySelector('.subject-tab[data-subject="math"]');
+    expect(mathTab?.classList.contains("active")).toBe(false);
   });
 
   it("英語タブをクリックするとカテゴリリストが描画される", async () => {
