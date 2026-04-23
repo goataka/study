@@ -956,6 +956,17 @@ button:disabled {
 
 /* ─── 回答記録 ─────────────────────────────────────────────────────────────── */
 
+#historyContent {
+    margin-top: 24px;
+}
+
+.history-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #24292e;
+    margin-bottom: 12px;
+}
+
 .history-list {
     display: flex;
     flex-direction: column;
