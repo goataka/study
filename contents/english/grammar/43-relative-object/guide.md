@@ -1,11 +1,11 @@
 # 目的格の関係代名詞 - 解説
 
 2つの文:
-I have a friend. I met him yesterday.
+I play a game. The game is fun.
 
 ## 目的格の関係代名詞
 
-I have a friend `whom` I met yesterday.
+The game `which` I play is fun.
 
 - 先行詞（人）→ `whom` / `who` / `that`
 - 先行詞（物）→ `which` / `that`
@@ -15,8 +15,8 @@ I have a friend `whom` I met yesterday.
 
 | 先行詞 | 関係代名詞 | 省略 | 例 |
 |--------|-----------|------|------|
-| 人 | `whom` / `that` | 可 | a friend (whom) I met |
-| 物 | `which` / `that` | 可 | a book (which) I read |
+| 人 | `whom` / `that` | 可 | a boy (whom) I know |
+| 物 | `which` / `that` | 可 | a game (which) I play |
 
 ---
 

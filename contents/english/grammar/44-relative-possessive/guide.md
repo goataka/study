@@ -1,11 +1,11 @@
 # 所有格の関係代名詞 - 解説
 
 2つの文:
-I have a friend. His father is a doctor.
+I know a boy. His father plays games.
 
 ## 所有格の関係代名詞
 
-I have a friend `whose` father is a doctor.
+I know a boy `whose` father plays games.
 
 - 所有格の関係代名詞は `whose`（人・物共通）
 
@@ -13,8 +13,8 @@ I have a friend `whose` father is a doctor.
 
 | 先行詞 | 関係代名詞 | 例 |
 |--------|-----------|------|
-| 人 | `whose` | a friend `whose` father is a doctor |
-| 物 | `whose` | a house `whose` roof is red |
+| 人 | `whose` | a boy `whose` father plays games |
+| 物 | `whose` | a game `whose` rules are simple |
 
 ---
 
