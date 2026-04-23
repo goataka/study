@@ -15,6 +15,6 @@
 
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=prepositions)
+[目次](../../README.md) | 練習 | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=prepositions)
 
 [前へ: 副詞](../20-adverbs/drill.md) | 前置詞 | [次へ: 接続詞](../22-conjunctions/drill.md)

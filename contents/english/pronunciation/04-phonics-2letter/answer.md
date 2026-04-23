@@ -42,6 +42,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=phonics-2)
+[目次](../../README.md) | [練習](drill.md) | 解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=phonics-2)
 
 [前へ: フォニックス（1文字）](../03-phonics-1letter/answer.md) | **フォニックス練習ドリル（2文字）** | [次へ: フォニックス（3文字）](../05-phonics-3letter/answer.md)

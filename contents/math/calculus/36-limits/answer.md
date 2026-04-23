@@ -23,7 +23,7 @@
 💡 **ポイント**: 分数式は最高次の項で割ると極限が見えます。0/0の不定形は因数分解で解消
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 解答 | [解説](guide.md)
 
 [前へ: ベクトル](../35-vectors/drill.md) | **極限** | [次へ: 微分](../37-differentiation/drill.md)
 

@@ -47,7 +47,7 @@ y
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
 
 [前へ: 連立方程式](../25-simultaneous-eq/drill.md) | **一次関数** | [次へ: 確率](../27-probability/drill.md)
 

@@ -17,6 +17,6 @@
 
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=modals-basic)
+[目次](../../README.md) | 練習 | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=modals-basic)
 
 [前へ: 完了形の用法](../27-perfect-usage/drill.md) | 助動詞の使い分け | [次へ: 助動詞の否定形](../29-modals-negative/drill.md)

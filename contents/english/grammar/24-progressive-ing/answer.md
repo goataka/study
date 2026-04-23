@@ -17,6 +17,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 回答 | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=progressive-ing)
+[目次](../../README.md) | [練習](drill.md) | 解答 | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=progressive-ing)
 
 [前へ: 進行形](../23-progressive/drill.md) | -ing形の作り方 | [次へ: 完了形](../25-perfect/drill.md)

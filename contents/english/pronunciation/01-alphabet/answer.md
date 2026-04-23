@@ -33,6 +33,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | 回答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=alphabet)
+[目次](../../README.md) | [練習](drill.md) | 解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=alphabet)
 
  | **アルファベット練習ドリル** | [次へ: 五十音ローマ字](../02-50on/answer.md)

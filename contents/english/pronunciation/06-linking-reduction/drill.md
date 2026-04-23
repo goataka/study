@@ -66,6 +66,6 @@ t/dがラ行になる
 
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../../README.md) | 練習 | [解答](answer.md) | [解説](guide.md)
 
 [前へ: フォニックス（3文字）](../05-phonics-3letter/drill.md) | **音声変化練習ドリル** | [次へ: リンキング](../07-linking/drill.md)

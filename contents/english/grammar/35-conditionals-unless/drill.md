@@ -12,6 +12,6 @@ if文をunless文に書き換えましょう。
 
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=conditionals-unless)
+[目次](../../README.md) | 練習 | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=conditionals-unless)
 
 [前へ: I wish](../34-conditionals-wish/drill.md) | unless | [次へ: 疑問文](../36-questions/drill.md)

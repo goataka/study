@@ -22,7 +22,7 @@
 
 ---
 
-[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [解答](answer.md) | [解説](guide.md)
 
 [前へ: ベクトル](../35-vectors/drill.md) | **極限** | [次へ: 微分](../37-differentiation/drill.md)
 
