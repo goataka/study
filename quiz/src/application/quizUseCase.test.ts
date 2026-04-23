@@ -187,6 +187,16 @@ describe("QuizUseCase — セッション開始仕様", () => {
     await useCase.initialize();
   });
 
+  it("practiceモードで先頭から順番に問題が出題される", () => {
+    const session = useCase.startSession("practice", { subject: "all", category: "all" }, 5);
+    expect(session.totalCount).toBe(5);
+  });
+
+  it("practiceモードで問題数より少ない件数を指定できる", () => {
+    const session = useCase.startSession("practice", { subject: "all", category: "all" }, 3);
+    expect(session.totalCount).toBe(3);
+  });
+
   it("randomモードで最大20問のセッションが開始される", () => {
     const session = useCase.startSession("random", { subject: "all", category: "all" });
     expect(session.totalCount).toBeLessThanOrEqual(20);

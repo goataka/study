@@ -388,7 +388,7 @@ export class QuizApp {
 
     const modeSpan = document.createElement("span");
     modeSpan.className = "history-mode";
-    modeSpan.textContent = record.mode === "retry" ? "復習" : "ランダム";
+    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : "ランダム";
 
     metaDiv.appendChild(dateSpan);
     metaDiv.appendChild(subjectSpan);
@@ -467,6 +467,7 @@ export class QuizApp {
 
   private setupEventListeners(): void {
     this.on("startRandomBtn", "click", () => this.startQuiz("random"));
+    this.on("startPracticeBtn", "click", () => this.startQuiz("practice"));
     this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
     this.on("prevBtn", "click", () => this.navigate(-1));
     this.on("nextBtn", "click", () => this.navigate(1));

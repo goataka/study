@@ -113,6 +113,29 @@ describe("QuizSession — 採点仕様", () => {
   });
 });
 
+describe("QuizSession.pickInOrder — 順番選択仕様", () => {
+  const questions = Array.from({ length: 20 }, (_, i) => makeQuestion(`q${i}`));
+
+  it("先頭から指定した件数を返す", () => {
+    const picked = QuizSession.pickInOrder(questions, 10);
+    expect(picked).toHaveLength(10);
+    expect(picked[0]!.id).toBe("q0");
+    expect(picked[9]!.id).toBe("q9");
+  });
+
+  it("問題数より多くは返さない", () => {
+    const picked = QuizSession.pickInOrder(questions, 100);
+    expect(picked).toHaveLength(20);
+  });
+
+  it("元の順番を維持する", () => {
+    const picked = QuizSession.pickInOrder(questions, 5);
+    for (let i = 0; i < 5; i++) {
+      expect(picked[i]!.id).toBe(`q${i}`);
+    }
+  });
+});
+
 describe("QuizSession.pickRandom — ランダム選択仕様", () => {
   const questions = Array.from({ length: 20 }, (_, i) => makeQuestion(`q${i}`));
 
