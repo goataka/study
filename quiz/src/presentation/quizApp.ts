@@ -195,10 +195,6 @@ export class QuizApp {
       return;
     }
 
-    // 「すべて」アイテム（この教科全問）
-    const allItem = this.createCategoryItem(subject, "all", "すべて");
-    categoryList.appendChild(allItem);
-
     // 親カテゴリとその配下のカテゴリを収集
     const parentCategories = this.useCase.getParentCategoriesForSubject(subject);
     const categoriesForParent: Record<string, Set<string>> = {};
