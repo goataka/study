@@ -11,7 +11,9 @@
     "test:watch": "vitest",
     "test:e2e": "bddgen && playwright test",
     "test:e2e:ui": "bddgen && playwright test --ui",
+    "pretest:e2e:vr": "bash scripts/setup-env.sh",
     "test:e2e:vr": "bddgen --config playwright.vr.config.ts && playwright test --config playwright.vr.config.ts",
+    "pretest:e2e:vr:update": "bash scripts/setup-env.sh",
     "test:e2e:vr:update": "bddgen --config playwright.vr.config.ts && playwright test --config playwright.vr.config.ts --update-snapshots",
     "prepare": "cd .. && lefthook install"
   },
