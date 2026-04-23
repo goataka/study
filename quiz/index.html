@@ -26,8 +26,8 @@
       <!-- 教科タブ -->
       <div class="subject-tabs" role="tablist" aria-label="教科を選択"></div>
 
-      <!-- カテゴリ + クイズパネル -->
-      <div class="start-content-layout">
+      <!-- カテゴリ + クイズパネル（教科タブ選択時に表示）-->
+      <div class="start-content-layout" id="subjectContent">
         <!-- カテゴリリスト -->
         <div class="category-panel">
           <div id="categoryList" class="category-list"></div>
@@ -50,6 +50,11 @@
           </div>
           <div id="statsInfo" class="stats-info">読み込み中...</div>
         </main>
+      </div>
+
+      <!-- 回答記録（記録タブ選択時に表示）-->
+      <div id="historyContent" class="hidden">
+        <div id="historyList" class="history-list"></div>
       </div>
     </div>
 

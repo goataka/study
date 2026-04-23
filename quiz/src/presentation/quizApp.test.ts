@@ -59,13 +59,18 @@ function setupTabDom(): void {
     <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
-      <div id="categoryList" class="category-list"></div>
-      <div id="statsInfo"></div>
-      <input type="radio" name="questionCount" value="5">
-      <input type="radio" name="questionCount" value="10" checked>
-      <input type="radio" name="questionCount" value="20">
-      <button id="startRandomBtn">ランダム</button>
-      <button id="startRetryBtn" disabled>間違えた問題</button>
+      <div id="subjectContent">
+        <div id="categoryList" class="category-list"></div>
+        <div id="statsInfo"></div>
+        <input type="radio" name="questionCount" value="5">
+        <input type="radio" name="questionCount" value="10" checked>
+        <input type="radio" name="questionCount" value="20">
+        <button id="startRandomBtn">ランダム</button>
+        <button id="startRetryBtn" disabled>間違えた問題</button>
+      </div>
+      <div id="historyContent" class="hidden">
+        <div id="historyList"></div>
+      </div>
     </div>
     <div id="quizScreen" class="screen">
       <div id="questionNumber"></div>
@@ -685,5 +690,73 @@ describe("QuizApp — 解説リンク仕様", () => {
     expect(guideLink.href).toContain("guide");
     expect(guideLink.href).toContain("#section");
     expect(guideLink.href).not.toContain("guide.md");
+  });
+});
+
+describe("QuizApp — 記録タブ仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("タブに「記録」タブが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.querySelector('.subject-tab[data-tab="history"]');
+    expect(historyTab).not.toBeNull();
+    expect(historyTab?.textContent).toContain("記録");
+  });
+
+  it("「記録」タブをクリックするとhighlightが切り替わりhistoryContentが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.querySelector('.subject-tab[data-tab="history"]') as HTMLElement;
+    historyTab?.click();
+
+    expect(historyTab?.classList.contains("active")).toBe(true);
+    expect(historyTab?.getAttribute("aria-selected")).toBe("true");
+
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(false);
+
+    const subjectContent = document.getElementById("subjectContent");
+    expect(subjectContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("履歴がないとき「記録」タブをクリックすると空メッセージが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.querySelector('.subject-tab[data-tab="history"]') as HTMLElement;
+    historyTab?.click();
+
+    const historyList = document.getElementById("historyList");
+    expect(historyList?.querySelector(".history-empty")).not.toBeNull();
+  });
+
+  it("教科タブをクリックするとsubjectContentが再び表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 記録タブを開く
+    const historyTab = document.querySelector('.subject-tab[data-tab="history"]') as HTMLElement;
+    historyTab?.click();
+
+    // 英語タブに戻る
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const subjectContent = document.getElementById("subjectContent");
+    expect(subjectContent?.classList.contains("hidden")).toBe(false);
+
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(true);
   });
 });
