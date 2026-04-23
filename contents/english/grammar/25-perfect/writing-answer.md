@@ -10,6 +10,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=perfect)
+[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=perfect)
 
 [前へ: -ing形の作り方](../24-progressive-ing/drill.md) | 完了形 | [次へ: 過去分詞の変化](../26-perfect-participles/drill.md)

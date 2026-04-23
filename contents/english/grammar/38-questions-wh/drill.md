@@ -16,6 +16,6 @@
 
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=questions-wh)
+[目次](../../README.md) | 練習 | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=questions-wh)
 
 [前へ: 否定文](../37-negatives/drill.md) | 疑問詞 | [次へ: 比較級](../39-comparatives-er/drill.md)

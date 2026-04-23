@@ -44,7 +44,7 @@ x = 4 ✅
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
 
 [前へ: 文字式](../23-algebraic-expressions/drill.md) | **一次方程式** | [次へ: 連立方程式](../25-simultaneous-eq/drill.md)
 

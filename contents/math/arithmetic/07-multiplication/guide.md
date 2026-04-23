@@ -48,7 +48,7 @@
 
 ---
 
-[目次](../README.md) | [練習](drill.md) | [回答](answer.md) | 解説
+[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
 
 [前へ: ひき算（まとめ）](../06-subtraction-mixed/drill.md) | **かけ算** | [次へ: わり算（あまりなし）](../08-division-no-remainder/drill.md)
 

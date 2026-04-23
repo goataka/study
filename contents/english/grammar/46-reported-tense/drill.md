@@ -16,6 +16,6 @@
 
 ---
 
-[目次](../../README.md) | 練習 | [回答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=reported-tense)
+[目次](../../README.md) | 練習 | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=reported-tense)
 
 [前へ: 関係副詞](../45-relative-adverb/drill.md) | 時制の一致 | [次へ: 疑問文の間接話法](../47-reported-question/drill.md)

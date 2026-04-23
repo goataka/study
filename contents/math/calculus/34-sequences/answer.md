@@ -23,7 +23,7 @@
 💡 **ポイント**: 等差は「たし算で増える」、等比は「かけ算で増える」数列です
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 解答 | [解説](guide.md)
 
 [前へ: 指数・対数](../33-exponents-logarithms/drill.md) | **数列** | [次へ: ベクトル](../35-vectors/drill.md)
 

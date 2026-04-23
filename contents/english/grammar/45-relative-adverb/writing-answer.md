@@ -10,6 +10,6 @@
 
 ---
 
-[目次](../../README.md) | [練習](drill.md) | [回答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=relative-adverb)
+[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | 英作文解答 | [解説](guide.md) | [クイズ](../../../quiz/index.html?subject=english&category=relative-adverb)
 
 [前へ: 所有格の関係代名詞](../44-relative-possessive/drill.md) | 関係副詞 | [次へ: 時制の一致](../46-reported-tense/drill.md)

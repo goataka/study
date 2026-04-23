@@ -21,7 +21,7 @@
 
 ---
 
-[目次](../README.md) | 練習 | [回答](answer.md) | [解説](guide.md)
+[目次](../README.md) | 練習 | [解答](answer.md) | [解説](guide.md)
 
 [前へ: 微分](../37-differentiation/drill.md) | **積分** |
 

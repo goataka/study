@@ -18,7 +18,7 @@
 `4.60 - 1.75 = 2.85`
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 解答 | [解説](guide.md)
 
 [前へ: 小数のたし算](../17-decimals-addition/drill.md) | **小数のひき算** | [次へ: 小数のかけ算](../19-decimals-multiplication/drill.md)
 

@@ -25,7 +25,7 @@
 💡 **ポイント**: 2点から傾き = (y₂-y₁)/(x₂-x₁) で求め、y = ax + b に代入して b を出します
 ---
 
-[目次](../README.md) | [練習](drill.md) | 回答 | [解説](guide.md)
+[目次](../README.md) | [練習](drill.md) | 解答 | [解説](guide.md)
 
 [前へ: 連立方程式](../25-simultaneous-eq/drill.md) | **一次関数** | [次へ: 確率](../27-probability/drill.md)
 
