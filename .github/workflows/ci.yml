@@ -6,6 +6,9 @@ on:
   push:
     branches: [main]
 
+env:
+  NODE_VERSION: "22"
+
 jobs:
   test-and-build:
     name: 単体テスト・ビルド（quiz）
@@ -19,15 +22,10 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
 
-      - name: Node.js のセットアップ
-        uses: actions/setup-node@v4
+      - name: Node.js 環境のセットアップ
+        uses: ./.github/actions/setup-quiz
         with:
-          node-version: "22"
-          cache: "npm"
-          cache-dependency-path: quiz/package-lock.json
-
-      - name: 依存関係のインストール
-        run: npm ci
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: 単体テスト実行
         run: npm run test
@@ -47,15 +45,10 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
 
-      - name: Node.js のセットアップ
-        uses: actions/setup-node@v4
+      - name: Node.js 環境のセットアップ
+        uses: ./.github/actions/setup-quiz
         with:
-          node-version: "22"
-          cache: "npm"
-          cache-dependency-path: quiz/package-lock.json
-
-      - name: 依存関係のインストール
-        run: npm ci
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Playwright ブラウザのインストール
         run: npx playwright install --with-deps chromium
@@ -78,15 +71,10 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
 
-      - name: Node.js のセットアップ
-        uses: actions/setup-node@v4
+      - name: Node.js 環境のセットアップ
+        uses: ./.github/actions/setup-quiz
         with:
-          node-version: "22"
-          cache: "npm"
-          cache-dependency-path: quiz/package-lock.json
-
-      - name: 依存関係のインストール
-        run: npm ci
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Playwright ブラウザのインストール
         run: npx playwright install --with-deps chromium

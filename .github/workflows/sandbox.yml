@@ -26,6 +26,6 @@ jobs:
           GITHUB_PERSONAL_ACCESS_TOKEN: ${{ secrets.COPILOT_CLASSIC }}
         run: |
           copilot -p \
-            "goataka/studyのmainブランチのREADMにある一覧の文字をなくすPRを作成するエージェントセッションを作成して。"
-            --autopilot
+            "goataka/studyのmainブランチのREADMにある一覧の文字をなくすPRを作成するエージェントセッションを作成して。" \
+            --autopilot \
             --remote
