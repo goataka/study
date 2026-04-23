@@ -273,6 +273,11 @@ export class QuizApp {
     item.setAttribute("role", "button");
     item.setAttribute("tabindex", "0");
 
+    const statusSpan = document.createElement("span");
+    statusSpan.className = "category-status";
+    statusSpan.setAttribute("aria-hidden", "true");
+    statusSpan.textContent = "⬜";
+
     const nameSpan = document.createElement("span");
     nameSpan.className = "category-name";
     nameSpan.textContent = categoryName;
@@ -280,6 +285,7 @@ export class QuizApp {
     const statsSpan = document.createElement("span");
     statsSpan.className = "category-stats";
 
+    item.appendChild(statusSpan);
     item.appendChild(nameSpan);
     item.appendChild(statsSpan);
 
@@ -608,6 +614,7 @@ export class QuizApp {
     });
 
     // カテゴリアイテムの統計を更新
+    const studiedKeys = this.useCase.getStudiedCategoryKeys();
     document.querySelectorAll(".category-item[data-subject]").forEach((item) => {
       const el = item as HTMLElement;
       const subject = el.dataset.subject || "";
@@ -624,6 +631,18 @@ export class QuizApp {
       const statsEl = el.querySelector(".category-stats");
       if (statsEl) {
         statsEl.textContent = formatStats(stat);
+      }
+
+      // 学習状態の絵文字を更新（⬜未学習 / 📖学習中 / ✅学習済）
+      const statusEl = el.querySelector(".category-status");
+      if (statusEl) {
+        if (!studiedKeys.has(key)) {
+          statusEl.textContent = "⬜";
+        } else if (stat.wrong > 0) {
+          statusEl.textContent = "📖";
+        } else {
+          statusEl.textContent = "✅";
+        }
       }
     });
   }

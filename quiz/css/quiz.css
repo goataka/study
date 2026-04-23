@@ -229,6 +229,12 @@ header nav .top-nav-btn {
     color: white;
 }
 
+.category-status {
+    font-size: 14px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
 .category-stats {
     font-size: 11px;
     color: #586069;

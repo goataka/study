@@ -31,8 +31,10 @@ class StubQuestionRepository implements IQuestionRepository {
 
 class StubProgressRepository implements IProgressRepository {
   private ids: string[];
-  constructor(initialIds: string[] = []) {
+  private history: import("./ports").QuizRecord[];
+  constructor(initialIds: string[] = [], initialHistory: import("./ports").QuizRecord[] = []) {
     this.ids = [...initialIds];
+    this.history = [...initialHistory];
   }
   loadWrongIds(): string[] {
     return [...this.ids];
@@ -48,9 +50,9 @@ class StubProgressRepository implements IProgressRepository {
   }
   saveUserName(_name: string): void {}
   loadHistory() {
-    return [];
+    return [...this.history];
   }
-  saveHistory(_records: unknown[]): void {}
+  saveHistory(_records: import("./ports").QuizRecord[]): void {}
 }
 
 // ─── テスト ──────────────────────────────────────────────────────────────────
@@ -250,5 +252,52 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
     useCase.submitSession(session);
 
     expect(progressRepo.getStoredIds()).toContain("q1");
+  });
+});
+
+describe("QuizUseCase — getStudiedCategoryKeys 仕様", () => {
+  const makeRecord = (subject: string, category: string): import("./ports").QuizRecord => ({
+    id: `${subject}-${category}`,
+    date: new Date().toISOString(),
+    subject,
+    subjectName: subject,
+    category,
+    categoryName: category,
+    mode: "random",
+    totalCount: 5,
+    correctCount: 5,
+    entries: [],
+  });
+
+  it("履歴がない場合は空の Set を返す", async () => {
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([makeQuestion("q1")]),
+      new StubProgressRepository()
+    );
+    await useCase.initialize();
+    expect(useCase.getStudiedCategoryKeys().size).toBe(0);
+  });
+
+  it("履歴があるカテゴリのキーが含まれる", async () => {
+    const history = [makeRecord("english", "phonics-1"), makeRecord("english", "tenses-past")];
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([makeQuestion("q1")]),
+      new StubProgressRepository([], history)
+    );
+    await useCase.initialize();
+    const keys = useCase.getStudiedCategoryKeys();
+    expect(keys.has("english::phonics-1")).toBe(true);
+    expect(keys.has("english::tenses-past")).toBe(true);
+  });
+
+  it("履歴がないカテゴリのキーは含まれない", async () => {
+    const history = [makeRecord("english", "phonics-1")];
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([makeQuestion("q1")]),
+      new StubProgressRepository([], history)
+    );
+    await useCase.initialize();
+    const keys = useCase.getStudiedCategoryKeys();
+    expect(keys.has("english::tenses-past")).toBe(false);
   });
 });
