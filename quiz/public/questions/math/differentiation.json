@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "differentiation",
   "categoryName": "微分",
-  "guideUrl": "../math/calculus/37-differentiation/guide",
+  "parentCategory": "advanced",
+  "parentCategoryName": "高校数学",
   "questions": [
     {
       "id": "diff-1",

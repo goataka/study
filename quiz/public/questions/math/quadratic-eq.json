@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "quadratic-eq",
   "categoryName": "二次方程式",
-  "guideUrl": "../math/algebra/29-quadratic-eq/guide",
+  "parentCategory": "middle-school",
+  "parentCategoryName": "中学数学",
   "questions": [
     {
       "id": "quad-eq-1",

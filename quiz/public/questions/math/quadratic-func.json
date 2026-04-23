@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "quadratic-func",
   "categoryName": "二次関数",
-  "guideUrl": "../math/calculus/30-quadratic-func/guide",
+  "parentCategory": "middle-school",
+  "parentCategoryName": "中学数学",
   "questions": [
     {
       "id": "quad-func-1",

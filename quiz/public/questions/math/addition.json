@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "addition",
   "categoryName": "たし算",
+  "parentCategory": "arithmetic",
+  "parentCategoryName": "四則演算",
   "questions": [
     {
       "id": "add-1",

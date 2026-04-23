@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "algebraic-expressions",
   "categoryName": "文字式",
-  "guideUrl": "../math/algebra/23-algebraic-expressions/guide",
+  "parentCategory": "middle-school",
+  "parentCategoryName": "中学数学",
   "questions": [
     {
       "id": "alg-expr-1",

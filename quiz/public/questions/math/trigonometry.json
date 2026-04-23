@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "trigonometry",
   "categoryName": "三角関数",
-  "guideUrl": "../math/calculus/32-trigonometry/guide",
+  "parentCategory": "advanced",
+  "parentCategoryName": "高校数学",
   "questions": [
     {
       "id": "trig-1",

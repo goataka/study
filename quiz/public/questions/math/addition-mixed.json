@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "addition-mixed",
   "categoryName": "たし算（まとめ）",
-  "guideUrl": "../math/arithmetic/03-addition-mixed/guide",
+  "parentCategory": "arithmetic",
+  "parentCategoryName": "四則演算",
   "questions": [
     {
       "id": "add-mixed-1",

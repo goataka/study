@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "ratio",
   "categoryName": "比",
-  "guideUrl": "../math/arithmetic/20-ratio/guide",
+  "parentCategory": "fractions",
+  "parentCategoryName": "小数・分数",
   "questions": [
     {
       "id": "ratio-1",

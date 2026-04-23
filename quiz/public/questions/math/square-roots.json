@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "square-roots",
   "categoryName": "平方根",
-  "guideUrl": "../math/algebra/28-square-roots/guide",
+  "parentCategory": "middle-school",
+  "parentCategoryName": "中学数学",
   "questions": [
     {
       "id": "sqrt-1",

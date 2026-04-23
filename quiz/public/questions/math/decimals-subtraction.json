@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "decimals-subtraction",
   "categoryName": "小数のひき算",
-  "guideUrl": "../math/arithmetic/18-decimals-subtraction/guide",
+  "parentCategory": "fractions",
+  "parentCategoryName": "小数・分数",
   "questions": [
     {
       "id": "dec-sub-1",

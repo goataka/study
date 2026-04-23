@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "fractions-diff-sub",
   "categoryName": "分数のひき算（通分あり）",
-  "guideUrl": "../math/arithmetic/14-fractions-diff-sub/guide",
+  "parentCategory": "fractions",
+  "parentCategoryName": "小数・分数",
   "questions": [
     {
       "id": "frac-diff-sub-1",

@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "vectors",
   "categoryName": "ベクトル",
-  "guideUrl": "../math/calculus/35-vectors/guide",
+  "parentCategory": "advanced",
+  "parentCategoryName": "高校数学",
   "questions": [
     {
       "id": "vec-1",

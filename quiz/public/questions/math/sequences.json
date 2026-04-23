@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "sequences",
   "categoryName": "数列",
-  "guideUrl": "../math/calculus/34-sequences/guide",
+  "parentCategory": "advanced",
+  "parentCategoryName": "高校数学",
   "questions": [
     {
       "id": "seq-1",

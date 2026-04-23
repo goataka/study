@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "positive-negative",
   "categoryName": "正負の数",
-  "guideUrl": "../math/algebra/22-positive-negative/guide",
+  "parentCategory": "middle-school",
+  "parentCategoryName": "中学数学",
   "questions": [
     {
       "id": "pos-neg-1",

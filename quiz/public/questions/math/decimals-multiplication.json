@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "decimals-multiplication",
   "categoryName": "小数のかけ算",
-  "guideUrl": "../math/arithmetic/19-decimals-multiplication/guide",
+  "parentCategory": "fractions",
+  "parentCategoryName": "小数・分数",
   "questions": [
     {
       "id": "dec-mult-1",

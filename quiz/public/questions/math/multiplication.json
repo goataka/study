@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "multiplication",
   "categoryName": "かけ算",
+  "parentCategory": "arithmetic",
+  "parentCategoryName": "四則演算",
   "questions": [
     {
       "id": "mul-1",

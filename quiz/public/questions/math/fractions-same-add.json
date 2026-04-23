@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "fractions-same-add",
   "categoryName": "分数のたし算（同分母）",
-  "guideUrl": "../math/arithmetic/11-fractions-same-add/guide",
+  "parentCategory": "fractions",
+  "parentCategoryName": "小数・分数",
   "questions": [
     {
       "id": "frac-same-add-1",

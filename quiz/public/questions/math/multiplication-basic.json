@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "multiplication-basic",
   "categoryName": "かけ算",
-  "guideUrl": "../math/arithmetic/07-multiplication/guide",
+  "parentCategory": "arithmetic",
+  "parentCategoryName": "四則演算",
   "questions": [
     {
       "id": "mult-basic-1",

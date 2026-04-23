@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "integration",
   "categoryName": "積分",
-  "guideUrl": "../math/calculus/38-integration/guide",
+  "parentCategory": "advanced",
+  "parentCategoryName": "高校数学",
   "questions": [
     {
       "id": "int-1",

@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "decimals-addition",
   "categoryName": "小数のたし算",
-  "guideUrl": "../math/arithmetic/17-decimals-addition/guide",
+  "parentCategory": "fractions",
+  "parentCategoryName": "小数・分数",
   "questions": [
     {
       "id": "dec-add-1",

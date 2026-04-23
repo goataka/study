@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "percentage",
   "categoryName": "割合",
-  "guideUrl": "../math/arithmetic/21-percentage/guide",
+  "parentCategory": "fractions",
+  "parentCategoryName": "小数・分数",
   "questions": [
     {
       "id": "percent-1",

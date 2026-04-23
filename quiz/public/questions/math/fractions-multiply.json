@@ -3,7 +3,8 @@
   "subjectName": "数学",
   "category": "fractions-multiply",
   "categoryName": "分数のかけ算",
-  "guideUrl": "../math/arithmetic/15-fractions-multiply/guide",
+  "parentCategory": "fractions",
+  "parentCategoryName": "小数・分数",
   "questions": [
     {
       "id": "frac-mult-1",
