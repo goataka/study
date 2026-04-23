@@ -6,20 +6,20 @@
 
 I play `fun` games.
 
-I read a `new` book.
+I play a `new` game.
 
 ## be動詞の後に置く（叙述用法）
 
 The game is `fun`.
 
-The book is `interesting`.
+The game is `exciting`.
 
 ## 形容詞の位置
 
 | 位置 | ルール | 例 |
 |------|--------|------|
-| 名詞の前 | 形容詞 + 名詞 | a `new` book |
-| be動詞の後 | be動詞 + 形容詞 | The book is `new`. |
+| 名詞の前 | 形容詞 + 名詞 | a `new` game |
+| be動詞の後 | be動詞 + 形容詞 | The game is `fun`. |
 
 ---
 
