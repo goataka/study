@@ -71,6 +71,9 @@ export class QuizUseCase {
     if (mode === "random") {
       const questions = QuizSession.pickRandom(filtered, count);
       return new QuizSession(questions);
+    } else if (mode === "practice") {
+      const questions = QuizSession.pickInOrder(filtered, count);
+      return new QuizSession(questions);
     } else {
       const wrongSet = new Set(this.wrongIds);
       const retryQuestions = filtered.filter((q) => wrongSet.has(q.id));

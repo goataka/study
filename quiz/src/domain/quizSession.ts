@@ -6,7 +6,7 @@
 import type { Question } from "./question";
 import { shuffleChoices } from "./question";
 
-export type QuizMode = "random" | "retry";
+export type QuizMode = "random" | "retry" | "practice";
 
 export interface QuizFilter {
   subject: string;
@@ -89,6 +89,11 @@ export class QuizSession {
       userAnswerIndex: this._userAnswers.get(i) ?? -1,
       isCorrect: this._userAnswers.get(i) === q.correct,
     }));
+  }
+
+  /** 先頭から順番に n 問を選択する（練習モード用） */
+  static pickInOrder(questions: Question[], n: number): Question[] {
+    return questions.slice(0, Math.min(n, questions.length));
   }
 
   /** Fisher-Yates でランダムに n 問を選択する */
