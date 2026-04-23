@@ -39,15 +39,15 @@ graph TD
 
 ## 発音ドリル一覧
 
-| # | ドリル | 練習 | 解答 |
-|---|--------|------|------|
-| 01 | アルファベット（大文字・小文字と読み仮名） | [drill](01-alphabet/drill.md) | [answer](01-alphabet/answer.md) |
-| 02 | 50音（ひらがなとローマ字） | [drill](02-50on/drill.md) | [answer](02-50on/answer.md) |
-| 03 | フォニックス（1文字） | [drill](03-phonics-1letter/drill.md) | [answer](03-phonics-1letter/answer.md) |
-| 04 | フォニックス（2文字・マジックE） | [drill](04-phonics-2letter/drill.md) | [answer](04-phonics-2letter/answer.md) |
-| 05 | フォニックス（3文字） | [drill](05-phonics-3letter/drill.md) | [answer](05-phonics-3letter/answer.md) |
-| 06 | リンキング・リダクション | [drill](06-linking-reduction/drill.md) | [answer](06-linking-reduction/answer.md) |
-| 07 | リンキング | [drill](07-linking/drill.md) | [answer](07-linking/answer.md) |
-| 08 | リダクション | [drill](08-reduction/drill.md) | [answer](08-reduction/answer.md) |
-| 09 | フラッピング | [drill](09-flapping/drill.md) | [answer](09-flapping/answer.md) |
-| 10 | アシミレーション | [drill](10-assimilation/drill.md) | [answer](10-assimilation/answer.md) |
+| # | ドリル | 練習 | 回答 | 解説 | クイズ | 例 |
+|---|--------|------|------|------|--------|-----|
+| 01 | アルファベット（大文字・小文字と読み仮名） | [練習](01-alphabet/drill.md) | [回答](01-alphabet/answer.md) | [解説](01-alphabet/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=alphabet) | A(えー) B(びー) |
+| 02 | 50音（ひらがなとローマ字） | [練習](02-50on/drill.md) | [回答](02-50on/answer.md) | [解説](02-50on/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=50on) | あ=a い=i う=u |
+| 03 | フォニックス（1文字） | [練習](03-phonics-1letter/drill.md) | [回答](03-phonics-1letter/answer.md) | [解説](03-phonics-1letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-1) | `p`→/p/ (play) |
+| 04 | フォニックス（2文字・マジックE） | [練習](04-phonics-2letter/drill.md) | [回答](04-phonics-2letter/answer.md) | [解説](04-phonics-2letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-2) | `ay`→/eɪ/ (play) |
+| 05 | フォニックス（3文字） | [練習](05-phonics-3letter/drill.md) | [回答](05-phonics-3letter/answer.md) | [解説](05-phonics-3letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
+| 06 | リンキング・リダクション | [練習](06-linking-reduction/drill.md) | [回答](06-linking-reduction/answer.md) | [解説](06-linking-reduction/guide.md) | | (まとめ) |
+| 07 | リンキング | [練習](07-linking/drill.md) | [回答](07-linking/answer.md) | [解説](07-linking/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=linking) | play\_it→プレイ イッ |
+| 08 | リダクション | [練習](08-reduction/drill.md) | [回答](08-reduction/answer.md) | [解説](08-reduction/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=reduction) | for→/fər/ |
+| 09 | フラッピング | [練習](09-flapping/drill.md) | [回答](09-flapping/answer.md) | [解説](09-flapping/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=flapping) | water→ウォダー |
+| 10 | アシミレーション | [練習](10-assimilation/drill.md) | [回答](10-assimilation/answer.md) | [解説](10-assimilation/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=assimilation) | meet you→ミーチュー |
