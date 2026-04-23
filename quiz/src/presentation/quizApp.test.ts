@@ -533,7 +533,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 「すべて」アイテム + grammar の tenses-past + phonics の phonics-1
+    // grammar の tenses-past + phonics の phonics-1
     const catItems = document.querySelectorAll(".category-item[data-category]");
     expect(catItems.length).toBeGreaterThanOrEqual(2);
   });
