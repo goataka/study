@@ -244,12 +244,12 @@ describe("QuizApp — 教科タブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("問題ロード後にタブに教科（すべて・英語・数学）が3件描画される", async () => {
+  it("問題ロード後にタブに教科（英語・数学）が2件描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const tabs = document.querySelectorAll(".subject-tab[data-subject]");
-    expect(tabs.length).toBe(3);
+    expect(tabs.length).toBe(2);
   });
 
   it("問題ロード後に英語タブに role=tab が設定されている", async () => {
@@ -262,13 +262,13 @@ describe("QuizApp — 教科タブ仕様", () => {
     });
   });
 
-  it("初期状態では「すべて」タブがアクティブになっている", async () => {
+  it("初期状態では「英語」タブがアクティブになっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const allTab = document.querySelector('.subject-tab[data-subject="all"]');
-    expect(allTab?.classList.contains("active")).toBe(true);
-    expect(allTab?.getAttribute("aria-selected")).toBe("true");
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]');
+    expect(englishTab?.classList.contains("active")).toBe(true);
+    expect(englishTab?.getAttribute("aria-selected")).toBe("true");
   });
 
   it("英語タブをクリックすると statsInfo が英語の問題数に更新される", async () => {

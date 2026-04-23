@@ -14,7 +14,6 @@ import type { DrawingState } from "./notesCanvas";
 
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
-  { id: "all", name: "すべて", icon: "📋" },
   { id: "english", name: "英語", icon: "📚" },
   { id: "math", name: "数学", icon: "🔢" },
 ] as const;
@@ -22,7 +21,7 @@ const SUBJECTS = [
 export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
-  private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
+  private filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
   private userName: string = "";
   private questionCount: number = 20;
   private notesCanvas: NotesCanvas | null = null;
