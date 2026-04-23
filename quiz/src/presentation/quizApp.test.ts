@@ -22,8 +22,8 @@ function setupMinimalDom(): void {
       <select id="categoryFilter"><option value="all">すべてのカテゴリ</option></select>
       <div id="statsInfo"></div>
       <input type="radio" name="questionCount" value="5">
-      <input type="radio" name="questionCount" value="10">
-      <input type="radio" name="questionCount" value="20" checked>
+      <input type="radio" name="questionCount" value="10" checked>
+      <input type="radio" name="questionCount" value="20">
       <button id="startRandomBtn">ランダム</button>
       <button id="startRetryBtn" disabled>間違えた問題</button>
     </div>
@@ -63,8 +63,8 @@ function setupTabDom(): void {
         <div id="categoryList" class="category-list"></div>
         <div id="statsInfo"></div>
         <input type="radio" name="questionCount" value="5">
-        <input type="radio" name="questionCount" value="10">
-        <input type="radio" name="questionCount" value="20" checked>
+        <input type="radio" name="questionCount" value="10" checked>
+        <input type="radio" name="questionCount" value="20">
         <button id="startRandomBtn">ランダム</button>
         <button id="startRetryBtn" disabled>間違えた問題</button>
       </div>
