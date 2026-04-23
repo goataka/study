@@ -44,4 +44,4 @@ not  at  all
 
 [目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=linking)
 
-[前へ: 音声変化まとめ](../06-linking-reduction/drill.md) | **リンキング練習ドリル** | [次へ: リダクション](../08-reduction/drill.md)
+[前へ: フォニックス（3文字）](../05-phonics-3letter/drill.md) | **リンキング練習ドリル** | [次へ: リダクション](../08-reduction/drill.md)
