@@ -51,6 +51,7 @@ export class QuizApp {
     this.setupEventListeners();
     this.buildSubjectTabs();
     this.showStartTabContent(this.activeTab);
+    this.renderHistoryList(this.activeTab === "subject" ? this.filter.subject : undefined);
     this.updateStartScreen();
     this.updateUserNameDisplay("headerUserName");
   }
@@ -156,6 +157,7 @@ export class QuizApp {
         this.activeTab = "subject";
         this.showStartTabContent("subject");
         this.renderCategoryList();
+        this.renderHistoryList(subject.id);
         this.updateStartScreen();
       });
 
@@ -338,12 +340,14 @@ export class QuizApp {
 
   /**
    * 回答記録一覧を描画する
+   * subject が指定された場合はその教科の記録のみ表示する
    */
-  private renderHistoryList(): void {
+  private renderHistoryList(subject?: string): void {
     const historyList = document.getElementById("historyList");
     if (!historyList) return;
 
-    const records = this.useCase.getHistory();
+    const allRecords = this.useCase.getHistory();
+    const records = subject ? allRecords.filter((r) => r.subject === subject) : allRecords;
     historyList.innerHTML = "";
 
     if (records.length === 0) {
@@ -564,7 +568,7 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
-    this.renderHistoryList();
+    this.renderHistoryList(this.activeTab === "subject" ? this.filter.subject : undefined);
   }
 
   private updateSubjectStats(): void {
