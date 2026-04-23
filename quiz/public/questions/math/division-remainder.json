@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "division-remainder",
   "categoryName": "わり算（あまりあり）",
-  "guideUrl": "../contents/math/arithmetic/09-division-remainder/guide",
+  "guideUrl": "../math/arithmetic/09-division-remainder/guide",
   "questions": [
     {
       "id": "div-rem-1",

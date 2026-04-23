@@ -5,7 +5,7 @@
   "categoryName": "フォニックス（2文字・マジックE）",
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
-  "guideUrl": "../contents/english/pronunciation/04-phonics-2letter/guide",
+  "guideUrl": "../english/pronunciation/04-phonics-2letter/guide",
   "questions": [
     {
       "id": "phonics-2-sh1",

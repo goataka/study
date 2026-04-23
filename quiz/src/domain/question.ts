@@ -91,13 +91,14 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (typeof qf.guideUrl !== "string") {
       throw new Error('"guideUrl" must be a string if present');
     }
-    // 安全なスキームのみ許可：../contents/ 配下の相対パスまたは http/https の絶対URL
-    const isRelative = qf.guideUrl.startsWith("../contents/");
+    // 安全なスキームのみ許可：../ で始まる相対パス（1階層上のみ、直後が . や / でない）または http/https の絶対URL
+    // 例: ../math/arithmetic/... は許可, ..//path や ../.path, ../../../ は拒否
+    const isRelative = /^\.\.\/[^./]/.test(qf.guideUrl);
     const isAbsolute = /^https?:\/\//i.test(qf.guideUrl);
     if (!isRelative && !isAbsolute) {
-      throw new Error('"guideUrl" must be a relative path under "../contents/" or an http/https URL');
+      throw new Error('"guideUrl" must be a relative path starting with "../" or an http/https URL');
     }
-    // パストラバーサル防止：URL デコード後に ../contents/ 以降に .. が含まれないことを確認
+    // パストラバーサル防止：URL デコード後にさらなる ../ が含まれないことを確認
     if (isRelative) {
       let decoded = qf.guideUrl;
       try {
@@ -105,7 +106,8 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       } catch {
         // デコード失敗の場合は元の文字列で検証
       }
-      if (decoded.slice("../contents/".length).includes("..")) {
+      // ../ 以降のパスに追加の .. が含まれないことを確認
+      if (decoded.slice("../".length).includes("..")) {
         throw new Error('"guideUrl" must not contain path traversal sequences');
       }
     }

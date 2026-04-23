@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "division-mixed",
   "categoryName": "わり算（まとめ）",
-  "guideUrl": "../contents/math/arithmetic/10-division-mixed/guide",
+  "guideUrl": "../math/arithmetic/10-division-mixed/guide",
   "questions": [
     {
       "id": "div-mixed-1",

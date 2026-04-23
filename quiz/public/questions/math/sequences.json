@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "sequences",
   "categoryName": "数列",
-  "guideUrl": "../contents/math/calculus/34-sequences/guide",
+  "guideUrl": "../math/calculus/34-sequences/guide",
   "questions": [
     {
       "id": "seq-1",

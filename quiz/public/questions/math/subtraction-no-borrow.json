@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "subtraction-no-borrow",
   "categoryName": "ひき算（くり下がりなし）",
-  "guideUrl": "../contents/math/arithmetic/04-subtraction-no-borrow/guide",
+  "guideUrl": "../math/arithmetic/04-subtraction-no-borrow/guide",
   "questions": [
     {
       "id": "sub-no-borrow-1",

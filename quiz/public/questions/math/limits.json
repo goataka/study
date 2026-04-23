@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "limits",
   "categoryName": "極限",
-  "guideUrl": "../contents/math/calculus/36-limits/guide",
+  "guideUrl": "../math/calculus/36-limits/guide",
   "questions": [
     {
       "id": "lim-1",

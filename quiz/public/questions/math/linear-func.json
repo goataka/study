@@ -3,7 +3,7 @@
   "subjectName": "数学",
   "category": "linear-func",
   "categoryName": "一次関数",
-  "guideUrl": "../contents/math/algebra/26-linear-func/guide",
+  "guideUrl": "../math/algebra/26-linear-func/guide",
   "questions": [
     {
       "id": "linear-func-1",
