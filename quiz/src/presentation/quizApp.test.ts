@@ -756,7 +756,8 @@ describe("QuizApp — 記録タブ仕様", () => {
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("hidden")).toBe(false);
 
+    // historyContentはクイズモード選択の下に常時表示されるため、非表示にならない
     const historyContent = document.getElementById("historyContent");
-    expect(historyContent?.classList.contains("hidden")).toBe(true);
+    expect(historyContent?.classList.contains("hidden")).toBe(false);
   });
 });

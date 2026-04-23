@@ -50,6 +50,7 @@ export class QuizApp {
     this.loadFilterFromURL();
     this.setupEventListeners();
     this.buildSubjectTabs();
+    this.showStartTabContent(this.activeTab);
     this.updateStartScreen();
     this.updateUserNameDisplay("headerUserName");
   }
@@ -326,7 +327,7 @@ export class QuizApp {
     const historyContent = document.getElementById("historyContent");
     if (tab === "subject") {
       subjectContent?.classList.remove("hidden");
-      historyContent?.classList.add("hidden");
+      historyContent?.classList.remove("hidden");
     } else {
       subjectContent?.classList.add("hidden");
       historyContent?.classList.remove("hidden");
@@ -563,6 +564,7 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
+    this.renderHistoryList();
   }
 
   private updateSubjectStats(): void {
