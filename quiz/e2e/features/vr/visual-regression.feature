@@ -7,5 +7,5 @@ Feature: ビジュアルリグレッション
     Then the start screen matches the snapshot
 
   Scenario: クイズ画面のビジュアル確認
-    When I click the "ランダム20問" button
+    When I click the "ランダム" button
     Then the quiz screen layout matches the snapshot
