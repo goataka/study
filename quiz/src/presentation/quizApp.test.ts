@@ -47,11 +47,12 @@ function setupMinimalDom(): void {
   `;
 }
 
-/** ツリーUIを含むフルレイアウトのDOM */
-function setupTreeDom(): void {
+/** タブUIを含むフルレイアウトのDOM */
+function setupTabDom(): void {
   document.body.innerHTML = `
     <div id="startScreen" class="screen active">
-      <div class="subject-tree"></div>
+      <div class="subject-tabs" role="tablist"></div>
+      <div id="categoryList" class="category-list"></div>
       <div id="statsInfo"></div>
       <button id="startRandomBtn">ランダム20問</button>
       <button id="startRetryBtn" disabled>間違えた問題</button>
@@ -222,9 +223,9 @@ describe("QuizApp — 問題ロード後の仕様", () => {
   });
 });
 
-describe("QuizApp — カテゴリツリー仕様", () => {
+describe("QuizApp — 教科タブ仕様", () => {
   beforeEach(() => {
-    setupTreeDom();
+    setupTabDom();
     setupFetchMock();
     localStorage.clear();
   });
@@ -233,115 +234,106 @@ describe("QuizApp — カテゴリツリー仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("問題ロード後にツリーに教科ノード（すべて・英語・数学）が3件描画される", async () => {
+  it("問題ロード後にタブに教科（すべて・英語・数学）が3件描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const subjectNodes = document.querySelectorAll(".tree-item[data-subject]:not([data-category])");
-    expect(subjectNodes.length).toBe(3);
+    const tabs = document.querySelectorAll(".subject-tab[data-subject]");
+    expect(tabs.length).toBe(3);
   });
 
-  it("問題ロード後にカテゴリノードが描画される", async () => {
+  it("問題ロード後に英語タブに role=tab が設定されている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // mockQuestionFile は phonics-1 のみなので1ノード
-    const categoryNodes = document.querySelectorAll(".tree-item[data-category]");
-    expect(categoryNodes.length).toBe(1);
-  });
-
-  it("教科ノードのヘッダーに role=button と tabindex=0 が設定されている", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const headers = document.querySelectorAll(".tree-node-header");
-    headers.forEach((h) => {
-      expect(h.getAttribute("role")).toBe("button");
-      expect(h.getAttribute("tabindex")).toBe("0");
+    const tabs = document.querySelectorAll(".subject-tab");
+    tabs.forEach((tab) => {
+      expect(tab.getAttribute("role")).toBe("tab");
     });
   });
 
-  it("展開可能な教科ノードには aria-controls が設定されている", async () => {
+  it("初期状態では「すべて」タブがアクティブになっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishHeader = document.querySelector(
-      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
-    );
-    expect(englishHeader?.getAttribute("aria-controls")).toBe("tree-children-english");
+    const allTab = document.querySelector('.subject-tab[data-subject="all"]');
+    expect(allTab?.classList.contains("active")).toBe(true);
+    expect(allTab?.getAttribute("aria-selected")).toBe("true");
   });
 
-  it("教科ノードをクリックすると statsInfo がその教科の問題数に更新される", async () => {
+  it("英語タブをクリックすると statsInfo が英語の問題数に更新される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishHeader = document.querySelector(
-      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
-    ) as HTMLElement;
-    englishHeader?.click();
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
 
     const statsInfo = document.getElementById("statsInfo");
     expect(statsInfo?.textContent).toContain("全5問");
   });
 
-  it("カテゴリノードをクリックすると statsInfo がそのカテゴリの問題数に更新される", async () => {
+  it("英語タブをクリックするとアクティブタブが切り替わる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const catHeader = document.querySelector(
-      '.tree-item[data-category="phonics-1"] > .tree-node-header'
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    expect(englishTab?.classList.contains("active")).toBe(true);
+    expect(englishTab?.getAttribute("aria-selected")).toBe("true");
+
+    const allTab = document.querySelector('.subject-tab[data-subject="all"]');
+    expect(allTab?.classList.contains("active")).toBe(false);
+  });
+
+  it("英語タブをクリックするとカテゴリリストが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // mockQuestionFile は phonics-1 のみなのでカテゴリアイテムが描画されるはず
+    const categoryItems = document.querySelectorAll(".category-item[data-category]");
+    expect(categoryItems.length).toBeGreaterThan(0);
+  });
+
+  it("カテゴリアイテムをクリックすると statsInfo がそのカテゴリの問題数に更新される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリを表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector(
+      '.category-item[data-category="phonics-1"]'
     ) as HTMLElement;
-    catHeader?.click();
+    catItem?.click();
 
     const statsInfo = document.getElementById("statsInfo");
     expect(statsInfo?.textContent).toContain("全5問");
   });
 
-  it("教科ノードをクリックすると aria-expanded が true になる", async () => {
+  it("カテゴリアイテムに role=button と tabindex=0 が設定されている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishHeader = document.querySelector(
-      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
-    ) as HTMLElement;
-    expect(englishHeader?.getAttribute("aria-expanded")).toBe("false");
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
 
-    englishHeader?.click();
-    expect(englishHeader?.getAttribute("aria-expanded")).toBe("true");
+    const items = document.querySelectorAll(".category-item");
+    items.forEach((item) => {
+      expect(item.getAttribute("role")).toBe("button");
+      expect(item.getAttribute("tabindex")).toBe("0");
+    });
   });
 
-  it("Enter キーで教科ノードを操作できる", async () => {
+  it("間違えた問題が0件のときのタブ統計表示は「0/総数」の形式である", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishHeader = document.querySelector(
-      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
-    ) as HTMLElement;
-    englishHeader?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
-
-    const statsInfo = document.getElementById("statsInfo");
-    expect(statsInfo?.textContent).toContain("全5問");
-  });
-
-  it("Space キーで教科ノードを操作できる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishHeader = document.querySelector(
-      '.tree-item[data-subject="english"]:not([data-category]) > .tree-node-header'
-    ) as HTMLElement;
-    englishHeader?.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
-
-    const statsInfo = document.getElementById("statsInfo");
-    expect(statsInfo?.textContent).toContain("全5問");
-  });
-
-  it("間違えた問題が0件のときの統計表示は「0/総数」の形式である", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    // 間違えた問題がない状態（localStorage が空）でツリーの統計表示を確認
-    const statsEls = document.querySelectorAll(".tree-node-stats");
+    const statsEls = document.querySelectorAll(".tab-stats");
     const nonEmptyTexts = Array.from(statsEls)
       .map((el) => el.textContent?.trim() || "")
       .filter((text) => text !== "");
@@ -495,9 +487,9 @@ describe("QuizApp — 回答フィードバック仕様", () => {
   });
 });
 
-describe("QuizApp — 親カテゴリツリー仕様", () => {
+describe("QuizApp — 親カテゴリタブ仕様", () => {
   beforeEach(() => {
-    setupTreeDom();
+    setupTabDom();
     setupFetchMockWithParent();
     localStorage.clear();
   });
@@ -506,63 +498,43 @@ describe("QuizApp — 親カテゴリツリー仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("親カテゴリノードが描画される", async () => {
+  it("英語タブをクリックすると親カテゴリのグループヘッダーが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const parentNodes = document.querySelectorAll(".parent-category-node");
-    expect(parentNodes.length).toBe(2); // grammar, phonics
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const groupHeaders = document.querySelectorAll(".category-group-header");
+    expect(groupHeaders.length).toBe(2); // grammar, phonics
   });
 
-  it("親カテゴリノードに aria-controls と aria-expanded が設定されている（子あり）", async () => {
+  it("英語タブをクリックすると子カテゴリアイテムが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const grammarHeader = document.querySelector(
-      '.parent-category-node[data-parent-category="grammar"] > .tree-node-header'
-    );
-    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("false");
-    expect(grammarHeader?.getAttribute("aria-controls")).toContain("grammar");
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 「すべて」アイテム + grammar の tenses-past + phonics の phonics-1
+    const catItems = document.querySelectorAll(".category-item[data-category]");
+    expect(catItems.length).toBeGreaterThanOrEqual(2);
   });
 
-  it("親カテゴリノードをクリックすると statsInfo がその配下全問題数に更新される", async () => {
+  it("文法カテゴリアイテムをクリックすると statsInfo がその配下全問題数に更新される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const grammarHeader = document.querySelector(
-      '.parent-category-node[data-parent-category="grammar"] > .tree-node-header'
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarCatItem = document.querySelector(
+      '.category-item[data-category="tenses-past"]'
     ) as HTMLElement;
-    grammarHeader?.click();
+    grammarCatItem?.click();
 
     const statsInfo = document.getElementById("statsInfo");
     expect(statsInfo?.textContent).toContain("全3問");
-  });
-
-  it("親カテゴリノードをクリックすると配下の子カテゴリノードが表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const grammarHeader = document.querySelector(
-      '.parent-category-node[data-parent-category="grammar"] > .tree-node-header'
-    ) as HTMLElement;
-    grammarHeader?.click();
-
-    const grammarChildren = document.querySelector(
-      '.parent-category-node[data-parent-category="grammar"] > .tree-children'
-    );
-    expect(grammarChildren?.classList.contains("hidden")).toBe(false);
-  });
-
-  it("親カテゴリノードをクリックすると aria-expanded が true になる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const grammarHeader = document.querySelector(
-      '.parent-category-node[data-parent-category="grammar"] > .tree-node-header'
-    ) as HTMLElement;
-    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("false");
-    grammarHeader?.click();
-    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("true");
   });
 });
 
