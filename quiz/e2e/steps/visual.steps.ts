@@ -1,7 +1,20 @@
 import { createBdd } from "playwright-bdd";
 import { expect } from "@playwright/test";
 
-const { Then } = createBdd();
+const { Before, Then } = createBdd();
+
+// VR テストの再現性を保つために Math.random をシードする
+// page.addInitScript はページロード前に実行されるため、
+// pickRandom での問題選択が毎回同じ結果になる
+Before(async ({ page }) => {
+  await page.addInitScript(() => {
+    let seed = 42;
+    Math.random = () => {
+      seed = (seed * 1664525 + 1013904223) >>> 0;
+      return seed / 0x100000000;
+    };
+  });
+});
 
 // 問題データのロード完了を待つタイムアウト（ms）
 // statsInfo に "全X問" が表示されるまで最大10秒待つ
