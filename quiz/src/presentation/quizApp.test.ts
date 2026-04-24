@@ -265,12 +265,12 @@ describe("QuizApp — 教科タブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("問題ロード後にタブに教科（英語・数学・国語）が3件描画される", async () => {
+  it("問題ロード後にタブに教科（総合・英語・数学・国語）が4件描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const tabs = document.querySelectorAll(".subject-tab[data-subject]");
-    expect(tabs.length).toBe(3);
+    expect(tabs.length).toBe(4);
   });
 
   it("問題ロード後に英語タブに role=tab が設定されている", async () => {
@@ -283,13 +283,13 @@ describe("QuizApp — 教科タブ仕様", () => {
     });
   });
 
-  it("初期状態では「英語」タブがアクティブになっている", async () => {
+  it("初期状態では「総合」タブがアクティブになっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]');
-    expect(englishTab?.classList.contains("active")).toBe(true);
-    expect(englishTab?.getAttribute("aria-selected")).toBe("true");
+    const allTab = document.querySelector('.subject-tab[data-subject="all"]');
+    expect(allTab?.classList.contains("active")).toBe(true);
+    expect(allTab?.getAttribute("aria-selected")).toBe("true");
   });
 
   it("英語タブをクリックすると statsInfo が英語の問題数に更新される", async () => {
@@ -900,6 +900,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
     // phonics-1 カテゴリアイテムをクリック（renderCategoryList で生成される）
     const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
     categoryItem?.click();
@@ -942,6 +946,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
 
     // phonics-1 カテゴリアイテムをクリック
     const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
@@ -1290,12 +1298,12 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化時に最初の未学習カテゴリが自動選択され「学習済みにする」ボタンが有効になる", async () => {
+  it("初期化時（総合タブ表示中）は「学習済みにする」ボタンが無効になっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
-    expect(markLearnedBtn.disabled).toBe(false);
+    expect(markLearnedBtn.disabled).toBe(true);
   });
 
   it("特定カテゴリを選択すると「学習済みにする」ボタンが有効になる", async () => {
@@ -1805,11 +1813,11 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化後は特定カテゴリが選択され category-only クラスが付かない", async () => {
+  it("初期化後は総合タブが表示されクイズパネルが表示される（category-only クラスが付かない）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // selectFirstUnlearnedCategory が実行されてカテゴリが選択されるため
+    // 総合タブでは全問対象でクイズ開始できるため category-only クラスは付かない
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
   });
