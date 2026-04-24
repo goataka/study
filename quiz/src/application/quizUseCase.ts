@@ -158,6 +158,7 @@ export class QuizUseCase {
         choices: [...r.question.choices],
         explanation: r.question.explanation,
         categoryName: r.question.categoryName ?? r.question.category,
+        userAnswerText: r.userAnswerText,
       })),
     });
   }

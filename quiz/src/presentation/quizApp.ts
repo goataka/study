@@ -16,6 +16,7 @@ import type { DrawingState } from "./notesCanvas";
 const SUBJECTS = [
   { id: "english", name: "英語", icon: "📚" },
   { id: "math", name: "数学", icon: "🔢" },
+  { id: "japanese", name: "国語", icon: "📖" },
 ] as const;
 
 export class QuizApp {
@@ -455,8 +456,10 @@ export class QuizApp {
 
       const answerP = document.createElement("p");
       answerP.className = "history-entry-answer";
-      const userAnswer = entry.choices[entry.userAnswerIndex] ?? "未回答";
-      const correctAnswer = entry.choices[entry.correctAnswerIndex] ?? "";
+      const userAnswer = entry.userAnswerText ?? (entry.choices[entry.userAnswerIndex] ?? "未回答");
+      const correctAnswer = entry.userAnswerText !== undefined
+        ? (entry.choices[entry.correctAnswerIndex] ?? "")
+        : (entry.choices[entry.correctAnswerIndex] ?? "");
       if (entry.isCorrect) {
         answerP.textContent = `正解: ${correctAnswer}`;
       } else {
@@ -818,7 +821,10 @@ export class QuizApp {
     // 既に回答済みの場合はフィードバックを表示、未回答の場合は非表示
     const userAnswer = session.getAnswer(session.currentIndex);
     if (userAnswer !== undefined) {
-      this.showAnswerFeedback(question, userAnswer);
+      const userAnswerText = question.questionType === "text-input"
+        ? session.getTextAnswer(session.currentIndex)
+        : undefined;
+      this.showAnswerFeedback(question, userAnswer, userAnswerText);
     } else {
       this.hideAnswerFeedback();
     }
@@ -827,6 +833,14 @@ export class QuizApp {
   }
 
   private renderChoices(question: Question, session: QuizSession): void {
+    if (question.questionType === "text-input") {
+      this.renderTextInput(question, session);
+    } else {
+      this.renderMultipleChoice(question, session);
+    }
+  }
+
+  private renderMultipleChoice(question: Question, session: QuizSession): void {
     const container = document.getElementById("choicesContainer");
     if (!container) return;
     container.innerHTML = "";
@@ -863,6 +877,71 @@ export class QuizApp {
     });
   }
 
+  private renderTextInput(question: Question, session: QuizSession): void {
+    const container = document.getElementById("choicesContainer");
+    if (!container) return;
+    container.innerHTML = "";
+
+    const existingAnswerIndex = session.getAnswer(session.currentIndex);
+    const isAnswered = existingAnswerIndex !== undefined;
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "text-answer-wrapper";
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "text-answer-input";
+    input.placeholder = "答えを入力してください";
+    input.setAttribute("aria-label", "解答を入力");
+    input.disabled = isAnswered;
+
+    if (isAnswered) {
+      // 既回答の場合、入力テキストを復元して表示
+      const storedText = session.getTextAnswer(session.currentIndex);
+      if (storedText !== undefined) {
+        input.value = storedText;
+      } else {
+        // 後方互換: 正解インデックスと一致する場合は正解テキストを表示
+        if (existingAnswerIndex === question.correct) {
+          input.value = question.choices[question.correct] ?? "";
+        }
+      }
+    }
+
+    const submitBtn = document.createElement("button");
+    submitBtn.type = "button";
+    submitBtn.className = "text-answer-submit-btn";
+    submitBtn.textContent = "確認する";
+    submitBtn.disabled = isAnswered;
+
+    const handleSubmit = (): void => {
+      const text = input.value.trim();
+      if (!text) return;
+      session.selectTextAnswer(session.currentIndex, text);
+      input.disabled = true;
+      submitBtn.disabled = true;
+      const answerIndex = session.getAnswer(session.currentIndex)!;
+      this.showAnswerFeedback(question, answerIndex, text);
+      this.updateNavigationButtons(session);
+    };
+
+    submitBtn.addEventListener("click", handleSubmit);
+    input.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleSubmit();
+      }
+    });
+
+    wrapper.appendChild(input);
+    wrapper.appendChild(submitBtn);
+    container.appendChild(wrapper);
+
+    if (!isAnswered) {
+      input.focus();
+    }
+  }
+
   private navigate(direction: 1 | -1): void {
     const session = this.currentSession;
     if (!session) return;
@@ -877,7 +956,7 @@ export class QuizApp {
     this.restoreNotesState(session.currentIndex);
   }
 
-  private showAnswerFeedback(question: Question, userAnswerIndex: number): void {
+  private showAnswerFeedback(question: Question, userAnswerIndex: number, userAnswerText?: string): void {
     const feedbackDiv = document.getElementById("answerFeedback");
     if (!feedbackDiv) return;
 
@@ -888,6 +967,12 @@ export class QuizApp {
     if (resultDiv) {
       if (isCorrect) {
         resultDiv.textContent = "✅ 正解です！";
+      } else if (question.questionType === "text-input") {
+        const correctAnswer = question.choices[question.correct] ?? "";
+        const typed = userAnswerText ?? "";
+        resultDiv.textContent = typed
+          ? `❌ 不正解です。あなたの解答「${typed}」→ 正解は「${correctAnswer}」`
+          : `❌ 不正解です。正解は「${correctAnswer}」`;
       } else {
         const correctAnswer = question.choices[question.correct];
         resultDiv.textContent = `❌ 不正解です。正解は「${correctAnswer}」です。`;
@@ -1008,7 +1093,11 @@ export class QuizApp {
     const userAnswerDiv = document.createElement("div");
     userAnswerDiv.appendChild(document.createTextNode("あなたの解答: "));
     const userAnswerValue = document.createElement("strong");
-    userAnswerValue.textContent = question.choices[userAnswerIndex] ?? "未回答";
+    if (question.questionType === "text-input") {
+      userAnswerValue.textContent = r.userAnswerText ?? "（未入力）";
+    } else {
+      userAnswerValue.textContent = question.choices[userAnswerIndex] ?? "未回答";
+    }
     userAnswerDiv.appendChild(userAnswerValue);
     answer.appendChild(userAnswerDiv);
 

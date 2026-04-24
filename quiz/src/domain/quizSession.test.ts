@@ -208,3 +208,88 @@ describe("QuizSession.filter — parentCategory フィルター仕様", () => {
     expect(filtered).toHaveLength(0);
   });
 });
+
+const makeTextInputQuestion = (id: string): Question => ({
+  id,
+  question: `「山」の読み方を書いてください`,
+  choices: ["やま"],
+  correct: 0,
+  explanation: "山（やま）",
+  subject: "japanese",
+  subjectName: "国語",
+  category: "kanji-grade1",
+  categoryName: "漢字（小学1年）",
+  questionType: "text-input",
+});
+
+describe("QuizSession — text-input 問題の回答仕様", () => {
+  it("正しいテキスト回答を記録し正解として扱う", () => {
+    const q = makeTextInputQuestion("kanji-1");
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "やま");
+    expect(session.getAnswer(0)).toBe(0); // correct index
+    expect(session.getTextAnswer(0)).toBe("やま");
+  });
+
+  it("誤ったテキスト回答を記録し不正解として扱う", () => {
+    const q = makeTextInputQuestion("kanji-2");
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "かわ");
+    expect(session.getAnswer(0)).toBe(-1); // incorrect
+    expect(session.getTextAnswer(0)).toBe("かわ");
+  });
+
+  it("前後の空白を無視して正解判定する", () => {
+    const q = makeTextInputQuestion("kanji-3");
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "  やま  ");
+    expect(session.getAnswer(0)).toBe(0); // correct
+  });
+
+  it("全角英数字を半角に正規化して正解判定する", () => {
+    const q: Question = {
+      id: "test-fullwidth",
+      question: "テスト",
+      choices: ["abc"],
+      correct: 0,
+      explanation: "解説",
+      subject: "test",
+      subjectName: "テスト",
+      category: "test",
+      categoryName: "テスト",
+      questionType: "text-input",
+    };
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "ａｂｃ"); // 全角
+    expect(session.getAnswer(0)).toBe(0); // correct
+  });
+
+  it("無効な問題インデックスはエラー", () => {
+    const q = makeTextInputQuestion("kanji-4");
+    const session = new QuizSession([q]);
+    expect(() => session.selectTextAnswer(5, "やま")).toThrow("Invalid question index");
+  });
+
+  it("text-input 問題は選択肢をシャッフルしない", () => {
+    const q = makeTextInputQuestion("kanji-5");
+    const session = new QuizSession([q]);
+    expect(session.questions[0]!.choices).toEqual(["やま"]);
+  });
+
+  it("getResults に userAnswerText が含まれる", () => {
+    const q = makeTextInputQuestion("kanji-6");
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "やま");
+    const results = session.getResults();
+    expect(results[0]!.userAnswerText).toBe("やま");
+    expect(results[0]!.isCorrect).toBe(true);
+  });
+
+  it("canSubmit は text-input 問題も回答済みと判定する", () => {
+    const q = makeTextInputQuestion("kanji-7");
+    const session = new QuizSession([q]);
+    expect(session.canSubmit()).toBe(false);
+    session.selectTextAnswer(0, "やま");
+    expect(session.canSubmit()).toBe(true);
+  });
+});
