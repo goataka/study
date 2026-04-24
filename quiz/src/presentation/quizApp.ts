@@ -171,7 +171,7 @@ export class QuizApp {
         tab.setAttribute("aria-selected", "true");
 
         this.renderCategoryList();
-        this.renderHistoryList(subject.id);
+        this.renderHistoryList(this.filter);
         this.updateStartScreen();
       });
 
@@ -194,7 +194,7 @@ export class QuizApp {
         this.activePanelTab = panel;
         this.showPanelTab(panel);
         if (panel === "history") {
-          this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
+          this.renderHistoryList(this.filter);
         } else if (panel === "questions") {
           this.renderQuestionList();
         }
@@ -364,14 +364,18 @@ export class QuizApp {
 
   /**
    * 回答記録一覧を描画する
-   * subject が指定された場合はその教科の記録のみ表示する
+   * filter の subject・category に応じて記録を絞り込む
    */
-  private renderHistoryList(subject?: string): void {
+  private renderHistoryList(filter: QuizFilter): void {
     const historyList = document.getElementById("historyList");
     if (!historyList) return;
 
     const allRecords = this.useCase.getHistory();
-    const records = subject ? allRecords.filter((r) => r.subject === subject) : allRecords;
+    const records = allRecords.filter(
+      (r) =>
+        (filter.subject === "all" || r.subject === filter.subject) &&
+        (filter.category === "all" || r.category === filter.category)
+    );
     historyList.innerHTML = "";
 
     if (records.length === 0) {
@@ -659,7 +663,7 @@ export class QuizApp {
       markLearnedBtn.disabled = this.filter.category === "all";
     }
 
-    this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
+    this.renderHistoryList(this.filter);
     if (this.activePanelTab === "questions") {
       this.renderQuestionList();
     }
