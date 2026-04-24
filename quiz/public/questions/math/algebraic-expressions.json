@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/23-algebraic-expressions/guide",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "alg-expr-1",

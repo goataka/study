@@ -337,11 +337,22 @@ export class QuizApp {
       }
     });
 
+    // 参考学年バッジ（referenceGrade が設定されている場合のみ表示）
+    const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
+    const gradeSpan = document.createElement("span");
+    gradeSpan.className = "category-grade";
+    if (referenceGrade) {
+      gradeSpan.textContent = referenceGrade;
+    } else {
+      gradeSpan.classList.add("hidden");
+    }
+
     const statsSpan = document.createElement("span");
     statsSpan.className = "category-stats";
 
     item.appendChild(statusSpan);
     item.appendChild(nameArea);
+    item.appendChild(gradeSpan);
     item.appendChild(guideLink);
     item.appendChild(statsSpan);
 
@@ -1534,19 +1545,6 @@ export class QuizApp {
     }
   }
 
-  private showNoteTab(tab: "memo" | "guide"): void {
-    const memoContent = document.getElementById("notesMemoContent");
-    const guideContent = document.getElementById("notesGuideContent");
-
-    memoContent?.classList.toggle("hidden", tab !== "memo");
-    guideContent?.classList.toggle("hidden", tab !== "guide");
-
-    const memoBtn = document.getElementById("notesTabMemo");
-    const guideBtn = document.getElementById("notesTabGuide");
-
-    memoBtn?.classList.toggle("active", tab === "memo");
-    guideBtn?.classList.toggle("active", tab === "guide");
-  }
 }
 
 // アプリケーション起動

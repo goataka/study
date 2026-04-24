@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/29-quadratic-eq/guide",
+  "referenceGrade": "中学3年",
   "questions": [
     {
       "id": "quad-eq-1",

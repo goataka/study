@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/24-linear-eq/guide",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "linear-eq-1",
