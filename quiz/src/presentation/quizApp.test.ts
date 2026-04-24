@@ -1048,4 +1048,33 @@ describe("QuizApp — 問題一覧モーダル仕様", () => {
     const correctChoices = document.querySelectorAll(".correct-choice");
     expect(correctChoices.length).toBe(5); // 5問それぞれに1つの正解がある
   });
+
+  it("オーバーレイをクリックするとモーダルが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("showQuestionListBtn")?.click();
+
+    const overlay = document.getElementById("questionListModal") as HTMLElement;
+    // overlay 自体をクリック（bubbling なしで target = overlay となるように dispatchEvent を使用）
+    const clickEvent = new MouseEvent("click", { bubbles: true });
+    Object.defineProperty(clickEvent, "target", { value: overlay, configurable: true });
+    overlay.dispatchEvent(clickEvent);
+
+    expect(overlay.classList.contains("hidden")).toBe(true);
+  });
+
+  it("Escape キーを押すとモーダルが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("showQuestionListBtn")?.click();
+
+    const modal = document.getElementById("questionListModal");
+    expect(modal?.classList.contains("hidden")).toBe(false);
+
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+
+    expect(modal?.classList.contains("hidden")).toBe(true);
+  });
 });

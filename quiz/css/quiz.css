@@ -709,6 +709,10 @@ button:disabled {
 }
 
 /* 問題一覧モーダル */
+.modal-open {
+    overflow: hidden;
+}
+
 .modal-overlay {
     position: fixed;
     inset: 0;
