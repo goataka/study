@@ -6,7 +6,7 @@
 
 | 肯定文 | 否定文 |
 |--------|--------|
-| I can swim. | I (　　　　　　) swim. |
+| I can play games. | I (　　　　　　) play games. |
 | I must go. | I (　　　　　　) go. |
 | I will come. | I (　　　　　　) come. |
 | I should stay. | I (　　　　　　) stay. |

@@ -4,8 +4,8 @@
 
 | パターン | 文 |
 |----------|------|
-| 現在の願望 | I wish I (had) time. |
-| 過去の願望 | I wish I (had had) time. |
+| 現在の願望 | I wish I (could play) games. |
+| 過去の後悔 | I wish I (had played) more games. |
 | 能力の願望 | I wish I (could) speak English. |
 
 | パターン | 文 |

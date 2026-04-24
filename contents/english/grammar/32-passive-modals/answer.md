@@ -4,7 +4,7 @@
 
 | 能動態 | 受動態 |
 |--------|--------|
-| I can play the piano. | The piano can be played by me. |
+| I can play games. | Games can be played by me. |
 | I must finish the work. | The work (must be finished) by me. |
 | I should clean the room. | The room (should be cleaned) by me. |
 | I will repair the car. | The car (will be repaired) by me. |
