@@ -933,48 +933,64 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("「学習済を非表示」ボタンをクリックするとcategoryListにhide-learnedクラスが付与される", async () => {
+  it("初期状態ではcategoryListにhide-learnedクラスが付与されている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
 
     const categoryList = document.getElementById("categoryList");
     expect(categoryList?.classList.contains("hide-learned")).toBe(true);
   });
 
-  it("「学習済を非表示」ボタンを2回クリックするとhide-learnedクラスが解除される", async () => {
+  it("初期状態ではaria-pressedがtrueである", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn");
+    expect(btn?.getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("「学習済を非表示」ボタンをクリックするとcategoryListからhide-learnedクラスが解除される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
     btn?.click();
 
     const categoryList = document.getElementById("categoryList");
     expect(categoryList?.classList.contains("hide-learned")).toBe(false);
   });
 
-  it("ボタンクリック後はaria-pressedがtrueになる", async () => {
+  it("「学習済を非表示」ボタンを2回クリックするとhide-learnedクラスが再付与される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
     btn?.click();
+    btn?.click();
 
-    expect(btn?.getAttribute("aria-pressed")).toBe("true");
+    const categoryList = document.getElementById("categoryList");
+    expect(categoryList?.classList.contains("hide-learned")).toBe(true);
   });
 
-  it("2回クリック後はaria-pressedがfalseに戻る", async () => {
+  it("ボタンクリック後はaria-pressedがfalseになる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
     btn?.click();
 
     expect(btn?.getAttribute("aria-pressed")).toBe("false");
+  });
+
+  it("2回クリック後はaria-pressedがtrueに戻る", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+    btn?.click();
+
+    expect(btn?.getAttribute("aria-pressed")).toBe("true");
   });
 
   it("学習済カテゴリ（履歴あり・間違いなし）にはlearnedクラスが付与される", async () => {
@@ -1066,10 +1082,6 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     // 英語タブを選択してカテゴリを表示
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
-
-    // 非表示トグルをON
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
 
     const categoryList = document.getElementById("categoryList");
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
