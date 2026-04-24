@@ -1899,6 +1899,7 @@ function setupTextInputDom(): void {
         <canvas id="notesCanvas"></canvas>
         <div id="handwritingConfirmArea" class="hidden">
           <button id="handwritingConfirmBtn" type="button">確定する</button>
+          <div id="handwritingSelfEvalArea" class="hidden"></div>
         </div>
       </div>
     </div>
@@ -2048,6 +2049,60 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     expect(correctBtn?.disabled).toBe(true);
     const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLButtonElement;
     expect(incorrectBtn?.disabled).toBe(true);
+  });
+
+  it("「確定する」クリック後は確定ボタンが隠れて自己評価UIが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const confirmBtn = document.getElementById("handwritingConfirmBtn");
+    expect(confirmBtn?.classList.contains("hidden")).toBe(true);
+
+    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
+    expect(selfEvalArea?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("手書きで不正解を選んだときテキスト入力欄は空のままになる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLElement;
+    incorrectBtn?.click();
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.value).toBe("");
+    expect(textInput?.disabled).toBe(true);
+  });
+
+  it("自己評価後に次の問題へ移動すると確定ボタンが復元される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    // 確定する → ○ 正解だったで回答登録（nextBtnが有効になる）
+    document.getElementById("handwritingConfirmBtn")?.click();
+    const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
+    correctBtn?.click();
+
+    // 次の問題へ移動
+    const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
+    expect(nextBtn?.disabled).toBe(false);
+    nextBtn?.click();
+
+    // 次の問題（未回答）で確定ボタンが復元されていること
+    const confirmBtn = document.getElementById("handwritingConfirmBtn");
+    expect(confirmBtn?.classList.contains("hidden")).toBe(false);
+    expect((confirmBtn as HTMLButtonElement | null)?.disabled).toBe(false);
+
+    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
+    expect(selfEvalArea?.classList.contains("hidden")).toBe(true);
+    expect(selfEvalArea?.innerHTML).toBe("");
   });
 
   it("選択肢問題では確定ボタンエリアが非表示のままで notesTitleが変わらない", async () => {

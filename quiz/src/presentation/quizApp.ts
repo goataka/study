@@ -985,7 +985,7 @@ export class QuizApp {
 
     // メモエリアをタッチペン入力モード用に更新
     const isAnswered = session.getAnswer(session.currentIndex) !== undefined;
-    this.updateNotesAreaForQuestion(question, session, isAnswered);
+    this.updateNotesAreaForQuestion(question, isAnswered);
 
     // 既に回答済みの場合はフィードバックを表示、未回答の場合は非表示
     const userAnswer = session.getAnswer(session.currentIndex);
@@ -1092,8 +1092,8 @@ export class QuizApp {
       const answerIndex = session.getAnswer(session.currentIndex)!;
       this.showAnswerFeedback(question, answerIndex, text);
       this.updateNavigationButtons(session);
-      // 確認後は確定ボタンも無効化
-      this.updateHandwritingConfirmButton(false, question, session);
+      // 確認後は確定ボタンも非表示にする（キーボード入力で回答済みになったため）
+      this.updateNotesAreaForQuestion(question, true);
     };
 
     submitBtn.addEventListener("click", handleSubmit);
@@ -1117,11 +1117,13 @@ export class QuizApp {
    * メモエリアをtextinput問題のタッチペン入力用に更新する。
    * - text-input問題かつ未回答の場合: 確定ボタンを表示、ガイドテキストを変更
    * - それ以外: 確定ボタンを非表示、ガイドテキストを元に戻す
+   * 問題遷移のたびに呼ばれ、自己評価UIをクリアして確定ボタンを復元する。
    */
-  private updateNotesAreaForQuestion(question: Question | null, session: { currentIndex: number; getAnswer: (i: number) => number | undefined } | null, isAnswered: boolean): void {
+  private updateNotesAreaForQuestion(question: Question | null, isAnswered: boolean): void {
     const notesTitle = document.getElementById("notesTitle");
     const confirmArea = document.getElementById("handwritingConfirmArea");
     const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
+    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
 
     const isTextInput = question?.questionType === "text-input";
     const showConfirm = isTextInput && !isAnswered;
@@ -1134,24 +1136,15 @@ export class QuizApp {
     if (confirmArea) {
       confirmArea.classList.toggle("hidden", !showConfirm);
     }
+    // 確定ボタンを再表示してdisabled状態をリセット（問題遷移時の復元）
     if (confirmBtn) {
-      confirmBtn.disabled = false;
+      confirmBtn.classList.remove("hidden");
+      confirmBtn.disabled = !showConfirm;
     }
-
-    void session; // 将来の拡張のために保持
-  }
-
-  /**
-   * キーボード入力で回答確認後、メモ側の確定ボタンを無効化する。
-   */
-  private updateHandwritingConfirmButton(enabled: boolean, _question: Question, _session: unknown): void {
-    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
-    if (confirmBtn) {
-      confirmBtn.disabled = !enabled;
-    }
-    if (!enabled) {
-      const confirmArea = document.getElementById("handwritingConfirmArea");
-      confirmArea?.classList.add("hidden");
+    // 自己評価UIをクリア（問題遷移時のリセット）
+    if (selfEvalArea) {
+      selfEvalArea.innerHTML = "";
+      selfEvalArea.classList.add("hidden");
     }
   }
 
@@ -1171,11 +1164,14 @@ export class QuizApp {
 
     const correctAnswer = question.choices[question.correct] ?? "";
 
-    // 確定ボタンエリアを自己評価UIに置き換え
-    const confirmArea = document.getElementById("handwritingConfirmArea");
-    if (!confirmArea) return;
+    // 確定ボタンを隠し、自己評価UIを同一confirmArea内の別divに表示
+    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
+    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
+    if (!selfEvalArea) return;
 
-    confirmArea.innerHTML = "";
+    confirmBtn?.classList.add("hidden");
+    selfEvalArea.innerHTML = "";
+    selfEvalArea.classList.remove("hidden");
 
     const revealText = document.createElement("p");
     revealText.className = "handwriting-reveal-text";
@@ -1195,7 +1191,8 @@ export class QuizApp {
     incorrectBtn.textContent = "× 不正解だった";
 
     const handleSelfEval = (selfCorrect: boolean): void => {
-      const text = selfCorrect ? correctAnswer : "×";
+      // 不正解時は空文字を保存（"×" などのセンチネルを使わない）
+      const text = selfCorrect ? correctAnswer : "";
       session.selectTextAnswer(session.currentIndex, text);
       const answerIndex = session.getAnswer(session.currentIndex)!;
 
@@ -1222,8 +1219,8 @@ export class QuizApp {
 
     selfEvalBtns.appendChild(correctBtn);
     selfEvalBtns.appendChild(incorrectBtn);
-    confirmArea.appendChild(revealText);
-    confirmArea.appendChild(selfEvalBtns);
+    selfEvalArea.appendChild(revealText);
+    selfEvalArea.appendChild(selfEvalBtns);
   }
 
   private navigate(direction: 1 | -1): void {
