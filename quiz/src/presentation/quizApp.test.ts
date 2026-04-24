@@ -866,6 +866,96 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     // 数学の記録のみ表示される
     expect(items?.length).toBe(1);
   });
+
+  it("単元を選択するとその単元の記録のみ表示される", async () => {
+    // 同じ教科で異なる単元の記録を用意
+    const records = [
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+      {
+        id: "r2",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 7,
+        entries: [],
+      },
+    ];
+    localStorage.setItem("quizHistory", JSON.stringify(records));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // phonics-1 カテゴリアイテムをクリック（renderCategoryList で生成される）
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    const historyList = document.getElementById("historyList");
+    const items = historyList?.querySelectorAll(".history-item");
+    // phonics-1 の記録のみ表示される
+    expect(items?.length).toBe(1);
+  });
+
+  it("単元選択後に実行記録タブを開いてもその単元の記録のみ表示される", async () => {
+    // 同じ教科で異なる単元の記録を用意
+    const records = [
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+      {
+        id: "r2",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 7,
+        entries: [],
+      },
+    ];
+    localStorage.setItem("quizHistory", JSON.stringify(records));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // phonics-1 カテゴリアイテムをクリック
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    // 実行記録タブをクリック
+    const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
+    historyTab?.click();
+
+    const historyList = document.getElementById("historyList");
+    const items = historyList?.querySelectorAll(".history-item");
+    // phonics-1 の記録のみ表示される
+    expect(items?.length).toBe(1);
+  });
 });
 
 describe("QuizApp — 履歴モード表示仕様", () => {
