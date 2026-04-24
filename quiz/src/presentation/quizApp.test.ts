@@ -40,7 +40,6 @@ function setupMinimalDom(): void {
       <button id="prevBtn" disabled>前へ</button>
       <button id="nextBtn">次へ</button>
       <button id="submitBtn" disabled>提出</button>
-      <a id="guideLink" class="hidden" href="#">解説</a>
     </div>
     <div id="resultScreen" class="screen">
       <div id="resultScore"></div>
@@ -64,6 +63,7 @@ function setupTabDom(): void {
         <div id="categoryList" class="category-list"></div>
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
+          <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
           <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
         </div>
@@ -75,6 +75,10 @@ function setupTabDom(): void {
           <button id="startRandomBtn">ランダム</button>
           <button id="startRetryBtn" disabled>間違えた問題</button>
           <button id="markLearnedBtn" disabled>学習済みにする</button>
+        </div>
+        <div id="guideContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
+          <iframe id="guidePanelFrame" title="解説"></iframe>
+          <p id="guideNoContent" class="hidden"></p>
         </div>
         <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
           <div id="historyList"></div>
@@ -567,7 +571,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
   });
 });
 
-describe("QuizApp — 解説リンク仕様", () => {
+describe("QuizApp — 解説パネルタブ仕様", () => {
   /** guideUrl ありの問題ファイル */
   const mockManifestForGuide = {
     version: "2.0.0",
@@ -610,7 +614,76 @@ describe("QuizApp — 解説リンク仕様", () => {
     localStorage.clear();
   });
 
-  it("guideUrl ありの問題ファイルでクイズ開始すると #guideLink が表示されURLがそのまま設定される", async () => {
+  it("解説パネルタブが学習タブと実行記録タブの間に存在する", async () => {
+    setupTabDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const tabs = Array.from(document.querySelectorAll(".panel-tab"));
+    const quizIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "quiz");
+    const guideIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "guide");
+    const historyIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "history");
+    expect(guideIdx).toBeGreaterThan(quizIdx);
+    expect(guideIdx).toBeLessThan(historyIdx);
+  });
+
+  it("guideUrl ありのカテゴリで解説タブをクリックすると iframe に URL が設定される", async () => {
+    setupTabDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
+    guideTab?.click();
+
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
+    expect(guideFrame).not.toBeNull();
+    expect(guideFrame.src).toContain("guide");
+    expect(guideFrame.classList.contains("hidden")).toBe(false);
+
+    const noContent = document.getElementById("guideNoContent");
+    expect(noContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("guideUrl なしのカテゴリで解説タブをクリックすると「解説なし」メッセージが表示される", async () => {
+    setupTabDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithoutGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
+    guideTab?.click();
+
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
+    expect(guideFrame.classList.contains("hidden")).toBe(true);
+
+    const noContent = document.getElementById("guideNoContent");
+    expect(noContent?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("クイズ画面に #guideLink が存在しない", async () => {
     setupMinimalDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -624,84 +697,8 @@ describe("QuizApp — 解説リンク仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink).not.toBeNull();
-    expect(guideLink.classList.contains("hidden")).toBe(false);
-    expect(guideLink.href).toContain("guide");
-    expect(guideLink.href).not.toContain("guide.md");
-  });
-
-  it("guideUrl なしの問題ファイルでクイズ開始すると #guideLink が hidden のまま", async () => {
-    setupMinimalDom();
-    global.fetch = vi.fn((url: string) => {
-      const urlStr = String(url);
-      if (urlStr.includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
-      }
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithoutGuide) } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink).not.toBeNull();
-    expect(guideLink.classList.contains("hidden")).toBe(true);
-  });
-
-  it("guideUrl にクエリパラメータが付いていてもURLがそのまま設定される", async () => {
-    setupMinimalDom();
-    global.fetch = vi.fn((url: string) => {
-      const urlStr = String(url);
-      if (urlStr.includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () =>
-          Promise.resolve({
-            ...mockQuestionFileWithGuide,
-            guideUrl: "../english/pronunciation/01-alphabet/guide?version=1",
-          }),
-      } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink.href).toContain("guide");
-    expect(guideLink.href).toContain("?version=1");
-    expect(guideLink.href).not.toContain("guide.md");
-  });
-
-  it("guideUrl にフラグメントが付いていてもURLがそのまま設定される", async () => {
-    setupMinimalDom();
-    global.fetch = vi.fn((url: string) => {
-      const urlStr = String(url);
-      if (urlStr.includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () =>
-          Promise.resolve({
-            ...mockQuestionFileWithGuide,
-            guideUrl: "../english/pronunciation/01-alphabet/guide#section",
-          }),
-      } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink.href).toContain("guide");
-    expect(guideLink.href).toContain("#section");
-    expect(guideLink.href).not.toContain("guide.md");
+    const guideLink = document.getElementById("guideLink");
+    expect(guideLink).toBeNull();
   });
 });
 
@@ -716,14 +713,17 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("パネルに「クイズモード選択」と「実行記録」と「問題一覧」のインナータブが描画される", async () => {
+  it("パネルに「クイズモード選択」と「解説」と「実行記録」と「問題一覧」のインナータブが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]');
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]');
     expect(quizTab).not.toBeNull();
+    expect(guideTab).not.toBeNull();
+    expect(guideTab?.textContent).toContain("解説");
     expect(historyTab).not.toBeNull();
     expect(historyTab?.textContent).toContain("実行記録");
     expect(questionsTab).not.toBeNull();
@@ -1515,7 +1515,6 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
         <button id="prevBtn" disabled>前へ</button>
         <button id="nextBtn">次へ</button>
         <button id="submitBtn" disabled>提出</button>
-        <a id="guideLink" class="hidden" href="#">解説</a>
       </div>
       <div id="resultScreen" class="screen">
         <div id="scoreDisplay"></div>
@@ -1789,7 +1788,6 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
         <button id="prevBtn" disabled>前へ</button>
         <button id="nextBtn">次へ</button>
         <button id="submitBtn" disabled>提出</button>
-        <a id="guideLink" class="hidden" href="#">解説</a>
       </div>
       <div id="resultScreen" class="screen hidden">
         <div id="scoreDisplay"></div>
