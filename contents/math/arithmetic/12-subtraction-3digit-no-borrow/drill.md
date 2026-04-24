@@ -23,4 +23,4 @@
 
 [前へ: 2桁のひき算（くり下がりあり）](../11-subtraction-2digit-borrow/drill.md) | **3桁のひき算（くり下がりなし）** | [次へ: 3桁のひき算（くり下がりあり）](../13-subtraction-3digit-borrow/drill.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-3digit-no-borrow)
+[クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)

@@ -56,4 +56,4 @@
 
 [前へ: 2桁のわり算（あまりあり）](../22-division-2digit-remainder/guide.md) | **3桁のわり算（あまりなし）** | [次へ: 3桁のわり算（あまりあり）](../24-division-3digit-remainder/guide.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=division-3digit-no-remainder)
+[クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)

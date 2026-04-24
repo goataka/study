@@ -23,4 +23,4 @@
 
 [前へ: 3桁のたし算（くり上がりなし）](../05-addition-3digit-no-carry/answer.md) | **3桁のたし算（くり上がりあり）** | [次へ: たし算（まとめ）](../07-addition-mixed/answer.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=addition-3digit-carry)
+[クイズ](../../quiz/index.html?subject=math&category=addition-carry)

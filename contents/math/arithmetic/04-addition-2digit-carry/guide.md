@@ -41,4 +41,4 @@
 
 [前へ: 2桁のたし算（くり上がりなし）](../03-addition-2digit-no-carry/guide.md) | **2桁のたし算（くり上がりあり）** | [次へ: 3桁のたし算（くり上がりなし）](../05-addition-3digit-no-carry/guide.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=addition-2digit-carry)
+[クイズ](../../quiz/index.html?subject=math&category=addition-carry)

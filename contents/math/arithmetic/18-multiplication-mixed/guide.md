@@ -50,4 +50,4 @@
 
 [前へ: 3桁のかけ算（3桁×1桁）](../17-multiplication-3digit/guide.md) | **かけ算（まとめ）** | [次へ: 1桁のわり算（あまりなし）](../19-division-1digit-no-remainder/guide.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=multiplication-mixed)
+[クイズ](../../quiz/index.html?subject=math&category=multiplication)

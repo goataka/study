@@ -23,4 +23,4 @@
 
 [前へ: 3桁のわり算（あまりなし）](../23-division-3digit-no-remainder/answer.md) | **3桁のわり算（あまりあり）** | [次へ: わり算（まとめ）](../25-division-mixed/answer.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=division-3digit-remainder)
+[クイズ](../../quiz/index.html?subject=math&category=division-remainder)

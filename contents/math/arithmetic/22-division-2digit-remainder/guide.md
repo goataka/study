@@ -52,4 +52,4 @@
 
 [前へ: 2桁のわり算（あまりなし）](../21-division-2digit-no-remainder/guide.md) | **2桁のわり算（あまりあり）** | [次へ: 3桁のわり算（あまりなし）](../23-division-3digit-no-remainder/guide.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=division-2digit-remainder)
+[クイズ](../../quiz/index.html?subject=math&category=division-remainder)

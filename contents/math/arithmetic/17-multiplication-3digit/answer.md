@@ -23,4 +23,4 @@
 
 [前へ: 2桁のかけ算（2桁×1桁）](../16-multiplication-2digit/answer.md) | **3桁のかけ算（3桁×1桁）** | [次へ: かけ算（まとめ）](../18-multiplication-mixed/answer.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=multiplication-3digit)
+[クイズ](../../quiz/index.html?subject=math&category=multiplication)

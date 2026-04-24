@@ -23,4 +23,4 @@
 
 [前へ: 3桁のひき算（くり下がりなし）](../12-subtraction-3digit-no-borrow/answer.md) | **3桁のひき算（くり下がりあり）** | [次へ: ひき算（まとめ）](../14-subtraction-mixed/answer.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-3digit-borrow)
+[クイズ](../../quiz/index.html?subject=math&category=subtraction-borrow)

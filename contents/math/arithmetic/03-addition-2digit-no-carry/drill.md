@@ -23,4 +23,4 @@
 
 [前へ: 1桁のたし算（くり上がりあり）](../02-addition-1digit-carry/drill.md) | **2桁のたし算（くり上がりなし）** | [次へ: 2桁のたし算（くり上がりあり）](../04-addition-2digit-carry/drill.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=addition-2digit-no-carry)
+[クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)

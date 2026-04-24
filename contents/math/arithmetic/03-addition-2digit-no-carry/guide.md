@@ -7,7 +7,7 @@
 - 十の位と一の位を**別々に**計算する
 - くり上がりがないので、各桁の和が9以下になる
 
-## �� 例題と解説
+## 📖 例題と解説
 
 ### 例① 21 + 13 = ?
 
@@ -42,4 +42,4 @@
 
 [前へ: 1桁のたし算（くり上がりあり）](../02-addition-1digit-carry/guide.md) | **2桁のたし算（くり上がりなし）** | [次へ: 2桁のたし算（くり上がりあり）](../04-addition-2digit-carry/guide.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=addition-2digit-no-carry)
+[クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)

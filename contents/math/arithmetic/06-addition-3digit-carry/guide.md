@@ -45,4 +45,4 @@
 
 [前へ: 3桁のたし算（くり上がりなし）](../05-addition-3digit-no-carry/guide.md) | **3桁のたし算（くり上がりあり）** | [次へ: たし算（まとめ）](../07-addition-mixed/guide.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=addition-3digit-carry)
+[クイズ](../../quiz/index.html?subject=math&category=addition-carry)

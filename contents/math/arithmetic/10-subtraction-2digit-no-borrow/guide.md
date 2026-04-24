@@ -42,4 +42,4 @@
 
 [前へ: 1桁のひき算（くり下がりあり）](../09-subtraction-1digit-borrow/guide.md) | **2桁のひき算（くり下がりなし）** | [次へ: 2桁のひき算（くり下がりあり）](../11-subtraction-2digit-borrow/guide.md)
 
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-2digit-no-borrow)
+[クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)
