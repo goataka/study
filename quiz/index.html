@@ -44,6 +44,7 @@
           <!-- インナータブ -->
           <div class="panel-tabs" role="tablist" aria-label="パネル切り替え">
             <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">学習</button>
+            <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
             <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
             <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
           </div>
@@ -64,6 +65,12 @@
               <button id="markLearnedBtn" class="tertiary-btn" disabled>✅ 学習済みにする</button>
             </div>
             <div id="statsInfo" class="stats-info">読み込み中...</div>
+          </div>
+
+          <!-- 解説パネル -->
+          <div id="guideContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
+            <iframe id="guidePanelFrame" class="guide-frame" title="解説" sandbox="" referrerpolicy="no-referrer"></iframe>
+            <p id="guideNoContent" class="guide-no-content hidden">このカテゴリには解説がありません。</p>
           </div>
 
           <!-- 実行記録パネル -->
@@ -90,7 +97,6 @@
           <div class="question-info">
             <span id="questionNumber"></span>
             <span id="topicName" class="topic-badge"></span>
-            <a id="guideLink" class="guide-link hidden" target="_blank" rel="noopener noreferrer">📖 解説</a>
             <button id="cancelQuizBtn" class="cancel-quiz-btn" type="button">中止する</button>
           </div>
           <div id="questionText" class="question-text"></div>
@@ -109,12 +115,11 @@
           </div>
         </div>
 
-        <!-- 右列: メモ/解説エリア -->
+        <!-- 右列: メモエリア -->
         <div class="quiz-notes-col">
           <div class="notes-area">
             <div class="notes-tab-bar">
               <button id="notesTabMemo" class="notes-tab-btn active" type="button">📝 メモ</button>
-              <button id="notesTabGuide" class="notes-tab-btn hidden" type="button">📖 解説</button>
             </div>
             <!-- メモエリア -->
             <div id="notesMemoContent">
@@ -142,10 +147,6 @@
                 <button id="handwritingConfirmBtn" class="handwriting-confirm-btn" type="button">確定する</button>
                 <div id="handwritingSelfEvalArea" class="hidden"></div>
               </div>
-            </div>
-            <!-- 解説エリア -->
-            <div id="notesGuideContent" class="hidden">
-              <iframe id="guideFrame" class="guide-frame" title="解説" sandbox="" referrerpolicy="no-referrer"></iframe>
             </div>
           </div>
         </div>
