@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/25-simultaneous-eq/guide",
+  "referenceGrade": "中学2年",
   "questions": [
     {
       "id": "simul-eq-1",

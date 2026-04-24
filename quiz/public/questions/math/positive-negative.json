@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/22-positive-negative/guide",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "pos-neg-1",

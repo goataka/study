@@ -6,109 +6,140 @@
   "parentCategory": "kanji",
   "parentCategoryName": "漢字",
   "questionType": "text-input",
+  "referenceGrade": "小学4年",
   "questions": [
     {
       "id": "kanji-g4-001",
       "question": "「努力」の読み方をひらがなで書いてください",
-      "choices": ["どりょく"],
+      "choices": [
+        "どりょく"
+      ],
       "correct": 0,
       "explanation": "努力（どりょく）: 目標に向かってがんばること"
     },
     {
       "id": "kanji-g4-002",
       "question": "「観察」の読み方をひらがなで書いてください",
-      "choices": ["かんさつ"],
+      "choices": [
+        "かんさつ"
+      ],
       "correct": 0,
       "explanation": "観察（かんさつ）: よく見て調べること"
     },
     {
       "id": "kanji-g4-003",
       "question": "「季節」の読み方をひらがなで書いてください",
-      "choices": ["きせつ"],
+      "choices": [
+        "きせつ"
+      ],
       "correct": 0,
       "explanation": "季節（きせつ）: 春・夏・秋・冬のこと"
     },
     {
       "id": "kanji-g4-004",
       "question": "「変化」の読み方をひらがなで書いてください",
-      "choices": ["へんか"],
+      "choices": [
+        "へんか"
+      ],
       "correct": 0,
       "explanation": "変化（へんか）: 状態が変わること"
     },
     {
       "id": "kanji-g4-005",
       "question": "「成長」の読み方をひらがなで書いてください",
-      "choices": ["せいちょう"],
+      "choices": [
+        "せいちょう"
+      ],
       "correct": 0,
       "explanation": "成長（せいちょう）: 大きくなること・育つこと"
     },
     {
       "id": "kanji-g4-006",
       "question": "「結果」の読み方をひらがなで書いてください",
-      "choices": ["けっか"],
+      "choices": [
+        "けっか"
+      ],
       "correct": 0,
       "explanation": "結果（けっか）: 行動のあとに起こること"
     },
     {
       "id": "kanji-g4-007",
       "question": "「必要」の読み方をひらがなで書いてください",
-      "choices": ["ひつよう"],
+      "choices": [
+        "ひつよう"
+      ],
       "correct": 0,
       "explanation": "必要（ひつよう）: なくてはならないこと"
     },
     {
       "id": "kanji-g4-008",
       "question": "「初めて」の「初」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はじ"],
+      "choices": [
+        "はじ"
+      ],
       "correct": 0,
       "explanation": "初（はじ）めて: 最初のこと。「しょ」（音読み）とも読む"
     },
     {
       "id": "kanji-g4-009",
       "question": "「愛情」の読み方をひらがなで書いてください",
-      "choices": ["あいじょう"],
+      "choices": [
+        "あいじょう"
+      ],
       "correct": 0,
       "explanation": "愛情（あいじょう）: 大切に思う気持ち"
     },
     {
       "id": "kanji-g4-010",
       "question": "「希望」の読み方をひらがなで書いてください",
-      "choices": ["きぼう"],
+      "choices": [
+        "きぼう"
+      ],
       "correct": 0,
       "explanation": "希望（きぼう）: こうなってほしいという願い"
     },
     {
       "id": "kanji-g4-011",
       "question": "「達成」の読み方をひらがなで書いてください",
-      "choices": ["たっせい"],
+      "choices": [
+        "たっせい"
+      ],
       "correct": 0,
       "explanation": "達成（たっせい）: 目標を成し遂げること"
     },
     {
       "id": "kanji-g4-012",
       "question": "「無事」の読み方をひらがなで書いてください",
-      "choices": ["ぶじ"],
+      "choices": [
+        "ぶじ"
+      ],
       "correct": 0,
       "explanation": "無事（ぶじ）: 問題なく安全なこと"
     },
     {
       "id": "kanji-g4-013",
       "question": "「位置」の読み方をひらがなで書いてください",
-      "choices": ["いち"],
+      "choices": [
+        "いち"
+      ],
       "correct": 0,
       "explanation": "位置（いち）: どこにあるかを表すこと"
     },
     {
       "id": "kanji-g4-014",
       "question": "「周辺」の読み方をひらがなで書いてください",
-      "choices": ["しゅうへん"],
+      "choices": [
+        "しゅうへん"
+      ],
       "correct": 0,
       "explanation": "周辺（しゅうへん）: まわりのこと"
     },
     {
       "id": "kanji-g4-015",
       "question": "「完成」の読み方をひらがなで書いてください",
-      "choices": ["かんせい"],
+      "choices": [
+        "かんせい"
+      ],
       "correct": 0,
       "explanation": "完成（かんせい）: できあがること"
     }

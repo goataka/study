@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/19-decimals-multiplication/guide",
+  "referenceGrade": "小学5年",
   "questions": [
     {
       "id": "dec-mult-1",

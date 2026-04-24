@@ -5,6 +5,7 @@
   "categoryName": "たし算",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
+  "referenceGrade": "小学1年",
   "questions": [
     {
       "id": "add-1",
