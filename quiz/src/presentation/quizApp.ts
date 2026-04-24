@@ -28,7 +28,7 @@ export class QuizApp {
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
   private activePanelTab: "quiz" | "history" | "questions" = "quiz";
-  private hideLearnedCategories: boolean = false;
+  private hideLearnedCategories: boolean = true;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -56,6 +56,11 @@ export class QuizApp {
     this.showPanelTab(this.activePanelTab);
     this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
     this.updateStartScreen();
+    // 学習済み非表示の初期状態をボタンのaria-pressed属性に反映する
+    const hideLearnedBtn = document.getElementById("hideLearnedBtn");
+    if (hideLearnedBtn) {
+      hideLearnedBtn.setAttribute("aria-pressed", String(this.hideLearnedCategories));
+    }
     this.updateUserNameDisplay("headerUserName");
   }
 
