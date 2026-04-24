@@ -551,7 +551,7 @@ export class QuizApp {
     this.on("startRandomBtn", "click", () => this.startQuiz("random"));
     this.on("startPracticeBtn", "click", () => this.startQuiz("practice"));
     this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
-    this.on("markLearnedBtn", "click", () => this.markCategoryAsLearned());
+    this.on("markLearnedBtn", "click", () => this.toggleLearnedStatus());
     this.on("prevBtn", "click", () => this.navigate(-1));
     this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
@@ -657,6 +657,7 @@ export class QuizApp {
     // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
     if (markLearnedBtn) {
       markLearnedBtn.disabled = this.filter.category === "all";
+      markLearnedBtn.textContent = this.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 学習済みにする";
     }
 
     this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
@@ -756,6 +757,29 @@ export class QuizApp {
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
+
+  /**
+   * 現在選択中のカテゴリが学習済み（✅）かどうかを返す。
+   */
+  private isCurrentCategoryLearned(): boolean {
+    if (this.filter.category === "all") return false;
+    const studiedKeys = this.useCase.getStudiedCategoryKeys();
+    const wrongCount = this.useCase.getWrongCount(this.filter);
+    return studiedKeys.has(`${this.filter.subject}::${this.filter.category}`) && wrongCount === 0;
+  }
+
+  /**
+   * 現在選択中のカテゴリの学習済み状態をトグルする。
+   * 学習済みなら未学習に戻し、そうでなければ学習済みにする。
+   */
+  private toggleLearnedStatus(): void {
+    if (this.isCurrentCategoryLearned()) {
+      this.useCase.unmarkCategoryAsLearned(this.filter);
+    } else {
+      this.useCase.markCategoryAsLearned(this.filter);
+    }
+    this.updateStartScreen();
+  }
 
   /**
    * 現在選択中のカテゴリを学習済みとしてマークする。
