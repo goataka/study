@@ -101,6 +101,11 @@ header nav .top-nav-btn {
     border-bottom: 2px solid #e1e4e8;
     margin-bottom: 20px;
     overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+}
+
+.subject-tabs::-webkit-scrollbar {
+    display: none; /* Chrome / Safari */
 }
 
 .subject-tab {
