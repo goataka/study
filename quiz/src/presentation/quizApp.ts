@@ -420,6 +420,9 @@ export class QuizApp {
     });
 
     if (tab === "guide") {
+      if (this.filter.category === "all") {
+        this.selectFirstUnlearnedCategory();
+      }
       this.updateGuidePanelContentByIds("notesGuideFrame", "notesGuideNoContent");
     }
   }
@@ -430,6 +433,9 @@ export class QuizApp {
    * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する（メインパネル用）。
    */
   private updateGuidePanelContent(): void {
+    if (this.filter.category === "all") {
+      this.selectFirstUnlearnedCategory();
+    }
     this.updateGuidePanelContentByIds("guidePanelFrame", "guideNoContent");
   }
 
