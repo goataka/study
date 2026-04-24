@@ -852,8 +852,11 @@ export class QuizApp {
 
     const scoreDisplay = document.getElementById("scoreDisplay");
     if (scoreDisplay) {
+      const isPerfect = correctCount === total;
+      const circleClass = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
       scoreDisplay.innerHTML = `
-        <div class="score-circle ${percentage >= 70 ? "pass" : "fail"}">
+        <div class="score-circle ${circleClass}">
+          ${isPerfect ? '<div class="score-perfect-icon">✅</div>' : ""}
           <div class="score-percentage">${percentage}%</div>
           <div class="score-text">${correctCount} / ${total} 正解</div>
         </div>
