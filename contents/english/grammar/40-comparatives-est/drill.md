@@ -4,15 +4,15 @@
 
 ( ) に正しい最上級を入れましょう。
 
-基本文（原級）: I am tall.
+基本文（原級）: This game is hard.
 
 ### 短い形容詞
 
 | 原級 | 最上級 |
 |------|--------|
-| I am tall. | I am the (　　　　　　) in the class. |
-| I am big. | I am the (　　　　　　) in the class. |
-| I am easy to talk to. | I am the (　　　　　　) to talk to in the class. |
+| This game is hard. | This game is the (　　　　　　) of all. |
+| This game is big. | This game is the (　　　　　　) of all. |
+| This game is easy. | This game is the (　　　　　　) of all. |
 
 ### 長い形容詞
 

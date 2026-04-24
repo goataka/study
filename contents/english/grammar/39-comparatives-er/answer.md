@@ -6,10 +6,10 @@
 
 | 原級 | 比較級 |
 |------|--------|
-| I am tall. | I am (taller) than him. |
-| I am big. | I am (bigger) than him. |
-| I am easy to talk to. | I am (easier) to talk to than him. |
-| I am hot. | It is (hotter) than yesterday. |
+| This game is hard. | This game is (harder) than that one. |
+| This game is big. | This game is (bigger) than that one. |
+| This game is easy. | This game is (easier) than that one. |
+| It is hot today. | It is (hotter) than yesterday. |
 
 ### 長い形容詞
 

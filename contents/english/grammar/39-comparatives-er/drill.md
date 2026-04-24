@@ -4,16 +4,16 @@
 
 ( ) に正しい比較級を入れましょう。
 
-基本文（原級）: I am tall.
+基本文（原級）: This game is hard.
 
 ### 短い形容詞
 
 | 原級 | 比較級 |
 |------|--------|
-| I am tall. | I am (　　　　　　) than him. |
-| I am big. | I am (　　　　　　) than him. |
-| I am easy to talk to. | I am (　　　　　　) to talk to than him. |
-| I am hot. | It is (　　　　　　) than yesterday. |
+| This game is hard. | This game is (　　　　　　) than that one. |
+| This game is big. | This game is (　　　　　　) than that one. |
+| This game is easy. | This game is (　　　　　　) than that one. |
+| It is hot today. | It is (　　　　　　) than yesterday. |
 
 ### 長い形容詞
 

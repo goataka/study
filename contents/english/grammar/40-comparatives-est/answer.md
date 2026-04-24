@@ -6,9 +6,9 @@
 
 | 原級 | 最上級 |
 |------|--------|
-| I am tall. | I am the (tallest) in the class. |
-| I am big. | I am the (biggest) in the class. |
-| I am easy to talk to. | I am the (easiest) to talk to in the class. |
+| This game is hard. | This game is the (hardest) of all. |
+| This game is big. | This game is the (biggest) of all. |
+| This game is easy. | This game is the (easiest) of all. |
 
 ### 長い形容詞
 

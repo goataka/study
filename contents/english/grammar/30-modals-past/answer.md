@@ -4,7 +4,7 @@
 
 | 現在 | 過去 |
 |------|------|
-| I can swim. | I (could) swim. |
+| I can play games. | I (could) play games. |
 | I will help. | I (would) help. |
 | I must go. | I (had to) go. |
 | I may come. | I (might) come. |
