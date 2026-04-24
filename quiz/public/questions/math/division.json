@@ -5,6 +5,7 @@
   "categoryName": "わり算",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
+  "referenceGrade": "小学3年",
   "questions": [
     {
       "id": "div-1",

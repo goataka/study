@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/18-decimals-subtraction/guide",
+  "referenceGrade": "小学4年",
   "questions": [
     {
       "id": "dec-sub-1",

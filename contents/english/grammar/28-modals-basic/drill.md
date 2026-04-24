@@ -4,11 +4,11 @@
 
 ( ) に正しい助動詞を入れましょう。
 
-基本文: I play the piano.（現在形）
+基本文: I play games.（現在形）
 
 | 意味 | 文 |
 |------|------|
-| ～できる | I (　　　　　　) play the piano. |
+| ～できる | I (　　　　　　) play games. |
 | ～してもよい | I (　　　　　　) go now. |
 | ～しなければならない | I (　　　　　　) study hard. |
 | ～すべきだ | I (　　　　　　) go to bed early. |

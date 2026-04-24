@@ -6,7 +6,7 @@
 
 | 現在形 | 過去形 |
 |--------|--------|
-| I am happy. | I (　　　　　　) happy. |
+| The game is fun. | The game (　　　　　　) fun. |
 | I am a student. | I (　　　　　　) a student. |
 | I am tired. | I (　　　　　　) tired. |
 | I am at home. | I (　　　　　　) at home. |

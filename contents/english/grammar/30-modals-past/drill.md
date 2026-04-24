@@ -6,7 +6,7 @@
 
 | 現在 | 過去 |
 |------|------|
-| I can swim. | I (　　　　　　) swim. |
+| I can play games. | I (　　　　　　) play games. |
 | I will help. | I (　　　　　　) help. |
 | I must go. | I (　　　　　　) go. |
 | I may come. | I (　　　　　　) come. |

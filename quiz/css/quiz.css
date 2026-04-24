@@ -288,6 +288,21 @@ header nav .top-nav-btn {
     color: white;
 }
 
+.category-grade {
+    font-size: 10px;
+    color: #586069;
+    white-space: nowrap;
+    background: #e8f0fe;
+    padding: 1px 5px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.category-item.active .category-grade {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
 /* 右側: クイズパネル */
 .quiz-panel {
     background: white;
@@ -437,6 +452,7 @@ button:disabled {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
 }
 
 #questionNumber {
@@ -451,6 +467,13 @@ button:disabled {
     padding: 4px 12px;
     border-radius: 12px;
     font-size: 12px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .guide-link {
@@ -1427,4 +1450,82 @@ button:disabled {
 .text-answer-submit-btn:disabled {
     background: #c8e1ff;
     cursor: not-allowed;
+}
+
+/* タッチペン入力確定エリア（メモタブ内、text-input問題のみ表示） */
+#handwritingConfirmArea {
+    padding: 8px;
+    border-top: 1px solid #e1e4e8;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.handwriting-confirm-btn {
+    width: 100%;
+    padding: 10px 16px;
+    background: #0366d6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.handwriting-confirm-btn:hover:not(:disabled) {
+    background: #0256b9;
+}
+
+.handwriting-confirm-btn:disabled {
+    background: #c8e1ff;
+    cursor: not-allowed;
+}
+
+/* 手書き確認後の正解表示と自己評価 */
+.handwriting-reveal-text {
+    margin: 0;
+    font-size: 14px;
+    color: #24292e;
+    font-weight: 600;
+}
+
+.self-eval-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.self-eval-btn {
+    flex: 1;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.self-eval-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.self-eval-correct {
+    background: #28a745;
+    color: white;
+}
+
+.self-eval-correct:hover:not(:disabled) {
+    background: #22863a;
+}
+
+.self-eval-incorrect {
+    background: #dc3545;
+    color: white;
+}
+
+.self-eval-incorrect:hover:not(:disabled) {
+    background: #cb2431;
 }

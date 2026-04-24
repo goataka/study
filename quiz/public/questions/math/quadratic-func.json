@@ -6,6 +6,7 @@
   "parentCategory": "calculus",
   "parentCategoryName": "解析・高校数学",
   "guideUrl": "../math/calculus/30-quadratic-func/guide",
+  "referenceGrade": "高校1年",
   "questions": [
     {
       "id": "quad-func-1",

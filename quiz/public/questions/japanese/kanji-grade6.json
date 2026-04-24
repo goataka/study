@@ -6,6 +6,7 @@
   "parentCategory": "kanji",
   "parentCategoryName": "漢字",
   "questionType": "text-input",
+  "referenceGrade": "小学6年",
   "questions": [
     {
       "id": "kanji-g6-001",

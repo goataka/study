@@ -40,7 +40,6 @@ function setupMinimalDom(): void {
       <button id="prevBtn" disabled>前へ</button>
       <button id="nextBtn">次へ</button>
       <button id="submitBtn" disabled>提出</button>
-      <a id="guideLink" class="hidden" href="#">解説</a>
     </div>
     <div id="resultScreen" class="screen">
       <div id="resultScore"></div>
@@ -64,6 +63,7 @@ function setupTabDom(): void {
         <div id="categoryList" class="category-list"></div>
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
+          <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
           <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
         </div>
@@ -75,6 +75,10 @@ function setupTabDom(): void {
           <button id="startRandomBtn">ランダム</button>
           <button id="startRetryBtn" disabled>間違えた問題</button>
           <button id="markLearnedBtn" disabled>学習済みにする</button>
+        </div>
+        <div id="guideContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
+          <iframe id="guidePanelFrame" title="解説"></iframe>
+          <p id="guideNoContent" class="hidden">このカテゴリには解説がありません。</p>
         </div>
         <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
           <div id="historyList"></div>
@@ -261,12 +265,12 @@ describe("QuizApp — 教科タブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("問題ロード後にタブに教科（英語・数学・国語）が3件描画される", async () => {
+  it("問題ロード後にタブに教科（総合・英語・数学・国語）が4件描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const tabs = document.querySelectorAll(".subject-tab[data-subject]");
-    expect(tabs.length).toBe(3);
+    expect(tabs.length).toBe(4);
   });
 
   it("問題ロード後に英語タブに role=tab が設定されている", async () => {
@@ -279,13 +283,13 @@ describe("QuizApp — 教科タブ仕様", () => {
     });
   });
 
-  it("初期状態では「英語」タブがアクティブになっている", async () => {
+  it("初期状態では「総合」タブがアクティブになっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]');
-    expect(englishTab?.classList.contains("active")).toBe(true);
-    expect(englishTab?.getAttribute("aria-selected")).toBe("true");
+    const allTab = document.querySelector('.subject-tab[data-subject="all"]');
+    expect(allTab?.classList.contains("active")).toBe(true);
+    expect(allTab?.getAttribute("aria-selected")).toBe("true");
   });
 
   it("英語タブをクリックすると statsInfo が英語の問題数に更新される", async () => {
@@ -567,7 +571,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
   });
 });
 
-describe("QuizApp — 解説リンク仕様", () => {
+describe("QuizApp — 解説パネルタブ仕様", () => {
   /** guideUrl ありの問題ファイル */
   const mockManifestForGuide = {
     version: "2.0.0",
@@ -610,7 +614,76 @@ describe("QuizApp — 解説リンク仕様", () => {
     localStorage.clear();
   });
 
-  it("guideUrl ありの問題ファイルでクイズ開始すると #guideLink が表示されURLがそのまま設定される", async () => {
+  it("解説パネルタブが学習タブと実行記録タブの間に存在する", async () => {
+    setupTabDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const tabs = Array.from(document.querySelectorAll(".panel-tab"));
+    const quizIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "quiz");
+    const guideIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "guide");
+    const historyIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "history");
+    expect(guideIdx).toBeGreaterThan(quizIdx);
+    expect(guideIdx).toBeLessThan(historyIdx);
+  });
+
+  it("guideUrl ありのカテゴリで解説タブをクリックすると iframe に URL が設定される", async () => {
+    setupTabDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
+    guideTab?.click();
+
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
+    expect(guideFrame).not.toBeNull();
+    expect(guideFrame.src).toContain("guide");
+    expect(guideFrame.classList.contains("hidden")).toBe(false);
+
+    const noContent = document.getElementById("guideNoContent");
+    expect(noContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("guideUrl なしのカテゴリで解説タブをクリックすると「解説なし」メッセージが表示される", async () => {
+    setupTabDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithoutGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
+    guideTab?.click();
+
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
+    expect(guideFrame.classList.contains("hidden")).toBe(true);
+
+    const noContent = document.getElementById("guideNoContent");
+    expect(noContent?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("クイズ画面に #guideLink が存在しない", async () => {
     setupMinimalDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -624,84 +697,8 @@ describe("QuizApp — 解説リンク仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink).not.toBeNull();
-    expect(guideLink.classList.contains("hidden")).toBe(false);
-    expect(guideLink.href).toContain("guide");
-    expect(guideLink.href).not.toContain("guide.md");
-  });
-
-  it("guideUrl なしの問題ファイルでクイズ開始すると #guideLink が hidden のまま", async () => {
-    setupMinimalDom();
-    global.fetch = vi.fn((url: string) => {
-      const urlStr = String(url);
-      if (urlStr.includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
-      }
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithoutGuide) } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink).not.toBeNull();
-    expect(guideLink.classList.contains("hidden")).toBe(true);
-  });
-
-  it("guideUrl にクエリパラメータが付いていてもURLがそのまま設定される", async () => {
-    setupMinimalDom();
-    global.fetch = vi.fn((url: string) => {
-      const urlStr = String(url);
-      if (urlStr.includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () =>
-          Promise.resolve({
-            ...mockQuestionFileWithGuide,
-            guideUrl: "../english/pronunciation/01-alphabet/guide?version=1",
-          }),
-      } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink.href).toContain("guide");
-    expect(guideLink.href).toContain("?version=1");
-    expect(guideLink.href).not.toContain("guide.md");
-  });
-
-  it("guideUrl にフラグメントが付いていてもURLがそのまま設定される", async () => {
-    setupMinimalDom();
-    global.fetch = vi.fn((url: string) => {
-      const urlStr = String(url);
-      if (urlStr.includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
-      }
-      return Promise.resolve({
-        ok: true,
-        json: () =>
-          Promise.resolve({
-            ...mockQuestionFileWithGuide,
-            guideUrl: "../english/pronunciation/01-alphabet/guide#section",
-          }),
-      } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement;
-    expect(guideLink.href).toContain("guide");
-    expect(guideLink.href).toContain("#section");
-    expect(guideLink.href).not.toContain("guide.md");
+    const guideLink = document.getElementById("guideLink");
+    expect(guideLink).toBeNull();
   });
 });
 
@@ -716,14 +713,17 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("パネルに「クイズモード選択」と「実行記録」と「問題一覧」のインナータブが描画される", async () => {
+  it("パネルに「クイズモード選択」と「解説」と「実行記録」と「問題一覧」のインナータブが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]');
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]');
     expect(quizTab).not.toBeNull();
+    expect(guideTab).not.toBeNull();
+    expect(guideTab?.textContent).toContain("解説");
     expect(historyTab).not.toBeNull();
     expect(historyTab?.textContent).toContain("実行記録");
     expect(questionsTab).not.toBeNull();
@@ -900,6 +900,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
     // phonics-1 カテゴリアイテムをクリック（renderCategoryList で生成される）
     const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
     categoryItem?.click();
@@ -942,6 +946,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
 
     // phonics-1 カテゴリアイテムをクリック
     const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
@@ -1290,12 +1298,12 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化時に最初の未学習カテゴリが自動選択され「学習済みにする」ボタンが有効になる", async () => {
+  it("初期化時（総合タブ表示中）は「学習済みにする」ボタンが無効になっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
-    expect(markLearnedBtn.disabled).toBe(false);
+    expect(markLearnedBtn.disabled).toBe(true);
   });
 
   it("特定カテゴリを選択すると「学習済みにする」ボタンが有効になる", async () => {
@@ -1515,7 +1523,6 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
         <button id="prevBtn" disabled>前へ</button>
         <button id="nextBtn">次へ</button>
         <button id="submitBtn" disabled>提出</button>
-        <a id="guideLink" class="hidden" href="#">解説</a>
       </div>
       <div id="resultScreen" class="screen">
         <div id="scoreDisplay"></div>
@@ -1789,7 +1796,6 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
         <button id="prevBtn" disabled>前へ</button>
         <button id="nextBtn">次へ</button>
         <button id="submitBtn" disabled>提出</button>
-        <a id="guideLink" class="hidden" href="#">解説</a>
       </div>
       <div id="resultScreen" class="screen hidden">
         <div id="scoreDisplay"></div>
@@ -1807,11 +1813,11 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化後は特定カテゴリが選択され category-only クラスが付かない", async () => {
+  it("初期化後は総合タブが表示されクイズパネルが表示される（category-only クラスが付かない）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // selectFirstUnlearnedCategory が実行されてカテゴリが選択されるため
+    // 総合タブでは全問対象でクイズ開始できるため category-only クラスは付かない
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
   });
@@ -1841,5 +1847,503 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
+  });
+});
+
+// ─── テキスト入力問題のタッチペン入力仕様 ──────────────────────────────────
+
+const mockTextInputManifest = {
+  version: "2.0.0",
+  subjects: { english: { name: "英語" } },
+  questionFiles: ["english/kanji.json"],
+};
+
+const mockTextInputFile = {
+  subject: "english",
+  subjectName: "英語",
+  category: "text-practice",
+  categoryName: "テキスト練習",
+  questionType: "text-input",
+  questions: [
+    { id: "t1", question: "「やま」と入力してください", choices: ["やま"], correct: 0, explanation: "やま" },
+    { id: "t2", question: "「かわ」と入力してください", choices: ["かわ"], correct: 0, explanation: "かわ" },
+    { id: "t3", question: "「ひ」と入力してください", choices: ["ひ"], correct: 0, explanation: "ひ" },
+    { id: "t4", question: "「つき」と入力してください", choices: ["つき"], correct: 0, explanation: "つき" },
+    { id: "t5", question: "「ほし」と入力してください", choices: ["ほし"], correct: 0, explanation: "ほし" },
+  ],
+};
+
+/** テキスト入力問題用のDOMセットアップ（メモエリアのnotesCanvas・確定ボタン含む） */
+function setupTextInputDom(): void {
+  document.body.innerHTML = `
+    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+    <span id="headerUserName"></span>
+    <div id="startScreen" class="screen active">
+      <div id="statsInfo"></div>
+      <input type="radio" name="questionCount" value="5">
+      <input type="radio" name="questionCount" value="10" checked>
+      <input type="radio" name="questionCount" value="20">
+      <button id="startRandomBtn">ランダム</button>
+      <button id="startRetryBtn" disabled>間違えた問題</button>
+    </div>
+    <div id="quizScreen" class="screen">
+      <div id="questionNumber"></div>
+      <div id="topicName"></div>
+      <div id="progressFill" style="width:0%"></div>
+      <div id="questionText"></div>
+      <div id="choicesContainer"></div>
+      <div id="answerFeedback" class="answer-feedback hidden">
+        <div id="feedbackResult" class="feedback-result"></div>
+        <div id="feedbackExplanation" class="feedback-explanation"></div>
+      </div>
+      <button id="prevBtn" disabled>前へ</button>
+      <button id="nextBtn">次へ</button>
+      <button id="submitBtn" disabled>提出</button>
+      <a id="guideLink" class="hidden" href="#">解説</a>
+      <div id="notesMemoContent">
+        <span id="notesTitle">タッチペンで書けます</span>
+        <canvas id="notesCanvas"></canvas>
+        <div id="handwritingConfirmArea" class="hidden">
+          <button id="handwritingConfirmBtn" type="button">確定する</button>
+          <div id="handwritingSelfEvalArea" class="hidden"></div>
+        </div>
+      </div>
+    </div>
+    <div id="resultScreen" class="screen">
+      <div id="scoreDisplay"></div>
+      <div id="resultDetails"></div>
+      <button id="retryAllBtn">もう一度</button>
+      <button id="retryWrongBtn">間違えた問題</button>
+      <button id="backToStartBtn">スタート画面に戻る</button>
+    </div>
+  `;
+}
+
+describe("QuizApp — テキスト入力問題のタッチペン入力仕様", () => {
+  beforeEach(() => {
+    setupTextInputDom();
+
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockTextInputManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockTextInputFile) } as Response);
+    });
+
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("テキスト入力問題ではメモエリアのnotesTitleが手書き入力を促すテキストに変わる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const notesTitle = document.getElementById("notesTitle");
+    expect(notesTitle?.textContent).toContain("手書き");
+  });
+
+  it("テキスト入力問題では確定ボタンエリアが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const confirmArea = document.getElementById("handwritingConfirmArea");
+    expect(confirmArea?.classList.contains("hidden")).toBe(false);
+
+    const confirmBtn = document.getElementById("handwritingConfirmBtn");
+    expect(confirmBtn).not.toBeNull();
+    expect(confirmBtn?.textContent).toContain("確定");
+  });
+
+  it("「確定する」をクリックすると自己評価ボタンが確定エリアに表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const selfEvalBtns = document.querySelector(".self-eval-buttons");
+    expect(selfEvalBtns).not.toBeNull();
+
+    const correctBtn = document.querySelector(".self-eval-correct");
+    expect(correctBtn?.textContent).toContain("正解");
+
+    const incorrectBtn = document.querySelector(".self-eval-incorrect");
+    expect(incorrectBtn?.textContent).toContain("不正解");
+  });
+
+  it("「確定する」をクリックすると確定エリアに正解が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const revealText = document.querySelector(".handwriting-reveal-text");
+    expect(revealText?.textContent).toContain("正解は");
+    expect(revealText?.textContent).toContain("あっていましたか");
+  });
+
+  it("「○ 正解だった」をクリックすると回答がセッションに登録されフィードバックが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
+    correctBtn?.click();
+
+    const feedback = document.getElementById("answerFeedback");
+    expect(feedback?.classList.contains("hidden")).toBe(false);
+    expect(feedback?.classList.contains("correct")).toBe(true);
+
+    const feedbackResult = document.getElementById("feedbackResult");
+    expect(feedbackResult?.textContent).toContain("正解");
+  });
+
+  it("「○ 正解だった」をクリックするとテキスト入力欄に正解が反映される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
+    correctBtn?.click();
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.disabled).toBe(true);
+    // 選択される問題はランダムだが正解テキストがいずれかであることを確認
+    const validAnswers = mockTextInputFile.questions.map((q) => q.choices[0]);
+    expect(validAnswers).toContain(textInput?.value);
+  });
+
+  it("「× 不正解だった」をクリックすると不正解としてセッションに登録されフィードバックが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLElement;
+    incorrectBtn?.click();
+
+    const feedback = document.getElementById("answerFeedback");
+    expect(feedback?.classList.contains("hidden")).toBe(false);
+    expect(feedback?.classList.contains("incorrect")).toBe(true);
+
+    const feedbackResult = document.getElementById("feedbackResult");
+    expect(feedbackResult?.textContent).toContain("不正解");
+  });
+
+  it("自己評価後は自己評価ボタンが無効化される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const correctBtn = document.querySelector(".self-eval-correct") as HTMLButtonElement;
+    correctBtn?.click();
+
+    expect(correctBtn?.disabled).toBe(true);
+    const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLButtonElement;
+    expect(incorrectBtn?.disabled).toBe(true);
+  });
+
+  it("「確定する」クリック後は確定ボタンが隠れて自己評価UIが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const confirmBtn = document.getElementById("handwritingConfirmBtn");
+    expect(confirmBtn?.classList.contains("hidden")).toBe(true);
+
+    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
+    expect(selfEvalArea?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("手書きで不正解を選んだときテキスト入力欄は空のままになる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLElement;
+    incorrectBtn?.click();
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.value).toBe("");
+    expect(textInput?.disabled).toBe(true);
+  });
+
+  it("自己評価後に次の問題へ移動すると確定ボタンが復元される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    // 確定する → ○ 正解だったで回答登録（nextBtnが有効になる）
+    document.getElementById("handwritingConfirmBtn")?.click();
+    const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
+    correctBtn?.click();
+
+    // 次の問題へ移動
+    const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
+    expect(nextBtn?.disabled).toBe(false);
+    nextBtn?.click();
+
+    // 次の問題（未回答）で確定ボタンが復元されていること
+    const confirmBtn = document.getElementById("handwritingConfirmBtn");
+    expect(confirmBtn?.classList.contains("hidden")).toBe(false);
+    expect((confirmBtn as HTMLButtonElement | null)?.disabled).toBe(false);
+
+    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
+    expect(selfEvalArea?.classList.contains("hidden")).toBe(true);
+    expect(selfEvalArea?.innerHTML).toBe("");
+  });
+
+  it("選択肢問題では確定ボタンエリアが非表示のままで notesTitleが変わらない", async () => {
+    // 選択肢問題のモックに差し替え
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const confirmArea = document.getElementById("handwritingConfirmArea");
+    expect(confirmArea?.classList.contains("hidden")).toBe(true);
+
+    const notesTitle = document.getElementById("notesTitle");
+    expect(notesTitle?.textContent).toBe("タッチペンで書けます");
+  });
+});
+
+// ─── メモエリアのノートタブ仕様 ────────────────────────────────────────────
+
+/** ノートタブ（メモ/解説）を含むDOMセットアップ */
+function setupNoteTabDom(): void {
+  document.body.innerHTML = `
+    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+    <span id="headerUserName"></span>
+    <div id="startScreen" class="screen active">
+      <div class="subject-tabs" role="tablist"></div>
+      <div id="subjectContent">
+        <div id="categoryList" class="category-list"></div>
+        <div id="statsInfo"></div>
+        <input type="radio" name="questionCount" value="5">
+        <input type="radio" name="questionCount" value="10" checked>
+        <input type="radio" name="questionCount" value="20">
+        <button id="startRandomBtn">ランダム</button>
+        <button id="startRetryBtn" disabled>間違えた問題</button>
+      </div>
+    </div>
+    <div id="quizScreen" class="screen">
+      <div id="questionNumber"></div>
+      <div id="topicName"></div>
+      <div id="progressFill" style="width:0%"></div>
+      <div id="questionText"></div>
+      <div id="choicesContainer"></div>
+      <div id="answerFeedback" class="answer-feedback hidden">
+        <div id="feedbackResult" class="feedback-result"></div>
+        <div id="feedbackExplanation" class="feedback-explanation"></div>
+      </div>
+      <button id="prevBtn" disabled>前へ</button>
+      <button id="nextBtn">次へ</button>
+      <button id="submitBtn" disabled>提出</button>
+      <a id="guideLink" class="hidden" href="#">解説</a>
+      <div class="notes-tab-bar" role="tablist" aria-label="メモエリア切り替え">
+        <button id="notesTabMemo" class="notes-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="notesMemoContent" tabindex="0">📝 メモ</button>
+        <button id="notesTabGuide" class="notes-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="notesGuideContent" tabindex="-1">📖 解説</button>
+      </div>
+      <div id="notesMemoContent" role="tabpanel" aria-labelledby="notesTabMemo">
+        <span id="notesTitle">タッチペンで書けます</span>
+        <canvas id="notesCanvas"></canvas>
+        <div id="handwritingConfirmArea" class="hidden">
+          <button id="handwritingConfirmBtn" type="button">確定する</button>
+          <div id="handwritingSelfEvalArea" class="hidden"></div>
+        </div>
+      </div>
+      <div id="notesGuideContent" class="hidden" role="tabpanel" aria-labelledby="notesTabGuide">
+        <iframe id="notesGuideFrame" title="解説"></iframe>
+        <p id="notesGuideNoContent">カテゴリを選択すると解説が表示されます。</p>
+      </div>
+    </div>
+    <div id="resultScreen" class="screen">
+      <div id="scoreDisplay"></div>
+      <div id="resultDetails"></div>
+      <button id="retryAllBtn">もう一度</button>
+      <button id="retryWrongBtn">間違えた問題</button>
+      <button id="backToStartBtn">スタート画面に戻る</button>
+    </div>
+  `;
+}
+
+const mockNoteTabManifest = {
+  version: "2.0.0",
+  subjects: { english: { name: "英語" } },
+  questionFiles: ["english/alphabet.json"],
+};
+
+const mockNoteTabFileWithGuide = {
+  subject: "english",
+  subjectName: "英語",
+  category: "alphabet",
+  categoryName: "アルファベット",
+  guideUrl: "../english/pronunciation/01-alphabet/guide",
+  questions: Array.from({ length: 5 }, (_, i) => ({
+    id: `na${i + 1}`,
+    question: `問題 ${i + 1}`,
+    choices: ["ア", "イ", "ウ", "エ"],
+    correct: 0,
+    explanation: `解説 ${i + 1}`,
+  })),
+};
+
+const mockNoteTabFileWithoutGuide = {
+  subject: "english",
+  subjectName: "英語",
+  category: "alphabet",
+  categoryName: "アルファベット",
+  questions: Array.from({ length: 5 }, (_, i) => ({
+    id: `nb${i + 1}`,
+    question: `問題 ${i + 1}`,
+    choices: ["ア", "イ", "ウ", "エ"],
+    correct: 0,
+    explanation: `解説 ${i + 1}`,
+  })),
+};
+
+describe("QuizApp — メモエリアのノートタブ仕様", () => {
+  beforeEach(() => {
+    setupNoteTabDom();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    localStorage.clear();
+  });
+
+  it("解説タブをクリックするとメモエリアが隠れ、解説エリアが表示される", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("notesTabGuide")?.click();
+
+    const memoContent = document.getElementById("notesMemoContent");
+    const guideContent = document.getElementById("notesGuideContent");
+    expect(memoContent?.classList.contains("hidden")).toBe(true);
+    expect(guideContent?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("メモタブをクリックするとメモエリアが表示され、解説エリアが隠れる", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // まず解説タブに切り替え
+    document.getElementById("notesTabGuide")?.click();
+    // メモタブに戻す
+    document.getElementById("notesTabMemo")?.click();
+
+    const memoContent = document.getElementById("notesMemoContent");
+    const guideContent = document.getElementById("notesGuideContent");
+    expect(memoContent?.classList.contains("hidden")).toBe(false);
+    expect(guideContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("解説タブをクリックすると aria-selected と tabindex が正しく更新される", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("notesTabGuide")?.click();
+
+    const memoBtn = document.getElementById("notesTabMemo");
+    const guideBtn = document.getElementById("notesTabGuide");
+    expect(memoBtn?.getAttribute("aria-selected")).toBe("false");
+    expect(memoBtn?.getAttribute("tabindex")).toBe("-1");
+    expect(guideBtn?.getAttribute("aria-selected")).toBe("true");
+    expect(guideBtn?.getAttribute("tabindex")).toBe("0");
+  });
+
+  it("guideUrl ありのカテゴリで解説タブをクリックすると notesGuideFrame に URL が設定される", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("notesTabGuide")?.click();
+
+    const guideFrame = document.getElementById("notesGuideFrame") as HTMLIFrameElement;
+    expect(guideFrame).not.toBeNull();
+    expect(guideFrame.src).toContain("guide");
+    expect(guideFrame.classList.contains("hidden")).toBe(false);
+
+    const noContent = document.getElementById("notesGuideNoContent");
+    expect(noContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("guideUrl なしのカテゴリで解説タブをクリックすると空表示メッセージが表示される", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockNoteTabFileWithoutGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("notesTabGuide")?.click();
+
+    const guideFrame = document.getElementById("notesGuideFrame") as HTMLIFrameElement;
+    expect(guideFrame.classList.contains("hidden")).toBe(true);
+
+    const noContent = document.getElementById("notesGuideNoContent");
+    expect(noContent?.classList.contains("hidden")).toBe(false);
   });
 });

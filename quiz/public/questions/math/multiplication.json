@@ -5,6 +5,7 @@
   "categoryName": "かけ算",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
+  "referenceGrade": "小学2年",
   "questions": [
     {
       "id": "mul-1",
