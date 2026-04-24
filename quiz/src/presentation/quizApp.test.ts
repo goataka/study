@@ -892,13 +892,13 @@ describe("QuizApp — 履歴モード表示仕様", () => {
     entries: [],
   });
 
-  it("mode=random の履歴は「ランダム」と表示される", async () => {
+  it("mode=random の履歴は「本番」と表示される", async () => {
     localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
-    expect(modeEl?.textContent).toBe("ランダム");
+    expect(modeEl?.textContent).toBe("本番");
   });
 
   it("mode=practice の履歴は「練習」と表示される", async () => {
@@ -1200,12 +1200,12 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期状態（全カテゴリ選択）では「学習済みにする」ボタンが無効", async () => {
+  it("初期化時に最初の未学習カテゴリが自動選択され「学習済みにする」ボタンが有効になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
-    expect(markLearnedBtn.disabled).toBe(true);
+    expect(markLearnedBtn.disabled).toBe(false);
   });
 
   it("特定カテゴリを選択すると「学習済みにする」ボタンが有効になる", async () => {

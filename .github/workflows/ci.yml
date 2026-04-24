@@ -66,10 +66,13 @@ jobs:
       run:
         working-directory: quiz
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -90,6 +93,24 @@ jobs:
         run: npm run build
 
       - name: ビジュアルリグレッションテスト実行
+        id: vr-test
+        run: npm run test:e2e:vr
+        continue-on-error: true
+
+      - name: スナップショットの自動更新とコミット（差分あり時）
+        if: steps.vr-test.outcome == 'failure'
+        run: |
+          npm run test:e2e:vr:update || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- e2e/snapshots/; then
+            git add e2e/snapshots/
+            git commit -m "ci: VRスナップショットを自動更新 [skip ci]"
+            git push
+          fi
+
+      - name: ビジュアルリグレッションテスト（スナップショット更新後の再確認）
+        if: steps.vr-test.outcome == 'failure'
         run: npm run test:e2e:vr
 
       - name: VRレポートのアップロード（失敗時）

@@ -43,7 +43,7 @@
         <div class="quiz-panel">
           <!-- インナータブ -->
           <div class="panel-tabs" role="tablist" aria-label="パネル切り替え">
-            <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
+            <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">学習</button>
             <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
             <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
           </div>
@@ -58,10 +58,10 @@
               </div>
             </div>
             <div class="button-group">
-              <button id="startRandomBtn" class="primary-btn">ランダム</button>
               <button id="startPracticeBtn" class="primary-btn">練習</button>
-              <button id="startRetryBtn" class="secondary-btn">間違えた問題だけ</button>
-              <button id="markLearnedBtn" class="tertiary-btn" disabled>✅ 学習済みにする</button>
+              <button id="startRandomBtn" class="primary-btn">本番</button>
+              <button id="startRetryBtn" class="secondary-btn">復習</button>
+              <button id="markLearnedBtn" class="tertiary-btn" disabled>✅ 学習済み</button>
             </div>
             <div id="statsInfo" class="stats-info">読み込み中...</div>
           </div>
@@ -91,6 +91,7 @@
             <span id="questionNumber"></span>
             <span id="topicName" class="topic-badge"></span>
             <a id="guideLink" class="guide-link hidden" target="_blank" rel="noopener noreferrer">📖 解説</a>
+            <button id="cancelQuizBtn" class="cancel-quiz-btn" type="button">中止する</button>
           </div>
           <div id="questionText" class="question-text"></div>
           <div id="choicesContainer" class="choices-container"></div>
@@ -115,7 +116,7 @@
               <span class="notes-title">📝 メモ（タッチペンで書けます）</span>
               <div class="notes-controls">
                 <button id="clearNotesBtn" class="notes-btn" type="button" title="メモをクリア" aria-label="メモをクリア">🗑️</button>
-                <button id="eraserBtn" class="notes-btn" type="button" title="消しゴム" aria-label="消しゴム">🧹</button>
+                <button id="eraserBtn" class="notes-btn" type="button" title="消しゴム" aria-label="消しゴム"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16zm.255-8.172 4.893 4.894-2.276 2.035-5.022-5.022 2.405-1.907z"/></svg></button>
                 <select id="penSizeSelect" class="pen-size-select" title="線の太さ" aria-label="線の太さ">
                   <option value="2" selected>普通</option>
                   <option value="4">太い</option>
@@ -142,7 +143,7 @@
       <div id="resultDetails" class="result-details"></div>
       <div class="button-group">
         <button id="retryAllBtn" class="primary-btn">もう一度</button>
-        <button id="retryWrongBtn" class="secondary-btn">間違えた問題だけ</button>
+        <button id="retryWrongBtn" class="secondary-btn">復習</button>
         <button id="backToStartBtn" class="tertiary-btn">スタート画面に戻る</button>
       </div>
     </div>
