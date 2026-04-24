@@ -1815,13 +1815,13 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化後は総合タブが表示されカテゴリ未選択のため category-only クラスが付く", async () => {
+  it("初期化後は総合タブが表示されクイズパネルが表示される（category-only クラスが付かない）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 総合タブではカテゴリが選択されないため category-only クラスが付く
+    // 総合タブでは全問対象でクイズ開始できるため category-only クラスは付かない
     const subjectContent = document.getElementById("subjectContent");
-    expect(subjectContent?.classList.contains("category-only")).toBe(true);
+    expect(subjectContent?.classList.contains("category-only")).toBe(false);
   });
 
   it("教科タブをクリックすると category-only クラスが付く（カテゴリ未選択状態）", async () => {

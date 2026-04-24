@@ -861,11 +861,12 @@ export class QuizApp {
    * クイズパネルの表示/非表示を更新する。
    * カテゴリが未選択（"all"）の場合はパネルを非表示にし、
    * 特定のカテゴリが選択されている場合は表示する。
+   * ただし「総合」タブ（subject === "all"）では全問対象でクイズを開始できるため常に表示する。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
     if (!subjectContent) return;
-    const noCategory = this.filter.category === "all";
+    const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
   }
 
