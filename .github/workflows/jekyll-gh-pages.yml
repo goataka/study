@@ -66,6 +66,8 @@ jobs:
       - name: GitHub Pages へデプロイ
         id: deployment
         uses: actions/deploy-pages@v5
+        with:
+          timeout: 1800000
 
   e2e-production:
     name: 本番環境E2Eテスト

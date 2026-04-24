@@ -972,7 +972,7 @@ describe("QuizApp — 問題一覧モーダル仕様", () => {
         <a id="guideLink" class="hidden" href="#">解説</a>
       </div>
       <div id="resultScreen" class="screen">
-        <div id="resultScore"></div>
+        <div id="scoreDisplay"></div>
         <div id="resultDetails"></div>
         <button id="retryAllBtn">もう一度</button>
         <button id="retryWrongBtn">間違えた問題</button>
@@ -1076,5 +1076,131 @@ describe("QuizApp — 問題一覧モーダル仕様", () => {
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
 
     expect(modal?.classList.contains("hidden")).toBe(true);
+  });
+});
+
+describe("QuizApp — 結果画面の全問正解表示仕様", () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+      <span id="headerUserName"></span>
+      <div id="startScreen" class="screen active">
+        <div id="statsInfo"></div>
+        <input type="radio" name="questionCount" value="5">
+        <input type="radio" name="questionCount" value="10" checked>
+        <input type="radio" name="questionCount" value="20">
+        <button id="startRandomBtn">ランダム</button>
+        <button id="startRetryBtn" disabled>間違えた問題</button>
+      </div>
+      <div id="quizScreen" class="screen">
+        <div id="questionNumber"></div>
+        <div id="topicName"></div>
+        <div id="progressFill" style="width:0%"></div>
+        <div id="questionText"></div>
+        <div id="choicesContainer"></div>
+        <div id="answerFeedback" class="answer-feedback hidden">
+          <div id="feedbackResult" class="feedback-result"></div>
+          <div id="feedbackExplanation" class="feedback-explanation"></div>
+        </div>
+        <button id="prevBtn" disabled>前へ</button>
+        <button id="nextBtn">次へ</button>
+        <button id="submitBtn" disabled>提出</button>
+        <a id="guideLink" class="hidden" href="#">解説</a>
+      </div>
+      <div id="resultScreen" class="screen">
+        <div id="scoreDisplay"></div>
+        <div id="resultDetails"></div>
+        <button id="retryAllBtn">もう一度</button>
+        <button id="retryWrongBtn">間違えた問題</button>
+        <button id="backToStartBtn">スタート画面に戻る</button>
+      </div>
+    `;
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  /** クイズを開始して全問に正解し採点する */
+  async function completeQuizWithAllCorrect(): Promise<void> {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    // 全問（最大5問）に正解する
+    for (let i = 0; i < 5; i++) {
+      // 正解の選択肢「ア」を持つラベルをクリック
+      const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
+      const correctLabel = Array.from(labels).find(
+        (l) => l.querySelector(".choice-text")?.textContent === "ア"
+      );
+      correctLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
+
+      const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
+      const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
+      if (!submitBtn.classList.contains("hidden") && !submitBtn.disabled) {
+        submitBtn.click();
+        break;
+      } else if (!nextBtn.classList.contains("hidden") && !nextBtn.disabled) {
+        nextBtn.click();
+      }
+    }
+  }
+
+  /** クイズを開始して全問に不正解し採点する */
+  async function completeQuizWithAllWrong(): Promise<void> {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    for (let i = 0; i < 5; i++) {
+      // 不正解の選択肢（「ア」以外）をクリック
+      const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
+      const wrongLabel = Array.from(labels).find(
+        (l) => l.querySelector(".choice-text")?.textContent !== "ア"
+      );
+      wrongLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
+
+      const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
+      const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
+      if (!submitBtn.classList.contains("hidden") && !submitBtn.disabled) {
+        submitBtn.click();
+        break;
+      } else if (!nextBtn.classList.contains("hidden") && !nextBtn.disabled) {
+        nextBtn.click();
+      }
+    }
+  }
+
+  it("全問正解時にスコアサークルに perfect クラスが付与される", async () => {
+    await completeQuizWithAllCorrect();
+
+    const scoreCircle = document.querySelector(".score-circle");
+    expect(scoreCircle?.classList.contains("perfect")).toBe(true);
+  });
+
+  it("全問正解時に ✅ アイコン要素が表示される", async () => {
+    await completeQuizWithAllCorrect();
+
+    const perfectIcon = document.querySelector(".score-perfect-icon");
+    expect(perfectIcon).not.toBeNull();
+    expect(perfectIcon?.textContent).toBe("✅");
+  });
+
+  it("全問正解時に pass クラスは付与されない", async () => {
+    await completeQuizWithAllCorrect();
+
+    const scoreCircle = document.querySelector(".score-circle");
+    expect(scoreCircle?.classList.contains("pass")).toBe(false);
+  });
+
+  it("全問不正解時には perfect クラスが付与されない", async () => {
+    await completeQuizWithAllWrong();
+
+    const scoreCircle = document.querySelector(".score-circle");
+    expect(scoreCircle?.classList.contains("perfect")).toBe(false);
+    expect(document.querySelector(".score-perfect-icon")).toBeNull();
   });
 });
