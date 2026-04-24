@@ -28,3 +28,43 @@ Feature: 学習クイズ
     When I click the "ランダム" button
     And I answer all questions
     Then I should see the "採点する" button
+
+  Scenario: 採点後に結果画面が表示される
+    When I click the "ランダム" button
+    And I answer all questions
+    And I click the "採点する" button
+    Then the result screen should be visible
+    And I should see the score
+
+  Scenario: 結果画面から「もう一度」でクイズ画面に戻れる
+    When I click the "ランダム" button
+    And I answer all questions
+    And I click the "採点する" button
+    Then the result screen should be visible
+    When I click the "もう一度" button
+    Then the quiz screen should be visible
+    And I should see question 1
+
+  Scenario: 結果画面から「スタート画面に戻る」で戻れる
+    When I click the "ランダム" button
+    And I answer all questions
+    And I click the "採点する" button
+    Then the result screen should be visible
+    When I click the "スタート画面に戻る" button
+    Then the start screen should be visible
+
+  @vr
+  Scenario: スタート画面のビジュアル確認
+    Then the start screen matches the snapshot
+
+  @vr
+  Scenario: クイズ画面のビジュアル確認
+    When I click the "ランダム" button
+    Then the quiz screen layout matches the snapshot
+
+  @vr
+  Scenario: 結果画面のビジュアル確認
+    When I click the "ランダム" button
+    And I answer all questions
+    And I click the "採点する" button
+    Then the result screen layout matches the snapshot

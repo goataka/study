@@ -6,7 +6,7 @@ const { Before, Then } = createBdd();
 // VR テストの再現性を保つために Math.random をシードする
 // page.addInitScript はページロード前に実行されるため、
 // pickRandom での問題選択が毎回同じ結果になる
-Before(async ({ page }) => {
+Before({ tags: "@vr" }, async ({ page }) => {
   await page.addInitScript(() => {
     let seed = 42;
     Math.random = () => {
@@ -42,6 +42,18 @@ Then("the quiz screen layout matches the snapshot", async ({ page }) => {
       page.locator("#topicName"),
       page.locator("#questionNumber"),
       page.locator("#quizUserName"),
+    ],
+  });
+});
+
+// 結果画面のレイアウトのスクリーンショット比較
+// スコアや詳細など動的コンテンツはマスクして構造のみ確認する
+Then("the result screen layout matches the snapshot", async ({ page }) => {
+  await expect(page.locator("#resultScreen")).toBeVisible();
+  await expect(page).toHaveScreenshot("result-screen.png", {
+    mask: [
+      page.locator("#scoreDisplay"),
+      page.locator("#resultDetails"),
     ],
   });
 });

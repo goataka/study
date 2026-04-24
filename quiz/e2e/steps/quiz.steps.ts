@@ -101,3 +101,11 @@ Then("I should see the {string} button", async ({ page }, buttonText: string) =>
   await expect(button).toBeVisible();
   await expect(button).toHaveText(buttonText);
 });
+
+Then("the result screen should be visible", async ({ page }) => {
+  await expect(page.locator("#resultScreen")).toBeVisible();
+});
+
+Then("I should see the score", async ({ page }) => {
+  await expect(page.locator("#scoreDisplay")).toBeVisible();
+});
