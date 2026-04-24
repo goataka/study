@@ -125,9 +125,14 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       }
     }
   }
-  // example はオプションの文字列フィールド
-  if (qf.example !== undefined && typeof qf.example !== "string") {
-    throw new Error('"example" must be a string if present');
+  // example はオプションの文字列フィールド（空文字は不可）
+  if (qf.example !== undefined) {
+    if (typeof qf.example !== "string") {
+      throw new Error('"example" must be a string if present');
+    }
+    if (qf.example.trim().length === 0) {
+      throw new Error('"example" must not be an empty string');
+    }
   }
   // questionType（ファイルレベル）はオプション
   if (qf.questionType !== undefined && qf.questionType !== "multiple-choice" && qf.questionType !== "text-input") {

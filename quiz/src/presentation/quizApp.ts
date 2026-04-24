@@ -305,7 +305,7 @@ export class QuizApp {
 
     // 例文（example が設定されている場合のみ表示）
     const example = this.useCase.getCategoryExample(subject, categoryId);
-    if (example) {
+    if (example !== undefined) {
       const exampleSpan = document.createElement("span");
       exampleSpan.className = "category-example";
       this.renderBacktickText(exampleSpan, example);
