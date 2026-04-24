@@ -147,7 +147,7 @@ header nav .top-nav-btn {
 /* スタートコンテンツレイアウト */
 .start-content-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 20px;
     align-items: start;
 }
