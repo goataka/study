@@ -1478,3 +1478,232 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
     expect(document.querySelector(".score-perfect-icon")).toBeNull();
   });
 });
+
+describe("QuizApp — カテゴリ進捗バー仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("カテゴリアイテムには .category-progress-bar が含まれる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    expect(catItem?.querySelector(".category-progress-bar")).not.toBeNull();
+    expect(catItem?.querySelector(".category-progress-fill")).not.toBeNull();
+  });
+
+  it("未学習カテゴリの進捗バーは 0% の幅になっている", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
+    expect(fill?.style.width).toBe("0%");
+  });
+
+  it("学習済（間違いなし）カテゴリの進捗バーは 100% になり progress-fill-done クラスが付く", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 5,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
+    expect(fill?.style.width).toBe("100%");
+    expect(fill?.classList.contains("progress-fill-done")).toBe(true);
+  });
+});
+
+describe("QuizApp — カテゴリ解説リンク仕様", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    localStorage.clear();
+  });
+
+  it("guideUrl なしのカテゴリでは解説リンクが hidden のまま", async () => {
+    setupTabDom();
+    setupFetchMock(); // mockQuestionFile には guideUrl がない
+    localStorage.clear();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const guideLink = catItem?.querySelector(".category-guide-link") as HTMLElement | null;
+    expect(guideLink?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("guideUrl ありのカテゴリでは解説リンクが表示され href が設定される", async () => {
+    setupTabDom();
+    const guideManifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/phonics-1.json"],
+    };
+    const questionFileWithGuide = {
+      subject: "english",
+      subjectName: "英語",
+      category: "phonics-1",
+      categoryName: "フォニックス（1文字）",
+      guideUrl: "../english/pronunciation/03-phonics-1letter/guide",
+      questions: Array.from({ length: 5 }, (_, i) => ({
+        id: `q${i + 1}`,
+        question: `問題 ${i + 1}`,
+        choices: ["ア", "イ", "ウ", "エ"],
+        correct: 0,
+        explanation: `解説 ${i + 1}`,
+      })),
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(guideManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const guideLink = catItem?.querySelector(".category-guide-link") as HTMLAnchorElement | null;
+    expect(guideLink?.classList.contains("hidden")).toBe(false);
+    expect(guideLink?.href).toContain("guide");
+  });
+});
+
+describe("QuizApp — クイズパネル表示制御仕様", () => {
+  beforeEach(() => {
+    // quiz-panel クラスを含む DOM を追加
+    document.body.innerHTML = `
+      <div id="startScreen" class="screen active">
+        <div class="subject-tabs" role="tablist"></div>
+        <div class="start-content-layout" id="subjectContent">
+          <div class="category-panel">
+            <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
+            <div id="categoryList" class="category-list"></div>
+          </div>
+          <div class="quiz-panel">
+            <div class="panel-tabs" role="tablist">
+              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">学習</button>
+              <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 実行記録</button>
+              <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題一覧</button>
+            </div>
+            <div id="quizModePanel" role="tabpanel">
+              <button id="startPracticeBtn">練習</button>
+              <button id="startRandomBtn">ランダム</button>
+              <button id="startRetryBtn" disabled>間違えた問題</button>
+              <button id="markLearnedBtn" disabled>学習済みにする</button>
+              <div id="statsInfo">読み込み中...</div>
+            </div>
+            <div id="historyContent" class="hidden" role="tabpanel">
+              <div id="historyList" class="history-list"></div>
+            </div>
+            <div id="questionListContent" class="hidden" role="tabpanel">
+              <div id="questionListBody"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="quizScreen" class="screen hidden">
+        <div id="questionNumber"></div>
+        <div id="topicName"></div>
+        <div id="progressFill" style="width:0%"></div>
+        <div id="questionText"></div>
+        <div id="choicesContainer"></div>
+        <div id="answerFeedback" class="hidden"></div>
+        <button id="prevBtn" disabled>前へ</button>
+        <button id="nextBtn">次へ</button>
+        <button id="submitBtn" disabled>提出</button>
+        <a id="guideLink" class="hidden" href="#">解説</a>
+      </div>
+      <div id="resultScreen" class="screen hidden">
+        <div id="scoreDisplay"></div>
+        <div id="resultDetails"></div>
+        <button id="retryAllBtn">もう一度</button>
+        <button id="retryWrongBtn">間違えた問題</button>
+        <button id="backToStartBtn">スタート画面に戻る</button>
+      </div>
+    `;
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("初期化後は特定カテゴリが選択され category-only クラスが付かない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // selectFirstUnlearnedCategory が実行されてカテゴリが選択されるため
+    const subjectContent = document.getElementById("subjectContent");
+    expect(subjectContent?.classList.contains("category-only")).toBe(false);
+  });
+
+  it("教科タブをクリックすると category-only クラスが付く（カテゴリ未選択状態）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const subjectContent = document.getElementById("subjectContent");
+    expect(subjectContent?.classList.contains("category-only")).toBe(true);
+  });
+
+  it("カテゴリアイテムをクリックすると category-only クラスが除去される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 教科タブをクリックしてカテゴリ未選択状態にする
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // カテゴリアイテムをクリック
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const subjectContent = document.getElementById("subjectContent");
+    expect(subjectContent?.classList.contains("category-only")).toBe(false);
+  });
+});

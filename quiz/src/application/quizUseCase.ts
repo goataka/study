@@ -14,6 +14,8 @@ export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
   private correctStreaks: Record<string, number>;
+  /** subject::category -> guideUrl のキャッシュ（O(1) 参照用） */
+  private categoryGuideMap = new Map<string, string>();
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
@@ -25,6 +27,16 @@ export class QuizUseCase {
 
   async initialize(): Promise<void> {
     this.allQuestions = await this.questionRepo.loadAll();
+    // subject::category -> guideUrl のキャッシュを構築する
+    this.categoryGuideMap.clear();
+    for (const q of this.allQuestions) {
+      if (q.guideUrl !== undefined) {
+        const key = `${q.subject}::${q.category}`;
+        if (!this.categoryGuideMap.has(key)) {
+          this.categoryGuideMap.set(key, q.guideUrl);
+        }
+      }
+    }
   }
 
   getFilteredQuestions(filter: QuizFilter): Question[] {
@@ -235,6 +247,14 @@ export class QuizUseCase {
     const history = this.progressRepo.loadHistory();
     history.unshift(record);
     this.progressRepo.saveHistory(history);
+  }
+
+  /**
+   * 指定した教科・カテゴリの解説 URL を返す。
+   * 該当カテゴリに guideUrl が設定されていない場合は undefined を返す。
+   */
+  getCategoryGuideUrl(subject: string, category: string): string | undefined {
+    return this.categoryGuideMap.get(`${subject}::${category}`);
   }
 
   get wrongQuestionIds(): string[] {
