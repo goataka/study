@@ -27,9 +27,7 @@ export class QuizApp {
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
-  private activePanelTab: "quiz" | "history" = "quiz";
-  private modalEscapeController: AbortController | null = null;
-  private questionListTriggerElement: HTMLElement | null = null;
+  private activePanelTab: "quiz" | "history" | "questions" = "quiz";
   private hideLearnedCategories: boolean = false;
 
   constructor() {
@@ -181,16 +179,18 @@ export class QuizApp {
   }
 
   /**
-   * インナーパネルタブ（クイズモード選択 / 実行記録）を初期化する
+   * インナーパネルタブ（クイズモード選択 / 実行記録 / 問題一覧）を初期化する
    */
   private buildPanelTabs(): void {
     document.querySelectorAll<HTMLElement>(".panel-tab").forEach((tab) => {
       tab.addEventListener("click", () => {
-        const panel = tab.dataset.panel as "quiz" | "history";
+        const panel = tab.dataset.panel as "quiz" | "history" | "questions";
         this.activePanelTab = panel;
         this.showPanelTab(panel);
         if (panel === "history") {
           this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
+        } else if (panel === "questions") {
+          this.renderQuestionList();
         }
       });
     });
@@ -337,17 +337,14 @@ export class QuizApp {
   /**
    * インナーパネルタブのコンテンツ表示を切り替える
    */
-  private showPanelTab(tab: "quiz" | "history"): void {
+  private showPanelTab(tab: "quiz" | "history" | "questions"): void {
     const quizModePanel = document.getElementById("quizModePanel");
     const historyContent = document.getElementById("historyContent");
+    const questionListContent = document.getElementById("questionListContent");
 
-    if (tab === "quiz") {
-      quizModePanel?.classList.remove("hidden");
-      historyContent?.classList.add("hidden");
-    } else {
-      quizModePanel?.classList.add("hidden");
-      historyContent?.classList.remove("hidden");
-    }
+    quizModePanel?.classList.toggle("hidden", tab !== "quiz");
+    historyContent?.classList.toggle("hidden", tab !== "history");
+    questionListContent?.classList.toggle("hidden", tab !== "questions");
 
     document.querySelectorAll<HTMLElement>(".panel-tab").forEach((t) => {
       const isActive = t.dataset.panel === tab;
@@ -488,33 +485,21 @@ export class QuizApp {
     return item;
   }
 
-  // ─── 問題一覧モーダル ──────────────────────────────────────────────────────
+  // ─── 問題一覧パネル ────────────────────────────────────────────────────────
 
   /**
-   * 現在のフィルターに基づいて問題一覧モーダルを表示する
+   * 現在のフィルターに基づいて問題一覧パネルを描画する
    */
-  private showQuestionListModal(): void {
-    const modal = document.getElementById("questionListModal");
-    const titleEl = document.getElementById("questionListTitle");
+  private renderQuestionList(): void {
     const bodyEl = document.getElementById("questionListBody");
-    if (!modal || !titleEl || !bodyEl) return;
+    if (!bodyEl) return;
 
     const questions = this.useCase.getFilteredQuestions(this.filter);
 
-    // タイトルを設定
-    if (this.filter.category === "all") {
-      const subjectName = SUBJECTS.find((s) => s.id === this.filter.subject)?.name ?? this.filter.subject;
-      titleEl.textContent = `${subjectName} — 全問題一覧（${questions.length}問）`;
-    } else {
-      const catName = questions[0]?.categoryName ?? this.filter.category;
-      titleEl.textContent = `${catName} — 問題一覧（${questions.length}問）`;
-    }
-
-    // 問題リストを構築
     bodyEl.innerHTML = "";
     if (questions.length === 0) {
       const empty = document.createElement("p");
-      empty.classList.add("history-empty");
+      empty.className = "history-empty";
       empty.textContent = "この単元に問題はありません。";
       bodyEl.appendChild(empty);
     } else {
@@ -522,56 +507,10 @@ export class QuizApp {
         bodyEl.appendChild(this.buildQuestionListItem(q, index + 1));
       });
     }
-
-    // フォーカスをトリガー要素として記憶してから閉じるボタンへ移動
-    this.questionListTriggerElement = document.activeElement as HTMLElement | null;
-    modal.classList.remove("hidden");
-    document.body.classList.add("modal-open");
-
-    const closeBtn = document.getElementById("closeQuestionListBtn") as HTMLElement | null;
-    closeBtn?.focus();
-
-    // Escape キーリスナーをモーダル表示中のみ登録（AbortController で重複防止）
-    this.modalEscapeController = new AbortController();
-    document.addEventListener(
-      "keydown",
-      (e: KeyboardEvent) => this.handleQuestionListModalKeydown(e),
-      { signal: this.modalEscapeController.signal }
-    );
   }
 
   /**
-   * 問題一覧モーダルを閉じる
-   */
-  private closeQuestionListModal(): void {
-    const modal = document.getElementById("questionListModal");
-    if (!modal || modal.classList.contains("hidden")) return;
-    modal.classList.add("hidden");
-    document.body.classList.remove("modal-open");
-
-    // Escape キーリスナーを解除
-    this.modalEscapeController?.abort();
-    this.modalEscapeController = null;
-
-    // フォーカスをトリガー要素へ戻す
-    this.questionListTriggerElement?.focus();
-    this.questionListTriggerElement = null;
-  }
-
-  private handleQuestionListModalOverlayClick(e: MouseEvent, modalOverlay: HTMLElement): void {
-    if (e.target === modalOverlay) {
-      this.closeQuestionListModal();
-    }
-  }
-
-  private handleQuestionListModalKeydown(e: KeyboardEvent): void {
-    if (e.key === "Escape") {
-      this.closeQuestionListModal();
-    }
-  }
-
-  /**
-   * 問題一覧の1問分のHTML要素を構築する
+   * 問題一覧の1問分のHTML要素を構築する（問題・正解・ヒントのみ表示）
    */
   private buildQuestionListItem(question: Question, number: number): HTMLElement {
     const item = document.createElement("div");
@@ -587,20 +526,15 @@ export class QuizApp {
     textDiv.textContent = question.question;
     item.appendChild(textDiv);
 
-    const choicesDiv = document.createElement("div");
-    choicesDiv.className = "question-list-choices";
-    question.choices.forEach((choice, i) => {
-      const choiceDiv = document.createElement("div");
-      choiceDiv.className = `question-list-choice${i === question.correct ? " correct-choice" : ""}`;
-      choiceDiv.textContent = `${i === question.correct ? "✓ " : "　"}${choice}`;
-      choicesDiv.appendChild(choiceDiv);
-    });
-    item.appendChild(choicesDiv);
+    const correctDiv = document.createElement("div");
+    correctDiv.className = "question-list-correct";
+    correctDiv.textContent = `✓ ${question.choices[question.correct]}`;
+    item.appendChild(correctDiv);
 
-    const explanationDiv = document.createElement("div");
-    explanationDiv.className = "question-list-explanation";
-    explanationDiv.textContent = question.explanation;
-    item.appendChild(explanationDiv);
+    const hintDiv = document.createElement("div");
+    hintDiv.className = "question-list-hint";
+    hintDiv.textContent = question.explanation;
+    item.appendChild(hintDiv);
 
     return item;
   }
@@ -612,8 +546,6 @@ export class QuizApp {
     this.on("startPracticeBtn", "click", () => this.startQuiz("practice"));
     this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
     this.on("markLearnedBtn", "click", () => this.markCategoryAsLearned());
-    this.on("showQuestionListBtn", "click", () => this.showQuestionListModal());
-    this.on("closeQuestionListBtn", "click", () => this.closeQuestionListModal());
     this.on("prevBtn", "click", () => this.navigate(-1));
     this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
@@ -694,12 +626,6 @@ export class QuizApp {
       const color = (e.target as HTMLSelectElement).value;
       this.notesCanvas?.setPenColor(color);
     });
-
-    // モーダルオーバーレイをクリックで閉じる
-    const modalOverlay = document.getElementById("questionListModal");
-    modalOverlay?.addEventListener("click", (e) => {
-      this.handleQuestionListModalOverlayClick(e as MouseEvent, modalOverlay);
-    });
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -727,6 +653,9 @@ export class QuizApp {
     }
 
     this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
+    if (this.activePanelTab === "questions") {
+      this.renderQuestionList();
+    }
   }
 
   private updateSubjectStats(): void {
