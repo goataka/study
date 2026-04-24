@@ -446,6 +446,30 @@ describe("QuizUseCase — markCategoryAsLearned 仕様", () => {
     expect(progressRepo.getStoredHistory()).toHaveLength(0);
   });
 
+  it("category が 'all' の場合は何もしない", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository(["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryAsLearned({ subject: "english", category: "all" });
+
+    expect(progressRepo.getStoredIds()).toContain("q1");
+    expect(progressRepo.getStoredHistory()).toHaveLength(0);
+  });
+
+  it("subject が 'all' の場合は何もしない", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository(["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryAsLearned({ subject: "all", category: "phonics" });
+
+    expect(progressRepo.getStoredIds()).toContain("q1");
+    expect(progressRepo.getStoredHistory()).toHaveLength(0);
+  });
+
   it("markCategoryAsLearned 後に getStudiedCategoryKeys でそのカテゴリが学習済みになる", async () => {
     const questions = [makeQuestion("q1", "english", "phonics")];
     const progressRepo = new StubProgressRepository();

@@ -849,6 +849,67 @@ describe("QuizApp — 記録タブ仕様", () => {
   });
 });
 
+describe("QuizApp — 履歴モード表示仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  const buildRecord = (mode: string) => ({
+    id: "r1",
+    date: new Date().toISOString(),
+    subject: "english",
+    subjectName: "英語",
+    category: "phonics-1",
+    categoryName: "フォニックス（1文字）",
+    mode,
+    totalCount: 5,
+    correctCount: 5,
+    entries: [],
+  });
+
+  it("mode=random の履歴は「ランダム」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const modeEl = document.querySelector(".history-mode");
+    expect(modeEl?.textContent).toBe("ランダム");
+  });
+
+  it("mode=practice の履歴は「練習」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("practice")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const modeEl = document.querySelector(".history-mode");
+    expect(modeEl?.textContent).toBe("練習");
+  });
+
+  it("mode=retry の履歴は「復習」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("retry")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const modeEl = document.querySelector(".history-mode");
+    expect(modeEl?.textContent).toBe("復習");
+  });
+
+  it("mode=manual の履歴は「手動」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const modeEl = document.querySelector(".history-mode");
+    expect(modeEl?.textContent).toBe("手動");
+  });
+});
+
 describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
   beforeEach(() => {
     setupTabDom();

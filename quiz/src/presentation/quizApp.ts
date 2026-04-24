@@ -398,7 +398,7 @@ export class QuizApp {
 
     const modeSpan = document.createElement("span");
     modeSpan.className = "history-mode";
-    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : "ランダム";
+    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : record.mode === "manual" ? "手動" : "ランダム";
 
     metaDiv.appendChild(dateSpan);
     metaDiv.appendChild(subjectSpan);

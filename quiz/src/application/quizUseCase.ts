@@ -139,7 +139,7 @@ export class QuizUseCase {
     const categoryName = firstQuestion.categoryName ?? firstQuestion.category;
 
     const correctCount = results.filter((r) => r.isCorrect).length;
-    const record: QuizRecord = {
+    this.appendToHistory({
       id: new Date().toISOString(),
       date: new Date().toISOString(),
       subject: filter.subject,
@@ -159,11 +159,7 @@ export class QuizUseCase {
         explanation: r.question.explanation,
         categoryName: r.question.categoryName ?? r.question.category,
       })),
-    };
-
-    const history = this.progressRepo.loadHistory();
-    history.unshift(record);
-    this.progressRepo.saveHistory(history);
+    });
   }
 
   getHistory(): QuizRecord[] {
@@ -174,8 +170,11 @@ export class QuizUseCase {
    * 指定したカテゴリを手動で学習済みとしてマークする。
    * 解答なしでも単元を学習済みにできる機能。
    * 対象カテゴリの問題を wrongIds から除き、履歴に manual レコードを追加する。
+   * category が "all" の場合は一括操作を防ぐために何もしない。
    */
   markCategoryAsLearned(filter: QuizFilter): void {
+    if (filter.category === "all" || filter.subject === "all") return;
+
     const questions = this.getFilteredQuestions(filter);
     if (questions.length === 0) return;
 
@@ -197,19 +196,22 @@ export class QuizUseCase {
     const subjectName = firstQuestion.subjectName ?? firstQuestion.subject;
     const categoryName = firstQuestion.categoryName ?? firstQuestion.category;
 
-    const record: QuizRecord = {
+    this.appendToHistory({
       id: new Date().toISOString(),
       date: new Date().toISOString(),
       subject: filter.subject,
       subjectName,
       category: filter.category,
-      categoryName: filter.category === "all" ? `${subjectName} 全体` : categoryName,
+      categoryName,
       mode: "manual",
       totalCount: questions.length,
       correctCount: questions.length,
       entries: [],
-    };
+    });
+  }
 
+  /** 履歴レコードを先頭に追加して保存する共通ヘルパー。 */
+  private appendToHistory(record: QuizRecord): void {
     const history = this.progressRepo.loadHistory();
     history.unshift(record);
     this.progressRepo.saveHistory(history);
