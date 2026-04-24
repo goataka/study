@@ -28,6 +28,7 @@ export class QuizApp {
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
   private activeTab: "subject" | "history" = "subject";
+  private hideMastered: boolean = false;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -46,6 +47,7 @@ export class QuizApp {
       console.error("問題の読み込みに失敗しました:", error);
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
+    this.hideMastered = localStorage.getItem("hideMastered") === "true";
     this.loadUserName();
     this.loadFilterFromURL();
     this.setupEventListeners();
@@ -541,6 +543,14 @@ export class QuizApp {
       });
     });
 
+    // 学習済みを非表示トグル
+    const hideMasteredToggle = document.getElementById("hideMasteredToggle") as HTMLInputElement | null;
+    hideMasteredToggle?.addEventListener("change", () => {
+      this.hideMastered = hideMasteredToggle.checked;
+      localStorage.setItem("hideMastered", String(this.hideMastered));
+      this.applyMasteredVisibility();
+    });
+
     // メモエリアのコントロール
     this.on("clearNotesBtn", "click", () => this.clearNotes());
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
@@ -638,6 +648,8 @@ export class QuizApp {
       }
 
       // 学習状態の絵文字を更新（⬜未学習 / 📖学習中 / ✅学習済）
+      const isMastered = studiedKeys.has(key) && stat.wrong === 0;
+      el.dataset.mastered = String(isMastered);
       const statusEl = el.querySelector(".category-status");
       if (statusEl) {
         if (!studiedKeys.has(key)) {
@@ -648,6 +660,24 @@ export class QuizApp {
           statusEl.textContent = "✅";
         }
       }
+    });
+
+    this.applyMasteredVisibility();
+  }
+
+  /**
+   * 学習済みカテゴリの表示／非表示を hideMastered フラグに合わせて更新する。
+   * トグルの checked 状態も同期する。
+   */
+  private applyMasteredVisibility(): void {
+    const toggle = document.getElementById("hideMasteredToggle") as HTMLInputElement | null;
+    if (toggle) {
+      toggle.checked = this.hideMastered;
+    }
+
+    document.querySelectorAll<HTMLElement>(".category-item[data-mastered]").forEach((el) => {
+      const isMastered = el.dataset.mastered === "true";
+      el.classList.toggle("hidden", isMastered && this.hideMastered);
     });
   }
 

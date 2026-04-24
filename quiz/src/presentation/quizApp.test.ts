@@ -60,7 +60,15 @@ function setupTabDom(): void {
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
       <div id="subjectContent">
-        <div id="categoryList" class="category-list"></div>
+        <div class="category-panel">
+          <div class="category-panel-header">
+            <label class="hide-mastered-label">
+              <input type="checkbox" id="hideMasteredToggle">
+              学習済みを非表示
+            </label>
+          </div>
+          <div id="categoryList" class="category-list"></div>
+        </div>
         <div id="statsInfo"></div>
         <input type="radio" name="questionCount" value="5">
         <input type="radio" name="questionCount" value="10" checked>
@@ -935,5 +943,145 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const statusEl = catItem?.querySelector(".category-status");
     expect(statusEl?.textContent).toBe("📖");
+  });
+});
+
+describe("QuizApp — 学習済みを非表示トグル仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  /** 学習済み状態をセットアップするヘルパー */
+  function setupMasteredCategory(): void {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 5,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+  }
+
+  it("初期状態でトグルは未チェック", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggle = document.getElementById("hideMasteredToggle") as HTMLInputElement | null;
+    expect(toggle?.checked).toBe(false);
+  });
+
+  it("localStorage に hideMastered=true がある場合、トグルは初期チェック済み", async () => {
+    localStorage.setItem("hideMastered", "true");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggle = document.getElementById("hideMasteredToggle") as HTMLInputElement | null;
+    expect(toggle?.checked).toBe(true);
+  });
+
+  it("学習済みカテゴリはトグルをオンにすると hidden になる", async () => {
+    setupMasteredCategory();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const toggle = document.getElementById("hideMasteredToggle") as HTMLInputElement | null;
+    if (toggle) {
+      toggle.checked = true;
+      toggle.dispatchEvent(new Event("change"));
+    }
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement | null;
+    expect(catItem?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("学習済みカテゴリはトグルをオフにすると再表示される", async () => {
+    setupMasteredCategory();
+    localStorage.setItem("hideMastered", "true");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const toggle = document.getElementById("hideMasteredToggle") as HTMLInputElement | null;
+    if (toggle) {
+      toggle.checked = false;
+      toggle.dispatchEvent(new Event("change"));
+    }
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement | null;
+    expect(catItem?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("学習中（間違いあり）のカテゴリはトグルをオンにしても hidden にならない", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 3,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const toggle = document.getElementById("hideMasteredToggle") as HTMLInputElement | null;
+    if (toggle) {
+      toggle.checked = true;
+      toggle.dispatchEvent(new Event("change"));
+    }
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement | null;
+    expect(catItem?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("トグルの状態が localStorage に保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggle = document.getElementById("hideMasteredToggle") as HTMLInputElement | null;
+    if (toggle) {
+      toggle.checked = true;
+      toggle.dispatchEvent(new Event("change"));
+    }
+
+    expect(localStorage.getItem("hideMastered")).toBe("true");
   });
 });
