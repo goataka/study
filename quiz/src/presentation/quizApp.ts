@@ -551,8 +551,8 @@ export class QuizApp {
       empty.textContent = "この単元に問題はありません。";
       bodyEl.appendChild(empty);
     } else {
-      questions.forEach((q, index) => {
-        bodyEl.appendChild(this.buildQuestionListItem(q, index + 1));
+      questions.forEach((q) => {
+        bodyEl.appendChild(this.buildQuestionListItem(q));
       });
     }
   }
@@ -560,29 +560,41 @@ export class QuizApp {
   /**
    * 問題一覧の1問分のHTML要素を構築する（問題・正解・ヒントのみ表示）
    */
-  private buildQuestionListItem(question: Question, number: number): HTMLElement {
+  private buildQuestionListItem(question: Question): HTMLElement {
     const item = document.createElement("div");
     item.className = "question-list-item";
 
-    const numDiv = document.createElement("div");
-    numDiv.className = "question-list-number";
-    numDiv.textContent = `第${number}問`;
-    item.appendChild(numDiv);
+    const rowDiv = document.createElement("div");
+    rowDiv.className = "question-list-row";
 
-    const textDiv = document.createElement("div");
+    const textDiv = document.createElement("span");
     textDiv.className = "question-list-text";
     textDiv.textContent = question.question;
-    item.appendChild(textDiv);
+    rowDiv.appendChild(textDiv);
 
-    const correctDiv = document.createElement("div");
+    const correctDiv = document.createElement("span");
     correctDiv.className = "question-list-correct";
     correctDiv.textContent = `✓ ${question.choices[question.correct]}`;
-    item.appendChild(correctDiv);
+    rowDiv.appendChild(correctDiv);
+
+    const hintBtn = document.createElement("button");
+    hintBtn.className = "question-list-hint-btn";
+    hintBtn.textContent = "💡";
+    hintBtn.setAttribute("aria-label", "ヒントを表示");
+    hintBtn.setAttribute("aria-expanded", "false");
+    rowDiv.appendChild(hintBtn);
+
+    item.appendChild(rowDiv);
 
     const hintDiv = document.createElement("div");
-    hintDiv.className = "question-list-hint";
+    hintDiv.className = "question-list-hint hidden";
     hintDiv.textContent = question.explanation;
     item.appendChild(hintDiv);
+
+    hintBtn.addEventListener("click", () => {
+      const isHidden = hintDiv.classList.toggle("hidden");
+      hintBtn.setAttribute("aria-expanded", isHidden ? "false" : "true");
+    });
 
     return item;
   }
