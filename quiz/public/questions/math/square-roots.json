@@ -7,6 +7,7 @@
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/28-square-roots/guide",
   "example": "\u221a12 = 2\u221a3",
+  "referenceGrade": "中学3年",
   "questions": [
     {
       "id": "sqrt-1",

@@ -7,109 +7,140 @@
   "parentCategoryName": "漢字",
   "example": "\u5b99\u30fb\u5c04\u30fb\u5371\u30fb\u967a",
   "questionType": "text-input",
+  "referenceGrade": "小学6年",
   "questions": [
     {
       "id": "kanji-g6-001",
       "question": "「宇宙」の読み方をひらがなで書いてください",
-      "choices": ["うちゅう"],
+      "choices": [
+        "うちゅう"
+      ],
       "correct": 0,
       "explanation": "宇宙（うちゅう）: 地球の外にある広大な空間"
     },
     {
       "id": "kanji-g6-002",
       "question": "「憲法」の読み方をひらがなで書いてください",
-      "choices": ["けんぽう"],
+      "choices": [
+        "けんぽう"
+      ],
       "correct": 0,
       "explanation": "憲法（けんぽう）: 国の基本的なきまりを定めたもの"
     },
     {
       "id": "kanji-g6-003",
       "question": "「批判」の読み方をひらがなで書いてください",
-      "choices": ["ひはん"],
+      "choices": [
+        "ひはん"
+      ],
       "correct": 0,
       "explanation": "批判（ひはん）: 物事のよしあしを判断すること"
     },
     {
       "id": "kanji-g6-004",
       "question": "「探求」の読み方をひらがなで書いてください",
-      "choices": ["たんきゅう"],
+      "choices": [
+        "たんきゅう"
+      ],
       "correct": 0,
       "explanation": "探求（たんきゅう）: 深く追い求めること"
     },
     {
       "id": "kanji-g6-005",
       "question": "「異なる」の「異」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["こと"],
+      "choices": [
+        "こと"
+      ],
       "correct": 0,
       "explanation": "異（こと）なる: 違うこと。「い」（音読み）とも読む"
     },
     {
       "id": "kanji-g6-006",
       "question": "「革命」の読み方をひらがなで書いてください",
-      "choices": ["かくめい"],
+      "choices": [
+        "かくめい"
+      ],
       "correct": 0,
       "explanation": "革命（かくめい）: 社会や制度を根本から変えること"
     },
     {
       "id": "kanji-g6-007",
       "question": "「展望」の読み方をひらがなで書いてください",
-      "choices": ["てんぼう"],
+      "choices": [
+        "てんぼう"
+      ],
       "correct": 0,
       "explanation": "展望（てんぼう）: 遠くを見渡すこと・将来の見通し"
     },
     {
       "id": "kanji-g6-008",
       "question": "「縮小」の読み方をひらがなで書いてください",
-      "choices": ["しゅくしょう"],
+      "choices": [
+        "しゅくしょう"
+      ],
       "correct": 0,
       "explanation": "縮小（しゅくしょう）: 小さくすること"
     },
     {
       "id": "kanji-g6-009",
       "question": "「複雑」の読み方をひらがなで書いてください",
-      "choices": ["ふくざつ"],
+      "choices": [
+        "ふくざつ"
+      ],
       "correct": 0,
       "explanation": "複雑（ふくざつ）: 入り組んでいて難しいこと"
     },
     {
       "id": "kanji-g6-010",
       "question": "「純粋」の読み方をひらがなで書いてください",
-      "choices": ["じゅんすい"],
+      "choices": [
+        "じゅんすい"
+      ],
       "correct": 0,
       "explanation": "純粋（じゅんすい）: 混じりけがないこと"
     },
     {
       "id": "kanji-g6-011",
       "question": "「矛盾」の読み方をひらがなで書いてください",
-      "choices": ["むじゅん"],
+      "choices": [
+        "むじゅん"
+      ],
       "correct": 0,
       "explanation": "矛盾（むじゅん）: 前後の話が食い違っていること"
     },
     {
       "id": "kanji-g6-012",
       "question": "「遺産」の読み方をひらがなで書いてください",
-      "choices": ["いさん"],
+      "choices": [
+        "いさん"
+      ],
       "correct": 0,
       "explanation": "遺産（いさん）: 後世に残されたもの"
     },
     {
       "id": "kanji-g6-013",
       "question": "「誠実」の読み方をひらがなで書いてください",
-      "choices": ["せいじつ"],
+      "choices": [
+        "せいじつ"
+      ],
       "correct": 0,
       "explanation": "誠実（せいじつ）: 真心をもってきちんと行動すること"
     },
     {
       "id": "kanji-g6-014",
       "question": "「優先」の読み方をひらがなで書いてください",
-      "choices": ["ゆうせん"],
+      "choices": [
+        "ゆうせん"
+      ],
       "correct": 0,
       "explanation": "優先（ゆうせん）: ほかより先にすること"
     },
     {
       "id": "kanji-g6-015",
       "question": "「認識」の読み方をひらがなで書いてください",
-      "choices": ["にんしき"],
+      "choices": [
+        "にんしき"
+      ],
       "correct": 0,
       "explanation": "認識（にんしき）: 物事をはっきりと理解すること"
     }

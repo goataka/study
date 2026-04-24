@@ -314,6 +314,21 @@ header nav .top-nav-btn {
     color: white;
 }
 
+.category-grade {
+    font-size: 10px;
+    color: #586069;
+    white-space: nowrap;
+    background: #e8f0fe;
+    padding: 1px 5px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.category-item.active .category-grade {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
 /* 右側: クイズパネル */
 .quiz-panel {
     background: white;

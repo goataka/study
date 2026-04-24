@@ -7,6 +7,7 @@
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/20-adverbs/guide",
   "example": "run `fast`",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "adverbs-1",

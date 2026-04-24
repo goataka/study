@@ -18,6 +18,8 @@ export class QuizUseCase {
   private categoryGuideMap = new Map<string, string>();
   /** subject::category -> example のキャッシュ（O(1) 参照用） */
   private categoryExampleMap = new Map<string, string>();
+  /** subject::category -> referenceGrade のキャッシュ（O(1) 参照用） */
+  private categoryGradeMap = new Map<string, string>();
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
@@ -29,9 +31,10 @@ export class QuizUseCase {
 
   async initialize(): Promise<void> {
     this.allQuestions = await this.questionRepo.loadAll();
-    // subject::category -> guideUrl のキャッシュを構築する
+    // subject::category -> guideUrl / referenceGrade のキャッシュを構築する
     this.categoryGuideMap.clear();
     this.categoryExampleMap.clear();
+    this.categoryGradeMap.clear();
     for (const q of this.allQuestions) {
       const key = `${q.subject}::${q.category}`;
       if (q.guideUrl !== undefined && !this.categoryGuideMap.has(key)) {
@@ -39,6 +42,9 @@ export class QuizUseCase {
       }
       if (q.example !== undefined && !this.categoryExampleMap.has(key)) {
         this.categoryExampleMap.set(key, q.example);
+      }
+      if (q.referenceGrade !== undefined && !this.categoryGradeMap.has(key)) {
+        this.categoryGradeMap.set(key, q.referenceGrade);
       }
     }
   }
@@ -268,6 +274,14 @@ export class QuizUseCase {
    */
   getCategoryExample(subject: string, category: string): string | undefined {
     return this.categoryExampleMap.get(`${subject}::${category}`);
+  }
+
+  /**
+   * 指定した教科・カテゴリの参考学年を返す。
+   * 該当カテゴリに referenceGrade が設定されていない場合は undefined を返す。
+   */
+  getCategoryReferenceGrade(subject: string, category: string): string | undefined {
+    return this.categoryGradeMap.get(`${subject}::${category}`);
   }
 
   get wrongQuestionIds(): string[] {

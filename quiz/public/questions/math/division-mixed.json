@@ -7,6 +7,7 @@
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/10-division-mixed/guide",
   "example": "23 \u00f7 4 = 5\u20263",
+  "referenceGrade": "小学3年",
   "questions": [
     {
       "id": "div-mixed-1",

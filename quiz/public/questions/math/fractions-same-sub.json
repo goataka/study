@@ -7,6 +7,7 @@
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/12-fractions-same-sub/guide",
   "example": "4/7 - 2/7 = 2/7",
+  "referenceGrade": "小学4年",
   "questions": [
     {
       "id": "frac-same-sub-1",

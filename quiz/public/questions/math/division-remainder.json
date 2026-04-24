@@ -7,6 +7,7 @@
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/09-division-remainder/guide",
   "example": "17 \u00f7 5 = 3\u20262",
+  "referenceGrade": "小学3年",
   "questions": [
     {
       "id": "div-rem-1",

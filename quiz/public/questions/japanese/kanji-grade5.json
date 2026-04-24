@@ -7,109 +7,140 @@
   "parentCategoryName": "漢字",
   "example": "\u8b77\u30fb\u885b\u30fb\u8907\u30fb\u96d1",
   "questionType": "text-input",
+  "referenceGrade": "小学5年",
   "questions": [
     {
       "id": "kanji-g5-001",
       "question": "「可能性」の読み方をひらがなで書いてください",
-      "choices": ["かのうせい"],
+      "choices": [
+        "かのうせい"
+      ],
       "correct": 0,
       "explanation": "可能性（かのうせい）: できる見込みのこと"
     },
     {
       "id": "kanji-g5-002",
       "question": "「責任」の読み方をひらがなで書いてください",
-      "choices": ["せきにん"],
+      "choices": [
+        "せきにん"
+      ],
       "correct": 0,
       "explanation": "責任（せきにん）: 物事に対して負うべき義務"
     },
     {
       "id": "kanji-g5-003",
       "question": "「判断」の読み方をひらがなで書いてください",
-      "choices": ["はんだん"],
+      "choices": [
+        "はんだん"
+      ],
       "correct": 0,
       "explanation": "判断（はんだん）: 物事の良し悪しを決めること"
     },
     {
       "id": "kanji-g5-004",
       "question": "「解決」の読み方をひらがなで書いてください",
-      "choices": ["かいけつ"],
+      "choices": [
+        "かいけつ"
+      ],
       "correct": 0,
       "explanation": "解決（かいけつ）: 問題を解き、うまくいくようにすること"
     },
     {
       "id": "kanji-g5-005",
       "question": "「提案」の読み方をひらがなで書いてください",
-      "choices": ["ていあん"],
+      "choices": [
+        "ていあん"
+      ],
       "correct": 0,
       "explanation": "提案（ていあん）: 考えや計画を出すこと"
     },
     {
       "id": "kanji-g5-006",
       "question": "「確認」の読み方をひらがなで書いてください",
-      "choices": ["かくにん"],
+      "choices": [
+        "かくにん"
+      ],
       "correct": 0,
       "explanation": "確認（かくにん）: 確かめること"
     },
     {
       "id": "kanji-g5-007",
       "question": "「状況」の読み方をひらがなで書いてください",
-      "choices": ["じょうきょう"],
+      "choices": [
+        "じょうきょう"
+      ],
       "correct": 0,
       "explanation": "状況（じょうきょう）: 物事の様子・ありさま"
     },
     {
       "id": "kanji-g5-008",
       "question": "「貢献」の読み方をひらがなで書いてください",
-      "choices": ["こうけん"],
+      "choices": [
+        "こうけん"
+      ],
       "correct": 0,
       "explanation": "貢献（こうけん）: 役に立つために力を尽くすこと"
     },
     {
       "id": "kanji-g5-009",
       "question": "「規則」の読み方をひらがなで書いてください",
-      "choices": ["きそく"],
+      "choices": [
+        "きそく"
+      ],
       "correct": 0,
       "explanation": "規則（きそく）: 守るべききまりのこと"
     },
     {
       "id": "kanji-g5-010",
       "question": "「技術」の読み方をひらがなで書いてください",
-      "choices": ["ぎじゅつ"],
+      "choices": [
+        "ぎじゅつ"
+      ],
       "correct": 0,
       "explanation": "技術（ぎじゅつ）: 物を作ったり、何かをするための専門的な能力"
     },
     {
       "id": "kanji-g5-011",
       "question": "「構造」の読み方をひらがなで書いてください",
-      "choices": ["こうぞう"],
+      "choices": [
+        "こうぞう"
+      ],
       "correct": 0,
       "explanation": "構造（こうぞう）: 物の組み立てや仕組みのこと"
     },
     {
       "id": "kanji-g5-012",
       "question": "「採用」の読み方をひらがなで書いてください",
-      "choices": ["さいよう"],
+      "choices": [
+        "さいよう"
+      ],
       "correct": 0,
       "explanation": "採用（さいよう）: 取り入れること・採り上げること"
     },
     {
       "id": "kanji-g5-013",
       "question": "「測定」の読み方をひらがなで書いてください",
-      "choices": ["そくてい"],
+      "choices": [
+        "そくてい"
+      ],
       "correct": 0,
       "explanation": "測定（そくてい）: 計って数値で表すこと"
     },
     {
       "id": "kanji-g5-014",
       "question": "「比較」の読み方をひらがなで書いてください",
-      "choices": ["ひかく"],
+      "choices": [
+        "ひかく"
+      ],
       "correct": 0,
       "explanation": "比較（ひかく）: 二つ以上のものを比べること"
     },
     {
       "id": "kanji-g5-015",
       "question": "「統計」の読み方をひらがなで書いてください",
-      "choices": ["とうけい"],
+      "choices": [
+        "とうけい"
+      ],
       "correct": 0,
       "explanation": "統計（とうけい）: 数をまとめて表した資料"
     }

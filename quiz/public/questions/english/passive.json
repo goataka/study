@@ -7,6 +7,7 @@
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/31-passive/guide",
   "example": "It `was` written.",
+  "referenceGrade": "中学2年",
   "questions": [
     {
       "id": "passive-1",

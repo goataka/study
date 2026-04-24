@@ -7,6 +7,7 @@
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/17-decimals-addition/guide",
   "example": "1.2 + 3.4 = 4.6",
+  "referenceGrade": "小学4年",
   "questions": [
     {
       "id": "dec-add-1",

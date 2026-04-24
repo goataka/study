@@ -7,109 +7,140 @@
   "parentCategoryName": "漢字",
   "example": "\u7f85\u30fb\u66d6\u30fb\u6627\u30fb\u51b6",
   "questionType": "text-input",
+  "referenceGrade": "高校生",
   "questions": [
     {
       "id": "kanji-hi-001",
       "question": "「逸脱」の読み方をひらがなで書いてください",
-      "choices": ["いつだつ"],
+      "choices": [
+        "いつだつ"
+      ],
       "correct": 0,
       "explanation": "逸脱（いつだつ）: 本来の道や範囲から外れること"
     },
     {
       "id": "kanji-hi-002",
       "question": "「懸念」の読み方をひらがなで書いてください",
-      "choices": ["けねん"],
+      "choices": [
+        "けねん"
+      ],
       "correct": 0,
       "explanation": "懸念（けねん）: 心配・気がかりなこと"
     },
     {
       "id": "kanji-hi-003",
       "question": "「憂慮」の読み方をひらがなで書いてください",
-      "choices": ["ゆうりょ"],
+      "choices": [
+        "ゆうりょ"
+      ],
       "correct": 0,
       "explanation": "憂慮（ゆうりょ）: 心配して思い悩むこと"
     },
     {
       "id": "kanji-hi-004",
       "question": "「鑑賞」の読み方をひらがなで書いてください",
-      "choices": ["かんしょう"],
+      "choices": [
+        "かんしょう"
+      ],
       "correct": 0,
       "explanation": "鑑賞（かんしょう）: 芸術などを味わって楽しむこと"
     },
     {
       "id": "kanji-hi-005",
       "question": "「洗練」の読み方をひらがなで書いてください",
-      "choices": ["せんれん"],
+      "choices": [
+        "せんれん"
+      ],
       "correct": 0,
       "explanation": "洗練（せんれん）: 垢抜けて上品になること"
     },
     {
       "id": "kanji-hi-006",
       "question": "「逡巡」の読み方をひらがなで書いてください",
-      "choices": ["しゅんじゅん"],
+      "choices": [
+        "しゅんじゅん"
+      ],
       "correct": 0,
       "explanation": "逡巡（しゅんじゅん）: ためらって行動できないこと"
     },
     {
       "id": "kanji-hi-007",
       "question": "「欺く」の読み方をひらがなで書いてください",
-      "choices": ["あざむ"],
+      "choices": [
+        "あざむ"
+      ],
       "correct": 0,
       "explanation": "欺（あざむ）く: だますこと。「ぎ」（音読み）とも読む"
     },
     {
       "id": "kanji-hi-008",
       "question": "「恣意」の読み方をひらがなで書いてください",
-      "choices": ["しい"],
+      "choices": [
+        "しい"
+      ],
       "correct": 0,
       "explanation": "恣意（しい）: 自分勝手な考え方・思いのままに行動すること"
     },
     {
       "id": "kanji-hi-009",
       "question": "「弊害」の読み方をひらがなで書いてください",
-      "choices": ["へいがい"],
+      "choices": [
+        "へいがい"
+      ],
       "correct": 0,
       "explanation": "弊害（へいがい）: 悪い影響・障害となること"
     },
     {
       "id": "kanji-hi-010",
       "question": "「冗長」の読み方をひらがなで書いてください",
-      "choices": ["じょうちょう"],
+      "choices": [
+        "じょうちょう"
+      ],
       "correct": 0,
       "explanation": "冗長（じょうちょう）: 必要以上に長くてくどいこと"
     },
     {
       "id": "kanji-hi-011",
       "question": "「漸次」の読み方をひらがなで書いてください",
-      "choices": ["ぜんじ"],
+      "choices": [
+        "ぜんじ"
+      ],
       "correct": 0,
       "explanation": "漸次（ぜんじ）: しだいに・少しずつ"
     },
     {
       "id": "kanji-hi-012",
       "question": "「顕著」の読み方をひらがなで書いてください",
-      "choices": ["けんちょ"],
+      "choices": [
+        "けんちょ"
+      ],
       "correct": 0,
       "explanation": "顕著（けんちょ）: はっきりと目立つこと"
     },
     {
       "id": "kanji-hi-013",
       "question": "「曖昧」の読み方をひらがなで書いてください",
-      "choices": ["あいまい"],
+      "choices": [
+        "あいまい"
+      ],
       "correct": 0,
       "explanation": "曖昧（あいまい）: はっきりしないこと・はっきり判断できないこと"
     },
     {
       "id": "kanji-hi-014",
       "question": "「斟酌」の読み方をひらがなで書いてください",
-      "choices": ["しんしゃく"],
+      "choices": [
+        "しんしゃく"
+      ],
       "correct": 0,
       "explanation": "斟酌（しんしゃく）: 相手の事情をくみ取って配慮すること"
     },
     {
       "id": "kanji-hi-015",
       "question": "「忸怩」の読み方をひらがなで書いてください",
-      "choices": ["じくじ"],
+      "choices": [
+        "じくじ"
+      ],
       "correct": 0,
       "explanation": "忸怩（じくじ）: 恥ずかしくて心苦しいこと（忸怩たる思い）"
     }

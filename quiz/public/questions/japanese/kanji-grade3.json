@@ -7,109 +7,140 @@
   "parentCategoryName": "漢字",
   "example": "\u8fb2\u30fb\u696d\u30fb\u6f22\u30fb\u5b57",
   "questionType": "text-input",
+  "referenceGrade": "小学3年",
   "questions": [
     {
       "id": "kanji-g3-001",
       "question": "「明るい」の「明」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あか"],
+      "choices": [
+        "あか"
+      ],
       "correct": 0,
       "explanation": "明（あか）るい: 光が多いこと。「めい」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-002",
       "question": "「暗い」の「暗」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["くら"],
+      "choices": [
+        "くら"
+      ],
       "correct": 0,
       "explanation": "暗（くら）い: 光が少ないこと。「あん」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-003",
       "question": "「始まる」の「始」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はじ"],
+      "choices": [
+        "はじ"
+      ],
       "correct": 0,
       "explanation": "始（はじ）まる: 物事が始まること。「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-004",
       "question": "「終わる」の「終」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["お"],
+      "choices": [
+        "お"
+      ],
       "correct": 0,
       "explanation": "終（お）わる: 物事が終わること。「しゅう」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-005",
       "question": "「泳ぐ」の「泳」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["およ"],
+      "choices": [
+        "およ"
+      ],
       "correct": 0,
       "explanation": "泳（およ）ぐ: 水の中を進むこと。「えい」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-006",
       "question": "「練習」の読み方をひらがなで書いてください",
-      "choices": ["れんしゅう"],
+      "choices": [
+        "れんしゅう"
+      ],
       "correct": 0,
       "explanation": "練習（れんしゅう）: くり返して上達すること"
     },
     {
       "id": "kanji-g3-007",
       "question": "「世界」の読み方をひらがなで書いてください",
-      "choices": ["せかい"],
+      "choices": [
+        "せかい"
+      ],
       "correct": 0,
       "explanation": "世界（せかい）: 地球全体のこと"
     },
     {
       "id": "kanji-g3-008",
       "question": "「感じる」の「感」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かん"],
+      "choices": [
+        "かん"
+      ],
       "correct": 0,
       "explanation": "感（かん）じる: 心で受け止めること。「かん」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-009",
       "question": "「悲しい」の「悲」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かな"],
+      "choices": [
+        "かな"
+      ],
       "correct": 0,
       "explanation": "悲（かな）しい: 悲しい気持ち。「ひ」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-010",
       "question": "「楽しい」の「楽」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["たの"],
+      "choices": [
+        "たの"
+      ],
       "correct": 0,
       "explanation": "楽（たの）しい: 楽しい気持ち。「がく」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-011",
       "question": "「温かい」の「温」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あたた"],
+      "choices": [
+        "あたた"
+      ],
       "correct": 0,
       "explanation": "温（あたた）かい: 暖かいこと。「おん」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-012",
       "question": "「湖」の読み方をひらがなで書いてください",
-      "choices": ["みずうみ"],
+      "choices": [
+        "みずうみ"
+      ],
       "correct": 0,
       "explanation": "湖（みずうみ）: 陸に囲まれた水の広がり"
     },
     {
       "id": "kanji-g3-013",
       "question": "「島」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["しま"],
+      "choices": [
+        "しま"
+      ],
       "correct": 0,
       "explanation": "島（しま）: 海や湖に囲まれた陸地。「とう」（音読み）とも読む"
     },
     {
       "id": "kanji-g3-014",
       "question": "「医者」の読み方をひらがなで書いてください",
-      "choices": ["いしゃ"],
+      "choices": [
+        "いしゃ"
+      ],
       "correct": 0,
       "explanation": "医者（いしゃ）: 病気を治す専門の人"
     },
     {
       "id": "kanji-g3-015",
       "question": "「身体」の読み方をひらがなで書いてください",
-      "choices": ["からだ"],
+      "choices": [
+        "からだ"
+      ],
       "correct": 0,
       "explanation": "身体（からだ）: 体のこと"
     }

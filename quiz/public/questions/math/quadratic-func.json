@@ -7,6 +7,7 @@
   "parentCategoryName": "解析・高校数学",
   "guideUrl": "../math/calculus/30-quadratic-func/guide",
   "example": "y = x\u00b2 - 4x + 3",
+  "referenceGrade": "高校1年",
   "questions": [
     {
       "id": "quad-func-1",

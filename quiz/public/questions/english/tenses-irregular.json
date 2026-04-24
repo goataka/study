@@ -7,6 +7,7 @@
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/17-tenses-irregular/guide",
   "example": "go\u2192went",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "tenses-irregular-1",

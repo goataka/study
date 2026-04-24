@@ -7,6 +7,7 @@
   "parentCategoryName": "解析・高校数学",
   "guideUrl": "../math/calculus/38-integration/guide",
   "example": "\u222b2xdx = x\u00b2 + C",
+  "referenceGrade": "高校3年",
   "questions": [
     {
       "id": "int-1",
