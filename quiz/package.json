@@ -15,7 +15,7 @@
     "test:e2e:vr": "bddgen --config playwright.vr.config.ts && playwright test --config playwright.vr.config.ts",
     "pretest:e2e:vr:update": "bash scripts/setup-env.sh",
     "test:e2e:vr:update": "bddgen --config playwright.vr.config.ts && playwright test --config playwright.vr.config.ts --update-snapshots=all",
-    "prepare": "cd .. && lefthook install"
+    "prepare": "cd .. && lefthook install || true"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",
