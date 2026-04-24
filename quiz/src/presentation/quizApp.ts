@@ -50,7 +50,8 @@ export class QuizApp {
     this.loadFilterFromURL();
     this.setupEventListeners();
     this.buildSubjectTabs();
-    this.showStartTabContent();
+    document.getElementById("subjectContent")?.classList.remove("hidden");
+    document.getElementById("historyContent")?.classList.remove("hidden");
     this.renderHistoryList(this.filter.subject);
     this.updateStartScreen();
     this.updateUserNameDisplay("headerUserName");
@@ -154,7 +155,8 @@ export class QuizApp {
         tab.classList.add("active");
         tab.setAttribute("aria-selected", "true");
 
-        this.showStartTabContent();
+        document.getElementById("subjectContent")?.classList.remove("hidden");
+        document.getElementById("historyContent")?.classList.remove("hidden");
         this.renderCategoryList();
         this.renderHistoryList(subject.id);
         this.updateStartScreen();
@@ -305,28 +307,17 @@ export class QuizApp {
     });
   }
 
-  /**
-   * スタート画面のタブコンテンツを表示する
-   */
-  private showStartTabContent(): void {
-    const subjectContent = document.getElementById("subjectContent");
-    const historyContent = document.getElementById("historyContent");
-    subjectContent?.classList.remove("hidden");
-    historyContent?.classList.remove("hidden");
-  }
-
   // ─── 回答記録 ──────────────────────────────────────────────────────────────
 
   /**
-   * 回答記録一覧を描画する
-   * subject が指定された場合はその教科の記録のみ表示する
+   * 回答記録一覧を描画する（指定した教科の記録のみ表示する）
    */
-  private renderHistoryList(subject?: string): void {
+  private renderHistoryList(subject: string): void {
     const historyList = document.getElementById("historyList");
     if (!historyList) return;
 
     const allRecords = this.useCase.getHistory();
-    const records = subject ? allRecords.filter((r) => r.subject === subject) : allRecords;
+    const records = allRecords.filter((r) => r.subject === subject);
     historyList.innerHTML = "";
 
     if (records.length === 0) {
@@ -913,7 +904,8 @@ export class QuizApp {
     document.getElementById(idMap[screenName])?.classList.remove("hidden");
 
     if (screenName === "start") {
-      this.showStartTabContent();
+      document.getElementById("subjectContent")?.classList.remove("hidden");
+      document.getElementById("historyContent")?.classList.remove("hidden");
       this.updateStartScreen();
     }
   }

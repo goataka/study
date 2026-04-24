@@ -693,6 +693,119 @@ describe("QuizApp — 解説リンク仕様", () => {
   });
 });
 
+describe("QuizApp — 教科タブ連動履歴仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("記録タブは描画されず、初期表示では選択中教科の履歴だけが表示される", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "history-english",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "英語の履歴だけ表示",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 4,
+          entries: [],
+        },
+        {
+          id: "history-math",
+          date: new Date().toISOString(),
+          subject: "math",
+          subjectName: "算数",
+          category: "addition",
+          categoryName: "算数の履歴だけ表示",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 3,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const tabLabels = Array.from(
+      document.querySelectorAll("button, [role='tab'], .tab, .subject-tab")
+    ).map((element) => element.textContent ?? "");
+    expect(tabLabels.some((label) => label.includes("記録"))).toBe(false);
+
+    const activeSubject = document.querySelector(".subject-tab.active")?.getAttribute("data-subject");
+    const pageText = document.body.textContent ?? "";
+
+    if (activeSubject === "english") {
+      expect(pageText).toContain("英語の履歴だけ表示");
+      expect(pageText).not.toContain("算数の履歴だけ表示");
+    } else if (activeSubject === "math") {
+      expect(pageText).toContain("算数の履歴だけ表示");
+      expect(pageText).not.toContain("英語の履歴だけ表示");
+    } else {
+      throw new Error(`想定外の初期教科タブです: ${activeSubject}`);
+    }
+  });
+
+  it("教科タブ切替で履歴が選択中教科に応じてフィルタされる", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "history-english",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "英語の履歴だけ表示",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 4,
+          entries: [],
+        },
+        {
+          id: "history-math",
+          date: new Date().toISOString(),
+          subject: "math",
+          subjectName: "算数",
+          category: "addition",
+          categoryName: "算数の履歴だけ表示",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 3,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
+
+    englishTab?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(document.body.textContent ?? "").toContain("英語の履歴だけ表示");
+    expect(document.body.textContent ?? "").not.toContain("算数の履歴だけ表示");
+
+    mathTab?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(document.body.textContent ?? "").toContain("算数の履歴だけ表示");
+    expect(document.body.textContent ?? "").not.toContain("英語の履歴だけ表示");
+  });
+});
+
 describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
   beforeEach(() => {
     setupTabDom();
