@@ -46,6 +46,6 @@
 
 [目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
 
-[前へ: 比](../35-ratio/guide.md) | **割合** | 
+[前へ: 比](../35-ratio/guide.md) | **割合** |
 
 [クイズ](../../quiz/index.html?subject=math&category=percentage)

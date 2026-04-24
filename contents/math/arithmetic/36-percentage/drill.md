@@ -23,6 +23,6 @@
 
 [目次](../README.md) | 練習 | [解答](answer.md) | [解説](guide.md)
 
-[前へ: 比](../35-ratio/drill.md) | **割合** | 
+[前へ: 比](../35-ratio/drill.md) | **割合** |
 
 [クイズ](../../quiz/index.html?subject=math&category=percentage)
