@@ -56,6 +56,7 @@ export class QuizApp {
     this.showPanelTab(this.activePanelTab);
     this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
     this.updateStartScreen();
+    this.selectFirstUnlearnedCategory();
     // 学習済み非表示の初期状態をボタンのaria-pressed属性に反映する
     const hideLearnedBtn = document.getElementById("hideLearnedBtn");
     if (hideLearnedBtn) {
@@ -415,7 +416,7 @@ export class QuizApp {
 
     const modeSpan = document.createElement("span");
     modeSpan.className = "history-mode";
-    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : record.mode === "manual" ? "手動" : "ランダム";
+    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : record.mode === "manual" ? "手動" : "本番";
 
     metaDiv.appendChild(dateSpan);
     metaDiv.appendChild(subjectSpan);
@@ -557,6 +558,7 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
+    this.on("cancelQuizBtn", "click", () => this.navigateToStart());
 
     // タイトルクリックでスタート画面へ
     const titleBtn = document.getElementById("titleBtn");
@@ -969,8 +971,8 @@ export class QuizApp {
       retryWrongBtn.disabled = wrongCount === 0;
       retryWrongBtn.textContent =
         wrongCount > 0
-          ? `間違えた問題だけ (${wrongCount}問)`
-          : "間違えた問題だけ";
+          ? `復習 (${wrongCount}問)`
+          : "復習";
     }
 
     this.showScreen("result");
@@ -1055,6 +1057,31 @@ export class QuizApp {
 
     if (screenName === "start") {
       this.showPanelTab(this.activePanelTab);
+      this.updateStartScreen();
+      this.selectFirstUnlearnedCategory();
+    }
+  }
+
+  /**
+   * 学習済みではない最初のカテゴリを自動選択する。
+   * スタート画面の表示時に呼び出されることで、次に学習すべき単元を案内する。
+   */
+  private selectFirstUnlearnedCategory(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    const firstUnlearned = categoryList.querySelector<HTMLElement>(".category-item:not(.learned)");
+    if (!firstUnlearned) return;
+
+    const subject = firstUnlearned.dataset.subject;
+    const category = firstUnlearned.dataset.category;
+    const parentCategory = firstUnlearned.dataset.parentCategory;
+
+    if (subject && category) {
+      this.filter.subject = subject;
+      this.filter.category = category;
+      this.filter.parentCategory = parentCategory;
+      this.updateCategoryListActive();
       this.updateStartScreen();
     }
   }

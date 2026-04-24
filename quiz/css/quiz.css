@@ -467,6 +467,22 @@ button:disabled {
     background-color: #f0f7ff;
 }
 
+.cancel-quiz-btn {
+    font-size: 12px;
+    padding: 4px 10px;
+    border: 1px solid #d32f2f;
+    border-radius: 12px;
+    background: white;
+    color: #d32f2f;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-left: auto;
+}
+
+.cancel-quiz-btn:hover {
+    background-color: #fff0f0;
+}
+
 .question-text {
     font-size: 24px;
     color: #333;
