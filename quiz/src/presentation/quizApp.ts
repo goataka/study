@@ -14,6 +14,7 @@ import type { DrawingState } from "./notesCanvas";
 
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
+  { id: "all", name: "総合", icon: "🌐" },
   { id: "english", name: "英語", icon: "📚" },
   { id: "math", name: "数学", icon: "🔢" },
   { id: "japanese", name: "国語", icon: "📖" },
@@ -23,7 +24,7 @@ export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
   private currentMode: QuizMode = "random";
-  private filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
+  private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
@@ -231,8 +232,8 @@ export class QuizApp {
     const subject = this.filter.subject;
 
     if (subject === "all") {
-      // 「すべて」タブではカテゴリを細分化しないため、リストは空のまま
-      categoryList.innerHTML = "";
+      // 「総合」タブではカテゴリを細分化しないため、リストは空のまま
+      categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
       return;
     }
 
@@ -431,14 +432,43 @@ export class QuizApp {
     });
   }
 
+  /**
+   * メモエリアのタブを切り替える（"memo" または "guide"）。
+   */
+  private showNoteTab(tab: "memo" | "guide"): void {
+    const memoContent = document.getElementById("notesMemoContent");
+    const guideContent = document.getElementById("notesGuideContent");
+
+    memoContent?.classList.toggle("hidden", tab !== "memo");
+    guideContent?.classList.toggle("hidden", tab !== "guide");
+
+    document.querySelectorAll<HTMLElement>(".notes-tab-btn").forEach((t) => {
+      const isActive = t.id === `notesTab${tab.charAt(0).toUpperCase()}${tab.slice(1)}`;
+      t.classList.toggle("active", isActive);
+      t.setAttribute("aria-selected", String(isActive));
+      t.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+    if (tab === "guide") {
+      this.updateGuidePanelContentByIds("notesGuideFrame", "notesGuideNoContent");
+    }
+  }
+
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
   /**
-   * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する。
+   * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する（メインパネル用）。
    */
   private updateGuidePanelContent(): void {
-    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement | null;
-    const noContent = document.getElementById("guideNoContent");
+    this.updateGuidePanelContentByIds("guidePanelFrame", "guideNoContent");
+  }
+
+  /**
+   * 指定した iframe と空表示要素 ID を使って解説コンテンツを更新する共通処理。
+   */
+  private updateGuidePanelContentByIds(frameId: string, noContentId: string): void {
+    const guideFrame = document.getElementById(frameId) as HTMLIFrameElement | null;
+    const noContent = document.getElementById(noContentId);
     if (!guideFrame) return;
 
     const guideUrl =
@@ -926,11 +956,12 @@ export class QuizApp {
    * クイズパネルの表示/非表示を更新する。
    * カテゴリが未選択（"all"）の場合はパネルを非表示にし、
    * 特定のカテゴリが選択されている場合は表示する。
+   * ただし「総合」タブ（subject === "all"）では全問対象でクイズを開始できるため常に表示する。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
     if (!subjectContent) return;
-    const noCategory = this.filter.category === "all";
+    const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
   }
 
@@ -1532,19 +1563,18 @@ export class QuizApp {
     }
   }
 
-  /**
-   * メモエリアのタブ（"memo" | "guide"）を切り替える。
-   */
   private showNoteTab(tab: "memo" | "guide"): void {
     const memoContent = document.getElementById("notesMemoContent");
     const guideContent = document.getElementById("notesGuideContent");
+
     memoContent?.classList.toggle("hidden", tab !== "memo");
     guideContent?.classList.toggle("hidden", tab !== "guide");
 
-    document.querySelectorAll<HTMLElement>(".notes-tab-btn").forEach((btn) => {
-      const isActive = btn.id === (tab === "memo" ? "notesTabMemo" : "notesTabGuide");
-      btn.classList.toggle("active", isActive);
-    });
+    const memoBtn = document.getElementById("notesTabMemo");
+    const guideBtn = document.getElementById("notesTabGuide");
+
+    memoBtn?.classList.toggle("active", tab === "memo");
+    guideBtn?.classList.toggle("active", tab === "guide");
   }
 }
 
