@@ -171,7 +171,6 @@ export class QuizApp {
         tab.setAttribute("aria-selected", "true");
 
         this.renderCategoryList();
-        this.renderHistoryList(this.filter);
         this.updateStartScreen();
       });
 
