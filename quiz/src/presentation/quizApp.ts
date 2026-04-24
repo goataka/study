@@ -1050,15 +1050,15 @@ export class QuizApp {
     const wrapper = document.createElement("div");
     wrapper.className = "text-answer-wrapper";
 
-    const input = document.createElement("input");
-    input.type = "text";
-    input.className = "text-answer-input";
-    input.placeholder = "答えを入力してください";
-    input.setAttribute("aria-label", "解答を入力");
-    input.disabled = isAnswered;
-
     if (isAnswered) {
-      // 既回答の場合、入力テキストを復元して表示
+      // 既回答の場合: 入力を無効化した状態で表示
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "text-answer-input";
+      input.placeholder = "答えを入力してください";
+      input.setAttribute("aria-label", "解答を入力");
+      input.disabled = true;
+
       const storedText = session.getTextAnswer(session.currentIndex);
       if (storedText !== undefined) {
         input.value = storedText;
@@ -1068,13 +1068,51 @@ export class QuizApp {
           input.value = question.choices[question.correct] ?? "";
         }
       }
+
+      const submitBtn = document.createElement("button");
+      submitBtn.type = "button";
+      submitBtn.className = "text-answer-submit-btn";
+      submitBtn.textContent = "確認する";
+      submitBtn.disabled = true;
+
+      wrapper.appendChild(input);
+      wrapper.appendChild(submitBtn);
+      container.appendChild(wrapper);
+      return;
     }
+
+    // ─── モード切り替えタブ（未回答時のみ） ──────────────────────────────
+    const modeToggle = document.createElement("div");
+    modeToggle.className = "text-input-mode-toggle";
+
+    const keyboardModeBtn = document.createElement("button");
+    keyboardModeBtn.type = "button";
+    keyboardModeBtn.className = "mode-toggle-btn active";
+    keyboardModeBtn.textContent = "⌨️ キーボード";
+
+    const penModeBtn = document.createElement("button");
+    penModeBtn.type = "button";
+    penModeBtn.className = "mode-toggle-btn";
+    penModeBtn.textContent = "✏️ タッチペン";
+
+    modeToggle.appendChild(keyboardModeBtn);
+    modeToggle.appendChild(penModeBtn);
+    wrapper.appendChild(modeToggle);
+
+    // ─── キーボード入力セクション ─────────────────────────────────────
+    const keyboardSection = document.createElement("div");
+    keyboardSection.className = "keyboard-input-section";
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "text-answer-input";
+    input.placeholder = "答えを入力してください";
+    input.setAttribute("aria-label", "解答を入力");
 
     const submitBtn = document.createElement("button");
     submitBtn.type = "button";
     submitBtn.className = "text-answer-submit-btn";
     submitBtn.textContent = "確認する";
-    submitBtn.disabled = isAnswered;
 
     const handleSubmit = (): void => {
       const text = input.value.trim();
@@ -1095,13 +1133,196 @@ export class QuizApp {
       handleSubmit();
     });
 
-    wrapper.appendChild(input);
-    wrapper.appendChild(submitBtn);
-    container.appendChild(wrapper);
+    keyboardSection.appendChild(input);
+    keyboardSection.appendChild(submitBtn);
 
-    if (!isAnswered) {
-      input.focus();
-    }
+    // ─── タッチペン入力セクション ─────────────────────────────────────
+    const penSection = document.createElement("div");
+    penSection.className = "pen-input-section hidden";
+
+    const canvasWrapper = document.createElement("div");
+    canvasWrapper.className = "handwriting-canvas-wrapper";
+
+    const canvas = document.createElement("canvas");
+    canvas.className = "handwriting-canvas";
+    canvas.setAttribute("aria-label", "手書き入力エリア");
+
+    canvasWrapper.appendChild(canvas);
+
+    const penActions = document.createElement("div");
+    penActions.className = "handwriting-actions";
+
+    const clearBtn = document.createElement("button");
+    clearBtn.type = "button";
+    clearBtn.className = "handwriting-clear-btn";
+    clearBtn.textContent = "🗑️ 消す";
+    clearBtn.setAttribute("aria-label", "手書き入力をクリア");
+
+    const penSubmitBtn = document.createElement("button");
+    penSubmitBtn.type = "button";
+    penSubmitBtn.className = "text-answer-submit-btn";
+    penSubmitBtn.textContent = "確認する";
+
+    penActions.appendChild(clearBtn);
+    penActions.appendChild(penSubmitBtn);
+    penSection.appendChild(canvasWrapper);
+    penSection.appendChild(penActions);
+
+    // ─── Canvas 描画ロジック ──────────────────────────────────────────
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    const initCanvas = (): void => {
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width === 0) return;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        ctx.scale(dpr, dpr);
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.strokeStyle = "#000000";
+        ctx.lineWidth = 4;
+      }
+    };
+
+    const getCtx = (): CanvasRenderingContext2D | null => canvas.getContext("2d");
+
+    const getCanvasCoords = (e: MouseEvent | TouchEvent): { x: number; y: number } => {
+      const rect = canvas.getBoundingClientRect();
+      if (e instanceof MouseEvent) {
+        return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      }
+      const touch = (e as TouchEvent).touches[0] ?? (e as TouchEvent).changedTouches[0];
+      if (!touch) return { x: 0, y: 0 };
+      return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+    };
+
+    canvas.addEventListener("mousedown", (e: MouseEvent) => {
+      isDrawing = true;
+      const coords = getCanvasCoords(e);
+      lastX = coords.x;
+      lastY = coords.y;
+    });
+
+    canvas.addEventListener("mousemove", (e: MouseEvent) => {
+      if (!isDrawing) return;
+      const ctx = getCtx();
+      if (!ctx) return;
+      const coords = getCanvasCoords(e);
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(coords.x, coords.y);
+      ctx.stroke();
+      lastX = coords.x;
+      lastY = coords.y;
+    });
+
+    canvas.addEventListener("mouseup", () => { isDrawing = false; });
+    canvas.addEventListener("mouseout", () => { isDrawing = false; });
+
+    canvas.addEventListener("touchstart", (e: TouchEvent) => {
+      e.preventDefault();
+      isDrawing = true;
+      const coords = getCanvasCoords(e);
+      lastX = coords.x;
+      lastY = coords.y;
+    }, { passive: false });
+
+    canvas.addEventListener("touchmove", (e: TouchEvent) => {
+      if (!isDrawing) return;
+      e.preventDefault();
+      const ctx = getCtx();
+      if (!ctx) return;
+      const coords = getCanvasCoords(e);
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(coords.x, coords.y);
+      ctx.stroke();
+      lastX = coords.x;
+      lastY = coords.y;
+    }, { passive: false });
+
+    canvas.addEventListener("touchend", () => { isDrawing = false; });
+    canvas.addEventListener("touchcancel", () => { isDrawing = false; });
+
+    clearBtn.addEventListener("click", () => {
+      const ctx = getCtx();
+      if (!ctx) return;
+      const rect = canvas.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+    });
+
+    penSubmitBtn.addEventListener("click", () => {
+      // タッチペン確認: 正解を表示してユーザーに自己評価させる
+      modeToggle.classList.add("hidden");
+      penSection.innerHTML = "";
+
+      const correctAnswer = question.choices[question.correct] ?? "";
+
+      const revealDiv = document.createElement("div");
+      revealDiv.className = "handwriting-reveal";
+
+      const revealText = document.createElement("p");
+      revealText.className = "handwriting-reveal-text";
+      revealText.textContent = `正解は「${correctAnswer}」です。自分の解答はあっていましたか？`;
+
+      const selfEvalBtns = document.createElement("div");
+      selfEvalBtns.className = "self-eval-buttons";
+
+      const correctBtn = document.createElement("button");
+      correctBtn.type = "button";
+      correctBtn.className = "self-eval-btn self-eval-correct";
+      correctBtn.textContent = "○ 正解だった";
+
+      const incorrectBtn = document.createElement("button");
+      incorrectBtn.type = "button";
+      incorrectBtn.className = "self-eval-btn self-eval-incorrect";
+      incorrectBtn.textContent = "× 不正解だった";
+
+      const handleSelfEval = (selfCorrect: boolean): void => {
+        const text = selfCorrect ? correctAnswer : "×";
+        session.selectTextAnswer(session.currentIndex, text);
+        const answerIndex = session.getAnswer(session.currentIndex)!;
+        this.showAnswerFeedback(question, answerIndex, selfCorrect ? correctAnswer : undefined);
+        this.updateNavigationButtons(session);
+        correctBtn.disabled = true;
+        incorrectBtn.disabled = true;
+      };
+
+      correctBtn.addEventListener("click", () => handleSelfEval(true));
+      incorrectBtn.addEventListener("click", () => handleSelfEval(false));
+
+      selfEvalBtns.appendChild(correctBtn);
+      selfEvalBtns.appendChild(incorrectBtn);
+      revealDiv.appendChild(revealText);
+      revealDiv.appendChild(selfEvalBtns);
+      penSection.appendChild(revealDiv);
+    });
+
+    // ─── モード切り替えロジック ───────────────────────────────────────
+    keyboardModeBtn.addEventListener("click", () => {
+      keyboardModeBtn.classList.add("active");
+      penModeBtn.classList.remove("active");
+      keyboardSection.classList.remove("hidden");
+      penSection.classList.add("hidden");
+    });
+
+    penModeBtn.addEventListener("click", () => {
+      penModeBtn.classList.add("active");
+      keyboardModeBtn.classList.remove("active");
+      penSection.classList.remove("hidden");
+      keyboardSection.classList.add("hidden");
+      requestAnimationFrame(() => initCanvas());
+    });
+
+    wrapper.appendChild(keyboardSection);
+    wrapper.appendChild(penSection);
+    container.appendChild(wrapper);
+    input.focus();
   }
 
   private navigate(direction: 1 | -1): void {

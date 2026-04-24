@@ -1428,3 +1428,145 @@ button:disabled {
     background: #c8e1ff;
     cursor: not-allowed;
 }
+
+/* テキスト入力モード切り替えタブ */
+.text-input-mode-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mode-toggle-btn {
+    padding: 8px 16px;
+    border: 2px solid #e1e4e8;
+    border-radius: 6px;
+    background: white;
+    color: #586069;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mode-toggle-btn.active {
+    border-color: #0366d6;
+    background: #f1f8ff;
+    color: #0366d6;
+    font-weight: 600;
+}
+
+.mode-toggle-btn:hover:not(.active) {
+    border-color: #c8e1ff;
+    background: #f6f8fa;
+}
+
+/* キーボード入力セクション */
+.keyboard-input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* タッチペン入力セクション */
+.pen-input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 手書きキャンバスラッパー */
+.handwriting-canvas-wrapper {
+    border: 2px solid #e1e4e8;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    background-image:
+        linear-gradient(rgba(3, 102, 214, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(3, 102, 214, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.handwriting-canvas {
+    width: 100%;
+    height: 200px;
+    display: block;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.handwriting-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.handwriting-clear-btn {
+    padding: 10px 16px;
+    border: 2px solid #e1e4e8;
+    border-radius: 6px;
+    background: white;
+    color: #586069;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.handwriting-clear-btn:hover {
+    background: #f6f8fa;
+}
+
+/* 手書き確認後の正解表示と自己評価 */
+.handwriting-reveal {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+}
+
+.handwriting-reveal-text {
+    margin: 0;
+    font-size: 18px;
+    color: #24292e;
+    font-weight: 600;
+}
+
+.self-eval-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.self-eval-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.self-eval-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.self-eval-correct {
+    background: #28a745;
+    color: white;
+}
+
+.self-eval-correct:hover:not(:disabled) {
+    background: #22863a;
+}
+
+.self-eval-incorrect {
+    background: #dc3545;
+    color: white;
+}
+
+.self-eval-incorrect:hover:not(:disabled) {
+    background: #cb2431;
+}
