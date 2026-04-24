@@ -1247,11 +1247,18 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
     questionsTab?.click();
 
+    expect(questionsTab?.classList.contains("active")).toBe(true);
+    expect(questionsTab?.getAttribute("aria-selected")).toBe("true");
+    expect(questionsTab?.getAttribute("tabindex")).toBe("0");
+
     const questionListContent = document.getElementById("questionListContent");
     expect(questionListContent?.classList.contains("hidden")).toBe(false);
 
     const quizModePanel = document.getElementById("quizModePanel");
     expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(true);
   });
 
   it("「問題一覧」タブをクリックすると現在の単元の問題が一覧表示される", async () => {
