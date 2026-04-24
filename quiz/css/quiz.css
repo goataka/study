@@ -101,6 +101,11 @@ header nav .top-nav-btn {
     border-bottom: 2px solid #e1e4e8;
     margin-bottom: 20px;
     overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+}
+
+.subject-tabs::-webkit-scrollbar {
+    display: none; /* Chrome / Safari */
 }
 
 .subject-tab {
@@ -147,7 +152,7 @@ header nav .top-nav-btn {
 /* スタートコンテンツレイアウト */
 .start-content-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 20px;
     align-items: start;
 }
@@ -254,17 +259,50 @@ header nav .top-nav-btn {
     background: white;
     border: 1px solid #e1e4e8;
     border-radius: 8px;
-    padding: 30px;
     align-self: start;
     position: sticky;
     top: var(--quiz-panel-sticky-top, 120px);
+    overflow: hidden;
 }
 
-.quiz-panel h2 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 20px;
+/* インナータブ */
+.panel-tabs {
+    display: flex;
+    border-bottom: 1px solid #e1e4e8;
+    background: #f6f8fa;
+}
+
+.panel-tab {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 14px;
     font-weight: 600;
+    color: #586069;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.panel-tab:hover {
+    color: #0366d6;
+    background: #e8f0fe;
+}
+
+.panel-tab.active {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+    background: white;
+}
+
+/* クイズモードパネルとHistoryパネルの余白 */
+#quizModePanel {
+    padding: 24px 30px;
+}
+
+#historyContent {
+    padding: 16px 20px;
 }
 
 .button-group {
@@ -595,6 +633,16 @@ button:disabled {
 .score-circle.fail {
     background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
     color: white;
+}
+
+.score-circle.perfect {
+    background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
+    color: white;
+}
+
+.score-perfect-icon {
+    font-size: 36px;
+    margin-bottom: 4px;
 }
 
 .score-percentage {
@@ -961,10 +1009,6 @@ button:disabled {
 }
 
 /* ─── 回答記録 ─────────────────────────────────────────────────────────────── */
-
-#historyContent {
-    margin-top: 24px;
-}
 
 .history-section-title {
     font-size: 16px;

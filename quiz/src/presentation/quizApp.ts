@@ -24,10 +24,10 @@ export class QuizApp {
   private currentMode: QuizMode = "random";
   private filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
-  private questionCount: number = 20;
+  private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
-  private activeTab: "subject" | "history" = "subject";
+  private activePanelTab: "quiz" | "history" = "quiz";
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -48,10 +48,12 @@ export class QuizApp {
     }
     this.loadUserName();
     this.loadFilterFromURL();
+    this.loadQuestionCountFromDOM();
     this.setupEventListeners();
     this.buildSubjectTabs();
-    this.showStartTabContent(this.activeTab);
-    this.renderHistoryList(this.activeTab === "subject" ? this.filter.subject : undefined);
+    this.buildPanelTabs();
+    this.showPanelTab(this.activePanelTab);
+    this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
     this.updateStartScreen();
     this.updateUserNameDisplay("headerUserName");
   }
@@ -81,6 +83,13 @@ export class QuizApp {
     const savedName = progressRepo.loadUserName();
     if (savedName) {
       this.userName = savedName;
+    }
+  }
+
+  private loadQuestionCountFromDOM(): void {
+    const checked = document.querySelector<HTMLInputElement>('input[name="questionCount"]:checked');
+    if (checked) {
+      this.questionCount = parseInt(checked.value);
     }
   }
 
@@ -154,8 +163,6 @@ export class QuizApp {
         tab.classList.add("active");
         tab.setAttribute("aria-selected", "true");
 
-        this.activeTab = "subject";
-        this.showStartTabContent("subject");
         this.renderCategoryList();
         this.renderHistoryList(subject.id);
         this.updateStartScreen();
@@ -164,31 +171,26 @@ export class QuizApp {
       tabsContainer.appendChild(tab);
     });
 
-    // 記録タブを追加
-    const historyTab = document.createElement("button");
-    historyTab.className = "subject-tab history-tab";
-    historyTab.dataset.tab = "history";
-    historyTab.setAttribute("role", "tab");
-    historyTab.setAttribute("type", "button");
-    historyTab.setAttribute("aria-selected", "false");
-    historyTab.textContent = "📊 記録";
-    historyTab.addEventListener("click", () => {
-      tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
-        t.classList.remove("active");
-        t.setAttribute("aria-selected", "false");
-      });
-      historyTab.classList.add("active");
-      historyTab.setAttribute("aria-selected", "true");
-      this.activeTab = "history";
-      this.showStartTabContent("history");
-      this.renderHistoryList();
-    });
-    tabsContainer.appendChild(historyTab);
-
     // フィルターに基づいてアクティブタブを設定
     this.selectTabByFilter();
     // カテゴリリストを描画
     this.renderCategoryList();
+  }
+
+  /**
+   * インナーパネルタブ（クイズモード選択 / 実行記録）を初期化する
+   */
+  private buildPanelTabs(): void {
+    document.querySelectorAll<HTMLElement>(".panel-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const panel = tab.dataset.panel as "quiz" | "history";
+        this.activePanelTab = panel;
+        this.showPanelTab(panel);
+        if (panel === "history") {
+          this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
+        }
+      });
+    });
   }
 
   /**
@@ -328,18 +330,26 @@ export class QuizApp {
   }
 
   /**
-   * スタート画面のタブコンテンツ表示を切り替える
+   * インナーパネルタブのコンテンツ表示を切り替える
    */
-  private showStartTabContent(tab: "subject" | "history"): void {
-    const subjectContent = document.getElementById("subjectContent");
+  private showPanelTab(tab: "quiz" | "history"): void {
+    const quizModePanel = document.getElementById("quizModePanel");
     const historyContent = document.getElementById("historyContent");
-    if (tab === "subject") {
-      subjectContent?.classList.remove("hidden");
-      historyContent?.classList.remove("hidden");
+
+    if (tab === "quiz") {
+      quizModePanel?.classList.remove("hidden");
+      historyContent?.classList.add("hidden");
     } else {
-      subjectContent?.classList.add("hidden");
+      quizModePanel?.classList.add("hidden");
       historyContent?.classList.remove("hidden");
     }
+
+    document.querySelectorAll<HTMLElement>(".panel-tab").forEach((t) => {
+      const isActive = t.dataset.panel === tab;
+      t.classList.toggle("active", isActive);
+      t.setAttribute("aria-selected", String(isActive));
+      t.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
   }
 
   // ─── 回答記録 ──────────────────────────────────────────────────────────────
@@ -575,7 +585,7 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
-    this.renderHistoryList(this.activeTab === "subject" ? this.filter.subject : undefined);
+    this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
   }
 
   private updateSubjectStats(): void {
@@ -835,8 +845,11 @@ export class QuizApp {
 
     const scoreDisplay = document.getElementById("scoreDisplay");
     if (scoreDisplay) {
+      const isPerfect = correctCount === total;
+      const circleClass = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
       scoreDisplay.innerHTML = `
-        <div class="score-circle ${percentage >= 70 ? "pass" : "fail"}">
+        <div class="score-circle ${circleClass}">
+          ${isPerfect ? '<div class="score-perfect-icon">✅</div>' : ""}
           <div class="score-percentage">${percentage}%</div>
           <div class="score-text">${correctCount} / ${total} 正解</div>
         </div>
@@ -940,7 +953,7 @@ export class QuizApp {
     document.getElementById(idMap[screenName])?.classList.remove("hidden");
 
     if (screenName === "start") {
-      this.showStartTabContent(this.activeTab);
+      this.showPanelTab(this.activePanelTab);
       this.updateStartScreen();
     }
   }

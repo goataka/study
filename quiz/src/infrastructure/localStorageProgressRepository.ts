@@ -6,6 +6,7 @@
 import type { IProgressRepository, QuizRecord } from "../application/ports";
 
 const STORAGE_KEY = "wrongQuestions";
+const CORRECT_STREAKS_KEY = "correctStreaks";
 const USER_NAME_KEY = "userName";
 const HISTORY_KEY = "quizHistory";
 /** 保存する履歴の最大件数 */
@@ -26,6 +27,23 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
     } catch (error) {
       console.error("データの保存に失敗しました:", error);
+    }
+  }
+
+  loadCorrectStreaks(): Record<string, number> {
+    try {
+      const saved = localStorage.getItem(CORRECT_STREAKS_KEY);
+      return saved ? (JSON.parse(saved) as Record<string, number>) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  saveCorrectStreaks(streaks: Record<string, number>): void {
+    try {
+      localStorage.setItem(CORRECT_STREAKS_KEY, JSON.stringify(streaks));
+    } catch (error) {
+      console.error("正解連続数の保存に失敗しました:", error);
     }
   }
 
