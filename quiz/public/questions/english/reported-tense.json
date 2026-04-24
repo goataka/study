@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/46-reported-tense/guide",
+  "example": "He said he `was` tired.",
   "questions": [
     {
       "id": "reported-tense-1",

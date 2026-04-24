@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/31-passive/guide",
+  "example": "It `was` written.",
   "questions": [
     {
       "id": "passive-1",

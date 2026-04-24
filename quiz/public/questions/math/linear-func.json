@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/26-linear-func/guide",
+  "example": "y = 2x + 1",
   "questions": [
     {
       "id": "linear-func-1",

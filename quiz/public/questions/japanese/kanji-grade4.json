@@ -5,6 +5,7 @@
   "categoryName": "漢字（小学4年）",
   "parentCategory": "kanji",
   "parentCategoryName": "漢字",
+  "example": "\u611b\u30fb\u71b1\u30fb\u9759\u30fb\u611f",
   "questionType": "text-input",
   "questions": [
     {

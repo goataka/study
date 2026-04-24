@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/13-tenses-regular-future/guide",
+  "example": "I `will play` games.",
   "questions": [
     {
       "id": "tenses-regular-future-1",

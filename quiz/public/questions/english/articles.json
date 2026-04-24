@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/18-articles/guide",
+  "example": "`a`/`the` cat",
   "questions": [
     {
       "id": "articles-1",

@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/33-conditionals-if/guide",
+  "example": "`If` it rains, I stay.",
   "questions": [
     {
       "id": "conditionals-if-1",

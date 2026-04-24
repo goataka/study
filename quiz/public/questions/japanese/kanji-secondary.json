@@ -5,6 +5,7 @@
   "categoryName": "漢字（中学生）",
   "parentCategory": "kanji",
   "parentCategoryName": "漢字",
+  "example": "\u80cc\u30fb\u6ecb\u30fb\u8ce2\u30fb\u7e26",
   "questionType": "text-input",
   "questions": [
     {

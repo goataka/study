@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/15-fractions-multiply/guide",
+  "example": "2/3 \u00d7 3/4 = 1/2",
   "questions": [
     {
       "id": "frac-mult-1",

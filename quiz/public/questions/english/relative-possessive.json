@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/44-relative-possessive/guide",
+  "example": "the girl `whose` bag",
   "questions": [
     {
       "id": "relative-possessive-1",

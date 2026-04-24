@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/37-negatives/guide",
+  "example": "I `don't` play.",
   "questions": [
     {
       "id": "negatives-1",

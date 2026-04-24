@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/42-relative-subject/guide",
+  "example": "the man `who` runs",
   "questions": [
     {
       "id": "relative-subject-1",

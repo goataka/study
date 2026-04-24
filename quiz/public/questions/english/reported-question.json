@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/47-reported-question/guide",
+  "example": "She asked `where` I lived.",
   "questions": [
     {
       "id": "reported-question-1",
