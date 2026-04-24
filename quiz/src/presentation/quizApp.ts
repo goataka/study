@@ -841,7 +841,7 @@ export class QuizApp {
       const question = this.currentSession?.currentQuestion;
       if (question?.guideUrl) {
         const guideFrame = document.getElementById("guideFrame") as HTMLIFrameElement | null;
-        if (guideFrame && guideFrame.src !== question.guideUrl) {
+        if (guideFrame && guideFrame.getAttribute("src") !== question.guideUrl) {
           guideFrame.src = question.guideUrl;
         }
       }
@@ -870,8 +870,8 @@ export class QuizApp {
     // メモ状態をリセット
     this.notesStates.clear();
 
-    // ノートタブをメモに戻す
-    this.activeNoteTab = "memo";
+    // ノートタブをメモに戻す（ DOM も合わせて更新）
+    this.showNoteTab("memo");
 
     this.showScreen("quiz");
     this.initializeNotesCanvas();
