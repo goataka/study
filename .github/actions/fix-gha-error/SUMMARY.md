@@ -5,6 +5,8 @@
 ## 動作フロー
 
 - **PRあり**: `gh pr comment` で `@copilot` メンションコメントを投稿
+  - PR検出①: `workflow_run.pull_requests` にPR情報がある場合
+  - PR検出②: 空の場合はヘッドブランチ名で `gh pr list` を検索（フォールバック）
 - **PRなし**: `gh issue list` で同一タイトルのオープンIssueを検索
   - 既存Issueあり → `gh issue comment` でコメント追加
   - 既存Issueなし → `gh issue create` で新規作成（Copilotをアサイン）
