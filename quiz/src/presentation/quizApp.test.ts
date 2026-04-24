@@ -78,7 +78,7 @@ function setupTabDom(): void {
         </div>
         <div id="guideContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
           <iframe id="guidePanelFrame" title="解説"></iframe>
-          <p id="guideNoContent" class="hidden"></p>
+          <p id="guideNoContent" class="hidden">このカテゴリには解説がありません。</p>
         </div>
         <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
           <div id="historyList"></div>
