@@ -705,6 +705,13 @@ export class QuizApp {
     this.on("clearNotesBtn", "click", () => this.clearNotes());
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
+    // ノートタブの切り替え
+    document.getElementById("notesTabMemo")?.addEventListener("click", () => this.showNoteTab("memo"));
+    document.getElementById("notesTabGuide")?.addEventListener("click", () => this.showNoteTab("guide"));
+
+    // タッチペン入力確定ボタン（text-input問題のメモタブで使用）
+    document.getElementById("handwritingConfirmBtn")?.addEventListener("click", () => this.handleHandwritingConfirm());
+
     // 学習済カテゴリの非表示トグル
     this.on("hideLearnedBtn", "click", () => this.toggleHideLearned());
 
@@ -945,6 +952,10 @@ export class QuizApp {
     this.setText("questionText", question.question);
     this.renderChoices(question, session);
 
+    // メモエリアをタッチペン入力モード用に更新
+    const isAnswered = session.getAnswer(session.currentIndex) !== undefined;
+    this.updateNotesAreaForQuestion(question, isAnswered);
+
     // 既に回答済みの場合はフィードバックを表示、未回答の場合は非表示
     const userAnswer = session.getAnswer(session.currentIndex);
     if (userAnswer !== undefined) {
@@ -1050,6 +1061,8 @@ export class QuizApp {
       const answerIndex = session.getAnswer(session.currentIndex)!;
       this.showAnswerFeedback(question, answerIndex, text);
       this.updateNavigationButtons(session);
+      // 確認後は確定ボタンも非表示にする（キーボード入力で回答済みになったため）
+      this.updateNotesAreaForQuestion(question, true);
     };
 
     submitBtn.addEventListener("click", handleSubmit);
@@ -1067,6 +1080,116 @@ export class QuizApp {
     if (!isAnswered) {
       input.focus();
     }
+  }
+
+  /**
+   * メモエリアをtextinput問題のタッチペン入力用に更新する。
+   * - text-input問題かつ未回答の場合: 確定ボタンを表示、ガイドテキストを変更
+   * - それ以外: 確定ボタンを非表示、ガイドテキストを元に戻す
+   * 問題遷移のたびに呼ばれ、自己評価UIをクリアして確定ボタンを復元する。
+   */
+  private updateNotesAreaForQuestion(question: Question | null, isAnswered: boolean): void {
+    const notesTitle = document.getElementById("notesTitle");
+    const confirmArea = document.getElementById("handwritingConfirmArea");
+    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
+    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
+
+    const isTextInput = question?.questionType === "text-input";
+    const showConfirm = isTextInput && !isAnswered;
+
+    if (notesTitle) {
+      notesTitle.textContent = isTextInput
+        ? "✏️ ここに手書きで解答できます"
+        : "タッチペンで書けます";
+    }
+    if (confirmArea) {
+      confirmArea.classList.toggle("hidden", !showConfirm);
+    }
+    // 確定ボタンを再表示してdisabled状態をリセット（問題遷移時の復元）
+    if (confirmBtn) {
+      confirmBtn.classList.remove("hidden");
+      confirmBtn.disabled = !showConfirm;
+    }
+    // 自己評価UIをクリア（問題遷移時のリセット）
+    if (selfEvalArea) {
+      selfEvalArea.innerHTML = "";
+      selfEvalArea.classList.add("hidden");
+    }
+  }
+
+  /**
+   * タッチペン入力の確定ボタンが押されたときの処理。
+   * 正解を表示してユーザーに自己評価させ、テキスト欄に結果を反映する。
+   */
+  private handleHandwritingConfirm(): void {
+    const session = this.currentSession;
+    if (!session) return;
+
+    const question = session.currentQuestion;
+    if (question.questionType !== "text-input") return;
+
+    // 既回答の場合は何もしない
+    if (session.getAnswer(session.currentIndex) !== undefined) return;
+
+    const correctAnswer = question.choices[question.correct] ?? "";
+
+    // 確定ボタンを隠し、自己評価UIを同一confirmArea内の別divに表示
+    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
+    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
+    if (!selfEvalArea) return;
+
+    confirmBtn?.classList.add("hidden");
+    selfEvalArea.innerHTML = "";
+    selfEvalArea.classList.remove("hidden");
+
+    const revealText = document.createElement("p");
+    revealText.className = "handwriting-reveal-text";
+    revealText.textContent = `正解は「${correctAnswer}」です。あっていましたか？`;
+
+    const selfEvalBtns = document.createElement("div");
+    selfEvalBtns.className = "self-eval-buttons";
+
+    const correctBtn = document.createElement("button");
+    correctBtn.type = "button";
+    correctBtn.className = "self-eval-btn self-eval-correct";
+    correctBtn.textContent = "○ 正解だった";
+
+    const incorrectBtn = document.createElement("button");
+    incorrectBtn.type = "button";
+    incorrectBtn.className = "self-eval-btn self-eval-incorrect";
+    incorrectBtn.textContent = "× 不正解だった";
+
+    const handleSelfEval = (selfCorrect: boolean): void => {
+      // 不正解時は空文字を保存（"×" などのセンチネルを使わない）
+      const text = selfCorrect ? correctAnswer : "";
+      session.selectTextAnswer(session.currentIndex, text);
+      const answerIndex = session.getAnswer(session.currentIndex)!;
+
+      // テキスト入力欄に結果を反映して無効化
+      const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+      if (textInput) {
+        textInput.value = selfCorrect ? correctAnswer : "";
+        textInput.disabled = true;
+      }
+      const keyboardSubmitBtn = document.querySelector<HTMLButtonElement>(".text-answer-submit-btn");
+      if (keyboardSubmitBtn) {
+        keyboardSubmitBtn.disabled = true;
+      }
+
+      this.showAnswerFeedback(question, answerIndex, selfCorrect ? correctAnswer : undefined);
+      this.updateNavigationButtons(session);
+
+      correctBtn.disabled = true;
+      incorrectBtn.disabled = true;
+    };
+
+    correctBtn.addEventListener("click", () => handleSelfEval(true));
+    incorrectBtn.addEventListener("click", () => handleSelfEval(false));
+
+    selfEvalBtns.appendChild(correctBtn);
+    selfEvalBtns.appendChild(incorrectBtn);
+    selfEvalArea.appendChild(revealText);
+    selfEvalArea.appendChild(selfEvalBtns);
   }
 
   private navigate(direction: 1 | -1): void {
