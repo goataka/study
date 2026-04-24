@@ -1562,20 +1562,6 @@ export class QuizApp {
       eraserBtn.title = isEraser ? "ペンに戻す" : "消しゴム";
     }
   }
-
-  private showNoteTab(tab: "memo" | "guide"): void {
-    const memoContent = document.getElementById("notesMemoContent");
-    const guideContent = document.getElementById("notesGuideContent");
-
-    memoContent?.classList.toggle("hidden", tab !== "memo");
-    guideContent?.classList.toggle("hidden", tab !== "guide");
-
-    const memoBtn = document.getElementById("notesTabMemo");
-    const guideBtn = document.getElementById("notesTabGuide");
-
-    memoBtn?.classList.toggle("active", tab === "memo");
-    guideBtn?.classList.toggle("active", tab === "guide");
-  }
 }
 
 // アプリケーション起動
