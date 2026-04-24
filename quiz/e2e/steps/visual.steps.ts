@@ -6,7 +6,7 @@ const { Before, Then } = createBdd();
 // VR テストの再現性を保つために Math.random をシードする
 // page.addInitScript はページロード前に実行されるため、
 // pickRandom での問題選択が毎回同じ結果になる
-Before(async ({ page }) => {
+Before({ tags: "@vr" }, async ({ page }) => {
   await page.addInitScript(() => {
     let seed = 42;
     Math.random = () => {

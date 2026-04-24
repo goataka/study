@@ -52,3 +52,19 @@ Feature: 学習クイズ
     Then the result screen should be visible
     When I click the "スタート画面に戻る" button
     Then the start screen should be visible
+
+  @vr
+  Scenario: スタート画面のビジュアル確認
+    Then the start screen matches the snapshot
+
+  @vr
+  Scenario: クイズ画面のビジュアル確認
+    When I click the "ランダム" button
+    Then the quiz screen layout matches the snapshot
+
+  @vr
+  Scenario: 結果画面のビジュアル確認
+    When I click the "ランダム" button
+    And I answer all questions
+    And I click the "採点する" button
+    Then the result screen layout matches the snapshot

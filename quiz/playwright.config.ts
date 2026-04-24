@@ -4,6 +4,7 @@ import { defineBddConfig } from "playwright-bdd";
 const testDir = defineBddConfig({
   features: "e2e/features/*.feature",
   steps: "e2e/steps/**/*.ts",
+  tags: "not @vr",
 });
 
 // 本番E2E時は PLAYWRIGHT_BASE_URL 環境変数でURLを上書きできる
