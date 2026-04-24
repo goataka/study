@@ -403,7 +403,7 @@ button:disabled {
 /* クイズ画面 */
 .quiz-landscape-layout {
     display: grid;
-    grid-template-columns: 1fr 360px;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
     align-items: start;
 }
