@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "division",
   "categoryName": "わり算",
+  "parentCategory": "arithmetic",
+  "parentCategoryName": "算数・基本計算",
   "questions": [
     {
       "id": "div-1",

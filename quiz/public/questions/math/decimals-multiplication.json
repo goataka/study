@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "decimals-multiplication",
   "categoryName": "小数のかけ算",
+  "parentCategory": "arithmetic",
+  "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/19-decimals-multiplication/guide",
   "questions": [
     {

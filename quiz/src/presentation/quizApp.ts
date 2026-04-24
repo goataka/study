@@ -28,6 +28,9 @@ export class QuizApp {
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
   private activePanelTab: "quiz" | "history" = "quiz";
+  private modalEscapeController: AbortController | null = null;
+  private questionListTriggerElement: HTMLElement | null = null;
+  private hideLearnedCategories: boolean = false;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -259,6 +262,8 @@ export class QuizApp {
 
     // アクティブ状態を更新
     this.updateCategoryListActive();
+    // 学習済の非表示状態を維持する
+    categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
   }
 
   private createCategoryItem(
@@ -408,7 +413,7 @@ export class QuizApp {
 
     const modeSpan = document.createElement("span");
     modeSpan.className = "history-mode";
-    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : "ランダム";
+    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : record.mode === "manual" ? "手動" : "ランダム";
 
     metaDiv.appendChild(dateSpan);
     metaDiv.appendChild(subjectSpan);
@@ -483,12 +488,132 @@ export class QuizApp {
     return item;
   }
 
+  // ─── 問題一覧モーダル ──────────────────────────────────────────────────────
+
+  /**
+   * 現在のフィルターに基づいて問題一覧モーダルを表示する
+   */
+  private showQuestionListModal(): void {
+    const modal = document.getElementById("questionListModal");
+    const titleEl = document.getElementById("questionListTitle");
+    const bodyEl = document.getElementById("questionListBody");
+    if (!modal || !titleEl || !bodyEl) return;
+
+    const questions = this.useCase.getFilteredQuestions(this.filter);
+
+    // タイトルを設定
+    if (this.filter.category === "all") {
+      const subjectName = SUBJECTS.find((s) => s.id === this.filter.subject)?.name ?? this.filter.subject;
+      titleEl.textContent = `${subjectName} — 全問題一覧（${questions.length}問）`;
+    } else {
+      const catName = questions[0]?.categoryName ?? this.filter.category;
+      titleEl.textContent = `${catName} — 問題一覧（${questions.length}問）`;
+    }
+
+    // 問題リストを構築
+    bodyEl.innerHTML = "";
+    if (questions.length === 0) {
+      const empty = document.createElement("p");
+      empty.classList.add("history-empty");
+      empty.textContent = "この単元に問題はありません。";
+      bodyEl.appendChild(empty);
+    } else {
+      questions.forEach((q, index) => {
+        bodyEl.appendChild(this.buildQuestionListItem(q, index + 1));
+      });
+    }
+
+    // フォーカスをトリガー要素として記憶してから閉じるボタンへ移動
+    this.questionListTriggerElement = document.activeElement as HTMLElement | null;
+    modal.classList.remove("hidden");
+    document.body.classList.add("modal-open");
+
+    const closeBtn = document.getElementById("closeQuestionListBtn") as HTMLElement | null;
+    closeBtn?.focus();
+
+    // Escape キーリスナーをモーダル表示中のみ登録（AbortController で重複防止）
+    this.modalEscapeController = new AbortController();
+    document.addEventListener(
+      "keydown",
+      (e: KeyboardEvent) => this.handleQuestionListModalKeydown(e),
+      { signal: this.modalEscapeController.signal }
+    );
+  }
+
+  /**
+   * 問題一覧モーダルを閉じる
+   */
+  private closeQuestionListModal(): void {
+    const modal = document.getElementById("questionListModal");
+    if (!modal || modal.classList.contains("hidden")) return;
+    modal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+
+    // Escape キーリスナーを解除
+    this.modalEscapeController?.abort();
+    this.modalEscapeController = null;
+
+    // フォーカスをトリガー要素へ戻す
+    this.questionListTriggerElement?.focus();
+    this.questionListTriggerElement = null;
+  }
+
+  private handleQuestionListModalOverlayClick(e: MouseEvent, modalOverlay: HTMLElement): void {
+    if (e.target === modalOverlay) {
+      this.closeQuestionListModal();
+    }
+  }
+
+  private handleQuestionListModalKeydown(e: KeyboardEvent): void {
+    if (e.key === "Escape") {
+      this.closeQuestionListModal();
+    }
+  }
+
+  /**
+   * 問題一覧の1問分のHTML要素を構築する
+   */
+  private buildQuestionListItem(question: Question, number: number): HTMLElement {
+    const item = document.createElement("div");
+    item.className = "question-list-item";
+
+    const numDiv = document.createElement("div");
+    numDiv.className = "question-list-number";
+    numDiv.textContent = `第${number}問`;
+    item.appendChild(numDiv);
+
+    const textDiv = document.createElement("div");
+    textDiv.className = "question-list-text";
+    textDiv.textContent = question.question;
+    item.appendChild(textDiv);
+
+    const choicesDiv = document.createElement("div");
+    choicesDiv.className = "question-list-choices";
+    question.choices.forEach((choice, i) => {
+      const choiceDiv = document.createElement("div");
+      choiceDiv.className = `question-list-choice${i === question.correct ? " correct-choice" : ""}`;
+      choiceDiv.textContent = `${i === question.correct ? "✓ " : "　"}${choice}`;
+      choicesDiv.appendChild(choiceDiv);
+    });
+    item.appendChild(choicesDiv);
+
+    const explanationDiv = document.createElement("div");
+    explanationDiv.className = "question-list-explanation";
+    explanationDiv.textContent = question.explanation;
+    item.appendChild(explanationDiv);
+
+    return item;
+  }
+
   // ─── イベント登録 ──────────────────────────────────────────────────────────
 
   private setupEventListeners(): void {
     this.on("startRandomBtn", "click", () => this.startQuiz("random"));
     this.on("startPracticeBtn", "click", () => this.startQuiz("practice"));
     this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
+    this.on("markLearnedBtn", "click", () => this.markCategoryAsLearned());
+    this.on("showQuestionListBtn", "click", () => this.showQuestionListModal());
+    this.on("closeQuestionListBtn", "click", () => this.closeQuestionListModal());
     this.on("prevBtn", "click", () => this.navigate(-1));
     this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
@@ -555,6 +680,9 @@ export class QuizApp {
     this.on("clearNotesBtn", "click", () => this.clearNotes());
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
+    // 学習済カテゴリの非表示トグル
+    this.on("hideLearnedBtn", "click", () => this.toggleHideLearned());
+
     const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
     penSizeSelect?.addEventListener("change", (e) => {
       const size = parseInt((e.target as HTMLSelectElement).value);
@@ -566,6 +694,12 @@ export class QuizApp {
       const color = (e.target as HTMLSelectElement).value;
       this.notesCanvas?.setPenColor(color);
     });
+
+    // モーダルオーバーレイをクリックで閉じる
+    const modalOverlay = document.getElementById("questionListModal");
+    modalOverlay?.addEventListener("click", (e) => {
+      this.handleQuestionListModalOverlayClick(e as MouseEvent, modalOverlay);
+    });
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -574,6 +708,7 @@ export class QuizApp {
     this.updateSubjectStats();
     const statsInfo = document.getElementById("statsInfo");
     const retryBtn = document.getElementById("startRetryBtn") as HTMLButtonElement | null;
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement | null;
     if (!statsInfo || !retryBtn) return;
 
     const filteredCount = this.useCase.getFilteredQuestions(this.filter).length;
@@ -585,6 +720,12 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
+
+    // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
+    if (markLearnedBtn) {
+      markLearnedBtn.disabled = this.filter.category === "all";
+    }
+
     this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
   }
 
@@ -648,6 +789,8 @@ export class QuizApp {
       }
 
       // 学習状態の絵文字を更新（⬜未学習 / 📖学習中 / ✅学習済）
+      const isLearned = studiedKeys.has(key) && stat.wrong === 0;
+      el.classList.toggle("learned", isLearned);
       const statusEl = el.querySelector(".category-status");
       if (statusEl) {
         if (!studiedKeys.has(key)) {
@@ -661,7 +804,31 @@ export class QuizApp {
     });
   }
 
+  /**
+   * 学習済カテゴリの表示/非表示を切り替える
+   */
+  private toggleHideLearned(): void {
+    this.hideLearnedCategories = !this.hideLearnedCategories;
+    const categoryList = document.getElementById("categoryList");
+    if (categoryList) {
+      categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+    }
+    const btn = document.getElementById("hideLearnedBtn");
+    if (btn) {
+      btn.setAttribute("aria-pressed", String(this.hideLearnedCategories));
+    }
+  }
+
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
+
+  /**
+   * 現在選択中のカテゴリを学習済みとしてマークする。
+   * 解答なしでも単元を学習済みにできる。
+   */
+  private markCategoryAsLearned(): void {
+    this.useCase.markCategoryAsLearned(this.filter);
+    this.updateStartScreen();
+  }
 
   private startQuiz(mode: QuizMode): void {
     try {

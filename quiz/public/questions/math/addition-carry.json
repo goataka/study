@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "addition-carry",
   "categoryName": "たし算（くり上がりあり）",
+  "parentCategory": "arithmetic",
+  "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/02-addition-carry/guide",
   "questions": [
     {

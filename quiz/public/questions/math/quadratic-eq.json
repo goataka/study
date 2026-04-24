@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "quadratic-eq",
   "categoryName": "二次方程式",
+  "parentCategory": "algebra",
+  "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/29-quadratic-eq/guide",
   "questions": [
     {
