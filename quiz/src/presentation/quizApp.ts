@@ -413,7 +413,7 @@ export class QuizApp {
 
     const modeSpan = document.createElement("span");
     modeSpan.className = "history-mode";
-    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : "ランダム";
+    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : record.mode === "manual" ? "手動" : "ランダム";
 
     metaDiv.appendChild(dateSpan);
     metaDiv.appendChild(subjectSpan);
@@ -611,6 +611,7 @@ export class QuizApp {
     this.on("startRandomBtn", "click", () => this.startQuiz("random"));
     this.on("startPracticeBtn", "click", () => this.startQuiz("practice"));
     this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
+    this.on("markLearnedBtn", "click", () => this.markCategoryAsLearned());
     this.on("showQuestionListBtn", "click", () => this.showQuestionListModal());
     this.on("closeQuestionListBtn", "click", () => this.closeQuestionListModal());
     this.on("prevBtn", "click", () => this.navigate(-1));
@@ -707,6 +708,7 @@ export class QuizApp {
     this.updateSubjectStats();
     const statsInfo = document.getElementById("statsInfo");
     const retryBtn = document.getElementById("startRetryBtn") as HTMLButtonElement | null;
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement | null;
     if (!statsInfo || !retryBtn) return;
 
     const filteredCount = this.useCase.getFilteredQuestions(this.filter).length;
@@ -718,6 +720,12 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
+
+    // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
+    if (markLearnedBtn) {
+      markLearnedBtn.disabled = this.filter.category === "all";
+    }
+
     this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
   }
 
@@ -812,6 +820,15 @@ export class QuizApp {
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
+
+  /**
+   * 現在選択中のカテゴリを学習済みとしてマークする。
+   * 解答なしでも単元を学習済みにできる。
+   */
+  private markCategoryAsLearned(): void {
+    this.useCase.markCategoryAsLearned(this.filter);
+    this.updateStartScreen();
+  }
 
   private startQuiz(mode: QuizMode): void {
     try {
