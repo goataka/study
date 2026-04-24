@@ -10,107 +10,452 @@
     {
       "id": "kanji-g5-001",
       "question": "「可能性」の読み方をひらがなで書いてください",
-      "choices": ["かのうせい"],
+      "choices": [
+        "かのうせい"
+      ],
       "correct": 0,
       "explanation": "可能性（かのうせい）: できる見込みのこと"
     },
     {
       "id": "kanji-g5-002",
       "question": "「責任」の読み方をひらがなで書いてください",
-      "choices": ["せきにん"],
+      "choices": [
+        "せきにん"
+      ],
       "correct": 0,
       "explanation": "責任（せきにん）: 物事に対して負うべき義務"
     },
     {
       "id": "kanji-g5-003",
       "question": "「判断」の読み方をひらがなで書いてください",
-      "choices": ["はんだん"],
+      "choices": [
+        "はんだん"
+      ],
       "correct": 0,
       "explanation": "判断（はんだん）: 物事の良し悪しを決めること"
     },
     {
       "id": "kanji-g5-004",
       "question": "「解決」の読み方をひらがなで書いてください",
-      "choices": ["かいけつ"],
+      "choices": [
+        "かいけつ"
+      ],
       "correct": 0,
       "explanation": "解決（かいけつ）: 問題を解き、うまくいくようにすること"
     },
     {
       "id": "kanji-g5-005",
       "question": "「提案」の読み方をひらがなで書いてください",
-      "choices": ["ていあん"],
+      "choices": [
+        "ていあん"
+      ],
       "correct": 0,
       "explanation": "提案（ていあん）: 考えや計画を出すこと"
     },
     {
       "id": "kanji-g5-006",
       "question": "「確認」の読み方をひらがなで書いてください",
-      "choices": ["かくにん"],
+      "choices": [
+        "かくにん"
+      ],
       "correct": 0,
       "explanation": "確認（かくにん）: 確かめること"
     },
     {
       "id": "kanji-g5-007",
       "question": "「状況」の読み方をひらがなで書いてください",
-      "choices": ["じょうきょう"],
+      "choices": [
+        "じょうきょう"
+      ],
       "correct": 0,
       "explanation": "状況（じょうきょう）: 物事の様子・ありさま"
     },
     {
       "id": "kanji-g5-008",
       "question": "「貢献」の読み方をひらがなで書いてください",
-      "choices": ["こうけん"],
+      "choices": [
+        "こうけん"
+      ],
       "correct": 0,
       "explanation": "貢献（こうけん）: 役に立つために力を尽くすこと"
     },
     {
       "id": "kanji-g5-009",
       "question": "「規則」の読み方をひらがなで書いてください",
-      "choices": ["きそく"],
+      "choices": [
+        "きそく"
+      ],
       "correct": 0,
       "explanation": "規則（きそく）: 守るべききまりのこと"
     },
     {
       "id": "kanji-g5-010",
       "question": "「技術」の読み方をひらがなで書いてください",
-      "choices": ["ぎじゅつ"],
+      "choices": [
+        "ぎじゅつ"
+      ],
       "correct": 0,
       "explanation": "技術（ぎじゅつ）: 物を作ったり、何かをするための専門的な能力"
     },
     {
       "id": "kanji-g5-011",
       "question": "「構造」の読み方をひらがなで書いてください",
-      "choices": ["こうぞう"],
+      "choices": [
+        "こうぞう"
+      ],
       "correct": 0,
       "explanation": "構造（こうぞう）: 物の組み立てや仕組みのこと"
     },
     {
       "id": "kanji-g5-012",
       "question": "「採用」の読み方をひらがなで書いてください",
-      "choices": ["さいよう"],
+      "choices": [
+        "さいよう"
+      ],
       "correct": 0,
       "explanation": "採用（さいよう）: 取り入れること・採り上げること"
     },
     {
       "id": "kanji-g5-013",
       "question": "「測定」の読み方をひらがなで書いてください",
-      "choices": ["そくてい"],
+      "choices": [
+        "そくてい"
+      ],
       "correct": 0,
       "explanation": "測定（そくてい）: 計って数値で表すこと"
     },
     {
       "id": "kanji-g5-014",
       "question": "「比較」の読み方をひらがなで書いてください",
-      "choices": ["ひかく"],
+      "choices": [
+        "ひかく"
+      ],
       "correct": 0,
       "explanation": "比較（ひかく）: 二つ以上のものを比べること"
     },
     {
       "id": "kanji-g5-015",
       "question": "「統計」の読み方をひらがなで書いてください",
-      "choices": ["とうけい"],
+      "choices": [
+        "とうけい"
+      ],
       "correct": 0,
       "explanation": "統計（とうけい）: 数をまとめて表した資料"
+    },
+    {
+      "id": "kanji-g5-016",
+      "question": "「圧力」の読み方をひらがなで書いてください",
+      "choices": [
+        "あつりょく"
+      ],
+      "correct": 0,
+      "explanation": "圧力（あつりょく）: 押す力のこと"
+    },
+    {
+      "id": "kanji-g5-017",
+      "question": "「移動」の読み方をひらがなで書いてください",
+      "choices": [
+        "いどう"
+      ],
+      "correct": 0,
+      "explanation": "移動（いどう）: 場所を変えること"
+    },
+    {
+      "id": "kanji-g5-018",
+      "question": "「永遠」の読み方をひらがなで書いてください",
+      "choices": [
+        "えいえん"
+      ],
+      "correct": 0,
+      "explanation": "永遠（えいえん）: 限りなく続くこと"
+    },
+    {
+      "id": "kanji-g5-019",
+      "question": "「演奏」の読み方をひらがなで書いてください",
+      "choices": [
+        "えんそう"
+      ],
+      "correct": 0,
+      "explanation": "演奏（えんそう）: 楽器を弾いて音楽を奏でること"
+    },
+    {
+      "id": "kanji-g5-020",
+      "question": "「応用」の読み方をひらがなで書いてください",
+      "choices": [
+        "おうよう"
+      ],
+      "correct": 0,
+      "explanation": "応用（おうよう）: 原則を別の場面で使うこと"
+    },
+    {
+      "id": "kanji-g5-021",
+      "question": "「過去」の読み方をひらがなで書いてください",
+      "choices": [
+        "かこ"
+      ],
+      "correct": 0,
+      "explanation": "過去（かこ）: 以前のこと・すでに過ぎた時"
+    },
+    {
+      "id": "kanji-g5-022",
+      "question": "「確実」の読み方をひらがなで書いてください",
+      "choices": [
+        "かくじつ"
+      ],
+      "correct": 0,
+      "explanation": "確実（かくじつ）: まちがいなく確かなこと"
+    },
+    {
+      "id": "kanji-g5-023",
+      "question": "「基礎」の読み方をひらがなで書いてください",
+      "choices": [
+        "きそ"
+      ],
+      "correct": 0,
+      "explanation": "基礎（きそ）: 物の土台・基本となること"
+    },
+    {
+      "id": "kanji-g5-024",
+      "question": "「義務」の読み方をひらがなで書いてください",
+      "choices": [
+        "ぎむ"
+      ],
+      "correct": 0,
+      "explanation": "義務（ぎむ）: 必ずしなければならないこと"
+    },
+    {
+      "id": "kanji-g5-025",
+      "question": "「逆転」の読み方をひらがなで書いてください",
+      "choices": [
+        "ぎゃくてん"
+      ],
+      "correct": 0,
+      "explanation": "逆転（ぎゃくてん）: 形勢が反対になること"
+    },
+    {
+      "id": "kanji-g5-026",
+      "question": "「禁止」の読み方をひらがなで書いてください",
+      "choices": [
+        "きんし"
+      ],
+      "correct": 0,
+      "explanation": "禁止（きんし）: してはいけないこと"
+    },
+    {
+      "id": "kanji-g5-027",
+      "question": "「現在」の読み方をひらがなで書いてください",
+      "choices": [
+        "げんざい"
+      ],
+      "correct": 0,
+      "explanation": "現在（げんざい）: 今のこと"
+    },
+    {
+      "id": "kanji-g5-028",
+      "question": "「個人」の読み方をひらがなで書いてください",
+      "choices": [
+        "こじん"
+      ],
+      "correct": 0,
+      "explanation": "個人（こじん）: 一人ひとりのこと"
+    },
+    {
+      "id": "kanji-g5-029",
+      "question": "「増加」の読み方をひらがなで書いてください",
+      "choices": [
+        "ぞうか"
+      ],
+      "correct": 0,
+      "explanation": "増加（ぞうか）: 数や量が多くなること"
+    },
+    {
+      "id": "kanji-g5-030",
+      "question": "「断る」の「断」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "ことわ"
+      ],
+      "correct": 0,
+      "explanation": "断（ことわ）る: 申し出を受け入れないこと。「だん」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-031",
+      "question": "「独立」の読み方をひらがなで書いてください",
+      "choices": [
+        "どくりつ"
+      ],
+      "correct": 0,
+      "explanation": "独立（どくりつ）: 他に頼らず自分でやっていくこと"
+    },
+    {
+      "id": "kanji-g5-032",
+      "question": "「燃える」の「燃」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "も"
+      ],
+      "correct": 0,
+      "explanation": "燃（も）える: 火がついて焼けること。「ねん」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-033",
+      "question": "「破る」の「破」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "やぶ"
+      ],
+      "correct": 0,
+      "explanation": "破（やぶ）る: 壊すこと・やぶくこと。「は」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-034",
+      "question": "「備える」の「備」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "そな"
+      ],
+      "correct": 0,
+      "explanation": "備（そな）える: 必要なものを用意しておくこと。「び」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-035",
+      "question": "「豊か」の「豊」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "ゆた"
+      ],
+      "correct": 0,
+      "explanation": "豊（ゆた）か: 十分にあって満ちていること。「ほう」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-036",
+      "question": "「暮らす」の「暮」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "く"
+      ],
+      "correct": 0,
+      "explanation": "暮（く）らす: 生活すること。「ぼ」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-037",
+      "question": "「領土」の読み方をひらがなで書いてください",
+      "choices": [
+        "りょうど"
+      ],
+      "correct": 0,
+      "explanation": "領土（りょうど）: 国が支配する土地"
+    },
+    {
+      "id": "kanji-g5-038",
+      "question": "「余る」の「余」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "あま"
+      ],
+      "correct": 0,
+      "explanation": "余（あま）る: 余分に残ること。「よ」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-039",
+      "question": "「夢」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "ゆめ"
+      ],
+      "correct": 0,
+      "explanation": "夢（ゆめ）: 眠っているときに見るもの・将来の目標。「む」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-040",
+      "question": "「務める」の「務」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "つと"
+      ],
+      "correct": 0,
+      "explanation": "務（つと）める: 仕事を担当すること。「む」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-041",
+      "question": "「防ぐ」の「防」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "ふせ"
+      ],
+      "correct": 0,
+      "explanation": "防（ふせ）ぐ: 悪いことが起きないようにすること。「ぼう」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-042",
+      "question": "「貿易」の読み方をひらがなで書いてください",
+      "choices": [
+        "ぼうえき"
+      ],
+      "correct": 0,
+      "explanation": "貿易（ぼうえき）: 国と国との間で物を売り買いすること"
+    },
+    {
+      "id": "kanji-g5-043",
+      "question": "「布」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "ぬの"
+      ],
+      "correct": 0,
+      "explanation": "布（ぬの）: 服などに使う織物。「ふ」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g5-044",
+      "question": "「評価」の読み方をひらがなで書いてください",
+      "choices": [
+        "ひょうか"
+      ],
+      "correct": 0,
+      "explanation": "評価（ひょうか）: 物事のよしあしを判断すること"
+    },
+    {
+      "id": "kanji-g5-045",
+      "question": "「出版」の読み方をひらがなで書いてください",
+      "choices": [
+        "しゅっぱん"
+      ],
+      "correct": 0,
+      "explanation": "出版（しゅっぱん）: 本などを印刷して世に出すこと"
+    },
+    {
+      "id": "kanji-g5-046",
+      "question": "「武士」の読み方をひらがなで書いてください",
+      "choices": [
+        "ぶし"
+      ],
+      "correct": 0,
+      "explanation": "武士（ぶし）: 刀を持って戦う武家の人"
+    },
+    {
+      "id": "kanji-g5-047",
+      "question": "「復習」の読み方をひらがなで書いてください",
+      "choices": [
+        "ふくしゅう"
+      ],
+      "correct": 0,
+      "explanation": "復習（ふくしゅう）: 学んだことをもう一度やり直すこと"
+    },
+    {
+      "id": "kanji-g5-048",
+      "question": "「複数」の読み方をひらがなで書いてください",
+      "choices": [
+        "ふくすう"
+      ],
+      "correct": 0,
+      "explanation": "複数（ふくすう）: 二つ以上あること"
+    },
+    {
+      "id": "kanji-g5-049",
+      "question": "「仏教」の読み方をひらがなで書いてください",
+      "choices": [
+        "ぶっきょう"
+      ],
+      "correct": 0,
+      "explanation": "仏教（ぶっきょう）: お釈迦様の教えをもとにした宗教"
+    },
+    {
+      "id": "kanji-g5-050",
+      "question": "「粉」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "こな"
+      ],
+      "correct": 0,
+      "explanation": "粉（こな）: 細かく砕いたもの。「ふん」（音読み）とも読む"
     }
   ]
 }

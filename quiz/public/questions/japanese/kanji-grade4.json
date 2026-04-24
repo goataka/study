@@ -10,107 +10,542 @@
     {
       "id": "kanji-g4-001",
       "question": "「努力」の読み方をひらがなで書いてください",
-      "choices": ["どりょく"],
+      "choices": [
+        "どりょく"
+      ],
       "correct": 0,
       "explanation": "努力（どりょく）: 目標に向かってがんばること"
     },
     {
       "id": "kanji-g4-002",
       "question": "「観察」の読み方をひらがなで書いてください",
-      "choices": ["かんさつ"],
+      "choices": [
+        "かんさつ"
+      ],
       "correct": 0,
       "explanation": "観察（かんさつ）: よく見て調べること"
     },
     {
       "id": "kanji-g4-003",
       "question": "「季節」の読み方をひらがなで書いてください",
-      "choices": ["きせつ"],
+      "choices": [
+        "きせつ"
+      ],
       "correct": 0,
       "explanation": "季節（きせつ）: 春・夏・秋・冬のこと"
     },
     {
       "id": "kanji-g4-004",
       "question": "「変化」の読み方をひらがなで書いてください",
-      "choices": ["へんか"],
+      "choices": [
+        "へんか"
+      ],
       "correct": 0,
       "explanation": "変化（へんか）: 状態が変わること"
     },
     {
       "id": "kanji-g4-005",
       "question": "「成長」の読み方をひらがなで書いてください",
-      "choices": ["せいちょう"],
+      "choices": [
+        "せいちょう"
+      ],
       "correct": 0,
       "explanation": "成長（せいちょう）: 大きくなること・育つこと"
     },
     {
       "id": "kanji-g4-006",
       "question": "「結果」の読み方をひらがなで書いてください",
-      "choices": ["けっか"],
+      "choices": [
+        "けっか"
+      ],
       "correct": 0,
       "explanation": "結果（けっか）: 行動のあとに起こること"
     },
     {
       "id": "kanji-g4-007",
       "question": "「必要」の読み方をひらがなで書いてください",
-      "choices": ["ひつよう"],
+      "choices": [
+        "ひつよう"
+      ],
       "correct": 0,
       "explanation": "必要（ひつよう）: なくてはならないこと"
     },
     {
       "id": "kanji-g4-008",
       "question": "「初めて」の「初」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はじ"],
+      "choices": [
+        "はじ"
+      ],
       "correct": 0,
       "explanation": "初（はじ）めて: 最初のこと。「しょ」（音読み）とも読む"
     },
     {
       "id": "kanji-g4-009",
       "question": "「愛情」の読み方をひらがなで書いてください",
-      "choices": ["あいじょう"],
+      "choices": [
+        "あいじょう"
+      ],
       "correct": 0,
       "explanation": "愛情（あいじょう）: 大切に思う気持ち"
     },
     {
       "id": "kanji-g4-010",
       "question": "「希望」の読み方をひらがなで書いてください",
-      "choices": ["きぼう"],
+      "choices": [
+        "きぼう"
+      ],
       "correct": 0,
       "explanation": "希望（きぼう）: こうなってほしいという願い"
     },
     {
       "id": "kanji-g4-011",
       "question": "「達成」の読み方をひらがなで書いてください",
-      "choices": ["たっせい"],
+      "choices": [
+        "たっせい"
+      ],
       "correct": 0,
       "explanation": "達成（たっせい）: 目標を成し遂げること"
     },
     {
       "id": "kanji-g4-012",
       "question": "「無事」の読み方をひらがなで書いてください",
-      "choices": ["ぶじ"],
+      "choices": [
+        "ぶじ"
+      ],
       "correct": 0,
       "explanation": "無事（ぶじ）: 問題なく安全なこと"
     },
     {
       "id": "kanji-g4-013",
       "question": "「位置」の読み方をひらがなで書いてください",
-      "choices": ["いち"],
+      "choices": [
+        "いち"
+      ],
       "correct": 0,
       "explanation": "位置（いち）: どこにあるかを表すこと"
     },
     {
       "id": "kanji-g4-014",
       "question": "「周辺」の読み方をひらがなで書いてください",
-      "choices": ["しゅうへん"],
+      "choices": [
+        "しゅうへん"
+      ],
       "correct": 0,
       "explanation": "周辺（しゅうへん）: まわりのこと"
     },
     {
       "id": "kanji-g4-015",
       "question": "「完成」の読み方をひらがなで書いてください",
-      "choices": ["かんせい"],
+      "choices": [
+        "かんせい"
+      ],
       "correct": 0,
       "explanation": "完成（かんせい）: できあがること"
+    },
+    {
+      "id": "kanji-g4-016",
+      "question": "「英語」の読み方をひらがなで書いてください",
+      "choices": [
+        "えいご"
+      ],
+      "correct": 0,
+      "explanation": "英語（えいご）: イギリスやアメリカで使われる言語"
+    },
+    {
+      "id": "kanji-g4-017",
+      "question": "「塩」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "しお"
+      ],
+      "correct": 0,
+      "explanation": "塩（しお）: 料理に使う白い調味料。「えん」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-018",
+      "question": "「加える」の「加」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "くわ"
+      ],
+      "correct": 0,
+      "explanation": "加（くわ）える: 付け足すこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-019",
+      "question": "「果物」の読み方をひらがなで書いてください",
+      "choices": [
+        "くだもの"
+      ],
+      "correct": 0,
+      "explanation": "果物（くだもの）: リンゴやバナナなどの食べ物"
+    },
+    {
+      "id": "kanji-g4-020",
+      "question": "「覚える」の「覚」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "おぼ"
+      ],
+      "correct": 0,
+      "explanation": "覚（おぼ）える: 記憶すること。「かく」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-021",
+      "question": "「関係」の読み方をひらがなで書いてください",
+      "choices": [
+        "かんけい"
+      ],
+      "correct": 0,
+      "explanation": "関係（かんけい）: 物事どうしのつながり"
+    },
+    {
+      "id": "kanji-g4-022",
+      "question": "「願う」の「願」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "ねが"
+      ],
+      "correct": 0,
+      "explanation": "願（ねが）う: こうなってほしいと思うこと。「がん」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-023",
+      "question": "「機会」の読み方をひらがなで書いてください",
+      "choices": [
+        "きかい"
+      ],
+      "correct": 0,
+      "explanation": "機会（きかい）: ちょうどよいとき・チャンス"
+    },
+    {
+      "id": "kanji-g4-024",
+      "question": "「議員」の読み方をひらがなで書いてください",
+      "choices": [
+        "ぎいん"
+      ],
+      "correct": 0,
+      "explanation": "議員（ぎいん）: 議会で議論する代表者"
+    },
+    {
+      "id": "kanji-g4-025",
+      "question": "「求める」の「求」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "もと"
+      ],
+      "correct": 0,
+      "explanation": "求（もと）める: 必要なものを得ようとすること。「きゅう」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-026",
+      "question": "「競争」の読み方をひらがなで書いてください",
+      "choices": [
+        "きょうそう"
+      ],
+      "correct": 0,
+      "explanation": "競争（きょうそう）: 勝ち負けを争うこと"
+    },
+    {
+      "id": "kanji-g4-027",
+      "question": "「協力」の読み方をひらがなで書いてください",
+      "choices": [
+        "きょうりょく"
+      ],
+      "correct": 0,
+      "explanation": "協力（きょうりょく）: いっしょに力を合わせること"
+    },
+    {
+      "id": "kanji-g4-028",
+      "question": "「健康」の読み方をひらがなで書いてください",
+      "choices": [
+        "けんこう"
+      ],
+      "correct": 0,
+      "explanation": "健康（けんこう）: 体が元気な状態"
+    },
+    {
+      "id": "kanji-g4-029",
+      "question": "「経験」の読み方をひらがなで書いてください",
+      "choices": [
+        "けいけん"
+      ],
+      "correct": 0,
+      "explanation": "経験（けいけん）: 実際に体験すること"
+    },
+    {
+      "id": "kanji-g4-030",
+      "question": "「最初」の読み方をひらがなで書いてください",
+      "choices": [
+        "さいしょ"
+      ],
+      "correct": 0,
+      "explanation": "最初（さいしょ）: 一番はじめのこと"
+    },
+    {
+      "id": "kanji-g4-031",
+      "question": "「参加」の読み方をひらがなで書いてください",
+      "choices": [
+        "さんか"
+      ],
+      "correct": 0,
+      "explanation": "参加（さんか）: 仲間に入ること"
+    },
+    {
+      "id": "kanji-g4-032",
+      "question": "「産業」の読み方をひらがなで書いてください",
+      "choices": [
+        "さんぎょう"
+      ],
+      "correct": 0,
+      "explanation": "産業（さんぎょう）: 物を作ったりサービスを提供する仕事"
+    },
+    {
+      "id": "kanji-g4-033",
+      "question": "「試合」の読み方をひらがなで書いてください",
+      "choices": [
+        "しあい"
+      ],
+      "correct": 0,
+      "explanation": "試合（しあい）: 勝ち負けを決める競争"
+    },
+    {
+      "id": "kanji-g4-034",
+      "question": "「失敗」の読み方をひらがなで書いてください",
+      "choices": [
+        "しっぱい"
+      ],
+      "correct": 0,
+      "explanation": "失敗（しっぱい）: うまくいかないこと"
+    },
+    {
+      "id": "kanji-g4-035",
+      "question": "「種類」の読み方をひらがなで書いてください",
+      "choices": [
+        "しゅるい"
+      ],
+      "correct": 0,
+      "explanation": "種類（しゅるい）: 種別や分類のこと"
+    },
+    {
+      "id": "kanji-g4-036",
+      "question": "「順番」の読み方をひらがなで書いてください",
+      "choices": [
+        "じゅんばん"
+      ],
+      "correct": 0,
+      "explanation": "順番（じゅんばん）: 決まった並びのこと"
+    },
+    {
+      "id": "kanji-g4-037",
+      "question": "「笑う」の「笑」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "わら"
+      ],
+      "correct": 0,
+      "explanation": "笑（わら）う: おかしくて口もとがゆるむこと。「しょう」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-038",
+      "question": "「清潔」の読み方をひらがなで書いてください",
+      "choices": [
+        "せいけつ"
+      ],
+      "correct": 0,
+      "explanation": "清潔（せいけつ）: きれいで汚れのないこと"
+    },
+    {
+      "id": "kanji-g4-039",
+      "question": "「静か」の「静」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "しず"
+      ],
+      "correct": 0,
+      "explanation": "静（しず）か: 音が少なくてやすらかなこと。「せい」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-040",
+      "question": "「節約」の読み方をひらがなで書いてください",
+      "choices": [
+        "せつやく"
+      ],
+      "correct": 0,
+      "explanation": "節約（せつやく）: 無駄なく使うこと"
+    },
+    {
+      "id": "kanji-g4-041",
+      "question": "「選ぶ」の「選」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "えら"
+      ],
+      "correct": 0,
+      "explanation": "選（えら）ぶ: いくつかの中から決めること。「せん」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-042",
+      "question": "「争う」の「争」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "あらそ"
+      ],
+      "correct": 0,
+      "explanation": "争（あらそ）う: 互いに張り合うこと。「そう」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-043",
+      "question": "「続ける」の「続」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "つづ"
+      ],
+      "correct": 0,
+      "explanation": "続（つづ）ける: やめずに同じことをすること。「ぞく」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-044",
+      "question": "「望む」の「望」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "のぞ"
+      ],
+      "correct": 0,
+      "explanation": "望（のぞ）む: こうなってほしいと思うこと。「ぼう」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-045",
+      "question": "「満足」の読み方をひらがなで書いてください",
+      "choices": [
+        "まんぞく"
+      ],
+      "correct": 0,
+      "explanation": "満足（まんぞく）: 不満がなく十分なこと"
+    },
+    {
+      "id": "kanji-g4-046",
+      "question": "「養う」の「養」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "やしな"
+      ],
+      "correct": 0,
+      "explanation": "養（やしな）う: 育てること。「よう」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-047",
+      "question": "「録音」の読み方をひらがなで書いてください",
+      "choices": [
+        "ろくおん"
+      ],
+      "correct": 0,
+      "explanation": "録音（ろくおん）: 音を記録すること"
+    },
+    {
+      "id": "kanji-g4-048",
+      "question": "「辺り」の「辺」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "あた"
+      ],
+      "correct": 0,
+      "explanation": "辺（あた）り: まわりのこと。「へん」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-049",
+      "question": "「法律」の読み方をひらがなで書いてください",
+      "choices": [
+        "ほうりつ"
+      ],
+      "correct": 0,
+      "explanation": "法律（ほうりつ）: 国が定めたきまり"
+    },
+    {
+      "id": "kanji-g4-050",
+      "question": "「未来」の読み方をひらがなで書いてください",
+      "choices": [
+        "みらい"
+      ],
+      "correct": 0,
+      "explanation": "未来（みらい）: これから先のこと"
+    },
+    {
+      "id": "kanji-g4-051",
+      "question": "「印」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "しるし"
+      ],
+      "correct": 0,
+      "explanation": "印（しるし）: 目印となるマーク。「いん」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-052",
+      "question": "「衣類」の読み方をひらがなで書いてください",
+      "choices": [
+        "いるい"
+      ],
+      "correct": 0,
+      "explanation": "衣類（いるい）: 服のこと"
+    },
+    {
+      "id": "kanji-g4-053",
+      "question": "「景色」の読み方をひらがなで書いてください",
+      "choices": [
+        "けしき"
+      ],
+      "correct": 0,
+      "explanation": "景色（けしき）: 自然の眺めのこと"
+    },
+    {
+      "id": "kanji-g4-054",
+      "question": "「各自」の読み方をひらがなで書いてください",
+      "choices": [
+        "かくじ"
+      ],
+      "correct": 0,
+      "explanation": "各自（かくじ）: それぞれの人"
+    },
+    {
+      "id": "kanji-g4-055",
+      "question": "「管理」の読み方をひらがなで書いてください",
+      "choices": [
+        "かんり"
+      ],
+      "correct": 0,
+      "explanation": "管理（かんり）: 物事をしっかり扱うこと"
+    },
+    {
+      "id": "kanji-g4-056",
+      "question": "「軍隊」の読み方をひらがなで書いてください",
+      "choices": [
+        "ぐんたい"
+      ],
+      "correct": 0,
+      "explanation": "軍隊（ぐんたい）: 国を守るための兵士の集まり"
+    },
+    {
+      "id": "kanji-g4-057",
+      "question": "「訓練」の読み方をひらがなで書いてください",
+      "choices": [
+        "くんれん"
+      ],
+      "correct": 0,
+      "explanation": "訓練（くんれん）: くり返し練習して上達すること"
+    },
+    {
+      "id": "kanji-g4-058",
+      "question": "「積む」の「積」の読み方をひらがなで書いてください（訓読み）",
+      "choices": [
+        "つ"
+      ],
+      "correct": 0,
+      "explanation": "積（つ）む: 重ねて高くすること。「せき」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-g4-059",
+      "question": "「説明」の読み方をひらがなで書いてください",
+      "choices": [
+        "せつめい"
+      ],
+      "correct": 0,
+      "explanation": "説明（せつめい）: 物事をわかりやすく伝えること"
+    },
+    {
+      "id": "kanji-g4-060",
+      "question": "「倉庫」の読み方をひらがなで書いてください",
+      "choices": [
+        "そうこ"
+      ],
+      "correct": 0,
+      "explanation": "倉庫（そうこ）: 物をしまっておく建物"
     }
   ]
 }
