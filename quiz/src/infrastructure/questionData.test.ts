@@ -19,6 +19,7 @@ interface RawQuestion {
   choices: string[];
   correct: number;
   explanation: string;
+  questionType?: "multiple-choice" | "text-input";
 }
 
 interface QuestionFile {
@@ -26,6 +27,7 @@ interface QuestionFile {
   subjectName: string;
   category: string;
   categoryName: string;
+  questionType?: "multiple-choice" | "text-input";
   questions: RawQuestion[];
 }
 
@@ -140,10 +142,17 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     }
   });
 
-  it("全問題の choices がちょうど 4 つ", () => {
+  it("multiple-choice 問題の choices がちょうど 4 つ", () => {
     for (const qf of questionFiles) {
+      const fileType = qf.questionType ?? "multiple-choice";
       for (const q of qf.questions) {
-        expect(q.choices).toHaveLength(4);
+        const qType = q.questionType ?? fileType;
+        if (qType === "multiple-choice") {
+          expect(q.choices).toHaveLength(4);
+        } else {
+          // text-input 問題は 1 つ以上の choices を持つ
+          expect(q.choices.length).toBeGreaterThanOrEqual(1);
+        }
       }
     }
   });
@@ -158,12 +167,18 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     }
   });
 
-  it("correct が 0〜3 の整数", () => {
+  it("correct が choices の有効なインデックスである", () => {
     for (const qf of questionFiles) {
+      const fileType = qf.questionType ?? "multiple-choice";
       for (const q of qf.questions) {
+        const qType = q.questionType ?? fileType;
         expect(q.correct).toBeGreaterThanOrEqual(0);
-        expect(q.correct).toBeLessThanOrEqual(3);
         expect(Number.isInteger(q.correct)).toBe(true);
+        if (qType === "multiple-choice") {
+          expect(q.correct).toBeLessThanOrEqual(3);
+        } else {
+          expect(q.correct).toBeLessThan(q.choices.length);
+        }
       }
     }
   });
