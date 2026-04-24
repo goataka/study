@@ -14,6 +14,7 @@ import type { DrawingState } from "./notesCanvas";
 
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
+  { id: "all", name: "総合", icon: "🌐" },
   { id: "english", name: "英語", icon: "📚" },
   { id: "math", name: "数学", icon: "🔢" },
   { id: "japanese", name: "国語", icon: "📖" },
@@ -23,7 +24,7 @@ export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
   private currentMode: QuizMode = "random";
-  private filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
+  private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
@@ -230,8 +231,8 @@ export class QuizApp {
     const subject = this.filter.subject;
 
     if (subject === "all") {
-      // 「すべて」タブではカテゴリを細分化しないため、リストは空のまま
-      categoryList.innerHTML = "";
+      // 「総合」タブではカテゴリを細分化しないため、リストは空のまま
+      categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
       return;
     }
 
