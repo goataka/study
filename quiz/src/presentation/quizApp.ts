@@ -28,8 +28,7 @@ export class QuizApp {
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
-  private activePanelTab: "quiz" | "history" | "questions" = "quiz";
-  private activeNoteTab: "memo" | "guide" = "memo";
+  private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   private hideLearnedCategories: boolean = true;
 
   constructor() {
@@ -186,15 +185,17 @@ export class QuizApp {
   }
 
   /**
-   * インナーパネルタブ（クイズモード選択 / 実行記録 / 問題一覧）を初期化する
+   * インナーパネルタブ（クイズモード選択 / 解説 / 実行記録 / 問題一覧）を初期化する
    */
   private buildPanelTabs(): void {
     document.querySelectorAll<HTMLElement>(".panel-tab").forEach((tab) => {
       tab.addEventListener("click", () => {
-        const panel = tab.dataset.panel as "quiz" | "history" | "questions";
+        const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
         this.activePanelTab = panel;
         this.showPanelTab(panel);
-        if (panel === "history") {
+        if (panel === "guide") {
+          this.updateGuidePanelContent();
+        } else if (panel === "history") {
           this.renderHistoryList(this.filter);
         } else if (panel === "questions") {
           this.renderQuestionList();
@@ -382,12 +383,14 @@ export class QuizApp {
   /**
    * インナーパネルタブのコンテンツ表示を切り替える
    */
-  private showPanelTab(tab: "quiz" | "history" | "questions"): void {
+  private showPanelTab(tab: "quiz" | "guide" | "history" | "questions"): void {
     const quizModePanel = document.getElementById("quizModePanel");
+    const guideContent = document.getElementById("guideContent");
     const historyContent = document.getElementById("historyContent");
     const questionListContent = document.getElementById("questionListContent");
 
     quizModePanel?.classList.toggle("hidden", tab !== "quiz");
+    guideContent?.classList.toggle("hidden", tab !== "guide");
     historyContent?.classList.toggle("hidden", tab !== "history");
     questionListContent?.classList.toggle("hidden", tab !== "questions");
 
@@ -397,6 +400,34 @@ export class QuizApp {
       t.setAttribute("aria-selected", String(isActive));
       t.setAttribute("tabindex", isActive ? "0" : "-1");
     });
+  }
+
+  // ─── 解説パネル ────────────────────────────────────────────────────────────
+
+  /**
+   * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する。
+   */
+  private updateGuidePanelContent(): void {
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement | null;
+    const noContent = document.getElementById("guideNoContent");
+    if (!guideFrame) return;
+
+    const guideUrl =
+      this.filter.category !== "all"
+        ? this.useCase.getCategoryGuideUrl(this.filter.subject, this.filter.category)
+        : undefined;
+
+    if (guideUrl) {
+      if (guideFrame.getAttribute("src") !== guideUrl) {
+        guideFrame.src = guideUrl;
+      }
+      guideFrame.classList.remove("hidden");
+      noContent?.classList.add("hidden");
+    } else {
+      guideFrame.src = "about:blank";
+      guideFrame.classList.add("hidden");
+      noContent?.classList.remove("hidden");
+    }
   }
 
   // ─── 回答記録 ──────────────────────────────────────────────────────────────
@@ -674,10 +705,6 @@ export class QuizApp {
     this.on("clearNotesBtn", "click", () => this.clearNotes());
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
-    // ノートタブの切り替え
-    document.getElementById("notesTabMemo")?.addEventListener("click", () => this.showNoteTab("memo"));
-    document.getElementById("notesTabGuide")?.addEventListener("click", () => this.showNoteTab("guide"));
-
     // 学習済カテゴリの非表示トグル
     this.on("hideLearnedBtn", "click", () => this.toggleHideLearned());
 
@@ -723,6 +750,9 @@ export class QuizApp {
     this.renderHistoryList(this.filter);
     if (this.activePanelTab === "questions") {
       this.renderQuestionList();
+    }
+    if (this.activePanelTab === "guide") {
+      this.updateGuidePanelContent();
     }
   }
 
@@ -869,35 +899,6 @@ export class QuizApp {
   }
 
   /**
-   * クイズ画面のノートタブを切り替える。
-   * tab が "guide" の場合は解説 iframe を読み込む。
-   */
-  private showNoteTab(tab: "memo" | "guide"): void {
-    this.activeNoteTab = tab;
-
-    const memoContent = document.getElementById("notesMemoContent");
-    const guideContent = document.getElementById("notesGuideContent");
-    const memoTabBtn = document.getElementById("notesTabMemo");
-    const guideTabBtn = document.getElementById("notesTabGuide");
-
-    memoContent?.classList.toggle("hidden", tab !== "memo");
-    guideContent?.classList.toggle("hidden", tab !== "guide");
-    memoTabBtn?.classList.toggle("active", tab === "memo");
-    guideTabBtn?.classList.toggle("active", tab === "guide");
-
-    // 解説タブへ切り替えたときに iframe を読み込む
-    if (tab === "guide") {
-      const question = this.currentSession?.currentQuestion;
-      if (question?.guideUrl) {
-        const guideFrame = document.getElementById("guideFrame") as HTMLIFrameElement | null;
-        if (guideFrame && guideFrame.getAttribute("src") !== question.guideUrl) {
-          guideFrame.src = question.guideUrl;
-        }
-      }
-    }
-  }
-
-  /**
    * 現在選択中のカテゴリを学習済みとしてマークする。
    * 解答なしでも単元を学習済みにできる。
    */
@@ -918,9 +919,6 @@ export class QuizApp {
 
     // メモ状態をリセット
     this.notesStates.clear();
-
-    // ノートタブをメモに戻す（ DOM も合わせて更新）
-    this.showNoteTab("memo");
 
     this.showScreen("quiz");
     this.initializeNotesCanvas();
@@ -943,39 +941,6 @@ export class QuizApp {
 
     const progress = ((idx + 1) / total) * 100;
     (document.getElementById("progressFill") as HTMLElement).style.width = `${progress}%`;
-
-    // 解説リンクを更新
-    const guideLink = document.getElementById("guideLink") as HTMLAnchorElement | null;
-    if (guideLink) {
-      if (question.guideUrl) {
-        guideLink.href = question.guideUrl;
-        guideLink.classList.remove("hidden");
-      } else {
-        guideLink.classList.add("hidden");
-      }
-    }
-
-    // クイズ画面のノートタブ（解説タブ）の表示/非表示を更新
-    const notesTabGuide = document.getElementById("notesTabGuide");
-    if (notesTabGuide) {
-      if (question.guideUrl) {
-        notesTabGuide.classList.remove("hidden");
-      } else {
-        notesTabGuide.classList.add("hidden");
-        // 解説タブを表示中にguideUrlなしの問題に移動した場合はメモに戻す
-        if (this.activeNoteTab === "guide") {
-          this.showNoteTab("memo");
-        }
-      }
-    }
-
-    // 解説タブが開いている場合は iframe のソースを最新にする
-    if (this.activeNoteTab === "guide" && question.guideUrl) {
-      const guideFrame = document.getElementById("guideFrame") as HTMLIFrameElement | null;
-      if (guideFrame && guideFrame.getAttribute("src") !== question.guideUrl) {
-        guideFrame.src = question.guideUrl;
-      }
-    }
 
     this.setText("questionText", question.question);
     this.renderChoices(question, session);
