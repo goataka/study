@@ -949,6 +949,147 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
   });
 });
 
+describe("QuizApp — 問題一覧モーダル仕様", () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+      <span id="headerUserName"></span>
+      <div id="startScreen" class="screen active">
+        <div class="subject-tabs" role="tablist"></div>
+        <div id="subjectContent">
+          <div id="categoryList" class="category-list"></div>
+          <div id="statsInfo"></div>
+          <input type="radio" name="questionCount" value="5">
+          <input type="radio" name="questionCount" value="10" checked>
+          <input type="radio" name="questionCount" value="20">
+          <button id="startRandomBtn">ランダム</button>
+          <button id="startPracticeBtn">練習</button>
+          <button id="startRetryBtn" disabled>間違えた問題</button>
+          <button id="showQuestionListBtn">問題一覧</button>
+        </div>
+        <div id="historyContent" class="hidden">
+          <div id="historyList"></div>
+        </div>
+      </div>
+      <div id="quizScreen" class="screen">
+        <div id="questionNumber"></div>
+        <div id="topicName"></div>
+        <div id="progressFill" style="width:0%"></div>
+        <div id="questionText"></div>
+        <div id="choicesContainer"></div>
+        <button id="prevBtn" disabled>前へ</button>
+        <button id="nextBtn">次へ</button>
+        <button id="submitBtn" disabled>提出</button>
+        <a id="guideLink" class="hidden" href="#">解説</a>
+      </div>
+      <div id="resultScreen" class="screen">
+        <div id="scoreDisplay"></div>
+        <div id="resultDetails"></div>
+        <button id="retryAllBtn">もう一度</button>
+        <button id="retryWrongBtn">間違えた問題</button>
+        <button id="backToStartBtn">スタート画面に戻る</button>
+      </div>
+      <div id="questionListModal" class="modal-overlay hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 id="questionListTitle"></h2>
+            <button id="closeQuestionListBtn">✕</button>
+          </div>
+          <div id="questionListBody"></div>
+        </div>
+      </div>
+    `;
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("「問題一覧」ボタンをクリックするとモーダルが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("showQuestionListBtn") as HTMLButtonElement;
+    btn.click();
+
+    const modal = document.getElementById("questionListModal");
+    expect(modal?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("モーダルには現在の単元の問題が一覧表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("showQuestionListBtn") as HTMLButtonElement;
+    btn.click();
+
+    const items = document.querySelectorAll(".question-list-item");
+    expect(items.length).toBe(5); // mockQuestionFile に5問あるため
+  });
+
+  it("閉じるボタンをクリックするとモーダルが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("showQuestionListBtn")?.click();
+    document.getElementById("closeQuestionListBtn")?.click();
+
+    const modal = document.getElementById("questionListModal");
+    expect(modal?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("モーダルのタイトルに単元名と問題数が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("showQuestionListBtn")?.click();
+
+    const title = document.getElementById("questionListTitle");
+    expect(title?.textContent).toContain("5問");
+  });
+
+  it("各問題に正解が強調表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("showQuestionListBtn")?.click();
+
+    const correctChoices = document.querySelectorAll(".correct-choice");
+    expect(correctChoices.length).toBe(5); // 5問それぞれに1つの正解がある
+  });
+
+  it("オーバーレイをクリックするとモーダルが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("showQuestionListBtn")?.click();
+
+    const overlay = document.getElementById("questionListModal") as HTMLElement;
+    // overlay 自体をクリック（bubbling なしで target = overlay となるように dispatchEvent を使用）
+    const clickEvent = new MouseEvent("click", { bubbles: true });
+    Object.defineProperty(clickEvent, "target", { value: overlay, configurable: true });
+    overlay.dispatchEvent(clickEvent);
+
+    expect(overlay.classList.contains("hidden")).toBe(true);
+  });
+
+  it("Escape キーを押すとモーダルが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("showQuestionListBtn")?.click();
+
+    const modal = document.getElementById("questionListModal");
+    expect(modal?.classList.contains("hidden")).toBe(false);
+
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+
+    expect(modal?.classList.contains("hidden")).toBe(true);
+  });
+});
+
 describe("QuizApp — 結果画面の全問正解表示仕様", () => {
   beforeEach(() => {
     document.body.innerHTML = `

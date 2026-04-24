@@ -43,7 +43,6 @@
             <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
             <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
           </div>
-
           <!-- クイズモード選択パネル -->
           <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
             <div class="question-count-section">
@@ -60,6 +59,7 @@
               <button id="startRetryBtn" class="secondary-btn">間違えた問題だけ</button>
             </div>
             <div id="statsInfo" class="stats-info">読み込み中...</div>
+            <button id="showQuestionListBtn" class="question-list-btn">📋 問題一覧</button>
           </div>
 
           <!-- 実行記録パネル -->
@@ -136,6 +136,17 @@
         <button id="retryWrongBtn" class="secondary-btn">間違えた問題だけ</button>
         <button id="backToStartBtn" class="tertiary-btn">スタート画面に戻る</button>
       </div>
+    </div>
+  </div>
+
+  <!-- 問題一覧モーダル -->
+  <div id="questionListModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="questionListTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="questionListTitle" class="modal-title"></h2>
+        <button id="closeQuestionListBtn" class="modal-close-btn" aria-label="閉じる">✕</button>
+      </div>
+      <div id="questionListBody" class="modal-body"></div>
     </div>
   </div>
 
