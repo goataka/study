@@ -4,7 +4,7 @@
 
 | 現在形 | 過去形 |
 |--------|--------|
-| I am happy. | I (was) happy. |
+| The game is fun. | The game (was) fun. |
 | I am a student. | I (was) a student. |
 | I am tired. | I (was) tired. |
 | I am at home. | I (was) at home. |

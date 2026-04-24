@@ -4,7 +4,7 @@
 
 | 主語 | 文 |
 |------|------|
-| I | I am happy. |
+| I | I am a gamer. |
 | He | He (`is`) happy. |
 | She | She (`is`) a student. |
 | They | They (`are`) friends. |

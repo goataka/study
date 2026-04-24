@@ -4,7 +4,7 @@
 
 | 肯定文 | 否定文 |
 |--------|--------|
-| I can swim. | I (cannot / can't) swim. |
+| I can play games. | I (cannot / can't) play games. |
 | I must go. | I (must not / mustn't) go. |
 | I will come. | I (will not / won't) come. |
 | I should stay. | I (should not / shouldn't) stay. |

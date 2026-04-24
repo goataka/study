@@ -6,7 +6,7 @@
 
 | 主語 | 文 |
 |------|------|
-| I | I am happy. |
+| I | I am a gamer. |
 | He | He (　　　　　　) happy. |
 | She | She (　　　　　　) a student. |
 | They | They (　　　　　　) friends. |

@@ -1,11 +1,11 @@
 # 不規則動詞の過去形 - 解説
 
-現在形:
-I `buy` games.
+規則動詞（参考）:
+I `play` games. → I `played` games.
 
-## 過去形
+## 不規則動詞の過去形
 
-I `bought` games.
+I `buy` games. → I `bought` games.
 
 - 規則動詞は -ed をつけるが、不規則動詞は形が変わる
 - 暗記が必要

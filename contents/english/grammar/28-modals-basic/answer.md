@@ -4,7 +4,7 @@
 
 | 意味 | 文 |
 |------|------|
-| ～できる | I (can) play the piano. |
+| ～できる | I (can) play games. |
 | ～してもよい | I (may) go now. |
 | ～しなければならない | I (must) study hard. |
 | ～すべきだ | I (should) go to bed early. |

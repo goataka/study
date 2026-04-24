@@ -4,7 +4,7 @@
 
 | 現在形 | 未来形 |
 |--------|--------|
-| I am happy. | I (will be) happy. |
+| The game is fun. | The game (will be) fun. |
 | I am a student. | I (will be) a student. |
 | I am tired. | I (will be) tired. |
 | I am at home. | I (will be) at home. |

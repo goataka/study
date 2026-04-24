@@ -4,6 +4,7 @@
 
 | 現在形 | 過去形 |
 |--------|--------|
+| I buy games. | I (bought) games. |
 | I go to school. | I (went) to school. |
 | I eat breakfast. | I (ate) breakfast. |
 | I write a letter. | I (wrote) a letter. |
