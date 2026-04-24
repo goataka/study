@@ -52,7 +52,7 @@ export class QuizApp {
     this.buildSubjectTabs();
     this.buildPanelTabs();
     this.showPanelTab(this.activePanelTab);
-    this.renderHistoryList(this.filter.subject);
+    this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
     this.updateStartScreen();
     this.updateUserNameDisplay("headerUserName");
   }
@@ -179,7 +179,7 @@ export class QuizApp {
         this.activePanelTab = panel;
         this.showPanelTab(panel);
         if (panel === "history") {
-          this.renderHistoryList(this.filter.subject);
+          this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
         }
       });
     });
@@ -340,6 +340,7 @@ export class QuizApp {
       const isActive = t.dataset.panel === tab;
       t.classList.toggle("active", isActive);
       t.setAttribute("aria-selected", String(isActive));
+      t.setAttribute("tabindex", isActive ? "0" : "-1");
     });
   }
 
@@ -576,7 +577,7 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
-    this.renderHistoryList(this.filter.subject);
+    this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
   }
 
   private updateSubjectStats(): void {

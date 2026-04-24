@@ -40,12 +40,12 @@
         <div class="quiz-panel">
           <!-- インナータブ -->
           <div class="panel-tabs" role="tablist" aria-label="パネル切り替え">
-            <button class="panel-tab active" data-panel="quiz" role="tab" type="button" aria-selected="true">クイズモード選択</button>
-            <button class="panel-tab" data-panel="history" role="tab" type="button" aria-selected="false">📊 実行記録</button>
+            <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
+            <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
           </div>
 
           <!-- クイズモード選択パネル -->
-          <main id="quizModePanel">
+          <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
             <div class="question-count-section">
               <span class="question-count-label">問題数：</span>
               <div class="question-count-group">
@@ -60,10 +60,10 @@
               <button id="startRetryBtn" class="secondary-btn">間違えた問題だけ</button>
             </div>
             <div id="statsInfo" class="stats-info">読み込み中...</div>
-          </main>
+          </div>
 
           <!-- 実行記録パネル -->
-          <div id="historyContent" class="hidden">
+          <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
             <div id="historyList" class="history-list"></div>
           </div>
         </div>

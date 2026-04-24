@@ -62,18 +62,18 @@ function setupTabDom(): void {
       <div id="subjectContent">
         <div id="categoryList" class="category-list"></div>
         <div class="panel-tabs" role="tablist">
-          <button class="panel-tab active" data-panel="quiz" role="tab" type="button" aria-selected="true">クイズモード選択</button>
-          <button class="panel-tab" data-panel="history" role="tab" type="button" aria-selected="false">📊 実行記録</button>
+          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
+          <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
         </div>
-        <main id="quizModePanel">
+        <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
           <div id="statsInfo"></div>
           <input type="radio" name="questionCount" value="5">
           <input type="radio" name="questionCount" value="10" checked>
           <input type="radio" name="questionCount" value="20">
           <button id="startRandomBtn">ランダム</button>
           <button id="startRetryBtn" disabled>間違えた問題</button>
-        </main>
-        <div id="historyContent" class="hidden">
+        </div>
+        <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
           <div id="historyList"></div>
         </div>
       </div>
@@ -699,7 +699,7 @@ describe("QuizApp — 解説リンク仕様", () => {
   });
 });
 
-describe("QuizApp — 記録タブ仕様", () => {
+describe("QuizApp — パネルインナータブ仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
