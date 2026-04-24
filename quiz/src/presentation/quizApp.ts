@@ -28,6 +28,7 @@ export class QuizApp {
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
   private activeTab: "subject" | "history" = "subject";
+  private hideLearnedCategories: boolean = false;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -257,6 +258,8 @@ export class QuizApp {
 
     // アクティブ状態を更新
     this.updateCategoryListActive();
+    // 学習済の非表示状態を維持する
+    categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
   }
 
   private createCategoryItem(
@@ -545,6 +548,9 @@ export class QuizApp {
     this.on("clearNotesBtn", "click", () => this.clearNotes());
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
+    // 学習済カテゴリの非表示トグル
+    this.on("hideLearnedBtn", "click", () => this.toggleHideLearned());
+
     const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
     penSizeSelect?.addEventListener("change", (e) => {
       const size = parseInt((e.target as HTMLSelectElement).value);
@@ -638,6 +644,8 @@ export class QuizApp {
       }
 
       // 学習状態の絵文字を更新（⬜未学習 / 📖学習中 / ✅学習済）
+      const isLearned = studiedKeys.has(key) && stat.wrong === 0;
+      el.classList.toggle("learned", isLearned);
       const statusEl = el.querySelector(".category-status");
       if (statusEl) {
         if (!studiedKeys.has(key)) {
@@ -649,6 +657,21 @@ export class QuizApp {
         }
       }
     });
+  }
+
+  /**
+   * 学習済カテゴリの表示/非表示を切り替える
+   */
+  private toggleHideLearned(): void {
+    this.hideLearnedCategories = !this.hideLearnedCategories;
+    const categoryList = document.getElementById("categoryList");
+    if (categoryList) {
+      categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+    }
+    const btn = document.getElementById("hideLearnedBtn");
+    if (btn) {
+      btn.setAttribute("aria-pressed", String(this.hideLearnedCategories));
+    }
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────

@@ -60,6 +60,7 @@ function setupTabDom(): void {
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
       <div id="subjectContent">
+        <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
         <div id="categoryList" class="category-list"></div>
         <div id="statsInfo"></div>
         <input type="radio" name="questionCount" value="5">
@@ -845,6 +846,62 @@ describe("QuizApp — 記録タブ仕様", () => {
     const items = historyList?.querySelectorAll(".history-item");
     // すべての教科の記録が表示される
     expect(items?.length).toBe(2);
+  });
+});
+
+describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("「学習済を非表示」ボタンをクリックするとcategoryListにhide-learnedクラスが付与される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+
+    const categoryList = document.getElementById("categoryList");
+    expect(categoryList?.classList.contains("hide-learned")).toBe(true);
+  });
+
+  it("「学習済を非表示」ボタンを2回クリックするとhide-learnedクラスが解除される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+    btn?.click();
+
+    const categoryList = document.getElementById("categoryList");
+    expect(categoryList?.classList.contains("hide-learned")).toBe(false);
+  });
+
+  it("ボタンクリック後はaria-pressedがtrueになる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+
+    expect(btn?.getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("2回クリック後はaria-pressedがfalseに戻る", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+    btn?.click();
+
+    expect(btn?.getAttribute("aria-pressed")).toBe("false");
   });
 });
 

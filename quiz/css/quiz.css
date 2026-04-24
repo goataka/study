@@ -163,6 +163,40 @@ header nav .top-nav-btn {
     overflow-y: auto;
 }
 
+.category-panel-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+}
+
+.hide-learned-btn {
+    font-size: 11px;
+    padding: 3px 8px;
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+    background: white;
+    color: #586069;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s, color 0.15s;
+}
+
+.hide-learned-btn:hover {
+    background: #e8f0fe;
+    border-color: #0366d6;
+    color: #0366d6;
+}
+
+.hide-learned-btn[aria-pressed="true"] {
+    background: #0366d6;
+    border-color: #0366d6;
+    color: white;
+}
+
+.category-list.hide-learned .category-item.learned {
+    display: none;
+}
+
 /* カスタムスクロールバー（Webkit系ブラウザ用） */
 .category-panel::-webkit-scrollbar {
     width: 8px;
