@@ -21,7 +21,7 @@
     },
     {
       "id": "negatives-2",
-      "question": "I ___ play games yesterday. (一般動詞・過去・否定)",
+      "question": "I ___ play games. (一般動詞・過去・否定)",
       "choices": [
         "did not",
         "do not",
@@ -33,7 +33,7 @@
     },
     {
       "id": "negatives-3",
-      "question": "I ___ play games tomorrow. (一般動詞・未来・否定)",
+      "question": "I ___ play games. (一般動詞・未来・否定)",
       "choices": [
         "will not",
         "do not",
@@ -57,7 +57,7 @@
     },
     {
       "id": "negatives-5",
-      "question": "I ___ happy yesterday. (be動詞・過去・否定)",
+      "question": "I ___ happy. (be動詞・過去・否定)",
       "choices": [
         "was not",
         "am not",
@@ -81,7 +81,7 @@
     },
     {
       "id": "negatives-7",
-      "question": "I ___ playing games now. (進行形・否定)",
+      "question": "I ___ playing games. (進行形・否定)",
       "choices": [
         "am not",
         "do not",

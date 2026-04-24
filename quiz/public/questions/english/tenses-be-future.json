@@ -9,7 +9,7 @@
   "questions": [
     {
       "id": "tenses-be-future-1",
-      "question": "I ___ happy tomorrow.",
+      "question": "I ___ happy.",
       "choices": [
         "will be",
         "am",
@@ -21,7 +21,7 @@
     },
     {
       "id": "tenses-be-future-2",
-      "question": "I ___ a student next year.",
+      "question": "I ___ a student.",
       "choices": [
         "will be",
         "am",
@@ -33,7 +33,7 @@
     },
     {
       "id": "tenses-be-future-3",
-      "question": "He ___ tired tomorrow.",
+      "question": "He ___ tired.",
       "choices": [
         "will be",
         "is",
@@ -45,7 +45,7 @@
     },
     {
       "id": "tenses-be-future-4",
-      "question": "They ___ at home tomorrow.",
+      "question": "They ___ at home.",
       "choices": [
         "will be",
         "are",
@@ -57,7 +57,7 @@
     },
     {
       "id": "tenses-be-future-5",
-      "question": "She ___ hungry later.",
+      "question": "She ___ hungry.",
       "choices": [
         "will be",
         "is",
@@ -69,7 +69,7 @@
     },
     {
       "id": "tenses-be-future-6",
-      "question": "We ___ ready soon.",
+      "question": "We ___ ready.",
       "choices": [
         "will be",
         "are",
@@ -81,7 +81,7 @@
     },
     {
       "id": "tenses-be-future-7",
-      "question": "You ___ happy tomorrow.",
+      "question": "You ___ happy.",
       "choices": [
         "will be",
         "are",
@@ -93,7 +93,7 @@
     },
     {
       "id": "tenses-be-future-8",
-      "question": "It ___ cold tomorrow.",
+      "question": "It ___ cold.",
       "choices": [
         "will be",
         "is",

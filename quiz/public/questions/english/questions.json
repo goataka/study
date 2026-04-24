@@ -21,7 +21,7 @@
     },
     {
       "id": "questions-2",
-      "question": "___ you play games yesterday? (一般動詞・過去)",
+      "question": "___ you play games? (一般動詞・過去)",
       "choices": [
         "Did",
         "Do",
@@ -33,7 +33,7 @@
     },
     {
       "id": "questions-3",
-      "question": "___ you play games tomorrow? (一般動詞・未来)",
+      "question": "___ you play games? (一般動詞・未来)",
       "choices": [
         "Will",
         "Do",
@@ -57,7 +57,7 @@
     },
     {
       "id": "questions-5",
-      "question": "___ you happy yesterday? (be動詞・過去)",
+      "question": "___ you happy? (be動詞・過去)",
       "choices": [
         "Were",
         "Are",
@@ -69,7 +69,7 @@
     },
     {
       "id": "questions-6",
-      "question": "___ you playing games now? (進行形)",
+      "question": "___ you playing games? (進行形)",
       "choices": [
         "Are",
         "Do",

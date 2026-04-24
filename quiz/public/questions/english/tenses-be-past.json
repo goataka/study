@@ -9,7 +9,7 @@
   "questions": [
     {
       "id": "tenses-be-past-1",
-      "question": "I ___ happy yesterday.",
+      "question": "I ___ happy.",
       "choices": [
         "was",
         "am",
@@ -21,7 +21,7 @@
     },
     {
       "id": "tenses-be-past-2",
-      "question": "I ___ a student last year.",
+      "question": "I ___ a student.",
       "choices": [
         "was",
         "am",
@@ -33,7 +33,7 @@
     },
     {
       "id": "tenses-be-past-3",
-      "question": "I ___ tired yesterday.",
+      "question": "I ___ tired.",
       "choices": [
         "was",
         "am",
@@ -45,7 +45,7 @@
     },
     {
       "id": "tenses-be-past-4",
-      "question": "They ___ at home yesterday.",
+      "question": "They ___ at home.",
       "choices": [
         "were",
         "was",
@@ -57,7 +57,7 @@
     },
     {
       "id": "tenses-be-past-5",
-      "question": "He ___ hungry this morning.",
+      "question": "He ___ hungry.",
       "choices": [
         "was",
         "were",
@@ -69,7 +69,7 @@
     },
     {
       "id": "tenses-be-past-6",
-      "question": "She ___ happy yesterday.",
+      "question": "She ___ happy.",
       "choices": [
         "was",
         "were",
@@ -81,7 +81,7 @@
     },
     {
       "id": "tenses-be-past-7",
-      "question": "We ___ students last year.",
+      "question": "We ___ students.",
       "choices": [
         "were",
         "was",
@@ -93,7 +93,7 @@
     },
     {
       "id": "tenses-be-past-8",
-      "question": "You ___ tired yesterday.",
+      "question": "You ___ tired.",
       "choices": [
         "were",
         "was",

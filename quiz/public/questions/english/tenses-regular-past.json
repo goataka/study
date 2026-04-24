@@ -9,7 +9,7 @@
   "questions": [
     {
       "id": "tenses-regular-past-1",
-      "question": "I ___ games yesterday. (play)",
+      "question": "I ___ games. (play)",
       "choices": [
         "played",
         "play",
@@ -21,7 +21,7 @@
     },
     {
       "id": "tenses-regular-past-2",
-      "question": "I ___ English last night. (study)",
+      "question": "I ___ English. (study)",
       "choices": [
         "studied",
         "study",
@@ -33,7 +33,7 @@
     },
     {
       "id": "tenses-regular-past-3",
-      "question": "I ___ TV this morning. (watch)",
+      "question": "I ___ TV. (watch)",
       "choices": [
         "watched",
         "watch",
@@ -45,7 +45,7 @@
     },
     {
       "id": "tenses-regular-past-4",
-      "question": "I ___ music yesterday. (like)",
+      "question": "I ___ music. (like)",
       "choices": [
         "liked",
         "like",
@@ -57,7 +57,7 @@
     },
     {
       "id": "tenses-regular-past-5",
-      "question": "I ___ to school yesterday. (walk)",
+      "question": "I ___ to school. (walk)",
       "choices": [
         "walked",
         "walk",
@@ -69,7 +69,7 @@
     },
     {
       "id": "tenses-regular-past-6",
-      "question": "She ___ tennis last week. (play)",
+      "question": "She ___ tennis. (play)",
       "choices": [
         "played",
         "play",
@@ -81,7 +81,7 @@
     },
     {
       "id": "tenses-regular-past-7",
-      "question": "They ___ the movie yesterday. (watch)",
+      "question": "They ___ the movie. (watch)",
       "choices": [
         "watched",
         "watch",
@@ -93,7 +93,7 @@
     },
     {
       "id": "tenses-regular-past-8",
-      "question": "He ___ hard last month. (study)",
+      "question": "He ___ hard. (study)",
       "choices": [
         "studied",
         "study",

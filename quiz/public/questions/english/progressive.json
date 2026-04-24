@@ -9,7 +9,7 @@
   "questions": [
     {
       "id": "progressive-1",
-      "question": "I ___ playing games yesterday at 3pm. (過去進行形)",
+      "question": "I ___ playing games. (過去進行形)",
       "choices": [
         "was",
         "am",
@@ -21,7 +21,7 @@
     },
     {
       "id": "progressive-2",
-      "question": "I ___ playing games tomorrow at 3pm. (未来進行形)",
+      "question": "I ___ playing games. (未来進行形)",
       "choices": [
         "will be",
         "am",
@@ -33,7 +33,7 @@
     },
     {
       "id": "progressive-3",
-      "question": "I ___ studying English now. (現在進行形)",
+      "question": "I ___ studying English. (現在進行形)",
       "choices": [
         "am",
         "was",
@@ -45,7 +45,7 @@
     },
     {
       "id": "progressive-4",
-      "question": "She ___ studying English yesterday. (過去進行形)",
+      "question": "She ___ studying English. (過去進行形)",
       "choices": [
         "was",
         "is",
@@ -57,7 +57,7 @@
     },
     {
       "id": "progressive-5",
-      "question": "They ___ writing letters tomorrow. (未来進行形)",
+      "question": "They ___ writing letters. (未来進行形)",
       "choices": [
         "will be",
         "are",
@@ -69,7 +69,7 @@
     },
     {
       "id": "progressive-6",
-      "question": "He ___ playing soccer now. (現在進行形)",
+      "question": "He ___ playing soccer. (現在進行形)",
       "choices": [
         "is",
         "was",
@@ -81,7 +81,7 @@
     },
     {
       "id": "progressive-7",
-      "question": "We ___ watching TV yesterday evening. (過去進行形)",
+      "question": "We ___ watching TV. (過去進行形)",
       "choices": [
         "were",
         "are",
@@ -93,7 +93,7 @@
     },
     {
       "id": "progressive-8",
-      "question": "You ___ reading a book now. (現在進行形)",
+      "question": "You ___ reading a book. (現在進行形)",
       "choices": [
         "are",
         "were",

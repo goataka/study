@@ -9,7 +9,7 @@
   "questions": [
     {
       "id": "tenses-irregular-1",
-      "question": "I ___ to school yesterday. (go)",
+      "question": "I ___ to school. (go)",
       "choices": [
         "went",
         "go",
@@ -21,7 +21,7 @@
     },
     {
       "id": "tenses-irregular-2",
-      "question": "I ___ breakfast this morning. (eat)",
+      "question": "I ___ breakfast. (eat)",
       "choices": [
         "ate",
         "eat",
@@ -33,7 +33,7 @@
     },
     {
       "id": "tenses-irregular-3",
-      "question": "I ___ a letter yesterday. (write)",
+      "question": "I ___ a letter. (write)",
       "choices": [
         "wrote",
         "write",
@@ -45,7 +45,7 @@
     },
     {
       "id": "tenses-irregular-4",
-      "question": "I ___ fast yesterday. (run)",
+      "question": "I ___ fast. (run)",
       "choices": [
         "ran",
         "run",
@@ -57,7 +57,7 @@
     },
     {
       "id": "tenses-irregular-5",
-      "question": "I ___ a dog when I was young. (have)",
+      "question": "I ___ a dog. (have)",
       "choices": [
         "had",
         "have",
@@ -69,7 +69,7 @@
     },
     {
       "id": "tenses-irregular-6",
-      "question": "I ___ books yesterday. (read)",
+      "question": "I ___ books. (read)",
       "choices": [
         "read",
         "readed",
@@ -81,7 +81,7 @@
     },
     {
       "id": "tenses-irregular-7",
-      "question": "I ___ a bird this morning. (see)",
+      "question": "I ___ a bird. (see)",
       "choices": [
         "saw",
         "see",
@@ -93,7 +93,7 @@
     },
     {
       "id": "tenses-irregular-8",
-      "question": "I ___ the bus yesterday. (take)",
+      "question": "I ___ the bus. (take)",
       "choices": [
         "took",
         "take",
@@ -105,7 +105,7 @@
     },
     {
       "id": "tenses-irregular-9",
-      "question": "I ___ home early yesterday. (come)",
+      "question": "I ___ home early. (come)",
       "choices": [
         "came",
         "come",
@@ -117,7 +117,7 @@
     },
     {
       "id": "tenses-irregular-10",
-      "question": "I ___ a cake last week. (make)",
+      "question": "I ___ a cake. (make)",
       "choices": [
         "made",
         "make",

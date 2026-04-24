@@ -9,7 +9,7 @@
   "questions": [
     {
       "id": "tenses-regular-future-1",
-      "question": "I ___ games tomorrow. (play)",
+      "question": "I ___ games. (play)",
       "choices": [
         "will play",
         "play",
@@ -21,7 +21,7 @@
     },
     {
       "id": "tenses-regular-future-2",
-      "question": "I ___ English next week. (study)",
+      "question": "I ___ English. (study)",
       "choices": [
         "will study",
         "study",
@@ -33,7 +33,7 @@
     },
     {
       "id": "tenses-regular-future-3",
-      "question": "I ___ TV tonight. (watch)",
+      "question": "I ___ TV. (watch)",
       "choices": [
         "will watch",
         "watch",
@@ -45,7 +45,7 @@
     },
     {
       "id": "tenses-regular-future-4",
-      "question": "She ___ music tomorrow. (like)",
+      "question": "She ___ music. (like)",
       "choices": [
         "will like",
         "like",
@@ -57,7 +57,7 @@
     },
     {
       "id": "tenses-regular-future-5",
-      "question": "He ___ to school tomorrow. (walk)",
+      "question": "He ___ to school. (walk)",
       "choices": [
         "will walk",
         "walk",
@@ -69,7 +69,7 @@
     },
     {
       "id": "tenses-regular-future-6",
-      "question": "They ___ tennis next Sunday. (play)",
+      "question": "They ___ tennis. (play)",
       "choices": [
         "will play",
         "play",
@@ -81,7 +81,7 @@
     },
     {
       "id": "tenses-regular-future-7",
-      "question": "We ___ the movie next week. (watch)",
+      "question": "We ___ the movie. (watch)",
       "choices": [
         "will watch",
         "watch",
@@ -93,7 +93,7 @@
     },
     {
       "id": "tenses-regular-future-8",
-      "question": "I ___ hard next month. (study)",
+      "question": "I ___ hard. (study)",
       "choices": [
         "will study",
         "study",

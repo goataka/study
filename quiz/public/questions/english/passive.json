@@ -9,7 +9,7 @@
   "questions": [
     {
       "id": "passive-1",
-      "question": "Games ___ played by me yesterday. (過去形の受動態)",
+      "question": "Games ___ played by me. (過去形の受動態)",
       "choices": [
         "were",
         "are",
@@ -21,7 +21,7 @@
     },
     {
       "id": "passive-2",
-      "question": "Games ___ played by me tomorrow. (未来形の受動態)",
+      "question": "Games ___ played by me. (未来形の受動態)",
       "choices": [
         "will be",
         "are",
@@ -57,7 +57,7 @@
     },
     {
       "id": "passive-5",
-      "question": "A cake ___ made by me tomorrow. (未来形の受動態)",
+      "question": "A cake ___ made by me. (未来形の受動態)",
       "choices": [
         "will be",
         "is",
@@ -93,7 +93,7 @@
     },
     {
       "id": "passive-8",
-      "question": "The window ___ broken yesterday. (過去形の受動態)",
+      "question": "The window ___ broken. (過去形の受動態)",
       "choices": [
         "was",
         "is",
