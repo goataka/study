@@ -24,7 +24,7 @@ export class QuizApp {
   private currentMode: QuizMode = "random";
   private filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
-  private questionCount: number = 20;
+  private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
   private activeTab: "subject" | "history" = "subject";
