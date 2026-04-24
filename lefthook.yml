@@ -1,5 +1,7 @@
 pre-commit:
   commands:
+    unstage-unchanged-png:
+      run: bash quiz/scripts/unstage-unchanged-png.sh
     build-and-test:
       run: npm run build && npm run test && npm run test:e2e
       root: quiz/
