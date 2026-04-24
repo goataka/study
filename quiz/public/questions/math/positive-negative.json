@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "positive-negative",
   "categoryName": "正負の数",
+  "parentCategory": "algebra",
+  "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/22-positive-negative/guide",
   "questions": [
     {

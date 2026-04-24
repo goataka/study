@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "probability",
   "categoryName": "確率",
+  "parentCategory": "algebra",
+  "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/27-probability/guide",
   "questions": [
     {
