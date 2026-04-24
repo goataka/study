@@ -473,12 +473,98 @@ export class QuizApp {
     return item;
   }
 
+  // ─── 問題一覧モーダル ──────────────────────────────────────────────────────
+
+  /**
+   * 現在のフィルターに基づいて問題一覧モーダルを表示する
+   */
+  private showQuestionListModal(): void {
+    const modal = document.getElementById("questionListModal");
+    const titleEl = document.getElementById("questionListTitle");
+    const bodyEl = document.getElementById("questionListBody");
+    if (!modal || !titleEl || !bodyEl) return;
+
+    const questions = this.useCase.getFilteredQuestions(this.filter);
+
+    // タイトルを設定
+    if (this.filter.category === "all") {
+      const subjectName = SUBJECTS.find((s) => s.id === this.filter.subject)?.name ?? this.filter.subject;
+      titleEl.textContent = `${subjectName} — 全問題一覧（${questions.length}問）`;
+    } else {
+      const catName = questions[0]?.categoryName ?? this.filter.category;
+      titleEl.textContent = `${catName} — 問題一覧（${questions.length}問）`;
+    }
+
+    // 問題リストを構築
+    bodyEl.innerHTML = "";
+    if (questions.length === 0) {
+      const empty = document.createElement("p");
+      empty.style.color = "#586069";
+      empty.textContent = "この単元に問題はありません。";
+      bodyEl.appendChild(empty);
+    } else {
+      questions.forEach((q, index) => {
+        bodyEl.appendChild(this.buildQuestionListItem(q, index + 1));
+      });
+    }
+
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  /**
+   * 問題一覧モーダルを閉じる
+   */
+  private closeQuestionListModal(): void {
+    const modal = document.getElementById("questionListModal");
+    if (!modal || modal.classList.contains("hidden")) return;
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+
+  /**
+   * 問題一覧の1問分のHTML要素を構築する
+   */
+  private buildQuestionListItem(question: Question, number: number): HTMLElement {
+    const item = document.createElement("div");
+    item.className = "question-list-item";
+
+    const numDiv = document.createElement("div");
+    numDiv.className = "question-list-number";
+    numDiv.textContent = `第${number}問`;
+    item.appendChild(numDiv);
+
+    const textDiv = document.createElement("div");
+    textDiv.className = "question-list-text";
+    textDiv.textContent = question.question;
+    item.appendChild(textDiv);
+
+    const choicesDiv = document.createElement("div");
+    choicesDiv.className = "question-list-choices";
+    question.choices.forEach((choice, i) => {
+      const choiceDiv = document.createElement("div");
+      choiceDiv.className = `question-list-choice${i === question.correct ? " correct-choice" : ""}`;
+      choiceDiv.textContent = `${i === question.correct ? "✓ " : "　"}${choice}`;
+      choicesDiv.appendChild(choiceDiv);
+    });
+    item.appendChild(choicesDiv);
+
+    const explanationDiv = document.createElement("div");
+    explanationDiv.className = "question-list-explanation";
+    explanationDiv.textContent = question.explanation;
+    item.appendChild(explanationDiv);
+
+    return item;
+  }
+
   // ─── イベント登録 ──────────────────────────────────────────────────────────
 
   private setupEventListeners(): void {
     this.on("startRandomBtn", "click", () => this.startQuiz("random"));
     this.on("startPracticeBtn", "click", () => this.startQuiz("practice"));
     this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
+    this.on("showQuestionListBtn", "click", () => this.showQuestionListModal());
+    this.on("closeQuestionListBtn", "click", () => this.closeQuestionListModal());
     this.on("prevBtn", "click", () => this.navigate(-1));
     this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
@@ -555,6 +641,21 @@ export class QuizApp {
     penColorSelect?.addEventListener("change", (e) => {
       const color = (e.target as HTMLSelectElement).value;
       this.notesCanvas?.setPenColor(color);
+    });
+
+    // モーダルオーバーレイをクリックで閉じる
+    const modalOverlay = document.getElementById("questionListModal");
+    modalOverlay?.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) {
+        this.closeQuestionListModal();
+      }
+    });
+
+    // Escape キーでモーダルを閉じる
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        this.closeQuestionListModal();
+      }
     });
   }
 
