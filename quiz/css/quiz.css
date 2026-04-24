@@ -254,17 +254,50 @@ header nav .top-nav-btn {
     background: white;
     border: 1px solid #e1e4e8;
     border-radius: 8px;
-    padding: 30px;
     align-self: start;
     position: sticky;
     top: var(--quiz-panel-sticky-top, 120px);
+    overflow: hidden;
 }
 
-.quiz-panel h2 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 20px;
+/* インナータブ */
+.panel-tabs {
+    display: flex;
+    border-bottom: 1px solid #e1e4e8;
+    background: #f6f8fa;
+}
+
+.panel-tab {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 14px;
     font-weight: 600;
+    color: #586069;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.panel-tab:hover {
+    color: #0366d6;
+    background: #e8f0fe;
+}
+
+.panel-tab.active {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+    background: white;
+}
+
+/* クイズモードパネルとHistoryパネルの余白 */
+#quizModePanel {
+    padding: 24px 30px;
+}
+
+#historyContent {
+    padding: 16px 20px;
 }
 
 .button-group {
@@ -961,10 +994,6 @@ button:disabled {
 }
 
 /* ─── 回答記録 ─────────────────────────────────────────────────────────────── */
-
-#historyContent {
-    margin-top: 24px;
-}
 
 .history-section-title {
     font-size: 16px;
