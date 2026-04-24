@@ -402,6 +402,26 @@ export class QuizApp {
     });
   }
 
+  /**
+   * メモエリアのタブを切り替える（"memo" または "guide"）。
+   */
+  private showNoteTab(tab: "memo" | "guide"): void {
+    const memoContent = document.getElementById("notesMemoContent");
+    const guideContent = document.getElementById("notesGuideContent");
+
+    memoContent?.classList.toggle("hidden", tab !== "memo");
+    guideContent?.classList.toggle("hidden", tab !== "guide");
+
+    document.querySelectorAll<HTMLElement>(".notes-tab-btn").forEach((t) => {
+      const isActive = t.id === `notesTab${tab.charAt(0).toUpperCase()}${tab.slice(1)}`;
+      t.classList.toggle("active", isActive);
+    });
+
+    if (tab === "guide") {
+      this.updateNotesGuidePanelContent();
+    }
+  }
+
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
   /**
@@ -410,6 +430,32 @@ export class QuizApp {
   private updateGuidePanelContent(): void {
     const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement | null;
     const noContent = document.getElementById("guideNoContent");
+    if (!guideFrame) return;
+
+    const guideUrl =
+      this.filter.category !== "all"
+        ? this.useCase.getCategoryGuideUrl(this.filter.subject, this.filter.category)
+        : undefined;
+
+    if (guideUrl) {
+      if (guideFrame.getAttribute("src") !== guideUrl) {
+        guideFrame.src = guideUrl;
+      }
+      guideFrame.classList.remove("hidden");
+      noContent?.classList.add("hidden");
+    } else {
+      guideFrame.src = "about:blank";
+      guideFrame.classList.add("hidden");
+      noContent?.classList.remove("hidden");
+    }
+  }
+
+  /**
+   * メモエリアの解説タブのコンテンツを現在選択中のカテゴリに合わせて更新する。
+   */
+  private updateNotesGuidePanelContent(): void {
+    const guideFrame = document.getElementById("notesGuideFrame") as HTMLIFrameElement | null;
+    const noContent = document.getElementById("notesGuideNoContent");
     if (!guideFrame) return;
 
     const guideUrl =

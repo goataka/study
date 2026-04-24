@@ -120,6 +120,7 @@
           <div class="notes-area">
             <div class="notes-tab-bar">
               <button id="notesTabMemo" class="notes-tab-btn active" type="button">📝 メモ</button>
+              <button id="notesTabGuide" class="notes-tab-btn" type="button">📖 解説</button>
             </div>
             <!-- メモエリア -->
             <div id="notesMemoContent">
@@ -147,6 +148,11 @@
                 <button id="handwritingConfirmBtn" class="handwriting-confirm-btn" type="button">確定する</button>
                 <div id="handwritingSelfEvalArea" class="hidden"></div>
               </div>
+            </div>
+            <!-- 解説エリア（notesTabGuideで表示） -->
+            <div id="notesGuideContent" class="hidden">
+              <iframe id="notesGuideFrame" class="guide-frame notes-guide-frame" title="解説" sandbox="" referrerpolicy="no-referrer"></iframe>
+              <p id="notesGuideNoContent" class="guide-no-content">カテゴリを選択すると解説が表示されます。</p>
             </div>
           </div>
         </div>
