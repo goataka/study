@@ -457,9 +457,7 @@ export class QuizApp {
       const answerP = document.createElement("p");
       answerP.className = "history-entry-answer";
       const userAnswer = entry.userAnswerText ?? (entry.choices[entry.userAnswerIndex] ?? "未回答");
-      const correctAnswer = entry.userAnswerText !== undefined
-        ? (entry.choices[entry.correctAnswerIndex] ?? "")
-        : (entry.choices[entry.correctAnswerIndex] ?? "");
+      const correctAnswer = entry.choices[entry.correctAnswerIndex] ?? "";
       if (entry.isCorrect) {
         answerP.textContent = `正解: ${correctAnswer}`;
       } else {
@@ -927,10 +925,10 @@ export class QuizApp {
 
     submitBtn.addEventListener("click", handleSubmit);
     input.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        handleSubmit();
-      }
+      if (e.key !== "Enter") return;
+      if (e.isComposing || e.keyCode === 229) return;
+      e.preventDefault();
+      handleSubmit();
     });
 
     wrapper.appendChild(input);

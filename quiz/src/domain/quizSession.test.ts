@@ -293,3 +293,10 @@ describe("QuizSession — text-input 問題の回答仕様", () => {
     expect(session.canSubmit()).toBe(true);
   });
 });
+
+describe("QuizSession — selectTextAnswer ガード仕様", () => {
+  it("multiple-choice 問題に selectTextAnswer を呼び出すとエラーになる", () => {
+    const session = new QuizSession([q1]);
+    expect(() => session.selectTextAnswer(0, "A")).toThrow("selectTextAnswer cannot be called on a non-text-input question");
+  });
+});

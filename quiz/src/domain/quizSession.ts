@@ -65,13 +65,17 @@ export class QuizSession {
 
   /**
    * text-input 問題に対してテキスト回答を登録する。
-   * 正解と一致する場合は correct インデックス（0）、不一致の場合は -1 を内部的に格納する。
+   * 正解と一致する場合は `question.correct` のインデックス、不一致の場合は -1 を内部的に格納する。
+   * multiple-choice 問題に対して呼び出すと Error をスローする。
    */
   selectTextAnswer(questionIndex: number, text: string): void {
     if (questionIndex < 0 || questionIndex >= this._questions.length) {
       throw new Error(`Invalid question index: ${questionIndex}`);
     }
     const question = this._questions[questionIndex]!;
+    if ((question.questionType ?? "multiple-choice") !== "text-input") {
+      throw new Error(`selectTextAnswer cannot be called on a non-text-input question (index: ${questionIndex})`);
+    }
     this._userTextAnswers.set(questionIndex, text);
     const correctAnswer = question.choices[question.correct] ?? "";
     const isCorrect = normalizeTextAnswer(text) === normalizeTextAnswer(correctAnswer);
