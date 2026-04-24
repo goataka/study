@@ -4,7 +4,7 @@
 
 ( ) に正しい最上級を入れましょう。
 
-基本文（原級）: I play games well.
+基本文（原級）: This game is hard.
 
 ### 短い形容詞
 
