@@ -1867,42 +1867,54 @@ const mockTextInputFile = {
   ],
 };
 
+/** テキスト入力問題用のDOMセットアップ（メモエリアのnotesCanvas・確定ボタン含む） */
+function setupTextInputDom(): void {
+  document.body.innerHTML = `
+    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+    <span id="headerUserName"></span>
+    <div id="startScreen" class="screen active">
+      <div id="statsInfo"></div>
+      <input type="radio" name="questionCount" value="5">
+      <input type="radio" name="questionCount" value="10" checked>
+      <input type="radio" name="questionCount" value="20">
+      <button id="startRandomBtn">ランダム</button>
+      <button id="startRetryBtn" disabled>間違えた問題</button>
+    </div>
+    <div id="quizScreen" class="screen">
+      <div id="questionNumber"></div>
+      <div id="topicName"></div>
+      <div id="progressFill" style="width:0%"></div>
+      <div id="questionText"></div>
+      <div id="choicesContainer"></div>
+      <div id="answerFeedback" class="answer-feedback hidden">
+        <div id="feedbackResult" class="feedback-result"></div>
+        <div id="feedbackExplanation" class="feedback-explanation"></div>
+      </div>
+      <button id="prevBtn" disabled>前へ</button>
+      <button id="nextBtn">次へ</button>
+      <button id="submitBtn" disabled>提出</button>
+      <a id="guideLink" class="hidden" href="#">解説</a>
+      <div id="notesMemoContent">
+        <span id="notesTitle">タッチペンで書けます</span>
+        <canvas id="notesCanvas"></canvas>
+        <div id="handwritingConfirmArea" class="hidden">
+          <button id="handwritingConfirmBtn" type="button">確定する</button>
+        </div>
+      </div>
+    </div>
+    <div id="resultScreen" class="screen">
+      <div id="scoreDisplay"></div>
+      <div id="resultDetails"></div>
+      <button id="retryAllBtn">もう一度</button>
+      <button id="retryWrongBtn">間違えた問題</button>
+      <button id="backToStartBtn">スタート画面に戻る</button>
+    </div>
+  `;
+}
+
 describe("QuizApp — テキスト入力問題のタッチペン入力仕様", () => {
   beforeEach(() => {
-    document.body.innerHTML = `
-      <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
-      <span id="headerUserName"></span>
-      <div id="startScreen" class="screen active">
-        <div id="statsInfo"></div>
-        <input type="radio" name="questionCount" value="5">
-        <input type="radio" name="questionCount" value="10" checked>
-        <input type="radio" name="questionCount" value="20">
-        <button id="startRandomBtn">ランダム</button>
-        <button id="startRetryBtn" disabled>間違えた問題</button>
-      </div>
-      <div id="quizScreen" class="screen">
-        <div id="questionNumber"></div>
-        <div id="topicName"></div>
-        <div id="progressFill" style="width:0%"></div>
-        <div id="questionText"></div>
-        <div id="choicesContainer"></div>
-        <div id="answerFeedback" class="answer-feedback hidden">
-          <div id="feedbackResult" class="feedback-result"></div>
-          <div id="feedbackExplanation" class="feedback-explanation"></div>
-        </div>
-        <button id="prevBtn" disabled>前へ</button>
-        <button id="nextBtn">次へ</button>
-        <button id="submitBtn" disabled>提出</button>
-        <a id="guideLink" class="hidden" href="#">解説</a>
-      </div>
-      <div id="resultScreen" class="screen">
-        <div id="scoreDisplay"></div>
-        <div id="resultDetails"></div>
-        <button id="retryAllBtn">もう一度</button>
-        <button id="retryWrongBtn">間違えた問題</button>
-        <button id="backToStartBtn">スタート画面に戻る</button>
-      </div>
-    `;
+    setupTextInputDom();
 
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -1919,90 +1931,34 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     vi.restoreAllMocks();
   });
 
-  it("テキスト入力問題ではモード切り替えボタンが表示される", async () => {
+  it("テキスト入力問題ではメモエリアのnotesTitleが手書き入力を促すテキストに変わる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const modeToggle = document.querySelector(".text-input-mode-toggle");
-    expect(modeToggle).not.toBeNull();
-
-    const keyboardBtn = document.querySelector('.mode-toggle-btn[class*="active"]');
-    expect(keyboardBtn?.textContent).toContain("キーボード");
-
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)");
-    expect(penBtn?.textContent).toContain("タッチペン");
+    const notesTitle = document.getElementById("notesTitle");
+    expect(notesTitle?.textContent).toContain("手書き");
   });
 
-  it("初期状態ではキーボードモードがアクティブでキーボードセクションが表示される", async () => {
+  it("テキスト入力問題では確定ボタンエリアが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const keyboardSection = document.querySelector(".keyboard-input-section");
-    expect(keyboardSection).not.toBeNull();
-    expect(keyboardSection?.classList.contains("hidden")).toBe(false);
+    const confirmArea = document.getElementById("handwritingConfirmArea");
+    expect(confirmArea?.classList.contains("hidden")).toBe(false);
 
-    const penSection = document.querySelector(".pen-input-section");
-    expect(penSection).not.toBeNull();
-    expect(penSection?.classList.contains("hidden")).toBe(true);
+    const confirmBtn = document.getElementById("handwritingConfirmBtn");
+    expect(confirmBtn).not.toBeNull();
+    expect(confirmBtn?.textContent).toContain("確定");
   });
 
-  it("タッチペンボタンをクリックするとタッチペンセクションが表示されキーボードセクションが非表示になる", async () => {
+  it("「確定する」をクリックすると自己評価ボタンが確定エリアに表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
-
-    const keyboardSection = document.querySelector(".keyboard-input-section");
-    expect(keyboardSection?.classList.contains("hidden")).toBe(true);
-
-    const penSection = document.querySelector(".pen-input-section");
-    expect(penSection?.classList.contains("hidden")).toBe(false);
-  });
-
-  it("タッチペンモードに切り替えると描画キャンバスが表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
-
-    const canvas = document.querySelector(".handwriting-canvas");
-    expect(canvas).not.toBeNull();
-    expect(canvas?.tagName).toBe("CANVAS");
-  });
-
-  it("タッチペンモードに切り替えるとクリアボタンと確認するボタンが表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
-
-    const clearBtn = document.querySelector(".handwriting-clear-btn");
-    expect(clearBtn).not.toBeNull();
-    expect(clearBtn?.textContent).toContain("消す");
-
-    const submitBtn = document.querySelector(".pen-input-section .text-answer-submit-btn");
-    expect(submitBtn).not.toBeNull();
-    expect(submitBtn?.textContent).toContain("確認する");
-  });
-
-  it("タッチペンモードで「確認する」をクリックすると自己評価ボタンが表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
-
-    const penSubmitBtn = document.querySelector(".pen-input-section .text-answer-submit-btn") as HTMLElement;
-    penSubmitBtn?.click();
+    document.getElementById("handwritingConfirmBtn")?.click();
 
     const selfEvalBtns = document.querySelector(".self-eval-buttons");
     expect(selfEvalBtns).not.toBeNull();
@@ -2014,16 +1970,12 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     expect(incorrectBtn?.textContent).toContain("不正解");
   });
 
-  it("タッチペンモードで「確認する」をクリックすると正解が表示される", async () => {
+  it("「確定する」をクリックすると確定エリアに正解が表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
-
-    const penSubmitBtn = document.querySelector(".pen-input-section .text-answer-submit-btn") as HTMLElement;
-    penSubmitBtn?.click();
+    document.getElementById("handwritingConfirmBtn")?.click();
 
     const revealText = document.querySelector(".handwriting-reveal-text");
     expect(revealText?.textContent).toContain("正解は");
@@ -2035,11 +1987,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
-
-    const penSubmitBtn = document.querySelector(".pen-input-section .text-answer-submit-btn") as HTMLElement;
-    penSubmitBtn?.click();
+    document.getElementById("handwritingConfirmBtn")?.click();
 
     const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
     correctBtn?.click();
@@ -2052,16 +2000,29 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     expect(feedbackResult?.textContent).toContain("正解");
   });
 
+  it("「○ 正解だった」をクリックするとテキスト入力欄に正解が反映される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
+    correctBtn?.click();
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.disabled).toBe(true);
+    // 選択される問題はランダムだが正解テキストがいずれかであることを確認
+    const validAnswers = mockTextInputFile.questions.map((q) => q.choices[0]);
+    expect(validAnswers).toContain(textInput?.value);
+  });
+
   it("「× 不正解だった」をクリックすると不正解としてセッションに登録されフィードバックが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
-
-    const penSubmitBtn = document.querySelector(".pen-input-section .text-answer-submit-btn") as HTMLElement;
-    penSubmitBtn?.click();
+    document.getElementById("handwritingConfirmBtn")?.click();
 
     const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLElement;
     incorrectBtn?.click();
@@ -2079,11 +2040,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
-
-    const penSubmitBtn = document.querySelector(".pen-input-section .text-answer-submit-btn") as HTMLElement;
-    penSubmitBtn?.click();
+    document.getElementById("handwritingConfirmBtn")?.click();
 
     const correctBtn = document.querySelector(".self-eval-correct") as HTMLButtonElement;
     correctBtn?.click();
@@ -2093,26 +2050,24 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     expect(incorrectBtn?.disabled).toBe(true);
   });
 
-  it("キーボードモードに戻るとキーボードセクションが再表示される", async () => {
+  it("選択肢問題では確定ボタンエリアが非表示のままで notesTitleが変わらない", async () => {
+    // 選択肢問題のモックに差し替え
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFile) } as Response);
+    });
+
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    // タッチペンモードに切り替え
-    const penBtn = document.querySelector(".mode-toggle-btn:not(.active)") as HTMLElement;
-    penBtn?.click();
+    const confirmArea = document.getElementById("handwritingConfirmArea");
+    expect(confirmArea?.classList.contains("hidden")).toBe(true);
 
-    // キーボードモードに戻す
-    const keyboardBtn = document.querySelector('.mode-toggle-btn:not([class*="active"]), .mode-toggle-btn.active') as HTMLElement;
-    // キーボードボタン（タッチペン切替後はキーボードがアクティブでない）を取得
-    const allModeBtns = document.querySelectorAll(".mode-toggle-btn");
-    const kbBtn = Array.from(allModeBtns).find((btn) => btn.textContent?.includes("キーボード")) as HTMLElement;
-    kbBtn?.click();
-
-    const keyboardSection = document.querySelector(".keyboard-input-section");
-    expect(keyboardSection?.classList.contains("hidden")).toBe(false);
-
-    const pSection = document.querySelector(".pen-input-section");
-    expect(pSection?.classList.contains("hidden")).toBe(true);
+    const notesTitle = document.getElementById("notesTitle");
+    expect(notesTitle?.textContent).toBe("タッチペンで書けます");
   });
 });
