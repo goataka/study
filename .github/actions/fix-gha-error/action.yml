@@ -81,6 +81,7 @@ runs:
       id: collect-error
       shell: bash
       env:
+        GH_TOKEN: ${{ inputs.github-token }}
         WF_NAME: ${{ github.event.workflow_run.name }}
         WF_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
         WF_HTML_URL: ${{ github.event.workflow_run.html_url }}
@@ -101,21 +102,35 @@ runs:
         echo "run_url=${RUN_URL}" >> $GITHUB_OUTPUT
 
         # PRが関連しているかチェック
+        PR_NUMBER=""
+        TARGET_BRANCH=""
+
+        # まず workflow_run.pull_requests から取得を試みる
         PR_COUNT=$(echo "${WF_PULL_REQUESTS}" | jq 'length // 0')
         if [ "$PR_COUNT" -gt 0 ]; then
-          TARGET_BRANCH=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].head.ref // empty')
-          PR_NUMBER=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].number // empty')
-          if [ -n "$TARGET_BRANCH" ] && [ -n "$PR_NUMBER" ]; then
-            echo "is_pr=true" >> $GITHUB_OUTPUT
-            echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
-            echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
+          _BRANCH=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].head.ref // empty')
+          _PR=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].number // empty')
+          if [ -n "$_BRANCH" ] && [ -n "$_PR" ]; then
+            TARGET_BRANCH="$_BRANCH"
+            PR_NUMBER="$_PR"
             echo "::notice::PRベースのワークフロー実行です (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
-          else
-            echo "is_pr=false" >> $GITHUB_OUTPUT
-            echo "target_branch=${WF_HEAD_BRANCH}" >> $GITHUB_OUTPUT
-            echo "pr_number=" >> $GITHUB_OUTPUT
-            echo "::notice::ブランチベースのワークフロー実行です (ターゲット: ${WF_HEAD_BRANCH})"
           fi
+        fi
+
+        # workflow_run.pull_requests が空またはPR番号取得失敗の場合、ブランチ名でAPIを検索
+        if [ -z "$PR_NUMBER" ] && [ -n "${WF_HEAD_BRANCH}" ] && [ "${WF_HEAD_BRANCH}" != "main" ]; then
+          FOUND=$(gh pr list --state open --head "${WF_HEAD_BRANCH}" --json number --limit 1 --jq '.[0].number // empty')
+          if [ -n "$FOUND" ]; then
+            PR_NUMBER="$FOUND"
+            TARGET_BRANCH="${WF_HEAD_BRANCH}"
+            echo "::notice::ブランチ名でPRを検索しました (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
+          fi
+        fi
+
+        if [ -n "$PR_NUMBER" ]; then
+          echo "is_pr=true" >> $GITHUB_OUTPUT
+          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
+          echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
         else
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
           if [ -z "$TARGET_BRANCH" ]; then
