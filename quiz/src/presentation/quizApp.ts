@@ -54,9 +54,9 @@ export class QuizApp {
     this.buildSubjectTabs();
     this.buildPanelTabs();
     this.showPanelTab(this.activePanelTab);
-    this.renderHistoryList(this.filter.subject !== "all" ? this.filter.subject : undefined);
-    this.updateStartScreen();
+    this.updateSubjectStats();
     this.selectFirstUnlearnedCategory();
+    this.updateStartScreen();
     // 学習済み非表示の初期状態をボタンのaria-pressed属性に反映する
     const hideLearnedBtn = document.getElementById("hideLearnedBtn");
     if (hideLearnedBtn) {
@@ -1057,16 +1057,21 @@ export class QuizApp {
 
     if (screenName === "start") {
       this.showPanelTab(this.activePanelTab);
-      this.updateStartScreen();
+      this.updateSubjectStats();
       this.selectFirstUnlearnedCategory();
+      this.updateStartScreen();
     }
   }
 
   /**
    * 学習済みではない最初のカテゴリを自動選択する。
    * スタート画面の表示時に呼び出されることで、次に学習すべき単元を案内する。
+   * URLパラメータでカテゴリが明示指定されている場合はスキップする。
    */
   private selectFirstUnlearnedCategory(): void {
+    // URLパラメータで特定カテゴリが指定されている場合はディープリンク挙動を維持する
+    if (new URLSearchParams(window.location.search).has("category")) return;
+
     const categoryList = document.getElementById("categoryList");
     if (!categoryList) return;
 
@@ -1082,7 +1087,7 @@ export class QuizApp {
       this.filter.category = category;
       this.filter.parentCategory = parentCategory;
       this.updateCategoryListActive();
-      this.updateStartScreen();
+      // updateStartScreen() は呼び出し元が担う（二重実行を避けるため）
     }
   }
 
