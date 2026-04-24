@@ -4,7 +4,7 @@
 
 ## 動作フロー
 
-- **PRあり**: `gh pr comment` で `@copilot` メンションコメントを投稿
+- **PRあり**: `gh pr comment` で `@copilot` メンションコメントを投稿し、`gh pr edit --add-assignee @copilot` でCopilotをアサイン（ボットのメンションはCopilotに無視されるためアサインでセッションを開始）
   - PR検出①: `workflow_run.pull_requests` にPR情報がある場合
   - PR検出②: 空の場合はヘッドブランチ名で `gh pr list` を検索（フォールバック）
 - **PRなし**: `gh issue list` で同一タイトルのオープンIssueを検索

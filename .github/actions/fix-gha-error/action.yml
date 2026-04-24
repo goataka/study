@@ -180,6 +180,12 @@ runs:
           [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
           gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
           echo "::notice::PR #${PR_NUMBER} にCopilotメンションコメントを投稿しました"
+          # ボットのメンションはCopilotに無視されるため、アサインでセッションを開始する
+          if GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh pr edit "${PR_NUMBER}" --add-assignee "@copilot"; then
+            echo "::notice::PR #${PR_NUMBER} にCopilotをアサインしました"
+          else
+            echo "::warning::CopilotのアサインができませんでしたがコメントはPRに投稿済みです: #${PR_NUMBER}"
+          fi
         else
           ISSUE_TITLE="[CI失敗] ${WORKFLOW_NAME}"
           EXISTING_ISSUE_NUMBER=$(gh issue list \
