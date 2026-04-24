@@ -19,6 +19,8 @@ export interface Question {
   parentCategory?: string;
   parentCategoryName?: string;
   guideUrl?: string;
+  /** カテゴリの代表例文（省略可）。バッククォートで囲まれた部分が強調表示される */
+  example?: string;
   /** 問題種別: "multiple-choice"（4択, デフォルト）または "text-input"（テキスト入力） */
   questionType?: QuestionType;
 }
@@ -43,6 +45,8 @@ export interface QuestionFile {
   parentCategory?: string;
   parentCategoryName?: string;
   guideUrl?: string;
+  /** カテゴリの代表例文（省略可）。バッククォートで囲まれた部分が強調表示される */
+  example?: string;
   /** ファイル全体のデフォルト問題種別（省略時は "multiple-choice"） */
   questionType?: QuestionType;
   questions: RawQuestion[];
@@ -121,6 +125,10 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       }
     }
   }
+  // example はオプションの文字列フィールド
+  if (qf.example !== undefined && typeof qf.example !== "string") {
+    throw new Error('"example" must be a string if present');
+  }
   // questionType（ファイルレベル）はオプション
   if (qf.questionType !== undefined && qf.questionType !== "multiple-choice" && qf.questionType !== "text-input") {
     throw new Error('"questionType" must be "multiple-choice" or "text-input"');
@@ -195,6 +203,7 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     parentCategory: qf.parentCategory,
     parentCategoryName: qf.parentCategoryName,
     guideUrl: qf.guideUrl,
+    example: qf.example,
     questionType: q.questionType ?? fileQuestionType,
   }));
 }
