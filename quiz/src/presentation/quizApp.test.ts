@@ -1329,6 +1329,43 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     const statusEl = catItem?.querySelector(".category-status");
     expect(statusEl?.textContent).toBe("✅");
   });
+
+  it("学習済みのカテゴリを選択するとボタンが「↩ 未学習に戻す」になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    markLearnedBtn.click();
+    // 学習済みになったのでボタンが「未学習に戻す」に変わる
+    expect(markLearnedBtn.textContent).toBe("↩ 未学習に戻す");
+  });
+
+  it("「↩ 未学習に戻す」ボタンをクリックするとカテゴリが 📖 に戻る", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    // 学習済みにする
+    markLearnedBtn.click();
+    expect(catItem?.querySelector(".category-status")?.textContent).toBe("✅");
+
+    // 未学習に戻す
+    markLearnedBtn.click();
+    expect(catItem?.querySelector(".category-status")?.textContent).toBe("📖");
+    expect(markLearnedBtn.textContent).toBe("✅ 学習済みにする");
+  });
 });
 
 describe("QuizApp — 問題一覧タブ仕様", () => {

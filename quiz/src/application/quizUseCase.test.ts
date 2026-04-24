@@ -487,6 +487,82 @@ describe("QuizUseCase — markCategoryAsLearned 仕様", () => {
   });
 });
 
+describe("QuizUseCase — unmarkCategoryAsLearned 仕様", () => {
+  it("対象カテゴリの全問題が wrongIds に追加される", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics"),
+      makeQuestion("q2", "english", "phonics"),
+      makeQuestion("q3", "english", "linking"),
+    ];
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.unmarkCategoryAsLearned({ subject: "english", category: "phonics" });
+
+    expect(progressRepo.getStoredIds()).toContain("q1");
+    expect(progressRepo.getStoredIds()).toContain("q2");
+    // 他のカテゴリの問題は追加されない
+    expect(progressRepo.getStoredIds()).not.toContain("q3");
+  });
+
+  it("すでに wrongIds にある問題は重複追加されない", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository(["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.unmarkCategoryAsLearned({ subject: "english", category: "phonics" });
+
+    expect(progressRepo.getStoredIds().filter((id) => id === "q1")).toHaveLength(1);
+  });
+
+  it("category が 'all' の場合は何もしない", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.unmarkCategoryAsLearned({ subject: "english", category: "all" });
+
+    expect(progressRepo.getStoredIds()).toHaveLength(0);
+  });
+
+  it("subject が 'all' の場合は何もしない", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.unmarkCategoryAsLearned({ subject: "all", category: "phonics" });
+
+    expect(progressRepo.getStoredIds()).toHaveLength(0);
+  });
+
+  it("問題が0件の場合は何もしない", async () => {
+    const progressRepo = new StubProgressRepository(["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository([]), progressRepo);
+    await useCase.initialize();
+
+    useCase.unmarkCategoryAsLearned({ subject: "english", category: "phonics" });
+
+    expect(progressRepo.getStoredIds()).toContain("q1");
+  });
+
+  it("markCategoryAsLearned 後に unmarkCategoryAsLearned すると wrongIds に問題が戻る", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository(["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryAsLearned({ subject: "english", category: "phonics" });
+    expect(progressRepo.getStoredIds()).not.toContain("q1");
+
+    useCase.unmarkCategoryAsLearned({ subject: "english", category: "phonics" });
+    expect(progressRepo.getStoredIds()).toContain("q1");
+  });
+});
+
 describe("QuizUseCase — getCategoryGuideUrl 仕様", () => {
   it("guideUrl を持つ問題のカテゴリでは URL が返る", async () => {
     const questions = [
