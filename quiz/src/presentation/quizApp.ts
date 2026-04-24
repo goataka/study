@@ -1531,6 +1531,21 @@ export class QuizApp {
       eraserBtn.title = isEraser ? "ペンに戻す" : "消しゴム";
     }
   }
+
+  /**
+   * メモエリアのタブ（"memo" | "guide"）を切り替える。
+   */
+  private showNoteTab(tab: "memo" | "guide"): void {
+    const memoContent = document.getElementById("notesMemoContent");
+    const guideContent = document.getElementById("notesGuideContent");
+    memoContent?.classList.toggle("hidden", tab !== "memo");
+    guideContent?.classList.toggle("hidden", tab !== "guide");
+
+    document.querySelectorAll<HTMLElement>(".notes-tab-btn").forEach((btn) => {
+      const isActive = btn.id === (tab === "memo" ? "notesTabMemo" : "notesTabGuide");
+      btn.classList.toggle("active", isActive);
+    });
+  }
 }
 
 // アプリケーション起動
