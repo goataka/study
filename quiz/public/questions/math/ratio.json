@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "ratio",
   "categoryName": "比",
+  "parentCategory": "arithmetic",
+  "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/20-ratio/guide",
   "questions": [
     {
