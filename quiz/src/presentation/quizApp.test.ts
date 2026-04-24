@@ -61,15 +61,21 @@ function setupTabDom(): void {
       <div class="subject-tabs" role="tablist"></div>
       <div id="subjectContent">
         <div id="categoryList" class="category-list"></div>
-        <div id="statsInfo"></div>
-        <input type="radio" name="questionCount" value="5">
-        <input type="radio" name="questionCount" value="10" checked>
-        <input type="radio" name="questionCount" value="20">
-        <button id="startRandomBtn">ランダム</button>
-        <button id="startRetryBtn" disabled>間違えた問題</button>
-      </div>
-      <div id="historyContent" class="hidden">
-        <div id="historyList"></div>
+        <div class="panel-tabs" role="tablist">
+          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
+          <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
+        </div>
+        <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
+          <div id="statsInfo"></div>
+          <input type="radio" name="questionCount" value="5">
+          <input type="radio" name="questionCount" value="10" checked>
+          <input type="radio" name="questionCount" value="20">
+          <button id="startRandomBtn">ランダム</button>
+          <button id="startRetryBtn" disabled>間違えた問題</button>
+        </div>
+        <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
+          <div id="historyList"></div>
+        </div>
       </div>
     </div>
     <div id="quizScreen" class="screen">
@@ -693,7 +699,7 @@ describe("QuizApp — 解説リンク仕様", () => {
   });
 });
 
-describe("QuizApp — 記録タブ仕様", () => {
+describe("QuizApp — パネルインナータブ仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
@@ -704,20 +710,22 @@ describe("QuizApp — 記録タブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("タブに「記録」タブが描画される", async () => {
+  it("パネルに「クイズモード選択」と「実行記録」のインナータブが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const historyTab = document.querySelector('.subject-tab[data-tab="history"]');
+    const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
+    const historyTab = document.querySelector('.panel-tab[data-panel="history"]');
+    expect(quizTab).not.toBeNull();
     expect(historyTab).not.toBeNull();
-    expect(historyTab?.textContent).toContain("記録");
+    expect(historyTab?.textContent).toContain("実行記録");
   });
 
-  it("「記録」タブをクリックするとhighlightが切り替わりhistoryContentが表示される", async () => {
+  it("「実行記録」インナータブをクリックするとhistoryContentが表示されquizModePanelが非表示になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const historyTab = document.querySelector('.subject-tab[data-tab="history"]') as HTMLElement;
+    const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
     historyTab?.click();
 
     expect(historyTab?.classList.contains("active")).toBe(true);
@@ -726,39 +734,42 @@ describe("QuizApp — 記録タブ仕様", () => {
     const historyContent = document.getElementById("historyContent");
     expect(historyContent?.classList.contains("hidden")).toBe(false);
 
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    // subjectContentは常に表示される
     const subjectContent = document.getElementById("subjectContent");
-    expect(subjectContent?.classList.contains("hidden")).toBe(true);
+    expect(subjectContent?.classList.contains("hidden")).toBe(false);
   });
 
-  it("履歴がないとき「記録」タブをクリックすると空メッセージが表示される", async () => {
+  it("履歴がないとき「実行記録」タブをクリックすると空メッセージが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const historyTab = document.querySelector('.subject-tab[data-tab="history"]') as HTMLElement;
+    const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
     historyTab?.click();
 
     const historyList = document.getElementById("historyList");
     expect(historyList?.querySelector(".history-empty")).not.toBeNull();
   });
 
-  it("教科タブをクリックするとsubjectContentが再び表示される", async () => {
+  it("「クイズモード選択」インナータブをクリックするとquizModePanelが再び表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 記録タブを開く
-    const historyTab = document.querySelector('.subject-tab[data-tab="history"]') as HTMLElement;
+    // 実行記録タブを開く
+    const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
     historyTab?.click();
 
-    // 英語タブに戻る
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
+    // クイズモード選択タブに戻る
+    const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]') as HTMLElement;
+    quizTab?.click();
 
-    const subjectContent = document.getElementById("subjectContent");
-    expect(subjectContent?.classList.contains("hidden")).toBe(false);
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
 
-    // historyContentはクイズモード選択の下に常時表示されるため、非表示にならない
     const historyContent = document.getElementById("historyContent");
-    expect(historyContent?.classList.contains("hidden")).toBe(false);
+    expect(historyContent?.classList.contains("hidden")).toBe(true);
   });
 
   it("教科タブを選択すると選択した教科の記録のみ表示される", async () => {
@@ -804,7 +815,7 @@ describe("QuizApp — 記録タブ仕様", () => {
     expect(items?.length).toBe(1);
   });
 
-  it("「記録」タブをクリックするとすべての教科の記録が表示される", async () => {
+  it("数学タブを選択すると数学の記録のみ表示される", async () => {
     // 英語と数学の両方の記録をlocalStorageに追加
     const records = [
       {
@@ -837,14 +848,14 @@ describe("QuizApp — 記録タブ仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 記録タブをクリック
-    const historyTab = document.querySelector('.subject-tab[data-tab="history"]') as HTMLElement;
-    historyTab?.click();
+    // 数学タブをクリック
+    const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
+    mathTab?.click();
 
     const historyList = document.getElementById("historyList");
     const items = historyList?.querySelectorAll(".history-item");
-    // すべての教科の記録が表示される
-    expect(items?.length).toBe(2);
+    // 数学の記録のみ表示される
+    expect(items?.length).toBe(1);
   });
 });
 
