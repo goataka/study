@@ -67,7 +67,12 @@ class StubProgressRepository implements IProgressRepository {
   loadHistory() {
     return [...this.history];
   }
-  saveHistory(_records: import("./ports").QuizRecord[]): void {}
+  saveHistory(records: import("./ports").QuizRecord[]): void {
+    this.history = [...records];
+  }
+  getStoredHistory(): import("./ports").QuizRecord[] {
+    return [...this.history];
+  }
 }
 
 // ─── テスト ──────────────────────────────────────────────────────────────────
@@ -380,5 +385,75 @@ describe("QuizUseCase — getStudiedCategoryKeys 仕様", () => {
     await useCase.initialize();
     const keys = useCase.getStudiedCategoryKeys();
     expect(keys.has("english::tenses-past")).toBe(false);
+  });
+});
+
+describe("QuizUseCase — markCategoryAsLearned 仕様", () => {
+  it("対象カテゴリの問題が wrongIds から除かれる", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics"),
+      makeQuestion("q2", "english", "phonics"),
+      makeQuestion("q3", "english", "linking"),
+    ];
+    const progressRepo = new StubProgressRepository(["q1", "q2", "q3"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryAsLearned({ subject: "english", category: "phonics" });
+
+    expect(progressRepo.getStoredIds()).not.toContain("q1");
+    expect(progressRepo.getStoredIds()).not.toContain("q2");
+    // 他のカテゴリの問題は除かれない
+    expect(progressRepo.getStoredIds()).toContain("q3");
+  });
+
+  it("対象カテゴリの correctStreaks がクリアされる", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository(["q1"], [], { q1: 2 });
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryAsLearned({ subject: "english", category: "phonics" });
+
+    expect(progressRepo.getStoredStreaks()["q1"]).toBeUndefined();
+  });
+
+  it("履歴に manual モードのレコードが追加される", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryAsLearned({ subject: "english", category: "phonics" });
+
+    const history = progressRepo.getStoredHistory();
+    expect(history).toHaveLength(1);
+    expect(history[0]!.mode).toBe("manual");
+    expect(history[0]!.subject).toBe("english");
+    expect(history[0]!.category).toBe("phonics");
+    expect(history[0]!.totalCount).toBe(1);
+    expect(history[0]!.correctCount).toBe(1);
+  });
+
+  it("問題が0件の場合は何もしない", async () => {
+    const progressRepo = new StubProgressRepository(["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository([]), progressRepo);
+    await useCase.initialize();
+
+    useCase.markCategoryAsLearned({ subject: "english", category: "phonics" });
+
+    expect(progressRepo.getStoredIds()).toContain("q1");
+    expect(progressRepo.getStoredHistory()).toHaveLength(0);
+  });
+
+  it("markCategoryAsLearned 後に getStudiedCategoryKeys でそのカテゴリが学習済みになる", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), progressRepo);
+    await useCase.initialize();
+
+    expect(useCase.getStudiedCategoryKeys().has("english::phonics")).toBe(false);
+    useCase.markCategoryAsLearned({ subject: "english", category: "phonics" });
+    expect(useCase.getStudiedCategoryKeys().has("english::phonics")).toBe(true);
   });
 });

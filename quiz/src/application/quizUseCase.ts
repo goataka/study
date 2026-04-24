@@ -170,6 +170,51 @@ export class QuizUseCase {
     return this.progressRepo.loadHistory();
   }
 
+  /**
+   * 指定したカテゴリを手動で学習済みとしてマークする。
+   * 解答なしでも単元を学習済みにできる機能。
+   * 対象カテゴリの問題を wrongIds から除き、履歴に manual レコードを追加する。
+   */
+  markCategoryAsLearned(filter: QuizFilter): void {
+    const questions = this.getFilteredQuestions(filter);
+    if (questions.length === 0) return;
+
+    const questionIds = new Set(questions.map((q) => q.id));
+
+    // 対象カテゴリの問題を wrongIds から除く
+    this.wrongIds = this.wrongIds.filter((id) => !questionIds.has(id));
+
+    // 対象カテゴリの correctStreaks をクリア
+    for (const id of questionIds) {
+      delete this.correctStreaks[id];
+    }
+
+    this.progressRepo.saveWrongIds(this.wrongIds);
+    this.progressRepo.saveCorrectStreaks(this.correctStreaks);
+
+    // 履歴に手動マークのレコードを追加
+    const firstQuestion = questions[0]!;
+    const subjectName = firstQuestion.subjectName ?? firstQuestion.subject;
+    const categoryName = firstQuestion.categoryName ?? firstQuestion.category;
+
+    const record: QuizRecord = {
+      id: new Date().toISOString(),
+      date: new Date().toISOString(),
+      subject: filter.subject,
+      subjectName,
+      category: filter.category,
+      categoryName: filter.category === "all" ? `${subjectName} 全体` : categoryName,
+      mode: "manual",
+      totalCount: questions.length,
+      correctCount: questions.length,
+      entries: [],
+    };
+
+    const history = this.progressRepo.loadHistory();
+    history.unshift(record);
+    this.progressRepo.saveHistory(history);
+  }
+
   get wrongQuestionIds(): string[] {
     return [...this.wrongIds];
   }

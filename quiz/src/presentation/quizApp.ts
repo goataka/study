@@ -479,6 +479,7 @@ export class QuizApp {
     this.on("startRandomBtn", "click", () => this.startQuiz("random"));
     this.on("startPracticeBtn", "click", () => this.startQuiz("practice"));
     this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
+    this.on("markLearnedBtn", "click", () => this.markCategoryAsLearned());
     this.on("prevBtn", "click", () => this.navigate(-1));
     this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
@@ -564,6 +565,7 @@ export class QuizApp {
     this.updateSubjectStats();
     const statsInfo = document.getElementById("statsInfo");
     const retryBtn = document.getElementById("startRetryBtn") as HTMLButtonElement | null;
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement | null;
     if (!statsInfo || !retryBtn) return;
 
     const filteredCount = this.useCase.getFilteredQuestions(this.filter).length;
@@ -575,6 +577,12 @@ export class QuizApp {
         : `全${filteredCount}問 / 間違えた問題はありません`;
 
     retryBtn.disabled = wrongCount === 0;
+
+    // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
+    if (markLearnedBtn) {
+      markLearnedBtn.disabled = this.filter.category === "all";
+    }
+
     this.renderHistoryList(this.activeTab === "subject" ? this.filter.subject : undefined);
   }
 
@@ -652,6 +660,15 @@ export class QuizApp {
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
+
+  /**
+   * 現在選択中のカテゴリを学習済みとしてマークする。
+   * 解答なしでも単元を学習済みにできる。
+   */
+  private markCategoryAsLearned(): void {
+    this.useCase.markCategoryAsLearned(this.filter);
+    this.updateStartScreen();
+  }
 
   private startQuiz(mode: QuizMode): void {
     try {

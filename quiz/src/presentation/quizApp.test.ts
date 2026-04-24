@@ -67,6 +67,7 @@ function setupTabDom(): void {
         <input type="radio" name="questionCount" value="20">
         <button id="startRandomBtn">ランダム</button>
         <button id="startRetryBtn" disabled>間違えた問題</button>
+        <button id="markLearnedBtn" disabled>学習済みにする</button>
       </div>
       <div id="historyContent" class="hidden">
         <div id="historyList"></div>
@@ -935,5 +936,57 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const statusEl = catItem?.querySelector(".category-status");
     expect(statusEl?.textContent).toBe("📖");
+  });
+});
+
+describe("QuizApp — 学習済みにするボタン仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("初期状態（全カテゴリ選択）では「学習済みにする」ボタンが無効", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    expect(markLearnedBtn.disabled).toBe(true);
+  });
+
+  it("特定カテゴリを選択すると「学習済みにする」ボタンが有効になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    expect(markLearnedBtn.disabled).toBe(false);
+  });
+
+  it("「学習済みにする」ボタンをクリックするとカテゴリが ✅ になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    markLearnedBtn.click();
+
+    // 学習済みになるので ✅ が表示される
+    const statusEl = catItem?.querySelector(".category-status");
+    expect(statusEl?.textContent).toBe("✅");
   });
 });
