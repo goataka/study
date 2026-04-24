@@ -217,6 +217,17 @@ export class QuizUseCase {
     this.progressRepo.saveHistory(history);
   }
 
+  /**
+   * 指定した教科・カテゴリの解説 URL を返す。
+   * 該当カテゴリに guideUrl が設定されていない場合は undefined を返す。
+   */
+  getCategoryGuideUrl(subject: string, category: string): string | undefined {
+    const q = this.allQuestions.find(
+      (q) => q.subject === subject && q.category === category
+    );
+    return q?.guideUrl;
+  }
+
   get wrongQuestionIds(): string[] {
     return [...this.wrongIds];
   }

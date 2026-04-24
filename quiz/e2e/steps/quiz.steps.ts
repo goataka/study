@@ -55,6 +55,24 @@ Then("the quiz panel should remain visible", async ({ page }) => {
   expect(panelBox!.y + panelBox!.height).toBeLessThanOrEqual(viewportSize!.height);
 });
 
+Then("the category list should be visible", async ({ page }) => {
+  // カテゴリリストが表示されていることを確認
+  const categoryList = page.locator("#categoryList");
+  await expect(categoryList).toBeVisible();
+});
+
+Then("the quiz panel should be visible", async ({ page }) => {
+  // クイズパネルが表示されていることを確認
+  const quizPanel = page.locator(".quiz-panel");
+  await expect(quizPanel).toBeVisible();
+});
+
+When("I click the first category item", async ({ page }) => {
+  // 最初のカテゴリアイテムをクリックする
+  const firstItem = page.locator(".category-item").first();
+  await firstItem.click();
+});
+
 When("I click the {string} button", async ({ page }, buttonText: string) => {
   await page.getByRole("button", { name: buttonText }).click();
 });

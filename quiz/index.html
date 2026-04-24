@@ -109,28 +109,39 @@
           </div>
         </div>
 
-        <!-- 右列: メモエリア -->
+        <!-- 右列: メモ/解説エリア -->
         <div class="quiz-notes-col">
           <div class="notes-area">
-            <div class="notes-header">
-              <span class="notes-title">📝 メモ（タッチペンで書けます）</span>
-              <div class="notes-controls">
-                <button id="clearNotesBtn" class="notes-btn" type="button" title="メモをクリア" aria-label="メモをクリア">🗑️</button>
-                <button id="eraserBtn" class="notes-btn" type="button" title="消しゴム" aria-label="消しゴム"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16zm.255-8.172 4.893 4.894-2.276 2.035-5.022-5.022 2.405-1.907z"/></svg></button>
-                <select id="penSizeSelect" class="pen-size-select" title="線の太さ" aria-label="線の太さ">
-                  <option value="2" selected>普通</option>
-                  <option value="4">太い</option>
-                  <option value="6">極太</option>
-                </select>
-                <select id="penColorSelect" class="pen-color-select" title="色" aria-label="線の色">
-                  <option value="#000000">黒</option>
-                  <option value="#0366d6">青</option>
-                  <option value="#dc3545">赤</option>
-                  <option value="#28a745">緑</option>
-                </select>
-              </div>
+            <div class="notes-tab-bar">
+              <button id="notesTabMemo" class="notes-tab-btn active" type="button">📝 メモ</button>
+              <button id="notesTabGuide" class="notes-tab-btn hidden" type="button">📖 解説</button>
             </div>
-            <canvas id="notesCanvas" class="notes-canvas"></canvas>
+            <!-- メモエリア -->
+            <div id="notesMemoContent">
+              <div class="notes-header">
+                <span class="notes-title">タッチペンで書けます</span>
+                <div class="notes-controls">
+                  <button id="clearNotesBtn" class="notes-btn" type="button" title="メモをクリア" aria-label="メモをクリア">🗑️</button>
+                  <button id="eraserBtn" class="notes-btn" type="button" title="消しゴム" aria-label="消しゴム"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16zm.255-8.172 4.893 4.894-2.276 2.035-5.022-5.022 2.405-1.907z"/></svg></button>
+                  <select id="penSizeSelect" class="pen-size-select" title="線の太さ" aria-label="線の太さ">
+                    <option value="2" selected>普通</option>
+                    <option value="4">太い</option>
+                    <option value="6">極太</option>
+                  </select>
+                  <select id="penColorSelect" class="pen-color-select" title="色" aria-label="線の色">
+                    <option value="#000000">黒</option>
+                    <option value="#0366d6">青</option>
+                    <option value="#dc3545">赤</option>
+                    <option value="#28a745">緑</option>
+                  </select>
+                </div>
+              </div>
+              <canvas id="notesCanvas" class="notes-canvas"></canvas>
+            </div>
+            <!-- 解説エリア -->
+            <div id="notesGuideContent" class="hidden">
+              <iframe id="guideFrame" class="guide-frame" title="解説" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"></iframe>
+            </div>
           </div>
         </div>
       </div>

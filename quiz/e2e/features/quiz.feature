@@ -7,12 +7,17 @@ Feature: 学習クイズ
     Then the start screen should be visible
     And the quiz title should be "学習クイズ"
 
-  Scenario: タブで教科を切り替えるとクイズパネルが表示されたまま
+  Scenario: タブで教科を切り替えると単元一覧のみ表示される
     Then the start screen should be visible
     And the quiz title should be "学習クイズ"
     When I click the "英語" tab
     Then the header should remain visible
-    And the quiz panel should remain visible
+    And the category list should be visible
+
+  Scenario: 単元を選択するとクイズパネルが表示される
+    When I click the "英語" tab
+    And I click the first category item
+    Then the quiz panel should be visible
 
   Scenario: 本番クイズを開始できる
     When I click the "本番" button

@@ -22,6 +22,11 @@ const makeQuestion = (id: string, subject = "english", category = "phonics"): Qu
   categoryName: category,
 });
 
+const makeQuestionWithGuide = (id: string, subject: string, category: string, guideUrl: string): Question => ({
+  ...makeQuestion(id, subject, category),
+  guideUrl,
+});
+
 class StubQuestionRepository implements IQuestionRepository {
   constructor(private readonly questions: Question[]) {}
   async loadAll(): Promise<Question[]> {
@@ -479,5 +484,44 @@ describe("QuizUseCase — markCategoryAsLearned 仕様", () => {
     expect(useCase.getStudiedCategoryKeys().has("english::phonics")).toBe(false);
     useCase.markCategoryAsLearned({ subject: "english", category: "phonics" });
     expect(useCase.getStudiedCategoryKeys().has("english::phonics")).toBe(true);
+  });
+});
+
+describe("QuizUseCase — getCategoryGuideUrl 仕様", () => {
+  it("guideUrl を持つ問題のカテゴリでは URL が返る", async () => {
+    const questions = [
+      makeQuestionWithGuide("q1", "english", "phonics", "../english/pronunciation/01/guide"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getCategoryGuideUrl("english", "phonics")).toBe("../english/pronunciation/01/guide");
+  });
+
+  it("guideUrl を持たないカテゴリでは undefined が返る", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getCategoryGuideUrl("english", "phonics")).toBeUndefined();
+  });
+
+  it("存在しないカテゴリでは undefined が返る", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getCategoryGuideUrl("english", "nonexistent")).toBeUndefined();
+  });
+
+  it("複数問題がある場合は最初に見つかった guideUrl を返す", async () => {
+    const questions = [
+      makeQuestionWithGuide("q1", "english", "phonics", "../english/guide1"),
+      makeQuestionWithGuide("q2", "english", "phonics", "../english/guide2"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getCategoryGuideUrl("english", "phonics")).toBe("../english/guide1");
   });
 });
