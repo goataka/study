@@ -402,14 +402,43 @@ export class QuizApp {
     });
   }
 
+  /**
+   * メモエリアのタブを切り替える（"memo" または "guide"）。
+   */
+  private showNoteTab(tab: "memo" | "guide"): void {
+    const memoContent = document.getElementById("notesMemoContent");
+    const guideContent = document.getElementById("notesGuideContent");
+
+    memoContent?.classList.toggle("hidden", tab !== "memo");
+    guideContent?.classList.toggle("hidden", tab !== "guide");
+
+    document.querySelectorAll<HTMLElement>(".notes-tab-btn").forEach((t) => {
+      const isActive = t.id === `notesTab${tab.charAt(0).toUpperCase()}${tab.slice(1)}`;
+      t.classList.toggle("active", isActive);
+      t.setAttribute("aria-selected", String(isActive));
+      t.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+    if (tab === "guide") {
+      this.updateGuidePanelContentByIds("notesGuideFrame", "notesGuideNoContent");
+    }
+  }
+
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
   /**
-   * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する。
+   * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する（メインパネル用）。
    */
   private updateGuidePanelContent(): void {
-    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement | null;
-    const noContent = document.getElementById("guideNoContent");
+    this.updateGuidePanelContentByIds("guidePanelFrame", "guideNoContent");
+  }
+
+  /**
+   * 指定した iframe と空表示要素 ID を使って解説コンテンツを更新する共通処理。
+   */
+  private updateGuidePanelContentByIds(frameId: string, noContentId: string): void {
+    const guideFrame = document.getElementById(frameId) as HTMLIFrameElement | null;
+    const noContent = document.getElementById(noContentId);
     if (!guideFrame) return;
 
     const guideUrl =
