@@ -19,6 +19,7 @@
 | 名前 | 必須 | 説明 |
 |------|------|------|
 | `github-token` | ✅ | `GITHUB_TOKEN` |
+| `copilot-token` | ❌ | Copilot classic PAT（PRコメント・Issueコメント・アサインに使用）。未指定時は `github-token` にフォールバック |
 | `error-context` | ❌ | 追加のエラー情報（オプション） |
 
 ## 使用例
@@ -42,6 +43,7 @@ jobs:
       - uses: ./.github/actions/fix-gha-error
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          copilot-token: ${{ secrets.COPILOT_CLASSIC }}
 ```
 
 ## 参考

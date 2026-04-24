@@ -8,6 +8,7 @@
 - uses: ./.github/actions/fix-gha-error
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
+    copilot-token: ${{ secrets.COPILOT_CLASSIC }}
 ```
 
 ## エラーコンテキストを追加する
@@ -16,5 +17,6 @@
 - uses: ./.github/actions/fix-gha-error
   with:
     github-token: ${{ secrets.GITHUB_TOKEN }}
+    copilot-token: ${{ secrets.COPILOT_CLASSIC }}
     error-context: "追加情報をここに記載"
 ```

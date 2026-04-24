@@ -178,7 +178,7 @@ runs:
           printf '@copilot ワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nCIログ: %s\n' \
             "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${PR_NUMBER}" "${RUN_URL}" >"$BODY_FILE"
           [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
-          gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
+          GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
           echo "::notice::PR #${PR_NUMBER} にCopilotメンションコメントを投稿しました"
         else
           ISSUE_TITLE="[CI失敗] ${WORKFLOW_NAME}"
@@ -194,7 +194,7 @@ runs:
             printf '@copilot ワークフロー「%s」が再度失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
               "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
             [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
-            gh issue comment "${EXISTING_ISSUE_NUMBER}" --body-file "$BODY_FILE"
+            GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh issue comment "${EXISTING_ISSUE_NUMBER}" --body-file "$BODY_FILE"
             echo "::notice::既存Issue #${EXISTING_ISSUE_NUMBER} にCopilotメンションコメントを追加しました"
           else
             printf '@copilot ワークフロー「%s」が失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
