@@ -65,6 +65,7 @@ function setupTabDom(): void {
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
+          <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
         </div>
         <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
           <div id="statsInfo"></div>
@@ -73,9 +74,13 @@ function setupTabDom(): void {
           <input type="radio" name="questionCount" value="20">
           <button id="startRandomBtn">ランダム</button>
           <button id="startRetryBtn" disabled>間違えた問題</button>
+          <button id="markLearnedBtn" disabled>学習済みにする</button>
         </div>
         <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
           <div id="historyList"></div>
+        </div>
+        <div id="questionListContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-questions">
+          <div id="questionListBody"></div>
         </div>
       </div>
     </div>
@@ -711,15 +716,18 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("パネルに「クイズモード選択」と「実行記録」のインナータブが描画される", async () => {
+  it("パネルに「クイズモード選択」と「実行記録」と「問題一覧」のインナータブが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]');
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]');
     expect(quizTab).not.toBeNull();
     expect(historyTab).not.toBeNull();
     expect(historyTab?.textContent).toContain("実行記録");
+    expect(questionsTab).not.toBeNull();
+    expect(questionsTab?.textContent).toContain("問題一覧");
   });
 
   it("「実行記録」インナータブをクリックするとhistoryContentが表示されquizModePanelが非表示になる", async () => {
@@ -857,6 +865,67 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const items = historyList?.querySelectorAll(".history-item");
     // 数学の記録のみ表示される
     expect(items?.length).toBe(1);
+  });
+});
+
+describe("QuizApp — 履歴モード表示仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  const buildRecord = (mode: string) => ({
+    id: "r1",
+    date: new Date().toISOString(),
+    subject: "english",
+    subjectName: "英語",
+    category: "phonics-1",
+    categoryName: "フォニックス（1文字）",
+    mode,
+    totalCount: 5,
+    correctCount: 5,
+    entries: [],
+  });
+
+  it("mode=random の履歴は「ランダム」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const modeEl = document.querySelector(".history-mode");
+    expect(modeEl?.textContent).toBe("ランダム");
+  });
+
+  it("mode=practice の履歴は「練習」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("practice")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const modeEl = document.querySelector(".history-mode");
+    expect(modeEl?.textContent).toBe("練習");
+  });
+
+  it("mode=retry の履歴は「復習」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("retry")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const modeEl = document.querySelector(".history-mode");
+    expect(modeEl?.textContent).toBe("復習");
+  });
+
+  it("mode=manual の履歴は「手動」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const modeEl = document.querySelector(".history-mode");
+    expect(modeEl?.textContent).toBe("手動");
   });
 });
 
@@ -1108,56 +1177,9 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
   });
 });
 
-describe("QuizApp — 問題一覧モーダル仕様", () => {
+describe("QuizApp — 学習済みにするボタン仕様", () => {
   beforeEach(() => {
-    document.body.innerHTML = `
-      <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
-      <span id="headerUserName"></span>
-      <div id="startScreen" class="screen active">
-        <div class="subject-tabs" role="tablist"></div>
-        <div id="subjectContent">
-          <div id="categoryList" class="category-list"></div>
-          <div id="statsInfo"></div>
-          <input type="radio" name="questionCount" value="5">
-          <input type="radio" name="questionCount" value="10" checked>
-          <input type="radio" name="questionCount" value="20">
-          <button id="startRandomBtn">ランダム</button>
-          <button id="startPracticeBtn">練習</button>
-          <button id="startRetryBtn" disabled>間違えた問題</button>
-          <button id="showQuestionListBtn">問題一覧</button>
-        </div>
-        <div id="historyContent" class="hidden">
-          <div id="historyList"></div>
-        </div>
-      </div>
-      <div id="quizScreen" class="screen">
-        <div id="questionNumber"></div>
-        <div id="topicName"></div>
-        <div id="progressFill" style="width:0%"></div>
-        <div id="questionText"></div>
-        <div id="choicesContainer"></div>
-        <button id="prevBtn" disabled>前へ</button>
-        <button id="nextBtn">次へ</button>
-        <button id="submitBtn" disabled>提出</button>
-        <a id="guideLink" class="hidden" href="#">解説</a>
-      </div>
-      <div id="resultScreen" class="screen">
-        <div id="scoreDisplay"></div>
-        <div id="resultDetails"></div>
-        <button id="retryAllBtn">もう一度</button>
-        <button id="retryWrongBtn">間違えた問題</button>
-        <button id="backToStartBtn">スタート画面に戻る</button>
-      </div>
-      <div id="questionListModal" class="modal-overlay hidden">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 id="questionListTitle"></h2>
-            <button id="closeQuestionListBtn">✕</button>
-          </div>
-          <div id="questionListBody"></div>
-        </div>
-      </div>
-    `;
+    setupTabDom();
     setupFetchMock();
     localStorage.clear();
   });
@@ -1166,86 +1188,119 @@ describe("QuizApp — 問題一覧モーダル仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("「問題一覧」ボタンをクリックするとモーダルが表示される", async () => {
+  it("初期状態（全カテゴリ選択）では「学習済みにする」ボタンが無効", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const btn = document.getElementById("showQuestionListBtn") as HTMLButtonElement;
-    btn.click();
-
-    const modal = document.getElementById("questionListModal");
-    expect(modal?.classList.contains("hidden")).toBe(false);
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    expect(markLearnedBtn.disabled).toBe(true);
   });
 
-  it("モーダルには現在の単元の問題が一覧表示される", async () => {
+  it("特定カテゴリを選択すると「学習済みにする」ボタンが有効になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const btn = document.getElementById("showQuestionListBtn") as HTMLButtonElement;
-    btn.click();
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    expect(markLearnedBtn.disabled).toBe(false);
+  });
+
+  it("「学習済みにする」ボタンをクリックするとカテゴリが ✅ になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    markLearnedBtn.click();
+
+    // 学習済みになるので ✅ が表示される
+    const statusEl = catItem?.querySelector(".category-status");
+    expect(statusEl?.textContent).toBe("✅");
+  });
+});
+
+describe("QuizApp — 問題一覧タブ仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("「問題一覧」タブをクリックするとquestionListContentが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    expect(questionsTab?.classList.contains("active")).toBe(true);
+    expect(questionsTab?.getAttribute("aria-selected")).toBe("true");
+    expect(questionsTab?.getAttribute("tabindex")).toBe("0");
+
+    const questionListContent = document.getElementById("questionListContent");
+    expect(questionListContent?.classList.contains("hidden")).toBe(false);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("「問題一覧」タブをクリックすると現在の単元の問題が一覧表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
 
     const items = document.querySelectorAll(".question-list-item");
     expect(items.length).toBe(5); // mockQuestionFile に5問あるため
   });
 
-  it("閉じるボタンをクリックするとモーダルが非表示になる", async () => {
+  it("問題一覧には問題・正解・ヒントが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    document.getElementById("showQuestionListBtn")?.click();
-    document.getElementById("closeQuestionListBtn")?.click();
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
 
-    const modal = document.getElementById("questionListModal");
-    expect(modal?.classList.contains("hidden")).toBe(true);
+    const correctEls = document.querySelectorAll(".question-list-correct");
+    expect(correctEls.length).toBe(5); // 5問それぞれに正解が1つある
+
+    const hintEls = document.querySelectorAll(".question-list-hint");
+    expect(hintEls.length).toBe(5); // 5問それぞれにヒントが1つある
   });
 
-  it("モーダルのタイトルに単元名と問題数が表示される", async () => {
+  it("「クイズモード選択」タブに戻るとquizModePanelが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    document.getElementById("showQuestionListBtn")?.click();
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
 
-    const title = document.getElementById("questionListTitle");
-    expect(title?.textContent).toContain("5問");
-  });
+    const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]') as HTMLElement;
+    quizTab?.click();
 
-  it("各問題に正解が強調表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
 
-    document.getElementById("showQuestionListBtn")?.click();
-
-    const correctChoices = document.querySelectorAll(".correct-choice");
-    expect(correctChoices.length).toBe(5); // 5問それぞれに1つの正解がある
-  });
-
-  it("オーバーレイをクリックするとモーダルが非表示になる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    document.getElementById("showQuestionListBtn")?.click();
-
-    const overlay = document.getElementById("questionListModal") as HTMLElement;
-    // overlay 自体をクリック（bubbling なしで target = overlay となるように dispatchEvent を使用）
-    const clickEvent = new MouseEvent("click", { bubbles: true });
-    Object.defineProperty(clickEvent, "target", { value: overlay, configurable: true });
-    overlay.dispatchEvent(clickEvent);
-
-    expect(overlay.classList.contains("hidden")).toBe(true);
-  });
-
-  it("Escape キーを押すとモーダルが非表示になる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    document.getElementById("showQuestionListBtn")?.click();
-
-    const modal = document.getElementById("questionListModal");
-    expect(modal?.classList.contains("hidden")).toBe(false);
-
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-
-    expect(modal?.classList.contains("hidden")).toBe(true);
+    const questionListContent = document.getElementById("questionListContent");
+    expect(questionListContent?.classList.contains("hidden")).toBe(true);
   });
 });
 
