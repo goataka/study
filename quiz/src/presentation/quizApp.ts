@@ -326,6 +326,14 @@ export class QuizApp {
     }
     // カテゴリ選択のイベントが解説リンクで発火しないようにする
     guideLink.addEventListener("click", (e) => e.stopPropagation());
+    guideLink.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.stopPropagation();
+      }
+      if (e.key === " ") {
+        e.preventDefault();
+      }
+    });
 
     const statsSpan = document.createElement("span");
     statsSpan.className = "category-stats";
