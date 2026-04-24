@@ -14,6 +14,10 @@ const isExternalUrl = baseURL.startsWith("https://");
 
 export default defineConfig({
   testDir,
+  // シナリオをパラレル実行する（同一ファイル内のテストも並列化）
+  fullyParallel: true,
+  // CIではデフォルトworker数が1になるため、明示的に2を指定して並列化を有効にする
+  workers: process.env.CI ? 2 : undefined,
   timeout: 60_000,
   // スナップショットのパステンプレート（保存先とOS/ブラウザごとのファイル名を定義）
   snapshotPathTemplate: "e2e/snapshots/{arg}-{projectName}-{platform}{ext}",
