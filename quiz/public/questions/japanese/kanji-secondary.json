@@ -1,0 +1,116 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-secondary",
+  "categoryName": "漢字（中学生）",
+  "parentCategory": "kanji",
+  "parentCategoryName": "漢字",
+  "questionType": "text-input",
+  "questions": [
+    {
+      "id": "kanji-sec-001",
+      "question": "「概念」の読み方をひらがなで書いてください",
+      "choices": ["がいねん"],
+      "correct": 0,
+      "explanation": "概念（がいねん）: 物事の大まかな考え方・意味のこと"
+    },
+    {
+      "id": "kanji-sec-002",
+      "question": "「抽象」の読み方をひらがなで書いてください",
+      "choices": ["ちゅうしょう"],
+      "correct": 0,
+      "explanation": "抽象（ちゅうしょう）: 具体的ではなく、一般的・観念的なこと"
+    },
+    {
+      "id": "kanji-sec-003",
+      "question": "「歴史」の読み方をひらがなで書いてください",
+      "choices": ["れきし"],
+      "correct": 0,
+      "explanation": "歴史（れきし）: 過去に起きた出来事の記録"
+    },
+    {
+      "id": "kanji-sec-004",
+      "question": "「経済」の読み方をひらがなで書いてください",
+      "choices": ["けいざい"],
+      "correct": 0,
+      "explanation": "経済（けいざい）: 生産・流通・消費にかかわる活動全体"
+    },
+    {
+      "id": "kanji-sec-005",
+      "question": "「議会」の読み方をひらがなで書いてください",
+      "choices": ["ぎかい"],
+      "correct": 0,
+      "explanation": "議会（ぎかい）: 選ばれた代表が話し合う機関"
+    },
+    {
+      "id": "kanji-sec-006",
+      "question": "「環境」の読み方をひらがなで書いてください",
+      "choices": ["かんきょう"],
+      "correct": 0,
+      "explanation": "環境（かんきょう）: 生き物を取り巻く自然や社会の条件"
+    },
+    {
+      "id": "kanji-sec-007",
+      "question": "「文化」の読み方をひらがなで書いてください",
+      "choices": ["ぶんか"],
+      "correct": 0,
+      "explanation": "文化（ぶんか）: 人々の生活や考え方、芸術などの総体"
+    },
+    {
+      "id": "kanji-sec-008",
+      "question": "「伝統」の読み方をひらがなで書いてください",
+      "choices": ["でんとう"],
+      "correct": 0,
+      "explanation": "伝統（でんとう）: 昔から受け継がれてきた習慣や文化"
+    },
+    {
+      "id": "kanji-sec-009",
+      "question": "「道徳」の読み方をひらがなで書いてください",
+      "choices": ["どうとく"],
+      "correct": 0,
+      "explanation": "道徳（どうとく）: 人としてのあるべき行動の規範"
+    },
+    {
+      "id": "kanji-sec-010",
+      "question": "「進化」の読み方をひらがなで書いてください",
+      "choices": ["しんか"],
+      "correct": 0,
+      "explanation": "進化（しんか）: 生物が世代を経て変化していくこと"
+    },
+    {
+      "id": "kanji-sec-011",
+      "question": "「繁栄」の読み方をひらがなで書いてください",
+      "choices": ["はんえい"],
+      "correct": 0,
+      "explanation": "繁栄（はんえい）: 豊かに栄えること"
+    },
+    {
+      "id": "kanji-sec-012",
+      "question": "「哲学」の読み方をひらがなで書いてください",
+      "choices": ["てつがく"],
+      "correct": 0,
+      "explanation": "哲学（てつがく）: 物事の根本的な意味を考える学問"
+    },
+    {
+      "id": "kanji-sec-013",
+      "question": "「本質」の読み方をひらがなで書いてください",
+      "choices": ["ほんしつ"],
+      "correct": 0,
+      "explanation": "本質（ほんしつ）: 物事の根本・真の姿"
+    },
+    {
+      "id": "kanji-sec-014",
+      "question": "「価値観」の読み方をひらがなで書いてください",
+      "choices": ["かちかん"],
+      "correct": 0,
+      "explanation": "価値観（かちかん）: 何に価値があるかについての考え方"
+    },
+    {
+      "id": "kanji-sec-015",
+      "question": "「象徴」の読み方をひらがなで書いてください",
+      "choices": ["しょうちょう"],
+      "correct": 0,
+      "explanation": "象徴（しょうちょう）: 何かを表すものやしるし"
+    }
+  ]
+}

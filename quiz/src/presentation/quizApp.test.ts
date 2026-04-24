@@ -261,12 +261,12 @@ describe("QuizApp — 教科タブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("問題ロード後にタブに教科（英語・数学）が2件描画される", async () => {
+  it("問題ロード後にタブに教科（英語・数学・国語）が3件描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const tabs = document.querySelectorAll(".subject-tab[data-subject]");
-    expect(tabs.length).toBe(2);
+    expect(tabs.length).toBe(3);
   });
 
   it("問題ロード後に英語タブに role=tab が設定されている", async () => {
@@ -866,6 +866,96 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     // 数学の記録のみ表示される
     expect(items?.length).toBe(1);
   });
+
+  it("単元を選択するとその単元の記録のみ表示される", async () => {
+    // 同じ教科で異なる単元の記録を用意
+    const records = [
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+      {
+        id: "r2",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 7,
+        entries: [],
+      },
+    ];
+    localStorage.setItem("quizHistory", JSON.stringify(records));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // phonics-1 カテゴリアイテムをクリック（renderCategoryList で生成される）
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    const historyList = document.getElementById("historyList");
+    const items = historyList?.querySelectorAll(".history-item");
+    // phonics-1 の記録のみ表示される
+    expect(items?.length).toBe(1);
+  });
+
+  it("単元選択後に実行記録タブを開いてもその単元の記録のみ表示される", async () => {
+    // 同じ教科で異なる単元の記録を用意
+    const records = [
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+      {
+        id: "r2",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 7,
+        entries: [],
+      },
+    ];
+    localStorage.setItem("quizHistory", JSON.stringify(records));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // phonics-1 カテゴリアイテムをクリック
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    // 実行記録タブをクリック
+    const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
+    historyTab?.click();
+
+    const historyList = document.getElementById("historyList");
+    const items = historyList?.querySelectorAll(".history-item");
+    // phonics-1 の記録のみ表示される
+    expect(items?.length).toBe(1);
+  });
 });
 
 describe("QuizApp — 履歴モード表示仕様", () => {
@@ -1239,6 +1329,43 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     const statusEl = catItem?.querySelector(".category-status");
     expect(statusEl?.textContent).toBe("✅");
   });
+
+  it("学習済みのカテゴリを選択するとボタンが「↩ 未学習に戻す」になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    markLearnedBtn.click();
+    // 学習済みになったのでボタンが「未学習に戻す」に変わる
+    expect(markLearnedBtn.textContent).toBe("↩ 未学習に戻す");
+  });
+
+  it("「↩ 未学習に戻す」ボタンをクリックするとカテゴリが 📖 に戻る", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
+    // 学習済みにする
+    markLearnedBtn.click();
+    expect(catItem?.querySelector(".category-status")?.textContent).toBe("✅");
+
+    // 未学習に戻す
+    markLearnedBtn.click();
+    expect(catItem?.querySelector(".category-status")?.textContent).toBe("📖");
+    expect(markLearnedBtn.textContent).toBe("✅ 学習済みにする");
+  });
 });
 
 describe("QuizApp — 問題一覧タブ仕様", () => {
@@ -1296,6 +1423,52 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
 
     const hintEls = document.querySelectorAll(".question-list-hint");
     expect(hintEls.length).toBe(5); // 5問それぞれにヒントが1つある
+  });
+
+  it("問題一覧に第N問の表記がない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const numberEls = document.querySelectorAll(".question-list-number");
+    expect(numberEls.length).toBe(0); // 第N問の要素が存在しないこと
+  });
+
+  it("問題一覧の問題と正解が同じ行（question-list-row）に表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const rows = document.querySelectorAll(".question-list-row");
+    expect(rows.length).toBe(5); // 5問それぞれに1行ある
+
+    rows.forEach((row) => {
+      expect(row.querySelector(".question-list-text")).not.toBeNull();
+      expect(row.querySelector(".question-list-correct")).not.toBeNull();
+      expect(row.querySelector(".question-list-hint-btn")).not.toBeNull();
+    });
+  });
+
+  it("ヒントはデフォルトで非表示で、💡ボタンを押すと表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const firstHint = document.querySelector(".question-list-hint") as HTMLElement;
+    expect(firstHint.classList.contains("hidden")).toBe(true); // 初期状態では非表示
+
+    const firstHintBtn = document.querySelector(".question-list-hint-btn") as HTMLElement;
+    firstHintBtn.click();
+    expect(firstHint.classList.contains("hidden")).toBe(false); // ボタン押下で表示
+
+    firstHintBtn.click();
+    expect(firstHint.classList.contains("hidden")).toBe(true); // もう一度押すと非表示に戻る
   });
 
   it("「クイズモード選択」タブに戻るとquizModePanelが再表示される", async () => {

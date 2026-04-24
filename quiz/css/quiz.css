@@ -797,23 +797,23 @@ button:disabled {
 .question-list-item {
     border: 1px solid #e1e4e8;
     border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
     background: #fafbfc;
 }
 
-.question-list-number {
-    font-size: 12px;
-    color: #586069;
-    font-weight: 600;
-    margin-bottom: 6px;
+.question-list-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .question-list-text {
     font-size: 15px;
     color: #24292e;
     font-weight: 600;
-    margin-bottom: 8px;
+    flex: 1 1 auto;
     line-height: 1.5;
 }
 
@@ -824,16 +824,36 @@ button:disabled {
     background: #e6ffed;
     padding: 4px 8px;
     border-radius: 4px;
-    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.question-list-hint-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.question-list-hint-btn:hover {
+    background: #f0f7ff;
 }
 
 .question-list-hint {
     font-size: 13px;
     color: #586069;
     padding: 8px 10px;
+    margin-top: 8px;
     background: #f0f7ff;
     border-radius: 4px;
     line-height: 1.5;
+}
+
+.question-list-hint.hidden {
+    display: none;
 }
 
 /* レスポンシブ対応 */
@@ -1354,4 +1374,57 @@ button:disabled {
 .history-entry-answer {
     color: #586069;
     font-size: 12px;
+}
+
+/* テキスト入力問題 */
+.text-answer-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.text-answer-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 22px;
+    border: 2px solid #e1e4e8;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.text-answer-input:focus {
+    border-color: #0366d6;
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.2);
+}
+
+.text-answer-input:disabled {
+    background: #f6f8fa;
+    color: #586069;
+    cursor: not-allowed;
+}
+
+.text-answer-submit-btn {
+    align-self: flex-start;
+    padding: 10px 24px;
+    background: #0366d6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.text-answer-submit-btn:hover:not(:disabled) {
+    background: #0256b9;
+}
+
+.text-answer-submit-btn:disabled {
+    background: #c8e1ff;
+    cursor: not-allowed;
 }

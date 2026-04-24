@@ -242,6 +242,137 @@ describe("shuffleChoices — 選択肢シャッフル仕様", () => {
   });
 });
 
+describe("validateQuestionFile — text-input 問題種別の検証仕様", () => {
+  const validTextInputQF = {
+    subject: "japanese",
+    subjectName: "国語",
+    category: "kanji-grade1",
+    categoryName: "漢字（小学1年）",
+    questionType: "text-input",
+    questions: [
+      {
+        id: "kanji-1",
+        question: "「山」の読み方をひらがなで書いてください",
+        choices: ["やま"],
+        correct: 0,
+        explanation: "山（やま）",
+      },
+    ],
+  };
+
+  it("text-input 種別のファイルで choices が 1 つの問題を受け入れる", () => {
+    expect(() => validateQuestionFile(validTextInputQF)).not.toThrow();
+  });
+
+  it("問題レベルの questionType が text-input でも受け入れる", () => {
+    const qf = {
+      subject: "japanese",
+      subjectName: "国語",
+      category: "kanji",
+      categoryName: "漢字",
+      questions: [
+        {
+          id: "kanji-q1",
+          question: "テスト問題",
+          choices: ["こたえ"],
+          correct: 0,
+          explanation: "解説",
+          questionType: "text-input",
+        },
+      ],
+    };
+    expect(() => validateQuestionFile(qf)).not.toThrow();
+  });
+
+  it("text-input 問題で choices が空の場合に拒否する", () => {
+    const qf = { ...validTextInputQF, questions: [{ ...validTextInputQF.questions[0]!, choices: [] }] };
+    expect(() => validateQuestionFile(qf)).toThrow("non-empty array");
+  });
+
+  it("text-input 問題で correct が choices の範囲外の場合に拒否する", () => {
+    const qf = { ...validTextInputQF, questions: [{ ...validTextInputQF.questions[0]!, correct: 1 }] };
+    expect(() => validateQuestionFile(qf)).toThrow("valid index");
+  });
+
+  it("無効な questionType 文字列を拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validTextInputQF, questionType: "invalid-type" })
+    ).toThrow('"questionType" must be "multiple-choice" or "text-input"');
+  });
+});
+
+describe("expandQuestions — questionType 継承仕様", () => {
+  it("ファイルレベルの questionType が各問題に継承される", () => {
+    const qf = {
+      subject: "japanese",
+      subjectName: "国語",
+      category: "kanji-grade1",
+      categoryName: "漢字（小学1年）",
+      questionType: "text-input" as const,
+      questions: [
+        { id: "k-1", question: "テスト", choices: ["こたえ"], correct: 0, explanation: "解説" },
+      ],
+    };
+    const questions = expandQuestions(qf);
+    expect(questions[0]!.questionType).toBe("text-input");
+  });
+
+  it("問題レベルの questionType がファイルレベルを上書きする", () => {
+    const qf = {
+      subject: "japanese",
+      subjectName: "国語",
+      category: "kanji",
+      categoryName: "漢字",
+      questionType: "text-input" as const,
+      questions: [
+        {
+          id: "k-mc",
+          question: "4択テスト",
+          choices: ["ア", "イ", "ウ", "エ"],
+          correct: 0,
+          explanation: "解説",
+          questionType: "multiple-choice" as const,
+        },
+      ],
+    };
+    const questions = expandQuestions(qf);
+    expect(questions[0]!.questionType).toBe("multiple-choice");
+  });
+
+  it("questionType が未指定の場合 multiple-choice がデフォルトになる", () => {
+    const qf = {
+      subject: "english",
+      subjectName: "英語",
+      category: "test",
+      categoryName: "テスト",
+      questions: [
+        { id: "e-1", question: "テスト", choices: ["ア", "イ", "ウ", "エ"], correct: 0, explanation: "解説" },
+      ],
+    };
+    const questions = expandQuestions(qf);
+    expect(questions[0]!.questionType).toBe("multiple-choice");
+  });
+});
+
+describe("shuffleChoices — text-input 問題のスキップ仕様", () => {
+  it("text-input 問題はシャッフルせずにそのまま返す", () => {
+    const q: Question = {
+      id: "kanji-1",
+      question: "テスト",
+      choices: ["やま"],
+      correct: 0,
+      explanation: "解説",
+      subject: "japanese",
+      subjectName: "国語",
+      category: "kanji-grade1",
+      categoryName: "漢字（小学1年）",
+      questionType: "text-input",
+    };
+    const result = shuffleChoices(q);
+    expect(result).toBe(q); // 同一オブジェクトを返すこと
+  });
+});
+
 describe("validateQuestionFile — parentCategory/parentCategoryName 検証仕様", () => {
   const validQFBase = {
     subject: "english",

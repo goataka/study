@@ -20,6 +20,8 @@ export interface QuizRecordEntry {
   choices: string[];
   explanation: string;
   categoryName: string;
+  /** text-input 問題でユーザーが実際に入力したテキスト */
+  userAnswerText?: string;
 }
 
 /** 1回のクイズセッションの回答記録 */

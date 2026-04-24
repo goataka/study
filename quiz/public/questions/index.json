@@ -6,6 +6,9 @@
     },
     "math": {
       "name": "数学"
+    },
+    "japanese": {
+      "name": "国語"
     }
   },
   "questionFiles": [
@@ -98,6 +101,16 @@
     "math/vectors.json",
     "math/limits.json",
     "math/differentiation.json",
-    "math/integration.json"
+    "math/integration.json",
+    "japanese/kanji-grade1.json",
+    "japanese/kanji-grade2.json",
+    "japanese/kanji-grade3.json",
+    "japanese/kanji-grade4.json",
+    "japanese/kanji-grade5.json",
+    "japanese/kanji-grade6.json",
+    "japanese/kanji-secondary.json",
+    "japanese/kanji-high.json",
+    "japanese/yojijukugo.json",
+    "japanese/kotowaza.json"
   ]
 }

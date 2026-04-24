@@ -170,6 +170,7 @@ export class QuizUseCase {
         choices: [...r.question.choices],
         explanation: r.question.explanation,
         categoryName: r.question.categoryName ?? r.question.category,
+        userAnswerText: r.userAnswerText,
       })),
     });
   }
@@ -220,6 +221,26 @@ export class QuizUseCase {
       correctCount: questions.length,
       entries: [],
     });
+  }
+
+  /**
+   * 指定したカテゴリの学習済みマークを解除する。
+   * 対象カテゴリの全問題を wrongIds に追加し直し、保存する。
+   * category が "all" の場合は一括操作を防ぐために何もしない。
+   */
+  unmarkCategoryAsLearned(filter: QuizFilter): void {
+    if (filter.category === "all" || filter.subject === "all") return;
+
+    const questions = this.getFilteredQuestions(filter);
+    if (questions.length === 0) return;
+
+    for (const q of questions) {
+      if (!this.wrongIds.includes(q.id)) {
+        this.wrongIds.push(q.id);
+      }
+    }
+
+    this.progressRepo.saveWrongIds(this.wrongIds);
   }
 
   /** 履歴レコードを先頭に追加して保存する共通ヘルパー。 */
