@@ -1298,6 +1298,52 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
     expect(hintEls.length).toBe(5); // 5問それぞれにヒントが1つある
   });
 
+  it("問題一覧に第N問の表記がない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const numberEls = document.querySelectorAll(".question-list-number");
+    expect(numberEls.length).toBe(0); // 第N問の要素が存在しないこと
+  });
+
+  it("問題一覧の問題と正解が同じ行（question-list-row）に表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const rows = document.querySelectorAll(".question-list-row");
+    expect(rows.length).toBe(5); // 5問それぞれに1行ある
+
+    rows.forEach((row) => {
+      expect(row.querySelector(".question-list-text")).not.toBeNull();
+      expect(row.querySelector(".question-list-correct")).not.toBeNull();
+      expect(row.querySelector(".question-list-hint-btn")).not.toBeNull();
+    });
+  });
+
+  it("ヒントはデフォルトで非表示で、💡ボタンを押すと表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const firstHint = document.querySelector(".question-list-hint") as HTMLElement;
+    expect(firstHint.classList.contains("hidden")).toBe(true); // 初期状態では非表示
+
+    const firstHintBtn = document.querySelector(".question-list-hint-btn") as HTMLElement;
+    firstHintBtn.click();
+    expect(firstHint.classList.contains("hidden")).toBe(false); // ボタン押下で表示
+
+    firstHintBtn.click();
+    expect(firstHint.classList.contains("hidden")).toBe(true); // もう一度押すと非表示に戻る
+  });
+
   it("「クイズモード選択」タブに戻るとquizModePanelが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

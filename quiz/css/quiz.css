@@ -797,23 +797,23 @@ button:disabled {
 .question-list-item {
     border: 1px solid #e1e4e8;
     border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 12px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
     background: #fafbfc;
 }
 
-.question-list-number {
-    font-size: 12px;
-    color: #586069;
-    font-weight: 600;
-    margin-bottom: 6px;
+.question-list-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .question-list-text {
     font-size: 15px;
     color: #24292e;
     font-weight: 600;
-    margin-bottom: 8px;
+    flex: 1 1 auto;
     line-height: 1.5;
 }
 
@@ -824,16 +824,36 @@ button:disabled {
     background: #e6ffed;
     padding: 4px 8px;
     border-radius: 4px;
-    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.question-list-hint-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.question-list-hint-btn:hover {
+    background: #f0f7ff;
 }
 
 .question-list-hint {
     font-size: 13px;
     color: #586069;
     padding: 8px 10px;
+    margin-top: 8px;
     background: #f0f7ff;
     border-radius: 4px;
     line-height: 1.5;
+}
+
+.question-list-hint.hidden {
+    display: none;
 }
 
 /* レスポンシブ対応 */
