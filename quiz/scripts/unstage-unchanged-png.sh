@@ -22,9 +22,12 @@ while IFS= read -r file; do
   head_hash=$(git rev-parse "HEAD:$file" 2>/dev/null) || continue
 
   if [ "$staged_hash" = "$head_hash" ]; then
-    echo "バイナリ同一のためアンステージ: $file"
-    git restore --staged "$file"
-    unstaged_count=$((unstaged_count + 1))
+    if git restore --staged "$file"; then
+      echo "バイナリ同一のためアンステージ: $file"
+      unstaged_count=$((unstaged_count + 1))
+    else
+      echo "警告: アンステージに失敗しました: $file" >&2
+    fi
   fi
 done <<< "$staged_pngs"
 
