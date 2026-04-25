@@ -5,6 +5,7 @@
  * - 各カテゴリファイルの構造・フォーマット検証
  * - 問題IDのグローバル一意性チェック
  * - 後方互換性チェック（旧 questions.json と同じ問題セットが存在するか）
+ * - guideUrl の整合性チェック（対応する contents/ の guide.md が存在するか）
  */
 
 import fs from "fs";
@@ -28,6 +29,7 @@ interface QuestionFile {
   category: string;
   categoryName: string;
   questionType?: "multiple-choice" | "text-input";
+  guideUrl?: string;
   questions: RawQuestion[];
 }
 
@@ -42,6 +44,8 @@ interface QuestionsManifest {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const QUESTIONS_DIR = path.join(__dirname, "..", "..", "public", "questions");
 const INDEX_FILE = path.join(QUESTIONS_DIR, "index.json");
+// quiz/src/infrastructure から見て ../../../contents が contents/ ディレクトリ
+const CONTENTS_DIR = path.join(__dirname, "..", "..", "..", "contents");
 
 // ─── ユーティリティ ──────────────────────────────────────────────────────────
 
@@ -267,5 +271,26 @@ describe("後方互換性 — questions.json との整合性", () => {
     for (const id of legacyIds) {
       expect(newIds.has(id)).toBe(true);
     }
+  });
+});
+
+describe("guideUrl — contents/ 側の guide.md 存在チェック", () => {
+  it("guideUrl が設定されているカテゴリの guide.md が contents/ に存在する", () => {
+    const manifest = loadManifest();
+    const questionFiles = loadAllQuestionFiles(manifest);
+    const missing: string[] = [];
+
+    for (const qf of questionFiles) {
+      if (!qf.guideUrl) continue;
+      // guideUrl は "../english/pronunciation/alphabet/guide" のような相対パス
+      // "../" を除いて contents/ 配下のパスに変換し .md を付加する
+      const relativePath = qf.guideUrl.replace(/^\.\.\//, "");
+      const guideMdPath = path.join(CONTENTS_DIR, `${relativePath}.md`);
+      if (!fs.existsSync(guideMdPath)) {
+        missing.push(`${qf.subject}/${qf.category}: ${guideMdPath}`);
+      }
+    }
+
+    expect(missing).toHaveLength(0);
   });
 });
