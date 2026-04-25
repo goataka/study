@@ -30,6 +30,8 @@ export class QuizApp {
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
   private kanjiCanvasInitialized: boolean = false;
+  /** ref-patterns.js の遅延ロードPromise（重複ロード防止用） */
+  private refPatternsLoadPromise: Promise<void> | null = null;
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   /** 総合タブの fallback により自動的に "history" へ切り替わった場合は true。ユーザーが明示的にタブを選択した場合は false。 */
   private autoSwitchedToHistory: boolean = false;
@@ -1304,7 +1306,7 @@ export class QuizApp {
 
   /**
    * メモエリアをtextinput問題のKanjiCanvas入力用に更新する。
-   * - text-input問題かつ未回答の場合: KanjiCanvas入力エリアを表示、ノートキャンバスを非表示
+   * - text-input問題かつ未回答かつKanjiCanvas利用可能の場合: KanjiCanvas入力エリアを表示、ノートキャンバスを非表示
    * - それ以外: KanjiCanvas入力エリアを非表示、ノートキャンバスを表示
    * 問題遷移のたびに呼ばれる。
    */
@@ -1315,10 +1317,11 @@ export class QuizApp {
     const notesControls = document.querySelector<HTMLElement>(".notes-controls");
 
     const isTextInput = question?.questionType === "text-input";
-    const showKanji = isTextInput && !isAnswered;
+    // KanjiCanvas が読み込まれていない場合はフォールバックとして通常ノートキャンバスを表示する
+    const showKanji = isTextInput && !isAnswered && this.isKanjiCanvasAvailable();
 
     if (notesTitle) {
-      notesTitle.textContent = isTextInput
+      notesTitle.textContent = showKanji
         ? "✏️ 1文字ずつ書いて漢字を入力できます"
         : "タッチペンで書けます";
     }
@@ -1341,9 +1344,39 @@ export class QuizApp {
   }
 
   /**
+   * KanjiCanvas グローバルが利用可能かどうかを確認する。
+   * kanji-canvas.min.js の読み込みに失敗した場合（ネットワークエラー・ブロック等）に false を返す。
+   */
+  private isKanjiCanvasAvailable(): boolean {
+    return typeof (globalThis as unknown as { KanjiCanvas?: unknown }).KanjiCanvas !== "undefined";
+  }
+
+  /**
+   * ref-patterns.js（漢字パターンデータ）を動的に遅延ロードする。
+   * 重複ロードを防ぐため Promise をキャッシュする。
+   */
+  private loadRefPatterns(): Promise<void> {
+    if (this.refPatternsLoadPromise) return this.refPatternsLoadPromise;
+    this.refPatternsLoadPromise = new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "./vendor/ref-patterns.js";
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error("ref-patterns.js の読み込みに失敗しました"));
+      document.body.appendChild(script);
+    });
+    return this.refPatternsLoadPromise;
+  }
+
+  /**
    * KanjiCanvasを初期化する。初回呼び出し時のみ初期化し、ストローク完了後に候補を自動更新する。
+   * KanjiCanvas グローバルが存在しない場合は警告を出して何もしない。
    */
   private initializeKanjiCanvas(): void {
+    if (!this.isKanjiCanvasAvailable()) {
+      console.warn("KanjiCanvas が読み込まれていません。手書き入力機能は無効です。");
+      return;
+    }
     if (this.kanjiCanvasInitialized) return;
     KanjiCanvas.init("kanjiCanvas");
     const canvas = document.getElementById("kanjiCanvas");
@@ -1352,6 +1385,11 @@ export class QuizApp {
       canvas.addEventListener("touchend", () => this.updateKanjiCandidates());
     }
     this.kanjiCanvasInitialized = true;
+    // ref-patterns.js（漢字パターンデータ）を遅延ロードする。
+    // ロード完了前のストロークでは候補が表示されないが、ロード後の次ストロークから表示される。
+    void this.loadRefPatterns().catch((e) => {
+      console.warn("ref-patterns.js の読み込みに失敗しました:", e);
+    });
   }
 
   /**
@@ -1359,7 +1397,7 @@ export class QuizApp {
    */
   private updateKanjiCandidates(): void {
     const candidateList = document.getElementById("kanjiCandidateList");
-    if (!candidateList) return;
+    if (!candidateList || !this.isKanjiCanvasAvailable()) return;
 
     const result = KanjiCanvas.recognize("kanjiCanvas");
     const candidates = result.trim().split(/\s+/).filter(Boolean);
@@ -1391,6 +1429,7 @@ export class QuizApp {
    * KanjiCanvasの最後の1画を取り消す。
    */
   private kanjiDeleteLast(): void {
+    if (!this.kanjiCanvasInitialized || !this.isKanjiCanvasAvailable()) return;
     KanjiCanvas.deleteLast("kanjiCanvas");
     this.updateKanjiCandidates();
   }
@@ -1399,7 +1438,7 @@ export class QuizApp {
    * KanjiCanvasの全ストロークを消去する。
    */
   private kanjiErase(): void {
-    if (this.kanjiCanvasInitialized) {
+    if (this.kanjiCanvasInitialized && this.isKanjiCanvasAvailable()) {
       KanjiCanvas.erase("kanjiCanvas");
     }
     const candidateList = document.getElementById("kanjiCandidateList");

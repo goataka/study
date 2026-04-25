@@ -2542,6 +2542,25 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     expect(kanjiInputArea?.classList.contains("hidden")).toBe(false);
   });
 
+  it("KanjiCanvasが未ロードの場合はKanjiCanvas入力エリアが非表示になりノートキャンバスが表示される", async () => {
+    // KanjiCanvas グローバルを一時的に削除して未ロード状態をシミュレート
+    const original = (globalThis as unknown as Record<string, unknown>).KanjiCanvas;
+    delete (globalThis as unknown as Record<string, unknown>).KanjiCanvas;
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const kanjiInputArea = document.getElementById("kanjiInputArea");
+    expect(kanjiInputArea?.classList.contains("hidden")).toBe(true);
+
+    const notesCanvas = document.getElementById("notesCanvas");
+    expect(notesCanvas?.classList.contains("hidden")).toBe(false);
+
+    // 後片付け
+    (globalThis as unknown as Record<string, unknown>).KanjiCanvas = original;
+  });
+
   it("選択肢問題ではKanjiCanvas入力エリアが非表示のままで notesTitleが変わらない", async () => {
     // 選択肢問題のモックに差し替え
     global.fetch = vi.fn((url: string) => {
