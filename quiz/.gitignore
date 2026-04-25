@@ -6,3 +6,4 @@ e2e-results.json
 test-results/
 TEST_EVIDENCE.md
 vr-report/
+node_modules/.vite/
