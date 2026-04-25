@@ -1036,7 +1036,7 @@ export class QuizApp {
         }
       }
 
-      // 学習状態の絵文字を更新（⬜未学習 / 📖学習中 / ✅学習済）
+      // 学習状態の絵文字を更新（⬜未学習 / 📖学習中 / 🏆学習済）
       const isLearned = studiedKeys.has(key) && stat.wrong === 0;
       el.classList.toggle("learned", isLearned);
       const statusEl = el.querySelector(".category-status");
@@ -1046,7 +1046,7 @@ export class QuizApp {
         } else if (stat.wrong > 0) {
           statusEl.textContent = "📖";
         } else {
-          statusEl.textContent = "✅";
+          statusEl.textContent = "🏆";
         }
       }
     });
@@ -1080,7 +1080,7 @@ export class QuizApp {
 
   /**
   /**
-   * 現在選択中のカテゴリが学習済み（✅）かどうかを返す。
+   * 現在選択中のカテゴリが学習済み（🏆）かどうかを返す。
    */
   private isCurrentCategoryLearned(): boolean {
     if (this.filter.category === "all") return false;
