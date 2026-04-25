@@ -1,0 +1,283 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-high-writing",
+  "categoryName": "漢字 書き（高校生）",
+  "parentCategory": "kanji",
+  "parentCategoryName": "漢字",
+  "example": "羅・曖・昧・冶",
+  "questionType": "text-input",
+  "referenceGrade": "高校生",
+  "questions": [
+    {
+      "id": "kanji-hi-w001",
+      "question": "「いつだつ」を漢字で書いてください",
+      "choices": [
+        "逸脱"
+      ],
+      "correct": 0,
+      "explanation": "「いつだつ」は「逸脱」と書く。本来の道や範囲から外れること"
+    },
+    {
+      "id": "kanji-hi-w002",
+      "question": "「けねん」を漢字で書いてください",
+      "choices": [
+        "懸念"
+      ],
+      "correct": 0,
+      "explanation": "「けねん」は「懸念」と書く。心配・気がかりなこと"
+    },
+    {
+      "id": "kanji-hi-w003",
+      "question": "「ゆうりょ」を漢字で書いてください",
+      "choices": [
+        "憂慮"
+      ],
+      "correct": 0,
+      "explanation": "「ゆうりょ」は「憂慮」と書く。心配して思い悩むこと"
+    },
+    {
+      "id": "kanji-hi-w004",
+      "question": "「かんしょう」を漢字で書いてください",
+      "choices": [
+        "鑑賞"
+      ],
+      "correct": 0,
+      "explanation": "「かんしょう」は「鑑賞」と書く。芸術などを味わって楽しむこと"
+    },
+    {
+      "id": "kanji-hi-w005",
+      "question": "「せんれん」を漢字で書いてください",
+      "choices": [
+        "洗練"
+      ],
+      "correct": 0,
+      "explanation": "「せんれん」は「洗練」と書く。垢抜けて上品になること"
+    },
+    {
+      "id": "kanji-hi-w006",
+      "question": "「しゅんじゅん」を漢字で書いてください",
+      "choices": [
+        "逡巡"
+      ],
+      "correct": 0,
+      "explanation": "「しゅんじゅん」は「逡巡」と書く。ためらって行動できないこと"
+    },
+    {
+      "id": "kanji-hi-w007",
+      "question": "「あざむく」の「あざむ」を漢字で書いてください",
+      "choices": [
+        "欺"
+      ],
+      "correct": 0,
+      "explanation": "「あざむく」の「あざむ」は「欺」と書く。だますこと。「ぎ」（音読み）とも読む"
+    },
+    {
+      "id": "kanji-hi-w008",
+      "question": "「しい」を漢字で書いてください",
+      "choices": [
+        "恣意"
+      ],
+      "correct": 0,
+      "explanation": "「しい」は「恣意」と書く。自分勝手な考え方・思いのままに行動すること"
+    },
+    {
+      "id": "kanji-hi-w009",
+      "question": "「へいがい」を漢字で書いてください",
+      "choices": [
+        "弊害"
+      ],
+      "correct": 0,
+      "explanation": "「へいがい」は「弊害」と書く。悪い影響・障害となること"
+    },
+    {
+      "id": "kanji-hi-w010",
+      "question": "「じょうちょう」を漢字で書いてください",
+      "choices": [
+        "冗長"
+      ],
+      "correct": 0,
+      "explanation": "「じょうちょう」は「冗長」と書く。必要以上に長くてくどいこと"
+    },
+    {
+      "id": "kanji-hi-w011",
+      "question": "「ぜんじ」を漢字で書いてください",
+      "choices": [
+        "漸次"
+      ],
+      "correct": 0,
+      "explanation": "「ぜんじ」は「漸次」と書く。しだいに・少しずつ"
+    },
+    {
+      "id": "kanji-hi-w012",
+      "question": "「けんちょ」を漢字で書いてください",
+      "choices": [
+        "顕著"
+      ],
+      "correct": 0,
+      "explanation": "「けんちょ」は「顕著」と書く。はっきりと目立つこと"
+    },
+    {
+      "id": "kanji-hi-w013",
+      "question": "「あいまい」を漢字で書いてください",
+      "choices": [
+        "曖昧"
+      ],
+      "correct": 0,
+      "explanation": "「あいまい」は「曖昧」と書く。はっきりしないこと・はっきり判断できないこと"
+    },
+    {
+      "id": "kanji-hi-w014",
+      "question": "「しんしゃく」を漢字で書いてください",
+      "choices": [
+        "斟酌"
+      ],
+      "correct": 0,
+      "explanation": "「しんしゃく」は「斟酌」と書く。相手の事情をくみ取って配慮すること"
+    },
+    {
+      "id": "kanji-hi-w015",
+      "question": "「じくじ」を漢字で書いてください",
+      "choices": [
+        "忸怩"
+      ],
+      "correct": 0,
+      "explanation": "「じくじ」は「忸怩」と書く。恥ずかしくて心苦しいこと（忸怩たる思い）"
+    },
+    {
+      "id": "kanji-hi-w016",
+      "question": "「おうのう」を漢字で書いてください",
+      "choices": [
+        "懊悩"
+      ],
+      "correct": 0,
+      "explanation": "「おうのう」は「懊悩」と書く。思い悩んで苦しむこと・深く煩悶すること"
+    },
+    {
+      "id": "kanji-hi-w017",
+      "question": "「しょうすい」を漢字で書いてください",
+      "choices": [
+        "憔悴"
+      ],
+      "correct": 0,
+      "explanation": "「しょうすい」は「憔悴」と書く。心身ともに疲れ果て、やつれること"
+    },
+    {
+      "id": "kanji-hi-w018",
+      "question": "「さてつ」を漢字で書いてください",
+      "choices": [
+        "蹉跌"
+      ],
+      "correct": 0,
+      "explanation": "「さてつ」は「蹉跌」と書く。物事が失敗・挫折すること"
+    },
+    {
+      "id": "kanji-hi-w019",
+      "question": "「きょうじ」を漢字で書いてください",
+      "choices": [
+        "矜持"
+      ],
+      "correct": 0,
+      "explanation": "「きょうじ」は「矜持」と書く。自分の能力への自信・誇り・プライド"
+    },
+    {
+      "id": "kanji-hi-w020",
+      "question": "「せんえつ」を漢字で書いてください",
+      "choices": [
+        "僭越"
+      ],
+      "correct": 0,
+      "explanation": "「せんえつ」は「僭越」と書く。自分の立場を越えた言動をすること（「僭越ながら」）"
+    },
+    {
+      "id": "kanji-hi-w021",
+      "question": "「うごめく」の「うごめ」を漢字で書いてください",
+      "choices": [
+        "蠢"
+      ],
+      "correct": 0,
+      "explanation": "「うごめく」の「うごめ」は「蠢」と書く。小さく不気味にもぞもぞと動くこと"
+    },
+    {
+      "id": "kanji-hi-w022",
+      "question": "「ばっこ」を漢字で書いてください",
+      "choices": [
+        "跋扈"
+      ],
+      "correct": 0,
+      "explanation": "「ばっこ」は「跋扈」と書く。悪者などが勢いを増してはびこること"
+    },
+    {
+      "id": "kanji-hi-w023",
+      "question": "「ほうはい」を漢字で書いてください",
+      "choices": [
+        "澎湃"
+      ],
+      "correct": 0,
+      "explanation": "「ほうはい」は「澎湃」と書く。水が激しくわき起こるさま・勢いが盛んなさま"
+    },
+    {
+      "id": "kanji-hi-w024",
+      "question": "「ふえん」を漢字で書いてください",
+      "choices": [
+        "敷衍"
+      ],
+      "correct": 0,
+      "explanation": "「ふえん」は「敷衍」と書く。意味を分かりやすく広げて詳しく説明すること"
+    },
+    {
+      "id": "kanji-hi-w025",
+      "question": "「ねつぞう」を漢字で書いてください",
+      "choices": [
+        "捏造"
+      ],
+      "correct": 0,
+      "explanation": "「ねつぞう」は「捏造」と書く。事実でないことを事実のように作り上げること"
+    },
+    {
+      "id": "kanji-hi-w026",
+      "question": "「そんたく」を漢字で書いてください",
+      "choices": [
+        "忖度"
+      ],
+      "correct": 0,
+      "explanation": "「そんたく」は「忖度」と書く。相手の気持ちや意図を推し量ること"
+    },
+    {
+      "id": "kanji-hi-w027",
+      "question": "「どうもく」を漢字で書いてください",
+      "choices": [
+        "瞠目"
+      ],
+      "correct": 0,
+      "explanation": "「どうもく」は「瞠目」と書く。目を見張るほど驚くこと（「瞠目すべき成果」）"
+    },
+    {
+      "id": "kanji-hi-w028",
+      "question": "「かいり」を漢字で書いてください",
+      "choices": [
+        "乖離"
+      ],
+      "correct": 0,
+      "explanation": "「かいり」は「乖離」と書く。本来つながるべきものがかけ離れること"
+    },
+    {
+      "id": "kanji-hi-w029",
+      "question": "「こうし」を漢字で書いてください",
+      "choices": [
+        "嚆矢"
+      ],
+      "correct": 0,
+      "explanation": "「こうし」は「嚆矢」と書く。物事のはじまり・最初の例（「〜を嚆矢とする」）"
+    },
+    {
+      "id": "kanji-hi-w030",
+      "question": "「がいぜん」を漢字で書いてください",
+      "choices": [
+        "蓋然"
+      ],
+      "correct": 0,
+      "explanation": "「がいぜん」は「蓋然」と書く。ある事柄が起こる可能性・確からしさ（「蓋然性が高い」）"
+    }
+  ]
+}
