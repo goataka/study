@@ -63,4 +63,3 @@ meet  you
 | bless you | s+y→シュ | ブレッ シュー | s you → シュー |
 | ten people | n→m（唇音の前） | テム ピー プル | n → m |
 | in Paris | n→m（唇音の前） | イム パ リ | n → m |
-

@@ -54,4 +54,3 @@ not  at  all
 | not at all | ノタットール | t + a → タ |
 | an apple | アナップル | n + a → ナ |
 | turn on | ターノン | n + o → ノ |
-
