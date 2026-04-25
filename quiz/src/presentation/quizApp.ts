@@ -34,6 +34,8 @@ export class QuizApp {
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   /** 総合タブの fallback により自動的に "history" へ切り替わった場合は true。ユーザーが明示的にタブを選択した場合は false。 */
   private autoSwitchedToHistory: boolean = false;
+  /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
+  private isPanelTabUserSelected: boolean = false;
   private hideLearnedCategories: boolean = true;
   /** 「総合」タブへの切り替え時に「確認」パネルが強制的に「実行記録」へフォールバックされたかを示すフラグ */
   private wasQuizPanelForcedToHistory: boolean = false;
@@ -61,10 +63,11 @@ export class QuizApp {
     this.setupEventListeners();
     this.buildSubjectTabs();
     this.buildPanelTabs();
-    this.showPanelTab(this.activePanelTab);
     this.updateSubjectStats();
     this.selectFirstUnlearnedCategory();
-    this.updateStartScreen();
+    const initRecords = this.useCase.getHistory();
+    this.autoSelectPanelTab(initRecords);
+    this.updateStartScreen(initRecords);
     // 学習済み非表示の初期状態をボタンのaria-pressed属性に反映する
     const hideLearnedBtn = document.getElementById("hideLearnedBtn");
     if (hideLearnedBtn) {
@@ -200,6 +203,7 @@ export class QuizApp {
         const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
         this.activePanelTab = panel;
         this.autoSwitchedToHistory = false; // ユーザーが明示的にタブを選択した
+        this.isPanelTabUserSelected = true; // ユーザーが明示的にタブを選択した
         this.showPanelTab(panel);
         if (panel === "guide") {
           this.updateGuidePanelContent();
@@ -369,7 +373,9 @@ export class QuizApp {
         }
 
         this.renderCategoryList();
-        this.updateStartScreen();
+        const overviewRecords = this.useCase.getHistory();
+        this.autoSelectPanelTab(overviewRecords);
+        this.updateStartScreen(overviewRecords);
       };
 
       item.addEventListener("click", handleActivate);
@@ -467,7 +473,9 @@ export class QuizApp {
         this.filter.parentCategory = parentCatId;
       }
       this.updateCategoryListActive();
-      this.updateStartScreen();
+      const categoryRecords = this.useCase.getHistory();
+      this.autoSelectPanelTab(categoryRecords);
+      this.updateStartScreen(categoryRecords);
     };
 
     item.addEventListener("click", handleActivate);
@@ -537,6 +545,32 @@ export class QuizApp {
     });
   }
 
+  /**
+   * 解答履歴の有無でパネルタブを自動選択する。
+   * ユーザーが明示的にパネルタブを選択している場合は自動選択をスキップする。
+   * 特定カテゴリが選択されている場合は解答履歴があれば「確認」タブ、なければ「解説」タブを表示する。
+   * category が "all" の場合は「確認」タブに戻す（解説タブが残ると selectFirstUnlearnedCategory が
+   * 再度カテゴリを選択してしまうため）。
+   * 総合タブからの自動復帰（autoSwitchedToHistory）は updateQuizPanelVisibility が担うため、
+   * このメソッドでは autoSwitchedToHistory をリセットしない。
+   * @param allRecords - 呼び出し元で取得済みの履歴配列（二重ロードを避けるために渡す）
+   */
+  private autoSelectPanelTab(allRecords: QuizRecord[]): void {
+    if (this.isPanelTabUserSelected) {
+      // ユーザーが明示的にタブを選択している場合は自動選択しない
+      this.showPanelTab(this.activePanelTab);
+      return;
+    }
+    if (this.filter.category !== "all") {
+      const hasHistory = allRecords.some(
+        (r) => r.subject === this.filter.subject && r.category === this.filter.category
+      );
+      this.activePanelTab = hasHistory ? "quiz" : "guide";
+    } else {
+      this.activePanelTab = "quiz";
+    }
+    this.showPanelTab(this.activePanelTab);
+  }
 
 
   // ─── 解説パネル ────────────────────────────────────────────────────────────
@@ -581,13 +615,13 @@ export class QuizApp {
   /**
    * 回答記録一覧を描画する
    * filter の subject・category に応じて記録を絞り込む
+   * @param allRecords - 呼び出し元で取得済みの履歴配列（省略時は内部でロードする）
    */
-  private renderHistoryList(filter: QuizFilter): void {
+  private renderHistoryList(filter: QuizFilter, allRecords?: QuizRecord[]): void {
     const historyList = document.getElementById("historyList");
     if (!historyList) return;
 
-    const allRecords = this.useCase.getHistory();
-    const records = allRecords.filter(
+    const records = (allRecords ?? this.useCase.getHistory()).filter(
       (r) =>
         (filter.subject === "all" || r.subject === filter.subject) &&
         (filter.category === "all" || r.category === filter.category)
@@ -885,7 +919,7 @@ export class QuizApp {
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
 
-  private updateStartScreen(): void {
+  private updateStartScreen(allRecords?: QuizRecord[]): void {
     this.updateSubjectStats();
     this.updateQuizPanelVisibility();
     const statsInfo = document.getElementById("statsInfo");
@@ -909,7 +943,7 @@ export class QuizApp {
       markLearnedBtn.textContent = this.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 学習済みにする";
     }
 
-    this.renderHistoryList(this.filter);
+    this.renderHistoryList(this.filter, allRecords);
     if (this.activePanelTab === "questions") {
       this.renderQuestionList();
     }
@@ -1566,10 +1600,11 @@ export class QuizApp {
     document.getElementById(idMap[screenName])?.classList.remove("hidden");
 
     if (screenName === "start") {
-      this.showPanelTab(this.activePanelTab);
       this.updateSubjectStats();
       this.selectFirstUnlearnedCategory();
-      this.updateStartScreen();
+      const screenRecords = this.useCase.getHistory();
+      this.autoSelectPanelTab(screenRecords);
+      this.updateStartScreen(screenRecords);
     }
   }
 
