@@ -448,11 +448,13 @@ header h1 {
 /* 練習ボタンは本番ボタンより薄い色にする */
 #startPracticeBtn {
     background: #5b9bd5;
+    color: #0f2a43;
 }
 
 #startPracticeBtn:hover:not(:disabled) {
-    background: #4a8ac4;
-    box-shadow: 0 6px 12px rgba(91, 155, 213, 0.4);
+    background: #2f6ea8;
+    color: #0f2a43;
+    box-shadow: 0 6px 12px rgba(47, 110, 168, 0.4);
 }
 
 .secondary-btn {
