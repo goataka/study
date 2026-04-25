@@ -2144,6 +2144,61 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     expect(highlightEl).not.toBeNull();
     expect(highlightEl?.textContent).toBe("play");
   });
+
+  it("description ありのカテゴリでは説明文が単元一覧に表示される", async () => {
+    setupTabDom();
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/tenses-regular-past.json"],
+    };
+    const questionFileWithDescription = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-regular-past",
+      categoryName: "一般動詞の過去形",
+      description: "規則動詞は語尾に -ed をつけて過去形を作ります。",
+      questions: Array.from({ length: 3 }, (_, i) => ({
+        id: `q${i + 1}`,
+        question: `問題 ${i + 1}`,
+        choices: ["A", "B", "C", "D"],
+        correct: 0,
+        explanation: `解説 ${i + 1}`,
+      })),
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithDescription) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="tenses-regular-past"]');
+    const descEl = catItem?.querySelector(".category-item-description");
+    expect(descEl).not.toBeNull();
+    expect(descEl?.textContent).toBe("規則動詞は語尾に -ed をつけて過去形を作ります。");
+  });
+
+  it("description なしのカテゴリでは説明文要素が単元一覧に存在しない", async () => {
+    setupTabDom();
+    setupFetchMock(); // mockQuestionFile には description がない
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const descEl = catItem?.querySelector(".category-item-description");
+    expect(descEl).toBeNull();
+  });
 });
 
 describe("QuizApp — 単元説明表示仕様", () => {

@@ -431,6 +431,15 @@ export class QuizApp {
 
     nameArea.appendChild(titleRow);
 
+    // 説明文（description が設定されている場合のみ表示）
+    const description = this.useCase.getCategoryDescription(subject, categoryId);
+    if (description) {
+      const descSpan = document.createElement("span");
+      descSpan.className = "category-item-description";
+      descSpan.textContent = description;
+      nameArea.appendChild(descSpan);
+    }
+
     // 進捗バーと完了率を横並びにするラッパー
     const progressRow = document.createElement("div");
     progressRow.className = "category-progress-row";
