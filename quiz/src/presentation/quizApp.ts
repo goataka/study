@@ -11,6 +11,7 @@ import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionReposi
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
 import { NotesCanvas } from "./notesCanvas";
 import type { DrawingState } from "./notesCanvas";
+import { OcrService } from "./ocrService";
 
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
@@ -29,6 +30,7 @@ export class QuizApp {
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
+  private readonly ocrService: OcrService = new OcrService();
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   private hideLearnedCategories: boolean = true;
 
@@ -430,30 +432,6 @@ export class QuizApp {
 
     nameArea.appendChild(progressBar);
 
-    // 解説リンク（guideUrl が設定されている場合のみ表示）
-    const guideUrl = this.useCase.getCategoryGuideUrl(subject, categoryId);
-    const guideLink = document.createElement("a");
-    guideLink.className = "category-guide-link";
-    guideLink.setAttribute("aria-label", "解説を開く");
-    guideLink.textContent = "📖";
-    if (guideUrl) {
-      guideLink.href = guideUrl;
-      guideLink.target = "_blank";
-      guideLink.rel = "noopener noreferrer";
-    } else {
-      guideLink.classList.add("hidden");
-    }
-    // カテゴリ選択のイベントが解説リンクで発火しないようにする
-    guideLink.addEventListener("click", (e) => e.stopPropagation());
-    guideLink.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.stopPropagation();
-      }
-      if (e.key === " ") {
-        e.preventDefault();
-      }
-    });
-
     // 参考学年バッジ（referenceGrade が設定されている場合のみ表示）
     const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
     const gradeSpan = document.createElement("span");
@@ -470,14 +448,19 @@ export class QuizApp {
     item.appendChild(statusSpan);
     item.appendChild(nameArea);
     item.appendChild(gradeSpan);
-    item.appendChild(guideLink);
     item.appendChild(statsSpan);
 
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
-      this.filter.subject = subject;
-      this.filter.category = categoryId;
-      this.filter.parentCategory = parentCatId;
+      // 既に選択中の単元をクリックした場合は非選択に戻す（トグル）
+      if (this.filter.subject === subject && this.filter.category === categoryId) {
+        this.filter.category = "all";
+        this.filter.parentCategory = undefined;
+      } else {
+        this.filter.subject = subject;
+        this.filter.category = categoryId;
+        this.filter.parentCategory = parentCatId;
+      }
       this.updateCategoryListActive();
       this.updateStartScreen();
     };
@@ -636,6 +619,7 @@ export class QuizApp {
     const date = new Date(record.date);
     const dateStr = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
 
+    const isManual = record.mode === "manual";
     const pct = Math.round((record.correctCount / record.totalCount) * 100);
 
     const metaDiv = document.createElement("div");
@@ -658,68 +642,80 @@ export class QuizApp {
     metaDiv.appendChild(modeSpan);
 
     const scoreSpan = document.createElement("span");
-    scoreSpan.className = `history-score ${pct >= 70 ? "pass" : "fail"}`;
-    scoreSpan.textContent = `${record.correctCount}/${record.totalCount} (${pct}%)`;
-
-    const toggleSpan = document.createElement("span");
-    toggleSpan.className = "history-toggle";
-    toggleSpan.textContent = "▶";
+    if (isManual) {
+      scoreSpan.className = "history-score";
+      scoreSpan.textContent = "-";
+    } else {
+      scoreSpan.className = `history-score ${pct >= 70 ? "pass" : "fail"}`;
+      scoreSpan.textContent = `${record.correctCount}/${record.totalCount} (${pct}%)`;
+    }
 
     header.appendChild(metaDiv);
     header.appendChild(scoreSpan);
-    header.appendChild(toggleSpan);
 
     // 詳細（折りたたみ）
     const detail = document.createElement("div");
     detail.className = "history-detail hidden";
 
-    record.entries.forEach((entry) => {
-      const entryDiv = document.createElement("div");
-      entryDiv.className = `history-entry ${entry.isCorrect ? "correct" : "incorrect"}`;
+    if (isManual) {
+      // 手動確認済みの記録は詳細を展開できない
+      header.removeAttribute("role");
+      header.removeAttribute("tabindex");
+      header.removeAttribute("aria-expanded");
+    } else {
+      const toggleSpan = document.createElement("span");
+      toggleSpan.className = "history-toggle";
+      toggleSpan.textContent = "▶";
+      header.appendChild(toggleSpan);
 
-      const iconSpan = document.createElement("span");
-      iconSpan.className = "history-entry-icon";
-      iconSpan.textContent = entry.isCorrect ? "✓" : "✗";
+      record.entries.forEach((entry) => {
+        const entryDiv = document.createElement("div");
+        entryDiv.className = `history-entry ${entry.isCorrect ? "correct" : "incorrect"}`;
 
-      const contentDiv = document.createElement("div");
-      contentDiv.className = "history-entry-content";
+        const iconSpan = document.createElement("span");
+        iconSpan.className = "history-entry-icon";
+        iconSpan.textContent = entry.isCorrect ? "✓" : "✗";
 
-      const questionP = document.createElement("p");
-      questionP.className = "history-entry-question";
-      questionP.textContent = entry.questionText;
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "history-entry-content";
 
-      const answerP = document.createElement("p");
-      answerP.className = "history-entry-answer";
-      const userAnswer = entry.userAnswerText ?? (entry.choices[entry.userAnswerIndex] ?? "未回答");
-      const correctAnswer = entry.choices[entry.correctAnswerIndex] ?? "";
-      if (entry.isCorrect) {
-        answerP.textContent = `正解: ${correctAnswer}`;
-      } else {
-        answerP.textContent = `あなたの回答: ${userAnswer} → 正解: ${correctAnswer}`;
-      }
+        const questionP = document.createElement("p");
+        questionP.className = "history-entry-question";
+        questionP.textContent = entry.questionText;
 
-      contentDiv.appendChild(questionP);
-      contentDiv.appendChild(answerP);
-      entryDiv.appendChild(iconSpan);
-      entryDiv.appendChild(contentDiv);
-      detail.appendChild(entryDiv);
-    });
+        const answerP = document.createElement("p");
+        answerP.className = "history-entry-answer";
+        const userAnswer = entry.userAnswerText ?? (entry.choices[entry.userAnswerIndex] ?? "未回答");
+        const correctAnswer = entry.choices[entry.correctAnswerIndex] ?? "";
+        if (entry.isCorrect) {
+          answerP.textContent = `正解: ${correctAnswer}`;
+        } else {
+          answerP.textContent = `あなたの回答: ${userAnswer} → 正解: ${correctAnswer}`;
+        }
 
-    // 折りたたみ切り替え
-    const toggleDetail = (): void => {
-      const isExpanded = !detail.classList.contains("hidden");
-      detail.classList.toggle("hidden", isExpanded);
-      toggleSpan.textContent = isExpanded ? "▶" : "▼";
-      header.setAttribute("aria-expanded", String(!isExpanded));
-    };
+        contentDiv.appendChild(questionP);
+        contentDiv.appendChild(answerP);
+        entryDiv.appendChild(iconSpan);
+        entryDiv.appendChild(contentDiv);
+        detail.appendChild(entryDiv);
+      });
 
-    header.addEventListener("click", toggleDetail);
-    header.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleDetail();
-      }
-    });
+      // 折りたたみ切り替え
+      const toggleDetail = (): void => {
+        const isExpanded = !detail.classList.contains("hidden");
+        detail.classList.toggle("hidden", isExpanded);
+        toggleSpan.textContent = isExpanded ? "▶" : "▼";
+        header.setAttribute("aria-expanded", String(!isExpanded));
+      };
+
+      header.addEventListener("click", toggleDetail);
+      header.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleDetail();
+        }
+      });
+    }
 
     item.appendChild(header);
     item.appendChild(detail);
@@ -867,7 +863,7 @@ export class QuizApp {
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
     // タッチペン入力確定ボタン（text-input問題のメモタブで使用）
-    document.getElementById("handwritingConfirmBtn")?.addEventListener("click", () => this.handleHandwritingConfirm());
+    document.getElementById("handwritingConfirmBtn")?.addEventListener("click", () => { void this.handleHandwritingConfirm(); });
 
     // 学習済カテゴリの非表示トグル
     this.on("hideLearnedBtn", "click", () => this.toggleHideLearned());
@@ -1052,15 +1048,28 @@ export class QuizApp {
 
   /**
    * クイズパネルの表示/非表示を更新する。
-   * カテゴリが未選択（"all"）の場合はパネルを非表示にし、
-   * 特定のカテゴリが選択されている場合は表示する。
-   * ただし「総合」タブ（subject === "all"）では全問対象でクイズを開始できるため常に表示する。
+   * 教科タブでカテゴリが未選択（category === "all"）の場合はクイズパネルを非表示にし、
+   * カテゴリが選択されている場合は表示する。
+   * 「総合」タブ（subject === "all"）では「解説」と「確認」パネルタブを非表示にする。
+   * 「解説」または「確認」がアクティブな状態で総合タブに切り替えた場合は「実行記録」タブへフォールバックする。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
     if (!subjectContent) return;
     const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
+
+    // 「総合」タブでは「解説」と「確認」パネルタブを非表示にする
+    const isAll = this.filter.subject === "all";
+    document.getElementById("panelTab-guide")?.classList.toggle("hidden", isAll);
+    document.getElementById("panelTab-quiz")?.classList.toggle("hidden", isAll);
+
+    // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「実行記録」タブに切り替える
+    // 描画（renderHistoryList）は updateStartScreen() が一元的に担うためここでは呼ばない
+    if (isAll && (this.activePanelTab === "guide" || this.activePanelTab === "quiz")) {
+      this.activePanelTab = "history";
+      this.showPanelTab("history");
+    }
   }
 
   /**
@@ -1275,9 +1284,10 @@ export class QuizApp {
 
   /**
    * タッチペン入力の確定ボタンが押されたときの処理。
-   * 手書き入力フィールドのテキストを答えの入力エリアに追加する。
+   * キャンバスの手書き文字をTesseract OCRで認識し、答えの入力エリアに追加する。
+   * キャンバスが空の場合は手書き入力フィールドのテキストをフォールバックとして使用する。
    */
-  private handleHandwritingConfirm(): void {
+  private async handleHandwritingConfirm(): Promise<void> {
     const session = this.currentSession;
     if (!session) return;
 
@@ -1287,10 +1297,33 @@ export class QuizApp {
     // 既回答の場合は何もしない
     if (session.getAnswer(session.currentIndex) !== undefined) return;
 
+    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement | null;
-    if (!handwritingInput) return;
+    const canvas = document.getElementById("notesCanvas") as HTMLCanvasElement | null;
 
-    const inputText = handwritingInput.value;
+    let inputText = "";
+
+    // OCRでキャンバスの内容を認識する
+    if (canvas && confirmBtn) {
+      const originalLabel = confirmBtn.textContent ?? "確定する";
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = "認識中...";
+
+      try {
+        inputText = await this.ocrService.recognize(canvas);
+      } catch (e) {
+        console.warn("OCRの認識に失敗しました:", e);
+      } finally {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = originalLabel;
+      }
+    }
+
+    // OCRが空文字の場合は手書き入力フィールドの値をフォールバックとして使う
+    if (!inputText) {
+      inputText = handwritingInput?.value ?? "";
+    }
+
     if (!inputText) return;
 
     // 答えの入力エリアにテキストを追加
@@ -1300,8 +1333,11 @@ export class QuizApp {
       textInput.focus();
     }
 
-    // 手書き入力フィールドをクリア
-    handwritingInput.value = "";
+    // キャンバスと手書き入力フィールドをクリア
+    this.notesCanvas?.clear();
+    if (handwritingInput) {
+      handwritingInput.value = "";
+    }
   }
 
   private navigate(direction: 1 | -1): void {

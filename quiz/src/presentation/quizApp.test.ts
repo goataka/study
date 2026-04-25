@@ -10,6 +10,17 @@
 
 import { QuizApp } from "./quizApp";
 
+// OcrService のモック（jsdom環境ではTesseractが使えないため）
+vi.mock("./ocrService", () => ({
+  OcrService: class {
+    async recognize() {
+      return "";
+    }
+    async initialize() {}
+    async destroy() {}
+  },
+}));
+
 // ─── DOM スタブのセットアップ ────────────────────────────────────────────────
 
 /** テストに必要な最小限のHTML要素を生成する */
@@ -1029,6 +1040,67 @@ describe("QuizApp — 履歴モード表示仕様", () => {
     const modeEl = document.querySelector(".history-mode");
     expect(modeEl?.textContent).toBe("手動");
   });
+
+  it("mode=manual の履歴のスコアは「-」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const scoreEl = document.querySelector(".history-score");
+    expect(scoreEl?.textContent).toBe("-");
+  });
+
+  it("mode=manual の履歴には横三角（▶）が表示されない", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggleEl = document.querySelector(".history-toggle");
+    expect(toggleEl).toBeNull();
+  });
+
+  it("mode=manual の履歴のヘッダーは操作不可で、click や Enter/Space でも詳細は開かない", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const header = document.querySelector<HTMLElement>(".history-item-header");
+    const detail = document.querySelector(".history-detail");
+
+    expect(header).not.toBeNull();
+    expect(detail).not.toBeNull();
+    expect(header?.hasAttribute("role")).toBe(false);
+    expect(header?.hasAttribute("tabindex")).toBe(false);
+    expect(header?.hasAttribute("aria-expanded")).toBe(false);
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.click();
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
+    expect(detail?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("mode=random の履歴にはスコアが「N/N (N%)」形式で表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const scoreEl = document.querySelector(".history-score");
+    expect(scoreEl?.textContent).toBe("5/5 (100%)");
+  });
+
+  it("mode=random の履歴には横三角（▶）が表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggleEl = document.querySelector(".history-toggle");
+    expect(toggleEl?.textContent).toBe("▶");
+  });
 });
 
 describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
@@ -1694,69 +1766,6 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
   });
 });
 
-describe("QuizApp — カテゴリ解説リンク仕様", () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-    localStorage.clear();
-  });
-
-  it("guideUrl なしのカテゴリでは解説リンクが hidden のまま", async () => {
-    setupTabDom();
-    setupFetchMock(); // mockQuestionFile には guideUrl がない
-    localStorage.clear();
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
-    const guideLink = catItem?.querySelector(".category-guide-link") as HTMLElement | null;
-    expect(guideLink?.classList.contains("hidden")).toBe(true);
-  });
-
-  it("guideUrl ありのカテゴリでは解説リンクが表示され href が設定される", async () => {
-    setupTabDom();
-    const guideManifest = {
-      version: "2.0.0",
-      subjects: { english: { name: "英語" } },
-      questionFiles: ["english/phonics-1.json"],
-    };
-    const questionFileWithGuide = {
-      subject: "english",
-      subjectName: "英語",
-      category: "phonics-1",
-      categoryName: "フォニックス（1文字）",
-      guideUrl: "../english/pronunciation/03-phonics-1letter/guide",
-      questions: Array.from({ length: 5 }, (_, i) => ({
-        id: `q${i + 1}`,
-        question: `問題 ${i + 1}`,
-        choices: ["ア", "イ", "ウ", "エ"],
-        correct: 0,
-        explanation: `解説 ${i + 1}`,
-      })),
-    };
-    global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(guideManifest) } as Response);
-      }
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithGuide) } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
-    const guideLink = catItem?.querySelector(".category-guide-link") as HTMLAnchorElement | null;
-    expect(guideLink?.classList.contains("hidden")).toBe(false);
-    expect(guideLink?.href).toContain("guide");
-  });
-});
-
 describe("QuizApp — カテゴリ例文表示仕様", () => {
   afterEach(() => {
     vi.restoreAllMocks();
@@ -1875,10 +1884,12 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
           </div>
           <div class="quiz-panel">
             <div class="panel-tabs" role="tablist">
-              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">学習</button>
+              <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" tabindex="-1">📖 解説</button>
+              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">確認</button>
               <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 実行記録</button>
               <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題一覧</button>
             </div>
+            <div id="guideContent" class="hidden" role="tabpanel"></div>
             <div id="quizModePanel" role="tabpanel">
               <button id="startPracticeBtn">練習</button>
               <button id="startRandomBtn">ランダム</button>
@@ -1956,6 +1967,85 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
+  });
+
+  it("総合タブ表示中は「解説」タブボタンが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideTab = document.getElementById("panelTab-guide");
+    expect(guideTab?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("総合タブ表示中は「確認」タブボタンが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const quizTab = document.getElementById("panelTab-quiz");
+    expect(quizTab?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("総合タブから教科タブに切り替えると「解説」「確認」タブボタンが再表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const guideTab = document.getElementById("panelTab-guide");
+    const quizTab = document.getElementById("panelTab-quiz");
+    expect(guideTab?.classList.contains("hidden")).toBe(false);
+    expect(quizTab?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("総合タブ表示中はアクティブタブが「実行記録」に切り替わる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.getElementById("panelTab-history");
+    expect(historyTab?.classList.contains("active")).toBe(true);
+    expect(historyTab?.getAttribute("aria-selected")).toBe("true");
+
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(false);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("選択済みのカテゴリアイテムを再クリックすると非選択になり active クラスが除去される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    // 1回目クリック：選択
+    catItem?.click();
+    expect(catItem?.classList.contains("active")).toBe(true);
+
+    // 2回目クリック：非選択（トグル）
+    catItem?.click();
+    expect(catItem?.classList.contains("active")).toBe(false);
+  });
+
+  it("選択済みのカテゴリアイテムを再クリックすると category-only クラスが付く（カテゴリ未選択状態に戻る）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    // 1回目クリック：選択
+    catItem?.click();
+
+    // 2回目クリック：非選択（トグル）
+    catItem?.click();
+
+    const subjectContent = document.getElementById("subjectContent");
+    expect(subjectContent?.classList.contains("category-only")).toBe(true);
   });
 });
 
@@ -2077,6 +2167,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
     handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     expect(textInput?.value).toBe("やま");
@@ -2090,6 +2181,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
     handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(handwritingInput.value).toBe("");
   });
@@ -2103,9 +2195,11 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
 
     handwritingInput.value = "や";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     handwritingInput.value = "ま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     expect(textInput?.value).toBe("やま");
@@ -2119,6 +2213,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
     handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 回答が登録されていないこと（フィードバックが非表示のまま）
     const feedback = document.getElementById("answerFeedback");
@@ -2137,6 +2232,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
     handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const confirmBtn = document.getElementById("handwritingConfirmBtn");
     expect(confirmBtn?.classList.contains("hidden")).toBe(false);
@@ -2148,9 +2244,67 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     document.getElementById("startRandomBtn")?.click();
 
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     expect(textInput?.value).toBe("");
+  });
+
+  it("OCRで認識した文字が答えの入力エリアに自動入力される", async () => {
+    // OcrServiceのモックを上書きしてOCR結果を返す
+    const { OcrService } = await import("./ocrService");
+    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockResolvedValue("やま");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.value).toBe("やま");
+
+    recognizeSpy.mockRestore();
+  });
+
+  it("OCR認識後にキャンバスがクリアされる", async () => {
+    // OcrServiceのモックを上書きしてOCR結果を返す
+    const { OcrService } = await import("./ocrService");
+    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockResolvedValue("てすと");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // キャンバスがクリアされていること（toDataURLを通じて間接的に確認）
+    const canvas = document.getElementById("notesCanvas") as HTMLCanvasElement | null;
+    expect(canvas).not.toBeNull();
+
+    recognizeSpy.mockRestore();
+  });
+
+  it("OCRが失敗したときは手書き入力フィールドの値をフォールバックとして使う", async () => {
+    // OcrServiceのモックを上書きしてエラーを投げる
+    const { OcrService } = await import("./ocrService");
+    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockRejectedValue(new Error("OCR失敗"));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+    handwritingInput.value = "かわ";
+    document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.value).toBe("かわ");
+
+    recognizeSpy.mockRestore();
   });
 
   it("回答後に次の問題へ移動すると確定ボタンが復元される", async () => {

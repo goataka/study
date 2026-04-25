@@ -164,3 +164,24 @@ Then("the guide iframe src should contain {string}", async ({ page }, text: stri
   const src = await frame.getAttribute("src");
   expect(src).toContain(text);
 });
+
+When("I open the history panel", async ({ page }) => {
+  await page.locator("#panelTab-history").click();
+  await page.locator("#historyList").waitFor({ state: "visible" });
+});
+
+Then("the manual history record score should show {string}", async ({ page }, expected: string) => {
+  const scoreEl = page.locator(".history-score").first();
+  await expect(scoreEl).toHaveText(expected);
+});
+
+Then("the manual history record should have no toggle arrow", async ({ page }) => {
+  await expect(page.locator(".history-toggle").first()).not.toBeAttached();
+});
+
+Then("clicking the manual history record header should not expand details", async ({ page }) => {
+  const header = page.locator(".history-item-header").first();
+  const detail = page.locator(".history-detail").first();
+  await header.click();
+  await expect(detail).toBeHidden();
+});
