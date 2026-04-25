@@ -1374,7 +1374,7 @@ export class QuizApp {
     this.refPatternsLoadPromise = this.loadScript("./vendor/ref-patterns.js")
       .then(() => this.loadScript("./vendor/hiragana-patterns.js"))
       .catch((error) => {
-        this.refPatternsLoadPromise = undefined;
+        this.refPatternsLoadPromise = null;
         throw error;
       });
     return this.refPatternsLoadPromise;
