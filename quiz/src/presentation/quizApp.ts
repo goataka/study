@@ -335,7 +335,10 @@ export class QuizApp {
         if (recommended.referenceGrade) {
           const gradeSpan = document.createElement("span");
           gradeSpan.className = "subject-overview-grade";
-          gradeSpan.classList.add(gradeColorClass(recommended.referenceGrade));
+          const gradeClassName = gradeColorClass(recommended.referenceGrade);
+          if (gradeClassName) {
+            gradeSpan.classList.add(gradeClassName);
+          }
           gradeSpan.textContent = recommended.referenceGrade;
           recDiv.appendChild(gradeSpan);
         }
@@ -480,7 +483,10 @@ export class QuizApp {
     gradeSpan.className = "category-grade";
     if (referenceGrade) {
       gradeSpan.textContent = referenceGrade;
-      gradeSpan.classList.add(gradeColorClass(referenceGrade));
+      const gradeClass = gradeColorClass(referenceGrade);
+      if (gradeClass) {
+        gradeSpan.classList.add(gradeClass);
+      }
     } else {
       gradeSpan.classList.add("hidden");
     }
