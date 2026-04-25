@@ -263,6 +263,15 @@ export class QuizUseCase {
   }
 
   /**
+   * 利用可能な最初の解説 URL を返す。
+   * カテゴリが "all"（未選択）の場合のフォールバック用。
+   * 解説 URL が 1 件も存在しない場合は undefined を返す。
+   */
+  getFirstAvailableGuideUrl(): string | undefined {
+    return this.categoryGuideMap.values().next().value;
+  }
+
+  /**
    * 指定した教科・カテゴリの参考学年を返す。
    * 該当カテゴリに referenceGrade が設定されていない場合は undefined を返す。
    */
