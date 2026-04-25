@@ -11,7 +11,7 @@
   "description": "隣の音に引っ張られて音が変化するアシミレーション（音の同化）を学びます。",
   "questions": [
     {
-      "id": "7bdefbb4",
+      "id": "72a648c0-384e-5cb1-8f59-aff908feced4",
       "question": "「meet you」はどう発音する？",
       "choices": [
         "ミー チュー",
@@ -23,7 +23,7 @@
       "explanation": "t + y → チュ となり、ミー チュー"
     },
     {
-      "id": "1b7a9fdc",
+      "id": "494b17b5-a863-5f5d-b964-33f79299d26b",
       "question": "「would you」はどう発音する？",
       "choices": [
         "ウッ ジュー",
@@ -35,7 +35,7 @@
       "explanation": "d + y → ジュ となり、ウッ ジュー"
     },
     {
-      "id": "9f63f85f",
+      "id": "70ad1f46-b71b-5ebf-bf87-b29a996c6f1c",
       "question": "「miss you」はどう発音する？",
       "choices": [
         "ミッ シュー",
@@ -47,7 +47,7 @@
       "explanation": "s + y → シュ となり、ミッ シュー"
     },
     {
-      "id": "70e9bc77",
+      "id": "815fcf12-c5ab-5352-a7e6-6d59efd62c9a",
       "question": "「ten people」はどう発音する？",
       "choices": [
         "テム ピー プル",
@@ -59,7 +59,7 @@
       "explanation": "n → m（唇音の前）となり、テム ピー プル"
     },
     {
-      "id": "ab1c015c",
+      "id": "12ac749d-3ea6-5fec-9b2a-32f2b1bff131",
       "question": "「in Paris」はどう発音する？",
       "choices": [
         "イム パ リ",

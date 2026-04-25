@@ -11,7 +11,7 @@
   "description": "形容詞・副詞に -est をつけて「最も〜だ」という最上級を作ります。",
   "questions": [
     {
-      "id": "b746e307",
+      "id": "6ce32e85-8a71-5780-aaf2-0727e5fa7849",
       "question": "I am the ___ in the class. (tall)",
       "choices": [
         "tallest",
@@ -23,7 +23,7 @@
       "explanation": "短い形容詞の最上級は the -est です"
     },
     {
-      "id": "541a7d78",
+      "id": "8c48a5b1-c3ad-5287-b2dd-42507d242da9",
       "question": "I am the ___ in the class. (big)",
       "choices": [
         "biggest",
@@ -35,7 +35,7 @@
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -est をつけます"
     },
     {
-      "id": "48c9a144",
+      "id": "ae3d4ac2-4126-5351-b3c6-e23eb439b37a",
       "question": "I am the ___ to talk to in the class. (easy)",
       "choices": [
         "easiest",
@@ -47,7 +47,7 @@
       "explanation": "子音+yで終わる語は、yをiに変えて -est をつけます"
     },
     {
-      "id": "29916c61",
+      "id": "354af563-a368-50ad-b680-e427bd80c917",
       "question": "This game is the ___ of all. (interesting)",
       "choices": [
         "most interesting",
@@ -59,7 +59,7 @@
       "explanation": "長い形容詞の最上級は the most + 形容詞です"
     },
     {
-      "id": "69be04ab",
+      "id": "e8dcb76d-9a57-554c-9c54-cddabbf78efa",
       "question": "This problem is the ___ of all. (difficult)",
       "choices": [
         "most difficult",
@@ -71,7 +71,7 @@
       "explanation": "長い形容詞の最上級は the most + 形容詞です"
     },
     {
-      "id": "c293291f",
+      "id": "e5dab4bd-2471-5bca-83f8-0c15c8cac024",
       "question": "This flower is the ___ of all. (beautiful)",
       "choices": [
         "most beautiful",
@@ -83,7 +83,7 @@
       "explanation": "長い形容詞の最上級は the most + 形容詞です"
     },
     {
-      "id": "cba97173",
+      "id": "4ee2858b-4168-56db-ae5d-a4952ed35b57",
       "question": "Mt. Fuji is the ___ mountain in Japan. (high)",
       "choices": [
         "highest",
@@ -95,7 +95,7 @@
       "explanation": "短い形容詞の最上級は the -est です"
     },
     {
-      "id": "5c1afba5",
+      "id": "b159ad04-f73e-56fc-8b87-b2acecdbf253",
       "question": "This is the ___ book I have ever read. (good)",
       "choices": [
         "best",

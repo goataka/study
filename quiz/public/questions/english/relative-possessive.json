@@ -11,7 +11,7 @@
   "description": "関係代名詞 whose を使って、所有関係を表す節で名詞を説明します。",
   "questions": [
     {
-      "id": "4a797627",
+      "id": "d7106104-c620-5305-9602-c80da5492fb1",
       "question": "I have a friend ___ father is a doctor. (所有格)",
       "choices": [
         "whose",
@@ -23,7 +23,7 @@
       "explanation": "所有格の関係代名詞は whose です"
     },
     {
-      "id": "d4f039e7",
+      "id": "73c83a9b-a572-58a2-8f05-17dbff942703",
       "question": "I have a book ___ cover is red. (所有格)",
       "choices": [
         "whose",
@@ -35,7 +35,7 @@
       "explanation": "所有格の関係代名詞は whose です"
     },
     {
-      "id": "a876097c",
+      "id": "1e988f8e-db99-522c-9ca7-3584c9a49f5d",
       "question": "I have a friend ___ mother is a teacher. (所有格)",
       "choices": [
         "whose",
@@ -47,7 +47,7 @@
       "explanation": "所有格の関係代名詞は whose です"
     },
     {
-      "id": "75313e67",
+      "id": "a9e6dd24-b7e5-5565-8a99-368ed12a9aa4",
       "question": "The boy ___ bike was stolen is crying. (所有格)",
       "choices": [
         "whose",
@@ -59,7 +59,7 @@
       "explanation": "所有格の関係代名詞は whose です"
     },
     {
-      "id": "8202073d",
+      "id": "02420818-b40a-57a2-aab4-5971bcd77753",
       "question": "I know a girl ___ sister is a singer. (所有格)",
       "choices": [
         "whose",
@@ -71,7 +71,7 @@
       "explanation": "所有格の関係代名詞は whose です"
     },
     {
-      "id": "932771ae",
+      "id": "d5a770bc-a1ec-54cd-8664-804c52264626",
       "question": "This is the house ___ roof is blue. (所有格)",
       "choices": [
         "whose",
@@ -83,7 +83,7 @@
       "explanation": "所有格の関係代名詞は whose です"
     },
     {
-      "id": "869c6af2",
+      "id": "1edb6d7e-ab11-5a46-b710-12daae7fd8a7",
       "question": "The student ___ name is Tom is my friend. (所有格)",
       "choices": [
         "whose",
@@ -95,7 +95,7 @@
       "explanation": "所有格の関係代名詞は whose です"
     },
     {
-      "id": "d99de5d9",
+      "id": "8a707876-d62a-577b-80ea-103123c90ded",
       "question": "whoseは人にも物にも使える？",
       "choices": [
         "はい",

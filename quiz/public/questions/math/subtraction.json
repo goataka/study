@@ -10,7 +10,7 @@
   "description": "ひき算を正確にできるようにします。",
   "questions": [
     {
-      "id": "3d125b3b",
+      "id": "adce64a9-df48-5483-bff1-55c28eb14a91",
       "question": "10 - 3 = ?",
       "choices": [
         "7",
@@ -22,7 +22,7 @@
       "explanation": "10 - 3 = 7"
     },
     {
-      "id": "58a8ab52",
+      "id": "4e4a7ce9-0678-59c7-808e-773eaf5f1aba",
       "question": "15 - 7 = ?",
       "choices": [
         "8",
@@ -34,7 +34,7 @@
       "explanation": "15 - 7 = 8"
     },
     {
-      "id": "4effceb5",
+      "id": "2fe78cec-61de-5529-adb6-42cca49a2cdf",
       "question": "20 - 12 = ?",
       "choices": [
         "8",
@@ -46,7 +46,7 @@
       "explanation": "20 - 12 = 8"
     },
     {
-      "id": "16aa1cd8",
+      "id": "6db0409d-3100-5b80-950a-e08d4d9e4e28",
       "question": "25 - 9 = ?",
       "choices": [
         "16",
@@ -58,7 +58,7 @@
       "explanation": "25 - 9 = 16"
     },
     {
-      "id": "466f3795",
+      "id": "838c4304-12b2-5965-a104-b95b80153c1f",
       "question": "40 - 18 = ?",
       "choices": [
         "22",
@@ -70,7 +70,7 @@
       "explanation": "40 - 18 = 22"
     },
     {
-      "id": "7f96c025",
+      "id": "a4593b97-c960-5d13-8f0f-e1a139ce9326",
       "question": "50 - 27 = ?",
       "choices": [
         "23",
@@ -82,7 +82,7 @@
       "explanation": "50 - 27 = 23"
     },
     {
-      "id": "72dbb15a",
+      "id": "63df0b6b-09b7-52b8-b41d-059ef7a966f1",
       "question": "65 - 38 = ?",
       "choices": [
         "27",
@@ -94,7 +94,7 @@
       "explanation": "65 - 38 = 27"
     },
     {
-      "id": "a3c297be",
+      "id": "da4da9db-7e84-5405-a031-5e1a7a984aa9",
       "question": "80 - 45 = ?",
       "choices": [
         "35",

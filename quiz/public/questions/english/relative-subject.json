@@ -11,7 +11,7 @@
   "description": "関係代名詞 who / which / that を使って、名詞を主語として説明します。",
   "questions": [
     {
-      "id": "73a4bedd",
+      "id": "9865070d-f406-5cf7-9d38-2308a73108be",
       "question": "I have a friend ___ speaks English. (人・主格)",
       "choices": [
         "who",
@@ -23,7 +23,7 @@
       "explanation": "人が主語の場合は who を使います"
     },
     {
-      "id": "59d5f239",
+      "id": "46bedd09-acec-594c-a5cd-f5e244d1bd14",
       "question": "I have a book ___ is very interesting. (物・主格)",
       "choices": [
         "which",
@@ -35,7 +35,7 @@
       "explanation": "物が主語の場合は which を使います"
     },
     {
-      "id": "3f6aa82b",
+      "id": "fd61b55b-3fc9-5238-9a56-5df451b77eb0",
       "question": "I have a friend ___ lives in Tokyo. (人・主格)",
       "choices": [
         "that",
@@ -47,7 +47,7 @@
       "explanation": "人・物どちらでも that を使えます"
     },
     {
-      "id": "99f1faf6",
+      "id": "8e540225-6bef-5ad1-b6c9-8a28b5e8090e",
       "question": "I have a cat ___ is very cute. (物・主格)",
       "choices": [
         "which",
@@ -59,7 +59,7 @@
       "explanation": "物が主語の場合は which を使います"
     },
     {
-      "id": "4f7f2515",
+      "id": "a8bece07-115f-5989-b52b-b88b08b82541",
       "question": "The boy ___ is playing there is my brother. (人・主格)",
       "choices": [
         "who",
@@ -71,7 +71,7 @@
       "explanation": "人が主語の場合は who を使います"
     },
     {
-      "id": "75e0e2e2",
+      "id": "5af9b447-d80e-5295-aecf-19aa6bc58af9",
       "question": "The car ___ is parked there is mine. (物・主格)",
       "choices": [
         "which",
@@ -83,7 +83,7 @@
       "explanation": "物が主語の場合は which を使います"
     },
     {
-      "id": "8102a7d2",
+      "id": "256e40f3-0de1-503d-a406-b69579e0e421",
       "question": "I know a teacher ___ teaches English. (人・主格)",
       "choices": [
         "who",
@@ -95,7 +95,7 @@
       "explanation": "人が主語の場合は who を使います"
     },
     {
-      "id": "813a0626",
+      "id": "d20a0c08-7ef3-5344-a59c-526c09e8a0b1",
       "question": "This is a dog ___ can swim. (物・主格)",
       "choices": [
         "that",

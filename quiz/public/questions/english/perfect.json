@@ -11,7 +11,7 @@
   "description": "現在完了形は過去の動作・経験が現在につながることを表します。",
   "questions": [
     {
-      "id": "dd679db4",
+      "id": "8661792e-4a3c-5447-952e-ed9186e98730",
       "question": "I ___ played games. (過去完了)",
       "choices": [
         "had",
@@ -23,7 +23,7 @@
       "explanation": "過去完了は had + 過去分詞です"
     },
     {
-      "id": "eaa78308",
+      "id": "51d3bf0b-2726-52d9-9c07-fb88024c7de1",
       "question": "I ___ played games by next week. (未来完了)",
       "choices": [
         "will have",
@@ -35,7 +35,7 @@
       "explanation": "未来完了は will have + 過去分詞です"
     },
     {
-      "id": "e932eca8",
+      "id": "3f320251-b02f-5400-85c7-b24042766633",
       "question": "I ___ lived here for three years. (現在完了)",
       "choices": [
         "have",
@@ -47,7 +47,7 @@
       "explanation": "現在完了は have/has + 過去分詞です"
     },
     {
-      "id": "bad83de5",
+      "id": "3454cf21-f39c-5a41-8b55-6ae8f6e434f4",
       "question": "She ___ lived here for three years. (現在完了)",
       "choices": [
         "has",
@@ -59,7 +59,7 @@
       "explanation": "三人称単数の現在完了は has + 過去分詞です"
     },
     {
-      "id": "34e2fc50",
+      "id": "aaa97509-a9dd-5d31-a847-86158465c1c2",
       "question": "I ___ studied English before I came here. (過去完了)",
       "choices": [
         "had",
@@ -71,7 +71,7 @@
       "explanation": "過去完了は had + 過去分詞です"
     },
     {
-      "id": "ce54e66b",
+      "id": "3f7f6e8a-6f3c-57fe-b612-e862049fe944",
       "question": "They ___ finished the work by tomorrow. (未来完了)",
       "choices": [
         "will have",
@@ -83,7 +83,7 @@
       "explanation": "未来完了は will have + 過去分詞です"
     },
     {
-      "id": "14848b85",
+      "id": "94257893-0a3b-5305-a2fd-ca1d56a54852",
       "question": "He ___ just finished homework. (現在完了)",
       "choices": [
         "has",
@@ -95,7 +95,7 @@
       "explanation": "三人称単数の現在完了は has + 過去分詞です"
     },
     {
-      "id": "009dd596",
+      "id": "6949b94b-ee83-52a3-acd5-db667905e7d8",
       "question": "We ___ been friends for ten years. (現在完了)",
       "choices": [
         "have",

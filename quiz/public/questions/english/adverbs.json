@@ -11,7 +11,7 @@
   "description": "副詞は動詞・形容詞・他の副詞を修飾する語です。",
   "questions": [
     {
-      "id": "4397d5a5",
+      "id": "c7b67fb3-6359-54b9-a657-1d1ce99d0351",
       "question": "I ___ play games. (sometimes)",
       "choices": [
         "sometimes",
@@ -23,7 +23,7 @@
       "explanation": "頻度を表す副詞は一般動詞の前に置きます"
     },
     {
-      "id": "55f12fdc",
+      "id": "a0911c82-cce6-599a-96a0-bcdda3a25c00",
       "question": "I play games ___. (well)",
       "choices": [
         "well",
@@ -35,7 +35,7 @@
       "explanation": "様態を表す副詞は文末に置きます"
     },
     {
-      "id": "94e15785",
+      "id": "ed5e18ee-0122-58cd-a5a5-cafe1338e289",
       "question": "I ___ study English. (usually)",
       "choices": [
         "usually",
@@ -47,7 +47,7 @@
       "explanation": "頻度を表す副詞は一般動詞の前に置きます"
     },
     {
-      "id": "bca2a30a",
+      "id": "a78d1ffb-4533-5e36-bed2-be319796bd83",
       "question": "She sings ___. (beautifully)",
       "choices": [
         "beautifully",
@@ -59,7 +59,7 @@
       "explanation": "様態を表す副詞は文末に置きます"
     },
     {
-      "id": "a133df02",
+      "id": "cf91ef02-63af-5376-b1ad-22d361bdadee",
       "question": "I played games ___. (yesterday)",
       "choices": [
         "yesterday",
@@ -71,7 +71,7 @@
       "explanation": "時を表す副詞は文末に置きます"
     },
     {
-      "id": "87508dd6",
+      "id": "8a7ca328-bfea-53fe-848d-af4ca438b0f4",
       "question": "He ___ eats breakfast. (always)",
       "choices": [
         "always",
@@ -83,7 +83,7 @@
       "explanation": "頻度を表す副詞は一般動詞の前に置きます"
     },
     {
-      "id": "179b539c",
+      "id": "acae6979-d820-5177-92af-1dc6dd269ebe",
       "question": "She runs ___. (quickly)",
       "choices": [
         "quickly",
@@ -95,7 +95,7 @@
       "explanation": "様態を表す副詞は文末に置きます"
     },
     {
-      "id": "07bc965c",
+      "id": "13956578-ab71-552f-b491-8fde72745b1f",
       "question": "I ___ go to school by bus. (often)",
       "choices": [
         "often",

@@ -11,7 +11,7 @@
   "description": "do / does / did を使って一般動詞の疑問文を作ります。",
   "questions": [
     {
-      "id": "e43be718",
+      "id": "176cfcfb-9cd9-54c8-8d12-528ee6b1740b",
       "question": "___ you play games? (一般動詞・現在)",
       "choices": [
         "Do",
@@ -23,7 +23,7 @@
       "explanation": "一般動詞の現在形の疑問文は Do/Does で始めます"
     },
     {
-      "id": "30668181",
+      "id": "927ddafa-7855-51f6-98f2-2b6ee2fc3a73",
       "question": "___ you play games yesterday? (一般動詞・過去)",
       "choices": [
         "Did",
@@ -35,7 +35,7 @@
       "explanation": "一般動詞の過去形の疑問文は Did で始めます"
     },
     {
-      "id": "69ff262b",
+      "id": "52059e53-336f-5fb8-9fff-a6ee347b3ae6",
       "question": "___ you play games tomorrow? (一般動詞・未来)",
       "choices": [
         "Will",
@@ -47,7 +47,7 @@
       "explanation": "一般動詞の未来形の疑問文は Will で始めます"
     },
     {
-      "id": "49acc01a",
+      "id": "a322ae48-23cd-5994-8f7e-99d9bc8ee447",
       "question": "___ you happy? (be動詞・現在)",
       "choices": [
         "Are",
@@ -59,7 +59,7 @@
       "explanation": "be動詞の疑問文はbe動詞を前に出します"
     },
     {
-      "id": "cf73cd14",
+      "id": "cb90646a-86b2-5e0c-8599-1c72c68d99f5",
       "question": "___ you happy yesterday? (be動詞・過去)",
       "choices": [
         "Were",
@@ -71,7 +71,7 @@
       "explanation": "be動詞の疑問文はbe動詞を前に出します"
     },
     {
-      "id": "ad3a7759",
+      "id": "69d8d6c0-3f56-5963-899e-7a709fdddb92",
       "question": "___ you playing games now? (進行形)",
       "choices": [
         "Are",
@@ -83,7 +83,7 @@
       "explanation": "進行形の疑問文はbe動詞を前に出します"
     },
     {
-      "id": "6988834b",
+      "id": "dda96d31-726e-50d8-8e04-19e37659616c",
       "question": "___ she play games? (三人称・現在)",
       "choices": [
         "Does",
@@ -95,7 +95,7 @@
       "explanation": "三人称単数の疑問文は Does で始めます"
     },
     {
-      "id": "d2d399fa",
+      "id": "0dcb127c-e246-5605-9520-aab8fa006293",
       "question": "___ he happy? (be動詞・現在)",
       "choices": [
         "Is",

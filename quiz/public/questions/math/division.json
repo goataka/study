@@ -10,7 +10,7 @@
   "description": "わり算を筆算で正確に計算できるようにします。",
   "questions": [
     {
-      "id": "bf4b9f35",
+      "id": "bc9ab95e-6459-58f1-afb4-5c2a3baffe44",
       "question": "12 ÷ 3 = ?",
       "choices": [
         "4",
@@ -22,7 +22,7 @@
       "explanation": "12 ÷ 3 = 4"
     },
     {
-      "id": "caaca5b2",
+      "id": "d5632ac4-4f42-53bc-a9d9-c0d41f016dc2",
       "question": "20 ÷ 4 = ?",
       "choices": [
         "5",
@@ -34,7 +34,7 @@
       "explanation": "20 ÷ 4 = 5"
     },
     {
-      "id": "70c68da8",
+      "id": "cfd48e04-5b3d-5619-a0a8-486edc746df8",
       "question": "24 ÷ 6 = ?",
       "choices": [
         "4",
@@ -46,7 +46,7 @@
       "explanation": "24 ÷ 6 = 4"
     },
     {
-      "id": "4efaf97b",
+      "id": "a49f1b87-1c23-5131-9bec-00be8013e029",
       "question": "35 ÷ 7 = ?",
       "choices": [
         "5",
@@ -58,7 +58,7 @@
       "explanation": "35 ÷ 7 = 5"
     },
     {
-      "id": "f8614720",
+      "id": "fd14fb69-755f-5203-b109-f59cc5a333b2",
       "question": "48 ÷ 8 = ?",
       "choices": [
         "6",
@@ -70,7 +70,7 @@
       "explanation": "48 ÷ 8 = 6"
     },
     {
-      "id": "7c5df9ff",
+      "id": "3570fc21-fcf3-55a4-a359-798ec3a06208",
       "question": "56 ÷ 7 = ?",
       "choices": [
         "8",
@@ -82,7 +82,7 @@
       "explanation": "56 ÷ 7 = 8"
     },
     {
-      "id": "0ba99018",
+      "id": "b29c7690-8e2a-525e-879e-5444191c939a",
       "question": "63 ÷ 9 = ?",
       "choices": [
         "7",
@@ -94,7 +94,7 @@
       "explanation": "63 ÷ 9 = 7"
     },
     {
-      "id": "2c790dfb",
+      "id": "e5380f35-67e0-52e0-aaa1-3f4ead58a9a9",
       "question": "81 ÷ 9 = ?",
       "choices": [
         "9",

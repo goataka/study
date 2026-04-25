@@ -185,14 +185,15 @@ describe("各カテゴリファイル — スキーマ検証", () => {
 });
 
 describe("問題ID — コンテンツ一意性", () => {
-  it("全問題IDが8文字の16進数形式である", () => {
+  it("全問題IDがUUID v5形式である", () => {
     const manifest = loadManifest();
     const questionFiles = loadAllQuestionFiles(manifest);
     const invalidIds: string[] = [];
+    const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 
     for (const qf of questionFiles) {
       for (const q of qf.questions) {
-        if (!/^[0-9a-f]{8}$/.test(q.id)) {
+        if (!uuidPattern.test(q.id)) {
           invalidIds.push(`${q.id} (${qf.category})`);
         }
       }

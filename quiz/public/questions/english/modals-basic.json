@@ -11,7 +11,7 @@
   "description": "can / may / must / should などの助動詞は動詞の前に置いて意味を加えます。",
   "questions": [
     {
-      "id": "46dd4957",
+      "id": "be2aacfe-2dd0-526b-b5f8-33b7aa26f89d",
       "question": "I ___ play the piano. (～できる)",
       "choices": [
         "can",
@@ -23,7 +23,7 @@
       "explanation": "「できる」は can を使います"
     },
     {
-      "id": "cffdb58f",
+      "id": "603053eb-bfe6-5ecb-bd9e-7e80a0a05b46",
       "question": "I ___ go now. (～してもよい)",
       "choices": [
         "may",
@@ -35,7 +35,7 @@
       "explanation": "「してもよい」は may を使います"
     },
     {
-      "id": "b83964b6",
+      "id": "c68dfb5e-9960-5259-83b4-dfde7615ab22",
       "question": "I ___ study hard. (～しなければならない)",
       "choices": [
         "must",
@@ -47,7 +47,7 @@
       "explanation": "「しなければならない」は must を使います"
     },
     {
-      "id": "de627cbc",
+      "id": "2db31b42-f1f8-5b8b-8d2f-5229d7c3914b",
       "question": "I ___ go to bed early. (～すべきだ)",
       "choices": [
         "should",
@@ -59,7 +59,7 @@
       "explanation": "「すべきだ」は should を使います"
     },
     {
-      "id": "28359511",
+      "id": "69f04088-fbba-55a6-b120-7e4a35ec5979",
       "question": "I ___ help you. (～するでしょう)",
       "choices": [
         "will",
@@ -71,7 +71,7 @@
       "explanation": "「するでしょう」は will を使います"
     },
     {
-      "id": "9f583de9",
+      "id": "86c9f5b9-e1b9-5f06-b248-017f8df4fa43",
       "question": "I ___ be late. (～かもしれない)",
       "choices": [
         "might",
@@ -83,7 +83,7 @@
       "explanation": "「かもしれない」は might を使います"
     },
     {
-      "id": "5b5f7d24",
+      "id": "b3b7afa6-1d08-5e42-8bf5-0fab4e5ae479",
       "question": "You ___ not smoke here. (～してはいけない)",
       "choices": [
         "must",
@@ -95,7 +95,7 @@
       "explanation": "「してはいけない」は must not を使います"
     },
     {
-      "id": "f06bc241",
+      "id": "cc1f3d1c-5a43-5306-878c-ddfd5df6cb59",
       "question": "___ you open the window? (～してくれませんか)",
       "choices": [
         "Could",

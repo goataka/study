@@ -11,7 +11,7 @@
   "description": "多項式関数の不定積分と定積分を正確に計算できるようにします。",
   "questions": [
     {
-      "id": "28826e0d",
+      "id": "4aa0e157-a92c-5172-aa84-641ced70ad93",
       "question": "∫(3x² + 2x)dx = ?",
       "choices": [
         "x³ + x² + C",
@@ -23,7 +23,7 @@
       "explanation": "∫xⁿdx = xⁿ⁺¹/(n+1) + C。∫3x²dx = x³、∫2xdx = x²。よって x³ + x² + C"
     },
     {
-      "id": "618a1d72",
+      "id": "5392a6ae-52e7-5a98-b732-111a6728fe9d",
       "question": "∫(2x³ - 4x)dx = ?",
       "choices": [
         "(1/2)x⁴ - 2x² + C",
@@ -35,7 +35,7 @@
       "explanation": "∫2x³dx = 2×(x⁴/4) = (1/2)x⁴、∫-4xdx = -4×(x²/2) = -2x²。よって (1/2)x⁴ - 2x² + C"
     },
     {
-      "id": "0fa2f765",
+      "id": "49085812-5c5b-5cfa-a29f-cc536fda0f46",
       "question": "∫(x² + 3x + 2)dx = ?",
       "choices": [
         "(1/3)x³ + (3/2)x² + 2x + C",
@@ -47,7 +47,7 @@
       "explanation": "∫x²dx = x³/3、∫3xdx = 3x²/2、∫2dx = 2x。よって (1/3)x³ + (3/2)x² + 2x + C"
     },
     {
-      "id": "66e35ceb",
+      "id": "63ac1cd7-babb-5090-b1a0-2b77d35f0a2d",
       "question": "∫(4x³ + 6x²)dx = ?",
       "choices": [
         "x⁴ + 2x³ + C",
@@ -59,7 +59,7 @@
       "explanation": "∫4x³dx = 4×(x⁴/4) = x⁴、∫6x²dx = 6×(x³/3) = 2x³。よって x⁴ + 2x³ + C"
     },
     {
-      "id": "e6896c4b",
+      "id": "5389ad91-4e16-51f3-8d2d-357d4f528742",
       "question": "∫[0→2] (3x² + 2x)dx = ?",
       "choices": [
         "12",
@@ -71,7 +71,7 @@
       "explanation": "[x³ + x²]₀² = (8 + 4) - (0 + 0) = 12"
     },
     {
-      "id": "168e77f9",
+      "id": "fa5c6d75-4988-595f-beb4-7272fa05f27a",
       "question": "∫[1→3] (2x + 1)dx = ?",
       "choices": [
         "10",
@@ -83,7 +83,7 @@
       "explanation": "∫(2x + 1)dx = x² + x。[x² + x]₁³ = (9 + 3) - (1 + 1) = 12 - 2 = 10"
     },
     {
-      "id": "ec66d1d6",
+      "id": "fcc5d8b3-e61b-5c64-b89b-c63f3e60e205",
       "question": "∫[0→1] (x² + x)dx = ?",
       "choices": [
         "5/6",
@@ -95,7 +95,7 @@
       "explanation": "∫(x² + x)dx = x³/3 + x²/2。[x³/3 + x²/2]₀¹ = (1/3 + 1/2) - 0 = 2/6 + 3/6 = 5/6"
     },
     {
-      "id": "82af4fc7",
+      "id": "35306246-2947-50ed-90a1-790ebf1a813d",
       "question": "∫(5x⁴)dx = ?",
       "choices": [
         "x⁵ + C",

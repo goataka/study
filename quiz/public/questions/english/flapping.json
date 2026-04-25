@@ -11,7 +11,7 @@
   "description": "母音に挟まれた t / d がラ行の音に変化する現象（フラッピング）を学びます。",
   "questions": [
     {
-      "id": "0edb31ee",
+      "id": "d0be8174-56cc-5f76-ac9d-6debce3c72a2",
       "question": "「water」の「t」はどう発音される？",
       "choices": [
         "ラ",
@@ -23,7 +23,7 @@
       "explanation": "t → ラ となり、ワ ラー"
     },
     {
-      "id": "57ec4280",
+      "id": "a530f4e7-d2b5-520f-bf02-3c0471809d12",
       "question": "「better」の「tt」はどう発音される？",
       "choices": [
         "ラ",
@@ -35,7 +35,7 @@
       "explanation": "tt → ラ となり、ベ ラー"
     },
     {
-      "id": "26a42d8a",
+      "id": "bf60d15f-981a-57a0-959e-2c3fb0f10566",
       "question": "「little」の「tt」はどう発音される？",
       "choices": [
         "ロ",
@@ -47,7 +47,7 @@
       "explanation": "tt → ロ となり、リ ロー"
     },
     {
-      "id": "305b57e8",
+      "id": "0614aad4-3309-5908-b7ba-26631e4d7d49",
       "question": "「city」の「t」はどう発音される？",
       "choices": [
         "リ",
@@ -59,7 +59,7 @@
       "explanation": "t → リ となり、シ リー"
     },
     {
-      "id": "2832cabc",
+      "id": "482db9b7-bd95-5ee2-82c8-f2550d8e93c8",
       "question": "「party」の「t」はどう発音される？",
       "choices": [
         "リ",

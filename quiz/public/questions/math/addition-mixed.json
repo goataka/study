@@ -11,7 +11,7 @@
   "description": "くり上がりなし・ありを混ぜた計算で、たし算の力を確かめます。",
   "questions": [
     {
-      "id": "aa2485ca",
+      "id": "f1d35157-8721-57ad-acae-b81577a67472",
       "question": "3 + 5 = ?",
       "choices": [
         "8",
@@ -23,7 +23,7 @@
       "explanation": "くり上がりなし。3 + 5 = 8"
     },
     {
-      "id": "dfbc6fd2",
+      "id": "57e29c90-50a1-572b-b758-f109ada424f5",
       "question": "7 + 8 = ?",
       "choices": [
         "15",
@@ -35,7 +35,7 @@
       "explanation": "くり上がりあり。7+3=10、10+5=15"
     },
     {
-      "id": "277e489c",
+      "id": "1225c74f-3263-5503-aaea-a6e72238e4bc",
       "question": "4 + 5 = ?",
       "choices": [
         "9",
@@ -47,7 +47,7 @@
       "explanation": "くり上がりなし。4 + 5 = 9"
     },
     {
-      "id": "290c1f2a",
+      "id": "ba1608d3-dd89-5354-af3e-138f4da38449",
       "question": "9 + 6 = ?",
       "choices": [
         "15",
@@ -59,7 +59,7 @@
       "explanation": "くり上がりあり。9+1=10、10+5=15"
     },
     {
-      "id": "9f1ebc40",
+      "id": "3e0e6e5a-5492-5db1-87e6-a714f269c516",
       "question": "2 + 6 = ?",
       "choices": [
         "8",
@@ -71,7 +71,7 @@
       "explanation": "くり上がりなし。2 + 6 = 8"
     },
     {
-      "id": "441fa91b",
+      "id": "d065cb32-8a11-5f1c-8eb4-50bc3e42fb73",
       "question": "8 + 7 = ?",
       "choices": [
         "15",
@@ -83,7 +83,7 @@
       "explanation": "くり上がりあり。8+2=10、10+5=15"
     },
     {
-      "id": "e43a34ce",
+      "id": "3abf52d6-e6c1-5745-a9ab-0c4ef9d79552",
       "question": "1 + 7 = ?",
       "choices": [
         "8",
@@ -95,7 +95,7 @@
       "explanation": "くり上がりなし。1 + 7 = 8"
     },
     {
-      "id": "a08a8f91",
+      "id": "c916c4e3-a198-5afc-aab9-001fd6bace52",
       "question": "6 + 9 = ?",
       "choices": [
         "15",

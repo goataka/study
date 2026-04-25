@@ -11,7 +11,7 @@
   "description": "be going to や will be を使ってbe動詞の未来を表します。",
   "questions": [
     {
-      "id": "032e2972",
+      "id": "0dd3b8da-256e-5cd7-af24-c02563e25416",
       "question": "I ___ happy tomorrow.",
       "choices": [
         "will be",
@@ -23,7 +23,7 @@
       "explanation": "未来形には will be を使います"
     },
     {
-      "id": "06ed2bf4",
+      "id": "ded16a34-0554-500b-b024-658edb6c0cb3",
       "question": "I ___ a student next year.",
       "choices": [
         "will be",
@@ -35,7 +35,7 @@
       "explanation": "未来形には will be を使います"
     },
     {
-      "id": "4a0bb1d9",
+      "id": "a30d55fb-3a52-5287-91e3-2cf8ba3db543",
       "question": "He ___ tired tomorrow.",
       "choices": [
         "will be",
@@ -47,7 +47,7 @@
       "explanation": "未来形には will be を使います"
     },
     {
-      "id": "2e9e6c1e",
+      "id": "07dac739-c7a2-5c07-a20d-c267a2b79102",
       "question": "They ___ at home tomorrow.",
       "choices": [
         "will be",
@@ -59,7 +59,7 @@
       "explanation": "未来形には will be を使います"
     },
     {
-      "id": "b0b12068",
+      "id": "26076631-68dc-5f2e-a19d-2ec8124d1f31",
       "question": "She ___ hungry later.",
       "choices": [
         "will be",
@@ -71,7 +71,7 @@
       "explanation": "未来形には will be を使います"
     },
     {
-      "id": "6f1cd26e",
+      "id": "cc810ec3-8583-505d-8de9-48df19635e42",
       "question": "We ___ ready soon.",
       "choices": [
         "will be",
@@ -83,7 +83,7 @@
       "explanation": "未来形には will be を使います"
     },
     {
-      "id": "72e91716",
+      "id": "4ad9dd20-3d31-5ca8-aad5-094383222a42",
       "question": "You ___ happy tomorrow.",
       "choices": [
         "will be",
@@ -95,7 +95,7 @@
       "explanation": "未来形には will be を使います"
     },
     {
-      "id": "99809cf3",
+      "id": "62466b9b-1cee-5fa3-9a6c-273c489483da",
       "question": "It ___ cold tomorrow.",
       "choices": [
         "will be",

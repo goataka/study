@@ -11,7 +11,7 @@
   "description": "don't / doesn't / didn't を使って一般動詞の否定文を作ります。",
   "questions": [
     {
-      "id": "93cfb971",
+      "id": "11905517-eb59-5e16-8673-77acbd965c59",
       "question": "I ___ play games. (一般動詞・現在・否定)",
       "choices": [
         "do not",
@@ -23,7 +23,7 @@
       "explanation": "一般動詞の否定文は do not/does not + 動詞の原形です"
     },
     {
-      "id": "fe84503f",
+      "id": "45092d4d-1414-5260-889f-ba0d7ef89e96",
       "question": "I ___ play games yesterday. (一般動詞・過去・否定)",
       "choices": [
         "did not",
@@ -35,7 +35,7 @@
       "explanation": "一般動詞の過去形の否定文は did not + 動詞の原形です"
     },
     {
-      "id": "afd954c7",
+      "id": "6d08d8ae-7c45-5ecb-84d4-6916e75d18fd",
       "question": "I ___ play games tomorrow. (一般動詞・未来・否定)",
       "choices": [
         "will not",
@@ -47,7 +47,7 @@
       "explanation": "未来形の否定文は will not + 動詞の原形です"
     },
     {
-      "id": "28189946",
+      "id": "4dc8ee46-e68e-5942-8000-609c52451004",
       "question": "I ___ happy. (be動詞・現在・否定)",
       "choices": [
         "am not",
@@ -59,7 +59,7 @@
       "explanation": "be動詞の否定文は be動詞 + not です"
     },
     {
-      "id": "10918cab",
+      "id": "4cf752ae-7ec8-53a2-931b-59f955d336fd",
       "question": "I ___ happy yesterday. (be動詞・過去・否定)",
       "choices": [
         "was not",
@@ -71,7 +71,7 @@
       "explanation": "be動詞の否定文は be動詞 + not です"
     },
     {
-      "id": "d5146bad",
+      "id": "cba64951-1c8e-58dc-89fa-3d8965f89c3f",
       "question": "She ___ play games. (三人称・現在・否定)",
       "choices": [
         "does not",
@@ -83,7 +83,7 @@
       "explanation": "三人称単数の否定文は does not + 動詞の原形です"
     },
     {
-      "id": "1ecb04c0",
+      "id": "53659dfe-14a3-58d1-83d8-17b6b06d6c4f",
       "question": "I ___ playing games now. (進行形・否定)",
       "choices": [
         "am not",
@@ -95,7 +95,7 @@
       "explanation": "進行形の否定文は be動詞 + not + -ing です"
     },
     {
-      "id": "7b959051",
+      "id": "33dff92b-17e8-576a-9f92-9e37eec489e2",
       "question": "They ___ students. (be動詞・現在・否定)",
       "choices": [
         "are not",

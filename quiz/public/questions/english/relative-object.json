@@ -11,7 +11,7 @@
   "description": "関係代名詞 that / which / whom を使って、名詞を目的語として説明します。",
   "questions": [
     {
-      "id": "fffe7b82",
+      "id": "b54d70a5-08f8-57a5-81e3-33c1fe63ea53",
       "question": "I have a friend ___ I met yesterday. (人・目的格)",
       "choices": [
         "whom",
@@ -23,7 +23,7 @@
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
-      "id": "e0d2101e",
+      "id": "bff80fa0-047e-52a6-927c-f057887be050",
       "question": "I have a book ___ I bought yesterday. (物・目的格)",
       "choices": [
         "which",
@@ -35,7 +35,7 @@
       "explanation": "物が目的語の場合は which を使います"
     },
     {
-      "id": "5655fa2c",
+      "id": "736708a9-fb92-5787-9d7b-c25c0c0e237b",
       "question": "I have a pen ___ I use every day. (物・目的格)",
       "choices": [
         "that",
@@ -47,7 +47,7 @@
       "explanation": "物が目的語の場合は that を使えます"
     },
     {
-      "id": "387b60c2",
+      "id": "0582433b-e47a-5818-a480-a45e452a90c7",
       "question": "The girl ___ you saw yesterday is my sister. (人・目的格)",
       "choices": [
         "whom",
@@ -59,7 +59,7 @@
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
-      "id": "ea765b94",
+      "id": "3860ed3a-109e-571b-9b90-b045299df068",
       "question": "This is the book ___ I was looking for. (物・目的格)",
       "choices": [
         "which",
@@ -71,7 +71,7 @@
       "explanation": "物が目的語の場合は which を使います"
     },
     {
-      "id": "56b0eff0",
+      "id": "ab8b8adf-1247-566a-9e30-a74d78894e34",
       "question": "The teacher ___ I respect most is Mr. Smith. (人・目的格)",
       "choices": [
         "whom",
@@ -83,7 +83,7 @@
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
-      "id": "8d2a6336",
+      "id": "bcfd27c0-12ee-51de-9eba-02435af6708b",
       "question": "The movie ___ we watched was great. (物・目的格)",
       "choices": [
         "that",
@@ -95,7 +95,7 @@
       "explanation": "物が目的語の場合は that を使えます"
     },
     {
-      "id": "38600e50",
+      "id": "7415cb24-c3fe-5ad0-8459-042142c6727a",
       "question": "目的格の関係代名詞は省略できる？",
       "choices": [
         "はい",

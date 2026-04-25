@@ -11,7 +11,7 @@
   "description": "1文字のアルファベットが持つ音（フォニックス）を覚えます。",
   "questions": [
     {
-      "id": "993298cb",
+      "id": "a8efa473-3d81-52a6-8d06-fb0edb668451",
       "question": "「apple」の「a」の音は？",
       "choices": [
         "ア",
@@ -23,7 +23,7 @@
       "explanation": "apple = ア プル"
     },
     {
-      "id": "742ac9fa",
+      "id": "5d337a12-64a7-5ef1-9bf0-c11175b1df2a",
       "question": "「ball」の「b」の音は？",
       "choices": [
         "ブ",
@@ -35,7 +35,7 @@
       "explanation": "ball = ブ オール"
     },
     {
-      "id": "f492802e",
+      "id": "a4207992-2b95-5aa9-99c4-d9a0de967854",
       "question": "「cat」の「c」の音は？",
       "choices": [
         "ク",
@@ -47,7 +47,7 @@
       "explanation": "cat = ク ア ト"
     },
     {
-      "id": "53f02cf7",
+      "id": "83652fc2-81fa-5819-b075-d601e4c1c0d2",
       "question": "「dog」の「d」の音は？",
       "choices": [
         "ドゥ",
@@ -59,7 +59,7 @@
       "explanation": "dog = ドゥ オ グ"
     },
     {
-      "id": "4be6789f",
+      "id": "871ff525-7f2f-5478-84a8-3ecbb8b2b732",
       "question": "「egg」の「e」の音は？",
       "choices": [
         "エ",
@@ -71,7 +71,7 @@
       "explanation": "egg = エ グ"
     },
     {
-      "id": "8a99762f",
+      "id": "0458f353-4efc-5180-bcb4-1cfa03f48e74",
       "question": "「fish」の「f」の音は？",
       "choices": [
         "フ",
@@ -83,7 +83,7 @@
       "explanation": "fish = フ イ シュ"
     },
     {
-      "id": "4d559f64",
+      "id": "17d9635e-0cd2-5f79-a96e-e3985257bc6b",
       "question": "「girl」の「g」の音は？",
       "choices": [
         "グ",
@@ -95,7 +95,7 @@
       "explanation": "girl = グ アール"
     },
     {
-      "id": "4857922a",
+      "id": "50eed4db-470a-5e87-b81b-332420cd5675",
       "question": "「hat」の「h」の音は？",
       "choices": [
         "ハ",
@@ -107,7 +107,7 @@
       "explanation": "hat = ハ ア ト"
     },
     {
-      "id": "43c8cea9",
+      "id": "506cf592-5783-5a33-ab3a-3ab52e8345c0",
       "question": "「ink」の「i」の音は？",
       "choices": [
         "イ",
@@ -119,7 +119,7 @@
       "explanation": "ink = イ ン ク"
     },
     {
-      "id": "2f2a3362",
+      "id": "a0e564b6-5af2-5a15-8243-441691700412",
       "question": "「jam」の「j」の音は？",
       "choices": [
         "ジュ",
@@ -131,7 +131,7 @@
       "explanation": "jam = ジュ ア ム"
     },
     {
-      "id": "1508b089",
+      "id": "a1dc6be7-a205-55ea-a58f-71adc680fb89",
       "question": "「kite」の「k」の音は？",
       "choices": [
         "ク",
@@ -143,7 +143,7 @@
       "explanation": "kite = ク アイ ト"
     },
     {
-      "id": "bfc4b328",
+      "id": "feaf911a-6050-5c82-bda8-223e06c30c6a",
       "question": "「lion」の「l」の音は？",
       "choices": [
         "ル",
@@ -155,7 +155,7 @@
       "explanation": "lion = ル アイ オン"
     },
     {
-      "id": "00468f35",
+      "id": "3f42fdb3-f420-5973-a358-357c74e8fb14",
       "question": "「map」の「m」の音は？",
       "choices": [
         "ム",
@@ -167,7 +167,7 @@
       "explanation": "map = ム ア プ"
     },
     {
-      "id": "1bd2af7c",
+      "id": "2d7a3419-14e6-5324-8914-d52e35729ab9",
       "question": "「net」の「n」の音は？",
       "choices": [
         "ヌ",
@@ -179,7 +179,7 @@
       "explanation": "net = ヌ エ ト"
     },
     {
-      "id": "1322da47",
+      "id": "05afaba5-5cf7-52c2-bd90-1a57b90d8927",
       "question": "「orange」の「o」の音は？",
       "choices": [
         "ア",
@@ -191,7 +191,7 @@
       "explanation": "orange = ア リン ジュ"
     },
     {
-      "id": "f3a4d000",
+      "id": "6009b5bc-c096-5dcc-8dd2-7267774b1b5f",
       "question": "「pen」の「p」の音は？",
       "choices": [
         "プ",
@@ -203,7 +203,7 @@
       "explanation": "pen = プ エ ヌ"
     },
     {
-      "id": "dec53f99",
+      "id": "5e79f707-c561-5b8d-a628-2a3423efbbf5",
       "question": "「red」の「r」の音は？",
       "choices": [
         "ル",
@@ -215,7 +215,7 @@
       "explanation": "red = ル エ ドゥ"
     },
     {
-      "id": "76835a17",
+      "id": "c03d0400-bb5a-5fda-87cc-f9491e040a94",
       "question": "「sun」の「s」の音は？",
       "choices": [
         "ス",
@@ -227,7 +227,7 @@
       "explanation": "sun = ス ア ヌ"
     },
     {
-      "id": "611c13b3",
+      "id": "59dc2d53-0594-581a-b747-d8ea6cdc15a1",
       "question": "「tiger」の「t」の音は？",
       "choices": [
         "トゥ",
@@ -239,7 +239,7 @@
       "explanation": "tiger = トゥ アイ ガー"
     },
     {
-      "id": "0557f506",
+      "id": "32cb9930-82ca-51fc-85d2-a0b797ccdaf7",
       "question": "「up」の「u」の音は？",
       "choices": [
         "ア",

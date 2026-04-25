@@ -11,7 +11,7 @@
   "description": "指数法則と対数の性質を使って計算できるようにします。",
   "questions": [
     {
-      "id": "2109ab93",
+      "id": "ec6fb1dc-6802-5393-9d5f-451eed8975e6",
       "question": "2³ × 2⁴ = ?",
       "choices": [
         "2⁷",
@@ -23,7 +23,7 @@
       "explanation": "同じ底の指数の積は、指数をたします。2³ × 2⁴ = 2⁽³⁺⁴⁾ = 2⁷ = 128"
     },
     {
-      "id": "0a23524c",
+      "id": "303f1c3d-948c-5af1-9316-6b3a000dcd9c",
       "question": "3⁵ ÷ 3² = ?",
       "choices": [
         "3³",
@@ -35,7 +35,7 @@
       "explanation": "同じ底の指数の商は、指数をひきます。3⁵ ÷ 3² = 3⁽⁵⁻²⁾ = 3³ = 27"
     },
     {
-      "id": "bd35f720",
+      "id": "741f7345-7352-5825-8ed6-5508ad09deeb",
       "question": "(2³)² = ?",
       "choices": [
         "2⁶",
@@ -47,7 +47,7 @@
       "explanation": "累乗の累乗は、指数をかけます。(2³)² = 2⁽³ˣ²⁾ = 2⁶ = 64"
     },
     {
-      "id": "4ec71a0e",
+      "id": "9dd41f6c-5156-5e93-bd6e-6633164934c7",
       "question": "log₂8 = ?",
       "choices": [
         "3",
@@ -59,7 +59,7 @@
       "explanation": "2を何乗したら8になるか。2³ = 8なので、log₂8 = 3"
     },
     {
-      "id": "67afefe7",
+      "id": "49f910fd-bcf2-579e-a138-8f36c656ae46",
       "question": "log₃27 = ?",
       "choices": [
         "3",
@@ -71,7 +71,7 @@
       "explanation": "3を何乗したら27になるか。3³ = 27なので、log₃27 = 3"
     },
     {
-      "id": "faf3deb1",
+      "id": "2b5c6c90-fe2d-52c0-8d88-08e07fa1aa63",
       "question": "log₁₀100 = ?",
       "choices": [
         "2",
@@ -83,7 +83,7 @@
       "explanation": "10を何乗したら100になるか。10² = 100なので、log₁₀100 = 2"
     },
     {
-      "id": "5358fd62",
+      "id": "363cdc5c-1b67-582f-a759-dac5a8097d31",
       "question": "log₂4 + log₂8 = ?",
       "choices": [
         "5",
@@ -95,7 +95,7 @@
       "explanation": "log₂4 = 2、log₂8 = 3なので、2 + 3 = 5"
     },
     {
-      "id": "27d3570a",
+      "id": "c2fefc28-a15f-59ec-b350-c63cdefbda42",
       "question": "4^(1/2) = ?",
       "choices": [
         "2",

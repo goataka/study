@@ -11,7 +11,7 @@
   "description": "現在完了形の継続・経験・完了・結果の用法を使い分けます。",
   "questions": [
     {
-      "id": "655152c4",
+      "id": "2deb01ca-dd2b-56e0-b40d-359bfff14000",
       "question": "I have been to Tokyo before. この文の用法は？",
       "choices": [
         "経験",
@@ -23,7 +23,7 @@
       "explanation": "before があるので経験を表します"
     },
     {
-      "id": "74516612",
+      "id": "41fbc7c2-4f5d-5bc7-9b88-32ac1c29c9e0",
       "question": "I have lived here for three years. この文の用法は？",
       "choices": [
         "継続",
@@ -35,7 +35,7 @@
       "explanation": "for three years があるので継続を表します"
     },
     {
-      "id": "a09e29ee",
+      "id": "c44cf824-afc0-5aa8-b157-e8f3babadc0c",
       "question": "I have just finished my homework. この文の用法は？",
       "choices": [
         "完了",
@@ -47,7 +47,7 @@
       "explanation": "just があるので完了を表します"
     },
     {
-      "id": "f8d2de75",
+      "id": "17377743-97f0-55d8-87d2-44eebb8b1756",
       "question": "I have lost my key. この文の用法は？",
       "choices": [
         "結果",
@@ -59,7 +59,7 @@
       "explanation": "失くした結果、今もない状態を表します"
     },
     {
-      "id": "91be25d2",
+      "id": "abc2576a-587a-5d83-b8be-4d522612f90d",
       "question": "I have never seen a lion. この文の用法は？",
       "choices": [
         "経験",
@@ -71,7 +71,7 @@
       "explanation": "never があるので経験を表します"
     },
     {
-      "id": "f804c0e7",
+      "id": "33f457ee-877a-5334-b969-0fcd0e6383c0",
       "question": "I have already eaten lunch. この文の用法は？",
       "choices": [
         "完了",
@@ -83,7 +83,7 @@
       "explanation": "already があるので完了を表します"
     },
     {
-      "id": "e325f307",
+      "id": "01f950c7-dbdc-5520-9a66-f4b19bc1845d",
       "question": "I have studied English since 2020. この文の用法は？",
       "choices": [
         "継続",
@@ -95,7 +95,7 @@
       "explanation": "since があるので継続を表します"
     },
     {
-      "id": "740476da",
+      "id": "74bcba46-77d1-5342-9881-8706c4740b16",
       "question": "I have been to Paris twice. この文の用法は？",
       "choices": [
         "経験",

@@ -11,7 +11,7 @@
   "description": "直接話法を間接話法に変えると、動詞の時制が1つ過去にずれます（時制の一致）。",
   "questions": [
     {
-      "id": "15017631",
+      "id": "24f8826b-e812-5362-9aaf-b4dd374dc40c",
       "question": "He said, \"I play games.\" → He said that he ___ games.",
       "choices": [
         "played",
@@ -23,7 +23,7 @@
       "explanation": "現在形は過去形に変わります"
     },
     {
-      "id": "99462cf4",
+      "id": "eaffd7f9-5380-5dcc-b4e1-f0d6201402c8",
       "question": "He said, \"I am playing games.\" → He said that he ___ games.",
       "choices": [
         "was playing",
@@ -35,7 +35,7 @@
       "explanation": "現在進行形は過去進行形に変わります"
     },
     {
-      "id": "3619eead",
+      "id": "4c87ced5-740d-532e-a20f-bd069cd39010",
       "question": "He said, \"I played games.\" → He said that he ___ games.",
       "choices": [
         "had played",
@@ -47,7 +47,7 @@
       "explanation": "過去形は過去完了形に変わります"
     },
     {
-      "id": "d9bf609c",
+      "id": "5f2f5954-3b6b-5e0a-8787-0723fcf5a9aa",
       "question": "He said, \"I will play games.\" → He said that he ___ games.",
       "choices": [
         "would play",
@@ -59,7 +59,7 @@
       "explanation": "willはwouldに変わります"
     },
     {
-      "id": "b7778666",
+      "id": "e94d9530-11fc-5a31-bcdc-c4d8848e9350",
       "question": "He said, \"I can play games.\" → He said that he ___ games.",
       "choices": [
         "could play",
@@ -71,7 +71,7 @@
       "explanation": "canはcouldに変わります"
     },
     {
-      "id": "8865d1a9",
+      "id": "a45b7ad5-5cc6-5da9-bae7-d04bf47d0566",
       "question": "She said, \"I am happy.\" → She said that she ___ happy.",
       "choices": [
         "was",
@@ -83,7 +83,7 @@
       "explanation": "現在形のbe動詞は過去形に変わります"
     },
     {
-      "id": "e46ad070",
+      "id": "505d8288-a12f-5f66-be25-5c030a8308b9",
       "question": "He said, \"I have finished.\" → He said that he ___.",
       "choices": [
         "had finished",
@@ -95,7 +95,7 @@
       "explanation": "現在完了形は過去完了形に変わります"
     },
     {
-      "id": "6655b4dc",
+      "id": "9e4ac5b8-6f70-5aba-97e3-fb2ee7ea8a25",
       "question": "She said, \"I may go.\" → She said that she ___ go.",
       "choices": [
         "might",

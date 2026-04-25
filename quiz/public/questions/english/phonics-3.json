@@ -11,7 +11,7 @@
   "description": "3文字の特殊な音パターンを覚えます。",
   "questions": [
     {
-      "id": "9837b160",
+      "id": "b8bcc60e-d5f2-5b12-8497-1bb3343d9179",
       "question": "「kitchen」の「tch」の音は？",
       "choices": [
         "チ",
@@ -23,7 +23,7 @@
       "explanation": "kitchen = ク イ チ エ ヌ"
     },
     {
-      "id": "f558a627",
+      "id": "b1b00cf1-aa6a-5dbd-9845-851bc1b0e5d0",
       "question": "「edge」の「dge」の音は？",
       "choices": [
         "ジ",
@@ -35,7 +35,7 @@
       "explanation": "edge = エ ジ"
     },
     {
-      "id": "ead99657",
+      "id": "5f4b301d-9953-517c-aa83-5bb15f21571a",
       "question": "「night」の「igh」の音は？",
       "choices": [
         "アイ",
@@ -47,7 +47,7 @@
       "explanation": "night = ヌ アイ ト"
     },
     {
-      "id": "5d4da21f",
+      "id": "05d44ba4-06b8-5bcd-a1fb-01fdc53f5486",
       "question": "「three」の「thr」の音は？",
       "choices": [
         "スル",
@@ -59,7 +59,7 @@
       "explanation": "three = スル イー"
     },
     {
-      "id": "db4fe6db",
+      "id": "bec87ecc-c81f-5a03-921b-959972223a0a",
       "question": "「street」の「str」の音は？",
       "choices": [
         "ストゥル",

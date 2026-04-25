@@ -11,7 +11,7 @@
   "description": "平方根の意味を理解し、計算を正確にできるようにします。",
   "questions": [
     {
-      "id": "fb054b35",
+      "id": "9adb4dca-1025-5db5-8142-2c1d214e8bb7",
       "question": "√4 = ?",
       "choices": [
         "2",
@@ -23,7 +23,7 @@
       "explanation": "2×2 = 4なので、√4 = 2"
     },
     {
-      "id": "c54764b0",
+      "id": "b3ab7ff7-2524-5a03-a829-fdde94e5ce05",
       "question": "√9 = ?",
       "choices": [
         "3",
@@ -35,7 +35,7 @@
       "explanation": "3×3 = 9なので、√9 = 3"
     },
     {
-      "id": "719c677b",
+      "id": "b551b57f-fb6f-5c2c-91cc-2e9c8144c152",
       "question": "√25 = ?",
       "choices": [
         "5",
@@ -47,7 +47,7 @@
       "explanation": "5×5 = 25なので、√25 = 5"
     },
     {
-      "id": "495d30bf",
+      "id": "a32e6fbc-38a6-528e-9e82-38ca876a6b77",
       "question": "√2 × √3 = ?",
       "choices": [
         "√6",
@@ -59,7 +59,7 @@
       "explanation": "√a × √b = √(ab)なので、√2 × √3 = √6"
     },
     {
-      "id": "31090460",
+      "id": "e7c51a61-ec24-5674-9d08-9b58b044db68",
       "question": "√8 × √2 = ?",
       "choices": [
         "4",
@@ -71,7 +71,7 @@
       "explanation": "√8 × √2 = √16 = 4"
     },
     {
-      "id": "8ab81745",
+      "id": "2e5b0dd9-60cb-52bd-a6d5-3abc8f86629b",
       "question": "√12 ÷ √3 = ?",
       "choices": [
         "2",
@@ -83,7 +83,7 @@
       "explanation": "√12 ÷ √3 = √(12÷3) = √4 = 2"
     },
     {
-      "id": "ebd5f114",
+      "id": "cd26d1ca-a80b-551a-968f-32c959c26c53",
       "question": "√18 を簡単にすると？",
       "choices": [
         "3√2",
@@ -95,7 +95,7 @@
       "explanation": "√18 = √(9×2) = √9 × √2 = 3√2"
     },
     {
-      "id": "5748cf68",
+      "id": "abf6aef4-7d74-5eab-bf8f-9fed8d2d39b2",
       "question": "2√3 + 5√3 = ?",
       "choices": [
         "7√3",

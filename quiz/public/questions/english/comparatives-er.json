@@ -11,7 +11,7 @@
   "description": "形容詞・副詞に -er をつけて「より〜だ」という比較級を作ります。",
   "questions": [
     {
-      "id": "f4e63571",
+      "id": "364c09e4-ff9a-5298-9e67-6e0577e4e5ad",
       "question": "I am ___ than him. (tall)",
       "choices": [
         "taller",
@@ -23,7 +23,7 @@
       "explanation": "短い形容詞の比較級は -er をつけます"
     },
     {
-      "id": "ec0c46aa",
+      "id": "37639ae6-f664-5505-bea1-24b5bbc641fb",
       "question": "I am ___ than him. (big)",
       "choices": [
         "bigger",
@@ -35,7 +35,7 @@
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -er をつけます"
     },
     {
-      "id": "34707a56",
+      "id": "a4a79204-b114-52c2-abe0-f5771a3b7448",
       "question": "I am ___ to talk to than him. (easy)",
       "choices": [
         "easier",
@@ -47,7 +47,7 @@
       "explanation": "子音+yで終わる語は、yをiに変えて -er をつけます"
     },
     {
-      "id": "f014726c",
+      "id": "565ce8df-4c66-5b20-80ee-865cb55ea10b",
       "question": "It is ___ than yesterday. (hot)",
       "choices": [
         "hotter",
@@ -59,7 +59,7 @@
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -er をつけます"
     },
     {
-      "id": "cc86c04e",
+      "id": "c0f9c14d-4801-5c1f-8d65-7d23c214cb0e",
       "question": "This game is ___ than that one. (interesting)",
       "choices": [
         "more interesting",
@@ -71,7 +71,7 @@
       "explanation": "長い形容詞の比較級は more + 形容詞です"
     },
     {
-      "id": "d4a249cd",
+      "id": "6734914c-949c-52e7-a302-fb5eae197b09",
       "question": "This problem is ___ than that one. (difficult)",
       "choices": [
         "more difficult",
@@ -83,7 +83,7 @@
       "explanation": "長い形容詞の比較級は more + 形容詞です"
     },
     {
-      "id": "ad5f4d10",
+      "id": "b5e517ec-de64-560b-b690-0dce28eb739a",
       "question": "This flower is ___ than that one. (beautiful)",
       "choices": [
         "more beautiful",
@@ -95,7 +95,7 @@
       "explanation": "長い形容詞の比較級は more + 形容詞です"
     },
     {
-      "id": "94d9b389",
+      "id": "2d51171b-333f-588d-9b9f-9b323c425794",
       "question": "This book is ___ than that one. (cheap)",
       "choices": [
         "cheaper",
