@@ -1,0 +1,134 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonetic-symbols",
+  "categoryName": "発音記号（IPA）",
+  "parentCategory": "pronunciation",
+  "parentCategoryName": "発音",
+  "guideUrl": "../english/pronunciation/phonetic-symbols/guide",
+  "example": "/æ/→ア（cat）",
+  "referenceGrade": "中学1年",
+  "description": "辞書に載っている発音記号（IPA）の読み方と代表的な単語を学びます。",
+  "questions": [
+    {
+      "id": "11811495-8401-5293-88a9-e09270dbc797",
+      "question": "/æ/ はどんな音？",
+      "choices": [
+        "「ア」と「エ」の間（口を横に開ける）",
+        "力を抜いた短い「ア」",
+        "口を大きく開けた「アー」",
+        "短くゆるい「ウ」"
+      ],
+      "correct": 0,
+      "explanation": "/æ/ は「ア」と「エ」の中間の音。cat, apple, hat などに使われる。"
+    },
+    {
+      "id": "8b3a8990-363e-5dd5-8610-42618d278d88",
+      "question": "/ə/（シュワー）はどんな音？",
+      "choices": [
+        "力を抜いた短い「ア」",
+        "「ア」と「エ」の間",
+        "口を大きく開けた「アー」",
+        "長くはっきりした「イー」"
+      ],
+      "correct": 0,
+      "explanation": "/ə/ はシュワーと呼ばれ、力を抜いた最も弱い母音。about, banana などの強調されない音節に出る。"
+    },
+    {
+      "id": "cc3fbf0f-42cc-53f2-8c70-63e53c46d3f1",
+      "question": "/θ/ はどんな音？",
+      "choices": [
+        "舌先を軽く噛んだ無声音（「ス」に近い）",
+        "舌先を軽く噛んだ有声音（「ズ」に近い）",
+        "「シュ」の音",
+        "鼻にかかった「ング」"
+      ],
+      "correct": 0,
+      "explanation": "/θ/ は舌先を上の歯に当てて出す無声音。think, three, tooth などに使われる。"
+    },
+    {
+      "id": "bd1781c4-5085-5d4a-9584-a482637b0a3d",
+      "question": "/ð/ はどんな音？",
+      "choices": [
+        "舌先を軽く噛んだ有声音（「ズ」に近い）",
+        "舌先を軽く噛んだ無声音（「ス」に近い）",
+        "「ジュ」の破裂音",
+        "「シュ」の音"
+      ],
+      "correct": 0,
+      "explanation": "/ð/ は /θ/ と同じ舌の動きで声を出す有声音。this, that, the などに使われる。"
+    },
+    {
+      "id": "cbd03e1b-2bcd-562f-ac7e-3b857d26c45a",
+      "question": "/iː/ と /ɪ/ の違いは？",
+      "choices": [
+        "/iː/ は長くはっきりした「イー」、/ɪ/ は短くゆるい「イ」",
+        "/iː/ は短くゆるい「イ」、/ɪ/ は長くはっきりした「イー」",
+        "どちらも同じ音で長さだけが違う",
+        "/iː/ は「ウー」、/ɪ/ は「イ」"
+      ],
+      "correct": 0,
+      "explanation": "/iː/ は see, feel のように長くはっきり発音する。/ɪ/ は hit, sit のように短くゆるく発音する。"
+    },
+    {
+      "id": "b883a0aa-d17b-5ab1-823f-d488054e4f28",
+      "question": "/ʃ/ はどんな音？",
+      "choices": [
+        "「シュ」",
+        "「チュ」",
+        "「ジュ」（濁り）",
+        "「ス」"
+      ],
+      "correct": 0,
+      "explanation": "/ʃ/ は「シュ」の音。shoe, ship, wish などに使われる。"
+    },
+    {
+      "id": "dcff922e-8fb5-5ba6-a240-b79728305682",
+      "question": "/tʃ/ はどんな音？",
+      "choices": [
+        "「チュ」",
+        "「シュ」",
+        "「ジュ」（破裂あり）",
+        "「ズ」"
+      ],
+      "correct": 0,
+      "explanation": "/tʃ/ は「チュ」の音。chair, watch, teach などに使われる。"
+    },
+    {
+      "id": "8c70e03d-6fba-504c-ac35-e06ca5b28c56",
+      "question": "/ŋ/ はどんな音？",
+      "choices": [
+        "鼻にかかった「ング」",
+        "「ヌ」の音",
+        "「ング」（破裂あり）",
+        "「ン」（鼻を閉じる）"
+      ],
+      "correct": 0,
+      "explanation": "/ŋ/ は鼻にかかった「ング」の音。song, ring, long などの語末に出る。"
+    },
+    {
+      "id": "04a626ff-a466-5472-b583-d113291bd1a3",
+      "question": "/eɪ/ はどんな音？",
+      "choices": [
+        "「エイ」（二重母音）",
+        "「アイ」（二重母音）",
+        "「オイ」（二重母音）",
+        "「アウ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/eɪ/ は「エイ」と滑らかにつなぐ二重母音。day, say, make などに使われる。"
+    },
+    {
+      "id": "fb68e093-95b8-5db1-a9e0-7a81e1ef8444",
+      "question": "/aɪ/ はどんな音？",
+      "choices": [
+        "「アイ」（二重母音）",
+        "「エイ」（二重母音）",
+        "「オイ」（二重母音）",
+        "「アウ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/aɪ/ は「アイ」と滑らかにつなぐ二重母音。fly, night, time などに使われる。"
+    }
+  ]
+}

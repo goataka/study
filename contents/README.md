@@ -24,6 +24,7 @@
 | 07 | リダクション | [解説](english/pronunciation/reduction/guide.md) | [クイズ](quiz/?subject=english&category=reduction) | for→/fər/ |
 | 08 | フラッピング | [解説](english/pronunciation/flapping/guide.md) | [クイズ](quiz/?subject=english&category=flapping) | water→ウォダー |
 | 09 | アシミレーション | [解説](english/pronunciation/assimilation/guide.md) | [クイズ](quiz/?subject=english&category=assimilation) | meet you→ミーチュー |
+| 10 | 発音記号（IPA） | [解説](english/pronunciation/phonetic-symbols/guide.md) | [クイズ](quiz/?subject=english&category=phonetic-symbols) | /æ/→ア（cat） |
 
 #### 📝 文法ドリル
 
