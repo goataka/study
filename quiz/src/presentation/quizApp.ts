@@ -670,8 +670,12 @@ export class QuizApp {
     subjectSpan.textContent = record.categoryName;
 
     const modeSpan = document.createElement("span");
-    modeSpan.className = "history-mode";
-    modeSpan.textContent = record.mode === "retry" ? "復習" : record.mode === "practice" ? "練習" : record.mode === "manual" ? "手動" : "本番";
+    const modeClassMap: Record<string, string> = { retry: "history-mode--retry", practice: "history-mode--practice", manual: "history-mode--manual" };
+    const modeLabelMap: Record<string, string> = { retry: "復習", practice: "練習", manual: "手動" };
+    const modeClass = modeClassMap[record.mode] ?? "history-mode--random";
+    const modeLabel = modeLabelMap[record.mode] ?? "本番";
+    modeSpan.className = `history-mode ${modeClass}`;
+    modeSpan.textContent = modeLabel;
 
     metaDiv.appendChild(dateSpan);
     metaDiv.appendChild(subjectSpan);
