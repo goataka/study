@@ -450,7 +450,7 @@ export class QuizApp {
     const guideUrl =
       this.filter.category !== "all"
         ? this.useCase.getCategoryGuideUrl(this.filter.subject, this.filter.category)
-        : undefined;
+        : this.useCase.getFirstGuideUrlForSubject(this.filter.subject);
 
     if (guideUrl) {
       if (guideFrame.getAttribute("src") !== guideUrl) {

@@ -258,6 +258,20 @@ export class QuizUseCase {
     return this.categoryGuideMap.get(`${subject}::${category}`);
   }
 
+  /**
+   * 指定した教科で最初に見つかる解説 URL を返す。
+   * filter.category が "all" のときのフォールバック用。
+   */
+  getFirstGuideUrlForSubject(subject: string): string | undefined {
+    const prefix = subject === "all" ? "" : `${subject}::`;
+    for (const [key, url] of this.categoryGuideMap) {
+      if (key.startsWith(prefix)) {
+        return url;
+      }
+    }
+    return undefined;
+  }
+
   get wrongQuestionIds(): string[] {
     return [...this.wrongIds];
   }

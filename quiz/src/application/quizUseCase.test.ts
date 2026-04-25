@@ -601,3 +601,33 @@ describe("QuizUseCase — getCategoryGuideUrl 仕様", () => {
     expect(useCase.getCategoryGuideUrl("english", "phonics")).toBe("../english/guide1");
   });
 });
+
+describe("QuizUseCase — getFirstGuideUrlForSubject 仕様", () => {
+  it("guideUrl を持つカテゴリがある教科では最初の URL が返る", async () => {
+    const questions = [
+      makeQuestionWithGuide("q1", "english", "phonics", "../english/pronunciation/01/guide"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getFirstGuideUrlForSubject("english")).toBe("../english/pronunciation/01/guide");
+  });
+
+  it("guideUrl を持つカテゴリが存在しない場合は undefined が返る", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getFirstGuideUrlForSubject("english")).toBeUndefined();
+  });
+
+  it("別の教科の guideUrl は返さない", async () => {
+    const questions = [
+      makeQuestionWithGuide("q1", "math", "arithmetic", "../math/guide"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getFirstGuideUrlForSubject("english")).toBeUndefined();
+  });
+});
