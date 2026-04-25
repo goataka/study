@@ -1079,7 +1079,6 @@ export class QuizApp {
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
 
   /**
-  /**
    * 現在選択中のカテゴリが学習済み（🏆）かどうかを返す。
    */
   private isCurrentCategoryLearned(): boolean {
