@@ -1121,6 +1121,17 @@ button:disabled {
 }
 
 /* カテゴリ進捗バー */
+.category-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.category-progress-row .category-progress-bar {
+    flex: 1;
+    width: auto;
+}
+
 .category-progress-bar {
     height: 4px;
     background: #e1e4e8;
@@ -1143,6 +1154,19 @@ button:disabled {
 
 .category-item.active .category-progress-fill {
     background: rgba(255, 255, 255, 0.7);
+}
+
+.category-progress-pct {
+    font-size: 11px;
+    color: #586069;
+    white-space: nowrap;
+    min-width: 28px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.category-item.active .category-progress-pct {
+    color: rgba(255, 255, 255, 0.85);
 }
 
 /* カテゴリ解説リンク */

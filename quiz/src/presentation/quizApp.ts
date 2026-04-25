@@ -424,13 +424,23 @@ export class QuizApp {
 
     nameArea.appendChild(titleRow);
 
+    // 進捗バーと完了率を横並びにするラッパー
+    const progressRow = document.createElement("div");
+    progressRow.className = "category-progress-row";
+
     const progressBar = document.createElement("div");
     progressBar.className = "category-progress-bar";
     const progressFill = document.createElement("div");
     progressFill.className = "category-progress-fill";
     progressBar.appendChild(progressFill);
 
-    nameArea.appendChild(progressBar);
+    const progressPct = document.createElement("span");
+    progressPct.className = "category-progress-pct hidden";
+
+    progressRow.appendChild(progressBar);
+    progressRow.appendChild(progressPct);
+
+    nameArea.appendChild(progressRow);
 
     // 参考学年バッジ（referenceGrade が設定されている場合のみ表示）
     const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
@@ -1017,17 +1027,26 @@ export class QuizApp {
         statsEl.textContent = formatCategoryStats(stat);
       }
 
-      // 進捗バーを更新（学習履歴がある場合）
+      // 進捗バーと完了率を更新（学習履歴がある場合）
       const progressFill = el.querySelector(".category-progress-fill") as HTMLElement | null;
+      const progressPct = el.querySelector(".category-progress-pct") as HTMLElement | null;
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
         if (isStudied || stat.wrong > 0) {
           const pct = stat.total > 0 ? Math.round(((stat.total - stat.wrong) / stat.total) * 100) : 0;
           progressFill.style.width = `${pct}%`;
           progressFill.classList.toggle("progress-fill-done", pct === 100);
+          if (progressPct) {
+            progressPct.textContent = `${pct}%`;
+            progressPct.classList.remove("hidden");
+          }
         } else {
           progressFill.style.width = "0%";
           progressFill.classList.remove("progress-fill-done");
+          if (progressPct) {
+            progressPct.textContent = "";
+            progressPct.classList.add("hidden");
+          }
         }
       }
 

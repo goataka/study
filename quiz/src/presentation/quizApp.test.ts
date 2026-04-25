@@ -1874,6 +1874,61 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     expect(fill?.style.width).toBe("100%");
     expect(fill?.classList.contains("progress-fill-done")).toBe(true);
   });
+
+  it("カテゴリアイテムには .category-progress-pct が含まれる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    expect(catItem?.querySelector(".category-progress-pct")).not.toBeNull();
+  });
+
+  it("未学習カテゴリの完了率テキストは非表示（hidden クラスあり）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+    expect(pct?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("学習済（間違いなし）カテゴリの完了率テキストは 100% になり hidden クラスが外れる", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 5,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+    expect(pct?.classList.contains("hidden")).toBe(false);
+    expect(pct?.textContent).toBe("100%");
+  });
 });
 
 describe("QuizApp — カテゴリ例文表示仕様", () => {
