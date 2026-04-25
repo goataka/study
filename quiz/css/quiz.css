@@ -58,9 +58,9 @@ header h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 練習モードの背景色 */
+/* 練習モードの背景色（クイズ実施中は通常の白背景を維持） */
 .screen.practice-mode {
-    background: #e0f4ff;
+    background: white;
 }
 
 .hidden {
@@ -438,16 +438,16 @@ header h1 {
     box-shadow: 0 6px 12px rgba(3, 102, 214, 0.4);
 }
 
-/* 練習ボタンは本番ボタンより薄い色にする */
+/* 練習ボタンは爽やかな水色にする */
 #startPracticeBtn {
-    background: #5b9bd5;
+    background: rgb(221, 244, 255);
     color: #0f2a43;
 }
 
 #startPracticeBtn:hover:not(:disabled) {
-    background: #2f6ea8;
+    background: rgb(180, 225, 250);
     color: #0f2a43;
-    box-shadow: 0 6px 12px rgba(47, 110, 168, 0.4);
+    box-shadow: 0 6px 12px rgba(0, 130, 200, 0.25);
 }
 
 .secondary-btn {
