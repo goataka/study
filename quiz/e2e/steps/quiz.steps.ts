@@ -86,7 +86,15 @@ Then("I should see question 1", async ({ page }) => {
 });
 
 When("I select the first choice", async ({ page }) => {
-  await page.locator(".choice-label").first().click();
+  // 選択肢またはテキスト入力が表示されるまで待つ
+  await page.locator(".choice-label, .text-answer-input").first().waitFor({ state: "visible" });
+  const isTextInput = await page.locator(".text-answer-input").isVisible();
+  if (isTextInput) {
+    await page.locator(".text-answer-input").fill("あ");
+    await page.locator(".text-answer-submit-btn").click();
+  } else {
+    await page.locator(".choice-label").first().click();
+  }
 });
 
 Then("the {string} button should be enabled", async ({ page }, buttonText: string) => {
