@@ -13,450 +13,350 @@
     {
       "id": "kanji-sec-001",
       "question": "「概念」の読み方をひらがなで書いてください",
-      "choices": [
-        "がいねん"
-      ],
+      "choices": ["がいねん"],
       "correct": 0,
       "explanation": "概念（がいねん）: 物事の大まかな考え方・意味のこと"
     },
     {
       "id": "kanji-sec-002",
       "question": "「抽象」の読み方をひらがなで書いてください",
-      "choices": [
-        "ちゅうしょう"
-      ],
+      "choices": ["ちゅうしょう"],
       "correct": 0,
       "explanation": "抽象（ちゅうしょう）: 具体的ではなく、一般的・観念的なこと"
     },
     {
       "id": "kanji-sec-003",
       "question": "「歴史」の読み方をひらがなで書いてください",
-      "choices": [
-        "れきし"
-      ],
+      "choices": ["れきし"],
       "correct": 0,
       "explanation": "歴史（れきし）: 過去に起きた出来事の記録"
     },
     {
       "id": "kanji-sec-004",
       "question": "「経済」の読み方をひらがなで書いてください",
-      "choices": [
-        "けいざい"
-      ],
+      "choices": ["けいざい"],
       "correct": 0,
       "explanation": "経済（けいざい）: 生産・流通・消費にかかわる活動全体"
     },
     {
       "id": "kanji-sec-005",
       "question": "「議会」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぎかい"
-      ],
+      "choices": ["ぎかい"],
       "correct": 0,
       "explanation": "議会（ぎかい）: 選ばれた代表が話し合う機関"
     },
     {
       "id": "kanji-sec-006",
       "question": "「環境」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんきょう"
-      ],
+      "choices": ["かんきょう"],
       "correct": 0,
       "explanation": "環境（かんきょう）: 生き物を取り巻く自然や社会の条件"
     },
     {
       "id": "kanji-sec-007",
       "question": "「文化」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぶんか"
-      ],
+      "choices": ["ぶんか"],
       "correct": 0,
       "explanation": "文化（ぶんか）: 人々の生活や考え方、芸術などの総体"
     },
     {
       "id": "kanji-sec-008",
       "question": "「伝統」の読み方をひらがなで書いてください",
-      "choices": [
-        "でんとう"
-      ],
+      "choices": ["でんとう"],
       "correct": 0,
       "explanation": "伝統（でんとう）: 昔から受け継がれてきた習慣や文化"
     },
     {
       "id": "kanji-sec-009",
       "question": "「道徳」の読み方をひらがなで書いてください",
-      "choices": [
-        "どうとく"
-      ],
+      "choices": ["どうとく"],
       "correct": 0,
       "explanation": "道徳（どうとく）: 人としてのあるべき行動の規範"
     },
     {
       "id": "kanji-sec-010",
       "question": "「進化」の読み方をひらがなで書いてください",
-      "choices": [
-        "しんか"
-      ],
+      "choices": ["しんか"],
       "correct": 0,
       "explanation": "進化（しんか）: 生物が世代を経て変化していくこと"
     },
     {
       "id": "kanji-sec-011",
       "question": "「繁栄」の読み方をひらがなで書いてください",
-      "choices": [
-        "はんえい"
-      ],
+      "choices": ["はんえい"],
       "correct": 0,
       "explanation": "繁栄（はんえい）: 豊かに栄えること"
     },
     {
       "id": "kanji-sec-012",
       "question": "「哲学」の読み方をひらがなで書いてください",
-      "choices": [
-        "てつがく"
-      ],
+      "choices": ["てつがく"],
       "correct": 0,
       "explanation": "哲学（てつがく）: 物事の根本的な意味を考える学問"
     },
     {
       "id": "kanji-sec-013",
       "question": "「本質」の読み方をひらがなで書いてください",
-      "choices": [
-        "ほんしつ"
-      ],
+      "choices": ["ほんしつ"],
       "correct": 0,
       "explanation": "本質（ほんしつ）: 物事の根本・真の姿"
     },
     {
       "id": "kanji-sec-014",
       "question": "「価値観」の読み方をひらがなで書いてください",
-      "choices": [
-        "かちかん"
-      ],
+      "choices": ["かちかん"],
       "correct": 0,
       "explanation": "価値観（かちかん）: 何に価値があるかについての考え方"
     },
     {
       "id": "kanji-sec-015",
       "question": "「象徴」の読み方をひらがなで書いてください",
-      "choices": [
-        "しょうちょう"
-      ],
+      "choices": ["しょうちょう"],
       "correct": 0,
       "explanation": "象徴（しょうちょう）: 何かを表すものやしるし"
     },
     {
       "id": "kanji-sec-016",
       "question": "「喜ぶ」の読み方をひらがなで書いてください",
-      "choices": [
-        "よろこぶ"
-      ],
+      "choices": ["よろこぶ"],
       "correct": 0,
       "explanation": "喜（よろこ）ぶ: うれしく思うこと・楽しく感じること"
     },
     {
       "id": "kanji-sec-017",
       "question": "「怒る」の読み方をひらがなで書いてください",
-      "choices": [
-        "おこる"
-      ],
+      "choices": ["おこる"],
       "correct": 0,
       "explanation": "怒（おこ）る: 腹を立てること・激しく感情をあらわにすること"
     },
     {
       "id": "kanji-sec-018",
       "question": "「悩む」の読み方をひらがなで書いてください",
-      "choices": [
-        "なやむ"
-      ],
+      "choices": ["なやむ"],
       "correct": 0,
       "explanation": "悩（なや）む: どうしたらよいか迷い苦しむこと"
     },
     {
       "id": "kanji-sec-019",
       "question": "「企業」の読み方をひらがなで書いてください",
-      "choices": [
-        "きぎょう"
-      ],
+      "choices": ["きぎょう"],
       "correct": 0,
       "explanation": "企業（きぎょう）: 利益を目的として事業を行う組織"
     },
     {
       "id": "kanji-sec-020",
       "question": "「現象」の読み方をひらがなで書いてください",
-      "choices": [
-        "げんしょう"
-      ],
+      "choices": ["げんしょう"],
       "correct": 0,
       "explanation": "現象（げんしょう）: 目に見える形で現れた出来事や状態"
     },
     {
       "id": "kanji-sec-021",
       "question": "「影響」の読み方をひらがなで書いてください",
-      "choices": [
-        "えいきょう"
-      ],
+      "choices": ["えいきょう"],
       "correct": 0,
       "explanation": "影響（えいきょう）: あるものが別のものに変化をもたらすこと"
     },
     {
       "id": "kanji-sec-022",
       "question": "「根拠」の読み方をひらがなで書いてください",
-      "choices": [
-        "こんきょ"
-      ],
+      "choices": ["こんきょ"],
       "correct": 0,
       "explanation": "根拠（こんきょ）: 判断や主張の基となる理由や証拠"
     },
     {
       "id": "kanji-sec-023",
       "question": "「批評」の読み方をひらがなで書いてください",
-      "choices": [
-        "ひひょう"
-      ],
+      "choices": ["ひひょう"],
       "correct": 0,
       "explanation": "批評（ひひょう）: 物事のよしあしを判断して意見を述べること"
     },
     {
       "id": "kanji-sec-024",
       "question": "「観点」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんてん"
-      ],
+      "choices": ["かんてん"],
       "correct": 0,
       "explanation": "観点（かんてん）: 物事を見る立場・視点"
     },
     {
       "id": "kanji-sec-025",
       "question": "「立場」の読み方をひらがなで書いてください",
-      "choices": [
-        "たちば"
-      ],
+      "choices": ["たちば"],
       "correct": 0,
       "explanation": "立場（たちば）: その人が置かれている状況や役割・地位"
     },
     {
       "id": "kanji-sec-026",
       "question": "「対話」の読み方をひらがなで書いてください",
-      "choices": [
-        "たいわ"
-      ],
+      "choices": ["たいわ"],
       "correct": 0,
       "explanation": "対話（たいわ）: 向かい合って話し合うこと・ダイアログ"
     },
     {
       "id": "kanji-sec-027",
       "question": "「協力」の読み方をひらがなで書いてください",
-      "choices": [
-        "きょうりょく"
-      ],
+      "choices": ["きょうりょく"],
       "correct": 0,
       "explanation": "協力（きょうりょく）: 力を合わせて物事に取り組むこと"
     },
     {
       "id": "kanji-sec-028",
       "question": "「秩序」の読み方をひらがなで書いてください",
-      "choices": [
-        "ちつじょ"
-      ],
+      "choices": ["ちつじょ"],
       "correct": 0,
       "explanation": "秩序（ちつじょ）: 社会や物事が正しく整っている状態・決まりある順序"
     },
     {
       "id": "kanji-sec-029",
       "question": "「自由」の読み方をひらがなで書いてください",
-      "choices": [
-        "じゆう"
-      ],
+      "choices": ["じゆう"],
       "correct": 0,
       "explanation": "自由（じゆう）: 他から束縛されず自分の意思で行動できること"
     },
     {
       "id": "kanji-sec-030",
       "question": "「平等」の読み方をひらがなで書いてください",
-      "choices": [
-        "びょうどう"
-      ],
+      "choices": ["びょうどう"],
       "correct": 0,
       "explanation": "平等（びょうどう）: すべての人が同じ扱いを受けること"
     },
     {
       "id": "kanji-sec-031",
       "question": "「権利」の読み方をひらがなで書いてください",
-      "choices": [
-        "けんり"
-      ],
+      "choices": ["けんり"],
       "correct": 0,
       "explanation": "権利（けんり）: 何かをすることができる正当な資格・能力"
     },
     {
       "id": "kanji-sec-032",
       "question": "「義務」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぎむ"
-      ],
+      "choices": ["ぎむ"],
       "correct": 0,
       "explanation": "義務（ぎむ）: 必ずしなければならないこと・果たすべき責任"
     },
     {
       "id": "kanji-sec-033",
       "question": "「民主主義」の読み方をひらがなで書いてください",
-      "choices": [
-        "みんしゅしゅぎ"
-      ],
+      "choices": ["みんしゅしゅぎ"],
       "correct": 0,
       "explanation": "民主主義（みんしゅしゅぎ）: 国民が政治の主体となる政治の考え方"
     },
     {
       "id": "kanji-sec-034",
       "question": "「科学」の読み方をひらがなで書いてください",
-      "choices": [
-        "かがく"
-      ],
+      "choices": ["かがく"],
       "correct": 0,
       "explanation": "科学（かがく）: 観察や実験で自然の法則を解明する学問"
     },
     {
       "id": "kanji-sec-035",
       "question": "「実験」の読み方をひらがなで書いてください",
-      "choices": [
-        "じっけん"
-      ],
+      "choices": ["じっけん"],
       "correct": 0,
       "explanation": "実験（じっけん）: 仮説を確かめるために実際に試してみること"
     },
     {
       "id": "kanji-sec-036",
       "question": "「仮説」の読み方をひらがなで書いてください",
-      "choices": [
-        "かせつ"
-      ],
+      "choices": ["かせつ"],
       "correct": 0,
       "explanation": "仮説（かせつ）: まだ証明されていない、仮の説や考え"
     },
     {
       "id": "kanji-sec-037",
       "question": "「検証」の読み方をひらがなで書いてください",
-      "choices": [
-        "けんしょう"
-      ],
+      "choices": ["けんしょう"],
       "correct": 0,
       "explanation": "検証（けんしょう）: 事実かどうかを調べて確かめること"
     },
     {
       "id": "kanji-sec-038",
       "question": "「論理」の読み方をひらがなで書いてください",
-      "choices": [
-        "ろんり"
-      ],
+      "choices": ["ろんり"],
       "correct": 0,
       "explanation": "論理（ろんり）: 正しい筋道・物事を考える秩序だった手順"
     },
     {
       "id": "kanji-sec-039",
       "question": "「証明」の読み方をひらがなで書いてください",
-      "choices": [
-        "しょうめい"
-      ],
+      "choices": ["しょうめい"],
       "correct": 0,
       "explanation": "証明（しょうめい）: 事柄が正しいと根拠を示して示すこと"
     },
     {
       "id": "kanji-sec-040",
       "question": "「考察」の読み方をひらがなで書いてください",
-      "choices": [
-        "こうさつ"
-      ],
+      "choices": ["こうさつ"],
       "correct": 0,
       "explanation": "考察（こうさつ）: 物事をよく調べ、深く考えること"
     },
     {
       "id": "kanji-sec-041",
       "question": "「結論」の読み方をひらがなで書いてください",
-      "choices": [
-        "けつろん"
-      ],
+      "choices": ["けつろん"],
       "correct": 0,
       "explanation": "結論（けつろん）: 考えや議論の最終的なまとめ・判断"
     },
     {
       "id": "kanji-sec-042",
       "question": "「仮定」の読み方をひらがなで書いてください",
-      "choices": [
-        "かてい"
-      ],
+      "choices": ["かてい"],
       "correct": 0,
       "explanation": "仮定（かてい）: 仮にそうだと想定して考えること"
     },
     {
       "id": "kanji-sec-043",
       "question": "「比例」の読み方をひらがなで書いてください",
-      "choices": [
-        "ひれい"
-      ],
+      "choices": ["ひれい"],
       "correct": 0,
       "explanation": "比例（ひれい）: 一方が増えると他方も同じ割合で増える関係"
     },
     {
       "id": "kanji-sec-044",
       "question": "「変量」の読み方をひらがなで書いてください",
-      "choices": [
-        "へんりょう"
-      ],
+      "choices": ["へんりょう"],
       "correct": 0,
       "explanation": "変量（へんりょう）: データの中で変化する数値・統計で扱う量"
     },
     {
       "id": "kanji-sec-045",
       "question": "「依頼」の読み方をひらがなで書いてください",
-      "choices": [
-        "いらい"
-      ],
+      "choices": ["いらい"],
       "correct": 0,
       "explanation": "依頼（いらい）: 相手にお願いして頼むこと"
     },
     {
       "id": "kanji-sec-046",
       "question": "「縁」の読み方をひらがなで書いてください",
-      "choices": [
-        "えん"
-      ],
+      "choices": ["えん"],
       "correct": 0,
       "explanation": "縁（えん）: 人と人をつなぐ関係・つながり・きっかけ"
     },
     {
       "id": "kanji-sec-047",
       "question": "「怠る」の読み方をひらがなで書いてください",
-      "choices": [
-        "おこたる"
-      ],
+      "choices": ["おこたる"],
       "correct": 0,
       "explanation": "怠（おこた）る: すべきことをせず、なまけること"
     },
     {
       "id": "kanji-sec-048",
       "question": "「惜しむ」の読み方をひらがなで書いてください",
-      "choices": [
-        "おしむ"
-      ],
+      "choices": ["おしむ"],
       "correct": 0,
       "explanation": "惜（お）しむ: 残念に思うこと・大切にして手放したくないと思うこと"
     },
     {
       "id": "kanji-sec-049",
       "question": "「描く」の読み方をひらがなで書いてください",
-      "choices": [
-        "えがく"
-      ],
+      "choices": ["えがく"],
       "correct": 0,
       "explanation": "描（えが）く: 絵をかくこと・心の中で思い浮かべること"
     },
     {
       "id": "kanji-sec-050",
       "question": "「揺れる」の読み方をひらがなで書いてください",
-      "choices": [
-        "ゆれる"
-      ],
+      "choices": ["ゆれる"],
       "correct": 0,
       "explanation": "揺（ゆ）れる: 左右・上下に動くこと・心が不安定になること"
     }

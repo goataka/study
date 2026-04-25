@@ -13,1440 +13,1120 @@
     {
       "id": "kanji-g2-001",
       "question": "「海」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うみ"
-      ],
+      "choices": ["うみ"],
       "correct": 0,
       "explanation": "海（うみ）: 広大な水の広がり。「かい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-002",
       "question": "「魚」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "さかな"
-      ],
+      "choices": ["さかな"],
       "correct": 0,
       "explanation": "魚（さかな）: 水の中に住む生き物。「ぎょ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-003",
       "question": "「鳥」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とり"
-      ],
+      "choices": ["とり"],
       "correct": 0,
       "explanation": "鳥（とり）: 空を飛ぶ生き物。「ちょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-004",
       "question": "「読む」の「読」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "よ"
-      ],
+      "choices": ["よ"],
       "correct": 0,
       "explanation": "読（よ）む: 文字を読むこと。「どく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-005",
       "question": "「書く」の「書」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "か"
-      ],
+      "choices": ["か"],
       "correct": 0,
       "explanation": "書（か）く: 文字を書くこと。「しょ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-006",
       "question": "「聞く」の「聞」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "き"
-      ],
+      "choices": ["き"],
       "correct": 0,
       "explanation": "聞（き）く: 音を聞くこと。「ぶん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-007",
       "question": "「話す」の「話」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はな"
-      ],
+      "choices": ["はな"],
       "correct": 0,
       "explanation": "話（はな）す: 話すこと。「わ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-008",
       "question": "「走る」の「走」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はし"
-      ],
+      "choices": ["はし"],
       "correct": 0,
       "explanation": "走（はし）る: 走ること。「そう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-009",
       "question": "「食べる」の「食」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "た"
-      ],
+      "choices": ["た"],
       "correct": 0,
       "explanation": "食（た）べる: 食べること。「しょく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-010",
       "question": "「父」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ちち"
-      ],
+      "choices": ["ちち"],
       "correct": 0,
       "explanation": "父（ちち）: お父さんのこと。「ふ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-011",
       "question": "「母」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はは"
-      ],
+      "choices": ["はは"],
       "correct": 0,
       "explanation": "母（はは）: お母さんのこと。「ぼ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-012",
       "question": "「兄」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あに"
-      ],
+      "choices": ["あに"],
       "correct": 0,
       "explanation": "兄（あに）: お兄さんのこと。「けい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-013",
       "question": "「姉」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あね"
-      ],
+      "choices": ["あね"],
       "correct": 0,
       "explanation": "姉（あね）: お姉さんのこと。「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-014",
       "question": "「弟」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おとうと"
-      ],
+      "choices": ["おとうと"],
       "correct": 0,
       "explanation": "弟（おとうと）: 年下の男の兄弟のこと。「てい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-015",
       "question": "「妹」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いもうと"
-      ],
+      "choices": ["いもうと"],
       "correct": 0,
       "explanation": "妹（いもうと）: 年下の女の兄弟のこと。「まい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-016",
       "question": "「友だち」の「友」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とも"
-      ],
+      "choices": ["とも"],
       "correct": 0,
       "explanation": "友（とも）: 友達のこと。「ゆう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-017",
       "question": "「春」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はる"
-      ],
+      "choices": ["はる"],
       "correct": 0,
       "explanation": "春（はる）: 春の季節のこと。「しゅん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-018",
       "question": "「夏」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "なつ"
-      ],
+      "choices": ["なつ"],
       "correct": 0,
       "explanation": "夏（なつ）: 夏の季節のこと。「か」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-019",
       "question": "「秋」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あき"
-      ],
+      "choices": ["あき"],
       "correct": 0,
       "explanation": "秋（あき）: 秋の季節のこと。「しゅう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-020",
       "question": "「冬」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ふゆ"
-      ],
+      "choices": ["ふゆ"],
       "correct": 0,
       "explanation": "冬（ふゆ）: 冬の季節のこと。「とう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-021",
       "question": "「雲」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くも"
-      ],
+      "choices": ["くも"],
       "correct": 0,
       "explanation": "雲（くも）: 空に浮かぶ水蒸気の集まり。「うん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-022",
       "question": "「顔」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かお"
-      ],
+      "choices": ["かお"],
       "correct": 0,
       "explanation": "顔（かお）: 頭の前面のこと。「がん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-023",
       "question": "「絵」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "え"
-      ],
+      "choices": ["え"],
       "correct": 0,
       "explanation": "絵（え）: 描いた図や絵のこと。「かい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-024",
       "question": "「歌う」の「歌」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うた"
-      ],
+      "choices": ["うた"],
       "correct": 0,
       "explanation": "歌（うた）う: 歌を歌うこと。「か」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-025",
       "question": "「岩」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いわ"
-      ],
+      "choices": ["いわ"],
       "correct": 0,
       "explanation": "岩（いわ）: 大きな石のこと。「がん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-026",
       "question": "「帰る」の「帰」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かえ"
-      ],
+      "choices": ["かえ"],
       "correct": 0,
       "explanation": "帰（かえ）る: 家に戻ること。「き」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-027",
       "question": "「牛」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うし"
-      ],
+      "choices": ["うし"],
       "correct": 0,
       "explanation": "牛（うし）: 農耕や酪農に使われる動物。「ぎゅう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-028",
       "question": "「強い」の「強」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "つよ"
-      ],
+      "choices": ["つよ"],
       "correct": 0,
       "explanation": "強（つよ）い: 力があること。「きょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-029",
       "question": "「教える」の「教」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おし"
-      ],
+      "choices": ["おし"],
       "correct": 0,
       "explanation": "教（おし）える: 知識を伝えること。「きょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-030",
       "question": "「近い」の「近」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ちか"
-      ],
+      "choices": ["ちか"],
       "correct": 0,
       "explanation": "近（ちか）い: 距離が短いこと。「きん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-031",
       "question": "「形」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かたち"
-      ],
+      "choices": ["かたち"],
       "correct": 0,
       "explanation": "形（かたち）: 物の外見のこと。「けい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-032",
       "question": "「光」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ひかり"
-      ],
+      "choices": ["ひかり"],
       "correct": 0,
       "explanation": "光（ひかり）: 明るく照らすもの。「こう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-033",
       "question": "「考える」の「考」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かんが"
-      ],
+      "choices": ["かんが"],
       "correct": 0,
       "explanation": "考（かんが）える: 頭で思うこと。「こう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-034",
       "question": "「国」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くに"
-      ],
+      "choices": ["くに"],
       "correct": 0,
       "explanation": "国（くに）: 国家のこと。「こく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-035",
       "question": "「今」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いま"
-      ],
+      "choices": ["いま"],
       "correct": 0,
       "explanation": "今（いま）: 現在のこと。「こん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-036",
       "question": "「心」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "こころ"
-      ],
+      "choices": ["こころ"],
       "correct": 0,
       "explanation": "心（こころ）: 気持ちや感情のこと。「しん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-037",
       "question": "「声」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "こえ"
-      ],
+      "choices": ["こえ"],
       "correct": 0,
       "explanation": "声（こえ）: 口から出る音のこと。「せい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-038",
       "question": "「星」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ほし"
-      ],
+      "choices": ["ほし"],
       "correct": 0,
       "explanation": "星（ほし）: 夜空に光る天体のこと。「せい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-039",
       "question": "「晴れる」の「晴」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "は"
-      ],
+      "choices": ["は"],
       "correct": 0,
       "explanation": "晴（は）れる: 空が晴れること。「せい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-040",
       "question": "「雪」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ゆき"
-      ],
+      "choices": ["ゆき"],
       "correct": 0,
       "explanation": "雪（ゆき）: 空から降る白い結晶のこと。「せつ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-041",
       "question": "「船」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ふね"
-      ],
+      "choices": ["ふね"],
       "correct": 0,
       "explanation": "船（ふね）: 水の上を進む乗り物。「せん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-042",
       "question": "「前」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "まえ"
-      ],
+      "choices": ["まえ"],
       "correct": 0,
       "explanation": "前（まえ）: 正面の方向のこと。「ぜん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-043",
       "question": "「多い」の「多」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おお"
-      ],
+      "choices": ["おお"],
       "correct": 0,
       "explanation": "多（おお）い: 数や量が大きいこと。「た」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-044",
       "question": "「太い」の「太」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ふと"
-      ],
+      "choices": ["ふと"],
       "correct": 0,
       "explanation": "太（ふと）い: 直径が大きいこと。「たい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-045",
       "question": "「知る」の「知」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "し"
-      ],
+      "choices": ["し"],
       "correct": 0,
       "explanation": "知（し）る: 情報を得ること。「ち」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-046",
       "question": "「昼」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ひる"
-      ],
+      "choices": ["ひる"],
       "correct": 0,
       "explanation": "昼（ひる）: 日中のこと。「ちゅう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-047",
       "question": "「長い」の「長」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "なが"
-      ],
+      "choices": ["なが"],
       "correct": 0,
       "explanation": "長（なが）い: 長さが大きいこと。「ちょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-048",
       "question": "「朝」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あさ"
-      ],
+      "choices": ["あさ"],
       "correct": 0,
       "explanation": "朝（あさ）: 一日の始まりの時間帯。「ちょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-049",
       "question": "「東」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ひがし"
-      ],
+      "choices": ["ひがし"],
       "correct": 0,
       "explanation": "東（ひがし）: 太陽が昇る方向。「とう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-050",
       "question": "「答える」の「答」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "こた"
-      ],
+      "choices": ["こた"],
       "correct": 0,
       "explanation": "答（こた）える: 問いに応えること。「とう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-051",
       "question": "「道」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "みち"
-      ],
+      "choices": ["みち"],
       "correct": 0,
       "explanation": "道（みち）: 人や車が通る場所。「どう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-052",
       "question": "「南」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "みなみ"
-      ],
+      "choices": ["みなみ"],
       "correct": 0,
       "explanation": "南（みなみ）: 北の反対方向。「なん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-053",
       "question": "「北」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "きた"
-      ],
+      "choices": ["きた"],
       "correct": 0,
       "explanation": "北（きた）: 南の反対方向。「ほく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-054",
       "question": "「西」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "にし"
-      ],
+      "choices": ["にし"],
       "correct": 0,
       "explanation": "西（にし）: 太陽が沈む方向。「せい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-055",
       "question": "「野」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "の"
-      ],
+      "choices": ["の"],
       "correct": 0,
       "explanation": "野（の）: 広い草原や田畑のこと。「や」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-056",
       "question": "「夜」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "よる"
-      ],
+      "choices": ["よる"],
       "correct": 0,
       "explanation": "夜（よる）: 日が沈んでから暗い時間帯。「や」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-057",
       "question": "「引く」の「引」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ひ"
-      ],
+      "choices": ["ひ"],
       "correct": 0,
       "explanation": "引（ひ）く: 手前に力をかけること。「いん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-058",
       "question": "「羽」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はね"
-      ],
+      "choices": ["はね"],
       "correct": 0,
       "explanation": "羽（はね）: 鳥の体を覆う羽毛のこと。「う」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-059",
       "question": "「遠い」の「遠」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とお"
-      ],
+      "choices": ["とお"],
       "correct": 0,
       "explanation": "遠（とお）い: 距離が長いこと。「えん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-060",
       "question": "「外」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "そと"
-      ],
+      "choices": ["そと"],
       "correct": 0,
       "explanation": "外（そと）: 建物の外側のこと。「がい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-061",
       "question": "「角」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かど"
-      ],
+      "choices": ["かど"],
       "correct": 0,
       "explanation": "角（かど）: 曲がり角や頂点のこと。「かく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-062",
       "question": "「楽しい」の「楽」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "たの"
-      ],
+      "choices": ["たの"],
       "correct": 0,
       "explanation": "楽（たの）しい: 喜びや楽しさがあること。「がく」「らく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-063",
       "question": "「間」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あいだ"
-      ],
+      "choices": ["あいだ"],
       "correct": 0,
       "explanation": "間（あいだ）: 二つの物の中間のこと。「かん」「けん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-064",
       "question": "「丸い」の「丸」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "まる"
-      ],
+      "choices": ["まる"],
       "correct": 0,
       "explanation": "丸（まる）い: 円形であること。「がん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-065",
       "question": "「言う」の「言」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "い"
-      ],
+      "choices": ["い"],
       "correct": 0,
       "explanation": "言（い）う: 口に出すこと。「げん」「ごん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-066",
       "question": "「戸」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "と"
-      ],
+      "choices": ["と"],
       "correct": 0,
       "explanation": "戸（と）: 開け閉めする扉のこと。「こ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-067",
       "question": "「古い」の「古」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ふる"
-      ],
+      "choices": ["ふる"],
       "correct": 0,
       "explanation": "古（ふる）い: 時間が経って古くなったこと。「こ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-068",
       "question": "「広い」の「広」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ひろ"
-      ],
+      "choices": ["ひろ"],
       "correct": 0,
       "explanation": "広（ひろ）い: 面積が大きいこと。「こう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-069",
       "question": "「紙」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かみ"
-      ],
+      "choices": ["かみ"],
       "correct": 0,
       "explanation": "紙（かみ）: 文字を書くための薄いもの。「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-070",
       "question": "「時」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とき"
-      ],
+      "choices": ["とき"],
       "correct": 0,
       "explanation": "時（とき）: ある瞬間や時間のこと。「じ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-071",
       "question": "「新しい」の「新」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あたら"
-      ],
+      "choices": ["あたら"],
       "correct": 0,
       "explanation": "新（あたら）しい: できたばかりのこと。「しん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-072",
       "question": "「親」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おや"
-      ],
+      "choices": ["おや"],
       "correct": 0,
       "explanation": "親（おや）: 父や母のこと。「しん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-073",
       "question": "「作る」の「作」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "つく"
-      ],
+      "choices": ["つく"],
       "correct": 0,
       "explanation": "作（つく）る: 物を作り上げること。「さく」「さ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-074",
       "question": "「止まる」の「止」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "と"
-      ],
+      "choices": ["と"],
       "correct": 0,
       "explanation": "止（と）まる: 動きが止まること。「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-075",
       "question": "「思う」の「思」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おも"
-      ],
+      "choices": ["おも"],
       "correct": 0,
       "explanation": "思（おも）う: 心で感じたり考えたりすること。「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-076",
       "question": "「通る」の「通」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とお"
-      ],
+      "choices": ["とお"],
       "correct": 0,
       "explanation": "通（とお）る: 道を通り過ぎること。「つう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-077",
       "question": "「地」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ち"
-      ],
+      "choices": ["ち"],
       "correct": 0,
       "explanation": "地（ち）: 大地や土地のこと。「じ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-078",
       "question": "「池」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いけ"
-      ],
+      "choices": ["いけ"],
       "correct": 0,
       "explanation": "池（いけ）: 水をたたえた小さなくぼみのこと。「ち」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-079",
       "question": "「風」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かぜ"
-      ],
+      "choices": ["かぜ"],
       "correct": 0,
       "explanation": "風（かぜ）: 空気の流れのこと。「ふう」「ふ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-080",
       "question": "「馬」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うま"
-      ],
+      "choices": ["うま"],
       "correct": 0,
       "explanation": "馬（うま）: 乗り物としても使われる動物。「ば」「ま」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-081",
       "question": "「鳴」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "なく"
-      ],
+      "choices": ["なく"],
       "correct": 0,
       "explanation": "鳴（な）く: 鳥や虫が声を出すこと。「めい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-082",
       "question": "「室」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "むろ"
-      ],
+      "choices": ["むろ"],
       "correct": 0,
       "explanation": "室（むろ）: 部屋のこと。「しつ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-083",
       "question": "「里」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "さと"
-      ],
+      "choices": ["さと"],
       "correct": 0,
       "explanation": "里（さと）: 村・ふるさとのこと。「り」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-084",
       "question": "「自」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "みずから"
-      ],
+      "choices": ["みずから"],
       "correct": 0,
       "explanation": "自（みずから）: 自分自身のこと。「じ」「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-085",
       "question": "「線」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "せん"
-      ],
+      "choices": ["せん"],
       "correct": 0,
       "explanation": "線（せん）: 細長い線のこと"
     },
     {
       "id": "kanji-g2-086",
       "question": "「来」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くる"
-      ],
+      "choices": ["くる"],
       "correct": 0,
       "explanation": "来（く）る: こちらへ向かうこと。「らい」「たい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-087",
       "question": "「売」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うる"
-      ],
+      "choices": ["うる"],
       "correct": 0,
       "explanation": "売（う）る: 品物をお金と交換すること。「ばい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-088",
       "question": "「頭」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あたま"
-      ],
+      "choices": ["あたま"],
       "correct": 0,
       "explanation": "頭（あたま）: からだの一番上の部分。「ず」「とう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-089",
       "question": "「米」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "こめ"
-      ],
+      "choices": ["こめ"],
       "correct": 0,
       "explanation": "米（こめ）: イネの実のこと。「べい」「まい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-090",
       "question": "「弱」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "よわい"
-      ],
+      "choices": ["よわい"],
       "correct": 0,
       "explanation": "弱（よわ）い: 力がないこと。「じゃく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-091",
       "question": "「組」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くむ"
-      ],
+      "choices": ["くむ"],
       "correct": 0,
       "explanation": "組（く）む: 複数のものを合わせること。「そ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-092",
       "question": "「同」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おなじ"
-      ],
+      "choices": ["おなじ"],
       "correct": 0,
       "explanation": "同（おな）じ: 同じであること。「どう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-093",
       "question": "「毎」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "まい"
-      ],
+      "choices": ["まい"],
       "correct": 0,
       "explanation": "毎（まい）: それぞれの・いつもの意味"
     },
     {
       "id": "kanji-g2-094",
       "question": "「刀」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かたな"
-      ],
+      "choices": ["かたな"],
       "correct": 0,
       "explanation": "刀（かたな）: 金属製の刃物のこと。「とう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-095",
       "question": "「活」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "かつ"
-      ],
+      "choices": ["かつ"],
       "correct": 0,
       "explanation": "活（かつ）: 生き生きと活動すること"
     },
     {
       "id": "kanji-g2-096",
       "question": "「方」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かた"
-      ],
+      "choices": ["かた"],
       "correct": 0,
       "explanation": "方（かた）: 方向・方法・人のこと。「ほう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-097",
       "question": "「原」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はら"
-      ],
+      "choices": ["はら"],
       "correct": 0,
       "explanation": "原（はら）: 広い野原のこと。「げん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-098",
       "question": "「曜」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "よう"
-      ],
+      "choices": ["よう"],
       "correct": 0,
       "explanation": "曜（よう）: 曜日のこと（月曜・火曜など）"
     },
     {
       "id": "kanji-g2-099",
       "question": "「工」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "こう"
-      ],
+      "choices": ["こう"],
       "correct": 0,
       "explanation": "工（こう）: ものを作ること。「く」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-100",
       "question": "「体」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "からだ"
-      ],
+      "choices": ["からだ"],
       "correct": 0,
       "explanation": "体（からだ）: 人や動物のからだ全体のこと。「たい」「てい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-101",
       "question": "「寺」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "てら"
-      ],
+      "choices": ["てら"],
       "correct": 0,
       "explanation": "寺（てら）: お坊さんがいる建物のこと。「じ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-102",
       "question": "「直」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "なおす"
-      ],
+      "choices": ["なおす"],
       "correct": 0,
       "explanation": "直（なお）す: 悪いところを正しくすること。「ちょく」「じき」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-103",
       "question": "「公」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おおやけ"
-      ],
+      "choices": ["おおやけ"],
       "correct": 0,
       "explanation": "公（おおやけ）: みんなのもの・国のこと。「こう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-104",
       "question": "「画」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "えがく"
-      ],
+      "choices": ["えがく"],
       "correct": 0,
       "explanation": "画（えが）く: 絵をかくこと。「が」「かく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-105",
       "question": "「肉」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "にく"
-      ],
+      "choices": ["にく"],
       "correct": 0,
       "explanation": "肉（にく）: 動物のからだのやわらかい部分。「にく」と読む"
     },
     {
       "id": "kanji-g2-106",
       "question": "「何」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "なに"
-      ],
+      "choices": ["なに"],
       "correct": 0,
       "explanation": "何（なに）: 物・事・人を問う言葉。「か」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-107",
       "question": "「場」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ば"
-      ],
+      "choices": ["ば"],
       "correct": 0,
       "explanation": "場（ば）: 場所・その場のこと。「じょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-108",
       "question": "「園」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "その"
-      ],
+      "choices": ["その"],
       "correct": 0,
       "explanation": "園（その）: 庭・植物を育てる場所。「えん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-109",
       "question": "「弓」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ゆみ"
-      ],
+      "choices": ["ゆみ"],
       "correct": 0,
       "explanation": "弓（ゆみ）: 矢を射る道具のこと。「きゅう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-110",
       "question": "「交」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "まじわる"
-      ],
+      "choices": ["まじわる"],
       "correct": 0,
       "explanation": "交（まじ）わる: 互いに関わること。「こう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-111",
       "question": "「首」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くび"
-      ],
+      "choices": ["くび"],
       "correct": 0,
       "explanation": "首（くび）: 頭とからだをつなぐ部分。「しゅ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-112",
       "question": "「黒」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くろ"
-      ],
+      "choices": ["くろ"],
       "correct": 0,
       "explanation": "黒（くろ）: 色の名前のこと。「こく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-113",
       "question": "「細」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ほそい"
-      ],
+      "choices": ["ほそい"],
       "correct": 0,
       "explanation": "細（ほそ）い: 細くて薄いこと。「さい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-114",
       "question": "「番」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "ばん"
-      ],
+      "choices": ["ばん"],
       "correct": 0,
       "explanation": "番（ばん）: 順番・番号のこと"
     },
     {
       "id": "kanji-g2-115",
       "question": "「午」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "ご"
-      ],
+      "choices": ["ご"],
       "correct": 0,
       "explanation": "午（ご）: 十二支の7番目。正午のこと"
     },
     {
       "id": "kanji-g2-116",
       "question": "「語」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かたる"
-      ],
+      "choices": ["かたる"],
       "correct": 0,
       "explanation": "語（かた）る: 話すこと・ことばのこと。「ご」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-117",
       "question": "「週」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "しゅう"
-      ],
+      "choices": ["しゅう"],
       "correct": 0,
       "explanation": "週（しゅう）: 7日間のひとまとまりのこと"
     },
     {
       "id": "kanji-g2-118",
       "question": "「家」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いえ"
-      ],
+      "choices": ["いえ"],
       "correct": 0,
       "explanation": "家（いえ）: 人が住む建物のこと。「か」「け」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-119",
       "question": "「点」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "てん"
-      ],
+      "choices": ["てん"],
       "correct": 0,
       "explanation": "点（てん）: 小さな点・採点のこと"
     },
     {
       "id": "kanji-g2-120",
       "question": "「才」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "さい"
-      ],
+      "choices": ["さい"],
       "correct": 0,
       "explanation": "才（さい）: 年齢・才能のこと"
     },
     {
       "id": "kanji-g2-121",
       "question": "「歩」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あるく"
-      ],
+      "choices": ["あるく"],
       "correct": 0,
       "explanation": "歩（ある）く: 足で移動すること。「ほ」「ぶ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-122",
       "question": "「会」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あう"
-      ],
+      "choices": ["あう"],
       "correct": 0,
       "explanation": "会（あ）う: 人と顔を合わせること。「かい」「え」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-123",
       "question": "「切」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "きる"
-      ],
+      "choices": ["きる"],
       "correct": 0,
       "explanation": "切（き）る: 刃物などでものを切ること。「せつ」「さい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-124",
       "question": "「算」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "さん"
-      ],
+      "choices": ["さん"],
       "correct": 0,
       "explanation": "算（さん）: 計算すること"
     },
     {
       "id": "kanji-g2-125",
       "question": "「図」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はかる"
-      ],
+      "choices": ["はかる"],
       "correct": 0,
       "explanation": "図（はか）る: 計画する・図面のこと。「ず」「と」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-126",
       "question": "「明」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あかるい"
-      ],
+      "choices": ["あかるい"],
       "correct": 0,
       "explanation": "明（あか）るい: 光があって明るいこと。「めい」「みょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-127",
       "question": "「汽」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "き"
-      ],
+      "choices": ["き"],
       "correct": 0,
       "explanation": "汽（き）: 水蒸気のこと。汽車・汽船など"
     },
     {
       "id": "kanji-g2-128",
       "question": "「少」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "すくない"
-      ],
+      "choices": ["すくない"],
       "correct": 0,
       "explanation": "少（すく）ない: 数量が少ないこと。「しょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-129",
       "question": "「数」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かず"
-      ],
+      "choices": ["かず"],
       "correct": 0,
       "explanation": "数（かず）: 数えた結果のこと。「すう」「す」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-130",
       "question": "「台」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "だい"
-      ],
+      "choices": ["だい"],
       "correct": 0,
       "explanation": "台（だい）: 台・乗り物などを数える助数詞"
     },
     {
       "id": "kanji-g2-131",
       "question": "「門」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かど"
-      ],
+      "choices": ["かど"],
       "correct": 0,
       "explanation": "門（かど）: 出入り口・家の正面のこと。「もん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-132",
       "question": "「半」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "なかば"
-      ],
+      "choices": ["なかば"],
       "correct": 0,
       "explanation": "半（なかば）: 真ん中・半分のこと。「はん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-133",
       "question": "「色」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いろ"
-      ],
+      "choices": ["いろ"],
       "correct": 0,
       "explanation": "色（いろ）: 色・見た目のこと。「しょく」「しき」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-134",
       "question": "「分」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "わかる"
-      ],
+      "choices": ["わかる"],
       "correct": 0,
       "explanation": "分（わか）る: 理解すること・分けること。「ぶん」「ふん」「ぷん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-135",
       "question": "「計」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はかる"
-      ],
+      "choices": ["はかる"],
       "correct": 0,
       "explanation": "計（はか）る: 測定すること・計画すること。「けい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-136",
       "question": "「万」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "まん"
-      ],
+      "choices": ["まん"],
       "correct": 0,
       "explanation": "万（まん）: 数の単位（10000）のこと。「ばん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-137",
       "question": "「電」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "でん"
-      ],
+      "choices": ["でん"],
       "correct": 0,
       "explanation": "電（でん）: 電気のこと"
     },
     {
       "id": "kanji-g2-138",
       "question": "「買」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かう"
-      ],
+      "choices": ["かう"],
       "correct": 0,
       "explanation": "買（か）う: お金を払って物を得ること。「ばい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-139",
       "question": "「市」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いち"
-      ],
+      "choices": ["いち"],
       "correct": 0,
       "explanation": "市（いち）: 品物を売り買いする場所。「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-140",
       "question": "「回」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "まわる"
-      ],
+      "choices": ["まわる"],
       "correct": 0,
       "explanation": "回（まわ）る: 円を描くように動くこと。「かい」「え」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-141",
       "question": "「社」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "やしろ"
-      ],
+      "choices": ["やしろ"],
       "correct": 0,
       "explanation": "社（やしろ）: 神様をまつる建物のこと。「しゃ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-142",
       "question": "「内」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うち"
-      ],
+      "choices": ["うち"],
       "correct": 0,
       "explanation": "内（うち）: 中・内側のこと。「ない」「だい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-143",
       "question": "「記」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "しるす"
-      ],
+      "choices": ["しるす"],
       "correct": 0,
       "explanation": "記（しる）す: 書き留めること。「き」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-144",
       "question": "「茶」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "ちゃ"
-      ],
+      "choices": ["ちゃ"],
       "correct": 0,
       "explanation": "茶（ちゃ）: お茶のこと。「さ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-145",
       "question": "「理」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "り"
-      ],
+      "choices": ["り"],
       "correct": 0,
       "explanation": "理（り）: 道理・理由のこと"
     },
     {
       "id": "kanji-g2-146",
       "question": "「矢」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "や"
-      ],
+      "choices": ["や"],
       "correct": 0,
       "explanation": "矢（や）: 弓で射る道具のこと。「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-147",
       "question": "「科」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "か"
-      ],
+      "choices": ["か"],
       "correct": 0,
       "explanation": "科（か）: 学科・科目のこと"
     },
     {
       "id": "kanji-g2-148",
       "question": "「合」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あう"
-      ],
+      "choices": ["あう"],
       "correct": 0,
       "explanation": "合（あ）う: 一致すること・合わさること。「ごう」「かっ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-149",
       "question": "「用」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "もちいる"
-      ],
+      "choices": ["もちいる"],
       "correct": 0,
       "explanation": "用（もち）いる: 使うこと・用事のこと。「よう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-150",
       "question": "「毛」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "け"
-      ],
+      "choices": ["け"],
       "correct": 0,
       "explanation": "毛（け）: 体に生える細い毛のこと。「もう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-151",
       "question": "「京」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "きょう"
-      ],
+      "choices": ["きょう"],
       "correct": 0,
       "explanation": "京（きょう）: 都・首都のこと。「けい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-152",
       "question": "「当」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あたる"
-      ],
+      "choices": ["あたる"],
       "correct": 0,
       "explanation": "当（あた）る: 的に当たること・担当すること。「とう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-153",
       "question": "「後」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うしろ"
-      ],
+      "choices": ["うしろ"],
       "correct": 0,
       "explanation": "後（うしろ）: 背中側・あとのこと。「ご」「こう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-154",
       "question": "「麦」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "むぎ"
-      ],
+      "choices": ["むぎ"],
       "correct": 0,
       "explanation": "麦（むぎ）: 穀物の一種（小麦・大麦など）。「ばく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-155",
       "question": "「店」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "みせ"
-      ],
+      "choices": ["みせ"],
       "correct": 0,
       "explanation": "店（みせ）: 品物を売る場所のこと。「てん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-156",
       "question": "「元」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "もと"
-      ],
+      "choices": ["もと"],
       "correct": 0,
       "explanation": "元（もと）: 根本・はじめのこと。「げん」「がん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-157",
       "question": "「行」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いく"
-      ],
+      "choices": ["いく"],
       "correct": 0,
       "explanation": "行（い）く: 目的地へ向かうこと。「こう」「ぎょう」「あん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-158",
       "question": "「高」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "たかい"
-      ],
+      "choices": ["たかい"],
       "correct": 0,
       "explanation": "高（たか）い: 位置や値段が高いこと。「こう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-159",
       "question": "「谷」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "たに"
-      ],
+      "choices": ["たに"],
       "correct": 0,
       "explanation": "谷（たに）: 山と山の間の低い場所のこと。「こく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-160",
       "question": "「早」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はやい"
-      ],
+      "choices": ["はやい"],
       "correct": 0,
       "explanation": "早（はや）い: 時間が早いこと・速度が速いこと。「そう」「さっ」（音読み）とも読む"
     }
