@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "multiplication-basic",
-  "categoryName": "かけ算",
+  "categoryName": "かけ算（九九）",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/15-multiplication-1digit/guide",
@@ -10,6 +10,138 @@
   "referenceGrade": "小学2年",
   "description": "かけ算の意味を理解し、九九を覚えて正確に計算できるようにします。",
   "questions": [
+    {
+      "id": "bdf8309e",
+      "question": "1 × 1 = ?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 1 = 1"
+    },
+    {
+      "id": "64c331d6",
+      "question": "1 × 2 = ?",
+      "choices": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 2 = 2"
+    },
+    {
+      "id": "c4b91beb",
+      "question": "1 × 3 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 3 = 3"
+    },
+    {
+      "id": "cc463f00",
+      "question": "1 × 4 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 4 = 4"
+    },
+    {
+      "id": "b0a07f63",
+      "question": "1 × 5 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 5 = 5"
+    },
+    {
+      "id": "935e18cf",
+      "question": "1 × 6 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 6 = 6"
+    },
+    {
+      "id": "ba0b4341",
+      "question": "1 × 7 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 7 = 7"
+    },
+    {
+      "id": "6750d8e1",
+      "question": "1 × 8 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 8 = 8"
+    },
+    {
+      "id": "3596f605",
+      "question": "1 × 9 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "1の段。1 × 9 = 9"
+    },
+    {
+      "id": "2788cbca",
+      "question": "2 × 1 = ?",
+      "choices": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 1 = 2"
+    },
+    {
+      "id": "10452078",
+      "question": "2 × 2 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 2 = 4"
+    },
     {
       "id": "e7bc1af6",
       "question": "2 × 3 = ?",
@@ -21,6 +153,114 @@
       ],
       "correct": 0,
       "explanation": "2の段。2 × 3 = 6"
+    },
+    {
+      "id": "b4aa2c0e",
+      "question": "2 × 4 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 4 = 8"
+    },
+    {
+      "id": "c21d5185",
+      "question": "2 × 5 = ?",
+      "choices": [
+        "10",
+        "9",
+        "8",
+        "12"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 5 = 10"
+    },
+    {
+      "id": "9da83d70",
+      "question": "2 × 6 = ?",
+      "choices": [
+        "12",
+        "10",
+        "14",
+        "9"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 6 = 12"
+    },
+    {
+      "id": "9b284dee",
+      "question": "2 × 7 = ?",
+      "choices": [
+        "14",
+        "15",
+        "12",
+        "16"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 7 = 14"
+    },
+    {
+      "id": "9ddeac05",
+      "question": "2 × 8 = ?",
+      "choices": [
+        "16",
+        "15",
+        "14",
+        "18"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 8 = 16"
+    },
+    {
+      "id": "03e83776",
+      "question": "2 × 9 = ?",
+      "choices": [
+        "18",
+        "16",
+        "20",
+        "15"
+      ],
+      "correct": 0,
+      "explanation": "2の段。2 × 9 = 18"
+    },
+    {
+      "id": "84363ad8",
+      "question": "3 × 1 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "3の段。3 × 1 = 3"
+    },
+    {
+      "id": "9b12570a",
+      "question": "3 × 2 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "3の段。3 × 2 = 6"
+    },
+    {
+      "id": "2b0356ed",
+      "question": "3 × 3 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "3の段。3 × 3 = 9"
     },
     {
       "id": "77074bd6",
@@ -35,172 +275,712 @@
       "explanation": "3の段。3 × 4 = 12"
     },
     {
-      "id": "a97d9a97",
-      "question": "5 × 5 = ?",
+      "id": "d401acfb",
+      "question": "3 × 5 = ?",
       "choices": [
-        "25",
+        "15",
+        "14",
+        "16",
+        "12"
+      ],
+      "correct": 0,
+      "explanation": "3の段。3 × 5 = 15"
+    },
+    {
+      "id": "59e07df8",
+      "question": "3 × 6 = ?",
+      "choices": [
+        "18",
+        "16",
         "20",
-        "30",
         "15"
       ],
       "correct": 0,
-      "explanation": "5の段。5 × 5 = 25"
+      "explanation": "3の段。3 × 6 = 18"
     },
     {
-      "id": "b626044d",
-      "question": "6 × 4 = ?",
-      "choices": [
-        "24",
-        "20",
-        "28",
-        "18"
-      ],
-      "correct": 0,
-      "explanation": "6の段。6 × 4 = 24"
-    },
-    {
-      "id": "f6b3d3e3",
-      "question": "7 × 3 = ?",
+      "id": "922ef8aa",
+      "question": "3 × 7 = ?",
       "choices": [
         "21",
+        "20",
         "18",
+        "24"
+      ],
+      "correct": 0,
+      "explanation": "3の段。3 × 7 = 21"
+    },
+    {
+      "id": "b981954a",
+      "question": "3 × 8 = ?",
+      "choices": [
         "24",
-        "14"
-      ],
-      "correct": 0,
-      "explanation": "7の段。7 × 3 = 21"
-    },
-    {
-      "id": "d5a7390b",
-      "question": "8 × 6 = ?",
-      "choices": [
-        "48",
-        "42",
-        "54",
-        "40"
-      ],
-      "correct": 0,
-      "explanation": "8の段。8 × 6 = 48"
-    },
-    {
-      "id": "1ebbf44e",
-      "question": "9 × 4 = ?",
-      "choices": [
-        "36",
-        "32",
-        "40",
+        "25",
+        "21",
         "27"
       ],
       "correct": 0,
-      "explanation": "9の段。9 × 4 = 36"
+      "explanation": "3の段。3 × 8 = 24"
     },
     {
-      "id": "db402369",
+      "id": "c1325462",
+      "question": "3 × 9 = ?",
+      "choices": [
+        "27",
+        "28",
+        "25",
+        "24"
+      ],
+      "correct": 0,
+      "explanation": "3の段。3 × 9 = 27"
+    },
+    {
+      "id": "1d1bda03",
+      "question": "4 × 1 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 1 = 4"
+    },
+    {
+      "id": "ee20fe74",
+      "question": "4 × 2 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 2 = 8"
+    },
+    {
+      "id": "14858c99",
+      "question": "4 × 3 = ?",
+      "choices": [
+        "12",
+        "10",
+        "14",
+        "9"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 3 = 12"
+    },
+    {
+      "id": "c089e61d",
+      "question": "4 × 4 = ?",
+      "choices": [
+        "16",
+        "15",
+        "14",
+        "18"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 4 = 16"
+    },
+    {
+      "id": "430cc60c",
+      "question": "4 × 5 = ?",
+      "choices": [
+        "20",
+        "21",
+        "18",
+        "16"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 5 = 20"
+    },
+    {
+      "id": "c17de68c",
+      "question": "4 × 6 = ?",
+      "choices": [
+        "24",
+        "25",
+        "21",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 6 = 24"
+    },
+    {
+      "id": "1db956a7",
       "question": "4 × 7 = ?",
       "choices": [
         "28",
-        "24",
-        "32",
-        "21"
+        "27",
+        "30",
+        "25"
       ],
       "correct": 0,
       "explanation": "4の段。4 × 7 = 28"
     },
     {
-      "id": "6cd34489",
-      "question": "12 × 4 = ?",
+      "id": "03476224",
+      "question": "4 × 8 = ?",
       "choices": [
-        "50",
+        "32",
+        "30",
+        "35",
+        "28"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 8 = 32"
+    },
+    {
+      "id": "32142fcc",
+      "question": "4 × 9 = ?",
+      "choices": [
+        "36",
+        "35",
+        "32",
+        "40"
+      ],
+      "correct": 0,
+      "explanation": "4の段。4 × 9 = 36"
+    },
+    {
+      "id": "058b6930",
+      "question": "5 × 1 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 1 = 5"
+    },
+    {
+      "id": "1e698995",
+      "question": "5 × 2 = ?",
+      "choices": [
+        "10",
+        "9",
+        "8",
+        "12"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 2 = 10"
+    },
+    {
+      "id": "ae08b39f",
+      "question": "5 × 3 = ?",
+      "choices": [
+        "15",
+        "14",
+        "16",
+        "12"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 3 = 15"
+    },
+    {
+      "id": "1a1767eb",
+      "question": "5 × 4 = ?",
+      "choices": [
+        "20",
+        "21",
+        "18",
+        "16"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 4 = 20"
+    },
+    {
+      "id": "3f3ded67",
+      "question": "5 × 5 = ?",
+      "choices": [
+        "25",
+        "24",
+        "27",
+        "28"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 5 = 25"
+    },
+    {
+      "id": "eb7c16fb",
+      "question": "5 × 6 = ?",
+      "choices": [
+        "30",
+        "28",
+        "32",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 6 = 30"
+    },
+    {
+      "id": "00718a39",
+      "question": "5 × 7 = ?",
+      "choices": [
+        "35",
+        "36",
+        "32",
+        "30"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 7 = 35"
+    },
+    {
+      "id": "4ef8e27d",
+      "question": "5 × 8 = ?",
+      "choices": [
+        "40",
+        "42",
+        "36",
+        "35"
+      ],
+      "correct": 0,
+      "explanation": "5の段。5 × 8 = 40"
+    },
+    {
+      "id": "da07aea4",
+      "question": "5 × 9 = ?",
+      "choices": [
+        "45",
+        "42",
         "48",
-        "46",
-        "52"
-      ],
-      "correct": 1,
-      "explanation": "12 × 4 = 48"
-    },
-    {
-      "id": "94eb3531",
-      "question": "23 × 3 = ?",
-      "choices": [
-        "66",
-        "71",
-        "69",
-        "67"
-      ],
-      "correct": 2,
-      "explanation": "23 × 3 = 69"
-    },
-    {
-      "id": "c206c95d",
-      "question": "34 × 5 = ?",
-      "choices": [
-        "165",
-        "175",
-        "168",
-        "170"
-      ],
-      "correct": 3,
-      "explanation": "34 × 5 = 170"
-    },
-    {
-      "id": "55360ec1",
-      "question": "42 × 7 = ?",
-      "choices": [
-        "294",
-        "288",
-        "300",
-        "291"
+        "49"
       ],
       "correct": 0,
-      "explanation": "42 × 7 = 294"
+      "explanation": "5の段。5 × 9 = 45"
     },
     {
-      "id": "084fdc69",
-      "question": "23 × 12 = ?",
+      "id": "2f81433d",
+      "question": "6 × 1 = ?",
       "choices": [
-        "274",
-        "278",
-        "276",
-        "280"
-      ],
-      "correct": 2,
-      "explanation": "23 × 12 = 276"
-    },
-    {
-      "id": "eca5143b",
-      "question": "15 × 14 = ?",
-      "choices": [
-        "208",
-        "212",
-        "206",
-        "210"
-      ],
-      "correct": 3,
-      "explanation": "15 × 14 = 210"
-    },
-    {
-      "id": "16574d11",
-      "question": "24 × 13 = ?",
-      "choices": [
-        "310",
-        "314",
-        "308",
-        "312"
-      ],
-      "correct": 3,
-      "explanation": "24 × 13 = 312"
-    },
-    {
-      "id": "e3380f30",
-      "question": "32 × 21 = ?",
-      "choices": [
-        "672",
-        "668",
-        "676",
-        "670"
+        "6",
+        "5",
+        "7",
+        "4"
       ],
       "correct": 0,
-      "explanation": "32 × 21 = 672"
+      "explanation": "6の段。6 × 1 = 6"
+    },
+    {
+      "id": "e22fc44a",
+      "question": "6 × 2 = ?",
+      "choices": [
+        "12",
+        "10",
+        "14",
+        "9"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 2 = 12"
+    },
+    {
+      "id": "5fbe44a3",
+      "question": "6 × 3 = ?",
+      "choices": [
+        "18",
+        "16",
+        "20",
+        "15"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 3 = 18"
+    },
+    {
+      "id": "50d4f971",
+      "question": "6 × 4 = ?",
+      "choices": [
+        "24",
+        "25",
+        "21",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 4 = 24"
+    },
+    {
+      "id": "4a3854b4",
+      "question": "6 × 5 = ?",
+      "choices": [
+        "30",
+        "28",
+        "32",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 5 = 30"
+    },
+    {
+      "id": "739b1cc5",
+      "question": "6 × 6 = ?",
+      "choices": [
+        "36",
+        "35",
+        "32",
+        "40"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 6 = 36"
+    },
+    {
+      "id": "0d6b7095",
+      "question": "6 × 7 = ?",
+      "choices": [
+        "42",
+        "40",
+        "45",
+        "36"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 7 = 42"
+    },
+    {
+      "id": "1909d312",
+      "question": "6 × 8 = ?",
+      "choices": [
+        "48",
+        "49",
+        "45",
+        "42"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 8 = 48"
+    },
+    {
+      "id": "1460d517",
+      "question": "6 × 9 = ?",
+      "choices": [
+        "54",
+        "56",
+        "49",
+        "48"
+      ],
+      "correct": 0,
+      "explanation": "6の段。6 × 9 = 54"
+    },
+    {
+      "id": "07882618",
+      "question": "7 × 1 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 1 = 7"
+    },
+    {
+      "id": "5a2caa46",
+      "question": "7 × 2 = ?",
+      "choices": [
+        "14",
+        "15",
+        "12",
+        "16"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 2 = 14"
+    },
+    {
+      "id": "e5fad375",
+      "question": "7 × 3 = ?",
+      "choices": [
+        "21",
+        "20",
+        "18",
+        "24"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 3 = 21"
+    },
+    {
+      "id": "a571a5db",
+      "question": "7 × 4 = ?",
+      "choices": [
+        "28",
+        "27",
+        "30",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 4 = 28"
+    },
+    {
+      "id": "e3ddbad6",
+      "question": "7 × 5 = ?",
+      "choices": [
+        "35",
+        "36",
+        "32",
+        "30"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 5 = 35"
+    },
+    {
+      "id": "d4170e41",
+      "question": "7 × 6 = ?",
+      "choices": [
+        "42",
+        "40",
+        "45",
+        "36"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 6 = 42"
+    },
+    {
+      "id": "9cf1d8f0",
+      "question": "7 × 7 = ?",
+      "choices": [
+        "49",
+        "48",
+        "45",
+        "54"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 7 = 49"
+    },
+    {
+      "id": "7ead2559",
+      "question": "7 × 8 = ?",
+      "choices": [
+        "56",
+        "54",
+        "49",
+        "63"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 8 = 56"
+    },
+    {
+      "id": "a46a92b0",
+      "question": "7 × 9 = ?",
+      "choices": [
+        "63",
+        "64",
+        "56",
+        "54"
+      ],
+      "correct": 0,
+      "explanation": "7の段。7 × 9 = 63"
+    },
+    {
+      "id": "51eb0ab3",
+      "question": "8 × 1 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 1 = 8"
+    },
+    {
+      "id": "1d368831",
+      "question": "8 × 2 = ?",
+      "choices": [
+        "16",
+        "15",
+        "14",
+        "18"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 2 = 16"
+    },
+    {
+      "id": "ab713e33",
+      "question": "8 × 3 = ?",
+      "choices": [
+        "24",
+        "25",
+        "21",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 3 = 24"
+    },
+    {
+      "id": "94a40413",
+      "question": "8 × 4 = ?",
+      "choices": [
+        "32",
+        "30",
+        "35",
+        "28"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 4 = 32"
+    },
+    {
+      "id": "96d96448",
+      "question": "8 × 5 = ?",
+      "choices": [
+        "40",
+        "42",
+        "36",
+        "35"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 5 = 40"
+    },
+    {
+      "id": "27c57160",
+      "question": "8 × 6 = ?",
+      "choices": [
+        "48",
+        "49",
+        "45",
+        "42"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 6 = 48"
+    },
+    {
+      "id": "1f10a585",
+      "question": "8 × 7 = ?",
+      "choices": [
+        "56",
+        "54",
+        "49",
+        "63"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 7 = 56"
+    },
+    {
+      "id": "e168ef82",
+      "question": "8 × 8 = ?",
+      "choices": [
+        "64",
+        "63",
+        "56",
+        "72"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 8 = 64"
+    },
+    {
+      "id": "5eff90a7",
+      "question": "8 × 9 = ?",
+      "choices": [
+        "72",
+        "64",
+        "63",
+        "81"
+      ],
+      "correct": 0,
+      "explanation": "8の段。8 × 9 = 72"
+    },
+    {
+      "id": "c3b9cb58",
+      "question": "9 × 1 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 1 = 9"
+    },
+    {
+      "id": "68ebf807",
+      "question": "9 × 2 = ?",
+      "choices": [
+        "18",
+        "16",
+        "20",
+        "15"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 2 = 18"
+    },
+    {
+      "id": "cfced2e3",
+      "question": "9 × 3 = ?",
+      "choices": [
+        "27",
+        "28",
+        "25",
+        "24"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 3 = 27"
+    },
+    {
+      "id": "651f3a4e",
+      "question": "9 × 4 = ?",
+      "choices": [
+        "36",
+        "35",
+        "32",
+        "40"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 4 = 36"
+    },
+    {
+      "id": "f0752cfd",
+      "question": "9 × 5 = ?",
+      "choices": [
+        "45",
+        "42",
+        "48",
+        "49"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 5 = 45"
+    },
+    {
+      "id": "2f522fb6",
+      "question": "9 × 6 = ?",
+      "choices": [
+        "54",
+        "56",
+        "49",
+        "48"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 6 = 54"
+    },
+    {
+      "id": "817298bf",
+      "question": "9 × 7 = ?",
+      "choices": [
+        "63",
+        "64",
+        "56",
+        "54"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 7 = 63"
+    },
+    {
+      "id": "182e82f0",
+      "question": "9 × 8 = ?",
+      "choices": [
+        "72",
+        "64",
+        "63",
+        "81"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 8 = 72"
+    },
+    {
+      "id": "eaf345eb",
+      "question": "9 × 9 = ?",
+      "choices": [
+        "81",
+        "72",
+        "64",
+        "63"
+      ],
+      "correct": 0,
+      "explanation": "9の段。9 × 9 = 81"
     }
   ]
 }

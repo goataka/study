@@ -93,6 +93,13 @@ Feature: 学習クイズ
     And the manual history record should have no toggle arrow
     And clicking the manual history record header should not expand details
 
+  @kanji-stub
+  Scenario: ひらがな問題では手書き認識でひらがな以外の候補が表示されない
+    Given I have navigated to a hiragana text-input question
+    When KanjiCanvas recognizes "や 山 き 川" and I draw a stroke on the canvas
+    Then only hiragana candidates should be visible in the candidate list
+    And non-hiragana candidates should not be visible in the candidate list
+
   @vr
   Scenario: スタート画面のビジュアル確認
     Then the start screen matches the snapshot

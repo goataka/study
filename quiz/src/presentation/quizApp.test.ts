@@ -82,12 +82,11 @@ function setupTabDom(): void {
         <div id="categoryList" class="category-list"></div>
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
-          <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
+          <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題</button>
           <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">確認</button>
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 履歴</button>
         </div>
         <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
-          <p id="categoryDescription" class="category-description hidden"></p>
           <div id="statsInfo"></div>
           <input type="radio" name="questionCount" value="5">
           <input type="radio" name="questionCount" value="10" checked>
@@ -746,7 +745,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     expect(historyTab).not.toBeNull();
     expect(historyTab?.textContent).toContain("履歴");
     expect(questionsTab).not.toBeNull();
-    expect(questionsTab?.textContent).toContain("問題一覧");
+    expect(questionsTab?.textContent).toContain("問題");
   });
 
   it("「履歴」インナータブをクリックするとhistoryContentが表示されquizModePanelが非表示になる", async () => {
@@ -2201,115 +2200,20 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
   });
 });
 
-describe("QuizApp — 単元説明表示仕様", () => {
+describe("QuizApp — 確認タブの単元説明非表示仕様", () => {
   afterEach(() => {
     vi.restoreAllMocks();
     localStorage.clear();
   });
 
-  it("description ありのカテゴリを選択すると説明が表示される", async () => {
+  it("確認タブに categoryDescription 要素は存在しない", async () => {
     setupTabDom();
-    const manifest = {
-      version: "2.0.0",
-      subjects: { english: { name: "英語" } },
-      questionFiles: ["english/tenses-regular-past.json"],
-    };
-    const questionFileWithDescription = {
-      subject: "english",
-      subjectName: "英語",
-      category: "tenses-regular-past",
-      categoryName: "一般動詞の過去形",
-      referenceGrade: "中学1年",
-      description: "規則動詞は語尾に -ed をつけて過去形を作ります。",
-      questions: Array.from({ length: 3 }, (_, i) => ({
-        id: `q${i + 1}`,
-        question: `問題 ${i + 1}`,
-        choices: ["A", "B", "C", "D"],
-        correct: 0,
-        explanation: `解説 ${i + 1}`,
-      })),
-    };
-    global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      }
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithDescription) } as Response);
-    });
+    setupFetchMock();
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    const catItem = document.querySelector('.category-item[data-category="tenses-regular-past"]') as HTMLElement;
-    catItem?.click();
-
-    const descEl = document.getElementById("categoryDescription");
-    expect(descEl?.classList.contains("hidden")).toBe(false);
-    expect(descEl?.textContent).toBe("規則動詞は語尾に -ed をつけて過去形を作ります。");
-  });
-
-  it("description なしのカテゴリを選択すると説明要素は hidden のまま", async () => {
-    setupTabDom();
-    setupFetchMock(); // mockQuestionFile には description がない
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
-    catItem?.click();
-
-    const descEl = document.getElementById("categoryDescription");
-    expect(descEl?.classList.contains("hidden")).toBe(true);
-  });
-
-  it("カテゴリ選択を解除すると説明が非表示になる", async () => {
-    setupTabDom();
-    const manifest = {
-      version: "2.0.0",
-      subjects: { english: { name: "英語" } },
-      questionFiles: ["english/tenses-regular-past.json"],
-    };
-    const questionFileWithDescription = {
-      subject: "english",
-      subjectName: "英語",
-      category: "tenses-regular-past",
-      categoryName: "一般動詞の過去形",
-      description: "規則動詞は語尾に -ed をつけて過去形を作ります。",
-      questions: Array.from({ length: 3 }, (_, i) => ({
-        id: `q${i + 1}`,
-        question: `問題 ${i + 1}`,
-        choices: ["A", "B", "C", "D"],
-        correct: 0,
-        explanation: `解説 ${i + 1}`,
-      })),
-    };
-    global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      }
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithDescription) } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    // カテゴリを選択して説明が表示されることを確認
-    const catItem = document.querySelector('.category-item[data-category="tenses-regular-past"]') as HTMLElement;
-    catItem?.click();
-    const descEl = document.getElementById("categoryDescription");
-    expect(descEl?.classList.contains("hidden")).toBe(false);
-
-    // カテゴリを再クリックして選択解除すると説明が非表示になる
-    catItem?.click();
-    expect(descEl?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("categoryDescription")).toBeNull();
   });
 });
 
@@ -2327,7 +2231,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
           <div class="quiz-panel">
             <div class="panel-tabs" role="tablist">
               <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" tabindex="-1">📖 解説</button>
-              <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題一覧</button>
+              <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題</button>
               <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">確認</button>
               <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 履歴</button>
             </div>
@@ -2742,7 +2646,7 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
   });
 
   it("候補ボタンをクリックすると文字が答えの入力エリアに追加される", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山  川  日");
+    kanjiCanvasMock.recognize.mockReturnValue("や  ゆ  よ");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2755,17 +2659,17 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
 
     const candidateList = document.getElementById("kanjiCandidateList");
     const firstBtn = candidateList?.querySelector<HTMLButtonElement>(".kanji-candidate-btn");
-    expect(firstBtn?.textContent).toBe("山");
+    expect(firstBtn?.textContent).toBe("や");
 
     firstBtn?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("山");
+    expect(textInput?.value).toBe("や");
   });
 
   it("候補ボタンをクリックするとKanjiCanvasがクリアされる", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山  川");
+    kanjiCanvasMock.recognize.mockReturnValue("や  き");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2782,7 +2686,7 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
   });
 
   it("候補ボタンを複数回クリックするとテキストが追記される", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山  川");
+    kanjiCanvasMock.recognize.mockReturnValue("や  き");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2803,11 +2707,11 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("山山");
+    expect(textInput?.value).toBe("やや");
   });
 
   it("候補ボタンをクリックしても回答はまだ送信されない", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山");
+    kanjiCanvasMock.recognize.mockReturnValue("や");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2845,7 +2749,7 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
   });
 
   it("認識候補が6個以上あっても候補ボタンは5個まで表示される", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山 川 日 月 火 水 木");
+    kanjiCanvasMock.recognize.mockReturnValue("や い う え お か き");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2938,6 +2842,55 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
 
     const notesTitle = document.getElementById("notesTitle");
     expect(notesTitle?.textContent).toBe("タッチペンで書けます");
+  });
+  it("ひらがな問題では認識候補のうちひらがな以外が除外される", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("や  山  き  川");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const candidateBtns = document.querySelectorAll<HTMLButtonElement>(".kanji-candidate-btn");
+    const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
+    expect(candidateTexts).toEqual(["や", "き"]);
+  });
+
+  it("漢字書き取り問題（正解が漢字）では認識候補がフィルタされず漢字も表示される", async () => {
+    const mockKanjiWritingFile = {
+      subject: "japanese",
+      subjectName: "国語",
+      category: "kanji-writing",
+      categoryName: "漢字書き取り",
+      questionType: "text-input",
+      questions: [
+        { id: "kw1", question: "「やま」を漢字で書いてください", choices: ["山"], correct: 0, explanation: "山" },
+      ],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockTextInputManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockKanjiWritingFile) } as Response);
+    });
+    kanjiCanvasMock.recognize.mockReturnValue("山  川  や  き");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const candidateBtns = document.querySelectorAll<HTMLButtonElement>(".kanji-candidate-btn");
+    const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
+    // 漢字問題では全候補が表示される（フィルタされない）
+    expect(candidateTexts).toEqual(["山", "川", "や", "き"]);
   });
 });
 
