@@ -971,7 +971,7 @@ export class QuizApp {
       }
     }
 
-    const formatStats = (stat: { total: number; wrong: number }): string => {
+    const formatCategoryStats = (stat: { total: number; wrong: number }): string => {
       if (stat.total === 0) return "";
       return `${stat.wrong}/${stat.total}`;
     };
@@ -993,7 +993,7 @@ export class QuizApp {
       const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
       const statsEl = el.querySelector(".category-stats");
       if (statsEl) {
-        statsEl.textContent = formatStats(stat);
+        statsEl.textContent = formatCategoryStats(stat);
       }
 
       // 進捗バーを更新（学習履歴がある場合）
