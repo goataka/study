@@ -1929,6 +1929,42 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     expect(pct?.classList.contains("hidden")).toBe(false);
     expect(pct?.textContent).toBe("100%");
   });
+
+  it("間違い問題ありのカテゴリの完了率テキストは 80% になり hidden クラスが外れ、バー幅も 80% になる", async () => {
+    // mockQuestionFile には q1–q5 の5問がある。q1 を間違いとして登録する。
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
+    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+
+    expect(fill?.style.width).toBe("80%");
+    expect(pct?.classList.contains("hidden")).toBe(false);
+    expect(pct?.textContent).toBe("80%");
+  });
 });
 
 describe("QuizApp — カテゴリ例文表示仕様", () => {
