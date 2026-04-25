@@ -2939,6 +2939,40 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
     expect(candidateTexts).toEqual(["や", "き"]);
   });
+
+  it("漢字書き取り問題（正解が漢字）では認識候補がフィルタされず漢字も表示される", async () => {
+    const mockKanjiWritingFile = {
+      subject: "japanese",
+      subjectName: "国語",
+      category: "kanji-writing",
+      categoryName: "漢字書き取り",
+      questionType: "text-input",
+      questions: [
+        { id: "kw1", question: "「やま」を漢字で書いてください", choices: ["山"], correct: 0, explanation: "山" },
+      ],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockTextInputManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockKanjiWritingFile) } as Response);
+    });
+    kanjiCanvasMock.recognize.mockReturnValue("山  川  や  き");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const candidateBtns = document.querySelectorAll<HTMLButtonElement>(".kanji-candidate-btn");
+    const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
+    // 漢字問題では全候補が表示される（フィルタされない）
+    expect(candidateTexts).toEqual(["山", "川", "や", "き"]);
+  });
 });
 
 describe("QuizApp — 総合タブの教科一覧仕様", () => {

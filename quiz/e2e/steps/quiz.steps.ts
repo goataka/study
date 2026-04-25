@@ -1,7 +1,7 @@
 import { createBdd } from "playwright-bdd";
 import { expect } from "@playwright/test";
 
-const { Given, When, Then } = createBdd();
+const { Before, Given, When, Then } = createBdd();
 
 const STATS_LOAD_TIMEOUT = 10_000;
 
@@ -204,4 +204,85 @@ Then("the quiz screen should have the practice-mode class", async ({ page }) => 
 
 Then("the quiz screen should not have the practice-mode class", async ({ page }) => {
   await expect(page.locator("#quizScreen")).not.toHaveClass(/practice-mode/);
+});
+
+// ─── KanjiCanvas スタブを使ったひらがな候補フィルタの E2E 仕様 ──────────────
+
+// @kanji-stub タグのシナリオ用: kanji-canvas.min.js をスタブに差し替えて
+// window.__kanjiRecognizeResult 経由で recognize 結果を制御できるようにする。
+Before({ tags: "@kanji-stub" }, async ({ page }) => {
+  await page.route("**/vendor/kanji-canvas.min.js", (route) => {
+    route.fulfill({
+      contentType: "application/javascript",
+      body: `
+        window.KanjiCanvas = {
+          init: function() {},
+          erase: function() {},
+          deleteLast: function() {},
+          get strokeColors() { return this._strokeColors || []; },
+          set strokeColors(v) { this._strokeColors = v; },
+          recognize: function() { return window.__kanjiRecognizeResult || ''; }
+        };
+      `,
+    });
+  });
+  // hiragana-patterns.js / ref-patterns.js も空スタブで返す（ロードエラー回避）
+  await page.route("**/vendor/hiragana-patterns.js", (route) => {
+    route.fulfill({ contentType: "application/javascript", body: "" });
+  });
+  await page.route("**/vendor/ref-patterns.js", (route) => {
+    route.fulfill({ contentType: "application/javascript", body: "" });
+  });
+});
+
+Given("I have navigated to a hiragana text-input question", async ({ page }) => {
+  await page.goto(".");
+  await expect(page.locator("#statsInfo")).toContainText(/全\d+問/, {
+    timeout: STATS_LOAD_TIMEOUT,
+  });
+  // 国語タブ → 漢字（ひらがな正解の読み問題）
+  const japaneseTab = page.locator(".subject-tab").filter({ hasText: "国語" });
+  await japaneseTab.click();
+  await expect(japaneseTab).toHaveClass(/active/);
+  // 「漢字（小学1年）」カテゴリを選択（ひらがな正解の text-input 問題）
+  const kanjiItem = page.locator(".category-item[data-category='kanji-grade1']");
+  await kanjiItem.click();
+  await page.locator("#panelTab-quiz").click();
+  await expect(page.locator("#quizModePanel")).toBeVisible();
+  await page.getByRole("button", { name: "本番" }).click();
+  await expect(page.locator("#quizScreen")).toBeVisible();
+  // text-input 問題が表示され KanjiCanvas 入力エリアが可視状態であることを確認
+  await expect(page.locator("#kanjiInputArea")).not.toHaveClass(/hidden/);
+});
+
+When("KanjiCanvas recognizes {string} and I draw a stroke on the canvas", async ({ page }, result: string) => {
+  // recognize の戻り値をスタブ経由でセット
+  await page.evaluate((r: string) => {
+    (window as unknown as Record<string, unknown>).__kanjiRecognizeResult = r;
+  }, result);
+  // mouseup をディスパッチしてストローク完了をシミュレート
+  await page.locator("#kanjiCanvas").dispatchEvent("mouseup");
+  // 候補ボタンが描画されるまで少し待つ
+  await page.waitForTimeout(200);
+});
+
+Then("only hiragana candidates should be visible in the candidate list", async ({ page }) => {
+  const candidateList = page.locator("#kanjiCandidateList");
+  await expect(candidateList).toBeVisible();
+  // 候補ボタンが少なくとも1つ表示されている
+  await expect(candidateList.locator(".kanji-candidate-btn").first()).toBeVisible();
+  // 表示されているすべての候補がひらがなであること（\u3041-\u309F）
+  const texts = await candidateList.locator(".kanji-candidate-btn").allTextContents();
+  for (const text of texts) {
+    expect(text).toMatch(/^[\u3041-\u309F]+$/);
+  }
+});
+
+Then("non-hiragana candidates should not be visible in the candidate list", async ({ page }) => {
+  const candidateList = page.locator("#kanjiCandidateList");
+  const texts = await candidateList.locator(".kanji-candidate-btn").allTextContents();
+  // 漢字・カタカナなど非ひらがな文字を含む候補ボタンが存在しないこと
+  for (const text of texts) {
+    expect(text).not.toMatch(/[^\u3041-\u309F]/);
+  }
 });
