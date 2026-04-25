@@ -261,7 +261,6 @@ header nav .top-nav-btn {
 .category-name {
     font-size: 13px;
     color: #24292e;
-    flex: 1;
 }
 
 .category-item.active .category-name {
@@ -1090,6 +1089,15 @@ button:disabled {
     display: flex;
     flex-direction: column;
     gap: 3px;
+}
+
+/* タイトルと例文を横並び */
+.category-title-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
 /* カテゴリ進捗バー */

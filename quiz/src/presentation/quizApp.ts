@@ -300,9 +300,14 @@ export class QuizApp {
     const nameArea = document.createElement("div");
     nameArea.className = "category-name-area";
 
+    // タイトルと例文を横並びにするラッパー
+    const titleRow = document.createElement("div");
+    titleRow.className = "category-title-row";
+
     const nameSpan = document.createElement("span");
     nameSpan.className = "category-name";
     nameSpan.textContent = categoryName;
+    titleRow.appendChild(nameSpan);
 
     // 例文（example が設定されている場合のみ表示）
     const example = this.useCase.getCategoryExample(subject, categoryId);
@@ -310,11 +315,10 @@ export class QuizApp {
       const exampleSpan = document.createElement("span");
       exampleSpan.className = "category-example";
       this.renderBacktickText(exampleSpan, example);
-      nameArea.appendChild(nameSpan);
-      nameArea.appendChild(exampleSpan);
-    } else {
-      nameArea.appendChild(nameSpan);
+      titleRow.appendChild(exampleSpan);
     }
+
+    nameArea.appendChild(titleRow);
 
     const progressBar = document.createElement("div");
     progressBar.className = "category-progress-bar";
