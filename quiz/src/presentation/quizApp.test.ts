@@ -1381,6 +1381,79 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     expect(categoryList?.classList.contains("hide-learned")).toBe(true);
     expect(catItem?.classList.contains("learned")).toBe(true);
   });
+
+  it("学習済み非表示ON時、グループヘッダーのバッジに学習済み数だけ🏆が表示される", async () => {
+    setupFetchMockWithParent();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 4,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // phonics-1 は "発音" グループに属するため、発音グループヘッダーのバッジに🏆が表示される
+    const phonicsHeader = Array.from(document.querySelectorAll(".category-group-header")).find(
+      (h) => h.querySelector("span")?.textContent === "発音"
+    );
+    const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
+    expect(badge?.textContent).toBe("🏆");
+  });
+
+  it("学習済み非表示OFFにするとグループヘッダーのバッジが消える", async () => {
+    setupFetchMockWithParent();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 4,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 非表示をOFFにする
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+
+    const phonicsHeader = Array.from(document.querySelectorAll(".category-group-header")).find(
+      (h) => h.querySelector("span")?.textContent === "発音"
+    );
+    const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
+    expect(badge?.textContent).toBe("");
+  });
 });
 
 describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {

@@ -248,7 +248,12 @@ export class QuizApp {
     for (const [parentCatId, parentCatName] of Object.entries(parentCategories)) {
       const groupHeader = document.createElement("div");
       groupHeader.className = "category-group-header";
-      groupHeader.textContent = parentCatName;
+      const headerText = document.createElement("span");
+      headerText.textContent = parentCatName;
+      groupHeader.appendChild(headerText);
+      const learnedBadge = document.createElement("span");
+      learnedBadge.className = "category-group-learned-badge";
+      groupHeader.appendChild(learnedBadge);
       categoryList.appendChild(groupHeader);
 
       const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
@@ -1045,6 +1050,8 @@ export class QuizApp {
         }
       }
     });
+
+    this.updateGroupHeaderLearnedBadges();
   }
 
   /**
@@ -1057,6 +1064,7 @@ export class QuizApp {
       categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
     }
     this.updateHideLearnedButton();
+    this.updateGroupHeaderLearnedBadges();
   }
 
   /**
@@ -1069,6 +1077,30 @@ export class QuizApp {
       btn.setAttribute("aria-label", "学習済カテゴリを非表示");
       btn.textContent = this.hideLearnedCategories ? "✅ 学習済を表示" : "⬜ 学習済を非表示";
     }
+  }
+
+  /**
+   * 学習済みを非表示にしている場合、各グループヘッダーの右に非表示数だけ🏆を表示する
+   */
+  private updateGroupHeaderLearnedBadges(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    categoryList.querySelectorAll<HTMLElement>(".category-group-header").forEach((header) => {
+      let learnedCount = 0;
+      let sibling = header.nextElementSibling;
+      while (sibling && !sibling.classList.contains("category-group-header")) {
+        if (sibling.classList.contains("category-item") && sibling.classList.contains("learned")) {
+          learnedCount++;
+        }
+        sibling = sibling.nextElementSibling;
+      }
+
+      const badge = header.querySelector(".category-group-learned-badge");
+      if (badge) {
+        badge.textContent = this.hideLearnedCategories && learnedCount > 0 ? "🏆".repeat(learnedCount) : "";
+      }
+    });
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
