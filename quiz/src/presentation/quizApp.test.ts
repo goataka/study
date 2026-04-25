@@ -1694,69 +1694,6 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
   });
 });
 
-describe("QuizApp — カテゴリ解説リンク仕様", () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-    localStorage.clear();
-  });
-
-  it("guideUrl なしのカテゴリでは解説リンクが hidden のまま", async () => {
-    setupTabDom();
-    setupFetchMock(); // mockQuestionFile には guideUrl がない
-    localStorage.clear();
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
-    const guideLink = catItem?.querySelector(".category-guide-link") as HTMLElement | null;
-    expect(guideLink?.classList.contains("hidden")).toBe(true);
-  });
-
-  it("guideUrl ありのカテゴリでは解説リンクが表示され href が設定される", async () => {
-    setupTabDom();
-    const guideManifest = {
-      version: "2.0.0",
-      subjects: { english: { name: "英語" } },
-      questionFiles: ["english/phonics-1.json"],
-    };
-    const questionFileWithGuide = {
-      subject: "english",
-      subjectName: "英語",
-      category: "phonics-1",
-      categoryName: "フォニックス（1文字）",
-      guideUrl: "../english/pronunciation/03-phonics-1letter/guide",
-      questions: Array.from({ length: 5 }, (_, i) => ({
-        id: `q${i + 1}`,
-        question: `問題 ${i + 1}`,
-        choices: ["ア", "イ", "ウ", "エ"],
-        correct: 0,
-        explanation: `解説 ${i + 1}`,
-      })),
-    };
-    global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) {
-        return Promise.resolve({ ok: true, json: () => Promise.resolve(guideManifest) } as Response);
-      }
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithGuide) } as Response);
-    });
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
-    const guideLink = catItem?.querySelector(".category-guide-link") as HTMLAnchorElement | null;
-    expect(guideLink?.classList.contains("hidden")).toBe(false);
-    expect(guideLink?.href).toContain("guide");
-  });
-});
-
 describe("QuizApp — カテゴリ例文表示仕様", () => {
   afterEach(() => {
     vi.restoreAllMocks();

@@ -430,30 +430,6 @@ export class QuizApp {
 
     nameArea.appendChild(progressBar);
 
-    // 解説リンク（guideUrl が設定されている場合のみ表示）
-    const guideUrl = this.useCase.getCategoryGuideUrl(subject, categoryId);
-    const guideLink = document.createElement("a");
-    guideLink.className = "category-guide-link";
-    guideLink.setAttribute("aria-label", "解説を開く");
-    guideLink.textContent = "📖";
-    if (guideUrl) {
-      guideLink.href = guideUrl;
-      guideLink.target = "_blank";
-      guideLink.rel = "noopener noreferrer";
-    } else {
-      guideLink.classList.add("hidden");
-    }
-    // カテゴリ選択のイベントが解説リンクで発火しないようにする
-    guideLink.addEventListener("click", (e) => e.stopPropagation());
-    guideLink.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.stopPropagation();
-      }
-      if (e.key === " ") {
-        e.preventDefault();
-      }
-    });
-
     // 参考学年バッジ（referenceGrade が設定されている場合のみ表示）
     const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
     const gradeSpan = document.createElement("span");
@@ -470,7 +446,6 @@ export class QuizApp {
     item.appendChild(statusSpan);
     item.appendChild(nameArea);
     item.appendChild(gradeSpan);
-    item.appendChild(guideLink);
     item.appendChild(statsSpan);
 
     const handleActivate = (e: Event): void => {
