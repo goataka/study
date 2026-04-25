@@ -1029,6 +1029,53 @@ describe("QuizApp — 履歴モード表示仕様", () => {
     const modeEl = document.querySelector(".history-mode");
     expect(modeEl?.textContent).toBe("手動");
   });
+
+  it("mode=manual の履歴のスコアは「-」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const scoreEl = document.querySelector(".history-score");
+    expect(scoreEl?.textContent).toBe("-");
+  });
+
+  it("mode=manual の履歴には横三角（▶）が表示されない", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggleEl = document.querySelector(".history-toggle");
+    expect(toggleEl).toBeNull();
+  });
+
+  it("mode=manual の履歴のヘッダーをクリックしても詳細は開かない", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const header = document.querySelector<HTMLElement>(".history-item-header");
+    header?.click();
+    const detail = document.querySelector(".history-detail");
+    expect(detail?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("mode=random の履歴にはスコアが「N/N (N%)」形式で表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const scoreEl = document.querySelector(".history-score");
+    expect(scoreEl?.textContent).toBe("5/5 (100%)");
+  });
+
+  it("mode=random の履歴には横三角（▶）が表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggleEl = document.querySelector(".history-toggle");
+    expect(toggleEl?.textContent).toBe("▶");
+  });
 });
 
 describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
