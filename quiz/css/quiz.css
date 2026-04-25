@@ -440,12 +440,12 @@ header h1 {
 
 /* 練習ボタンは爽やかな水色にする */
 #startPracticeBtn {
-    background: rgb(221, 244, 255);
+    background: #ddf4ff;
     color: #0f2a43;
 }
 
 #startPracticeBtn:hover:not(:disabled) {
-    background: rgb(180, 225, 250);
+    background: #b4e1fa;
     color: #0f2a43;
     box-shadow: 0 6px 12px rgba(0, 130, 200, 0.25);
 }
