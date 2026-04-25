@@ -631,6 +631,9 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     const quizIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "quiz");
     const guideIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "guide");
     const historyIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "history");
+    expect(quizIdx).toBeGreaterThanOrEqual(0);
+    expect(guideIdx).toBeGreaterThanOrEqual(0);
+    expect(historyIdx).toBeGreaterThanOrEqual(0);
     expect(quizIdx).toBeGreaterThan(guideIdx);
     expect(quizIdx).toBeLessThan(historyIdx);
   });
@@ -713,7 +716,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("パネルに「クイズモード選択」と「解説」と「実行記録」と「問題一覧」のインナータブが描画される", async () => {
+  it("パネルに「確認」と「解説」と「実行記録」と「問題一覧」のインナータブが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -722,6 +725,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]');
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]');
     expect(quizTab).not.toBeNull();
+    expect(quizTab?.textContent).toContain("確認");
     expect(guideTab).not.toBeNull();
     expect(guideTab?.textContent).toContain("解説");
     expect(historyTab).not.toBeNull();
@@ -762,7 +766,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     expect(historyList?.querySelector(".history-empty")).not.toBeNull();
   });
 
-  it("「クイズモード選択」インナータブをクリックするとquizModePanelが再び表示される", async () => {
+  it("「確認」インナータブをクリックするとquizModePanelが再び表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -770,7 +774,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
     historyTab?.click();
 
-    // クイズモード選択タブに戻る
+    // 確認タブに戻る
     const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]') as HTMLElement;
     quizTab?.click();
 
@@ -1479,7 +1483,7 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
     expect(firstHint.classList.contains("hidden")).toBe(true); // もう一度押すと非表示に戻る
   });
 
-  it("「クイズモード選択」タブに戻るとquizModePanelが再表示される", async () => {
+  it("「確認」タブに戻るとquizModePanelが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
