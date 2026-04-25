@@ -253,6 +253,13 @@ header h1 {
     font-style: italic;
 }
 
+.category-example::before {
+    content: "·";
+    font-style: normal;
+    margin-right: 4px;
+    opacity: 0.5;
+}
+
 .category-item.active .category-example {
     color: rgba(255, 255, 255, 0.8);
 }
