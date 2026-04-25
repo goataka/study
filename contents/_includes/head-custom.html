@@ -3,7 +3,18 @@
 <style>
   /* サイトヘッダーの「Study」タイトルリンクを非表示にする */
   .site-header .site-title { display: none; }
+  /* クイズの解説パネル（iframe）内で表示されるとき、サイトヘッダー全体を非表示にする */
+  html.embedded-mode header.site-header { display: none; }
 </style>
+<script>
+  // ?embedded=1 が付与されているとき（クイズの解説 iframe として表示されるとき）、
+  // <html> に embedded-mode クラスを付与してヘッダーを即座に非表示にする。
+  // sandbox="allow-scripts"（allow-same-origin なし）の iframe 内では
+  // window !== window.top がエラーになる場合があるため、このフラグのみで判定する。
+  if (new URLSearchParams(location.search).get('embedded') === '1') {
+    document.documentElement.classList.add('embedded-mode');
+  }
+</script>
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
   // Jekyll が生成する <pre><code class="language-mermaid"> を <pre class="mermaid"> に変換してから初期化する
@@ -14,18 +25,4 @@
     el.parentElement.replaceWith(pre);
   });
   mermaid.initialize({ startOnLoad: true });
-</script>
-<script>
-  // クイズの解説パネル（iframe）内で表示されるとき、サイトヘッダーを非表示にする
-  // ?embedded=1 はクイズアプリが解説 iframe の src に付与するフラグ。
-  // window !== window.top だけでは他の埋め込み用途でも発火するため、このフラグで適用範囲を限定する。
-  if (window !== window.top && new URLSearchParams(location.search).get('embedded') === '1') {
-    document.addEventListener('DOMContentLoaded', function () {
-      // サイトヘッダー（「Study」などのサイトタイトルを含む）を非表示にする
-      var siteHeader = document.querySelector('header.site-header');
-      if (siteHeader) {
-        siteHeader.style.display = 'none';
-      }
-    });
-  }
 </script>
