@@ -432,29 +432,22 @@ export class QuizApp {
     nameSpan.textContent = categoryName;
     titleRow.appendChild(nameSpan);
 
-    // 例文と説明文（設定されている場合のみ表示）
+    // 説明文と例文（設定されている場合のみ表示、タイトル→説明→例文の順）
     const example = this.useCase.getCategoryExample(subject, categoryId);
     const description = this.useCase.getCategoryDescription(subject, categoryId);
-    if (example !== undefined || description) {
-      // 例文と説明文を縦に並べる（開始位置を揃えるため同じコンテナに入れる）
-      const subInfo = document.createElement("div");
-      subInfo.className = "category-sub-info";
 
-      if (example !== undefined) {
-        const exampleSpan = document.createElement("span");
-        exampleSpan.className = "category-example";
-        this.renderBacktickText(exampleSpan, example);
-        subInfo.appendChild(exampleSpan);
-      }
+    if (description) {
+      const descSpan = document.createElement("span");
+      descSpan.className = "category-item-description";
+      descSpan.textContent = description;
+      titleRow.appendChild(descSpan);
+    }
 
-      if (description) {
-        const descSpan = document.createElement("span");
-        descSpan.className = "category-item-description";
-        descSpan.textContent = description;
-        subInfo.appendChild(descSpan);
-      }
-
-      titleRow.appendChild(subInfo);
+    if (example !== undefined) {
+      const exampleSpan = document.createElement("span");
+      exampleSpan.className = "category-example";
+      this.renderBacktickText(exampleSpan, example);
+      titleRow.appendChild(exampleSpan);
     }
 
     nameArea.appendChild(titleRow);

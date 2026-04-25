@@ -254,10 +254,10 @@ header h1 {
 }
 
 .category-example::before {
-    content: "·";
+    content: "例）";
     font-style: normal;
-    margin-right: 4px;
-    opacity: 0.5;
+    margin-right: 2px;
+    opacity: 0.7;
 }
 
 .category-item.active .category-example {
@@ -1165,21 +1165,34 @@ button:disabled {
     gap: 3px;
 }
 
-/* タイトルと例文・説明文を横並び */
+/* タイトル・説明・例文をグリッド状に横並び（広い画面）、狭い画面では縦並び */
 .category-title-row {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 4px;
-}
-
-/* 例文と説明文を縦に並べる（開始位置を揃える） */
-.category-sub-info {
     display: flex;
     flex-direction: column;
     gap: 2px;
     min-width: 0;
+}
+
+/* 広い画面ではグリッドで横並び（タイトル | 説明 | 例文） */
+@media (min-width: 601px) {
+    .category-title-row {
+        display: grid;
+        grid-template-columns: minmax(min-content, 200px) 1fr auto;
+        align-items: baseline;
+        gap: 0 12px;
+    }
+
+    .category-name {
+        grid-column: 1;
+    }
+
+    .category-item-description {
+        grid-column: 2;
+    }
+
+    .category-example {
+        grid-column: 3;
+    }
 }
 
 /* カテゴリ進捗バー */
