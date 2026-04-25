@@ -398,7 +398,7 @@ export class QuizApp {
     statusSpan.setAttribute("aria-hidden", "true");
     statusSpan.textContent = "⬜";
 
-    // カテゴリ名 + 進捗バーのエリア
+    // カテゴリ名 + 例文 + 進捗バーのエリア
     const nameArea = document.createElement("div");
     nameArea.className = "category-name-area";
 
@@ -406,13 +406,24 @@ export class QuizApp {
     nameSpan.className = "category-name";
     nameSpan.textContent = categoryName;
 
+    // 例文（example が設定されている場合のみ表示）
+    const example = this.useCase.getCategoryExample(subject, categoryId);
+    if (example !== undefined) {
+      const exampleSpan = document.createElement("span");
+      exampleSpan.className = "category-example";
+      this.renderBacktickText(exampleSpan, example);
+      nameArea.appendChild(nameSpan);
+      nameArea.appendChild(exampleSpan);
+    } else {
+      nameArea.appendChild(nameSpan);
+    }
+
     const progressBar = document.createElement("div");
     progressBar.className = "category-progress-bar";
     const progressFill = document.createElement("div");
     progressFill.className = "category-progress-fill";
     progressBar.appendChild(progressFill);
 
-    nameArea.appendChild(nameSpan);
     nameArea.appendChild(progressBar);
 
     // 解説リンク（guideUrl が設定されている場合のみ表示）
@@ -476,6 +487,24 @@ export class QuizApp {
     });
 
     return item;
+  }
+
+  /**
+   * バッククォートで囲まれたテキストを <code> タグに変換して要素に追加する。
+   * 例: "I `play` games." → "I " + <code>play</code> + " games."
+   */
+  private renderBacktickText(container: HTMLElement, text: string): void {
+    const parts = text.split(/`([^`]+)`/);
+    parts.forEach((part, i) => {
+      if (i % 2 === 1) {
+        const code = document.createElement("code");
+        code.className = "category-example-highlight";
+        code.textContent = part;
+        container.appendChild(code);
+      } else if (part) {
+        container.appendChild(document.createTextNode(part));
+      }
+    });
   }
 
   /**
@@ -558,7 +587,7 @@ export class QuizApp {
     const guideUrl =
       this.filter.category !== "all"
         ? this.useCase.getCategoryGuideUrl(this.filter.subject, this.filter.category)
-        : undefined;
+        : this.useCase.getFirstAvailableGuideUrl();
 
     if (guideUrl) {
       if (guideFrame.getAttribute("src") !== guideUrl) {
@@ -1646,7 +1675,6 @@ export class QuizApp {
       eraserBtn.title = isEraser ? "ペンに戻す" : "消しゴム";
     }
   }
-
 }
 
 // アプリケーション起動

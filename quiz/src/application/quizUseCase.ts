@@ -16,6 +16,8 @@ export class QuizUseCase {
   private correctStreaks: Record<string, number>;
   /** subject::category -> guideUrl のキャッシュ（O(1) 参照用） */
   private categoryGuideMap = new Map<string, string>();
+  /** subject::category -> example のキャッシュ（O(1) 参照用） */
+  private categoryExampleMap = new Map<string, string>();
   /** subject::category -> referenceGrade のキャッシュ（O(1) 参照用） */
   private categoryGradeMap = new Map<string, string>();
 
@@ -31,11 +33,15 @@ export class QuizUseCase {
     this.allQuestions = await this.questionRepo.loadAll();
     // subject::category -> guideUrl / referenceGrade のキャッシュを構築する
     this.categoryGuideMap.clear();
+    this.categoryExampleMap.clear();
     this.categoryGradeMap.clear();
     for (const q of this.allQuestions) {
       const key = `${q.subject}::${q.category}`;
       if (q.guideUrl !== undefined && !this.categoryGuideMap.has(key)) {
         this.categoryGuideMap.set(key, q.guideUrl);
+      }
+      if (q.example !== undefined && !this.categoryExampleMap.has(key)) {
+        this.categoryExampleMap.set(key, q.example);
       }
       if (q.referenceGrade !== undefined && !this.categoryGradeMap.has(key)) {
         this.categoryGradeMap.set(key, q.referenceGrade);
@@ -260,6 +266,23 @@ export class QuizUseCase {
    */
   getCategoryGuideUrl(subject: string, category: string): string | undefined {
     return this.categoryGuideMap.get(`${subject}::${category}`);
+  }
+
+  /**
+   * 指定した教科・カテゴリの代表例文を返す。
+   * 該当カテゴリに example が設定されていない場合は undefined を返す。
+   */
+  getCategoryExample(subject: string, category: string): string | undefined {
+    return this.categoryExampleMap.get(`${subject}::${category}`);
+  }
+
+  /**
+   * 利用可能な最初の解説 URL を返す。
+   * カテゴリが "all"（未選択）の場合のフォールバック用。
+   * 解説 URL が 1 件も存在しない場合は undefined を返す。
+   */
+  getFirstAvailableGuideUrl(): string | undefined {
+    return this.categoryGuideMap.values().next().value;
   }
 
   /**

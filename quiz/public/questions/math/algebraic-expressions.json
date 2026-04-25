@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/23-algebraic-expressions/guide",
+  "example": "3a + 2a = 5a",
   "referenceGrade": "中学1年",
   "questions": [
     {
