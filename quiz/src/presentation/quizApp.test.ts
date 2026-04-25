@@ -1875,10 +1875,12 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
           </div>
           <div class="quiz-panel">
             <div class="panel-tabs" role="tablist">
-              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">学習</button>
+              <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" tabindex="-1">📖 解説</button>
+              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">確認</button>
               <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 実行記録</button>
               <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題一覧</button>
             </div>
+            <div id="guideContent" class="hidden" role="tabpanel"></div>
             <div id="quizModePanel" role="tabpanel">
               <button id="startPracticeBtn">練習</button>
               <button id="startRandomBtn">ランダム</button>
@@ -1956,6 +1958,50 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
+  });
+
+  it("総合タブ表示中は「解説」タブボタンが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideTab = document.getElementById("panelTab-guide");
+    expect(guideTab?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("総合タブ表示中は「確認」タブボタンが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const quizTab = document.getElementById("panelTab-quiz");
+    expect(quizTab?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("総合タブから教科タブに切り替えると「解説」「確認」タブボタンが再表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const guideTab = document.getElementById("panelTab-guide");
+    const quizTab = document.getElementById("panelTab-quiz");
+    expect(guideTab?.classList.contains("hidden")).toBe(false);
+    expect(quizTab?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("総合タブ表示中はアクティブタブが「実行記録」に切り替わる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.getElementById("panelTab-history");
+    expect(historyTab?.classList.contains("active")).toBe(true);
+    expect(historyTab?.getAttribute("aria-selected")).toBe("true");
+
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(false);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
   });
 });
 
