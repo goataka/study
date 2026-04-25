@@ -5,7 +5,7 @@
   "categoryName": "小数のかけ算",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
-  "guideUrl": "../math/arithmetic/19-decimals-multiplication/guide",
+  "guideUrl": "../math/arithmetic/34-decimals-multiplication/guide",
   "example": "0.3 \u00d7 0.4 = 0.12",
   "referenceGrade": "小学5年",
   "questions": [
