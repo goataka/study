@@ -16,6 +16,7 @@ const kanjiCanvasMock = {
   erase: vi.fn(),
   deleteLast: vi.fn(),
   recognize: vi.fn().mockReturnValue(""),
+  strokeColors: ["#bf0000", "#bf5600"],
 };
 (globalThis as unknown as Record<string, unknown>).KanjiCanvas = kanjiCanvasMock;
 
@@ -1381,6 +1382,79 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     expect(categoryList?.classList.contains("hide-learned")).toBe(true);
     expect(catItem?.classList.contains("learned")).toBe(true);
   });
+
+  it("学習済み非表示ON時、グループヘッダーのバッジに学習済み数だけ🏆が表示される", async () => {
+    setupFetchMockWithParent();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 4,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // phonics-1 は "発音" グループに属するため、発音グループヘッダーのバッジに🏆が表示される
+    const phonicsHeader = Array.from(document.querySelectorAll(".category-group-header")).find(
+      (h) => h.querySelector("span")?.textContent === "発音"
+    );
+    const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
+    expect(badge?.textContent).toBe("🏆");
+  });
+
+  it("学習済み非表示OFFにするとグループヘッダーのバッジが消える", async () => {
+    setupFetchMockWithParent();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 4,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 非表示をOFFにする
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+
+    const phonicsHeader = Array.from(document.querySelectorAll(".category-group-header")).find(
+      (h) => h.querySelector("span")?.textContent === "発音"
+    );
+    const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
+    expect(badge?.textContent).toBe("");
+  });
 });
 
 describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
@@ -1873,6 +1947,97 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
     expect(fill?.style.width).toBe("100%");
     expect(fill?.classList.contains("progress-fill-done")).toBe(true);
+  });
+
+  it("カテゴリアイテムには .category-progress-pct が含まれる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    expect(catItem?.querySelector(".category-progress-pct")).not.toBeNull();
+  });
+
+  it("未学習カテゴリの完了率テキストは非表示（hidden クラスあり）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+    expect(pct?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("学習済（間違いなし）カテゴリの完了率テキストは 100% になり hidden クラスが外れる", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 5,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+    expect(pct?.classList.contains("hidden")).toBe(false);
+    expect(pct?.textContent).toBe("100%");
+  });
+
+  it("間違い問題ありのカテゴリの完了率テキストは 80% になり hidden クラスが外れ、バー幅も 80% になる", async () => {
+    // mockQuestionFile には q1–q5 の5問がある。q1 を間違いとして登録する。
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
+    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+
+    expect(fill?.style.width).toBe("80%");
+    expect(pct?.classList.contains("hidden")).toBe(false);
+    expect(pct?.textContent).toBe("80%");
   });
 });
 
@@ -2566,6 +2731,14 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     document.getElementById("startRandomBtn")?.click();
 
     expect(kanjiCanvasMock.init).toHaveBeenCalledWith("kanjiCanvas");
+  });
+
+  it("KanjiCanvas初期化後にstrokeColorsが空配列に設定される（書き順番号・色変化の無効化）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    expect(kanjiCanvasMock.strokeColors).toEqual([]);
   });
 
   it("候補ボタンをクリックすると文字が答えの入力エリアに追加される", async () => {

@@ -248,7 +248,14 @@ export class QuizApp {
     for (const [parentCatId, parentCatName] of Object.entries(parentCategories)) {
       const groupHeader = document.createElement("div");
       groupHeader.className = "category-group-header";
-      groupHeader.textContent = parentCatName;
+      const headerText = document.createElement("span");
+      headerText.textContent = parentCatName;
+      groupHeader.appendChild(headerText);
+      const learnedBadge = document.createElement("span");
+      learnedBadge.className = "category-group-learned-badge";
+      learnedBadge.setAttribute("aria-hidden", "true");
+      groupHeader.dataset.parentCategory = parentCatId;
+      groupHeader.appendChild(learnedBadge);
       categoryList.appendChild(groupHeader);
 
       const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
@@ -433,13 +440,23 @@ export class QuizApp {
       nameArea.appendChild(descSpan);
     }
 
+    // 進捗バーと完了率を横並びにするラッパー
+    const progressRow = document.createElement("div");
+    progressRow.className = "category-progress-row";
+
     const progressBar = document.createElement("div");
     progressBar.className = "category-progress-bar";
     const progressFill = document.createElement("div");
     progressFill.className = "category-progress-fill";
     progressBar.appendChild(progressFill);
 
-    nameArea.appendChild(progressBar);
+    const progressPct = document.createElement("span");
+    progressPct.className = "category-progress-pct hidden";
+
+    progressRow.appendChild(progressBar);
+    progressRow.appendChild(progressPct);
+
+    nameArea.appendChild(progressRow);
 
     // 参考学年バッジ（referenceGrade が設定されている場合のみ表示）
     const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
@@ -1026,17 +1043,26 @@ export class QuizApp {
         statsEl.textContent = formatCategoryStats(stat);
       }
 
-      // 進捗バーを更新（学習履歴がある場合）
+      // 進捗バーと完了率を更新（学習履歴がある場合）
       const progressFill = el.querySelector(".category-progress-fill") as HTMLElement | null;
+      const progressPct = el.querySelector(".category-progress-pct") as HTMLElement | null;
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
         if (isStudied || stat.wrong > 0) {
           const pct = stat.total > 0 ? Math.round(((stat.total - stat.wrong) / stat.total) * 100) : 0;
           progressFill.style.width = `${pct}%`;
           progressFill.classList.toggle("progress-fill-done", pct === 100);
+          if (progressPct) {
+            progressPct.textContent = `${pct}%`;
+            progressPct.classList.remove("hidden");
+          }
         } else {
           progressFill.style.width = "0%";
           progressFill.classList.remove("progress-fill-done");
+          if (progressPct) {
+            progressPct.textContent = "";
+            progressPct.classList.add("hidden");
+          }
         }
       }
 
@@ -1054,6 +1080,8 @@ export class QuizApp {
         }
       }
     });
+
+    this.updateGroupHeaderLearnedBadges();
   }
 
   /**
@@ -1066,6 +1094,7 @@ export class QuizApp {
       categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
     }
     this.updateHideLearnedButton();
+    this.updateGroupHeaderLearnedBadges();
   }
 
   /**
@@ -1078,6 +1107,38 @@ export class QuizApp {
       btn.setAttribute("aria-label", "学習済カテゴリを非表示");
       btn.textContent = this.hideLearnedCategories ? "✅ 学習済を表示" : "⬜ 学習済を非表示";
     }
+  }
+
+  /**
+   * 学習済みを非表示にしている場合、各グループヘッダーの右に非表示数だけ🏆を表示する
+   */
+  private updateGroupHeaderLearnedBadges(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    categoryList.querySelectorAll<HTMLElement>(".category-group-header").forEach((header) => {
+      const parentCategory = header.dataset.parentCategory;
+
+      let learnedCount = 0;
+      if (parentCategory) {
+        learnedCount = Array.from(
+          categoryList.querySelectorAll<HTMLElement>(".category-item.learned")
+        ).filter((el) => el.dataset.parentCategory === parentCategory).length;
+      } else {
+        let sibling = header.nextElementSibling;
+        while (sibling && !sibling.classList.contains("category-group-header")) {
+          if (sibling.classList.contains("category-item") && sibling.classList.contains("learned")) {
+            learnedCount++;
+          }
+          sibling = sibling.nextElementSibling;
+        }
+      }
+
+      const badge = header.querySelector(".category-group-learned-badge");
+      if (badge) {
+        badge.textContent = this.hideLearnedCategories && learnedCount > 0 ? "🏆".repeat(learnedCount) : "";
+      }
+    });
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
@@ -1387,6 +1448,8 @@ export class QuizApp {
     }
     if (this.kanjiCanvasInitialized) return;
     KanjiCanvas.init("kanjiCanvas");
+    // 書き順番号と線の色変化を無効化する（全ストロークをデフォルト色 #333 で統一）
+    KanjiCanvas.strokeColors = [];
     const canvas = document.getElementById("kanjiCanvas");
     if (canvas) {
       canvas.addEventListener("mouseup", () => this.updateKanjiCandidates());
