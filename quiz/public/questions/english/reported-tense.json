@@ -5,7 +5,7 @@
   "categoryName": "時制の一致",
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
-  "guideUrl": "../english/grammar/46-reported-tense/guide",
+  "guideUrl": "../english/grammar/reported-tense/guide",
   "example": "He said he `was` tired.",
   "referenceGrade": "高校1年",
   "description": "直接話法を間接話法に変えると、動詞の時制が1つ過去にずれます（時制の一致）。",

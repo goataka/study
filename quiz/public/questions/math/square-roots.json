@@ -5,7 +5,7 @@
   "categoryName": "平方根",
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
-  "guideUrl": "../math/algebra/28-square-roots/guide",
+  "guideUrl": "../math/algebra/square-roots/guide",
   "example": "√12 = 2√3",
   "referenceGrade": "中学3年",
   "description": "平方根の意味を理解し、計算を正確にできるようにします。",

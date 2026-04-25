@@ -5,7 +5,7 @@
   "categoryName": "二次方程式",
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
-  "guideUrl": "../math/algebra/29-quadratic-eq/guide",
+  "guideUrl": "../math/algebra/quadratic-eq/guide",
   "example": "x²-5x+6=0 → x=2,3",
   "referenceGrade": "中学3年",
   "description": "因数分解と解の公式を使い分けて、二次方程式を確実に解けるようにします。",
