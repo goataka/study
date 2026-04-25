@@ -8,6 +8,7 @@
   "guideUrl": "../math/arithmetic/29-fractions-diff-sub/guide",
   "example": "3/4 - 1/3 = 5/12",
   "referenceGrade": "小学5年",
+  "description": "分母が異なる分数のひき算で通分を使って正確に計算できるようにします。",
   "questions": [
     {
       "id": "frac-diff-sub-1",

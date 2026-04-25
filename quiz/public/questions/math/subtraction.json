@@ -7,6 +7,7 @@
   "parentCategoryName": "算数・基本計算",
   "example": "8 - 3 = 5",
   "referenceGrade": "小学1年",
+  "description": "ひき算を正確にできるようにします。",
   "questions": [
     {
       "id": "sub-1",

@@ -6,8 +6,9 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/15-multiplication-1digit/guide",
-  "example": "6 \u00d7 7 = 42",
+  "example": "6 × 7 = 42",
   "referenceGrade": "小学2年",
+  "description": "かけ算の意味を理解し、九九を覚えて正確に計算できるようにします。",
   "questions": [
     {
       "id": "mult-basic-1",

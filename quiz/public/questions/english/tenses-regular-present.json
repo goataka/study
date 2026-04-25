@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/11-tenses-regular-present/guide",
   "example": "I `play` games.",
   "referenceGrade": "小学5年",
+  "description": "一般動詞は動作や状態を表す動詞です。",
   "questions": [
     {
       "id": "tenses-regular-present-1",

@@ -6,8 +6,9 @@
   "parentCategory": "calculus",
   "parentCategoryName": "解析・高校数学",
   "guideUrl": "../math/calculus/34-sequences/guide",
-  "example": "1,3,5,7,\u2026 \u2192 a\u2099=2n-1",
+  "example": "1,3,5,7,… → aₙ=2n-1",
   "referenceGrade": "高校2年",
+  "description": "等差数列と等比数列の一般項と和の公式を使えるようにします。",
   "questions": [
     {
       "id": "seq-1",

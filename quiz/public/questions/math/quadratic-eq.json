@@ -6,8 +6,9 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/29-quadratic-eq/guide",
-  "example": "x\u00b2-5x+6=0 \u2192 x=2,3",
+  "example": "x²-5x+6=0 → x=2,3",
   "referenceGrade": "中学3年",
+  "description": "因数分解と解の公式を使い分けて、二次方程式を確実に解けるようにします。",
   "questions": [
     {
       "id": "quad-eq-1",

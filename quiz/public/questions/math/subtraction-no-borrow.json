@@ -8,6 +8,7 @@
   "guideUrl": "../math/arithmetic/08-subtraction-1digit-no-borrow/guide",
   "example": "8 - 3 = 5",
   "referenceGrade": "小学1年",
+  "description": "くり下がりのない1けたのひき算をすばやく正確にできるようにします。",
   "questions": [
     {
       "id": "sub-no-borrow-1",
