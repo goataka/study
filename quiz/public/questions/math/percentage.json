@@ -11,7 +11,7 @@
   "description": "割合・百分率・歩合の計算を使って文章題を解けるようにします。",
   "questions": [
     {
-      "id": "percent-1",
+      "id": "3f93c56e-9b1e-5270-af02-396231b2e3e9",
       "question": "200の30%はいくつですか？",
       "choices": [
         "60",
@@ -23,7 +23,7 @@
       "explanation": "200 × 0.3 = 60。30%は0.3と同じです"
     },
     {
-      "id": "percent-2",
+      "id": "483853b0-4373-5d94-bbe6-1c30c44f91c1",
       "question": "150の20%はいくつですか？",
       "choices": [
         "30",
@@ -35,7 +35,7 @@
       "explanation": "150 × 0.2 = 30。20%は0.2と同じです"
     },
     {
-      "id": "percent-3",
+      "id": "f4c9c594-53ec-5732-8deb-e114b0074b94",
       "question": "80の25%はいくつですか？",
       "choices": [
         "20",
@@ -47,7 +47,7 @@
       "explanation": "80 × 0.25 = 20。25% = 1/4なので、80 ÷ 4 = 20とも計算できます"
     },
     {
-      "id": "percent-4",
+      "id": "fb56a1ad-15a9-5ca8-9617-5aaee80bbe6f",
       "question": "300の15%はいくつですか？",
       "choices": [
         "45",
@@ -59,7 +59,7 @@
       "explanation": "300 × 0.15 = 45。15%は0.15と同じです"
     },
     {
-      "id": "percent-5",
+      "id": "bd43bc09-083d-5a39-bc07-6ea2156cc18e",
       "question": "時速60kmで2時間走った距離は？",
       "choices": [
         "120km",
@@ -71,7 +71,7 @@
       "explanation": "距離=速さ×時間なので、60 × 2 = 120km"
     },
     {
-      "id": "percent-6",
+      "id": "5ba1f5ab-0bcd-50f7-84ff-213a4b8e378c",
       "question": "120kmを3時間で走った速さは？",
       "choices": [
         "時速40km",
@@ -83,7 +83,7 @@
       "explanation": "速さ=距離÷時間なので、120 ÷ 3 = 時速40km"
     },
     {
-      "id": "percent-7",
+      "id": "99b74761-0b0f-5a81-9b57-fcb2f8de4f4b",
       "question": "時速40kmで100km走る時間は？",
       "choices": [
         "2.5時間",
@@ -95,7 +95,7 @@
       "explanation": "時間=距離÷速さなので、100 ÷ 40 = 2.5時間"
     },
     {
-      "id": "percent-8",
+      "id": "c0232592-c204-5438-815d-995273eae352",
       "question": "400の10%はいくつですか？",
       "choices": [
         "40",

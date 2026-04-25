@@ -10,7 +10,7 @@
   "description": "たし算を正確にできるようにします。",
   "questions": [
     {
-      "id": "add-1",
+      "id": "f1d35157-8721-57ad-acae-b81577a67472",
       "question": "3 + 5 = ?",
       "choices": [
         "8",
@@ -22,7 +22,7 @@
       "explanation": "3 + 5 = 8"
     },
     {
-      "id": "add-2",
+      "id": "fd702f9f-02c1-537f-8a5e-0ebb71ec8bd8",
       "question": "7 + 4 = ?",
       "choices": [
         "11",
@@ -34,7 +34,7 @@
       "explanation": "7 + 4 = 11"
     },
     {
-      "id": "add-3",
+      "id": "d8a9453e-4405-5330-ab23-587f8dad990e",
       "question": "12 + 8 = ?",
       "choices": [
         "20",
@@ -46,7 +46,7 @@
       "explanation": "12 + 8 = 20"
     },
     {
-      "id": "add-4",
+      "id": "cf215137-f2ec-5a7c-9968-3c50d793a186",
       "question": "15 + 15 = ?",
       "choices": [
         "30",
@@ -58,7 +58,7 @@
       "explanation": "15 + 15 = 30"
     },
     {
-      "id": "add-5",
+      "id": "093ea30f-e343-59ba-815b-214be57950e9",
       "question": "23 + 17 = ?",
       "choices": [
         "40",
@@ -70,7 +70,7 @@
       "explanation": "23 + 17 = 40"
     },
     {
-      "id": "add-6",
+      "id": "00ad3bb3-3113-5eb5-9895-17381c21f2d1",
       "question": "46 + 28 = ?",
       "choices": [
         "74",
@@ -82,7 +82,7 @@
       "explanation": "46 + 28 = 74"
     },
     {
-      "id": "add-7",
+      "id": "3634b3e7-bf78-5b0a-8ca8-92bd129319f4",
       "question": "55 + 35 = ?",
       "choices": [
         "90",
@@ -94,7 +94,7 @@
       "explanation": "55 + 35 = 90"
     },
     {
-      "id": "add-8",
+      "id": "e278ab56-ea38-5d52-93f7-7ceb84cb5f2f",
       "question": "67 + 23 = ?",
       "choices": [
         "90",

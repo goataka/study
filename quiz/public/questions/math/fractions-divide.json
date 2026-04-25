@@ -11,7 +11,7 @@
   "description": "分数のわり算を逆数を使って正確に計算できるようにします。",
   "questions": [
     {
-      "id": "frac-div-1",
+      "id": "f4e69bfb-cd67-58f4-9303-a9ffdf14d6ce",
       "question": "1/2 ÷ 1/3 = ?",
       "choices": [
         "3/2",
@@ -23,7 +23,7 @@
       "explanation": "わる数をひっくり返してかけ算にします。1/2 × 3/1 = 3/2（または1と1/2）"
     },
     {
-      "id": "frac-div-2",
+      "id": "1bf7d9f2-ed03-5f85-a1b3-38ee34bf5e24",
       "question": "3/4 ÷ 2/3 = ?",
       "choices": [
         "9/8",
@@ -35,7 +35,7 @@
       "explanation": "3/4 × 3/2 = 9/8（または1と1/8）"
     },
     {
-      "id": "frac-div-3",
+      "id": "cb74add9-53f9-5283-8b50-f3554e14eda9",
       "question": "2/5 ÷ 1/4 = ?",
       "choices": [
         "8/5",
@@ -47,7 +47,7 @@
       "explanation": "2/5 × 4/1 = 8/5（または1と3/5）"
     },
     {
-      "id": "frac-div-4",
+      "id": "f6900060-9450-52f9-a434-e42d50651137",
       "question": "5/6 ÷ 5/9 = ?",
       "choices": [
         "3/2",
@@ -59,7 +59,7 @@
       "explanation": "5/6 × 9/5 = 45/30。約分すると3/2"
     },
     {
-      "id": "frac-div-5",
+      "id": "b008c93c-27ed-59d3-a2ee-fbdcab815b13",
       "question": "3/8 ÷ 3/4 = ?",
       "choices": [
         "1/2",
@@ -71,7 +71,7 @@
       "explanation": "3/8 × 4/3 = 12/24。約分すると1/2"
     },
     {
-      "id": "frac-div-6",
+      "id": "bac3ad9c-6f59-5973-9d2b-963d8add0eaf",
       "question": "4/7 ÷ 2/3 = ?",
       "choices": [
         "6/7",
@@ -83,7 +83,7 @@
       "explanation": "4/7 × 3/2 = 12/14。約分すると6/7"
     },
     {
-      "id": "frac-div-7",
+      "id": "52b60bfa-2b14-5bc2-ae0d-44953d579618",
       "question": "2/3 ÷ 4 = ?",
       "choices": [
         "1/6",
@@ -95,7 +95,7 @@
       "explanation": "4=4/1と考えます。2/3 × 1/4 = 2/12。約分すると1/6"
     },
     {
-      "id": "frac-div-8",
+      "id": "7b693d12-533c-5e3c-8e55-20312780fd0c",
       "question": "7/8 ÷ 7/16 = ?",
       "choices": [
         "2",

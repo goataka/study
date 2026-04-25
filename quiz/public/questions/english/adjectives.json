@@ -11,7 +11,7 @@
   "description": "形容詞は名詞を修飾したり、状態を表す語です。",
   "questions": [
     {
-      "id": "adjectives-1",
+      "id": "37641781-388e-555a-852b-879685585dfa",
       "question": "I read a ___ book. (new)",
       "choices": [
         "new",
@@ -23,7 +23,7 @@
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
-      "id": "adjectives-2",
+      "id": "77588eb3-a9ce-5882-8600-477b0d425b83",
       "question": "The game is ___. (fun)",
       "choices": [
         "fun",
@@ -35,7 +35,7 @@
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
-      "id": "adjectives-3",
+      "id": "e7701a14-8c83-538f-9eb2-c30f47914125",
       "question": "She has ___ hair. (long)",
       "choices": [
         "long",
@@ -47,7 +47,7 @@
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
-      "id": "adjectives-4",
+      "id": "402818a0-05e8-5932-8829-390d7e0dfd5d",
       "question": "The book is ___. (interesting)",
       "choices": [
         "interesting",
@@ -59,7 +59,7 @@
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
-      "id": "adjectives-5",
+      "id": "4b23419a-86f1-5648-b3ad-833f0d5a3100",
       "question": "He is a ___ boy. (tall)",
       "choices": [
         "tall",
@@ -71,7 +71,7 @@
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
-      "id": "adjectives-6",
+      "id": "db9f1232-fe7f-55f3-9e78-91f7310397c6",
       "question": "This is a ___ car. (fast)",
       "choices": [
         "fast",
@@ -83,7 +83,7 @@
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
-      "id": "adjectives-7",
+      "id": "ee0c002f-beb6-5f97-95ae-791b7d60d506",
       "question": "The weather is ___. (beautiful)",
       "choices": [
         "beautiful",
@@ -95,7 +95,7 @@
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
-      "id": "adjectives-8",
+      "id": "31a01b80-d6df-53ee-8ec4-c0b09b549b98",
       "question": "She is a ___ student. (smart)",
       "choices": [
         "smart",

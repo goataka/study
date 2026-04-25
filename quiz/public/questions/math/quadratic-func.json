@@ -11,7 +11,7 @@
   "description": "二次関数の頂点・軸を求め、最大値・最小値を計算できるようにします。",
   "questions": [
     {
-      "id": "quad-func-1",
+      "id": "1965e923-0dea-598e-960c-ea998645e0bf",
       "question": "y = (x - 2)² + 1 の頂点は？",
       "choices": [
         "(2, 1)",
@@ -23,7 +23,7 @@
       "explanation": "y = a(x-p)² + q の形で、頂点は(p, q)。よって(2, 1)"
     },
     {
-      "id": "quad-func-2",
+      "id": "ad6e200b-9c19-59a5-a2c6-8316ca898ff8",
       "question": "y = (x + 3)² - 2 の頂点は？",
       "choices": [
         "(-3, -2)",
@@ -35,7 +35,7 @@
       "explanation": "y = (x-(-3))² + (-2)なので、頂点は(-3, -2)"
     },
     {
-      "id": "quad-func-3",
+      "id": "77eca176-bfc7-5852-8ede-b66644309405",
       "question": "y = (x - 2)² + 1 の軸は？",
       "choices": [
         "x = 2",
@@ -47,7 +47,7 @@
       "explanation": "頂点が(2, 1)なので、軸は x = 2"
     },
     {
-      "id": "quad-func-4",
+      "id": "047ac91d-587f-5dd6-8f72-11aca6a0af98",
       "question": "y = 2(x - 1)² + 3 の頂点は？",
       "choices": [
         "(1, 3)",
@@ -59,7 +59,7 @@
       "explanation": "y = 2(x-1)² + 3なので、頂点は(1, 3)"
     },
     {
-      "id": "quad-func-5",
+      "id": "04a9a496-6045-52b6-9043-2c7681c77a0c",
       "question": "y = -(x + 2)² + 4 の頂点は？",
       "choices": [
         "(-2, 4)",
@@ -71,7 +71,7 @@
       "explanation": "y = -(x-(-2))² + 4なので、頂点は(-2, 4)"
     },
     {
-      "id": "quad-func-6",
+      "id": "4e69d5ea-3ac2-51bd-9d33-95cd4372e96c",
       "question": "y = x² - 4x + 5 の最小値は？",
       "choices": [
         "1",
@@ -83,7 +83,7 @@
       "explanation": "平方完成すると y = (x-2)² + 1。下に凸なので最小値は1（x=2のとき）"
     },
     {
-      "id": "quad-func-7",
+      "id": "532cc517-84b9-5318-a39e-493b0e1b12c4",
       "question": "y = -x² + 6x - 5 の最大値は？",
       "choices": [
         "4",
@@ -95,7 +95,7 @@
       "explanation": "平方完成すると y = -(x-3)² + 4。上に凸なので最大値は4（x=3のとき）"
     },
     {
-      "id": "quad-func-8",
+      "id": "826460da-3129-5e16-b8b3-b2a60477f6f6",
       "question": "y = 2x² - 8x + 10 の最小値は？",
       "choices": [
         "2",

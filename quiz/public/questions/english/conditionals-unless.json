@@ -11,7 +11,7 @@
   "description": "unless は「〜でなければ」という意味の接続詞で、if not と同じ意味を持ちます。",
   "questions": [
     {
-      "id": "conditionals-unless-1",
+      "id": "d95a92df-d07e-5bd3-a48d-e5865395b61a",
       "question": "I will go ___ it rains. (～しない限り)",
       "choices": [
         "unless",
@@ -23,7 +23,7 @@
       "explanation": "「～しない限り」は unless を使います"
     },
     {
-      "id": "conditionals-unless-2",
+      "id": "f3110fb1-dc1a-5f4d-8cf5-c3891a000e31",
       "question": "___ you study hard, you will fail. (～しない限り)",
       "choices": [
         "Unless",
@@ -35,7 +35,7 @@
       "explanation": "「～しない限り」は unless を使います"
     },
     {
-      "id": "conditionals-unless-3",
+      "id": "dc8d8722-9ff6-5fa8-ab05-b580c005857e",
       "question": "I won't go unless you ___ with me. (come)",
       "choices": [
         "come",
@@ -47,7 +47,7 @@
       "explanation": "unless節では現在形を使います"
     },
     {
-      "id": "conditionals-unless-4",
+      "id": "f335ad49-cae0-5721-8b9f-cf0eedd9e553",
       "question": "Unless you hurry, you ___ be late.",
       "choices": [
         "will",
@@ -59,7 +59,7 @@
       "explanation": "未来のことでも主節は will を使います"
     },
     {
-      "id": "conditionals-unless-5",
+      "id": "ae77ec86-5621-51cb-812c-5f1b6dcdf10f",
       "question": "I won't help you ___ you ask me nicely.",
       "choices": [
         "unless",
@@ -71,7 +71,7 @@
       "explanation": "「～しない限り」は unless を使います"
     },
     {
-      "id": "conditionals-unless-6",
+      "id": "8df1dcca-1db3-5e13-8c03-28626c565a6d",
       "question": "___ it stops raining, we can't go out.",
       "choices": [
         "Unless",
@@ -83,7 +83,7 @@
       "explanation": "「～しない限り」は unless を使います"
     },
     {
-      "id": "conditionals-unless-7",
+      "id": "8cf1cfa0-0860-52ad-a0a8-ab7133e633e2",
       "question": "Unless = if ___",
       "choices": [
         "not",
@@ -95,7 +95,7 @@
       "explanation": "unless は if not と同じ意味です"
     },
     {
-      "id": "conditionals-unless-8",
+      "id": "9a83eb8b-3915-5fa8-81f2-fdc9cd449a1b",
       "question": "I will stay home unless the weather ___ good. (be)",
       "choices": [
         "is",

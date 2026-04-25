@@ -11,7 +11,7 @@
   "description": "間接話法の命令文は「told + 人 + to 不定詞」の形で表します。",
   "questions": [
     {
-      "id": "reported-imperative-1",
+      "id": "fce5d6b8-2604-5aa0-bd13-d7bc834ef218",
       "question": "He said, \"Play games.\" → He told me ___ games.",
       "choices": [
         "to play",
@@ -23,7 +23,7 @@
       "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
     },
     {
-      "id": "reported-imperative-2",
+      "id": "fdfd437a-e512-5081-a4b2-cc2669627aa4",
       "question": "He said, \"Don't play games.\" → He told me ___ games.",
       "choices": [
         "not to play",
@@ -35,7 +35,7 @@
       "explanation": "否定の命令文は not to + 動詞の原形です"
     },
     {
-      "id": "reported-imperative-3",
+      "id": "3e54c021-320c-5b1a-8b57-c01d0074b01b",
       "question": "He said, \"Study hard.\" → He told me ___ hard.",
       "choices": [
         "to study",
@@ -47,7 +47,7 @@
       "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
     },
     {
-      "id": "reported-imperative-4",
+      "id": "a506c923-61fa-5ee9-9cdd-971cb6df5682",
       "question": "He said, \"Don't be late.\" → He told me ___ late.",
       "choices": [
         "not to be",
@@ -59,7 +59,7 @@
       "explanation": "否定の命令文は not to + 動詞の原形です"
     },
     {
-      "id": "reported-imperative-5",
+      "id": "7ceeae6a-4e2b-57a5-bff8-974fcbb71fb4",
       "question": "She said, \"Be quiet.\" → She told me ___ quiet.",
       "choices": [
         "to be",
@@ -71,7 +71,7 @@
       "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
     },
     {
-      "id": "reported-imperative-6",
+      "id": "eb629e90-ac14-510a-97bb-77cf758a257d",
       "question": "He said, \"Help me.\" → He asked me ___ him.",
       "choices": [
         "to help",
@@ -83,7 +83,7 @@
       "explanation": "依頼の命令文は asked + 人 + to + 動詞の原形です"
     },
     {
-      "id": "reported-imperative-7",
+      "id": "672cf131-5d58-5f93-b5e4-a9cd7f59bed1",
       "question": "She said, \"Don't touch that.\" → She told me ___ that.",
       "choices": [
         "not to touch",
@@ -95,7 +95,7 @@
       "explanation": "否定の命令文は not to + 動詞の原形です"
     },
     {
-      "id": "reported-imperative-8",
+      "id": "1243e281-ad10-5fa4-846b-2f1bee6db664",
       "question": "命令文の間接話法で使う動詞は？",
       "choices": [
         "told/asked",

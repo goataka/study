@@ -11,7 +11,7 @@
   "description": "文字を使った式の表し方と計算のルールを身につけます。",
   "questions": [
     {
-      "id": "alg-expr-1",
+      "id": "62acefb3-9761-5b59-b446-052a2605f9db",
       "question": "a × 3 を文字式のルールで書くと？",
       "choices": [
         "3a",
@@ -23,7 +23,7 @@
       "explanation": "文字式では、数字を文字の前に書き、×記号は省略します。3a"
     },
     {
-      "id": "alg-expr-2",
+      "id": "9d7ed60e-8347-534e-a83a-e4f598d55298",
       "question": "x × y を文字式のルールで書くと？",
       "choices": [
         "xy",
@@ -35,7 +35,7 @@
       "explanation": "文字どうしのかけ算は×記号を省略します。アルファベット順に書いて、xy"
     },
     {
-      "id": "alg-expr-3",
+      "id": "e0538cb4-8a45-5645-bdf3-bcf0b71f7aab",
       "question": "a × a を文字式のルールで書くと？",
       "choices": [
         "a²",
@@ -47,7 +47,7 @@
       "explanation": "同じ文字のかけ算は累乗で表します。a²"
     },
     {
-      "id": "alg-expr-4",
+      "id": "62e7b23b-1686-5f13-8ad5-116b39e19df9",
       "question": "3a + 5a = ?",
       "choices": [
         "8a",
@@ -59,7 +59,7 @@
       "explanation": "同じ文字の項どうしは係数を足します。3+5=8なので、8a"
     },
     {
-      "id": "alg-expr-5",
+      "id": "7720cacd-a127-5523-a6d3-777cb03f2557",
       "question": "7x - 2x = ?",
       "choices": [
         "5x",
@@ -71,7 +71,7 @@
       "explanation": "同じ文字の項どうしは係数を引きます。7-2=5なので、5x"
     },
     {
-      "id": "alg-expr-6",
+      "id": "072ff07d-b262-5778-820e-f7165d40f2b7",
       "question": "4a + 3b + 2a - b = ?",
       "choices": [
         "6a + 2b",
@@ -83,7 +83,7 @@
       "explanation": "aの項とbの項を別々にまとめます。4a+2a=6a、3b-b=2bなので、6a+2b"
     },
     {
-      "id": "alg-expr-7",
+      "id": "224aaa99-104f-5a4a-ace2-e28895497ce3",
       "question": "2(3x + 1) = ?",
       "choices": [
         "6x + 2",
@@ -95,7 +95,7 @@
       "explanation": "分配法則を使います。2×3x=6x、2×1=2なので、6x+2"
     },
     {
-      "id": "alg-expr-8",
+      "id": "349d625a-8c6d-5484-88db-c404c2c3c350",
       "question": "5(2a - 3) + 4a = ?",
       "choices": [
         "14a - 15",

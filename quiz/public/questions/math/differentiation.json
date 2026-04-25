@@ -11,7 +11,7 @@
   "description": "多項式関数の導関数を求め、極値を計算できるようにします。",
   "questions": [
     {
-      "id": "diff-1",
+      "id": "de96d2fc-1811-5921-8690-a27c49312b7e",
       "question": "f(x) = 3x² + 2x + 1 の導関数 f'(x) = ?",
       "choices": [
         "6x + 2",
@@ -23,7 +23,7 @@
       "explanation": "(xⁿ)' = nxⁿ⁻¹。(3x²)' = 6x、(2x)' = 2、(1)' = 0。よって f'(x) = 6x + 2"
     },
     {
-      "id": "diff-2",
+      "id": "98d8210e-abb4-5286-97ba-29cc75e8cdcc",
       "question": "f(x) = x³ - 4x² + 5x の導関数 f'(x) = ?",
       "choices": [
         "3x² - 8x + 5",
@@ -35,7 +35,7 @@
       "explanation": "(x³)' = 3x²、(-4x²)' = -8x、(5x)' = 5。よって f'(x) = 3x² - 8x + 5"
     },
     {
-      "id": "diff-3",
+      "id": "8ad578b1-6cca-581f-93d8-a26f68feb139",
       "question": "f(x) = 2x⁴ - 3x³ + x の導関数 f'(x) = ?",
       "choices": [
         "8x³ - 9x² + 1",
@@ -47,7 +47,7 @@
       "explanation": "(2x⁴)' = 8x³、(-3x³)' = -9x²、(x)' = 1。よって f'(x) = 8x³ - 9x² + 1"
     },
     {
-      "id": "diff-4",
+      "id": "1cacad05-1a96-5bf8-b2d9-535864aee81d",
       "question": "f(x) = 5x³ + 2x² - 7 の導関数 f'(x) = ?",
       "choices": [
         "15x² + 4x",
@@ -59,7 +59,7 @@
       "explanation": "(5x³)' = 15x²、(2x²)' = 4x、(-7)' = 0。よって f'(x) = 15x² + 4x"
     },
     {
-      "id": "diff-5",
+      "id": "ccd706c0-4fd9-5137-83b1-9f653555edad",
       "question": "f(x) = x³ - 3x² + 4 のx=0における極値は？",
       "choices": [
         "極大値 4",
@@ -71,7 +71,7 @@
       "explanation": "f'(x) = 3x² - 6x = 3x(x-2) = 0よりx=0,2。x=0で符号が正→負なので極大。f(0) = 4"
     },
     {
-      "id": "diff-6",
+      "id": "a285d629-27d9-57d6-ba71-83383a400bd1",
       "question": "f(x) = x³ - 3x² + 4 のx=2における極値は？",
       "choices": [
         "極小値 0",
@@ -83,7 +83,7 @@
       "explanation": "x=2で符号が負→正なので極小。f(2) = 8 - 12 + 4 = 0"
     },
     {
-      "id": "diff-7",
+      "id": "88f6692f-227e-5129-9dfa-e57e8d5462ad",
       "question": "f(x) = x² + 4x + 3 の導関数 f'(x) = ?",
       "choices": [
         "2x + 4",
@@ -95,7 +95,7 @@
       "explanation": "(x²)' = 2x、(4x)' = 4、(3)' = 0。よって f'(x) = 2x + 4"
     },
     {
-      "id": "diff-8",
+      "id": "3df67c75-48ee-5eed-9020-69f2fff6df0f",
       "question": "f(x) = -x³ + 3x² + 1 のx=2における極値は？",
       "choices": [
         "極大値 5",

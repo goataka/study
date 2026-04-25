@@ -11,7 +11,7 @@
   "description": "前置詞は名詞の前に置き、場所・時・方向などを表します。",
   "questions": [
     {
-      "id": "prepositions-1",
+      "id": "ec641f05-9a66-55ba-a043-e8ca975b3e32",
       "question": "I play games ___ the park.",
       "choices": [
         "in",
@@ -23,7 +23,7 @@
       "explanation": "広い場所には in を使います"
     },
     {
-      "id": "prepositions-2",
+      "id": "4b522489-6afc-5d5d-ab5d-0d5e862fb318",
       "question": "I play games ___ Sunday.",
       "choices": [
         "on",
@@ -35,7 +35,7 @@
       "explanation": "曜日には on を使います"
     },
     {
-      "id": "prepositions-3",
+      "id": "27b1938f-0bf2-5266-b7ed-092f12db6046",
       "question": "I play games ___ the morning.",
       "choices": [
         "in",
@@ -47,7 +47,7 @@
       "explanation": "morning/afternoon/evening には in を使います"
     },
     {
-      "id": "prepositions-4",
+      "id": "8160f16e-0791-5cda-b943-2b29770acef9",
       "question": "I go ___ school.",
       "choices": [
         "to",
@@ -59,7 +59,7 @@
       "explanation": "方向には to を使います"
     },
     {
-      "id": "prepositions-5",
+      "id": "188ba87e-6922-5bdb-9da9-ee6b72ec88ae",
       "question": "I go to school ___ bus.",
       "choices": [
         "by",
@@ -71,7 +71,7 @@
       "explanation": "交通手段には by を使います"
     },
     {
-      "id": "prepositions-6",
+      "id": "0e021a4f-d198-59d9-aaa5-5c8fcae0b5d6",
       "question": "The book is ___ the desk.",
       "choices": [
         "on",
@@ -83,7 +83,7 @@
       "explanation": "表面に接している場合は on を使います"
     },
     {
-      "id": "prepositions-7",
+      "id": "109db2cd-179e-5dfa-a33b-691b8987d466",
       "question": "I study ___ night.",
       "choices": [
         "at",
@@ -95,7 +95,7 @@
       "explanation": "night には at を使います"
     },
     {
-      "id": "prepositions-8",
+      "id": "5bef04ae-0e67-582d-9f0b-de7ba9d3de4a",
       "question": "I live ___ Tokyo.",
       "choices": [
         "in",

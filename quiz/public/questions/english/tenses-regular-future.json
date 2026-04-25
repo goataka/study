@@ -11,7 +11,7 @@
   "description": "will や be going to を使って未来の予定や意志を表します。",
   "questions": [
     {
-      "id": "tenses-regular-future-1",
+      "id": "8e9197a6-fa7b-5f82-918d-e857f28bc503",
       "question": "I ___ games tomorrow. (play)",
       "choices": [
         "will play",
@@ -23,7 +23,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-2",
+      "id": "c4c0c4e4-a5d4-5bac-b3ce-bd9a0e5f56b9",
       "question": "I ___ English next week. (study)",
       "choices": [
         "will study",
@@ -35,7 +35,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-3",
+      "id": "dc7635ad-eef0-55e8-9945-a3704d1882b5",
       "question": "I ___ TV tonight. (watch)",
       "choices": [
         "will watch",
@@ -47,7 +47,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-4",
+      "id": "1c837568-5f7c-5145-830d-5031da65d791",
       "question": "She ___ music tomorrow. (like)",
       "choices": [
         "will like",
@@ -59,7 +59,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-5",
+      "id": "f5553b73-bc88-54c6-8f88-a050b782c73a",
       "question": "He ___ to school tomorrow. (walk)",
       "choices": [
         "will walk",
@@ -71,7 +71,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-6",
+      "id": "33f94708-a87c-58e3-857e-c51f454416f3",
       "question": "They ___ tennis next Sunday. (play)",
       "choices": [
         "will play",
@@ -83,7 +83,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-7",
+      "id": "efdee961-daf3-5735-99a5-1b715dc908df",
       "question": "We ___ the movie next week. (watch)",
       "choices": [
         "will watch",
@@ -95,7 +95,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-8",
+      "id": "8a8a1aa1-7a1e-57cf-a844-9ede31bca95b",
       "question": "I ___ hard next month. (study)",
       "choices": [
         "will study",
