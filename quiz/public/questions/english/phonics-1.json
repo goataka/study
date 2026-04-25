@@ -203,6 +203,18 @@
       "explanation": "pen = プ エ ヌ"
     },
     {
+      "id": "10c24774-1073-5080-abe1-54a9574092ce",
+      "question": "「queen」の「qu」の音は？",
+      "choices": [
+        "クウ",
+        "ク",
+        "グウ",
+        "コ"
+      ],
+      "correct": 0,
+      "explanation": "queen = クウ イー ヌ"
+    },
+    {
       "id": "5e79f707-c561-5b8d-a628-2a3423efbbf5",
       "question": "「red」の「r」の音は？",
       "choices": [
@@ -249,6 +261,66 @@
       ],
       "correct": 0,
       "explanation": "up = ア プ"
+    },
+    {
+      "id": "b39490fe-8768-5745-8666-26643a58baa1",
+      "question": "「van」の「v」の音は？",
+      "choices": [
+        "ヴ",
+        "フ",
+        "ブ",
+        "ム"
+      ],
+      "correct": 0,
+      "explanation": "van = ヴ ア ヌ"
+    },
+    {
+      "id": "2c9e5ff1-c0ba-5d14-969f-c83bbe4d6cec",
+      "question": "「water」の「w」の音は？",
+      "choices": [
+        "ウ",
+        "ヴ",
+        "ユ",
+        "オ"
+      ],
+      "correct": 0,
+      "explanation": "water = ウ オー ラー"
+    },
+    {
+      "id": "264382c6-cd14-5ab1-b55e-82d24499a3a4",
+      "question": "「box」の「x」の音は？",
+      "choices": [
+        "クス",
+        "ス",
+        "ク",
+        "ズ"
+      ],
+      "correct": 0,
+      "explanation": "box = ブ ア クス"
+    },
+    {
+      "id": "3343465e-4d24-534a-89dd-1aac885693b0",
+      "question": "「yes」の「y」の音は？",
+      "choices": [
+        "イ",
+        "ユ",
+        "エ",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "yes = イ エ ス"
+    },
+    {
+      "id": "7e7e96c4-38ad-5ca9-b833-a03973e32ef4",
+      "question": "「zoo」の「z」の音は？",
+      "choices": [
+        "ズ",
+        "ス",
+        "ジュ",
+        "シュ"
+      ],
+      "correct": 0,
+      "explanation": "zoo = ズ ウー"
     }
   ]
 }
