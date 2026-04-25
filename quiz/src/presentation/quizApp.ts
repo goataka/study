@@ -1378,6 +1378,8 @@ export class QuizApp {
     }
     if (this.kanjiCanvasInitialized) return;
     KanjiCanvas.init("kanjiCanvas");
+    // 書き順番号と線の色変化を無効化する（全ストロークをデフォルト色 #333 で統一）
+    KanjiCanvas.strokeColors = [];
     const canvas = document.getElementById("kanjiCanvas");
     if (canvas) {
       canvas.addEventListener("mouseup", () => this.updateKanjiCandidates());
