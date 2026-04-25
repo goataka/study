@@ -6,8 +6,9 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/26-perfect-participles/guide",
-  "example": "go\u2192`gone`",
+  "example": "go→`gone`",
   "referenceGrade": "中学3年",
+  "description": "過去分詞は完了形や受動態で使います。",
   "questions": [
     {
       "id": "perfect-participles-1",

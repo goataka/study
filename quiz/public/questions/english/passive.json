@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/31-passive/guide",
   "example": "It `was` written.",
   "referenceGrade": "中学2年",
+  "description": "受動態は「〜される」という形で、be動詞 + 過去分詞で作ります。",
   "questions": [
     {
       "id": "passive-1",

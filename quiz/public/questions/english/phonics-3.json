@@ -6,8 +6,9 @@
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/05-phonics-3letter/guide",
-  "example": "`igh`\u2192/a\u026a/ (night)",
+  "example": "`igh`→/aɪ/ (night)",
   "referenceGrade": "小学5年",
+  "description": "3文字の特殊な音パターンを覚えます。",
   "questions": [
     {
       "id": "phonics-3-tch1",

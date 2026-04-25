@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/22-conjunctions/guide",
   "example": "cats `and` dogs",
   "referenceGrade": "中学1年",
+  "description": "接続詞は文と文、語と語をつなぐ語です。",
   "questions": [
     {
       "id": "conjunctions-1",

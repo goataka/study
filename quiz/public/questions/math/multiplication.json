@@ -5,8 +5,9 @@
   "categoryName": "かけ算",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
-  "example": "6 \u00d7 7 = 42",
+  "example": "6 × 7 = 42",
   "referenceGrade": "小学2年",
+  "description": "かけ算を筆算で正確に計算できるようにします。",
   "questions": [
     {
       "id": "mul-1",

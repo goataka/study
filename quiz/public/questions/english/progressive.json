@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/23-progressive/guide",
   "example": "I `am playing`.",
   "referenceGrade": "中学1年",
+  "description": "進行形は動作が「〜している最中」であることを表します。",
   "questions": [
     {
       "id": "progressive-1",

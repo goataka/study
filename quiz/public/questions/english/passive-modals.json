@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/32-passive-modals/guide",
   "example": "It `must be` done.",
   "referenceGrade": "中学3年",
+  "description": "助動詞の受動態は「助動詞 + be + 過去分詞」の形で作ります。",
   "questions": [
     {
       "id": "passive-modals-1",

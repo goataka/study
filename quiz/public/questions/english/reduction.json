@@ -6,8 +6,9 @@
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/08-reduction/guide",
-  "example": "for\u2192/f\u0259r/",
+  "example": "for→/fər/",
   "referenceGrade": "中学2年",
+  "description": "自然な会話では一部の音が弱くなったり消えたりする現象（リダクション）を学びます。",
   "questions": [
     {
       "id": "reduction-1",
