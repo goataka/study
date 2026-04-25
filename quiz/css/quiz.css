@@ -250,7 +250,6 @@ header h1 {
 .category-example {
     font-size: 13px;
     color: #586069;
-    font-style: italic;
 }
 
 .category-example::before {
