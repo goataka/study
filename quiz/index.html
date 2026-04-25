@@ -12,9 +12,6 @@
   <div class="container">
     <header>
       <h1 id="titleBtn" role="button" tabindex="0" class="title-btn" title="スタート画面へ戻る">学習クイズ</h1>
-      <nav>
-        <a href="../">🏠 ドリル一覧</a>
-      </nav>
       <div class="header-user-area">
         <button id="headerUserName" class="header-user-name" title="名前を変更する（クリック）" aria-label="名前を変更する"></button>
         <div id="headerUserEdit" class="header-user-edit hidden">
@@ -43,8 +40,8 @@
         <div class="quiz-panel">
           <!-- インナータブ -->
           <div class="panel-tabs" role="tablist" aria-label="パネル切り替え">
-            <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">学習</button>
             <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
+            <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">確認</button>
             <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
             <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
           </div>
