@@ -25,19 +25,6 @@ I `have lived` here for three years.（3年間ここに住んでいる）
 | 完了 | just, already, yet | I `have just finished` my homework. |
 | 継続 | for, since | I `have lived` here `for` three years. |
 
-## 練習問題
-
-次の文の完了形の用法を答えましょう。
-
-| 文 | 用法 |
-|------|------|
-| I have been to Tokyo before. | 経験 |
-| I have lived here for three years. | (　　　　　　) |
-| I have just finished my homework. | (　　　　　　) |
-| I have lost my key. | (　　　　　　) |
-| I have never seen a lion. | (　　　　　　) |
-| I have already eaten lunch. | (　　　　　　) |
-
 ## 解答
 
 | 文 | 用法 |
@@ -48,17 +35,6 @@ I `have lived` here for three years.（3年間ここに住んでいる）
 | I have lost my key. | (結果) |
 | I have never seen a lion. | (経験) |
 | I have already eaten lunch. | (完了) |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私は東京に行ったことがある。 | 　　　　　　　　　　　　 |
-| 私は3年間ここに住んでいる。 | 　　　　　　　　　　　　 |
-| 私はちょうど宿題を終えた。 | 　　　　　　　　　　　　 |
-| 私は鍵をなくしてしまった。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

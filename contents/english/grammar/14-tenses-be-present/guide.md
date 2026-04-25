@@ -22,19 +22,6 @@ Games `are` fun.
 | he / she / it | `is` | The game `is` fun. |
 | you / we / they | `are` | Games `are` fun. |
 
-## 練習問題
-
-( ) に正しいbe動詞を入れましょう。
-
-| 主語 | 文 |
-|------|------|
-| I | I am a gamer. |
-| He | He (　　　　　　) happy. |
-| She | She (　　　　　　) a student. |
-| They | They (　　　　　　) friends. |
-| We | We (　　　　　　) tired. |
-| It | It (　　　　　　) cold. |
-
 ## 解答
 
 | 主語 | 文 |
@@ -45,17 +32,6 @@ Games `are` fun.
 | They | They (`are`) friends. |
 | We | We (`are`) tired. |
 | It | It (`is`) cold. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私は幸せです。 | 　　　　　　　　　　　　 |
-| 彼は学生です。 | 　　　　　　　　　　　　 |
-| 彼女は先生です。 | 　　　　　　　　　　　　 |
-| 彼らは友達です。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

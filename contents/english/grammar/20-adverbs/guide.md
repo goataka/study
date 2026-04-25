@@ -29,21 +29,6 @@ She sings `beautifully`.
 | 時 | 文末 | I played games `yesterday`. |
 | 場所 | 文末 | I play games `here`. |
 
-## 練習問題
-
-( ) に正しい副詞を入れましょう。
-
-| パターン | 文 |
-|----------|------|
-| 頻度 | I always play games. |
-| 頻度 | I (　　　　　　) play games. |
-| 様態 | I play games (　　　　　　). |
-| 頻度 | I (　　　　　　) study English. |
-| 様態 | She sings (　　　　　　). |
-| 時 | I played games (　　　　　　). |
-
-ヒント: sometimes, well, usually, beautifully, yesterday
-
 ## 解答
 
 | パターン | 文 |
@@ -54,17 +39,6 @@ She sings `beautifully`.
 | 頻度 | I (`usually`) study English. |
 | 様態 | She sings (`beautifully`). |
 | 時 | I played games (`yesterday`). |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私はいつもゲームをします。 | 　　　　　　　　　　　　 |
-| 私は時々ゲームをします。 | 　　　　　　　　　　　　 |
-| 私はゲームが上手です。 | 　　　　　　　　　　　　 |
-| 私は昨日ゲームをしました。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

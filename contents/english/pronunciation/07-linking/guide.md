@@ -40,21 +40,6 @@ not  at  all
 - 💡 聞き取るときは「単語の区切り」より「音のかたまり」で捉える
 - 💡 `an apple` → `アナップル`（n + a → ナ）
 
-## 練習問題
-
-音がつながる部分の音をカタカナで書きましょう。
-
-| フレーズ | 音 |
-|----------|------|
-| check it out | 　　　　　　　　　　　　 |
-| turn it off | 　　　　　　　　　　　　 |
-| put it on | 　　　　　　　　　　　　 |
-| pick it up | 　　　　　　　　　　　　 |
-| take a look | 　　　　　　　　　　　　 |
-| not at all | 　　　　　　　　　　　　 |
-| an apple | 　　　　　　　　　　　　 |
-| turn on | 　　　　　　　　　　　　 |
-
 ## 解答
 
 音がつながる部分の音をカタカナで書きましょう。

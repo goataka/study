@@ -34,19 +34,6 @@ I play games `in` the morning.
 | `for` | 目的・期間 | study `for` two hours |
 | `with` | 一緒に・道具 | play `with` friends |
 
-## 練習問題
-
-( ) に正しい前置詞を入れましょう。
-
-| パターン | 文 |
-|----------|------|
-| 場所 | I play games at home. |
-| 場所 | I play games (　　　　　　) the park. |
-| 時 | I play games (　　　　　　) Sunday. |
-| 時 | I play games (　　　　　　) the morning. |
-| 方向 | I go (　　　　　　) school. |
-| 手段 | I go to school (　　　　　　) bus. |
-
 ## 解答
 
 | パターン | 文 |
@@ -57,17 +44,6 @@ I play games `in` the morning.
 | 時 | I play games (`in`) the morning. |
 | 方向 | I go (`to`) school. |
 | 手段 | I go to school (`by`) bus. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私は家でゲームをします。 | 　　　　　　　　　　　　 |
-| 私は公園でゲームをします。 | 　　　　　　　　　　　　 |
-| 私は日曜日にゲームをします。 | 　　　　　　　　　　　　 |
-| 私はバスで学校に行きます。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

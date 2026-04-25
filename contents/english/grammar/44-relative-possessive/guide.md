@@ -16,20 +16,6 @@ I know a boy `whose` father plays games.
 | 人 | `whose` | a boy `whose` father plays games |
 | 物 | `whose` | a game `whose` rules are simple |
 
-## 練習問題
-
-( ) に正しい関係代名詞を入れましょう。
-
-2文を1文にする例:
-I have a friend. His father is a doctor.
-→ I have a friend `whose` father is a doctor.
-
-| 文 |
-|------|
-| I have a friend (　　　　　　) father is a doctor. |
-| I have a book (　　　　　　) cover is red. |
-| I have a friend (　　　　　　) mother is a teacher. |
-
 ## 解答
 
 | 文 |
@@ -37,15 +23,6 @@ I have a friend. His father is a doctor.
 | I have a friend (whose) father is a doctor. |
 | I have a book (whose) cover is red. |
 | I have a friend (whose) mother is a teacher. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| お父さんが医者の友達がいる。 | 　　　　　　　　　　　　 |
-| 表紙が赤い本を持っている。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 
