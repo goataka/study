@@ -74,9 +74,9 @@ function setupTabDom(): void {
         <div id="categoryList" class="category-list"></div>
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
-          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">確認</button>
-          <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
           <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
+          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">問題</button>
+          <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 履歴</button>
         </div>
         <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
           <div id="statsInfo"></div>
@@ -625,7 +625,7 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     localStorage.clear();
   });
 
-  it("確認タブが解説タブと実行記録タブの間に存在する", async () => {
+  it("問題タブが問題一覧タブと履歴タブの間に存在する", async () => {
     setupTabDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -642,11 +642,14 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     const quizIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "quiz");
     const guideIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "guide");
     const historyIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "history");
-    expect(quizIdx).toBeGreaterThanOrEqual(0);
+    const questionsIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "questions");
     expect(guideIdx).toBeGreaterThanOrEqual(0);
+    expect(questionsIdx).toBeGreaterThanOrEqual(0);
+    expect(quizIdx).toBeGreaterThanOrEqual(0);
     expect(historyIdx).toBeGreaterThanOrEqual(0);
-    expect(quizIdx).toBeGreaterThan(guideIdx);
-    expect(quizIdx).toBeLessThan(historyIdx);
+    expect(questionsIdx).toBeGreaterThan(guideIdx);
+    expect(quizIdx).toBeGreaterThan(questionsIdx);
+    expect(historyIdx).toBeGreaterThan(quizIdx);
   });
 
   it("guideUrl ありのカテゴリで解説タブをクリックすると iframe に URL が設定される", async () => {
@@ -727,7 +730,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("パネルに「確認」と「解説」と「実行記録」と「問題一覧」のインナータブが描画される", async () => {
+  it("パネルに「問題」と「解説」と「履歴」と「問題一覧」のインナータブが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -736,16 +739,16 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]');
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]');
     expect(quizTab).not.toBeNull();
-    expect(quizTab?.textContent).toContain("確認");
+    expect(quizTab?.textContent).toContain("問題");
     expect(guideTab).not.toBeNull();
     expect(guideTab?.textContent).toContain("解説");
     expect(historyTab).not.toBeNull();
-    expect(historyTab?.textContent).toContain("実行記録");
+    expect(historyTab?.textContent).toContain("履歴");
     expect(questionsTab).not.toBeNull();
     expect(questionsTab?.textContent).toContain("問題一覧");
   });
 
-  it("「実行記録」インナータブをクリックするとhistoryContentが表示されquizModePanelが非表示になる", async () => {
+  it("「履歴」インナータブをクリックするとhistoryContentが表示されquizModePanelが非表示になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -766,7 +769,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     expect(subjectContent?.classList.contains("hidden")).toBe(false);
   });
 
-  it("履歴がないとき「実行記録」タブをクリックすると空メッセージが表示される", async () => {
+  it("履歴がないとき「履歴」タブをクリックすると空メッセージが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -777,15 +780,15 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     expect(historyList?.querySelector(".history-empty")).not.toBeNull();
   });
 
-  it("「確認」インナータブをクリックするとquizModePanelが再び表示される", async () => {
+  it("「問題」インナータブをクリックするとquizModePanelが再び表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 実行記録タブを開く
+    // 履歴タブを開く
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
     historyTab?.click();
 
-    // 確認タブに戻る
+    // 問題タブに戻る
     const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]') as HTMLElement;
     quizTab?.click();
 
@@ -929,7 +932,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     expect(items?.length).toBe(1);
   });
 
-  it("単元選択後に実行記録タブを開いてもその単元の記録のみ表示される", async () => {
+  it("単元選択後に履歴タブを開いてもその単元の記録のみ表示される", async () => {
     // 同じ教科で異なる単元の記録を用意
     const records = [
       {
@@ -970,7 +973,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
     categoryItem?.click();
 
-    // 実行記録タブをクリック
+    // 履歴タブをクリック
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
     historyTab?.click();
 
@@ -978,6 +981,84 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const items = historyList?.querySelectorAll(".history-item");
     // phonics-1 の記録のみ表示される
     expect(items?.length).toBe(1);
+  });
+});
+
+describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様", () => {
+  beforeEach(() => {
+    window.history.pushState({}, "", "/"); // URL を確実にリセット
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    window.history.pushState({}, "", "/"); // URL をリセット
+  });
+
+  it("解答履歴がない単元をクリックすると解説タブが表示される", async () => {
+    // 総合タブではなく英語タブから開始し、かつ selectFirstUnlearnedCategory をスキップする
+    // ことで autoSwitchedToHistory=false の状態を作る
+    // （?category=all とすることで selectFirstUnlearnedCategory が URL category を検出してスキップ）
+    window.history.pushState({}, "", "?subject=english&category=all");
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // phonics-1 をクリック（履歴なし、総合タブからの自動復帰なし）
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
+    expect(guideTab?.classList.contains("active")).toBe(true);
+    expect(guideTab?.getAttribute("aria-selected")).toBe("true");
+
+    const guideContent = document.getElementById("guideContent");
+    expect(guideContent?.classList.contains("hidden")).toBe(false);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("解答履歴がある単元をクリックすると確認タブが表示される", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 3,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // phonics-1 をクリック（履歴あり）
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
+    expect(quizTab?.classList.contains("active")).toBe(true);
+    expect(quizTab?.getAttribute("aria-selected")).toBe("true");
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
+
+    const guideContent = document.getElementById("guideContent");
+    expect(guideContent?.classList.contains("hidden")).toBe(true);
   });
 });
 
@@ -1182,14 +1263,14 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     expect(btn?.textContent).toBe("✅ 学習済を表示");
   });
 
-  it("ボタンクリック後（非表示OFF）はボタンのテキストが「□ 学習済を非表示」になる", async () => {
+  it("ボタンクリック後（非表示OFF）はボタンのテキストが「⬜ 学習済を非表示」になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
     btn?.click();
 
-    expect(btn?.textContent).toBe("□ 学習済を非表示");
+    expect(btn?.textContent).toBe("⬜ 学習済を非表示");
   });
 
   it("2回クリック後（非表示ON）はボタンのテキストが「✅ 学習済を表示」に戻る", async () => {
@@ -1584,7 +1665,7 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
     expect(firstHint.classList.contains("hidden")).toBe(true); // もう一度押すと非表示に戻る
   });
 
-  it("「確認」タブに戻るとquizModePanelが再表示される", async () => {
+  it("「問題」タブに戻るとquizModePanelが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -1914,9 +1995,9 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
           <div class="quiz-panel">
             <div class="panel-tabs" role="tablist">
               <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" tabindex="-1">📖 解説</button>
-              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">確認</button>
-              <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 実行記録</button>
               <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題一覧</button>
+              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">問題</button>
+              <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 履歴</button>
             </div>
             <div id="guideContent" class="hidden" role="tabpanel"></div>
             <div id="quizModePanel" role="tabpanel">
@@ -2006,7 +2087,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(guideTab?.classList.contains("hidden")).toBe(true);
   });
 
-  it("総合タブ表示中は「確認」タブボタンが非表示になる", async () => {
+  it("総合タブ表示中は「問題」タブボタンが非表示になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2014,7 +2095,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizTab?.classList.contains("hidden")).toBe(true);
   });
 
-  it("総合タブから教科タブに切り替えると「解説」「確認」タブボタンが再表示される", async () => {
+  it("総合タブから教科タブに切り替えると「解説」「問題」タブボタンが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2027,7 +2108,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizTab?.classList.contains("hidden")).toBe(false);
   });
 
-  it("総合タブから教科タブに切り替えると「確認」パネルが再表示される", async () => {
+  it("総合タブから教科タブに切り替えると「問題」パネルが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2042,7 +2123,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizModePanel?.classList.contains("hidden")).toBe(false);
   });
 
-  it("総合タブ表示中はアクティブタブが「実行記録」に切り替わる", async () => {
+  it("総合タブ表示中はアクティブタブが「履歴」に切り替わる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2057,7 +2138,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizModePanel?.classList.contains("hidden")).toBe(true);
   });
 
-  it("総合タブに切り替えると「実行記録」タブボタンの hidden が外れて表示される", async () => {
+  it("総合タブに切り替えると「履歴」タブボタンの hidden が外れて表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2089,7 +2170,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(questionsTab?.classList.contains("hidden")).toBe(false);
   });
 
-  it("総合タブ後に教科＋カテゴリを選択すると「確認」タブへ自動復帰する", async () => {
+  it("総合タブ後に教科＋カテゴリを選択すると「問題」タブへ自動復帰する", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2110,7 +2191,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(historyContent?.classList.contains("hidden")).toBe(true);
   });
 
-  it("ユーザーが明示的に実行記録タブを選択した後はカテゴリ選択で自動復帰しない", async () => {
+  it("ユーザーが明示的に履歴タブを選択した後はカテゴリ選択で自動復帰しない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2118,7 +2199,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 実行記録タブを明示的に選択
+    // 履歴タブを明示的に選択
     const historyTab = document.getElementById("panelTab-history") as HTMLElement;
     historyTab?.click();
 
