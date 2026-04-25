@@ -1040,6 +1040,67 @@ describe("QuizApp — 履歴モード表示仕様", () => {
     const modeEl = document.querySelector(".history-mode");
     expect(modeEl?.textContent).toBe("手動");
   });
+
+  it("mode=manual の履歴のスコアは「-」と表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const scoreEl = document.querySelector(".history-score");
+    expect(scoreEl?.textContent).toBe("-");
+  });
+
+  it("mode=manual の履歴には横三角（▶）が表示されない", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggleEl = document.querySelector(".history-toggle");
+    expect(toggleEl).toBeNull();
+  });
+
+  it("mode=manual の履歴のヘッダーは操作不可で、click や Enter/Space でも詳細は開かない", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const header = document.querySelector<HTMLElement>(".history-item-header");
+    const detail = document.querySelector(".history-detail");
+
+    expect(header).not.toBeNull();
+    expect(detail).not.toBeNull();
+    expect(header?.hasAttribute("role")).toBe(false);
+    expect(header?.hasAttribute("tabindex")).toBe(false);
+    expect(header?.hasAttribute("aria-expanded")).toBe(false);
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.click();
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
+    expect(detail?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("mode=random の履歴にはスコアが「N/N (N%)」形式で表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const scoreEl = document.querySelector(".history-score");
+    expect(scoreEl?.textContent).toBe("5/5 (100%)");
+  });
+
+  it("mode=random の履歴には横三角（▶）が表示される", async () => {
+    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const toggleEl = document.querySelector(".history-toggle");
+    expect(toggleEl?.textContent).toBe("▶");
+  });
 });
 
 describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
