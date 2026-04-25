@@ -105,7 +105,6 @@
 ### README
 
 - `contents/README.md` にはすべてのドリルへのリンクテーブルを維持すること
-- 科目ごとのREADME（例: `contents/math/README.md`）からは `contents/README.md` へ「ドリル一覧」として戻れるリンクを配置する
 
 ### 解説ルール
 
@@ -159,9 +158,6 @@ contents/english/
 ### README
 
 contents/README.md にはすべてのドリルへのリンクテーブルを維持すること。
-各科目フォルダ（english/など）にも README.md を置き、科目ごとの学習ガイドとする。
-科目 README.md の冒頭には `[Top](../README.md)` でドリル一覧に戻れるリンクを置く。
-
 
 ```markdown
 | ドリル | 解説 |

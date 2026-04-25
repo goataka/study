@@ -63,31 +63,3 @@ meet  you
 | bless you | s+y→シュ | ブレッ シュー | s you → シュー |
 | ten people | n→m（唇音の前） | テム ピー プル | n → m |
 | in Paris | n→m（唇音の前） | イム パ リ | n → m |
-
-## 応用問題
-
-となりの音に引っ張られて音が変わる部分の音をカタカナで書きましょう。
-
-| フレーズ | 変化 | 音 |
-|----------|------|------|
-| did you | d+y→ジュ | 　　　　　　　　　　　　 |
-| got you | t+y→チュ | 　　　　　　　　　　　　 |
-| don't you | t+y→チュ | 　　　　　　　　　　　　 |
-| had you | d+y→ジュ | 　　　　　　　　　　　　 |
-| press you | s+y→シュ | 　　　　　　　　　　　　 |
-| in Boston | n→m（唇音の前） | 　　　　　　　　　　　　 |
-| on purpose | n→m（唇音の前） | 　　　　　　　　　　　　 |
-| in mind | n→m（唇音の前） | 　　　　　　　　　　　　 |
-
-## 応用解答
-
-| フレーズ | 変化 | 音 | 変化した部分 |
-|----------|------|------|--------------|
-| did you | d+y→ジュ | ディ ジュー | d you → ジュー |
-| got you | t+y→チュ | ガッ チュー | t you → チュー |
-| don't you | t+y→チュ | ドウン チュー | t you → チュー |
-| had you | d+y→ジュ | ハッ ジュー | d you → ジュー |
-| press you | s+y→シュ | プレッ シュー | s you → シュー |
-| in Boston | n→m（唇音の前） | イム ボストン | n → m |
-| on purpose | n→m（唇音の前） | オム パーパス | n → m |
-| in mind | n→m（唇音の前） | イム マインド | n → m |

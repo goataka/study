@@ -2844,6 +2844,21 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     expect(candidateBtns.length).toBe(0);
   });
 
+  it("認識候補が6個以上あっても候補ボタンは5個まで表示される", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("や い う え お か き");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const candidateBtns = document.querySelectorAll(".kanji-candidate-btn");
+    expect(candidateBtns.length).toBe(5);
+  });
+
   it("↩ボタンをクリックするとKanjiCanvasの最後のストロークが削除される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

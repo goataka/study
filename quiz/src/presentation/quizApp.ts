@@ -1501,6 +1501,8 @@ export class QuizApp {
       candidates = candidates.filter((char) => this.isHiraganaOnly(char));
     }
 
+    candidates = candidates.slice(0, 5);
+
     candidateList.innerHTML = "";
     candidates.forEach((char) => {
       const btn = document.createElement("button");

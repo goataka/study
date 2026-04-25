@@ -8,7 +8,9 @@ const STATS_LOAD_TIMEOUT = 10_000;
 Given("the quiz application is loaded", async ({ page }) => {
   await page.goto(".");
   // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ
-  await expect(page.locator("#statsInfo")).toContainText(/全\d+問/, {
+  // [1-9] で先頭を非ゼロにし、\d* で2桁以上に対応（例: 全1問, 全108問）
+  // 全0問はロード失敗を示すため、このパターンには一致しない
+  await expect(page.locator("#statsInfo")).toContainText(/全[1-9]\d*問/, {
     timeout: STATS_LOAD_TIMEOUT,
   });
 });
