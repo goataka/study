@@ -261,7 +261,6 @@ header nav .top-nav-btn {
 .category-name {
     font-size: 13px;
     color: #24292e;
-    flex: 1;
 }
 
 .category-item.active .category-name {
@@ -329,7 +328,67 @@ header nav .top-nav-btn {
     color: white;
 }
 
-/* 右側: クイズパネル */
+/* 総合タブ — 教科概要カード */
+.subject-overview-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #e1e4e8;
+    background: white;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.subject-overview-item:hover {
+    background: #e8f0fe;
+    border-color: #0366d6;
+}
+
+.subject-overview-item:focus {
+    outline: 2px solid #0366d6;
+    outline-offset: 2px;
+}
+
+.subject-overview-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: #24292e;
+}
+
+.subject-overview-recommended {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #24292e;
+}
+
+.subject-overview-rec-label {
+    color: #586069;
+}
+
+.subject-overview-rec-name {
+    font-weight: 600;
+}
+
+.subject-overview-grade {
+    font-size: 10px;
+    color: #0366d6;
+    background: #e8f0fe;
+    padding: 1px 5px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.subject-overview-date {
+    font-size: 11px;
+    color: #586069;
+}
+
+
 .quiz-panel {
     background: white;
     border: 1px solid #e1e4e8;
@@ -1060,6 +1119,15 @@ button:disabled {
     gap: 3px;
 }
 
+/* タイトルと例文を横並び */
+.category-title-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
 /* カテゴリ進捗バー */
 .category-progress-bar {
     height: 4px;
@@ -1455,6 +1523,23 @@ button:disabled {
     gap: 8px;
 }
 
+.handwriting-text-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e1e4e8;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.handwriting-text-input:focus {
+    border-color: #0366d6;
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.2);
+}
+
 .handwriting-confirm-btn {
     width: 100%;
     padding: 10px 16px;
@@ -1475,51 +1560,4 @@ button:disabled {
 .handwriting-confirm-btn:disabled {
     background: #c8e1ff;
     cursor: not-allowed;
-}
-
-/* 手書き確認後の正解表示と自己評価 */
-.handwriting-reveal-text {
-    margin: 0;
-    font-size: 14px;
-    color: #24292e;
-    font-weight: 600;
-}
-
-.self-eval-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.self-eval-btn {
-    flex: 1;
-    padding: 10px 8px;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-
-.self-eval-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.self-eval-correct {
-    background: #28a745;
-    color: white;
-}
-
-.self-eval-correct:hover:not(:disabled) {
-    background: #22863a;
-}
-
-.self-eval-incorrect {
-    background: #dc3545;
-    color: white;
-}
-
-.self-eval-incorrect:hover:not(:disabled) {
-    background: #cb2431;
 }

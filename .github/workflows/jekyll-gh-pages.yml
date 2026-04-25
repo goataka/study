@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.COPILOT_CLASSIC }}
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -81,6 +83,8 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.COPILOT_CLASSIC }}
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz

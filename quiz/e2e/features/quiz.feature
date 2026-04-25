@@ -14,6 +14,10 @@ Feature: 学習クイズ
     Then the header should remain visible
     And the category list should be visible
 
+  Scenario: 総合タブには各教科の概要カードが表示される
+    Then the start screen should be visible
+    And the subject overview items should be visible
+
   Scenario: 単元を選択するとクイズパネルが表示される
     When I click the "英語" tab
     And I click the first category item

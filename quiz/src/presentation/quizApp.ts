@@ -232,8 +232,7 @@ export class QuizApp {
     const subject = this.filter.subject;
 
     if (subject === "all") {
-      // 「総合」タブではカテゴリを細分化しないため、リストは空のまま
-      categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+      this.renderAllSubjectList();
       return;
     }
 
@@ -275,6 +274,109 @@ export class QuizApp {
     categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
   }
 
+  /**
+   * 「総合」タブ用の教科一覧を描画する。
+   * 各教科カードに推奨の単元・学年・最終学習日を表示し、クリックで教科タブへ遷移する。
+   */
+  private renderAllSubjectList(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+    categoryList.innerHTML = "";
+    categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+
+    const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all");
+
+    for (const subject of nonAllSubjects) {
+      const recommended = this.useCase.getRecommendedCategoryForSubject(subject.id);
+      const lastStudyDate = this.useCase.getLastStudyDateForSubject(subject.id);
+
+      const item = document.createElement("div");
+      item.className = "subject-overview-item";
+      item.setAttribute("role", "button");
+      item.setAttribute("tabindex", "0");
+      item.dataset.subject = subject.id;
+
+      // 教科名ヘッダー
+      const headerDiv = document.createElement("div");
+      headerDiv.className = "subject-overview-header";
+      headerDiv.textContent = `${subject.icon} ${subject.name}`;
+
+      // 推奨の単元・学年
+      const recDiv = document.createElement("div");
+      recDiv.className = "subject-overview-recommended";
+
+      if (recommended) {
+        const recLabel = document.createElement("span");
+        recLabel.className = "subject-overview-rec-label";
+        recLabel.textContent = "推奨の単元: ";
+
+        const recName = document.createElement("span");
+        recName.className = "subject-overview-rec-name";
+        recName.textContent = recommended.name;
+
+        recDiv.appendChild(recLabel);
+        recDiv.appendChild(recName);
+
+        if (recommended.referenceGrade) {
+          const gradeSpan = document.createElement("span");
+          gradeSpan.className = "subject-overview-grade";
+          gradeSpan.textContent = recommended.referenceGrade;
+          recDiv.appendChild(gradeSpan);
+        }
+      } else {
+        recDiv.textContent = "単元なし";
+      }
+
+      // 最終学習日
+      const dateDiv = document.createElement("div");
+      dateDiv.className = "subject-overview-date";
+      if (lastStudyDate) {
+        const d = new Date(lastStudyDate);
+        const dateStr = `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
+        dateDiv.textContent = `最終学習日: ${dateStr}`;
+      } else {
+        dateDiv.textContent = "未学習";
+      }
+
+      item.appendChild(headerDiv);
+      item.appendChild(recDiv);
+      item.appendChild(dateDiv);
+
+      // クリックで該当教科タブへ切り替え
+      const handleActivate = (): void => {
+        this.filter.subject = subject.id;
+        this.filter.category = recommended ? recommended.id : "all";
+        this.filter.parentCategory = undefined;
+
+        const tabsContainer = document.querySelector(".subject-tabs");
+        if (tabsContainer) {
+          tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
+            t.classList.remove("active");
+            t.setAttribute("aria-selected", "false");
+          });
+          const subjectTab = tabsContainer.querySelector<HTMLElement>(
+            `.subject-tab[data-subject="${subject.id}"]`
+          );
+          subjectTab?.classList.add("active");
+          subjectTab?.setAttribute("aria-selected", "true");
+        }
+
+        this.renderCategoryList();
+        this.updateStartScreen();
+      };
+
+      item.addEventListener("click", handleActivate);
+      item.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleActivate();
+        }
+      });
+
+      categoryList.appendChild(item);
+    }
+  }
+
   private createCategoryItem(
     subject: string,
     categoryId: string,
@@ -300,9 +402,14 @@ export class QuizApp {
     const nameArea = document.createElement("div");
     nameArea.className = "category-name-area";
 
+    // タイトルと例文を横並びにするラッパー
+    const titleRow = document.createElement("div");
+    titleRow.className = "category-title-row";
+
     const nameSpan = document.createElement("span");
     nameSpan.className = "category-name";
     nameSpan.textContent = categoryName;
+    titleRow.appendChild(nameSpan);
 
     // 例文（example が設定されている場合のみ表示）
     const example = this.useCase.getCategoryExample(subject, categoryId);
@@ -310,11 +417,10 @@ export class QuizApp {
       const exampleSpan = document.createElement("span");
       exampleSpan.className = "category-example";
       this.renderBacktickText(exampleSpan, example);
-      nameArea.appendChild(nameSpan);
-      nameArea.appendChild(exampleSpan);
-    } else {
-      nameArea.appendChild(nameSpan);
+      titleRow.appendChild(exampleSpan);
     }
+
+    nameArea.appendChild(titleRow);
 
     const progressBar = document.createElement("div");
     progressBar.className = "category-progress-bar";
@@ -1138,7 +1244,7 @@ export class QuizApp {
     const notesTitle = document.getElementById("notesTitle");
     const confirmArea = document.getElementById("handwritingConfirmArea");
     const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
-    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
+    const textInput = document.getElementById("handwritingTextInput") as HTMLInputElement | null;
 
     const isTextInput = question?.questionType === "text-input";
     const showConfirm = isTextInput && !isAnswered;
@@ -1153,19 +1259,17 @@ export class QuizApp {
     }
     // 確定ボタンを再表示してdisabled状態をリセット（問題遷移時の復元）
     if (confirmBtn) {
-      confirmBtn.classList.remove("hidden");
       confirmBtn.disabled = !showConfirm;
     }
-    // 自己評価UIをクリア（問題遷移時のリセット）
-    if (selfEvalArea) {
-      selfEvalArea.innerHTML = "";
-      selfEvalArea.classList.add("hidden");
+    // 手書き入力フィールドをクリア（問題遷移時のリセット）
+    if (textInput) {
+      textInput.value = "";
     }
   }
 
   /**
    * タッチペン入力の確定ボタンが押されたときの処理。
-   * 正解を表示してユーザーに自己評価させ、テキスト欄に結果を反映する。
+   * 手書き入力フィールドのテキストを答えの入力エリアに追加する。
    */
   private handleHandwritingConfirm(): void {
     const session = this.currentSession;
@@ -1177,65 +1281,21 @@ export class QuizApp {
     // 既回答の場合は何もしない
     if (session.getAnswer(session.currentIndex) !== undefined) return;
 
-    const correctAnswer = question.choices[question.correct] ?? "";
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement | null;
+    if (!handwritingInput) return;
 
-    // 確定ボタンを隠し、自己評価UIを同一confirmArea内の別divに表示
-    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
-    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
-    if (!selfEvalArea) return;
+    const inputText = handwritingInput.value;
+    if (!inputText) return;
 
-    confirmBtn?.classList.add("hidden");
-    selfEvalArea.innerHTML = "";
-    selfEvalArea.classList.remove("hidden");
+    // 答えの入力エリアにテキストを追加
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    if (textInput) {
+      textInput.value += inputText;
+      textInput.focus();
+    }
 
-    const revealText = document.createElement("p");
-    revealText.className = "handwriting-reveal-text";
-    revealText.textContent = `正解は「${correctAnswer}」です。あっていましたか？`;
-
-    const selfEvalBtns = document.createElement("div");
-    selfEvalBtns.className = "self-eval-buttons";
-
-    const correctBtn = document.createElement("button");
-    correctBtn.type = "button";
-    correctBtn.className = "self-eval-btn self-eval-correct";
-    correctBtn.textContent = "○ 正解だった";
-
-    const incorrectBtn = document.createElement("button");
-    incorrectBtn.type = "button";
-    incorrectBtn.className = "self-eval-btn self-eval-incorrect";
-    incorrectBtn.textContent = "× 不正解だった";
-
-    const handleSelfEval = (selfCorrect: boolean): void => {
-      // 不正解時は空文字を保存（"×" などのセンチネルを使わない）
-      const text = selfCorrect ? correctAnswer : "";
-      session.selectTextAnswer(session.currentIndex, text);
-      const answerIndex = session.getAnswer(session.currentIndex)!;
-
-      // テキスト入力欄に結果を反映して無効化
-      const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-      if (textInput) {
-        textInput.value = selfCorrect ? correctAnswer : "";
-        textInput.disabled = true;
-      }
-      const keyboardSubmitBtn = document.querySelector<HTMLButtonElement>(".text-answer-submit-btn");
-      if (keyboardSubmitBtn) {
-        keyboardSubmitBtn.disabled = true;
-      }
-
-      this.showAnswerFeedback(question, answerIndex, selfCorrect ? correctAnswer : undefined);
-      this.updateNavigationButtons(session);
-
-      correctBtn.disabled = true;
-      incorrectBtn.disabled = true;
-    };
-
-    correctBtn.addEventListener("click", () => handleSelfEval(true));
-    incorrectBtn.addEventListener("click", () => handleSelfEval(false));
-
-    selfEvalBtns.appendChild(correctBtn);
-    selfEvalBtns.appendChild(incorrectBtn);
-    selfEvalArea.appendChild(revealText);
-    selfEvalArea.appendChild(selfEvalBtns);
+    // 手書き入力フィールドをクリア
+    handwritingInput.value = "";
   }
 
   private navigate(direction: 1 | -1): void {
