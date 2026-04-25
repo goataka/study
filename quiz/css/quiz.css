@@ -250,7 +250,7 @@ header h1 {
 /* カテゴリ例文 */
 .category-example {
     font-size: 13px;
-    color: #586069;
+    color: #24292e;
 }
 
 .category-example::before {
@@ -1165,7 +1165,7 @@ button:disabled {
     gap: 3px;
 }
 
-/* タイトル・説明・例文をグリッド状に横並び（広い画面）、狭い画面では縦並び */
+/* タイトル・説明・例文を横並び（広い画面）、狭い画面では縦並び */
 .category-title-row {
     display: flex;
     flex-direction: column;
@@ -1173,25 +1173,14 @@ button:disabled {
     min-width: 0;
 }
 
-/* 広い画面ではグリッドで横並び（タイトル | 説明 | 例文） */
+/* 広い画面ではフレックスで横並び（タイトル | 説明 | 例文）。狭くなった時はラップする */
 @media (min-width: 601px) {
     .category-title-row {
-        display: grid;
-        grid-template-columns: minmax(min-content, 200px) 1fr auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: baseline;
-        gap: 0 12px;
-    }
-
-    .category-name {
-        grid-column: 1;
-    }
-
-    .category-item-description {
-        grid-column: 2;
-    }
-
-    .category-example {
-        grid-column: 3;
+        gap: 2px 12px;
     }
 }
 
