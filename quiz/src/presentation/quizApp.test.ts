@@ -62,8 +62,8 @@ function setupTabDom(): void {
         <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
         <div id="categoryList" class="category-list"></div>
         <div class="panel-tabs" role="tablist">
-          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">クイズモード選択</button>
           <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
+          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">確認</button>
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 実行記録</button>
           <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
         </div>
@@ -614,7 +614,7 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     localStorage.clear();
   });
 
-  it("解説パネルタブが学習タブと実行記録タブの間に存在する", async () => {
+  it("確認タブが解説タブと実行記録タブの間に存在する", async () => {
     setupTabDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -631,8 +631,8 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     const quizIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "quiz");
     const guideIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "guide");
     const historyIdx = tabs.findIndex((t) => (t as HTMLElement).dataset.panel === "history");
-    expect(guideIdx).toBeGreaterThan(quizIdx);
-    expect(guideIdx).toBeLessThan(historyIdx);
+    expect(quizIdx).toBeGreaterThan(guideIdx);
+    expect(quizIdx).toBeLessThan(historyIdx);
   });
 
   it("guideUrl ありのカテゴリで解説タブをクリックすると iframe に URL が設定される", async () => {
