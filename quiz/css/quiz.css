@@ -197,6 +197,9 @@ header h1 {
 }
 
 .category-group-header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
     font-size: 14px;
     font-weight: 600;
     color: #586069;
@@ -204,6 +207,13 @@ header h1 {
     letter-spacing: 0.5px;
     padding: 8px 10px 4px;
     margin-top: 4px;
+}
+
+.category-group-learned-badge {
+    font-size: 12px;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: 0;
 }
 
 .category-item {
