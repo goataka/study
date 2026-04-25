@@ -5,8 +5,6 @@
 ## 学習ドリル
 
 - [学習ドリル](contents/README.md)
-  - [英語ドリル](contents/english/README.md)
-  - [数学ドリル](contents/math/README.md)（小学校〜高校）
 
 ## 学習クイズ
 
