@@ -26,6 +26,8 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.COPILOT_CLASSIC }}
 
       - name: CopilotにCI修正を依頼
         uses: ./.github/actions/fix-gha-error
