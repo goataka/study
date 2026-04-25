@@ -43,11 +43,3 @@
 
 - 九九の知識が必要
 - 商（答え）の各桁を求めるとき、九九で考える
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 1桁のわり算（あまりあり）](../20-division-1digit-remainder/guide.md) | **2桁のわり算（あまりなし）** | [次へ: 2桁のわり算（あまりあり）](../22-division-2digit-remainder/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)

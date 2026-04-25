@@ -43,11 +43,3 @@
 
 - 1桁×1桁は九九で即答できるようにする
 - 2桁以上は筆算で丁寧に計算する
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 3桁のかけ算（3桁×1桁）](../17-multiplication-3digit/guide.md) | **かけ算（まとめ）** | [次へ: 1桁のわり算（あまりなし）](../19-division-1digit-no-remainder/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=multiplication)

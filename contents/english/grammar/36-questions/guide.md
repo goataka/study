@@ -20,9 +20,3 @@ I `play` games.
 | be動詞（現在） | be動詞 + 主語? | `Am` I happy? |
 | be動詞（過去） | be動詞 + 主語? | `Was` I happy? |
 | 進行形 | be動詞 + 主語 + -ing? | `Am` I playing games? |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=questions)
-
-[前へ: unless](../35-conditionals-unless/drill.md) | 疑問文 | [次へ: 否定文](../37-negatives/drill.md)

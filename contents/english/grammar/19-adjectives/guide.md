@@ -20,9 +20,3 @@ The game is `exciting`.
 |------|--------|------|
 | 名詞の前 | 形容詞 + 名詞 | a `new` game |
 | be動詞の後 | be動詞 + 形容詞 | The game is `fun`. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=adjectives)
-
-[前へ: 冠詞](../18-articles/drill.md) | 形容詞 | [次へ: 副詞](../20-adverbs/drill.md)

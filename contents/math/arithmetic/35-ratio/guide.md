@@ -34,11 +34,3 @@
 1. 2つの数の **最大公約数** を見つける
 2. 両方をその数で **わる**
 3. これ以上われなければ完成 ✅
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 小数のかけ算](../34-decimals-multiplication/guide.md) | **比** | [次へ: 割合](../36-percentage/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=ratio)

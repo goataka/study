@@ -32,11 +32,3 @@
 
 - まず整数で計算 🔢 → そのあと小数点を合わせる 🎯
 - 桁数を数えまちがえないように注意 ⚠️
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 小数のひき算](../33-decimals-subtraction/guide.md) | **小数のかけ算** | [次へ: 比](../35-ratio/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=decimals-multiplication)

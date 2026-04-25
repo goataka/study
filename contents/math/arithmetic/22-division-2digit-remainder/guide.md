@@ -45,11 +45,3 @@
 
 - あまり < わる数 の確認を必ずする
 - 商 × わる数 + あまり = もとの数 で検算できる
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 2桁のわり算（あまりなし）](../21-division-2digit-no-remainder/guide.md) | **2桁のわり算（あまりあり）** | [次へ: 3桁のわり算（あまりなし）](../23-division-3digit-no-remainder/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-remainder)

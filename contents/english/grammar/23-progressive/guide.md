@@ -17,9 +17,3 @@ I `am playing` games.（今まさにしている）
 | 現在進行形 | `am` | I `am playing` games. |
 | 過去進行形 | `was` | I `was playing` games. |
 | 未来進行形 | `will be` | I `will be playing` games. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=progressive)
-
-[前へ: 接続詞](../22-conjunctions/drill.md) | 進行形 | [次へ: -ing形の作り方](../24-progressive-ing/drill.md)

@@ -19,9 +19,3 @@ He said he would play games `the next day`.
 | `yesterday` | `the day before` |
 | `here` | `there` |
 | `this` | `that` |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reported-expressions)
-
-[前へ: 命令文の間接話法](../48-reported-imperative/drill.md) | 指示語の変化

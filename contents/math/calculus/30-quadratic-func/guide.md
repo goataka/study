@@ -42,11 +42,3 @@ y = -(x² - 6x) - 5
 | 軸 | x = **p** |
 | a > 0 | 下に凸 ∪ → **最小値**あり |
 | a < 0 | 上に凸 ∩ → **最大値**あり |
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 二次方程式](../../algebra/29-quadratic-eq/drill.md) | **二次関数** | [次へ: 不等式](../31-inequalities/drill.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=quadratic-func)

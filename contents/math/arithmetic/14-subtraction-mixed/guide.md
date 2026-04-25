@@ -24,11 +24,3 @@
 10 - 9 = 1
 1 + 6 = 7 ✅
 ```
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 3桁のひき算（くり下がりあり）](../13-subtraction-3digit-borrow/guide.md) | **ひき算（まとめ）** | [次へ: 1桁のかけ算（九九）](../15-multiplication-1digit/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-mixed)
