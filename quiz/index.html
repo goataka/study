@@ -118,12 +118,8 @@
         <!-- 右列: メモエリア -->
         <div class="quiz-notes-col">
           <div class="notes-area">
-            <div class="notes-tab-bar" role="tablist" aria-label="メモエリア切り替え">
-              <button id="notesTabMemo" class="notes-tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="notesMemoContent" tabindex="0">📝 メモ</button>
-              <button id="notesTabGuide" class="notes-tab-btn" type="button" role="tab" aria-selected="false" aria-controls="notesGuideContent" tabindex="-1">📖 解説</button>
-            </div>
             <!-- メモエリア -->
-            <div id="notesMemoContent" role="tabpanel" aria-labelledby="notesTabMemo">
+            <div id="notesMemoContent">
               <div class="notes-header">
                 <span id="notesTitle" class="notes-title">タッチペンで書けます</span>
                 <div class="notes-controls">
@@ -149,11 +145,7 @@
                 <div id="handwritingSelfEvalArea" class="hidden"></div>
               </div>
             </div>
-            <!-- 解説エリア（notesTabGuideで表示） -->
-            <div id="notesGuideContent" class="hidden" role="tabpanel" aria-labelledby="notesTabGuide">
-              <iframe id="notesGuideFrame" class="guide-frame notes-guide-frame" title="解説" sandbox="" referrerpolicy="no-referrer"></iframe>
-              <p id="notesGuideNoContent" class="guide-no-content">カテゴリを選択すると解説が表示されます。</p>
-            </div>
+
           </div>
         </div>
       </div>
