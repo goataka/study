@@ -18,22 +18,6 @@ I `have played` games.
 | 過去完了 | `had` | I `had played` games. |
 | 未来完了 | `will have` | I `will have played` games. |
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-| パターン | 文 |
-|----------|------|
-| 現在完了 | I have played games. |
-| 過去完了 | I (　　　　　　) played games. |
-| 未来完了 | I (　　　　　　) played games. |
-
-| パターン | 文 |
-|----------|------|
-| 現在完了 | I have lived here for three years. |
-| 過去完了 | I (　　　　　　) lived here for three years. |
-| 未来完了 | I (　　　　　　) lived here for three years. |
-
 ## 解答
 
 | パターン | 文 |
@@ -47,16 +31,6 @@ I `have played` games.
 | 現在完了 | I have lived here for three years. |
 | 過去完了 | I (had) lived here for three years. |
 | 未来完了 | I (will have) lived here for three years. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私はゲームをしたことがある。 | 　　　　　　　　　　　　 |
-| 私は3年間ここに住んでいる。 | 　　　　　　　　　　　　 |
-| 私はちょうど宿題を終えた。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

@@ -20,17 +20,6 @@ I play games the `best` in my class.
 | `little` | `less` | `least` |
 | `far` | `farther` / `further` | `farthest` / `furthest` |
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-| 原級 | 比較級 | 最上級 |
-|------|--------|--------|
-| good | (　　　　　　) | (　　　　　　) |
-| bad | (　　　　　　) | (　　　　　　) |
-| many / much | (　　　　　　) | (　　　　　　) |
-| little | (　　　　　　) | (　　　　　　) |
-
 ## 解答
 
 | 原級 | 比較級 | 最上級 |
@@ -39,16 +28,6 @@ I play games the `best` in my class.
 | bad | (worse) | (worst) |
 | many / much | (more) | (most) |
 | little | (less) | (least) |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| この本はあれよりよい。 | 　　　　　　　　　　　　 |
-| これは一番よい本です。 | 　　　　　　　　　　　　 |
-| 彼は私よりたくさん持っている。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

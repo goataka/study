@@ -19,16 +19,6 @@ The place `where` I play games is quiet.
 | 時 | `when` | the day `when` I play games |
 | 理由 | `why` | the reason `why` I play games |
 
-## 練習問題
-
-( ) に正しい関係副詞を入れましょう。
-
-| 意味 | 文 |
-|------|------|
-| 場所 | This is the place (　　　　　　) I was born. |
-| 時 | I remember the day (　　　　　　) I met you. |
-| 理由 | Tell me the reason (　　　　　　) you were late. |
-
 ## 解答
 
 | 意味 | 文 |
@@ -36,16 +26,6 @@ The place `where` I play games is quiet.
 | 場所 | This is the place (where) I was born. |
 | 時 | I remember the day (when) I met you. |
 | 理由 | Tell me the reason (why) you were late. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| ここは私が生まれた場所です。 | 　　　　　　　　　　　　 |
-| 私はあなたに会った日を覚えている。 | 　　　　　　　　　　　　 |
-| 遅刻した理由を教えてください。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

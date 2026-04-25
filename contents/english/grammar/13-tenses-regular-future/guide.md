@@ -17,18 +17,6 @@ I `will play` games.
 | 現在形 | 動詞の原形 | I `play` |
 | 未来形 | will + 原形 | I `will play` |
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-| 現在形 | 未来形 |
-|--------|--------|
-| I play games. | I (　　　　　　) games. |
-| I study English. | I (　　　　　　) English. |
-| I watch TV. | I (　　　　　　) TV. |
-| I like music. | I (　　　　　　) music. |
-| I walk to school. | I (　　　　　　) to school. |
-
 ## 解答
 
 | 現在形 | 未来形 |
@@ -38,16 +26,6 @@ I `will play` games.
 | I watch TV. | I (will watch) TV. |
 | I like music. | I (will like) music. |
 | I walk to school. | I (will walk) to school. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私はゲームをするでしょう。 | 　　　　　　　　　　　　 |
-| 私は英語を勉強するでしょう。 | 　　　　　　　　　　　　 |
-| 私はテレビを見るでしょう。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

@@ -23,18 +23,6 @@ I `cannot play` games.
 - `must not` = ～してはいけない（禁止）
 - `don't have to` = ～する必要はない（不必要）
 
-## 練習問題
-
-( ) に正しい否定形を入れましょう。
-
-| 肯定文 | 否定文 |
-|--------|--------|
-| I can play games. | I (　　　　　　) play games. |
-| I must go. | I (　　　　　　) go. |
-| I will come. | I (　　　　　　) come. |
-| I should stay. | I (　　　　　　) stay. |
-| I may leave. | I (　　　　　　) leave. |
-
 ## 解答
 
 | 肯定文 | 否定文 |
@@ -44,16 +32,6 @@ I `cannot play` games.
 | I will come. | I (will not / won't) come. |
 | I should stay. | I (should not / shouldn't) stay. |
 | I may leave. | I (may not) leave. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私は泳ぐことができない。 | 　　　　　　　　　　　　 |
-| 私は行ってはいけない。 | 　　　　　　　　　　　　 |
-| 私は今日勉強する必要はない。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

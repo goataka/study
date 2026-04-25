@@ -11,23 +11,6 @@
 | 短母音 + 子音 | 子音を重ねて + ing | run → `running` |
 | ie で終わる | ie → y + ing | die → `dying` |
 
-## 練習問題
-
-原形を参考に、-ing形の ( ) を埋めましょう。
-
-| 原形 | -ing形 |
-|------|--------|
-| play → playing | I am playing games. |
-| study | I am (　　　　　　) English. |
-| run | I am (　　　　　　) fast. |
-| swim | I am (　　　　　　) in the pool. |
-| write | I am (　　　　　　) a letter. |
-| make | I am (　　　　　　) a cake. |
-| sit | I am (　　　　　　) on the chair. |
-| dance | I am (　　　　　　) now. |
-| come | I am (　　　　　　) home. |
-| have | I am (　　　　　　) lunch. |
-
 ## 解答
 
 | 原形 | -ing形 |
@@ -42,16 +25,6 @@
 | dance | I am (dancing) now. |
 | come | I am (coming) home. |
 | have | I am (having) lunch. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私はプールで泳いでいます。 | 　　　　　　　　　　　　 |
-| 私は手紙を書いています。 | 　　　　　　　　　　　　 |
-| 私はケーキを作っています。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

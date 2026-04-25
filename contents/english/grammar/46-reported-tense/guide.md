@@ -19,20 +19,6 @@ He said that he `played` games.
 | 未来形 `will play` | `would play` |
 | `can` | `could` |
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-直接話法を間接話法に変えるとき、時制が変わります。
-
-| 直接話法 | 間接話法 |
-|----------|----------|
-| He said, "I play games." | He said that he (　　　　　　) games. |
-| He said, "I am playing games." | He said that he (　　　　　　) games. |
-| He said, "I played games." | He said that he (　　　　　　) games. |
-| He said, "I will play games." | He said that he (　　　　　　) games. |
-| He said, "I can play games." | He said that he (　　　　　　) games. |
-
 ## 解答
 
 | 直接話法 | 間接話法 |
@@ -42,15 +28,6 @@ He said that he `played` games.
 | He said, "I played games." | He said that he (had played) games. |
 | He said, "I will play games." | He said that he (would play) games. |
 | He said, "I can play games." | He said that he (could play) games. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 彼はゲームをすると言った。 | 　　　　　　　　　　　　 |
-| 彼はゲームをしたと言った。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

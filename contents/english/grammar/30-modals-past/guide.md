@@ -20,17 +20,6 @@ I `could play` games.
 | `must` | `had to` | I `had to play` this game. |
 | `should` | `should have + 過去分詞` | I `should have played` games earlier. |
 
-## 練習問題
-
-( ) に正しい過去形を入れましょう。
-
-| 現在 | 過去 |
-|------|------|
-| I can play games. | I (　　　　　　) play games. |
-| I will help. | I (　　　　　　) help. |
-| I must go. | I (　　　　　　) go. |
-| I may come. | I (　　　　　　) come. |
-
 ## 解答
 
 | 現在 | 過去 |
@@ -39,16 +28,6 @@ I `could play` games.
 | I will help. | I (would) help. |
 | I must go. | I (had to) go. |
 | I may come. | I (might) come. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私は泳ぐことができた。 | 　　　　　　　　　　　　 |
-| 私は手伝うつもりだった。 | 　　　　　　　　　　　　 |
-| 私は行かなければならなかった。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

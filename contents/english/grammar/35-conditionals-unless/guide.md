@@ -17,16 +17,6 @@ If I `don't` have time, I won't play games.
 | if not | If I `don't` have time, I won't play games. |
 | unless | `Unless` I have time, I won't play games. |
 
-## 練習問題
-
-if文をunless文に書き換えましょう。
-
-| if文 | unless文 |
-|------|----------|
-| If I don't hurry, I will be late. | (　　　　　　) I hurry, I will be late. |
-| If I don't study, I will fail. | (　　　　　　) I study, I will fail. |
-| If I don't leave now, I will miss the bus. | (　　　　　　) I leave now, I will miss the bus. |
-
 ## 解答
 
 | if文 | unless文 |
@@ -34,15 +24,6 @@ if文をunless文に書き換えましょう。
 | If I don't hurry, I will be late. | (Unless) I hurry, I will be late. |
 | If I don't study, I will fail. | (Unless) I study, I will fail. |
 | If I don't leave now, I will miss the bus. | (Unless) I leave now, I will miss the bus. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 急がない限り、遅刻するだろう。 | 　　　　　　　　　　　　 |
-| 勉強しない限り、落ちるだろう。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 

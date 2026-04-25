@@ -18,28 +18,6 @@ I `am playing` games.（今まさにしている）
 | 過去進行形 | `was` | I `was playing` games. |
 | 未来進行形 | `will be` | I `will be playing` games. |
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-| パターン | 文 |
-|----------|------|
-| 現在進行形 | I am playing games. |
-| 過去進行形 | I (　　　　　　) playing games. |
-| 未来進行形 | I (　　　　　　) playing games. |
-
-| パターン | 文 |
-|----------|------|
-| 現在進行形 | I am studying English. |
-| 過去進行形 | I (　　　　　　) studying English. |
-| 未来進行形 | I (　　　　　　) studying English. |
-
-| パターン | 文 |
-|----------|------|
-| 現在進行形 | I am writing a letter. |
-| 過去進行形 | I (　　　　　　) writing a letter. |
-| 未来進行形 | I (　　　　　　) writing a letter. |
-
 ## 解答
 
 | パターン | 文 |
@@ -59,16 +37,6 @@ I `am playing` games.（今まさにしている）
 | 現在進行形 | I am writing a letter. |
 | 過去進行形 | I (was) writing a letter. |
 | 未来進行形 | I (will be) writing a letter. |
-
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私はゲームをしています。 | 　　　　　　　　　　　　 |
-| 私はゲームをしていました。 | 　　　　　　　　　　　　 |
-| 私は英語を勉強しています。 | 　　　　　　　　　　　　 |
 
 ## 英作文解答
 
