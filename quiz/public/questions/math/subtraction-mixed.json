@@ -8,6 +8,7 @@
   "guideUrl": "../math/arithmetic/06-subtraction-mixed/guide",
   "example": "15 - 8 = 7",
   "referenceGrade": "小学1年",
+  "description": "くり下がりなし・ありを混ぜた計算で、ひき算の力を確かめます。",
   "questions": [
     {
       "id": "sub-mixed-1",

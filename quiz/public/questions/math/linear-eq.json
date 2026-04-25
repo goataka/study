@@ -6,8 +6,9 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/24-linear-eq/guide",
-  "example": "2x + 3 = 7 \u2192 x = 2",
+  "example": "2x + 3 = 7 → x = 2",
   "referenceGrade": "中学1年",
+  "description": "一次方程式を移項を使って正確に解けるようにします。",
   "questions": [
     {
       "id": "linear-eq-1",

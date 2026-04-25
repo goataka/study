@@ -175,6 +175,35 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
     const { example: _example, ...withoutExample } = { ...validQF, example: undefined };
     expect(() => validateQuestionFile(withoutExample)).not.toThrow();
   });
+
+  it("description が文字列の場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, description: "規則動詞は語尾に -ed をつけて過去形を作ります。" })
+    ).not.toThrow();
+  });
+
+  it("description が文字列でない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, description: 123 })
+    ).toThrow('"description" must be a string if present');
+  });
+
+  it("description が空文字の場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, description: "" })
+    ).toThrow('"description" must not be an empty string');
+  });
+
+  it("description が空白のみの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, description: "   " })
+    ).toThrow('"description" must not be an empty string');
+  });
+
+  it("description が undefined の場合は受け入れる（オプションフィールド）", () => {
+    const { description: _description, ...withoutDescription } = { ...validQF, description: undefined };
+    expect(() => validateQuestionFile(withoutDescription)).not.toThrow();
+  });
 });
 
 describe("expandQuestions — 問題展開仕様", () => {
@@ -204,6 +233,24 @@ describe("expandQuestions — 問題展開仕様", () => {
     const questions = expandQuestions(qf);
     expect(questions[0]!.id).toBe("m-1");
     expect(questions[1]!.id).toBe("m-2");
+  });
+
+  it("description がある場合は各問題に付加される", () => {
+    const qfWithDescription: QuestionFile = {
+      ...qf,
+      description: "たし算を正確にできるようにします。",
+    };
+    const questions = expandQuestions(qfWithDescription);
+    for (const q of questions) {
+      expect(q.description).toBe("たし算を正確にできるようにします。");
+    }
+  });
+
+  it("description がない場合は各問題の description が undefined になる", () => {
+    const questions = expandQuestions(qf);
+    for (const q of questions) {
+      expect(q.description).toBeUndefined();
+    }
   });
 });
 

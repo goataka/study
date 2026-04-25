@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/25-perfect/guide",
   "example": "I `have played`.",
   "referenceGrade": "中学3年",
+  "description": "現在完了形は過去の動作・経験が現在につながることを表します。",
   "questions": [
     {
       "id": "perfect-1",

@@ -5,8 +5,9 @@
   "categoryName": "わり算",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
-  "example": "12 \u00f7 4 = 3",
+  "example": "12 ÷ 4 = 3",
   "referenceGrade": "小学3年",
+  "description": "わり算を筆算で正確に計算できるようにします。",
   "questions": [
     {
       "id": "div-1",

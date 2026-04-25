@@ -6,8 +6,9 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/28-square-roots/guide",
-  "example": "\u221a12 = 2\u221a3",
+  "example": "√12 = 2√3",
   "referenceGrade": "中学3年",
+  "description": "平方根の意味を理解し、計算を正確にできるようにします。",
   "questions": [
     {
       "id": "sqrt-1",

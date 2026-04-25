@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/42-relative-subject/guide",
   "example": "the man `who` runs",
   "referenceGrade": "中学3年",
+  "description": "関係代名詞 who / which / that を使って、名詞を主語として説明します。",
   "questions": [
     {
       "id": "relative-subject-1",

@@ -8,6 +8,7 @@
   "guideUrl": "../math/arithmetic/12-fractions-same-sub/guide",
   "example": "4/7 - 2/7 = 2/7",
   "referenceGrade": "小学4年",
+  "description": "分母が同じ分数のひき算を正確に計算できるようにします。",
   "questions": [
     {
       "id": "frac-same-sub-1",

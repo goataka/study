@@ -8,6 +8,7 @@
   "example": "羅・曖・昧・冶",
   "questionType": "text-input",
   "referenceGrade": "高校生",
+  "description": "高校生で習う漢字の読み方（訓読み・音読み）を覚えます。",
   "guideUrl": "../japanese/kanji/08-kanji-high/guide",
   "questions": [
     {

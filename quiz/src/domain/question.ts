@@ -23,6 +23,8 @@ export interface Question {
   example?: string;
   /** 参考学年（例: "小学3年", "中学1年", "高校2年"） */
   referenceGrade?: string;
+  /** 単元の簡単な説明（省略可）。学習ガイドの冒頭に記載されているような1〜2文の概要 */
+  description?: string;
   /** 問題種別: "multiple-choice"（4択, デフォルト）または "text-input"（テキスト入力） */
   questionType?: QuestionType;
 }
@@ -51,6 +53,8 @@ export interface QuestionFile {
   example?: string;
   /** 参考学年（例: "小学3年", "中学1年", "高校2年"） */
   referenceGrade?: string;
+  /** 単元の簡単な説明（省略可）。学習ガイドの冒頭に記載されているような1〜2文の概要 */
+  description?: string;
   /** ファイル全体のデフォルト問題種別（省略時は "multiple-choice"） */
   questionType?: QuestionType;
   questions: RawQuestion[];
@@ -138,6 +142,15 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       throw new Error('"example" must not be an empty string');
     }
   }
+  // description はオプションの文字列フィールド（空文字は不可）
+  if (qf.description !== undefined) {
+    if (typeof qf.description !== "string") {
+      throw new Error('"description" must be a string if present');
+    }
+    if (qf.description.trim().length === 0) {
+      throw new Error('"description" must not be an empty string');
+    }
+  }
   // referenceGrade はオプションの文字列フィールド
   if (qf.referenceGrade !== undefined && typeof qf.referenceGrade !== "string") {
     throw new Error('"referenceGrade" must be a string if present');
@@ -218,6 +231,7 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     guideUrl: qf.guideUrl,
     example: qf.example,
     referenceGrade: qf.referenceGrade,
+    description: qf.description,
     questionType: q.questionType ?? fileQuestionType,
   }));
 }

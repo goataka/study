@@ -6,8 +6,9 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/41-comparatives-irregular/guide",
-  "example": "good\u2192better\u2192`best`",
+  "example": "good→better→`best`",
   "referenceGrade": "中学3年",
+  "description": "good / well / bad のように不規則に変化する比較級・最上級を覚えます。",
   "questions": [
     {
       "id": "comparatives-irregular-1",

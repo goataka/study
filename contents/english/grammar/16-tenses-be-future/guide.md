@@ -17,3 +17,49 @@ The game `will be` fun.
 | 現在形 | am/is/are | The game `is` fun. |
 | 過去形 | was/were | The game `was` fun. |
 | 未来形 | will be | The game `will be` fun. |
+
+## 練習問題
+
+( ) に正しい語を入れましょう。
+
+| 現在形 | 未来形 |
+|--------|--------|
+| The game is fun. | The game (　　　　　　) fun. |
+| I am a student. | I (　　　　　　) a student. |
+| I am tired. | I (　　　　　　) tired. |
+| I am at home. | I (　　　　　　) at home. |
+| I am hungry. | I (　　　　　　) hungry. |
+
+## 解答
+
+| 現在形 | 未来形 |
+|--------|--------|
+| The game is fun. | The game (will be) fun. |
+| I am a student. | I (will be) a student. |
+| I am tired. | I (will be) tired. |
+| I am at home. | I (will be) at home. |
+| I am hungry. | I (will be) hungry. |
+
+## 英作文
+
+日本語を英語にしましょう。
+
+| 日本語 | 英語 |
+|--------|------|
+| 私は幸せになるでしょう。 | 　　　　　　　　　　　　 |
+| 私は疲れるでしょう。 | 　　　　　　　　　　　　 |
+| 私はお腹が空くでしょう。 | 　　　　　　　　　　　　 |
+
+## 英作文解答
+
+| 日本語 | 英語 |
+|--------|------|
+| 私は幸せになるでしょう。 | I will be happy. |
+| 私は疲れるでしょう。 | I will be tired. |
+| 私はお腹が空くでしょう。 | I will be hungry. |
+
+---
+
+[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-be-future)
+
+[前へ: be動詞の過去形](../15-tenses-be-past/guide.md) | be動詞の未来形 | [次へ: 不規則動詞の過去形](../17-tenses-irregular/guide.md)

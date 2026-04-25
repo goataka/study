@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/38-questions-wh/guide",
   "example": "`What` do you do?",
   "referenceGrade": "中学1年",
+  "description": "what / where / who などの疑問詞を文頭に置いて、具体的な情報を尋ねます。",
   "questions": [
     {
       "id": "questions-wh-1",

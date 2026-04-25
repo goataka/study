@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/36-questions/guide",
   "example": "`Do` you play?",
   "referenceGrade": "中学1年",
+  "description": "do / does / did を使って一般動詞の疑問文を作ります。",
   "questions": [
     {
       "id": "questions-1",
