@@ -545,7 +545,8 @@ export class QuizApp {
   /**
    * 解答履歴の有無でパネルタブを自動選択する。
    * 特定カテゴリが選択されている場合は解答履歴があれば「確認」タブ、なければ「解説」タブを表示する。
-   * category が "all" の場合は現在の activePanelTab をそのまま表示する。
+   * category が "all" の場合は「確認」タブに戻す（解説タブが残ると selectFirstUnlearnedCategory が
+   * 再度カテゴリを選択してしまうため）。
    * @param allRecords - 呼び出し元で取得済みの履歴配列（二重ロードを避けるために渡す）
    */
   private autoSelectPanelTab(allRecords: QuizRecord[]): void {
@@ -554,6 +555,8 @@ export class QuizApp {
         (r) => r.subject === this.filter.subject && r.category === this.filter.category
       );
       this.activePanelTab = hasHistory ? "quiz" : "guide";
+    } else {
+      this.activePanelTab = "quiz";
     }
     this.showPanelTab(this.activePanelTab);
   }
