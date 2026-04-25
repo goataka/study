@@ -1478,14 +1478,28 @@ export class QuizApp {
   }
 
   /**
+   * 文字列がひらがなのみで構成されているかどうかを判定する。
+   */
+  private isHiraganaOnly(str: string): boolean {
+    return /^[\u3041-\u309F]+$/.test(str);
+  }
+
+  /**
    * KanjiCanvasで描かれたストロークを認識して候補ボタンを更新する。
+   * ひらがな問題（正解がひらがなのみ）の場合はひらがな以外の候補を除外する。
    */
   private updateKanjiCandidates(): void {
     const candidateList = document.getElementById("kanjiCandidateList");
     if (!candidateList || !this.isKanjiCanvasAvailable()) return;
 
     const result = KanjiCanvas.recognize("kanjiCanvas");
-    const candidates = result.trim().split(/\s+/).filter(Boolean);
+    let candidates = result.trim().split(/\s+/).filter(Boolean);
+
+    const question = this.currentSession?.currentQuestion;
+    const correctAnswer = question?.choices[question.correct];
+    if (correctAnswer !== undefined && this.isHiraganaOnly(correctAnswer)) {
+      candidates = candidates.filter((char) => this.isHiraganaOnly(char));
+    }
 
     candidateList.innerHTML = "";
     candidates.forEach((char) => {

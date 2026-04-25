@@ -2742,7 +2742,7 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
   });
 
   it("候補ボタンをクリックすると文字が答えの入力エリアに追加される", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山  川  日");
+    kanjiCanvasMock.recognize.mockReturnValue("や  ゆ  よ");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2755,17 +2755,17 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
 
     const candidateList = document.getElementById("kanjiCandidateList");
     const firstBtn = candidateList?.querySelector<HTMLButtonElement>(".kanji-candidate-btn");
-    expect(firstBtn?.textContent).toBe("山");
+    expect(firstBtn?.textContent).toBe("や");
 
     firstBtn?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("山");
+    expect(textInput?.value).toBe("や");
   });
 
   it("候補ボタンをクリックするとKanjiCanvasがクリアされる", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山  川");
+    kanjiCanvasMock.recognize.mockReturnValue("や  き");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2782,7 +2782,7 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
   });
 
   it("候補ボタンを複数回クリックするとテキストが追記される", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山  川");
+    kanjiCanvasMock.recognize.mockReturnValue("や  き");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2803,11 +2803,11 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("山山");
+    expect(textInput?.value).toBe("やや");
   });
 
   it("候補ボタンをクリックしても回答はまだ送信されない", async () => {
-    kanjiCanvasMock.recognize.mockReturnValue("山");
+    kanjiCanvasMock.recognize.mockReturnValue("や");
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2923,6 +2923,21 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
 
     const notesTitle = document.getElementById("notesTitle");
     expect(notesTitle?.textContent).toBe("タッチペンで書けます");
+  });
+  it("ひらがな問題では認識候補のうちひらがな以外が除外される", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("や  山  き  川");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const candidateBtns = document.querySelectorAll<HTMLButtonElement>(".kanji-candidate-btn");
+    const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
+    expect(candidateTexts).toEqual(["や", "き"]);
   });
 });
 
