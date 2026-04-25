@@ -1412,19 +1412,32 @@ export class QuizApp {
   }
 
   /**
-   * ref-patterns.js（漢字パターンデータ）を動的に遅延ロードする。
-   * 重複ロードを防ぐため Promise をキャッシュする。
+   * スクリプトファイルを動的にロードする汎用ヘルパー。
+   */
+  private loadScript(src: string): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = (e) => reject(new Error(`${src} の読み込みに失敗しました: ${e instanceof Event ? e.type : e}`));
+      document.body.appendChild(script);
+    });
+  }
+
+  /**
+   * ref-patterns.js（漢字パターンデータ）と hiragana-patterns.js（ひらがなパターンデータ）を
+   * 動的に遅延ロードする。重複ロードを防ぐため Promise をキャッシュする。
+   * 読み込み失敗時はキャッシュをクリアし、次回呼び出しで再試行できるようにする。
    */
   private loadRefPatterns(): Promise<void> {
     if (this.refPatternsLoadPromise) return this.refPatternsLoadPromise;
-    this.refPatternsLoadPromise = new Promise<void>((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = "./vendor/ref-patterns.js";
-      script.async = true;
-      script.onload = () => resolve();
-      script.onerror = () => reject(new Error("ref-patterns.js の読み込みに失敗しました"));
-      document.body.appendChild(script);
-    });
+    this.refPatternsLoadPromise = this.loadScript("./vendor/ref-patterns.js")
+      .then(() => this.loadScript("./vendor/hiragana-patterns.js"))
+      .catch((error) => {
+        this.refPatternsLoadPromise = null;
+        throw error;
+      });
     return this.refPatternsLoadPromise;
   }
 
@@ -1447,10 +1460,10 @@ export class QuizApp {
       canvas.addEventListener("touchend", () => this.updateKanjiCandidates());
     }
     this.kanjiCanvasInitialized = true;
-    // ref-patterns.js（漢字パターンデータ）を遅延ロードする。
+    // ref-patterns.js（漢字）と hiragana-patterns.js（ひらがな）を遅延ロードする。
     // ロード完了前のストロークでは候補が表示されないが、ロード後の次ストロークから表示される。
     void this.loadRefPatterns().catch((e) => {
-      console.warn("ref-patterns.js の読み込みに失敗しました:", e);
+      console.warn("パターンデータの読み込みに失敗しました:", e);
     });
   }
 
