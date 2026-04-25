@@ -5,6 +5,7 @@
   "categoryName": "漢字（小学1年）",
   "parentCategory": "kanji",
   "parentCategoryName": "漢字",
+  "example": "\u5c71\u30fb\u5ddd\u30fb\u706b\u30fb\u6c34",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
   "questions": [

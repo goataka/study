@@ -1753,6 +1753,111 @@ describe("QuizApp — カテゴリ解説リンク仕様", () => {
   });
 });
 
+describe("QuizApp — カテゴリ例文表示仕様", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    localStorage.clear();
+  });
+
+  it("example なしのカテゴリでは例文要素が存在しない", async () => {
+    setupTabDom();
+    setupFetchMock(); // mockQuestionFile には example がない
+    localStorage.clear();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const exampleEl = catItem?.querySelector(".category-example");
+    expect(exampleEl).toBeNull();
+  });
+
+  it("example ありのカテゴリでは例文が表示される", async () => {
+    setupTabDom();
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/phonics-1.json"],
+    };
+    const questionFileWithExample = {
+      subject: "english",
+      subjectName: "英語",
+      category: "phonics-1",
+      categoryName: "フォニックス（1文字）",
+      example: "I play games.",
+      questions: Array.from({ length: 5 }, (_, i) => ({
+        id: `q${i + 1}`,
+        question: `問題 ${i + 1}`,
+        choices: ["ア", "イ", "ウ", "エ"],
+        correct: 0,
+        explanation: `解説 ${i + 1}`,
+      })),
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithExample) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const exampleEl = catItem?.querySelector(".category-example");
+    expect(exampleEl).not.toBeNull();
+    expect(exampleEl?.textContent).toContain("I play games.");
+  });
+
+  it("バッククォートで囲まれた部分が code 要素として表示される", async () => {
+    setupTabDom();
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/tenses-regular-present.json"],
+    };
+    const questionFileWithExample = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-regular-present",
+      categoryName: "一般動詞の現在形",
+      example: "I `play` games.",
+      questions: Array.from({ length: 3 }, (_, i) => ({
+        id: `q${i + 1}`,
+        question: `問題 ${i + 1}`,
+        choices: ["ア", "イ", "ウ", "エ"],
+        correct: 0,
+        explanation: `解説 ${i + 1}`,
+      })),
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithExample) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="tenses-regular-present"]');
+    const exampleEl = catItem?.querySelector(".category-example");
+    expect(exampleEl).not.toBeNull();
+    const highlightEl = exampleEl?.querySelector("code.category-example-highlight");
+    expect(highlightEl).not.toBeNull();
+    expect(highlightEl?.textContent).toBe("play");
+  });
+});
+
 describe("QuizApp — クイズパネル表示制御仕様", () => {
   beforeEach(() => {
     // quiz-panel クラスを含む DOM を追加

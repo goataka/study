@@ -5,6 +5,7 @@
   "categoryName": "漢字（高校生）",
   "parentCategory": "kanji",
   "parentCategoryName": "漢字",
+  "example": "\u7f85\u30fb\u66d6\u30fb\u6627\u30fb\u51b6",
   "questionType": "text-input",
   "referenceGrade": "高校生",
   "questions": [

@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/29-quadratic-eq/guide",
+  "example": "x\u00b2-5x+6=0 \u2192 x=2,3",
   "referenceGrade": "中学3年",
   "questions": [
     {

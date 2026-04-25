@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/21-percentage/guide",
+  "example": "60\u4eba\u306e30% = 18\u4eba",
   "referenceGrade": "小学5年",
   "questions": [
     {
