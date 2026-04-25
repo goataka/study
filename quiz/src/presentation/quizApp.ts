@@ -1166,11 +1166,12 @@ export class QuizApp {
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
     if (!subjectContent) return;
-    const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
-    subjectContent.classList.toggle("category-only", noCategory);
 
     // 「総合」タブではすべてのパネルタブとコンテンツを非表示にする
     const isAll = this.filter.subject === "all";
+    const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
+    // 「総合」タブでも右パネルを非表示にしてカテゴリリストを全幅表示する
+    subjectContent.classList.toggle("category-only", noCategory || isAll);
     ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
       document.getElementById(id)?.classList.toggle("hidden", isAll);
     });
