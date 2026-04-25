@@ -41,31 +41,6 @@
 
 - 💡 子音クラスターは素早く続けて発音する（各文字の音をくっつけるイメージ）
 
-## 練習問題
-
-下線部の音をカタカナで書きましょう。
-
-| 単語 | 音 |
-|------|------|
-| ki`tch`en | 　　　　　　　　　　　　 |
-| ma`tch` | 　　　　　　　　　　　　 |
-| ca`tch` | 　　　　　　　　　　　　 |
-| e`dge` | 　　　　　　　　　　　　 |
-| bri`dge` | 　　　　　　　　　　　　 |
-| ju`dge` | 　　　　　　　　　　　　 |
-| f`igh`t | 　　　　　　　　　　　　 |
-| n`igh`t | 　　　　　　　　　　　　 |
-| l`igh`t | 　　　　　　　　　　　　 |
-| `sch`ool | 　　　　　　　　　　　　 |
-| `thr`ee | 　　　　　　　　　　　　 |
-| `thr`ow | 　　　　　　　　　　　　 |
-| `shr`imp | 　　　　　　　　　　　　 |
-| `str`eet | 　　　　　　　　　　　　 |
-| `str`ong | 　　　　　　　　　　　　 |
-| `spr`ing | 　　　　　　　　　　　　 |
-| `spl`ash | 　　　　　　　　　　　　 |
-| `scr`een | 　　　　　　　　　　　　 |
-
 ## 解答
 
 下線部の音をカタカナで書きましょう。
@@ -124,9 +99,3 @@
 | `str`ap | `ストゥル` ア プ → ストゥルアプ | ストラップ |
 | `spr`ay | `スプル` エイ → スプルエイ | スプレー |
 | `scr`ub | `スクル` ア ブ → スクルアブ | こする |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=phonics-3)
-
-[前へ: フォニックス（2文字）](../04-phonics-2letter/guide.md) | **フォニックス練習ドリル（3文字）** | [次へ: リンキング](../07-linking/guide.md)

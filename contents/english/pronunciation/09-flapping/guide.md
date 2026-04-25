@@ -45,21 +45,6 @@ wa - t - er
 - 💡 `butter`・`better`・`bitter` はすべてラ行に変化するので聞き分けが難しい
 - 💡 日本語の「ら行」に近いが、舌先の当て方が少し異なる
 
-## 練習問題
-
-t/dがラ行になる部分の音をカタカナで書きましょう。
-
-| フレーズ | 音 |
-|----------|------|
-| water | 　　　　　　　　　　　　 |
-| better | 　　　　　　　　　　　　 |
-| little | 　　　　　　　　　　　　 |
-| get it | 　　　　　　　　　　　　 |
-| what about | 　　　　　　　　　　　　 |
-| put it | 　　　　　　　　　　　　 |
-| city | 　　　　　　　　　　　　 |
-| party | 　　　　　　　　　　　　 |
-
 ## 解答
 
 t/dがラ行になる部分の音をカタカナで書きましょう。
@@ -102,9 +87,3 @@ t/dがラ行になる部分の音をカタカナで書きましょう。
 | total | トウ ロー | t → ロ |
 | beautiful | ビュー リ フル | t → リ |
 | got a | ガ ラ | t → ラ |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=flapping)
-
-[前へ: リダクション](../08-reduction/guide.md) | **フラッピング練習ドリル** | [次へ: アシミレーション](../10-assimilation/guide.md)

@@ -42,26 +42,6 @@ log₂4 + log₂8 = log₂(4×8) = log₂32 = 5
 - log_a(M/N) = log_a(M) - log_a(N)
 - log_a(Mⁿ) = n × log_a(M)
 
-## 練習問題
-
-| 問題 | 答え |
-|------|------|
-| 2³ × 2⁴ = | 　　　　　　　　　　　　 |
-| 3⁵ ÷ 3² = | 　　　　　　　　　　　　 |
-| (2³)² = | 　　　　　　　　　　　　 |
-| 4^(1/2) = | 　　　　　　　　　　　　 |
-| 8^(2/3) = | 　　　　　　　　　　　　 |
-
-## 対数の計算
-
-| 問題 | 答え |
-|------|------|
-| log₂8 = | 　　　　　　　　　　　　 |
-| log₃27 = | 　　　　　　　　　　　　 |
-| log₁₀100 = | 　　　　　　　　　　　　 |
-| log₂4 + log₂8 = | 　　　　　　　　　　　　 |
-| log₃9 - log₃3 = | 　　　　　　　　　　　　 |
-
 ## 解答
 
 | 問題 | 答え |
@@ -83,9 +63,3 @@ log₂4 + log₂8 = log₂(4×8) = log₂32 = 5
 | log₃9 - log₃3 = | 2 - 1 = 1 |
 
 💡 **ポイント**: log_a(b) は「aを何乗したらbになるか」。対数の性質を使うと計算がラクに
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=exponents-logarithms)
-
-[前へ: 三角関数](../32-trigonometry/guide.md) | **指数・対数** | [次へ: 数列](../34-sequences/guide.md)

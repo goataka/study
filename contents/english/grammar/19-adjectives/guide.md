@@ -21,21 +21,6 @@ The game is `exciting`.
 | 名詞の前 | 形容詞 + 名詞 | a `new` game |
 | be動詞の後 | be動詞 + 形容詞 | The game is `fun`. |
 
-## 練習問題
-
-( ) に正しい形容詞を入れましょう。
-
-| パターン | 文 |
-|----------|------|
-| 名詞の前 | I play fun games. |
-| 名詞の前 | I read a (　　　　　　) book. |
-| be動詞の後 | The game is (　　　　　　). |
-| 名詞の前 | She has (　　　　　　) hair. |
-| be動詞の後 | The book is (　　　　　　). |
-| 名詞の前 | He is a (　　　　　　) boy. |
-
-ヒント: interesting, fun, long, new, tall
-
 ## 解答
 
 | パターン | 文 |
@@ -47,17 +32,6 @@ The game is `exciting`.
 | be動詞の後 | The book is (`interesting`). |
 | 名詞の前 | He is a (`tall`) boy. |
 
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私は面白いゲームをします。 | 　　　　　　　　　　　　 |
-| その本は新しいです。 | 　　　　　　　　　　　　 |
-| 彼女は長い髪をしています。 | 　　　　　　　　　　　　 |
-| 彼は背が高いです。 | 　　　　　　　　　　　　 |
-
 ## 英作文解答
 
 | 日本語 | 英語 |
@@ -66,9 +40,3 @@ The game is `exciting`.
 | その本は新しいです。 | The book is new. |
 | 彼女は長い髪をしています。 | She has long hair. |
 | 彼は背が高いです。 | He is tall. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=adjectives)
-
-[前へ: 冠詞](../18-articles/guide.md) | 形容詞 | [次へ: 副詞](../20-adverbs/guide.md)

@@ -20,17 +20,6 @@ I play games the `best` in my class.
 | `little` | `less` | `least` |
 | `far` | `farther` / `further` | `farthest` / `furthest` |
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-| 原級 | 比較級 | 最上級 |
-|------|--------|--------|
-| good | (　　　　　　) | (　　　　　　) |
-| bad | (　　　　　　) | (　　　　　　) |
-| many / much | (　　　　　　) | (　　　　　　) |
-| little | (　　　　　　) | (　　　　　　) |
-
 ## 解答
 
 | 原級 | 比較級 | 最上級 |
@@ -40,16 +29,6 @@ I play games the `best` in my class.
 | many / much | (more) | (most) |
 | little | (less) | (least) |
 
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| この本はあれよりよい。 | 　　　　　　　　　　　　 |
-| これは一番よい本です。 | 　　　　　　　　　　　　 |
-| 彼は私よりたくさん持っている。 | 　　　　　　　　　　　　 |
-
 ## 英作文解答
 
 | 日本語 | 英語 |
@@ -57,9 +36,3 @@ I play games the `best` in my class.
 | この本はあれよりよい。 | This book is better than that one. |
 | これは一番よい本です。 | This is the best book. |
 | 彼は私よりたくさん持っている。 | He has more than me. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=comparatives-irregular)
-
-[前へ: 最上級](../40-comparatives-est/guide.md) | 不規則な比較変化 | [次へ: 主格の関係代名詞](../42-relative-subject/guide.md)

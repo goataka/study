@@ -28,19 +28,6 @@ I play `the` game every day.
 | `the` | 特定のもの | `the` game every day |
 | なし | 複数形・不可算名詞（一般的） | I play games. |
 
-## 練習問題
-
-( ) に `a`、`an`、`the` のいずれかを入れましょう。
-
-| パターン | 文 |
-|----------|------|
-| 不特定・単数 | I play a game. |
-| 母音の前 | I play (　　　　　　) exciting game. |
-| 特定のもの | I play (　　　　　　) game every day. |
-| 不特定・単数 | She plays (　　　　　　) game. |
-| 母音の前 | He plays (　　　　　　) old game. |
-| 特定のもの | (　　　　　　) game is fun. |
-
 ## 解答
 
 | パターン | 文 |
@@ -52,17 +39,6 @@ I play `the` game every day.
 | 母音の前 | He plays (`an`) old game. |
 | 特定のもの | (`The`) game is fun. |
 
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私はゲームをします。 | 　　　　　　　　　　　　 |
-| 私はわくわくするゲームをします。 | 　　　　　　　　　　　　 |
-| そのゲームは楽しいです。 | 　　　　　　　　　　　　 |
-| 彼女はゲームをします。 | 　　　　　　　　　　　　 |
-
 ## 英作文解答
 
 | 日本語 | 英語 |
@@ -71,9 +47,3 @@ I play `the` game every day.
 | 私はわくわくするゲームをします。 | I play an exciting game. |
 | そのゲームは楽しいです。 | The game is fun. |
 | 彼女はゲームをします。 | She plays a game. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=articles)
-
-[前へ: 不規則動詞の過去形](../17-tenses-irregular/guide.md) | 冠詞 | [次へ: 形容詞](../19-adjectives/guide.md)

@@ -37,21 +37,6 @@
 - 💡 リダクションは「省略」ではなく「自然な発音の変化」
 - 💡 聞き取りが難しいのはリダクションが原因のことが多い
 
-## 練習問題
-
-音が弱くなる・消える部分の音をカタカナで書きましょう。
-
-| フレーズ | 音 |
-|----------|------|
-| want to | 　　　　　　　　　　　　 |
-| going to | 　　　　　　　　　　　　 |
-| have to | 　　　　　　　　　　　　 |
-| got to | 　　　　　　　　　　　　 |
-| kind of | 　　　　　　　　　　　　 |
-| sort of | 　　　　　　　　　　　　 |
-| a lot of | 　　　　　　　　　　　　 |
-| out of | 　　　　　　　　　　　　 |
-
 ## 解答
 
 音が弱くなる・消える部分の音をカタカナで書きましょう。
@@ -94,9 +79,3 @@
 | in front of | インフロンタ | of → a（弱化） |
 | cup of | カパ | of → a（弱化） |
 | plenty of | プレニーダ | of → a（弱化）、t が弱化 |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reduction)
-
-[前へ: リンキング](../07-linking/guide.md) | **リダクション練習ドリル** | [次へ: フラッピング](../09-flapping/guide.md)

@@ -28,28 +28,6 @@ If I had time, I `would` play.（時間があれば、するのに — 今はな
 第3条件文:
 If I had had time, I `would have` played.（時間があったら、したのに — 過去になかった）
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-### 条件節の変化
-
-基本文（現在形）: I have time. I play games.
-
-| パターン | 文 |
-|----------|------|
-| 第1条件文（現実的） | If I have time, I will play games. |
-| 第2条件文（仮定） | If I (　　　　　　) time, I would play games. |
-| 第3条件文（過去の仮定） | If I (　　　　　　) time, I would have played games. |
-
-### 帰結節の変化
-
-| パターン | 文 |
-|----------|------|
-| 第1条件文 | If I have time, I will play games. |
-| 第2条件文 | If I had time, I (　　　　　　) play games. |
-| 第3条件文 | If I had had time, I (　　　　　　) played games. |
-
 ## 解答
 
 ### 条件節の変化
@@ -68,16 +46,6 @@ If I had had time, I `would have` played.（時間があったら、したのに
 | 第2条件文 | If I had time, I (would) play games. |
 | 第3条件文 | If I had had time, I (would have) played games. |
 
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| もし雨が降れば、私は家にいるでしょう。 | 　　　　　　　　　　　　 |
-| もし時間があれば、手伝うのに。 | 　　　　　　　　　　　　 |
-| もし知っていたら、教えていたのに。 | 　　　　　　　　　　　　 |
-
 ## 英作文解答
 
 | 日本語 | 英語 |
@@ -85,9 +53,3 @@ If I had had time, I `would have` played.（時間があったら、したのに
 | もし雨が降れば、私は家にいるでしょう。 | If it rains, I will stay home. |
 | もし時間があれば、手伝うのに。 | If I had time, I would help you. |
 | もし知っていたら、教えていたのに。 | If I had known, I would have told you. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=conditionals-if)
-
-[前へ: 助動詞の受動態](../32-passive-modals/guide.md) | 条件文 | [次へ: I wish](../34-conditionals-wish/guide.md)

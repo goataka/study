@@ -200,7 +200,3 @@
 - 音読みは **熟語（2文字以上の漢字の組み合わせ）** の中で覚える
 - 読み方だけでなく **書き方** も合わせて練習しよう
 - クイズで繰り返し練習すると定着しやすい
-
-[目次](../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=japanese&category=kanji-grade6)
-
-[前へ: 漢字（小学5年）](../05-kanji-grade5/guide.md) | **漢字（小学6年）** | [次へ: 漢字（中学生）](../07-kanji-secondary/guide.md)

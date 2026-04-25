@@ -18,18 +18,6 @@ I `played` games.
 | 現在形 | 動詞の原形 | I `play` |
 | 過去形 | 動詞 + ed | I `played` |
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-| 現在形 | 過去形 |
-|--------|--------|
-| I play games. | I (　　　　　　) games. |
-| I study English. | I (　　　　　　) English. |
-| I watch TV. | I (　　　　　　) TV. |
-| I like music. | I (　　　　　　) music. |
-| I walk to school. | I (　　　　　　) to school. |
-
 ## 解答
 
 | 現在形 | 過去形 |
@@ -40,16 +28,6 @@ I `played` games.
 | I like music. | I (liked) music. |
 | I walk to school. | I (walked) to school. |
 
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 私はゲームをしました。 | 　　　　　　　　　　　　 |
-| 私は英語を勉強しました。 | 　　　　　　　　　　　　 |
-| 私はテレビを見ました。 | 　　　　　　　　　　　　 |
-
 ## 英作文解答
 
 | 日本語 | 英語 |
@@ -57,9 +35,3 @@ I `played` games.
 | 私はゲームをしました。 | I played games. |
 | 私は英語を勉強しました。 | I studied English. |
 | 私はテレビを見ました。 | I watched TV. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-regular-past)
-
-[前へ: 一般動詞の現在形](../11-tenses-regular-present/guide.md) | 一般動詞の過去形 | [次へ: 一般動詞の未来形](../13-tenses-regular-future/guide.md)

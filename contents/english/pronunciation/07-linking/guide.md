@@ -40,21 +40,6 @@ not  at  all
 - 💡 聞き取るときは「単語の区切り」より「音のかたまり」で捉える
 - 💡 `an apple` → `アナップル`（n + a → ナ）
 
-## 練習問題
-
-音がつながる部分の音をカタカナで書きましょう。
-
-| フレーズ | 音 |
-|----------|------|
-| check it out | 　　　　　　　　　　　　 |
-| turn it off | 　　　　　　　　　　　　 |
-| put it on | 　　　　　　　　　　　　 |
-| pick it up | 　　　　　　　　　　　　 |
-| take a look | 　　　　　　　　　　　　 |
-| not at all | 　　　　　　　　　　　　 |
-| an apple | 　　　　　　　　　　　　 |
-| turn on | 　　　　　　　　　　　　 |
-
 ## 解答
 
 音がつながる部分の音をカタカナで書きましょう。
@@ -97,9 +82,3 @@ not  at  all
 | hold on | ホール ドン | d + o → ドン |
 | run away | ラ ナ ウェイ | n + a → ナ |
 | break it up | ブレイ キッ ト アップ | k + i → キ |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=linking)
-
-[前へ: フォニックス（3文字）](../05-phonics-3letter/guide.md) | **リンキング練習ドリル** | [次へ: リダクション](../08-reduction/guide.md)

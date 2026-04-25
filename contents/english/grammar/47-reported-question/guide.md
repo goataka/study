@@ -18,19 +18,6 @@ He asked if I `played` games.
 | "What do you play?" | He asked `what` I played. |
 | "Where do you live?" | He asked `where` I lived. |
 
-## 練習問題
-
-( ) に正しい語を入れましょう。
-
-基本文: He asked, "Do you play games?"
-→ He asked `if` I played games.
-
-| 直接話法 | 間接話法 |
-|----------|----------|
-| He asked, "Do you play games?" | He asked (　　　　　　) I played games. |
-| He asked, "What do you play?" | He asked (　　　　　　) I played. |
-| He asked, "Where do you play?" | He asked (　　　　　　) I played. |
-
 ## 解答
 
 | 直接話法 | 間接話法 |
@@ -39,24 +26,9 @@ He asked if I `played` games.
 | He asked, "What do you play?" | He asked (what) I played. |
 | He asked, "Where do you play?" | He asked (where) I played. |
 
-## 英作文
-
-日本語を英語にしましょう。
-
-| 日本語 | 英語 |
-|--------|------|
-| 彼は私にゲームをするかと聞いた。 | 　　　　　　　　　　　　 |
-| 彼は私に何のゲームをしたか聞いた。 | 　　　　　　　　　　　　 |
-
 ## 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|
 | 彼は私にゲームをするかと聞いた。 | He asked if I played games. |
 | 彼は私に何のゲームをしたか聞いた。 | He asked what games I played. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reported-question)
-
-[前へ: 時制の一致](../46-reported-tense/guide.md) | 疑問文の間接話法 | [次へ: 命令文の間接話法](../48-reported-imperative/guide.md)
