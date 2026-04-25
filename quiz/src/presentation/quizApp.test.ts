@@ -84,7 +84,7 @@ function setupTabDom(): void {
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
           <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
-          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">問題</button>
+          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">確認</button>
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 履歴</button>
         </div>
         <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
@@ -731,7 +731,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("パネルに「問題」と「解説」と「履歴」と「問題一覧」のインナータブが描画される", async () => {
+  it("パネルに「確認」と「解説」と「履歴」と「問題一覧」のインナータブが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -740,7 +740,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]');
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]');
     expect(quizTab).not.toBeNull();
-    expect(quizTab?.textContent).toContain("問題");
+    expect(quizTab?.textContent).toContain("確認");
     expect(guideTab).not.toBeNull();
     expect(guideTab?.textContent).toContain("解説");
     expect(historyTab).not.toBeNull();
@@ -781,7 +781,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     expect(historyList?.querySelector(".history-empty")).not.toBeNull();
   });
 
-  it("「問題」インナータブをクリックするとquizModePanelが再び表示される", async () => {
+  it("「確認」インナータブをクリックするとquizModePanelが再び表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -789,7 +789,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
     historyTab?.click();
 
-    // 問題タブに戻る
+    // 確認タブに戻る
     const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]') as HTMLElement;
     quizTab?.click();
 
@@ -1666,7 +1666,7 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
     expect(firstHint.classList.contains("hidden")).toBe(true); // もう一度押すと非表示に戻る
   });
 
-  it("「問題」タブに戻るとquizModePanelが再表示される", async () => {
+  it("「確認」タブに戻るとquizModePanelが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -1997,7 +1997,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
             <div class="panel-tabs" role="tablist">
               <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" tabindex="-1">📖 解説</button>
               <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題一覧</button>
-              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">問題</button>
+              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">確認</button>
               <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 履歴</button>
             </div>
             <div id="guideContent" class="hidden" role="tabpanel"></div>
