@@ -6,6 +6,8 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/07-multiplication/guide",
+  "example": "6 \u00d7 7 = 42",
+  "referenceGrade": "小学2年",
   "questions": [
     {
       "id": "mult-basic-1",

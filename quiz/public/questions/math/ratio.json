@@ -6,6 +6,8 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/20-ratio/guide",
+  "example": "4:6 = 2:3",
+  "referenceGrade": "小学6年",
   "questions": [
     {
       "id": "ratio-1",

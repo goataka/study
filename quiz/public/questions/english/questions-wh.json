@@ -6,6 +6,8 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/38-questions-wh/guide",
+  "example": "`What` do you do?",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "questions-wh-1",

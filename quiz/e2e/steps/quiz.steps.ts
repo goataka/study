@@ -86,7 +86,15 @@ Then("I should see question 1", async ({ page }) => {
 });
 
 When("I select the first choice", async ({ page }) => {
-  await page.locator(".choice-label").first().click();
+  // 選択肢またはテキスト入力が表示されるまで待つ
+  await page.locator(".choice-label, .text-answer-input").first().waitFor({ state: "visible" });
+  const isTextInput = await page.locator(".text-answer-input").isVisible();
+  if (isTextInput) {
+    await page.locator(".text-answer-input").fill("あ");
+    await page.locator(".text-answer-submit-btn").click();
+  } else {
+    await page.locator(".choice-label").first().click();
+  }
 });
 
 Then("the {string} button should be enabled", async ({ page }, buttonText: string) => {
@@ -98,18 +106,26 @@ When("I answer all questions", async ({ page }) => {
   // 全問題に回答する（最大20問）
   let hasNext = true;
   while (hasNext) {
-    // 最初の選択肢を選ぶ
-    await page.locator(".choice-label").first().click();
+    // 問題がレンダリングされるまで待つ（選択肢またはテキスト入力）
+    await page.locator(".choice-label, .text-answer-input").first().waitFor({ state: "visible" });
+
+    // テキスト入力問題か選択肢問題かで回答方法を切り替える
+    const isTextInput = await page.locator(".text-answer-input").isVisible();
+    if (isTextInput) {
+      await page.locator(".text-answer-input").fill("あ");
+      await page.locator(".text-answer-submit-btn").click();
+    } else {
+      await page.locator(".choice-label").first().click();
+    }
 
     // 「次へ」ボタンが表示されていれば次の問題へ
-    const nextBtn = page.locator("#nextBtn");
     const submitBtn = page.locator("#submitBtn");
 
     const isSubmitVisible = await submitBtn.isVisible();
     if (isSubmitVisible) {
       hasNext = false;
     } else {
-      await nextBtn.click();
+      await page.locator("#nextBtn").click();
     }
   }
 });

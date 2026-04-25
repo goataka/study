@@ -16,6 +16,10 @@ export class QuizUseCase {
   private correctStreaks: Record<string, number>;
   /** subject::category -> guideUrl のキャッシュ（O(1) 参照用） */
   private categoryGuideMap = new Map<string, string>();
+  /** subject::category -> example のキャッシュ（O(1) 参照用） */
+  private categoryExampleMap = new Map<string, string>();
+  /** subject::category -> referenceGrade のキャッシュ（O(1) 参照用） */
+  private categoryGradeMap = new Map<string, string>();
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
@@ -27,14 +31,20 @@ export class QuizUseCase {
 
   async initialize(): Promise<void> {
     this.allQuestions = await this.questionRepo.loadAll();
-    // subject::category -> guideUrl のキャッシュを構築する
+    // subject::category -> guideUrl / referenceGrade のキャッシュを構築する
     this.categoryGuideMap.clear();
+    this.categoryExampleMap.clear();
+    this.categoryGradeMap.clear();
     for (const q of this.allQuestions) {
-      if (q.guideUrl !== undefined) {
-        const key = `${q.subject}::${q.category}`;
-        if (!this.categoryGuideMap.has(key)) {
-          this.categoryGuideMap.set(key, q.guideUrl);
-        }
+      const key = `${q.subject}::${q.category}`;
+      if (q.guideUrl !== undefined && !this.categoryGuideMap.has(key)) {
+        this.categoryGuideMap.set(key, q.guideUrl);
+      }
+      if (q.example !== undefined && !this.categoryExampleMap.has(key)) {
+        this.categoryExampleMap.set(key, q.example);
+      }
+      if (q.referenceGrade !== undefined && !this.categoryGradeMap.has(key)) {
+        this.categoryGradeMap.set(key, q.referenceGrade);
       }
     }
   }
@@ -259,17 +269,28 @@ export class QuizUseCase {
   }
 
   /**
-   * 指定した教科で最初に見つかる解説 URL を返す。
-   * filter.category が "all" のときのフォールバック用。
+   * 指定した教科・カテゴリの代表例文を返す。
+   * 該当カテゴリに example が設定されていない場合は undefined を返す。
    */
-  getFirstGuideUrlForSubject(subject: string): string | undefined {
-    const prefix = subject === "all" ? "" : `${subject}::`;
-    for (const [key, url] of this.categoryGuideMap) {
-      if (key.startsWith(prefix)) {
-        return url;
-      }
-    }
-    return undefined;
+  getCategoryExample(subject: string, category: string): string | undefined {
+    return this.categoryExampleMap.get(`${subject}::${category}`);
+  }
+
+  /**
+   * 利用可能な最初の解説 URL を返す。
+   * カテゴリが "all"（未選択）の場合のフォールバック用。
+   * 解説 URL が 1 件も存在しない場合は undefined を返す。
+   */
+  getFirstAvailableGuideUrl(): string | undefined {
+    return this.categoryGuideMap.values().next().value;
+  }
+
+  /**
+   * 指定した教科・カテゴリの参考学年を返す。
+   * 該当カテゴリに referenceGrade が設定されていない場合は undefined を返す。
+   */
+  getCategoryReferenceGrade(subject: string, category: string): string | undefined {
+    return this.categoryGradeMap.get(`${subject}::${category}`);
   }
 
   get wrongQuestionIds(): string[] {

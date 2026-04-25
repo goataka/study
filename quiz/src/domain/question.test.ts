@@ -146,6 +146,35 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
       validateQuestionFile({ ...validQF, guideUrl: "../math/%2e%2e/etc/passwd" })
     ).toThrow('"guideUrl" must not contain path traversal sequences');
   });
+
+  it("example が文字列の場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, example: "I `play` games." })
+    ).not.toThrow();
+  });
+
+  it("example が文字列でない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, example: 123 })
+    ).toThrow('"example" must be a string if present');
+  });
+
+  it("example が空文字の場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, example: "" })
+    ).toThrow('"example" must not be an empty string');
+  });
+
+  it("example が空白のみの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, example: "   " })
+    ).toThrow('"example" must not be an empty string');
+  });
+
+  it("example が undefined の場合は受け入れる（オプションフィールド）", () => {
+    const { example: _example, ...withoutExample } = { ...validQF, example: undefined };
+    expect(() => validateQuestionFile(withoutExample)).not.toThrow();
+  });
 });
 
 describe("expandQuestions — 問題展開仕様", () => {

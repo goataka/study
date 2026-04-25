@@ -6,6 +6,8 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/22-conjunctions/guide",
+  "example": "cats `and` dogs",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "conjunctions-1",

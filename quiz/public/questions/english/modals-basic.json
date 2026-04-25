@@ -6,6 +6,8 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/28-modals-basic/guide",
+  "example": "I `can` swim.",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "modals-basic-1",

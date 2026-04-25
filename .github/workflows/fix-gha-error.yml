@@ -1,9 +1,8 @@
-# Fix GHA Error ワークフロー
+name: Fix GHA Error
+
 # 監視対象のワークフローが失敗で完了した場合に発動し、Copilotに修正を依頼する
 # PRがある場合はPRにCopilotをメンションしてコメント、
 # PRがない場合はIssueを作成してCopilotをアサインする（同一ワークフローのIssueがあればコメントを追加）
-
-name: Fix GHA Error
 
 on:
   workflow_run:

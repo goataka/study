@@ -6,6 +6,8 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/43-relative-object/guide",
+  "example": "the book `that` I read",
+  "referenceGrade": "中学3年",
   "questions": [
     {
       "id": "relative-object-1",

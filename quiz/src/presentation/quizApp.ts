@@ -14,6 +14,7 @@ import type { DrawingState } from "./notesCanvas";
 
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
+  { id: "all", name: "総合", icon: "🌐" },
   { id: "english", name: "英語", icon: "📚" },
   { id: "math", name: "数学", icon: "🔢" },
   { id: "japanese", name: "国語", icon: "📖" },
@@ -23,7 +24,7 @@ export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
   private currentMode: QuizMode = "random";
-  private filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
+  private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
@@ -231,8 +232,8 @@ export class QuizApp {
     const subject = this.filter.subject;
 
     if (subject === "all") {
-      // 「すべて」タブではカテゴリを細分化しないため、リストは空のまま
-      categoryList.innerHTML = "";
+      // 「総合」タブではカテゴリを細分化しないため、リストは空のまま
+      categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
       return;
     }
 
@@ -295,7 +296,7 @@ export class QuizApp {
     statusSpan.setAttribute("aria-hidden", "true");
     statusSpan.textContent = "⬜";
 
-    // カテゴリ名 + 進捗バーのエリア
+    // カテゴリ名 + 例文 + 進捗バーのエリア
     const nameArea = document.createElement("div");
     nameArea.className = "category-name-area";
 
@@ -303,13 +304,24 @@ export class QuizApp {
     nameSpan.className = "category-name";
     nameSpan.textContent = categoryName;
 
+    // 例文（example が設定されている場合のみ表示）
+    const example = this.useCase.getCategoryExample(subject, categoryId);
+    if (example !== undefined) {
+      const exampleSpan = document.createElement("span");
+      exampleSpan.className = "category-example";
+      this.renderBacktickText(exampleSpan, example);
+      nameArea.appendChild(nameSpan);
+      nameArea.appendChild(exampleSpan);
+    } else {
+      nameArea.appendChild(nameSpan);
+    }
+
     const progressBar = document.createElement("div");
     progressBar.className = "category-progress-bar";
     const progressFill = document.createElement("div");
     progressFill.className = "category-progress-fill";
     progressBar.appendChild(progressFill);
 
-    nameArea.appendChild(nameSpan);
     nameArea.appendChild(progressBar);
 
     // 解説リンク（guideUrl が設定されている場合のみ表示）
@@ -336,11 +348,22 @@ export class QuizApp {
       }
     });
 
+    // 参考学年バッジ（referenceGrade が設定されている場合のみ表示）
+    const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
+    const gradeSpan = document.createElement("span");
+    gradeSpan.className = "category-grade";
+    if (referenceGrade) {
+      gradeSpan.textContent = referenceGrade;
+    } else {
+      gradeSpan.classList.add("hidden");
+    }
+
     const statsSpan = document.createElement("span");
     statsSpan.className = "category-stats";
 
     item.appendChild(statusSpan);
     item.appendChild(nameArea);
+    item.appendChild(gradeSpan);
     item.appendChild(guideLink);
     item.appendChild(statsSpan);
 
@@ -362,6 +385,24 @@ export class QuizApp {
     });
 
     return item;
+  }
+
+  /**
+   * バッククォートで囲まれたテキストを <code> タグに変換して要素に追加する。
+   * 例: "I `play` games." → "I " + <code>play</code> + " games."
+   */
+  private renderBacktickText(container: HTMLElement, text: string): void {
+    const parts = text.split(/`([^`]+)`/);
+    parts.forEach((part, i) => {
+      if (i % 2 === 1) {
+        const code = document.createElement("code");
+        code.className = "category-example-highlight";
+        code.textContent = part;
+        container.appendChild(code);
+      } else if (part) {
+        container.appendChild(document.createTextNode(part));
+      }
+    });
   }
 
   /**
@@ -450,7 +491,7 @@ export class QuizApp {
     const guideUrl =
       this.filter.category !== "all"
         ? this.useCase.getCategoryGuideUrl(this.filter.subject, this.filter.category)
-        : this.useCase.getFirstGuideUrlForSubject(this.filter.subject);
+        : this.useCase.getFirstAvailableGuideUrl();
 
     if (guideUrl) {
       if (guideFrame.getAttribute("src") !== guideUrl) {
@@ -932,11 +973,12 @@ export class QuizApp {
    * クイズパネルの表示/非表示を更新する。
    * カテゴリが未選択（"all"）の場合はパネルを非表示にし、
    * 特定のカテゴリが選択されている場合は表示する。
+   * ただし「総合」タブ（subject === "all"）では全問対象でクイズを開始できるため常に表示する。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
     if (!subjectContent) return;
-    const noCategory = this.filter.category === "all";
+    const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
   }
 
@@ -1537,7 +1579,6 @@ export class QuizApp {
       eraserBtn.title = isEraser ? "ペンに戻す" : "消しゴム";
     }
   }
-
 }
 
 // アプリケーション起動

@@ -6,6 +6,8 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/22-positive-negative/guide",
+  "example": "(-3) + (+5) = 2",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "pos-neg-1",

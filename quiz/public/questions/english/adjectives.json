@@ -6,6 +6,8 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/19-adjectives/guide",
+  "example": "a `big` dog",
+  "referenceGrade": "小学5年",
   "questions": [
     {
       "id": "adjectives-1",

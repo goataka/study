@@ -6,6 +6,8 @@
   "parentCategory": "calculus",
   "parentCategoryName": "解析・高校数学",
   "guideUrl": "../math/calculus/35-vectors/guide",
+  "example": "\u2192a=(1,2), \u2192b=(3,4) \u2192 \u2192a+\u2192b=(4,6)",
+  "referenceGrade": "高校2年",
   "questions": [
     {
       "id": "vec-1",

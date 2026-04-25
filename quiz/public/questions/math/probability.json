@@ -6,6 +6,8 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/27-probability/guide",
+  "example": "\u30b5\u30a4\u30b3\u30ed\u3067\u5076\u6570 = 3/6 = 1/2",
+  "referenceGrade": "中学2年",
   "questions": [
     {
       "id": "prob-1",

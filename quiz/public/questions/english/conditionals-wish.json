@@ -6,6 +6,8 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/34-conditionals-wish/guide",
+  "example": "I `wish` I could fly.",
+  "referenceGrade": "高校1年",
   "questions": [
     {
       "id": "conditionals-wish-1",

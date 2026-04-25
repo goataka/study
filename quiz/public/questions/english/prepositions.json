@@ -6,6 +6,8 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/21-prepositions/guide",
+  "example": "`in` the box",
+  "referenceGrade": "小学5年",
   "questions": [
     {
       "id": "prepositions-1",

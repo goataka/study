@@ -6,6 +6,8 @@
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/03-phonics-1letter/guide",
+  "example": "`p`\u2192/p/ (play)",
+  "referenceGrade": "小学3年",
   "questions": [
     {
       "id": "phonics-1-a",

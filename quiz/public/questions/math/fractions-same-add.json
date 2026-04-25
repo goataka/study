@@ -6,6 +6,8 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/11-fractions-same-add/guide",
+  "example": "1/5 + 2/5 = 3/5",
+  "referenceGrade": "小学4年",
   "questions": [
     {
       "id": "frac-same-add-1",

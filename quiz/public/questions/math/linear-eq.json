@@ -6,6 +6,8 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/24-linear-eq/guide",
+  "example": "2x + 3 = 7 \u2192 x = 2",
+  "referenceGrade": "中学1年",
   "questions": [
     {
       "id": "linear-eq-1",

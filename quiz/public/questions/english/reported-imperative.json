@@ -6,6 +6,8 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/48-reported-imperative/guide",
+  "example": "He told me `to` go.",
+  "referenceGrade": "高校1年",
   "questions": [
     {
       "id": "reported-imperative-1",
