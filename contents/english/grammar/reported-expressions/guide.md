@@ -1,4 +1,4 @@
-# 指示語の変化 - 解説
+# 指示語の変化
 
 直接話法:
 "I will play games `tomorrow`."
