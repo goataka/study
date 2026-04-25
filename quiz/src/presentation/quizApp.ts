@@ -1485,7 +1485,7 @@ export class QuizApp {
     if (!candidateList || !this.isKanjiCanvasAvailable()) return;
 
     const result = KanjiCanvas.recognize("kanjiCanvas");
-    const candidates = result.trim().split(/\s+/).filter(Boolean);
+    const candidates = result.trim().split(/\s+/).filter(Boolean).slice(0, 5);
 
     candidateList.innerHTML = "";
     candidates.forEach((char) => {
