@@ -28,9 +28,3 @@ She sings `beautifully`.
 | 様態 | 動詞の後 | I play games `well`. |
 | 時 | 文末 | I played games `yesterday`. |
 | 場所 | 文末 | I play games `here`. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=adverbs)
-
-[前へ: 形容詞](../19-adjectives/drill.md) | 副詞 | [次へ: 前置詞](../21-prepositions/drill.md)

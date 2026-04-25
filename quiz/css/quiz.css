@@ -204,7 +204,7 @@ header h1 {
 }
 
 .category-group-header {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: #586069;
     text-transform: uppercase;
@@ -235,7 +235,7 @@ header h1 {
 }
 
 .category-name {
-    font-size: 13px;
+    font-size: 15px;
     color: #24292e;
 }
 
@@ -245,7 +245,7 @@ header h1 {
 
 /* カテゴリ例文 */
 .category-example {
-    font-size: 11px;
+    font-size: 13px;
     color: #586069;
     font-style: italic;
 }
@@ -276,7 +276,7 @@ header h1 {
 }
 
 .category-stats {
-    font-size: 11px;
+    font-size: 13px;
     color: #586069;
     white-space: nowrap;
     background: rgba(0, 0, 0, 0.06);
@@ -290,7 +290,7 @@ header h1 {
 }
 
 .category-grade {
-    font-size: 10px;
+    font-size: 12px;
     color: #586069;
     white-space: nowrap;
     background: #e8f0fe;
@@ -443,6 +443,18 @@ header h1 {
     background: #0255b8;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(3, 102, 214, 0.4);
+}
+
+/* 練習ボタンは本番ボタンより薄い色にする */
+#startPracticeBtn {
+    background: #5b9bd5;
+    color: #0f2a43;
+}
+
+#startPracticeBtn:hover:not(:disabled) {
+    background: #2f6ea8;
+    color: #0f2a43;
+    box-shadow: 0 6px 12px rgba(47, 110, 168, 0.4);
 }
 
 .secondary-btn {
@@ -1130,20 +1142,6 @@ button:disabled {
 }
 
 /* カテゴリ解説リンク */
-.category-guide-link {
-    font-size: 14px;
-    text-decoration: none;
-    flex-shrink: 0;
-    padding: 2px 4px;
-    border-radius: 4px;
-    transition: background 0.15s;
-    line-height: 1;
-}
-
-.category-guide-link:hover {
-    background: rgba(0, 0, 0, 0.1);
-}
-
 /* カテゴリ未選択時 — クイズパネルを非表示にして1カラムレイアウトにする */
 .start-content-layout.category-only {
     grid-template-columns: 1fr;

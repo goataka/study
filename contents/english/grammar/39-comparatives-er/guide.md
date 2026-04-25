@@ -19,9 +19,3 @@ I play games `better` than you.
 | 子音 + y | y → ier | early → `earlier` |
 | 短母音 + 子音 | 子音を重ねて + er | big → `bigger` |
 | 長い語 | more + 原級 | often → `more often` |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=comparatives-er)
-
-[前へ: 疑問詞](../38-questions-wh/drill.md) | 比較級 | [次へ: 最上級](../40-comparatives-est/drill.md)

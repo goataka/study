@@ -66,7 +66,7 @@
 
           <!-- 解説パネル -->
           <div id="guideContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
-            <iframe id="guidePanelFrame" class="guide-frame" title="解説" sandbox="" referrerpolicy="no-referrer"></iframe>
+            <iframe id="guidePanelFrame" class="guide-frame" title="解説" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
             <p id="guideNoContent" class="guide-no-content hidden">このカテゴリには解説がありません。</p>
           </div>
 
@@ -138,8 +138,8 @@
               <canvas id="notesCanvas" class="notes-canvas"></canvas>
               <!-- タッチペン入力確定ボタン（text-input問題のみ表示） -->
               <div id="handwritingConfirmArea" class="hidden">
-                <input type="text" id="handwritingTextInput" class="handwriting-text-input" placeholder="手書きした文字をここに入力..." autocomplete="off">
-                <button id="handwritingConfirmBtn" class="handwriting-confirm-btn" type="button">確定する</button>
+                <input type="text" id="handwritingTextInput" class="handwriting-text-input" placeholder="OCRで認識できなかった場合に直接入力..." autocomplete="off">
+                <button id="handwritingConfirmBtn" class="handwriting-confirm-btn" type="button">✏️ 確定する</button>
               </div>
             </div>
 

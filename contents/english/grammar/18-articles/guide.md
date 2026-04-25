@@ -27,9 +27,3 @@ I play `the` game every day.
 | `an` | 不特定・母音の前 | `an` exciting game |
 | `the` | 特定のもの | `the` game every day |
 | なし | 複数形・不可算名詞（一般的） | I play games. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=articles)
-
-[前へ: 不規則動詞の過去形](../17-tenses-irregular/drill.md) | 冠詞 | [次へ: 形容詞](../19-adjectives/drill.md)

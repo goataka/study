@@ -42,9 +42,3 @@
 ## 例題
 
 🔤 `sh`oe → `シュ` / r`ai`n → `エイ` / k`i`te → `アイ`
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=phonics-2)
-
-[前へ: フォニックス（1文字）](../03-phonics-1letter/drill.md) | **フォニックス練習ドリル（2文字）** | [次へ: フォニックス（3文字）](../05-phonics-3letter/drill.md)
