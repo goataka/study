@@ -32,6 +32,8 @@ export class QuizApp {
   private notesStates: Map<number, DrawingState> = new Map();
   private readonly ocrService: OcrService = new OcrService();
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
+  // 総合タブのフォールバックで「実行記録」タブに自動切り替えしたかどうかを保持するフラグ
+  private autoSwitchedToHistory = false;
   private hideLearnedCategories: boolean = true;
 
   constructor() {
@@ -195,6 +197,7 @@ export class QuizApp {
       tab.addEventListener("click", () => {
         const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
         this.activePanelTab = panel;
+        this.autoSwitchedToHistory = false; // ユーザーが手動でタブを切り替えた
         this.showPanelTab(panel);
         if (panel === "guide") {
           this.updateGuidePanelContent();
@@ -1067,6 +1070,14 @@ export class QuizApp {
     if (isAll && (this.activePanelTab === "guide" || this.activePanelTab === "quiz")) {
       this.activePanelTab = "history";
       this.showPanelTab("history");
+      this.autoSwitchedToHistory = true; // フォールバックによる自動切り替えを記録
+    }
+
+    // 総合タブのフォールバックで「実行記録」に切り替えた後、特定カテゴリを選択したら「確認」タブに戻す
+    if (!isAll && !noCategory && this.autoSwitchedToHistory) {
+      this.activePanelTab = "quiz";
+      this.showPanelTab("quiz");
+      this.autoSwitchedToHistory = false;
     }
   }
 

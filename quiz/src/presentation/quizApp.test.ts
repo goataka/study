@@ -2013,6 +2013,30 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizModePanel?.classList.contains("hidden")).toBe(true);
   });
 
+  it("総合タブ→教科タブ→カテゴリ選択で「確認」タブに自動切り替えされる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 総合タブ表示中はquizModePanelが非表示
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    // 教科タブをクリック（category-onlyになりquiz panelは非表示）
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // カテゴリアイテムをクリック（quiz panelが表示され、「確認」タブに自動切り替え）
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // quizModePanelが表示されること
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
+    // 「確認」タブがアクティブになること
+    const quizTab = document.getElementById("panelTab-quiz");
+    expect(quizTab?.classList.contains("active")).toBe(true);
+    expect(quizTab?.getAttribute("aria-selected")).toBe("true");
+  });
+
   it("選択済みのカテゴリアイテムを再クリックすると非選択になり active クラスが除去される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
