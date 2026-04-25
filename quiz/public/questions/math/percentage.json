@@ -6,8 +6,9 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/21-percentage/guide",
-  "example": "60\u4eba\u306e30% = 18\u4eba",
+  "example": "60人の30% = 18人",
   "referenceGrade": "小学5年",
+  "description": "割合・百分率・歩合の計算を使って文章題を解けるようにします。",
   "questions": [
     {
       "id": "percent-1",

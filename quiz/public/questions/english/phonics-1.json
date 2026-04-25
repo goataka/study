@@ -6,8 +6,9 @@
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/03-phonics-1letter/guide",
-  "example": "`p`\u2192/p/ (play)",
+  "example": "`p`→/p/ (play)",
   "referenceGrade": "小学3年",
+  "description": "1文字のアルファベットが持つ音（フォニックス）を覚えます。",
   "questions": [
     {
       "id": "phonics-1-a",

@@ -8,6 +8,7 @@
   "guideUrl": "../math/arithmetic/01-addition-no-carry/guide",
   "example": "3 + 4 = 7",
   "referenceGrade": "小学1年",
+  "description": "くり上がりのない1けたのたし算をすばやく正確にできるようにします。",
   "questions": [
     {
       "id": "add-no-carry-1",

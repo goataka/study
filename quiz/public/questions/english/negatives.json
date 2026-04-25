@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/37-negatives/guide",
   "example": "I `don't` play.",
   "referenceGrade": "中学1年",
+  "description": "don't / doesn't / didn't を使って一般動詞の否定文を作ります。",
   "questions": [
     {
       "id": "negatives-1",

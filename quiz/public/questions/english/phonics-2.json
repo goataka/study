@@ -6,8 +6,9 @@
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/04-phonics-2letter/guide",
-  "example": "`ay`\u2192/e\u026a/ (play)",
+  "example": "`ay`→/eɪ/ (play)",
   "referenceGrade": "小学4年",
+  "description": "2文字の組み合わせが作る特別な音（ダイグラフ）を覚えます。",
   "questions": [
     {
       "id": "phonics-2-sh1",

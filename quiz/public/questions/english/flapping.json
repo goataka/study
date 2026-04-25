@@ -6,8 +6,9 @@
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/09-flapping/guide",
-  "example": "water\u2192\u30a6\u30a9\u30c0\u30fc",
+  "example": "water→ウォダー",
   "referenceGrade": "中学3年",
+  "description": "母音に挟まれた t / d がラ行の音に変化する現象（フラッピング）を学びます。",
   "questions": [
     {
       "id": "flapping-1",

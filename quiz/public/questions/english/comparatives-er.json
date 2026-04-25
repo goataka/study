@@ -6,8 +6,9 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/39-comparatives-er/guide",
-  "example": "tall\u2192`taller`",
+  "example": "tall→`taller`",
   "referenceGrade": "中学2年",
+  "description": "形容詞・副詞に -er をつけて「より〜だ」という比較級を作ります。",
   "questions": [
     {
       "id": "comparatives-er-1",

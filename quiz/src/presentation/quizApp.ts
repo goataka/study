@@ -573,6 +573,28 @@ export class QuizApp {
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
   /**
+   * 単元の説明を quizModePanel 内の categoryDescription 要素に表示する。
+   * 特定カテゴリが選択されており description が設定されている場合のみ表示する。
+   */
+  private updateCategoryDescription(): void {
+    const descEl = document.getElementById("categoryDescription");
+    if (!descEl) return;
+    if (this.filter.category === "all" || this.filter.subject === "all") {
+      descEl.textContent = "";
+      descEl.classList.add("hidden");
+      return;
+    }
+    const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
+    if (description) {
+      descEl.textContent = description;
+      descEl.classList.remove("hidden");
+    } else {
+      descEl.textContent = "";
+      descEl.classList.add("hidden");
+    }
+  }
+
+  /**
    * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する（メインパネル用）。
    */
   private updateGuidePanelContent(): void {
@@ -943,6 +965,9 @@ export class QuizApp {
       markLearnedBtn.disabled = this.filter.category === "all";
       markLearnedBtn.textContent = this.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 学習済みにする";
     }
+
+    // 単元の説明を表示（特定カテゴリが選択されている場合のみ）
+    this.updateCategoryDescription();
 
     this.renderHistoryList(this.filter, allRecords);
     if (this.activePanelTab === "questions") {

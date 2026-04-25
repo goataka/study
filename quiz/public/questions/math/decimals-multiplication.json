@@ -6,8 +6,9 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/19-decimals-multiplication/guide",
-  "example": "0.3 \u00d7 0.4 = 0.12",
+  "example": "0.3 × 0.4 = 0.12",
   "referenceGrade": "小学5年",
+  "description": "小数のかけ算を正確に計算できるようにします。",
   "questions": [
     {
       "id": "dec-mult-1",

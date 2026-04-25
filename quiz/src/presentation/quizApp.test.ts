@@ -88,6 +88,7 @@ function setupTabDom(): void {
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 履歴</button>
         </div>
         <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
+          <p id="categoryDescription" class="category-description hidden"></p>
           <div id="statsInfo"></div>
           <input type="radio" name="questionCount" value="5">
           <input type="radio" name="questionCount" value="10" checked>
@@ -1987,6 +1988,118 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     const highlightEl = exampleEl?.querySelector("code.category-example-highlight");
     expect(highlightEl).not.toBeNull();
     expect(highlightEl?.textContent).toBe("play");
+  });
+});
+
+describe("QuizApp — 単元説明表示仕様", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    localStorage.clear();
+  });
+
+  it("description ありのカテゴリを選択すると説明が表示される", async () => {
+    setupTabDom();
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/tenses-regular-past.json"],
+    };
+    const questionFileWithDescription = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-regular-past",
+      categoryName: "一般動詞の過去形",
+      referenceGrade: "中学1年",
+      description: "規則動詞は語尾に -ed をつけて過去形を作ります。",
+      questions: Array.from({ length: 3 }, (_, i) => ({
+        id: `q${i + 1}`,
+        question: `問題 ${i + 1}`,
+        choices: ["A", "B", "C", "D"],
+        correct: 0,
+        explanation: `解説 ${i + 1}`,
+      })),
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithDescription) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="tenses-regular-past"]') as HTMLElement;
+    catItem?.click();
+
+    const descEl = document.getElementById("categoryDescription");
+    expect(descEl?.classList.contains("hidden")).toBe(false);
+    expect(descEl?.textContent).toBe("規則動詞は語尾に -ed をつけて過去形を作ります。");
+  });
+
+  it("description なしのカテゴリを選択すると説明要素は hidden のまま", async () => {
+    setupTabDom();
+    setupFetchMock(); // mockQuestionFile には description がない
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const descEl = document.getElementById("categoryDescription");
+    expect(descEl?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("カテゴリ選択を解除すると説明が非表示になる", async () => {
+    setupTabDom();
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/tenses-regular-past.json"],
+    };
+    const questionFileWithDescription = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-regular-past",
+      categoryName: "一般動詞の過去形",
+      description: "規則動詞は語尾に -ed をつけて過去形を作ります。",
+      questions: Array.from({ length: 3 }, (_, i) => ({
+        id: `q${i + 1}`,
+        question: `問題 ${i + 1}`,
+        choices: ["A", "B", "C", "D"],
+        correct: 0,
+        explanation: `解説 ${i + 1}`,
+      })),
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithDescription) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // カテゴリを選択して説明が表示されることを確認
+    const catItem = document.querySelector('.category-item[data-category="tenses-regular-past"]') as HTMLElement;
+    catItem?.click();
+    const descEl = document.getElementById("categoryDescription");
+    expect(descEl?.classList.contains("hidden")).toBe(false);
+
+    // カテゴリを再クリックして選択解除すると説明が非表示になる
+    catItem?.click();
+    expect(descEl?.classList.contains("hidden")).toBe(true);
   });
 });
 

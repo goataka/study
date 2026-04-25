@@ -493,6 +493,17 @@ button:disabled {
     margin-top: 20px;
 }
 
+.category-description {
+    font-size: 14px;
+    color: #444;
+    background: #f6f8fa;
+    border-left: 3px solid #0366d6;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.6;
+}
+
 /* クイズ画面 */
 .quiz-landscape-layout {
     display: grid;

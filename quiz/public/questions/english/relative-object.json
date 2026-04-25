@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/43-relative-object/guide",
   "example": "the book `that` I read",
   "referenceGrade": "中学3年",
+  "description": "関係代名詞 that / which / whom を使って、名詞を目的語として説明します。",
   "questions": [
     {
       "id": "relative-object-1",

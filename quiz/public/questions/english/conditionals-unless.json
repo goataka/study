@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/35-conditionals-unless/guide",
   "example": "`Unless` you try, you fail.",
   "referenceGrade": "高校1年",
+  "description": "unless は「〜でなければ」という意味の接続詞で、if not と同じ意味を持ちます。",
   "questions": [
     {
       "id": "conditionals-unless-1",
