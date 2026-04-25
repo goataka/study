@@ -41,9 +41,3 @@ I play games `if` I have time.
 | 時 | `when` / `after` / `before` | `after` I finish homework |
 | 条件 | `if` | `if` I have time |
 | 譲歩 | `though` | `though` I am busy |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=conjunctions)
-
-[前へ: 前置詞](../21-prepositions/drill.md) | 接続詞 | [次へ: 進行形](../23-progressive/drill.md)

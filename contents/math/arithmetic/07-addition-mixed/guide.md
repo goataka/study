@@ -27,11 +27,3 @@
 |----------|----------|-----|
 | くり上がりなし | 合計が9以下 | 3 + 4 = 7 |
 | くり上がりあり | 合計が10以上 | 8 + 5 = 13 |
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 3桁のたし算（くり上がりあり）](../06-addition-3digit-carry/guide.md) | **たし算（まとめ）** | [次へ: 1桁のひき算（くり下がりなし）](../08-subtraction-1digit-no-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-mixed)

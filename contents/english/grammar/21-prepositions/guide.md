@@ -33,9 +33,3 @@ I play games `in` the morning.
 | `by` | 手段 | go `by` bus |
 | `for` | 目的・期間 | study `for` two hours |
 | `with` | 一緒に・道具 | play `with` friends |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=prepositions)
-
-[前へ: 副詞](../20-adverbs/drill.md) | 前置詞 | [次へ: 接続詞](../22-conjunctions/drill.md)

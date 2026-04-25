@@ -40,9 +40,3 @@
 🔤 ma`tch` → `チ` / f`igh`t → `アイ` / `str`eet → `ストゥル`
 
 - 💡 子音クラスターは素早く続けて発音する（各文字の音をくっつけるイメージ）
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=phonics-3)
-
-[前へ: フォニックス（2文字）](../04-phonics-2letter/drill.md) | **フォニックス練習ドリル（3文字）** | [次へ: リンキング](../07-linking/drill.md)

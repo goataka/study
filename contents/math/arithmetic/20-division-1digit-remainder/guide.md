@@ -35,11 +35,3 @@
 
 - **わる数 × 答え ＋ あまり ＝ もとの数** になればOK
 - 例: 3 × 3 + 1 = 10 ✅
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 1桁のわり算（あまりなし）](../19-division-1digit-no-remainder/guide.md) | **1桁のわり算（あまりあり）** | [次へ: 2桁のわり算（あまりなし）](../21-division-2digit-no-remainder/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-remainder)

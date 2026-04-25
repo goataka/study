@@ -1998,6 +1998,21 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizTab?.classList.contains("hidden")).toBe(false);
   });
 
+  it("総合タブから教科タブに切り替えると「確認」パネルが再表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 初期状態（総合タブ）では quizModePanel が非表示
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    // 英語タブに切り替えると quizModePanel が再表示される
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
+  });
+
   it("総合タブ表示中はアクティブタブが「実行記録」に切り替わる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2006,6 +2021,82 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(historyTab?.classList.contains("active")).toBe(true);
     expect(historyTab?.getAttribute("aria-selected")).toBe("true");
 
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(false);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("総合タブに切り替えると「実行記録」タブボタンの hidden が外れて表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.getElementById("panelTab-history");
+    historyTab?.classList.add("hidden");
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const overallTab = document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement;
+    overallTab?.click();
+
+    expect(historyTab?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("総合タブに切り替えると「問題一覧」タブボタンの hidden が外れて表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.getElementById("panelTab-questions");
+    questionsTab?.classList.add("hidden");
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const overallTab = document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement;
+    overallTab?.click();
+
+    expect(questionsTab?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("総合タブ後に教科＋カテゴリを選択すると「確認」タブへ自動復帰する", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 初期状態は総合タブ → historyに切り替わっている
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    // 英語タブをクリックしてカテゴリを選択
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // quizModePanel が表示されていること
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
+
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("ユーザーが明示的に実行記録タブを選択した後はカテゴリ選択で自動復帰しない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリを選択
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 実行記録タブを明示的に選択
+    const historyTab = document.getElementById("panelTab-history") as HTMLElement;
+    historyTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // history は明示選択なのでそのまま historyContent が表示される
     const historyContent = document.getElementById("historyContent");
     expect(historyContent?.classList.contains("hidden")).toBe(false);
 

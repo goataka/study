@@ -31,9 +31,3 @@ I `buy` games. → I `bought` games.
 | `buy` | `bought` | 買う |
 
 `read` は綴りが同じだが、発音が変わる（現在: リード → 過去: レッド）
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-irregular)
-
-[前へ: be動詞の未来形](../16-tenses-be-future/drill.md) | 不規則動詞の過去形 | [次へ: 冠詞](../18-articles/drill.md)

@@ -28,11 +28,3 @@
 
 - 分子と分母を **同じ数でわる**
 - 例: 6/9 → 6÷3 / 9÷3 = **2/3**
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: わり算（まとめ）](../25-division-mixed/guide.md) | **分数のたし算（同分母）** | [次へ: 分数のひき算（同分母）](../27-fractions-same-sub/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=fractions-same-add)

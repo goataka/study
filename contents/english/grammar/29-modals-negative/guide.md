@@ -22,9 +22,3 @@ I `cannot play` games.
 
 - `must not` = ～してはいけない（禁止）
 - `don't have to` = ～する必要はない（不必要）
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=modals-negative)
-
-[前へ: 助動詞の使い分け](../28-modals-basic/drill.md) | 助動詞の否定形 | [次へ: 助動詞の過去形](../30-modals-past/drill.md)

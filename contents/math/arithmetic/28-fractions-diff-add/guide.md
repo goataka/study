@@ -35,11 +35,3 @@
 
 - 片方の分母が割り切れる → そちらに合わせる（例: 1/4 + 3/8 → 8に合わせる）
 - 割り切れない → 分母どうしをかける（例: 1/3 + 1/5 → 15にする）
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 分数のひき算（同分母）](../27-fractions-same-sub/guide.md) | **分数のたし算（通分あり）** | [次へ: 分数のひき算（通分あり）](../29-fractions-diff-sub/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=fractions-diff-add)

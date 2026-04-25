@@ -32,7 +32,11 @@ export class QuizApp {
   private notesStates: Map<number, DrawingState> = new Map();
   private readonly ocrService: OcrService = new OcrService();
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
+  /** 総合タブの fallback により自動的に "history" へ切り替わった場合は true。ユーザーが明示的にタブを選択した場合は false。 */
+  private autoSwitchedToHistory: boolean = false;
   private hideLearnedCategories: boolean = true;
+  /** 「総合」タブへの切り替え時に「確認」パネルが強制的に「実行記録」へフォールバックされたかを示すフラグ */
+  private wasQuizPanelForcedToHistory: boolean = false;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -195,6 +199,7 @@ export class QuizApp {
       tab.addEventListener("click", () => {
         const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
         this.activePanelTab = panel;
+        this.autoSwitchedToHistory = false; // ユーザーが明示的にタブを選択した
         this.showPanelTab(panel);
         if (panel === "guide") {
           this.updateGuidePanelContent();
@@ -557,8 +562,10 @@ export class QuizApp {
         : this.useCase.getFirstAvailableGuideUrl();
 
     if (guideUrl) {
-      if (guideFrame.getAttribute("src") !== guideUrl) {
-        guideFrame.src = guideUrl;
+      // iframe 内であることを示す ?embedded=1 を付与してナビゲーション非表示スクリプトをトリガーする
+      const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
+      if (guideFrame.getAttribute("src") !== embeddedUrl) {
+        guideFrame.src = embeddedUrl;
       }
       guideFrame.classList.remove("hidden");
       noContent?.classList.add("hidden");
@@ -1046,7 +1053,9 @@ export class QuizApp {
    * 教科タブでカテゴリが未選択（category === "all"）の場合はクイズパネルを非表示にし、
    * カテゴリが選択されている場合は表示する。
    * 「総合」タブ（subject === "all"）では「解説」と「確認」パネルタブを非表示にする。
+   * 「総合」タブでは「実行記録」と「問題一覧」パネルタブを表示する。
    * 「解説」または「確認」がアクティブな状態で総合タブに切り替えた場合は「実行記録」タブへフォールバックする。
+   * 総合タブの fallback で history になった後、特定カテゴリが選択された場合は「確認」タブへ自動復帰する。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
@@ -1054,16 +1063,35 @@ export class QuizApp {
     const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
 
-    // 「総合」タブでは「解説」と「確認」パネルタブを非表示にする
+    // 「総合」タブでは「解説」と「確認」パネルタブを非表示にし、「実行記録」と「問題一覧」は明示的に表示する
     const isAll = this.filter.subject === "all";
     document.getElementById("panelTab-guide")?.classList.toggle("hidden", isAll);
     document.getElementById("panelTab-quiz")?.classList.toggle("hidden", isAll);
+    if (isAll) {
+      document.getElementById("panelTab-history")?.classList.remove("hidden");
+      document.getElementById("panelTab-questions")?.classList.remove("hidden");
+    }
 
-    // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「実行記録」タブに切り替える
+    // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「実行記録」タブに自動切り替えする
     // 描画（renderHistoryList）は updateStartScreen() が一元的に担うためここでは呼ばない
     if (isAll && (this.activePanelTab === "guide" || this.activePanelTab === "quiz")) {
+      this.wasQuizPanelForcedToHistory = true;
       this.activePanelTab = "history";
+      this.autoSwitchedToHistory = true;
       this.showPanelTab("history");
+    } else if (!isAll && this.wasQuizPanelForcedToHistory) {
+      // 「総合」から特定教科への切り替え時は「確認」タブを復元する
+      this.wasQuizPanelForcedToHistory = false;
+      this.activePanelTab = "quiz";
+      this.showPanelTab("quiz");
+    }
+
+    // 総合タブの fallback で自動的に history になった後、特定カテゴリが選択された場合は「確認」タブへ自動復帰する
+    // （ユーザーが明示的に history を選択していない場合のみ）
+    if (!isAll && this.autoSwitchedToHistory && this.filter.category !== "all") {
+      this.activePanelTab = "quiz";
+      this.autoSwitchedToHistory = false;
+      this.showPanelTab("quiz");
     }
   }
 

@@ -35,11 +35,3 @@
 
 - 九九をしっかり覚えていると計算が速くなる
 - くり上がりの数を小さく書いておくと間違いが少ない
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 1桁のかけ算（九九）](../15-multiplication-1digit/guide.md) | **2桁のかけ算（2桁×1桁）** | [次へ: 3桁のかけ算（3桁×1桁）](../17-multiplication-3digit/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=multiplication)

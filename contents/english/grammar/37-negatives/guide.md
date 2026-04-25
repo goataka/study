@@ -20,9 +20,3 @@ I `do not play` games.
 | be動詞（現在） | be + not | I `am not` happy. |
 | be動詞（過去） | be + not | I `was not` happy. |
 | 進行形 | be + not + -ing | I `am not playing` games. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=negatives)
-
-[前へ: 疑問文](../36-questions/drill.md) | 否定文 | [次へ: 疑問詞](../38-questions-wh/drill.md)

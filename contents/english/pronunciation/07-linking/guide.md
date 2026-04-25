@@ -39,9 +39,3 @@ not  at  all
 - 💡 前の語の語末子音と、次の語の語頭母音がくっつく
 - 💡 聞き取るときは「単語の区切り」より「音のかたまり」で捉える
 - 💡 `an apple` → `アナップル`（n + a → ナ）
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=linking)
-
-[前へ: フォニックス（3文字）](../05-phonics-3letter/drill.md) | **リンキング練習ドリル** | [次へ: リダクション](../08-reduction/drill.md)

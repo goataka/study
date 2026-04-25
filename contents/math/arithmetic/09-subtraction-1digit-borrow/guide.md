@@ -33,11 +33,3 @@
 
 - まず **10からひく** → 残りの一の位をたす
 - `13 - 5` → `(10 - 5) + 3` = `5 + 3` = **8**
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 1桁のひき算（くり下がりなし）](../08-subtraction-1digit-no-borrow/guide.md) | **1桁のひき算（くり下がりあり）** | [次へ: 2桁のひき算（くり下がりなし）](../10-subtraction-2digit-no-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-borrow)
