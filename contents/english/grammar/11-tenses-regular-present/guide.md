@@ -40,3 +40,31 @@ He `plays` games.
 | 彼はゲームをします。 | He plays games. |
 | 彼女は英語を勉強します。 | She studies English. |
 | 彼はテレビを見ます。 | He watches TV. |
+
+## 応用問題
+
+次の動詞を正しい形に変えて、空欄を埋めましょう。
+
+| 主語 | 動詞（原形） | 文 |
+|------|------------|------|
+| My teacher | teach | My teacher 　　　　　　　　　　　　 math. |
+| My mother | cook | My mother 　　　　　　　　　　　　 dinner every day. |
+| He | run | He 　　　　　　　　　　　　 to the station. |
+| She | sing | She 　　　　　　　　　　　　 songs beautifully. |
+| He | dance | He 　　　　　　　　　　　　 at the school festival. |
+| She | read | She 　　　　　　　　　　　　 books every night. |
+| My father | clean | My father 　　　　　　　　　　　　 the car on weekends. |
+| She | help | She always 　　　　　　　　　　　　 her friends. |
+
+## 応用解答
+
+| 主語 | 動詞（原形） | 文 |
+|------|------------|------|
+| My teacher | teach | My teacher `teaches` math. |
+| My mother | cook | My mother `cooks` dinner every day. |
+| He | run | He `runs` to the station. |
+| She | sing | She `sings` songs beautifully. |
+| He | dance | He `dances` at the school festival. |
+| She | read | She `reads` books every night. |
+| My father | clean | My father `cleans` the car on weekends. |
+| She | help | She always `helps` her friends. |

@@ -35,3 +35,25 @@ He said that he `played` games.
 |--------|------|
 | 彼はゲームをすると言った。 | He said that he played games. |
 | 彼はゲームをしたと言った。 | He said that he had played games. |
+
+## 応用問題
+
+直接話法の文を間接話法に変えましょう。
+
+| 直接話法 | 間接話法 |
+|----------|----------|
+| She said, "I cook dinner every day." | She said that she 　　　　　　　　　　　　 dinner every day. |
+| He said, "I am learning French." | He said that he 　　　　　　　　　　　　 French. |
+| She said, "I visited Kyoto last year." | She said that she 　　　　　　　　　　　　 Kyoto the year before. |
+| He said, "I will join the team." | He said that he 　　　　　　　　　　　　 the team. |
+| She said, "I can ride a horse." | She said that she 　　　　　　　　　　　　 a horse. |
+
+## 応用解答
+
+| 直接話法 | 間接話法 |
+|----------|----------|
+| She said, "I cook dinner every day." | She said that she `cooked` dinner every day. |
+| He said, "I am learning French." | He said that he `was learning` French. |
+| She said, "I visited Kyoto last year." | She said that she `had visited` Kyoto the year before. |
+| He said, "I will join the team." | He said that he `would join` the team. |
+| She said, "I can ride a horse." | She said that she `could ride` a horse. |

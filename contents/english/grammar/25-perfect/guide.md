@@ -39,3 +39,27 @@ I `have played` games.
 | 私はゲームをしたことがある。 | I have played games. |
 | 私は3年間ここに住んでいる。 | I have lived here for three years. |
 | 私はちょうど宿題を終えた。 | I have just finished my homework. |
+
+## 応用問題
+
+次の文を（　）内の時制の完了形に変えましょう。
+
+| 原文 | 時制 | 完了形 |
+|------|------|--------|
+| She visits Kyoto. | 現在完了 | She 　　　　　　　　　　　　 Kyoto. |
+| He reads the report. | 現在完了 | He 　　　　　　　　　　　　 the report. |
+| I clean my room. | 過去完了 | I 　　　　　　　　　　　　 my room. |
+| They waited for an hour. | 過去完了 | They 　　　　　　　　　　　　 for an hour. |
+| She will finish the project. | 未来完了 | She 　　　　　　　　　　　　 the project. |
+| He will save enough money. | 未来完了 | He 　　　　　　　　　　　　 enough money. |
+
+## 応用解答
+
+| 原文 | 時制 | 完了形 |
+|------|------|--------|
+| She visits Kyoto. | 現在完了 | She `has visited` Kyoto. |
+| He reads the report. | 現在完了 | He `has read` the report. |
+| I clean my room. | 過去完了 | I `had cleaned` my room. |
+| They waited for an hour. | 過去完了 | They `had waited` for an hour. |
+| She will finish the project. | 未来完了 | She `will have finished` the project. |
+| He will save enough money. | 未来完了 | He `will have saved` enough money. |

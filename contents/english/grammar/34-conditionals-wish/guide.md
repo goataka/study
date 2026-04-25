@@ -37,3 +37,27 @@ I wish I `could play` games.（ゲームができたらいいのに）
 | 時間があればいいのに。 | I wish I had time. |
 | 英語が話せたらいいのに。 | I wish I could speak English. |
 | あの時勉強していればよかった。 | I wish I had studied. |
+
+## 応用問題
+
+現実の文を見て、I wish を使った文を完成させましょう。
+
+| 現実 | 願望（I wish ...） |
+|------|------------------|
+| I can't fly. | I wish I 　　　　　　　　　　　　 fly. |
+| She doesn't live near me. | I wish she 　　　　　　　　　　　　 near me. |
+| I didn't bring my umbrella. | I wish I 　　　　　　　　　　　　 my umbrella. |
+| He isn't here now. | I wish he 　　　　　　　　　　　　 here. |
+| I forgot her birthday. | I wish I 　　　　　　　　　　　　 her birthday. |
+| We don't have a dog. | I wish we 　　　　　　　　　　　　 a dog. |
+
+## 応用解答
+
+| 現実 | 願望（I wish ...） |
+|------|------------------|
+| I can't fly. | I wish I `could` fly. |
+| She doesn't live near me. | I wish she `lived` near me. |
+| I didn't bring my umbrella. | I wish I `had brought` my umbrella. |
+| He isn't here now. | I wish he `were` here. |
+| I forgot her birthday. | I wish I `hadn't forgotten` her birthday. |
+| We don't have a dog. | I wish we `had` a dog. |

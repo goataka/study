@@ -61,3 +61,29 @@ I play games `if` I have time.
 | ゲームは楽しいので私はゲームをします。 | I play games because they are fun. |
 | 私はゲームをしますが、毎日はしません。 | I play games, but I don't play every day. |
 | 時間があれば私はゲームをします。 | I play games if I have time. |
+
+## 応用問題
+
+正しい接続詞（and / but / or / because / when / if / before）を選んで空欄を埋めましょう。
+
+| 文 |
+|------|
+| I like cats 　　　　　　　　　　　　 dogs. |
+| She is smart 　　　　　　　　　　　　 she never studies. |
+| Drink water 　　　　　　　　　　　　 you feel thirsty. |
+| Do you want tea 　　　　　　　　　　　　 coffee? |
+| I always wash my hands 　　　　　　　　　　　　 I eat. |
+| He was late 　　　　　　　　　　　　 he missed the bus. |
+| 　　　　　　　　　　　　 you need help, call me. |
+
+## 応用解答
+
+| 文 |
+|------|
+| I like cats `and` dogs. |
+| She is smart `but` she never studies. |
+| Drink water `when` you feel thirsty. |
+| Do you want tea `or` coffee? |
+| I always wash my hands `before` I eat. |
+| He was late `because` he missed the bus. |
+| `If` you need help, call me. |

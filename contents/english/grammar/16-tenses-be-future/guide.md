@@ -35,3 +35,29 @@ The game `will be` fun.
 | 私は幸せになるでしょう。 | I will be happy. |
 | 私は疲れるでしょう。 | I will be tired. |
 | 私はお腹が空くでしょう。 | I will be hungry. |
+
+## 応用問題
+
+次の現在形の文を未来形（will be）に変えましょう。
+
+| 現在形 | 未来形 |
+|--------|--------|
+| My sister is a teacher. | My sister 　　　　　　　　　　　　 a teacher. |
+| The weather is cold. | The weather 　　　　　　　　　　　　 cold. |
+| We are busy. | We 　　　　　　　　　　　　 busy. |
+| You are a great leader. | You 　　　　　　　　　　　　 a great leader. |
+| The test is easy. | The test 　　　　　　　　　　　　 easy. |
+| I am at school. | I 　　　　　　　　　　　　 at school. |
+| They are ready. | They 　　　　　　　　　　　　 ready. |
+
+## 応用解答
+
+| 現在形 | 未来形 |
+|--------|--------|
+| My sister is a teacher. | My sister `will be` a teacher. |
+| The weather is cold. | The weather `will be` cold. |
+| We are busy. | We `will be` busy. |
+| You are a great leader. | You `will be` a great leader. |
+| The test is easy. | The test `will be` easy. |
+| I am at school. | I `will be` at school. |
+| They are ready. | They `will be` ready. |

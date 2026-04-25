@@ -40,3 +40,29 @@ I `can play` games.（ゲームができる）
 | 私は行かなければならない。 | I must go. |
 | 私は早く寝るべきだ。 | I should go to bed early. |
 | 私は遅れるかもしれない。 | I might be late. |
+
+## 応用問題
+
+状況に合う助動詞（can / may / must / should / will / might）を選んで空欄を埋めましょう。
+
+| 状況 | 文 |
+|------|------|
+| 許可を求めている | 　　　　　　　　　　　　 I use your pen? |
+| 義務・強い必要性 | You 　　　　　　　　　　　　 wear a helmet. |
+| 能力がある | She 　　　　　　　　　　　　 speak three languages. |
+| アドバイス | You 　　　　　　　　　　　　 eat more vegetables. |
+| 確信がある未来 | It 　　　　　　　　　　　　 rain tomorrow. |
+| 可能性が低い | He 　　　　　　　　　　　　 be at the library. |
+| 約束・意思 | I 　　　　　　　　　　　　 never forget your kindness. |
+
+## 応用解答
+
+| 状況 | 文 |
+|------|------|
+| 許可を求めている | `May` I use your pen? |
+| 義務・強い必要性 | You `must` wear a helmet. |
+| 能力がある | She `can` speak three languages. |
+| アドバイス | You `should` eat more vegetables. |
+| 確信がある未来 | It `will` rain tomorrow. |
+| 可能性が低い | He `might` be at the library. |
+| 約束・意思 | I `will` never forget your kindness. |

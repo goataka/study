@@ -45,3 +45,27 @@ I `do not play` games.
 | 私はゲームをしません。 | I don't play games. |
 | 私はゲームをしませんでした。 | I didn't play games. |
 | 私は幸せではありません。 | I am not happy. |
+
+## 応用問題
+
+次の肯定文を否定文に変えましょう。
+
+| 肯定文 | 否定文 |
+|--------|--------|
+| She eats fish. | She 　　　　　　　　　　　　 fish. |
+| He finished his lunch. | He 　　　　　　　　　　　　 his lunch. |
+| They will come tomorrow. | They 　　　　　　　　　　　　 tomorrow. |
+| The cat is on the sofa. | The cat 　　　　　　　　　　　　 on the sofa. |
+| We were in the classroom. | We 　　　　　　　　　　　　 in the classroom. |
+| I have seen that film. | I 　　　　　　　　　　　　 that film. |
+
+## 応用解答
+
+| 肯定文 | 否定文 |
+|--------|--------|
+| She eats fish. | She `doesn't eat` fish. |
+| He finished his lunch. | He `didn't finish` his lunch. |
+| They will come tomorrow. | They `won't come` tomorrow. |
+| The cat is on the sofa. | The cat `is not` on the sofa. |
+| We were in the classroom. | We `were not` in the classroom. |
+| I have seen that film. | I `haven't seen` that film. |

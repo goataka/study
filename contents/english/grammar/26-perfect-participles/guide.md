@@ -47,3 +47,31 @@ go → went → `gone`
 | 私はその映画を見たことがある。 | I have seen the movie. |
 | 私はケーキを作ったことがある。 | I have made a cake. |
 | 私は英語を話したことがある。 | I have spoken English. |
+
+## 応用問題
+
+次の動詞の過去分詞形を書きましょう。
+
+| 原形 | 過去分詞 |
+|------|---------|
+| do | 　　　　　　　　　　　　 |
+| choose | 　　　　　　　　　　　　 |
+| forget | 　　　　　　　　　　　　 |
+| grow | 　　　　　　　　　　　　 |
+| steal | 　　　　　　　　　　　　 |
+| wear | 　　　　　　　　　　　　 |
+| win | 　　　　　　　　　　　　 |
+| throw | 　　　　　　　　　　　　 |
+
+## 応用解答
+
+| 原形 | 過去分詞 |
+|------|---------|
+| do | `done` |
+| choose | `chosen` |
+| forget | `forgotten` |
+| grow | `grown` |
+| steal | `stolen` |
+| wear | `worn` |
+| win | `won` |
+| throw | `thrown` |

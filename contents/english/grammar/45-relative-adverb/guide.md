@@ -34,3 +34,25 @@ The place `where` I play games is quiet.
 | ここは私が生まれた場所です。 | This is the place where I was born. |
 | 私はあなたに会った日を覚えている。 | I remember the day when I met you. |
 | 遅刻した理由を教えてください。 | Tell me the reason why you were late. |
+
+## 応用問題
+
+2つの文を関係副詞（where / when / why）を使って1つにしましょう。
+
+| 2つの文 | 1つの文 |
+|---------|---------|
+| I know a café. My parents met there. | I know a café 　　　　　　　　　　　　 my parents met. |
+| I remember the summer. I learned to swim then. | I remember the summer 　　　　　　　　　　　　 I learned to swim. |
+| Tell me the reason. You changed your mind for it. | Tell me the reason 　　　　　　　　　　　　 you changed your mind. |
+| This is the school. I studied there for six years. | This is the school 　　　　　　　　　　　　 I studied for six years. |
+| Do you know the day? The festival starts on it. | Do you know the day 　　　　　　　　　　　　 the festival starts? |
+
+## 応用解答
+
+| 2つの文 | 1つの文 |
+|---------|---------|
+| I know a café. My parents met there. | I know a café `where` my parents met. |
+| I remember the summer. I learned to swim then. | I remember the summer `when` I learned to swim. |
+| Tell me the reason. You changed your mind for it. | Tell me the reason `why` you changed your mind. |
+| This is the school. I studied there for six years. | This is the school `where` I studied for six years. |
+| Do you know the day? The festival starts on it. | Do you know the day `when` the festival starts? |

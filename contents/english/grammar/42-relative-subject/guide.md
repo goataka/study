@@ -33,3 +33,25 @@ I know a boy `who` plays games.
 |--------|------|
 | 私には英語を話す友達がいる。 | I have a friend who speaks English. |
 | 私にはとても面白い本がある。 | I have a book which is very interesting. |
+
+## 応用問題
+
+2つの文を関係代名詞（who / which / that）を使って1つにしましょう。
+
+| 2つの文 | 1つの文 |
+|---------|---------|
+| I know a girl. She can play the violin. | I know a girl 　　　　　　　　　　　　 can play the violin. |
+| He bought a car. It runs very fast. | He bought a car 　　　　　　　　　　　　 runs very fast. |
+| We have a teacher. He explains things clearly. | We have a teacher 　　　　　　　　　　　　 explains things clearly. |
+| She has a cat. It sleeps all day. | She has a cat 　　　　　　　　　　　　 sleeps all day. |
+| I met a student. She won the speech contest. | I met a student 　　　　　　　　　　　　 won the speech contest. |
+
+## 応用解答
+
+| 2つの文 | 1つの文 |
+|---------|---------|
+| I know a girl. She can play the violin. | I know a girl `who` can play the violin. |
+| He bought a car. It runs very fast. | He bought a car `that` runs very fast. |
+| We have a teacher. He explains things clearly. | We have a teacher `who` explains things clearly. |
+| She has a cat. It sleeps all day. | She has a cat `that` sleeps all day. |
+| I met a student. She won the speech contest. | I met a student `who` won the speech contest. |

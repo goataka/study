@@ -45,3 +45,27 @@ I `am playing` games.（今まさにしている）
 | 私はゲームをしています。 | I am playing games. |
 | 私はゲームをしていました。 | I was playing games. |
 | 私は英語を勉強しています。 | I am studying English. |
+
+## 応用問題
+
+次の文を（　）内の時制の進行形に変えましょう。
+
+| 原文 | 時制 | 進行形 |
+|------|------|--------|
+| She cooks dinner. | 現在進行形 | She 　　　　　　　　　　　　 dinner. |
+| My brother reads a comic. | 現在進行形 | My brother 　　　　　　　　　　　　 a comic. |
+| They played soccer. | 過去進行形 | They 　　　　　　　　　　　　 soccer. |
+| He took a bath. | 過去進行形 | He 　　　　　　　　　　　　 a bath. |
+| I will sleep early. | 未来進行形 | I 　　　　　　　　　　　　 early. |
+| We will travel to Osaka. | 未来進行形 | We 　　　　　　　　　　　　 to Osaka. |
+
+## 応用解答
+
+| 原文 | 時制 | 進行形 |
+|------|------|--------|
+| She cooks dinner. | 現在進行形 | She `is cooking` dinner. |
+| My brother reads a comic. | 現在進行形 | My brother `is reading` a comic. |
+| They played soccer. | 過去進行形 | They `were playing` soccer. |
+| He took a bath. | 過去進行形 | He `was taking` a bath. |
+| I will sleep early. | 未来進行形 | I `will be sleeping` early. |
+| We will travel to Osaka. | 未来進行形 | We `will be traveling` to Osaka. |

@@ -40,3 +40,27 @@
 | 私は何をしますか？ | What do I do? |
 | 私はどこでゲームをしますか？ | Where do I play games? |
 | 誰がゲームをしますか？ | Who plays games? |
+
+## 応用問題
+
+下線部を尋ねる疑問詞疑問文を作りましょう。
+
+| 文 | 疑問文 |
+|------|------|
+| She lives in Osaka. | 　　　　　　　　　　　　 does she live? |
+| He was born in 2010. | 　　　　　　　　　　　　 was he born? |
+| They go to school by bus. | 　　　　　　　　　　　　 do they go to school? |
+| She is crying because she is sad. | 　　　　　　　　　　　　 is she crying? |
+| My mother cooks best. | 　　　　　　　　　　　　 cooks best? |
+| I study for three hours. | 　　　　　　　　　　　　 long do you study? |
+
+## 応用解答
+
+| 文 | 疑問文 |
+|------|------|
+| She lives in Osaka. | `Where` does she live? |
+| He was born in 2010. | `When` was he born? |
+| They go to school by bus. | `How` do they go to school? |
+| She is crying because she is sad. | `Why` is she crying? |
+| My mother cooks best. | `Who` cooks best? |
+| I study for three hours. | `How` long do you study? |

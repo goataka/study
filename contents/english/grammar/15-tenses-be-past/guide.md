@@ -36,3 +36,29 @@ The game `was` fun.
 | 私は幸せでした。 | I was happy. |
 | 私は学生でした。 | I was a student. |
 | 私は疲れていました。 | I was tired. |
+
+## 応用問題
+
+次の現在形の文を過去形に変えましょう。
+
+| 現在形 | 過去形 |
+|--------|--------|
+| My sister is a student. | My sister 　　　　　　　　　　　　 a student. |
+| The weather is sunny. | The weather 　　　　　　　　　　　　 sunny. |
+| We are at the library. | We 　　　　　　　　　　　　 at the library. |
+| You are my best friend. | You 　　　　　　　　　　　　 my best friend. |
+| They are late for school. | They 　　　　　　　　　　　　 late for school. |
+| The room is quiet. | The room 　　　　　　　　　　　　 quiet. |
+| I am nervous. | I 　　　　　　　　　　　　 nervous. |
+
+## 応用解答
+
+| 現在形 | 過去形 |
+|--------|--------|
+| My sister is a student. | My sister `was` a student. |
+| The weather is sunny. | The weather `was` sunny. |
+| We are at the library. | We `were` at the library. |
+| You are my best friend. | You `were` my best friend. |
+| They are late for school. | They `were` late for school. |
+| The room is quiet. | The room `was` quiet. |
+| I am nervous. | I `was` nervous. |

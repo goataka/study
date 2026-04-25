@@ -33,3 +33,31 @@
 | 私はプールで泳いでいます。 | I am swimming in the pool. |
 | 私は手紙を書いています。 | I am writing a letter. |
 | 私はケーキを作っています。 | I am making a cake. |
+
+## 応用問題
+
+次の動詞の -ing 形を書きましょう。
+
+| 原形 | -ing形 |
+|------|--------|
+| swim | 　　　　　　　　　　　　 |
+| hit | 　　　　　　　　　　　　 |
+| tie | 　　　　　　　　　　　　 |
+| begin | 　　　　　　　　　　　　 |
+| stop | 　　　　　　　　　　　　 |
+| cut | 　　　　　　　　　　　　 |
+| lie | 　　　　　　　　　　　　 |
+| travel | 　　　　　　　　　　　　 |
+
+## 応用解答
+
+| 原形 | -ing形 |
+|------|--------|
+| swim | `swimming` |
+| hit | `hitting` |
+| tie | `tying` |
+| begin | `beginning` |
+| stop | `stopping` |
+| cut | `cutting` |
+| lie | `lying` |
+| travel | `traveling` |

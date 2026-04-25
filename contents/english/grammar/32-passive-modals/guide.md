@@ -35,3 +35,25 @@ Games `can be played` by anyone.
 | その部屋は掃除されなければならない。 | The room must be cleaned. |
 | この部屋は使ってもよい。 | This room may be used. |
 | その車は修理されるべきだ。 | The car should be repaired. |
+
+## 応用問題
+
+次の能動態の文を受動態に変えましょう。
+
+| 能動態 | 受動態 |
+|--------|--------|
+| You should return the books. | The books 　　　　　　　　　　　　 by you. |
+| We must follow the rules. | The rules 　　　　　　　　　　　　 by us. |
+| They can solve this problem. | This problem 　　　　　　　　　　　　 by them. |
+| He will announce the results. | The results 　　　　　　　　　　　　 by him. |
+| She may use the computer. | The computer 　　　　　　　　　　　　 by her. |
+
+## 応用解答
+
+| 能動態 | 受動態 |
+|--------|--------|
+| You should return the books. | The books `should be returned` by you. |
+| We must follow the rules. | The rules `must be followed` by us. |
+| They can solve this problem. | This problem `can be solved` by them. |
+| He will announce the results. | The results `will be announced` by him. |
+| She may use the computer. | The computer `may be used` by her. |

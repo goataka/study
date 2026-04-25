@@ -61,3 +61,35 @@ I `buy` games. → I `bought` games.
 | 私は朝食を食べました。 | I ate breakfast. |
 | 私は手紙を書きました。 | I wrote a letter. |
 | 私は本を買いました。 | I bought a book. |
+
+## 応用問題
+
+次の動詞の過去形を書きましょう。
+
+| 現在形 | 過去形 |
+|--------|--------|
+| My aunt teaches English. | My aunt 　　　　　　　　　　　　 English. |
+| I catch the ball. | I 　　　　　　　　　　　　 the ball. |
+| I hear a strange sound. | I 　　　　　　　　　　　　 a strange sound. |
+| She holds the door open. | She 　　　　　　　　　　　　 the door open. |
+| He keeps a diary. | He 　　　　　　　　　　　　 a diary. |
+| I lose my pencil. | I 　　　　　　　　　　　　 my pencil. |
+| I meet her at the station. | I 　　　　　　　　　　　　 her at the station. |
+| She pays for lunch. | She 　　　　　　　　　　　　 for lunch. |
+| He sends me a message. | He 　　　　　　　　　　　　 me a message. |
+| She stands by the window. | She 　　　　　　　　　　　　 by the window. |
+
+## 応用解答
+
+| 現在形 | 過去形 |
+|--------|--------|
+| My aunt teaches English. | My aunt `taught` English. |
+| I catch the ball. | I `caught` the ball. |
+| I hear a strange sound. | I `heard` a strange sound. |
+| She holds the door open. | She `held` the door open. |
+| He keeps a diary. | He `kept` a diary. |
+| I lose my pencil. | I `lost` my pencil. |
+| I meet her at the station. | I `met` her at the station. |
+| She pays for lunch. | She `paid` for lunch. |
+| He sends me a message. | He `sent` me a message. |
+| She stands by the window. | She `stood` by the window. |

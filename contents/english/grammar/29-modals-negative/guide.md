@@ -40,3 +40,27 @@ I `cannot play` games.
 | 私は泳ぐことができない。 | I cannot swim. |
 | 私は行ってはいけない。 | I must not go. |
 | 私は今日勉強する必要はない。 | I don't have to study today. |
+
+## 応用問題
+
+正しい否定の助動詞を入れましょう。
+
+| 肯定文 | 否定文 |
+|--------|--------|
+| You can eat here. | You 　　　　　　　　　　　　 eat here. |
+| You must run in the hall. | You 　　　　　　　　　　　　 run in the hall. |
+| She will be late. | She 　　　　　　　　　　　　 be late. |
+| He should skip meals. | He 　　　　　　　　　　　　 skip meals. |
+| We have to study on Sunday. | We 　　　　　　　　　　　　 study on Sunday. |
+| You may leave early. | You 　　　　　　　　　　　　 leave early. |
+
+## 応用解答
+
+| 肯定文 | 否定文 |
+|--------|--------|
+| You can eat here. | You `cannot` eat here. |
+| You must run in the hall. | You `must not` run in the hall. |
+| She will be late. | She `will not` be late. |
+| He should skip meals. | He `should not` skip meals. |
+| We have to study on Sunday. | We `don't have to` study on Sunday. |
+| You may leave early. | You `may not` leave early. |

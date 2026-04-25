@@ -53,3 +53,25 @@ If I had had time, I `would have` played.（時間があったら、したのに
 | もし雨が降れば、私は家にいるでしょう。 | If it rains, I will stay home. |
 | もし時間があれば、手伝うのに。 | If I had time, I would help you. |
 | もし知っていたら、教えていたのに。 | If I had known, I would have told you. |
+
+## 応用問題
+
+（　）内の動詞を正しい形に変えて、条件文を完成させましょう。
+
+| 文 |
+|------|
+| If it (rain) tomorrow, we will cancel the trip. → If it 　　　　　　　　　　　　 tomorrow, we will cancel the trip. |
+| If I (have) a million yen, I would travel the world. → If I 　　　　　　　　　　　　 a million yen, I would travel the world. |
+| If she (study) harder, she will pass the exam. → If she 　　　　　　　　　　　　 harder, she will pass the exam. |
+| If he (know) the answer, he would have told us. → If he 　　　　　　　　　　　　 the answer, he would have told us. |
+| If you (need) help, I will come right away. → If you 　　　　　　　　　　　　 help, I will come right away. |
+
+## 応用解答
+
+| 文 |
+|------|
+| If it `rains` tomorrow, we will cancel the trip. |
+| If I `had` a million yen, I would travel the world. |
+| If she `studies` harder, she will pass the exam. |
+| If he `had known` the answer, he would have told us. |
+| If you `need` help, I will come right away. |

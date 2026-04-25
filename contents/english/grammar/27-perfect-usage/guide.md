@@ -44,3 +44,27 @@ I `have lived` here for three years.（3年間ここに住んでいる）
 | 私は3年間ここに住んでいる。 | I have lived here for three years. |
 | 私はちょうど宿題を終えた。 | I have just finished my homework. |
 | 私は鍵をなくしてしまった。 | I have lost my key. |
+
+## 応用問題
+
+次の文の完了形の用法を（経験 / 完了 / 継続 / 結果）から選びましょう。
+
+| 文 | 用法 |
+|------|------|
+| I have studied French for two years. | 　　　　　　　　　　　　 |
+| She has already cleaned her room. | 　　　　　　　　　　　　 |
+| He has gone to Australia. | 　　　　　　　　　　　　 |
+| Have you ever tried sushi? | 　　　　　　　　　　　　 |
+| We have known each other since childhood. | 　　　　　　　　　　　　 |
+| I have just received a letter. | 　　　　　　　　　　　　 |
+
+## 応用解答
+
+| 文 | 用法 |
+|------|------|
+| I have studied French for two years. | `継続` |
+| She has already cleaned her room. | `完了` |
+| He has gone to Australia. | `結果` |
+| Have you ever tried sushi? | `経験` |
+| We have known each other since childhood. | `継続` |
+| I have just received a letter. | `完了` |

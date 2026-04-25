@@ -46,3 +46,27 @@ Games `are played` by me.
 | 英語は多くの人に話されている。 | English is spoken by many people. |
 | この本は100年前に書かれた。 | This book was written 100 years ago. |
 | ケーキは私によって作られるだろう。 | A cake will be made by me. |
+
+## 応用問題
+
+次の能動態の文を受動態に変えましょう。
+
+| 能動態 | 受動態 |
+|--------|--------|
+| My teacher checks our homework. | Our homework 　　　　　　　　　　　　 by my teacher. |
+| Someone broke the window. | The window 　　　　　　　　　　　　. |
+| They will open the new library. | The new library 　　　　　　　　　　　　. |
+| She has cleaned the kitchen. | The kitchen 　　　　　　　　　　　　 by her. |
+| People speak Japanese in Japan. | Japanese 　　　　　　　　　　　　 in Japan. |
+| He will deliver the package. | The package 　　　　　　　　　　　　 by him. |
+
+## 応用解答
+
+| 能動態 | 受動態 |
+|--------|--------|
+| My teacher checks our homework. | Our homework `is checked` by my teacher. |
+| Someone broke the window. | The window `was broken`. |
+| They will open the new library. | The new library `will be opened`. |
+| She has cleaned the kitchen. | The kitchen `has been cleaned` by her. |
+| People speak Japanese in Japan. | Japanese `is spoken` in Japan. |
+| He will deliver the package. | The package `will be delivered` by him. |

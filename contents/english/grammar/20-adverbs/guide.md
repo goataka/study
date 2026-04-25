@@ -48,3 +48,31 @@ She sings `beautifully`.
 | 私は時々ゲームをします。 | I sometimes play games. |
 | 私はゲームが上手です。 | I play games well. |
 | 私は昨日ゲームをしました。 | I played games yesterday. |
+
+## 応用問題
+
+適切な副詞を選んで空欄を埋めましょう。（often / quietly / hard / together / already / soon / outside / never）
+
+| 文 |
+|------|
+| She works very 　　　　　　　　　　　　 to get good grades. |
+| They 　　　　　　　　　　　　 go shopping after school. |
+| Please speak 　　　　　　　　　　　　 in the library. |
+| I have 　　　　　　　　　　　　 finished my lunch. |
+| The bus will arrive 　　　　　　　　　　　　. |
+| Let's play 　　　　　　　　　　　　. |
+| The children are playing 　　　　　　　　　　　　. |
+| I have 　　　　　　　　　　　　 been to Hokkaido. |
+
+## 応用解答
+
+| 文 |
+|------|
+| She works very `hard` to get good grades. |
+| They `often` go shopping after school. |
+| Please speak `quietly` in the library. |
+| I have `already` finished my lunch. |
+| The bus will arrive `soon`. |
+| Let's play `together`. |
+| The children are playing `outside`. |
+| I have `never` been to Hokkaido. |

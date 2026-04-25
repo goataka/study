@@ -46,3 +46,27 @@ I play games `better` than you.
 | 私は彼より背が高い。 | I am taller than him. |
 | このゲームはあれより面白い。 | This game is more interesting than that one. |
 | この問題はあれより難しい。 | This problem is more difficult than that one. |
+
+## 応用問題
+
+比較級を使って2つのものを比べましょう。
+
+| 原級 | 比較級の文 |
+|------|----------|
+| tall: Tom / Ken | Tom is 　　　　　　　　　　　　 than Ken. |
+| fast: a cheetah / a lion | A cheetah is 　　　　　　　　　　　　 than a lion. |
+| cold: today / yesterday | Today is 　　　　　　　　　　　　 than yesterday. |
+| expensive: this bag / that bag | This bag is 　　　　　　　　　　　　 than that bag. |
+| famous: Tokyo / my city | Tokyo is 　　　　　　　　　　　　 than my city. |
+| young: my sister / I | My sister is 　　　　　　　　　　　　 than I am. |
+
+## 応用解答
+
+| 原級 | 比較級の文 |
+|------|----------|
+| tall: Tom / Ken | Tom is `taller` than Ken. |
+| fast: a cheetah / a lion | A cheetah is `faster` than a lion. |
+| cold: today / yesterday | Today is `colder` than yesterday. |
+| expensive: this bag / that bag | This bag is `more expensive` than that bag. |
+| famous: Tokyo / my city | Tokyo is `more famous` than my city. |
+| young: my sister / I | My sister is `younger` than I am. |

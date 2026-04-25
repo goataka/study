@@ -40,3 +40,31 @@ The game is `exciting`.
 | その本は新しいです。 | The book is new. |
 | 彼女は長い髪をしています。 | She has long hair. |
 | 彼は背が高いです。 | He is tall. |
+
+## 応用問題
+
+（　）内の形容詞を正しい位置に入れて文を完成させましょう。
+
+| ヒント | 文 |
+|--------|------|
+| (delicious) | My mother made 　　　　　　　　　　　　 pasta. |
+| (brave) | He is 　　　　　　　　　　　　. |
+| (rainy) | It was 　　　　　　　　　　　　 yesterday. |
+| (heavy) | This bag is 　　　　　　　　　　　　. |
+| (cheerful) | She is 　　　　　　　　　　　　 girl. |
+| (ancient) | We visited 　　　　　　　　　　　　 temples. |
+| (shy) | My little brother is 　　　　　　　　　　　　. |
+| (colorful) | I like 　　　　　　　　　　　　 flowers. |
+
+## 応用解答
+
+| ヒント | 文 |
+|--------|------|
+| (delicious) | My mother made `delicious` pasta. |
+| (brave) | He is `brave`. |
+| (rainy) | It was `rainy` yesterday. |
+| (heavy) | This bag is `heavy`. |
+| (cheerful) | She is a `cheerful` girl. |
+| (ancient) | We visited `ancient` temples. |
+| (shy) | My little brother is `shy`. |
+| (colorful) | I like `colorful` flowers. |

@@ -47,3 +47,31 @@ I play `the` game every day.
 | 私はわくわくするゲームをします。 | I play an exciting game. |
 | そのゲームは楽しいです。 | The game is fun. |
 | 彼女はゲームをします。 | She plays a game. |
+
+## 応用問題
+
+正しい冠詞（a / an / the）を入れましょう。冠詞が不要な場合は「×」と書きましょう。
+
+| 文 |
+|------|
+| I saw 　　　　　　　　　　　　 elephant at the zoo. |
+| Please close 　　　　　　　　　　　　 door. |
+| She wants to be 　　　　　　　　　　　　 engineer. |
+| 　　　　　　　　　　　　 children love to play outside. |
+| He ate 　　　　　　　　　　　　 apple for breakfast. |
+| That is 　　　　　　　　　　　　 best movie I have ever seen. |
+| I need 　　　　　　　　　　　　 umbrella today. |
+| We played 　　　　　　　　　　　　 soccer after school. |
+
+## 応用解答
+
+| 文 |
+|------|
+| I saw `an` elephant at the zoo. |
+| Please close `the` door. |
+| She wants to be `an` engineer. |
+| `×` Children love to play outside. |
+| He ate `an` apple for breakfast. |
+| That is `the` best movie I have ever seen. |
+| I need `an` umbrella today. |
+| We played `×` soccer after school. |

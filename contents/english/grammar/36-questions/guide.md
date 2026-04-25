@@ -46,3 +46,27 @@ I `play` games.
 | 私はゲームをしますか？ | Do I play games? |
 | 私はゲームをしましたか？ | Did I play games? |
 | 私は幸せですか？ | Am I happy? |
+
+## 応用問題
+
+次の肯定文を疑問文に変えましょう。
+
+| 肯定文 | 疑問文 |
+|--------|--------|
+| She likes pizza. | 　　　　　　　　　　　　 she like pizza? |
+| He visited the museum. | 　　　　　　　　　　　　 he visit the museum? |
+| They will join the team. | 　　　　　　　　　　　　 they join the team? |
+| Your sister is a doctor. | 　　　　　　　　　　　　 your sister a doctor? |
+| You were at home last night. | 　　　　　　　　　　　　 you at home last night? |
+| She is studying now. | 　　　　　　　　　　　　 she studying now? |
+
+## 応用解答
+
+| 肯定文 | 疑問文 |
+|--------|--------|
+| She likes pizza. | `Does` she like pizza? |
+| He visited the museum. | `Did` he visit the museum? |
+| They will join the team. | `Will` they join the team? |
+| Your sister is a doctor. | `Is` your sister a doctor? |
+| You were at home last night. | `Were` you at home last night? |
+| She is studying now. | `Is` she studying now? |

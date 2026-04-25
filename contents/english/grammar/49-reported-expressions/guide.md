@@ -36,3 +36,25 @@ He said he would play games `the next day`.
 |--------|------|
 | 彼は明日来ると言った。（間接話法で） | He said he would come the next day. |
 | 彼は今忙しいと言った。（間接話法で） | He said he was busy then. |
+
+## 応用問題
+
+直接話法の文を間接話法に変えましょう。指示語・時の表現にも注意しましょう。
+
+| 直接話法 | 間接話法 |
+|----------|----------|
+| She said, "I will come here tomorrow." | She said she would come 　　　　　　　　　　　　 the next day. |
+| He said, "I finished this today." | He said he had finished 　　　　　　　　　　　　 that day. |
+| She said, "I saw him yesterday." | She said she had seen him 　　　　　　　　　　　　. |
+| He said, "I am busy now." | He said he was busy 　　　　　　　　　　　　. |
+| She said, "I want this one." | She said she wanted 　　　　　　　　　　　　 one. |
+
+## 応用解答
+
+| 直接話法 | 間接話法 |
+|----------|----------|
+| She said, "I will come here tomorrow." | She said she would come `there` the next day. |
+| He said, "I finished this today." | He said he had finished `that` that day. |
+| She said, "I saw him yesterday." | She said she had seen him `the day before`. |
+| He said, "I am busy now." | He said he was busy `then`. |
+| She said, "I want this one." | She said she wanted `that` one. |

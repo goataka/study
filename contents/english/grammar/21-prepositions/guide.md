@@ -53,3 +53,31 @@ I play games `in` the morning.
 | 私は公園でゲームをします。 | I play games in the park. |
 | 私は日曜日にゲームをします。 | I play games on Sunday. |
 | 私はバスで学校に行きます。 | I go to school by bus. |
+
+## 応用問題
+
+正しい前置詞（at / in / on / to / by / for / with）を入れましょう。
+
+| 文 |
+|------|
+| My birthday is 　　　　　　　　　　　　 July. |
+| The class starts 　　　　　　　　　　　　 8:30. |
+| She put the book 　　　　　　　　　　　　 the shelf. |
+| I walked 　　　　　　　　　　　　 the park after lunch. |
+| He came 　　　　　　　　　　　　 train today. |
+| She studied English 　　　　　　　　　　　　 two hours. |
+| I went shopping 　　　　　　　　　　　　 my mother. |
+| The meeting is 　　　　　　　　　　　　 Friday. |
+
+## 応用解答
+
+| 文 |
+|------|
+| My birthday is `in` July. |
+| The class starts `at` 8:30. |
+| She put the book `on` the shelf. |
+| I walked `to` the park after lunch. |
+| He came `by` train today. |
+| She studied English `for` two hours. |
+| I went shopping `with` my mother. |
+| The meeting is `on` Friday. |

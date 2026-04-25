@@ -33,3 +33,25 @@ He `told` me `to play` games.
 |--------|------|
 | 彼は私にゲームをするように言った。 | He told me to play games. |
 | 彼は私にゲームをするなと言った。 | He told me not to play games. |
+
+## 応用問題
+
+直接話法の命令文を間接話法に変えましょう。
+
+| 直接話法 | 間接話法 |
+|----------|----------|
+| My mother said, "Clean your room." | My mother told me 　　　　　　　　　　　　 my room. |
+| The teacher said, "Don't talk in class." | The teacher told us 　　　　　　　　　　　　 in class. |
+| She said, "Please close the window." | She asked me 　　　　　　　　　　　　 the window. |
+| He said, "Don't forget your lunch." | He told me 　　　　　　　　　　　　 my lunch. |
+| The coach said, "Run faster." | The coach told us 　　　　　　　　　　　　 faster. |
+
+## 応用解答
+
+| 直接話法 | 間接話法 |
+|----------|----------|
+| My mother said, "Clean your room." | My mother told me `to clean` my room. |
+| The teacher said, "Don't talk in class." | The teacher told us `not to talk` in class. |
+| She said, "Please close the window." | She asked me `to close` the window. |
+| He said, "Don't forget your lunch." | He told me `not to forget` my lunch. |
+| The coach said, "Run faster." | The coach told us `to run` faster. |

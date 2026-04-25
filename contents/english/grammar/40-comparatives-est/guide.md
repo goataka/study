@@ -44,3 +44,27 @@ I play games `the best` in my class.
 |--------|------|
 | 私はクラスで一番背が高い。 | I am the tallest in the class. |
 | このゲームは全部の中で一番面白い。 | This game is the most interesting of all. |
+
+## 応用問題
+
+最上級を使って文を完成させましょう。
+
+| 原級 | 最上級の文 |
+|------|----------|
+| tall | She is 　　　　　　　　　　　　 student in our class. |
+| fast | The cheetah is 　　　　　　　　　　　　 land animal. |
+| old | This temple is 　　　　　　　　　　　　 in the city. |
+| popular | That singer is 　　　　　　　　　　　　 in Japan. |
+| large | The Pacific is 　　　　　　　　　　　　 ocean in the world. |
+| delicious | This is 　　　　　　　　　　　　 cake I have ever eaten. |
+
+## 応用解答
+
+| 原級 | 最上級の文 |
+|------|----------|
+| tall | She is `the tallest` student in our class. |
+| fast | The cheetah is `the fastest` land animal. |
+| old | This temple is `the oldest` in the city. |
+| popular | That singer is `the most popular` in Japan. |
+| large | The Pacific is `the largest` ocean in the world. |
+| delicious | This is `the most delicious` cake I have ever eaten. |

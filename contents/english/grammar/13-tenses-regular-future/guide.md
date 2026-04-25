@@ -34,3 +34,31 @@ I `will play` games.
 | 私はゲームをするでしょう。 | I will play games. |
 | 私は英語を勉強するでしょう。 | I will study English. |
 | 私はテレビを見るでしょう。 | I will watch TV. |
+
+## 応用問題
+
+次の現在形の文を未来形（will）に変えましょう。
+
+| 現在形 | 未来形 |
+|--------|--------|
+| I travel to Kyoto. | I 　　　　　　　　　　　　 to Kyoto. |
+| I cook lunch. | I 　　　　　　　　　　　　 lunch. |
+| I help my mother. | I 　　　　　　　　　　　　 my mother. |
+| I learn French. | I 　　　　　　　　　　　　 French. |
+| I visit my aunt. | I 　　　　　　　　　　　　 my aunt. |
+| I read that book. | I 　　　　　　　　　　　　 that book. |
+| I run in the park. | I 　　　　　　　　　　　　 in the park. |
+| I write a letter. | I 　　　　　　　　　　　　 a letter. |
+
+## 応用解答
+
+| 現在形 | 未来形 |
+|--------|--------|
+| I travel to Kyoto. | I `will travel` to Kyoto. |
+| I cook lunch. | I `will cook` lunch. |
+| I help my mother. | I `will help` my mother. |
+| I learn French. | I `will learn` French. |
+| I visit my aunt. | I `will visit` my aunt. |
+| I read that book. | I `will read` that book. |
+| I run in the park. | I `will run` in the park. |
+| I write a letter. | I `will write` a letter. |
