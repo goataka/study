@@ -84,10 +84,11 @@ function setupTabDom(): void {
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
           <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題一覧</button>
-          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">問題</button>
+          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">確認</button>
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 履歴</button>
         </div>
         <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
+          <p id="categoryDescription" class="category-description hidden"></p>
           <div id="statsInfo"></div>
           <input type="radio" name="questionCount" value="5">
           <input type="radio" name="questionCount" value="10" checked>
@@ -382,21 +383,13 @@ describe("QuizApp — 教科タブ仕様", () => {
     });
   });
 
-  it("間違えた問題が0件のときのタブ統計表示は「0/総数」の形式である", async () => {
+  it("教科タブに .tab-stats 要素が描画されない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const statsEls = document.querySelectorAll(".tab-stats");
-    const nonEmptyTexts = Array.from(statsEls)
-      .map((el) => el.textContent?.trim() || "")
-      .filter((text) => text !== "");
-
-    // 少なくとも1つは統計表示が描画されていること
-    expect(nonEmptyTexts.length).toBeGreaterThan(0);
-
-    nonEmptyTexts.forEach((text) => {
-      expect(text).toMatch(/^0\/\d+$/);
-      expect(text).not.toContain("問");
+    const tabs = document.querySelectorAll(".subject-tab");
+    tabs.forEach((tab) => {
+      expect(tab.querySelector(".tab-stats")).toBeNull();
     });
   });
 });
@@ -739,7 +732,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("パネルに「問題」と「解説」と「履歴」と「問題一覧」のインナータブが描画される", async () => {
+  it("パネルに「確認」と「解説」と「履歴」と「問題一覧」のインナータブが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -748,7 +741,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]');
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]');
     expect(quizTab).not.toBeNull();
-    expect(quizTab?.textContent).toContain("問題");
+    expect(quizTab?.textContent).toContain("確認");
     expect(guideTab).not.toBeNull();
     expect(guideTab?.textContent).toContain("解説");
     expect(historyTab).not.toBeNull();
@@ -789,7 +782,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     expect(historyList?.querySelector(".history-empty")).not.toBeNull();
   });
 
-  it("「問題」インナータブをクリックするとquizModePanelが再び表示される", async () => {
+  it("「確認」インナータブをクリックするとquizModePanelが再び表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -797,7 +790,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
     historyTab?.click();
 
-    // 問題タブに戻る
+    // 確認タブに戻る
     const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]') as HTMLElement;
     quizTab?.click();
 
@@ -1674,7 +1667,7 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
     expect(firstHint.classList.contains("hidden")).toBe(true); // もう一度押すと非表示に戻る
   });
 
-  it("「問題」タブに戻るとquizModePanelが再表示される", async () => {
+  it("「確認」タブに戻るとquizModePanelが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -1990,6 +1983,118 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
   });
 });
 
+describe("QuizApp — 単元説明表示仕様", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    localStorage.clear();
+  });
+
+  it("description ありのカテゴリを選択すると説明が表示される", async () => {
+    setupTabDom();
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/tenses-regular-past.json"],
+    };
+    const questionFileWithDescription = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-regular-past",
+      categoryName: "一般動詞の過去形",
+      referenceGrade: "中学1年",
+      description: "規則動詞は語尾に -ed をつけて過去形を作ります。",
+      questions: Array.from({ length: 3 }, (_, i) => ({
+        id: `q${i + 1}`,
+        question: `問題 ${i + 1}`,
+        choices: ["A", "B", "C", "D"],
+        correct: 0,
+        explanation: `解説 ${i + 1}`,
+      })),
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithDescription) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="tenses-regular-past"]') as HTMLElement;
+    catItem?.click();
+
+    const descEl = document.getElementById("categoryDescription");
+    expect(descEl?.classList.contains("hidden")).toBe(false);
+    expect(descEl?.textContent).toBe("規則動詞は語尾に -ed をつけて過去形を作ります。");
+  });
+
+  it("description なしのカテゴリを選択すると説明要素は hidden のまま", async () => {
+    setupTabDom();
+    setupFetchMock(); // mockQuestionFile には description がない
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    const descEl = document.getElementById("categoryDescription");
+    expect(descEl?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("カテゴリ選択を解除すると説明が非表示になる", async () => {
+    setupTabDom();
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/tenses-regular-past.json"],
+    };
+    const questionFileWithDescription = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-regular-past",
+      categoryName: "一般動詞の過去形",
+      description: "規則動詞は語尾に -ed をつけて過去形を作ります。",
+      questions: Array.from({ length: 3 }, (_, i) => ({
+        id: `q${i + 1}`,
+        question: `問題 ${i + 1}`,
+        choices: ["A", "B", "C", "D"],
+        correct: 0,
+        explanation: `解説 ${i + 1}`,
+      })),
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(questionFileWithDescription) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // カテゴリを選択して説明が表示されることを確認
+    const catItem = document.querySelector('.category-item[data-category="tenses-regular-past"]') as HTMLElement;
+    catItem?.click();
+    const descEl = document.getElementById("categoryDescription");
+    expect(descEl?.classList.contains("hidden")).toBe(false);
+
+    // カテゴリを再クリックして選択解除すると説明が非表示になる
+    catItem?.click();
+    expect(descEl?.classList.contains("hidden")).toBe(true);
+  });
+});
+
 describe("QuizApp — クイズパネル表示制御仕様", () => {
   beforeEach(() => {
     // quiz-panel クラスを含む DOM を追加
@@ -2005,7 +2110,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
             <div class="panel-tabs" role="tablist">
               <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" tabindex="-1">📖 解説</button>
               <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題一覧</button>
-              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">問題</button>
+              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">確認</button>
               <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 履歴</button>
             </div>
             <div id="guideContent" class="hidden" role="tabpanel"></div>

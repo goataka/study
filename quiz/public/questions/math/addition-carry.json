@@ -8,6 +8,7 @@
   "guideUrl": "../math/arithmetic/02-addition-carry/guide",
   "example": "7 + 8 = 15",
   "referenceGrade": "小学1年",
+  "description": "くり上がりのあるたし算を10のまとまりを使って正確にできるようにします。",
   "questions": [
     {
       "id": "add-carry-1",

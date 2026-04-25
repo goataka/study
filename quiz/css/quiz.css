@@ -117,18 +117,6 @@ header h1 {
     border-bottom-color: #0366d6;
 }
 
-.tab-stats {
-    font-size: 11px;
-    color: #586069;
-    background: rgba(0, 0, 0, 0.06);
-    padding: 1px 6px;
-    border-radius: 10px;
-}
-
-.subject-tab.active .tab-stats {
-    background: rgba(3, 102, 214, 0.1);
-    color: #0366d6;
-}
 
 /* スタートコンテンツレイアウト */
 .start-content-layout {
@@ -491,6 +479,17 @@ button:disabled {
     color: #666;
     font-size: 14px;
     margin-top: 20px;
+}
+
+.category-description {
+    font-size: 14px;
+    color: #444;
+    background: #f6f8fa;
+    border-left: 3px solid #0366d6;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.6;
 }
 
 /* クイズ画面 */

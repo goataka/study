@@ -8,6 +8,7 @@
   "guideUrl": "../math/arithmetic/20-ratio/guide",
   "example": "4:6 = 2:3",
   "referenceGrade": "小学6年",
+  "description": "比を最も簡単な整数の比にする方法を身につけます。",
   "questions": [
     {
       "id": "ratio-1",

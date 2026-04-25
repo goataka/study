@@ -8,6 +8,7 @@
   "guideUrl": "../english/grammar/12-tenses-regular-past/guide",
   "example": "I `played` games.",
   "referenceGrade": "中学1年",
+  "description": "規則動詞は語尾に -ed をつけて過去形を作ります。",
   "questions": [
     {
       "id": "tenses-regular-past-1",

@@ -8,6 +8,7 @@
   "guideUrl": "../math/algebra/22-positive-negative/guide",
   "example": "(-3) + (+5) = 2",
   "referenceGrade": "中学1年",
+  "description": "正の数と負の数の四則計算を正確にできるようにします。",
   "questions": [
     {
       "id": "pos-neg-1",

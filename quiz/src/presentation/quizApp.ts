@@ -37,7 +37,7 @@ export class QuizApp {
   /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
   private isPanelTabUserSelected: boolean = false;
   private hideLearnedCategories: boolean = true;
-  /** 「総合」タブへの切り替え時に「問題」パネルが強制的に「履歴」へフォールバックされたかを示すフラグ */
+  /** 「総合」タブへの切り替え時に「確認」パネルが強制的に「履歴」へフォールバックされたかを示すフラグ */
   private wasQuizPanelForcedToHistory: boolean = false;
 
   constructor() {
@@ -160,11 +160,7 @@ export class QuizApp {
       labelSpan.className = "tab-label";
       labelSpan.textContent = `${subject.icon} ${subject.name}`;
 
-      const statsSpan = document.createElement("span");
-      statsSpan.className = "tab-stats";
-
       tab.appendChild(labelSpan);
-      tab.appendChild(statsSpan);
 
       tab.addEventListener("click", () => {
         this.filter.subject = subject.id;
@@ -573,6 +569,28 @@ export class QuizApp {
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
   /**
+   * 単元の説明を quizModePanel 内の categoryDescription 要素に表示する。
+   * 特定カテゴリが選択されており description が設定されている場合のみ表示する。
+   */
+  private updateCategoryDescription(): void {
+    const descEl = document.getElementById("categoryDescription");
+    if (!descEl) return;
+    if (this.filter.category === "all" || this.filter.subject === "all") {
+      descEl.textContent = "";
+      descEl.classList.add("hidden");
+      return;
+    }
+    const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
+    if (description) {
+      descEl.textContent = description;
+      descEl.classList.remove("hidden");
+    } else {
+      descEl.textContent = "";
+      descEl.classList.add("hidden");
+    }
+  }
+
+  /**
    * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する（メインパネル用）。
    */
   private updateGuidePanelContent(): void {
@@ -944,6 +962,9 @@ export class QuizApp {
       markLearnedBtn.textContent = this.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 学習済みにする";
     }
 
+    // 単元の説明を表示（特定カテゴリが選択されている場合のみ）
+    this.updateCategoryDescription();
+
     this.renderHistoryList(this.filter, allRecords);
     if (this.activePanelTab === "questions") {
       this.renderQuestionList();
@@ -976,21 +997,10 @@ export class QuizApp {
       }
     }
 
-    const formatStats = (stat: { total: number; wrong: number }): string => {
+    const formatCategoryStats = (stat: { total: number; wrong: number }): string => {
       if (stat.total === 0) return "";
       return `${stat.wrong}/${stat.total}`;
     };
-
-    // タブの統計を更新
-    document.querySelectorAll(".subject-tab[data-subject]").forEach((tab) => {
-      const el = tab as HTMLElement;
-      const subject = el.dataset.subject || "all";
-      const stat = statsMap.get(`${subject}::all`) ?? { total: 0, wrong: 0 };
-      const statsEl = el.querySelector(".tab-stats");
-      if (statsEl) {
-        statsEl.textContent = formatStats(stat);
-      }
-    });
 
     // カテゴリアイテムの統計を更新
     const studiedKeys = this.useCase.getStudiedCategoryKeys();
@@ -1009,7 +1019,7 @@ export class QuizApp {
       const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
       const statsEl = el.querySelector(".category-stats");
       if (statsEl) {
-        statsEl.textContent = formatStats(stat);
+        statsEl.textContent = formatCategoryStats(stat);
       }
 
       // 進捗バーを更新（学習履歴がある場合）
@@ -1096,10 +1106,10 @@ export class QuizApp {
    * クイズパネルの表示/非表示を更新する。
    * 教科タブでカテゴリが未選択（category === "all"）の場合はクイズパネルを非表示にし、
    * カテゴリが選択されている場合は表示する。
-   * 「総合」タブ（subject === "all"）では「解説」と「問題」パネルタブを非表示にする。
+   * 「総合」タブ（subject === "all"）では「解説」と「確認」パネルタブを非表示にする。
    * 「総合」タブでは「履歴」と「問題一覧」パネルタブを表示する。
-   * 「解説」または「問題」がアクティブな状態で総合タブに切り替えた場合は「履歴」タブへフォールバックする。
-   * 総合タブの fallback で history になった後、特定カテゴリが選択された場合は「問題」タブへ自動復帰する。
+   * 「解説」または「確認」がアクティブな状態で総合タブに切り替えた場合は「履歴」タブへフォールバックする。
+   * 総合タブの fallback で history になった後、特定カテゴリが選択された場合は「確認」タブへ自動復帰する。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
@@ -1107,7 +1117,7 @@ export class QuizApp {
     const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
 
-    // 「総合」タブでは「解説」と「問題」パネルタブを非表示にし、「履歴」と「問題一覧」は明示的に表示する
+    // 「総合」タブでは「解説」と「確認」パネルタブを非表示にし、「履歴」と「問題一覧」は明示的に表示する
     const isAll = this.filter.subject === "all";
     document.getElementById("panelTab-guide")?.classList.toggle("hidden", isAll);
     document.getElementById("panelTab-quiz")?.classList.toggle("hidden", isAll);
@@ -1124,13 +1134,13 @@ export class QuizApp {
       this.autoSwitchedToHistory = true;
       this.showPanelTab("history");
     } else if (!isAll && this.wasQuizPanelForcedToHistory) {
-      // 「総合」から特定教科への切り替え時は「問題」タブを復元する
+      // 「総合」から特定教科への切り替え時は「確認」タブを復元する
       this.wasQuizPanelForcedToHistory = false;
       this.activePanelTab = "quiz";
       this.showPanelTab("quiz");
     }
 
-    // 総合タブの fallback で自動的に history になった後、特定カテゴリが選択された場合は「問題」タブへ自動復帰する
+    // 総合タブの fallback で自動的に history になった後、特定カテゴリが選択された場合は「確認」タブへ自動復帰する
     // （ユーザーが明示的に history を選択していない場合のみ）
     if (!isAll && this.autoSwitchedToHistory && this.filter.category !== "all") {
       this.activePanelTab = "quiz";

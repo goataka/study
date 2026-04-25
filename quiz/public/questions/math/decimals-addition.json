@@ -8,6 +8,7 @@
   "guideUrl": "../math/arithmetic/17-decimals-addition/guide",
   "example": "1.2 + 3.4 = 4.6",
   "referenceGrade": "小学4年",
+  "description": "小数のたし算を正確に計算できるようにします。",
   "questions": [
     {
       "id": "dec-add-1",

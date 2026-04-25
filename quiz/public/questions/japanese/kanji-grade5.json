@@ -8,6 +8,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
+  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
   "guideUrl": "../japanese/kanji/05-kanji-grade5/guide",
   "questions": [
     {
