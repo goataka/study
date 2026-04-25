@@ -32,6 +32,8 @@ export class QuizApp {
   private notesStates: Map<number, DrawingState> = new Map();
   private readonly ocrService: OcrService = new OcrService();
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
+  /** 総合タブの fallback により自動的に "history" へ切り替わった場合は true。ユーザーが明示的にタブを選択した場合は false。 */
+  private autoSwitchedToHistory: boolean = false;
   private hideLearnedCategories: boolean = true;
 
   constructor() {
@@ -195,6 +197,7 @@ export class QuizApp {
       tab.addEventListener("click", () => {
         const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
         this.activePanelTab = panel;
+        this.autoSwitchedToHistory = false; // ユーザーが明示的にタブを選択した
         this.showPanelTab(panel);
         if (panel === "guide") {
           this.updateGuidePanelContent();
@@ -1051,6 +1054,7 @@ export class QuizApp {
    * 「総合」タブ（subject === "all"）では「解説」と「確認」パネルタブを非表示にする。
    * 「総合」タブでは「実行記録」と「問題一覧」パネルタブを表示する。
    * 「解説」または「確認」がアクティブな状態で総合タブに切り替えた場合は「実行記録」タブへフォールバックする。
+   * 総合タブの fallback で history になった後、特定カテゴリが選択された場合は「確認」タブへ自動復帰する。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
@@ -1065,11 +1069,20 @@ export class QuizApp {
     document.getElementById("panelTab-history")?.classList.remove("hidden");
     document.getElementById("panelTab-questions")?.classList.remove("hidden");
 
-    // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「実行記録」タブに切り替える
+    // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「実行記録」タブに自動切り替えする
     // 描画（renderHistoryList）は updateStartScreen() が一元的に担うためここでは呼ばない
     if (isAll && (this.activePanelTab === "guide" || this.activePanelTab === "quiz")) {
       this.activePanelTab = "history";
+      this.autoSwitchedToHistory = true;
       this.showPanelTab("history");
+    }
+
+    // 総合タブの fallback で自動的に history になった後、特定カテゴリが選択された場合は「確認」タブへ自動復帰する
+    // （ユーザーが明示的に history を選択していない場合のみ）
+    if (!isAll && this.autoSwitchedToHistory && this.filter.category !== "all") {
+      this.activePanelTab = "quiz";
+      this.autoSwitchedToHistory = false;
+      this.showPanelTab("quiz");
     }
   }
 
