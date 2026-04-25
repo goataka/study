@@ -28,29 +28,51 @@
 
 ### 📊 算数・基本計算
 
+#### 📝 練習
+
 | # | 内容 | 参考学年 | 解説 | 例 |
 |---|------|----------|------|-----|
-| 01 | たし算（くり上がりなし） | 小学1年 | [解説](arithmetic/01-addition-no-carry/guide.md) | 3 + 4 = 7 |
-| 02 | たし算（くり上がりあり） | 小学1年 | [解説](arithmetic/02-addition-carry/guide.md) | 7 + 8 = 15 |
-| 03 | たし算（まとめ） | 小学1年 | [解説](arithmetic/03-addition-mixed/guide.md) | 6 + 9 = 15 |
-| 04 | ひき算（くり下がりなし） | 小学1年 | [解説](arithmetic/04-subtraction-no-borrow/guide.md) | 8 - 3 = 5 |
-| 05 | ひき算（くり下がりあり） | 小学1年 | [解説](arithmetic/05-subtraction-borrow/guide.md) | 13 - 7 = 6 |
-| 06 | ひき算（まとめ） | 小学1年 | [解説](arithmetic/06-subtraction-mixed/guide.md) | 15 - 8 = 7 |
-| 07 | かけ算 | 小学2年 | [解説](arithmetic/07-multiplication/guide.md) | 6 × 7 = 42 |
-| 08 | わり算（あまりなし） | 小学3年 | [解説](arithmetic/08-division-no-remainder/guide.md) | 12 ÷ 4 = 3 |
-| 09 | わり算（あまりあり） | 小学3年 | [解説](arithmetic/09-division-remainder/guide.md) | 17 ÷ 5 = 3…2 |
-| 10 | わり算（まとめ） | 小学3年 | [解説](arithmetic/10-division-mixed/guide.md) | 23 ÷ 4 = 5…3 |
-| 11 | 分数のたし算（同分母） | 小学4年 | [解説](arithmetic/11-fractions-same-add/guide.md) | 1/5 + 2/5 = 3/5 |
-| 12 | 分数のひき算（同分母） | 小学4年 | [解説](arithmetic/12-fractions-same-sub/guide.md) | 4/7 - 2/7 = 2/7 |
-| 13 | 分数のたし算（通分あり） | 小学5年 | [解説](arithmetic/13-fractions-diff-add/guide.md) | 1/2 + 1/3 = 5/6 |
-| 14 | 分数のひき算（通分あり） | 小学5年 | [解説](arithmetic/14-fractions-diff-sub/guide.md) | 3/4 - 1/3 = 5/12 |
-| 15 | 分数のかけ算 | 小学6年 | [解説](arithmetic/15-fractions-multiply/guide.md) | 2/3 × 3/4 = 1/2 |
-| 16 | 分数のわり算 | 小学6年 | [解説](arithmetic/16-fractions-divide/guide.md) | 2/3 ÷ 4/5 = 5/6 |
-| 17 | 小数のたし算 | 小学4年 | [解説](arithmetic/17-decimals-addition/guide.md) | 1.2 + 3.4 = 4.6 |
-| 18 | 小数のひき算 | 小学4年 | [解説](arithmetic/18-decimals-subtraction/guide.md) | 5.3 - 2.1 = 3.2 |
-| 19 | 小数のかけ算 | 小学5年 | [解説](arithmetic/19-decimals-multiplication/guide.md) | 0.3 × 0.4 = 0.12 |
-| 20 | 比 | 小学6年 | [解説](arithmetic/20-ratio/guide.md) | 4:6 = 2:3 |
-| 21 | 割合 | 小学5年 | [解説](arithmetic/21-percentage/guide.md) | 60人の30% = 18人 |
+| 01 | 1桁のたし算（くり上がりなし） | 小学1年 | [解説](arithmetic/01-addition-1digit-no-carry/guide.md) | 3 + 4 = 7 |
+| 02 | 1桁のたし算（くり上がりあり） | 小学1年 | [解説](arithmetic/02-addition-1digit-carry/guide.md) | 7 + 8 = 15 |
+| 03 | 2桁のたし算（くり上がりなし） | 小学2年 | [解説](arithmetic/03-addition-2digit-no-carry/guide.md) | 21 + 13 = 34 |
+| 04 | 2桁のたし算（くり上がりあり） | 小学2年 | [解説](arithmetic/04-addition-2digit-carry/guide.md) | 37 + 46 = 83 |
+| 05 | 3桁のたし算（くり上がりなし） | 小学3年 | [解説](arithmetic/05-addition-3digit-no-carry/guide.md) | 213 + 145 = 358 |
+| 06 | 3桁のたし算（くり上がりあり） | 小学3年 | [解説](arithmetic/06-addition-3digit-carry/guide.md) | 357 + 246 = 603 |
+| 08 | 1桁のひき算（くり下がりなし） | 小学1年 | [解説](arithmetic/08-subtraction-1digit-no-borrow/guide.md) | 8 - 3 = 5 |
+| 09 | 1桁のひき算（くり下がりあり） | 小学1年 | [解説](arithmetic/09-subtraction-1digit-borrow/guide.md) | 13 - 7 = 6 |
+| 10 | 2桁のひき算（くり下がりなし） | 小学2年 | [解説](arithmetic/10-subtraction-2digit-no-borrow/guide.md) | 57 - 23 = 34 |
+| 11 | 2桁のひき算（くり下がりあり） | 小学2年 | [解説](arithmetic/11-subtraction-2digit-borrow/guide.md) | 52 - 37 = 15 |
+| 12 | 3桁のひき算（くり下がりなし） | 小学3年 | [解説](arithmetic/12-subtraction-3digit-no-borrow/guide.md) | 573 - 241 = 332 |
+| 13 | 3桁のひき算（くり下がりあり） | 小学3年 | [解説](arithmetic/13-subtraction-3digit-borrow/guide.md) | 523 - 247 = 276 |
+| 15 | 1桁のかけ算（九九） | 小学2年 | [解説](arithmetic/15-multiplication-1digit/guide.md) | 6 × 7 = 42 |
+| 16 | 2桁のかけ算（2桁×1桁） | 小学3年 | [解説](arithmetic/16-multiplication-2digit/guide.md) | 23 × 4 = 92 |
+| 17 | 3桁のかけ算（3桁×1桁） | 小学3年 | [解説](arithmetic/17-multiplication-3digit/guide.md) | 123 × 4 = 492 |
+| 19 | 1桁のわり算（あまりなし） | 小学3年 | [解説](arithmetic/19-division-1digit-no-remainder/guide.md) | 12 ÷ 4 = 3 |
+| 20 | 1桁のわり算（あまりあり） | 小学3年 | [解説](arithmetic/20-division-1digit-remainder/guide.md) | 17 ÷ 5 = 3…2 |
+| 21 | 2桁のわり算（あまりなし） | 小学3年 | [解説](arithmetic/21-division-2digit-no-remainder/guide.md) | 84 ÷ 4 = 21 |
+| 22 | 2桁のわり算（あまりあり） | 小学3年 | [解説](arithmetic/22-division-2digit-remainder/guide.md) | 73 ÷ 4 = 18…1 |
+| 23 | 3桁のわり算（あまりなし） | 小学4年 | [解説](arithmetic/23-division-3digit-no-remainder/guide.md) | 369 ÷ 3 = 123 |
+| 24 | 3桁のわり算（あまりあり） | 小学4年 | [解説](arithmetic/24-division-3digit-remainder/guide.md) | 371 ÷ 4 = 92…3 |
+| 26 | 分数のたし算（同分母） | 小学4年 | [解説](arithmetic/26-fractions-same-add/guide.md) | 1/5 + 2/5 = 3/5 |
+| 27 | 分数のひき算（同分母） | 小学4年 | [解説](arithmetic/27-fractions-same-sub/guide.md) | 4/7 - 2/7 = 2/7 |
+| 28 | 分数のたし算（通分あり） | 小学5年 | [解説](arithmetic/28-fractions-diff-add/guide.md) | 1/2 + 1/3 = 5/6 |
+| 29 | 分数のひき算（通分あり） | 小学5年 | [解説](arithmetic/29-fractions-diff-sub/guide.md) | 3/4 - 1/3 = 5/12 |
+| 30 | 分数のかけ算 | 小学6年 | [解説](arithmetic/30-fractions-multiply/guide.md) | 2/3 × 3/4 = 1/2 |
+| 31 | 分数のわり算 | 小学6年 | [解説](arithmetic/31-fractions-divide/guide.md) | 2/3 ÷ 4/5 = 5/6 |
+| 32 | 小数のたし算 | 小学4年 | [解説](arithmetic/32-decimals-addition/guide.md) | 1.2 + 3.4 = 4.6 |
+| 33 | 小数のひき算 | 小学4年 | [解説](arithmetic/33-decimals-subtraction/guide.md) | 5.3 - 2.1 = 3.2 |
+| 34 | 小数のかけ算 | 小学5年 | [解説](arithmetic/34-decimals-multiplication/guide.md) | 0.3 × 0.4 = 0.12 |
+| 35 | 比 | 小学6年 | [解説](arithmetic/35-ratio/guide.md) | 4:6 = 2:3 |
+| 36 | 割合 | 小学5年 | [解説](arithmetic/36-percentage/guide.md) | 60人の30% = 18人 |
+
+#### 🔀 応用
+
+| # | 内容 | 参考学年 | 解説 | 例 |
+|---|------|----------|------|-----|
+| 07 | たし算（まとめ） | 小学3年 | [解説](arithmetic/07-addition-mixed/guide.md) | 各桁の混合 |
+| 14 | ひき算（まとめ） | 小学3年 | [解説](arithmetic/14-subtraction-mixed/guide.md) | 各桁の混合 |
+| 18 | かけ算（まとめ） | 小学3年 | [解説](arithmetic/18-multiplication-mixed/guide.md) | 各桁の混合 |
+| 25 | わり算（まとめ） | 小学4年 | [解説](arithmetic/25-division-mixed/guide.md) | 各桁の混合 |
 
 ### 📐 代数
 
