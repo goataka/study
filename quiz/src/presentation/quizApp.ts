@@ -55,9 +55,9 @@ export class QuizApp {
     this.setupEventListeners();
     this.buildSubjectTabs();
     this.buildPanelTabs();
-    this.showPanelTab(this.activePanelTab);
     this.updateSubjectStats();
     this.selectFirstUnlearnedCategory();
+    this.autoSelectPanelTab();
     this.updateStartScreen();
     // 学習済み非表示の初期状態をボタンのaria-pressed属性に反映する
     const hideLearnedBtn = document.getElementById("hideLearnedBtn");
@@ -362,6 +362,7 @@ export class QuizApp {
         }
 
         this.renderCategoryList();
+        this.autoSelectPanelTab();
         this.updateStartScreen();
       };
 
@@ -479,6 +480,7 @@ export class QuizApp {
       this.filter.category = categoryId;
       this.filter.parentCategory = parentCatId;
       this.updateCategoryListActive();
+      this.autoSelectPanelTab();
       this.updateStartScreen();
     };
 
@@ -549,6 +551,21 @@ export class QuizApp {
     });
   }
 
+  /**
+   * 現在のフィルターに基づいて、解答履歴の有無でパネルタブを自動選択する。
+   * 特定カテゴリが選択されている場合は解答履歴があれば「確認」タブ、なければ「解説」タブを表示する。
+   * category が "all" の場合は現在の activePanelTab をそのまま表示する。
+   */
+  private autoSelectPanelTab(): void {
+    if (this.filter.category !== "all") {
+      const allRecords = this.useCase.getHistory();
+      const hasHistory = allRecords.some(
+        (r) => r.subject === this.filter.subject && r.category === this.filter.category
+      );
+      this.activePanelTab = hasHistory ? "quiz" : "guide";
+    }
+    this.showPanelTab(this.activePanelTab);
+  }
 
 
   // ─── 解説パネル ────────────────────────────────────────────────────────────

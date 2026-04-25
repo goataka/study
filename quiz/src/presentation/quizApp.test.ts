@@ -970,6 +970,144 @@ describe("QuizApp — パネルインナータブ仕様", () => {
   });
 });
 
+describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("解答履歴がない単元をクリックすると解説タブが初期表示になる（確認タブの動作確認を含む）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // phonics-1 をクリック（履歴なし）
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
+    expect(guideTab?.classList.contains("active")).toBe(true);
+    expect(guideTab?.getAttribute("aria-selected")).toBe("true");
+
+    const guideContent = document.getElementById("guideContent");
+    expect(guideContent?.classList.contains("hidden")).toBe(false);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("解答履歴がある単元をクリックすると確認タブが初期表示になる（解説タブの動作確認を含む）", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 3,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // phonics-1 をクリック（履歴あり）
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
+    expect(quizTab?.classList.contains("active")).toBe(true);
+    expect(quizTab?.getAttribute("aria-selected")).toBe("true");
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
+
+    const guideContent = document.getElementById("guideContent");
+    expect(guideContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("履歴なしの単元をクリックすると解説タブに切り替わる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // phonics-1 をクリック（履歴なし）
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
+    expect(guideTab?.classList.contains("active")).toBe(true);
+
+    const guideContent = document.getElementById("guideContent");
+    expect(guideContent?.classList.contains("hidden")).toBe(false);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("履歴ありの単元をクリックすると確認タブに切り替わる", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 3,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリ一覧を表示
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // phonics-1 をクリック（履歴あり）
+    const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    categoryItem?.click();
+
+    const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
+    expect(quizTab?.classList.contains("active")).toBe(true);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
+
+    const guideContent = document.getElementById("guideContent");
+    expect(guideContent?.classList.contains("hidden")).toBe(true);
+  });
+});
+
 describe("QuizApp — 履歴モード表示仕様", () => {
   beforeEach(() => {
     setupTabDom();
