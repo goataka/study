@@ -80,12 +80,14 @@ When("I click the first category item", async ({ page }) => {
 });
 
 Given("I have selected a quiz category", async ({ page }) => {
-  // 「英語」タブを選択してカテゴリを1つ選択し、確認パネルが表示されるまで待つ
+  // 「英語」タブを選択してカテゴリを1つ選択し、確認タブをクリックしてquizModePanelを表示する
   const tab = page.locator(".subject-tab").filter({ hasText: "英語" });
   await tab.click();
   await expect(tab).toHaveClass(/active/);
   const firstItem = page.locator(".category-item[data-category]").first();
   await firstItem.click();
+  // 履歴がない場合は解説タブが表示されるため、確認タブを明示的にクリックする
+  await page.locator("#panelTab-quiz").click();
   await expect(page.locator("#quizModePanel")).toBeVisible();
 });
 
