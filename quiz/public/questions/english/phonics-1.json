@@ -203,6 +203,18 @@
       "explanation": "pen = プ エ ヌ"
     },
     {
+      "id": "phonics-1-q",
+      "question": "「queen」の「qu」の音は？",
+      "choices": [
+        "クウ",
+        "ク",
+        "グウ",
+        "コ"
+      ],
+      "correct": 0,
+      "explanation": "queen = クウ イー ヌ"
+    },
+    {
       "id": "phonics-1-r",
       "question": "「red」の「r」の音は？",
       "choices": [
@@ -309,18 +321,6 @@
       ],
       "correct": 0,
       "explanation": "zoo = ズ ウー"
-    },
-    {
-      "id": "phonics-1-q",
-      "question": "「queen」の「qu」の音は？",
-      "choices": [
-        "クウ",
-        "ク",
-        "グウ",
-        "コ"
-      ],
-      "correct": 0,
-      "explanation": "queen = クウ イー ヌ"
     }
   ]
 }

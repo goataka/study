@@ -83,114 +83,6 @@
       "explanation": "bath = ブ ア ス"
     },
     {
-      "id": "phonics-2-oo1",
-      "question": "「book」の「oo」の音は？",
-      "choices": [
-        "ウ",
-        "ウー",
-        "オ",
-        "オー"
-      ],
-      "correct": 0,
-      "explanation": "book = ブ ウ ク"
-    },
-    {
-      "id": "phonics-2-oo2",
-      "question": "「moon」の「oo」の音は？",
-      "choices": [
-        "ウー",
-        "ウ",
-        "オー",
-        "オ"
-      ],
-      "correct": 0,
-      "explanation": "moon = ム ウー ヌ"
-    },
-    {
-      "id": "phonics-2-ee1",
-      "question": "「deep」の「ee」の音は？",
-      "choices": [
-        "イー",
-        "エ",
-        "エー",
-        "イ"
-      ],
-      "correct": 0,
-      "explanation": "deep = ドゥ イー プ"
-    },
-    {
-      "id": "phonics-2-ai1",
-      "question": "「rain」の「ai」の音は？",
-      "choices": [
-        "エイ",
-        "アイ",
-        "エ",
-        "ア"
-      ],
-      "correct": 0,
-      "explanation": "rain = ル エイ ヌ"
-    },
-    {
-      "id": "phonics-2-oa1",
-      "question": "「boat」の「oa」の音は？",
-      "choices": [
-        "オウ",
-        "オ",
-        "オー",
-        "ア"
-      ],
-      "correct": 0,
-      "explanation": "boat = ブ オウ ト"
-    },
-    {
-      "id": "phonics-2-magic-a",
-      "question": "「cake」の「a」の音は？（マジックE）",
-      "choices": [
-        "エイ",
-        "ア",
-        "エ",
-        "アイ"
-      ],
-      "correct": 0,
-      "explanation": "cake = ク エイ ク"
-    },
-    {
-      "id": "phonics-2-magic-i",
-      "question": "「kite」の「i」の音は？（マジックE）",
-      "choices": [
-        "アイ",
-        "イ",
-        "エイ",
-        "エ"
-      ],
-      "correct": 0,
-      "explanation": "kite = ク アイ ト"
-    },
-    {
-      "id": "phonics-2-magic-o",
-      "question": "「note」の「o」の音は？（マジックE）",
-      "choices": [
-        "オウ",
-        "オ",
-        "ア",
-        "ウ"
-      ],
-      "correct": 0,
-      "explanation": "note = ヌ オウ ト"
-    },
-    {
-      "id": "phonics-2-magic-u",
-      "question": "「cute」の「u」の音は？（マジックE）",
-      "choices": [
-        "ユー",
-        "ア",
-        "ウ",
-        "ウー"
-      ],
-      "correct": 0,
-      "explanation": "cute = ク ユー ト"
-    },
-    {
       "id": "phonics-2-ph1",
       "question": "「phone」の「ph」の音は？",
       "choices": [
@@ -215,6 +107,30 @@
       "explanation": "whale = ホウ エイ ル"
     },
     {
+      "id": "phonics-2-oo1",
+      "question": "「book」の「oo」の音は？",
+      "choices": [
+        "ウ",
+        "ウー",
+        "オ",
+        "オー"
+      ],
+      "correct": 0,
+      "explanation": "book = ブ ウ ク"
+    },
+    {
+      "id": "phonics-2-oo2",
+      "question": "「moon」の「oo」の音は？",
+      "choices": [
+        "ウー",
+        "ウ",
+        "オー",
+        "オ"
+      ],
+      "correct": 0,
+      "explanation": "moon = ム ウー ヌ"
+    },
+    {
       "id": "phonics-2-oo3",
       "question": "「good」の「oo」の音は？",
       "choices": [
@@ -225,6 +141,18 @@
       ],
       "correct": 0,
       "explanation": "good = グ ウ ドゥ"
+    },
+    {
+      "id": "phonics-2-ee1",
+      "question": "「deep」の「ee」の音は？",
+      "choices": [
+        "イー",
+        "エ",
+        "エー",
+        "イ"
+      ],
+      "correct": 0,
+      "explanation": "deep = ドゥ イー プ"
     },
     {
       "id": "phonics-2-ee2",
@@ -239,6 +167,18 @@
       "explanation": "green = グ ル イー ヌ"
     },
     {
+      "id": "phonics-2-ai1",
+      "question": "「rain」の「ai」の音は？",
+      "choices": [
+        "エイ",
+        "アイ",
+        "エ",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "rain = ル エイ ヌ"
+    },
+    {
       "id": "phonics-2-ai2",
       "question": "「train」の「ai」の音は？",
       "choices": [
@@ -249,6 +189,18 @@
       ],
       "correct": 0,
       "explanation": "train = トゥ ル エイ ヌ"
+    },
+    {
+      "id": "phonics-2-oa1",
+      "question": "「boat」の「oa」の音は？",
+      "choices": [
+        "オウ",
+        "オ",
+        "オー",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "boat = ブ オウ ト"
     },
     {
       "id": "phonics-2-oa2",
@@ -263,6 +215,18 @@
       "explanation": "coat = ク オウ ト"
     },
     {
+      "id": "phonics-2-magic-a",
+      "question": "「cake」の「a」の音は？（マジックE）",
+      "choices": [
+        "エイ",
+        "ア",
+        "エ",
+        "アイ"
+      ],
+      "correct": 0,
+      "explanation": "cake = ク エイ ク"
+    },
+    {
       "id": "phonics-2-magic-a2",
       "question": "「name」の「a」の音は？（マジックE）",
       "choices": [
@@ -273,6 +237,18 @@
       ],
       "correct": 0,
       "explanation": "name = ヌ エイ ム"
+    },
+    {
+      "id": "phonics-2-magic-i",
+      "question": "「kite」の「i」の音は？（マジックE）",
+      "choices": [
+        "アイ",
+        "イ",
+        "エイ",
+        "エ"
+      ],
+      "correct": 0,
+      "explanation": "kite = ク アイ ト"
     },
     {
       "id": "phonics-2-magic-i2",
@@ -287,6 +263,18 @@
       "explanation": "bike = ブ アイ ク"
     },
     {
+      "id": "phonics-2-magic-o",
+      "question": "「note」の「o」の音は？（マジックE）",
+      "choices": [
+        "オウ",
+        "オ",
+        "ア",
+        "ウ"
+      ],
+      "correct": 0,
+      "explanation": "note = ヌ オウ ト"
+    },
+    {
       "id": "phonics-2-magic-o2",
       "question": "「home」の「o」の音は？（マジックE）",
       "choices": [
@@ -297,6 +285,18 @@
       ],
       "correct": 0,
       "explanation": "home = ホ オウ ム"
+    },
+    {
+      "id": "phonics-2-magic-u",
+      "question": "「cute」の「u」の音は？（マジックE）",
+      "choices": [
+        "ユー",
+        "ア",
+        "ウ",
+        "ウー"
+      ],
+      "correct": 0,
+      "explanation": "cute = ク ユー ト"
     }
   ]
 }
