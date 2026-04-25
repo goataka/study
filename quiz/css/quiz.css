@@ -262,6 +262,17 @@ header h1 {
     color: white;
 }
 
+/* カテゴリ説明文（単元一覧内） */
+.category-item-description {
+    font-size: 12px;
+    color: #586069;
+    line-height: 1.4;
+}
+
+.category-item.active .category-item-description {
+    color: rgba(255, 255, 255, 0.8);
+}
+
 .category-status {
     font-size: 14px;
     flex-shrink: 0;

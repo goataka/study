@@ -424,6 +424,15 @@ export class QuizApp {
 
     nameArea.appendChild(titleRow);
 
+    // 説明文（description が設定されている場合のみ表示）
+    const description = this.useCase.getCategoryDescription(subject, categoryId);
+    if (description !== undefined) {
+      const descSpan = document.createElement("span");
+      descSpan.className = "category-item-description";
+      descSpan.textContent = description;
+      nameArea.appendChild(descSpan);
+    }
+
     const progressBar = document.createElement("div");
     progressBar.className = "category-progress-bar";
     const progressFill = document.createElement("div");
