@@ -203,6 +203,18 @@
       "explanation": "pen = プ エ ヌ"
     },
     {
+      "id": "phonics-1-q",
+      "question": "「queen」の「qu」の音は？",
+      "choices": [
+        "クウ",
+        "ク",
+        "グウ",
+        "コ"
+      ],
+      "correct": 0,
+      "explanation": "queen = クウ イー ヌ"
+    },
+    {
       "id": "phonics-1-r",
       "question": "「red」の「r」の音は？",
       "choices": [
@@ -249,6 +261,66 @@
       ],
       "correct": 0,
       "explanation": "up = ア プ"
+    },
+    {
+      "id": "phonics-1-v",
+      "question": "「van」の「v」の音は？",
+      "choices": [
+        "ヴ",
+        "フ",
+        "ブ",
+        "ム"
+      ],
+      "correct": 0,
+      "explanation": "van = ヴ ア ヌ"
+    },
+    {
+      "id": "phonics-1-w",
+      "question": "「water」の「w」の音は？",
+      "choices": [
+        "ウ",
+        "ヴ",
+        "ユ",
+        "オ"
+      ],
+      "correct": 0,
+      "explanation": "water = ウ オー ラー"
+    },
+    {
+      "id": "phonics-1-x",
+      "question": "「box」の「x」の音は？",
+      "choices": [
+        "クス",
+        "ス",
+        "ク",
+        "ズ"
+      ],
+      "correct": 0,
+      "explanation": "box = ブ ア クス"
+    },
+    {
+      "id": "phonics-1-y",
+      "question": "「yes」の「y」の音は？",
+      "choices": [
+        "イ",
+        "ユ",
+        "エ",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "yes = イ エ ス"
+    },
+    {
+      "id": "phonics-1-z",
+      "question": "「zoo」の「z」の音は？",
+      "choices": [
+        "ズ",
+        "ス",
+        "ジュ",
+        "シュ"
+      ],
+      "correct": 0,
+      "explanation": "zoo = ズ ウー"
     }
   ]
 }
