@@ -1367,12 +1367,16 @@ export class QuizApp {
   /**
    * ref-patterns.js（漢字パターンデータ）と hiragana-patterns.js（ひらがなパターンデータ）を
    * 動的に遅延ロードする。重複ロードを防ぐため Promise をキャッシュする。
+   * 読み込み失敗時はキャッシュをクリアし、次回呼び出しで再試行できるようにする。
    */
   private loadRefPatterns(): Promise<void> {
     if (this.refPatternsLoadPromise) return this.refPatternsLoadPromise;
-    this.refPatternsLoadPromise = this.loadScript("./vendor/ref-patterns.js").then(() =>
-      this.loadScript("./vendor/hiragana-patterns.js"),
-    );
+    this.refPatternsLoadPromise = this.loadScript("./vendor/ref-patterns.js")
+      .then(() => this.loadScript("./vendor/hiragana-patterns.js"))
+      .catch((error) => {
+        this.refPatternsLoadPromise = undefined;
+        throw error;
+      });
     return this.refPatternsLoadPromise;
   }
 
