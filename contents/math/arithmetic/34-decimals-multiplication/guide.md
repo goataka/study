@@ -69,8 +69,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=decimals-multiplication)
 
 [前へ: 小数のひき算](../33-decimals-subtraction/guide.md) | **小数のかけ算** | [次へ: 比](../35-ratio/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=decimals-multiplication)

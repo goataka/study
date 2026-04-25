@@ -73,8 +73,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-multiply)
 
 [前へ: 分数のひき算（通分あり）](../29-fractions-diff-sub/guide.md) | **分数のかけ算** | [次へ: 分数のわり算](../31-fractions-divide/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=fractions-multiply)

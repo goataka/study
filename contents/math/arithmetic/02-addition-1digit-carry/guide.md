@@ -72,8 +72,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=addition-carry)
 
 [前へ: 1桁のたし算（くり上がりなし）](../01-addition-1digit-no-carry/guide.md) | **1桁のたし算（くり上がりあり）** | [次へ: 2桁のたし算（くり上がりなし）](../03-addition-2digit-no-carry/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-carry)

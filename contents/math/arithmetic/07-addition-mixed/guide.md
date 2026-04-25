@@ -64,8 +64,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=addition-mixed)
 
 [前へ: 3桁のたし算（くり上がりあり）](../06-addition-3digit-carry/guide.md) | **たし算（まとめ）** | [次へ: 1桁のひき算（くり下がりなし）](../08-subtraction-1digit-no-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-mixed)

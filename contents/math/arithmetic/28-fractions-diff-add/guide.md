@@ -72,8 +72,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-diff-add)
 
 [前へ: 分数のひき算（同分母）](../27-fractions-same-sub/guide.md) | **分数のたし算（通分あり）** | [次へ: 分数のひき算（通分あり）](../29-fractions-diff-sub/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=fractions-diff-add)

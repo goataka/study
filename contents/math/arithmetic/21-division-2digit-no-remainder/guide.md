@@ -80,8 +80,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)
 
 [前へ: 1桁のわり算（あまりあり）](../20-division-1digit-remainder/guide.md) | **2桁のわり算（あまりなし）** | [次へ: 2桁のわり算（あまりあり）](../22-division-2digit-remainder/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)

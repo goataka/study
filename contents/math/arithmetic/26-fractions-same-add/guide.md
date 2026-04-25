@@ -65,8 +65,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-same-add)
 
 [前へ: わり算（まとめ）](../25-division-mixed/guide.md) | **分数のたし算（同分母）** | [次へ: 分数のひき算（同分母）](../27-fractions-same-sub/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=fractions-same-add)

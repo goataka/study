@@ -83,8 +83,6 @@ y = -(x² - 6x) - 5
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=quadratic-func)
 
 [前へ: 二次方程式](../../algebra/29-quadratic-eq/guide.md) | **二次関数** | [次へ: 不等式](../31-inequalities/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=quadratic-func)

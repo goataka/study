@@ -82,8 +82,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=integration)
 
 [前へ: 微分](../37-differentiation/guide.md) | **積分** |
-
-[クイズ](../../quiz/index.html?subject=math&category=integration)

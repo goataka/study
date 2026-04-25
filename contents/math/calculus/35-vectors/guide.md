@@ -81,8 +81,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=vectors)
 
 [前へ: 数列](../34-sequences/guide.md) | **ベクトル** | [次へ: 極限](../36-limits/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=vectors)

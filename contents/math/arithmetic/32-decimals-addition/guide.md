@@ -71,8 +71,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=decimals-addition)
 
 [前へ: 分数のわり算](../31-fractions-divide/guide.md) | **小数のたし算** | [次へ: 小数のひき算](../33-decimals-subtraction/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=decimals-addition)

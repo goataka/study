@@ -78,8 +78,6 @@ f'(x) = 3·2·x¹ + 2·1·x⁰ + 0
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=differentiation)
 
 [前へ: 極限](../36-limits/guide.md) | **微分** | [次へ: 積分](../38-integration/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=differentiation)

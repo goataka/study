@@ -71,8 +71,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=subtraction-borrow)
 
 [前へ: 2桁のひき算（くり下がりなし）](../10-subtraction-2digit-no-borrow/guide.md) | **2桁のひき算（くり下がりあり）** | [次へ: 3桁のひき算（くり下がりなし）](../12-subtraction-3digit-no-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-borrow)

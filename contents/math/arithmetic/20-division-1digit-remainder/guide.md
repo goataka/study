@@ -68,8 +68,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-remainder)
 
 [前へ: 1桁のわり算（あまりなし）](../19-division-1digit-no-remainder/guide.md) | **1桁のわり算（あまりあり）** | [次へ: 2桁のわり算（あまりなし）](../21-division-2digit-no-remainder/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-remainder)

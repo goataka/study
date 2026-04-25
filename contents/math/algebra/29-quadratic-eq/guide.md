@@ -87,8 +87,6 @@ x = (-4 ± √(16-12)) / 2
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=quadratic-eq)
 
 [前へ: 平方根](../28-square-roots/guide.md) | **二次方程式** | [次へ: 二次関数](../../calculus/30-quadratic-func/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=quadratic-eq)

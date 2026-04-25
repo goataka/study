@@ -67,8 +67,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=ratio)
 
 [前へ: 小数のかけ算](../34-decimals-multiplication/guide.md) | **比** | [次へ: 割合](../36-percentage/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=ratio)

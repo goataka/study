@@ -108,8 +108,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=multiplication)
 
 [前へ: ひき算（まとめ）](../14-subtraction-mixed/guide.md) | **1桁のかけ算（九九）** | [次へ: 2桁のかけ算（2桁×1桁）](../16-multiplication-2digit/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=multiplication)

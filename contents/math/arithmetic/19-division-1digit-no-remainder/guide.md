@@ -64,8 +64,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)
 
 [前へ: かけ算（まとめ）](../18-multiplication-mixed/guide.md) | **1桁のわり算（あまりなし）** | [次へ: 1桁のわり算（あまりあり）](../20-division-1digit-remainder/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)

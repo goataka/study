@@ -15,7 +15,7 @@ The game `which` I play is fun.
 
 | 先行詞 | 関係代名詞 | 省略 | 例 |
 |--------|-----------|------|------|
-| 人 | `whom` / `that` | 可 | a boy (whom) I know |
+| 人 | `whom` / `who` / `that` | 可 | a boy (whom / who) I know |
 | 物 | `which` / `that` | 可 | a game (which) I play |
 
 ## 練習問題

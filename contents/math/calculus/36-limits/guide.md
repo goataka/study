@@ -76,8 +76,6 @@ x→2 を代入: 2+2 = 4 ✅
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=limits)
 
 [前へ: ベクトル](../35-vectors/guide.md) | **極限** | [次へ: 微分](../37-differentiation/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=limits)

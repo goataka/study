@@ -81,8 +81,6 @@ a₅ = 2 × 3⁴
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=sequences)
 
 [前へ: 指数・対数](../33-exponents-logarithms/guide.md) | **数列** | [次へ: ベクトル](../35-vectors/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=sequences)

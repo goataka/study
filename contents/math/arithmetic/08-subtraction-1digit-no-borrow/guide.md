@@ -69,8 +69,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)
 
 [前へ: たし算（まとめ）](../07-addition-mixed/guide.md) | **1桁のひき算（くり下がりなし）** | [次へ: 1桁のひき算（くり下がりあり）](../09-subtraction-1digit-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)

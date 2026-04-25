@@ -66,8 +66,6 @@ x < 2 ✅  ← ⚠️ 負の数でわると不等号が逆転！
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=inequalities)
 
 [前へ: 二次関数](../30-quadratic-func/guide.md) | **不等式** | [次へ: 三角関数](../32-trigonometry/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=inequalities)

@@ -59,4 +59,4 @@ The place `where` I play games is quiet.
 
 [目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=relative-adverb)
 
-[前へ: 所有格の関係代名詞](../44-relative-possessive/guide.md) | 関係副詞 | [次へ: 時制の一致](../46-reported-tense/guide.md)
+[前へ: 所有格の関係代名詞](../44-relative-possessive/guide.md) | **関係副詞** | [次へ: 時制の一致](../46-reported-tense/guide.md)

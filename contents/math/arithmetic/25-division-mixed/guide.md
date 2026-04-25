@@ -56,8 +56,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-mixed)
 
 [前へ: 3桁のわり算（あまりあり）](../24-division-3digit-remainder/guide.md) | **わり算（まとめ）** | [次へ: 分数のたし算（同分母）](../26-fractions-same-add/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-mixed)

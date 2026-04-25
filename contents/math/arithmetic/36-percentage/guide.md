@@ -82,8 +82,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=percentage)
 
 [前へ: 比](../35-ratio/guide.md) | **割合** |
-
-[クイズ](../../quiz/index.html?subject=math&category=percentage)

@@ -74,8 +74,6 @@
 
 ---
 
-[目次](../README.md) | 解説
+[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=multiplication)
 
 [前へ: 2桁のかけ算（2桁×1桁）](../16-multiplication-2digit/guide.md) | **3桁のかけ算（3桁×1桁）** | [次へ: かけ算（まとめ）](../18-multiplication-mixed/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=multiplication)
