@@ -11,3 +11,20 @@
   });
   mermaid.initialize({ startOnLoad: true });
 </script>
+<script>
+  // クイズの解説パネル（iframe）内で表示されるとき、下部のナビゲーションリンクを非表示にする
+  if (window !== window.top) {
+    document.addEventListener('DOMContentLoaded', function () {
+      var hrs = document.querySelectorAll('hr');
+      if (hrs.length > 0) {
+        var lastHr = hrs[hrs.length - 1];
+        lastHr.style.display = 'none';
+        var el = lastHr.nextElementSibling;
+        while (el) {
+          el.style.display = 'none';
+          el = el.nextElementSibling;
+        }
+      }
+    });
+  }
+</script>
