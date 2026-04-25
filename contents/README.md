@@ -5,6 +5,7 @@
 - [学習クイズ](quiz/index.html) - ランダム10問の4択クイズ形式で学習できます
   - [英語クイズ](quiz/?subject=english) - 英語の4択クイズ
   - [数学クイズ](quiz/?subject=math) - 数学の4択クイズ
+  - [国語クイズ](quiz/?subject=japanese) - 国語の4択クイズ
 
 ## 学習ドリル
 
@@ -126,3 +127,27 @@
 | 36 | 極限 | 高校3年 | [練習](math/calculus/36-limits/drill.md) | [解答](math/calculus/36-limits/answer.md) | [解説](math/calculus/36-limits/guide.md) | [クイズ](quiz/?subject=math&category=limits) | lim(n→∞) 1/n = 0 |
 | 37 | 微分 | 高校3年 | [練習](math/calculus/37-differentiation/drill.md) | [解答](math/calculus/37-differentiation/answer.md) | [解説](math/calculus/37-differentiation/guide.md) | [クイズ](quiz/?subject=math&category=differentiation) | f(x)=x³ → f'(x)=3x² |
 | 38 | 積分 | 高校3年 | [練習](math/calculus/38-integration/drill.md) | [解答](math/calculus/38-integration/answer.md) | [解説](math/calculus/38-integration/guide.md) | [クイズ](quiz/?subject=math&category=integration) | ∫2xdx = x² + C |
+
+### 国語ドリル
+
+[国語学習ガイド](japanese/README.md)
+
+#### 📖 漢字ドリル
+
+| # | ドリル | 参考学年 | 解説 | クイズ | 例 |
+|---|--------|----------|------|--------|-----|
+| 01 | 漢字（小学1年） | 小学1年 | [解説](japanese/kanji/01-kanji-grade1/guide.md) | [クイズ](quiz/?subject=japanese&category=kanji-grade1) | 山・川・火・水 |
+| 02 | 漢字（小学2年） | 小学2年 | [解説](japanese/kanji/02-kanji-grade2/guide.md) | [クイズ](quiz/?subject=japanese&category=kanji-grade2) | 海・魚・鳥・読 |
+| 03 | 漢字（小学3年） | 小学3年 | [解説](japanese/kanji/03-kanji-grade3/guide.md) | [クイズ](quiz/?subject=japanese&category=kanji-grade3) | 明・暗・始・終 |
+| 04 | 漢字（小学4年） | 小学4年 | [解説](japanese/kanji/04-kanji-grade4/guide.md) | [クイズ](quiz/?subject=japanese&category=kanji-grade4) | 愛・熱・静・感 |
+| 05 | 漢字（小学5年） | 小学5年 | [解説](japanese/kanji/05-kanji-grade5/guide.md) | [クイズ](quiz/?subject=japanese&category=kanji-grade5) | 護・衛・複・雑 |
+| 06 | 漢字（小学6年） | 小学6年 | [解説](japanese/kanji/06-kanji-grade6/guide.md) | [クイズ](quiz/?subject=japanese&category=kanji-grade6) | 宙・射・危・険 |
+| 07 | 漢字（中学生） | 中学生 | [解説](japanese/kanji/07-kanji-secondary/guide.md) | [クイズ](quiz/?subject=japanese&category=kanji-secondary) | 背・滋・賢・縦 |
+| 08 | 漢字（高校生） | 高校生 | [解説](japanese/kanji/08-kanji-high/guide.md) | [クイズ](quiz/?subject=japanese&category=kanji-high) | 羅・曖・昧・冶 |
+
+#### 📚 ことわざ・四字熟語
+
+| # | ドリル | 参考学年 | 解説 | クイズ | 例 |
+|---|--------|----------|------|--------|-----|
+| 09 | ことわざ | 中学生 | [解説](japanese/kanji/09-kotowaza/guide.md) | [クイズ](quiz/?subject=japanese&category=kotowaza) | 七転び八起き |
+| 10 | 四字熟語 | 中学生 | [解説](japanese/kanji/10-yojijukugo/guide.md) | [クイズ](quiz/?subject=japanese&category=yojijukugo) | 一石二鳥 |

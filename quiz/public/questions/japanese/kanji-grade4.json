@@ -5,9 +5,10 @@
   "categoryName": "漢字（小学4年）",
   "parentCategory": "kanji",
   "parentCategoryName": "漢字",
-  "example": "\u611b\u30fb\u71b1\u30fb\u9759\u30fb\u611f",
+  "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
+  "guideUrl": "../japanese/kanji/04-kanji-grade4/guide",
   "questions": [
     {
       "id": "kanji-g4-001",

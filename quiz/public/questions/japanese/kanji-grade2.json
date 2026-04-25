@@ -5,187 +5,148 @@
   "categoryName": "漢字（小学2年）",
   "parentCategory": "kanji",
   "parentCategoryName": "漢字",
-  "example": "\u6625\u30fb\u590f\u30fb\u79cb\u30fb\u51ac",
+  "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
+  "guideUrl": "../japanese/kanji/02-kanji-grade2/guide",
   "questions": [
     {
       "id": "kanji-g2-001",
       "question": "「海」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うみ"
-      ],
+      "choices": ["うみ"],
       "correct": 0,
       "explanation": "海（うみ）: 広大な水の広がり。「かい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-002",
       "question": "「魚」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "さかな"
-      ],
+      "choices": ["さかな"],
       "correct": 0,
       "explanation": "魚（さかな）: 水の中に住む生き物。「ぎょ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-003",
       "question": "「鳥」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とり"
-      ],
+      "choices": ["とり"],
       "correct": 0,
       "explanation": "鳥（とり）: 空を飛ぶ生き物。「ちょう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-004",
       "question": "「読む」の「読」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "よ"
-      ],
+      "choices": ["よ"],
       "correct": 0,
       "explanation": "読（よ）む: 文字を読むこと。「どく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-005",
       "question": "「書く」の「書」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "か"
-      ],
+      "choices": ["か"],
       "correct": 0,
       "explanation": "書（か）く: 文字を書くこと。「しょ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-006",
       "question": "「聞く」の「聞」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "き"
-      ],
+      "choices": ["き"],
       "correct": 0,
       "explanation": "聞（き）く: 音を聞くこと。「ぶん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-007",
       "question": "「話す」の「話」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はな"
-      ],
+      "choices": ["はな"],
       "correct": 0,
       "explanation": "話（はな）す: 話すこと。「わ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-008",
       "question": "「走る」の「走」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はし"
-      ],
+      "choices": ["はし"],
       "correct": 0,
       "explanation": "走（はし）る: 走ること。「そう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-009",
       "question": "「食べる」の「食」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "た"
-      ],
+      "choices": ["た"],
       "correct": 0,
       "explanation": "食（た）べる: 食べること。「しょく」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-010",
       "question": "「父」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ちち"
-      ],
+      "choices": ["ちち"],
       "correct": 0,
       "explanation": "父（ちち）: お父さんのこと。「ふ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-011",
       "question": "「母」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はは"
-      ],
+      "choices": ["はは"],
       "correct": 0,
       "explanation": "母（はは）: お母さんのこと。「ぼ」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-012",
       "question": "「兄」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あに"
-      ],
+      "choices": ["あに"],
       "correct": 0,
       "explanation": "兄（あに）: お兄さんのこと。「けい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-013",
       "question": "「姉」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あね"
-      ],
+      "choices": ["あね"],
       "correct": 0,
       "explanation": "姉（あね）: お姉さんのこと。「し」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-014",
       "question": "「弟」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おとうと"
-      ],
+      "choices": ["おとうと"],
       "correct": 0,
       "explanation": "弟（おとうと）: 年下の男の兄弟のこと。「てい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-015",
       "question": "「妹」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いもうと"
-      ],
+      "choices": ["いもうと"],
       "correct": 0,
       "explanation": "妹（いもうと）: 年下の女の兄弟のこと。「まい」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-016",
       "question": "「友だち」の「友」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とも"
-      ],
+      "choices": ["とも"],
       "correct": 0,
       "explanation": "友（とも）: 友達のこと。「ゆう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-017",
       "question": "「春」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はる"
-      ],
+      "choices": ["はる"],
       "correct": 0,
       "explanation": "春（はる）: 春の季節のこと。「しゅん」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-018",
       "question": "「夏」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "なつ"
-      ],
+      "choices": ["なつ"],
       "correct": 0,
       "explanation": "夏（なつ）: 夏の季節のこと。「か」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-019",
       "question": "「秋」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あき"
-      ],
+      "choices": ["あき"],
       "correct": 0,
       "explanation": "秋（あき）: 秋の季節のこと。「しゅう」（音読み）とも読む"
     },
     {
       "id": "kanji-g2-020",
       "question": "「冬」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ふゆ"
-      ],
+      "choices": ["ふゆ"],
       "correct": 0,
       "explanation": "冬（ふゆ）: 冬の季節のこと。「とう」（音読み）とも読む"
     },
