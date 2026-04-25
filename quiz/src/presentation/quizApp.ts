@@ -560,8 +560,10 @@ export class QuizApp {
         : this.useCase.getFirstAvailableGuideUrl();
 
     if (guideUrl) {
-      if (guideFrame.getAttribute("src") !== guideUrl) {
-        guideFrame.src = guideUrl;
+      // iframe 内であることを示す ?embedded=1 を付与してナビゲーション非表示スクリプトをトリガーする
+      const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
+      if (guideFrame.getAttribute("src") !== embeddedUrl) {
+        guideFrame.src = embeddedUrl;
       }
       guideFrame.classList.remove("hidden");
       noContent?.classList.add("hidden");

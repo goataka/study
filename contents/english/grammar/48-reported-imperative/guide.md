@@ -17,9 +17,3 @@ He `told` me `to play` games.
 | "Play games." | He `told` me `to play` games. |
 | "Don't play games." | He `told` me `not to play` games. |
 | "Please help me." | He `asked` me `to help` him. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reported-imperative)
-
-[前へ: 疑問文の間接話法](../47-reported-question/drill.md) | 命令文の間接話法 | [次へ: 指示語の変化](../49-reported-expressions/drill.md)

@@ -37,11 +37,3 @@
 
 - 答えが4けたになることもある
 - 各桁のくり上がりをしっかり記録する
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 2桁のかけ算（2桁×1桁）](../16-multiplication-2digit/guide.md) | **3桁のかけ算（3桁×1桁）** | [次へ: かけ算（まとめ）](../18-multiplication-mixed/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=multiplication)

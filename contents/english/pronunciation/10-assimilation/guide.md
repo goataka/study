@@ -48,9 +48,3 @@ meet  you
 - 💡 `t/d/s` + `y` の組み合わせが最もよく出る
 - 💡 `Would you like...?`・`Could you please...?` は日常会話で頻出
 - 💡 `Bless you`（くしゃみの後）も `ブレッシュー` と聞こえる
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=assimilation)
-
-[前へ: フラッピング](../09-flapping/drill.md) | **アシミレーション練習ドリル** |

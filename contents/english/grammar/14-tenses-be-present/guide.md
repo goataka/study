@@ -21,9 +21,3 @@ Games `are` fun.
 | I | `am` | I `am` a player. |
 | he / she / it | `is` | The game `is` fun. |
 | you / we / they | `are` | Games `are` fun. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-be-present)
-
-[前へ: 一般動詞の未来形](../13-tenses-regular-future/drill.md) | be動詞の現在形 | [次へ: be動詞の過去形](../15-tenses-be-past/drill.md)

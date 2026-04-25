@@ -34,11 +34,3 @@
 
 - 一の位が10以上 → 十の位に1くり上げ
 - 十の位が10以上 → 百の位に1くり上げ（3けたになる）
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 2桁のたし算（くり上がりなし）](../03-addition-2digit-no-carry/guide.md) | **2桁のたし算（くり上がりあり）** | [次へ: 3桁のたし算（くり上がりなし）](../05-addition-3digit-no-carry/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-carry)

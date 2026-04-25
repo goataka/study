@@ -17,9 +17,3 @@ Games `can be played` by anyone.
 | `must` | `must be + 過去分詞` | This `must be finished` today. |
 | `should` | `should be + 過去分詞` | This `should be checked` again. |
 | `will` | `will be + 過去分詞` | This `will be sent` tomorrow. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=passive-modals)
-
-[前へ: 受動態](../31-passive/drill.md) | 助動詞の受動態 | [次へ: 条件文](../33-conditionals-if/drill.md)

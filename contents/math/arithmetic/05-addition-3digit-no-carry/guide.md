@@ -37,11 +37,3 @@
 
 - 右（一の位）から順に計算すると間違いが少ない
 - 桁をそろえて書くと計算しやすい
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 2桁のたし算（くり上がりあり）](../04-addition-2digit-carry/guide.md) | **3桁のたし算（くり上がりなし）** | [次へ: 3桁のたし算（くり上がりあり）](../06-addition-3digit-carry/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)
