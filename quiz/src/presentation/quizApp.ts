@@ -11,7 +11,6 @@ import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionReposi
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
 import { NotesCanvas } from "./notesCanvas";
 import type { DrawingState } from "./notesCanvas";
-import { OcrService } from "./ocrService";
 
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
@@ -30,7 +29,7 @@ export class QuizApp {
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
-  private readonly ocrService: OcrService = new OcrService();
+  private kanjiCanvasInitialized: boolean = false;
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   /** 総合タブの fallback により自動的に "history" へ切り替わった場合は true。ユーザーが明示的にタブを選択した場合は false。 */
   private autoSwitchedToHistory: boolean = false;
@@ -895,8 +894,9 @@ export class QuizApp {
     this.on("clearNotesBtn", "click", () => this.clearNotes());
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
-    // タッチペン入力確定ボタン（text-input問題のメモタブで使用）
-    document.getElementById("handwritingConfirmBtn")?.addEventListener("click", () => { void this.handleHandwritingConfirm(); });
+    // KanjiCanvas操作ボタン（text-input問題のメモタブで使用）
+    this.on("kanjiDeleteLastBtn", "click", () => this.kanjiDeleteLast());
+    this.on("kanjiEraseBtn", "click", () => this.kanjiErase());
 
     // 学習済カテゴリの非表示トグル
     this.on("hideLearnedBtn", "click", () => this.toggleHideLearned());
@@ -1303,93 +1303,108 @@ export class QuizApp {
   }
 
   /**
-   * メモエリアをtextinput問題のタッチペン入力用に更新する。
-   * - text-input問題かつ未回答の場合: 確定ボタンを表示、ガイドテキストを変更
-   * - それ以外: 確定ボタンを非表示、ガイドテキストを元に戻す
-   * 問題遷移のたびに呼ばれ、自己評価UIをクリアして確定ボタンを復元する。
+   * メモエリアをtextinput問題のKanjiCanvas入力用に更新する。
+   * - text-input問題かつ未回答の場合: KanjiCanvas入力エリアを表示、ノートキャンバスを非表示
+   * - それ以外: KanjiCanvas入力エリアを非表示、ノートキャンバスを表示
+   * 問題遷移のたびに呼ばれる。
    */
   private updateNotesAreaForQuestion(question: Question | null, isAnswered: boolean): void {
     const notesTitle = document.getElementById("notesTitle");
-    const confirmArea = document.getElementById("handwritingConfirmArea");
-    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
-    const textInput = document.getElementById("handwritingTextInput") as HTMLInputElement | null;
+    const kanjiInputArea = document.getElementById("kanjiInputArea");
+    const notesCanvas = document.getElementById("notesCanvas");
+    const notesControls = document.querySelector<HTMLElement>(".notes-controls");
 
     const isTextInput = question?.questionType === "text-input";
-    const showConfirm = isTextInput && !isAnswered;
+    const showKanji = isTextInput && !isAnswered;
 
     if (notesTitle) {
       notesTitle.textContent = isTextInput
-        ? "✏️ ここに手書きで解答できます"
+        ? "✏️ 1文字ずつ書いて漢字を入力できます"
         : "タッチペンで書けます";
     }
-    if (confirmArea) {
-      confirmArea.classList.toggle("hidden", !showConfirm);
+    if (kanjiInputArea) {
+      kanjiInputArea.classList.toggle("hidden", !showKanji);
     }
-    // 確定ボタンを再表示してdisabled状態をリセット（問題遷移時の復元）
-    if (confirmBtn) {
-      confirmBtn.disabled = !showConfirm;
+    // KanjiCanvas使用時はノートキャンバスと通常コントロールを非表示
+    if (notesCanvas) {
+      notesCanvas.classList.toggle("hidden", showKanji);
     }
-    // 手書き入力フィールドをクリア（問題遷移時のリセット）
-    if (textInput) {
-      textInput.value = "";
+    if (notesControls) {
+      notesControls.classList.toggle("hidden", showKanji);
+    }
+
+    if (showKanji) {
+      this.initializeKanjiCanvas();
+      this.kanjiErase();
+      this.updateKanjiCandidates();
     }
   }
 
   /**
-   * タッチペン入力の確定ボタンが押されたときの処理。
-   * キャンバスの手書き文字をTesseract OCRで認識し、答えの入力エリアに追加する。
-   * キャンバスが空の場合は手書き入力フィールドのテキストをフォールバックとして使用する。
+   * KanjiCanvasを初期化する。初回呼び出し時のみ初期化し、ストローク完了後に候補を自動更新する。
    */
-  private async handleHandwritingConfirm(): Promise<void> {
-    const session = this.currentSession;
-    if (!session) return;
-
-    const question = session.currentQuestion;
-    if (question.questionType !== "text-input") return;
-
-    // 既回答の場合は何もしない
-    if (session.getAnswer(session.currentIndex) !== undefined) return;
-
-    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
-    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement | null;
-    const canvas = document.getElementById("notesCanvas") as HTMLCanvasElement | null;
-
-    let inputText = "";
-
-    // OCRでキャンバスの内容を認識する
-    if (canvas && confirmBtn) {
-      const originalLabel = confirmBtn.textContent ?? "確定する";
-      confirmBtn.disabled = true;
-      confirmBtn.textContent = "認識中...";
-
-      try {
-        inputText = await this.ocrService.recognize(canvas);
-      } catch (e) {
-        console.warn("OCRの認識に失敗しました:", e);
-      } finally {
-        confirmBtn.disabled = false;
-        confirmBtn.textContent = originalLabel;
-      }
+  private initializeKanjiCanvas(): void {
+    if (this.kanjiCanvasInitialized) return;
+    KanjiCanvas.init("kanjiCanvas");
+    const canvas = document.getElementById("kanjiCanvas");
+    if (canvas) {
+      canvas.addEventListener("mouseup", () => this.updateKanjiCandidates());
+      canvas.addEventListener("touchend", () => this.updateKanjiCandidates());
     }
+    this.kanjiCanvasInitialized = true;
+  }
 
-    // OCRが空文字の場合は手書き入力フィールドの値をフォールバックとして使う
-    if (!inputText) {
-      inputText = handwritingInput?.value ?? "";
-    }
+  /**
+   * KanjiCanvasで描かれたストロークを認識して候補ボタンを更新する。
+   */
+  private updateKanjiCandidates(): void {
+    const candidateList = document.getElementById("kanjiCandidateList");
+    if (!candidateList) return;
 
-    if (!inputText) return;
+    const result = KanjiCanvas.recognize("kanjiCanvas");
+    const candidates = result.trim().split(/\s+/).filter(Boolean);
 
-    // 答えの入力エリアにテキストを追加
+    candidateList.innerHTML = "";
+    candidates.forEach((char) => {
+      const btn = document.createElement("button");
+      btn.className = "kanji-candidate-btn";
+      btn.type = "button";
+      btn.textContent = char;
+      btn.addEventListener("click", () => this.selectKanjiCandidate(char));
+      candidateList.appendChild(btn);
+    });
+  }
+
+  /**
+   * 候補漢字を選択して解答入力欄に追加し、KanjiCanvasをクリアする。
+   */
+  private selectKanjiCandidate(char: string): void {
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     if (textInput) {
-      textInput.value += inputText;
+      textInput.value += char;
       textInput.focus();
     }
+    this.kanjiErase();
+  }
 
-    // キャンバスと手書き入力フィールドをクリア
-    this.notesCanvas?.clear();
-    if (handwritingInput) {
-      handwritingInput.value = "";
+  /**
+   * KanjiCanvasの最後の1画を取り消す。
+   */
+  private kanjiDeleteLast(): void {
+    KanjiCanvas.deleteLast("kanjiCanvas");
+    this.updateKanjiCandidates();
+  }
+
+  /**
+   * KanjiCanvasの全ストロークを消去する。
+   */
+  private kanjiErase(): void {
+    if (this.kanjiCanvasInitialized) {
+      KanjiCanvas.erase("kanjiCanvas");
+    }
+    const candidateList = document.getElementById("kanjiCandidateList");
+    if (candidateList) {
+      candidateList.innerHTML = "";
     }
   }
 

@@ -136,10 +136,18 @@
                 </div>
               </div>
               <canvas id="notesCanvas" class="notes-canvas"></canvas>
-              <!-- タッチペン入力確定ボタン（text-input問題のみ表示） -->
-              <div id="handwritingConfirmArea" class="hidden">
-                <input type="text" id="handwritingTextInput" class="handwriting-text-input" placeholder="OCRで認識できなかった場合に直接入力..." autocomplete="off">
-                <button id="handwritingConfirmBtn" class="handwriting-confirm-btn" type="button">✏️ 確定する</button>
+
+              <!-- KanjiCanvas入力エリア（text-input問題のみ表示） -->
+              <div id="kanjiInputArea" class="hidden">
+                <div class="kanji-input-header">
+                  <span class="kanji-input-label">1文字ずつ書いてください</span>
+                  <div class="kanji-input-controls">
+                    <button id="kanjiDeleteLastBtn" class="kanji-ctrl-btn" type="button" title="最後の1画を消す" aria-label="最後の1画を消す">↩</button>
+                    <button id="kanjiEraseBtn" class="kanji-ctrl-btn" type="button" title="全部消す" aria-label="全部消す">🗑️</button>
+                  </div>
+                </div>
+                <canvas id="kanjiCanvas" class="kanji-canvas" width="256" height="256"></canvas>
+                <div id="kanjiCandidateList" class="kanji-candidate-list"></div>
               </div>
             </div>
 
@@ -172,6 +180,9 @@
     </div>
   </div>
 
+  <!-- KanjiCanvas: 手書き漢字認識ライブラリ（text-input問題で使用） -->
+  <script src="./vendor/kanji-canvas.min.js"></script>
+  <script src="./vendor/ref-patterns.js"></script>
   <script type="module" src="./src/presentation/quizApp.ts"></script>
 </body>
 </html>

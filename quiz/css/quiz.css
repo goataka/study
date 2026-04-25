@@ -1549,7 +1549,83 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* 確認ダイアログ */
+/* KanjiCanvas入力エリア（text-input問題専用） */
+#kanjiInputArea {
+    padding: 8px;
+    border-top: 1px solid #e1e4e8;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.kanji-input-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.kanji-input-label {
+    font-size: 13px;
+    color: #586069;
+}
+
+.kanji-input-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.kanji-ctrl-btn {
+    padding: 4px 10px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.15s;
+}
+
+.kanji-ctrl-btn:hover {
+    background: #f3f4f6;
+}
+
+.kanji-canvas {
+    display: block;
+    width: 100%;
+    max-width: 256px;
+    height: 256px;
+    border: 2px solid #e1e4e8;
+    border-radius: 6px;
+    cursor: crosshair;
+    background: white;
+    touch-action: none;
+}
+
+.kanji-candidate-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 40px;
+}
+
+.kanji-candidate-btn {
+    padding: 6px 12px;
+    border: 2px solid #e1e4e8;
+    border-radius: 6px;
+    background: white;
+    font-size: 22px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    line-height: 1;
+}
+
+.kanji-candidate-btn:hover {
+    background: #0366d6;
+    color: white;
+    border-color: #0366d6;
+}
+
+
 .confirm-dialog-overlay {
     position: fixed;
     inset: 0;

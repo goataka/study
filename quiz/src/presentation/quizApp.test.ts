@@ -10,16 +10,14 @@
 
 import { QuizApp } from "./quizApp";
 
-// OcrService のモック（jsdom環境ではTesseractが使えないため）
-vi.mock("./ocrService", () => ({
-  OcrService: class {
-    async recognize() {
-      return "";
-    }
-    async initialize() {}
-    async destroy() {}
-  },
-}));
+// KanjiCanvas グローバルのモック（jsdom環境では kanji-canvas.min.js がロードされないため）
+const kanjiCanvasMock = {
+  init: vi.fn(),
+  erase: vi.fn(),
+  deleteLast: vi.fn(),
+  recognize: vi.fn().mockReturnValue(""),
+};
+(globalThis as unknown as Record<string, unknown>).KanjiCanvas = kanjiCanvasMock;
 
 // ─── DOM スタブのセットアップ ────────────────────────────────────────────────
 
@@ -2305,7 +2303,7 @@ const mockTextInputFile = {
   ],
 };
 
-/** テキスト入力問題用のDOMセットアップ（メモエリアのnotesCanvas・確定ボタン含む） */
+/** テキスト入力問題用のDOMセットアップ（メモエリアのnotesCanvas・KanjiCanvas含む） */
 function setupTextInputDom(): void {
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
@@ -2334,10 +2332,13 @@ function setupTextInputDom(): void {
       <a id="guideLink" class="hidden" href="#">解説</a>
       <div id="notesMemoContent">
         <span id="notesTitle">タッチペンで書けます</span>
+        <div class="notes-controls"></div>
         <canvas id="notesCanvas"></canvas>
-        <div id="handwritingConfirmArea" class="hidden">
-          <input type="text" id="handwritingTextInput">
-          <button id="handwritingConfirmBtn" type="button">確定する</button>
+        <div id="kanjiInputArea" class="hidden">
+          <button id="kanjiDeleteLastBtn" type="button">↩</button>
+          <button id="kanjiEraseBtn" type="button">🗑️</button>
+          <canvas id="kanjiCanvas" width="256" height="256"></canvas>
+          <div id="kanjiCandidateList"></div>
         </div>
       </div>
     </div>
@@ -2351,9 +2352,10 @@ function setupTextInputDom(): void {
   `;
 }
 
-describe("QuizApp — テキスト入力問題のタッチペン入力仕様", () => {
+describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () => {
   beforeEach(() => {
     setupTextInputDom();
+    kanjiCanvasMock.recognize.mockReturnValue("");
 
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -2376,76 +2378,103 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     document.getElementById("startRandomBtn")?.click();
 
     const notesTitle = document.getElementById("notesTitle");
-    expect(notesTitle?.textContent).toContain("手書き");
+    expect(notesTitle?.textContent).toContain("書いて");
   });
 
-  it("テキスト入力問題では確定ボタンエリアが表示される", async () => {
+  it("テキスト入力問題ではKanjiCanvas入力エリアが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const confirmArea = document.getElementById("handwritingConfirmArea");
-    expect(confirmArea?.classList.contains("hidden")).toBe(false);
-
-    const confirmBtn = document.getElementById("handwritingConfirmBtn");
-    expect(confirmBtn).not.toBeNull();
-    expect(confirmBtn?.textContent).toContain("確定");
+    const kanjiInputArea = document.getElementById("kanjiInputArea");
+    expect(kanjiInputArea?.classList.contains("hidden")).toBe(false);
   });
 
-  it("「確定する」をクリックすると手書き入力フィールドのテキストが答えの入力エリアに追加される", async () => {
+  it("テキスト入力問題ではKanjiCanvasが初期化される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
-    handwritingInput.value = "やま";
-    document.getElementById("handwritingConfirmBtn")?.click();
+    expect(kanjiCanvasMock.init).toHaveBeenCalledWith("kanjiCanvas");
+  });
+
+  it("候補ボタンをクリックすると文字が答えの入力エリアに追加される", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("山  川  日");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    // 候補を手動で描画後の認識をシミュレート
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const candidateList = document.getElementById("kanjiCandidateList");
+    const firstBtn = candidateList?.querySelector<HTMLButtonElement>(".kanji-candidate-btn");
+    expect(firstBtn?.textContent).toBe("山");
+
+    firstBtn?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("やま");
+    expect(textInput?.value).toBe("山");
   });
 
-  it("「確定する」をクリックすると手書き入力フィールドがクリアされる", async () => {
+  it("候補ボタンをクリックするとKanjiCanvasがクリアされる", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("山  川");
+
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
-    handwritingInput.value = "やま";
-    document.getElementById("handwritingConfirmBtn")?.click();
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    expect(handwritingInput.value).toBe("");
+    const firstBtn = document.querySelector<HTMLButtonElement>(".kanji-candidate-btn");
+    firstBtn?.click();
+
+    expect(kanjiCanvasMock.erase).toHaveBeenCalledWith("kanjiCanvas");
   });
 
-  it("「確定する」を複数回クリックするとテキストが追記される", async () => {
+  it("候補ボタンを複数回クリックするとテキストが追記される", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("山  川");
+
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
 
-    handwritingInput.value = "や";
-    document.getElementById("handwritingConfirmBtn")?.click();
+    // 1文字目
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.querySelector<HTMLButtonElement>(".kanji-candidate-btn")?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    handwritingInput.value = "ま";
-    document.getElementById("handwritingConfirmBtn")?.click();
+    // 2文字目
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.querySelector<HTMLButtonElement>(".kanji-candidate-btn")?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("やま");
+    expect(textInput?.value).toBe("山山");
   });
 
-  it("「確定する」をクリックしても回答はまだ送信されない", async () => {
+  it("候補ボタンをクリックしても回答はまだ送信されない", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("山");
+
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
-    handwritingInput.value = "やま";
-    document.getElementById("handwritingConfirmBtn")?.click();
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.querySelector<HTMLButtonElement>(".kanji-candidate-btn")?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 回答が登録されていないこと（フィードバックが非表示のまま）
@@ -2457,95 +2486,47 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     expect(textInput?.disabled).toBe(false);
   });
 
-  it("「確定する」をクリックすると確定ボタンは隠れない", async () => {
+  it("ストロークがないとき認識後に候補ボタンが表示されない", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("");
+
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
-    handwritingInput.value = "やま";
-    document.getElementById("handwritingConfirmBtn")?.click();
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const confirmBtn = document.getElementById("handwritingConfirmBtn");
-    expect(confirmBtn?.classList.contains("hidden")).toBe(false);
+    const candidateBtns = document.querySelectorAll(".kanji-candidate-btn");
+    expect(candidateBtns.length).toBe(0);
   });
 
-  it("手書き入力が空のときは「確定する」をクリックしても答えの入力エリアは変わらない", async () => {
+  it("↩ボタンをクリックするとKanjiCanvasの最後のストロークが削除される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    document.getElementById("handwritingConfirmBtn")?.click();
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("kanjiDeleteLastBtn")?.click();
 
-    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("");
+    expect(kanjiCanvasMock.deleteLast).toHaveBeenCalledWith("kanjiCanvas");
   });
 
-  it("OCRで認識した文字が答えの入力エリアに自動入力される", async () => {
-    // OcrServiceのモックを上書きしてOCR結果を返す
-    const { OcrService } = await import("./ocrService");
-    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockResolvedValue("やま");
-
+  it("🗑️ボタンをクリックするとKanjiCanvasが全消去される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    document.getElementById("handwritingConfirmBtn")?.click();
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("kanjiEraseBtn")?.click();
 
-    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("やま");
-
-    recognizeSpy.mockRestore();
+    expect(kanjiCanvasMock.erase).toHaveBeenCalledWith("kanjiCanvas");
   });
 
-  it("OCR認識後にキャンバスがクリアされる", async () => {
-    // OcrServiceのモックを上書きしてOCR結果を返す
-    const { OcrService } = await import("./ocrService");
-    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockResolvedValue("てすと");
-
+  it("回答後に次の問題へ移動するとKanjiCanvas入力エリアが再表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    document.getElementById("handwritingConfirmBtn")?.click();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    // キャンバスがクリアされていること（toDataURLを通じて間接的に確認）
-    const canvas = document.getElementById("notesCanvas") as HTMLCanvasElement | null;
-    expect(canvas).not.toBeNull();
-
-    recognizeSpy.mockRestore();
-  });
-
-  it("OCRが失敗したときは手書き入力フィールドの値をフォールバックとして使う", async () => {
-    // OcrServiceのモックを上書きしてエラーを投げる
-    const { OcrService } = await import("./ocrService");
-    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockRejectedValue(new Error("OCR失敗"));
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
-    handwritingInput.value = "かわ";
-    document.getElementById("handwritingConfirmBtn")?.click();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.value).toBe("かわ");
-
-    recognizeSpy.mockRestore();
-  });
-
-  it("回答後に次の問題へ移動すると確定ボタンが復元される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    // テキスト入力欄に入力して「確認する」で回答登録（nextBtnが有効になる）
+    // テキスト入力欄に入力して「確認する」で回答登録
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     if (textInput) textInput.value = "やま";
     const submitBtn = document.querySelector<HTMLButtonElement>(".text-answer-submit-btn");
@@ -2556,17 +2537,12 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     expect(nextBtn?.disabled).toBe(false);
     nextBtn?.click();
 
-    // 次の問題（未回答）で確定ボタンが復元されていること
-    const confirmBtn = document.getElementById("handwritingConfirmBtn");
-    expect(confirmBtn?.classList.contains("hidden")).toBe(false);
-    expect((confirmBtn as HTMLButtonElement | null)?.disabled).toBe(false);
-
-    // 手書き入力フィールドがクリアされていること
-    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
-    expect(handwritingInput?.value).toBe("");
+    // 次の問題（未回答）でKanjiCanvas入力エリアが表示されていること
+    const kanjiInputArea = document.getElementById("kanjiInputArea");
+    expect(kanjiInputArea?.classList.contains("hidden")).toBe(false);
   });
 
-  it("選択肢問題では確定ボタンエリアが非表示のままで notesTitleが変わらない", async () => {
+  it("選択肢問題ではKanjiCanvas入力エリアが非表示のままで notesTitleが変わらない", async () => {
     // 選択肢問題のモックに差し替え
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -2580,8 +2556,8 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    const confirmArea = document.getElementById("handwritingConfirmArea");
-    expect(confirmArea?.classList.contains("hidden")).toBe(true);
+    const kanjiInputArea = document.getElementById("kanjiInputArea");
+    expect(kanjiInputArea?.classList.contains("hidden")).toBe(true);
 
     const notesTitle = document.getElementById("notesTitle");
     expect(notesTitle?.textContent).toBe("タッチペンで書けます");
