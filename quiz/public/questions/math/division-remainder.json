@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "division-remainder",
-  "categoryName": "わり算（あまりあり）",
+  "categoryName": "わり算 - あまりあり",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/20-division-1digit-remainder/guide",

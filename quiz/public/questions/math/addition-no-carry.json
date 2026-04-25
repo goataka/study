@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "addition-no-carry",
-  "categoryName": "たし算（くり上がりなし）",
+  "categoryName": "たし算 - くり上がりなし",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/01-addition-1digit-no-carry/guide",
