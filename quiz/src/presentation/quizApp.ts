@@ -433,7 +433,7 @@ export class QuizApp {
 
     // 説明文（description が設定されている場合のみ表示）
     const description = this.useCase.getCategoryDescription(subject, categoryId);
-    if (description !== undefined) {
+    if (description) {
       const descSpan = document.createElement("span");
       descSpan.className = "category-item-description";
       descSpan.textContent = description;
