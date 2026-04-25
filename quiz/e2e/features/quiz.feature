@@ -73,6 +73,18 @@ Feature: 学習クイズ
     When I open the guide panel tab
     Then the guide iframe src should contain "embedded=1"
 
+  Scenario: 練習クイズ開始時にquizScreenにpractice-modeクラスが付与される
+    Given I have selected a quiz category
+    When I click the "練習" button
+    Then the quiz screen should be visible
+    And the quiz screen should have the practice-mode class
+
+  Scenario: 本番クイズ開始時にquizScreenにpractice-modeクラスが付与されない
+    Given I have selected a quiz category
+    When I click the "本番" button
+    Then the quiz screen should be visible
+    And the quiz screen should not have the practice-mode class
+
   Scenario: 手動確認済み記録は実施記録でread-only表示になる
     Given I have selected a quiz category
     When I click the "✅ 学習済みにする" button
