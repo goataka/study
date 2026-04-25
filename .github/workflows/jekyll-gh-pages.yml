@@ -94,6 +94,23 @@ jobs:
       - name: Playwright ブラウザのインストール
         run: npx playwright install --with-deps chromium
 
+      - name: 本番サイトの準備完了を確認
+        env:
+          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}quiz/
+        run: |
+          echo "Waiting for production site to be ready at ${PLAYWRIGHT_BASE_URL}"
+          for i in $(seq 1 12); do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${PLAYWRIGHT_BASE_URL}questions/index.json")
+            if [ "$STATUS" = "200" ]; then
+              echo "Site is ready (attempt $i)"
+              exit 0
+            fi
+            echo "Not ready yet (attempt $i, HTTP $STATUS), retrying in 10s..."
+            sleep 10
+          done
+          echo "Site did not become ready within 2 minutes"
+          exit 1
+
       - name: 本番環境E2Eテスト実行
         env:
           PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}quiz/

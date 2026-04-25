@@ -17,6 +17,8 @@ export default defineConfig({
   fullyParallel: true,
   // CIではデフォルトworker数が1になるため、明示的に2を指定して並列化を有効にする
   workers: process.env.CI ? 2 : undefined,
+  // CI環境では一時的なネットワーク障害に対応するためリトライを1回行う
+  retries: process.env.CI ? 1 : 0,
   timeout: 60_000,
   // JSONレポーター: エビデンス生成スクリプトが読み込む
   reporter: [
