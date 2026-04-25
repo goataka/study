@@ -79,6 +79,16 @@ When("I click the first category item", async ({ page }) => {
   await firstItem.click();
 });
 
+Given("I have selected a quiz category", async ({ page }) => {
+  // 「英語」タブを選択してカテゴリを1つ選択し、確認パネルが表示されるまで待つ
+  const tab = page.locator(".subject-tab").filter({ hasText: "英語" });
+  await tab.click();
+  await expect(tab).toHaveClass(/active/);
+  const firstItem = page.locator(".category-item[data-category]").first();
+  await firstItem.click();
+  await expect(page.locator("#quizModePanel")).toBeVisible();
+});
+
 When("I click the {string} button", async ({ page }, buttonText: string) => {
   await page.getByRole("button", { name: buttonText }).click();
 });

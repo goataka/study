@@ -1998,6 +1998,21 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizTab?.classList.contains("hidden")).toBe(false);
   });
 
+  it("総合タブから教科タブに切り替えると「確認」パネルが再表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 初期状態（総合タブ）では quizModePanel が非表示
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    // 英語タブに切り替えると quizModePanel が再表示される
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
+  });
+
   it("総合タブ表示中はアクティブタブが「実行記録」に切り替わる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

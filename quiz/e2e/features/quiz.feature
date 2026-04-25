@@ -24,39 +24,34 @@ Feature: 学習クイズ
     Then the quiz panel should be visible
 
   Scenario: 本番クイズを開始できる
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "本番" button
+    Given I have selected a quiz category
+    When I click the "本番" button
     Then the quiz screen should be visible
     And I should see question 1
 
   Scenario: 問題に回答して次の問題に進める
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "本番" button
+    Given I have selected a quiz category
+    When I click the "本番" button
     And I select the first choice
     Then the "次へ" button should be enabled
 
   Scenario: 全問回答後に採点できる
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "本番" button
+    Given I have selected a quiz category
+    When I click the "本番" button
     And I answer all questions
     Then I should see the "採点する" button
 
   Scenario: 採点後に結果画面が表示される
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "本番" button
+    Given I have selected a quiz category
+    When I click the "本番" button
     And I answer all questions
     And I click the "採点する" button
     Then the result screen should be visible
     And I should see the score
 
   Scenario: 結果画面から「もう一度」でクイズ画面に戻れる
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "本番" button
+    Given I have selected a quiz category
+    When I click the "本番" button
     And I answer all questions
     And I click the "採点する" button
     Then the result screen should be visible
@@ -65,9 +60,8 @@ Feature: 学習クイズ
     And I should see question 1
 
   Scenario: 結果画面から「スタート画面に戻る」で戻れる
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "本番" button
+    Given I have selected a quiz category
+    When I click the "本番" button
     And I answer all questions
     And I click the "採点する" button
     Then the result screen should be visible
@@ -75,15 +69,13 @@ Feature: 学習クイズ
     Then the start screen should be visible
 
   Scenario: 解説パネルのiframeにembedded=1クエリが付与される
-    When I click the "英語" tab
-    And I click the first category item
-    And I open the guide panel tab
+    Given I have selected a quiz category
+    When I open the guide panel tab
     Then the guide iframe src should contain "embedded=1"
 
   Scenario: 手動確認済み記録は実施記録でread-only表示になる
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "✅ 学習済みにする" button
+    Given I have selected a quiz category
+    When I click the "✅ 学習済みにする" button
     And I open the history panel
     Then the manual history record score should show "-"
     And the manual history record should have no toggle arrow
@@ -95,16 +87,14 @@ Feature: 学習クイズ
 
   @vr
   Scenario: クイズ画面のビジュアル確認
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "本番" button
+    Given I have selected a quiz category
+    When I click the "本番" button
     Then the quiz screen layout matches the snapshot
 
   @vr
   Scenario: 結果画面のビジュアル確認
-    When I click the "英語" tab
-    And I click the first category item
-    And I click the "本番" button
+    Given I have selected a quiz category
+    When I click the "本番" button
     And I answer all questions
     And I click the "採点する" button
     Then the result screen layout matches the snapshot
