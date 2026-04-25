@@ -79,6 +79,16 @@ When("I click the first category item", async ({ page }) => {
   await firstItem.click();
 });
 
+Given("I have selected a quiz category", async ({ page }) => {
+  // 「英語」タブを選択してカテゴリを1つ選択し、確認パネルが表示されるまで待つ
+  const tab = page.locator(".subject-tab").filter({ hasText: "英語" });
+  await tab.click();
+  await expect(tab).toHaveClass(/active/);
+  const firstItem = page.locator(".category-item[data-category]").first();
+  await firstItem.click();
+  await expect(page.locator("#quizModePanel")).toBeVisible();
+});
+
 When("I click the {string} button", async ({ page }, buttonText: string) => {
   await page.getByRole("button", { name: buttonText }).click();
 });
@@ -148,6 +158,21 @@ Then("the result screen should be visible", async ({ page }) => {
 
 Then("I should see the score", async ({ page }) => {
   await expect(page.locator("#scoreDisplay")).toBeVisible();
+});
+
+When("I open the guide panel tab", async ({ page }) => {
+  // 解説パネルタブをクリック
+  await page.locator("#panelTab-guide").click();
+  // 解説パネルが表示されるまで待つ
+  await expect(page.locator("#guideContent")).not.toHaveClass(/hidden/);
+});
+
+Then("the guide iframe src should contain {string}", async ({ page }, text: string) => {
+  // iframe の src に指定テキストが含まれていることを確認（embedded=1 クエリ付与の検証）
+  const frame = page.locator("#guidePanelFrame");
+  await expect(frame).not.toHaveAttribute("src", "about:blank");
+  const src = await frame.getAttribute("src");
+  expect(src).toContain(text);
 });
 
 When("I open the history panel", async ({ page }) => {

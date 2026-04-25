@@ -34,11 +34,3 @@
 
 - くり下げた後は十の位を1減らすことを忘れずに
 - 十の位が0のときは百の位からくり下げる（3けたに発展）
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 2桁のひき算（くり下がりなし）](../10-subtraction-2digit-no-borrow/guide.md) | **2桁のひき算（くり下がりあり）** | [次へ: 3桁のひき算（くり下がりなし）](../12-subtraction-3digit-no-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-borrow)

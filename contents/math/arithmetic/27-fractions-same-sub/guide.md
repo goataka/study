@@ -28,11 +28,3 @@
 
 - たし算と同じく分母はさわらない
 - 答えが0になることもある → 3/5 - 3/5 = **0**
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 分数のたし算（同分母）](../26-fractions-same-add/guide.md) | **分数のひき算（同分母）** | [次へ: 分数のたし算（通分あり）](../28-fractions-diff-add/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=fractions-same-sub)

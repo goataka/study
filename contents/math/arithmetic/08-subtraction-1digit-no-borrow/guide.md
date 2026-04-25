@@ -32,11 +32,3 @@
 
 - 0をひいても数は変わらない → `5 - 0 = 5`
 - 同じ数をひくと0になる → `5 - 5 = 0`
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: たし算（まとめ）](../07-addition-mixed/guide.md) | **1桁のひき算（くり下がりなし）** | [次へ: 1桁のひき算（くり下がりあり）](../09-subtraction-1digit-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)

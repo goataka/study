@@ -17,9 +17,3 @@ He asked if I `played` games.
 | "Do you play games?" | He asked `if` I played games. |
 | "What do you play?" | He asked `what` I played. |
 | "Where do you live?" | He asked `where` I lived. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reported-question)
-
-[前へ: 時制の一致](../46-reported-tense/drill.md) | 疑問文の間接話法 | [次へ: 命令文の間接話法](../48-reported-imperative/drill.md)

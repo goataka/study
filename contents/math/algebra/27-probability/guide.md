@@ -37,11 +37,3 @@
 
 - すべての確率の合計 = **1**
 - 「起きない確率」= 1 - 「起きる確率」
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 一次関数](../26-linear-func/drill.md) | **確率** | [次へ: 平方根](../28-square-roots/drill.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=probability)

@@ -1998,6 +1998,21 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizTab?.classList.contains("hidden")).toBe(false);
   });
 
+  it("総合タブから教科タブに切り替えると「確認」パネルが再表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 初期状態（総合タブ）では quizModePanel が非表示
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    // 英語タブに切り替えると quizModePanel が再表示される
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    expect(quizModePanel?.classList.contains("hidden")).toBe(false);
+  });
+
   it("総合タブ表示中はアクティブタブが「実行記録」に切り替わる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2013,28 +2028,80 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizModePanel?.classList.contains("hidden")).toBe(true);
   });
 
-  it("総合タブ→教科タブ→カテゴリ選択で「確認」タブに自動切り替えされる", async () => {
+  it("総合タブに切り替えると「実行記録」タブボタンの hidden が外れて表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 総合タブ表示中はquizModePanelが非表示
-    const quizModePanel = document.getElementById("quizModePanel");
-    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+    const historyTab = document.getElementById("panelTab-history");
+    historyTab?.classList.add("hidden");
 
-    // 教科タブをクリック（category-onlyになりquiz panelは非表示）
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // カテゴリアイテムをクリック（quiz panelが表示され、「確認」タブに自動切り替え）
+    const overallTab = document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement;
+    overallTab?.click();
+
+    expect(historyTab?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("総合タブに切り替えると「問題一覧」タブボタンの hidden が外れて表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.getElementById("panelTab-questions");
+    questionsTab?.classList.add("hidden");
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const overallTab = document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement;
+    overallTab?.click();
+
+    expect(questionsTab?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("総合タブ後に教科＋カテゴリを選択すると「確認」タブへ自動復帰する", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 初期状態は総合タブ → historyに切り替わっている
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+
+    // 英語タブをクリックしてカテゴリを選択
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
     catItem?.click();
 
-    // quizModePanelが表示されること
+    // quizModePanel が表示されていること
     expect(quizModePanel?.classList.contains("hidden")).toBe(false);
-    // 「確認」タブがアクティブになること
-    const quizTab = document.getElementById("panelTab-quiz");
-    expect(quizTab?.classList.contains("active")).toBe(true);
-    expect(quizTab?.getAttribute("aria-selected")).toBe("true");
+
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("ユーザーが明示的に実行記録タブを選択した後はカテゴリ選択で自動復帰しない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語タブをクリックしてカテゴリを選択
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 実行記録タブを明示的に選択
+    const historyTab = document.getElementById("panelTab-history") as HTMLElement;
+    historyTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // history は明示選択なのでそのまま historyContent が表示される
+    const historyContent = document.getElementById("historyContent");
+    expect(historyContent?.classList.contains("hidden")).toBe(false);
+
+    const quizModePanel = document.getElementById("quizModePanel");
+    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
   });
 
   it("選択済みのカテゴリアイテムを再クリックすると非選択になり active クラスが除去される", async () => {
@@ -2070,6 +2137,37 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(true);
+  });
+
+  it("解説タブがアクティブな状態で選択済み単元を再クリックすると先頭が自動選択されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement | null;
+    expect(englishTab).not.toBeNull();
+    englishTab!.click();
+
+    // 解説タブをアクティブにする
+    const guideTab = document.getElementById("panelTab-guide") as HTMLElement | null;
+    expect(guideTab).not.toBeNull();
+    guideTab!.click();
+    expect(
+      guideTab!.classList.contains("active") || guideTab!.getAttribute("aria-selected") === "true",
+    ).toBe(true);
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement | null;
+    expect(catItem).not.toBeNull();
+    // 1回目クリック：選択
+    catItem!.click();
+    expect(catItem!.classList.contains("active")).toBe(true);
+
+    // 2回目クリック：非選択（トグル）→ 先頭カテゴリが自動選択されないこと
+    catItem!.click();
+    expect(catItem!.classList.contains("active")).toBe(false);
+
+    // 他のカテゴリアイテムも active になっていないこと
+    const activeItems = document.querySelectorAll(".category-item.active");
+    expect(activeItems.length).toBe(0);
   });
 });
 

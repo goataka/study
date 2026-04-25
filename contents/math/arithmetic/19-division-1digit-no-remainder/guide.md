@@ -27,11 +27,3 @@
 
 - 「わる数 × ? = わられる数」で九九を探す
 - かけ算をしっかり覚えていればわり算もできる！
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: かけ算（まとめ）](../18-multiplication-mixed/guide.md) | **1桁のわり算（あまりなし）** | [次へ: 1桁のわり算（あまりあり）](../20-division-1digit-remainder/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)

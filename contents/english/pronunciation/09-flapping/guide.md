@@ -44,9 +44,3 @@ wa - t - er
 - 💡 `t` の前の母音に強勢（アクセント）があるときに起きやすい
 - 💡 `butter`・`better`・`bitter` はすべてラ行に変化するので聞き分けが難しい
 - 💡 日本語の「ら行」に近いが、舌先の当て方が少し異なる
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=flapping)
-
-[前へ: リダクション](../08-reduction/drill.md) | **フラッピング練習ドリル** | [次へ: アシミレーション](../10-assimilation/drill.md)

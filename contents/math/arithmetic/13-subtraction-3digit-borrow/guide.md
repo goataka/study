@@ -38,11 +38,3 @@
 
 - 0からくり下げるときは、さらに上の桁からくり下げる
 - くり下げた記録を小さく書いておくと間違いが少ない
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 3桁のひき算（くり下がりなし）](../12-subtraction-3digit-no-borrow/guide.md) | **3桁のひき算（くり下がりあり）** | [次へ: ひき算（まとめ）](../14-subtraction-mixed/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-borrow)

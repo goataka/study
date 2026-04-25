@@ -17,9 +17,3 @@ I `have played` games.
 | 現在完了 | `have` | I `have played` games. |
 | 過去完了 | `had` | I `had played` games. |
 | 未来完了 | `will have` | I `will have played` games. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=perfect)
-
-[前へ: -ing形の作り方](../24-progressive-ing/drill.md) | 完了形 | [次へ: 過去分詞の変化](../26-perfect-participles/drill.md)
