@@ -372,6 +372,16 @@ describe("QuizApp — 教科タブ仕様", () => {
       expect(item.getAttribute("tabindex")).toBe("0");
     });
   });
+
+  it("教科タブに .tab-stats 要素が描画されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const tabs = document.querySelectorAll(".subject-tab");
+    tabs.forEach((tab) => {
+      expect(tab.querySelector(".tab-stats")).toBeNull();
+    });
+  });
 });
 
 describe("QuizApp — 回答フィードバック仕様", () => {

@@ -112,18 +112,6 @@ header h1 {
     border-bottom-color: #0366d6;
 }
 
-.tab-stats {
-    font-size: 11px;
-    color: #586069;
-    background: rgba(0, 0, 0, 0.06);
-    padding: 1px 6px;
-    border-radius: 10px;
-}
-
-.subject-tab.active .tab-stats {
-    background: rgba(3, 102, 214, 0.1);
-    color: #0366d6;
-}
 
 /* スタートコンテンツレイアウト */
 .start-content-layout {
