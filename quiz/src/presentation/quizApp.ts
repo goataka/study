@@ -430,30 +430,6 @@ export class QuizApp {
 
     nameArea.appendChild(progressBar);
 
-    // 解説リンク（guideUrl が設定されている場合のみ表示）
-    const guideUrl = this.useCase.getCategoryGuideUrl(subject, categoryId);
-    const guideLink = document.createElement("a");
-    guideLink.className = "category-guide-link";
-    guideLink.setAttribute("aria-label", "解説を開く");
-    guideLink.textContent = "📖";
-    if (guideUrl) {
-      guideLink.href = guideUrl;
-      guideLink.target = "_blank";
-      guideLink.rel = "noopener noreferrer";
-    } else {
-      guideLink.classList.add("hidden");
-    }
-    // カテゴリ選択のイベントが解説リンクで発火しないようにする
-    guideLink.addEventListener("click", (e) => e.stopPropagation());
-    guideLink.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.stopPropagation();
-      }
-      if (e.key === " ") {
-        e.preventDefault();
-      }
-    });
-
     // 参考学年バッジ（referenceGrade が設定されている場合のみ表示）
     const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
     const gradeSpan = document.createElement("span");
@@ -470,14 +446,19 @@ export class QuizApp {
     item.appendChild(statusSpan);
     item.appendChild(nameArea);
     item.appendChild(gradeSpan);
-    item.appendChild(guideLink);
     item.appendChild(statsSpan);
 
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
-      this.filter.subject = subject;
-      this.filter.category = categoryId;
-      this.filter.parentCategory = parentCatId;
+      // 既に選択中の単元をクリックした場合は非選択に戻す（トグル）
+      if (this.filter.subject === subject && this.filter.category === categoryId) {
+        this.filter.category = "all";
+        this.filter.parentCategory = undefined;
+      } else {
+        this.filter.subject = subject;
+        this.filter.category = categoryId;
+        this.filter.parentCategory = parentCatId;
+      }
       this.updateCategoryListActive();
       this.updateStartScreen();
     };
@@ -549,30 +530,7 @@ export class QuizApp {
     });
   }
 
-  /**
-   * メモエリアのタブを切り替える（"memo" または "guide"）。
-   */
-  private showNoteTab(tab: "memo" | "guide"): void {
-    const memoContent = document.getElementById("notesMemoContent");
-    const guideContent = document.getElementById("notesGuideContent");
 
-    memoContent?.classList.toggle("hidden", tab !== "memo");
-    guideContent?.classList.toggle("hidden", tab !== "guide");
-
-    document.querySelectorAll<HTMLElement>(".notes-tab-btn").forEach((t) => {
-      const isActive = t.id === `notesTab${tab.charAt(0).toUpperCase()}${tab.slice(1)}`;
-      t.classList.toggle("active", isActive);
-      t.setAttribute("aria-selected", String(isActive));
-      t.setAttribute("tabindex", isActive ? "0" : "-1");
-    });
-
-    if (tab === "guide") {
-      if (this.filter.category === "all") {
-        this.selectFirstUnlearnedCategory();
-      }
-      this.updateGuidePanelContentByIds("notesGuideFrame", "notesGuideNoContent");
-    }
-  }
 
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
@@ -886,10 +844,6 @@ export class QuizApp {
     // メモエリアのコントロール
     this.on("clearNotesBtn", "click", () => this.clearNotes());
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
-
-    // ノートタブの切り替え
-    document.getElementById("notesTabMemo")?.addEventListener("click", () => this.showNoteTab("memo"));
-    document.getElementById("notesTabGuide")?.addEventListener("click", () => this.showNoteTab("guide"));
 
     // タッチペン入力確定ボタン（text-input問題のメモタブで使用）
     document.getElementById("handwritingConfirmBtn")?.addEventListener("click", () => this.handleHandwritingConfirm());
