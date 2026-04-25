@@ -2411,3 +2411,121 @@ describe("QuizApp — メモエリアのノートタブ仕様", () => {
     expect(noContent?.classList.contains("hidden")).toBe(false);
   });
 });
+
+describe("QuizApp — 総合タブの教科一覧仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("初期状態（総合タブ）では教科概要アイテムが教科数分（総合除く）描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const overviewItems = document.querySelectorAll(".subject-overview-item");
+    // SUBJECTS から "all" を除いた 3 教科（英語・数学・国語）
+    expect(overviewItems.length).toBe(3);
+  });
+
+  it("各教科概要アイテムに data-subject が設定されている", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const overviewItems = document.querySelectorAll<HTMLElement>(".subject-overview-item");
+    overviewItems.forEach((item) => {
+      expect(item.dataset.subject).toBeTruthy();
+    });
+  });
+
+  it("各教科概要アイテムに role=button が設定されている", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const overviewItems = document.querySelectorAll(".subject-overview-item");
+    overviewItems.forEach((item) => {
+      expect(item.getAttribute("role")).toBe("button");
+    });
+  });
+
+  it("英語教科アイテムには推奨の単元テキストが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
+    const recLabel = englishItem?.querySelector(".subject-overview-rec-label");
+    expect(recLabel?.textContent).toBe("推奨の単元: ");
+  });
+
+  it("未学習の場合、教科アイテムには「未学習」と表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
+    const dateDiv = englishItem?.querySelector(".subject-overview-date");
+    expect(dateDiv?.textContent).toBe("未学習");
+  });
+
+  it("学習履歴がある場合、最終学習日が表示される", async () => {
+    const studyDate = "2025-04-01T10:00:00.000Z";
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: studyDate,
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 5,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
+    const dateDiv = englishItem?.querySelector(".subject-overview-date");
+    expect(dateDiv?.textContent).toContain("最終学習日:");
+    expect(dateDiv?.textContent).toContain("2025");
+  });
+
+  it("教科概要アイテムをクリックすると該当教科タブに切り替わる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector<HTMLElement>(
+      '.subject-overview-item[data-subject="english"]'
+    );
+    englishItem?.click();
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]');
+    expect(englishTab?.classList.contains("active")).toBe(true);
+    expect(englishTab?.getAttribute("aria-selected")).toBe("true");
+
+    const allTab = document.querySelector('.subject-tab[data-subject="all"]');
+    expect(allTab?.classList.contains("active")).toBe(false);
+  });
+
+  it("教科概要アイテムをクリックするとカテゴリリストが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector<HTMLElement>(
+      '.subject-overview-item[data-subject="english"]'
+    );
+    englishItem?.click();
+
+    const categoryItems = document.querySelectorAll(".category-item");
+    expect(categoryItems.length).toBeGreaterThan(0);
+  });
+});
