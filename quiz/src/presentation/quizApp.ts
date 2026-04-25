@@ -1359,7 +1359,7 @@ export class QuizApp {
       script.src = src;
       script.async = true;
       script.onload = () => resolve();
-      script.onerror = () => reject(new Error(`${src} の読み込みに失敗しました`));
+      script.onerror = (e) => reject(new Error(`${src} の読み込みに失敗しました: ${e instanceof Event ? e.type : e}`));
       document.body.appendChild(script);
     });
   }
