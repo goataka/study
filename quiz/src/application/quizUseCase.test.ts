@@ -601,3 +601,110 @@ describe("QuizUseCase — getCategoryGuideUrl 仕様", () => {
     expect(useCase.getCategoryGuideUrl("english", "phonics")).toBe("../english/guide1");
   });
 });
+
+describe("QuizUseCase — getRecommendedCategoryForSubject 仕様", () => {
+  it("未学習カテゴリがある場合は最初の未学習カテゴリを返す", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics-1"),
+      makeQuestion("q2", "english", "phonics-2"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    const rec = useCase.getRecommendedCategoryForSubject("english");
+    expect(rec).not.toBeNull();
+    expect(rec!.id).toBe("phonics-1");
+  });
+
+  it("すべてのカテゴリが学習済みの場合は最初のカテゴリを返す", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics-1"),
+      makeQuestion("q2", "english", "phonics-2"),
+    ];
+    const history: import("./ports").QuizRecord[] = [
+      {
+        id: "r1", date: new Date().toISOString(), subject: "english", subjectName: "英語",
+        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
+        totalCount: 1, correctCount: 1, entries: [],
+      },
+      {
+        id: "r2", date: new Date().toISOString(), subject: "english", subjectName: "英語",
+        category: "phonics-2", categoryName: "フォニックス2", mode: "random",
+        totalCount: 1, correctCount: 1, entries: [],
+      },
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository([], history));
+    await useCase.initialize();
+
+    const rec = useCase.getRecommendedCategoryForSubject("english");
+    expect(rec).not.toBeNull();
+    expect(rec!.id).toBe("phonics-1");
+  });
+
+  it("問題が存在しない教科では null を返す", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics-1")];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    const rec = useCase.getRecommendedCategoryForSubject("math");
+    expect(rec).toBeNull();
+  });
+
+  it("referenceGrade が設定されているカテゴリでは学年情報も返す", async () => {
+    const questionWithGrade: Question = {
+      ...makeQuestion("q1", "english", "phonics-1"),
+      referenceGrade: "小1",
+    };
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([questionWithGrade]),
+      new StubProgressRepository()
+    );
+    await useCase.initialize();
+
+    const rec = useCase.getRecommendedCategoryForSubject("english");
+    expect(rec!.referenceGrade).toBe("小1");
+  });
+});
+
+describe("QuizUseCase — getLastStudyDateForSubject 仕様", () => {
+  it("学習履歴がない場合は null を返す", async () => {
+    const useCase = new QuizUseCase(new StubQuestionRepository([]), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getLastStudyDateForSubject("english")).toBeNull();
+  });
+
+  it("学習履歴がある場合は最新レコードの日付を返す", async () => {
+    const latestDate = "2025-04-15T10:00:00.000Z";
+    const history: import("./ports").QuizRecord[] = [
+      {
+        id: "r1", date: latestDate, subject: "english", subjectName: "英語",
+        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
+        totalCount: 5, correctCount: 5, entries: [],
+      },
+      {
+        id: "r2", date: "2025-03-01T10:00:00.000Z", subject: "english", subjectName: "英語",
+        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
+        totalCount: 5, correctCount: 5, entries: [],
+      },
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository([]), new StubProgressRepository([], history));
+    await useCase.initialize();
+
+    expect(useCase.getLastStudyDateForSubject("english")).toBe(latestDate);
+  });
+
+  it("他の教科の履歴は含まれない", async () => {
+    const history: import("./ports").QuizRecord[] = [
+      {
+        id: "r1", date: "2025-04-15T10:00:00.000Z", subject: "math", subjectName: "数学",
+        category: "addition", categoryName: "たし算", mode: "random",
+        totalCount: 5, correctCount: 5, entries: [],
+      },
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository([]), new StubProgressRepository([], history));
+    await useCase.initialize();
+
+    expect(useCase.getLastStudyDateForSubject("english")).toBeNull();
+  });
+});

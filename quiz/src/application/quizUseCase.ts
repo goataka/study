@@ -270,6 +270,41 @@ export class QuizUseCase {
     return this.categoryGradeMap.get(`${subject}::${category}`);
   }
 
+  /**
+   * 指定した教科の推奨カテゴリを返す。
+   * 未学習または学習中（間違いあり）の最初のカテゴリを推奨する。
+   * すべて学習済みの場合は最初のカテゴリを返す。
+   * カテゴリが存在しない場合は null を返す。
+   */
+  getRecommendedCategoryForSubject(subject: string): { id: string; name: string; referenceGrade?: string } | null {
+    const studiedKeys = this.getStudiedCategoryKeys();
+    const categories = this.getCategoriesForSubject(subject);
+    const entries = Object.entries(categories);
+    if (entries.length === 0) return null;
+
+    for (const [catId, catName] of entries) {
+      const key = `${subject}::${catId}`;
+      const isLearned = studiedKeys.has(key) && this.getWrongCount({ subject, category: catId }) === 0;
+      if (!isLearned) {
+        return { id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key) };
+      }
+    }
+
+    // すべて学習済みの場合は最初のカテゴリを返す
+    const [catId, catName] = entries[0]!;
+    return { id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(`${subject}::${catId}`) };
+  }
+
+  /**
+   * 指定した教科の最終学習日（ISO 8601 文字列）を返す。
+   * 学習記録がない場合は null を返す。
+   */
+  getLastStudyDateForSubject(subject: string): string | null {
+    const history = this.progressRepo.loadHistory();
+    const record = history.find((r) => r.subject === subject);
+    return record ? record.date : null;
+  }
+
   get wrongQuestionIds(): string[] {
     return [...this.wrongIds];
   }

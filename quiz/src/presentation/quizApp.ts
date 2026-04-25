@@ -232,8 +232,7 @@ export class QuizApp {
     const subject = this.filter.subject;
 
     if (subject === "all") {
-      // 「総合」タブではカテゴリを細分化しないため、リストは空のまま
-      categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+      this.renderAllSubjectList();
       return;
     }
 
@@ -273,6 +272,109 @@ export class QuizApp {
     this.updateCategoryListActive();
     // 学習済の非表示状態を維持する
     categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+  }
+
+  /**
+   * 「総合」タブ用の教科一覧を描画する。
+   * 各教科カードに推奨の単元・学年・最終学習日を表示し、クリックで教科タブへ遷移する。
+   */
+  private renderAllSubjectList(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+    categoryList.innerHTML = "";
+    categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+
+    const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all");
+
+    for (const subject of nonAllSubjects) {
+      const recommended = this.useCase.getRecommendedCategoryForSubject(subject.id);
+      const lastStudyDate = this.useCase.getLastStudyDateForSubject(subject.id);
+
+      const item = document.createElement("div");
+      item.className = "subject-overview-item";
+      item.setAttribute("role", "button");
+      item.setAttribute("tabindex", "0");
+      item.dataset.subject = subject.id;
+
+      // 教科名ヘッダー
+      const headerDiv = document.createElement("div");
+      headerDiv.className = "subject-overview-header";
+      headerDiv.textContent = `${subject.icon} ${subject.name}`;
+
+      // 推奨の単元・学年
+      const recDiv = document.createElement("div");
+      recDiv.className = "subject-overview-recommended";
+
+      if (recommended) {
+        const recLabel = document.createElement("span");
+        recLabel.className = "subject-overview-rec-label";
+        recLabel.textContent = "推奨の単元: ";
+
+        const recName = document.createElement("span");
+        recName.className = "subject-overview-rec-name";
+        recName.textContent = recommended.name;
+
+        recDiv.appendChild(recLabel);
+        recDiv.appendChild(recName);
+
+        if (recommended.referenceGrade) {
+          const gradeSpan = document.createElement("span");
+          gradeSpan.className = "subject-overview-grade";
+          gradeSpan.textContent = recommended.referenceGrade;
+          recDiv.appendChild(gradeSpan);
+        }
+      } else {
+        recDiv.textContent = "単元なし";
+      }
+
+      // 最終学習日
+      const dateDiv = document.createElement("div");
+      dateDiv.className = "subject-overview-date";
+      if (lastStudyDate) {
+        const d = new Date(lastStudyDate);
+        const dateStr = `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
+        dateDiv.textContent = `最終学習日: ${dateStr}`;
+      } else {
+        dateDiv.textContent = "未学習";
+      }
+
+      item.appendChild(headerDiv);
+      item.appendChild(recDiv);
+      item.appendChild(dateDiv);
+
+      // クリックで該当教科タブへ切り替え
+      const handleActivate = (): void => {
+        this.filter.subject = subject.id;
+        this.filter.category = recommended ? recommended.id : "all";
+        this.filter.parentCategory = undefined;
+
+        const tabsContainer = document.querySelector(".subject-tabs");
+        if (tabsContainer) {
+          tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
+            t.classList.remove("active");
+            t.setAttribute("aria-selected", "false");
+          });
+          const subjectTab = tabsContainer.querySelector<HTMLElement>(
+            `.subject-tab[data-subject="${subject.id}"]`
+          );
+          subjectTab?.classList.add("active");
+          subjectTab?.setAttribute("aria-selected", "true");
+        }
+
+        this.renderCategoryList();
+        this.updateStartScreen();
+      };
+
+      item.addEventListener("click", handleActivate);
+      item.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleActivate();
+        }
+      });
+
+      categoryList.appendChild(item);
+    }
   }
 
   private createCategoryItem(

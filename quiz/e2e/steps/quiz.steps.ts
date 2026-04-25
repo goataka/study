@@ -61,6 +61,12 @@ Then("the category list should be visible", async ({ page }) => {
   await expect(categoryList).toBeVisible();
 });
 
+Then("the subject overview items should be visible", async ({ page }) => {
+  // 総合タブの教科概要アイテムが表示されていることを確認
+  const overviewItems = page.locator(".subject-overview-item");
+  await expect(overviewItems.first()).toBeVisible();
+});
+
 Then("the quiz panel should be visible", async ({ page }) => {
   // クイズパネルが表示されていることを確認
   const quizPanel = page.locator(".quiz-panel");
