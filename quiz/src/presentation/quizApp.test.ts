@@ -2047,6 +2047,31 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(true);
   });
+
+  it("解説タブがアクティブな状態で選択済み単元を再クリックすると先頭が自動選択されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 解説タブをアクティブにする
+    const guideTab = document.getElementById("panelTab-guide") as HTMLElement;
+    guideTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    // 1回目クリック：選択
+    catItem?.click();
+    expect(catItem?.classList.contains("active")).toBe(true);
+
+    // 2回目クリック：非選択（トグル）→ 先頭カテゴリが自動選択されないこと
+    catItem?.click();
+    expect(catItem?.classList.contains("active")).toBe(false);
+
+    // 他のカテゴリアイテムも active になっていないこと
+    const activeItems = document.querySelectorAll(".category-item.active");
+    expect(activeItems.length).toBe(0);
+  });
 });
 
 // ─── テキスト入力問題のタッチペン入力仕様 ──────────────────────────────────
