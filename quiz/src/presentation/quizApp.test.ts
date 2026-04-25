@@ -1439,7 +1439,7 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
     expect(statusEl?.textContent).toBe("🏆");
   });
 
-  it("学習中（履歴あり・間違いあり）のカテゴリは 📖 が表示される", async () => {
+  it("学習中（履歴あり・間違いあり）のカテゴリは 🔄 が表示される", async () => {
     // 履歴に phonics-1 を登録
     localStorage.setItem(
       "quizHistory",
@@ -1469,7 +1469,7 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const statusEl = catItem?.querySelector(".category-status");
-    expect(statusEl?.textContent).toBe("📖");
+    expect(statusEl?.textContent).toBe("🔄");
   });
 });
 
@@ -1540,7 +1540,7 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     expect(markLearnedBtn.textContent).toBe("↩ 未学習に戻す");
   });
 
-  it("「↩ 未学習に戻す」ボタンをクリックするとカテゴリが 📖 に戻る", async () => {
+  it("「↩ 未学習に戻す」ボタンをクリックするとカテゴリが 🔄 に戻る", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -1557,7 +1557,7 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
 
     // 未学習に戻す
     markLearnedBtn.click();
-    expect(catItem?.querySelector(".category-status")?.textContent).toBe("📖");
+    expect(catItem?.querySelector(".category-status")?.textContent).toBe("🔄");
     expect(markLearnedBtn.textContent).toBe("✅ 学習済みにする");
   });
 });
