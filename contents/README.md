@@ -11,8 +11,6 @@
 
 ### 英語ドリル
 
-[英語学習ガイド](english/README.md)
-
 #### 📢 発音ドリル
 
 | # | ドリル | 解説 | クイズ | 例 |
@@ -73,8 +71,6 @@
 
 ### 数学ドリル
 
-学習の流れや前提関係の詳細は [数学ドリル目次](math/README.md) を参照してください。
-
 #### 📊 算数・基本計算
 
 | # | 内容 | 参考学年 | 解説 | クイズ | 例 |
@@ -129,8 +125,6 @@
 | 38 | 積分 | 高校3年 | [解説](math/calculus/38-integration/guide.md) | [クイズ](quiz/?subject=math&category=integration) | ∫2xdx = x² + C |
 
 ### 国語ドリル
-
-[国語学習ガイド](japanese/README.md)
 
 #### 📖 漢字ドリル
 
