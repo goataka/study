@@ -22,9 +22,3 @@
 | `how` | どのように | `How` do you play this game? |
 | `which` | どちら | `Which` game do you play? |
 | `whose` | 誰の | `Whose` game is this? |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=questions-wh)
-
-[前へ: 否定文](../37-negatives/drill.md) | 疑問詞 | [次へ: 比較級](../39-comparatives-er/drill.md)

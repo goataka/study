@@ -35,11 +35,3 @@
 
 - 一の位の和が10を超えないことを確認する
 - 十の位と一の位を分けて考えると計算しやすい
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 1桁のたし算（くり上がりあり）](../02-addition-1digit-carry/guide.md) | **2桁のたし算（くり上がりなし）** | [次へ: 2桁のたし算（くり上がりあり）](../04-addition-2digit-carry/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)

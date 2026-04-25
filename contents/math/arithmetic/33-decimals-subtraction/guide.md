@@ -37,11 +37,3 @@
 
 - 小数点をそろえて、桁を合わせてから計算 📏
 - くり下がりは整数のひき算と同じルール ✅
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 小数のたし算](../32-decimals-addition/guide.md) | **小数のひき算** | [次へ: 小数のかけ算](../34-decimals-multiplication/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=decimals-subtraction)

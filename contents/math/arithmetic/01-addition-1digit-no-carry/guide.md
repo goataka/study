@@ -32,11 +32,3 @@
 
 - 順番を入れかえても答えは同じ → `2 + 3 = 3 + 2 = 5`
 - 0をたしても数は変わらない → `5 + 0 = 5`
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
- | **1桁のたし算（くり上がりなし）** | [次へ: 1桁のたし算（くり上がりあり）](../02-addition-1digit-carry/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)

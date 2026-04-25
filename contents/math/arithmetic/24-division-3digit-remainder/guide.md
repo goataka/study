@@ -45,11 +45,3 @@
 
 - 商が2けたになる場合もある
 - 常に検算で確認する習慣をつけよう
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 3桁のわり算（あまりなし）](../23-division-3digit-no-remainder/guide.md) | **3桁のわり算（あまりあり）** | [次へ: わり算（まとめ）](../25-division-mixed/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=division-remainder)

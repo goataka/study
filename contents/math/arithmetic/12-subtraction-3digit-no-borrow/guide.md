@@ -37,11 +37,3 @@
 
 - 桁をそろえて書くと計算しやすい
 - 右（一の位）から順に計算する習慣をつけよう
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 2桁のひき算（くり下がりあり）](../11-subtraction-2digit-borrow/guide.md) | **3桁のひき算（くり下がりなし）** | [次へ: 3桁のひき算（くり下がりあり）](../13-subtraction-3digit-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)

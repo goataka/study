@@ -16,9 +16,3 @@ I wish I `could play` games.（ゲームができたらいいのに）
 |------|------|------|
 | 現在の願望 | I wish + 過去形 | I wish I `could play` games. |
 | 過去の後悔 | I wish + had + 過去分詞 | I wish I `had played` games more. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=conditionals-wish)
-
-[前へ: 条件文](../33-conditionals-if/drill.md) | I wish | [次へ: unless](../35-conditionals-unless/drill.md)
