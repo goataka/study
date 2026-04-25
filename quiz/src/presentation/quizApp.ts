@@ -676,6 +676,7 @@ export class QuizApp {
       // 手動確認済みの記録は詳細を展開できない
       header.removeAttribute("role");
       header.removeAttribute("tabindex");
+      header.removeAttribute("aria-expanded");
     } else {
       const toggleSpan = document.createElement("span");
       toggleSpan.className = "history-toggle";

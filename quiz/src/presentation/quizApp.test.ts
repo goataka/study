@@ -1048,14 +1048,28 @@ describe("QuizApp — 履歴モード表示仕様", () => {
     expect(toggleEl).toBeNull();
   });
 
-  it("mode=manual の履歴のヘッダーをクリックしても詳細は開かない", async () => {
+  it("mode=manual の履歴のヘッダーは操作不可で、click や Enter/Space でも詳細は開かない", async () => {
     localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const header = document.querySelector<HTMLElement>(".history-item-header");
-    header?.click();
     const detail = document.querySelector(".history-detail");
+
+    expect(header).not.toBeNull();
+    expect(detail).not.toBeNull();
+    expect(header?.hasAttribute("role")).toBe(false);
+    expect(header?.hasAttribute("tabindex")).toBe(false);
+    expect(header?.hasAttribute("aria-expanded")).toBe(false);
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.click();
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    expect(detail?.classList.contains("hidden")).toBe(true);
+
+    header?.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
     expect(detail?.classList.contains("hidden")).toBe(true);
   });
 
