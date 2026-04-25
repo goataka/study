@@ -2009,8 +2009,8 @@ function setupTextInputDom(): void {
         <span id="notesTitle">タッチペンで書けます</span>
         <canvas id="notesCanvas"></canvas>
         <div id="handwritingConfirmArea" class="hidden">
+          <input type="text" id="handwritingTextInput">
           <button id="handwritingConfirmBtn" type="button">確定する</button>
-          <div id="handwritingSelfEvalArea" class="hidden"></div>
         </div>
       </div>
     </div>
@@ -2065,141 +2065,100 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     expect(confirmBtn?.textContent).toContain("確定");
   });
 
-  it("「確定する」をクリックすると自己評価ボタンが確定エリアに表示される", async () => {
+  it("「確定する」をクリックすると手書き入力フィールドのテキストが答えの入力エリアに追加される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+    handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
-
-    const selfEvalBtns = document.querySelector(".self-eval-buttons");
-    expect(selfEvalBtns).not.toBeNull();
-
-    const correctBtn = document.querySelector(".self-eval-correct");
-    expect(correctBtn?.textContent).toContain("正解");
-
-    const incorrectBtn = document.querySelector(".self-eval-incorrect");
-    expect(incorrectBtn?.textContent).toContain("不正解");
-  });
-
-  it("「確定する」をクリックすると確定エリアに正解が表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    document.getElementById("handwritingConfirmBtn")?.click();
-
-    const revealText = document.querySelector(".handwriting-reveal-text");
-    expect(revealText?.textContent).toContain("正解は");
-    expect(revealText?.textContent).toContain("あっていましたか");
-  });
-
-  it("「○ 正解だった」をクリックすると回答がセッションに登録されフィードバックが表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    document.getElementById("handwritingConfirmBtn")?.click();
-
-    const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
-    correctBtn?.click();
-
-    const feedback = document.getElementById("answerFeedback");
-    expect(feedback?.classList.contains("hidden")).toBe(false);
-    expect(feedback?.classList.contains("correct")).toBe(true);
-
-    const feedbackResult = document.getElementById("feedbackResult");
-    expect(feedbackResult?.textContent).toContain("正解");
-  });
-
-  it("「○ 正解だった」をクリックするとテキスト入力欄に正解が反映される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    document.getElementById("handwritingConfirmBtn")?.click();
-
-    const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
-    correctBtn?.click();
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    expect(textInput?.disabled).toBe(true);
-    // 選択される問題はランダムだが正解テキストがいずれかであることを確認
-    const validAnswers = mockTextInputFile.questions.map((q) => q.choices[0]);
-    expect(validAnswers).toContain(textInput?.value);
+    expect(textInput?.value).toBe("やま");
   });
 
-  it("「× 不正解だった」をクリックすると不正解としてセッションに登録されフィードバックが表示される", async () => {
+  it("「確定する」をクリックすると手書き入力フィールドがクリアされる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+    handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
 
-    const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLElement;
-    incorrectBtn?.click();
+    expect(handwritingInput.value).toBe("");
+  });
 
+  it("「確定する」を複数回クリックするとテキストが追記される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+
+    handwritingInput.value = "や";
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    handwritingInput.value = "ま";
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.value).toBe("やま");
+  });
+
+  it("「確定する」をクリックしても回答はまだ送信されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+    handwritingInput.value = "やま";
+    document.getElementById("handwritingConfirmBtn")?.click();
+
+    // 回答が登録されていないこと（フィードバックが非表示のまま）
     const feedback = document.getElementById("answerFeedback");
-    expect(feedback?.classList.contains("hidden")).toBe(false);
-    expect(feedback?.classList.contains("incorrect")).toBe(true);
+    expect(feedback?.classList.contains("hidden")).toBe(true);
 
-    const feedbackResult = document.getElementById("feedbackResult");
-    expect(feedbackResult?.textContent).toContain("不正解");
+    // テキスト入力欄が無効化されていないこと
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.disabled).toBe(false);
   });
 
-  it("自己評価後は自己評価ボタンが無効化される", async () => {
+  it("「確定する」をクリックすると確定ボタンは隠れない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    document.getElementById("handwritingConfirmBtn")?.click();
-
-    const correctBtn = document.querySelector(".self-eval-correct") as HTMLButtonElement;
-    correctBtn?.click();
-
-    expect(correctBtn?.disabled).toBe(true);
-    const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLButtonElement;
-    expect(incorrectBtn?.disabled).toBe(true);
-  });
-
-  it("「確定する」クリック後は確定ボタンが隠れて自己評価UIが表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+    handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
 
     const confirmBtn = document.getElementById("handwritingConfirmBtn");
-    expect(confirmBtn?.classList.contains("hidden")).toBe(true);
-
-    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
-    expect(selfEvalArea?.classList.contains("hidden")).toBe(false);
+    expect(confirmBtn?.classList.contains("hidden")).toBe(false);
   });
 
-  it("手書きで不正解を選んだときテキスト入力欄は空のままになる", async () => {
+  it("手書き入力が空のときは「確定する」をクリックしても答えの入力エリアは変わらない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
     document.getElementById("handwritingConfirmBtn")?.click();
-
-    const incorrectBtn = document.querySelector(".self-eval-incorrect") as HTMLElement;
-    incorrectBtn?.click();
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     expect(textInput?.value).toBe("");
-    expect(textInput?.disabled).toBe(true);
   });
 
-  it("自己評価後に次の問題へ移動すると確定ボタンが復元される", async () => {
+  it("回答後に次の問題へ移動すると確定ボタンが復元される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    // 確定する → ○ 正解だったで回答登録（nextBtnが有効になる）
-    document.getElementById("handwritingConfirmBtn")?.click();
-    const correctBtn = document.querySelector(".self-eval-correct") as HTMLElement;
-    correctBtn?.click();
+    // テキスト入力欄に入力して「確認する」で回答登録（nextBtnが有効になる）
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    if (textInput) textInput.value = "やま";
+    const submitBtn = document.querySelector<HTMLButtonElement>(".text-answer-submit-btn");
+    submitBtn?.click();
 
     // 次の問題へ移動
     const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
@@ -2211,9 +2170,9 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     expect(confirmBtn?.classList.contains("hidden")).toBe(false);
     expect((confirmBtn as HTMLButtonElement | null)?.disabled).toBe(false);
 
-    const selfEvalArea = document.getElementById("handwritingSelfEvalArea");
-    expect(selfEvalArea?.classList.contains("hidden")).toBe(true);
-    expect(selfEvalArea?.innerHTML).toBe("");
+    // 手書き入力フィールドがクリアされていること
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+    expect(handwritingInput?.value).toBe("");
   });
 
   it("選択肢問題では確定ボタンエリアが非表示のままで notesTitleが変わらない", async () => {
@@ -2279,8 +2238,8 @@ function setupNoteTabDom(): void {
         <span id="notesTitle">タッチペンで書けます</span>
         <canvas id="notesCanvas"></canvas>
         <div id="handwritingConfirmArea" class="hidden">
+          <input type="text" id="handwritingTextInput">
           <button id="handwritingConfirmBtn" type="button">確定する</button>
-          <div id="handwritingSelfEvalArea" class="hidden"></div>
         </div>
       </div>
       <div id="notesGuideContent" class="hidden" role="tabpanel" aria-labelledby="notesTabGuide">
