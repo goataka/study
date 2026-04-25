@@ -32,13 +32,9 @@ export class QuizApp {
   private notesStates: Map<number, DrawingState> = new Map();
   private readonly ocrService: OcrService = new OcrService();
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
-  /** 総合タブの fallback により自動的に "history" へ切り替わった場合は true。ユーザーが明示的にタブを選択した場合は false。 */
-  private autoSwitchedToHistory: boolean = false;
   /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
   private isPanelTabUserSelected: boolean = false;
   private hideLearnedCategories: boolean = true;
-  /** 「総合」タブへの切り替え時に「問題」パネルが強制的に「履歴」へフォールバックされたかを示すフラグ */
-  private wasQuizPanelForcedToHistory: boolean = false;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -195,7 +191,6 @@ export class QuizApp {
       tab.addEventListener("click", () => {
         const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
         this.activePanelTab = panel;
-        this.autoSwitchedToHistory = false; // ユーザーが明示的にタブを選択した
         this.isPanelTabUserSelected = true; // ユーザーが明示的にタブを選択した
         this.showPanelTab(panel);
         if (panel === "guide") {
@@ -544,8 +539,6 @@ export class QuizApp {
    * 特定カテゴリが選択されている場合は解答履歴があれば「確認」タブ、なければ「解説」タブを表示する。
    * category が "all" の場合は「確認」タブに戻す（解説タブが残ると selectFirstUnlearnedCategory が
    * 再度カテゴリを選択してしまうため）。
-   * 総合タブからの自動復帰（autoSwitchedToHistory）は updateQuizPanelVisibility が担うため、
-   * このメソッドでは autoSwitchedToHistory をリセットしない。
    * @param allRecords - 呼び出し元で取得済みの履歴配列（二重ロードを避けるために渡す）
    */
   private autoSelectPanelTab(allRecords: QuizRecord[]): void {
@@ -1081,10 +1074,7 @@ export class QuizApp {
    * クイズパネルの表示/非表示を更新する。
    * 教科タブでカテゴリが未選択（category === "all"）の場合はクイズパネルを非表示にし、
    * カテゴリが選択されている場合は表示する。
-   * 「総合」タブ（subject === "all"）では「解説」と「問題」パネルタブを非表示にする。
-   * 「総合」タブでは「履歴」と「問題一覧」パネルタブを表示する。
-   * 「解説」または「問題」がアクティブな状態で総合タブに切り替えた場合は「履歴」タブへフォールバックする。
-   * 総合タブの fallback で history になった後、特定カテゴリが選択された場合は「問題」タブへ自動復帰する。
+   * 「総合」タブ（subject === "all"）ではすべてのパネルタブとコンテンツを非表示にする。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
@@ -1092,35 +1082,20 @@ export class QuizApp {
     const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
 
-    // 「総合」タブでは「解説」と「問題」パネルタブを非表示にし、「履歴」と「問題一覧」は明示的に表示する
+    // 「総合」タブではすべてのパネルタブとコンテンツを非表示にする
     const isAll = this.filter.subject === "all";
-    document.getElementById("panelTab-guide")?.classList.toggle("hidden", isAll);
-    document.getElementById("panelTab-quiz")?.classList.toggle("hidden", isAll);
+    ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
+      document.getElementById(id)?.classList.toggle("hidden", isAll);
+    });
+
     if (isAll) {
-      document.getElementById("panelTab-history")?.classList.remove("hidden");
-      document.getElementById("panelTab-questions")?.classList.remove("hidden");
-    }
-
-    // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「履歴」タブに自動切り替えする
-    // 描画（renderHistoryList）は updateStartScreen() が一元的に担うためここでは呼ばない
-    if (isAll && (this.activePanelTab === "guide" || this.activePanelTab === "quiz")) {
-      this.wasQuizPanelForcedToHistory = true;
-      this.activePanelTab = "history";
-      this.autoSwitchedToHistory = true;
-      this.showPanelTab("history");
-    } else if (!isAll && this.wasQuizPanelForcedToHistory) {
-      // 「総合」から特定教科への切り替え時は「問題」タブを復元する
-      this.wasQuizPanelForcedToHistory = false;
-      this.activePanelTab = "quiz";
-      this.showPanelTab("quiz");
-    }
-
-    // 総合タブの fallback で自動的に history になった後、特定カテゴリが選択された場合は「問題」タブへ自動復帰する
-    // （ユーザーが明示的に history を選択していない場合のみ）
-    if (!isAll && this.autoSwitchedToHistory && this.filter.category !== "all") {
-      this.activePanelTab = "quiz";
-      this.autoSwitchedToHistory = false;
-      this.showPanelTab("quiz");
+      // コンテンツパネルもすべて非表示にする
+      ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
+        document.getElementById(id)?.classList.add("hidden");
+      });
+    } else {
+      // 「総合」以外では現在アクティブなパネルを表示する（総合から戻った場合も含む）
+      this.showPanelTab(this.activePanelTab);
     }
   }
 
