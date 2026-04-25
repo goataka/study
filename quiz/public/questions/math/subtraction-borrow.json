@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "subtraction-borrow",
-  "categoryName": "ひき算（くり下がりあり）",
+  "categoryName": "ひき算 - くり下がりあり",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/09-subtraction-1digit-borrow/guide",

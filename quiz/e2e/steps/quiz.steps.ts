@@ -246,7 +246,7 @@ Given("I have navigated to a hiragana text-input question", async ({ page }) => 
   const japaneseTab = page.locator(".subject-tab").filter({ hasText: "国語" });
   await japaneseTab.click();
   await expect(japaneseTab).toHaveClass(/active/);
-  // 「漢字（小学1年）」カテゴリを選択（ひらがな正解の text-input 問題）
+  // 「漢字 - 小学1年 - 読み」カテゴリを選択（ひらがな正解の text-input 問題）
   const kanjiItem = page.locator(".category-item[data-category='kanji-grade1']");
   await kanjiItem.click();
   await page.locator("#panelTab-quiz").click();
