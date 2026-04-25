@@ -1957,6 +1957,41 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
   });
+
+  it("選択済みのカテゴリアイテムを再クリックすると非選択になり active クラスが除去される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    // 1回目クリック：選択
+    catItem?.click();
+    expect(catItem?.classList.contains("active")).toBe(true);
+
+    // 2回目クリック：非選択（トグル）
+    catItem?.click();
+    expect(catItem?.classList.contains("active")).toBe(false);
+  });
+
+  it("選択済みのカテゴリアイテムを再クリックすると category-only クラスが付く（カテゴリ未選択状態に戻る）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    // 1回目クリック：選択
+    catItem?.click();
+
+    // 2回目クリック：非選択（トグル）
+    catItem?.click();
+
+    const subjectContent = document.getElementById("subjectContent");
+    expect(subjectContent?.classList.contains("category-only")).toBe(true);
+  });
 });
 
 // ─── テキスト入力問題のタッチペン入力仕様 ──────────────────────────────────
