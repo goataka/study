@@ -5,6 +5,11 @@
 
 interface KanjiCanvasStatic {
   /**
+   * ストロークの色配列。空配列にすると全ストロークがデフォルト色（#333）になる。
+   */
+  strokeColors: string[];
+
+  /**
    * 指定したIDのcanvas要素をKanjiCanvasとして初期化する。
    * マウス・タッチ両対応のイベントリスナーを設定する。
    */
