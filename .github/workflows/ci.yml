@@ -109,7 +109,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet -- e2e/snapshots/; then
             git add e2e/snapshots/
-            git commit -m "ci: VRスナップショットを自動更新 [skip ci]"
+            LEFTHOOK=0 git commit -m "ci: VRスナップショットを自動更新 [skip ci]"
             git push
           fi
 
