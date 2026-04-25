@@ -2320,13 +2320,13 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化後は総合タブが表示されクイズパネルが表示される（category-only クラスが付かない）", async () => {
+  it("初期化後は総合タブが表示されクイズパネルが非表示になる（category-only クラスが付く）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 総合タブでは全問対象でクイズ開始できるため category-only クラスは付かない
+    // 総合タブでは右パネルを非表示にしてカテゴリリストを全幅表示するため category-only クラスが付く
     const subjectContent = document.getElementById("subjectContent");
-    expect(subjectContent?.classList.contains("category-only")).toBe(false);
+    expect(subjectContent?.classList.contains("category-only")).toBe(true);
   });
 
   it("教科タブをクリックすると category-only クラスが付く（カテゴリ未選択状態）", async () => {
