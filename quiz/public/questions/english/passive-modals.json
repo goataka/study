@@ -11,7 +11,7 @@
   "description": "助動詞の受動態は「助動詞 + be + 過去分詞」の形で作ります。",
   "questions": [
     {
-      "id": "passive-modals-1",
+      "id": "79a7bde4-a9e4-5eb6-93f8-5d7a1ea3533b",
       "question": "The work ___ finished tomorrow. (can + 受動態)",
       "choices": [
         "can be",
@@ -23,7 +23,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-2",
+      "id": "6ff15f08-5c64-5757-8ce5-32e491d6f409",
       "question": "The problem ___ solved easily. (must + 受動態)",
       "choices": [
         "must be",
@@ -35,7 +35,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-3",
+      "id": "486135fd-461d-5b89-b648-10877ce41604",
       "question": "The letter ___ sent tomorrow. (should + 受動態)",
       "choices": [
         "should be",
@@ -47,7 +47,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-4",
+      "id": "76439a06-189f-5a77-b75f-6ec366115309",
       "question": "The book ___ read by everyone. (may + 受動態)",
       "choices": [
         "may be",
@@ -59,7 +59,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-5",
+      "id": "6de334ad-d1e6-545a-bc0b-e3cc6b9f4004",
       "question": "The work ___ done by next week. (will + 受動態)",
       "choices": [
         "will be",
@@ -71,7 +71,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-6",
+      "id": "b46550e5-e8f4-51a6-b3bc-70ef63380a8b",
       "question": "The rule ___ followed. (must + 受動態)",
       "choices": [
         "must be",
@@ -83,7 +83,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-7",
+      "id": "4f77162a-e632-5f29-819c-4506324c7e5e",
       "question": "The cake ___ eaten by tomorrow. (should + 受動態)",
       "choices": [
         "should be",
@@ -95,7 +95,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-8",
+      "id": "8b765649-09a8-5e33-bb15-960fc613f782",
       "question": "The door ___ opened with this key. (can + 受動態)",
       "choices": [
         "can be",

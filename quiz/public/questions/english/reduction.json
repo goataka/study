@@ -11,7 +11,7 @@
   "description": "自然な会話では一部の音が弱くなったり消えたりする現象（リダクション）を学びます。",
   "questions": [
     {
-      "id": "reduction-1",
+      "id": "9a618f76-62b9-579d-b7e3-459d1d24100d",
       "question": "「want to」はどう発音する？",
       "choices": [
         "ワナ",
@@ -23,7 +23,7 @@
       "explanation": "t が消失して、ワナ"
     },
     {
-      "id": "reduction-2",
+      "id": "d92c8422-4d89-5d72-8718-bffc53f7a60d",
       "question": "「going to」はどう発音する？",
       "choices": [
         "ゴナ / ガナ",
@@ -35,7 +35,7 @@
       "explanation": "ing to → na となり、ゴナ / ガナ"
     },
     {
-      "id": "reduction-3",
+      "id": "81f02542-0f51-5c72-9253-9873c582e87c",
       "question": "「have to」はどう発音する？",
       "choices": [
         "ハフタ",
@@ -47,7 +47,7 @@
       "explanation": "ve が弱化して、ハフタ"
     },
     {
-      "id": "reduction-4",
+      "id": "7eef7be0-14e3-5ce5-9770-201234629120",
       "question": "「kind of」はどう発音する？",
       "choices": [
         "カインダ",
@@ -59,7 +59,7 @@
       "explanation": "d が弱化して、カインダ"
     },
     {
-      "id": "reduction-5",
+      "id": "71a25184-ecc0-5050-a04a-fd9eabf3c03b",
       "question": "「sort of」はどう発音する？",
       "choices": [
         "ソータ",

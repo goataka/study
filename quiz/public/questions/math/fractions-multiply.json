@@ -11,7 +11,7 @@
   "description": "分数のかけ算を正確に計算できるようにします。",
   "questions": [
     {
-      "id": "frac-mult-1",
+      "id": "b776da84-115b-5dbd-a28c-43668d55ff79",
       "question": "1/2 × 1/3 = ?",
       "choices": [
         "1/6",
@@ -23,7 +23,7 @@
       "explanation": "分子どうし、分母どうしをかけます。1×1=1、2×3=6なので、1/6"
     },
     {
-      "id": "frac-mult-2",
+      "id": "6abd6d3b-d235-58d2-b906-f9adabf0d8ed",
       "question": "2/3 × 3/4 = ?",
       "choices": [
         "1/2",
@@ -35,7 +35,7 @@
       "explanation": "2×3=6、3×4=12なので、6/12。約分すると1/2"
     },
     {
-      "id": "frac-mult-3",
+      "id": "d30070e3-2024-5a70-85b6-8b4d47639db2",
       "question": "3/5 × 2/7 = ?",
       "choices": [
         "6/35",
@@ -47,7 +47,7 @@
       "explanation": "3×2=6、5×7=35なので、6/35"
     },
     {
-      "id": "frac-mult-4",
+      "id": "11ba3468-e47e-5b8d-9252-da44f0a9e202",
       "question": "4/9 × 3/8 = ?",
       "choices": [
         "1/6",
@@ -59,7 +59,7 @@
       "explanation": "4×3=12、9×8=72なので、12/72。約分すると1/6"
     },
     {
-      "id": "frac-mult-5",
+      "id": "f61d08fe-02bd-55a6-8e4d-3eb0245c9532",
       "question": "5/6 × 2/5 = ?",
       "choices": [
         "1/3",
@@ -71,7 +71,7 @@
       "explanation": "5×2=10、6×5=30なので、10/30。約分すると1/3"
     },
     {
-      "id": "frac-mult-6",
+      "id": "9af930a7-c7bc-5d5f-a947-59ea75ffa974",
       "question": "2 × 3/4 = ?",
       "choices": [
         "3/2",
@@ -83,7 +83,7 @@
       "explanation": "2=2/1と考えます。2×3=6、1×4=4なので、6/4。約分すると3/2（または1と1/2）"
     },
     {
-      "id": "frac-mult-7",
+      "id": "5c37ac76-8df6-520b-96f1-8f180d24b118",
       "question": "3/7 × 7/9 = ?",
       "choices": [
         "1/3",
@@ -95,7 +95,7 @@
       "explanation": "3×7=21、7×9=63なので、21/63。約分すると1/3"
     },
     {
-      "id": "frac-mult-8",
+      "id": "77d92db8-e50b-587e-b636-78fb7e70c4fb",
       "question": "5/8 × 4/5 = ?",
       "choices": [
         "1/2",

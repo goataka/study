@@ -11,7 +11,7 @@
   "description": "could / might / should have などの助動詞過去形の使い方を覚えます。",
   "questions": [
     {
-      "id": "modals-past-1",
+      "id": "e41c0daf-30e9-53ba-aa70-c73b74d3df10",
       "question": "I ___ play the piano when I was young. (～できた)",
       "choices": [
         "could",
@@ -23,7 +23,7 @@
       "explanation": "canの過去形は could です"
     },
     {
-      "id": "modals-past-2",
+      "id": "6e74b0b9-3aca-5f07-9ced-7022b78a8664",
       "question": "I ___ visit my grandmother every Sunday. (よく～した)",
       "choices": [
         "would",
@@ -35,7 +35,7 @@
       "explanation": "過去の習慣は would を使います"
     },
     {
-      "id": "modals-past-3",
+      "id": "2eda657a-dc28-5fa5-8933-679e4fed5128",
       "question": "She ___ be a teacher. (～だったかもしれない)",
       "choices": [
         "might have been",
@@ -47,7 +47,7 @@
       "explanation": "過去の推量は might have been を使います"
     },
     {
-      "id": "modals-past-4",
+      "id": "d476bc40-916e-5058-8cc7-443eaa6bfb16",
       "question": "You ___ studied harder. (～すべきだった)",
       "choices": [
         "should have",
@@ -59,7 +59,7 @@
       "explanation": "過去の後悔は should have + 過去分詞です"
     },
     {
-      "id": "modals-past-5",
+      "id": "7773772c-3380-5b44-bef7-bd889043647c",
       "question": "I ___ finish my homework yesterday. (～できなかった)",
       "choices": [
         "could not",
@@ -71,7 +71,7 @@
       "explanation": "過去の能力がないは could not を使います"
     },
     {
-      "id": "modals-past-6",
+      "id": "fbbd6b48-fe01-5483-8933-2a1f319cb94a",
       "question": "He ___ done his homework. (～したかもしれない)",
       "choices": [
         "may have",
@@ -83,7 +83,7 @@
       "explanation": "過去の推量は may have + 過去分詞です"
     },
     {
-      "id": "modals-past-7",
+      "id": "15f0da33-777e-5ee3-afea-999c02e35753",
       "question": "I ___ swim when I was a child. (～できた)",
       "choices": [
         "could",
@@ -95,7 +95,7 @@
       "explanation": "過去の能力は could を使います"
     },
     {
-      "id": "modals-past-8",
+      "id": "92b07646-d11f-5127-8693-83ece8a1b2a7",
       "question": "You ___ told me earlier. (～すべきだった)",
       "choices": [
         "should have",

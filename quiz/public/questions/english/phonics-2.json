@@ -2,7 +2,7 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "phonics-2",
-  "categoryName": "フォニックス（2文字・マジックE）",
+  "categoryName": "フォニックス - 2文字・マジックE",
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/04-phonics-2letter/guide",
@@ -11,7 +11,7 @@
   "description": "2文字の組み合わせが作る特別な音（ダイグラフ）を覚えます。",
   "questions": [
     {
-      "id": "phonics-2-sh1",
+      "id": "16897d4a-0507-5030-8590-beb1e24713b3",
       "question": "「shoe」の「sh」の音は？",
       "choices": [
         "シュ",
@@ -23,7 +23,7 @@
       "explanation": "shoe = シュ ウー"
     },
     {
-      "id": "phonics-2-sh2",
+      "id": "64c85866-7308-56f1-91cb-2191dd7f2043",
       "question": "「fish」の「sh」の音は？",
       "choices": [
         "シュ",
@@ -35,7 +35,7 @@
       "explanation": "fish = フ イ シュ"
     },
     {
-      "id": "phonics-2-ch1",
+      "id": "25d41515-454c-5712-bce7-c80c31db821c",
       "question": "「chair」の「ch」の音は？",
       "choices": [
         "チ",
@@ -47,7 +47,7 @@
       "explanation": "chair = チ エ アー"
     },
     {
-      "id": "phonics-2-ch2",
+      "id": "20a630b3-c20e-5608-9a40-01214c6b07c7",
       "question": "「much」の「ch」の音は？",
       "choices": [
         "チ",
@@ -59,7 +59,7 @@
       "explanation": "much = ム ア チ"
     },
     {
-      "id": "phonics-2-th1",
+      "id": "f111165c-4ecf-581b-85f2-28dd483f1fd8",
       "question": "「that」の「th」の音は？",
       "choices": [
         "ザ",
@@ -71,7 +71,7 @@
       "explanation": "that = ザ ア ト"
     },
     {
-      "id": "phonics-2-th2",
+      "id": "37c480f2-13ee-5b17-8bb7-cd8671aafe5e",
       "question": "「bath」の「th」の音は？",
       "choices": [
         "ス",
@@ -83,7 +83,7 @@
       "explanation": "bath = ブ ア ス"
     },
     {
-      "id": "phonics-2-ph1",
+      "id": "673783e3-8f92-5b02-b831-75e39d3a4ec9",
       "question": "「phone」の「ph」の音は？",
       "choices": [
         "フ",
@@ -95,7 +95,7 @@
       "explanation": "phone = フ オウ ヌ"
     },
     {
-      "id": "phonics-2-wh1",
+      "id": "8f5f81d6-750e-570e-91c5-7cb0608d409d",
       "question": "「whale」の「wh」の音は？",
       "choices": [
         "ホウ",
@@ -107,7 +107,7 @@
       "explanation": "whale = ホウ エイ ル"
     },
     {
-      "id": "phonics-2-oo1",
+      "id": "3de05049-34ad-5bc1-a33b-afe789c4c8ae",
       "question": "「book」の「oo」の音は？",
       "choices": [
         "ウ",
@@ -119,7 +119,7 @@
       "explanation": "book = ブ ウ ク"
     },
     {
-      "id": "phonics-2-oo2",
+      "id": "9c25d1d4-19a5-54b9-abeb-b8cc97a2ecda",
       "question": "「moon」の「oo」の音は？",
       "choices": [
         "ウー",
@@ -131,7 +131,7 @@
       "explanation": "moon = ム ウー ヌ"
     },
     {
-      "id": "phonics-2-oo3",
+      "id": "b465f917-bb56-53b3-a5e0-46757a5fd1de",
       "question": "「good」の「oo」の音は？",
       "choices": [
         "ウ",
@@ -143,7 +143,7 @@
       "explanation": "good = グ ウ ドゥ"
     },
     {
-      "id": "phonics-2-ee1",
+      "id": "a7d07951-f441-5acc-9bdb-02a9d2d5757b",
       "question": "「deep」の「ee」の音は？",
       "choices": [
         "イー",
@@ -155,7 +155,7 @@
       "explanation": "deep = ドゥ イー プ"
     },
     {
-      "id": "phonics-2-ee2",
+      "id": "c32653be-4c4b-56cd-8657-c40a944b83cb",
       "question": "「green」の「ee」の音は？",
       "choices": [
         "イー",
@@ -167,7 +167,7 @@
       "explanation": "green = グ ル イー ヌ"
     },
     {
-      "id": "phonics-2-ai1",
+      "id": "8167f294-7476-5c15-8c11-1b4ca7948c14",
       "question": "「rain」の「ai」の音は？",
       "choices": [
         "エイ",
@@ -179,7 +179,7 @@
       "explanation": "rain = ル エイ ヌ"
     },
     {
-      "id": "phonics-2-ai2",
+      "id": "14c6210c-d245-5793-bd8c-53ba42f39c2b",
       "question": "「train」の「ai」の音は？",
       "choices": [
         "エイ",
@@ -191,7 +191,7 @@
       "explanation": "train = トゥ ル エイ ヌ"
     },
     {
-      "id": "phonics-2-oa1",
+      "id": "339b2525-479d-50e0-b644-a82cb1848d0c",
       "question": "「boat」の「oa」の音は？",
       "choices": [
         "オウ",
@@ -203,7 +203,7 @@
       "explanation": "boat = ブ オウ ト"
     },
     {
-      "id": "phonics-2-oa2",
+      "id": "0c947f95-b8bc-584c-a4d0-b3fd7e20de87",
       "question": "「coat」の「oa」の音は？",
       "choices": [
         "オウ",
@@ -215,7 +215,7 @@
       "explanation": "coat = ク オウ ト"
     },
     {
-      "id": "phonics-2-magic-a",
+      "id": "97f295d2-3faa-58c3-9643-6c9616a4404c",
       "question": "「cake」の「a」の音は？（マジックE）",
       "choices": [
         "エイ",
@@ -227,7 +227,7 @@
       "explanation": "cake = ク エイ ク"
     },
     {
-      "id": "phonics-2-magic-a2",
+      "id": "9fa503c3-252a-5b5f-8d57-cfda83bdb7fd",
       "question": "「name」の「a」の音は？（マジックE）",
       "choices": [
         "エイ",
@@ -239,7 +239,7 @@
       "explanation": "name = ヌ エイ ム"
     },
     {
-      "id": "phonics-2-magic-i",
+      "id": "6d4ad5bd-db6e-5905-bfc4-007624ca83d3",
       "question": "「kite」の「i」の音は？（マジックE）",
       "choices": [
         "アイ",
@@ -251,7 +251,7 @@
       "explanation": "kite = ク アイ ト"
     },
     {
-      "id": "phonics-2-magic-i2",
+      "id": "657cb8db-a3cd-5f92-bfde-eb26a1a0af19",
       "question": "「bike」の「i」の音は？（マジックE）",
       "choices": [
         "アイ",
@@ -263,7 +263,7 @@
       "explanation": "bike = ブ アイ ク"
     },
     {
-      "id": "phonics-2-magic-o",
+      "id": "c0b1eb9a-6a84-5901-bc85-44124eb57bcb",
       "question": "「note」の「o」の音は？（マジックE）",
       "choices": [
         "オウ",
@@ -275,7 +275,7 @@
       "explanation": "note = ヌ オウ ト"
     },
     {
-      "id": "phonics-2-magic-o2",
+      "id": "cbe7bc18-da8e-5ba8-98b1-87a35376e2e3",
       "question": "「home」の「o」の音は？（マジックE）",
       "choices": [
         "オウ",
@@ -287,7 +287,7 @@
       "explanation": "home = ホ オウ ム"
     },
     {
-      "id": "phonics-2-magic-u",
+      "id": "057ef205-afe8-5219-bbe6-5cec5fe605d4",
       "question": "「cute」の「u」の音は？（マジックE）",
       "choices": [
         "ユー",

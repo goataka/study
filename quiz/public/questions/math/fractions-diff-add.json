@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "fractions-diff-add",
-  "categoryName": "分数のたし算（通分あり）",
+  "categoryName": "分数のたし算 - 通分あり",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/28-fractions-diff-add/guide",
@@ -11,7 +11,7 @@
   "description": "分母が異なる分数のたし算で通分を使って正確に計算できるようにします。",
   "questions": [
     {
-      "id": "frac-diff-add-1",
+      "id": "80e06f50-c5a9-5db4-8424-31cb9be22c37",
       "question": "1/2 + 1/3 = ?",
       "choices": [
         "5/6",
@@ -23,7 +23,7 @@
       "explanation": "通分します。1/2 = 3/6、1/3 = 2/6なので、3/6 + 2/6 = 5/6"
     },
     {
-      "id": "frac-diff-add-2",
+      "id": "8fe9fd8c-fa65-5f2f-bb84-2fc3144b3582",
       "question": "1/4 + 1/6 = ?",
       "choices": [
         "5/12",
@@ -35,7 +35,7 @@
       "explanation": "通分します。1/4 = 3/12、1/6 = 2/12なので、3/12 + 2/12 = 5/12"
     },
     {
-      "id": "frac-diff-add-3",
+      "id": "644dd33d-9291-5c8e-ac3f-8dc8274b062f",
       "question": "2/3 + 1/4 = ?",
       "choices": [
         "11/12",
@@ -47,7 +47,7 @@
       "explanation": "通分します。2/3 = 8/12、1/4 = 3/12なので、8/12 + 3/12 = 11/12"
     },
     {
-      "id": "frac-diff-add-4",
+      "id": "dcb8e276-a2e9-55c1-b453-376baa4e4b4b",
       "question": "1/3 + 1/5 = ?",
       "choices": [
         "8/15",
@@ -59,7 +59,7 @@
       "explanation": "通分します。1/3 = 5/15、1/5 = 3/15なので、5/15 + 3/15 = 8/15"
     },
     {
-      "id": "frac-diff-add-5",
+      "id": "3911a5fd-bfd2-5231-b05a-f3942ff8cead",
       "question": "3/4 + 1/6 = ?",
       "choices": [
         "11/12",
@@ -71,7 +71,7 @@
       "explanation": "通分します。3/4 = 9/12、1/6 = 2/12なので、9/12 + 2/12 = 11/12"
     },
     {
-      "id": "frac-diff-add-6",
+      "id": "4e3802c9-f2d5-5653-987b-1302baad4218",
       "question": "2/5 + 1/3 = ?",
       "choices": [
         "11/15",
@@ -83,7 +83,7 @@
       "explanation": "通分します。2/5 = 6/15、1/3 = 5/15なので、6/15 + 5/15 = 11/15"
     },
     {
-      "id": "frac-diff-add-7",
+      "id": "d6592846-0aba-5be8-a1f4-65340cf64cf6",
       "question": "1/2 + 2/5 = ?",
       "choices": [
         "9/10",
@@ -95,7 +95,7 @@
       "explanation": "通分します。1/2 = 5/10、2/5 = 4/10なので、5/10 + 4/10 = 9/10"
     },
     {
-      "id": "frac-diff-add-8",
+      "id": "1e80e1b4-9969-5fa2-90d0-9faa898dcd81",
       "question": "3/8 + 1/4 = ?",
       "choices": [
         "5/8",

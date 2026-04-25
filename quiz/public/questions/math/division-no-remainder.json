@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "division-no-remainder",
-  "categoryName": "わり算（あまりなし）",
+  "categoryName": "わり算 - あまりなし",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/19-division-1digit-no-remainder/guide",
@@ -11,7 +11,7 @@
   "description": "九九を使って、割り切れるわり算を正確に計算できるようにします。",
   "questions": [
     {
-      "id": "div-no-rem-1",
+      "id": "660abff8-e081-5d55-80d3-678f1bfedb79",
       "question": "6 ÷ 2 = ?",
       "choices": [
         "3",
@@ -23,7 +23,7 @@
       "explanation": "2 × 3 = 6なので、6 ÷ 2 = 3"
     },
     {
-      "id": "div-no-rem-2",
+      "id": "a43af311-b746-511c-809c-2fa3d764f204",
       "question": "8 ÷ 4 = ?",
       "choices": [
         "2",
@@ -35,7 +35,7 @@
       "explanation": "4 × 2 = 8なので、8 ÷ 4 = 2"
     },
     {
-      "id": "div-no-rem-3",
+      "id": "9d9debdf-ad84-5e1f-96b1-0b4248ed1883",
       "question": "15 ÷ 3 = ?",
       "choices": [
         "5",
@@ -47,7 +47,7 @@
       "explanation": "3 × 5 = 15なので、15 ÷ 3 = 5"
     },
     {
-      "id": "div-no-rem-4",
+      "id": "9db86f8c-16fc-5ded-aabb-86032603f7cc",
       "question": "20 ÷ 5 = ?",
       "choices": [
         "4",
@@ -59,7 +59,7 @@
       "explanation": "5 × 4 = 20なので、20 ÷ 5 = 4"
     },
     {
-      "id": "div-no-rem-5",
+      "id": "98c00059-f0bb-57c8-bdac-74efa84562f2",
       "question": "18 ÷ 6 = ?",
       "choices": [
         "3",
@@ -71,7 +71,7 @@
       "explanation": "6 × 3 = 18なので、18 ÷ 6 = 3"
     },
     {
-      "id": "div-no-rem-6",
+      "id": "c4bb62d1-22bb-51df-a216-aa6253413014",
       "question": "21 ÷ 7 = ?",
       "choices": [
         "3",
@@ -83,7 +83,7 @@
       "explanation": "7 × 3 = 21なので、21 ÷ 7 = 3"
     },
     {
-      "id": "div-no-rem-7",
+      "id": "45807959-dcb7-5183-a769-82424b6d2ab7",
       "question": "24 ÷ 8 = ?",
       "choices": [
         "3",
@@ -95,7 +95,7 @@
       "explanation": "8 × 3 = 24なので、24 ÷ 8 = 3"
     },
     {
-      "id": "div-no-rem-8",
+      "id": "4ac7c91e-ef7a-57f3-8907-a0034d993ceb",
       "question": "27 ÷ 9 = ?",
       "choices": [
         "3",
@@ -107,7 +107,7 @@
       "explanation": "9 × 3 = 27なので、27 ÷ 9 = 3"
     },
     {
-      "id": "div-no-rem-9",
+      "id": "1aa88631-f6bb-5793-8fde-87fdfeacc73d",
       "question": "84 ÷ 4 = ?",
       "choices": [
         "20",
@@ -119,7 +119,7 @@
       "explanation": "4 × 21 = 84なので、84 ÷ 4 = 21"
     },
     {
-      "id": "div-no-rem-10",
+      "id": "12ee8002-7d94-583b-b41c-1fa1d4412726",
       "question": "75 ÷ 5 = ?",
       "choices": [
         "14",
@@ -131,7 +131,7 @@
       "explanation": "5 × 15 = 75なので、75 ÷ 5 = 15"
     },
     {
-      "id": "div-no-rem-11",
+      "id": "d6494731-f980-52bb-84b0-2eb83d76959e",
       "question": "96 ÷ 6 = ?",
       "choices": [
         "15",
@@ -143,7 +143,7 @@
       "explanation": "6 × 16 = 96なので、96 ÷ 6 = 16"
     },
     {
-      "id": "div-no-rem-12",
+      "id": "910997e7-394f-5d62-9412-2c7716e8c930",
       "question": "84 ÷ 7 = ?",
       "choices": [
         "12",
@@ -155,7 +155,7 @@
       "explanation": "7 × 12 = 84なので、84 ÷ 7 = 12"
     },
     {
-      "id": "div-no-rem-13",
+      "id": "11906be2-351f-53bc-b997-d542399920fb",
       "question": "126 ÷ 3 = ?",
       "choices": [
         "40",
@@ -167,7 +167,7 @@
       "explanation": "3 × 42 = 126なので、126 ÷ 3 = 42"
     },
     {
-      "id": "div-no-rem-14",
+      "id": "8d66cefb-e930-5bba-905b-ce2489daffbd",
       "question": "248 ÷ 4 = ?",
       "choices": [
         "60",
@@ -179,7 +179,7 @@
       "explanation": "4 × 62 = 248なので、248 ÷ 4 = 62"
     },
     {
-      "id": "div-no-rem-15",
+      "id": "7471c0f7-46d8-5b4a-b822-30d577e4de15",
       "question": "168 ÷ 7 = ?",
       "choices": [
         "26",
@@ -191,7 +191,7 @@
       "explanation": "7 × 24 = 168なので、168 ÷ 7 = 24"
     },
     {
-      "id": "div-no-rem-16",
+      "id": "d81a1bf8-2a57-5958-ad7b-53079b5dd71a",
       "question": "256 ÷ 8 = ?",
       "choices": [
         "32",

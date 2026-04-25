@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "subtraction-mixed",
-  "categoryName": "ひき算（まとめ）",
+  "categoryName": "ひき算 - まとめ",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/14-subtraction-mixed/guide",
@@ -11,7 +11,7 @@
   "description": "くり下がりなし・ありを混ぜた計算で、ひき算の力を確かめます。",
   "questions": [
     {
-      "id": "sub-mixed-1",
+      "id": "2061a4b0-d19f-52e3-8bb1-896c9cdcfaf6",
       "question": "8 - 3 = ?",
       "choices": [
         "5",
@@ -23,7 +23,7 @@
       "explanation": "くり下がりなし。8 - 3 = 5"
     },
     {
-      "id": "sub-mixed-2",
+      "id": "d3e05aa4-ad6c-599a-893b-50d8f07d9f27",
       "question": "14 - 7 = ?",
       "choices": [
         "7",
@@ -35,7 +35,7 @@
       "explanation": "くり下がりあり。10から7をひいて3、3+4=7"
     },
     {
-      "id": "sub-mixed-3",
+      "id": "b68bec47-2354-5f1b-9bb0-4b04b29d092c",
       "question": "9 - 4 = ?",
       "choices": [
         "5",
@@ -47,7 +47,7 @@
       "explanation": "くり下がりなし。9 - 4 = 5"
     },
     {
-      "id": "sub-mixed-4",
+      "id": "a1ea5c02-71f2-537a-ad1c-9e828dc80b23",
       "question": "12 - 5 = ?",
       "choices": [
         "7",
@@ -59,7 +59,7 @@
       "explanation": "くり下がりあり。10から5をひいて5、5+2=7"
     },
     {
-      "id": "sub-mixed-5",
+      "id": "7bc68234-494b-5c4c-a8a4-78d9e7a04583",
       "question": "7 - 2 = ?",
       "choices": [
         "5",
@@ -71,7 +71,7 @@
       "explanation": "くり下がりなし。7 - 2 = 5"
     },
     {
-      "id": "sub-mixed-6",
+      "id": "2ee07cb9-5a67-5607-8a52-e7c42058aabf",
       "question": "16 - 9 = ?",
       "choices": [
         "7",
@@ -83,7 +83,7 @@
       "explanation": "くり下がりあり。10から9をひいて1、1+6=7"
     },
     {
-      "id": "sub-mixed-7",
+      "id": "37ac088c-70c9-5cb5-8f73-a68c61f349f7",
       "question": "6 - 4 = ?",
       "choices": [
         "2",
@@ -95,7 +95,7 @@
       "explanation": "くり下がりなし。6 - 4 = 2"
     },
     {
-      "id": "sub-mixed-8",
+      "id": "aa7398be-445f-52a2-993c-1be2a73bb3f4",
       "question": "11 - 8 = ?",
       "choices": [
         "3",
