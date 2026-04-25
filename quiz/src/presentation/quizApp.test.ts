@@ -2013,19 +2013,35 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizModePanel?.classList.contains("hidden")).toBe(true);
   });
 
-  it("総合タブ表示中は「実行記録」タブボタンが表示される", async () => {
+  it("総合タブに切り替えると「実行記録」タブボタンの hidden が外れて表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const historyTab = document.getElementById("panelTab-history");
+    historyTab?.classList.add("hidden");
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const overallTab = document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement;
+    overallTab?.click();
+
     expect(historyTab?.classList.contains("hidden")).toBe(false);
   });
 
-  it("総合タブ表示中は「問題一覧」タブボタンが表示される", async () => {
+  it("総合タブに切り替えると「問題一覧」タブボタンの hidden が外れて表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const questionsTab = document.getElementById("panelTab-questions");
+    questionsTab?.classList.add("hidden");
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const overallTab = document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement;
+    overallTab?.click();
+
     expect(questionsTab?.classList.contains("hidden")).toBe(false);
   });
 

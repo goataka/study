@@ -1062,12 +1062,14 @@ export class QuizApp {
     const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
 
-    // 「総合」タブでは「解説」と「確認」パネルタブを非表示にし、「実行記録」と「問題一覧」は表示する
+    // 「総合」タブでは「解説」と「確認」パネルタブを非表示にし、「実行記録」と「問題一覧」は明示的に表示する
     const isAll = this.filter.subject === "all";
     document.getElementById("panelTab-guide")?.classList.toggle("hidden", isAll);
     document.getElementById("panelTab-quiz")?.classList.toggle("hidden", isAll);
-    document.getElementById("panelTab-history")?.classList.remove("hidden");
-    document.getElementById("panelTab-questions")?.classList.remove("hidden");
+    if (isAll) {
+      document.getElementById("panelTab-history")?.classList.remove("hidden");
+      document.getElementById("panelTab-questions")?.classList.remove("hidden");
+    }
 
     // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「実行記録」タブに自動切り替えする
     // 描画（renderHistoryList）は updateStartScreen() が一元的に担うためここでは呼ばない
