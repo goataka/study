@@ -5,7 +5,7 @@
   "categoryName": "分数のわり算",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
-  "guideUrl": "../math/arithmetic/16-fractions-divide/guide",
+  "guideUrl": "../math/arithmetic/31-fractions-divide/guide",
   "example": "2/3 ÷ 4/5 = 5/6",
   "referenceGrade": "小学6年",
   "description": "分数のわり算を逆数を使って正確に計算できるようにします。",

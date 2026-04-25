@@ -5,7 +5,7 @@
   "categoryName": "ひき算（くり下がりなし）",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
-  "guideUrl": "../math/arithmetic/04-subtraction-no-borrow/guide",
+  "guideUrl": "../math/arithmetic/08-subtraction-1digit-no-borrow/guide",
   "example": "8 - 3 = 5",
   "referenceGrade": "小学1年",
   "description": "くり下がりのない1けたのひき算をすばやく正確にできるようにします。",
