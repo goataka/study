@@ -253,6 +253,8 @@ export class QuizApp {
       groupHeader.appendChild(headerText);
       const learnedBadge = document.createElement("span");
       learnedBadge.className = "category-group-learned-badge";
+      learnedBadge.setAttribute("aria-hidden", "true");
+      groupHeader.dataset.parentCategory = parentCatId;
       groupHeader.appendChild(learnedBadge);
       categoryList.appendChild(groupHeader);
 
@@ -1087,13 +1089,21 @@ export class QuizApp {
     if (!categoryList) return;
 
     categoryList.querySelectorAll<HTMLElement>(".category-group-header").forEach((header) => {
+      const parentCategory = header.dataset.parentCategory;
+
       let learnedCount = 0;
-      let sibling = header.nextElementSibling;
-      while (sibling && !sibling.classList.contains("category-group-header")) {
-        if (sibling.classList.contains("category-item") && sibling.classList.contains("learned")) {
-          learnedCount++;
+      if (parentCategory) {
+        learnedCount = Array.from(
+          categoryList.querySelectorAll<HTMLElement>(".category-item.learned")
+        ).filter((el) => el.dataset.parentCategory === parentCategory).length;
+      } else {
+        let sibling = header.nextElementSibling;
+        while (sibling && !sibling.classList.contains("category-group-header")) {
+          if (sibling.classList.contains("category-item") && sibling.classList.contains("learned")) {
+            learnedCount++;
+          }
+          sibling = sibling.nextElementSibling;
         }
-        sibling = sibling.nextElementSibling;
       }
 
       const badge = header.querySelector(".category-group-learned-badge");
