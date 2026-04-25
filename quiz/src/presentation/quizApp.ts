@@ -1049,6 +1049,7 @@ export class QuizApp {
    * 教科タブでカテゴリが未選択（category === "all"）の場合はクイズパネルを非表示にし、
    * カテゴリが選択されている場合は表示する。
    * 「総合」タブ（subject === "all"）では「解説」と「確認」パネルタブを非表示にする。
+   * 「総合」タブでは「実行記録」と「問題一覧」パネルタブを表示する。
    * 「解説」または「確認」がアクティブな状態で総合タブに切り替えた場合は「実行記録」タブへフォールバックする。
    */
   private updateQuizPanelVisibility(): void {
@@ -1057,10 +1058,12 @@ export class QuizApp {
     const noCategory = this.filter.subject !== "all" && this.filter.category === "all";
     subjectContent.classList.toggle("category-only", noCategory);
 
-    // 「総合」タブでは「解説」と「確認」パネルタブを非表示にする
+    // 「総合」タブでは「解説」と「確認」パネルタブを非表示にし、「実行記録」と「問題一覧」は表示する
     const isAll = this.filter.subject === "all";
     document.getElementById("panelTab-guide")?.classList.toggle("hidden", isAll);
     document.getElementById("panelTab-quiz")?.classList.toggle("hidden", isAll);
+    document.getElementById("panelTab-history")?.classList.remove("hidden");
+    document.getElementById("panelTab-questions")?.classList.remove("hidden");
 
     // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「実行記録」タブに切り替える
     // 描画（renderHistoryList）は updateStartScreen() が一元的に担うためここでは呼ばない

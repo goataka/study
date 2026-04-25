@@ -2013,6 +2013,22 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(quizModePanel?.classList.contains("hidden")).toBe(true);
   });
 
+  it("総合タブ表示中は「実行記録」タブボタンが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.getElementById("panelTab-history");
+    expect(historyTab?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("総合タブ表示中は「問題一覧」タブボタンが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.getElementById("panelTab-questions");
+    expect(questionsTab?.classList.contains("hidden")).toBe(false);
+  });
+
   it("選択済みのカテゴリアイテムを再クリックすると非選択になり active クラスが除去される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
