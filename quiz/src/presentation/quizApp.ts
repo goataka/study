@@ -1118,6 +1118,7 @@ export class QuizApp {
     this.notesStates.clear();
 
     this.showScreen("quiz");
+    document.getElementById("quizScreen")?.classList.toggle("practice-mode", mode === "practice");
     this.initializeNotesCanvas();
     this.notesCanvas?.clear();
     this.renderQuestion();
