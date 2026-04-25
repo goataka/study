@@ -478,9 +478,15 @@ export class QuizApp {
 
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
-      this.filter.subject = subject;
-      this.filter.category = categoryId;
-      this.filter.parentCategory = parentCatId;
+      // 既に選択中の単元をクリックした場合は非選択に戻す（トグル）
+      if (this.filter.subject === subject && this.filter.category === categoryId) {
+        this.filter.category = "all";
+        this.filter.parentCategory = undefined;
+      } else {
+        this.filter.subject = subject;
+        this.filter.category = categoryId;
+        this.filter.parentCategory = parentCatId;
+      }
       this.updateCategoryListActive();
       const categoryRecords = this.useCase.getHistory();
       this.autoSelectPanelTab(categoryRecords);
