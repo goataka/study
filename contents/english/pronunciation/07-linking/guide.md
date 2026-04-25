@@ -70,6 +70,34 @@ not  at  all
 | an apple | アナップル | n + a → ナ |
 | turn on | ターノン | n + o → ノ |
 
+## 応用問題
+
+音がつながる部分の音をカタカナで書きましょう。
+
+| フレーズ | 音 |
+|----------|------|
+| work it out | 　　　　　　　　　　　　 |
+| call it off | 　　　　　　　　　　　　 |
+| give it up | 　　　　　　　　　　　　 |
+| make it up | 　　　　　　　　　　　　 |
+| look it up | 　　　　　　　　　　　　 |
+| hold on | 　　　　　　　　　　　　 |
+| run away | 　　　　　　　　　　　　 |
+| break it up | 　　　　　　　　　　　　 |
+
+## 応用解答
+
+| フレーズ | 音 | 変化した部分 |
+|----------|------|--------------|
+| work it out | ワー キッ ト アウ ト | k + i → キ |
+| call it off | コー リッ ト オフ | l + i → リ |
+| give it up | ギ ヴィッ ト アップ | v + i → ヴィ |
+| make it up | メイ キッ ト アップ | k + i → キ |
+| look it up | ルッ キッ ト アップ | k + i → キ |
+| hold on | ホール ドン | d + o → ドン |
+| run away | ラ ナ ウェイ | n + a → ナ |
+| break it up | ブレイ キッ ト アップ | k + i → キ |
+
 ---
 
 [目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=linking)
