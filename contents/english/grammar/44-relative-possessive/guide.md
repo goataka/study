@@ -15,9 +15,3 @@ I know a boy `whose` father plays games.
 |--------|-----------|------|
 | 人 | `whose` | a boy `whose` father plays games |
 | 物 | `whose` | a game `whose` rules are simple |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=relative-possessive)
-
-[前へ: 目的格の関係代名詞](../43-relative-object/drill.md) | 所有格の関係代名詞 | [次へ: 関係副詞](../45-relative-adverb/drill.md)

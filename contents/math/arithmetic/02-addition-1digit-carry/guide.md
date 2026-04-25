@@ -35,11 +35,3 @@
 
 - まず **10のまとまり** を作る
 - 大きい方の数にたして10にする → 残りをたす
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 1桁のたし算（くり上がりなし）](../01-addition-1digit-no-carry/guide.md) | **1桁のたし算（くり上がりあり）** | [次へ: 2桁のたし算（くり上がりなし）](../03-addition-2digit-no-carry/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-carry)

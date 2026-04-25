@@ -74,6 +74,21 @@ Feature: 学習クイズ
     When I click the "スタート画面に戻る" button
     Then the start screen should be visible
 
+  Scenario: 解説パネルのiframeにembedded=1クエリが付与される
+    When I click the "英語" tab
+    And I click the first category item
+    And I open the guide panel tab
+    Then the guide iframe src should contain "embedded=1"
+
+  Scenario: 手動確認済み記録は実施記録でread-only表示になる
+    When I click the "英語" tab
+    And I click the first category item
+    And I click the "✅ 学習済みにする" button
+    And I open the history panel
+    Then the manual history record score should show "-"
+    And the manual history record should have no toggle arrow
+    And clicking the manual history record header should not expand details
+
   @vr
   Scenario: スタート画面のビジュアル確認
     Then the start screen matches the snapshot

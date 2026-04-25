@@ -560,8 +560,10 @@ export class QuizApp {
         : this.useCase.getFirstAvailableGuideUrl();
 
     if (guideUrl) {
-      if (guideFrame.getAttribute("src") !== guideUrl) {
-        guideFrame.src = guideUrl;
+      // iframe 内であることを示す ?embedded=1 を付与してナビゲーション非表示スクリプトをトリガーする
+      const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
+      if (guideFrame.getAttribute("src") !== embeddedUrl) {
+        guideFrame.src = embeddedUrl;
       }
       guideFrame.classList.remove("hidden");
       noContent?.classList.add("hidden");
@@ -617,6 +619,7 @@ export class QuizApp {
     const date = new Date(record.date);
     const dateStr = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
 
+    const isManual = record.mode === "manual";
     const pct = Math.round((record.correctCount / record.totalCount) * 100);
 
     const metaDiv = document.createElement("div");
@@ -639,68 +642,80 @@ export class QuizApp {
     metaDiv.appendChild(modeSpan);
 
     const scoreSpan = document.createElement("span");
-    scoreSpan.className = `history-score ${pct >= 70 ? "pass" : "fail"}`;
-    scoreSpan.textContent = `${record.correctCount}/${record.totalCount} (${pct}%)`;
-
-    const toggleSpan = document.createElement("span");
-    toggleSpan.className = "history-toggle";
-    toggleSpan.textContent = "▶";
+    if (isManual) {
+      scoreSpan.className = "history-score";
+      scoreSpan.textContent = "-";
+    } else {
+      scoreSpan.className = `history-score ${pct >= 70 ? "pass" : "fail"}`;
+      scoreSpan.textContent = `${record.correctCount}/${record.totalCount} (${pct}%)`;
+    }
 
     header.appendChild(metaDiv);
     header.appendChild(scoreSpan);
-    header.appendChild(toggleSpan);
 
     // 詳細（折りたたみ）
     const detail = document.createElement("div");
     detail.className = "history-detail hidden";
 
-    record.entries.forEach((entry) => {
-      const entryDiv = document.createElement("div");
-      entryDiv.className = `history-entry ${entry.isCorrect ? "correct" : "incorrect"}`;
+    if (isManual) {
+      // 手動確認済みの記録は詳細を展開できない
+      header.removeAttribute("role");
+      header.removeAttribute("tabindex");
+      header.removeAttribute("aria-expanded");
+    } else {
+      const toggleSpan = document.createElement("span");
+      toggleSpan.className = "history-toggle";
+      toggleSpan.textContent = "▶";
+      header.appendChild(toggleSpan);
 
-      const iconSpan = document.createElement("span");
-      iconSpan.className = "history-entry-icon";
-      iconSpan.textContent = entry.isCorrect ? "✓" : "✗";
+      record.entries.forEach((entry) => {
+        const entryDiv = document.createElement("div");
+        entryDiv.className = `history-entry ${entry.isCorrect ? "correct" : "incorrect"}`;
 
-      const contentDiv = document.createElement("div");
-      contentDiv.className = "history-entry-content";
+        const iconSpan = document.createElement("span");
+        iconSpan.className = "history-entry-icon";
+        iconSpan.textContent = entry.isCorrect ? "✓" : "✗";
 
-      const questionP = document.createElement("p");
-      questionP.className = "history-entry-question";
-      questionP.textContent = entry.questionText;
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "history-entry-content";
 
-      const answerP = document.createElement("p");
-      answerP.className = "history-entry-answer";
-      const userAnswer = entry.userAnswerText ?? (entry.choices[entry.userAnswerIndex] ?? "未回答");
-      const correctAnswer = entry.choices[entry.correctAnswerIndex] ?? "";
-      if (entry.isCorrect) {
-        answerP.textContent = `正解: ${correctAnswer}`;
-      } else {
-        answerP.textContent = `あなたの回答: ${userAnswer} → 正解: ${correctAnswer}`;
-      }
+        const questionP = document.createElement("p");
+        questionP.className = "history-entry-question";
+        questionP.textContent = entry.questionText;
 
-      contentDiv.appendChild(questionP);
-      contentDiv.appendChild(answerP);
-      entryDiv.appendChild(iconSpan);
-      entryDiv.appendChild(contentDiv);
-      detail.appendChild(entryDiv);
-    });
+        const answerP = document.createElement("p");
+        answerP.className = "history-entry-answer";
+        const userAnswer = entry.userAnswerText ?? (entry.choices[entry.userAnswerIndex] ?? "未回答");
+        const correctAnswer = entry.choices[entry.correctAnswerIndex] ?? "";
+        if (entry.isCorrect) {
+          answerP.textContent = `正解: ${correctAnswer}`;
+        } else {
+          answerP.textContent = `あなたの回答: ${userAnswer} → 正解: ${correctAnswer}`;
+        }
 
-    // 折りたたみ切り替え
-    const toggleDetail = (): void => {
-      const isExpanded = !detail.classList.contains("hidden");
-      detail.classList.toggle("hidden", isExpanded);
-      toggleSpan.textContent = isExpanded ? "▶" : "▼";
-      header.setAttribute("aria-expanded", String(!isExpanded));
-    };
+        contentDiv.appendChild(questionP);
+        contentDiv.appendChild(answerP);
+        entryDiv.appendChild(iconSpan);
+        entryDiv.appendChild(contentDiv);
+        detail.appendChild(entryDiv);
+      });
 
-    header.addEventListener("click", toggleDetail);
-    header.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleDetail();
-      }
-    });
+      // 折りたたみ切り替え
+      const toggleDetail = (): void => {
+        const isExpanded = !detail.classList.contains("hidden");
+        detail.classList.toggle("hidden", isExpanded);
+        toggleSpan.textContent = isExpanded ? "▶" : "▼";
+        header.setAttribute("aria-expanded", String(!isExpanded));
+      };
+
+      header.addEventListener("click", toggleDetail);
+      header.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleDetail();
+        }
+      });
+    }
 
     item.appendChild(header);
     item.appendChild(detail);

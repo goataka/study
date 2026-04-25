@@ -39,10 +39,3 @@ f'(x) = 3·2·x¹ + 2·1·x⁰ + 0
 ```
 
 🎯 極大値 **4**(x=0)、極小値 **0**(x=2)
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 極限](../36-limits/drill.md) | **微分** | [次へ: 積分](../38-integration/drill.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=differentiation)

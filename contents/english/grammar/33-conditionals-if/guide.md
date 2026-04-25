@@ -27,9 +27,3 @@ If I had time, I `would` play.（時間があれば、するのに — 今はな
 
 第3条件文:
 If I had had time, I `would have` played.（時間があったら、したのに — 過去になかった）
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=conditionals-if)
-
-[前へ: 助動詞の受動態](../32-passive-modals/drill.md) | 条件文 | [次へ: I wish](../34-conditionals-wish/drill.md)

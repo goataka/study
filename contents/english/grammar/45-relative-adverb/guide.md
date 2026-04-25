@@ -18,9 +18,3 @@ The place `where` I play games is quiet.
 | 場所 | `where` | the place `where` I play games |
 | 時 | `when` | the day `when` I play games |
 | 理由 | `why` | the reason `why` I play games |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=relative-adverb)
-
-[前へ: 所有格の関係代名詞](../44-relative-possessive/drill.md) | 関係副詞 | [次へ: 時制の一致](../46-reported-tense/drill.md)

@@ -40,11 +40,3 @@ x = (-4 ± √(16-12)) / 2
 | D > 0 | 異なる2つの実数解 |
 | D = 0 | 重解（1つ） |
 | D < 0 | 実数解なし |
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 平方根](../28-square-roots/drill.md) | **二次方程式** | [次へ: 二次関数](../../calculus/30-quadratic-func/drill.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=quadratic-eq)

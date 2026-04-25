@@ -10,9 +10,3 @@
 | e で終わる | e を取って + ing | make → `making` |
 | 短母音 + 子音 | 子音を重ねて + ing | run → `running` |
 | ie で終わる | ie → y + ing | die → `dying` |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=progressive-ing)
-
-[前へ: 進行形](../23-progressive/drill.md) | -ing形の作り方 | [次へ: 完了形](../25-perfect/drill.md)

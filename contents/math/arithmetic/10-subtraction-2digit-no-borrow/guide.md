@@ -35,11 +35,3 @@
 
 - 大きい位から順に引いても、小さい位から順に引いても同じ
 - 各桁で上の数が下の数より大きいことを確認する
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 1桁のひき算（くり下がりあり）](../09-subtraction-1digit-borrow/guide.md) | **2桁のひき算（くり下がりなし）** | [次へ: 2桁のひき算（くり下がりあり）](../11-subtraction-2digit-borrow/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)

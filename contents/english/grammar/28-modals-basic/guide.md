@@ -20,9 +20,3 @@ I `can play` games.（ゲームができる）
 | `should` | ～すべきだ | I `should` play games. |
 | `will` | ～するでしょう | I `will` play games. |
 | `might` | ～かもしれない（may より弱い） | I `might` play games later. |
-
----
-
-[目次](../../README.md) | [練習](drill.md) | [解答](answer.md) | [英作文](writing.md) | [英作文解答](writing-answer.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=modals-basic)
-
-[前へ: 完了形の用法](../27-perfect-usage/drill.md) | 助動詞の使い分け | [次へ: 助動詞の否定形](../29-modals-negative/drill.md)

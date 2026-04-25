@@ -36,11 +36,3 @@
 
 - 整数 × 分数 → 整数を「整数/1」にする（例: 2 = 2/1）
 - かけ算では通分しない ✅
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 分数のひき算（通分あり）](../29-fractions-diff-sub/guide.md) | **分数のかけ算** | [次へ: 分数のわり算](../31-fractions-divide/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=fractions-multiply)

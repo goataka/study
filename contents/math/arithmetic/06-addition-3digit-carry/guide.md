@@ -38,11 +38,3 @@
 
 - くり上がりを小さく書いておくと間違いが少ない
 - 右から順に計算することが大切
-
----
-
-[目次](../README.md) | [練習](drill.md) | [解答](answer.md) | 解説
-
-[前へ: 3桁のたし算（くり上がりなし）](../05-addition-3digit-no-carry/guide.md) | **3桁のたし算（くり上がりあり）** | [次へ: たし算（まとめ）](../07-addition-mixed/guide.md)
-
-[クイズ](../../quiz/index.html?subject=math&category=addition-carry)
