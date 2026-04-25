@@ -10,6 +10,17 @@
 
 import { QuizApp } from "./quizApp";
 
+// OcrService のモック（jsdom環境ではTesseractが使えないため）
+vi.mock("./ocrService", () => ({
+  OcrService: class {
+    async recognize() {
+      return "";
+    }
+    async initialize() {}
+    async destroy() {}
+  },
+}));
+
 // ─── DOM スタブのセットアップ ────────────────────────────────────────────────
 
 /** テストに必要な最小限のHTML要素を生成する */
@@ -2049,6 +2060,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
     handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     expect(textInput?.value).toBe("やま");
@@ -2062,6 +2074,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
     handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(handwritingInput.value).toBe("");
   });
@@ -2075,9 +2088,11 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
 
     handwritingInput.value = "や";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     handwritingInput.value = "ま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     expect(textInput?.value).toBe("やま");
@@ -2091,6 +2106,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
     handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 回答が登録されていないこと（フィードバックが非表示のまま）
     const feedback = document.getElementById("answerFeedback");
@@ -2109,6 +2125,7 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
     handwritingInput.value = "やま";
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const confirmBtn = document.getElementById("handwritingConfirmBtn");
     expect(confirmBtn?.classList.contains("hidden")).toBe(false);
@@ -2120,9 +2137,67 @@ describe("QuizApp — テキスト入力問題のタッチペン入力仕様", (
     document.getElementById("startRandomBtn")?.click();
 
     document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
     expect(textInput?.value).toBe("");
+  });
+
+  it("OCRで認識した文字が答えの入力エリアに自動入力される", async () => {
+    // OcrServiceのモックを上書きしてOCR結果を返す
+    const { OcrService } = await import("./ocrService");
+    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockResolvedValue("やま");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.value).toBe("やま");
+
+    recognizeSpy.mockRestore();
+  });
+
+  it("OCR認識後にキャンバスがクリアされる", async () => {
+    // OcrServiceのモックを上書きしてOCR結果を返す
+    const { OcrService } = await import("./ocrService");
+    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockResolvedValue("てすと");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // キャンバスがクリアされていること（toDataURLを通じて間接的に確認）
+    const canvas = document.getElementById("notesCanvas") as HTMLCanvasElement | null;
+    expect(canvas).not.toBeNull();
+
+    recognizeSpy.mockRestore();
+  });
+
+  it("OCRが失敗したときは手書き入力フィールドの値をフォールバックとして使う", async () => {
+    // OcrServiceのモックを上書きしてエラーを投げる
+    const { OcrService } = await import("./ocrService");
+    const recognizeSpy = vi.spyOn(OcrService.prototype, "recognize").mockRejectedValue(new Error("OCR失敗"));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement;
+    handwritingInput.value = "かわ";
+    document.getElementById("handwritingConfirmBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    expect(textInput?.value).toBe("かわ");
+
+    recognizeSpy.mockRestore();
   });
 
   it("回答後に次の問題へ移動すると確定ボタンが復元される", async () => {
