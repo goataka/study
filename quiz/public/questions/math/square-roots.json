@@ -11,7 +11,7 @@
   "description": "平方根の意味を理解し、計算を正確にできるようにします。",
   "questions": [
     {
-      "id": "sqrt-1",
+      "id": "fb054b35",
       "question": "√4 = ?",
       "choices": [
         "2",
@@ -23,7 +23,7 @@
       "explanation": "2×2 = 4なので、√4 = 2"
     },
     {
-      "id": "sqrt-2",
+      "id": "c54764b0",
       "question": "√9 = ?",
       "choices": [
         "3",
@@ -35,7 +35,7 @@
       "explanation": "3×3 = 9なので、√9 = 3"
     },
     {
-      "id": "sqrt-3",
+      "id": "719c677b",
       "question": "√25 = ?",
       "choices": [
         "5",
@@ -47,7 +47,7 @@
       "explanation": "5×5 = 25なので、√25 = 5"
     },
     {
-      "id": "sqrt-4",
+      "id": "495d30bf",
       "question": "√2 × √3 = ?",
       "choices": [
         "√6",
@@ -59,7 +59,7 @@
       "explanation": "√a × √b = √(ab)なので、√2 × √3 = √6"
     },
     {
-      "id": "sqrt-5",
+      "id": "31090460",
       "question": "√8 × √2 = ?",
       "choices": [
         "4",
@@ -71,7 +71,7 @@
       "explanation": "√8 × √2 = √16 = 4"
     },
     {
-      "id": "sqrt-6",
+      "id": "8ab81745",
       "question": "√12 ÷ √3 = ?",
       "choices": [
         "2",
@@ -83,7 +83,7 @@
       "explanation": "√12 ÷ √3 = √(12÷3) = √4 = 2"
     },
     {
-      "id": "sqrt-7",
+      "id": "ebd5f114",
       "question": "√18 を簡単にすると？",
       "choices": [
         "3√2",
@@ -95,7 +95,7 @@
       "explanation": "√18 = √(9×2) = √9 × √2 = 3√2"
     },
     {
-      "id": "sqrt-8",
+      "id": "5748cf68",
       "question": "2√3 + 5√3 = ?",
       "choices": [
         "7√3",

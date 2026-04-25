@@ -11,7 +11,7 @@
   "description": "三角関数の基本値を覚え、相互関係と加法定理を使った計算ができるようにします。",
   "questions": [
     {
-      "id": "trig-1",
+      "id": "bd65a547",
       "question": "sin 30° = ?",
       "choices": [
         "1/2",
@@ -23,7 +23,7 @@
       "explanation": "基本値として覚えます。sin 30° = 1/2"
     },
     {
-      "id": "trig-2",
+      "id": "7b6f64f7",
       "question": "cos 60° = ?",
       "choices": [
         "1/2",
@@ -35,7 +35,7 @@
       "explanation": "sin 30° = cos 60° = 1/2"
     },
     {
-      "id": "trig-3",
+      "id": "5f4fedbd",
       "question": "tan 45° = ?",
       "choices": [
         "1",
@@ -47,7 +47,7 @@
       "explanation": "45°では対辺と隣辺が等しいので、tan 45° = 1"
     },
     {
-      "id": "trig-4",
+      "id": "0c760fc1",
       "question": "sin 90° = ?",
       "choices": [
         "1",
@@ -59,7 +59,7 @@
       "explanation": "90°では対辺が最大になるので、sin 90° = 1"
     },
     {
-      "id": "trig-5",
+      "id": "e82dffde",
       "question": "cos 0° = ?",
       "choices": [
         "1",
@@ -71,7 +71,7 @@
       "explanation": "0°では隣辺が最大になるので、cos 0° = 1"
     },
     {
-      "id": "trig-6",
+      "id": "81178811",
       "question": "sin²θ + cos²θ = ?",
       "choices": [
         "1",
@@ -83,7 +83,7 @@
       "explanation": "三角関数の基本的な相互関係。常に sin²θ + cos²θ = 1"
     },
     {
-      "id": "trig-7",
+      "id": "d294c654",
       "question": "sin θ = 3/5 のとき cos θ = ?（0°<θ<90°）",
       "choices": [
         "4/5",
@@ -95,7 +95,7 @@
       "explanation": "sin²θ + cos²θ = 1より、(3/5)² + cos²θ = 1。cos²θ = 16/25。cos θ = 4/5"
     },
     {
-      "id": "trig-8",
+      "id": "fe2ce58c",
       "question": "sin(α + β) = ?",
       "choices": [
         "sin α cos β + cos α sin β",

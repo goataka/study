@@ -11,7 +11,7 @@
   "description": "形容詞・副詞に -er をつけて「より〜だ」という比較級を作ります。",
   "questions": [
     {
-      "id": "comparatives-er-1",
+      "id": "f4e63571",
       "question": "I am ___ than him. (tall)",
       "choices": [
         "taller",
@@ -23,7 +23,7 @@
       "explanation": "短い形容詞の比較級は -er をつけます"
     },
     {
-      "id": "comparatives-er-2",
+      "id": "ec0c46aa",
       "question": "I am ___ than him. (big)",
       "choices": [
         "bigger",
@@ -35,7 +35,7 @@
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -er をつけます"
     },
     {
-      "id": "comparatives-er-3",
+      "id": "34707a56",
       "question": "I am ___ to talk to than him. (easy)",
       "choices": [
         "easier",
@@ -47,7 +47,7 @@
       "explanation": "子音+yで終わる語は、yをiに変えて -er をつけます"
     },
     {
-      "id": "comparatives-er-4",
+      "id": "f014726c",
       "question": "It is ___ than yesterday. (hot)",
       "choices": [
         "hotter",
@@ -59,7 +59,7 @@
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -er をつけます"
     },
     {
-      "id": "comparatives-er-5",
+      "id": "cc86c04e",
       "question": "This game is ___ than that one. (interesting)",
       "choices": [
         "more interesting",
@@ -71,7 +71,7 @@
       "explanation": "長い形容詞の比較級は more + 形容詞です"
     },
     {
-      "id": "comparatives-er-6",
+      "id": "d4a249cd",
       "question": "This problem is ___ than that one. (difficult)",
       "choices": [
         "more difficult",
@@ -83,7 +83,7 @@
       "explanation": "長い形容詞の比較級は more + 形容詞です"
     },
     {
-      "id": "comparatives-er-7",
+      "id": "ad5f4d10",
       "question": "This flower is ___ than that one. (beautiful)",
       "choices": [
         "more beautiful",
@@ -95,7 +95,7 @@
       "explanation": "長い形容詞の比較級は more + 形容詞です"
     },
     {
-      "id": "comparatives-er-8",
+      "id": "94d9b389",
       "question": "This book is ___ than that one. (cheap)",
       "choices": [
         "cheaper",

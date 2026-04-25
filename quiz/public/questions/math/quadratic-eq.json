@@ -11,7 +11,7 @@
   "description": "因数分解と解の公式を使い分けて、二次方程式を確実に解けるようにします。",
   "questions": [
     {
-      "id": "quad-eq-1",
+      "id": "0f410bb0",
       "question": "x² - 5x + 6 = 0 を解くと？",
       "choices": [
         "x = 2, 3",
@@ -23,7 +23,7 @@
       "explanation": "因数分解すると(x-2)(x-3) = 0。よって x = 2, 3"
     },
     {
-      "id": "quad-eq-2",
+      "id": "d182a777",
       "question": "x² - 7x + 12 = 0 を解くと？",
       "choices": [
         "x = 3, 4",
@@ -35,7 +35,7 @@
       "explanation": "因数分解すると(x-3)(x-4) = 0。よって x = 3, 4"
     },
     {
-      "id": "quad-eq-3",
+      "id": "32cebc8f",
       "question": "x² - x - 6 = 0 を解くと？",
       "choices": [
         "x = -2, 3",
@@ -47,7 +47,7 @@
       "explanation": "因数分解すると(x+2)(x-3) = 0。よって x = -2, 3"
     },
     {
-      "id": "quad-eq-4",
+      "id": "b9317d81",
       "question": "x² + 5x + 6 = 0 を解くと？",
       "choices": [
         "x = -2, -3",
@@ -59,7 +59,7 @@
       "explanation": "因数分解すると(x+2)(x+3) = 0。よって x = -2, -3"
     },
     {
-      "id": "quad-eq-5",
+      "id": "a79a221e",
       "question": "x² - 9 = 0 を解くと？",
       "choices": [
         "x = ±3",
@@ -71,7 +71,7 @@
       "explanation": "(x+3)(x-3) = 0なので、x = ±3"
     },
     {
-      "id": "quad-eq-6",
+      "id": "1d54eea3",
       "question": "x² + 4x + 3 = 0 を解くと？",
       "choices": [
         "x = -1, -3",
@@ -83,7 +83,7 @@
       "explanation": "因数分解すると(x+1)(x+3) = 0。よって x = -1, -3"
     },
     {
-      "id": "quad-eq-7",
+      "id": "0c496a70",
       "question": "x² - 6x + 5 = 0 を解くと？",
       "choices": [
         "x = 1, 5",
@@ -95,7 +95,7 @@
       "explanation": "因数分解すると(x-1)(x-5) = 0。よって x = 1, 5"
     },
     {
-      "id": "quad-eq-8",
+      "id": "5ea0d706",
       "question": "x² + 2x - 8 = 0 を解くと？",
       "choices": [
         "x = -4, 2",

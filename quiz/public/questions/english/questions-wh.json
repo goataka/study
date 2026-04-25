@@ -11,7 +11,7 @@
   "description": "what / where / who などの疑問詞を文頭に置いて、具体的な情報を尋ねます。",
   "questions": [
     {
-      "id": "questions-wh-1",
+      "id": "be38a050",
       "question": "___ do you play? (何を？)",
       "choices": [
         "What",
@@ -23,7 +23,7 @@
       "explanation": "「何を？」は What を使います"
     },
     {
-      "id": "questions-wh-2",
+      "id": "fe491a9c",
       "question": "___ do you play games? (どこで？)",
       "choices": [
         "Where",
@@ -35,7 +35,7 @@
       "explanation": "「どこで？」は Where を使います"
     },
     {
-      "id": "questions-wh-3",
+      "id": "3abd382f",
       "question": "___ do you play games? (いつ？)",
       "choices": [
         "When",
@@ -47,7 +47,7 @@
       "explanation": "「いつ？」は When を使います"
     },
     {
-      "id": "questions-wh-4",
+      "id": "28ea7d08",
       "question": "___ do you play games? (なぜ？)",
       "choices": [
         "Why",
@@ -59,7 +59,7 @@
       "explanation": "「なぜ？」は Why を使います"
     },
     {
-      "id": "questions-wh-5",
+      "id": "224e148d",
       "question": "___ do you play games? (どのように？)",
       "choices": [
         "How",
@@ -71,7 +71,7 @@
       "explanation": "「どのように？」は How を使います"
     },
     {
-      "id": "questions-wh-6",
+      "id": "05c9a2ed",
       "question": "___ is your name? (誰？)",
       "choices": [
         "What",
@@ -83,7 +83,7 @@
       "explanation": "「名前は何？」は What を使います"
     },
     {
-      "id": "questions-wh-7",
+      "id": "cbafa33f",
       "question": "___ is that boy? (誰？)",
       "choices": [
         "Who",
@@ -95,7 +95,7 @@
       "explanation": "「誰？」は Who を使います"
     },
     {
-      "id": "questions-wh-8",
+      "id": "47ea37c5",
       "question": "___ book is this? (誰の？)",
       "choices": [
         "Whose",

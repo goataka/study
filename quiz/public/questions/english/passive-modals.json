@@ -11,7 +11,7 @@
   "description": "助動詞の受動態は「助動詞 + be + 過去分詞」の形で作ります。",
   "questions": [
     {
-      "id": "passive-modals-1",
+      "id": "8ec354e5",
       "question": "The work ___ finished tomorrow. (can + 受動態)",
       "choices": [
         "can be",
@@ -23,7 +23,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-2",
+      "id": "1cc6e8e9",
       "question": "The problem ___ solved easily. (must + 受動態)",
       "choices": [
         "must be",
@@ -35,7 +35,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-3",
+      "id": "a9a3778d",
       "question": "The letter ___ sent tomorrow. (should + 受動態)",
       "choices": [
         "should be",
@@ -47,7 +47,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-4",
+      "id": "ae13878e",
       "question": "The book ___ read by everyone. (may + 受動態)",
       "choices": [
         "may be",
@@ -59,7 +59,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-5",
+      "id": "3aacd794",
       "question": "The work ___ done by next week. (will + 受動態)",
       "choices": [
         "will be",
@@ -71,7 +71,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-6",
+      "id": "70c10ed1",
       "question": "The rule ___ followed. (must + 受動態)",
       "choices": [
         "must be",
@@ -83,7 +83,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-7",
+      "id": "61155b06",
       "question": "The cake ___ eaten by tomorrow. (should + 受動態)",
       "choices": [
         "should be",
@@ -95,7 +95,7 @@
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
-      "id": "passive-modals-8",
+      "id": "06db9eed",
       "question": "The door ___ opened with this key. (can + 受動態)",
       "choices": [
         "can be",

@@ -11,7 +11,7 @@
   "description": "good / well / bad のように不規則に変化する比較級・最上級を覚えます。",
   "questions": [
     {
-      "id": "comparatives-irregular-1",
+      "id": "dcdf3b28",
       "question": "good の比較級は？",
       "choices": [
         "better",
@@ -23,7 +23,7 @@
       "explanation": "goodの比較級は better です"
     },
     {
-      "id": "comparatives-irregular-2",
+      "id": "292eda5c",
       "question": "good の最上級は？",
       "choices": [
         "best",
@@ -35,7 +35,7 @@
       "explanation": "goodの最上級は best です"
     },
     {
-      "id": "comparatives-irregular-3",
+      "id": "0bcda2d6",
       "question": "bad の比較級は？",
       "choices": [
         "worse",
@@ -47,7 +47,7 @@
       "explanation": "badの比較級は worse です"
     },
     {
-      "id": "comparatives-irregular-4",
+      "id": "dcd42682",
       "question": "bad の最上級は？",
       "choices": [
         "worst",
@@ -59,7 +59,7 @@
       "explanation": "badの最上級は worst です"
     },
     {
-      "id": "comparatives-irregular-5",
+      "id": "d708bd32",
       "question": "many/much の比較級は？",
       "choices": [
         "more",
@@ -71,7 +71,7 @@
       "explanation": "many/muchの比較級は more です"
     },
     {
-      "id": "comparatives-irregular-6",
+      "id": "28c9b86f",
       "question": "many/much の最上級は？",
       "choices": [
         "most",
@@ -83,7 +83,7 @@
       "explanation": "many/muchの最上級は most です"
     },
     {
-      "id": "comparatives-irregular-7",
+      "id": "d680686c",
       "question": "This is ___ than that. (good)",
       "choices": [
         "better",
@@ -95,7 +95,7 @@
       "explanation": "goodの比較級は better を使います"
     },
     {
-      "id": "comparatives-irregular-8",
+      "id": "028e29cd",
       "question": "This is the ___ of all. (bad)",
       "choices": [
         "worst",

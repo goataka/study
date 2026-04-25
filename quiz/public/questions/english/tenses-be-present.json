@@ -11,7 +11,7 @@
   "description": "be動詞は「〜です」「〜にいる」を表す動詞です。",
   "questions": [
     {
-      "id": "tenses-be-present-1",
+      "id": "9d840af7",
       "question": "He ___ happy.",
       "choices": [
         "is",
@@ -23,7 +23,7 @@
       "explanation": "三人称単数には is を使います"
     },
     {
-      "id": "tenses-be-present-2",
+      "id": "c0007e52",
       "question": "She ___ a student.",
       "choices": [
         "is",
@@ -35,7 +35,7 @@
       "explanation": "三人称単数には is を使います"
     },
     {
-      "id": "tenses-be-present-3",
+      "id": "6d098ea0",
       "question": "They ___ friends.",
       "choices": [
         "are",
@@ -47,7 +47,7 @@
       "explanation": "複数形には are を使います"
     },
     {
-      "id": "tenses-be-present-4",
+      "id": "bddd9445",
       "question": "We ___ tired.",
       "choices": [
         "are",
@@ -59,7 +59,7 @@
       "explanation": "複数形には are を使います"
     },
     {
-      "id": "tenses-be-present-5",
+      "id": "8868d40a",
       "question": "It ___ cold.",
       "choices": [
         "is",
@@ -71,7 +71,7 @@
       "explanation": "三人称単数には is を使います"
     },
     {
-      "id": "tenses-be-present-6",
+      "id": "456e152a",
       "question": "I ___ happy.",
       "choices": [
         "am",
@@ -83,7 +83,7 @@
       "explanation": "Iには am を使います"
     },
     {
-      "id": "tenses-be-present-7",
+      "id": "29ec50e5",
       "question": "You ___ a student.",
       "choices": [
         "are",
@@ -95,7 +95,7 @@
       "explanation": "Youには are を使います"
     },
     {
-      "id": "tenses-be-present-8",
+      "id": "7281fc74",
       "question": "The book ___ interesting.",
       "choices": [
         "is",

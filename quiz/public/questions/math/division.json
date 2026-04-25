@@ -10,7 +10,7 @@
   "description": "わり算を筆算で正確に計算できるようにします。",
   "questions": [
     {
-      "id": "div-1",
+      "id": "bf4b9f35",
       "question": "12 ÷ 3 = ?",
       "choices": [
         "4",
@@ -22,7 +22,7 @@
       "explanation": "12 ÷ 3 = 4"
     },
     {
-      "id": "div-2",
+      "id": "caaca5b2",
       "question": "20 ÷ 4 = ?",
       "choices": [
         "5",
@@ -34,7 +34,7 @@
       "explanation": "20 ÷ 4 = 5"
     },
     {
-      "id": "div-3",
+      "id": "70c68da8",
       "question": "24 ÷ 6 = ?",
       "choices": [
         "4",
@@ -46,7 +46,7 @@
       "explanation": "24 ÷ 6 = 4"
     },
     {
-      "id": "div-4",
+      "id": "4efaf97b",
       "question": "35 ÷ 7 = ?",
       "choices": [
         "5",
@@ -58,7 +58,7 @@
       "explanation": "35 ÷ 7 = 5"
     },
     {
-      "id": "div-5",
+      "id": "f8614720",
       "question": "48 ÷ 8 = ?",
       "choices": [
         "6",
@@ -70,7 +70,7 @@
       "explanation": "48 ÷ 8 = 6"
     },
     {
-      "id": "div-6",
+      "id": "7c5df9ff",
       "question": "56 ÷ 7 = ?",
       "choices": [
         "8",
@@ -82,7 +82,7 @@
       "explanation": "56 ÷ 7 = 8"
     },
     {
-      "id": "div-7",
+      "id": "0ba99018",
       "question": "63 ÷ 9 = ?",
       "choices": [
         "7",
@@ -94,7 +94,7 @@
       "explanation": "63 ÷ 9 = 7"
     },
     {
-      "id": "div-8",
+      "id": "2c790dfb",
       "question": "81 ÷ 9 = ?",
       "choices": [
         "9",

@@ -11,7 +11,7 @@
   "description": "-ing 形は動詞の原形から決まったルールで作ります。",
   "questions": [
     {
-      "id": "progressive-ing-1",
+      "id": "cdd8899f",
       "question": "study の-ing形は？",
       "choices": [
         "studying",
@@ -23,7 +23,7 @@
       "explanation": "yで終わる語はそのまま -ing をつけます"
     },
     {
-      "id": "progressive-ing-2",
+      "id": "5913e1b4",
       "question": "run の-ing形は？",
       "choices": [
         "running",
@@ -35,7 +35,7 @@
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
     },
     {
-      "id": "progressive-ing-3",
+      "id": "e5cb6458",
       "question": "swim の-ing形は？",
       "choices": [
         "swimming",
@@ -47,7 +47,7 @@
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
     },
     {
-      "id": "progressive-ing-4",
+      "id": "e8ccc1e8",
       "question": "write の-ing形は？",
       "choices": [
         "writing",
@@ -59,7 +59,7 @@
       "explanation": "eで終わる語はeを取って -ing をつけます"
     },
     {
-      "id": "progressive-ing-5",
+      "id": "34bdbe99",
       "question": "make の-ing形は？",
       "choices": [
         "making",
@@ -71,7 +71,7 @@
       "explanation": "eで終わる語はeを取って -ing をつけます"
     },
     {
-      "id": "progressive-ing-6",
+      "id": "3bc2dcff",
       "question": "sit の-ing形は？",
       "choices": [
         "sitting",
@@ -83,7 +83,7 @@
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
     },
     {
-      "id": "progressive-ing-7",
+      "id": "8cd79bc6",
       "question": "dance の-ing形は？",
       "choices": [
         "dancing",
@@ -95,7 +95,7 @@
       "explanation": "eで終わる語はeを取って -ing をつけます"
     },
     {
-      "id": "progressive-ing-8",
+      "id": "7141d68c",
       "question": "come の-ing形は？",
       "choices": [
         "coming",

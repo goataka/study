@@ -11,7 +11,7 @@
   "description": "一般動詞は動作や状態を表す動詞です。",
   "questions": [
     {
-      "id": "tenses-regular-present-1",
+      "id": "9eb70774",
       "question": "He ___ games. (play)",
       "choices": [
         "plays",
@@ -23,7 +23,7 @@
       "explanation": "三人称単数現在形には -s をつけます"
     },
     {
-      "id": "tenses-regular-present-2",
+      "id": "405e214c",
       "question": "She ___ English. (study)",
       "choices": [
         "studies",
@@ -35,7 +35,7 @@
       "explanation": "子音+yで終わる語は、yをiに変えて -es をつけます"
     },
     {
-      "id": "tenses-regular-present-3",
+      "id": "4134a5c3",
       "question": "He ___ TV. (watch)",
       "choices": [
         "watches",
@@ -47,7 +47,7 @@
       "explanation": "ch で終わる語には -es をつけます"
     },
     {
-      "id": "tenses-regular-present-4",
+      "id": "912dbaea",
       "question": "She ___ music. (like)",
       "choices": [
         "likes",
@@ -59,7 +59,7 @@
       "explanation": "三人称単数現在形には -s をつけます"
     },
     {
-      "id": "tenses-regular-present-5",
+      "id": "5ad5ccf0",
       "question": "He ___ to school. (walk)",
       "choices": [
         "walks",
@@ -71,7 +71,7 @@
       "explanation": "三人称単数現在形には -s をつけます"
     },
     {
-      "id": "tenses-regular-present-6",
+      "id": "4f6242b5",
       "question": "I ___ games. (play)",
       "choices": [
         "play",
@@ -83,7 +83,7 @@
       "explanation": "Iには原形を使います"
     },
     {
-      "id": "tenses-regular-present-7",
+      "id": "cb0063a5",
       "question": "They ___ English. (study)",
       "choices": [
         "study",
@@ -95,7 +95,7 @@
       "explanation": "複数形には原形を使います"
     },
     {
-      "id": "tenses-regular-present-8",
+      "id": "1b81bab1",
       "question": "She ___ tennis. (play)",
       "choices": [
         "plays",

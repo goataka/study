@@ -11,7 +11,7 @@
   "description": "this / here / now などの指示語や時の表現は間接話法で過去を指す語に変わります。",
   "questions": [
     {
-      "id": "reported-expressions-1",
+      "id": "b78a757c",
       "question": "\"I will come tomorrow.\" → He said he would come ___.",
       "choices": [
         "the next day",
@@ -23,7 +23,7 @@
       "explanation": "tomorrowは the next day に変わります"
     },
     {
-      "id": "reported-expressions-2",
+      "id": "48632597",
       "question": "\"I came here yesterday.\" → He said he had come ___ the day before.",
       "choices": [
         "there",
@@ -35,7 +35,7 @@
       "explanation": "hereは there に変わります"
     },
     {
-      "id": "reported-expressions-3",
+      "id": "38bb2389",
       "question": "\"I am busy now.\" → He said he was busy ___.",
       "choices": [
         "then",
@@ -47,7 +47,7 @@
       "explanation": "nowは then に変わります"
     },
     {
-      "id": "reported-expressions-4",
+      "id": "09f1435b",
       "question": "\"I like this book.\" → He said he liked ___ book.",
       "choices": [
         "that",
@@ -59,7 +59,7 @@
       "explanation": "thisは that に変わります"
     },
     {
-      "id": "reported-expressions-5",
+      "id": "5f53911a",
       "question": "\"I will do it today.\" → He said he would do it ___.",
       "choices": [
         "that day",
@@ -71,7 +71,7 @@
       "explanation": "todayは that day に変わります"
     },
     {
-      "id": "reported-expressions-6",
+      "id": "f200a95b",
       "question": "yesterdayは間接話法で何に変わる？",
       "choices": [
         "the day before",
@@ -83,7 +83,7 @@
       "explanation": "yesterdayは the day before に変わります"
     },
     {
-      "id": "reported-expressions-7",
+      "id": "6d0643c3",
       "question": "\"I was here last week.\" → He said he had been ___ the week before.",
       "choices": [
         "there",
@@ -95,7 +95,7 @@
       "explanation": "hereは there に変わります"
     },
     {
-      "id": "reported-expressions-8",
+      "id": "0c8a2837",
       "question": "\"I want these books.\" → He said he wanted ___ books.",
       "choices": [
         "those",

@@ -11,7 +11,7 @@
   "description": "分母が同じ分数のひき算を正確に計算できるようにします。",
   "questions": [
     {
-      "id": "frac-same-sub-1",
+      "id": "e9444549",
       "question": "3/4 - 1/4 = ?",
       "choices": [
         "2/4",
@@ -23,7 +23,7 @@
       "explanation": "分母はそのまま、分子だけをひきます。3 - 1 = 2なので、2/4（約分すると1/2）"
     },
     {
-      "id": "frac-same-sub-2",
+      "id": "0e47b333",
       "question": "2/3 - 1/3 = ?",
       "choices": [
         "1/3",
@@ -35,7 +35,7 @@
       "explanation": "2 - 1 = 1なので、1/3"
     },
     {
-      "id": "frac-same-sub-3",
+      "id": "7e6d1a7b",
       "question": "4/5 - 2/5 = ?",
       "choices": [
         "2/5",
@@ -47,7 +47,7 @@
       "explanation": "4 - 2 = 2なので、2/5"
     },
     {
-      "id": "frac-same-sub-4",
+      "id": "de74c740",
       "question": "7/8 - 3/8 = ?",
       "choices": [
         "4/8",
@@ -59,7 +59,7 @@
       "explanation": "7 - 3 = 4なので、4/8（約分すると1/2）"
     },
     {
-      "id": "frac-same-sub-5",
+      "id": "5d5d9338",
       "question": "5/6 - 2/6 = ?",
       "choices": [
         "3/6",
@@ -71,7 +71,7 @@
       "explanation": "5 - 2 = 3なので、3/6（約分すると1/2）"
     },
     {
-      "id": "frac-same-sub-6",
+      "id": "2089726a",
       "question": "6/7 - 2/7 = ?",
       "choices": [
         "4/7",
@@ -83,7 +83,7 @@
       "explanation": "6 - 2 = 4なので、4/7"
     },
     {
-      "id": "frac-same-sub-7",
+      "id": "e3b062f8",
       "question": "8/9 - 5/9 = ?",
       "choices": [
         "3/9",
@@ -95,7 +95,7 @@
       "explanation": "8 - 5 = 3なので、3/9（約分すると1/3）"
     },
     {
-      "id": "frac-same-sub-8",
+      "id": "5ff85e64",
       "question": "9/10 - 4/10 = ?",
       "choices": [
         "5/10",

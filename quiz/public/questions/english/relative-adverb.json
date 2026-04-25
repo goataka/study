@@ -11,7 +11,7 @@
   "description": "関係副詞 where / when / why / how を使って、場所・時・理由などを説明します。",
   "questions": [
     {
-      "id": "relative-adverb-1",
+      "id": "bf7314ec",
       "question": "This is the place ___ I was born. (場所)",
       "choices": [
         "where",
@@ -23,7 +23,7 @@
       "explanation": "場所を表す関係副詞は where です"
     },
     {
-      "id": "relative-adverb-2",
+      "id": "61502bca",
       "question": "I remember the day ___ I met you. (時)",
       "choices": [
         "when",
@@ -35,7 +35,7 @@
       "explanation": "時を表す関係副詞は when です"
     },
     {
-      "id": "relative-adverb-3",
+      "id": "4d47e676",
       "question": "Tell me the reason ___ you were late. (理由)",
       "choices": [
         "why",
@@ -47,7 +47,7 @@
       "explanation": "理由を表す関係副詞は why です"
     },
     {
-      "id": "relative-adverb-4",
+      "id": "78345552",
       "question": "This is the house ___ I lived. (場所)",
       "choices": [
         "where",
@@ -59,7 +59,7 @@
       "explanation": "場所を表す関係副詞は where です"
     },
     {
-      "id": "relative-adverb-5",
+      "id": "997e517e",
       "question": "Do you know the time ___ he arrived? (時)",
       "choices": [
         "when",
@@ -71,7 +71,7 @@
       "explanation": "時を表す関係副詞は when です"
     },
     {
-      "id": "relative-adverb-6",
+      "id": "70baa277",
       "question": "I don't know the reason ___ she is angry. (理由)",
       "choices": [
         "why",
@@ -83,7 +83,7 @@
       "explanation": "理由を表す関係副詞は why です"
     },
     {
-      "id": "relative-adverb-7",
+      "id": "ff79a9a3",
       "question": "This is the park ___ we often play. (場所)",
       "choices": [
         "where",
@@ -95,7 +95,7 @@
       "explanation": "場所を表す関係副詞は where です"
     },
     {
-      "id": "relative-adverb-8",
+      "id": "15ae7bcb",
       "question": "I'll never forget the summer ___ I went to America. (時)",
       "choices": [
         "when",

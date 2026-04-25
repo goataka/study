@@ -11,7 +11,7 @@
   "description": "くり上がりなし・ありを混ぜた計算で、たし算の力を確かめます。",
   "questions": [
     {
-      "id": "add-mixed-1",
+      "id": "aa2485ca",
       "question": "3 + 5 = ?",
       "choices": [
         "8",
@@ -23,7 +23,7 @@
       "explanation": "くり上がりなし。3 + 5 = 8"
     },
     {
-      "id": "add-mixed-2",
+      "id": "dfbc6fd2",
       "question": "7 + 8 = ?",
       "choices": [
         "15",
@@ -35,7 +35,7 @@
       "explanation": "くり上がりあり。7+3=10、10+5=15"
     },
     {
-      "id": "add-mixed-3",
+      "id": "277e489c",
       "question": "4 + 5 = ?",
       "choices": [
         "9",
@@ -47,7 +47,7 @@
       "explanation": "くり上がりなし。4 + 5 = 9"
     },
     {
-      "id": "add-mixed-4",
+      "id": "290c1f2a",
       "question": "9 + 6 = ?",
       "choices": [
         "15",
@@ -59,7 +59,7 @@
       "explanation": "くり上がりあり。9+1=10、10+5=15"
     },
     {
-      "id": "add-mixed-5",
+      "id": "9f1ebc40",
       "question": "2 + 6 = ?",
       "choices": [
         "8",
@@ -71,7 +71,7 @@
       "explanation": "くり上がりなし。2 + 6 = 8"
     },
     {
-      "id": "add-mixed-6",
+      "id": "441fa91b",
       "question": "8 + 7 = ?",
       "choices": [
         "15",
@@ -83,7 +83,7 @@
       "explanation": "くり上がりあり。8+2=10、10+5=15"
     },
     {
-      "id": "add-mixed-7",
+      "id": "e43a34ce",
       "question": "1 + 7 = ?",
       "choices": [
         "8",
@@ -95,7 +95,7 @@
       "explanation": "くり上がりなし。1 + 7 = 8"
     },
     {
-      "id": "add-mixed-8",
+      "id": "a08a8f91",
       "question": "6 + 9 = ?",
       "choices": [
         "15",

@@ -11,7 +11,7 @@
   "description": "will や be going to を使って未来の予定や意志を表します。",
   "questions": [
     {
-      "id": "tenses-regular-future-1",
+      "id": "1f90e23f",
       "question": "I ___ games tomorrow. (play)",
       "choices": [
         "will play",
@@ -23,7 +23,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-2",
+      "id": "e3c31549",
       "question": "I ___ English next week. (study)",
       "choices": [
         "will study",
@@ -35,7 +35,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-3",
+      "id": "fbf5fe5c",
       "question": "I ___ TV tonight. (watch)",
       "choices": [
         "will watch",
@@ -47,7 +47,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-4",
+      "id": "1e958ba1",
       "question": "She ___ music tomorrow. (like)",
       "choices": [
         "will like",
@@ -59,7 +59,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-5",
+      "id": "af610fa6",
       "question": "He ___ to school tomorrow. (walk)",
       "choices": [
         "will walk",
@@ -71,7 +71,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-6",
+      "id": "2a06d815",
       "question": "They ___ tennis next Sunday. (play)",
       "choices": [
         "will play",
@@ -83,7 +83,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-7",
+      "id": "308ff876",
       "question": "We ___ the movie next week. (watch)",
       "choices": [
         "will watch",
@@ -95,7 +95,7 @@
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
-      "id": "tenses-regular-future-8",
+      "id": "05aff2e1",
       "question": "I ___ hard next month. (study)",
       "choices": [
         "will study",

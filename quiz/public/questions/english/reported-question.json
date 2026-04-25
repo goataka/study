@@ -11,7 +11,7 @@
   "description": "間接話法の疑問文では whether / if や疑問詞を使い、語順を平叙文の形にします。",
   "questions": [
     {
-      "id": "reported-question-1",
+      "id": "4244a03b",
       "question": "He asked, \"Do you play games?\" → He asked ___ I played games.",
       "choices": [
         "if",
@@ -23,7 +23,7 @@
       "explanation": "Yes/No疑問文は if/whether を使います"
     },
     {
-      "id": "reported-question-2",
+      "id": "c01291ee",
       "question": "He asked, \"What do you play?\" → He asked ___ I played.",
       "choices": [
         "what",
@@ -35,7 +35,7 @@
       "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
     },
     {
-      "id": "reported-question-3",
+      "id": "a14e4031",
       "question": "He asked, \"Where do you play?\" → He asked ___ I played.",
       "choices": [
         "where",
@@ -47,7 +47,7 @@
       "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
     },
     {
-      "id": "reported-question-4",
+      "id": "d3addb2d",
       "question": "She asked, \"Are you happy?\" → She asked ___ I was happy.",
       "choices": [
         "if",
@@ -59,7 +59,7 @@
       "explanation": "Yes/No疑問文は if/whether を使います"
     },
     {
-      "id": "reported-question-5",
+      "id": "235f5bd7",
       "question": "He asked, \"When will you come?\" → He asked ___ I would come.",
       "choices": [
         "when",
@@ -71,7 +71,7 @@
       "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
     },
     {
-      "id": "reported-question-6",
+      "id": "717e450c",
       "question": "She asked, \"Why are you late?\" → She asked ___ I was late.",
       "choices": [
         "why",
@@ -83,7 +83,7 @@
       "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
     },
     {
-      "id": "reported-question-7",
+      "id": "eb7df12f",
       "question": "He asked, \"Can you help me?\" → He asked ___ I could help him.",
       "choices": [
         "if",
@@ -95,7 +95,7 @@
       "explanation": "Yes/No疑問文は if/whether を使います"
     },
     {
-      "id": "reported-question-8",
+      "id": "b047c264",
       "question": "間接疑問文の語順は？",
       "choices": [
         "主語 + 動詞",

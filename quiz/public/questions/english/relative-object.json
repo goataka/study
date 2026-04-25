@@ -11,7 +11,7 @@
   "description": "関係代名詞 that / which / whom を使って、名詞を目的語として説明します。",
   "questions": [
     {
-      "id": "relative-object-1",
+      "id": "fffe7b82",
       "question": "I have a friend ___ I met yesterday. (人・目的格)",
       "choices": [
         "whom",
@@ -23,7 +23,7 @@
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
-      "id": "relative-object-2",
+      "id": "e0d2101e",
       "question": "I have a book ___ I bought yesterday. (物・目的格)",
       "choices": [
         "which",
@@ -35,7 +35,7 @@
       "explanation": "物が目的語の場合は which を使います"
     },
     {
-      "id": "relative-object-3",
+      "id": "5655fa2c",
       "question": "I have a pen ___ I use every day. (物・目的格)",
       "choices": [
         "that",
@@ -47,7 +47,7 @@
       "explanation": "物が目的語の場合は that を使えます"
     },
     {
-      "id": "relative-object-4",
+      "id": "387b60c2",
       "question": "The girl ___ you saw yesterday is my sister. (人・目的格)",
       "choices": [
         "whom",
@@ -59,7 +59,7 @@
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
-      "id": "relative-object-5",
+      "id": "ea765b94",
       "question": "This is the book ___ I was looking for. (物・目的格)",
       "choices": [
         "which",
@@ -71,7 +71,7 @@
       "explanation": "物が目的語の場合は which を使います"
     },
     {
-      "id": "relative-object-6",
+      "id": "56b0eff0",
       "question": "The teacher ___ I respect most is Mr. Smith. (人・目的格)",
       "choices": [
         "whom",
@@ -83,7 +83,7 @@
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
-      "id": "relative-object-7",
+      "id": "8d2a6336",
       "question": "The movie ___ we watched was great. (物・目的格)",
       "choices": [
         "that",
@@ -95,7 +95,7 @@
       "explanation": "物が目的語の場合は that を使えます"
     },
     {
-      "id": "relative-object-8",
+      "id": "38600e50",
       "question": "目的格の関係代名詞は省略できる？",
       "choices": [
         "はい",

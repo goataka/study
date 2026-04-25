@@ -11,7 +11,7 @@
   "description": "あまりなし・ありのわり算を混ぜて、わり算の力を確かめます。",
   "questions": [
     {
-      "id": "div-mixed-1",
+      "id": "d7b1fad5",
       "question": "12 ÷ 4 = ?",
       "choices": [
         "3",
@@ -23,7 +23,7 @@
       "explanation": "あまりなし。4 × 3 = 12なので、12 ÷ 4 = 3"
     },
     {
-      "id": "div-mixed-2",
+      "id": "bd500ed7",
       "question": "14 ÷ 3 = ? あまり ?",
       "choices": [
         "4 あまり 2",
@@ -35,7 +35,7 @@
       "explanation": "あまりあり。3 × 4 = 12。14 - 12 = 2。答え 4 あまり 2"
     },
     {
-      "id": "div-mixed-3",
+      "id": "aea71706",
       "question": "18 ÷ 6 = ?",
       "choices": [
         "3",
@@ -47,7 +47,7 @@
       "explanation": "あまりなし。6 × 3 = 18なので、18 ÷ 6 = 3"
     },
     {
-      "id": "div-mixed-4",
+      "id": "790af732",
       "question": "19 ÷ 5 = ? あまり ?",
       "choices": [
         "3 あまり 4",
@@ -59,7 +59,7 @@
       "explanation": "あまりあり。5 × 3 = 15。19 - 15 = 4。答え 3 あまり 4"
     },
     {
-      "id": "div-mixed-5",
+      "id": "70c68da8",
       "question": "24 ÷ 6 = ?",
       "choices": [
         "4",
@@ -71,7 +71,7 @@
       "explanation": "あまりなし。6 × 4 = 24なので、24 ÷ 6 = 4"
     },
     {
-      "id": "div-mixed-6",
+      "id": "407a280f",
       "question": "23 ÷ 7 = ? あまり ?",
       "choices": [
         "3 あまり 2",
@@ -83,7 +83,7 @@
       "explanation": "あまりあり。7 × 3 = 21。23 - 21 = 2。答え 3 あまり 2"
     },
     {
-      "id": "div-mixed-7",
+      "id": "92fe0454",
       "question": "36 ÷ 9 = ?",
       "choices": [
         "4",
@@ -95,7 +95,7 @@
       "explanation": "あまりなし。9 × 4 = 36なので、36 ÷ 9 = 4"
     },
     {
-      "id": "div-mixed-8",
+      "id": "0f017bc0",
       "question": "26 ÷ 8 = ? あまり ?",
       "choices": [
         "3 あまり 2",

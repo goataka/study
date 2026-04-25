@@ -11,7 +11,7 @@
   "description": "副詞は動詞・形容詞・他の副詞を修飾する語です。",
   "questions": [
     {
-      "id": "adverbs-1",
+      "id": "4397d5a5",
       "question": "I ___ play games. (sometimes)",
       "choices": [
         "sometimes",
@@ -23,7 +23,7 @@
       "explanation": "頻度を表す副詞は一般動詞の前に置きます"
     },
     {
-      "id": "adverbs-2",
+      "id": "55f12fdc",
       "question": "I play games ___. (well)",
       "choices": [
         "well",
@@ -35,7 +35,7 @@
       "explanation": "様態を表す副詞は文末に置きます"
     },
     {
-      "id": "adverbs-3",
+      "id": "94e15785",
       "question": "I ___ study English. (usually)",
       "choices": [
         "usually",
@@ -47,7 +47,7 @@
       "explanation": "頻度を表す副詞は一般動詞の前に置きます"
     },
     {
-      "id": "adverbs-4",
+      "id": "bca2a30a",
       "question": "She sings ___. (beautifully)",
       "choices": [
         "beautifully",
@@ -59,7 +59,7 @@
       "explanation": "様態を表す副詞は文末に置きます"
     },
     {
-      "id": "adverbs-5",
+      "id": "a133df02",
       "question": "I played games ___. (yesterday)",
       "choices": [
         "yesterday",
@@ -71,7 +71,7 @@
       "explanation": "時を表す副詞は文末に置きます"
     },
     {
-      "id": "adverbs-6",
+      "id": "87508dd6",
       "question": "He ___ eats breakfast. (always)",
       "choices": [
         "always",
@@ -83,7 +83,7 @@
       "explanation": "頻度を表す副詞は一般動詞の前に置きます"
     },
     {
-      "id": "adverbs-7",
+      "id": "179b539c",
       "question": "She runs ___. (quickly)",
       "choices": [
         "quickly",
@@ -95,7 +95,7 @@
       "explanation": "様態を表す副詞は文末に置きます"
     },
     {
-      "id": "adverbs-8",
+      "id": "07bc965c",
       "question": "I ___ go to school by bus. (often)",
       "choices": [
         "often",

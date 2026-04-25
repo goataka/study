@@ -11,7 +11,7 @@
   "description": "関係代名詞 who / which / that を使って、名詞を主語として説明します。",
   "questions": [
     {
-      "id": "relative-subject-1",
+      "id": "73a4bedd",
       "question": "I have a friend ___ speaks English. (人・主格)",
       "choices": [
         "who",
@@ -23,7 +23,7 @@
       "explanation": "人が主語の場合は who を使います"
     },
     {
-      "id": "relative-subject-2",
+      "id": "59d5f239",
       "question": "I have a book ___ is very interesting. (物・主格)",
       "choices": [
         "which",
@@ -35,7 +35,7 @@
       "explanation": "物が主語の場合は which を使います"
     },
     {
-      "id": "relative-subject-3",
+      "id": "3f6aa82b",
       "question": "I have a friend ___ lives in Tokyo. (人・主格)",
       "choices": [
         "that",
@@ -47,7 +47,7 @@
       "explanation": "人・物どちらでも that を使えます"
     },
     {
-      "id": "relative-subject-4",
+      "id": "99f1faf6",
       "question": "I have a cat ___ is very cute. (物・主格)",
       "choices": [
         "which",
@@ -59,7 +59,7 @@
       "explanation": "物が主語の場合は which を使います"
     },
     {
-      "id": "relative-subject-5",
+      "id": "4f7f2515",
       "question": "The boy ___ is playing there is my brother. (人・主格)",
       "choices": [
         "who",
@@ -71,7 +71,7 @@
       "explanation": "人が主語の場合は who を使います"
     },
     {
-      "id": "relative-subject-6",
+      "id": "75e0e2e2",
       "question": "The car ___ is parked there is mine. (物・主格)",
       "choices": [
         "which",
@@ -83,7 +83,7 @@
       "explanation": "物が主語の場合は which を使います"
     },
     {
-      "id": "relative-subject-7",
+      "id": "8102a7d2",
       "question": "I know a teacher ___ teaches English. (人・主格)",
       "choices": [
         "who",
@@ -95,7 +95,7 @@
       "explanation": "人が主語の場合は who を使います"
     },
     {
-      "id": "relative-subject-8",
+      "id": "813a0626",
       "question": "This is a dog ___ can swim. (物・主格)",
       "choices": [
         "that",

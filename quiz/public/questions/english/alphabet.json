@@ -11,7 +11,7 @@
   "description": "英語で使う26文字のアルファベットの名前（読み方）を覚えます。",
   "questions": [
     {
-      "id": "alphabet-1",
+      "id": "2bbcf06e",
       "question": "「A」の読み方は？",
       "choices": [
         "えい",
@@ -23,7 +23,7 @@
       "explanation": "Aは「えい」と読みます"
     },
     {
-      "id": "alphabet-2",
+      "id": "a8a4712f",
       "question": "「B」の読み方は？",
       "choices": [
         "びー",
@@ -35,7 +35,7 @@
       "explanation": "Bは「びー」と読みます"
     },
     {
-      "id": "alphabet-3",
+      "id": "05df1c99",
       "question": "「C」の読み方は？",
       "choices": [
         "しー",
@@ -47,7 +47,7 @@
       "explanation": "Cは「しー」と読みます"
     },
     {
-      "id": "alphabet-4",
+      "id": "5cd374e9",
       "question": "「D」の読み方は？",
       "choices": [
         "でぃー",
@@ -59,7 +59,7 @@
       "explanation": "Dは「でぃー」と読みます"
     },
     {
-      "id": "alphabet-5",
+      "id": "87b1e42f",
       "question": "「E」の読み方は？",
       "choices": [
         "いー",
@@ -71,7 +71,7 @@
       "explanation": "Eは「いー」と読みます"
     },
     {
-      "id": "alphabet-6",
+      "id": "ae204655",
       "question": "「F」の読み方は？",
       "choices": [
         "えふ",
@@ -83,7 +83,7 @@
       "explanation": "Fは「えふ」と読みます"
     },
     {
-      "id": "alphabet-7",
+      "id": "9ffd10df",
       "question": "「G」の読み方は？",
       "choices": [
         "じー",
@@ -95,7 +95,7 @@
       "explanation": "Gは「じー」と読みます"
     },
     {
-      "id": "alphabet-8",
+      "id": "3e10bd4a",
       "question": "「H」の読み方は？",
       "choices": [
         "えいち",
@@ -107,7 +107,7 @@
       "explanation": "Hは「えいち」と読みます"
     },
     {
-      "id": "alphabet-9",
+      "id": "bc330125",
       "question": "「I」の読み方は？",
       "choices": [
         "あい",
@@ -119,7 +119,7 @@
       "explanation": "Iは「あい」と読みます"
     },
     {
-      "id": "alphabet-10",
+      "id": "6672ffc1",
       "question": "「J」の読み方は？",
       "choices": [
         "じぇい",
@@ -131,7 +131,7 @@
       "explanation": "Jは「じぇい」と読みます"
     },
     {
-      "id": "alphabet-11",
+      "id": "255db1dd",
       "question": "「K」の読み方は？",
       "choices": [
         "けー",
@@ -143,7 +143,7 @@
       "explanation": "Kは「けー」と読みます"
     },
     {
-      "id": "alphabet-12",
+      "id": "5a31dec3",
       "question": "「L」の読み方は？",
       "choices": [
         "える",
@@ -155,7 +155,7 @@
       "explanation": "Lは「える」と読みます"
     },
     {
-      "id": "alphabet-13",
+      "id": "bdaa1fc0",
       "question": "「M」の読み方は？",
       "choices": [
         "えむ",
@@ -167,7 +167,7 @@
       "explanation": "Mは「えむ」と読みます"
     },
     {
-      "id": "alphabet-14",
+      "id": "4aa744ed",
       "question": "「N」の読み方は？",
       "choices": [
         "えぬ",
@@ -179,7 +179,7 @@
       "explanation": "Nは「えぬ」と読みます"
     },
     {
-      "id": "alphabet-15",
+      "id": "3216928d",
       "question": "「O」の読み方は？",
       "choices": [
         "おー",
@@ -191,7 +191,7 @@
       "explanation": "Oは「おー」と読みます"
     },
     {
-      "id": "alphabet-16",
+      "id": "ea6827db",
       "question": "「P」の読み方は？",
       "choices": [
         "ぴー",
@@ -203,7 +203,7 @@
       "explanation": "Pは「ぴー」と読みます"
     },
     {
-      "id": "alphabet-17",
+      "id": "cdbb285f",
       "question": "「Q」の読み方は？",
       "choices": [
         "きゅー",
@@ -215,7 +215,7 @@
       "explanation": "Qは「きゅー」と読みます"
     },
     {
-      "id": "alphabet-18",
+      "id": "0e6ada71",
       "question": "「R」の読み方は？",
       "choices": [
         "あーる",
@@ -227,7 +227,7 @@
       "explanation": "Rは「あーる」と読みます"
     },
     {
-      "id": "alphabet-19",
+      "id": "5cbf4204",
       "question": "「S」の読み方は？",
       "choices": [
         "えす",
@@ -239,7 +239,7 @@
       "explanation": "Sは「えす」と読みます"
     },
     {
-      "id": "alphabet-20",
+      "id": "5e6af185",
       "question": "「T」の読み方は？",
       "choices": [
         "てぃー",
@@ -251,7 +251,7 @@
       "explanation": "Tは「てぃー」と読みます"
     },
     {
-      "id": "alphabet-21",
+      "id": "618917a9",
       "question": "「U」の読み方は？",
       "choices": [
         "ゆー",
@@ -263,7 +263,7 @@
       "explanation": "Uは「ゆー」と読みます"
     },
     {
-      "id": "alphabet-22",
+      "id": "efa0490a",
       "question": "「V」の読み方は？",
       "choices": [
         "ぶい",
@@ -275,7 +275,7 @@
       "explanation": "Vは「ぶい」と読みます"
     },
     {
-      "id": "alphabet-23",
+      "id": "35d5157b",
       "question": "「W」の読み方は？",
       "choices": [
         "だぶりゅー",
@@ -287,7 +287,7 @@
       "explanation": "Wは「だぶりゅー」と読みます"
     },
     {
-      "id": "alphabet-24",
+      "id": "c97ac732",
       "question": "「X」の読み方は？",
       "choices": [
         "えっくす",
@@ -299,7 +299,7 @@
       "explanation": "Xは「えっくす」と読みます"
     },
     {
-      "id": "alphabet-25",
+      "id": "43290e99",
       "question": "「Y」の読み方は？",
       "choices": [
         "わい",
@@ -311,7 +311,7 @@
       "explanation": "Yは「わい」と読みます"
     },
     {
-      "id": "alphabet-26",
+      "id": "f2cb3aac",
       "question": "「Z」の読み方は？",
       "choices": [
         "ぜっと",

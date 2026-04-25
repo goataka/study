@@ -11,7 +11,7 @@
   "description": "九九を使って、割り切れるわり算を正確に計算できるようにします。",
   "questions": [
     {
-      "id": "div-no-rem-1",
+      "id": "738454e6",
       "question": "6 ÷ 2 = ?",
       "choices": [
         "3",
@@ -23,7 +23,7 @@
       "explanation": "2 × 3 = 6なので、6 ÷ 2 = 3"
     },
     {
-      "id": "div-no-rem-2",
+      "id": "7e8447d2",
       "question": "8 ÷ 4 = ?",
       "choices": [
         "2",
@@ -35,7 +35,7 @@
       "explanation": "4 × 2 = 8なので、8 ÷ 4 = 2"
     },
     {
-      "id": "div-no-rem-3",
+      "id": "dfb22212",
       "question": "15 ÷ 3 = ?",
       "choices": [
         "5",
@@ -47,7 +47,7 @@
       "explanation": "3 × 5 = 15なので、15 ÷ 3 = 5"
     },
     {
-      "id": "div-no-rem-4",
+      "id": "0aa1b6e8",
       "question": "20 ÷ 5 = ?",
       "choices": [
         "4",
@@ -59,7 +59,7 @@
       "explanation": "5 × 4 = 20なので、20 ÷ 5 = 4"
     },
     {
-      "id": "div-no-rem-5",
+      "id": "aea71706",
       "question": "18 ÷ 6 = ?",
       "choices": [
         "3",
@@ -71,7 +71,7 @@
       "explanation": "6 × 3 = 18なので、18 ÷ 6 = 3"
     },
     {
-      "id": "div-no-rem-6",
+      "id": "23bb8093",
       "question": "21 ÷ 7 = ?",
       "choices": [
         "3",
@@ -83,7 +83,7 @@
       "explanation": "7 × 3 = 21なので、21 ÷ 7 = 3"
     },
     {
-      "id": "div-no-rem-7",
+      "id": "d709d7c4",
       "question": "24 ÷ 8 = ?",
       "choices": [
         "3",
@@ -95,7 +95,7 @@
       "explanation": "8 × 3 = 24なので、24 ÷ 8 = 3"
     },
     {
-      "id": "div-no-rem-8",
+      "id": "1bbd659c",
       "question": "27 ÷ 9 = ?",
       "choices": [
         "3",
@@ -107,7 +107,7 @@
       "explanation": "9 × 3 = 27なので、27 ÷ 9 = 3"
     },
     {
-      "id": "div-no-rem-9",
+      "id": "27b846fc",
       "question": "84 ÷ 4 = ?",
       "choices": [
         "20",
@@ -119,7 +119,7 @@
       "explanation": "4 × 21 = 84なので、84 ÷ 4 = 21"
     },
     {
-      "id": "div-no-rem-10",
+      "id": "e0e36598",
       "question": "75 ÷ 5 = ?",
       "choices": [
         "14",
@@ -131,7 +131,7 @@
       "explanation": "5 × 15 = 75なので、75 ÷ 5 = 15"
     },
     {
-      "id": "div-no-rem-11",
+      "id": "d5470e54",
       "question": "96 ÷ 6 = ?",
       "choices": [
         "15",
@@ -143,7 +143,7 @@
       "explanation": "6 × 16 = 96なので、96 ÷ 6 = 16"
     },
     {
-      "id": "div-no-rem-12",
+      "id": "9e599a08",
       "question": "84 ÷ 7 = ?",
       "choices": [
         "12",
@@ -155,7 +155,7 @@
       "explanation": "7 × 12 = 84なので、84 ÷ 7 = 12"
     },
     {
-      "id": "div-no-rem-13",
+      "id": "aaec7323",
       "question": "126 ÷ 3 = ?",
       "choices": [
         "40",
@@ -167,7 +167,7 @@
       "explanation": "3 × 42 = 126なので、126 ÷ 3 = 42"
     },
     {
-      "id": "div-no-rem-14",
+      "id": "a7bedbc1",
       "question": "248 ÷ 4 = ?",
       "choices": [
         "60",
@@ -179,7 +179,7 @@
       "explanation": "4 × 62 = 248なので、248 ÷ 4 = 62"
     },
     {
-      "id": "div-no-rem-15",
+      "id": "5c6ef0dc",
       "question": "168 ÷ 7 = ?",
       "choices": [
         "26",
@@ -191,7 +191,7 @@
       "explanation": "7 × 24 = 168なので、168 ÷ 7 = 24"
     },
     {
-      "id": "div-no-rem-16",
+      "id": "e5e6f59d",
       "question": "256 ÷ 8 = ?",
       "choices": [
         "32",

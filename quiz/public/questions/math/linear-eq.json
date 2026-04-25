@@ -11,7 +11,7 @@
   "description": "一次方程式を移項を使って正確に解けるようにします。",
   "questions": [
     {
-      "id": "linear-eq-1",
+      "id": "dfdd2ca4",
       "question": "x + 3 = 7 を解くと x = ?",
       "choices": [
         "4",
@@ -23,7 +23,7 @@
       "explanation": "両辺から3を引きます。x = 7 - 3 = 4"
     },
     {
-      "id": "linear-eq-2",
+      "id": "ecce27df",
       "question": "x - 5 = 2 を解くと x = ?",
       "choices": [
         "7",
@@ -35,7 +35,7 @@
       "explanation": "両辺に5を足します。x = 2 + 5 = 7"
     },
     {
-      "id": "linear-eq-3",
+      "id": "1cfc6c14",
       "question": "2x = 10 を解くと x = ?",
       "choices": [
         "5",
@@ -47,7 +47,7 @@
       "explanation": "両辺を2で割ります。x = 10 ÷ 2 = 5"
     },
     {
-      "id": "linear-eq-4",
+      "id": "2af6476c",
       "question": "3x + 4 = 13 を解くと x = ?",
       "choices": [
         "3",
@@ -59,7 +59,7 @@
       "explanation": "両辺から4を引いて3x = 9。両辺を3で割って x = 3"
     },
     {
-      "id": "linear-eq-5",
+      "id": "9d3f0a42",
       "question": "5x - 3 = 12 を解くと x = ?",
       "choices": [
         "3",
@@ -71,7 +71,7 @@
       "explanation": "両辺に3を足して5x = 15。両辺を5で割って x = 3"
     },
     {
-      "id": "linear-eq-6",
+      "id": "b5d2e6a2",
       "question": "2x + 1 = x + 5 を解くと x = ?",
       "choices": [
         "4",
@@ -83,7 +83,7 @@
       "explanation": "xの項を左辺に、数字を右辺に移項。2x - x = 5 - 1。x = 4"
     },
     {
-      "id": "linear-eq-7",
+      "id": "17ff9c15",
       "question": "4x - 7 = 2x + 3 を解くと x = ?",
       "choices": [
         "5",
@@ -95,7 +95,7 @@
       "explanation": "移項して整理。4x - 2x = 3 + 7。2x = 10、x = 5"
     },
     {
-      "id": "linear-eq-8",
+      "id": "760f48e2",
       "question": "3(x + 2) = 15 を解くと x = ?",
       "choices": [
         "3",

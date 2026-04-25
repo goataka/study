@@ -184,23 +184,43 @@ describe("各カテゴリファイル — スキーマ検証", () => {
   });
 });
 
-describe("問題ID — グローバル一意性", () => {
-  it("全ファイルを通じて問題IDが重複しない", () => {
+describe("問題ID — コンテンツ一意性", () => {
+  it("全問題IDが8文字の16進数形式である", () => {
     const manifest = loadManifest();
     const questionFiles = loadAllQuestionFiles(manifest);
-    const ids = new Set<string>();
-    const duplicates: string[] = [];
+    const invalidIds: string[] = [];
 
     for (const qf of questionFiles) {
       for (const q of qf.questions) {
-        if (ids.has(q.id)) {
-          duplicates.push(q.id);
+        if (!/^[0-9a-f]{8}$/.test(q.id)) {
+          invalidIds.push(`${q.id} (${qf.category})`);
         }
-        ids.add(q.id);
       }
     }
 
-    expect(duplicates).toHaveLength(0);
+    expect(invalidIds).toHaveLength(0);
+  });
+
+  it("同じIDを持つ問題は同一コンテンツである（異なるコンテンツが同じIDを持たない）", () => {
+    const manifest = loadManifest();
+    const questionFiles = loadAllQuestionFiles(manifest);
+    const idToContent = new Map<string, string>();
+    const conflicts: string[] = [];
+
+    for (const qf of questionFiles) {
+      for (const q of qf.questions) {
+        const content = [q.question, ...q.choices, String(q.correct)].join("|");
+        if (idToContent.has(q.id)) {
+          if (idToContent.get(q.id) !== content) {
+            conflicts.push(q.id);
+          }
+        } else {
+          idToContent.set(q.id, content);
+        }
+      }
+    }
+
+    expect(conflicts).toHaveLength(0);
   });
 });
 

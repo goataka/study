@@ -11,7 +11,7 @@
   "description": "数列と関数の極限の基本的な求め方を身につけます。",
   "questions": [
     {
-      "id": "lim-1",
+      "id": "759a208b",
       "question": "lim(n→∞) 1/n = ?",
       "choices": [
         "0",
@@ -23,7 +23,7 @@
       "explanation": "nが無限大に近づくと、1/nは0に近づきます"
     },
     {
-      "id": "lim-2",
+      "id": "b15c47fe",
       "question": "lim(n→∞) (2n+1)/n = ?",
       "choices": [
         "2",
@@ -35,7 +35,7 @@
       "explanation": "分子分母をnで割ると、(2+1/n)/1。n→∞のとき1/n→0なので、極限は2"
     },
     {
-      "id": "lim-3",
+      "id": "2d0c7354",
       "question": "lim(n→∞) (3n²+1)/(n²+2) = ?",
       "choices": [
         "3",
@@ -47,7 +47,7 @@
       "explanation": "分子分母をn²で割ると、(3+1/n²)/(1+2/n²)。n→∞で極限は3/1 = 3"
     },
     {
-      "id": "lim-4",
+      "id": "61741004",
       "question": "lim(n→∞) n/(n²+1) = ?",
       "choices": [
         "0",
@@ -59,7 +59,7 @@
       "explanation": "分子分母をn²で割ると、(1/n)/(1+1/n²)。n→∞で極限は0/1 = 0"
     },
     {
-      "id": "lim-5",
+      "id": "7e82d9ca",
       "question": "lim(x→2) (x²-4)/(x-2) = ?",
       "choices": [
         "4",
@@ -71,7 +71,7 @@
       "explanation": "因数分解: (x²-4)/(x-2) = (x+2)(x-2)/(x-2) = x+2。x→2で極限は4"
     },
     {
-      "id": "lim-6",
+      "id": "751d84fb",
       "question": "lim(x→0) sin(x)/x = ?",
       "choices": [
         "1",
@@ -83,7 +83,7 @@
       "explanation": "これは重要な極限の公式。lim(x→0) sin(x)/x = 1"
     },
     {
-      "id": "lim-7",
+      "id": "b9652de1",
       "question": "lim(x→1) (x²-1)/(x-1) = ?",
       "choices": [
         "2",
@@ -95,7 +95,7 @@
       "explanation": "因数分解: (x²-1)/(x-1) = (x+1)(x-1)/(x-1) = x+1。x→1で極限は2"
     },
     {
-      "id": "lim-8",
+      "id": "ee36c1bf",
       "question": "lim(x→∞) (2x+1)/(3x-1) = ?",
       "choices": [
         "2/3",

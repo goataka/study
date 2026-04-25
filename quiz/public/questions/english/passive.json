@@ -11,7 +11,7 @@
   "description": "受動態は「〜される」という形で、be動詞 + 過去分詞で作ります。",
   "questions": [
     {
-      "id": "passive-1",
+      "id": "329967fc",
       "question": "Games ___ played by me yesterday. (過去形の受動態)",
       "choices": [
         "were",
@@ -23,7 +23,7 @@
       "explanation": "過去形の受動態は were/was + 過去分詞です"
     },
     {
-      "id": "passive-2",
+      "id": "07045228",
       "question": "Games ___ played by me tomorrow. (未来形の受動態)",
       "choices": [
         "will be",
@@ -35,7 +35,7 @@
       "explanation": "未来形の受動態は will be + 過去分詞です"
     },
     {
-      "id": "passive-3",
+      "id": "aeb5cd42",
       "question": "Games ___ played by me. (現在完了の受動態)",
       "choices": [
         "have been",
@@ -47,7 +47,7 @@
       "explanation": "現在完了の受動態は have/has been + 過去分詞です"
     },
     {
-      "id": "passive-4",
+      "id": "28b81007",
       "question": "A letter ___ written by me. (過去形の受動態)",
       "choices": [
         "was",
@@ -59,7 +59,7 @@
       "explanation": "過去形の受動態は was/were + 過去分詞です"
     },
     {
-      "id": "passive-5",
+      "id": "d632251e",
       "question": "A cake ___ made by me tomorrow. (未来形の受動態)",
       "choices": [
         "will be",
@@ -71,7 +71,7 @@
       "explanation": "未来形の受動態は will be + 過去分詞です"
     },
     {
-      "id": "passive-6",
+      "id": "3a43318f",
       "question": "The book ___ read by me. (現在完了の受動態)",
       "choices": [
         "has been",
@@ -83,7 +83,7 @@
       "explanation": "現在完了の受動態は has/have been + 過去分詞です"
     },
     {
-      "id": "passive-7",
+      "id": "4c9d06af",
       "question": "English ___ spoken in many countries. (現在形の受動態)",
       "choices": [
         "is",
@@ -95,7 +95,7 @@
       "explanation": "現在形の受動態は is/are + 過去分詞です"
     },
     {
-      "id": "passive-8",
+      "id": "a79db456",
       "question": "The window ___ broken yesterday. (過去形の受動態)",
       "choices": [
         "was",

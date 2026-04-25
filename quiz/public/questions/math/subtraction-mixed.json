@@ -11,7 +11,7 @@
   "description": "くり下がりなし・ありを混ぜた計算で、ひき算の力を確かめます。",
   "questions": [
     {
-      "id": "sub-mixed-1",
+      "id": "2bdb5617",
       "question": "8 - 3 = ?",
       "choices": [
         "5",
@@ -23,7 +23,7 @@
       "explanation": "くり下がりなし。8 - 3 = 5"
     },
     {
-      "id": "sub-mixed-2",
+      "id": "ea0e20c9",
       "question": "14 - 7 = ?",
       "choices": [
         "7",
@@ -35,7 +35,7 @@
       "explanation": "くり下がりあり。10から7をひいて3、3+4=7"
     },
     {
-      "id": "sub-mixed-3",
+      "id": "f354ad16",
       "question": "9 - 4 = ?",
       "choices": [
         "5",
@@ -47,7 +47,7 @@
       "explanation": "くり下がりなし。9 - 4 = 5"
     },
     {
-      "id": "sub-mixed-4",
+      "id": "6dc6ade8",
       "question": "12 - 5 = ?",
       "choices": [
         "7",
@@ -59,7 +59,7 @@
       "explanation": "くり下がりあり。10から5をひいて5、5+2=7"
     },
     {
-      "id": "sub-mixed-5",
+      "id": "f0c95835",
       "question": "7 - 2 = ?",
       "choices": [
         "5",
@@ -71,7 +71,7 @@
       "explanation": "くり下がりなし。7 - 2 = 5"
     },
     {
-      "id": "sub-mixed-6",
+      "id": "15205cf8",
       "question": "16 - 9 = ?",
       "choices": [
         "7",
@@ -83,7 +83,7 @@
       "explanation": "くり下がりあり。10から9をひいて1、1+6=7"
     },
     {
-      "id": "sub-mixed-7",
+      "id": "d1a2bfcc",
       "question": "6 - 4 = ?",
       "choices": [
         "2",
@@ -95,7 +95,7 @@
       "explanation": "くり下がりなし。6 - 4 = 2"
     },
     {
-      "id": "sub-mixed-8",
+      "id": "5b43bda6",
       "question": "11 - 8 = ?",
       "choices": [
         "3",

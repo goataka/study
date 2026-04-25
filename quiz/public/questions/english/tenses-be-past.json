@@ -11,7 +11,7 @@
   "description": "be動詞の過去形 was / were を使って「〜でした」「〜にいた」を表します。",
   "questions": [
     {
-      "id": "tenses-be-past-1",
+      "id": "85d784ad",
       "question": "I ___ happy yesterday.",
       "choices": [
         "was",
@@ -23,7 +23,7 @@
       "explanation": "Iの過去形には was を使います"
     },
     {
-      "id": "tenses-be-past-2",
+      "id": "79cc15be",
       "question": "I ___ a student last year.",
       "choices": [
         "was",
@@ -35,7 +35,7 @@
       "explanation": "Iの過去形には was を使います"
     },
     {
-      "id": "tenses-be-past-3",
+      "id": "21107a69",
       "question": "I ___ tired yesterday.",
       "choices": [
         "was",
@@ -47,7 +47,7 @@
       "explanation": "Iの過去形には was を使います"
     },
     {
-      "id": "tenses-be-past-4",
+      "id": "2b11d9b2",
       "question": "They ___ at home yesterday.",
       "choices": [
         "were",
@@ -59,7 +59,7 @@
       "explanation": "複数形の過去形には were を使います"
     },
     {
-      "id": "tenses-be-past-5",
+      "id": "c858f342",
       "question": "He ___ hungry this morning.",
       "choices": [
         "was",
@@ -71,7 +71,7 @@
       "explanation": "三人称単数の過去形には was を使います"
     },
     {
-      "id": "tenses-be-past-6",
+      "id": "d5e368fe",
       "question": "She ___ happy yesterday.",
       "choices": [
         "was",
@@ -83,7 +83,7 @@
       "explanation": "三人称単数の過去形には was を使います"
     },
     {
-      "id": "tenses-be-past-7",
+      "id": "fdae961f",
       "question": "We ___ students last year.",
       "choices": [
         "were",
@@ -95,7 +95,7 @@
       "explanation": "複数形の過去形には were を使います"
     },
     {
-      "id": "tenses-be-past-8",
+      "id": "99429638",
       "question": "You ___ tired yesterday.",
       "choices": [
         "were",

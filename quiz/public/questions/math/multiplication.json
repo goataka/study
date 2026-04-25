@@ -10,7 +10,7 @@
   "description": "かけ算を筆算で正確に計算できるようにします。",
   "questions": [
     {
-      "id": "mul-1",
+      "id": "e7bc1af6",
       "question": "2 × 3 = ?",
       "choices": [
         "6",
@@ -22,7 +22,7 @@
       "explanation": "2 × 3 = 6"
     },
     {
-      "id": "mul-2",
+      "id": "95d77cb2",
       "question": "4 × 5 = ?",
       "choices": [
         "20",
@@ -34,7 +34,7 @@
       "explanation": "4 × 5 = 20"
     },
     {
-      "id": "mul-3",
+      "id": "86ba615d",
       "question": "3 × 7 = ?",
       "choices": [
         "21",
@@ -46,7 +46,7 @@
       "explanation": "3 × 7 = 21"
     },
     {
-      "id": "mul-4",
+      "id": "73c0386a",
       "question": "6 × 6 = ?",
       "choices": [
         "36",
@@ -58,7 +58,7 @@
       "explanation": "6 × 6 = 36"
     },
     {
-      "id": "mul-5",
+      "id": "2f5ef8d4",
       "question": "7 × 8 = ?",
       "choices": [
         "56",
@@ -70,7 +70,7 @@
       "explanation": "7 × 8 = 56"
     },
     {
-      "id": "mul-6",
+      "id": "a066a660",
       "question": "9 × 4 = ?",
       "choices": [
         "36",
@@ -82,7 +82,7 @@
       "explanation": "9 × 4 = 36"
     },
     {
-      "id": "mul-7",
+      "id": "180feff8",
       "question": "8 × 7 = ?",
       "choices": [
         "56",
@@ -94,7 +94,7 @@
       "explanation": "8 × 7 = 56"
     },
     {
-      "id": "mul-8",
+      "id": "4d5a4f46",
       "question": "9 × 9 = ?",
       "choices": [
         "81",

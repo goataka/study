@@ -11,7 +11,7 @@
   "description": "2文字の組み合わせが作る特別な音（ダイグラフ）を覚えます。",
   "questions": [
     {
-      "id": "phonics-2-sh1",
+      "id": "e43a4b26",
       "question": "「shoe」の「sh」の音は？",
       "choices": [
         "シュ",
@@ -23,7 +23,7 @@
       "explanation": "shoe = シュ ウー"
     },
     {
-      "id": "phonics-2-sh2",
+      "id": "66675e4d",
       "question": "「fish」の「sh」の音は？",
       "choices": [
         "シュ",
@@ -35,7 +35,7 @@
       "explanation": "fish = フ イ シュ"
     },
     {
-      "id": "phonics-2-ch1",
+      "id": "30aae817",
       "question": "「chair」の「ch」の音は？",
       "choices": [
         "チ",
@@ -47,7 +47,7 @@
       "explanation": "chair = チ エ アー"
     },
     {
-      "id": "phonics-2-ch2",
+      "id": "f881e6fb",
       "question": "「much」の「ch」の音は？",
       "choices": [
         "チ",
@@ -59,7 +59,7 @@
       "explanation": "much = ム ア チ"
     },
     {
-      "id": "phonics-2-th1",
+      "id": "b84b4abe",
       "question": "「that」の「th」の音は？",
       "choices": [
         "ザ",
@@ -71,7 +71,7 @@
       "explanation": "that = ザ ア ト"
     },
     {
-      "id": "phonics-2-th2",
+      "id": "8f63bb64",
       "question": "「bath」の「th」の音は？",
       "choices": [
         "ス",
@@ -83,7 +83,7 @@
       "explanation": "bath = ブ ア ス"
     },
     {
-      "id": "phonics-2-oo1",
+      "id": "59ffff4b",
       "question": "「book」の「oo」の音は？",
       "choices": [
         "ウ",
@@ -95,7 +95,7 @@
       "explanation": "book = ブ ウ ク"
     },
     {
-      "id": "phonics-2-oo2",
+      "id": "63fdf6c4",
       "question": "「moon」の「oo」の音は？",
       "choices": [
         "ウー",
@@ -107,7 +107,7 @@
       "explanation": "moon = ム ウー ヌ"
     },
     {
-      "id": "phonics-2-ee1",
+      "id": "ba133d3b",
       "question": "「deep」の「ee」の音は？",
       "choices": [
         "イー",
@@ -119,7 +119,7 @@
       "explanation": "deep = ドゥ イー プ"
     },
     {
-      "id": "phonics-2-ai1",
+      "id": "1b9a92fe",
       "question": "「rain」の「ai」の音は？",
       "choices": [
         "エイ",
@@ -131,7 +131,7 @@
       "explanation": "rain = ル エイ ヌ"
     },
     {
-      "id": "phonics-2-oa1",
+      "id": "4c2562a7",
       "question": "「boat」の「oa」の音は？",
       "choices": [
         "オウ",
@@ -143,7 +143,7 @@
       "explanation": "boat = ブ オウ ト"
     },
     {
-      "id": "phonics-2-magic-a",
+      "id": "ab7ee152",
       "question": "「cake」の「a」の音は？（マジックE）",
       "choices": [
         "エイ",
@@ -155,7 +155,7 @@
       "explanation": "cake = ク エイ ク"
     },
     {
-      "id": "phonics-2-magic-i",
+      "id": "1fb55fc2",
       "question": "「kite」の「i」の音は？（マジックE）",
       "choices": [
         "アイ",
@@ -167,7 +167,7 @@
       "explanation": "kite = ク アイ ト"
     },
     {
-      "id": "phonics-2-magic-o",
+      "id": "02e5b249",
       "question": "「note」の「o」の音は？（マジックE）",
       "choices": [
         "オウ",
@@ -179,7 +179,7 @@
       "explanation": "note = ヌ オウ ト"
     },
     {
-      "id": "phonics-2-magic-u",
+      "id": "8cdd7111",
       "question": "「cute」の「u」の音は？（マジックE）",
       "choices": [
         "ユー",

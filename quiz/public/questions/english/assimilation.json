@@ -11,7 +11,7 @@
   "description": "隣の音に引っ張られて音が変化するアシミレーション（音の同化）を学びます。",
   "questions": [
     {
-      "id": "assimilation-1",
+      "id": "7bdefbb4",
       "question": "「meet you」はどう発音する？",
       "choices": [
         "ミー チュー",
@@ -23,7 +23,7 @@
       "explanation": "t + y → チュ となり、ミー チュー"
     },
     {
-      "id": "assimilation-2",
+      "id": "1b7a9fdc",
       "question": "「would you」はどう発音する？",
       "choices": [
         "ウッ ジュー",
@@ -35,7 +35,7 @@
       "explanation": "d + y → ジュ となり、ウッ ジュー"
     },
     {
-      "id": "assimilation-3",
+      "id": "9f63f85f",
       "question": "「miss you」はどう発音する？",
       "choices": [
         "ミッ シュー",
@@ -47,7 +47,7 @@
       "explanation": "s + y → シュ となり、ミッ シュー"
     },
     {
-      "id": "assimilation-4",
+      "id": "70e9bc77",
       "question": "「ten people」はどう発音する？",
       "choices": [
         "テム ピー プル",
@@ -59,7 +59,7 @@
       "explanation": "n → m（唇音の前）となり、テム ピー プル"
     },
     {
-      "id": "assimilation-5",
+      "id": "ab1c015c",
       "question": "「in Paris」はどう発音する？",
       "choices": [
         "イム パ リ",

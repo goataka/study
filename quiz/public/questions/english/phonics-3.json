@@ -11,7 +11,7 @@
   "description": "3文字の特殊な音パターンを覚えます。",
   "questions": [
     {
-      "id": "phonics-3-tch1",
+      "id": "9837b160",
       "question": "「kitchen」の「tch」の音は？",
       "choices": [
         "チ",
@@ -23,7 +23,7 @@
       "explanation": "kitchen = ク イ チ エ ヌ"
     },
     {
-      "id": "phonics-3-dge1",
+      "id": "f558a627",
       "question": "「edge」の「dge」の音は？",
       "choices": [
         "ジ",
@@ -35,7 +35,7 @@
       "explanation": "edge = エ ジ"
     },
     {
-      "id": "phonics-3-igh1",
+      "id": "ead99657",
       "question": "「night」の「igh」の音は？",
       "choices": [
         "アイ",
@@ -47,7 +47,7 @@
       "explanation": "night = ヌ アイ ト"
     },
     {
-      "id": "phonics-3-thr1",
+      "id": "5d4da21f",
       "question": "「three」の「thr」の音は？",
       "choices": [
         "スル",
@@ -59,7 +59,7 @@
       "explanation": "three = スル イー"
     },
     {
-      "id": "phonics-3-str1",
+      "id": "db4fe6db",
       "question": "「street」の「str」の音は？",
       "choices": [
         "ストゥル",

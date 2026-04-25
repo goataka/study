@@ -11,7 +11,7 @@
   "description": "現在完了形の継続・経験・完了・結果の用法を使い分けます。",
   "questions": [
     {
-      "id": "perfect-usage-1",
+      "id": "655152c4",
       "question": "I have been to Tokyo before. この文の用法は？",
       "choices": [
         "経験",
@@ -23,7 +23,7 @@
       "explanation": "before があるので経験を表します"
     },
     {
-      "id": "perfect-usage-2",
+      "id": "74516612",
       "question": "I have lived here for three years. この文の用法は？",
       "choices": [
         "継続",
@@ -35,7 +35,7 @@
       "explanation": "for three years があるので継続を表します"
     },
     {
-      "id": "perfect-usage-3",
+      "id": "a09e29ee",
       "question": "I have just finished my homework. この文の用法は？",
       "choices": [
         "完了",
@@ -47,7 +47,7 @@
       "explanation": "just があるので完了を表します"
     },
     {
-      "id": "perfect-usage-4",
+      "id": "f8d2de75",
       "question": "I have lost my key. この文の用法は？",
       "choices": [
         "結果",
@@ -59,7 +59,7 @@
       "explanation": "失くした結果、今もない状態を表します"
     },
     {
-      "id": "perfect-usage-5",
+      "id": "91be25d2",
       "question": "I have never seen a lion. この文の用法は？",
       "choices": [
         "経験",
@@ -71,7 +71,7 @@
       "explanation": "never があるので経験を表します"
     },
     {
-      "id": "perfect-usage-6",
+      "id": "f804c0e7",
       "question": "I have already eaten lunch. この文の用法は？",
       "choices": [
         "完了",
@@ -83,7 +83,7 @@
       "explanation": "already があるので完了を表します"
     },
     {
-      "id": "perfect-usage-7",
+      "id": "e325f307",
       "question": "I have studied English since 2020. この文の用法は？",
       "choices": [
         "継続",
@@ -95,7 +95,7 @@
       "explanation": "since があるので継続を表します"
     },
     {
-      "id": "perfect-usage-8",
+      "id": "740476da",
       "question": "I have been to Paris twice. この文の用法は？",
       "choices": [
         "経験",

@@ -10,7 +10,7 @@
   "description": "たし算を正確にできるようにします。",
   "questions": [
     {
-      "id": "add-1",
+      "id": "aa2485ca",
       "question": "3 + 5 = ?",
       "choices": [
         "8",
@@ -22,7 +22,7 @@
       "explanation": "3 + 5 = 8"
     },
     {
-      "id": "add-2",
+      "id": "1e4fd323",
       "question": "7 + 4 = ?",
       "choices": [
         "11",
@@ -34,7 +34,7 @@
       "explanation": "7 + 4 = 11"
     },
     {
-      "id": "add-3",
+      "id": "06837dd6",
       "question": "12 + 8 = ?",
       "choices": [
         "20",
@@ -46,7 +46,7 @@
       "explanation": "12 + 8 = 20"
     },
     {
-      "id": "add-4",
+      "id": "c7893899",
       "question": "15 + 15 = ?",
       "choices": [
         "30",
@@ -58,7 +58,7 @@
       "explanation": "15 + 15 = 30"
     },
     {
-      "id": "add-5",
+      "id": "a7449f77",
       "question": "23 + 17 = ?",
       "choices": [
         "40",
@@ -70,7 +70,7 @@
       "explanation": "23 + 17 = 40"
     },
     {
-      "id": "add-6",
+      "id": "c6636855",
       "question": "46 + 28 = ?",
       "choices": [
         "74",
@@ -82,7 +82,7 @@
       "explanation": "46 + 28 = 74"
     },
     {
-      "id": "add-7",
+      "id": "ac21e969",
       "question": "55 + 35 = ?",
       "choices": [
         "90",
@@ -94,7 +94,7 @@
       "explanation": "55 + 35 = 90"
     },
     {
-      "id": "add-8",
+      "id": "2979a6dc",
       "question": "67 + 23 = ?",
       "choices": [
         "90",
