@@ -258,7 +258,7 @@ Given("I have navigated to a hiragana text-input question", async ({ page }) => 
 When("KanjiCanvas recognizes {string} and I draw a stroke on the canvas", async ({ page }, result: string) => {
   // recognize の戻り値をスタブ経由でセット
   await page.evaluate((r: string) => {
-    (window as unknown as Record<string, unknown>).__kanjiRecognizeResult = r;
+    (window as Window & { __kanjiRecognizeResult?: string }).__kanjiRecognizeResult = r;
   }, result);
   // mouseup をディスパッチしてストローク完了をシミュレート
   await page.locator("#kanjiCanvas").dispatchEvent("mouseup");
@@ -271,7 +271,7 @@ Then("only hiragana candidates should be visible in the candidate list", async (
   await expect(candidateList).toBeVisible();
   // 候補ボタンが少なくとも1つ表示されている
   await expect(candidateList.locator(".kanji-candidate-btn").first()).toBeVisible();
-  // 表示されているすべての候補がひらがなであること（\u3041-\u309F）
+  // 表示されているすべての候補がひらがなのみで構成されていること（\u3041-\u309F）
   const texts = await candidateList.locator(".kanji-candidate-btn").allTextContents();
   for (const text of texts) {
     expect(text).toMatch(/^[\u3041-\u309F]+$/);
@@ -280,9 +280,7 @@ Then("only hiragana candidates should be visible in the candidate list", async (
 
 Then("non-hiragana candidates should not be visible in the candidate list", async ({ page }) => {
   const candidateList = page.locator("#kanjiCandidateList");
-  const texts = await candidateList.locator(".kanji-candidate-btn").allTextContents();
-  // 漢字・カタカナなど非ひらがな文字を含む候補ボタンが存在しないこと
-  for (const text of texts) {
-    expect(text).not.toMatch(/[^\u3041-\u309F]/);
-  }
+  // 認識結果に含まれていた漢字候補（山・川）がボタンとして表示されていないこと
+  await expect(candidateList.locator(".kanji-candidate-btn", { hasText: "山" })).toHaveCount(0);
+  await expect(candidateList.locator(".kanji-candidate-btn", { hasText: "川" })).toHaveCount(0);
 });
