@@ -160,11 +160,7 @@ export class QuizApp {
       labelSpan.className = "tab-label";
       labelSpan.textContent = `${subject.icon} ${subject.name}`;
 
-      const statsSpan = document.createElement("span");
-      statsSpan.className = "tab-stats";
-
       tab.appendChild(labelSpan);
-      tab.appendChild(statsSpan);
 
       tab.addEventListener("click", () => {
         this.filter.subject = subject.id;
@@ -976,21 +972,10 @@ export class QuizApp {
       }
     }
 
-    const formatStats = (stat: { total: number; wrong: number }): string => {
+    const formatCategoryStats = (stat: { total: number; wrong: number }): string => {
       if (stat.total === 0) return "";
       return `${stat.wrong}/${stat.total}`;
     };
-
-    // タブの統計を更新
-    document.querySelectorAll(".subject-tab[data-subject]").forEach((tab) => {
-      const el = tab as HTMLElement;
-      const subject = el.dataset.subject || "all";
-      const stat = statsMap.get(`${subject}::all`) ?? { total: 0, wrong: 0 };
-      const statsEl = el.querySelector(".tab-stats");
-      if (statsEl) {
-        statsEl.textContent = formatStats(stat);
-      }
-    });
 
     // カテゴリアイテムの統計を更新
     const studiedKeys = this.useCase.getStudiedCategoryKeys();
@@ -1009,7 +994,7 @@ export class QuizApp {
       const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
       const statsEl = el.querySelector(".category-stats");
       if (statsEl) {
-        statsEl.textContent = formatStats(stat);
+        statsEl.textContent = formatCategoryStats(stat);
       }
 
       // 進捗バーを更新（学習履歴がある場合）
