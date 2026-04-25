@@ -69,8 +69,8 @@ export class OcrService {
     return text
       .trim()
       .replace(/\n+/g, " ")
+      .replace(/(?<=[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF])\s+(?=[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF])/g, "")
       .replace(/\s+/g, " ")
-      .replace(/(?<=[\u3040-\u9FFF])\s+(?=[\u3040-\u9FFF])/g, "")
       .trim();
   }
 
