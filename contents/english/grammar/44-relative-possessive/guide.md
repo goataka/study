@@ -1,4 +1,4 @@
-# 所有格の関係代名詞 - 解説
+# 所有格の関係代名詞
 
 2つの文:
 I know a boy. His father plays games.
