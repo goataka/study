@@ -5,8 +5,9 @@
   "categoryName": "ことわざ",
   "parentCategory": "vocabulary",
   "parentCategoryName": "語彙",
-  "example": "\u4e03\u8ee2\u3073\u516b\u8d77\u304d",
+  "example": "七転び八起き",
   "referenceGrade": "中学生",
+  "guideUrl": "../japanese/kanji/09-kotowaza/guide",
   "questions": [
     {
       "id": "kotowaza-001",

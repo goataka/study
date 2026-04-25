@@ -31,7 +31,7 @@
         <!-- カテゴリリスト -->
         <div class="category-panel">
           <div class="category-panel-header">
-            <button id="hideLearnedBtn" class="hide-learned-btn" type="button" aria-pressed="true">✅ 学習済を非表示</button>
+            <button id="hideLearnedBtn" class="hide-learned-btn" type="button" aria-pressed="true" aria-label="学習済カテゴリを非表示">✅ 学習済を表示</button>
           </div>
           <div id="categoryList" class="category-list"></div>
         </div>
@@ -157,6 +157,17 @@
         <button id="retryAllBtn" class="primary-btn">もう一度</button>
         <button id="retryWrongBtn" class="secondary-btn">復習</button>
         <button id="backToStartBtn" class="tertiary-btn">スタート画面に戻る</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 確認ダイアログ -->
+  <div id="confirmDialog" class="confirm-dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="confirmDialogMessage">
+    <div class="confirm-dialog">
+      <p id="confirmDialogMessage" class="confirm-dialog-message"></p>
+      <div class="confirm-dialog-buttons">
+        <button id="confirmDialogOk" class="primary-btn">OK</button>
+        <button id="confirmDialogCancel" class="secondary-btn">キャンセル</button>
       </div>
     </div>
   </div>
