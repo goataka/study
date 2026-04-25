@@ -62,6 +62,12 @@ Feature: 学習クイズ
     When I click the "スタート画面に戻る" button
     Then the start screen should be visible
 
+  Scenario: 解説パネルのiframeにembedded=1クエリが付与される
+    When I click the "英語" tab
+    And I click the first category item
+    And I open the guide panel tab
+    Then the guide iframe src should contain "embedded=1"
+
   @vr
   Scenario: スタート画面のビジュアル確認
     Then the start screen matches the snapshot

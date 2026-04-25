@@ -149,3 +149,18 @@ Then("the result screen should be visible", async ({ page }) => {
 Then("I should see the score", async ({ page }) => {
   await expect(page.locator("#scoreDisplay")).toBeVisible();
 });
+
+When("I open the guide panel tab", async ({ page }) => {
+  // 解説パネルタブをクリック
+  await page.locator("#panelTab-guide").click();
+  // 解説パネルが表示されるまで待つ
+  await expect(page.locator("#guideContent")).not.toHaveClass(/hidden/);
+});
+
+Then("the guide iframe src should contain {string}", async ({ page }, text: string) => {
+  // iframe の src に指定テキストが含まれていることを確認（embedded=1 クエリ付与の検証）
+  const frame = page.locator("#guidePanelFrame");
+  await expect(frame).not.toHaveAttribute("src", "about:blank");
+  const src = await frame.getAttribute("src");
+  expect(src).toContain(text);
+});
