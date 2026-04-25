@@ -28,53 +28,53 @@
 
 ### 📊 算数・基本計算
 
-| # | 内容 | 参考学年 | 解説 | 例 |
-|---|------|----------|------|-----|
-| 01 | たし算（くり上がりなし） | 小学1年 | [解説](arithmetic/01-addition-no-carry/guide.md) | 3 + 4 = 7 |
-| 02 | たし算（くり上がりあり） | 小学1年 | [解説](arithmetic/02-addition-carry/guide.md) | 7 + 8 = 15 |
-| 03 | たし算（まとめ） | 小学1年 | [解説](arithmetic/03-addition-mixed/guide.md) | 6 + 9 = 15 |
-| 04 | ひき算（くり下がりなし） | 小学1年 | [解説](arithmetic/04-subtraction-no-borrow/guide.md) | 8 - 3 = 5 |
-| 05 | ひき算（くり下がりあり） | 小学1年 | [解説](arithmetic/05-subtraction-borrow/guide.md) | 13 - 7 = 6 |
-| 06 | ひき算（まとめ） | 小学1年 | [解説](arithmetic/06-subtraction-mixed/guide.md) | 15 - 8 = 7 |
-| 07 | かけ算 | 小学2年 | [解説](arithmetic/07-multiplication/guide.md) | 6 × 7 = 42 |
-| 08 | わり算（あまりなし） | 小学3年 | [解説](arithmetic/08-division-no-remainder/guide.md) | 12 ÷ 4 = 3 |
-| 09 | わり算（あまりあり） | 小学3年 | [解説](arithmetic/09-division-remainder/guide.md) | 17 ÷ 5 = 3…2 |
-| 10 | わり算（まとめ） | 小学3年 | [解説](arithmetic/10-division-mixed/guide.md) | 23 ÷ 4 = 5…3 |
-| 11 | 分数のたし算（同分母） | 小学4年 | [解説](arithmetic/11-fractions-same-add/guide.md) | 1/5 + 2/5 = 3/5 |
-| 12 | 分数のひき算（同分母） | 小学4年 | [解説](arithmetic/12-fractions-same-sub/guide.md) | 4/7 - 2/7 = 2/7 |
-| 13 | 分数のたし算（通分あり） | 小学5年 | [解説](arithmetic/13-fractions-diff-add/guide.md) | 1/2 + 1/3 = 5/6 |
-| 14 | 分数のひき算（通分あり） | 小学5年 | [解説](arithmetic/14-fractions-diff-sub/guide.md) | 3/4 - 1/3 = 5/12 |
-| 15 | 分数のかけ算 | 小学6年 | [解説](arithmetic/15-fractions-multiply/guide.md) | 2/3 × 3/4 = 1/2 |
-| 16 | 分数のわり算 | 小学6年 | [解説](arithmetic/16-fractions-divide/guide.md) | 2/3 ÷ 4/5 = 5/6 |
-| 17 | 小数のたし算 | 小学4年 | [解説](arithmetic/17-decimals-addition/guide.md) | 1.2 + 3.4 = 4.6 |
-| 18 | 小数のひき算 | 小学4年 | [解説](arithmetic/18-decimals-subtraction/guide.md) | 5.3 - 2.1 = 3.2 |
-| 19 | 小数のかけ算 | 小学5年 | [解説](arithmetic/19-decimals-multiplication/guide.md) | 0.3 × 0.4 = 0.12 |
-| 20 | 比 | 小学6年 | [解説](arithmetic/20-ratio/guide.md) | 4:6 = 2:3 |
-| 21 | 割合 | 小学5年 | [解説](arithmetic/21-percentage/guide.md) | 60人の30% = 18人 |
+| # | 内容 | 内容紹介 | 参考学年 | 解説 | 例 |
+|---|------|------|----------|------|-----|
+| 01 | たし算（くり上がりなし） | くり上がりのないたし算を練習する | 小学1年 | [解説](arithmetic/01-addition-no-carry/guide.md) | 3 + 4 = 7 |
+| 02 | たし算（くり上がりあり） | 10のまとまりを使ったくり上がりのあるたし算を練習する | 小学1年 | [解説](arithmetic/02-addition-carry/guide.md) | 7 + 8 = 15 |
+| 03 | たし算（まとめ） | くり上がりなし・ありを混ぜたたし算を練習する | 小学1年 | [解説](arithmetic/03-addition-mixed/guide.md) | 6 + 9 = 15 |
+| 04 | ひき算（くり下がりなし） | くり下がりのないひき算を練習する | 小学1年 | [解説](arithmetic/04-subtraction-no-borrow/guide.md) | 8 - 3 = 5 |
+| 05 | ひき算（くり下がりあり） | 十の位からくり下げるひき算の計算方法を練習する | 小学1年 | [解説](arithmetic/05-subtraction-borrow/guide.md) | 13 - 7 = 6 |
+| 06 | ひき算（まとめ） | くり下がりなし・ありを混ぜたひき算を練習する | 小学1年 | [解説](arithmetic/06-subtraction-mixed/guide.md) | 15 - 8 = 7 |
+| 07 | かけ算 | 九九を使った1桁のかけ算を練習する | 小学2年 | [解説](arithmetic/07-multiplication/guide.md) | 6 × 7 = 42 |
+| 08 | わり算（あまりなし） | 九九を使って割り切れるわり算を練習する | 小学3年 | [解説](arithmetic/08-division-no-remainder/guide.md) | 12 ÷ 4 = 3 |
+| 09 | わり算（あまりあり） | あまりのあるわり算の計算方法を練習する | 小学3年 | [解説](arithmetic/09-division-remainder/guide.md) | 17 ÷ 5 = 3…2 |
+| 10 | わり算（まとめ） | あまりなし・ありのわり算を混ぜて練習する | 小学3年 | [解説](arithmetic/10-division-mixed/guide.md) | 23 ÷ 4 = 5…3 |
+| 11 | 分数のたし算（同分母） | 分母が同じ分数のたし算で分子だけを計算する方法を学ぶ | 小学4年 | [解説](arithmetic/11-fractions-same-add/guide.md) | 1/5 + 2/5 = 3/5 |
+| 12 | 分数のひき算（同分母） | 分母が同じ分数のひき算で分子だけを計算する方法を学ぶ | 小学4年 | [解説](arithmetic/12-fractions-same-sub/guide.md) | 4/7 - 2/7 = 2/7 |
+| 13 | 分数のたし算（通分あり） | 分母を通分してから行う異分母のたし算を学ぶ | 小学5年 | [解説](arithmetic/13-fractions-diff-add/guide.md) | 1/2 + 1/3 = 5/6 |
+| 14 | 分数のひき算（通分あり） | 分母を通分してから行う異分母のひき算を学ぶ | 小学5年 | [解説](arithmetic/14-fractions-diff-sub/guide.md) | 3/4 - 1/3 = 5/12 |
+| 15 | 分数のかけ算 | 分子どうし・分母どうしをかける分数のかけ算を学ぶ | 小学6年 | [解説](arithmetic/15-fractions-multiply/guide.md) | 2/3 × 3/4 = 1/2 |
+| 16 | 分数のわり算 | 逆数を使って分数のわり算をかけ算に変換して解く方法を学ぶ | 小学6年 | [解説](arithmetic/16-fractions-divide/guide.md) | 2/3 ÷ 4/5 = 5/6 |
+| 17 | 小数のたし算 | 小数点をそろえて行う小数のたし算を練習する | 小学4年 | [解説](arithmetic/17-decimals-addition/guide.md) | 1.2 + 3.4 = 4.6 |
+| 18 | 小数のひき算 | 小数点をそろえて行う小数のひき算を練習する | 小学4年 | [解説](arithmetic/18-decimals-subtraction/guide.md) | 5.3 - 2.1 = 3.2 |
+| 19 | 小数のかけ算 | 整数計算に置き換えて行う小数のかけ算を練習する | 小学5年 | [解説](arithmetic/19-decimals-multiplication/guide.md) | 0.3 × 0.4 = 0.12 |
+| 20 | 比 | 2つの量の関係を最も簡単な整数の比で表す方法を学ぶ | 小学6年 | [解説](arithmetic/20-ratio/guide.md) | 4:6 = 2:3 |
+| 21 | 割合 | 百分率・歩合を使った割合の文章題の解き方を学ぶ | 小学5年 | [解説](arithmetic/21-percentage/guide.md) | 60人の30% = 18人 |
 
 ### 📐 代数
 
-| # | 内容 | 参考学年 | 解説 | 例 |
-|---|------|----------|------|-----|
-| 22 | 正負の数 | 中学1年 | [解説](algebra/22-positive-negative/guide.md) | (-3) + (+5) = 2 |
-| 23 | 文字式 | 中学1年 | [解説](algebra/23-algebraic-expressions/guide.md) | 3a + 2a = 5a |
-| 24 | 一次方程式 | 中学1年 | [解説](algebra/24-linear-eq/guide.md) | 2x + 3 = 7 → x = 2 |
-| 25 | 連立方程式 | 中学2年 | [解説](algebra/25-simultaneous-eq/guide.md) | x+y=5, x-y=1 → x=3,y=2 |
-| 26 | 一次関数 | 中学2年 | [解説](algebra/26-linear-func/guide.md) | y = 2x + 1 |
-| 27 | 確率 | 中学2年 | [解説](algebra/27-probability/guide.md) | サイコロで偶数 = 3/6 = 1/2 |
-| 28 | 平方根 | 中学3年 | [解説](algebra/28-square-roots/guide.md) | √12 = 2√3 |
-| 29 | 二次方程式 | 中学3年 | [解説](algebra/29-quadratic-eq/guide.md) | x²-5x+6=0 → x=2,3 |
+| # | 内容 | 内容紹介 | 参考学年 | 解説 | 例 |
+|---|------|------|----------|------|-----|
+| 22 | 正負の数 | 正と負の数の四則計算の方法を学ぶ | 中学1年 | [解説](algebra/22-positive-negative/guide.md) | (-3) + (+5) = 2 |
+| 23 | 文字式 | 文字を使った式の表し方・計算ルールを身につける | 中学1年 | [解説](algebra/23-algebraic-expressions/guide.md) | 3a + 2a = 5a |
+| 24 | 一次方程式 | 移項を使ってxを求める一次方程式の解き方を学ぶ | 中学1年 | [解説](algebra/24-linear-eq/guide.md) | 2x + 3 = 7 → x = 2 |
+| 25 | 連立方程式 | 加減法・代入法で2つの方程式を同時に解く方法を学ぶ | 中学2年 | [解説](algebra/25-simultaneous-eq/guide.md) | x+y=5, x-y=1 → x=3,y=2 |
+| 26 | 一次関数 | y=ax+bのグラフの傾き・切片と式の求め方を学ぶ | 中学2年 | [解説](algebra/26-linear-func/guide.md) | y = 2x + 1 |
+| 27 | 確率 | 場合の数を数えて確率を求める基本的な方法を学ぶ | 中学2年 | [解説](algebra/27-probability/guide.md) | サイコロで偶数 = 3/6 = 1/2 |
+| 28 | 平方根 | √（ルート）の意味と計算方法を学ぶ | 中学3年 | [解説](algebra/28-square-roots/guide.md) | √12 = 2√3 |
+| 29 | 二次方程式 | 因数分解・解の公式を使って二次方程式を解く方法を学ぶ | 中学3年 | [解説](algebra/29-quadratic-eq/guide.md) | x²-5x+6=0 → x=2,3 |
 
 ### 📈 解析・高校数学
 
-| # | 内容 | 参考学年 | 解説 | 例 |
-|---|------|----------|------|-----|
-| 30 | 二次関数 | 高校1年 | [解説](calculus/30-quadratic-func/guide.md) | y = x² - 4x + 3 |
-| 31 | 不等式 | 高校1年 | [解説](calculus/31-inequalities/guide.md) | 2x - 3 > 5 → x > 4 |
-| 32 | 三角関数 | 高校2年 | [解説](calculus/32-trigonometry/guide.md) | sin30° = 1/2 |
-| 33 | 指数・対数 | 高校2年 | [解説](calculus/33-exponents-logarithms/guide.md) | log₂8 = 3 |
-| 34 | 数列 | 高校2年 | [解説](calculus/34-sequences/guide.md) | 1,3,5,7,… → aₙ=2n-1 |
-| 35 | ベクトル | 高校2年 | [解説](calculus/35-vectors/guide.md) | →a=(1,2), →b=(3,4) → →a+→b=(4,6) |
-| 36 | 極限 | 高校3年 | [解説](calculus/36-limits/guide.md) | lim(n→∞) 1/n = 0 |
-| 37 | 微分 | 高校3年 | [解説](calculus/37-differentiation/guide.md) | f(x)=x³ → f'(x)=3x² |
-| 38 | 積分 | 高校3年 | [解説](calculus/38-integration/guide.md) | ∫2xdx = x² + C |
+| # | 内容 | 内容紹介 | 参考学年 | 解説 | 例 |
+|---|------|------|----------|------|-----|
+| 30 | 二次関数 | 放物線グラフの頂点・軸・最大最小値を求める方法を学ぶ | 高校1年 | [解説](calculus/30-quadratic-func/guide.md) | y = x² - 4x + 3 |
+| 31 | 不等式 | 移項を使った一次不等式の解き方と数直線表記を学ぶ | 高校1年 | [解説](calculus/31-inequalities/guide.md) | 2x - 3 > 5 → x > 4 |
+| 32 | 三角関数 | sin/cos/tanの基本値・相互関係と加法定理を学ぶ | 高校2年 | [解説](calculus/32-trigonometry/guide.md) | sin30° = 1/2 |
+| 33 | 指数・対数 | 指数法則と対数の性質を使った計算方法を学ぶ | 高校2年 | [解説](calculus/33-exponents-logarithms/guide.md) | log₂8 = 3 |
+| 34 | 数列 | 等差数列・等比数列の一般項と和の公式を学ぶ | 高校2年 | [解説](calculus/34-sequences/guide.md) | 1,3,5,7,… → aₙ=2n-1 |
+| 35 | ベクトル | 向きと大きさを持つベクトルの基本演算と内積を学ぶ | 高校2年 | [解説](calculus/35-vectors/guide.md) | →a=(1,2), →b=(3,4) → →a+→b=(4,6) |
+| 36 | 極限 | 数列・関数が限りなく近づく値（極限）の求め方を学ぶ | 高校3年 | [解説](calculus/36-limits/guide.md) | lim(n→∞) 1/n = 0 |
+| 37 | 微分 | 関数の変化の割合（傾き）を求める微分の公式を学ぶ | 高校3年 | [解説](calculus/37-differentiation/guide.md) | f(x)=x³ → f'(x)=3x² |
+| 38 | 積分 | 微分の逆演算として面積を求める積分の公式を学ぶ | 高校3年 | [解説](calculus/38-integration/guide.md) | ∫2xdx = x² + C |

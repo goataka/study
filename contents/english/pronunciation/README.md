@@ -38,14 +38,14 @@ graph TD
 
 ## 発音ドリル一覧
 
-| # | ドリル | 解説 | クイズ | 例 |
-|---|--------|------|--------|-----|
-| 01 | アルファベット（大文字・小文字と読み仮名） | [解説](01-alphabet/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=alphabet) | A(えー) B(びー) |
-| 02 | 50音（ひらがなとローマ字） | [解説](02-50on/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=50on) | あ=a い=i う=u |
-| 03 | フォニックス（1文字） | [解説](03-phonics-1letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-1) | `p`→/p/ (play) |
-| 04 | フォニックス（2文字・マジックE） | [解説](04-phonics-2letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-2) | `ay`→/eɪ/ (play) |
-| 05 | フォニックス（3文字） | [解説](05-phonics-3letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
-| 06 | リンキング | [解説](07-linking/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=linking) | play\_it→プレイ イッ |
-| 07 | リダクション | [解説](08-reduction/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=reduction) | for→/fər/ |
-| 08 | フラッピング | [解説](09-flapping/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=flapping) | water→ウォダー |
-| 09 | アシミレーション | [解説](10-assimilation/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=assimilation) | meet you→ミーチュー |
+| # | ドリル | 内容紹介 | 解説 | クイズ | 例 |
+|---|--------|------|------|--------|-----|
+| 01 | アルファベット（大文字・小文字と読み仮名） | 英語で使う26文字の大文字・小文字と読み方を学ぶ | [解説](01-alphabet/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=alphabet) | A(えー) B(びー) |
+| 02 | 50音（ひらがなとローマ字） | ひらがなをローマ字（英字）で表す方法を学ぶ | [解説](02-50on/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=50on) | あ=a い=i う=u |
+| 03 | フォニックス（1文字） | アルファベット1文字の音と単語の関係を学ぶ | [解説](03-phonics-1letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-1) | `p`→/p/ (play) |
+| 04 | フォニックス（2文字・マジックE） | 2文字の組み合わせ（ダイグラフ）の読み方を学ぶ | [解説](04-phonics-2letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-2) | `ay`→/eɪ/ (play) |
+| 05 | フォニックス（3文字） | tch/dge/ighなど3文字の特殊パターンの読み方を学ぶ | [解説](05-phonics-3letter/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
+| 06 | リンキング | 子音で終わる語と母音で始まる語がつながる音の変化を学ぶ | [解説](07-linking/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=linking) | play\_it→プレイ イッ |
+| 07 | リダクション | 会話で音が弱くなったり消えたりするリダクションを学ぶ | [解説](08-reduction/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=reduction) | for→/fər/ |
+| 08 | フラッピング | t/dがラ行の音に変わるアメリカ英語の特徴を学ぶ | [解説](09-flapping/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=flapping) | water→ウォダー |
+| 09 | アシミレーション | 隣り合う音が影響し合って変化するアシミレーションを学ぶ | [解説](10-assimilation/guide.md) | [クイズ](../../quiz/index.html?subject=english&category=assimilation) | meet you→ミーチュー |
