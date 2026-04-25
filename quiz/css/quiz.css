@@ -204,7 +204,7 @@ header h1 {
 }
 
 .category-group-header {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     color: #586069;
     text-transform: uppercase;
@@ -235,7 +235,7 @@ header h1 {
 }
 
 .category-name {
-    font-size: 13px;
+    font-size: 15px;
     color: #24292e;
 }
 
@@ -245,7 +245,7 @@ header h1 {
 
 /* カテゴリ例文 */
 .category-example {
-    font-size: 11px;
+    font-size: 13px;
     color: #586069;
     font-style: italic;
 }
@@ -276,7 +276,7 @@ header h1 {
 }
 
 .category-stats {
-    font-size: 11px;
+    font-size: 13px;
     color: #586069;
     white-space: nowrap;
     background: rgba(0, 0, 0, 0.06);
@@ -290,7 +290,7 @@ header h1 {
 }
 
 .category-grade {
-    font-size: 10px;
+    font-size: 12px;
     color: #586069;
     white-space: nowrap;
     background: #e8f0fe;
