@@ -570,6 +570,32 @@ export class QuizApp {
   }
 
 
+
+  /**
+   * メモエリアのタブを切り替える（"memo" または "guide"）。
+   */
+  private showNoteTab(tab: "memo" | "guide"): void {
+    const memoContent = document.getElementById("notesMemoContent");
+    const guideContent = document.getElementById("notesGuideContent");
+
+    memoContent?.classList.toggle("hidden", tab !== "memo");
+    guideContent?.classList.toggle("hidden", tab !== "guide");
+
+    document.querySelectorAll<HTMLElement>(".notes-tab-btn").forEach((t) => {
+      const isActive = t.id === `notesTab${tab.charAt(0).toUpperCase()}${tab.slice(1)}`;
+      t.classList.toggle("active", isActive);
+      t.setAttribute("aria-selected", String(isActive));
+      t.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+    if (tab === "guide") {
+      if (this.filter.category === "all") {
+        this.selectFirstUnlearnedCategory();
+      }
+      this.updateGuidePanelContentByIds("notesGuideFrame", "notesGuideNoContent");
+    }
+  }
+
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
   /**
@@ -899,6 +925,10 @@ export class QuizApp {
     this.on("clearNotesBtn", "click", () => this.clearNotes());
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
+    // ノートタブの切り替え
+    document.getElementById("notesTabMemo")?.addEventListener("click", () => this.showNoteTab("memo"));
+    document.getElementById("notesTabGuide")?.addEventListener("click", () => this.showNoteTab("guide"));
+
     // タッチペン入力確定ボタン（text-input問題のメモタブで使用）
     document.getElementById("handwritingConfirmBtn")?.addEventListener("click", () => { void this.handleHandwritingConfirm(); });
 
@@ -1162,6 +1192,7 @@ export class QuizApp {
     this.notesStates.clear();
 
     this.showScreen("quiz");
+    this.showNoteTab("memo");
     document.getElementById("quizScreen")?.classList.toggle("practice-mode", mode === "practice");
     this.initializeNotesCanvas();
     this.notesCanvas?.clear();

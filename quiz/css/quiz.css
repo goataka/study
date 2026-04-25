@@ -1094,6 +1094,38 @@ button:disabled {
     font-weight: 600;
 }
 
+/* ノートタブバー */
+.notes-tab-bar {
+    display: flex;
+    border-bottom: 1px solid #e1e4e8;
+    background: #f6f8fa;
+}
+
+.notes-tab-btn {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #586069;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    font-family: inherit;
+}
+
+.notes-tab-btn:hover {
+    color: #0366d6;
+    background: #e8f0fe;
+}
+
+.notes-tab-btn.active {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+    background: white;
+}
+
 /* 解説フレーム */
 .guide-frame {
     width: 100%;
