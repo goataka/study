@@ -11,6 +11,7 @@ import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionReposi
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
 import { NotesCanvas } from "./notesCanvas";
 import type { DrawingState } from "./notesCanvas";
+import { OcrService } from "./ocrService";
 
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
@@ -29,6 +30,7 @@ export class QuizApp {
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
+  private readonly ocrService: OcrService = new OcrService();
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   private hideLearnedCategories: boolean = true;
 
@@ -865,7 +867,7 @@ export class QuizApp {
     this.on("eraserBtn", "click", () => this.toggleEraserMode());
 
     // タッチペン入力確定ボタン（text-input問題のメモタブで使用）
-    document.getElementById("handwritingConfirmBtn")?.addEventListener("click", () => this.handleHandwritingConfirm());
+    document.getElementById("handwritingConfirmBtn")?.addEventListener("click", () => { void this.handleHandwritingConfirm(); });
 
     // 学習済カテゴリの非表示トグル
     this.on("hideLearnedBtn", "click", () => this.toggleHideLearned());
@@ -1273,9 +1275,10 @@ export class QuizApp {
 
   /**
    * タッチペン入力の確定ボタンが押されたときの処理。
-   * 手書き入力フィールドのテキストを答えの入力エリアに追加する。
+   * キャンバスの手書き文字をTesseract OCRで認識し、答えの入力エリアに追加する。
+   * キャンバスが空の場合は手書き入力フィールドのテキストをフォールバックとして使用する。
    */
-  private handleHandwritingConfirm(): void {
+  private async handleHandwritingConfirm(): Promise<void> {
     const session = this.currentSession;
     if (!session) return;
 
@@ -1285,10 +1288,33 @@ export class QuizApp {
     // 既回答の場合は何もしない
     if (session.getAnswer(session.currentIndex) !== undefined) return;
 
+    const confirmBtn = document.getElementById("handwritingConfirmBtn") as HTMLButtonElement | null;
     const handwritingInput = document.getElementById("handwritingTextInput") as HTMLInputElement | null;
-    if (!handwritingInput) return;
+    const canvas = document.getElementById("notesCanvas") as HTMLCanvasElement | null;
 
-    const inputText = handwritingInput.value;
+    let inputText = "";
+
+    // OCRでキャンバスの内容を認識する
+    if (canvas && confirmBtn) {
+      const originalLabel = confirmBtn.textContent ?? "確定する";
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = "認識中...";
+
+      try {
+        inputText = await this.ocrService.recognize(canvas);
+      } catch (e) {
+        console.warn("OCRの認識に失敗しました:", e);
+      } finally {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = originalLabel;
+      }
+    }
+
+    // OCRが空文字の場合は手書き入力フィールドの値をフォールバックとして使う
+    if (!inputText) {
+      inputText = handwritingInput?.value ?? "";
+    }
+
     if (!inputText) return;
 
     // 答えの入力エリアにテキストを追加
@@ -1298,8 +1324,11 @@ export class QuizApp {
       textInput.focus();
     }
 
-    // 手書き入力フィールドをクリア
-    handwritingInput.value = "";
+    // キャンバスと手書き入力フィールドをクリア
+    this.notesCanvas?.clear();
+    if (handwritingInput) {
+      handwritingInput.value = "";
+    }
   }
 
   private navigate(direction: 1 | -1): void {
