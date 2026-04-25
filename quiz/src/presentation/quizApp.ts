@@ -34,6 +34,8 @@ export class QuizApp {
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   /** 総合タブの fallback により自動的に "history" へ切り替わった場合は true。ユーザーが明示的にタブを選択した場合は false。 */
   private autoSwitchedToHistory: boolean = false;
+  /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
+  private isPanelTabUserSelected: boolean = false;
   private hideLearnedCategories: boolean = true;
   /** 「総合」タブへの切り替え時に「確認」パネルが強制的に「実行記録」へフォールバックされたかを示すフラグ */
   private wasQuizPanelForcedToHistory: boolean = false;
@@ -201,6 +203,7 @@ export class QuizApp {
         const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
         this.activePanelTab = panel;
         this.autoSwitchedToHistory = false; // ユーザーが明示的にタブを選択した
+        this.isPanelTabUserSelected = true; // ユーザーが明示的にタブを選択した
         this.showPanelTab(panel);
         if (panel === "guide") {
           this.updateGuidePanelContent();
@@ -544,12 +547,20 @@ export class QuizApp {
 
   /**
    * 解答履歴の有無でパネルタブを自動選択する。
+   * ユーザーが明示的にパネルタブを選択している場合は自動選択をスキップする。
    * 特定カテゴリが選択されている場合は解答履歴があれば「確認」タブ、なければ「解説」タブを表示する。
    * category が "all" の場合は「確認」タブに戻す（解説タブが残ると selectFirstUnlearnedCategory が
    * 再度カテゴリを選択してしまうため）。
+   * 総合タブからの自動復帰（autoSwitchedToHistory）は updateQuizPanelVisibility が担うため、
+   * このメソッドでは autoSwitchedToHistory をリセットしない。
    * @param allRecords - 呼び出し元で取得済みの履歴配列（二重ロードを避けるために渡す）
    */
   private autoSelectPanelTab(allRecords: QuizRecord[]): void {
+    if (this.isPanelTabUserSelected) {
+      // ユーザーが明示的にタブを選択している場合は自動選択しない
+      this.showPanelTab(this.activePanelTab);
+      return;
+    }
     if (this.filter.category !== "all") {
       const hasHistory = allRecords.some(
         (r) => r.subject === this.filter.subject && r.category === this.filter.category

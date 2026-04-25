@@ -983,6 +983,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
 
 describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様", () => {
   beforeEach(() => {
+    window.history.pushState({}, "", "/"); // URL を確実にリセット
     setupTabDom();
     setupFetchMock();
     localStorage.clear();
@@ -990,17 +991,18 @@ describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様"
 
   afterEach(() => {
     vi.restoreAllMocks();
+    window.history.pushState({}, "", "/"); // URL をリセット
   });
 
   it("解答履歴がない単元をクリックすると解説タブが表示される", async () => {
+    // 総合タブではなく英語タブから開始し、かつ selectFirstUnlearnedCategory をスキップする
+    // ことで autoSwitchedToHistory=false の状態を作る
+    // （?category=all とすることで selectFirstUnlearnedCategory が URL category を検出してスキップ）
+    window.history.pushState({}, "", "?subject=english&category=all");
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 英語タブをクリックしてカテゴリ一覧を表示
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    // phonics-1 をクリック（履歴なし）
+    // phonics-1 をクリック（履歴なし、総合タブからの自動復帰なし）
     const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
     categoryItem?.click();
 
