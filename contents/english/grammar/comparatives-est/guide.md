@@ -1,4 +1,4 @@
-# 最上級 - 解説
+# 最上級
 
 原級:
 I play games `well`.

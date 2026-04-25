@@ -1,4 +1,4 @@
-# 目的格の関係代名詞 - 解説
+# 目的格の関係代名詞
 
 2つの文:
 I play a game. The game is fun.

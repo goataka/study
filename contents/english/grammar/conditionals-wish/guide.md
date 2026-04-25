@@ -1,4 +1,4 @@
-# I wish - 解説
+# I wish
 
 現在形:
 I `cannot play` games.（ゲームができない）

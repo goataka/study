@@ -1,4 +1,4 @@
-# 疑問文の間接話法 - 解説
+# 疑問文の間接話法
 
 直接話法:
 He asked, "Do you play games?"

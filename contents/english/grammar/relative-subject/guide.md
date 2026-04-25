@@ -1,4 +1,4 @@
-# 主格の関係代名詞 - 解説
+# 主格の関係代名詞
 
 2つの文:
 I know a boy. He plays games.
