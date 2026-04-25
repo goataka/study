@@ -59,6 +59,15 @@ function setupMinimalDom(): void {
       <button id="retryWrongBtn">間違えた問題</button>
       <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
+    <div id="confirmDialog" class="confirm-dialog-overlay hidden">
+      <div class="confirm-dialog">
+        <p id="confirmDialogMessage"></p>
+        <div class="confirm-dialog-buttons">
+          <button id="confirmDialogOk">OK</button>
+          <button id="confirmDialogCancel">キャンセル</button>
+        </div>
+      </div>
+    </div>
   `;
 }
 
@@ -2592,6 +2601,79 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     const categoryItems = document.querySelectorAll(".category-item");
     expect(categoryItems.length).toBeGreaterThan(0);
+  });
+});
+
+// ─── 確認ダイアログ仕様 ────────────────────────────────────────────────────
+
+describe("QuizApp — 確認ダイアログ仕様", () => {
+  beforeEach(() => {
+    setupMinimalDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  async function startQuizFromMinimalDom(): Promise<void> {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+  }
+
+  it("クイズ進行中にタイトルをクリックすると確認ダイアログが表示される", async () => {
+    await startQuizFromMinimalDom();
+
+    const quizScreen = document.getElementById("quizScreen");
+    expect(quizScreen?.classList.contains("hidden")).toBe(false);
+
+    document.getElementById("titleBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const dialog = document.getElementById("confirmDialog");
+    expect(dialog?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("確認ダイアログで「OK」をクリックするとスタート画面に遷移する", async () => {
+    await startQuizFromMinimalDom();
+
+    document.getElementById("titleBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("confirmDialogOk")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const startScreen = document.getElementById("startScreen");
+    expect(startScreen?.classList.contains("hidden")).toBe(false);
+    const dialog = document.getElementById("confirmDialog");
+    expect(dialog?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("確認ダイアログで「キャンセル」をクリックするとクイズ画面に留まる", async () => {
+    await startQuizFromMinimalDom();
+
+    document.getElementById("titleBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("confirmDialogCancel")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const quizScreen = document.getElementById("quizScreen");
+    expect(quizScreen?.classList.contains("hidden")).toBe(false);
+    const dialog = document.getElementById("confirmDialog");
+    expect(dialog?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("確認ダイアログのメッセージが設定されている", async () => {
+    await startQuizFromMinimalDom();
+
+    document.getElementById("titleBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const msg = document.getElementById("confirmDialogMessage");
+    expect(msg?.textContent).toContain("スタート画面に戻りますか");
   });
 });
 
