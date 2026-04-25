@@ -5,7 +5,7 @@
   "categoryName": "微分",
   "parentCategory": "calculus",
   "parentCategoryName": "解析・高校数学",
-  "guideUrl": "../math/calculus/37-differentiation/guide",
+  "guideUrl": "../math/calculus/differentiation/guide",
   "example": "f(x)=x³ → f'(x)=3x²",
   "referenceGrade": "高校3年",
   "description": "多項式関数の導関数を求め、極値を計算できるようにします。",

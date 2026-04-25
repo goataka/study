@@ -20,6 +20,14 @@ const SUBJECTS = [
   { id: "japanese", name: "国語", icon: "📖" },
 ] as const;
 
+/** 参考学年文字列から CSS クラス名を返す（小学→grade-elementary, 中学→grade-middle, 高校→grade-high） */
+function gradeColorClass(referenceGrade: string): string {
+  if (referenceGrade.startsWith("小")) return "grade-elementary";
+  if (referenceGrade.startsWith("中")) return "grade-middle";
+  if (referenceGrade.startsWith("高")) return "grade-high";
+  return "";
+}
+
 export class QuizApp {
   private readonly useCase: QuizUseCase;
   private currentSession: QuizSession | null = null;
@@ -327,6 +335,10 @@ export class QuizApp {
         if (recommended.referenceGrade) {
           const gradeSpan = document.createElement("span");
           gradeSpan.className = "subject-overview-grade";
+          const gradeClassName = gradeColorClass(recommended.referenceGrade);
+          if (gradeClassName) {
+            gradeSpan.classList.add(gradeClassName);
+          }
           gradeSpan.textContent = recommended.referenceGrade;
           recDiv.appendChild(gradeSpan);
         }
@@ -411,7 +423,7 @@ export class QuizApp {
     const nameArea = document.createElement("div");
     nameArea.className = "category-name-area";
 
-    // タイトルと例文を横並びにするラッパー
+    // タイトルと例文・説明文を横並びにするラッパー
     const titleRow = document.createElement("div");
     titleRow.className = "category-title-row";
 
@@ -420,25 +432,32 @@ export class QuizApp {
     nameSpan.textContent = categoryName;
     titleRow.appendChild(nameSpan);
 
-    // 例文（example が設定されている場合のみ表示）
+    // 例文と説明文（設定されている場合のみ表示）
     const example = this.useCase.getCategoryExample(subject, categoryId);
-    if (example !== undefined) {
-      const exampleSpan = document.createElement("span");
-      exampleSpan.className = "category-example";
-      this.renderBacktickText(exampleSpan, example);
-      titleRow.appendChild(exampleSpan);
+    const description = this.useCase.getCategoryDescription(subject, categoryId);
+    if (example !== undefined || description) {
+      // 例文と説明文を縦に並べる（開始位置を揃えるため同じコンテナに入れる）
+      const subInfo = document.createElement("div");
+      subInfo.className = "category-sub-info";
+
+      if (example !== undefined) {
+        const exampleSpan = document.createElement("span");
+        exampleSpan.className = "category-example";
+        this.renderBacktickText(exampleSpan, example);
+        subInfo.appendChild(exampleSpan);
+      }
+
+      if (description) {
+        const descSpan = document.createElement("span");
+        descSpan.className = "category-item-description";
+        descSpan.textContent = description;
+        subInfo.appendChild(descSpan);
+      }
+
+      titleRow.appendChild(subInfo);
     }
 
     nameArea.appendChild(titleRow);
-
-    // 説明文（description が設定されている場合のみ表示）
-    const description = this.useCase.getCategoryDescription(subject, categoryId);
-    if (description) {
-      const descSpan = document.createElement("span");
-      descSpan.className = "category-item-description";
-      descSpan.textContent = description;
-      nameArea.appendChild(descSpan);
-    }
 
     // 進捗バーと完了率を横並びにするラッパー
     const progressRow = document.createElement("div");
@@ -464,6 +483,10 @@ export class QuizApp {
     gradeSpan.className = "category-grade";
     if (referenceGrade) {
       gradeSpan.textContent = referenceGrade;
+      const gradeClass = gradeColorClass(referenceGrade);
+      if (gradeClass) {
+        gradeSpan.classList.add(gradeClass);
+      }
     } else {
       gradeSpan.classList.add("hidden");
     }

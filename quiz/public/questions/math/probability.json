@@ -5,7 +5,7 @@
   "categoryName": "確率",
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
-  "guideUrl": "../math/algebra/27-probability/guide",
+  "guideUrl": "../math/algebra/probability/guide",
   "example": "サイコロで偶数 = 3/6 = 1/2",
   "referenceGrade": "中学2年",
   "description": "場合の数の数え方と確率の基本的な求め方を身につけます。",

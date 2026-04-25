@@ -5,7 +5,7 @@
   "categoryName": "一次関数",
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
-  "guideUrl": "../math/algebra/26-linear-func/guide",
+  "guideUrl": "../math/algebra/linear-func/guide",
   "example": "y = 2x + 1",
   "referenceGrade": "中学2年",
   "description": "一次関数のグラフの特徴を理解し、式を求められるようにします。",
