@@ -41,3 +41,55 @@ I play games `if` I have time.
 | 時 | `when` / `after` / `before` | `after` I finish homework |
 | 条件 | `if` | `if` I have time |
 | 譲歩 | `though` | `though` I am busy |
+
+## 練習問題
+
+( ) に正しい接続詞を入れましょう。
+
+| パターン | 文 |
+|----------|------|
+| 並列 | I play games and study English. |
+| 選択 | I play games (　　　　　　) study English. |
+| 理由 | I play games (　　　　　　) they are fun. |
+| 逆接 | I play games, (　　　　　　) I don't play every day. |
+| 時 | I play games (　　　　　　) I finish homework. |
+| 条件 | I play games (　　　　　　) I have time. |
+
+ヒント: or, because, but, after, if
+
+## 解答
+
+| パターン | 文 |
+|----------|------|
+| 並列 | I play games and study English. |
+| 選択 | I play games (`or`) study English. |
+| 理由 | I play games (`because`) they are fun. |
+| 逆接 | I play games, (`but`) I don't play every day. |
+| 時 | I play games (`after`) I finish homework. |
+| 条件 | I play games (`if`) I have time. |
+
+## 英作文
+
+日本語を英語にしましょう。
+
+| 日本語 | 英語 |
+|--------|------|
+| 私はゲームをして英語を勉強します。 | 　　　　　　　　　　　　 |
+| ゲームは楽しいので私はゲームをします。 | 　　　　　　　　　　　　 |
+| 私はゲームをしますが、毎日はしません。 | 　　　　　　　　　　　　 |
+| 時間があれば私はゲームをします。 | 　　　　　　　　　　　　 |
+
+## 英作文解答
+
+| 日本語 | 英語 |
+|--------|------|
+| 私はゲームをして英語を勉強します。 | I play games and study English. |
+| ゲームは楽しいので私はゲームをします。 | I play games because they are fun. |
+| 私はゲームをしますが、毎日はしません。 | I play games, but I don't play every day. |
+| 時間があれば私はゲームをします。 | I play games if I have time. |
+
+---
+
+[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=conjunctions)
+
+[前へ: 前置詞](../21-prepositions/guide.md) | 接続詞 | [次へ: 進行形](../23-progressive/guide.md)
