@@ -838,16 +838,16 @@ export class QuizApp {
     this.on("retryAllBtn", "click", () => this.startQuiz("random"));
     this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
-    this.on("cancelQuizBtn", "click", () => this.navigateToStart());
+    this.on("cancelQuizBtn", "click", () => { void this.navigateToStart(); });
 
     // タイトルクリックでスタート画面へ
     const titleBtn = document.getElementById("titleBtn");
     if (titleBtn) {
-      titleBtn.addEventListener("click", () => this.navigateToStart());
+      titleBtn.addEventListener("click", () => { void this.navigateToStart(); });
       titleBtn.addEventListener("keydown", (e: KeyboardEvent) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          this.navigateToStart();
+          void this.navigateToStart();
         }
       });
     }
@@ -1595,11 +1595,62 @@ export class QuizApp {
   }
 
   /**
+   * カスタム確認ダイアログを表示し、ユーザーの選択を Promise で返す。
+   */
+  private showConfirmDialog(message: string): Promise<boolean> {
+    return new Promise((resolve) => {
+      const overlay = document.getElementById("confirmDialog");
+      const msgEl = document.getElementById("confirmDialogMessage");
+      const okBtn = document.getElementById("confirmDialogOk") as HTMLButtonElement | null;
+      const cancelBtn = document.getElementById("confirmDialogCancel") as HTMLButtonElement | null;
+      if (!overlay || !msgEl || !okBtn || !cancelBtn) {
+        resolve(window.confirm(message));
+        return;
+      }
+      msgEl.textContent = message;
+      overlay.classList.remove("hidden");
+
+      const previousFocus = document.activeElement as HTMLElement | null;
+
+      const close = (result: boolean): void => {
+        overlay.classList.add("hidden");
+        okBtn.removeEventListener("click", onOk);
+        cancelBtn.removeEventListener("click", onCancel);
+        overlay.removeEventListener("keydown", onKeydown);
+        previousFocus?.focus();
+        resolve(result);
+      };
+      const onOk = (): void => close(true);
+      const onCancel = (): void => close(false);
+      const onKeydown = (e: KeyboardEvent): void => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          close(false);
+        }
+        // フォーカストラップ: Tabキーをダイアログ内のボタンに限定する
+        if (e.key === "Tab") {
+          e.preventDefault();
+          if (document.activeElement === okBtn) {
+            cancelBtn.focus();
+          } else {
+            okBtn.focus();
+          }
+        }
+      };
+      okBtn.addEventListener("click", onOk);
+      cancelBtn.addEventListener("click", onCancel);
+      overlay.addEventListener("keydown", onKeydown);
+
+      okBtn.focus();
+    });
+  }
+
+  /**
    * スタート画面へ遷移する。クイズ進行中は確認ダイアログを表示する。
    */
-  private navigateToStart(): void {
+  private async navigateToStart(): Promise<void> {
     if (this.isQuizInProgress()) {
-      const confirmed = window.confirm("クイズが途中です。スタート画面に戻りますか？（進行状況は保存されません）");
+      const confirmed = await this.showConfirmDialog("クイズが途中です。スタート画面に戻りますか？（進行状況は保存されません）");
       if (!confirmed) return;
     }
     this.showScreen("start");

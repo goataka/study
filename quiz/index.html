@@ -161,6 +161,17 @@
     </div>
   </div>
 
+  <!-- 確認ダイアログ -->
+  <div id="confirmDialog" class="confirm-dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="confirmDialogMessage">
+    <div class="confirm-dialog">
+      <p id="confirmDialogMessage" class="confirm-dialog-message"></p>
+      <div class="confirm-dialog-buttons">
+        <button id="confirmDialogOk" class="primary-btn">OK</button>
+        <button id="confirmDialogCancel" class="secondary-btn">キャンセル</button>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="./src/presentation/quizApp.ts"></script>
 </body>
 </html>
