@@ -26,12 +26,29 @@ export class OcrService {
   // ─── 画像前処理 ────────────────────────────────────────────────────────────
 
   /**
+   * 前処理用のキャンバス要素を生成する。
+   * テストではこのメソッドをスタブして、生成キャンバスを差し替えられるようにする。
+   */
+  protected createCanvasElement(): HTMLCanvasElement {
+    return document.createElement("canvas");
+  }
+
+  /**
+   * キャンバスから 2D コンテキストを取得する。
+   * テストではこのメソッドをスタブして、描画呼び出しを検証しやすくする。
+   */
+  protected getCanvasContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D | null {
+    return canvas.getContext("2d");
+  }
+
+  /**
    * 認識精度向上のためにキャンバスを前処理する。
    * - 白背景を追加（Tesseractは白背景に黒文字が最も得意）
    * - 最低300pxのサイズを確保（小さすぎる画像は認識率が低い）
    * - 余白を追加（文字が端で切れるのを防ぐ）
+   * 元画像は縦横比を保ったまま描画する（非等倍スケールによる文字歪みを防ぐ）。
    */
-  private preprocessCanvas(source: HTMLCanvasElement): HTMLCanvasElement {
+  protected preprocessCanvas(source: HTMLCanvasElement): HTMLCanvasElement {
     const padding = 20;
     const minSize = 300;
 
@@ -40,19 +57,19 @@ export class OcrService {
     const destWidth = Math.max(srcWidth, minSize);
     const destHeight = Math.max(srcHeight, minSize);
 
-    const offscreen = document.createElement("canvas");
+    const offscreen = this.createCanvasElement();
     offscreen.width = destWidth + padding * 2;
     offscreen.height = destHeight + padding * 2;
 
-    const ctx = offscreen.getContext("2d");
+    const ctx = this.getCanvasContext(offscreen);
     if (!ctx) return source;
 
     // 白背景で埋める（透明キャンバスはTesseractの認識率が低い）
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, offscreen.width, offscreen.height);
 
-    // 元のキャンバスをパディングを加えて描画
-    ctx.drawImage(source, padding, padding, destWidth, destHeight);
+    // 元のキャンバスを縦横比を保ったままパディング付きで描画
+    ctx.drawImage(source, padding, padding, srcWidth, srcHeight);
 
     return offscreen;
   }
