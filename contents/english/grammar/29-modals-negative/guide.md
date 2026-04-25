@@ -62,9 +62,3 @@ I `cannot play` games.
 | 私は泳ぐことができない。 | I cannot swim. |
 | 私は行ってはいけない。 | I must not go. |
 | 私は今日勉強する必要はない。 | I don't have to study today. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=modals-negative)
-
-[前へ: 助動詞の使い分け](../28-modals-basic/guide.md) | 助動詞の否定形 | [次へ: 助動詞の過去形](../30-modals-past/guide.md)

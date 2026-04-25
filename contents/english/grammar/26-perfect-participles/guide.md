@@ -74,9 +74,3 @@ go → went → `gone`
 | 私はその映画を見たことがある。 | I have seen the movie. |
 | 私はケーキを作ったことがある。 | I have made a cake. |
 | 私は英語を話したことがある。 | I have spoken English. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=perfect-participles)
-
-[前へ: 完了形](../25-perfect/guide.md) | 過去分詞の変化 | [次へ: 完了形の用法](../27-perfect-usage/guide.md)

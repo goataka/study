@@ -71,9 +71,3 @@
 | 814 + 142 = | 956 |
 
 💡 **ポイント**: 一の位・十の位・百の位をそれぞれ足します。各桁の和が9以下なのでくり上がりはありません。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)
-
-[前へ: 2桁のたし算（くり上がりあり）](../04-addition-2digit-carry/guide.md) | **3桁のたし算（くり上がりなし）** | [次へ: 3桁のたし算（くり上がりあり）](../06-addition-3digit-carry/guide.md)

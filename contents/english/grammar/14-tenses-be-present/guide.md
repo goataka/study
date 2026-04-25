@@ -65,9 +65,3 @@ Games `are` fun.
 | 彼は学生です。 | He is a student. |
 | 彼女は先生です。 | She is a teacher. |
 | 彼らは友達です。 | They are friends. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-be-present)
-
-[前へ: 一般動詞の未来形](../13-tenses-regular-future/guide.md) | be動詞の現在形 | [次へ: be動詞の過去形](../15-tenses-be-past/guide.md)

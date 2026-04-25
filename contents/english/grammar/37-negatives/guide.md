@@ -74,9 +74,3 @@ I `do not play` games.
 | 私はゲームをしません。 | I don't play games. |
 | 私はゲームをしませんでした。 | I didn't play games. |
 | 私は幸せではありません。 | I am not happy. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=negatives)
-
-[前へ: 疑問文](../36-questions/guide.md) | 否定文 | [次へ: 疑問詞](../38-questions-wh/guide.md)

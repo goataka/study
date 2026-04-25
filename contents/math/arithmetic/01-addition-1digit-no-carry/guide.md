@@ -65,9 +65,3 @@
 | 1 + 8 = | 9 |
 
 💡 **ポイント**: 答えが10より小さいたし算です。指を使ったり、数を数えたりして確認しましょう
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)
-
-前へ | **1桁のたし算（くり上がりなし）** | [次へ: 1桁のたし算（くり上がりあり）](../02-addition-1digit-carry/guide.md)

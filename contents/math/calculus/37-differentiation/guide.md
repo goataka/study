@@ -75,9 +75,3 @@ f'(x) = 3·2·x¹ + 2·1·x⁰ + 0
 | f(x) = -x³ + 3x² + 1 | 5 (x=2) | 1 (x=0) |
 
 💡 f'(x)=0 を解く。`f'(x)=3x²-6x=3x(x-2)=0` → x=0,2。符号変化で極大・極小を判定
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=differentiation)
-
-[前へ: 極限](../36-limits/guide.md) | **微分** | [次へ: 積分](../38-integration/guide.md)

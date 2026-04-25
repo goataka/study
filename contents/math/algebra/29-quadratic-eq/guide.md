@@ -84,9 +84,3 @@ x = (-4 ± √(16-12)) / 2
 | 2x² - 5x + 2 = 0 | x = 1/2, 2 |
 
 💡 `x²+4x+3=0` → a=1,b=4,c=3 → `x = (-4±√(16-12))/2 = (-4±2)/2` → **x=-1,-3**
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=quadratic-eq)
-
-[前へ: 平方根](../28-square-roots/guide.md) | **二次方程式** | [次へ: 二次関数](../../calculus/30-quadratic-func/guide.md)

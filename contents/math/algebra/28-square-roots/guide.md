@@ -82,9 +82,3 @@
 | √12 + √27 = | 2√3 + 3√3 = 5√3 |
 
 💡 **ポイント**: √の中を素因数分解して、ペアになった数を外に出します
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=square-roots)
-
-[前へ: 確率](../27-probability/guide.md) | **平方根** | [次へ: 二次方程式](../29-quadratic-eq/guide.md)

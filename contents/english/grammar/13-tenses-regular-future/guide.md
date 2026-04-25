@@ -56,9 +56,3 @@ I `will play` games.
 | 私はゲームをするでしょう。 | I will play games. |
 | 私は英語を勉強するでしょう。 | I will study English. |
 | 私はテレビを見るでしょう。 | I will watch TV. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-regular-future)
-
-[前へ: 一般動詞の過去形](../12-tenses-regular-past/guide.md) | 一般動詞の未来形 | [次へ: be動詞の現在形](../14-tenses-be-present/guide.md)

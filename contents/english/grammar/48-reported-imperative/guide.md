@@ -56,9 +56,3 @@ He `told` me `to play` games.
 |--------|------|
 | 彼は私にゲームをするように言った。 | He told me to play games. |
 | 彼は私にゲームをするなと言った。 | He told me not to play games. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reported-imperative)
-
-[前へ: 疑問文の間接話法](../47-reported-question/guide.md) | 命令文の間接話法 | [次へ: 指示語の変化](../49-reported-expressions/guide.md)

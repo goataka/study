@@ -78,9 +78,3 @@
 | →a = (1, 0), →b = (0, 1) のとき →a · →b = | 0（直交） |
 
 💡 **ポイント**: 内積が0のとき、2つのベクトルは直交（垂直）です
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=vectors)
-
-[前へ: 数列](../34-sequences/guide.md) | **ベクトル** | [次へ: 極限](../36-limits/guide.md)

@@ -63,9 +63,3 @@ x < 2 ✅  ← ⚠️ 負の数でわると不等号が逆転！
 | x/2 + 1 > 3 | x > 4 |
 
 💡 **ポイント**: 方程式と同じ解き方。ただし負の数でかける・わるときは不等号の向きが逆転します
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=inequalities)
-
-[前へ: 二次関数](../30-quadratic-func/guide.md) | **不等式** | [次へ: 三角関数](../32-trigonometry/guide.md)

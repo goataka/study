@@ -85,9 +85,3 @@ If I had had time, I `would have` played.（時間があったら、したのに
 | もし雨が降れば、私は家にいるでしょう。 | If it rains, I will stay home. |
 | もし時間があれば、手伝うのに。 | If I had time, I would help you. |
 | もし知っていたら、教えていたのに。 | If I had known, I would have told you. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=conditionals-if)
-
-[前へ: 助動詞の受動態](../32-passive-modals/guide.md) | 条件文 | [次へ: I wish](../34-conditionals-wish/guide.md)

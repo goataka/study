@@ -57,9 +57,3 @@ The game `will be` fun.
 | 私は幸せになるでしょう。 | I will be happy. |
 | 私は疲れるでしょう。 | I will be tired. |
 | 私はお腹が空くでしょう。 | I will be hungry. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-be-future)
-
-[前へ: be動詞の過去形](../15-tenses-be-past/guide.md) | be動詞の未来形 | [次へ: 不規則動詞の過去形](../17-tenses-irregular/guide.md)

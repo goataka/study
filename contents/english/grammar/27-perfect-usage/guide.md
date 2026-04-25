@@ -68,9 +68,3 @@ I `have lived` here for three years.（3年間ここに住んでいる）
 | 私は3年間ここに住んでいる。 | I have lived here for three years. |
 | 私はちょうど宿題を終えた。 | I have just finished my homework. |
 | 私は鍵をなくしてしまった。 | I have lost my key. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=perfect-usage)
-
-[前へ: 過去分詞の変化](../26-perfect-participles/guide.md) | 完了形の用法 | [次へ: 助動詞の使い分け](../28-modals-basic/guide.md)

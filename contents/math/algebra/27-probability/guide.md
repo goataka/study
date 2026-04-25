@@ -65,9 +65,3 @@
 | サイコロ2個を振って合計が7になる確率 | 6/36 = 1/6 |
 
 💡 **ポイント**: 確率 = あてはまる場合の数 ÷ すべての場合の数
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=probability)
-
-[前へ: 一次関数](../26-linear-func/guide.md) | **確率** | [次へ: 平方根](../28-square-roots/guide.md)

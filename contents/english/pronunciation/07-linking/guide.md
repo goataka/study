@@ -69,9 +69,3 @@ not  at  all
 | not at all | ノタットール | t + a → タ |
 | an apple | アナップル | n + a → ナ |
 | turn on | ターノン | n + o → ノ |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=linking)
-
-[前へ: フォニックス（3文字）](../05-phonics-3letter/guide.md) | **リンキング練習ドリル** | [次へ: リダクション](../08-reduction/guide.md)

@@ -64,9 +64,3 @@
 | 20:30 = | 2:3 |
 
 💡 両方の数を **最大公約数** でわります。`4:6` → 両方を2でわる → **2:3**。`14:21` → 両方を7でわる → **2:3**
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=ratio)
-
-[前へ: 小数のかけ算](../34-decimals-multiplication/guide.md) | **比** | [次へ: 割合](../36-percentage/guide.md)

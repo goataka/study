@@ -50,9 +50,3 @@ if文をunless文に書き換えましょう。
 |--------|------|
 | 急がない限り、遅刻するだろう。 | Unless I hurry, I will be late. |
 | 勉強しない限り、落ちるだろう。 | Unless I study, I will fail. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=conditionals-unless)
-
-[前へ: I wish](../34-conditionals-wish/guide.md) | unless | [次へ: 疑問文](../36-questions/guide.md)

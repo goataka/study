@@ -68,9 +68,3 @@
 | 3/4 - 1/3 = | 9/12 - 4/12 = 5/12 |
 
 💡 **ポイント**: たし算と同じく、まず通分してからひきます
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-diff-sub)
-
-[前へ: 分数のたし算（通分あり）](../28-fractions-diff-add/guide.md) | **分数のひき算（通分あり）** | [次へ: 分数のかけ算](../30-fractions-multiply/guide.md)

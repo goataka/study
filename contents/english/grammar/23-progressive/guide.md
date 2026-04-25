@@ -77,9 +77,3 @@ I `am playing` games.（今まさにしている）
 | 私はゲームをしています。 | I am playing games. |
 | 私はゲームをしていました。 | I was playing games. |
 | 私は英語を勉強しています。 | I am studying English. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=progressive)
-
-[前へ: 接続詞](../22-conjunctions/guide.md) | 進行形 | [次へ: -ing形の作り方](../24-progressive-ing/guide.md)

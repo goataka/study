@@ -69,9 +69,3 @@
 | 79 - 46 = | 33 |
 
 💡 **ポイント**: 一の位どうし、十の位どうしをそれぞれひきます。くり下がりがないので、上の数のほうが大きい計算になっています。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)
-
-[前へ: 1桁のひき算（くり下がりあり）](../09-subtraction-1digit-borrow/guide.md) | **2桁のひき算（くり下がりなし）** | [次へ: 2桁のひき算（くり下がりあり）](../11-subtraction-2digit-borrow/guide.md)

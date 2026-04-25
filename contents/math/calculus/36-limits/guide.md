@@ -73,9 +73,3 @@ x→2 を代入: 2+2 = 4 ✅
 | lim(x→∞) (2x+1)/(3x-1) = | 2/3 |
 
 💡 **ポイント**: 分数式は最高次の項で割ると極限が見えます。0/0の不定形は因数分解で解消
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=limits)
-
-[前へ: ベクトル](../35-vectors/guide.md) | **極限** | [次へ: 微分](../37-differentiation/guide.md)

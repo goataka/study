@@ -104,9 +104,3 @@ cos θ = 4/5 ✅ (0°<θ<90°なので正)
 | sin(α - β) = | sin α cos β - cos α sin β |
 
 💡 覚え方: sin →「サイン・コス・コス・サイン」、cos →「コス・コス・マイナス・サイン・サイン」
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=trigonometry)
-
-[前へ: 不等式](../31-inequalities/guide.md) | **三角関数** | [次へ: 指数・対数](../33-exponents-logarithms/guide.md)

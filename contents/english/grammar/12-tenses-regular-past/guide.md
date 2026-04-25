@@ -57,9 +57,3 @@ I `played` games.
 | 私はゲームをしました。 | I played games. |
 | 私は英語を勉強しました。 | I studied English. |
 | 私はテレビを見ました。 | I watched TV. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-regular-past)
-
-[前へ: 一般動詞の現在形](../11-tenses-regular-present/guide.md) | 一般動詞の過去形 | [次へ: 一般動詞の未来形](../13-tenses-regular-future/guide.md)

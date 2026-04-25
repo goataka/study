@@ -65,9 +65,3 @@
 | 29 ÷ 9 = | 3 | 2 |
 
 💡 **ポイント**: わる数の九九で、わられる数を **超えない最大の数** を見つけます。`10 ÷ 3` → 3×3=9（10を超えない）→ 答え3、あまり 10-9=**1**
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-remainder)
-
-[前へ: 1桁のわり算（あまりなし）](../19-division-1digit-no-remainder/guide.md) | **1桁のわり算（あまりあり）** | [次へ: 2桁のわり算（あまりなし）](../21-division-2digit-no-remainder/guide.md)

@@ -58,9 +58,3 @@ He said that he `played` games.
 |--------|------|
 | 彼はゲームをすると言った。 | He said that he played games. |
 | 彼はゲームをしたと言った。 | He said that he had played games. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reported-tense)
-
-[前へ: 関係副詞](../45-relative-adverb/guide.md) | 時制の一致 | [次へ: 疑問文の間接話法](../47-reported-question/guide.md)

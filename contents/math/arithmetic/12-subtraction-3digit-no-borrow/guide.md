@@ -71,9 +71,3 @@
 | 798 - 465 = | 333 |
 
 💡 **ポイント**: 一の位・十の位・百の位をそれぞれひきます。各桁で上の数が下の数以上なのでくり下がりは起きません。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)
-
-[前へ: 2桁のひき算（くり下がりあり）](../11-subtraction-2digit-borrow/guide.md) | **3桁のひき算（くり下がりなし）** | [次へ: 3桁のひき算（くり下がりあり）](../13-subtraction-3digit-borrow/guide.md)

@@ -75,9 +75,3 @@ I play games `the best` in my class.
 |--------|------|
 | 私はクラスで一番背が高い。 | I am the tallest in the class. |
 | このゲームは全部の中で一番面白い。 | This game is the most interesting of all. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=comparatives-est)
-
-[前へ: 比較級](../39-comparatives-er/guide.md) | 最上級 | [次へ: 不規則な比較変化](../41-comparatives-irregular/guide.md)

@@ -95,9 +95,3 @@ I `buy` games. → I `bought` games.
 | 私は朝食を食べました。 | I ate breakfast. |
 | 私は手紙を書きました。 | I wrote a letter. |
 | 私は本を買いました。 | I bought a book. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-irregular)
-
-[前へ: be動詞の未来形](../16-tenses-be-future/guide.md) | 不規則動詞の過去形 | [次へ: 冠詞](../18-articles/guide.md)

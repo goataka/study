@@ -66,9 +66,3 @@
 💡 **ポイント**: 整数として計算してから、小数点以下の桁数の合計だけ小数点を左にずらします。
 
 `8 × 5 = 40` → 小数2桁分 → **0.40**
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=decimals-multiplication)
-
-[前へ: 小数のひき算](../33-decimals-subtraction/guide.md) | **小数のかけ算** | [次へ: 比](../35-ratio/guide.md)

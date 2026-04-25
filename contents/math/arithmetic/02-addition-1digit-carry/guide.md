@@ -69,9 +69,3 @@
 | 8 + 6 = | 14 |
 
 💡 **ポイント**: 10のまとまりを作って考えます。例えば `8 + 5` は、8にあと2で10 → 5を2と3に分ける → `10 + 3 = 13`
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=addition-carry)
-
-[前へ: 1桁のたし算（くり上がりなし）](../01-addition-1digit-no-carry/guide.md) | **1桁のたし算（くり上がりあり）** | [次へ: 2桁のたし算（くり上がりなし）](../03-addition-2digit-no-carry/guide.md)

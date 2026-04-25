@@ -54,9 +54,3 @@ He asked if I `played` games.
 |--------|------|
 | 彼は私にゲームをするかと聞いた。 | He asked if I played games. |
 | 彼は私に何のゲームをしたか聞いた。 | He asked what games I played. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reported-question)
-
-[前へ: 時制の一致](../46-reported-tense/guide.md) | 疑問文の間接話法 | [次へ: 命令文の間接話法](../48-reported-imperative/guide.md)

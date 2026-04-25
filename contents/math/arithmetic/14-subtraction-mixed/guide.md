@@ -58,9 +58,3 @@
 | 14 - 6 = | 8 |
 
 💡 **ポイント**: 一の位でひけるか確認 → ひけなければくり下がり。どちらもスラスラ解けるようになりましょう
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=subtraction-mixed)
-
-[前へ: 3桁のひき算（くり下がりあり）](../13-subtraction-3digit-borrow/guide.md) | **ひき算（まとめ）** | [次へ: 1桁のかけ算（九九）](../15-multiplication-1digit/guide.md)

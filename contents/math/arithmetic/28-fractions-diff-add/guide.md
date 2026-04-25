@@ -69,9 +69,3 @@
 | 2/3 + 1/6 = | 4/6 + 1/6 = 5/6 |
 
 💡 **ポイント**: 分母が違うときは、まず通分して分母をそろえてからたします
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-diff-add)
-
-[前へ: 分数のひき算（同分母）](../27-fractions-same-sub/guide.md) | **分数のたし算（通分あり）** | [次へ: 分数のひき算（通分あり）](../29-fractions-diff-sub/guide.md)

@@ -64,9 +64,3 @@ He `plays` games.
 | 彼はゲームをします。 | He plays games. |
 | 彼女は英語を勉強します。 | She studies English. |
 | 彼はテレビを見ます。 | He watches TV. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=tenses-regular-present)
-
-一般動詞の現在形 | [次へ: 一般動詞の過去形](../12-tenses-regular-past/guide.md)
