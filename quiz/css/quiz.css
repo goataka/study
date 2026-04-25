@@ -1487,6 +1487,23 @@ button:disabled {
     gap: 8px;
 }
 
+.handwriting-text-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid #e1e4e8;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.handwriting-text-input:focus {
+    border-color: #0366d6;
+    box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.2);
+}
+
 .handwriting-confirm-btn {
     width: 100%;
     padding: 10px 16px;
@@ -1507,51 +1524,4 @@ button:disabled {
 .handwriting-confirm-btn:disabled {
     background: #c8e1ff;
     cursor: not-allowed;
-}
-
-/* 手書き確認後の正解表示と自己評価 */
-.handwriting-reveal-text {
-    margin: 0;
-    font-size: 14px;
-    color: #24292e;
-    font-weight: 600;
-}
-
-.self-eval-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.self-eval-btn {
-    flex: 1;
-    padding: 10px 8px;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-
-.self-eval-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.self-eval-correct {
-    background: #28a745;
-    color: white;
-}
-
-.self-eval-correct:hover:not(:disabled) {
-    background: #22863a;
-}
-
-.self-eval-incorrect {
-    background: #dc3545;
-    color: white;
-}
-
-.self-eval-incorrect:hover:not(:disabled) {
-    background: #cb2431;
 }
