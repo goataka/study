@@ -282,9 +282,17 @@ export class QuizUseCase {
     const entries = Object.entries(categories);
     if (entries.length === 0) return null;
 
+    const wrongSet = new Set(this.wrongIds);
+    const wrongCountsByCategory = new Map<string, number>();
+    for (const question of this.allQuestions) {
+      if (question.subject !== subject || !wrongSet.has(question.id)) continue;
+      wrongCountsByCategory.set(question.category, (wrongCountsByCategory.get(question.category) ?? 0) + 1);
+    }
+
     for (const [catId, catName] of entries) {
       const key = `${subject}::${catId}`;
-      const isLearned = studiedKeys.has(key) && this.getWrongCount({ subject, category: catId }) === 0;
+      const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
+      const isLearned = studiedKeys.has(key) && wrongCount === 0;
       if (!isLearned) {
         return { id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key) };
       }
