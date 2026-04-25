@@ -1255,6 +1255,35 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     expect(btn?.getAttribute("aria-pressed")).toBe("true");
   });
 
+  it("初期状態（非表示ON）ではボタンのテキストが「✅ 学習済を表示」になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn");
+    expect(btn?.textContent).toBe("✅ 学習済を表示");
+  });
+
+  it("ボタンクリック後（非表示OFF）はボタンのテキストが「⬜ 学習済を非表示」になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+
+    expect(btn?.textContent).toBe("⬜ 学習済を非表示");
+  });
+
+  it("2回クリック後（非表示ON）はボタンのテキストが「✅ 学習済を表示」に戻る", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
+    btn?.click();
+    btn?.click();
+
+    expect(btn?.textContent).toBe("✅ 学習済を表示");
+  });
+
   it("学習済カテゴリ（履歴あり・間違いなし）にはlearnedクラスが付与される", async () => {
     // 履歴に phonics-1 を登録（学習済）
     localStorage.setItem(

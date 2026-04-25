@@ -68,11 +68,8 @@ export class QuizApp {
     const initRecords = this.useCase.getHistory();
     this.autoSelectPanelTab(initRecords);
     this.updateStartScreen(initRecords);
-    // 学習済み非表示の初期状態をボタンのaria-pressed属性に反映する
-    const hideLearnedBtn = document.getElementById("hideLearnedBtn");
-    if (hideLearnedBtn) {
-      hideLearnedBtn.setAttribute("aria-pressed", String(this.hideLearnedCategories));
-    }
+    // 学習済み非表示の初期状態をボタンのaria-pressed属性とテキストに反映する
+    this.updateHideLearnedButton();
     this.updateUserNameDisplay("headerUserName");
   }
 
@@ -1054,9 +1051,18 @@ export class QuizApp {
     if (categoryList) {
       categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
     }
+    this.updateHideLearnedButton();
+  }
+
+  /**
+   * 学習済み非表示ボタンの aria-pressed 属性とラベルを現在の状態に合わせて更新する
+   */
+  private updateHideLearnedButton(): void {
     const btn = document.getElementById("hideLearnedBtn");
     if (btn) {
       btn.setAttribute("aria-pressed", String(this.hideLearnedCategories));
+      btn.setAttribute("aria-label", "学習済カテゴリを非表示");
+      btn.textContent = this.hideLearnedCategories ? "✅ 学習済を表示" : "⬜ 学習済を非表示";
     }
   }
 
