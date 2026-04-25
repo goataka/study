@@ -69,6 +69,162 @@
       ],
       "correct": 0,
       "explanation": "street = ストゥル イー ト"
+    },
+    {
+      "id": "phonics-3-tch2",
+      "question": "「match」の「tch」の音は？",
+      "choices": [
+        "チ",
+        "ク",
+        "チュ",
+        "ツ"
+      ],
+      "correct": 0,
+      "explanation": "match = ム ア チ"
+    },
+    {
+      "id": "phonics-3-tch3",
+      "question": "「catch」の「tch」の音は？",
+      "choices": [
+        "チ",
+        "ク",
+        "シュ",
+        "ジ"
+      ],
+      "correct": 0,
+      "explanation": "catch = ク ア チ"
+    },
+    {
+      "id": "phonics-3-dge2",
+      "question": "「bridge」の「dge」の音は？",
+      "choices": [
+        "ジ",
+        "ジュ",
+        "グ",
+        "ドゥ"
+      ],
+      "correct": 0,
+      "explanation": "bridge = ブ ル イ ジ"
+    },
+    {
+      "id": "phonics-3-dge3",
+      "question": "「judge」の「dge」の音は？",
+      "choices": [
+        "ジ",
+        "ジュ",
+        "グ",
+        "ドゥ"
+      ],
+      "correct": 0,
+      "explanation": "judge = ジュ ア ジ"
+    },
+    {
+      "id": "phonics-3-igh2",
+      "question": "「fight」の「igh」の音は？",
+      "choices": [
+        "アイ",
+        "イ",
+        "エイ",
+        "イー"
+      ],
+      "correct": 0,
+      "explanation": "fight = フ アイ ト"
+    },
+    {
+      "id": "phonics-3-igh3",
+      "question": "「light」の「igh」の音は？",
+      "choices": [
+        "アイ",
+        "イ",
+        "エイ",
+        "イー"
+      ],
+      "correct": 0,
+      "explanation": "light = ル アイ ト"
+    },
+    {
+      "id": "phonics-3-sch1",
+      "question": "「school」の「sch」の音は？",
+      "choices": [
+        "スク",
+        "スル",
+        "シュ",
+        "ス"
+      ],
+      "correct": 0,
+      "explanation": "school = スク ウー ル"
+    },
+    {
+      "id": "phonics-3-thr2",
+      "question": "「throw」の「thr」の音は？",
+      "choices": [
+        "スル",
+        "ス",
+        "トゥル",
+        "サ"
+      ],
+      "correct": 0,
+      "explanation": "throw = スル オウ"
+    },
+    {
+      "id": "phonics-3-shr1",
+      "question": "「shrimp」の「shr」の音は？",
+      "choices": [
+        "シュル",
+        "シュ",
+        "スル",
+        "ス"
+      ],
+      "correct": 0,
+      "explanation": "shrimp = シュル イ ム プ"
+    },
+    {
+      "id": "phonics-3-spr1",
+      "question": "「spring」の「spr」の音は？",
+      "choices": [
+        "スプル",
+        "スプ",
+        "ストゥル",
+        "ス"
+      ],
+      "correct": 0,
+      "explanation": "spring = スプル イ ン グ"
+    },
+    {
+      "id": "phonics-3-spl1",
+      "question": "「splash」の「spl」の音は？",
+      "choices": [
+        "スプル",
+        "スプ",
+        "スル",
+        "ス"
+      ],
+      "correct": 0,
+      "explanation": "splash = スプル ア シュ"
+    },
+    {
+      "id": "phonics-3-scr1",
+      "question": "「screen」の「scr」の音は？",
+      "choices": [
+        "スクル",
+        "スク",
+        "スル",
+        "ス"
+      ],
+      "correct": 0,
+      "explanation": "screen = スクル イー ヌ"
+    },
+    {
+      "id": "phonics-3-str2",
+      "question": "「strong」の「str」の音は？",
+      "choices": [
+        "ストゥル",
+        "スル",
+        "ストゥ",
+        "ス"
+      ],
+      "correct": 0,
+      "explanation": "strong = ストゥル オ ン グ"
     }
   ]
 }

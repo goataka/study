@@ -189,6 +189,114 @@
       ],
       "correct": 0,
       "explanation": "cute = ク ユー ト"
+    },
+    {
+      "id": "phonics-2-ph1",
+      "question": "「phone」の「ph」の音は？",
+      "choices": [
+        "フ",
+        "プ",
+        "ブ",
+        "ヴ"
+      ],
+      "correct": 0,
+      "explanation": "phone = フ オウ ヌ"
+    },
+    {
+      "id": "phonics-2-wh1",
+      "question": "「whale」の「wh」の音は？",
+      "choices": [
+        "ホウ",
+        "ウ",
+        "ハ",
+        "ワ"
+      ],
+      "correct": 0,
+      "explanation": "whale = ホウ エイ ル"
+    },
+    {
+      "id": "phonics-2-oo3",
+      "question": "「good」の「oo」の音は？",
+      "choices": [
+        "ウ",
+        "ウー",
+        "オ",
+        "オー"
+      ],
+      "correct": 0,
+      "explanation": "good = グ ウ ドゥ"
+    },
+    {
+      "id": "phonics-2-ee2",
+      "question": "「green」の「ee」の音は？",
+      "choices": [
+        "イー",
+        "エ",
+        "エー",
+        "イ"
+      ],
+      "correct": 0,
+      "explanation": "green = グ ル イー ヌ"
+    },
+    {
+      "id": "phonics-2-ai2",
+      "question": "「train」の「ai」の音は？",
+      "choices": [
+        "エイ",
+        "アイ",
+        "エ",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "train = トゥ ル エイ ヌ"
+    },
+    {
+      "id": "phonics-2-oa2",
+      "question": "「coat」の「oa」の音は？",
+      "choices": [
+        "オウ",
+        "オ",
+        "オー",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "coat = ク オウ ト"
+    },
+    {
+      "id": "phonics-2-magic-a2",
+      "question": "「name」の「a」の音は？（マジックE）",
+      "choices": [
+        "エイ",
+        "ア",
+        "エ",
+        "アイ"
+      ],
+      "correct": 0,
+      "explanation": "name = ヌ エイ ム"
+    },
+    {
+      "id": "phonics-2-magic-i2",
+      "question": "「bike」の「i」の音は？（マジックE）",
+      "choices": [
+        "アイ",
+        "イ",
+        "エイ",
+        "エ"
+      ],
+      "correct": 0,
+      "explanation": "bike = ブ アイ ク"
+    },
+    {
+      "id": "phonics-2-magic-o2",
+      "question": "「home」の「o」の音は？（マジックE）",
+      "choices": [
+        "オウ",
+        "オ",
+        "ア",
+        "ウ"
+      ],
+      "correct": 0,
+      "explanation": "home = ホ オウ ム"
     }
   ]
 }
