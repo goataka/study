@@ -51,3 +51,31 @@
 | sort of | ソータ | t が消失 |
 | a lot of | アロダ / アロラ | t が弱化・ラ行化 |
 | out of | アウタ / アウラ | t が弱化・ラ行化 |
+
+## 応用問題
+
+音が弱くなる・消える部分の音をカタカナで書きましょう。
+
+| フレーズ | 音 |
+|----------|------|
+| need to | 　　　　　　　　　　　　 |
+| try to | 　　　　　　　　　　　　 |
+| used to | 　　　　　　　　　　　　 |
+| because of | 　　　　　　　　　　　　 |
+| instead of | 　　　　　　　　　　　　 |
+| in front of | 　　　　　　　　　　　　 |
+| cup of | 　　　　　　　　　　　　 |
+| plenty of | 　　　　　　　　　　　　 |
+
+## 応用解答
+
+| フレーズ | 音 | 変化した部分 |
+|----------|------|--------------|
+| need to | ニーダ | to → a（弱化） |
+| try to | チュライダ | to → a（弱化） |
+| used to | ユスタ | to が弱化 |
+| because of | ビカザ | of → a（弱化） |
+| instead of | インステダ | of → a（弱化） |
+| in front of | インフロンタ | of → a（弱化） |
+| cup of | カパ | of → a（弱化） |
+| plenty of | プレニーダ | of → a（弱化）、t が弱化 |
