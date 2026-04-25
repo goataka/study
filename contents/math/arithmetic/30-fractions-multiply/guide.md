@@ -53,9 +53,3 @@
 | 3/4 × 2/3 = | 6/12 = 1/2 |
 
 💡 **ポイント**: 分子どうし・分母どうしをかけます。計算前に約分するとラクです
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-multiply)
-
-[前へ: 分数のひき算（通分あり）](../29-fractions-diff-sub/guide.md) | **分数のかけ算** | [次へ: 分数のわり算](../31-fractions-divide/guide.md)

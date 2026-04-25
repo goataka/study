@@ -47,9 +47,3 @@ I play `the` game every day.
 | 私はわくわくするゲームをします。 | I play an exciting game. |
 | そのゲームは楽しいです。 | The game is fun. |
 | 彼女はゲームをします。 | She plays a game. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=articles)
-
-[前へ: 不規則動詞の過去形](../17-tenses-irregular/guide.md) | 冠詞 | [次へ: 形容詞](../19-adjectives/guide.md)

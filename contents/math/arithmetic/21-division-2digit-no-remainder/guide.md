@@ -60,9 +60,3 @@
 | 84 ÷ 6 = | 14 |
 
 💡 **ポイント**: 2けたのわり算は、十の位から順にわっていきます。わった後のあまりを次の位と合わせて計算します。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)
-
-[前へ: 1桁のわり算（あまりあり）](../20-division-1digit-remainder/guide.md) | **2桁のわり算（あまりなし）** | [次へ: 2桁のわり算（あまりあり）](../22-division-2digit-remainder/guide.md)

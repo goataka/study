@@ -51,7 +51,3 @@
 - 反対の意味を持つことわざも覚えると整理しやすい
   - 「善は急げ」⇔「急いては事を仕損じる」
 - 実際の会話や作文で使ってみると定着しやすい
-
-[目次](../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=japanese&category=kotowaza)
-
-[前へ: 漢字（高校生）](../08-kanji-high/guide.md) | **ことわざ** | [次へ: 四字熟語](../10-yojijukugo/guide.md)

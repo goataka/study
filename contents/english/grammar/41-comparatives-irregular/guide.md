@@ -36,9 +36,3 @@ I play games the `best` in my class.
 | この本はあれよりよい。 | This book is better than that one. |
 | これは一番よい本です。 | This is the best book. |
 | 彼は私よりたくさん持っている。 | He has more than me. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=comparatives-irregular)
-
-[前へ: 最上級](../40-comparatives-est/guide.md) | 不規則な比較変化 | [次へ: 主格の関係代名詞](../42-relative-subject/guide.md)

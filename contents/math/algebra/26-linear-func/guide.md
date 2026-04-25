@@ -66,9 +66,3 @@ y
 | 傾き3、(1, 5)を通る | y = 3x + 2 |
 
 💡 **ポイント**: 2点から傾き = (y₂-y₁)/(x₂-x₁) で求め、y = ax + b に代入して b を出します
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=linear-func)
-
-[前へ: 連立方程式](../25-simultaneous-eq/guide.md) | **一次関数** | [次へ: 確率](../27-probability/guide.md)

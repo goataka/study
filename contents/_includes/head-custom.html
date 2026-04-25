@@ -12,7 +12,7 @@
   mermaid.initialize({ startOnLoad: true });
 </script>
 <script>
-  // クイズの解説パネル（iframe）内で表示されるとき、サイトヘッダーと下部のナビゲーションリンクを非表示にする
+  // クイズの解説パネル（iframe）内で表示されるとき、サイトヘッダーを非表示にする
   // ?embedded=1 はクイズアプリが解説 iframe の src に付与するフラグ。
   // window !== window.top だけでは他の埋め込み用途でも発火するため、このフラグで適用範囲を限定する。
   if (window !== window.top && new URLSearchParams(location.search).get('embedded') === '1') {
@@ -21,25 +21,6 @@
       var siteHeader = document.querySelector('header.site-header');
       if (siteHeader) {
         siteHeader.style.display = 'none';
-      }
-
-      // 「目次」リンクを含む段落を探してナビゲーションブロック全体を非表示にする
-      var navPara = Array.prototype.find.call(
-        document.querySelectorAll('p'),
-        function (p) { return p.textContent.indexOf('目次') !== -1; }
-      );
-      if (navPara) {
-        // 直前の <hr> も非表示にする
-        var prev = navPara.previousElementSibling;
-        if (prev && prev.tagName === 'HR') {
-          prev.style.display = 'none';
-        }
-        // 目次段落から末尾まで全要素を非表示にする
-        var el = navPara;
-        while (el) {
-          el.style.display = 'none';
-          el = el.nextElementSibling;
-        }
       }
     });
   }

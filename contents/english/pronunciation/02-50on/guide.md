@@ -79,9 +79,3 @@
 | わ | wa |
 | を | wo |
 | ん | n |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=50on)
-
-[前へ: アルファベット](../01-alphabet/guide.md) | **五十音ローマ字練習ドリル** | [次へ: フォニックス（1文字）](../03-phonics-1letter/guide.md)

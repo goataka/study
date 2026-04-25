@@ -39,9 +39,3 @@ I `have played` games.
 | 私はゲームをしたことがある。 | I have played games. |
 | 私は3年間ここに住んでいる。 | I have lived here for three years. |
 | 私はちょうど宿題を終えた。 | I have just finished my homework. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=perfect)
-
-[前へ: -ing形の作り方](../24-progressive-ing/guide.md) | 完了形 | [次へ: 過去分詞の変化](../26-perfect-participles/guide.md)

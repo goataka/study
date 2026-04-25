@@ -51,9 +51,3 @@
 💡 **ポイント**: 小数点をそろえて計算します。桁が足りないときは0を補います。
 
 `3.25 + 1.50 = 4.75`
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=decimals-addition)
-
-[前へ: 分数のわり算](../31-fractions-divide/guide.md) | **小数のたし算** | [次へ: 小数のひき算](../33-decimals-subtraction/guide.md)

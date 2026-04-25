@@ -60,9 +60,3 @@
 | 9 × 6 = | 54 |
 
 💡 **ポイント**: 1けた同士は九九で、2けた・3けたは筆算で計算します。どの方法を使うか判断する力を身につけましょう。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=multiplication)
-
-[前へ: 3桁のかけ算（3桁×1桁）](../17-multiplication-3digit/guide.md) | **かけ算（まとめ）** | [次へ: 1桁のわり算（あまりなし）](../19-division-1digit-no-remainder/guide.md)

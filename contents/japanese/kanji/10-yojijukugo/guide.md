@@ -51,7 +51,3 @@
   - 例: 「四面楚歌」は中国の故事から
 - よく使われる四字熟語を日常会話の中で使ってみる
 - 読み方（音読み）をしっかり覚える
-
-[目次](../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=japanese&category=yojijukugo)
-
-[前へ: ことわざ](../09-kotowaza/guide.md) | **四字熟語** |

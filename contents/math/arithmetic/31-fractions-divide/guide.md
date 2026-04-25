@@ -50,9 +50,3 @@
 | 5/6 ÷ 1/2 = | 5/6 × 2/1 = 10/6 = 5/3 |
 
 💡 **ポイント**: わる数をひっくり返して（逆数）かけ算にします
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-divide)
-
-[前へ: 分数のかけ算](../30-fractions-multiply/guide.md) | **分数のわり算** | [次へ: 小数のたし算](../32-decimals-addition/guide.md)

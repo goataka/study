@@ -62,9 +62,3 @@
 | ∫[0→1] (x² + x)dx = | 5/6 |
 
 💡 不定積分を求めて上端・下端の差。`[x³+x²]₀² = (8+4)-(0+0) = 12`
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=integration)
-
-[前へ: 微分](../37-differentiation/guide.md) | **積分** |

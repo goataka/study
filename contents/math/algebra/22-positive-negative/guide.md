@@ -81,9 +81,3 @@
 | (-20) ÷ (-4) = | +5 |
 
 💡 同符号 → ＋（正）、異符号 → −（負）。`(-4) × (-7)` → マイナス×マイナス = **＋28**
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=positive-negative)
-
-[前へ: 割合](../../arithmetic/21-percentage/guide.md) | **正負の数** | [次へ: 文字式](../23-algebraic-expressions/guide.md)

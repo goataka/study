@@ -58,9 +58,3 @@ x = 4 ✅
 | (x + 3)/2 = 4 | x = 5 |
 
 💡 **ポイント**: xの項を左辺に、数字を右辺に移項して整理します
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=linear-eq)
-
-[前へ: 文字式](../23-algebraic-expressions/guide.md) | **一次方程式** | [次へ: 連立方程式](../25-simultaneous-eq/guide.md)

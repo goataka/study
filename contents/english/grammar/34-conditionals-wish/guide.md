@@ -37,9 +37,3 @@ I wish I `could play` games.（ゲームができたらいいのに）
 | 時間があればいいのに。 | I wish I had time. |
 | 英語が話せたらいいのに。 | I wish I could speak English. |
 | あの時勉強していればよかった。 | I wish I had studied. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=conditionals-wish)
-
-[前へ: 条件文](../33-conditionals-if/guide.md) | I wish | [次へ: unless](../35-conditionals-unless/guide.md)

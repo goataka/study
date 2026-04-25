@@ -62,9 +62,3 @@
 | 865 ÷ 9 = | 96 あまり 1 |
 
 💡 **ポイント**: あまりはかならずわる数より小さくなります。答え × わる数 ＋ あまり ＝ もとの数 でたしかめましょう。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-remainder)
-
-[前へ: 3桁のわり算（あまりなし）](../23-division-3digit-no-remainder/guide.md) | **3桁のわり算（あまりあり）** | [次へ: わり算（まとめ）](../25-division-mixed/guide.md)

@@ -48,9 +48,3 @@
 | 6 - 4 = | 2 |
 
 💡 **ポイント**: 大きい数から小さい数を取りのぞきます。`10 - 6 = 4` のように10からひく計算にも慣れましょう
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=subtraction-no-borrow)
-
-[前へ: たし算（まとめ）](../07-addition-mixed/guide.md) | **1桁のひき算（くり下がりなし）** | [次へ: 1桁のひき算（くり下がりあり）](../09-subtraction-1digit-borrow/guide.md)

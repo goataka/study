@@ -62,9 +62,3 @@
 | 時速40kmで100km走る時間は？ | 2.5時間 |
 
 💡 公式「**き・は・じ**」を使います → 距離=速さ×時間、速さ=距離÷時間、時間=距離÷速さ
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=percentage)
-
-[前へ: 比](../35-ratio/guide.md) | **割合** |

@@ -59,9 +59,3 @@ x=3を①に代入: 3 + y = 5  →  y = 2
 | 同じ条件で、みかん1個は？ | 100円 |
 
 💡 りんご=x、みかん=y → `x+y=180`, `2x+y=260`。②-① → `x=80`、`y=100`
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=simultaneous-eq)
-
-[前へ: 一次方程式](../24-linear-eq/guide.md) | **連立方程式** | [次へ: 一次関数](../26-linear-func/guide.md)

@@ -215,7 +215,3 @@
 - 音読みは **漢字を2文字以上つかった言葉** の中で覚える
 - 読み方だけでなく **書き方** も合わせて練習しよう
 - クイズで繰り返し練習するとおぼえやすい
-
-[目次](../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=japanese&category=kanji-grade3)
-
-[前へ: 漢字（小学2年）](../02-kanji-grade2/guide.md) | **漢字（小学3年）** | [次へ: 漢字（小学4年）](../04-kanji-grade4/guide.md)

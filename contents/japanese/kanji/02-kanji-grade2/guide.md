@@ -188,7 +188,3 @@
 - 音読みは **漢字を2文字以上つかった言葉** の中で覚える
 - 読み方だけでなく **書き方** も合わせて練習しよう
 - クイズで繰り返し練習するとおぼえやすい
-
-[目次](../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=japanese&category=kanji-grade2)
-
-[前へ: 漢字（小学1年）](../01-kanji-grade1/guide.md) | **漢字（小学2年）** | [次へ: 漢字（小学3年）](../03-kanji-grade3/guide.md)

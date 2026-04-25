@@ -35,9 +35,3 @@ Games `can be played` by anyone.
 | その部屋は掃除されなければならない。 | The room must be cleaned. |
 | この部屋は使ってもよい。 | This room may be used. |
 | その車は修理されるべきだ。 | The car should be repaired. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=passive-modals)
-
-[前へ: 受動態](../31-passive/guide.md) | 助動詞の受動態 | [次へ: 条件文](../33-conditionals-if/guide.md)

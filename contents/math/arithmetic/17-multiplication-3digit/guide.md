@@ -54,9 +54,3 @@
 | 135 × 8 = | 1080 |
 
 💡 **ポイント**: 一の位・十の位・百の位の順にかけます。それぞれの位のくり上がりを次の位に足すことを忘れずに。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=multiplication)
-
-[前へ: 2桁のかけ算（2桁×1桁）](../16-multiplication-2digit/guide.md) | **3桁のかけ算（3桁×1桁）** | [次へ: かけ算（まとめ）](../18-multiplication-mixed/guide.md)

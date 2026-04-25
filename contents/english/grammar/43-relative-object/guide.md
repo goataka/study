@@ -32,9 +32,3 @@ The game `which` I play is fun.
 |--------|------|
 | 私は昨日買った本を持っている。 | I have a book which I bought yesterday. |
 | 私は毎日使うペンを持っている。 | I have a pen which I use every day. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=relative-object)
-
-[前へ: 主格の関係代名詞](../42-relative-subject/guide.md) | 目的格の関係代名詞 | [次へ: 所有格の関係代名詞](../44-relative-possessive/guide.md)

@@ -51,9 +51,3 @@
 | 46 + 85 = | 131 |
 
 💡 **ポイント**: 一の位の和が10以上になったら、十の位に1くり上げます。答えが100を超えることもあります。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=addition-carry)
-
-[前へ: 2桁のたし算（くり上がりなし）](../03-addition-2digit-no-carry/guide.md) | **2桁のたし算（くり上がりあり）** | [次へ: 3桁のたし算（くり上がりなし）](../05-addition-3digit-no-carry/guide.md)

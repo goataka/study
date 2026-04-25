@@ -54,9 +54,3 @@
 💡 **ポイント**: たし算と同じく小数点をそろえます。くり下がりに注意しましょう。
 
 `4.60 - 1.75 = 2.85`
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=decimals-subtraction)
-
-[前へ: 小数のたし算](../32-decimals-addition/guide.md) | **小数のひき算** | [次へ: 小数のかけ算](../34-decimals-multiplication/guide.md)

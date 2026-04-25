@@ -60,9 +60,3 @@ a₅ = 2 × 3⁴
 | 2, 6, 18, 54, ... の第6項 | 2×3⁵ = 486 |
 
 💡 **ポイント**: 等差は「たし算で増える」、等比は「かけ算で増える」数列です
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=sequences)
-
-[前へ: 指数・対数](../33-exponents-logarithms/guide.md) | **数列** | [次へ: ベクトル](../35-vectors/guide.md)

@@ -44,9 +44,3 @@
 | 45 ÷ 5 = | 9 |
 
 💡 **ポイント**: 九九を逆に使います。`15 ÷ 3` は「3 × ? = 15」→ 3 × 5 = 15 なので **答えは5**
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=division-no-remainder)
-
-[前へ: かけ算（まとめ）](../18-multiplication-mixed/guide.md) | **1桁のわり算（あまりなし）** | [次へ: 1桁のわり算（あまりあり）](../20-division-1digit-remainder/guide.md)

@@ -36,9 +36,3 @@ He said he would play games `the next day`.
 |--------|------|
 | 彼は明日来ると言った。（間接話法で） | He said he would come the next day. |
 | 彼は今忙しいと言った。（間接話法で） | He said he was busy then. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=reported-expressions)
-
-[前へ: 命令文の間接話法](../48-reported-imperative/guide.md) | 指示語の変化

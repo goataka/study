@@ -47,9 +47,3 @@
 | X | x | えっくす | X（旧Twitter）（`えっくす`） |
 | Y | y | わい | YMCA（`わい`えむしーえー） |
 | Z | z | ぜっと | Z世代（`ぜっと`せだい） |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=alphabet)
-
- | **アルファベット練習ドリル** | [次へ: 五十音ローマ字](../02-50on/guide.md)

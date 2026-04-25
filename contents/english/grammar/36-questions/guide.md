@@ -46,9 +46,3 @@ I `play` games.
 | 私はゲームをしますか？ | Do I play games? |
 | 私はゲームをしましたか？ | Did I play games? |
 | 私は幸せですか？ | Am I happy? |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=questions)
-
-[前へ: unless](../35-conditionals-unless/guide.md) | 疑問文 | [次へ: 否定文](../37-negatives/guide.md)

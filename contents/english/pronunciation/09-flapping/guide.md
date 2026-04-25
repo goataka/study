@@ -59,9 +59,3 @@ t/dがラ行になる部分の音をカタカナで書きましょう。
 | put it | プ リッ ト | t → リ |
 | city | シ リー | t → リ |
 | party | パー リー | t → リ |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=flapping)
-
-[前へ: リダクション](../08-reduction/guide.md) | **フラッピング練習ドリル** | [次へ: アシミレーション](../10-assimilation/guide.md)

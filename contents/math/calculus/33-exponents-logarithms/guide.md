@@ -63,9 +63,3 @@ log₂4 + log₂8 = log₂(4×8) = log₂32 = 5
 | log₃9 - log₃3 = | 2 - 1 = 1 |
 
 💡 **ポイント**: log_a(b) は「aを何乗したらbになるか」。対数の性質を使うと計算がラクに
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=exponents-logarithms)
-
-[前へ: 三角関数](../32-trigonometry/guide.md) | **指数・対数** | [次へ: 数列](../34-sequences/guide.md)

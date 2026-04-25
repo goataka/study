@@ -84,9 +84,3 @@
 | bo`x` | ブ ア `クス` → ブアクス | はこ |
 | `y`es | `イ` エ ス → イエス | はい |
 | `z`oo | `ズ` ウー → ズウー | どうぶつえん |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=phonics-1)
-
-[前へ: 五十音ローマ字](../02-50on/guide.md) | **フォニックス練習ドリル（1文字）** | [次へ: フォニックス（2文字）](../04-phonics-2letter/guide.md)

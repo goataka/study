@@ -33,9 +33,3 @@
 | 私はプールで泳いでいます。 | I am swimming in the pool. |
 | 私は手紙を書いています。 | I am writing a letter. |
 | 私はケーキを作っています。 | I am making a cake. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=progressive-ing)
-
-[前へ: 進行形](../23-progressive/guide.md) | -ing形の作り方 | [次へ: 完了形](../25-perfect/guide.md)

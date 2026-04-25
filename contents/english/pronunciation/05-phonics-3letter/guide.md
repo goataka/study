@@ -65,9 +65,3 @@
 | `spr`ing | `スプル` イ ン グ → スプルイング | はる |
 | `spl`ash | `スプル` ア シュ → スプルアシュ | はねる |
 | `scr`een | `スクル` イー ヌ → スクルイーヌ | がめん |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=phonics-3)
-
-[前へ: フォニックス（2文字）](../04-phonics-2letter/guide.md) | **フォニックス練習ドリル（3文字）** | [次へ: リンキング](../07-linking/guide.md)

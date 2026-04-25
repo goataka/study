@@ -56,9 +56,3 @@ bの仲間: 3b - b = 2b
 | 5(2a - 3) + 4a = | 14a - 15 |
 
 💡 **ポイント**: 同じ文字の項どうしをまとめます。数字は数字で、aはaで、bはbで
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=algebraic-expressions)
-
-[前へ: 正負の数](../22-positive-negative/guide.md) | **文字式** | [次へ: 一次方程式](../24-linear-eq/guide.md)

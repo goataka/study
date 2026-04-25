@@ -52,9 +52,3 @@
 | 81 + 14 = | 95 |
 
 💡 **ポイント**: 一の位どうし、十の位どうしを別々に足します。くり上がりがないので、桁ごとに計算するだけで答えが出ます。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=addition-no-carry)
-
-[前へ: 1桁のたし算（くり上がりあり）](../02-addition-1digit-carry/guide.md) | **2桁のたし算（くり上がりなし）** | [次へ: 2桁のたし算（くり上がりあり）](../04-addition-2digit-carry/guide.md)

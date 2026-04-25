@@ -45,9 +45,3 @@
 | 1/8 + 6/8 = | 7/8 |
 
 💡 **ポイント**: 分母はそのまま、分子だけをたします。約分できるときは約分しましょう
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=fractions-same-add)
-
-[前へ: わり算（まとめ）](../25-division-mixed/guide.md) | **分数のたし算（同分母）** | [次へ: 分数のひき算（同分母）](../27-fractions-same-sub/guide.md)

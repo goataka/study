@@ -82,9 +82,3 @@
 | h`o`me | ホ `オウ` ム → ホオウム | いえ |
 | c`u`te | ク `ユー` ト → クユート | かわいい |
 | t`u`be | トゥ `ユー` ブ → トゥユーブ | チューブ |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=phonics-2)
-
-[前へ: フォニックス（1文字）](../03-phonics-1letter/guide.md) | **フォニックス練習ドリル（2文字）** | [次へ: フォニックス（3文字）](../05-phonics-3letter/guide.md)

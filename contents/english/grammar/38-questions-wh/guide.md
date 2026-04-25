@@ -40,9 +40,3 @@
 | 私は何をしますか？ | What do I do? |
 | 私はどこでゲームをしますか？ | Where do I play games? |
 | 誰がゲームをしますか？ | Who plays games? |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=questions-wh)
-
-[前へ: 否定文](../37-negatives/guide.md) | 疑問詞 | [次へ: 比較級](../39-comparatives-er/guide.md)

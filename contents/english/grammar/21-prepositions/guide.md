@@ -53,9 +53,3 @@ I play games `in` the morning.
 | 私は公園でゲームをします。 | I play games in the park. |
 | 私は日曜日にゲームをします。 | I play games on Sunday. |
 | 私はバスで学校に行きます。 | I go to school by bus. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=prepositions)
-
-[前へ: 副詞](../20-adverbs/guide.md) | 前置詞 | [次へ: 接続詞](../22-conjunctions/guide.md)

@@ -46,9 +46,3 @@ I play games `better` than you.
 | 私は彼より背が高い。 | I am taller than him. |
 | このゲームはあれより面白い。 | This game is more interesting than that one. |
 | この問題はあれより難しい。 | This problem is more difficult than that one. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=comparatives-er)
-
-[前へ: 疑問詞](../38-questions-wh/guide.md) | 比較級 | [次へ: 最上級](../40-comparatives-est/guide.md)

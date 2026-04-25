@@ -55,9 +55,3 @@
 | 904 - 356 = | 548 |
 
 💡 **ポイント**: くり下がりが連鎖することがあります。一の位から順に計算し、くり下げた桁を1減らすことを忘れずに。
-
----
-
-[目次](../README.md) | 解説 | [クイズ](../../quiz/index.html?subject=math&category=subtraction-borrow)
-
-[前へ: 3桁のひき算（くり下がりなし）](../12-subtraction-3digit-no-borrow/guide.md) | **3桁のひき算（くり下がりあり）** | [次へ: ひき算（まとめ）](../14-subtraction-mixed/guide.md)

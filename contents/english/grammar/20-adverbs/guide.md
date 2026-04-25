@@ -48,9 +48,3 @@ She sings `beautifully`.
 | 私は時々ゲームをします。 | I sometimes play games. |
 | 私はゲームが上手です。 | I play games well. |
 | 私は昨日ゲームをしました。 | I played games yesterday. |
-
----
-
-[目次](../../README.md) | 解説 | [クイズ](../../../quiz/index.html?subject=english&category=adverbs)
-
-[前へ: 形容詞](../19-adjectives/guide.md) | 副詞 | [次へ: 前置詞](../21-prepositions/guide.md)
