@@ -1,4 +1,4 @@
-# 条件文 - 解説
+# 条件文
 
 現在形:
 I `have` time. I `play` games.

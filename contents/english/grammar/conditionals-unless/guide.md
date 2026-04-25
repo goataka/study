@@ -1,4 +1,4 @@
-# unless - 解説
+# unless
 
 if を使った条件文:
 If I `don't` have time, I won't play games.

@@ -1,4 +1,4 @@
-# 関係副詞 - 解説
+# 関係副詞
 
 2つの文:
 This is the place. I play games there.

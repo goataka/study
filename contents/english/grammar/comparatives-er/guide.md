@@ -1,4 +1,4 @@
-# 比較級 - 解説
+# 比較級
 
 原級:
 I play games `well`.
