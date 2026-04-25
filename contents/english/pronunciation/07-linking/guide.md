@@ -59,26 +59,26 @@ not  at  all
 
 音がつながる部分の音をカタカナで書きましょう。
 
-| フレーズ | 音 |
-|----------|------|
-| work it out | 　　　　　　　　　　　　 |
-| call it off | 　　　　　　　　　　　　 |
-| give it up | 　　　　　　　　　　　　 |
-| make it up | 　　　　　　　　　　　　 |
-| look it up | 　　　　　　　　　　　　 |
-| hold on | 　　　　　　　　　　　　 |
-| run away | 　　　　　　　　　　　　 |
-| break it up | 　　　　　　　　　　　　 |
+| フレーズ | 分けた発音 | くっついた発音 |
+|----------|-----------|---------------|
+| work it out | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| call it off | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| give it up | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| make it up | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| look it up | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| hold on | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| run away | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
+| break it up | 　　　　　　　　　　　　 | 　　　　　　　　　　　　 |
 
 ## 応用解答
 
-| フレーズ | 音 | 変化した部分 |
-|----------|------|--------------|
-| work it out | ワー キッ ト アウ ト | k + i → キ |
-| call it off | コー リッ ト オフ | l + i → リ |
-| give it up | ギ ヴィッ ト アップ | v + i → ヴィ |
-| make it up | メイ キッ ト アップ | k + i → キ |
-| look it up | ルッ キッ ト アップ | k + i → キ |
-| hold on | ホール ドン | d + o → ドン |
-| run away | ラ ナ ウェイ | n + a → ナ |
-| break it up | ブレイ キッ ト アップ | k + i → キ |
+| フレーズ | 分けた発音 | くっついた発音 | 変化した部分 |
+|----------|-----------|---------------|--------------|
+| work it out | ワー キッ ト アウ ト | ワーキットアウト | k + i → キ |
+| call it off | コー リッ ト オフ | コーリットオフ | l + i → リ |
+| give it up | ギ ヴィッ ト アップ | ギヴィットアップ | v + i → ヴィ |
+| make it up | メイ キッ ト アップ | メイキットアップ | k + i → キ |
+| look it up | ルッ キッ ト アップ | ルッキットアップ | k + i → キ |
+| hold on | ホール ドン | ホールドン | d + o → ドン |
+| run away | ラ ナ ウェイ | ラナウェイ | n + a → ナ |
+| break it up | ブレイ キッ ト アップ | ブレイキットアップ | k + i → キ |
