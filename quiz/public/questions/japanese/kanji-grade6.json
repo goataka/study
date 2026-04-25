@@ -9,7 +9,7 @@
   "questionType": "text-input",
   "referenceGrade": "小学6年",
   "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
-  "guideUrl": "../japanese/kanji/06-kanji-grade6/guide",
+  "guideUrl": "../japanese/kanji/kanji-grade6/guide",
   "questions": [
     {
       "id": "kanji-g6-001",

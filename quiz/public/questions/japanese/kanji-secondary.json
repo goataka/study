@@ -9,7 +9,7 @@
   "questionType": "text-input",
   "referenceGrade": "中学生",
   "description": "中学生で習う漢字の読み方（訓読み・音読み）を覚えます。",
-  "guideUrl": "../japanese/kanji/07-kanji-secondary/guide",
+  "guideUrl": "../japanese/kanji/kanji-secondary/guide",
   "questions": [
     {
       "id": "kanji-sec-001",

@@ -5,7 +5,7 @@
   "categoryName": "連立方程式",
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
-  "guideUrl": "../math/algebra/25-simultaneous-eq/guide",
+  "guideUrl": "../math/algebra/simultaneous-eq/guide",
   "example": "x+y=5, x-y=1 → x=3,y=2",
   "referenceGrade": "中学2年",
   "description": "加減法や代入法を使って連立方程式を解けるようにします。",

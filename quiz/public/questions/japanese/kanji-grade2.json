@@ -9,7 +9,7 @@
   "questionType": "text-input",
   "referenceGrade": "小学2年",
   "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
-  "guideUrl": "../japanese/kanji/02-kanji-grade2/guide",
+  "guideUrl": "../japanese/kanji/kanji-grade2/guide",
   "questions": [
     {
       "id": "kanji-g2-001",

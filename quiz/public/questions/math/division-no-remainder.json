@@ -5,7 +5,7 @@
   "categoryName": "わり算（あまりなし）",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
-  "guideUrl": "../math/arithmetic/19-division-1digit-no-remainder/guide",
+  "guideUrl": "../math/arithmetic/division-1digit-no-remainder/guide",
   "example": "12 ÷ 4 = 3",
   "referenceGrade": "小学3年",
   "description": "九九を使って、割り切れるわり算を正確に計算できるようにします。",

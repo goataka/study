@@ -5,7 +5,7 @@
   "categoryName": "ひき算（まとめ）",
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
-  "guideUrl": "../math/arithmetic/14-subtraction-mixed/guide",
+  "guideUrl": "../math/arithmetic/subtraction-mixed/guide",
   "example": "15 - 8 = 7",
   "referenceGrade": "小学1年",
   "description": "くり下がりなし・ありを混ぜた計算で、ひき算の力を確かめます。",
