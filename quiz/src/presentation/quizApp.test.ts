@@ -16,6 +16,7 @@ const kanjiCanvasMock = {
   erase: vi.fn(),
   deleteLast: vi.fn(),
   recognize: vi.fn().mockReturnValue(""),
+  strokeColors: ["#bf0000", "#bf5600"],
 };
 (globalThis as unknown as Record<string, unknown>).KanjiCanvas = kanjiCanvasMock;
 
@@ -2511,6 +2512,14 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     document.getElementById("startRandomBtn")?.click();
 
     expect(kanjiCanvasMock.init).toHaveBeenCalledWith("kanjiCanvas");
+  });
+
+  it("KanjiCanvas初期化後にstrokeColorsが空配列に設定される（書き順番号・色変化の無効化）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    expect(kanjiCanvasMock.strokeColors).toEqual([]);
   });
 
   it("候補ボタンをクリックすると文字が答えの入力エリアに追加される", async () => {
