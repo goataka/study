@@ -12,10 +12,13 @@ import { OcrService } from "./ocrService";
 
 // tesseract.js のモック
 vi.mock("tesseract.js", () => ({
+  OEM: { LSTM_ONLY: 1 },
+  PSM: { SINGLE_LINE: "7" },
   createWorker: vi.fn().mockResolvedValue({
     recognize: vi.fn().mockResolvedValue({
       data: { text: "モック認識結果\n" },
     }),
+    setParameters: vi.fn().mockResolvedValue(undefined),
     terminate: vi.fn().mockResolvedValue(undefined),
   }),
 }));
@@ -73,6 +76,46 @@ describe("OcrService", () => {
 
       // createWorker は初回のみ呼ばれる
       expect(createWorkerMock).toHaveBeenCalledTimes(1);
+    });
+
+    it("日本語文字間の余分なスペースが除去される", async () => {
+      const { createWorker } = await import("tesseract.js");
+      const workerMock = await (createWorker as ReturnType<typeof vi.fn>).mock.results[0]?.value;
+      if (workerMock) {
+        workerMock.recognize.mockResolvedValueOnce({ data: { text: "山 川 海\n" } });
+      } else {
+        // ワーカーがまだ作られていない場合、次回のcreateWorkerが返すモックを設定
+        (createWorker as ReturnType<typeof vi.fn>).mockResolvedValueOnce({
+          recognize: vi.fn().mockResolvedValue({ data: { text: "山 川 海\n" } }),
+          setParameters: vi.fn().mockResolvedValue(undefined),
+          terminate: vi.fn().mockResolvedValue(undefined),
+        });
+      }
+      const canvas = document.createElement("canvas");
+      const result = await service.recognize(canvas);
+      // 日本語文字間のスペースが除去されて "山川海" になる
+      expect(result).toBe("山川海");
+    });
+  });
+
+  describe("initialize メソッド", () => {
+    it("OEM.LSTM_ONLY を指定してワーカーを初期化する", async () => {
+      const service = new OcrService();
+      const { createWorker, OEM } = await import("tesseract.js");
+      await service.initialize();
+      expect(createWorker).toHaveBeenCalledWith(["jpn", "eng"], OEM.LSTM_ONLY);
+      await service.destroy();
+    });
+
+    it("初期化後に PSM.SINGLE_LINE パラメータが設定される", async () => {
+      const { createWorker, PSM } = await import("tesseract.js");
+      const service = new OcrService();
+      await service.initialize();
+      const worker = await (createWorker as ReturnType<typeof vi.fn>).mock.results.at(-1)?.value;
+      expect(worker.setParameters).toHaveBeenCalledWith({
+        tessedit_pageseg_mode: PSM.SINGLE_LINE,
+      });
+      await service.destroy();
     });
   });
 
