@@ -195,3 +195,11 @@ Then("clicking the manual history record header should not expand details", asyn
   await header.click();
   await expect(detail).toBeHidden();
 });
+
+Then("the quiz screen should have the practice-mode class", async ({ page }) => {
+  await expect(page.locator("#quizScreen")).toHaveClass(/practice-mode/);
+});
+
+Then("the quiz screen should not have the practice-mode class", async ({ page }) => {
+  await expect(page.locator("#quizScreen")).not.toHaveClass(/practice-mode/);
+});
