@@ -33,6 +33,8 @@ export class QuizApp {
   private readonly ocrService: OcrService = new OcrService();
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   private hideLearnedCategories: boolean = true;
+  /** 「総合」タブへの切り替え時に「確認」パネルが強制的に「実行記録」へフォールバックされたかを示すフラグ */
+  private wasQuizPanelForcedToHistory: boolean = false;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -1067,8 +1069,14 @@ export class QuizApp {
     // 「総合」タブに切り替わった際、アクティブタブが非表示になる場合は「実行記録」タブに切り替える
     // 描画（renderHistoryList）は updateStartScreen() が一元的に担うためここでは呼ばない
     if (isAll && (this.activePanelTab === "guide" || this.activePanelTab === "quiz")) {
+      this.wasQuizPanelForcedToHistory = true;
       this.activePanelTab = "history";
       this.showPanelTab("history");
+    } else if (!isAll && this.wasQuizPanelForcedToHistory) {
+      // 「総合」から特定教科への切り替え時は「確認」タブを復元する
+      this.wasQuizPanelForcedToHistory = false;
+      this.activePanelTab = "quiz";
+      this.showPanelTab("quiz");
     }
   }
 
