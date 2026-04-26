@@ -7,6 +7,19 @@
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="stylesheet" href="./css/quiz.css">
+  <script>
+    /* 1920×1080 を基準として画面全体にフィットするようズームスケーリングを適用する */
+    (function () {
+      function applyZoom() {
+        document.documentElement.style.zoom = Math.min(
+          window.innerWidth / 1920,
+          window.innerHeight / 1080
+        );
+      }
+      applyZoom();
+      window.addEventListener('resize', applyZoom);
+    })();
+  </script>
 </head>
 <body>
   <div class="container">
