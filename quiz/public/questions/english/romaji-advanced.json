@@ -1,0 +1,485 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "romaji-advanced",
+  "categoryName": "拡張ローマ字（濁音・半濁音・拗音）",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "romaji",
+  "parentCategoryName": "ローマ字",
+  "guideUrl": "../english/pronunciation/romaji-advanced/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "が=ga ぱ=pa しゃ=sha",
+  "referenceGrade": "小学3年",
+  "description": "濁音（が行・ざ行・だ行・ば行）、半濁音（ぱ行）、拗音（きゃ・しゃ等）のローマ字表記を学びます。",
+  "questions": [
+    {
+      "id": "00c43d77-2110-56b2-9ec6-12446e648f0a",
+      "question": "「が」のローマ字は？",
+      "choices": [
+        "ga",
+        "ka",
+        "ba",
+        "za"
+      ],
+      "correct": 0,
+      "explanation": "「が」は ga と書きます（か=ka に濁点がついた音）"
+    },
+    {
+      "id": "a4e27e01-4839-5700-97bf-7474c39aa2c5",
+      "question": "「ぎ」のローマ字は？",
+      "choices": [
+        "gi",
+        "ki",
+        "bi",
+        "ji"
+      ],
+      "correct": 0,
+      "explanation": "「ぎ」は gi と書きます（き=ki に濁点がついた音）"
+    },
+    {
+      "id": "950fee82-02a4-5555-9188-cd308a76bfec",
+      "question": "「ぐ」のローマ字は？",
+      "choices": [
+        "gu",
+        "ku",
+        "bu",
+        "zu"
+      ],
+      "correct": 0,
+      "explanation": "「ぐ」は gu と書きます（く=ku に濁点がついた音）"
+    },
+    {
+      "id": "d1b09f44-55b1-548f-a790-8bc8f2459843",
+      "question": "「げ」のローマ字は？",
+      "choices": [
+        "ge",
+        "ke",
+        "be",
+        "ze"
+      ],
+      "correct": 0,
+      "explanation": "「げ」は ge と書きます（け=ke に濁点がついた音）"
+    },
+    {
+      "id": "9b8661fb-16b3-5877-b6f1-638b6dffc24c",
+      "question": "「ご」のローマ字は？",
+      "choices": [
+        "go",
+        "ko",
+        "bo",
+        "zo"
+      ],
+      "correct": 0,
+      "explanation": "「ご」は go と書きます（こ=ko に濁点がついた音）"
+    },
+    {
+      "id": "815e1826-a7d8-542d-9d48-082c4d891530",
+      "question": "「ざ」のローマ字は？",
+      "choices": [
+        "za",
+        "sa",
+        "da",
+        "ba"
+      ],
+      "correct": 0,
+      "explanation": "「ざ」は za と書きます（さ=sa に濁点がついた音）"
+    },
+    {
+      "id": "7ee6efea-d623-598b-b7b9-a104c1febc4e",
+      "question": "「じ」のローマ字は？",
+      "choices": [
+        "ji",
+        "zi",
+        "shi",
+        "chi"
+      ],
+      "correct": 0,
+      "explanation": "「じ」は ji と書きます（zi ではありません）"
+    },
+    {
+      "id": "3c2aad8c-874b-51a9-9d16-3a579679bb1f",
+      "question": "「ず」のローマ字は？",
+      "choices": [
+        "zu",
+        "su",
+        "du",
+        "tsu"
+      ],
+      "correct": 0,
+      "explanation": "「ず」は zu と書きます（す=su に濁点がついた音）"
+    },
+    {
+      "id": "fe974f2a-f74b-573a-a3f5-74afb88269b4",
+      "question": "「ぜ」のローマ字は？",
+      "choices": [
+        "ze",
+        "se",
+        "de",
+        "be"
+      ],
+      "correct": 0,
+      "explanation": "「ぜ」は ze と書きます（せ=se に濁点がついた音）"
+    },
+    {
+      "id": "2fd33fed-db87-5054-82aa-c6e563d71168",
+      "question": "「ぞ」のローマ字は？",
+      "choices": [
+        "zo",
+        "so",
+        "do",
+        "bo"
+      ],
+      "correct": 0,
+      "explanation": "「ぞ」は zo と書きます（そ=so に濁点がついた音）"
+    },
+    {
+      "id": "05cbcf4a-7ea7-5b6d-9ac9-9bbcbfe3b80e",
+      "question": "「だ」のローマ字は？",
+      "choices": [
+        "da",
+        "ta",
+        "za",
+        "ba"
+      ],
+      "correct": 0,
+      "explanation": "「だ」は da と書きます（た=ta に濁点がついた音）"
+    },
+    {
+      "id": "f86acd3f-43c6-56df-b673-c3644a2a4306",
+      "question": "「で」のローマ字は？",
+      "choices": [
+        "de",
+        "te",
+        "ze",
+        "be"
+      ],
+      "correct": 0,
+      "explanation": "「で」は de と書きます（て=te に濁点がついた音）"
+    },
+    {
+      "id": "d16a8cec-e69e-5352-8f47-8dae06c52fda",
+      "question": "「ど」のローマ字は？",
+      "choices": [
+        "do",
+        "to",
+        "zo",
+        "bo"
+      ],
+      "correct": 0,
+      "explanation": "「ど」は do と書きます（と=to に濁点がついた音）"
+    },
+    {
+      "id": "2bcfca65-7377-5c58-a724-910767556974",
+      "question": "「ば」のローマ字は？",
+      "choices": [
+        "ba",
+        "pa",
+        "da",
+        "ma"
+      ],
+      "correct": 0,
+      "explanation": "「ば」は ba と書きます（は=ha に濁点がついた音）"
+    },
+    {
+      "id": "4ae731a1-8404-548b-9395-af864c3e218d",
+      "question": "「び」のローマ字は？",
+      "choices": [
+        "bi",
+        "pi",
+        "di",
+        "mi"
+      ],
+      "correct": 0,
+      "explanation": "「び」は bi と書きます（ひ=hi に濁点がついた音）"
+    },
+    {
+      "id": "ee63c8b1-c6ea-5edc-ad05-ca6552095f18",
+      "question": "「ぶ」のローマ字は？",
+      "choices": [
+        "bu",
+        "pu",
+        "du",
+        "mu"
+      ],
+      "correct": 0,
+      "explanation": "「ぶ」は bu と書きます（ふ=fu に濁点がついた音）"
+    },
+    {
+      "id": "3fc75dff-f5cb-5731-a5d4-919d990662c0",
+      "question": "「べ」のローマ字は？",
+      "choices": [
+        "be",
+        "pe",
+        "de",
+        "me"
+      ],
+      "correct": 0,
+      "explanation": "「べ」は be と書きます（へ=he に濁点がついた音）"
+    },
+    {
+      "id": "27c039dd-6736-509e-b156-0b843f8b6c7e",
+      "question": "「ぼ」のローマ字は？",
+      "choices": [
+        "bo",
+        "po",
+        "do",
+        "mo"
+      ],
+      "correct": 0,
+      "explanation": "「ぼ」は bo と書きます（ほ=ho に濁点がついた音）"
+    },
+    {
+      "id": "405739b7-70d6-57bd-b261-4ad74e06c2aa",
+      "question": "「ぱ」のローマ字は？",
+      "choices": [
+        "pa",
+        "ba",
+        "ha",
+        "fa"
+      ],
+      "correct": 0,
+      "explanation": "「ぱ」は pa と書きます（は=ha に半濁点がついた音）"
+    },
+    {
+      "id": "69ddef38-b0cd-5d55-b2bd-124ef0dd5b28",
+      "question": "「ぴ」のローマ字は？",
+      "choices": [
+        "pi",
+        "bi",
+        "hi",
+        "fi"
+      ],
+      "correct": 0,
+      "explanation": "「ぴ」は pi と書きます（ひ=hi に半濁点がついた音）"
+    },
+    {
+      "id": "8f762eb2-fedd-5af4-9782-ef0a5457882d",
+      "question": "「ぷ」のローマ字は？",
+      "choices": [
+        "pu",
+        "bu",
+        "fu",
+        "hu"
+      ],
+      "correct": 0,
+      "explanation": "「ぷ」は pu と書きます（ふ=fu に半濁点がついた音）"
+    },
+    {
+      "id": "8503c3c8-9c65-5011-97ea-1ed0b8f201a1",
+      "question": "「ぺ」のローマ字は？",
+      "choices": [
+        "pe",
+        "be",
+        "he",
+        "fe"
+      ],
+      "correct": 0,
+      "explanation": "「ぺ」は pe と書きます（へ=he に半濁点がついた音）"
+    },
+    {
+      "id": "e9700e7d-c5f9-552d-a390-5f32e7a5055c",
+      "question": "「ぽ」のローマ字は？",
+      "choices": [
+        "po",
+        "bo",
+        "ho",
+        "fo"
+      ],
+      "correct": 0,
+      "explanation": "「ぽ」は po と書きます（ほ=ho に半濁点がついた音）"
+    },
+    {
+      "id": "2263589b-df6e-5ac1-9147-1ad887c2080c",
+      "question": "「きゃ」のローマ字は？",
+      "choices": [
+        "kya",
+        "gya",
+        "sha",
+        "kia"
+      ],
+      "correct": 0,
+      "explanation": "「きゃ」は kya と書きます（き=ki + や=ya が合わさった音）"
+    },
+    {
+      "id": "2db5db8c-c5d0-53a0-8649-79148e454bff",
+      "question": "「きゅ」のローマ字は？",
+      "choices": [
+        "kyu",
+        "gyu",
+        "shu",
+        "kiu"
+      ],
+      "correct": 0,
+      "explanation": "「きゅ」は kyu と書きます（き=ki + ゆ=yu が合わさった音）"
+    },
+    {
+      "id": "ebfcf06a-720a-5ca6-950e-6b6897d52322",
+      "question": "「きょ」のローマ字は？",
+      "choices": [
+        "kyo",
+        "gyo",
+        "sho",
+        "kio"
+      ],
+      "correct": 0,
+      "explanation": "「きょ」は kyo と書きます（き=ki + よ=yo が合わさった音）"
+    },
+    {
+      "id": "f1827b0f-0479-5192-b1f8-eaf15c3edcb0",
+      "question": "「しゃ」のローマ字は？",
+      "choices": [
+        "sha",
+        "ja",
+        "cha",
+        "sya"
+      ],
+      "correct": 0,
+      "explanation": "「しゃ」は sha と書きます（sya ではありません）"
+    },
+    {
+      "id": "ee5bcc4e-3b59-57fe-ba5d-05d4213ab07f",
+      "question": "「しゅ」のローマ字は？",
+      "choices": [
+        "shu",
+        "ju",
+        "chu",
+        "syu"
+      ],
+      "correct": 0,
+      "explanation": "「しゅ」は shu と書きます（syu ではありません）"
+    },
+    {
+      "id": "e91d433b-8d6f-5b78-b004-9040b0854887",
+      "question": "「しょ」のローマ字は？",
+      "choices": [
+        "sho",
+        "jo",
+        "cho",
+        "syo"
+      ],
+      "correct": 0,
+      "explanation": "「しょ」は sho と書きます（syo ではありません）"
+    },
+    {
+      "id": "7da405e8-2841-536f-9c2b-42163d03c7b2",
+      "question": "「ちゃ」のローマ字は？",
+      "choices": [
+        "cha",
+        "sha",
+        "ja",
+        "tya"
+      ],
+      "correct": 0,
+      "explanation": "「ちゃ」は cha と書きます（tya ではありません）"
+    },
+    {
+      "id": "bcea397a-4e87-5e65-9bbe-3bc533faea1f",
+      "question": "「ちゅ」のローマ字は？",
+      "choices": [
+        "chu",
+        "shu",
+        "ju",
+        "tyu"
+      ],
+      "correct": 0,
+      "explanation": "「ちゅ」は chu と書きます（tyu ではありません）"
+    },
+    {
+      "id": "c92256dc-dc52-5d65-97fe-d658b8bc7f9b",
+      "question": "「ちょ」のローマ字は？",
+      "choices": [
+        "cho",
+        "sho",
+        "jo",
+        "tyo"
+      ],
+      "correct": 0,
+      "explanation": "「ちょ」は cho と書きます（tyo ではありません）"
+    },
+    {
+      "id": "1c964f6b-27c4-514a-99db-8b4a722a72f1",
+      "question": "「にゃ」のローマ字は？",
+      "choices": [
+        "nya",
+        "mya",
+        "rya",
+        "na"
+      ],
+      "correct": 0,
+      "explanation": "「にゃ」は nya と書きます（に=ni + や=ya が合わさった音）"
+    },
+    {
+      "id": "36abc9e8-80d5-59d6-a9a4-3ef10ee0f1ad",
+      "question": "「りゃ」のローマ字は？",
+      "choices": [
+        "rya",
+        "lya",
+        "nya",
+        "ra"
+      ],
+      "correct": 0,
+      "explanation": "「りゃ」は rya と書きます（り=ri + や=ya が合わさった音）"
+    },
+    {
+      "id": "26cfe7a0-8b86-5cd6-8c15-ede2a1e53c8f",
+      "question": "「りゅ」のローマ字は？",
+      "choices": [
+        "ryu",
+        "lyu",
+        "nyu",
+        "ru"
+      ],
+      "correct": 0,
+      "explanation": "「りゅ」は ryu と書きます（り=ri + ゆ=yu が合わさった音）"
+    },
+    {
+      "id": "8525f3db-d1c7-5c30-8044-03c9b8bad701",
+      "question": "「りょ」のローマ字は？",
+      "choices": [
+        "ryo",
+        "lyo",
+        "nyo",
+        "ro"
+      ],
+      "correct": 0,
+      "explanation": "「りょ」は ryo と書きます（り=ri + よ=yo が合わさった音）"
+    },
+    {
+      "id": "866714f9-e157-5f0a-9ea2-cf816944b729",
+      "question": "「じゃ」のローマ字は？",
+      "choices": [
+        "ja",
+        "sha",
+        "cha",
+        "za"
+      ],
+      "correct": 0,
+      "explanation": "「じゃ」は ja と書きます（じ=ji + や=ya が合わさった音）"
+    },
+    {
+      "id": "a7697a12-985e-5151-acdd-d58ea5f44007",
+      "question": "「じゅ」のローマ字は？",
+      "choices": [
+        "ju",
+        "shu",
+        "chu",
+        "zu"
+      ],
+      "correct": 0,
+      "explanation": "「じゅ」は ju と書きます（じ=ji + ゆ=yu が合わさった音）"
+    },
+    {
+      "id": "ea0b2cdf-1788-539f-ab90-59a6cd7ca2f8",
+      "question": "「じょ」のローマ字は？",
+      "choices": [
+        "jo",
+        "sho",
+        "cho",
+        "zo"
+      ],
+      "correct": 0,
+      "explanation": "「じょ」は jo と書きます（じ=ji + よ=yo が合わさった音）"
+    }
+  ]
+}

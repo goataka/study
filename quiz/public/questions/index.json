@@ -14,6 +14,7 @@
   "questionFiles": [
     "english/alphabet.json",
     "english/50on.json",
+    "english/romaji-advanced.json",
     "english/phonics-1.json",
     "english/phonics-2.json",
     "english/phonics-3.json",
