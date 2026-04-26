@@ -178,3 +178,53 @@ describe("LocalStorageProgressRepository — 正解連続数永続化仕様", ()
     expect(repo.loadCorrectStreaks()).toEqual({});
   });
 });
+
+describe("LocalStorageProgressRepository — フォントサイズ永続化仕様", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("初回ロード時はnullを返す", () => {
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadFontSizeLevel()).toBeNull();
+  });
+
+  it("保存した medium を正しく読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveFontSizeLevel("medium");
+    expect(repo.loadFontSizeLevel()).toBe("medium");
+  });
+
+  it("保存した large を正しく読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveFontSizeLevel("large");
+    expect(repo.loadFontSizeLevel()).toBe("large");
+  });
+
+  it("保存した small を正しく読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveFontSizeLevel("small");
+    expect(repo.loadFontSizeLevel()).toBe("small");
+  });
+
+  it("上書き保存が正しく機能する", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveFontSizeLevel("medium");
+    repo.saveFontSizeLevel("large");
+    expect(repo.loadFontSizeLevel()).toBe("large");
+  });
+
+  it("無効な値が保存されている場合はnullを返す", () => {
+    localStorage.setItem("fontSizeLevel", "extra-large");
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadFontSizeLevel()).toBeNull();
+  });
+
+  it("別のインスタンスからも同じデータを読み込める（永続化確認）", () => {
+    const repo1 = new LocalStorageProgressRepository();
+    repo1.saveFontSizeLevel("large");
+
+    const repo2 = new LocalStorageProgressRepository();
+    expect(repo2.loadFontSizeLevel()).toBe("large");
+  });
+});

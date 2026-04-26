@@ -54,6 +54,8 @@ export class QuizApp {
   private categoryViewMode: "category" | "grade" = "category";
   /** 折りたたまれている学年グループID のセット（学年別ビュー用） */
   private collapsedGradeGroups: Set<string> = new Set();
+  /** フォントサイズレベル（small=デフォルト, medium, large） */
+  private fontSizeLevel: "small" | "medium" | "large" = "small";
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -73,6 +75,7 @@ export class QuizApp {
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
     this.loadUserName();
+    this.loadFontSize();
     this.loadFilterFromURL();
     this.loadQuestionCountFromDOM();
     this.setupEventListeners();
@@ -113,6 +116,36 @@ export class QuizApp {
     const savedName = progressRepo.loadUserName();
     if (savedName) {
       this.userName = savedName;
+    }
+  }
+
+  private loadFontSize(): void {
+    const progressRepo = new LocalStorageProgressRepository();
+    const saved = progressRepo.loadFontSizeLevel();
+    if (saved !== null) {
+      this.fontSizeLevel = saved;
+    }
+    this.applyFontSize(this.fontSizeLevel, false);
+  }
+
+  private applyFontSize(level: "small" | "medium" | "large", persist = true): void {
+    this.fontSizeLevel = level;
+    document.body.classList.remove("font-size-medium", "font-size-large");
+    if (level === "medium") {
+      document.body.classList.add("font-size-medium");
+    } else if (level === "large") {
+      document.body.classList.add("font-size-large");
+    }
+    // ボタンのアクティブ状態を更新
+    document.querySelectorAll<HTMLButtonElement>(".font-size-btn").forEach((btn) => {
+      const active = btn.dataset.size === level;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", String(active));
+    });
+    // 初期復元時は保存をスキップし、ユーザー操作時のみ保存する
+    if (persist) {
+      const progressRepo = new LocalStorageProgressRepository();
+      progressRepo.saveFontSizeLevel(level);
     }
   }
 
@@ -1449,6 +1482,16 @@ export class QuizApp {
     penColorSelect?.addEventListener("change", (e) => {
       const color = (e.target as HTMLSelectElement).value;
       this.notesCanvas?.setPenColor(color);
+    });
+
+    // フォントサイズ切替ボタン
+    document.querySelectorAll<HTMLButtonElement>(".font-size-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const size = btn.dataset.size as "small" | "medium" | "large" | undefined;
+        if (size === "small" || size === "medium" || size === "large") {
+          this.applyFontSize(size);
+        }
+      });
     });
   }
 
