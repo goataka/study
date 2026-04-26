@@ -390,4 +390,46 @@ export class QuizUseCase {
   get wrongQuestionIds(): string[] {
     return [...this.wrongIds];
   }
+
+  /**
+   * 指定した教科のユニークな参考学年リストを出現順に返す。
+   * referenceGrade が設定されていないカテゴリは除外する。
+   */
+  getUniqueGradesForSubject(subject: string): string[] {
+    const seen = new Set<string>();
+    const grades: string[] = [];
+    for (const q of this.allQuestions) {
+      if (q.subject === subject && q.referenceGrade && !seen.has(q.referenceGrade)) {
+        seen.add(q.referenceGrade);
+        grades.push(q.referenceGrade);
+      }
+    }
+    return grades;
+  }
+
+  /**
+   * 指定した教科・学年のカテゴリを返す（referenceGrade が完全一致するもの）。
+   */
+  getCategoriesForGrade(subject: string, grade: string): Record<string, string> {
+    const categories: Record<string, string> = {};
+    for (const q of this.allQuestions) {
+      if (q.subject === subject && q.referenceGrade === grade && !(q.category in categories)) {
+        categories[q.category] = q.categoryName;
+      }
+    }
+    return categories;
+  }
+
+  /**
+   * 指定した教科の参考学年が未設定のカテゴリを返す。
+   */
+  getCategoriesWithoutGrade(subject: string): Record<string, string> {
+    const categories: Record<string, string> = {};
+    for (const q of this.allQuestions) {
+      if (q.subject === subject && !q.referenceGrade && !(q.category in categories)) {
+        categories[q.category] = q.categoryName;
+      }
+    }
+    return categories;
+  }
 }

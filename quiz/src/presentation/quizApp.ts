@@ -48,6 +48,12 @@ export class QuizApp {
   private collapsedParentCategories: Set<string> = new Set();
   /** 折りたたまれているトップカテゴリID のセット */
   private collapsedTopCategories: Set<string> = new Set();
+  /** 学年フィルター（"小学", "中学", "高校" のいずれか、または null ですべて表示） */
+  private selectedGradeFilter: string | null = null;
+  /** 単元一覧の表示モード（"category"=カテゴリ別, "grade"=学年別） */
+  private categoryViewMode: "category" | "grade" = "category";
+  /** 折りたたまれている学年グループID のセット（学年別ビュー用） */
+  private collapsedGradeGroups: Set<string> = new Set();
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -245,14 +251,48 @@ export class QuizApp {
 
     if (subject === "all") {
       this.renderAllSubjectList();
+      this.renderCategoryViewControls();
       return;
     }
+
+    // コントロールを先に描画し、教科切替時の学年フィルターの妥当性チェックを行う
+    this.renderCategoryViewControls();
+
+    if (this.categoryViewMode === "grade") {
+      this.renderCategoryListByGrade();
+    } else {
+      this.renderCategoryListByCategory();
+    }
+
+    // アクティブ状態を更新
+    this.updateCategoryListActive();
+    // 学習済の非表示状態を維持する
+    categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+  }
+
+  /**
+   * カテゴリ別ビューでカテゴリリストを描画する（既存の階層構造）。
+   * gradeFilter が設定されている場合は学年でフィルタリングする。
+   */
+  private renderCategoryListByCategory(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    const subject = this.filter.subject;
 
     // 全親カテゴリとその配下のカテゴリを収集
     const allParentCategories = this.useCase.getParentCategoriesForSubject(subject);
     const categoriesByParent = new Map<string, Record<string, string>>();
     for (const [parentCatId] of Object.entries(allParentCategories)) {
-      categoriesByParent.set(parentCatId, this.useCase.getCategoriesForParent(subject, parentCatId));
+      const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
+      // 学年フィルターを適用
+      const filtered: Record<string, string> = {};
+      for (const [catId, catName] of Object.entries(cats)) {
+        if (this.gradeFilterMatches(subject, catId)) {
+          filtered[catId] = catName;
+        }
+      }
+      categoriesByParent.set(parentCatId, filtered);
     }
 
     // トップカテゴリがある場合は3階層で描画
@@ -260,6 +300,19 @@ export class QuizApp {
     const parentCatIdsInTopGroups = new Set<string>();
 
     for (const [topCatId, topCatName] of Object.entries(topCategories)) {
+      const parentCatsForTop = this.useCase.getParentCategoriesForTop(subject, topCatId);
+
+      // このトップカテゴリに表示すべきカテゴリがあるか確認
+      let hasVisibleItems = false;
+      for (const [parentCatId] of Object.entries(parentCatsForTop)) {
+        parentCatIdsInTopGroups.add(parentCatId);
+        const cats = categoriesByParent.get(parentCatId) ?? {};
+        if (Object.keys(cats).length > 0) {
+          hasVisibleItems = true;
+        }
+      }
+      if (!hasVisibleItems) continue;
+
       const topGroupDiv = document.createElement("div");
       topGroupDiv.className = "category-top-group";
       topGroupDiv.dataset.topCategory = topCatId;
@@ -282,12 +335,12 @@ export class QuizApp {
 
       topGroupDiv.appendChild(topGroupHeader);
 
-      const parentCatsForTop = this.useCase.getParentCategoriesForTop(subject, topCatId);
       for (const [parentCatId, parentCatName] of Object.entries(parentCatsForTop)) {
-        parentCatIdsInTopGroups.add(parentCatId);
+        const cats = categoriesByParent.get(parentCatId) ?? {};
+        if (Object.keys(cats).length === 0) continue;
         const groupDiv = this.buildParentCategoryGroup(
           subject, parentCatId, parentCatName,
-          categoriesByParent.get(parentCatId) ?? {},
+          cats,
           topCatId
         );
         topGroupDiv.appendChild(groupDiv);
@@ -315,9 +368,11 @@ export class QuizApp {
     // トップカテゴリに属さない親カテゴリグループ（2階層の孤立グループ）
     for (const [parentCatId, parentCatName] of Object.entries(allParentCategories)) {
       if (parentCatIdsInTopGroups.has(parentCatId)) continue;
+      const cats = categoriesByParent.get(parentCatId) ?? {};
+      if (Object.keys(cats).length === 0) continue;
       const groupDiv = this.buildParentCategoryGroup(
         subject, parentCatId, parentCatName,
-        categoriesByParent.get(parentCatId) ?? {}
+        cats
       );
       categoryList.appendChild(groupDiv);
     }
@@ -328,16 +383,248 @@ export class QuizApp {
       const belongsToParent = Array.from(categoriesByParent.values()).some(
         (cats) => catId in cats
       );
-      if (!belongsToParent) {
+      if (!belongsToParent && this.gradeFilterMatches(subject, catId)) {
         const catItem = this.createCategoryItem(subject, catId, catName);
         categoryList.appendChild(catItem);
       }
     }
+  }
 
-    // アクティブ状態を更新
-    this.updateCategoryListActive();
-    // 学習済の非表示状態を維持する
-    categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+  /**
+   * 学年別ビューでカテゴリリストを描画する。
+   * 学年グループ（小学1年, 中学1年 等）でまとめて表示する。
+   */
+  private renderCategoryListByGrade(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    const subject = this.filter.subject;
+    const grades = this.useCase.getUniqueGradesForSubject(subject);
+
+    for (const grade of grades) {
+      // 学年フィルターで絞る
+      if (this.selectedGradeFilter && !grade.startsWith(this.selectedGradeFilter)) continue;
+
+      const cats = this.useCase.getCategoriesForGrade(subject, grade);
+      if (Object.keys(cats).length === 0) continue;
+
+      const groupDiv = document.createElement("div");
+      groupDiv.className = "category-grade-group";
+      groupDiv.dataset.grade = grade;
+
+      const groupHeader = document.createElement("div");
+      groupHeader.className = "category-grade-group-header";
+      groupHeader.setAttribute("role", "button");
+      groupHeader.setAttribute("tabindex", "0");
+      groupHeader.setAttribute("aria-expanded", this.collapsedGradeGroups.has(grade) ? "false" : "true");
+      groupHeader.dataset.grade = grade;
+
+      const toggleArrow = document.createElement("span");
+      toggleArrow.className = "category-grade-group-toggle";
+      toggleArrow.setAttribute("aria-hidden", "true");
+      groupHeader.appendChild(toggleArrow);
+
+      const headerText = document.createElement("span");
+      headerText.textContent = grade;
+      groupHeader.appendChild(headerText);
+
+      const gradeClass = gradeColorClass(grade);
+      if (gradeClass) {
+        groupHeader.classList.add(gradeClass);
+      }
+
+      groupDiv.appendChild(groupHeader);
+
+      for (const [catId, catName] of Object.entries(cats)) {
+        const catItem = this.createCategoryItem(subject, catId, catName);
+        groupDiv.appendChild(catItem);
+      }
+
+      if (this.collapsedGradeGroups.has(grade)) {
+        groupDiv.classList.add("collapsed");
+      }
+
+      const handleToggle = (e: Event): void => {
+        e.stopPropagation();
+        if (this.collapsedGradeGroups.has(grade)) {
+          this.collapsedGradeGroups.delete(grade);
+          groupDiv.classList.remove("collapsed");
+          groupHeader.setAttribute("aria-expanded", "true");
+        } else {
+          this.collapsedGradeGroups.add(grade);
+          groupDiv.classList.add("collapsed");
+          groupHeader.setAttribute("aria-expanded", "false");
+        }
+      };
+      groupHeader.addEventListener("click", handleToggle);
+      groupHeader.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleToggle(e);
+        }
+      });
+
+      categoryList.appendChild(groupDiv);
+    }
+
+    // 学年未設定のカテゴリ（フィルターなしの場合のみ表示）
+    if (!this.selectedGradeFilter) {
+      const uncategorized = this.useCase.getCategoriesWithoutGrade(subject);
+      if (Object.keys(uncategorized).length > 0) {
+        const groupDiv = document.createElement("div");
+        groupDiv.className = "category-grade-group";
+        groupDiv.dataset.grade = "none";
+
+        const groupHeader = document.createElement("div");
+        groupHeader.className = "category-grade-group-header";
+        groupHeader.setAttribute("role", "button");
+        groupHeader.setAttribute("tabindex", "0");
+        groupHeader.setAttribute("aria-expanded", this.collapsedGradeGroups.has("none") ? "false" : "true");
+        groupHeader.dataset.grade = "none";
+
+        const toggleArrow = document.createElement("span");
+        toggleArrow.className = "category-grade-group-toggle";
+        toggleArrow.setAttribute("aria-hidden", "true");
+        groupHeader.appendChild(toggleArrow);
+
+        const headerText = document.createElement("span");
+        headerText.textContent = "学年未設定";
+        groupHeader.appendChild(headerText);
+
+        groupDiv.appendChild(groupHeader);
+
+        for (const [catId, catName] of Object.entries(uncategorized)) {
+          const catItem = this.createCategoryItem(subject, catId, catName);
+          groupDiv.appendChild(catItem);
+        }
+
+        if (this.collapsedGradeGroups.has("none")) {
+          groupDiv.classList.add("collapsed");
+        }
+
+        const handleToggleNone = (e: Event): void => {
+          e.stopPropagation();
+          const grade = groupDiv.dataset.grade ?? "none";
+          if (this.collapsedGradeGroups.has(grade)) {
+            this.collapsedGradeGroups.delete(grade);
+            groupDiv.classList.remove("collapsed");
+            groupHeader.setAttribute("aria-expanded", "true");
+          } else {
+            this.collapsedGradeGroups.add(grade);
+            groupDiv.classList.add("collapsed");
+            groupHeader.setAttribute("aria-expanded", "false");
+          }
+        };
+        groupHeader.addEventListener("click", handleToggleNone);
+        groupHeader.addEventListener("keydown", (e: KeyboardEvent) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleToggleNone(e);
+          }
+        });
+
+        categoryList.appendChild(groupDiv);
+      }
+    }
+  }
+
+  /**
+   * カテゴリビュー操作コントロール（学年フィルター・ビューモード切替）を描画する。
+   */
+  private renderCategoryViewControls(): void {
+    const controlsEl = document.getElementById("categoryControls");
+    if (!controlsEl) return;
+    controlsEl.innerHTML = "";
+
+    const subject = this.filter.subject;
+    if (subject === "all") return;
+
+    // ── ビューモード切替ボタン ──
+    const viewToggleBtn = document.createElement("button");
+    viewToggleBtn.className = "category-view-toggle";
+    viewToggleBtn.type = "button";
+    viewToggleBtn.setAttribute("aria-pressed", String(this.categoryViewMode === "grade"));
+    viewToggleBtn.textContent = this.categoryViewMode === "grade" ? "🎓 学年別" : "📁 カテゴリ別";
+    viewToggleBtn.title = this.categoryViewMode === "grade"
+      ? "カテゴリ別表示に切り替える"
+      : "学年別表示に切り替える";
+    viewToggleBtn.addEventListener("click", () => {
+      this.categoryViewMode = this.categoryViewMode === "category" ? "grade" : "category";
+      this.renderCategoryList();
+    });
+    controlsEl.appendChild(viewToggleBtn);
+
+    // ── 学年フィルターボタン ──
+    const grades = this.useCase.getUniqueGradesForSubject(subject);
+    if (grades.length === 0) {
+      // 学年情報がない場合はフィルターをリセット
+      this.selectedGradeFilter = null;
+      return;
+    }
+
+    // 利用可能な学年プレフィックスを収集
+    const prefixes: string[] = [];
+    const seen = new Set<string>();
+    for (const grade of grades) {
+      const prefix = grade.startsWith("小") ? "小学" :
+                     grade.startsWith("中") ? "中学" :
+                     grade.startsWith("高") ? "高校" : "";
+      if (prefix && !seen.has(prefix)) {
+        seen.add(prefix);
+        prefixes.push(prefix);
+      }
+    }
+
+    // 現在のフィルターが新しい教科で有効でない場合はリセット
+    if (this.selectedGradeFilter !== null && !prefixes.includes(this.selectedGradeFilter)) {
+      this.selectedGradeFilter = null;
+    }
+
+    if (prefixes.length < 2) return; // 1種類以下なら表示しない
+
+    const filterLabel = document.createElement("span");
+    filterLabel.className = "grade-filter-label";
+    filterLabel.textContent = "学年:";
+    controlsEl.appendChild(filterLabel);
+
+    // 「すべて」ボタン
+    const allBtn = document.createElement("button");
+    allBtn.className = "grade-filter-btn";
+    allBtn.type = "button";
+    allBtn.textContent = "すべて";
+    allBtn.setAttribute("aria-pressed", String(this.selectedGradeFilter === null));
+    allBtn.addEventListener("click", () => {
+      this.selectedGradeFilter = null;
+      this.renderCategoryList();
+    });
+    controlsEl.appendChild(allBtn);
+
+    // 各学年プレフィックスボタン
+    const labelMap: Record<string, string> = { "小学": "小学", "中学": "中学", "高校": "高校" };
+    for (const prefix of prefixes) {
+      const btn = document.createElement("button");
+      btn.className = "grade-filter-btn";
+      btn.type = "button";
+      btn.textContent = labelMap[prefix] ?? prefix;
+      btn.setAttribute("aria-pressed", String(this.selectedGradeFilter === prefix));
+      btn.addEventListener("click", () => {
+        this.selectedGradeFilter = prefix;
+        this.renderCategoryList();
+      });
+      controlsEl.appendChild(btn);
+    }
+  }
+
+  /**
+   * 現在の学年フィルターに対してカテゴリが表示対象かを返す。
+   * フィルターが null の場合は常に true を返す。
+   * カテゴリに referenceGrade が設定されていない場合、フィルターが設定されていれば false。
+   */
+  private gradeFilterMatches(subject: string, categoryId: string): boolean {
+    if (!this.selectedGradeFilter) return true;
+    const grade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
+    if (!grade) return false;
+    return grade.startsWith(this.selectedGradeFilter);
   }
 
   /**
@@ -633,6 +920,35 @@ export class QuizApp {
     item.appendChild(gradeSpan);
     item.appendChild(statsSpan);
 
+    // 解説ボタン（guideUrl が設定されている場合のみ表示）
+    const guideUrl = this.useCase.getCategoryGuideUrl(subject, categoryId);
+    if (guideUrl) {
+      const guideBtn = document.createElement("button");
+      guideBtn.className = "category-item-guide-btn";
+      guideBtn.type = "button";
+      guideBtn.textContent = "📖";
+      guideBtn.setAttribute("aria-label", `${categoryName}の解説を見る`);
+      guideBtn.title = `${categoryName}の解説を見る`;
+      const openGuide = (e: Event): void => {
+        e.stopPropagation();
+        this.filter.subject = subject;
+        this.filter.category = categoryId;
+        this.filter.parentCategory = parentCatId;
+        this.updateCategoryListActive();
+        const records = this.useCase.getHistory();
+        this.updateStartScreen(records);
+        this.showParentCategoryGuide(guideUrl);
+      };
+      guideBtn.addEventListener("click", openGuide);
+      guideBtn.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openGuide(e);
+        }
+      });
+      item.appendChild(guideBtn);
+    }
+
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
       // 既に選択中の単元をクリックした場合は非選択に戻す（トグル）
@@ -702,6 +1018,17 @@ export class QuizApp {
         // トップカテゴリグループも自動展開する
         if (el.dataset.topCategory) {
           this.expandTopCategory(el.dataset.topCategory);
+        }
+        // 学年グループを自動展開する（学年別ビュー用）
+        const gradeGroup = el.closest<HTMLElement>(".category-grade-group");
+        if (gradeGroup) {
+          const grade = gradeGroup.dataset.grade;
+          if (grade && this.collapsedGradeGroups.has(grade)) {
+            this.collapsedGradeGroups.delete(grade);
+            gradeGroup.classList.remove("collapsed");
+            const header = gradeGroup.querySelector<HTMLElement>(".category-grade-group-header");
+            header?.setAttribute("aria-expanded", "true");
+          }
         }
       }
     });
