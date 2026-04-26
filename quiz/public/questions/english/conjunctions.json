@@ -8,8 +8,8 @@
   "parentCategory": "parts-of-speech",
   "parentCategoryName": "品詞",
   "guideUrl": "../english/grammar/conjunctions/guide",
-  "parentCategoryGuideUrl": "../english/grammar/guide",
-  "example": "cats `and` dogs",
+"parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "games `and` players",
   "referenceGrade": "中学1年",
   "description": "接続詞は文と文、語と語をつなぐ語です。",
   "questions": [
@@ -75,7 +75,7 @@
     },
     {
       "id": "b92bae61-6105-5338-97e9-0e07272b566d",
-      "question": "I like cats ___ dogs. (並列)",
+      "question": "I like games ___ anime. (並列)",
       "choices": [
         "and",
         "or",
@@ -87,7 +87,7 @@
     },
     {
       "id": "77038ef6-fdb4-57c1-a870-8bf67cf3b519",
-      "question": "I was tired, ___ I went to bed early. (理由)",
+      "question": "I was tired, ___ I played a short game. (理由)",
       "choices": [
         "so",
         "but",
@@ -99,7 +99,7 @@
     },
     {
       "id": "422604e3-66ca-55f8-97da-72e301d3cf8a",
-      "question": "___ I was tired, I studied hard. (逆接)",
+      "question": "___ I was tired, I played games. (逆接)",
       "choices": [
         "Although",
         "Because",

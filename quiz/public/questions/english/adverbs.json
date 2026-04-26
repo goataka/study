@@ -8,8 +8,8 @@
   "parentCategory": "parts-of-speech",
   "parentCategoryName": "品詞",
   "guideUrl": "../english/grammar/adverbs/guide",
-  "parentCategoryGuideUrl": "../english/grammar/guide",
-  "example": "run `fast`",
+"parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "play `well`",
   "referenceGrade": "中学1年",
   "description": "副詞は動詞・形容詞・他の副詞を修飾する語です。",
   "questions": [
@@ -39,7 +39,7 @@
     },
     {
       "id": "ed5e18ee-0122-58cd-a5a5-cafe1338e289",
-      "question": "I ___ study English. (usually)",
+      "question": "I ___ play games. (usually)",
       "choices": [
         "usually",
         "usual",
@@ -51,7 +51,7 @@
     },
     {
       "id": "a78d1ffb-4533-5e36-bed2-be319796bd83",
-      "question": "She sings ___. (beautifully)",
+      "question": "She plays ___. (beautifully)",
       "choices": [
         "beautifully",
         "beautiful",
@@ -75,7 +75,7 @@
     },
     {
       "id": "8a7ca328-bfea-53fe-848d-af4ca438b0f4",
-      "question": "He ___ eats breakfast. (always)",
+      "question": "He ___ plays games. (always)",
       "choices": [
         "always",
         "all ways",
@@ -87,7 +87,7 @@
     },
     {
       "id": "acae6979-d820-5177-92af-1dc6dd269ebe",
-      "question": "She runs ___. (quickly)",
+      "question": "She moves ___. (quickly)",
       "choices": [
         "quickly",
         "quick",
@@ -99,7 +99,7 @@
     },
     {
       "id": "13956578-ab71-552f-b491-8fde72745b1f",
-      "question": "I ___ go to school by bus. (often)",
+      "question": "I ___ go to the arcade. (often)",
       "choices": [
         "often",
         "frequent",

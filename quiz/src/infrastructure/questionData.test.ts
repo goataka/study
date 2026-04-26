@@ -324,6 +324,8 @@ describe("guideUrl — contents/ 側の guide.md 存在チェック", () => {
 
     for (const qf of questionFiles) {
       if (!qf.parentCategoryGuideUrl) continue;
+      // 絶対 URL（http/https）はファイル存在チェックをスキップ
+      if (/^https?:\/\//i.test(qf.parentCategoryGuideUrl)) continue;
       // parentCategoryGuideUrl は "../english/grammar/guide" のような相対パス
       const relativePath = qf.parentCategoryGuideUrl.replace(/^\.\.\//, "");
       const guideMdPath = path.join(CONTENTS_DIR, `${relativePath}.md`);

@@ -42,8 +42,8 @@ I play games `in` the morning.
 | 場所 | I play games (`in`) the park. |
 | 時 | I play games (`on`) Sunday. |
 | 時 | I play games (`in`) the morning. |
-| 方向 | I go (`to`) school. |
-| 手段 | I go to school (`by`) bus. |
+| 方向 | I go (`to`) the game center. |
+| 手段 | I go to the game center (`by`) bus. |
 
 ## 英作文解答
 
@@ -52,4 +52,4 @@ I play games `in` the morning.
 | 私は家でゲームをします。 | I play games at home. |
 | 私は公園でゲームをします。 | I play games in the park. |
 | 私は日曜日にゲームをします。 | I play games on Sunday. |
-| 私はバスで学校に行きます。 | I go to school by bus. |
+| 私はバスでゲームセンターに行きます。 | I go to the game center by bus. |

@@ -149,13 +149,23 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
 
   it("parentCategoryGuideUrl が文字列の相対パスの場合は受け入れる", () => {
     expect(() =>
-      validateQuestionFile({ ...validQF, parentCategoryGuideUrl: "../math/arithmetic/guide" })
+      validateQuestionFile({
+        ...validQF,
+        parentCategory: "arithmetic",
+        parentCategoryName: "算数",
+        parentCategoryGuideUrl: "../math/arithmetic/guide",
+      })
     ).not.toThrow();
   });
 
   it("parentCategoryGuideUrl が https URL の場合は受け入れる", () => {
     expect(() =>
-      validateQuestionFile({ ...validQF, parentCategoryGuideUrl: "https://example.com/guide" })
+      validateQuestionFile({
+        ...validQF,
+        parentCategory: "arithmetic",
+        parentCategoryName: "算数",
+        parentCategoryGuideUrl: "https://example.com/guide",
+      })
     ).not.toThrow();
   });
 
@@ -165,15 +175,41 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
     ).toThrow('"parentCategoryGuideUrl" must be a string if present');
   });
 
+  it("parentCategoryGuideUrl が設定されているが parentCategory がない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, parentCategoryGuideUrl: "../math/arithmetic/guide" })
+    ).toThrow('"parentCategoryGuideUrl" requires "parentCategory" to be set');
+  });
+
+  it("parentCategoryGuideUrl が設定されているが parentCategoryName がない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({
+        ...validQF,
+        parentCategory: "arithmetic",
+        parentCategoryGuideUrl: "../math/arithmetic/guide",
+      })
+    ).toThrow("If parentCategory or parentCategoryName is present, both must be strings");
+  });
+
   it("parentCategoryGuideUrl が javascript: スキームの場合は拒否する", () => {
     expect(() =>
-      validateQuestionFile({ ...validQF, parentCategoryGuideUrl: "javascript:alert(1)" })
+      validateQuestionFile({
+        ...validQF,
+        parentCategory: "arithmetic",
+        parentCategoryName: "算数",
+        parentCategoryGuideUrl: "javascript:alert(1)",
+      })
     ).toThrow('"parentCategoryGuideUrl" must be a relative path starting with "../" or an http/https URL');
   });
 
   it("parentCategoryGuideUrl にパストラバーサルが含まれる場合は拒否する", () => {
     expect(() =>
-      validateQuestionFile({ ...validQF, parentCategoryGuideUrl: "../math/../../etc/passwd" })
+      validateQuestionFile({
+        ...validQF,
+        parentCategory: "arithmetic",
+        parentCategoryName: "算数",
+        parentCategoryGuideUrl: "../math/../../etc/passwd",
+      })
     ).toThrow('"parentCategoryGuideUrl" must not contain path traversal sequences');
   });
 

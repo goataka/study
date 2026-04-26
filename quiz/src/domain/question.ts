@@ -154,6 +154,10 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (typeof qf.parentCategoryGuideUrl !== "string") {
       throw new Error('"parentCategoryGuideUrl" must be a string if present');
     }
+    // parentCategoryGuideUrl は parentCategory が設定されている場合のみ有効
+    if (!qf.parentCategory) {
+      throw new Error('"parentCategoryGuideUrl" requires "parentCategory" to be set');
+    }
     const isRelative = /^\.\.\/[^./]/.test(qf.parentCategoryGuideUrl);
     const isAbsolute = /^https?:\/\//i.test(qf.parentCategoryGuideUrl);
     if (!isRelative && !isAbsolute) {

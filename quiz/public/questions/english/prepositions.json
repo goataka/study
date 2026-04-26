@@ -8,8 +8,8 @@
   "parentCategory": "parts-of-speech",
   "parentCategoryName": "品詞",
   "guideUrl": "../english/grammar/prepositions/guide",
-  "parentCategoryGuideUrl": "../english/grammar/guide",
-  "example": "`in` the box",
+"parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "`in` the game",
   "referenceGrade": "小学5年",
   "description": "前置詞は名詞の前に置き、場所・時・方向などを表します。",
   "questions": [
@@ -51,7 +51,7 @@
     },
     {
       "id": "8160f16e-0791-5cda-b943-2b29770acef9",
-      "question": "I go ___ school.",
+      "question": "I go ___ the game center.",
       "choices": [
         "to",
         "in",
@@ -63,7 +63,7 @@
     },
     {
       "id": "188ba87e-6922-5bdb-9da9-ee6b72ec88ae",
-      "question": "I go to school ___ bus.",
+      "question": "I go to the game center ___ bus.",
       "choices": [
         "by",
         "in",
@@ -75,7 +75,7 @@
     },
     {
       "id": "0e021a4f-d198-59d9-aaa5-5c8fcae0b5d6",
-      "question": "The book is ___ the desk.",
+      "question": "The controller is ___ the desk.",
       "choices": [
         "on",
         "in",
@@ -87,7 +87,7 @@
     },
     {
       "id": "109db2cd-179e-5dfa-a33b-691b8987d466",
-      "question": "I study ___ night.",
+      "question": "I play ___ night.",
       "choices": [
         "at",
         "in",
@@ -99,7 +99,7 @@
     },
     {
       "id": "5bef04ae-0e67-582d-9f0b-de7ba9d3de4a",
-      "question": "I live ___ Tokyo.",
+      "question": "I play games ___ Japan.",
       "choices": [
         "in",
         "on",

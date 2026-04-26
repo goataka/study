@@ -33,9 +33,9 @@
 | 11 | 一般動詞の現在形 | [解説](english/grammar/tenses-regular-present/guide.md) | [クイズ](quiz/?subject=english&category=tenses-regular-present) | I `play` games. |
 | 12 | 一般動詞の過去形 | [解説](english/grammar/tenses-regular-past/guide.md) | [クイズ](quiz/?subject=english&category=tenses-regular-past) | I `played` games. |
 | 13 | 一般動詞の未来形 | [解説](english/grammar/tenses-regular-future/guide.md) | [クイズ](quiz/?subject=english&category=tenses-regular-future) | I `will play` games. |
-| 14 | be動詞の現在形 | [解説](english/grammar/tenses-be-present/guide.md) | [クイズ](quiz/?subject=english&category=tenses-be-present) | The game `is` fun. |
-| 15 | be動詞の過去形 | [解説](english/grammar/tenses-be-past/guide.md) | [クイズ](quiz/?subject=english&category=tenses-be-past) | The game `was` fun. |
-| 16 | be動詞の未来形 | [解説](english/grammar/tenses-be-future/guide.md) | [クイズ](quiz/?subject=english&category=tenses-be-future) | The game `will be` fun. |
+| 14 | be動詞の現在形 | [解説](english/grammar/tenses-be-present/guide.md) | [クイズ](quiz/?subject=english&category=tenses-be-present) | I `am` a player. |
+| 15 | be動詞の過去形 | [解説](english/grammar/tenses-be-past/guide.md) | [クイズ](quiz/?subject=english&category=tenses-be-past) | I `was` a player. |
+| 16 | be動詞の未来形 | [解説](english/grammar/tenses-be-future/guide.md) | [クイズ](quiz/?subject=english&category=tenses-be-future) | I `will be` a player. |
 | 17 | 不規則動詞の過去形 | [解説](english/grammar/tenses-irregular/guide.md) | [クイズ](quiz/?subject=english&category=tenses-irregular) | I `bought` games. |
 | 18 | 冠詞 | [解説](english/grammar/articles/guide.md) | [クイズ](quiz/?subject=english&category=articles) | I play `a` game. |
 | 19 | 形容詞 | [解説](english/grammar/adjectives/guide.md) | [クイズ](quiz/?subject=english&category=adjectives) | I play `fun` games. |

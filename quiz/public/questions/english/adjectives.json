@@ -8,14 +8,14 @@
   "parentCategory": "parts-of-speech",
   "parentCategoryName": "品詞",
   "guideUrl": "../english/grammar/adjectives/guide",
-  "parentCategoryGuideUrl": "../english/grammar/guide",
-  "example": "a `big` dog",
+"parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "a `fun` game",
   "referenceGrade": "小学5年",
   "description": "形容詞は名詞を修飾したり、状態を表す語です。",
   "questions": [
     {
       "id": "37641781-388e-555a-852b-879685585dfa",
-      "question": "I read a ___ book. (new)",
+      "question": "I play a ___ game. (new)",
       "choices": [
         "new",
         "newly",
@@ -39,7 +39,7 @@
     },
     {
       "id": "e7701a14-8c83-538f-9eb2-c30f47914125",
-      "question": "She has ___ hair. (long)",
+      "question": "The game has ___ stages. (long)",
       "choices": [
         "long",
         "length",
@@ -51,7 +51,7 @@
     },
     {
       "id": "402818a0-05e8-5932-8829-390d7e0dfd5d",
-      "question": "The book is ___. (interesting)",
+      "question": "The stage is ___. (interesting)",
       "choices": [
         "interesting",
         "interest",
@@ -63,7 +63,7 @@
     },
     {
       "id": "4b23419a-86f1-5648-b3ad-833f0d5a3100",
-      "question": "He is a ___ boy. (tall)",
+      "question": "He is a ___ player. (tall)",
       "choices": [
         "tall",
         "taller",
@@ -75,7 +75,7 @@
     },
     {
       "id": "db9f1232-fe7f-55f3-9e78-91f7310397c6",
-      "question": "This is a ___ car. (fast)",
+      "question": "This is a ___ game. (fast)",
       "choices": [
         "fast",
         "faster",
@@ -87,7 +87,7 @@
     },
     {
       "id": "ee0c002f-beb6-5f97-95ae-791b7d60d506",
-      "question": "The weather is ___. (beautiful)",
+      "question": "The graphics are ___. (beautiful)",
       "choices": [
         "beautiful",
         "beauty",
@@ -99,7 +99,7 @@
     },
     {
       "id": "31a01b80-d6df-53ee-8ec4-c0b09b549b98",
-      "question": "She is a ___ student. (smart)",
+      "question": "She is a ___ player. (smart)",
       "choices": [
         "smart",
         "smarter",

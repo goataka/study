@@ -390,6 +390,11 @@ export class QuizApp {
         e.stopPropagation();
         this.showParentCategoryGuide(parentGuideUrl);
       });
+      guideBtn.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.stopPropagation();
+        }
+      });
       groupHeader.appendChild(guideBtn);
     }
 
