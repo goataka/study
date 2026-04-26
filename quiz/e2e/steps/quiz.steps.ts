@@ -309,16 +309,6 @@ Then("the {string} category group should be expanded", async ({ page }, parentCa
 
 // ─── 単元一覧の改善 (#501, #494, #495) ────────────────────────────────────────
 
-Then("the category guide button should be visible", async ({ page }) => {
-  // 解説ボタン（category-item-guide-btn）が少なくとも1つ表示されていること
-  await expect(page.locator(".category-item-guide-btn").first()).toBeVisible();
-});
-
-When("I click the first category guide button", async ({ page }) => {
-  // 最初の解説ボタンをクリックする
-  await page.locator(".category-item-guide-btn").first().click();
-});
-
 Then("the guide panel should be active", async ({ page }) => {
   // 解説タブが有効になっていること（panelTab-guide が active クラスを持つ）
   await expect(page.locator("#panelTab-guide")).toHaveClass(/active/);
