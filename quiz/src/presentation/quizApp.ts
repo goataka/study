@@ -501,15 +501,15 @@ export class QuizApp {
           groupDiv.classList.add("collapsed");
         }
 
-        const gradeKey = "none";
         const handleToggleNone = (e: Event): void => {
           e.stopPropagation();
-          if (this.collapsedGradeGroups.has(gradeKey)) {
-            this.collapsedGradeGroups.delete(gradeKey);
+          const grade = groupDiv.dataset.grade ?? "none";
+          if (this.collapsedGradeGroups.has(grade)) {
+            this.collapsedGradeGroups.delete(grade);
             groupDiv.classList.remove("collapsed");
             groupHeader.setAttribute("aria-expanded", "true");
           } else {
-            this.collapsedGradeGroups.add(gradeKey);
+            this.collapsedGradeGroups.add(grade);
             groupDiv.classList.add("collapsed");
             groupHeader.setAttribute("aria-expanded", "false");
           }
