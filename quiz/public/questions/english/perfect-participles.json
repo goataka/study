@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "speakの過去分詞は spoken です"
+    },
+    {
+      "id": "ad9a2df8-4e7b-498a-bd92-4726c5a352d0",
+      "question": "buy の過去分詞は？",
+      "choices": [
+        "bought",
+        "buyed",
+        "buy",
+        "buying"
+      ],
+      "correct": 0,
+      "explanation": "buy は不規則変化し、過去分詞は bought です"
+    },
+    {
+      "id": "95c714e4-29e4-44a7-a3bc-399609e98329",
+      "question": "know の過去分詞は？",
+      "choices": [
+        "known",
+        "knew",
+        "knowed",
+        "knowing"
+      ],
+      "correct": 0,
+      "explanation": "know は不規則変化し、過去分詞は known です"
     }
   ]
 }

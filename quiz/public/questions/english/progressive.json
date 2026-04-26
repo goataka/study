@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "現在進行形は am/is/are + -ing です"
+    },
+    {
+      "id": "43a1e95e-fa12-4479-b5cc-d06561b998ec",
+      "question": "They ___ eating dinner now. (現在進行形)",
+      "choices": [
+        "are",
+        "were",
+        "will be",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "現在進行形は am/is/are + -ing です"
+    },
+    {
+      "id": "be0cc536-e4a3-4770-a665-a81fe66e79d0",
+      "question": "I ___ sleeping when you called. (過去進行形)",
+      "choices": [
+        "was",
+        "am",
+        "were",
+        "will be"
+      ],
+      "correct": 0,
+      "explanation": "I の過去進行形は was + -ing です"
     }
   ]
 }

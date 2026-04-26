@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "whoseは人にも物にも使えます"
+    },
+    {
+      "id": "c911657b-733e-42b8-8d4f-900544c5ff0f",
+      "question": "I met a girl ___ brother is famous. (所有格)",
+      "choices": [
+        "whose",
+        "who",
+        "which",
+        "whom"
+      ],
+      "correct": 0,
+      "explanation": "所有格の関係代名詞は whose を使います"
+    },
+    {
+      "id": "e2e906af-d483-45e6-8d52-813176785684",
+      "question": "This is the car ___ doors are red. (所有格)",
+      "choices": [
+        "whose",
+        "which",
+        "that",
+        "who"
+      ],
+      "correct": 0,
+      "explanation": "物の所有格にも whose を使います"
     }
   ]
 }

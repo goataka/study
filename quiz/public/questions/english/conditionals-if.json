@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "第3条件文の帰結節は would have + 過去分詞です"
+    },
+    {
+      "id": "3223eed5-0042-42a1-9b71-d38374e153e3",
+      "question": "If she ___ harder, she would succeed. (第2条件文)",
+      "choices": [
+        "worked",
+        "works",
+        "would work",
+        "will work"
+      ],
+      "correct": 0,
+      "explanation": "第2条件文のif節では仮定法過去（動詞の過去形）を使います"
+    },
+    {
+      "id": "4db21144-446d-4b1f-bc58-767882f7ce67",
+      "question": "If you ___ the map, you will find the place. (第1条件文)",
+      "choices": [
+        "follow",
+        "followed",
+        "would follow",
+        "had followed"
+      ],
+      "correct": 0,
+      "explanation": "第1条件文のif節では現在形を使います"
     }
   ]
 }

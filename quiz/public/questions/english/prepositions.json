@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "都市・国には in を使います"
+    },
+    {
+      "id": "9a3b8069-976a-4bc8-b9c7-bf39599b9de1",
+      "question": "I was born ___ April. (月)",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "by"
+      ],
+      "correct": 0,
+      "explanation": "月の前には in を使います"
+    },
+    {
+      "id": "ecec11d5-e386-4449-a532-61c3126a0dda",
+      "question": "The cat is ___ the box. (～の上に)",
+      "choices": [
+        "on",
+        "in",
+        "at",
+        "by"
+      ],
+      "correct": 0,
+      "explanation": "on は「～の上に（接触）」を表します"
     }
   ]
 }

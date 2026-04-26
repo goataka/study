@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "「誰の？」は Whose を使います"
+    },
+    {
+      "id": "e33056d1-a8f0-4b73-800b-8ddf4f50403a",
+      "question": "___ did you go yesterday? (どこへ？)",
+      "choices": [
+        "Where",
+        "When",
+        "Why",
+        "Who"
+      ],
+      "correct": 0,
+      "explanation": "where は場所を尋ねる疑問詞です"
+    },
+    {
+      "id": "a658c8e6-f831-490c-a7e4-fa9cf702a6c5",
+      "question": "___ many students are there? (いくつ？)",
+      "choices": [
+        "How",
+        "What",
+        "Which",
+        "Whose"
+      ],
+      "correct": 0,
+      "explanation": "how many は数を尋ねる表現です"
     }
   ]
 }

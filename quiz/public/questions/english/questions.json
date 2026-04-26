@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "三人称単数のbe動詞の疑問文は Is で始めます"
+    },
+    {
+      "id": "b00440ff-ebc7-4e51-b578-8f172c00d702",
+      "question": "___ he playing soccer now? (進行形・疑問文)",
+      "choices": [
+        "Is",
+        "Does",
+        "Did",
+        "Was"
+      ],
+      "correct": 0,
+      "explanation": "現在進行形の疑問文は Is/Am/Are + 主語 + -ing？ です"
+    },
+    {
+      "id": "41d99a58-784c-4765-90b3-6e3c5666d0ea",
+      "question": "___ they students? (be動詞・現在・疑問文)",
+      "choices": [
+        "Are",
+        "Is",
+        "Were",
+        "Do"
+      ],
+      "correct": 0,
+      "explanation": "they と一緒に使う be 動詞は are です"
     }
   ]
 }

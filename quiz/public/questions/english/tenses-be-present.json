@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "三人称単数には is を使います"
+    },
+    {
+      "id": "bdad3594-e659-4196-8e55-4a2d6af33bc1",
+      "question": "The cats ___ cute. (be動詞・現在)",
+      "choices": [
+        "are",
+        "is",
+        "was",
+        "were"
+      ],
+      "correct": 0,
+      "explanation": "複数の主語には are を使います"
+    },
+    {
+      "id": "ec54658e-1b66-46c6-8dec-8602162d1e26",
+      "question": "My brother ___ a doctor. (be動詞・現在)",
+      "choices": [
+        "is",
+        "are",
+        "was",
+        "am"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数には is を使います"
     }
   ]
 }

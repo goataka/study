@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "複数形のbe動詞の否定文は are not です"
+    },
+    {
+      "id": "84f79b23-2f42-4349-b327-d7963e869b63",
+      "question": "He ___ soccer. (三人称・現在・否定)",
+      "choices": [
+        "doesn't play",
+        "don't play",
+        "didn't play",
+        "isn't play"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在の否定には doesn't + 動詞の原形を使います"
+    },
+    {
+      "id": "318abd5e-352c-414c-89cd-575095683443",
+      "question": "We ___ late. (be動詞・過去・否定)",
+      "choices": [
+        "weren't",
+        "wasn't",
+        "aren't",
+        "isn't"
+      ],
+      "correct": 0,
+      "explanation": "we の過去の否定には weren't を使います"
     }
   ]
 }

@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "badの最上級は worst を使います"
+    },
+    {
+      "id": "0ccf8a2f-2540-42fa-b8aa-e5609e3ca67c",
+      "question": "little の比較級は？",
+      "choices": [
+        "less",
+        "lesser",
+        "more little",
+        "least"
+      ],
+      "correct": 0,
+      "explanation": "little の比較級は less（不規則変化）"
+    },
+    {
+      "id": "b769dbc4-c2d8-4be6-b7ce-669e209afbc5",
+      "question": "little の最上級は？",
+      "choices": [
+        "least",
+        "less",
+        "most little",
+        "littlest"
+      ],
+      "correct": 0,
+      "explanation": "little の最上級は least（不規則変化）"
     }
   ]
 }

@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "af1e9d40-6011-4bde-8359-487588856681",
+      "question": "He speaks English ___. (fluently)",
+      "choices": [
+        "fluently",
+        "fluent",
+        "fluence",
+        "more fluent"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は文末に置きます"
+    },
+    {
+      "id": "057cc20f-ddc0-46b8-9b1c-9cd586b79380",
+      "question": "She ___ wakes up early. (never)",
+      "choices": [
+        "never",
+        "ever",
+        "always",
+        "not"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
     }
   ]
 }

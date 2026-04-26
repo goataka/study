@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "時を表す関係副詞は when です"
+    },
+    {
+      "id": "06ff2f9c-f734-492d-8501-be3841c0763b",
+      "question": "That is the museum ___ we visited. (場所)",
+      "choices": [
+        "where",
+        "when",
+        "why",
+        "which"
+      ],
+      "correct": 0,
+      "explanation": "場所を表す関係副詞は where です"
+    },
+    {
+      "id": "fb688353-e650-40a3-aa98-80b502861673",
+      "question": "I know the reason ___ he quit. (理由)",
+      "choices": [
+        "why",
+        "where",
+        "when",
+        "how"
+      ],
+      "correct": 0,
+      "explanation": "理由を表す関係副詞は why です"
     }
   ]
 }

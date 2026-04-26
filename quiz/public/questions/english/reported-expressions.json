@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "theseは those に変わります"
+    },
+    {
+      "id": "59452e78-84fe-4760-a20e-2e8da2cddf19",
+      "question": "\"I will visit tomorrow.\" → She said she would visit ___.",
+      "choices": [
+        "the next day",
+        "tomorrow",
+        "the day before",
+        "next day"
+      ],
+      "correct": 0,
+      "explanation": "間接話法では tomorrow は the next day に変わります"
+    },
+    {
+      "id": "7ffeb189-6c0d-4f39-9b48-f65713e2bb5c",
+      "question": "tomorrowは間接話法で何に変わる？",
+      "choices": [
+        "the next day",
+        "the day before",
+        "then",
+        "that day"
+      ],
+      "correct": 0,
+      "explanation": "tomorrow は間接話法で the next day に変わります"
     }
   ]
 }

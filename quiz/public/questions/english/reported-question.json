@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "間接疑問文では平叙文の語順（主語+動詞）になります"
+    },
+    {
+      "id": "1ec6bd80-6c6c-49d2-b6bb-657f661bafcd",
+      "question": "She asked, \"How old are you?\" → She asked ___ I was.",
+      "choices": [
+        "how old",
+        "how",
+        "what old",
+        "how age"
+      ],
+      "correct": 0,
+      "explanation": "how old は間接疑問文でもそのまま使います"
+    },
+    {
+      "id": "f2b4e829-c70c-462c-b794-aafa49d0bcd7",
+      "question": "He asked, \"Did you sleep?\" → He asked ___ I had slept.",
+      "choices": [
+        "if",
+        "that",
+        "what",
+        "when"
+      ],
+      "correct": 0,
+      "explanation": "yes/no 疑問文の間接疑問文には if または whether を使います"
     }
   ]
 }

@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "過去の後悔は should have + 過去分詞です"
+    },
+    {
+      "id": "ff9cbb42-f2be-4a81-b777-3f835d1965b5",
+      "question": "She ___ be a great singer in her youth. (～だったかもしれない)",
+      "choices": [
+        "might have been",
+        "must have been",
+        "should have been",
+        "could have been"
+      ],
+      "correct": 0,
+      "explanation": "might have been は過去への弱い推量を表します"
+    },
+    {
+      "id": "51865a60-d145-42a7-ad89-9757c6adc594",
+      "question": "I ___ run faster when I was younger. (～できた)",
+      "choices": [
+        "could",
+        "would",
+        "should",
+        "might"
+      ],
+      "correct": 0,
+      "explanation": "could は過去の能力（～できた）を表します"
     }
   ]
 }

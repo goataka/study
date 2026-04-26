@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "丁寧な依頼には Could を使います"
+    },
+    {
+      "id": "816541e8-8a7d-41d7-ba94-7c622ea948c9",
+      "question": "You ___ exercise more. (～すべきだ)",
+      "choices": [
+        "should",
+        "can",
+        "will",
+        "may"
+      ],
+      "correct": 0,
+      "explanation": "should は「～すべきだ」という意味の助動詞です"
+    },
+    {
+      "id": "990045e0-73fb-4053-b278-6a246e9261b8",
+      "question": "___ I use your phone? (～してもよいですか)",
+      "choices": [
+        "May",
+        "Must",
+        "Should",
+        "Would"
+      ],
+      "correct": 0,
+      "explanation": "May は「～してもよいですか」という許可を求める表現です"
     }
   ]
 }

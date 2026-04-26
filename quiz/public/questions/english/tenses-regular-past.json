@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "子音+yで終わる語は、yをiに変えて -ed をつけます"
+    },
+    {
+      "id": "7a16045e-fa08-4320-9202-63018216435b",
+      "question": "She ___ her homework last night. (finish)",
+      "choices": [
+        "finished",
+        "finishes",
+        "will finish",
+        "finishing"
+      ],
+      "correct": 0,
+      "explanation": "規則動詞の過去形は動詞 + ed です"
+    },
+    {
+      "id": "42b6c53e-6d33-4fa0-babb-3a048541868c",
+      "question": "They ___ soccer yesterday. (play)",
+      "choices": [
+        "played",
+        "play",
+        "plays",
+        "playing"
+      ],
+      "correct": 0,
+      "explanation": "規則動詞の過去形は動詞 + ed です"
     }
   ]
 }
