@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition-carry-2digit",
+  "categoryName": "2桁のたし算（くり上がりあり）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "addition",
+  "parentCategoryName": "たし算",
+  "guideUrl": "../math/arithmetic/addition-2digit-carry/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "47 + 38 = 85",
+  "referenceGrade": "小学2年",
+  "description": "くり上がりのある2けたのたし算を筆算で正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "29afda72-cf76-5a5f-a613-ab3987a6eb33",
+      "question": "37 + 45 = ?",
+      "choices": [
+        "82",
+        "81",
+        "83",
+        "80"
+      ],
+      "correct": 0,
+      "explanation": "37 + 45 = 82"
+    },
+    {
+      "id": "358d60e2-614f-5033-9c7d-807ec4d891ff",
+      "question": "28 + 36 = ?",
+      "choices": [
+        "64",
+        "63",
+        "65",
+        "62"
+      ],
+      "correct": 0,
+      "explanation": "28 + 36 = 64"
+    },
+    {
+      "id": "258b6788-b50a-5376-98a1-581ab3c9811a",
+      "question": "54 + 38 = ?",
+      "choices": [
+        "92",
+        "91",
+        "93",
+        "90"
+      ],
+      "correct": 0,
+      "explanation": "54 + 38 = 92"
+    },
+    {
+      "id": "1ea5de68-f7d0-584f-88f0-2b517d6b23c5",
+      "question": "75 + 16 = ?",
+      "choices": [
+        "91",
+        "90",
+        "92",
+        "89"
+      ],
+      "correct": 0,
+      "explanation": "75 + 16 = 91"
+    },
+    {
+      "id": "e8b19450-89ac-5f5f-94bc-115d2abb5bd1",
+      "question": "47 + 38 = ?",
+      "choices": [
+        "85",
+        "84",
+        "86",
+        "83"
+      ],
+      "correct": 0,
+      "explanation": "47 + 38 = 85"
+    },
+    {
+      "id": "03178af0-82ce-5a0a-b693-b9f15b598409",
+      "question": "69 + 35 = ?",
+      "choices": [
+        "104",
+        "103",
+        "105",
+        "102"
+      ],
+      "correct": 0,
+      "explanation": "69 + 35 = 104"
+    },
+    {
+      "id": "a11658e2-68ff-5cbb-aba2-0182a6c043df",
+      "question": "58 + 27 = ?",
+      "choices": [
+        "85",
+        "84",
+        "86",
+        "83"
+      ],
+      "correct": 0,
+      "explanation": "58 + 27 = 85"
+    },
+    {
+      "id": "7c858fb5-94f0-584a-bbfe-3e3b21ef7963",
+      "question": "76 + 48 = ?",
+      "choices": [
+        "124",
+        "123",
+        "125",
+        "122"
+      ],
+      "correct": 0,
+      "explanation": "76 + 48 = 124"
+    },
+    {
+      "id": "83eef062-8dcb-5118-87cd-d2b3ff5424f8",
+      "question": "84 + 39 = ?",
+      "choices": [
+        "123",
+        "122",
+        "124",
+        "121"
+      ],
+      "correct": 0,
+      "explanation": "84 + 39 = 123"
+    },
+    {
+      "id": "c1afcdc0-ed49-530f-a368-878d071fef0a",
+      "question": "55 + 67 = ?",
+      "choices": [
+        "122",
+        "121",
+        "123",
+        "120"
+      ],
+      "correct": 0,
+      "explanation": "55 + 67 = 122"
+    },
+    {
+      "id": "1fb057cd-fff1-5214-8035-fbc0d9245b21",
+      "question": "28 + 74 = ?",
+      "choices": [
+        "102",
+        "101",
+        "103",
+        "100"
+      ],
+      "correct": 0,
+      "explanation": "28 + 74 = 102"
+    },
+    {
+      "id": "cdde02ec-f6a9-5302-9690-354b4b770ca0",
+      "question": "93 + 17 = ?",
+      "choices": [
+        "110",
+        "109",
+        "111",
+        "108"
+      ],
+      "correct": 0,
+      "explanation": "93 + 17 = 110"
+    },
+    {
+      "id": "764cdcdf-96b4-58a0-b6a5-b8dded1369ce",
+      "question": "46 + 85 = ?",
+      "choices": [
+        "131",
+        "130",
+        "132",
+        "129"
+      ],
+      "correct": 0,
+      "explanation": "46 + 85 = 131"
+    },
+    {
+      "id": "c2120a75-f828-52c6-8da8-47fe111a1755",
+      "question": "67 + 56 = ?",
+      "choices": [
+        "123",
+        "122",
+        "124",
+        "121"
+      ],
+      "correct": 0,
+      "explanation": "67 + 56 = 123"
+    },
+    {
+      "id": "ba7e67e9-ea2b-5004-ad20-3856feb70eb7",
+      "question": "38 + 79 = ?",
+      "choices": [
+        "117",
+        "116",
+        "118",
+        "115"
+      ],
+      "correct": 0,
+      "explanation": "38 + 79 = 117"
+    }
+  ]
+}

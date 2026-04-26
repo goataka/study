@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "subtraction-no-borrow-3digit",
+  "categoryName": "3桁以上のひき算（くり下がりなし）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "subtraction",
+  "parentCategoryName": "ひき算",
+  "guideUrl": "../math/arithmetic/subtraction-3digit-no-borrow/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "689 - 234 = 455",
+  "referenceGrade": "小学3年",
+  "description": "くり下がりのない3けたのひき算を筆算で正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "45e69438-18ed-5ddb-889d-395709855264",
+      "question": "456 - 123 = ?",
+      "choices": [
+        "333",
+        "332",
+        "334",
+        "331"
+      ],
+      "correct": 0,
+      "explanation": "456 - 123 = 333"
+    },
+    {
+      "id": "f2b1e86b-4f3a-54ee-b35b-4f5e3994e492",
+      "question": "789 - 465 = ?",
+      "choices": [
+        "324",
+        "323",
+        "325",
+        "322"
+      ],
+      "correct": 0,
+      "explanation": "789 - 465 = 324"
+    },
+    {
+      "id": "54ec08d2-4e96-58ce-9c3d-f115e783d005",
+      "question": "968 - 435 = ?",
+      "choices": [
+        "533",
+        "532",
+        "534",
+        "531"
+      ],
+      "correct": 0,
+      "explanation": "968 - 435 = 533"
+    },
+    {
+      "id": "1ade6c6f-c347-5285-a9d4-e0f579a79f71",
+      "question": "847 - 624 = ?",
+      "choices": [
+        "223",
+        "222",
+        "224",
+        "221"
+      ],
+      "correct": 0,
+      "explanation": "847 - 624 = 223"
+    },
+    {
+      "id": "3a0b8b38-15ed-5b5d-a6b2-2e094f434589",
+      "question": "689 - 234 = ?",
+      "choices": [
+        "455",
+        "454",
+        "456",
+        "453"
+      ],
+      "correct": 0,
+      "explanation": "689 - 234 = 455"
+    },
+    {
+      "id": "f2225d6c-0256-5485-a308-2dba27d6b1d5",
+      "question": "798 - 543 = ?",
+      "choices": [
+        "255",
+        "254",
+        "256",
+        "253"
+      ],
+      "correct": 0,
+      "explanation": "798 - 543 = 255"
+    },
+    {
+      "id": "8af1bc9b-45f6-5de3-9487-61f56323c7e0",
+      "question": "675 - 342 = ?",
+      "choices": [
+        "333",
+        "332",
+        "334",
+        "331"
+      ],
+      "correct": 0,
+      "explanation": "675 - 342 = 333"
+    },
+    {
+      "id": "af1be6ca-7042-5fb0-972b-d3ede6b0d538",
+      "question": "987 - 654 = ?",
+      "choices": [
+        "333",
+        "332",
+        "334",
+        "331"
+      ],
+      "correct": 0,
+      "explanation": "987 - 654 = 333"
+    },
+    {
+      "id": "0224823c-653a-5991-a0bd-0e06e50c8dc1",
+      "question": "856 - 423 = ?",
+      "choices": [
+        "433",
+        "432",
+        "434",
+        "431"
+      ],
+      "correct": 0,
+      "explanation": "856 - 423 = 433"
+    },
+    {
+      "id": "d299b8a8-a5eb-5d17-98ec-6557d28595c8",
+      "question": "749 - 516 = ?",
+      "choices": [
+        "233",
+        "232",
+        "234",
+        "231"
+      ],
+      "correct": 0,
+      "explanation": "749 - 516 = 233"
+    },
+    {
+      "id": "7b65543a-a6b3-5654-b993-de45dba1d1e2",
+      "question": "869 - 534 = ?",
+      "choices": [
+        "335",
+        "334",
+        "336",
+        "333"
+      ],
+      "correct": 0,
+      "explanation": "869 - 534 = 335"
+    },
+    {
+      "id": "2eab4bae-1780-5e4f-a85b-71940027392d",
+      "question": "578 - 345 = ?",
+      "choices": [
+        "233",
+        "232",
+        "234",
+        "231"
+      ],
+      "correct": 0,
+      "explanation": "578 - 345 = 233"
+    },
+    {
+      "id": "71158a80-8ff8-5ea1-b32c-884dbf9eba58",
+      "question": "967 - 742 = ?",
+      "choices": [
+        "225",
+        "224",
+        "226",
+        "223"
+      ],
+      "correct": 0,
+      "explanation": "967 - 742 = 225"
+    },
+    {
+      "id": "1fdee51e-25bb-56ce-af70-f620976b1b9b",
+      "question": "758 - 426 = ?",
+      "choices": [
+        "332",
+        "331",
+        "333",
+        "330"
+      ],
+      "correct": 0,
+      "explanation": "758 - 426 = 332"
+    },
+    {
+      "id": "ca38f67d-1faa-56d2-97c7-3f739b89d849",
+      "question": "896 - 561 = ?",
+      "choices": [
+        "335",
+        "334",
+        "336",
+        "333"
+      ],
+      "correct": 0,
+      "explanation": "896 - 561 = 335"
+    }
+  ]
+}
