@@ -5,6 +5,8 @@
   .site-header .site-title { display: none; }
   /* クイズの解説パネル（iframe）内で表示されるとき、サイトヘッダー全体を非表示にする */
   html.embedded-mode header.site-header { display: none; }
+  /* 解説ページの先頭に表示される「学習ドリル」サイトリンクを非表示にする */
+  .markdown-body > h1:not([id]) { display: none; }
 </style>
 <script>
   // ?embedded=1 が付与されているとき（クイズの解説 iframe として表示されるとき）、

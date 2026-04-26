@@ -44,6 +44,10 @@ export class QuizApp {
   /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
   private isPanelTabUserSelected: boolean = false;
   private hideLearnedCategories: boolean = true;
+  /** 折りたたまれている親カテゴリID のセット */
+  private collapsedParentCategories: Set<string> = new Set();
+  /** 折りたたまれているトップカテゴリID のセット */
+  private collapsedTopCategories: Set<string> = new Set();
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -244,39 +248,86 @@ export class QuizApp {
       return;
     }
 
-    // 親カテゴリとその配下のカテゴリを収集
-    const parentCategories = this.useCase.getParentCategoriesForSubject(subject);
-    const categoriesForParent: Record<string, Set<string>> = {};
-    for (const [parentCatId] of Object.entries(parentCategories)) {
-      const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
-      categoriesForParent[parentCatId] = new Set(Object.keys(cats));
+    // 全親カテゴリとその配下のカテゴリを収集
+    const allParentCategories = this.useCase.getParentCategoriesForSubject(subject);
+    const categoriesByParent = new Map<string, Record<string, string>>();
+    for (const [parentCatId] of Object.entries(allParentCategories)) {
+      categoriesByParent.set(parentCatId, this.useCase.getCategoriesForParent(subject, parentCatId));
     }
 
-    // 親カテゴリがある場合はグループヘッダー付きで表示
-    for (const [parentCatId, parentCatName] of Object.entries(parentCategories)) {
-      const groupHeader = document.createElement("div");
-      groupHeader.className = "category-group-header";
-      const headerText = document.createElement("span");
-      headerText.textContent = parentCatName;
-      groupHeader.appendChild(headerText);
-      const learnedBadge = document.createElement("span");
-      learnedBadge.className = "category-group-learned-badge";
-      learnedBadge.setAttribute("aria-hidden", "true");
-      groupHeader.dataset.parentCategory = parentCatId;
-      groupHeader.appendChild(learnedBadge);
-      categoryList.appendChild(groupHeader);
+    // トップカテゴリがある場合は3階層で描画
+    const topCategories = this.useCase.getTopCategoriesForSubject(subject);
+    const parentCatIdsInTopGroups = new Set<string>();
 
-      const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
-      for (const [catId, catName] of Object.entries(cats)) {
-        const catItem = this.createCategoryItem(subject, catId, catName, parentCatId);
-        categoryList.appendChild(catItem);
+    for (const [topCatId, topCatName] of Object.entries(topCategories)) {
+      const topGroupDiv = document.createElement("div");
+      topGroupDiv.className = "category-top-group";
+      topGroupDiv.dataset.topCategory = topCatId;
+
+      const topGroupHeader = document.createElement("div");
+      topGroupHeader.className = "category-top-group-header";
+      topGroupHeader.setAttribute("role", "button");
+      topGroupHeader.setAttribute("tabindex", "0");
+      topGroupHeader.setAttribute("aria-expanded", this.collapsedTopCategories.has(topCatId) ? "false" : "true");
+      topGroupHeader.dataset.topCategory = topCatId;
+
+      const topToggleArrow = document.createElement("span");
+      topToggleArrow.className = "category-top-group-toggle";
+      topToggleArrow.setAttribute("aria-hidden", "true");
+      topGroupHeader.appendChild(topToggleArrow);
+
+      const topHeaderText = document.createElement("span");
+      topHeaderText.textContent = topCatName;
+      topGroupHeader.appendChild(topHeaderText);
+
+      topGroupDiv.appendChild(topGroupHeader);
+
+      const parentCatsForTop = this.useCase.getParentCategoriesForTop(subject, topCatId);
+      for (const [parentCatId, parentCatName] of Object.entries(parentCatsForTop)) {
+        parentCatIdsInTopGroups.add(parentCatId);
+        const groupDiv = this.buildParentCategoryGroup(
+          subject, parentCatId, parentCatName,
+          categoriesByParent.get(parentCatId) ?? {},
+          topCatId
+        );
+        topGroupDiv.appendChild(groupDiv);
       }
+
+      if (this.collapsedTopCategories.has(topCatId)) {
+        topGroupDiv.classList.add("collapsed");
+      }
+
+      const handleTopToggle = (e: Event): void => {
+        e.stopPropagation();
+        this.toggleTopCategory(topCatId);
+      };
+      topGroupHeader.addEventListener("click", handleTopToggle);
+      topGroupHeader.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleTopToggle(e);
+        }
+      });
+
+      categoryList.appendChild(topGroupDiv);
+    }
+
+    // トップカテゴリに属さない親カテゴリグループ（2階層の孤立グループ）
+    for (const [parentCatId, parentCatName] of Object.entries(allParentCategories)) {
+      if (parentCatIdsInTopGroups.has(parentCatId)) continue;
+      const groupDiv = this.buildParentCategoryGroup(
+        subject, parentCatId, parentCatName,
+        categoriesByParent.get(parentCatId) ?? {}
+      );
+      categoryList.appendChild(groupDiv);
     }
 
     // 親カテゴリに属さないスタンドアロンカテゴリ
     const allCategories = this.useCase.getCategoriesForSubject(subject);
     for (const [catId, catName] of Object.entries(allCategories)) {
-      const belongsToParent = Object.values(categoriesForParent).some((catSet) => catSet.has(catId));
+      const belongsToParent = Array.from(categoriesByParent.values()).some(
+        (cats) => catId in cats
+      );
       if (!belongsToParent) {
         const catItem = this.createCategoryItem(subject, catId, catName);
         categoryList.appendChild(catItem);
@@ -287,6 +338,69 @@ export class QuizApp {
     this.updateCategoryListActive();
     // 学習済の非表示状態を維持する
     categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+  }
+
+  /**
+   * 親カテゴリグループ要素を生成して返す。
+   * トップカテゴリグループの子として使われる場合は topCatId を渡す。
+   */
+  private buildParentCategoryGroup(
+    subject: string,
+    parentCatId: string,
+    parentCatName: string,
+    cats: Record<string, string>,
+    topCatId?: string
+  ): HTMLElement {
+    const groupDiv = document.createElement("div");
+    groupDiv.className = "category-group";
+    groupDiv.dataset.parentCategory = parentCatId;
+    if (topCatId) groupDiv.dataset.topCategory = topCatId;
+
+    const groupHeader = document.createElement("div");
+    groupHeader.className = "category-group-header";
+    groupHeader.setAttribute("role", "button");
+    groupHeader.setAttribute("tabindex", "0");
+    groupHeader.setAttribute("aria-expanded", this.collapsedParentCategories.has(parentCatId) ? "false" : "true");
+    groupHeader.dataset.parentCategory = parentCatId;
+
+    const toggleArrow = document.createElement("span");
+    toggleArrow.className = "category-group-toggle";
+    toggleArrow.setAttribute("aria-hidden", "true");
+    groupHeader.appendChild(toggleArrow);
+
+    const headerText = document.createElement("span");
+    headerText.textContent = parentCatName;
+    groupHeader.appendChild(headerText);
+
+    const learnedBadge = document.createElement("span");
+    learnedBadge.className = "category-group-learned-badge";
+    learnedBadge.setAttribute("aria-hidden", "true");
+    groupHeader.appendChild(learnedBadge);
+
+    groupDiv.appendChild(groupHeader);
+
+    for (const [catId, catName] of Object.entries(cats)) {
+      const catItem = this.createCategoryItem(subject, catId, catName, parentCatId, topCatId);
+      groupDiv.appendChild(catItem);
+    }
+
+    if (this.collapsedParentCategories.has(parentCatId)) {
+      groupDiv.classList.add("collapsed");
+    }
+
+    const handleToggle = (e: Event): void => {
+      e.stopPropagation();
+      this.toggleParentCategory(parentCatId);
+    };
+    groupHeader.addEventListener("click", handleToggle);
+    groupHeader.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleToggle(e);
+      }
+    });
+
+    return groupDiv;
   }
 
   /**
@@ -402,7 +516,8 @@ export class QuizApp {
     subject: string,
     categoryId: string,
     categoryName: string,
-    parentCatId?: string
+    parentCatId?: string,
+    topCatId?: string
   ): HTMLElement {
     const item = document.createElement("div");
     item.className = "category-item";
@@ -410,6 +525,9 @@ export class QuizApp {
     item.dataset.category = categoryId;
     if (parentCatId) {
       item.dataset.parentCategory = parentCatId;
+    }
+    if (topCatId) {
+      item.dataset.topCategory = topCatId;
     }
     item.setAttribute("role", "button");
     item.setAttribute("tabindex", "0");
@@ -539,7 +657,8 @@ export class QuizApp {
   }
 
   /**
-   * 現在のフィルターに基づいてカテゴリアイテムのアクティブ状態を更新する
+   * 現在のフィルターに基づいてカテゴリアイテムのアクティブ状態を更新する。
+   * アクティブなカテゴリが折りたたまれているグループに属する場合は自動展開する。
    */
   private updateCategoryListActive(): void {
     const categoryList = document.getElementById("categoryList");
@@ -551,6 +670,17 @@ export class QuizApp {
         el.dataset.subject === this.filter.subject &&
         el.dataset.category === this.filter.category;
       el.classList.toggle("active", isActive);
+
+      if (isActive) {
+        // 親カテゴリグループを自動展開する
+        if (el.dataset.parentCategory) {
+          this.expandParentCategory(el.dataset.parentCategory);
+        }
+        // トップカテゴリグループも自動展開する
+        if (el.dataset.topCategory) {
+          this.expandTopCategory(el.dataset.topCategory);
+        }
+      }
     });
   }
 
@@ -1108,21 +1238,12 @@ export class QuizApp {
     if (!categoryList) return;
 
     categoryList.querySelectorAll<HTMLElement>(".category-group-header").forEach((header) => {
-      const parentCategory = header.dataset.parentCategory;
-
+      // 新構造: ヘッダーは .category-group の子要素
+      const groupContainer = header.closest<HTMLElement>(".category-group");
       let learnedCount = 0;
-      if (parentCategory) {
-        learnedCount = Array.from(
-          categoryList.querySelectorAll<HTMLElement>(".category-item.learned")
-        ).filter((el) => el.dataset.parentCategory === parentCategory).length;
-      } else {
-        let sibling = header.nextElementSibling;
-        while (sibling && !sibling.classList.contains("category-group-header")) {
-          if (sibling.classList.contains("category-item") && sibling.classList.contains("learned")) {
-            learnedCount++;
-          }
-          sibling = sibling.nextElementSibling;
-        }
+
+      if (groupContainer) {
+        learnedCount = groupContainer.querySelectorAll<HTMLElement>(".category-item.learned").length;
       }
 
       const badge = header.querySelector(".category-group-learned-badge");
@@ -1130,6 +1251,81 @@ export class QuizApp {
         badge.textContent = this.hideLearnedCategories && learnedCount > 0 ? "🏆".repeat(learnedCount) : "";
       }
     });
+  }
+
+  /**
+   * 指定した親カテゴリの折りたたみ状態をトグルする。
+   * 折りたたまれていれば展開し、展開されていれば折りたたむ。
+   */
+  private toggleParentCategory(parentCatId: string): void {
+    if (this.collapsedParentCategories.has(parentCatId)) {
+      this.collapsedParentCategories.delete(parentCatId);
+    } else {
+      this.collapsedParentCategories.add(parentCatId);
+    }
+    this.applyParentCategoryCollapsedState(parentCatId);
+  }
+
+  /**
+   * 指定した親カテゴリを強制的に展開する（折りたたまれていれば展開する）。
+   */
+  private expandParentCategory(parentCatId: string): void {
+    if (!this.collapsedParentCategories.has(parentCatId)) return;
+    this.collapsedParentCategories.delete(parentCatId);
+    this.applyParentCategoryCollapsedState(parentCatId);
+  }
+
+  /**
+   * 指定した親カテゴリの折りたたみ状態を DOM に反映する。
+   */
+  private applyParentCategoryCollapsedState(parentCatId: string): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    const isCollapsed = this.collapsedParentCategories.has(parentCatId);
+    const groupDiv = categoryList.querySelector<HTMLElement>(`.category-group[data-parent-category="${parentCatId}"]`);
+    if (groupDiv) {
+      groupDiv.classList.toggle("collapsed", isCollapsed);
+      const groupHeader = groupDiv.querySelector<HTMLElement>(".category-group-header");
+      groupHeader?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
+    }
+  }
+
+  /**
+   * 指定したトップカテゴリの折りたたみ状態をトグルする。
+   */
+  private toggleTopCategory(topCatId: string): void {
+    if (this.collapsedTopCategories.has(topCatId)) {
+      this.collapsedTopCategories.delete(topCatId);
+    } else {
+      this.collapsedTopCategories.add(topCatId);
+    }
+    this.applyTopCategoryCollapsedState(topCatId);
+  }
+
+  /**
+   * 指定したトップカテゴリを強制的に展開する（折りたたまれていれば展開する）。
+   */
+  private expandTopCategory(topCatId: string): void {
+    if (!this.collapsedTopCategories.has(topCatId)) return;
+    this.collapsedTopCategories.delete(topCatId);
+    this.applyTopCategoryCollapsedState(topCatId);
+  }
+
+  /**
+   * 指定したトップカテゴリの折りたたみ状態を DOM に反映する。
+   */
+  private applyTopCategoryCollapsedState(topCatId: string): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    const isCollapsed = this.collapsedTopCategories.has(topCatId);
+    const topGroupDiv = categoryList.querySelector<HTMLElement>(`.category-top-group[data-top-category="${topCatId}"]`);
+    if (topGroupDiv) {
+      topGroupDiv.classList.toggle("collapsed", isCollapsed);
+      const topGroupHeader = topGroupDiv.querySelector<HTMLElement>(".category-top-group-header");
+      topGroupHeader?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
+    }
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────

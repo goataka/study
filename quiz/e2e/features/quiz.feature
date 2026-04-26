@@ -93,6 +93,13 @@ Feature: 学習アプリ
     And the manual history record should have no toggle arrow
     And clicking the manual history record header should not expand details
 
+  Scenario: 親カテゴリグループを折りたたみ・展開できる
+    When I click the "英語" tab
+    And I click the "tenses" category group header
+    Then the "tenses" category group should be collapsed
+    When I click the "tenses" category group header again
+    Then the "tenses" category group should be expanded
+
   @kanji-stub
   Scenario: ひらがな問題では手書き認識でひらがな以外の候補が表示されない
     Given I have navigated to a hiragana text-input question
