@@ -41,7 +41,7 @@ header {
 
 header h1 {
     color: #0366d6;
-    font-size: 28px;
+    font-size: 30px;
 }
 
 .title-btn {
@@ -79,7 +79,7 @@ header h1 {
     color: #333;
     text-align: center;
     margin-bottom: 30px;
-    font-size: 24px;
+    font-size: 26px;
 }
 
 /* 教科タブ */
@@ -103,7 +103,7 @@ header h1 {
     margin-bottom: -2px;
     background: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #586069;
     font-family: inherit;
@@ -151,7 +151,7 @@ header h1 {
 }
 
 .hide-learned-btn {
-    font-size: 11px;
+    font-size: 13px;
     padding: 3px 8px;
     border: 1px solid #d1d5da;
     border-radius: 4px;
@@ -207,7 +207,7 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #586069;
     text-transform: uppercase;
@@ -217,7 +217,7 @@ header h1 {
 }
 
 .category-group-learned-badge {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1;
     text-transform: none;
     letter-spacing: 0;
@@ -245,7 +245,7 @@ header h1 {
 }
 
 .category-name {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     color: #24292e;
 }
@@ -256,7 +256,7 @@ header h1 {
 
 /* カテゴリ例文 */
 .category-example {
-    font-size: 13px;
+    font-size: 15px;
     color: #24292e;
     align-self: flex-end;
     text-align: right;
@@ -290,7 +290,7 @@ header h1 {
 
 /* カテゴリ説明文（単元一覧内） */
 .category-item-description {
-    font-size: 12px;
+    font-size: 14px;
     color: #586069;
     line-height: 1.4;
 }
@@ -300,13 +300,13 @@ header h1 {
 }
 
 .category-status {
-    font-size: 14px;
+    font-size: 16px;
     flex-shrink: 0;
     line-height: 1;
 }
 
 .category-stats {
-    font-size: 13px;
+    font-size: 15px;
     color: #586069;
     white-space: nowrap;
     background: rgba(0, 0, 0, 0.06);
@@ -320,7 +320,7 @@ header h1 {
 }
 
 .category-grade {
-    font-size: 12px;
+    font-size: 14px;
     white-space: nowrap;
     padding: 1px 5px;
     border-radius: 10px;
@@ -372,7 +372,7 @@ header h1 {
 }
 
 .subject-overview-header {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;
     color: #24292e;
 }
@@ -381,7 +381,7 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 12px;
+    font-size: 14px;
     color: #24292e;
 }
 
@@ -394,7 +394,7 @@ header h1 {
 }
 
 .subject-overview-grade {
-    font-size: 10px;
+    font-size: 12px;
     padding: 1px 5px;
     border-radius: 10px;
     white-space: nowrap;
@@ -416,7 +416,7 @@ header h1 {
 }
 
 .subject-overview-date {
-    font-size: 11px;
+    font-size: 13px;
     color: #586069;
 }
 
@@ -441,7 +441,7 @@ header h1 {
 .panel-tab {
     flex: 1;
     padding: 10px 16px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #586069;
     background: none;
@@ -482,7 +482,7 @@ header h1 {
 .secondary-btn,
 .tertiary-btn {
     padding: 15px 30px;
-    font-size: 18px;
+    font-size: 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -540,12 +540,12 @@ button:disabled {
 .stats-info {
     text-align: center;
     color: #666;
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 20px;
 }
 
 .category-description {
-    font-size: 14px;
+    font-size: 16px;
     color: #444;
     background: #f6f8fa;
     border-left: 3px solid #0366d6;
@@ -596,7 +596,7 @@ button:disabled {
 }
 
 #questionNumber {
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
     font-weight: bold;
 }
@@ -606,7 +606,7 @@ button:disabled {
     color: white;
     padding: 4px 12px;
     border-radius: 12px;
-    font-size: 12px;
+    font-size: 14px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -618,7 +618,7 @@ button:disabled {
 
 .guide-link {
     color: #0366d6;
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: none;
     padding: 4px 10px;
     border: 1px solid #0366d6;
@@ -631,7 +631,7 @@ button:disabled {
 }
 
 .cancel-quiz-btn {
-    font-size: 12px;
+    font-size: 14px;
     padding: 4px 10px;
     border: 1px solid #d32f2f;
     border-radius: 12px;
@@ -647,7 +647,7 @@ button:disabled {
 }
 
 .question-text {
-    font-size: 24px;
+    font-size: 26px;
     color: #333;
     margin-bottom: 30px;
     font-weight: bold;
@@ -709,7 +709,7 @@ button:disabled {
 }
 
 .choice-text {
-    font-size: 18px;
+    font-size: 20px;
     color: #333;
 }
 
@@ -749,7 +749,7 @@ button:disabled {
 }
 
 .feedback-result {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -765,7 +765,7 @@ button:disabled {
 }
 
 .feedback-explanation {
-    font-size: 16px;
+    font-size: 18px;
     color: #333;
     line-height: 1.6;
     padding: 12px;
@@ -783,7 +783,7 @@ button:disabled {
 .submit-btn {
     flex: 1;
     padding: 12px 24px;
-    font-size: 16px;
+    font-size: 18px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -816,7 +816,7 @@ button:disabled {
     color: #333;
     text-align: center;
     margin-bottom: 30px;
-    font-size: 24px;
+    font-size: 26px;
 }
 
 .score-display {
@@ -854,24 +854,24 @@ button:disabled {
 }
 
 .score-perfect-icon {
-    font-size: 36px;
+    font-size: 38px;
     margin-bottom: 4px;
 }
 
 .score-percentage {
-    font-size: 48px;
+    font-size: 50px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .score-text {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .result-details h3 {
     color: #333;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .result-item {
@@ -897,7 +897,7 @@ button:disabled {
 }
 
 .result-icon {
-    font-size: 24px;
+    font-size: 26px;
     margin-right: 10px;
     font-weight: bold;
 }
@@ -911,14 +911,14 @@ button:disabled {
 }
 
 .result-question {
-    font-size: 16px;
+    font-size: 18px;
     color: #333;
     font-weight: bold;
     flex: 1;
 }
 
 .result-topic {
-    font-size: 12px;
+    font-size: 14px;
     color: #0366d6;
     background: #f0f7ff;
     padding: 2px 8px;
@@ -928,7 +928,7 @@ button:disabled {
 
 .result-answer {
     margin-left: 34px;
-    font-size: 14px;
+    font-size: 16px;
     color: #666;
 }
 
@@ -973,7 +973,7 @@ button:disabled {
 }
 
 .question-list-text {
-    font-size: 15px;
+    font-size: 17px;
     color: #24292e;
     font-weight: 600;
     flex: 1 1 auto;
@@ -981,7 +981,7 @@ button:disabled {
 }
 
 .question-list-correct {
-    font-size: 13px;
+    font-size: 15px;
     color: #22863a;
     font-weight: 600;
     background: #e6ffed;
@@ -994,7 +994,7 @@ button:disabled {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     padding: 2px 4px;
     border-radius: 4px;
     line-height: 1;
@@ -1006,7 +1006,7 @@ button:disabled {
 }
 
 .question-list-hint {
-    font-size: 13px;
+    font-size: 15px;
     color: #586069;
     padding: 8px 10px;
     margin-top: 8px;
@@ -1057,11 +1057,11 @@ button:disabled {
     }
 
     .question-text {
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .choice-text {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .score-circle {
@@ -1071,7 +1071,7 @@ button:disabled {
     }
 
     .score-percentage {
-        font-size: 36px;
+        font-size: 38px;
     }
 
     .navigation-buttons {
@@ -1087,7 +1087,7 @@ button:disabled {
 }
 
 .header-user-name {
-    font-size: 15px;
+    font-size: 17px;
     color: #586069;
     font-weight: 600;
     max-width: 200px;
@@ -1119,7 +1119,7 @@ button:disabled {
     padding: 4px 8px;
     border: 1px solid #0366d6;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 16px;
     width: 140px;
     box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
     outline: none;
@@ -1132,7 +1132,7 @@ button:disabled {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     transition: background 0.2s;
 }
@@ -1148,7 +1148,7 @@ button:disabled {
     padding: 10px;
     background: #f6f8fa;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .user-info span {
@@ -1234,7 +1234,7 @@ button:disabled {
 }
 
 .category-progress-pct {
-    font-size: 11px;
+    font-size: 13px;
     color: #586069;
     white-space: nowrap;
     min-width: 28px;
@@ -1275,7 +1275,7 @@ button:disabled {
 }
 
 .notes-title {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #333;
 }
@@ -1293,7 +1293,7 @@ button:disabled {
     background: white;
     cursor: pointer;
     transition: all 0.2s;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .notes-btn:hover {
@@ -1308,7 +1308,7 @@ button:disabled {
     border-radius: 4px;
     background: white;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .pen-color-select {
@@ -1362,7 +1362,7 @@ button:disabled {
 .question-count-label {
     font-weight: 600;
     color: #333;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .question-count-group {
@@ -1374,7 +1374,7 @@ button:disabled {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 15px;
+    font-size: 17px;
     color: #333;
     cursor: pointer;
 }
@@ -1398,7 +1398,7 @@ button:disabled {
 /* ─── 回答記録 ─────────────────────────────────────────────────────────────── */
 
 .history-section-title {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #24292e;
     margin-bottom: 12px;
@@ -1414,7 +1414,7 @@ button:disabled {
     color: #586069;
     text-align: center;
     padding: 40px 20px;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .history-item {
@@ -1447,18 +1447,18 @@ button:disabled {
 }
 
 .history-date {
-    font-size: 13px;
+    font-size: 15px;
     color: #586069;
 }
 
 .history-subject {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #24292e;
 }
 
 .history-mode {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     padding: 2px 8px;
     border-radius: 8px;
@@ -1486,7 +1486,7 @@ button:disabled {
 }
 
 .history-score {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -1500,7 +1500,7 @@ button:disabled {
 }
 
 .history-toggle {
-    font-size: 12px;
+    font-size: 14px;
     color: #586069;
     transition: transform 0.2s;
 }
@@ -1520,7 +1520,7 @@ button:disabled {
     gap: 10px;
     padding: 8px;
     border-radius: 6px;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .history-entry.correct {
@@ -1532,7 +1532,7 @@ button:disabled {
 }
 
 .history-entry-icon {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     flex-shrink: 0;
     margin-top: 1px;
@@ -1557,7 +1557,7 @@ button:disabled {
 
 .history-entry-answer {
     color: #586069;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /* テキスト入力問題 */
@@ -1571,7 +1571,7 @@ button:disabled {
 .text-answer-input {
     width: 100%;
     padding: 14px 16px;
-    font-size: 22px;
+    font-size: 24px;
     border: 2px solid #e1e4e8;
     border-radius: 8px;
     outline: none;
@@ -1598,7 +1598,7 @@ button:disabled {
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
@@ -1627,7 +1627,7 @@ button:disabled {
     padding: 10px 12px;
     border: 2px solid #e1e4e8;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 18px;
     outline: none;
     transition: border-color 0.2s;
     box-sizing: border-box;
@@ -1646,7 +1646,7 @@ button:disabled {
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
@@ -1678,7 +1678,7 @@ button:disabled {
 }
 
 .kanji-input-label {
-    font-size: 13px;
+    font-size: 15px;
     color: #586069;
 }
 
@@ -1693,7 +1693,7 @@ button:disabled {
     border-radius: 4px;
     background: white;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     transition: background 0.15s;
 }
 
@@ -1725,7 +1725,7 @@ button:disabled {
     border: 2px solid #e1e4e8;
     border-radius: 6px;
     background: white;
-    font-size: 22px;
+    font-size: 24px;
     cursor: pointer;
     transition: background 0.15s, border-color 0.15s;
     line-height: 1;
@@ -1759,7 +1759,7 @@ button:disabled {
 }
 
 .confirm-dialog-message {
-    font-size: 16px;
+    font-size: 18px;
     color: #333;
     margin-bottom: 24px;
     line-height: 1.6;
