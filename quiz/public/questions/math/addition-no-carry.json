@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "addition-no-carry",
-  "categoryName": "たし算 - くり上がりなし",
+  "categoryName": "くり上がりなし",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
   "parentCategory": "addition",
