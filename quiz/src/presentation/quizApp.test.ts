@@ -25,7 +25,7 @@ const kanjiCanvasMock = {
 /** テストに必要な最小限のHTML要素を生成する */
 function setupMinimalDom(): void {
   document.body.innerHTML = `
-    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <select id="subjectFilter"><option value="all">すべての教科</option></select>
@@ -73,7 +73,7 @@ function setupMinimalDom(): void {
 /** タブUIを含むフルレイアウトのDOM */
 function setupTabDom(): void {
   document.body.innerHTML = `
-    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
@@ -2003,7 +2003,7 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
 describe("QuizApp — 結果画面の全問正解表示仕様", () => {
   beforeEach(() => {
     document.body.innerHTML = `
-      <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+      <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
       <span id="headerUserName"></span>
       <div id="startScreen" class="screen active">
         <div id="statsInfo"></div>
@@ -2789,7 +2789,7 @@ const mockTextInputFile = {
 /** テキスト入力問題用のDOMセットアップ（メモエリアのnotesCanvas・KanjiCanvas含む） */
 function setupTextInputDom(): void {
   document.body.innerHTML = `
-    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+    <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <div id="statsInfo"></div>
@@ -3331,7 +3331,7 @@ describe("QuizApp — 確認ダイアログ仕様", () => {
   it("確認ダイアログDOM要素がない場合はwindow.confirmにフォールバックする", async () => {
     // confirmDialog 要素を除いた最小限のDOMでセットアップ
     document.body.innerHTML = `
-      <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習クイズ</h1>
+      <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
       <span id="headerUserName"></span>
       <div id="startScreen" class="screen active">
         <div id="statsInfo"></div>
