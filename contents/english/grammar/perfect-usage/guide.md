@@ -3,7 +3,7 @@
 現在形:
 I `play` games.
 
-## 現在完了の3つの用法
+## 📚 現在完了の3つの用法
 
 ### 経験
 
@@ -17,7 +17,7 @@ I `have just finished` my homework.（ちょうど宿題を終えた）
 
 I `have lived` here for three years.（3年間ここに住んでいる）
 
-## 用法パターン
+## 📊 用法パターン
 
 | 用法 | キーワード | 例 |
 |------|-----------|------|
@@ -25,7 +25,7 @@ I `have lived` here for three years.（3年間ここに住んでいる）
 | 完了 | just, already, yet | I `have just finished` my homework. |
 | 継続 | for, since | I `have lived` here `for` three years. |
 
-## 例
+## 📝 例
 
 | 文 | 用法 |
 |------|------|
@@ -36,7 +36,7 @@ I `have lived` here for three years.（3年間ここに住んでいる）
 | I have never seen a lion. | (経験) |
 | I have already eaten lunch. | (完了) |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

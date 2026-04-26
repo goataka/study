@@ -3,21 +3,21 @@
 現在形:
 I `play` games.
 
-## 未来形
+## 📚 未来形
 
 I `will play` games.
 
 - `will` + 動詞の原形で未来を表す
 - 動詞の形は変わらない
 
-## 活用パターン
+## 📊 活用パターン
 
 | 時制 | 変化ルール | 例 |
 |------|-----------|------|
 | 現在形 | 動詞の原形 | I `play` |
 | 未来形 | will + 原形 | I `will play` |
 
-## 例
+## 📝 例
 
 | 現在形 | 未来形 |
 |--------|--------|
@@ -27,7 +27,7 @@ I `will play` games.
 | I like music. | I (will like) music. |
 | I walk to school. | I (will walk) to school. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

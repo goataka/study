@@ -3,7 +3,7 @@
 2つの文:
 This is the place. I play games there.
 
-## 関係副詞
+## 📚 関係副詞
 
 The place `where` I play games is quiet.
 
@@ -11,7 +11,7 @@ The place `where` I play games is quiet.
 - 時 → `when`
 - 理由 → `why`
 
-## パターン
+## 📊 パターン
 
 | 意味 | 関係副詞 | 例 |
 |------|---------|------|
@@ -19,7 +19,7 @@ The place `where` I play games is quiet.
 | 時 | `when` | the day `when` I play games |
 | 理由 | `why` | the reason `why` I play games |
 
-## 例
+## 📝 例
 
 | 意味 | 文 |
 |------|------|
@@ -27,7 +27,7 @@ The place `where` I play games is quiet.
 | 時 | I remember the day (when) I met you. |
 | 理由 | Tell me the reason (why) you were late. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

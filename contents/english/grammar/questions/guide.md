@@ -3,14 +3,14 @@
 肯定文:
 I `play` games.
 
-## 疑問文
+## 📚 疑問文
 
 `Do` I play games?
 
 - 一般動詞: `Do/Does/Did` + 主語 + 動詞の原形?
 - be動詞: be動詞を主語の前に出す
 
-## 疑問文のパターン
+## 📊 疑問文のパターン
 
 | 種類 | 作り方 | 例 |
 |------|--------|------|
@@ -21,7 +21,7 @@ I `play` games.
 | be動詞（過去） | be動詞 + 主語? | `Was` I happy? |
 | 進行形 | be動詞 + 主語 + -ing? | `Am` I playing games? |
 
-## 例
+## 📝 例
 
 ### 一般動詞の疑問文
 
@@ -39,7 +39,7 @@ I `play` games.
 | I was happy. | (Was) I happy? |
 | I am playing games. | (Am) I playing games? |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

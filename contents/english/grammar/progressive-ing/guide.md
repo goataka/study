@@ -11,7 +11,7 @@
 | 短母音 + 子音 | 子音を重ねて + ing | run → `running` |
 | ie で終わる | ie → y + ing | die → `dying` |
 
-## 例
+## 📝 例
 
 | 原形 | -ing形 |
 |------|--------|
@@ -26,7 +26,7 @@
 | come | I am (coming) home. |
 | have | I am (having) lunch. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

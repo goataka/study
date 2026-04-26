@@ -2,7 +2,7 @@
 
 冠詞は名詞の前に置き、その名詞が特定か不特定かを示します。
 
-## 不定冠詞 `a` / `an`
+## 📌 不定冠詞 `a` / `an`
 
 I play `a` game.
 
@@ -12,14 +12,14 @@ I play `an` exciting game.
 - 子音で始まる語の前: `a` → a game, a book
 - 母音で始まる語の前: `an` → an exciting game, an apple
 
-## 定冠詞 `the`
+## 📌 定冠詞 `the`
 
 I play `the` game every day.
 
 - 特定のもの、すでに話題に出たものに使う
 - 世界に1つしかないもの: the sun, the moon
 
-## 使い分け
+## 📌 使い分け
 
 | 冠詞 | 使い方 | 例 |
 |------|--------|------|
@@ -28,7 +28,7 @@ I play `the` game every day.
 | `the` | 特定のもの | `the` game every day |
 | なし | 複数形・不可算名詞（一般的） | I play games. |
 
-## 例
+## 📝 例
 
 | パターン | 文 |
 |----------|------|
@@ -39,7 +39,7 @@ I play `the` game every day.
 | 母音の前 | He plays (`an`) old game. |
 | 特定のもの | (`The`) game is fun. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

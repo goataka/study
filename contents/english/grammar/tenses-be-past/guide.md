@@ -3,14 +3,14 @@
 現在形:
 I `am` a player.
 
-## 過去形
+## 📚 過去形
 
 I `was` a player.
 
 - I / he / she / it → `was`
 - you / we / they → `were`
 
-## 活用パターン
+## 📊 活用パターン
 
 | 時制 | 主語 | be動詞 | 例 |
 |------|------|--------|------|
@@ -19,7 +19,7 @@ I `was` a player.
 | 過去形 | I/he/she | `was` | I `was` a player. |
 | 過去形 | you/we/they | `were` | Games `were` fun. |
 
-## 例
+## 📝 例
 
 | 現在形 | 過去形 |
 |--------|--------|
@@ -29,7 +29,7 @@ I `was` a player.
 | I am at the game center. | I (was) at the game center. |
 | I am happy to play. | I (was) happy to play. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|
