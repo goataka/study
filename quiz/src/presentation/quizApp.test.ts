@@ -226,6 +226,71 @@ function setupFetchMockWithParent(): void {
   });
 }
 
+/** 3階層構造のモックデータ（トップカテゴリ付き） */
+const mockManifestWith3Levels = {
+  version: "2.0.0",
+  subjects: { english: { name: "英語" } },
+  questionFiles: ["english/tenses.json", "english/assimilation.json"],
+};
+
+const mockTensesFile = {
+  subject: "english",
+  subjectName: "英語",
+  category: "tenses-past",
+  categoryName: "過去形",
+  topCategory: "grammar",
+  topCategoryName: "文法",
+  parentCategory: "tenses",
+  parentCategoryName: "時制",
+  questions: Array.from({ length: 3 }, (_, i) => ({
+    id: `t${i + 1}`,
+    question: `時制問題 ${i + 1}`,
+    choices: ["A", "B", "C", "D"],
+    correct: 0,
+    explanation: `解説 ${i + 1}`,
+  })),
+};
+
+const mockAssimilationFile = {
+  subject: "english",
+  subjectName: "英語",
+  category: "assimilation",
+  categoryName: "アシミレーション",
+  topCategory: "pronunciation",
+  topCategoryName: "発音",
+  parentCategory: "sound-changes",
+  parentCategoryName: "音声変化",
+  questions: Array.from({ length: 4 }, (_, i) => ({
+    id: `a${i + 1}`,
+    question: `音声変化問題 ${i + 1}`,
+    choices: ["ア", "イ", "ウ", "エ"],
+    correct: 0,
+    explanation: `解説 ${i + 1}`,
+  })),
+};
+
+function setupFetchMockWith3Levels(): void {
+  global.fetch = vi.fn((url: string) => {
+    const urlStr = String(url);
+    if (urlStr.includes("index.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockManifestWith3Levels),
+      } as Response);
+    }
+    if (urlStr.includes("tenses.json")) {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockTensesFile),
+      } as Response);
+    }
+    return Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve(mockAssimilationFile),
+    } as Response);
+  });
+}
+
 // ─── テスト ──────────────────────────────────────────────────────────────────
 
 describe("QuizApp — 初期化仕様", () => {
@@ -3340,3 +3405,100 @@ describe("QuizApp — 確認ダイアログ仕様", () => {
   });
 });
 
+
+describe("QuizApp — 3階層カテゴリ仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMockWith3Levels();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("英語タブをクリックするとトップカテゴリグループヘッダーが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const topGroupHeaders = document.querySelectorAll(".category-top-group-header");
+    expect(topGroupHeaders.length).toBe(2); // grammar, pronunciation
+  });
+
+  it("トップカテゴリの中間グループヘッダーが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarTopGroup = document.querySelector('.category-top-group[data-top-category="grammar"]');
+    expect(grammarTopGroup).not.toBeNull();
+    const tensesGroup = grammarTopGroup?.querySelector('.category-group[data-parent-category="tenses"]');
+    expect(tensesGroup).not.toBeNull();
+  });
+
+  it("カテゴリアイテムに data-top-category が設定される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="tenses-past"]') as HTMLElement;
+    expect(catItem?.dataset.topCategory).toBe("grammar");
+    expect(catItem?.dataset.parentCategory).toBe("tenses");
+  });
+
+  it("トップカテゴリヘッダーをクリックすると折りたたまれる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarHeader = document.querySelector<HTMLElement>('.category-top-group-header[data-top-category="grammar"]');
+    grammarHeader?.click();
+
+    const grammarTopGroup = document.querySelector('.category-top-group[data-top-category="grammar"]');
+    expect(grammarTopGroup?.classList.contains("collapsed")).toBe(true);
+  });
+
+  it("折りたたまれたトップカテゴリヘッダーを再クリックすると展開される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarHeader = document.querySelector<HTMLElement>('.category-top-group-header[data-top-category="grammar"]');
+    grammarHeader?.click(); // 折りたたむ
+    grammarHeader?.click(); // 展開する
+
+    const grammarTopGroup = document.querySelector('.category-top-group[data-top-category="grammar"]');
+    expect(grammarTopGroup?.classList.contains("collapsed")).toBe(false);
+  });
+
+  it("折りたたまれたトップカテゴリにアクティブなカテゴリがある場合は自動展開される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // grammarトップグループを折りたたむ
+    const grammarHeader = document.querySelector<HTMLElement>('.category-top-group-header[data-top-category="grammar"]');
+    grammarHeader?.click();
+    expect(document.querySelector('.category-top-group[data-top-category="grammar"]')?.classList.contains("collapsed")).toBe(true);
+
+    // カテゴリアイテムをプログラム的にクリック
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-past"]');
+    catItem?.click();
+
+    // トップグループが自動展開されること
+    expect(document.querySelector('.category-top-group[data-top-category="grammar"]')?.classList.contains("collapsed")).toBe(false);
+  });
+});

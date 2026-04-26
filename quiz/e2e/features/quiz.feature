@@ -95,10 +95,10 @@ Feature: 学習クイズ
 
   Scenario: 親カテゴリグループを折りたたみ・展開できる
     When I click the "英語" tab
-    And I click the "grammar" category group header
-    Then the "grammar" category group should be collapsed
-    When I click the "grammar" category group header again
-    Then the "grammar" category group should be expanded
+    And I click the "tenses" category group header
+    Then the "tenses" category group should be collapsed
+    When I click the "tenses" category group header again
+    Then the "tenses" category group should be expanded
 
   @kanji-stub
   Scenario: ひらがな問題では手書き認識でひらがな以外の候補が表示されない

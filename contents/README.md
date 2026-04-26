@@ -46,10 +46,10 @@
 | 24 | -ing形の作り方 | [解説](english/grammar/progressive-ing/guide.md) | [クイズ](quiz/?subject=english&category=progressive-ing) | play→`playing` |
 | 25 | 完了形 | [解説](english/grammar/perfect/guide.md) | [クイズ](quiz/?subject=english&category=perfect) | I `have played` games. |
 | 26 | 過去分詞の変化 | [解説](english/grammar/perfect-participles/guide.md) | [クイズ](quiz/?subject=english&category=perfect-participles) | play→`played` |
-| 27 | 完了形の用法 | [解説](english/grammar/perfect-usage/guide.md) | [クイズ](quiz/?subject=english&category=perfect-usage) | I `have played` games `for` 3 years. |
-| 28 | 助動詞の使い分け | [解説](english/grammar/modals-basic/guide.md) | [クイズ](quiz/?subject=english&category=modals-basic) | I `can play` games. |
-| 29 | 助動詞の否定形 | [解説](english/grammar/modals-negative/guide.md) | [クイズ](quiz/?subject=english&category=modals-negative) | I `cannot play` games. |
-| 30 | 助動詞の過去形 | [解説](english/grammar/modals-past/guide.md) | [クイズ](quiz/?subject=english&category=modals-past) | I `could play` games. |
+| 27 | 用法 | [解説](english/grammar/perfect-usage/guide.md) | [クイズ](quiz/?subject=english&category=perfect-usage) | I `have played` games `for` 3 years. |
+| 28 | 使い分け | [解説](english/grammar/modals-basic/guide.md) | [クイズ](quiz/?subject=english&category=modals-basic) | I `can play` games. |
+| 29 | 否定形 | [解説](english/grammar/modals-negative/guide.md) | [クイズ](quiz/?subject=english&category=modals-negative) | I `cannot play` games. |
+| 30 | 過去形 | [解説](english/grammar/modals-past/guide.md) | [クイズ](quiz/?subject=english&category=modals-past) | I `could play` games. |
 | 31 | 受動態 | [解説](english/grammar/passive/guide.md) | [クイズ](quiz/?subject=english&category=passive) | Games `are played` by me. |
 | 32 | 助動詞の受動態 | [解説](english/grammar/passive-modals/guide.md) | [クイズ](quiz/?subject=english&category=passive-modals) | Games `can be played` by anyone. |
 | 33 | 条件文 | [解説](english/grammar/conditionals-if/guide.md) | [クイズ](quiz/?subject=english&category=conditionals-if) | If I `had` time, I `would play` games. |
@@ -101,15 +101,15 @@
 | 23 | 3桁のわり算（あまりなし） | 小学4年 | [解説](math/arithmetic/division-3digit-no-remainder/guide.md) | [クイズ](quiz/?subject=math&category=division-no-remainder) | 840 ÷ 12 = 70 |
 | 24 | 3桁のわり算（あまりあり） | 小学4年 | [解説](math/arithmetic/division-3digit-remainder/guide.md) | [クイズ](quiz/?subject=math&category=division-remainder) | 841 ÷ 12 = 70…1 |
 | 25 | わり算（まとめ） | 小学4年 | [解説](math/arithmetic/division-mixed/guide.md) | [クイズ](quiz/?subject=math&category=division-mixed) | 23 ÷ 4 = 5…3 |
-| 26 | 分数のたし算（同分母） | 小学4年 | [解説](math/arithmetic/fractions-same-add/guide.md) | [クイズ](quiz/?subject=math&category=fractions-same-add) | 1/5 + 2/5 = 3/5 |
-| 27 | 分数のひき算（同分母） | 小学4年 | [解説](math/arithmetic/fractions-same-sub/guide.md) | [クイズ](quiz/?subject=math&category=fractions-same-sub) | 4/7 - 2/7 = 2/7 |
-| 28 | 分数のたし算（通分あり） | 小学5年 | [解説](math/arithmetic/fractions-diff-add/guide.md) | [クイズ](quiz/?subject=math&category=fractions-diff-add) | 1/2 + 1/3 = 5/6 |
-| 29 | 分数のひき算（通分あり） | 小学5年 | [解説](math/arithmetic/fractions-diff-sub/guide.md) | [クイズ](quiz/?subject=math&category=fractions-diff-sub) | 3/4 - 1/3 = 5/12 |
-| 30 | 分数のかけ算 | 小学6年 | [解説](math/arithmetic/fractions-multiply/guide.md) | [クイズ](quiz/?subject=math&category=fractions-multiply) | 2/3 × 3/4 = 1/2 |
-| 31 | 分数のわり算 | 小学6年 | [解説](math/arithmetic/fractions-divide/guide.md) | [クイズ](quiz/?subject=math&category=fractions-divide) | 2/3 ÷ 4/5 = 5/6 |
-| 32 | 小数のたし算 | 小学5年 | [解説](math/arithmetic/decimals-addition/guide.md) | [クイズ](quiz/?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
-| 33 | 小数のひき算 | 小学5年 | [解説](math/arithmetic/decimals-subtraction/guide.md) | [クイズ](quiz/?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
-| 34 | 小数のかけ算 | 小学5年 | [解説](math/arithmetic/decimals-multiplication/guide.md) | [クイズ](quiz/?subject=math&category=decimals-multiplication) | 0.3 × 0.4 = 0.12 |
+| 26 | たし算（同分母） | 小学4年 | [解説](math/arithmetic/fractions-same-add/guide.md) | [クイズ](quiz/?subject=math&category=fractions-same-add) | 1/5 + 2/5 = 3/5 |
+| 27 | ひき算（同分母） | 小学4年 | [解説](math/arithmetic/fractions-same-sub/guide.md) | [クイズ](quiz/?subject=math&category=fractions-same-sub) | 4/7 - 2/7 = 2/7 |
+| 28 | たし算（通分あり） | 小学5年 | [解説](math/arithmetic/fractions-diff-add/guide.md) | [クイズ](quiz/?subject=math&category=fractions-diff-add) | 1/2 + 1/3 = 5/6 |
+| 29 | ひき算（通分あり） | 小学5年 | [解説](math/arithmetic/fractions-diff-sub/guide.md) | [クイズ](quiz/?subject=math&category=fractions-diff-sub) | 3/4 - 1/3 = 5/12 |
+| 30 | かけ算 | 小学6年 | [解説](math/arithmetic/fractions-multiply/guide.md) | [クイズ](quiz/?subject=math&category=fractions-multiply) | 2/3 × 3/4 = 1/2 |
+| 31 | わり算 | 小学6年 | [解説](math/arithmetic/fractions-divide/guide.md) | [クイズ](quiz/?subject=math&category=fractions-divide) | 2/3 ÷ 4/5 = 5/6 |
+| 32 | たし算 | 小学5年 | [解説](math/arithmetic/decimals-addition/guide.md) | [クイズ](quiz/?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
+| 33 | ひき算 | 小学5年 | [解説](math/arithmetic/decimals-subtraction/guide.md) | [クイズ](quiz/?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
+| 34 | かけ算 | 小学5年 | [解説](math/arithmetic/decimals-multiplication/guide.md) | [クイズ](quiz/?subject=math&category=decimals-multiplication) | 0.3 × 0.4 = 0.12 |
 | 35 | 比 | 小学6年 | [解説](math/arithmetic/ratio/guide.md) | [クイズ](quiz/?subject=math&category=ratio) | 4:6 = 2:3 |
 | 36 | 割合 | 小学6年 | [解説](math/arithmetic/percentage/guide.md) | [クイズ](quiz/?subject=math&category=percentage) | 60人の30% = 18人 |
 
