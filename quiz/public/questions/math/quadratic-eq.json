@@ -8,6 +8,7 @@
   "parentCategory": "algebra-advanced",
   "parentCategoryName": "発展代数",
   "guideUrl": "../math/algebra/quadratic-eq/guide",
+  "parentCategoryGuideUrl": "../math/algebra/guide",
   "example": "x²-5x+6=0 → x=2,3",
   "referenceGrade": "中学3年",
   "description": "因数分解と解の公式を使い分けて、二次方程式を確実に解けるようにします。",

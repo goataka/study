@@ -8,6 +8,7 @@
   "parentCategory": "tenses",
   "parentCategoryName": "時制",
   "guideUrl": "../english/grammar/tenses-regular-past/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "I `played` games.",
   "referenceGrade": "中学1年",
   "description": "規則動詞は語尾に -ed をつけて過去形を作ります。",

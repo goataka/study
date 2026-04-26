@@ -8,6 +8,7 @@
   "parentCategory": "precalculus",
   "parentCategoryName": "高校数学",
   "guideUrl": "../math/calculus/trigonometry/guide",
+  "parentCategoryGuideUrl": "../math/calculus/guide",
   "example": "sin30° = 1/2",
   "referenceGrade": "高校2年",
   "description": "三角関数の基本値を覚え、相互関係と加法定理を使った計算ができるようにします。",

@@ -8,6 +8,7 @@
   "parentCategory": "progressive",
   "parentCategoryName": "進行形",
   "guideUrl": "../english/grammar/progressive-ing/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "run→`running`",
   "referenceGrade": "中学1年",
   "description": "-ing 形は動詞の原形から決まったルールで作ります。",

@@ -12,6 +12,7 @@
   "referenceGrade": "小学3年",
   "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
   "guideUrl": "../japanese/kanji/kanji-grade3/guide",
+  "parentCategoryGuideUrl": "../japanese/kanji/guide",
   "questions": [
     {
       "id": "0a51ea0e-09da-5ff9-8188-1fc60ca7e641",

@@ -8,6 +8,7 @@
   "parentCategory": "parts-of-speech",
   "parentCategoryName": "品詞",
   "guideUrl": "../english/grammar/articles/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "`a`/`the` game",
   "referenceGrade": "中学1年",
   "description": "冠詞は名詞の前に置き、その名詞が特定か不特定かを示します。",

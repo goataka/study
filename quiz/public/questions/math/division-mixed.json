@@ -8,6 +8,7 @@
   "parentCategory": "multiplication-division",
   "parentCategoryName": "かけ算・わり算",
   "guideUrl": "../math/arithmetic/division-mixed/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "23 ÷ 4 = 5…3",
   "referenceGrade": "小学3年",
   "description": "あまりなし・ありのわり算を混ぜて、わり算の力を確かめます。",

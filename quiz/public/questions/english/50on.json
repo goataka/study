@@ -8,6 +8,7 @@
   "parentCategory": "alphabet",
   "parentCategoryName": "アルファベット・五十音",
   "guideUrl": "../english/pronunciation/50on/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": "あ=a い=i う=u",
   "referenceGrade": "小学3年",
   "description": "ひらがな（日本語の音）を英字（ローマ字）で表す方法を学びます。",

@@ -8,6 +8,7 @@
   "parentCategory": "calculus",
   "parentCategoryName": "微積分",
   "guideUrl": "../math/calculus/differentiation/guide",
+  "parentCategoryGuideUrl": "../math/calculus/guide",
   "example": "f(x)=x³ → f'(x)=3x²",
   "referenceGrade": "高校3年",
   "description": "多項式関数の導関数を求め、極値を計算できるようにします。",

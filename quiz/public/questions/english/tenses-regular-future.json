@@ -8,6 +8,7 @@
   "parentCategory": "tenses",
   "parentCategoryName": "時制",
   "guideUrl": "../english/grammar/tenses-regular-future/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "I `will play` games.",
   "referenceGrade": "中学1年",
   "description": "will や be going to を使って未来の予定や意志を表します。",

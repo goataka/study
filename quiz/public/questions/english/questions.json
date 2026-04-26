@@ -8,6 +8,7 @@
   "parentCategory": "sentence-patterns",
   "parentCategoryName": "文型・疑問・否定",
   "guideUrl": "../english/grammar/questions/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "`Do` you play?",
   "referenceGrade": "中学1年",
   "description": "do / does / did を使って一般動詞の疑問文を作ります。",

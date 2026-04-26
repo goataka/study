@@ -8,6 +8,7 @@
   "parentCategory": "multiplication-division",
   "parentCategoryName": "かけ算・わり算",
   "guideUrl": "../math/arithmetic/division-1digit-remainder/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "17 ÷ 5 = 3…2",
   "referenceGrade": "小学3年",
   "description": "あまりのあるわり算を正確に計算できるようにします。",

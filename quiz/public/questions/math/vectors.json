@@ -8,6 +8,7 @@
   "parentCategory": "precalculus",
   "parentCategoryName": "高校数学",
   "guideUrl": "../math/calculus/vectors/guide",
+  "parentCategoryGuideUrl": "../math/calculus/guide",
   "example": "→a=(1,2), →b=(3,4) → →a+→b=(4,6)",
   "referenceGrade": "高校2年",
   "description": "ベクトルの基本演算と内積の計算ができるようにします。",

@@ -22,6 +22,8 @@ export interface Question {
   parentCategory?: string;
   parentCategoryName?: string;
   guideUrl?: string;
+  /** 親カテゴリの解説 URL（省略可）。親カテゴリグループのガイドページへのリンク */
+  parentCategoryGuideUrl?: string;
   /** カテゴリの代表例文（省略可）。バッククォートで囲まれた部分が強調表示される */
   example?: string;
   /** 参考学年（例: "小学3年", "中学1年", "高校2年"） */
@@ -55,6 +57,8 @@ export interface QuestionFile {
   parentCategory?: string;
   parentCategoryName?: string;
   guideUrl?: string;
+  /** 親カテゴリの解説 URL（省略可）。親カテゴリグループのガイドページへのリンク */
+  parentCategoryGuideUrl?: string;
   /** カテゴリの代表例文（省略可）。バッククォートで囲まれた部分が強調表示される */
   example?: string;
   /** 参考学年（例: "小学3年", "中学1年", "高校2年"） */
@@ -142,6 +146,32 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       // ../ 以降のパスに追加の .. が含まれないことを確認
       if (decoded.slice("../".length).includes("..")) {
         throw new Error('"guideUrl" must not contain path traversal sequences');
+      }
+    }
+  }
+  // parentCategoryGuideUrl はオプションの文字列フィールド（guideUrl と同じ検証ルールを適用）
+  if (qf.parentCategoryGuideUrl !== undefined) {
+    if (typeof qf.parentCategoryGuideUrl !== "string") {
+      throw new Error('"parentCategoryGuideUrl" must be a string if present');
+    }
+    // parentCategoryGuideUrl は parentCategory が設定されている場合のみ有効
+    if (!qf.parentCategory) {
+      throw new Error('"parentCategoryGuideUrl" requires "parentCategory" to be set');
+    }
+    const isRelative = /^\.\.\/[^./]/.test(qf.parentCategoryGuideUrl);
+    const isAbsolute = /^https?:\/\//i.test(qf.parentCategoryGuideUrl);
+    if (!isRelative && !isAbsolute) {
+      throw new Error('"parentCategoryGuideUrl" must be a relative path starting with "../" or an http/https URL');
+    }
+    if (isRelative) {
+      let decoded = qf.parentCategoryGuideUrl;
+      try {
+        decoded = decodeURIComponent(qf.parentCategoryGuideUrl);
+      } catch {
+        // デコード失敗の場合は元の文字列で検証
+      }
+      if (decoded.slice("../".length).includes("..")) {
+        throw new Error('"parentCategoryGuideUrl" must not contain path traversal sequences');
       }
     }
   }
@@ -243,6 +273,7 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     parentCategory: qf.parentCategory,
     parentCategoryName: qf.parentCategoryName,
     guideUrl: qf.guideUrl,
+    parentCategoryGuideUrl: qf.parentCategoryGuideUrl,
     example: qf.example,
     referenceGrade: qf.referenceGrade,
     description: qf.description,

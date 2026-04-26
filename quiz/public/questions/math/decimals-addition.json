@@ -8,6 +8,7 @@
   "parentCategory": "decimals",
   "parentCategoryName": "小数",
   "guideUrl": "../math/arithmetic/decimals-addition/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "1.2 + 3.4 = 4.6",
   "referenceGrade": "小学4年",
   "description": "小数のたし算を正確に計算できるようにします。",

@@ -8,6 +8,7 @@
   "parentCategory": "algebra-basics",
   "parentCategoryName": "基本代数",
   "guideUrl": "../math/algebra/algebraic-expressions/guide",
+  "parentCategoryGuideUrl": "../math/algebra/guide",
   "example": "3a + 2a = 5a",
   "referenceGrade": "中学1年",
   "description": "文字を使った式の表し方と計算のルールを身につけます。",

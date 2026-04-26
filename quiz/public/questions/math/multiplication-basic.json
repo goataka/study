@@ -8,6 +8,7 @@
   "parentCategory": "multiplication-division",
   "parentCategoryName": "かけ算・わり算",
   "guideUrl": "../math/arithmetic/multiplication-1digit/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "6 × 7 = 42",
   "referenceGrade": "小学2年",
   "description": "かけ算の意味を理解し、九九を覚えて正確に計算できるようにします。",

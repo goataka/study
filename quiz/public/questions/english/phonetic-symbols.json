@@ -8,6 +8,7 @@
   "parentCategory": "phonics",
   "parentCategoryName": "フォニックス・音声記号",
   "guideUrl": "../english/pronunciation/phonetic-symbols/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": "/æ/→ア（cat）",
   "referenceGrade": "中学1年",
   "description": "辞書に載っている発音記号（IPA）の読み方と代表的な単語を学びます。",

@@ -8,6 +8,7 @@
   "parentCategory": "reported-speech",
   "parentCategoryName": "話法",
   "guideUrl": "../english/grammar/reported-question/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "She asked `where` I lived.",
   "referenceGrade": "高校1年",
   "description": "間接話法の疑問文では whether / if や疑問詞を使い、語順を平叙文の形にします。",

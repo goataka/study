@@ -8,6 +8,7 @@
   "parentCategory": "precalculus",
   "parentCategoryName": "高校数学",
   "guideUrl": "../math/calculus/exponents-logarithms/guide",
+  "parentCategoryGuideUrl": "../math/calculus/guide",
   "example": "log₂8 = 3",
   "referenceGrade": "高校2年",
   "description": "指数法則と対数の性質を使って計算できるようにします。",

@@ -8,6 +8,7 @@
   "parentCategory": "alphabet",
   "parentCategoryName": "アルファベット・五十音",
   "guideUrl": "../english/pronunciation/alphabet/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": "A(えい) B(びー)",
   "referenceGrade": "小学3年",
   "description": "英語で使う26文字のアルファベットの名前（読み方）を覚えます。",

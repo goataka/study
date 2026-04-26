@@ -8,6 +8,7 @@
   "parentCategory": "fractions",
   "parentCategoryName": "分数",
   "guideUrl": "../math/arithmetic/fractions-same-add/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "1/5 + 2/5 = 3/5",
   "referenceGrade": "小学4年",
   "description": "分母が同じ分数のたし算を正確に計算できるようにします。",

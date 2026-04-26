@@ -8,6 +8,7 @@
   "parentCategory": "reported-speech",
   "parentCategoryName": "話法",
   "guideUrl": "../english/grammar/reported-imperative/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "He told me `to` go.",
   "referenceGrade": "高校1年",
   "description": "間接話法の命令文は「told + 人 + to 不定詞」の形で表します。",

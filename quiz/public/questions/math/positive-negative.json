@@ -8,6 +8,7 @@
   "parentCategory": "algebra-basics",
   "parentCategoryName": "基本代数",
   "guideUrl": "../math/algebra/positive-negative/guide",
+  "parentCategoryGuideUrl": "../math/algebra/guide",
   "example": "(-3) + (+5) = 2",
   "referenceGrade": "中学1年",
   "description": "正の数と負の数の四則計算を正確にできるようにします。",

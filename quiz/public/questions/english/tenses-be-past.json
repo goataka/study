@@ -8,6 +8,7 @@
   "parentCategory": "tenses",
   "parentCategoryName": "時制",
   "guideUrl": "../english/grammar/tenses-be-past/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "I `was` a player.",
   "referenceGrade": "中学1年",
   "description": "be動詞の過去形 was / were を使って「〜でした」「〜にいた」を表します。",

@@ -8,6 +8,7 @@
   "parentCategory": "parts-of-speech",
   "parentCategoryName": "品詞",
   "guideUrl": "../english/grammar/adjectives/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "a `fun` game",
   "referenceGrade": "小学5年",
   "description": "形容詞は名詞を修飾したり、状態を表す語です。",

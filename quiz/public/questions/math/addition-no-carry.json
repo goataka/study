@@ -8,6 +8,7 @@
   "parentCategory": "addition",
   "parentCategoryName": "たし算",
   "guideUrl": "../math/arithmetic/addition-1digit-no-carry/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "3 + 4 = 7",
   "referenceGrade": "小学1年",
   "description": "くり上がりのない1けたのたし算をすばやく正確にできるようにします。",

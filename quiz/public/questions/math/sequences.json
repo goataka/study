@@ -8,6 +8,7 @@
   "parentCategory": "precalculus",
   "parentCategoryName": "高校数学",
   "guideUrl": "../math/calculus/sequences/guide",
+  "parentCategoryGuideUrl": "../math/calculus/guide",
   "example": "1,3,5,7,… → aₙ=2n-1",
   "referenceGrade": "高校2年",
   "description": "等差数列と等比数列の一般項と和の公式を使えるようにします。",
