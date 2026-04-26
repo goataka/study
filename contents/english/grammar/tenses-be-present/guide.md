@@ -22,7 +22,7 @@ Games `are` fun.
 | he / she / it | `is` | The game `is` fun. |
 | you / we / they | `are` | Games `are` fun. |
 
-## 解答
+## 例
 
 | 主語 | 文 |
 |------|------|

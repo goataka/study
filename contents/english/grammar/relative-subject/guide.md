@@ -18,7 +18,7 @@ I know a boy `who` plays games.
 | 人 | `who` / `that` | a boy `who` plays games |
 | 物 | `which` / `that` | a game `which` is fun |
 
-## 解答
+## 例
 
 | 先行詞 | 文 |
 |--------|------|

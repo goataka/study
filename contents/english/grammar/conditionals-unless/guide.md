@@ -17,7 +17,7 @@ If I `don't` have time, I won't play games.
 | if not | If I `don't` have time, I won't play games. |
 | unless | `Unless` I have time, I won't play games. |
 
-## 解答
+## 例
 
 | if文 | unless文 |
 |------|----------|

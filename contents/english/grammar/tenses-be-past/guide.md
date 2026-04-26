@@ -19,7 +19,7 @@ The game `was` fun.
 | 過去形 | I/he/she | `was` | The game `was` fun. |
 | 過去形 | you/we/they | `were` | Games `were` fun. |
 
-## 解答
+## 例
 
 | 現在形 | 過去形 |
 |--------|--------|

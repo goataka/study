@@ -19,7 +19,7 @@ Games `are played` by me.
 | 未来形 | `will be` | Games `will be played` by me. |
 | 現在完了 | `have been` | Games `have been played` by me. |
 
-## 解答
+## 例
 
 ### 受動態の時制変化
 

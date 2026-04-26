@@ -16,7 +16,7 @@ I know a boy `whose` father plays games.
 | 人 | `whose` | a boy `whose` father plays games |
 | 物 | `whose` | a game `whose` rules are simple |
 
-## 解答
+## 例
 
 | 文 |
 |------|

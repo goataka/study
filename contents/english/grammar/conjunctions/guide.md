@@ -42,7 +42,7 @@ I play games `if` I have time.
 | 条件 | `if` | `if` I have time |
 | 譲歩 | `though` | `though` I am busy |
 
-## 解答
+## 例
 
 | パターン | 文 |
 |----------|------|

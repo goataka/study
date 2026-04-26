@@ -20,7 +20,7 @@ I play games the `best` in my class.
 | `little` | `less` | `least` |
 | `far` | `farther` / `further` | `farthest` / `furthest` |
 
-## 解答
+## 例
 
 | 原級 | 比較級 | 最上級 |
 |------|--------|--------|

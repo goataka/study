@@ -18,7 +18,7 @@ He `told` me `to play` games.
 | "Don't play games." | He `told` me `not to play` games. |
 | "Please help me." | He `asked` me `to help` him. |
 
-## 解答
+## 例
 
 | 直接話法 | 間接話法 |
 |----------|----------|

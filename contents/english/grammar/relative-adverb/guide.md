@@ -19,7 +19,7 @@ The place `where` I play games is quiet.
 | 時 | `when` | the day `when` I play games |
 | 理由 | `why` | the reason `why` I play games |
 
-## 解答
+## 例
 
 | 意味 | 文 |
 |------|------|
