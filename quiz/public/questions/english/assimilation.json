@@ -6,6 +6,7 @@
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/assimilation/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": "meet you→ミーチュー",
   "referenceGrade": "高校1年",
   "description": "隣の音に引っ張られて音が変化するアシミレーション（音の同化）を学びます。",

@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/relative-subject/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "the man `who` runs",
   "referenceGrade": "中学3年",
   "description": "関係代名詞 who / which / that を使って、名詞を主語として説明します。",

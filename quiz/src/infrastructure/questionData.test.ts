@@ -28,8 +28,10 @@ interface QuestionFile {
   subjectName: string;
   category: string;
   categoryName: string;
+  parentCategory?: string;
   questionType?: "multiple-choice" | "text-input";
   guideUrl?: string;
+  parentCategoryGuideUrl?: string;
   questions: RawQuestion[];
 }
 
@@ -309,6 +311,24 @@ describe("guideUrl — contents/ 側の guide.md 存在チェック", () => {
       const guideMdPath = path.join(CONTENTS_DIR, `${relativePath}.md`);
       if (!fs.existsSync(guideMdPath)) {
         missing.push(`${qf.subject}/${qf.category}: ${guideMdPath}`);
+      }
+    }
+
+    expect(missing).toHaveLength(0);
+  });
+
+  it("parentCategoryGuideUrl が設定されているカテゴリの guide.md が contents/ に存在する", () => {
+    const manifest = loadManifest();
+    const questionFiles = loadAllQuestionFiles(manifest);
+    const missing: string[] = [];
+
+    for (const qf of questionFiles) {
+      if (!qf.parentCategoryGuideUrl) continue;
+      // parentCategoryGuideUrl は "../english/grammar/guide" のような相対パス
+      const relativePath = qf.parentCategoryGuideUrl.replace(/^\.\.\//, "");
+      const guideMdPath = path.join(CONTENTS_DIR, `${relativePath}.md`);
+      if (!fs.existsSync(guideMdPath)) {
+        missing.push(`${qf.subject}/${qf.parentCategory} (${qf.category}): ${guideMdPath}`);
       }
     }
 

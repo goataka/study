@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/tenses-irregular/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "go→went",
   "referenceGrade": "中学1年",
   "description": "go → went のように不規則に変化する動詞の過去形を覚えます。",

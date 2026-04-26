@@ -280,6 +280,22 @@ export class QuizApp {
       learnedBadge.setAttribute("aria-hidden", "true");
       groupHeader.appendChild(learnedBadge);
 
+      // 親カテゴリの解説ボタン（parentCategoryGuideUrl が設定されている場合のみ表示）
+      const parentGuideUrl = this.useCase.getParentCategoryGuideUrl(subject, parentCatId);
+      if (parentGuideUrl) {
+        const guideBtn = document.createElement("button");
+        guideBtn.className = "category-group-guide-btn";
+        guideBtn.type = "button";
+        guideBtn.textContent = "📖";
+        guideBtn.setAttribute("aria-label", `${parentCatName}の解説を見る`);
+        guideBtn.title = `${parentCatName}の解説を見る`;
+        guideBtn.addEventListener("click", (e: Event) => {
+          e.stopPropagation();
+          this.showParentCategoryGuide(parentGuideUrl);
+        });
+        groupHeader.appendChild(guideBtn);
+      }
+
       groupDiv.appendChild(groupHeader);
 
       const cats = categoriesByParent.get(parentCatId) ?? {};
@@ -653,6 +669,27 @@ export class QuizApp {
    */
   private updateGuidePanelContent(): void {
     this.updateGuidePanelContentByIds("guidePanelFrame", "guideNoContent");
+  }
+
+  /**
+   * 親カテゴリの解説を解説パネルに表示する。
+   * 解説タブに切り替えて、指定した親カテゴリの解説 URL を iframe に設定する。
+   */
+  private showParentCategoryGuide(guideUrl: string): void {
+    this.activePanelTab = "guide";
+    this.isPanelTabUserSelected = true;
+    this.showPanelTab("guide");
+
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement | null;
+    const noContent = document.getElementById("guideNoContent");
+    if (!guideFrame) return;
+
+    const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
+    if (guideFrame.getAttribute("src") !== embeddedUrl) {
+      guideFrame.src = embeddedUrl;
+    }
+    guideFrame.classList.remove("hidden");
+    noContent?.classList.add("hidden");
   }
 
   /**

@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/simultaneous-eq/guide",
+  "parentCategoryGuideUrl": "../math/algebra/guide",
   "example": "x+y=5, x-y=1 → x=3,y=2",
   "referenceGrade": "中学2年",
   "description": "加減法や代入法を使って連立方程式を解けるようにします。",

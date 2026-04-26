@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/fractions-diff-sub/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "3/4 - 1/3 = 5/12",
   "referenceGrade": "小学5年",
   "description": "分母が異なる分数のひき算で通分を使って正確に計算できるようにします。",

@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/adverbs/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "run `fast`",
   "referenceGrade": "中学1年",
   "description": "副詞は動詞・形容詞・他の副詞を修飾する語です。",

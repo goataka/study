@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/conjunctions/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "cats `and` dogs",
   "referenceGrade": "中学1年",
   "description": "接続詞は文と文、語と語をつなぐ語です。",

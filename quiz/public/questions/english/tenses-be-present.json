@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/tenses-be-present/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "I `am` happy.",
   "referenceGrade": "小学5年",
   "description": "be動詞は「〜です」「〜にいる」を表す動詞です。",

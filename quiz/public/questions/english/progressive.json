@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/progressive/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "I `am playing`.",
   "referenceGrade": "中学1年",
   "description": "進行形は動作が「〜している最中」であることを表します。",

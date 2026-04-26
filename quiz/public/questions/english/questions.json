@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/questions/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "`Do` you play?",
   "referenceGrade": "中学1年",
   "description": "do / does / did を使って一般動詞の疑問文を作ります。",

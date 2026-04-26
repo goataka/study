@@ -6,6 +6,7 @@
   "parentCategory": "algebra",
   "parentCategoryName": "代数",
   "guideUrl": "../math/algebra/linear-eq/guide",
+  "parentCategoryGuideUrl": "../math/algebra/guide",
   "example": "2x + 3 = 7 → x = 2",
   "referenceGrade": "中学1年",
   "description": "一次方程式を移項を使って正確に解けるようにします。",

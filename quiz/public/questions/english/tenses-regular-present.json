@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/tenses-regular-present/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "I `play` games.",
   "referenceGrade": "小学5年",
   "description": "一般動詞は動作や状態を表す動詞です。",

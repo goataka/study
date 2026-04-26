@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/division-1digit-no-remainder/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "12 ÷ 4 = 3",
   "referenceGrade": "小学3年",
   "description": "九九を使って、割り切れるわり算を正確に計算できるようにします。",

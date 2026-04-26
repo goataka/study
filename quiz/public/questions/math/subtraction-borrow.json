@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/subtraction-1digit-borrow/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "13 - 7 = 6",
   "referenceGrade": "小学1年",
   "description": "くり下がりのあるひき算を10のまとまりを使って正確にできるようにします。",

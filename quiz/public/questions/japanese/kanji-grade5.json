@@ -10,6 +10,7 @@
   "referenceGrade": "小学5年",
   "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
   "guideUrl": "../japanese/kanji/kanji-grade5/guide",
+  "parentCategoryGuideUrl": "../japanese/kanji/guide",
   "questions": [
     {
       "id": "c94c5d80-8a7a-5b59-ae7a-935427065ddd",

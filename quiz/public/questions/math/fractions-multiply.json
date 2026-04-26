@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/fractions-multiply/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "2/3 × 3/4 = 1/2",
   "referenceGrade": "小学6年",
   "description": "分数のかけ算を正確に計算できるようにします。",

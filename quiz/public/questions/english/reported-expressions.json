@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/reported-expressions/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "`this`→`that`",
   "referenceGrade": "高校1年",
   "description": "this / here / now などの指示語や時の表現は間接話法で過去を指す語に変わります。",

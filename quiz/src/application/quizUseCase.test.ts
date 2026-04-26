@@ -602,6 +602,60 @@ describe("QuizUseCase — getCategoryGuideUrl 仕様", () => {
   });
 });
 
+describe("QuizUseCase — getParentCategoryGuideUrl 仕様", () => {
+  const makeQuestionWithParentGuide = (
+    id: string,
+    subject: string,
+    category: string,
+    parentCategory: string,
+    parentCategoryGuideUrl: string
+  ): Question => ({
+    ...makeQuestion(id, subject, category),
+    parentCategory,
+    parentCategoryName: parentCategory,
+    parentCategoryGuideUrl,
+  });
+
+  it("parentCategoryGuideUrl を持つ問題の親カテゴリでは URL が返る", async () => {
+    const questions = [
+      makeQuestionWithParentGuide("q1", "english", "phonics", "pronunciation", "../english/pronunciation/guide"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getParentCategoryGuideUrl("english", "pronunciation")).toBe("../english/pronunciation/guide");
+  });
+
+  it("parentCategoryGuideUrl を持たない親カテゴリでは undefined が返る", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics")];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getParentCategoryGuideUrl("english", "pronunciation")).toBeUndefined();
+  });
+
+  it("存在しない親カテゴリでは undefined が返る", async () => {
+    const questions = [
+      makeQuestionWithParentGuide("q1", "english", "phonics", "pronunciation", "../english/pronunciation/guide"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getParentCategoryGuideUrl("english", "nonexistent")).toBeUndefined();
+  });
+
+  it("複数問題がある場合は最初に見つかった parentCategoryGuideUrl を返す", async () => {
+    const questions = [
+      makeQuestionWithParentGuide("q1", "english", "phonics", "pronunciation", "../english/pronunciation/guide"),
+      makeQuestionWithParentGuide("q2", "english", "linking", "pronunciation", "../english/pronunciation/guide2"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getParentCategoryGuideUrl("english", "pronunciation")).toBe("../english/pronunciation/guide");
+  });
+});
+
 describe("QuizUseCase — getCategoryExample 仕様", () => {
   const makeQuestionWithExample = (id: string, subject: string, category: string, example: string): Question => ({
     ...makeQuestion(id, subject, category),

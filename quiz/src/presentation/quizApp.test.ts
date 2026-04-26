@@ -647,6 +647,122 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     // グループが自動展開されていること
     expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
   });
+
+  it("parentCategoryGuideUrl が設定されているグループヘッダーに解説ボタンが表示される", async () => {
+    // grammar グループに parentCategoryGuideUrl を追加したモックデータ
+    const grammarFileWithParentGuide = {
+      ...mockGrammarFile,
+      parentCategoryGuideUrl: "../english/grammar/guide",
+    };
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestWithParent) } as Response);
+      }
+      if (urlStr.includes("grammar.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFileWithParentGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockPhonicsFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // grammar グループに解説ボタンが表示されること
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    const guideBtn = grammarHeader?.querySelector(".category-group-guide-btn");
+    expect(guideBtn).not.toBeNull();
+
+    // parentCategoryGuideUrl がない phonics グループには解説ボタンが表示されないこと
+    const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
+    const phonicsGuideBtn = phonicsHeader?.querySelector(".category-group-guide-btn");
+    expect(phonicsGuideBtn).toBeNull();
+  });
+
+  it("parentCategoryGuideUrl がないグループヘッダーには解説ボタンが表示されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // デフォルトモックでは parentCategoryGuideUrl がないのでボタンなし
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    const guideBtn = grammarHeader?.querySelector(".category-group-guide-btn");
+    expect(guideBtn).toBeNull();
+  });
+
+  it("解説ボタンをクリックすると解説パネルが表示される", async () => {
+    const grammarFileWithParentGuide = {
+      ...mockGrammarFile,
+      parentCategoryGuideUrl: "../english/grammar/guide",
+    };
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestWithParent) } as Response);
+      }
+      if (urlStr.includes("grammar.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFileWithParentGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockPhonicsFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    const guideBtn = grammarHeader?.querySelector<HTMLElement>(".category-group-guide-btn");
+    guideBtn?.click();
+
+    // 解説タブがアクティブになること
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
+    expect(guideTab?.classList.contains("active")).toBe(true);
+
+    // iframe に親カテゴリの解説 URL が設定されること
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
+    expect(guideFrame.src).toContain("grammar");
+    expect(guideFrame.classList.contains("hidden")).toBe(false);
+  });
+
+  it("解説ボタンをクリックしてもグループの折りたたみ状態は変化しない", async () => {
+    const grammarFileWithParentGuide = {
+      ...mockGrammarFile,
+      parentCategoryGuideUrl: "../english/grammar/guide",
+    };
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestWithParent) } as Response);
+      }
+      if (urlStr.includes("grammar.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFileWithParentGuide) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockPhonicsFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarGroup = document.querySelector('.category-group[data-parent-category="grammar"]');
+    expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
+
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    const guideBtn = grammarHeader?.querySelector<HTMLElement>(".category-group-guide-btn");
+    guideBtn?.click();
+
+    // 解説ボタンクリックでグループが折りたたまれないこと
+    expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
+  });
 });
 
 describe("QuizApp — 解説パネルタブ仕様", () => {

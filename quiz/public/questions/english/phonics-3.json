@@ -6,6 +6,7 @@
   "parentCategory": "pronunciation",
   "parentCategoryName": "発音",
   "guideUrl": "../english/pronunciation/phonics-3letter/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": "`igh`→/aɪ/ (night)",
   "referenceGrade": "小学5年",
   "description": "3文字の特殊な音パターンを覚えます。",

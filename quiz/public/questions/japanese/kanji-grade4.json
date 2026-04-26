@@ -10,6 +10,7 @@
   "referenceGrade": "小学4年",
   "description": "小学4年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
   "guideUrl": "../japanese/kanji/kanji-grade4/guide",
+  "parentCategoryGuideUrl": "../japanese/kanji/guide",
   "questions": [
     {
       "id": "c55b0102-f674-5c76-b469-559b4fccd02c",

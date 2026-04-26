@@ -16,6 +16,8 @@ export class QuizUseCase {
   private correctStreaks: Record<string, number>;
   /** subject::category -> guideUrl のキャッシュ（O(1) 参照用） */
   private categoryGuideMap = new Map<string, string>();
+  /** subject::parentCategory -> parentCategoryGuideUrl のキャッシュ（O(1) 参照用） */
+  private parentCategoryGuideMap = new Map<string, string>();
   /** subject::category -> example のキャッシュ（O(1) 参照用） */
   private categoryExampleMap = new Map<string, string>();
   /** subject::category -> referenceGrade のキャッシュ（O(1) 参照用） */
@@ -35,6 +37,7 @@ export class QuizUseCase {
     this.allQuestions = await this.questionRepo.loadAll();
     // subject::category -> guideUrl / referenceGrade / description のキャッシュを構築する
     this.categoryGuideMap.clear();
+    this.parentCategoryGuideMap.clear();
     this.categoryExampleMap.clear();
     this.categoryGradeMap.clear();
     this.categoryDescriptionMap.clear();
@@ -42,6 +45,12 @@ export class QuizUseCase {
       const key = `${q.subject}::${q.category}`;
       if (q.guideUrl !== undefined && !this.categoryGuideMap.has(key)) {
         this.categoryGuideMap.set(key, q.guideUrl);
+      }
+      if (q.parentCategoryGuideUrl !== undefined && q.parentCategory !== undefined) {
+        const parentKey = `${q.subject}::${q.parentCategory}`;
+        if (!this.parentCategoryGuideMap.has(parentKey)) {
+          this.parentCategoryGuideMap.set(parentKey, q.parentCategoryGuideUrl);
+        }
       }
       if (q.example !== undefined && !this.categoryExampleMap.has(key)) {
         this.categoryExampleMap.set(key, q.example);
@@ -272,6 +281,14 @@ export class QuizUseCase {
    */
   getCategoryGuideUrl(subject: string, category: string): string | undefined {
     return this.categoryGuideMap.get(`${subject}::${category}`);
+  }
+
+  /**
+   * 指定した教科・親カテゴリの解説 URL を返す。
+   * 該当親カテゴリに parentCategoryGuideUrl が設定されていない場合は undefined を返す。
+   */
+  getParentCategoryGuideUrl(subject: string, parentCategory: string): string | undefined {
+    return this.parentCategoryGuideMap.get(`${subject}::${parentCategory}`);
   }
 
   /**

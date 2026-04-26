@@ -6,6 +6,7 @@
   "parentCategory": "arithmetic",
   "parentCategoryName": "算数・基本計算",
   "guideUrl": "../math/arithmetic/addition-1digit-carry/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "7 + 8 = 15",
   "referenceGrade": "小学1年",
   "description": "くり上がりのあるたし算を10のまとまりを使って正確にできるようにします。",

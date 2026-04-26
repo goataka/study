@@ -6,6 +6,7 @@
   "parentCategory": "grammar",
   "parentCategoryName": "文法",
   "guideUrl": "../english/grammar/questions-wh/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "`What` do you do?",
   "referenceGrade": "中学1年",
   "description": "what / where / who などの疑問詞を文頭に置いて、具体的な情報を尋ねます。",
