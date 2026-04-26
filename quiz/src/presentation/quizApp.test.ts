@@ -637,10 +637,10 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     const grammarGroup = document.querySelector('.category-group[data-parent-category="grammar"]');
     expect(grammarGroup?.classList.contains("collapsed")).toBe(true);
 
-    // 別の方法でカテゴリを選択（直接 click は collapsed で非表示のため）
-    // selectFirstUnlearnedCategory でカテゴリが自動選択される場合のシミュレーション
-    // フィルターを直接変更後に updateCategoryListActive を呼ぶ代わりに
-    // 折りたたみ状態で catItem を直接クリック
+    // ここではユーザーの可視要素への操作を再現するのではなく、
+    // selectFirstUnlearnedCategory 相当の「プログラム的なカテゴリ選択」を模擬する。
+    // そのため、折りたたまれたグループ内の category-item に対して
+    // click ハンドラーを直接発火させ、自動展開されることを確認する。
     const grammarCatItem = grammarGroup?.querySelector<HTMLElement>('.category-item[data-category="tenses-past"]');
     grammarCatItem?.click();
 

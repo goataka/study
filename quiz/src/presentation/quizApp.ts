@@ -246,12 +246,11 @@ export class QuizApp {
       return;
     }
 
-    // 親カテゴリとその配下のカテゴリを収集
+    // 親カテゴリとその配下のカテゴリを収集（1回の走査で描画に必要な情報をキャッシュ）
     const parentCategories = this.useCase.getParentCategoriesForSubject(subject);
-    const categoriesForParent: Record<string, Set<string>> = {};
+    const categoriesByParent = new Map<string, Record<string, string>>();
     for (const [parentCatId] of Object.entries(parentCategories)) {
-      const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
-      categoriesForParent[parentCatId] = new Set(Object.keys(cats));
+      categoriesByParent.set(parentCatId, this.useCase.getCategoriesForParent(subject, parentCatId));
     }
 
     // 親カテゴリがある場合はグループヘッダー付きで表示
@@ -283,7 +282,7 @@ export class QuizApp {
 
       groupDiv.appendChild(groupHeader);
 
-      const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
+      const cats = categoriesByParent.get(parentCatId) ?? {};
       for (const [catId, catName] of Object.entries(cats)) {
         const catItem = this.createCategoryItem(subject, catId, catName, parentCatId);
         groupDiv.appendChild(catItem);
@@ -313,7 +312,9 @@ export class QuizApp {
     // 親カテゴリに属さないスタンドアロンカテゴリ
     const allCategories = this.useCase.getCategoriesForSubject(subject);
     for (const [catId, catName] of Object.entries(allCategories)) {
-      const belongsToParent = Object.values(categoriesForParent).some((catSet) => catSet.has(catId));
+      const belongsToParent = Array.from(categoriesByParent.values()).some(
+        (cats) => catId in cats
+      );
       if (!belongsToParent) {
         const catItem = this.createCategoryItem(subject, catId, catName);
         categoryList.appendChild(catItem);

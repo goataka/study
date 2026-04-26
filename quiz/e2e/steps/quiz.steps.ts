@@ -287,22 +287,22 @@ Then("non-hiragana candidates should not be visible in the candidate list", asyn
   await expect(candidateList.locator(".kanji-candidate-btn", { hasText: "川" })).toHaveCount(0);
 });
 
-When("I click the first category group header", async ({ page }) => {
-  // 最初の親カテゴリグループヘッダーをクリックする
-  await page.locator(".category-group-header").first().click();
+When("I click the {string} category group header", async ({ page }, parentCatId: string) => {
+  // 指定した親カテゴリのグループヘッダーをクリックする
+  await page.locator(`.category-group-header[data-parent-category="${parentCatId}"]`).click();
 });
 
-When("I click the first category group header again", async ({ page }) => {
-  // 最初の親カテゴリグループヘッダーを再度クリックする
-  await page.locator(".category-group-header").first().click();
+When("I click the {string} category group header again", async ({ page }, parentCatId: string) => {
+  // 指定した親カテゴリのグループヘッダーを再度クリックする
+  await page.locator(`.category-group-header[data-parent-category="${parentCatId}"]`).click();
 });
 
-Then("the first category group should be collapsed", async ({ page }) => {
-  // 最初のグループが折りたたまれていること
-  await expect(page.locator(".category-group").first()).toHaveClass(/collapsed/);
+Then("the {string} category group should be collapsed", async ({ page }, parentCatId: string) => {
+  // 指定した親カテゴリのグループが折りたたまれていること
+  await expect(page.locator(`.category-group[data-parent-category="${parentCatId}"]`)).toHaveClass(/collapsed/);
 });
 
-Then("the first category group should be expanded", async ({ page }) => {
-  // 最初のグループが展開されていること
-  await expect(page.locator(".category-group").first()).not.toHaveClass(/collapsed/);
+Then("the {string} category group should be expanded", async ({ page }, parentCatId: string) => {
+  // 指定した親カテゴリのグループが展開されていること
+  await expect(page.locator(`.category-group[data-parent-category="${parentCatId}"]`)).not.toHaveClass(/collapsed/);
 });
