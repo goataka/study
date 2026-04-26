@@ -28,7 +28,7 @@ I play `the` game every day.
 | `the` | 特定のもの | `the` game every day |
 | なし | 複数形・不可算名詞（一般的） | I play games. |
 
-## 一覧
+## 例
 
 | パターン | 文 |
 |----------|------|

@@ -29,7 +29,7 @@ She sings `beautifully`.
 | 時 | 文末 | I played games `yesterday`. |
 | 場所 | 文末 | I play games `here`. |
 
-## 一覧
+## 例
 
 | パターン | 文 |
 |----------|------|

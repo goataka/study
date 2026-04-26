@@ -18,7 +18,7 @@ I `am playing` games.（今まさにしている）
 | 過去進行形 | `was` | I `was playing` games. |
 | 未来進行形 | `will be` | I `will be playing` games. |
 
-## 一覧
+## 例
 
 | パターン | 文 |
 |----------|------|

@@ -25,7 +25,7 @@ go → went → `gone`
 | `break` | `broke` | `broken` | 壊す |
 | `begin` | `began` | `begun` | 始める |
 
-## 一覧
+## 例
 
 | 現在形 | 完了形 |
 |--------|--------|

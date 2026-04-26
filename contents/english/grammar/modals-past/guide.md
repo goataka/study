@@ -20,7 +20,7 @@ I `could play` games.
 | `must` | `had to` | I `had to play` this game. |
 | `should` | `should have + 過去分詞` | I `should have played` games earlier. |
 
-## 一覧
+## 例
 
 | 現在 | 過去 |
 |------|------|

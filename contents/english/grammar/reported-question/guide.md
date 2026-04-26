@@ -18,7 +18,7 @@ He asked if I `played` games.
 | "What do you play?" | He asked `what` I played. |
 | "Where do you live?" | He asked `where` I lived. |
 
-## 一覧
+## 例
 
 | 直接話法 | 間接話法 |
 |----------|----------|

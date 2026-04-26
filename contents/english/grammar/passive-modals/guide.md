@@ -18,7 +18,7 @@ Games `can be played` by anyone.
 | `should` | `should be + 過去分詞` | This `should be checked` again. |
 | `will` | `will be + 過去分詞` | This `will be sent` tomorrow. |
 
-## 一覧
+## 例
 
 | 能動態 | 受動態 |
 |--------|--------|

@@ -21,7 +21,7 @@ I `can play` games.（ゲームができる）
 | `will` | ～するでしょう | I `will` play games. |
 | `might` | ～かもしれない（may より弱い） | I `might` play games later. |
 
-## 一覧
+## 例
 
 | 意味 | 文 |
 |------|------|

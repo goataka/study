@@ -21,7 +21,7 @@ I `play` games.
 | be動詞（過去） | be動詞 + 主語? | `Was` I happy? |
 | 進行形 | be動詞 + 主語 + -ing? | `Am` I playing games? |
 
-## 一覧
+## 例
 
 ### 一般動詞の疑問文
 

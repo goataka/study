@@ -19,7 +19,7 @@ He said that he `played` games.
 | 未来形 `will play` | `would play` |
 | `can` | `could` |
 
-## 一覧
+## 例
 
 | 直接話法 | 間接話法 |
 |----------|----------|

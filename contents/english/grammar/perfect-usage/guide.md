@@ -25,7 +25,7 @@ I `have lived` here for three years.（3年間ここに住んでいる）
 | 完了 | just, already, yet | I `have just finished` my homework. |
 | 継続 | for, since | I `have lived` here `for` three years. |
 
-## 一覧
+## 例
 
 | 文 | 用法 |
 |------|------|

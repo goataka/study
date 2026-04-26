@@ -18,7 +18,7 @@ The game `will be` fun.
 | 過去形 | was/were | The game `was` fun. |
 | 未来形 | will be | The game `will be` fun. |
 
-## 一覧
+## 例
 
 | 現在形 | 未来形 |
 |--------|--------|

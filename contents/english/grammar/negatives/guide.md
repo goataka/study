@@ -21,7 +21,7 @@ I `do not play` games.
 | be動詞（過去） | be + not | I `was not` happy. |
 | 進行形 | be + not + -ing | I `am not playing` games. |
 
-## 一覧
+## 例
 
 ### 一般動詞の否定文
 
