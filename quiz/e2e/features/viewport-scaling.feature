@@ -15,3 +15,20 @@ Feature: 縦方向ズームスケーリング
     Then the start screen should be visible
     And the header should remain visible
     And the page content should fit within the viewport height
+
+  # 1920×1080 を基準とした JavaScript ズームスケーリングの検証
+
+  Scenario: 1920×1080の標準画面でズームは1倍になる
+    Given the viewport is 1920x1080
+    And the quiz application is loaded
+    Then the html zoom should be 1
+
+  Scenario: 1280×720の画面でズームが比率に応じてスケールされる
+    Given the viewport is 1280x720
+    And the quiz application is loaded
+    Then the html zoom should be approximately 0.6667
+
+  Scenario: 2560×1440の画面でズームが比率に応じてスケールされる
+    Given the viewport is 2560x1440
+    And the quiz application is loaded
+    Then the html zoom should be approximately 1.3333
