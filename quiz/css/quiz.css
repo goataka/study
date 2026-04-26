@@ -530,6 +530,8 @@ header h1 {
 
 #questionListContent {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     min-height: 0;
 }
@@ -1220,7 +1222,7 @@ button:disabled {
 .guide-frame {
     width: 100%;
     flex: 1;
-    min-height: 0;
+    height: 0; /* flex: 1 が iframes に効くよう明示的に height: 0 を指定 */
     border: none;
     display: block;
     background: white;
