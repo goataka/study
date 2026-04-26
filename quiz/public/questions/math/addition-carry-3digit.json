@@ -11,7 +11,7 @@
   "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "347 + 285 = 632",
   "referenceGrade": "小学3年",
-  "description": "くり上がりのある3けたのたし算を筆算で正確に計算できるようにします。",
+  "description": "くり上がりのある3けた以上のたし算を筆算で正確に計算できるようにします。",
   "questions": [
     {
       "id": "8b0f260a-936a-5ab5-b298-24e4433b00d1",

@@ -11,7 +11,7 @@
   "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "123 + 456 = 579",
   "referenceGrade": "小学3年",
-  "description": "くり上がりのない3けたのたし算を筆算で正確に計算できるようにします。",
+  "description": "くり上がりのない3けた以上のたし算を筆算で正確に計算できるようにします。",
   "questions": [
     {
       "id": "78310bf8-9ed8-5b50-9f0b-f12612fd3273",
