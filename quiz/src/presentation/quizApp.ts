@@ -592,18 +592,7 @@ export class QuizApp {
 
       // アクティブなカテゴリが属するグループを自動展開する
       if (isActive && el.dataset.parentCategory) {
-        const parentCatId = el.dataset.parentCategory;
-        if (this.collapsedParentCategories.has(parentCatId)) {
-          this.collapsedParentCategories.delete(parentCatId);
-          const groupDiv = categoryList.querySelector<HTMLElement>(
-            `.category-group[data-parent-category="${parentCatId}"]`
-          );
-          const groupHeader = categoryList.querySelector<HTMLElement>(
-            `.category-group-header[data-parent-category="${parentCatId}"]`
-          );
-          groupDiv?.classList.remove("collapsed");
-          groupHeader?.setAttribute("aria-expanded", "true");
-        }
+        this.expandParentCategory(el.dataset.parentCategory);
       }
     });
   }
@@ -1182,27 +1171,36 @@ export class QuizApp {
    * 折りたたまれていれば展開し、展開されていれば折りたたむ。
    */
   private toggleParentCategory(parentCatId: string): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
-
     if (this.collapsedParentCategories.has(parentCatId)) {
       this.collapsedParentCategories.delete(parentCatId);
     } else {
       this.collapsedParentCategories.add(parentCatId);
     }
+    this.applyParentCategoryCollapsedState(parentCatId);
+  }
 
-    // DOM に反映する
+  /**
+   * 指定した親カテゴリを強制的に展開する（折りたたまれていれば展開する）。
+   */
+  private expandParentCategory(parentCatId: string): void {
+    if (!this.collapsedParentCategories.has(parentCatId)) return;
+    this.collapsedParentCategories.delete(parentCatId);
+    this.applyParentCategoryCollapsedState(parentCatId);
+  }
+
+  /**
+   * 指定した親カテゴリの折りたたみ状態を DOM に反映する。
+   */
+  private applyParentCategoryCollapsedState(parentCatId: string): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+
+    const isCollapsed = this.collapsedParentCategories.has(parentCatId);
     const groupDiv = categoryList.querySelector<HTMLElement>(`.category-group[data-parent-category="${parentCatId}"]`);
-    const groupHeader = categoryList.querySelector<HTMLElement>(`.category-group-header[data-parent-category="${parentCatId}"]`);
-
     if (groupDiv) {
-      groupDiv.classList.toggle("collapsed", this.collapsedParentCategories.has(parentCatId));
-    }
-    if (groupHeader) {
-      groupHeader.setAttribute(
-        "aria-expanded",
-        this.collapsedParentCategories.has(parentCatId) ? "false" : "true"
-      );
+      groupDiv.classList.toggle("collapsed", isCollapsed);
+      const groupHeader = groupDiv.querySelector<HTMLElement>(".category-group-header");
+      groupHeader?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
     }
   }
 
