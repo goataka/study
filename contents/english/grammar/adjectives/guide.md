@@ -26,17 +26,17 @@ The game is `exciting`.
 | パターン | 文 |
 |----------|------|
 | 名詞の前 | I play fun games. |
-| 名詞の前 | I read a (`new`) book. |
+| 名詞の前 | I play a (`new`) game. |
 | be動詞の後 | The game is (`fun`). |
-| 名詞の前 | She has (`long`) hair. |
-| be動詞の後 | The book is (`interesting`). |
-| 名詞の前 | He is a (`tall`) boy. |
+| 名詞の前 | The game has (`long`) stages. |
+| be動詞の後 | The stage is (`interesting`). |
+| 名詞の前 | He is a (`tall`) player. |
 
 ## 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|
 | 私は面白いゲームをします。 | I play fun games. |
-| その本は新しいです。 | The book is new. |
-| 彼女は長い髪をしています。 | She has long hair. |
-| 彼は背が高いです。 | He is tall. |
+| 私は新しいゲームをします。 | I play a new game. |
+| そのゲームには長いステージがあります。 | The game has long stages. |
+| 彼は背の高いプレイヤーです。 | He is a tall player. |

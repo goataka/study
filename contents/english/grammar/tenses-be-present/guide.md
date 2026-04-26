@@ -4,9 +4,9 @@ be動詞は「〜です」「〜にいる」を表す動詞です。
 
 ## 主語によるbe動詞の変化
 
-The game `is` fun.
-
 I `am` a player.
+
+The game `is` fun.
 
 Games `are` fun.
 
@@ -26,18 +26,18 @@ Games `are` fun.
 
 | 主語 | 文 |
 |------|------|
-| I | I am a gamer. |
-| He | He (`is`) happy. |
-| She | She (`is`) a student. |
-| They | They (`are`) friends. |
-| We | We (`are`) tired. |
-| It | It (`is`) cold. |
+| I | I am a player. |
+| He | He (`is`) a gamer. |
+| She | She (`is`) a player. |
+| They | They (`are`) gamers. |
+| We | We (`are`) players. |
+| It | It (`is`) fun. |
 
 ## 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|
-| 私は幸せです。 | I am happy. |
-| 彼は学生です。 | He is a student. |
-| 彼女は先生です。 | She is a teacher. |
-| 彼らは友達です。 | They are friends. |
+| 私はプレイヤーです。 | I am a player. |
+| 彼はゲーマーです。 | He is a gamer. |
+| 彼女はプレイヤーです。 | She is a player. |
+| ゲームは楽しいです。 | The game is fun. |
