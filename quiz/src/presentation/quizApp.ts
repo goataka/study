@@ -153,10 +153,29 @@ export class QuizApp {
       btn.classList.toggle("active", active);
       btn.setAttribute("aria-pressed", String(active));
     });
+    // 解説 iframe にもフォントサイズを通知する
+    document.querySelectorAll<HTMLIFrameElement>(".guide-frame").forEach((iframe) => {
+      this.notifyGuideFontSize(iframe);
+    });
     // 初期復元時は保存をスキップし、ユーザー操作時のみ保存する
     if (persist) {
       const progressRepo = new LocalStorageProgressRepository();
       progressRepo.saveFontSizeLevel(level);
+    }
+  }
+
+  /**
+   * 解説 iframe にフォントサイズを postMessage で通知する。
+   * 解説ページはクイズアプリと同一オリジンで配信されるため、targetOrigin に window.location.origin を使用する。
+   */
+  private notifyGuideFontSize(iframe: HTMLIFrameElement): void {
+    try {
+      iframe.contentWindow?.postMessage(
+        { type: "fontSizeChanged", level: this.fontSizeLevel },
+        window.location.origin
+      );
+    } catch (_) {
+      // iframe のコンテンツウィンドウへのアクセスが拒否された場合は無視する
     }
   }
 
@@ -1193,6 +1212,9 @@ export class QuizApp {
     const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
     if (guideFrame.getAttribute("src") !== embeddedUrl) {
       guideFrame.src = embeddedUrl;
+      guideFrame.addEventListener("load", () => { this.notifyGuideFontSize(guideFrame); }, { once: true });
+    } else {
+      this.notifyGuideFontSize(guideFrame);
     }
     guideFrame.classList.remove("hidden");
     noContent?.classList.add("hidden");
@@ -1228,6 +1250,9 @@ export class QuizApp {
       const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
       if (guideFrame.getAttribute("src") !== embeddedUrl) {
         guideFrame.src = embeddedUrl;
+        guideFrame.addEventListener("load", () => { this.notifyGuideFontSize(guideFrame!); }, { once: true });
+      } else {
+        this.notifyGuideFontSize(guideFrame);
       }
       guideFrame.classList.remove("hidden");
       noContent?.classList.add("hidden");

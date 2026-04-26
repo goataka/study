@@ -4205,4 +4205,31 @@ describe("QuizApp — フォントサイズ切替仕様", () => {
     smallBtn.click();
     expect(localStorage.getItem("fontSizeLevel")).toBe("small");
   });
+
+  it("フォントサイズ変更時に .guide-frame の iframe へ fontSizeChanged メッセージが送信される", async () => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+    document.body.classList.remove("font-size-medium", "font-size-large");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
+    guideFrame.classList.add("guide-frame");
+
+    const postedMessages: unknown[] = [];
+    const origPostMessage = guideFrame.contentWindow?.postMessage.bind(guideFrame.contentWindow);
+    if (guideFrame.contentWindow) {
+      guideFrame.contentWindow.postMessage = (msg: unknown) => {
+        postedMessages.push(msg);
+        origPostMessage?.(msg, "*");
+      };
+    }
+
+    const largeBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="large"]')!;
+    largeBtn.click();
+
+    expect(postedMessages).toContainEqual({ type: "fontSizeChanged", level: "large" });
+  });
 });

@@ -7,6 +7,10 @@
   html.embedded-mode header.site-header { display: none; }
   /* 解説ページの先頭に表示される「学習ドリル」サイトリンクを非表示にする */
   .markdown-body > h1:not([id]) { display: none; }
+  /* フォントサイズ：中（クイズアプリのフォントサイズ設定に連動） */
+  html.embedded-mode.font-size-medium body { font-size: 1.2em; }
+  /* フォントサイズ：大（クイズアプリのフォントサイズ設定に連動） */
+  html.embedded-mode.font-size-large body { font-size: 1.5em; }
 </style>
 <script>
   // ?embedded=1 が付与されているとき（クイズの解説 iframe として表示されるとき）、
@@ -16,6 +20,17 @@
   if (new URLSearchParams(location.search).get('embedded') === '1') {
     document.documentElement.classList.add('embedded-mode');
   }
+  // クイズアプリからフォントサイズ変更メッセージを受け取り、html 要素にクラスを付与する
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'fontSizeChanged') {
+      document.documentElement.classList.remove('font-size-medium', 'font-size-large');
+      if (e.data.level === 'medium') {
+        document.documentElement.classList.add('font-size-medium');
+      } else if (e.data.level === 'large') {
+        document.documentElement.classList.add('font-size-large');
+      }
+    }
+  });
 </script>
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
