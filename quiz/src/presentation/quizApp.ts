@@ -122,7 +122,7 @@ export class QuizApp {
   private loadFontSize(): void {
     const progressRepo = new LocalStorageProgressRepository();
     const saved = progressRepo.loadFontSizeLevel();
-    if (saved === "medium" || saved === "large") {
+    if (saved !== null) {
       this.fontSizeLevel = saved;
     }
     this.applyFontSize(this.fontSizeLevel);

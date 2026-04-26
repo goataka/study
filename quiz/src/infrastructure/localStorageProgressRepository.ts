@@ -82,15 +82,19 @@ export class LocalStorageProgressRepository implements IProgressRepository {
     }
   }
 
-  loadFontSizeLevel(): string | null {
+  loadFontSizeLevel(): "small" | "medium" | "large" | null {
     try {
-      return localStorage.getItem(FONT_SIZE_KEY);
+      const saved = localStorage.getItem(FONT_SIZE_KEY);
+      if (saved === "small" || saved === "medium" || saved === "large") {
+        return saved;
+      }
+      return null;
     } catch {
       return null;
     }
   }
 
-  saveFontSizeLevel(level: string): void {
+  saveFontSizeLevel(level: "small" | "medium" | "large"): void {
     try {
       localStorage.setItem(FONT_SIZE_KEY, level);
     } catch (error) {
