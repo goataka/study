@@ -5,11 +5,9 @@
     box-sizing: border-box;
 }
 
-/* 1920×1080 を基準とするスケーリング（zoom は JavaScript で動的に適用） */
-html {
-    /* zoom は index.html のインラインスクリプトで window.innerWidth / 1920 と
-       window.innerHeight / 1080 の小さい方を動的に設定する */
-}
+/* 1920×1080 を基準とするスケーリング。
+   zoom は index.html のインラインスクリプトで clientWidth / 1920 と
+   clientHeight / 1080 の小さい方を動的に設定する（スクロールバー除外のため clientWidth を使用）。 */
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;

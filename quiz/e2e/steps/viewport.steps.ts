@@ -20,16 +20,20 @@ Then("the page content should fit within the viewport height", async ({ page }) 
 
 // html 要素の zoom 値が期待値と一致することを確認（1920×1080 標準基準のスケーリング検証）
 Then("the html zoom should be {float}", async ({ page }, expectedZoom: number) => {
-  const zoom = await page.evaluate(
-    () => parseFloat(document.documentElement.style.zoom) || 1,
-  );
+  const zoom = await page.evaluate(() => {
+    const raw = parseFloat(document.documentElement.style.zoom);
+    if (!Number.isFinite(raw)) throw new Error(`zoom が有効な数値ではありません: "${document.documentElement.style.zoom}"`);
+    return raw;
+  });
   expect(zoom).toBeCloseTo(expectedZoom, 4);
 });
 
 // html 要素の zoom 値が期待値に近い（許容誤差 0.01）ことを確認
 Then("the html zoom should be approximately {float}", async ({ page }, expectedZoom: number) => {
-  const zoom = await page.evaluate(
-    () => parseFloat(document.documentElement.style.zoom) || 1,
-  );
+  const zoom = await page.evaluate(() => {
+    const raw = parseFloat(document.documentElement.style.zoom);
+    if (!Number.isFinite(raw)) throw new Error(`zoom が有効な数値ではありません: "${document.documentElement.style.zoom}"`);
+    return raw;
+  });
   expect(zoom).toBeCloseTo(expectedZoom, 2);
 });

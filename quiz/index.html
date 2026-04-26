@@ -9,11 +9,13 @@
   <link rel="stylesheet" href="./css/quiz.css">
   <script>
     /* 1920×1080 を基準として画面全体にフィットするようズームスケーリングを適用する */
+    /* clientWidth/clientHeight を使用してスクロールバーを除いた表示領域を取得する */
     (function () {
       function applyZoom() {
+        var el = document.documentElement;
         document.documentElement.style.zoom = Math.min(
-          window.innerWidth / 1920,
-          window.innerHeight / 1080
+          el.clientWidth / 1920,
+          el.clientHeight / 1080
         );
       }
       applyZoom();
