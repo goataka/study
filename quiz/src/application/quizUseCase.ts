@@ -6,9 +6,9 @@
 import type { Question } from "../domain/question";
 import { QuizSession } from "../domain/quizSession";
 import type { QuizMode, QuizFilter, AnswerResult } from "../domain/quizSession";
-import type { IQuestionRepository, IProgressRepository, QuizRecord } from "./ports";
+import type { IQuestionRepository, IProgressRepository, QuizRecord, UserDataExport } from "./ports";
 
-export type { QuizMode, QuizFilter, AnswerResult, QuizRecord };
+export type { QuizMode, QuizFilter, AnswerResult, QuizRecord, UserDataExport };
 
 export class QuizUseCase {
   private allQuestions: Question[] = [];
@@ -243,6 +243,10 @@ export class QuizUseCase {
 
   getHistory(): QuizRecord[] {
     return this.progressRepo.loadHistory();
+  }
+
+  exportAllData(): UserDataExport {
+    return this.progressRepo.exportAllData();
   }
 
   /**

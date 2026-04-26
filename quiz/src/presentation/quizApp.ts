@@ -222,8 +222,7 @@ export class QuizApp {
   }
 
   private downloadUserData(): void {
-    const progressRepo = new LocalStorageProgressRepository();
-    const data = progressRepo.exportAllData();
+    const data = this.useCase.exportAllData();
     const json = JSON.stringify(data, null, 2);
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
