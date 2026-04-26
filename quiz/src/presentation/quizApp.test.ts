@@ -580,6 +580,73 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     const statsInfo = document.getElementById("statsInfo");
     expect(statsInfo?.textContent).toContain("全3問");
   });
+
+  it("グループヘッダーをクリックするとグループが折りたたまれる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    grammarHeader?.click();
+
+    const grammarGroup = document.querySelector('.category-group[data-parent-category="grammar"]');
+    expect(grammarGroup?.classList.contains("collapsed")).toBe(true);
+  });
+
+  it("折りたたまれたグループヘッダーを再度クリックすると展開される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    grammarHeader?.click(); // 折りたたむ
+    grammarHeader?.click(); // 展開する
+
+    const grammarGroup = document.querySelector('.category-group[data-parent-category="grammar"]');
+    expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
+  });
+
+  it("グループヘッダーに aria-expanded 属性が設定される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("true");
+
+    grammarHeader?.click();
+    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("false");
+  });
+
+  it("折りたたまれたグループに属するカテゴリを選択するとグループが自動展開される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // grammar グループを折りたたむ
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    grammarHeader?.click();
+    const grammarGroup = document.querySelector('.category-group[data-parent-category="grammar"]');
+    expect(grammarGroup?.classList.contains("collapsed")).toBe(true);
+
+    // 別の方法でカテゴリを選択（直接 click は collapsed で非表示のため）
+    // selectFirstUnlearnedCategory でカテゴリが自動選択される場合のシミュレーション
+    // フィルターを直接変更後に updateCategoryListActive を呼ぶ代わりに
+    // 折りたたみ状態で catItem を直接クリック
+    const grammarCatItem = grammarGroup?.querySelector<HTMLElement>('.category-item[data-category="tenses-past"]');
+    grammarCatItem?.click();
+
+    // グループが自動展開されていること
+    expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
+  });
 });
 
 describe("QuizApp — 解説パネルタブ仕様", () => {
@@ -1410,9 +1477,7 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     englishTab?.click();
 
     // phonics-1 は "発音" グループに属するため、発音グループヘッダーのバッジに🏆が表示される
-    const phonicsHeader = Array.from(document.querySelectorAll(".category-group-header")).find(
-      (h) => h.querySelector("span")?.textContent === "発音"
-    );
+    const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
     const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
     expect(badge?.textContent).toBe("🏆");
   });
@@ -1448,9 +1513,7 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
     btn?.click();
 
-    const phonicsHeader = Array.from(document.querySelectorAll(".category-group-header")).find(
-      (h) => h.querySelector("span")?.textContent === "発音"
-    );
+    const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
     const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
     expect(badge?.textContent).toBe("");
   });
