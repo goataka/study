@@ -1,0 +1,137 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "linking-2",
+  "categoryName": "🔗 リンキング（その２）",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "sound-changes",
+  "parentCategoryName": "音声変化",
+  "guideUrl": "../english/pronunciation/linking/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "hold_on→ホールドン",
+  "referenceGrade": "中学1年",
+  "description": "子音で終わる語と母音で始まる語が続くと音がつながって聞こえます。",
+  "questions": [
+    {
+      "id": "4f9dcd87-e0a6-5912-986e-6ee1782aad7d",
+      "question": "「hold on」はどう発音する？",
+      "choices": [
+        "ホールドン",
+        "ホールド オン",
+        "ホルドン",
+        "ホドン"
+      ],
+      "correct": 0,
+      "explanation": "d + o → ド となり、ホールドン"
+    },
+    {
+      "id": "b0b90e40-dbae-5b67-bce2-cab1c2cd57c1",
+      "question": "「find out」はどう発音する？",
+      "choices": [
+        "ファインダウト",
+        "ファインド アウト",
+        "ファイナウト",
+        "ファインドアウト"
+      ],
+      "correct": 0,
+      "explanation": "d + o → ダ となり、ファインダウト"
+    },
+    {
+      "id": "a0eb4c6f-3b76-5ecf-93c9-1eb852263493",
+      "question": "「wake up」はどう発音する？",
+      "choices": [
+        "ウェイカップ",
+        "ウェイク アップ",
+        "ウェーカップ",
+        "ウェクアップ"
+      ],
+      "correct": 0,
+      "explanation": "k + u → カ となり、ウェイカップ"
+    },
+    {
+      "id": "694f5c65-1bef-5f0a-a0e5-44bed4d4ae6c",
+      "question": "「give up」はどう発音する？",
+      "choices": [
+        "ギバップ",
+        "ギヴ アップ",
+        "ギブアップ",
+        "ギファップ"
+      ],
+      "correct": 0,
+      "explanation": "v + u → バ となり、ギバップ"
+    },
+    {
+      "id": "15ec36f1-8830-53d6-9c13-f3e0b71b6a6f",
+      "question": "「stand up」はどう発音する？",
+      "choices": [
+        "スタンダップ",
+        "スタンド アップ",
+        "スタナップ",
+        "スタンドアップ"
+      ],
+      "correct": 0,
+      "explanation": "d + u → ダ となり、スタンダップ"
+    },
+    {
+      "id": "fa55a04e-bfb5-57c0-ab5f-b53b98e06eed",
+      "question": "「break it」はどう発音する？",
+      "choices": [
+        "ブレイキッ",
+        "ブレイク イット",
+        "ブレキット",
+        "ブレイキット"
+      ],
+      "correct": 0,
+      "explanation": "k + i → キ となり、ブレイキッ"
+    },
+    {
+      "id": "5d303a65-f1b0-5d9b-9e8e-f2fb958e850e",
+      "question": "「make a call」はどう発音する？",
+      "choices": [
+        "メイカコール",
+        "メイク ア コール",
+        "メイカコル",
+        "メイクコール"
+      ],
+      "correct": 0,
+      "explanation": "k + a → カ となり、メイカコール"
+    },
+    {
+      "id": "45016854-9031-5cc7-a131-d69bf3543d2c",
+      "question": "「fall off」はどう発音する？",
+      "choices": [
+        "フォーロフ",
+        "フォール オフ",
+        "フォーロッフ",
+        "フォルオフ"
+      ],
+      "correct": 0,
+      "explanation": "l + o → ロ となり、フォーロフ"
+    },
+    {
+      "id": "dd6a74ff-35eb-501c-aba1-19f7bd7eeb56",
+      "question": "「read it」はどう発音する？",
+      "choices": [
+        "リーディッ",
+        "リード イット",
+        "リーディット",
+        "リドイッ"
+      ],
+      "correct": 0,
+      "explanation": "d + i → ディ となり、リーディッ"
+    },
+    {
+      "id": "2604af7d-2f43-5c4a-aa7d-6006405d2c8f",
+      "question": "「call us」はどう発音する？",
+      "choices": [
+        "コーラス",
+        "コール アス",
+        "コラス",
+        "コールアス"
+      ],
+      "correct": 0,
+      "explanation": "l + u → ラ となり、コーラス"
+    }
+  ]
+}

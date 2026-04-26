@@ -1,0 +1,137 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "flapping-2",
+  "categoryName": "🎵 フラッピング（その２）",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "sound-changes",
+  "parentCategoryName": "音声変化",
+  "guideUrl": "../english/pronunciation/flapping/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "waiting→ウェイリン",
+  "referenceGrade": "中学3年",
+  "description": "母音に挟まれた t / d がラ行の音に変化する現象を学びます。",
+  "questions": [
+    {
+      "id": "1a84c0bd-d209-5291-aeaf-935326f4c3b2",
+      "question": "「waiting」の「t」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "チ",
+        "ティ"
+      ],
+      "correct": 0,
+      "explanation": "t → リ となり、ウェイ リン"
+    },
+    {
+      "id": "074227dd-874b-5d2c-9017-497e0fc71195",
+      "question": "「putting」の「tt」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "タ",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "tt → リ となり、プ リン"
+    },
+    {
+      "id": "6cafe2de-c852-5a1e-b7da-286a672744a7",
+      "question": "「later」の「t」はどう発音される？",
+      "choices": [
+        "ラ",
+        "ト",
+        "タ",
+        "ル"
+      ],
+      "correct": 0,
+      "explanation": "t → ラ となり、レイ ラー"
+    },
+    {
+      "id": "9cf6657a-c38e-5a31-a569-e2838f727627",
+      "question": "「bitter」の「tt」はどう発音される？",
+      "choices": [
+        "ラ",
+        "ト",
+        "タ",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "tt → ラ となり、ビ ラー"
+    },
+    {
+      "id": "37f62184-f493-5dfc-8ee7-24c40de84d60",
+      "question": "「pity」の「t」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "チ",
+        "ティ"
+      ],
+      "correct": 0,
+      "explanation": "t → リ となり、ピ リー"
+    },
+    {
+      "id": "e3aa3791-e83f-5342-888b-1535dec99594",
+      "question": "「Twitter」の「tt」はどう発音される？",
+      "choices": [
+        "ラ",
+        "ト",
+        "タ",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "tt → ラ となり、トゥイ ラー"
+    },
+    {
+      "id": "670708f7-c8c3-5893-83ca-c0a0c5f1ce28",
+      "question": "「writing」の「t」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "チ",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "t → リ となり、ライ リン"
+    },
+    {
+      "id": "bfedc8d8-422f-5bd6-9eb4-4e8325a40c58",
+      "question": "「kitty」の「tt」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "チ",
+        "ティ"
+      ],
+      "correct": 0,
+      "explanation": "tt → リ となり、キ リー"
+    },
+    {
+      "id": "0e7d4ed3-494a-5e5b-9717-dca0e09651f2",
+      "question": "「thirty」の「t」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "チ",
+        "ティ"
+      ],
+      "correct": 0,
+      "explanation": "t → リ となり、サー リー"
+    },
+    {
+      "id": "98066c6d-fd75-5bff-978d-67d8012c5a9c",
+      "question": "「heating」の「t」はどう発音される？",
+      "choices": [
+        "リ",
+        "ト",
+        "チ",
+        "ッ"
+      ],
+      "correct": 0,
+      "explanation": "t → リ となり、ヒー リン"
+    }
+  ]
+}

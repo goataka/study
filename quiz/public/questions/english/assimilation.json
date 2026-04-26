@@ -2,7 +2,7 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "assimilation",
-  "categoryName": "🎵 アシミレーション",
+  "categoryName": "🎵 アシミレーション（その１）",
   "topCategory": "pronunciation",
   "topCategoryName": "発音",
   "parentCategory": "sound-changes",
@@ -72,6 +72,66 @@
       ],
       "correct": 0,
       "explanation": "n → m（唇音の前）となり、イム パ リ"
+    },
+    {
+      "id": "7351baa3-4e82-5200-b91b-810c9647a5ef",
+      "question": "「can't you」はどう発音する？",
+      "choices": [
+        "キャン チュー",
+        "キャント ユー",
+        "キャンチュ",
+        "キャントユ"
+      ],
+      "correct": 0,
+      "explanation": "t + y → チュ となり、キャン チュー"
+    },
+    {
+      "id": "440ae000-4609-5dc8-9967-22a301007f33",
+      "question": "「could you」はどう発音する？",
+      "choices": [
+        "クッ ジュー",
+        "クッド ユー",
+        "クジュ",
+        "クドユ"
+      ],
+      "correct": 0,
+      "explanation": "d + y → ジュ となり、クッ ジュー"
+    },
+    {
+      "id": "1fe9b01e-4248-5d30-ad32-aeb6e4a996a0",
+      "question": "「bless you」はどう発音する？",
+      "choices": [
+        "ブレッ シュー",
+        "ブレス ユー",
+        "ブレシュ",
+        "ブレスユ"
+      ],
+      "correct": 0,
+      "explanation": "s + y → シュ となり、ブレッ シュー"
+    },
+    {
+      "id": "df768aa0-8fc8-5bd2-8f2c-4dd7060d2c55",
+      "question": "「in Boston」はどう発音する？",
+      "choices": [
+        "イム ボストン",
+        "イン ボストン",
+        "インボストン",
+        "イムボストン"
+      ],
+      "correct": 0,
+      "explanation": "n → m（唇音の前）となり、イム ボストン"
+    },
+    {
+      "id": "46fad27c-11be-5455-92d6-1e1169e91e68",
+      "question": "「in bed」はどう発音する？",
+      "choices": [
+        "イム ベッ",
+        "イン ベッド",
+        "インベッ",
+        "イムベッド"
+      ],
+      "correct": 0,
+      "explanation": "n → m（唇音の前）となり、イム ベッ"
     }
   ]
 }
