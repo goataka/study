@@ -1,0 +1,113 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonetic-symbols-short-vowels",
+  "categoryName": "🔊 発音記号 — 短母音",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonetic-symbols",
+  "parentCategoryName": "発音記号",
+  "guideUrl": "../english/pronunciation/phonetic-symbols/short-vowels/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "/æ/→ア（cat）",
+  "referenceGrade": "中学1年",
+  "description": "短く発音する母音の発音記号（IPA）8種を学びます。",
+  "questions": [
+    {
+      "id": "3a073d2b-b8ed-5ed7-9bd4-e0103bc8676e",
+      "question": "/ɪ/ はどんな音？",
+      "choices": [
+        "短くゆるい「イ」",
+        "長くはっきりした「イー」",
+        "「ア」と「エ」の間",
+        "力を抜いた短い「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/ɪ/ は短くゆるい「イ」。sit, hit, big などに使われる。/iː/ より短く、口の力を抜いて発音する。"
+    },
+    {
+      "id": "196f34ba-4e36-5d5a-ab8e-c4e34fe55aa3",
+      "question": "/e/ はどんな音？",
+      "choices": [
+        "日本語の「エ」に近い短い音",
+        "「エイ」（二重母音）",
+        "「アー」と「エー」の中間",
+        "長くはっきりした「イー」"
+      ],
+      "correct": 0,
+      "explanation": "/e/ は日本語の「エ」に近い短い音。bed, get, help などに使われる。"
+    },
+    {
+      "id": "471d00cd-9108-5364-9530-8bb11110b607",
+      "question": "/æ/ はどんな音？",
+      "choices": [
+        "「ア」と「エ」の間（口を横に大きく開ける）",
+        "口を軽く縦に開けた短い「ア」",
+        "口を大きく開けた長い「アー」",
+        "力を抜いた短い「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/æ/ は「ア」と「エ」の中間の音。口を横に大きく開けて発音する。cat, apple, hat などに使われる。"
+    },
+    {
+      "id": "33501122-3e1a-553c-a8b2-4af4fb952445",
+      "question": "/ɑ/ はどんな音？",
+      "choices": [
+        "口を大きく開けた短い「ア」（米英語）",
+        "「ア」と「エ」の間",
+        "口を丸く開けた「オ」",
+        "力を抜いた短い「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/ɑ/ は口を大きく開けた短い「ア」。主にアメリカ英語で hot, top, stop などに使われる。"
+    },
+    {
+      "id": "1d016370-a9ce-55e7-b3b0-148de95f9e8b",
+      "question": "/ʌ/ はどんな音？",
+      "choices": [
+        "口を軽く縦に開けた短い「ア」",
+        "「ア」と「エ」の間（口を横に開ける）",
+        "口を大きく開けた長い「アー」",
+        "力を抜いた最も弱い「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/ʌ/ は口を軽く縦に開けた短い「ア」。cup, sun, cut などに使われる。/æ/ は口を横に開けるが、/ʌ/ は軽く縦に開ける。"
+    },
+    {
+      "id": "5aeda8ef-e8ef-5e8e-b0c8-31ff4c1a0b56",
+      "question": "/ʊ/ はどんな音？",
+      "choices": [
+        "短くゆるい「ウ」（唇をあまり丸めない）",
+        "長くはっきりした「ウー」（唇を丸める）",
+        "力を抜いた短い「ア」",
+        "「オウ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/ʊ/ は短くゆるい「ウ」。book, cook, put などに使われる。/uː/ より短く、唇をあまり丸めずに発音する。"
+    },
+    {
+      "id": "0af97cc9-a906-517a-83be-77d7498db28e",
+      "question": "/ɒ/ はどんな音？",
+      "choices": [
+        "口を丸く開けた短い「オ」（英英語）",
+        "口を丸めた長い「オー」",
+        "口を大きく開けた短い「ア」",
+        "力を抜いた短い「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/ɒ/ は口を丸く開けた短い「オ」。主にイギリス英語で hot, dog, not などに使われる。"
+    },
+    {
+      "id": "7a0aa18c-dcdd-5b0f-9bf1-3baac140e807",
+      "question": "/ə/（シュワー）はどんな音？",
+      "choices": [
+        "力を抜いた最も弱い「ア」（強勢のない音節に出る）",
+        "「ア」と「エ」の間",
+        "口を大きく開けた長い「アー」",
+        "口を軽く縦に開けた短い「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/ə/ はシュワーと呼ばれ、力を抜いた最も弱い母音。about, banana, sofa などの強調されない音節に出る。英語で最も頻繁に使われる母音。"
+    }
+  ]
+}

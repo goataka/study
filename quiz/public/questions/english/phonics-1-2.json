@@ -1,0 +1,329 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonics-1-2",
+  "categoryName": "🔤 フォニックス - 1文字（その２）",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonics",
+  "parentCategoryName": "フォニックス",
+  "guideUrl": "../english/pronunciation/phonics-1letter-2/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "`a`→/æ/ (ant)",
+  "referenceGrade": "小学3年",
+  "description": "1文字のアルファベットが持つ音（フォニックス）を別の例単語で練習します。",
+  "questions": [
+    {
+      "id": "0bf95ebf-349a-537c-b994-de8582aef0f3",
+      "question": "「ant」の「a」の音は？",
+      "choices": [
+        "ア",
+        "エ",
+        "イ",
+        "オ"
+      ],
+      "correct": 0,
+      "explanation": "ant = ア ン ト"
+    },
+    {
+      "id": "22a9e595-6256-5775-8365-40cce99c8077",
+      "question": "「bug」の「b」の音は？",
+      "choices": [
+        "ブ",
+        "プ",
+        "ム",
+        "ドゥ"
+      ],
+      "correct": 0,
+      "explanation": "bug = ブ ア グ"
+    },
+    {
+      "id": "a8e16878-e485-592e-8f52-cfd7fb201449",
+      "question": "「cup」の「c」の音は？",
+      "choices": [
+        "ク",
+        "ス",
+        "チ",
+        "シュ"
+      ],
+      "correct": 0,
+      "explanation": "cup = ク ア プ"
+    },
+    {
+      "id": "d94b60cb-3f0d-5278-9f56-60c1f7616ec0",
+      "question": "「duck」の「d」の音は？",
+      "choices": [
+        "ドゥ",
+        "トゥ",
+        "ブ",
+        "グ"
+      ],
+      "correct": 0,
+      "explanation": "duck = ドゥ ア ク"
+    },
+    {
+      "id": "91891806-7106-50b3-b31d-a7c77afe5496",
+      "question": "「elf」の「e」の音は？",
+      "choices": [
+        "エ",
+        "ア",
+        "イ",
+        "オ"
+      ],
+      "correct": 0,
+      "explanation": "elf = エ ル フ"
+    },
+    {
+      "id": "fed45921-156d-5493-a860-fe053e9b83ad",
+      "question": "「fox」の「f」の音は？",
+      "choices": [
+        "フ",
+        "ス",
+        "シュ",
+        "ヴ"
+      ],
+      "correct": 0,
+      "explanation": "fox = フ オ クス"
+    },
+    {
+      "id": "39d4d405-dc5e-59be-9101-d86780c70387",
+      "question": "「gum」の「g」の音は？",
+      "choices": [
+        "グ",
+        "ク",
+        "ジュ",
+        "ガ"
+      ],
+      "correct": 0,
+      "explanation": "gum = グ ア ム"
+    },
+    {
+      "id": "0d5a889e-88d1-5610-8ece-d43814341a78",
+      "question": "「hip」の「h」の音は？",
+      "choices": [
+        "ハ",
+        "ア",
+        "フ",
+        "ヘ"
+      ],
+      "correct": 0,
+      "explanation": "hip = ハ イ プ"
+    },
+    {
+      "id": "02fa68e5-0caa-59b0-b15b-a75c47bf9884",
+      "question": "「ill」の「i」の音は？",
+      "choices": [
+        "イ",
+        "ア",
+        "エ",
+        "アイ"
+      ],
+      "correct": 0,
+      "explanation": "ill = イ ル"
+    },
+    {
+      "id": "108062e2-9bbe-5ee9-8354-da4f550ccf9e",
+      "question": "「jug」の「j」の音は？",
+      "choices": [
+        "ジュ",
+        "ジ",
+        "チュ",
+        "ヤ"
+      ],
+      "correct": 0,
+      "explanation": "jug = ジュ ア グ"
+    },
+    {
+      "id": "a9eff400-8cee-55c2-84b1-7ae750d115e8",
+      "question": "「kid」の「k」の音は？",
+      "choices": [
+        "ク",
+        "キ",
+        "ケ",
+        "カ"
+      ],
+      "correct": 0,
+      "explanation": "kid = ク イ ドゥ"
+    },
+    {
+      "id": "c3bdf6f2-769f-56c1-bea2-114447c36291",
+      "question": "「leg」の「l」の音は？",
+      "choices": [
+        "ル",
+        "リ",
+        "ラ",
+        "レ"
+      ],
+      "correct": 0,
+      "explanation": "leg = ル エ グ"
+    },
+    {
+      "id": "2210c278-e6ba-56d9-a525-58ae7489944c",
+      "question": "「men」の「m」の音は？",
+      "choices": [
+        "ム",
+        "マ",
+        "ミ",
+        "メ"
+      ],
+      "correct": 0,
+      "explanation": "men = ム エ ヌ"
+    },
+    {
+      "id": "be57f78b-c0fa-57c4-bc20-065490efa03f",
+      "question": "「nod」の「n」の音は？",
+      "choices": [
+        "ヌ",
+        "ナ",
+        "ニ",
+        "ネ"
+      ],
+      "correct": 0,
+      "explanation": "nod = ヌ オ ドゥ"
+    },
+    {
+      "id": "f9753df4-4ab7-5f8a-a197-9f2be6d5c3c7",
+      "question": "「ox」の「o」の音は？",
+      "choices": [
+        "ア",
+        "オ",
+        "ウ",
+        "エ"
+      ],
+      "correct": 0,
+      "explanation": "ox = ア クス"
+    },
+    {
+      "id": "415bc02b-f108-55a9-9e90-94e9bee04520",
+      "question": "「pig」の「p」の音は？",
+      "choices": [
+        "プ",
+        "ブ",
+        "ペ",
+        "パ"
+      ],
+      "correct": 0,
+      "explanation": "pig = プ イ グ"
+    },
+    {
+      "id": "79dc983f-a911-5ab8-b226-45f7918aec27",
+      "question": "「quiz」の「qu」の音は？",
+      "choices": [
+        "クウ",
+        "ク",
+        "グウ",
+        "コ"
+      ],
+      "correct": 0,
+      "explanation": "quiz = クウ イ ズ"
+    },
+    {
+      "id": "38cbc432-c041-50ae-abb9-a1a4c7782073",
+      "question": "「run」の「r」の音は？",
+      "choices": [
+        "ル",
+        "ラ",
+        "リ",
+        "レ"
+      ],
+      "correct": 0,
+      "explanation": "run = ル ア ヌ"
+    },
+    {
+      "id": "3b0ea65f-6127-5201-bb1a-4174b6590fdf",
+      "question": "「sit」の「s」の音は？",
+      "choices": [
+        "ス",
+        "シュ",
+        "ズ",
+        "サ"
+      ],
+      "correct": 0,
+      "explanation": "sit = ス イ ト"
+    },
+    {
+      "id": "2a949134-851b-5b97-a3ad-0afe50b88ee0",
+      "question": "「top」の「t」の音は？",
+      "choices": [
+        "トゥ",
+        "タ",
+        "チ",
+        "ドゥ"
+      ],
+      "correct": 0,
+      "explanation": "top = トゥ オ プ"
+    },
+    {
+      "id": "7578223e-f460-559f-bac8-17d1fc1c012e",
+      "question": "「under」の「u」の音は？",
+      "choices": [
+        "ア",
+        "ウ",
+        "オ",
+        "ユ"
+      ],
+      "correct": 0,
+      "explanation": "under = ア ン ダー"
+    },
+    {
+      "id": "e4484843-dd61-5d75-8551-1c350daacb18",
+      "question": "「vet」の「v」の音は？",
+      "choices": [
+        "ヴ",
+        "フ",
+        "ブ",
+        "ム"
+      ],
+      "correct": 0,
+      "explanation": "vet = ヴ エ ト"
+    },
+    {
+      "id": "5cc43c4e-5e49-5265-800a-9469a23c55db",
+      "question": "「win」の「w」の音は？",
+      "choices": [
+        "ウ",
+        "ヴ",
+        "ユ",
+        "オ"
+      ],
+      "correct": 0,
+      "explanation": "win = ウ イ ヌ"
+    },
+    {
+      "id": "3fdfda56-8a16-5323-af7a-923c36aa7008",
+      "question": "「fox」の「x」の音は？",
+      "choices": [
+        "クス",
+        "ス",
+        "ク",
+        "ズ"
+      ],
+      "correct": 0,
+      "explanation": "fox = フ オ クス"
+    },
+    {
+      "id": "2a755a8c-ea5d-56b9-b0cb-b74747c6489a",
+      "question": "「yak」の「y」の音は？",
+      "choices": [
+        "イ",
+        "ユ",
+        "エ",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "yak = イ ア ク"
+    },
+    {
+      "id": "9e715c89-6fe5-55bf-a172-41491ee36902",
+      "question": "「zip」の「z」の音は？",
+      "choices": [
+        "ズ",
+        "ス",
+        "ジュ",
+        "シュ"
+      ],
+      "correct": 0,
+      "explanation": "zip = ズ イ プ"
+    }
+  ]
+}

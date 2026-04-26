@@ -1,0 +1,221 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonics-2-2",
+  "categoryName": "🔤 フォニックス - 2文字・マジックE（その２）",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonics",
+  "parentCategoryName": "フォニックス",
+  "guideUrl": "../english/pronunciation/phonics-2letter-2/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "`sh`→/ʃ/ (shop)",
+  "referenceGrade": "小学4年",
+  "description": "2文字の組み合わせ音（ダイグラフ）とマジックEを別の例単語で練習します。",
+  "questions": [
+    {
+      "id": "d3d64d49-c44b-5793-9166-aaaab301ccee",
+      "question": "「shop」の「sh」の音は？",
+      "choices": [
+        "シュ",
+        "ス",
+        "チ",
+        "ジュ"
+      ],
+      "correct": 0,
+      "explanation": "shop = シュ オ プ"
+    },
+    {
+      "id": "50599ff8-4d87-5df2-bb9d-6ebd55ee756a",
+      "question": "「dish」の「sh」の音は？",
+      "choices": [
+        "シュ",
+        "チ",
+        "ス",
+        "ジ"
+      ],
+      "correct": 0,
+      "explanation": "dish = ドゥ イ シュ"
+    },
+    {
+      "id": "bef665fa-498c-5bec-b5cf-812234463bd8",
+      "question": "「chin」の「ch」の音は？",
+      "choices": [
+        "チ",
+        "シュ",
+        "ク",
+        "ジュ"
+      ],
+      "correct": 0,
+      "explanation": "chin = チ イ ヌ"
+    },
+    {
+      "id": "1e0b1006-058d-53fd-b188-c62da0fd94f6",
+      "question": "「peach」の「ch」の音は？",
+      "choices": [
+        "チ",
+        "ク",
+        "シュ",
+        "ジ"
+      ],
+      "correct": 0,
+      "explanation": "peach = プ イー チ"
+    },
+    {
+      "id": "9d8ecae5-d00d-53e2-ab0b-1dfce470ebbd",
+      "question": "「they」の「th」の音は？",
+      "choices": [
+        "ザ（有声）",
+        "ス（無声）",
+        "ズ",
+        "シュ"
+      ],
+      "correct": 0,
+      "explanation": "they = ザ エイ（有声のth）"
+    },
+    {
+      "id": "a8f4795f-9991-5f2b-92af-c9a5f35c2aa3",
+      "question": "「with」の「th」の音は？",
+      "choices": [
+        "ス（無声）",
+        "ザ（有声）",
+        "ズ",
+        "チ"
+      ],
+      "correct": 0,
+      "explanation": "with = ウ イ ス（無声のth）"
+    },
+    {
+      "id": "49f0f2f8-9f89-5096-94ae-07f6cefc0088",
+      "question": "「photo」の「ph」の音は？",
+      "choices": [
+        "フ",
+        "ピ",
+        "ポ",
+        "プ"
+      ],
+      "correct": 0,
+      "explanation": "photo = フ オウ トゥ"
+    },
+    {
+      "id": "67c25538-dffb-544c-998c-0c7b4a7b0859",
+      "question": "「whip」の「wh」の音は？",
+      "choices": [
+        "ホウ/ウ",
+        "ブ",
+        "ウ",
+        "フ"
+      ],
+      "correct": 0,
+      "explanation": "whip = ホウ イ プ"
+    },
+    {
+      "id": "732f711a-63d3-5b4e-86f0-632157e27dc0",
+      "question": "「food」の「oo」の音は？",
+      "choices": [
+        "ウー（長い）",
+        "ウ（短い）",
+        "オウ",
+        "オー"
+      ],
+      "correct": 0,
+      "explanation": "food = フ ウー ドゥ（長いoo）"
+    },
+    {
+      "id": "310b4815-7ccd-5eb0-bdaf-19dccbfaa2ab",
+      "question": "「foot」の「oo」の音は？",
+      "choices": [
+        "ウ（短い）",
+        "ウー（長い）",
+        "オウ",
+        "ア"
+      ],
+      "correct": 0,
+      "explanation": "foot = フ ウ ト（短いoo）"
+    },
+    {
+      "id": "abeaeee2-fc7b-5c2a-a1af-bda887a7278d",
+      "question": "「feet」の「ee」の音は？",
+      "choices": [
+        "イー",
+        "エイ",
+        "イ",
+        "エ"
+      ],
+      "correct": 0,
+      "explanation": "feet = フ イー ト"
+    },
+    {
+      "id": "1ae2c487-a0be-5921-bf75-5553c49df7c1",
+      "question": "「sail」の「ai」の音は？",
+      "choices": [
+        "エイ",
+        "アイ",
+        "ア",
+        "エ"
+      ],
+      "correct": 0,
+      "explanation": "sail = ス エイ ル"
+    },
+    {
+      "id": "ac6f6465-457c-579d-aad5-005e37115df7",
+      "question": "「road」の「oa」の音は？",
+      "choices": [
+        "オウ",
+        "オー",
+        "ア",
+        "アウ"
+      ],
+      "correct": 0,
+      "explanation": "road = ル オウ ドゥ"
+    },
+    {
+      "id": "f25dcda2-ce95-5524-affe-0875d9e6f354",
+      "question": "「late」の「a」はマジックEで何の音になる？",
+      "choices": [
+        "エイ（長い）",
+        "ア（短い）",
+        "ア",
+        "アイ"
+      ],
+      "correct": 0,
+      "explanation": "late = ル エイ ト（マジックEでaがエイに）"
+    },
+    {
+      "id": "8f1eaa3a-7632-5655-a845-a2e350bef5a2",
+      "question": "「pine」の「i」はマジックEで何の音になる？",
+      "choices": [
+        "アイ（長い）",
+        "イ（短い）",
+        "エイ",
+        "オウ"
+      ],
+      "correct": 0,
+      "explanation": "pine = プ アイ ヌ（マジックEでiがアイに）"
+    },
+    {
+      "id": "5a687ac4-7635-55a6-9f9d-ec7822e194cb",
+      "question": "「rope」の「o」はマジックEで何の音になる？",
+      "choices": [
+        "オウ（長い）",
+        "ア（短い）",
+        "エイ",
+        "アイ"
+      ],
+      "correct": 0,
+      "explanation": "rope = ル オウ プ（マジックEでoがオウに）"
+    },
+    {
+      "id": "dc774e63-ae2c-5737-8a48-4a4135a086c7",
+      "question": "「rule」の「u」はマジックEで何の音になる？",
+      "choices": [
+        "ユー（長い）",
+        "ア（短い）",
+        "アイ",
+        "オウ"
+      ],
+      "correct": 0,
+      "explanation": "rule = ル ユー ル（マジックEでuがユーに）"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonetic-symbols-affricates-nasals",
+  "categoryName": "🔊 発音記号 — 破擦音・鼻音",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonetic-symbols",
+  "parentCategoryName": "発音記号",
+  "guideUrl": "../english/pronunciation/phonetic-symbols/affricates-nasals/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "/tʃ/→チュ（chat）",
+  "referenceGrade": "中学1年",
+  "description": "破擦音2種・鼻音3種の発音記号（IPA）を学びます。",
+  "questions": [
+    {
+      "id": "ef7aa084-cbb9-5574-a692-3792c63960ec",
+      "question": "/tʃ/ はどんな音？",
+      "choices": [
+        "「チュ」（無声破擦音）",
+        "「シュ」（無声摩擦音）",
+        "「ジュ」（有声破擦音）",
+        "「ズ」（有声摩擦音）"
+      ],
+      "correct": 0,
+      "explanation": "/tʃ/ は「チュ」の無声破擦音。chat, chair, teach などに使われる。/dʒ/ の無声バージョン。"
+    },
+    {
+      "id": "e5429a75-0e60-5edb-900b-2cf057032063",
+      "question": "/dʒ/ はどんな音？",
+      "choices": [
+        "「ジュ」（有声破擦音）",
+        "「ジュ」（有声摩擦音・破裂なし）",
+        "「チュ」（無声破擦音）",
+        "「シュ」（無声摩擦音）"
+      ],
+      "correct": 0,
+      "explanation": "/dʒ/ は「ジュ」の有声破擦音。jam, jump, age などに使われる。/tʃ/ の有声バージョン。/ʒ/ との違いは破裂（止めてから出す）があること。"
+    },
+    {
+      "id": "c87b426c-1039-5bfe-9dc7-e36318594b1e",
+      "question": "/m/ はどんな音？",
+      "choices": [
+        "唇を閉じた鼻音",
+        "舌先を歯茎に当てた鼻音",
+        "舌の奥を使った鼻音",
+        "唇を閉じて開く有声破裂音"
+      ],
+      "correct": 0,
+      "explanation": "/m/ は唇を閉じて鼻から息を出す鼻音。man, him, some などに使われる。日本語の「マ行」と似ているが、語末（him）でも鼻音が続く。"
+    },
+    {
+      "id": "28bec1aa-5e04-55fa-9dc7-3d364b9483ef",
+      "question": "/n/ はどんな音？",
+      "choices": [
+        "舌先を歯茎に当てた鼻音",
+        "唇を閉じた鼻音",
+        "舌の奥を使った鼻音",
+        "舌先を歯茎に当てる無声破裂音"
+      ],
+      "correct": 0,
+      "explanation": "/n/ は舌先を歯茎に当てて鼻から息を出す鼻音。not, can, fun などに使われる。日本語の「ナ行」や「ん」に近い。"
+    },
+    {
+      "id": "e73cbe7a-5aea-5dc9-ab33-6c9af128f462",
+      "question": "/ŋ/ はどんな音？",
+      "choices": [
+        "舌の奥を軟口蓋に当てた鼻音（鼻にかかる「ング」）",
+        "唇を閉じた鼻音",
+        "舌先を歯茎に当てた鼻音",
+        "「ング」（破裂音あり）"
+      ],
+      "correct": 0,
+      "explanation": "/ŋ/ は舌の奥を軟口蓋に当てて鼻から息を出す鼻音。sing, ring, long などの語末に出る。日本語の「ング」に近いが、後に「グ」の破裂は出ない。"
+    }
+  ]
+}

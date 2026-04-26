@@ -12,19 +12,46 @@
 
 #### 📢 発音
 
+##### 基礎
+
 | 内容 | 解説 | 確認 | 例 |
 |------|------|--------|-----|
 | アルファベット（大文字・小文字と読み仮名） | [解説](english/pronunciation/alphabet/guide.md) | [確認](quiz/?subject=english&category=alphabet) | A(えー) B(びー) |
 | 50音（ひらがなとローマ字） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
 | 拡張ローマ字（濁音・半濁音・拗音） | [解説](english/pronunciation/romaji-advanced/guide.md) | [確認](quiz/?subject=english&category=romaji-advanced) | が=ga ぱ=pa しゃ=sha |
-| フォニックス（1文字） | [解説](english/pronunciation/phonics-1letter/guide.md) | [確認](quiz/?subject=english&category=phonics-1) | `a`→/æ/ (apple) |
-| フォニックス（2文字・マジックE） | [解説](english/pronunciation/phonics-2letter/guide.md) | [確認](quiz/?subject=english&category=phonics-2) | `a_e`→/eɪ/ (cake) |
-| フォニックス（3文字） | [解説](english/pronunciation/phonics-3letter/guide.md) | [確認](quiz/?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
+
+##### フォニックス
+
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
+| 1文字（その１） | [解説](english/pronunciation/phonics-1letter/guide.md) | [確認](quiz/?subject=english&category=phonics-1) | `a`→/æ/ (apple) |
+| 1文字（その２） | [解説](english/pronunciation/phonics-1letter-2/guide.md) | [確認](quiz/?subject=english&category=phonics-1-2) | `a`→/æ/ (ant) |
+| 2文字・マジックE（その１） | [解説](english/pronunciation/phonics-2letter/guide.md) | [確認](quiz/?subject=english&category=phonics-2) | `a_e`→/eɪ/ (cake) |
+| 2文字・マジックE（その２） | [解説](english/pronunciation/phonics-2letter-2/guide.md) | [確認](quiz/?subject=english&category=phonics-2-2) | `sh`→/ʃ/ (shop) |
+| 3文字（その１） | [解説](english/pronunciation/phonics-3letter/guide.md) | [確認](quiz/?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
+| 3文字（その２） | [解説](english/pronunciation/phonics-3letter-2/guide.md) | [確認](quiz/?subject=english&category=phonics-3-2) | `tch`→/tʃ/ (watch) |
+
+##### 音声変化
+
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
 | リンキング | [解説](english/pronunciation/linking/guide.md) | [確認](quiz/?subject=english&category=linking) | check_it→チェキッ |
 | リダクション | [解説](english/pronunciation/reduction/guide.md) | [確認](quiz/?subject=english&category=reduction) | for→/fər/ |
 | フラッピング | [解説](english/pronunciation/flapping/guide.md) | [確認](quiz/?subject=english&category=flapping) | water→ウォダー |
 | アシミレーション | [解説](english/pronunciation/assimilation/guide.md) | [確認](quiz/?subject=english&category=assimilation) | meet you→ミーチュー |
-| 発音記号（IPA） | [解説](english/pronunciation/phonetic-symbols/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols) | /æ/→ア（cat） |
+
+##### 発音記号
+
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
+| 短母音 | [解説](english/pronunciation/phonetic-symbols/short-vowels/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols-short-vowels) | `/æ/`→ア（cat） |
+| 長母音 | [解説](english/pronunciation/phonetic-symbols/long-vowels/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols-long-vowels) | `/iː/`→イー（see） |
+| R音性母音 | [解説](english/pronunciation/phonetic-symbols/r-vowels/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols-r-vowels) | `/ɜːr/`→アー（bird） |
+| 二重母音 | [解説](english/pronunciation/phonetic-symbols/diphthongs/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols-diphthongs) | `/aɪ/`→アイ（my） |
+| 破裂音 | [解説](english/pronunciation/phonetic-symbols/plosives/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols-plosives) | `/p/`→プ（pen） |
+| 摩擦音 | [解説](english/pronunciation/phonetic-symbols/fricatives/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols-fricatives) | `/θ/`→ス（think） |
+| 破擦音・鼻音 | [解説](english/pronunciation/phonetic-symbols/affricates-nasals/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols-affricates-nasals) | `/tʃ/`→チュ（chat） |
+| 接近音・流音 | [解説](english/pronunciation/phonetic-symbols/approximants/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols-approximants) | `/l/`→ル（let） |
 
 #### 📝 文法
 
