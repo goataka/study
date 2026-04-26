@@ -255,13 +255,14 @@ export class QuizApp {
       return;
     }
 
+    // コントロールを先に描画し、教科切替時の学年フィルターの妥当性チェックを行う
+    this.renderCategoryViewControls();
+
     if (this.categoryViewMode === "grade") {
       this.renderCategoryListByGrade();
     } else {
       this.renderCategoryListByCategory();
     }
-
-    this.renderCategoryViewControls();
 
     // アクティブ状態を更新
     this.updateCategoryListActive();
@@ -555,7 +556,11 @@ export class QuizApp {
 
     // ── 学年フィルターボタン ──
     const grades = this.useCase.getUniqueGradesForSubject(subject);
-    if (grades.length === 0) return;
+    if (grades.length === 0) {
+      // 学年情報がない場合はフィルターをリセット
+      this.selectedGradeFilter = null;
+      return;
+    }
 
     // 利用可能な学年プレフィックスを収集
     const prefixes: string[] = [];
@@ -568,6 +573,11 @@ export class QuizApp {
         seen.add(prefix);
         prefixes.push(prefix);
       }
+    }
+
+    // 現在のフィルターが新しい教科で有効でない場合はリセット
+    if (this.selectedGradeFilter !== null && !prefixes.includes(this.selectedGradeFilter)) {
+      this.selectedGradeFilter = null;
     }
 
     if (prefixes.length < 2) return; // 1種類以下なら表示しない
@@ -919,7 +929,7 @@ export class QuizApp {
       guideBtn.textContent = "📖";
       guideBtn.setAttribute("aria-label", `${categoryName}の解説を見る`);
       guideBtn.title = `${categoryName}の解説を見る`;
-      guideBtn.addEventListener("click", (e: Event) => {
+      const openGuide = (e: Event): void => {
         e.stopPropagation();
         this.filter.subject = subject;
         this.filter.category = categoryId;
@@ -928,18 +938,12 @@ export class QuizApp {
         const records = this.useCase.getHistory();
         this.updateStartScreen(records);
         this.showParentCategoryGuide(guideUrl);
-      });
+      };
+      guideBtn.addEventListener("click", openGuide);
       guideBtn.addEventListener("keydown", (e: KeyboardEvent) => {
         if (e.key === "Enter" || e.key === " ") {
-          e.stopPropagation();
           e.preventDefault();
-          this.filter.subject = subject;
-          this.filter.category = categoryId;
-          this.filter.parentCategory = parentCatId;
-          this.updateCategoryListActive();
-          const records = this.useCase.getHistory();
-          this.updateStartScreen(records);
-          this.showParentCategoryGuide(guideUrl);
+          openGuide(e);
         }
       });
       item.appendChild(guideBtn);

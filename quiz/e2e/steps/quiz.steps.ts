@@ -335,16 +335,17 @@ When("I click the {string} grade filter button", async ({ page }, grade: string)
 });
 
 Then("only categories with grade starting with {string} should be visible", async ({ page }, gradePrefix: string) => {
-  // 表示されているカテゴリアイテムの学年バッジがすべて指定のプレフィックスで始まること
+  // 表示されているカテゴリアイテムの学年バッジがすべて非空かつ指定のプレフィックスで始まること
   const visibleItems = page.locator(".category-item:visible");
   const count = await visibleItems.count();
   expect(count).toBeGreaterThan(0);
   for (let i = 0; i < count; i++) {
     const gradeEl = visibleItems.nth(i).locator(".category-grade");
     const gradeText = await gradeEl.textContent();
-    if (gradeText && gradeText.trim().length > 0) {
-      expect(gradeText.trim()).toMatch(new RegExp(`^${gradePrefix}`));
-    }
+    expect(gradeText).not.toBeNull();
+    const trimmedGradeText = gradeText?.trim() ?? "";
+    expect(trimmedGradeText).not.toBe("");
+    expect(trimmedGradeText).toMatch(new RegExp(`^${gradePrefix}`));
   }
 });
 

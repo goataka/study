@@ -3888,42 +3888,53 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
     expect(gradeHeader?.getAttribute("aria-expanded")).toBe("false");
   });
 
-  it("学年別ビューで再度ビューモード切替ボタンをクリックするとカテゴリ別ビューに戻る", async () => {
+  it("教科を切り替えると学年フィルターが前の教科の値にリセットされる", async () => {
     const manifest = {
       version: "2.0.0",
-      subjects: { math: { name: "数学" } },
-      questionFiles: ["math/elem.json"],
+      subjects: { math: { name: "数学" }, english: { name: "英語" } },
+      questionFiles: ["math/elem.json", "math/middle.json", "english/basic.json"],
     };
     const elemFile = {
-      subject: "math",
-      subjectName: "数学",
-      category: "addition",
-      categoryName: "たし算",
+      subject: "math", subjectName: "数学", category: "addition", categoryName: "たし算",
       referenceGrade: "小学1年",
       questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
     };
+    const middleFile = {
+      subject: "math", subjectName: "数学", category: "algebra", categoryName: "代数",
+      referenceGrade: "中学1年",
+      questions: [{ id: "m1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    const englishBasicFile = {
+      subject: "english", subjectName: "英語", category: "basic", categoryName: "基礎",
+      // referenceGrade なし
+      questions: [{ id: "b1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
     global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+      const u = String(url);
+      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("elem.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+      if (u.includes("middle.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(middleFile) } as Response);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(englishBasicFile) } as Response);
     });
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
+    // 数学タブで「小学」フィルターを適用
     const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
     mathTab?.click();
+    const elemBtn = Array.from(document.querySelectorAll<HTMLElement>(".grade-filter-btn")).find(b => b.textContent === "小学");
+    elemBtn?.click();
 
-    // 学年別に切替→カテゴリ別に戻す
-    const toggleBtn = document.querySelector<HTMLElement>(".category-view-toggle");
-    toggleBtn?.click(); // 学年別
-    toggleBtn?.click(); // カテゴリ別に戻す
+    // 中学カテゴリが非表示になっていること
+    expect(document.querySelector('.category-item[data-category="algebra"]')).toBeNull();
 
-    // 学年グループが表示されていないこと
-    const gradeGroups = document.querySelectorAll(".category-grade-group");
-    expect(gradeGroups.length).toBe(0);
+    // 英語タブに切り替え（学年情報なし）
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
 
-    // カテゴリアイテムが表示されていること
-    const additionItem = document.querySelector('.category-item[data-category="addition"]');
-    expect(additionItem).not.toBeNull();
+    // 英語のカテゴリが表示されていること（フィルターがリセットされている）
+    expect(document.querySelector('.category-item[data-category="basic"]')).not.toBeNull();
   });
 });
+
