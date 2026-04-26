@@ -251,6 +251,8 @@ header h1 {
 .category-example {
     font-size: 13px;
     color: #24292e;
+    align-self: flex-end;
+    text-align: right;
 }
 
 .category-example::before {
@@ -1181,6 +1183,10 @@ button:disabled {
         flex-wrap: wrap;
         align-items: baseline;
         gap: 2px 12px;
+    }
+
+    .category-example {
+        margin-left: auto;
     }
 }
 
