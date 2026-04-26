@@ -231,8 +231,8 @@ describe("QuizUseCase — getTopCategoriesForSubject / getParentCategoriesForTop
   });
 
   const questions = [
-    makeQuestionWith3Levels("q1", "english", "tenses-past", "過去形", "tenses", "時制", "grammar", "文法"),
-    makeQuestionWith3Levels("q2", "english", "tenses-future", "未来形", "tenses", "時制", "grammar", "文法"),
+    makeQuestionWith3Levels("q1", "english", "tenses-past", "過去形", "verb", "動詞", "grammar", "文法"),
+    makeQuestionWith3Levels("q2", "english", "tenses-future", "未来形", "verb", "動詞", "grammar", "文法"),
     makeQuestionWith3Levels("q3", "english", "phonics-1", "フォニックス1", "phonics", "フォニックス", "pronunciation", "発音"),
     makeQuestionWith3Levels("q4", "english", "assimilation", "アシミレーション", "sound-changes", "音声変化", "pronunciation", "発音"),
     makeQuestionWith3Levels("q5", "english", "kotowaza", "ことわざ", "vocabulary", "語彙", undefined, undefined),
@@ -273,7 +273,7 @@ describe("QuizUseCase — getTopCategoriesForSubject / getParentCategoriesForTop
   it("getParentCategoriesForTop で別のトップカテゴリを指定すると別の親カテゴリが返る", () => {
     const parentCats = useCase.getParentCategoriesForTop("english", "grammar");
     expect(Object.keys(parentCats)).toHaveLength(1);
-    expect(parentCats["tenses"]).toBe("時制");
+    expect(parentCats["verb"]).toBe("動詞");
   });
 
   it("getParentCategoriesForTop で存在しないトップカテゴリは空オブジェクトを返す", () => {

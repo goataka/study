@@ -241,8 +241,8 @@ const mockTensesFile = {
   categoryName: "過去形",
   topCategory: "grammar",
   topCategoryName: "文法",
-  parentCategory: "tenses",
-  parentCategoryName: "時制",
+  parentCategory: "verb",
+  parentCategoryName: "動詞",
   questions: Array.from({ length: 3 }, (_, i) => ({
     id: `t${i + 1}`,
     question: `時制問題 ${i + 1}`,
@@ -3438,7 +3438,7 @@ describe("QuizApp — 3階層カテゴリ仕様", () => {
 
     const grammarTopGroup = document.querySelector('.category-top-group[data-top-category="grammar"]');
     expect(grammarTopGroup).not.toBeNull();
-    const tensesGroup = grammarTopGroup?.querySelector('.category-group[data-parent-category="tenses"]');
+    const tensesGroup = grammarTopGroup?.querySelector('.category-group[data-parent-category="verb"]');
     expect(tensesGroup).not.toBeNull();
   });
 
@@ -3451,7 +3451,7 @@ describe("QuizApp — 3階層カテゴリ仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="tenses-past"]') as HTMLElement;
     expect(catItem?.dataset.topCategory).toBe("grammar");
-    expect(catItem?.dataset.parentCategory).toBe("tenses");
+    expect(catItem?.dataset.parentCategory).toBe("verb");
   });
 
   it("トップカテゴリヘッダーをクリックすると折りたたまれる", async () => {
