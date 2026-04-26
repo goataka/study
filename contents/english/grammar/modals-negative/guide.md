@@ -3,14 +3,14 @@
 肯定文:
 I `can play` games.
 
-## 否定形
+## 📚 否定形
 
 I `cannot play` games.
 
 - 助動詞の後に `not` をつける
 - 短縮形: can't, won't, shouldn't, mustn't
 
-## 否定形パターン
+## 📊 否定形パターン
 
 | 助動詞 | 否定形 | 短縮形 | 例 |
 |--------|--------|--------|------|
@@ -23,7 +23,7 @@ I `cannot play` games.
 - `must not` = ～してはいけない（禁止）
 - `don't have to` = ～する必要はない（不必要）
 
-## 例
+## 📝 例
 
 | 肯定文 | 否定文 |
 |--------|--------|
@@ -33,7 +33,7 @@ I `cannot play` games.
 | I should stay. | I (should not / shouldn't) stay. |
 | I may leave. | I (may not) leave. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

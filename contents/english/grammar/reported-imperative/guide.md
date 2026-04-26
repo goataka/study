@@ -3,14 +3,14 @@
 直接話法:
 He said, "Play games."
 
-## 間接話法
+## 📚 間接話法
 
 He `told` me `to play` games.
 
 - 肯定の命令: `told + 人 + to + 原形`
 - 否定の命令: `told + 人 + not to + 原形`
 
-## パターン
+## 📊 パターン
 
 | 直接話法 | 間接話法 |
 |----------|----------|
@@ -18,7 +18,7 @@ He `told` me `to play` games.
 | "Don't play games." | He `told` me `not to play` games. |
 | "Please help me." | He `asked` me `to help` him. |
 
-## 例
+## 📝 例
 
 | 直接話法 | 間接話法 |
 |----------|----------|
@@ -27,7 +27,7 @@ He `told` me `to play` games.
 | He said, "Study hard." | He told me (to study) hard. |
 | He said, "Don't be late." | He told me (not to be) late. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

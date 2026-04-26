@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "subtraction-borrow-1digit",
+  "categoryName": "1桁のひき算（くり下がりあり）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "subtraction",
+  "parentCategoryName": "ひき算",
+  "guideUrl": "../math/arithmetic/subtraction-1digit-borrow/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "13 - 7 = 6",
+  "referenceGrade": "小学1年",
+  "description": "くり下がりのあるひき算を10のまとまりを使って正確にできるようにします。",
+  "questions": [
+    {
+      "id": "9f0d0447-75b0-5742-a848-7aeb09487227",
+      "question": "13 - 5 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から5をひいて5、5+3=8"
+    },
+    {
+      "id": "42c87979-f883-5aa0-b40d-4c5b7952ec0d",
+      "question": "15 - 7 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から7をひいて3、3+5=8"
+    },
+    {
+      "id": "8d2a492f-8075-5df7-b715-9ac7bc69a202",
+      "question": "12 - 8 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "10から8をひいて2、2+2=4"
+    },
+    {
+      "id": "f06c3ddc-17f3-5916-9ac1-17d271572d67",
+      "question": "14 - 6 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から6をひいて4、4+4=8"
+    },
+    {
+      "id": "ea37233a-65e4-5e04-abeb-e9f7b5b53393",
+      "question": "11 - 9 = ?",
+      "choices": [
+        "2",
+        "1",
+        "3",
+        "0"
+      ],
+      "correct": 0,
+      "explanation": "10から9をひいて1、1+1=2"
+    },
+    {
+      "id": "b0246a8f-0e6f-5686-a2e5-c0b02d6f4432",
+      "question": "16 - 8 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "10から8をひいて2、2+6=8"
+    },
+    {
+      "id": "4f8a0460-efac-5316-84cf-0ac7cd54f2f5",
+      "question": "13 - 7 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "10から7をひいて3、3+3=6"
+    },
+    {
+      "id": "b3f7e9ea-0897-5e8e-9ca4-7d30801e5609",
+      "question": "15 - 9 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "10から9をひいて1、1+5=6"
+    },
+    {
+      "id": "718f79cf-3bb5-5bc2-90e1-0431d3a39087",
+      "question": "11 - 4 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "10から4をひいて6、6+1=7"
+    },
+    {
+      "id": "26f78822-834b-5a90-a6ee-ae43eebd2e77",
+      "question": "12 - 5 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "10から5をひいて5、5+2=7"
+    },
+    {
+      "id": "105010a4-9dbf-5166-873d-f7056520dbaa",
+      "question": "14 - 8 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "10から8をひいて2、2+4=6"
+    },
+    {
+      "id": "d2d47467-39ab-57d0-8dd4-44ecaa5702c1",
+      "question": "13 - 9 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "10から9をひいて1、1+3=4"
+    },
+    {
+      "id": "4f9850d1-bc6b-5188-b67f-a185b7e2d773",
+      "question": "11 - 6 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "10から6をひいて4、4+1=5"
+    },
+    {
+      "id": "9ca24c36-32c9-5143-afb3-aa9d346ff2d1",
+      "question": "12 - 7 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "10から7をひいて3、3+2=5"
+    },
+    {
+      "id": "473109d7-e003-5e74-99a9-480169b3e968",
+      "question": "14 - 9 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "10から9をひいて1、1+4=5"
+    }
+  ]
+}

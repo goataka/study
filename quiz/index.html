@@ -27,11 +27,18 @@
   <div class="container">
     <header>
       <h1 id="titleBtn" role="button" tabindex="0" class="title-btn" title="スタート画面へ戻る">学習アプリ</h1>
-      <div class="header-user-area">
-        <button id="headerUserName" class="header-user-name" title="名前を変更する（クリック）" aria-label="名前を変更する"></button>
-        <div id="headerUserEdit" class="header-user-edit hidden">
-          <input type="text" id="headerUserNameInput" class="header-user-name-input" maxlength="20" placeholder="名前を入力">
-          <button id="headerUserNameSaveBtn" class="header-user-save-btn" aria-label="保存">✓</button>
+      <div class="header-right-area">
+        <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
+          <button class="font-size-btn active" data-size="small" aria-pressed="true" title="文字サイズ：小">小</button>
+          <button class="font-size-btn" data-size="medium" aria-pressed="false" title="文字サイズ：中">中</button>
+          <button class="font-size-btn" data-size="large" aria-pressed="false" title="文字サイズ：大">大</button>
+        </div>
+        <div class="header-user-area">
+          <button id="headerUserName" class="header-user-name" title="名前を変更する（クリック）" aria-label="名前を変更する"></button>
+          <div id="headerUserEdit" class="header-user-edit hidden">
+            <input type="text" id="headerUserNameInput" class="header-user-name-input" maxlength="20" placeholder="名前を入力">
+            <button id="headerUserNameSaveBtn" class="header-user-save-btn" aria-label="保存">✓</button>
+          </div>
         </div>
       </div>
     </header>

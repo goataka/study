@@ -3,14 +3,14 @@
 現在形:
 I `play` games.
 
-## 完了形
+## 📚 完了形
 
 I `have played` games.
 
 - `have` + 過去分詞で完了を表す
 - 「～したことがある」「～し終えた」「ずっと～している」
 
-## 活用パターン
+## 📊 活用パターン
 
 | 時制 | have の形 | 例 |
 |------|----------|------|
@@ -18,7 +18,7 @@ I `have played` games.
 | 過去完了 | `had` | I `had played` games. |
 | 未来完了 | `will have` | I `will have played` games. |
 
-## 例
+## 📝 例
 
 | パターン | 文 |
 |----------|------|
@@ -32,7 +32,7 @@ I `have played` games.
 | 過去完了 | I (had) lived here for three years. |
 | 未来完了 | I (will have) lived here for three years. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

@@ -3,13 +3,13 @@
 受動態（現在形）:
 Games `are played` by me.
 
-## 助動詞の受動態
+## 📚 助動詞の受動態
 
 Games `can be played` by anyone.
 
 - `助動詞` + `be` + 過去分詞
 
-## 助動詞の受動態パターン
+## 📊 助動詞の受動態パターン
 
 | 助動詞 | 受動態 | 例 |
 |--------|--------|------|
@@ -18,7 +18,7 @@ Games `can be played` by anyone.
 | `should` | `should be + 過去分詞` | This `should be checked` again. |
 | `will` | `will be + 過去分詞` | This `will be sent` tomorrow. |
 
-## 例
+## 📝 例
 
 | 能動態 | 受動態 |
 |--------|--------|
@@ -28,7 +28,7 @@ Games `can be played` by anyone.
 | I will repair the car. | The car (will be repaired) by me. |
 | I may use this room. | This room (may be used) by me. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

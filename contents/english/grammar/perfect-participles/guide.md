@@ -2,7 +2,7 @@
 
 過去分詞は完了形や受動態で使います。
 
-## 変化のルール
+## 📌 変化のルール
 
 規則動詞は過去形と同じ（-ed）:
 play → `played`
@@ -10,7 +10,7 @@ play → `played`
 不規則動詞は個別に暗記:
 go → went → `gone`
 
-## 不規則動詞の活用パターン
+## 📊 不規則動詞の活用パターン
 
 | 原形 | 過去形 | 過去分詞 | 意味 |
 |------|--------|----------|------|
@@ -25,7 +25,7 @@ go → went → `gone`
 | `break` | `broke` | `broken` | 壊す |
 | `begin` | `began` | `begun` | 始める |
 
-## 例
+## 📝 例
 
 | 現在形 | 完了形 |
 |--------|--------|
@@ -40,7 +40,7 @@ go → went → `gone`
 | I speak English. | I have (spoken) English. |
 | I know the answer. | I have (known) the answer. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

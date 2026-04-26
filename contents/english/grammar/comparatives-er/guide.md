@@ -3,14 +3,14 @@
 原級:
 I play games `well`.
 
-## 比較級
+## 📚 比較級
 
 I play games `better` than you.
 
 - 形容詞・副詞に `-er` をつける（短い語）
 - 長い語は `more` + 原級
 
-## 比較級のパターン
+## 📊 比較級のパターン
 
 | ルール | 変化 | 例 |
 |--------|------|------|
@@ -20,7 +20,7 @@ I play games `better` than you.
 | 短母音 + 子音 | 子音を重ねて + er | big → `bigger` |
 | 長い語 | more + 原級 | often → `more often` |
 
-## 例
+## 📝 例
 
 ### 短い形容詞
 
@@ -39,7 +39,7 @@ I play games `better` than you.
 | This problem is difficult. | This problem is (more difficult) than that one. |
 | This flower is beautiful. | This flower is (more beautiful) than that one. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

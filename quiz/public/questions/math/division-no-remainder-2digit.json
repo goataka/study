@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "division-no-remainder-2digit",
+  "categoryName": "2桁のわり算（あまりなし）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "division",
+  "parentCategoryName": "わり算",
+  "guideUrl": "../math/arithmetic/division-2digit-no-remainder/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "84 ÷ 4 = 21",
+  "referenceGrade": "小学3年",
+  "description": "2けたのわり算を筆算で正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "bcb641e6-3e6c-58b3-a64f-53fd9ff50d1c",
+      "question": "84 ÷ 4 = ?",
+      "choices": [
+        "21",
+        "20",
+        "22",
+        "19"
+      ],
+      "correct": 0,
+      "explanation": "4 × 21 = 84なので、84 ÷ 4 = 21"
+    },
+    {
+      "id": "13f2faff-cb82-5568-8689-6d1e8c57450e",
+      "question": "75 ÷ 5 = ?",
+      "choices": [
+        "15",
+        "14",
+        "16",
+        "13"
+      ],
+      "correct": 0,
+      "explanation": "5 × 15 = 75なので、75 ÷ 5 = 15"
+    },
+    {
+      "id": "4eaa2aa9-0af9-5593-a700-6280a584d605",
+      "question": "96 ÷ 6 = ?",
+      "choices": [
+        "16",
+        "15",
+        "17",
+        "14"
+      ],
+      "correct": 0,
+      "explanation": "6 × 16 = 96なので、96 ÷ 6 = 16"
+    },
+    {
+      "id": "7fbbd9f5-1020-5876-a325-2c4878f3b887",
+      "question": "84 ÷ 7 = ?",
+      "choices": [
+        "12",
+        "11",
+        "13",
+        "10"
+      ],
+      "correct": 0,
+      "explanation": "7 × 12 = 84なので、84 ÷ 7 = 12"
+    },
+    {
+      "id": "f238a895-2e95-5b3a-acf9-0d77b905538e",
+      "question": "72 ÷ 6 = ?",
+      "choices": [
+        "12",
+        "11",
+        "13",
+        "10"
+      ],
+      "correct": 0,
+      "explanation": "6 × 12 = 72なので、72 ÷ 6 = 12"
+    },
+    {
+      "id": "a9851a3a-2f86-5eba-8c11-f223b6a053fe",
+      "question": "65 ÷ 5 = ?",
+      "choices": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correct": 0,
+      "explanation": "5 × 13 = 65なので、65 ÷ 5 = 13"
+    },
+    {
+      "id": "a6aa6380-d9c1-5da5-b3c1-5257b0e02017",
+      "question": "78 ÷ 6 = ?",
+      "choices": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correct": 0,
+      "explanation": "6 × 13 = 78なので、78 ÷ 6 = 13"
+    },
+    {
+      "id": "fcaf9296-c484-5c1b-9845-2548b05417d1",
+      "question": "54 ÷ 3 = ?",
+      "choices": [
+        "18",
+        "17",
+        "19",
+        "16"
+      ],
+      "correct": 0,
+      "explanation": "3 × 18 = 54なので、54 ÷ 3 = 18"
+    },
+    {
+      "id": "54f75711-1aed-5767-92d7-1fd777d864cc",
+      "question": "90 ÷ 9 = ?",
+      "choices": [
+        "10",
+        "9",
+        "11",
+        "8"
+      ],
+      "correct": 0,
+      "explanation": "9 × 10 = 90なので、90 ÷ 9 = 10"
+    },
+    {
+      "id": "e312f918-6cc6-56a9-bcb8-4f83b8742d8e",
+      "question": "68 ÷ 4 = ?",
+      "choices": [
+        "17",
+        "16",
+        "18",
+        "15"
+      ],
+      "correct": 0,
+      "explanation": "4 × 17 = 68なので、68 ÷ 4 = 17"
+    },
+    {
+      "id": "0c4d8895-b033-5603-90f8-14f24664c5b3",
+      "question": "84 ÷ 6 = ?",
+      "choices": [
+        "14",
+        "13",
+        "15",
+        "12"
+      ],
+      "correct": 0,
+      "explanation": "6 × 14 = 84なので、84 ÷ 6 = 14"
+    },
+    {
+      "id": "4fb42c9c-6d5c-5887-962f-4cf1fdcbe598",
+      "question": "91 ÷ 7 = ?",
+      "choices": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correct": 0,
+      "explanation": "7 × 13 = 91なので、91 ÷ 7 = 13"
+    },
+    {
+      "id": "89f8112b-1466-5aec-b389-105cd9641449",
+      "question": "96 ÷ 8 = ?",
+      "choices": [
+        "12",
+        "11",
+        "13",
+        "10"
+      ],
+      "correct": 0,
+      "explanation": "8 × 12 = 96なので、96 ÷ 8 = 12"
+    },
+    {
+      "id": "2826a0f5-c17b-53d3-91a5-d08d9bbbfd12",
+      "question": "85 ÷ 5 = ?",
+      "choices": [
+        "17",
+        "16",
+        "18",
+        "15"
+      ],
+      "correct": 0,
+      "explanation": "5 × 17 = 85なので、85 ÷ 5 = 17"
+    },
+    {
+      "id": "7eb69d25-862a-538e-90ff-f3a8d2b29140",
+      "question": "76 ÷ 4 = ?",
+      "choices": [
+        "19",
+        "18",
+        "20",
+        "17"
+      ],
+      "correct": 0,
+      "explanation": "4 × 19 = 76なので、76 ÷ 4 = 19"
+    }
+  ]
+}

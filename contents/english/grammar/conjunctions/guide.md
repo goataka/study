@@ -2,7 +2,7 @@
 
 接続詞は文と文、語と語をつなぐ語です。
 
-## 等位接続詞
+## 📌 等位接続詞
 
 I play games `and` study English.
 
@@ -14,7 +14,7 @@ I play games `or` study English.
 - `but`: しかし、でも
 - `or`: または、それとも
 
-## 従属接続詞
+## 📌 従属接続詞
 
 I play games `because` they are fun.
 
@@ -30,7 +30,7 @@ I play games `if` I have time.
 - `though` / `although`: 〜だけれども（譲歩）
 - `that`: 〜ということ（名詞節）
 
-## 接続詞の種類
+## 📊 接続詞の種類
 
 | 種類 | 接続詞 | 例 |
 |------|--------|------|
@@ -42,7 +42,7 @@ I play games `if` I have time.
 | 条件 | `if` | `if` I have time |
 | 譲歩 | `though` | `though` I am busy |
 
-## 例
+## 📝 例
 
 | パターン | 文 |
 |----------|------|
@@ -53,7 +53,7 @@ I play games `if` I have time.
 | 時 | I play games (`after`) I finish homework. |
 | 条件 | I play games (`if`) I have time. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

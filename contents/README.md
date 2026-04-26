@@ -12,18 +12,19 @@
 
 #### 📢 発音
 
-| # | 内容 | 解説 | 確認 | 例 |
-|---|------|------|--------|-----|
-| 01 | アルファベット（大文字・小文字と読み仮名） | [解説](english/pronunciation/alphabet/guide.md) | [確認](quiz/?subject=english&category=alphabet) | A(えー) B(びー) |
-| 02 | 50音（ひらがなとローマ字） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
-| 03 | フォニックス（1文字） | [解説](english/pronunciation/phonics-1letter/guide.md) | [確認](quiz/?subject=english&category=phonics-1) | `a`→/æ/ (apple) |
-| 04 | フォニックス（2文字・マジックE） | [解説](english/pronunciation/phonics-2letter/guide.md) | [確認](quiz/?subject=english&category=phonics-2) | `a_e`→/eɪ/ (cake) |
-| 05 | フォニックス（3文字） | [解説](english/pronunciation/phonics-3letter/guide.md) | [確認](quiz/?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
-| 06 | リンキング | [解説](english/pronunciation/linking/guide.md) | [確認](quiz/?subject=english&category=linking) | check_it→チェキッ |
-| 07 | リダクション | [解説](english/pronunciation/reduction/guide.md) | [確認](quiz/?subject=english&category=reduction) | for→/fər/ |
-| 08 | フラッピング | [解説](english/pronunciation/flapping/guide.md) | [確認](quiz/?subject=english&category=flapping) | water→ウォダー |
-| 09 | アシミレーション | [解説](english/pronunciation/assimilation/guide.md) | [確認](quiz/?subject=english&category=assimilation) | meet you→ミーチュー |
-| 10 | 発音記号（IPA） | [解説](english/pronunciation/phonetic-symbols/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols) | /æ/→ア（cat） |
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
+| アルファベット（大文字・小文字と読み仮名） | [解説](english/pronunciation/alphabet/guide.md) | [確認](quiz/?subject=english&category=alphabet) | A(えー) B(びー) |
+| 50音（ひらがなとローマ字） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
+| 拡張ローマ字（濁音・半濁音・拗音） | [解説](english/pronunciation/romaji-advanced/guide.md) | [確認](quiz/?subject=english&category=romaji-advanced) | が=ga ぱ=pa しゃ=sha |
+| フォニックス（1文字） | [解説](english/pronunciation/phonics-1letter/guide.md) | [確認](quiz/?subject=english&category=phonics-1) | `a`→/æ/ (apple) |
+| フォニックス（2文字・マジックE） | [解説](english/pronunciation/phonics-2letter/guide.md) | [確認](quiz/?subject=english&category=phonics-2) | `a_e`→/eɪ/ (cake) |
+| フォニックス（3文字） | [解説](english/pronunciation/phonics-3letter/guide.md) | [確認](quiz/?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
+| リンキング | [解説](english/pronunciation/linking/guide.md) | [確認](quiz/?subject=english&category=linking) | check_it→チェキッ |
+| リダクション | [解説](english/pronunciation/reduction/guide.md) | [確認](quiz/?subject=english&category=reduction) | for→/fər/ |
+| フラッピング | [解説](english/pronunciation/flapping/guide.md) | [確認](quiz/?subject=english&category=flapping) | water→ウォダー |
+| アシミレーション | [解説](english/pronunciation/assimilation/guide.md) | [確認](quiz/?subject=english&category=assimilation) | meet you→ミーチュー |
+| 発音記号（IPA） | [解説](english/pronunciation/phonetic-symbols/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols) | /æ/→ア（cat） |
 
 #### 📝 文法
 
@@ -75,30 +76,30 @@
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 01 | 1桁のたし算（くり上がりなし） | 小学1年 | [解説](math/arithmetic/addition-1digit-no-carry/guide.md) | [確認](quiz/?subject=math&category=addition-no-carry) | 3 + 4 = 7 |
-| 02 | 1桁のたし算（くり上がりあり） | 小学1年 | [解説](math/arithmetic/addition-1digit-carry/guide.md) | [確認](quiz/?subject=math&category=addition-carry) | 7 + 8 = 15 |
-| 03 | 2桁のたし算（くり上がりなし） | 小学2年 | [解説](math/arithmetic/addition-2digit-no-carry/guide.md) | [確認](quiz/?subject=math&category=addition-no-carry) | 23 + 45 = 68 |
-| 04 | 2桁のたし算（くり上がりあり） | 小学2年 | [解説](math/arithmetic/addition-2digit-carry/guide.md) | [確認](quiz/?subject=math&category=addition-carry) | 47 + 38 = 85 |
-| 05 | 3桁のたし算（くり上がりなし） | 小学3年 | [解説](math/arithmetic/addition-3digit-no-carry/guide.md) | [確認](quiz/?subject=math&category=addition-no-carry) | 123 + 456 = 579 |
-| 06 | 3桁のたし算（くり上がりあり） | 小学3年 | [解説](math/arithmetic/addition-3digit-carry/guide.md) | [確認](quiz/?subject=math&category=addition-carry) | 347 + 285 = 632 |
+| 01 | 1桁のたし算（くり上がりなし） | 小学1年 | [解説](math/arithmetic/addition-1digit-no-carry/guide.md) | [確認](quiz/?subject=math&category=addition-no-carry-1digit) | 3 + 4 = 7 |
+| 02 | 1桁のたし算（くり上がりあり） | 小学1年 | [解説](math/arithmetic/addition-1digit-carry/guide.md) | [確認](quiz/?subject=math&category=addition-carry-1digit) | 7 + 8 = 15 |
+| 03 | 2桁のたし算（くり上がりなし） | 小学2年 | [解説](math/arithmetic/addition-2digit-no-carry/guide.md) | [確認](quiz/?subject=math&category=addition-no-carry-2digit) | 23 + 45 = 68 |
+| 04 | 2桁のたし算（くり上がりあり） | 小学2年 | [解説](math/arithmetic/addition-2digit-carry/guide.md) | [確認](quiz/?subject=math&category=addition-carry-2digit) | 47 + 38 = 85 |
+| 05 | 3桁以上のたし算（くり上がりなし） | 小学3年 | [解説](math/arithmetic/addition-3digit-no-carry/guide.md) | [確認](quiz/?subject=math&category=addition-no-carry-3digit) | 123 + 456 = 579 |
+| 06 | 3桁以上のたし算（くり上がりあり） | 小学3年 | [解説](math/arithmetic/addition-3digit-carry/guide.md) | [確認](quiz/?subject=math&category=addition-carry-3digit) | 347 + 285 = 632 |
 | 07 | たし算（まとめ） | 小学3年 | [解説](math/arithmetic/addition-mixed/guide.md) | [確認](quiz/?subject=math&category=addition-mixed) | 6 + 9 = 15 |
-| 08 | 1桁のひき算（くり下がりなし） | 小学1年 | [解説](math/arithmetic/subtraction-1digit-no-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-no-borrow) | 8 - 3 = 5 |
-| 09 | 1桁のひき算（くり下がりあり） | 小学1年 | [解説](math/arithmetic/subtraction-1digit-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-borrow) | 13 - 7 = 6 |
-| 10 | 2桁のひき算（くり下がりなし） | 小学2年 | [解説](math/arithmetic/subtraction-2digit-no-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-no-borrow) | 58 - 23 = 35 |
-| 11 | 2桁のひき算（くり下がりあり） | 小学2年 | [解説](math/arithmetic/subtraction-2digit-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-borrow) | 52 - 37 = 15 |
-| 12 | 3桁のひき算（くり下がりなし） | 小学3年 | [解説](math/arithmetic/subtraction-3digit-no-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-no-borrow) | 689 - 234 = 455 |
-| 13 | 3桁のひき算（くり下がりあり） | 小学3年 | [解説](math/arithmetic/subtraction-3digit-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-borrow) | 503 - 278 = 225 |
+| 08 | 1桁のひき算（くり下がりなし） | 小学1年 | [解説](math/arithmetic/subtraction-1digit-no-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-no-borrow-1digit) | 8 - 3 = 5 |
+| 09 | 1桁のひき算（くり下がりあり） | 小学1年 | [解説](math/arithmetic/subtraction-1digit-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-borrow-1digit) | 13 - 7 = 6 |
+| 10 | 2桁のひき算（くり下がりなし） | 小学2年 | [解説](math/arithmetic/subtraction-2digit-no-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-no-borrow-2digit) | 58 - 23 = 35 |
+| 11 | 2桁のひき算（くり下がりあり） | 小学2年 | [解説](math/arithmetic/subtraction-2digit-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-borrow-2digit) | 52 - 37 = 15 |
+| 12 | 3桁以上のひき算（くり下がりなし） | 小学3年 | [解説](math/arithmetic/subtraction-3digit-no-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-no-borrow-3digit) | 689 - 234 = 455 |
+| 13 | 3桁以上のひき算（くり下がりあり） | 小学3年 | [解説](math/arithmetic/subtraction-3digit-borrow/guide.md) | [確認](quiz/?subject=math&category=subtraction-borrow-3digit) | 503 - 278 = 225 |
 | 14 | ひき算（まとめ） | 小学3年 | [解説](math/arithmetic/subtraction-mixed/guide.md) | [確認](quiz/?subject=math&category=subtraction-mixed) | 15 - 8 = 7 |
-| 15 | 1桁のかけ算（九九） | 小学2年 | [解説](math/arithmetic/multiplication-1digit/guide.md) | [確認](quiz/?subject=math&category=multiplication-basic) | 6 × 7 = 42 |
-| 16 | 2桁のかけ算 | 小学3年 | [解説](math/arithmetic/multiplication-2digit/guide.md) | [確認](quiz/?subject=math&category=multiplication-basic) | 23 × 4 = 92 |
-| 17 | 3桁のかけ算 | 小学3年 | [解説](math/arithmetic/multiplication-3digit/guide.md) | [確認](quiz/?subject=math&category=multiplication-basic) | 123 × 4 = 492 |
+| 15 | 1桁のかけ算（九九） | 小学2年 | [解説](math/arithmetic/multiplication-1digit/guide.md) | [確認](quiz/?subject=math&category=multiplication-1digit) | 6 × 7 = 42 |
+| 16 | 2桁のかけ算 | 小学3年 | [解説](math/arithmetic/multiplication-2digit/guide.md) | [確認](quiz/?subject=math&category=multiplication-2digit) | 23 × 4 = 92 |
+| 17 | 3桁以上のかけ算 | 小学3年 | [解説](math/arithmetic/multiplication-3digit/guide.md) | [確認](quiz/?subject=math&category=multiplication-3digit) | 123 × 4 = 492 |
 | 18 | かけ算（まとめ） | 小学3年 | [解説](math/arithmetic/multiplication-mixed/guide.md) | [確認](quiz/?subject=math&category=multiplication-basic) | 6 × 7 = 42 |
-| 19 | 1桁のわり算（あまりなし） | 小学3年 | [解説](math/arithmetic/division-1digit-no-remainder/guide.md) | [確認](quiz/?subject=math&category=division-no-remainder) | 12 ÷ 4 = 3 |
-| 20 | 1桁のわり算（あまりあり） | 小学3年 | [解説](math/arithmetic/division-1digit-remainder/guide.md) | [確認](quiz/?subject=math&category=division-remainder) | 17 ÷ 5 = 3…2 |
-| 21 | 2桁のわり算（あまりなし） | 小学3年 | [解説](math/arithmetic/division-2digit-no-remainder/guide.md) | [確認](quiz/?subject=math&category=division-no-remainder) | 84 ÷ 12 = 7 |
-| 22 | 2桁のわり算（あまりあり） | 小学3年 | [解説](math/arithmetic/division-2digit-remainder/guide.md) | [確認](quiz/?subject=math&category=division-remainder) | 85 ÷ 12 = 7…1 |
-| 23 | 3桁のわり算（あまりなし） | 小学4年 | [解説](math/arithmetic/division-3digit-no-remainder/guide.md) | [確認](quiz/?subject=math&category=division-no-remainder) | 840 ÷ 12 = 70 |
-| 24 | 3桁のわり算（あまりあり） | 小学4年 | [解説](math/arithmetic/division-3digit-remainder/guide.md) | [確認](quiz/?subject=math&category=division-remainder) | 841 ÷ 12 = 70…1 |
+| 19 | 1桁のわり算（あまりなし） | 小学3年 | [解説](math/arithmetic/division-1digit-no-remainder/guide.md) | [確認](quiz/?subject=math&category=division-no-remainder-1digit) | 12 ÷ 4 = 3 |
+| 20 | 1桁のわり算（あまりあり） | 小学3年 | [解説](math/arithmetic/division-1digit-remainder/guide.md) | [確認](quiz/?subject=math&category=division-remainder-1digit) | 17 ÷ 5 = 3…2 |
+| 21 | 2桁のわり算（あまりなし） | 小学3年 | [解説](math/arithmetic/division-2digit-no-remainder/guide.md) | [確認](quiz/?subject=math&category=division-no-remainder-2digit) | 84 ÷ 4 = 21 |
+| 22 | 2桁のわり算（あまりあり） | 小学3年 | [解説](math/arithmetic/division-2digit-remainder/guide.md) | [確認](quiz/?subject=math&category=division-remainder-2digit) | 85 ÷ 12 = 7…1 |
+| 23 | 3桁以上のわり算（あまりなし） | 小学4年 | [解説](math/arithmetic/division-3digit-no-remainder/guide.md) | [確認](quiz/?subject=math&category=division-no-remainder-3digit) | 840 ÷ 12 = 70 |
+| 24 | 3桁以上のわり算（あまりあり） | 小学4年 | [解説](math/arithmetic/division-3digit-remainder/guide.md) | [確認](quiz/?subject=math&category=division-remainder-3digit) | 841 ÷ 12 = 70…1 |
 | 25 | わり算（まとめ） | 小学4年 | [解説](math/arithmetic/division-mixed/guide.md) | [確認](quiz/?subject=math&category=division-mixed) | 23 ÷ 4 = 5…3 |
 | 26 | たし算（同分母） | 小学4年 | [解説](math/arithmetic/fractions-same-add/guide.md) | [確認](quiz/?subject=math&category=fractions-same-add) | 1/5 + 2/5 = 3/5 |
 | 27 | ひき算（同分母） | 小学4年 | [解説](math/arithmetic/fractions-same-sub/guide.md) | [確認](quiz/?subject=math&category=fractions-same-sub) | 4/7 - 2/7 = 2/7 |

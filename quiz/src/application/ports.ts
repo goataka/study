@@ -50,4 +50,6 @@ export interface IProgressRepository {
   saveHistory(records: QuizRecord[]): void;
   loadCategoryViewMode(): "category" | "grade";
   saveCategoryViewMode(mode: "category" | "grade"): void;
+  loadFontSizeLevel(): "small" | "medium" | "large" | null;
+  saveFontSizeLevel(level: "small" | "medium" | "large"): void;
 }

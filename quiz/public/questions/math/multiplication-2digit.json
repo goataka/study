@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "multiplication-2digit",
+  "categoryName": "2桁のかけ算（2桁×1桁）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "multiplication",
+  "parentCategoryName": "かけ算",
+  "guideUrl": "../math/arithmetic/multiplication-2digit/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "23 × 4 = 92",
+  "referenceGrade": "小学3年",
+  "description": "2けた×1けたのかけ算を筆算で正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "fd7d8f38-2c60-590f-895c-c03ada619d2a",
+      "question": "23 × 4 = ?",
+      "choices": [
+        "92",
+        "91",
+        "93",
+        "90"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 3×4=12→2くり上げ1。十の位: 2×4+1=9。答え 92"
+    },
+    {
+      "id": "85cda055-f24f-50ad-bcb3-ef736505f3e9",
+      "question": "35 × 6 = ?",
+      "choices": [
+        "210",
+        "209",
+        "211",
+        "208"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 5×6=30→0くり上げ3。十の位: 3×6+3=21。答え 210"
+    },
+    {
+      "id": "ceb5b1cf-4d26-5724-9a2d-a742de0d4bbd",
+      "question": "47 × 3 = ?",
+      "choices": [
+        "141",
+        "140",
+        "142",
+        "139"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 7×3=21→1くり上げ2。十の位: 4×3+2=14。答え 141"
+    },
+    {
+      "id": "007dfc6a-7fbe-5ac7-9784-ce06a23d9f87",
+      "question": "52 × 7 = ?",
+      "choices": [
+        "364",
+        "363",
+        "365",
+        "362"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 2×7=14→4くり上げ1。十の位: 5×7+1=36。答え 364"
+    },
+    {
+      "id": "e50a90dc-8eda-5262-8480-c38bbb6520ff",
+      "question": "64 × 5 = ?",
+      "choices": [
+        "320",
+        "319",
+        "321",
+        "318"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 4×5=20→0くり上げ2。十の位: 6×5+2=32。答え 320"
+    },
+    {
+      "id": "4ce85b88-0ae6-5389-bff3-47ff4e475322",
+      "question": "78 × 2 = ?",
+      "choices": [
+        "156",
+        "155",
+        "157",
+        "154"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 8×2=16→6くり上げ1。十の位: 7×2+1=15。答え 156"
+    },
+    {
+      "id": "59c0cb18-be2f-5218-8358-8f8670ad4c6b",
+      "question": "86 × 9 = ?",
+      "choices": [
+        "774",
+        "773",
+        "775",
+        "772"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 6×9=54→4くり上げ5。十の位: 8×9+5=77。答え 774"
+    },
+    {
+      "id": "d1085e60-df72-56c5-bef8-a6ce9abbc82c",
+      "question": "91 × 4 = ?",
+      "choices": [
+        "364",
+        "363",
+        "365",
+        "362"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 1×4=4。十の位: 9×4=36。答え 364"
+    },
+    {
+      "id": "4f585faa-819d-5fff-9e5a-5b4c8decd274",
+      "question": "43 × 8 = ?",
+      "choices": [
+        "344",
+        "343",
+        "345",
+        "342"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 3×8=24→4くり上げ2。十の位: 4×8+2=34。答え 344"
+    },
+    {
+      "id": "c888cd9b-e68c-565a-895c-1fe0fefa7c15",
+      "question": "67 × 6 = ?",
+      "choices": [
+        "402",
+        "401",
+        "403",
+        "400"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 7×6=42→2くり上げ4。十の位: 6×6+4=40。答え 402"
+    },
+    {
+      "id": "6383cef6-b0be-58c4-ad25-5d5b381ed38f",
+      "question": "25 × 8 = ?",
+      "choices": [
+        "200",
+        "199",
+        "201",
+        "198"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 5×8=40→0くり上げ4。十の位: 2×8+4=20。答え 200"
+    },
+    {
+      "id": "2eaffece-8752-5214-8906-a2ac697c8232",
+      "question": "39 × 7 = ?",
+      "choices": [
+        "273",
+        "272",
+        "274",
+        "271"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 9×7=63→3くり上げ6。十の位: 3×7+6=27。答え 273"
+    },
+    {
+      "id": "f2fb7f44-d2e0-5f4f-8772-13b8235dc7fc",
+      "question": "54 × 9 = ?",
+      "choices": [
+        "486",
+        "485",
+        "487",
+        "484"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 4×9=36→6くり上げ3。十の位: 5×9+3=48。答え 486"
+    },
+    {
+      "id": "f68201af-0dd4-5042-98fb-62ecf7416fa3",
+      "question": "76 × 3 = ?",
+      "choices": [
+        "228",
+        "227",
+        "229",
+        "226"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 6×3=18→8くり上げ1。十の位: 7×3+1=22。答え 228"
+    },
+    {
+      "id": "dba616a3-5ef3-51af-9bcf-90e2a7994194",
+      "question": "82 × 5 = ?",
+      "choices": [
+        "410",
+        "409",
+        "411",
+        "408"
+      ],
+      "correct": 0,
+      "explanation": "一の位: 2×5=10→0くり上げ1。十の位: 8×5+1=41。答え 410"
+    }
+  ]
+}

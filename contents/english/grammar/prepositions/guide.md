@@ -2,7 +2,7 @@
 
 前置詞は名詞の前に置き、場所・時・方向などを表します。
 
-## 場所の前置詞
+## 📌 場所の前置詞
 
 I play games `at` home.
 
@@ -12,7 +12,7 @@ I play games `in` the park.
 - `in`: 空間の中（in the park, in the room, in Japan）
 - `on`: 面の上（on the desk, on the wall）
 
-## 時の前置詞
+## 📌 時の前置詞
 
 I play games `on` Sunday.
 
@@ -22,7 +22,7 @@ I play games `in` the morning.
 - `on`: 曜日・日付（on Sunday, on May 1st）
 - `in`: 月・季節・年・時間帯（in June, in summer, in the morning）
 
-## 前置詞の使い分け
+## 📌 前置詞の使い分け
 
 | 前置詞 | 用法 | 例 |
 |--------|------|------|
@@ -34,7 +34,7 @@ I play games `in` the morning.
 | `for` | 目的・期間 | study `for` two hours |
 | `with` | 一緒に・道具 | play `with` friends |
 
-## 例
+## 📝 例
 
 | パターン | 文 |
 |----------|------|
@@ -45,7 +45,7 @@ I play games `in` the morning.
 | 方向 | I go (`to`) the game center. |
 | 手段 | I go to the game center (`by`) bus. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

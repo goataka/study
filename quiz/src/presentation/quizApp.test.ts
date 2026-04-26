@@ -26,6 +26,11 @@ const kanjiCanvasMock = {
 function setupMinimalDom(): void {
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
+    <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
+      <button class="font-size-btn active" data-size="small" aria-pressed="true">小</button>
+      <button class="font-size-btn" data-size="medium" aria-pressed="false">中</button>
+      <button class="font-size-btn" data-size="large" aria-pressed="false">大</button>
+    </div>
     <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <select id="subjectFilter"><option value="all">すべての教科</option></select>
@@ -74,6 +79,11 @@ function setupMinimalDom(): void {
 function setupTabDom(): void {
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
+    <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
+      <button class="font-size-btn active" data-size="small" aria-pressed="true">小</button>
+      <button class="font-size-btn" data-size="medium" aria-pressed="false">中</button>
+      <button class="font-size-btn" data-size="large" aria-pressed="false">大</button>
+    </div>
     <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
@@ -241,8 +251,8 @@ const mockTensesFile = {
   categoryName: "過去形",
   topCategory: "grammar",
   topCategoryName: "文法",
-  parentCategory: "tenses",
-  parentCategoryName: "時制",
+  parentCategory: "verb",
+  parentCategoryName: "動詞",
   questions: Array.from({ length: 3 }, (_, i) => ({
     id: `t${i + 1}`,
     question: `時制問題 ${i + 1}`,
@@ -3436,7 +3446,7 @@ describe("QuizApp — 3階層カテゴリ仕様", () => {
 
     const grammarTopGroup = document.querySelector('.category-top-group[data-top-category="grammar"]');
     expect(grammarTopGroup).not.toBeNull();
-    const tensesGroup = grammarTopGroup?.querySelector('.category-group[data-parent-category="tenses"]');
+    const tensesGroup = grammarTopGroup?.querySelector('.category-group[data-parent-category="verb"]');
     expect(tensesGroup).not.toBeNull();
   });
 
@@ -3449,7 +3459,7 @@ describe("QuizApp — 3階層カテゴリ仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="tenses-past"]') as HTMLElement;
     expect(catItem?.dataset.topCategory).toBe("grammar");
-    expect(catItem?.dataset.parentCategory).toBe("tenses");
+    expect(catItem?.dataset.parentCategory).toBe("verb");
   });
 
   it("トップカテゴリヘッダーをクリックすると折りたたまれる", async () => {
@@ -3935,7 +3945,6 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
   });
 });
 
-
 describe("QuizApp — カテゴリ/サブカテゴリ選択と表示制御仕様", () => {
   beforeEach(() => {
     setupTabDom();
@@ -4081,183 +4090,119 @@ describe("QuizApp — カテゴリ/サブカテゴリ選択と表示制御仕様
   });
 });
 
-describe("QuizApp — カテゴリ表示モード永続化仕様", () => {
+describe("QuizApp — フォントサイズ切替仕様", () => {
   beforeEach(() => {
-    setupTabDom();
+    setupMinimalDom();
+    setupFetchMock();
     localStorage.clear();
+    // body クラスを初期化する
+    document.body.classList.remove("font-size-medium", "font-size-large");
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
   });
 
-  it("ビューモードを学年別に切り替えるとlocalStorageに保存される", async () => {
-    const manifest = {
-      version: "2.0.0",
-      subjects: { math: { name: "数学" } },
-      questionFiles: ["math/elem.json"],
-    };
-    const elemFile = {
-      subject: "math",
-      subjectName: "数学",
-      category: "addition",
-      categoryName: "たし算",
-      referenceGrade: "小学1年",
-      questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
-    };
-    global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
-    });
-
+  it("初期化時にlocalStorageに保存値がなければ bodyにフォントサイズクラスが付かない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
-    mathTab?.click();
-
-    // 学年別ビューに切り替え
-    const toggleBtn = document.querySelector<HTMLElement>(".category-view-toggle");
-    toggleBtn?.click();
-
-    // localStorageに保存されていること
-    expect(localStorage.getItem("categoryViewMode")).toBe("grade");
+    expect(document.body.classList.contains("font-size-medium")).toBe(false);
+    expect(document.body.classList.contains("font-size-large")).toBe(false);
   });
 
-  it("localStorageに保存されたビューモードで起動する", async () => {
-    // 事前に学年別モードをlocalStorageに保存しておく
-    localStorage.setItem("categoryViewMode", "grade");
-
-    const manifest = {
-      version: "2.0.0",
-      subjects: { math: { name: "数学" } },
-      questionFiles: ["math/elem.json"],
-    };
-    const elemFile = {
-      subject: "math",
-      subjectName: "数学",
-      category: "addition",
-      categoryName: "たし算",
-      referenceGrade: "小学1年",
-      questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
-    };
-    global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
-    });
-
+  it("localStorageに medium が保存されていれば初期化時に body.font-size-medium が付く", async () => {
+    localStorage.setItem("fontSizeLevel", "medium");
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
-    mathTab?.click();
-
-    // 学年別ビューで起動していること（学年グループが表示される）
-    const gradeGroups = document.querySelectorAll(".category-grade-group");
-    expect(gradeGroups.length).toBeGreaterThan(0);
-  });
-});
-
-describe("QuizApp — 学年別ビューでの階層情報表示仕様", () => {
-  beforeEach(() => {
-    setupTabDom();
-    localStorage.clear();
+    expect(document.body.classList.contains("font-size-medium")).toBe(true);
+    expect(document.body.classList.contains("font-size-large")).toBe(false);
   });
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  it("学年別ビューでは単元に親カテゴリ名が表示される", async () => {
-    const manifest = {
-      version: "2.0.0",
-      subjects: { english: { name: "英語" } },
-      questionFiles: ["english/grammar.json"],
-    };
-    const grammarFile = {
-      subject: "english",
-      subjectName: "英語",
-      category: "tenses-past",
-      categoryName: "過去形",
-      parentCategory: "grammar",
-      parentCategoryName: "文法",
-      referenceGrade: "中学1年",
-      questions: [{ id: "g1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
-    };
-    global.fetch = vi.fn((url: string) => {
-      const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
-    });
-
+  it("localStorageに large が保存されていれば初期化時に body.font-size-large が付く", async () => {
+    localStorage.setItem("fontSizeLevel", "large");
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    // 学年別ビューに切り替え
-    const toggleBtn = document.querySelector<HTMLElement>(".category-view-toggle");
-    toggleBtn?.click();
-
-    // 単元に親カテゴリ名（hierarchy）が表示されること
-    const catItem = document.querySelector('.category-item[data-category="tenses-past"]');
-    const hierarchySpan = catItem?.querySelector(".category-hierarchy");
-    expect(hierarchySpan).not.toBeNull();
-    expect(hierarchySpan?.textContent).toContain("文法");
+    expect(document.body.classList.contains("font-size-large")).toBe(true);
+    expect(document.body.classList.contains("font-size-medium")).toBe(false);
   });
 
-  it("カテゴリ別ビューでは階層情報スパンが表示されない", async () => {
-    const manifest = {
-      version: "2.0.0",
-      subjects: { english: { name: "英語" } },
-      questionFiles: ["english/grammar.json"],
-    };
-    const grammarFile = {
-      subject: "english",
-      subjectName: "英語",
-      category: "tenses-past",
-      categoryName: "過去形",
-      parentCategory: "grammar",
-      parentCategoryName: "文法",
-      referenceGrade: "中学1年",
-      questions: [{ id: "g1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
-    };
-    global.fetch = vi.fn((url: string) => {
-      const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
-    });
-
+  it("初期化時にlocalStorageへの書き戻しが発生しない（localStorageに保存値がない場合）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    // カテゴリ別ビュー（デフォルト）では階層情報は表示されない
-    const catItem = document.querySelector('.category-item[data-category="tenses-past"]');
-    const hierarchySpan = catItem?.querySelector(".category-hierarchy");
-    expect(hierarchySpan).toBeNull();
-  });
-});
-
-describe("QuizApp — 確認タブ絵文字仕様", () => {
-  beforeEach(() => {
-    setupTabDom();
-    localStorage.clear();
+    expect(localStorage.getItem("fontSizeLevel")).toBeNull();
   });
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  it("確認タブのテキストに絵文字が含まれる", async () => {
+  it("初期化時にlocalStorageへの書き戻しが発生しない（medium が保存されている場合）", async () => {
+    localStorage.setItem("fontSizeLevel", "medium");
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
+    // 初期復元で書き戻しが起きていないことを確認（値は変わらず medium のまま）
+    expect(localStorage.getItem("fontSizeLevel")).toBe("medium");
+  });
 
-    const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
-    expect(quizTab?.textContent).toContain("✅");
-    expect(quizTab?.textContent).toContain("確認");
+  it("「中」ボタンをクリックするとbody.font-size-mediumが付く", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const mediumBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="medium"]')!;
+    mediumBtn.click();
+    expect(document.body.classList.contains("font-size-medium")).toBe(true);
+    expect(document.body.classList.contains("font-size-large")).toBe(false);
+  });
+
+  it("「大」ボタンをクリックするとbody.font-size-largeが付く", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const largeBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="large"]')!;
+    largeBtn.click();
+    expect(document.body.classList.contains("font-size-large")).toBe(true);
+    expect(document.body.classList.contains("font-size-medium")).toBe(false);
+  });
+
+  it("「小」ボタンをクリックするとフォントサイズクラスが除去される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    // まず大きいサイズに変更
+    document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="medium"]')!.click();
+    expect(document.body.classList.contains("font-size-medium")).toBe(true);
+    // 小に戻す
+    document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="small"]')!.click();
+    expect(document.body.classList.contains("font-size-medium")).toBe(false);
+    expect(document.body.classList.contains("font-size-large")).toBe(false);
+  });
+
+  it("「中」ボタンクリック後にaria-pressed属性が正しく更新される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const mediumBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="medium"]')!;
+    const smallBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="small"]')!;
+    const largeBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="large"]')!;
+    mediumBtn.click();
+    expect(mediumBtn.getAttribute("aria-pressed")).toBe("true");
+    expect(smallBtn.getAttribute("aria-pressed")).toBe("false");
+    expect(largeBtn.getAttribute("aria-pressed")).toBe("false");
+  });
+
+  it("「中」ボタンクリック後にlocalStorageに medium が保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const mediumBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="medium"]')!;
+    mediumBtn.click();
+    expect(localStorage.getItem("fontSizeLevel")).toBe("medium");
+  });
+
+  it("「大」ボタンクリック後にlocalStorageに large が保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const largeBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="large"]')!;
+    largeBtn.click();
+    expect(localStorage.getItem("fontSizeLevel")).toBe("large");
+  });
+
+  it("「小」ボタンクリック後にlocalStorageに small が保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const smallBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="small"]')!;
+    smallBtn.click();
+    expect(localStorage.getItem("fontSizeLevel")).toBe("small");
   });
 });

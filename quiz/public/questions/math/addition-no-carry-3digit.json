@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition-no-carry-3digit",
+  "categoryName": "3桁以上のたし算（くり上がりなし）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "addition",
+  "parentCategoryName": "たし算",
+  "guideUrl": "../math/arithmetic/addition-3digit-no-carry/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "123 + 456 = 579",
+  "referenceGrade": "小学3年",
+  "description": "くり上がりのない3けた以上のたし算を筆算で正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "78310bf8-9ed8-5b50-9f0b-f12612fd3273",
+      "question": "123 + 456 = ?",
+      "choices": [
+        "579",
+        "578",
+        "580",
+        "577"
+      ],
+      "correct": 0,
+      "explanation": "123 + 456 = 579"
+    },
+    {
+      "id": "1079de15-feb6-51b8-99fb-b15cf6d57b6d",
+      "question": "231 + 548 = ?",
+      "choices": [
+        "779",
+        "778",
+        "780",
+        "777"
+      ],
+      "correct": 0,
+      "explanation": "231 + 548 = 779"
+    },
+    {
+      "id": "06e79327-a61d-53a8-ac9d-2f5780df900c",
+      "question": "304 + 295 = ?",
+      "choices": [
+        "599",
+        "598",
+        "600",
+        "597"
+      ],
+      "correct": 0,
+      "explanation": "304 + 295 = 599"
+    },
+    {
+      "id": "c2a1596d-b31e-5646-8e3e-04232512c26e",
+      "question": "213 + 145 = ?",
+      "choices": [
+        "358",
+        "357",
+        "359",
+        "356"
+      ],
+      "correct": 0,
+      "explanation": "213 + 145 = 358"
+    },
+    {
+      "id": "d268c401-6bff-5a6e-acc0-f2425bbcdc14",
+      "question": "321 + 256 = ?",
+      "choices": [
+        "577",
+        "576",
+        "578",
+        "575"
+      ],
+      "correct": 0,
+      "explanation": "321 + 256 = 577"
+    },
+    {
+      "id": "3410e878-8caa-523a-bc10-964e0221575b",
+      "question": "412 + 384 = ?",
+      "choices": [
+        "796",
+        "795",
+        "797",
+        "794"
+      ],
+      "correct": 0,
+      "explanation": "412 + 384 = 796"
+    },
+    {
+      "id": "5129ff6d-09ea-5077-b37c-afd60cd5ecdc",
+      "question": "531 + 248 = ?",
+      "choices": [
+        "779",
+        "778",
+        "780",
+        "777"
+      ],
+      "correct": 0,
+      "explanation": "531 + 248 = 779"
+    },
+    {
+      "id": "b9566bba-9ce1-5690-ae12-43f812b58342",
+      "question": "623 + 154 = ?",
+      "choices": [
+        "777",
+        "776",
+        "778",
+        "775"
+      ],
+      "correct": 0,
+      "explanation": "623 + 154 = 777"
+    },
+    {
+      "id": "6ea2a4ca-c550-5f70-a22a-86d6fa2abccb",
+      "question": "724 + 172 = ?",
+      "choices": [
+        "896",
+        "895",
+        "897",
+        "894"
+      ],
+      "correct": 0,
+      "explanation": "724 + 172 = 896"
+    },
+    {
+      "id": "4adaf3f0-5d95-5370-b3c2-142463dd981a",
+      "question": "451 + 326 = ?",
+      "choices": [
+        "777",
+        "776",
+        "778",
+        "775"
+      ],
+      "correct": 0,
+      "explanation": "451 + 326 = 777"
+    },
+    {
+      "id": "efdd8e8f-2f13-56ce-b5cb-18138c29f68a",
+      "question": "602 + 191 = ?",
+      "choices": [
+        "793",
+        "792",
+        "794",
+        "791"
+      ],
+      "correct": 0,
+      "explanation": "602 + 191 = 793"
+    },
+    {
+      "id": "89474153-5f74-5861-a934-9731a6dde9ba",
+      "question": "330 + 463 = ?",
+      "choices": [
+        "793",
+        "792",
+        "794",
+        "791"
+      ],
+      "correct": 0,
+      "explanation": "330 + 463 = 793"
+    },
+    {
+      "id": "15e1e0d3-0e39-5188-812c-cd873984470e",
+      "question": "814 + 142 = ?",
+      "choices": [
+        "956",
+        "955",
+        "957",
+        "954"
+      ],
+      "correct": 0,
+      "explanation": "814 + 142 = 956"
+    },
+    {
+      "id": "db0be504-f320-59c5-87c6-dc19feef684b",
+      "question": "241 + 354 = ?",
+      "choices": [
+        "595",
+        "594",
+        "596",
+        "593"
+      ],
+      "correct": 0,
+      "explanation": "241 + 354 = 595"
+    },
+    {
+      "id": "b1224f88-c6de-5e48-bc3e-22ab5b8f8b38",
+      "question": "162 + 437 = ?",
+      "choices": [
+        "599",
+        "598",
+        "600",
+        "597"
+      ],
+      "correct": 0,
+      "explanation": "162 + 437 = 599"
+    }
+  ]
+}
