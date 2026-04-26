@@ -153,3 +153,10 @@ Feature: 学習アプリ
     When I click the "数学" tab
     And I click the view mode toggle button
     Then grade groups should be visible in the category list
+
+  Scenario: データダウンロードボタンがツールバーに表示される
+    Then the download data button should be visible in the header
+
+  Scenario: データダウンロードボタンをクリックするとJSONファイルがダウンロードされる
+    When I click the download data button
+    Then a JSON file download should be triggered

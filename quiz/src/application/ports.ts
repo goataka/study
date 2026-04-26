@@ -38,6 +38,17 @@ export interface QuizRecord {
   entries: QuizRecordEntry[];
 }
 
+/** 利用者データのエクスポート形式 */
+export interface UserDataExport {
+  exportedAt: string;
+  userName: string | null;
+  wrongIds: string[];
+  correctStreaks: Record<string, number>;
+  history: QuizRecord[];
+  categoryViewMode: "category" | "grade";
+  fontSizeLevel: "small" | "medium" | "large" | null;
+}
+
 /** 進捗データ永続化の抽象インターフェース */
 export interface IProgressRepository {
   loadWrongIds(): string[];
@@ -52,4 +63,5 @@ export interface IProgressRepository {
   saveCategoryViewMode(mode: "category" | "grade"): void;
   loadFontSizeLevel(): "small" | "medium" | "large" | null;
   saveFontSizeLevel(level: "small" | "medium" | "large"): void;
+  exportAllData(): UserDataExport;
 }

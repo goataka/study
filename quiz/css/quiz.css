@@ -1465,6 +1465,27 @@ button:disabled {
     background: #218838;
 }
 
+/* ヘッダーのデータダウンロードボタン */
+.download-data-btn {
+    padding: 4px 10px;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    background: #f6f8fa;
+    color: #586069;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.download-data-btn:hover {
+    border-color: #0366d6;
+    color: #0366d6;
+    background: #f0f7ff;
+}
+
 /* ユーザー情報表示 */
 .user-info {
     text-align: right;

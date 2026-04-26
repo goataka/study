@@ -358,3 +358,28 @@ Then("grade groups should be visible in the category list", async ({ page }) => 
   // 学年グループ（category-grade-group）が表示されていること
   await expect(page.locator(".category-grade-group").first()).toBeVisible();
 });
+
+Then("the download data button should be visible in the header", async ({ page }) => {
+  // ダウンロードボタンがヘッダーに表示されていること
+  await expect(page.locator("#downloadDataBtn")).toBeVisible();
+});
+
+When("I click the download data button", async ({ page }) => {
+  // ダウンロードイベントを監視してボタンをクリックする
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    page.locator("#downloadDataBtn").click(),
+  ]);
+  // ダウンロードされたファイル名をページに保存（Then ステップで検証）
+  await page.evaluate((filename) => {
+    (window as typeof window & { _testDownloadFilename?: string })._testDownloadFilename = filename;
+  }, download.suggestedFilename());
+});
+
+Then("a JSON file download should be triggered", async ({ page }) => {
+  // ダウンロードされたファイル名が JSON 形式であること
+  const filename = await page.evaluate(
+    () => (window as typeof window & { _testDownloadFilename?: string })._testDownloadFilename
+  );
+  expect(filename).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
+});
