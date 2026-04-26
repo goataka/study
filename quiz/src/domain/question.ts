@@ -24,6 +24,8 @@ export interface Question {
   guideUrl?: string;
   /** 親カテゴリの解説 URL（省略可）。親カテゴリグループのガイドページへのリンク */
   parentCategoryGuideUrl?: string;
+  /** トップカテゴリの解説 URL（省略可）。トップカテゴリグループのガイドページへのリンク */
+  topCategoryGuideUrl?: string;
   /** カテゴリの代表例文（省略可）。バッククォートで囲まれた部分が強調表示される */
   example?: string;
   /** 参考学年（例: "小学3年", "中学1年", "高校2年"） */
@@ -59,6 +61,8 @@ export interface QuestionFile {
   guideUrl?: string;
   /** 親カテゴリの解説 URL（省略可）。親カテゴリグループのガイドページへのリンク */
   parentCategoryGuideUrl?: string;
+  /** トップカテゴリの解説 URL（省略可）。トップカテゴリグループのガイドページへのリンク */
+  topCategoryGuideUrl?: string;
   /** カテゴリの代表例文（省略可）。バッククォートで囲まれた部分が強調表示される */
   example?: string;
   /** 参考学年（例: "小学3年", "中学1年", "高校2年"） */
@@ -175,6 +179,32 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       }
     }
   }
+  // topCategoryGuideUrl はオプションの文字列フィールド（guideUrl と同じ検証ルールを適用）
+  if (qf.topCategoryGuideUrl !== undefined) {
+    if (typeof qf.topCategoryGuideUrl !== "string") {
+      throw new Error('"topCategoryGuideUrl" must be a string if present');
+    }
+    // topCategoryGuideUrl は topCategory が設定されている場合のみ有効
+    if (!qf.topCategory) {
+      throw new Error('"topCategoryGuideUrl" requires "topCategory" to be set');
+    }
+    const isRelative = /^\.\.\/[^./]/.test(qf.topCategoryGuideUrl);
+    const isAbsolute = /^https?:\/\//i.test(qf.topCategoryGuideUrl);
+    if (!isRelative && !isAbsolute) {
+      throw new Error('"topCategoryGuideUrl" must be a relative path starting with "../" or an http/https URL');
+    }
+    if (isRelative) {
+      let decoded = qf.topCategoryGuideUrl;
+      try {
+        decoded = decodeURIComponent(qf.topCategoryGuideUrl);
+      } catch {
+        // デコード失敗の場合は元の文字列で検証
+      }
+      if (decoded.slice("../".length).includes("..")) {
+        throw new Error('"topCategoryGuideUrl" must not contain path traversal sequences');
+      }
+    }
+  }
   // example はオプションの文字列フィールド（空文字は不可）
   if (qf.example !== undefined) {
     if (typeof qf.example !== "string") {
@@ -274,6 +304,7 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     parentCategoryName: qf.parentCategoryName,
     guideUrl: qf.guideUrl,
     parentCategoryGuideUrl: qf.parentCategoryGuideUrl,
+    topCategoryGuideUrl: qf.topCategoryGuideUrl,
     example: qf.example,
     referenceGrade: qf.referenceGrade,
     description: qf.description,

@@ -84,7 +84,7 @@ function setupTabDom(): void {
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
           <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題</button>
-          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">確認</button>
+          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">✅ 確認</button>
           <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 履歴</button>
         </div>
         <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
@@ -714,7 +714,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
   });
 
-  it("parentCategoryGuideUrl が設定されているグループヘッダーに解説ボタンが表示される", async () => {
+  it("解説マーク（📖ボタン）はグループヘッダーに表示されない（ヘッダークリックで解説を表示）", async () => {
     // grammar グループに parentCategoryGuideUrl を追加したモックデータ
     const grammarFileWithParentGuide = {
       ...mockGrammarFile,
@@ -737,31 +737,31 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // grammar グループに解説ボタンが表示されること
+    // 解説ボタン（📖）は表示されないこと（全単元に解説があるため不要）
     const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
     const guideBtn = grammarHeader?.querySelector(".category-group-guide-btn");
-    expect(guideBtn).not.toBeNull();
+    expect(guideBtn).toBeNull();
 
-    // parentCategoryGuideUrl がない phonics グループには解説ボタンが表示されないこと
+    // phonics グループにも解説ボタンは表示されない
     const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
     const phonicsGuideBtn = phonicsHeader?.querySelector(".category-group-guide-btn");
     expect(phonicsGuideBtn).toBeNull();
   });
 
-  it("parentCategoryGuideUrl がないグループヘッダーには解説ボタンが表示されない", async () => {
+  it("parentCategoryGuideUrl がないグループヘッダーにも解説ボタンは表示されない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // デフォルトモックでは parentCategoryGuideUrl がないのでボタンなし
+    // 解説ボタンは設定有無に関わらず表示されない
     const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
     const guideBtn = grammarHeader?.querySelector(".category-group-guide-btn");
     expect(guideBtn).toBeNull();
   });
 
-  it("解説ボタンをクリックすると解説パネルが表示される", async () => {
+  it("親カテゴリヘッダーをクリックすると解説パネルが表示される", async () => {
     const grammarFileWithParentGuide = {
       ...mockGrammarFile,
       parentCategoryGuideUrl: "../english/grammar/guide",
@@ -784,8 +784,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     englishTab?.click();
 
     const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
-    const guideBtn = grammarHeader?.querySelector<HTMLElement>(".category-group-guide-btn");
-    guideBtn?.click();
+    grammarHeader?.click();
 
     // 解説タブがアクティブになること
     const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
@@ -797,7 +796,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     expect(guideFrame.classList.contains("hidden")).toBe(false);
   });
 
-  it("解説ボタンをクリックしてもグループの折りたたみ状態は変化しない", async () => {
+  it("親カテゴリヘッダーをクリックするとグループの折りたたみ状態が変化する", async () => {
     const grammarFileWithParentGuide = {
       ...mockGrammarFile,
       parentCategoryGuideUrl: "../english/grammar/guide",
@@ -823,11 +822,10 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
 
     const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
-    const guideBtn = grammarHeader?.querySelector<HTMLElement>(".category-group-guide-btn");
-    guideBtn?.click();
+    grammarHeader?.click();
 
-    // 解説ボタンクリックでグループが折りたたまれないこと
-    expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
+    // ヘッダークリックで折りたたまれること（選択と同時に）
+    expect(grammarGroup?.classList.contains("collapsed")).toBe(true);
   });
 });
 
@@ -2477,7 +2475,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
             <div class="panel-tabs" role="tablist">
               <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" tabindex="-1">📖 解説</button>
               <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" tabindex="-1">📋 問題</button>
-              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">確認</button>
+              <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" tabindex="0">✅ 確認</button>
               <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" tabindex="-1">📊 履歴</button>
             </div>
             <div id="guideContent" class="hidden" role="tabpanel"></div>
@@ -3514,7 +3512,7 @@ describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
     vi.restoreAllMocks();
   });
 
-  it("guideUrl ありのカテゴリには解説ボタンが表示される", async () => {
+  it("guideUrl ありのカテゴリにも解説ボタン（📖）は表示されない", async () => {
     const manifest = {
       version: "2.0.0",
       subjects: { english: { name: "英語" } },
@@ -3549,11 +3547,10 @@ describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
 
     const catItem = document.querySelector('.category-item[data-category="tenses-present"]');
     const guideBtn = catItem?.querySelector("button.category-item-guide-btn");
-    expect(guideBtn).not.toBeNull();
-    expect(guideBtn?.getAttribute("aria-label")).toContain("解説");
+    expect(guideBtn).toBeNull();
   });
 
-  it("guideUrl なしのカテゴリには解説ボタンが表示されない", async () => {
+  it("guideUrl なしのカテゴリにも解説ボタン（📖）は表示されない", async () => {
     setupFetchMock(); // mockQuestionFile には guideUrl がない
 
     new QuizApp();
@@ -3567,7 +3564,7 @@ describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
     expect(guideBtn).toBeNull();
   });
 
-  it("解説ボタンをクリックするとそのカテゴリが選択されて解説タブが開く", async () => {
+  it("単元をクリックするとそのカテゴリが選択されて解説タブが開く", async () => {
     const manifest = {
       version: "2.0.0",
       subjects: { english: { name: "英語" } },
@@ -3600,9 +3597,9 @@ describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const catItem = document.querySelector('.category-item[data-category="tenses-present"]');
-    const guideBtn = catItem?.querySelector<HTMLElement>("button.category-item-guide-btn");
-    guideBtn?.click();
+    // 単元をクリックすると選択されて解説タブが開く（guideUrl があり未学習のため）
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-present"]');
+    catItem?.click();
 
     // 解説タブが有効になっていること
     const guideTab = document.getElementById("panelTab-guide");
@@ -3938,3 +3935,329 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
   });
 });
 
+
+describe("QuizApp — カテゴリ/サブカテゴリ選択と表示制御仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("親カテゴリヘッダーをクリックすると確認・問題一覧・履歴タブが非表示になる", async () => {
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/grammar.json", "english/phonics.json"],
+    };
+    const grammarFile = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-past",
+      categoryName: "過去形",
+      parentCategory: "grammar",
+      parentCategoryName: "文法",
+      parentCategoryGuideUrl: "../english/grammar/guide",
+      questions: [{ id: "g1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    const phonicsFile = {
+      subject: "english",
+      subjectName: "英語",
+      category: "phonics-1",
+      categoryName: "フォニックス",
+      parentCategory: "phonics",
+      parentCategoryName: "発音",
+      questions: [{ id: "p1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const u = String(url);
+      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("grammar.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(phonicsFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // grammar親カテゴリヘッダーをクリック
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    grammarHeader?.click();
+
+    // 確認・問題一覧・履歴タブが非表示になること
+    expect(document.getElementById("panelTab-quiz")?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("panelTab-questions")?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("panelTab-history")?.classList.contains("hidden")).toBe(true);
+
+    // 解説タブは非表示にならないこと
+    expect(document.getElementById("panelTab-guide")?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("単元をクリックすると確認・問題一覧・履歴タブが再表示される", async () => {
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/grammar.json"],
+    };
+    const grammarFile = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-past",
+      categoryName: "過去形",
+      parentCategory: "grammar",
+      parentCategoryName: "文法",
+      parentCategoryGuideUrl: "../english/grammar/guide",
+      questions: [{ id: "g1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const u = String(url);
+      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 親カテゴリを選択してタブを非表示にする
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+    grammarHeader?.click();
+    expect(document.getElementById("panelTab-quiz")?.classList.contains("hidden")).toBe(true);
+
+    // 単元をクリックするとタブが再表示される
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-past"]');
+    catItem?.click();
+    expect(document.getElementById("panelTab-quiz")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("panelTab-history")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("panelTab-questions")?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("親カテゴリヘッダーのアクティブ状態が設定される", async () => {
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/grammar.json"],
+    };
+    const grammarFile = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-past",
+      categoryName: "過去形",
+      parentCategory: "grammar",
+      parentCategoryName: "文法",
+      parentCategoryGuideUrl: "../english/grammar/guide",
+      questions: [{ id: "g1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const u = String(url);
+      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
+
+    // 初期状態はアクティブでない
+    expect(grammarHeader?.classList.contains("active")).toBe(false);
+
+    // クリックするとアクティブになる
+    grammarHeader?.click();
+    expect(grammarHeader?.classList.contains("active")).toBe(true);
+
+    // 再クリックで非選択（トグル）
+    grammarHeader?.click();
+    expect(grammarHeader?.classList.contains("active")).toBe(false);
+  });
+});
+
+describe("QuizApp — カテゴリ表示モード永続化仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("ビューモードを学年別に切り替えるとlocalStorageに保存される", async () => {
+    const manifest = {
+      version: "2.0.0",
+      subjects: { math: { name: "数学" } },
+      questionFiles: ["math/elem.json"],
+    };
+    const elemFile = {
+      subject: "math",
+      subjectName: "数学",
+      category: "addition",
+      categoryName: "たし算",
+      referenceGrade: "小学1年",
+      questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
+    mathTab?.click();
+
+    // 学年別ビューに切り替え
+    const toggleBtn = document.querySelector<HTMLElement>(".category-view-toggle");
+    toggleBtn?.click();
+
+    // localStorageに保存されていること
+    expect(localStorage.getItem("categoryViewMode")).toBe("grade");
+  });
+
+  it("localStorageに保存されたビューモードで起動する", async () => {
+    // 事前に学年別モードをlocalStorageに保存しておく
+    localStorage.setItem("categoryViewMode", "grade");
+
+    const manifest = {
+      version: "2.0.0",
+      subjects: { math: { name: "数学" } },
+      questionFiles: ["math/elem.json"],
+    };
+    const elemFile = {
+      subject: "math",
+      subjectName: "数学",
+      category: "addition",
+      categoryName: "たし算",
+      referenceGrade: "小学1年",
+      questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
+    mathTab?.click();
+
+    // 学年別ビューで起動していること（学年グループが表示される）
+    const gradeGroups = document.querySelectorAll(".category-grade-group");
+    expect(gradeGroups.length).toBeGreaterThan(0);
+  });
+});
+
+describe("QuizApp — 学年別ビューでの階層情報表示仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("学年別ビューでは単元に親カテゴリ名が表示される", async () => {
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/grammar.json"],
+    };
+    const grammarFile = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-past",
+      categoryName: "過去形",
+      parentCategory: "grammar",
+      parentCategoryName: "文法",
+      referenceGrade: "中学1年",
+      questions: [{ id: "g1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const u = String(url);
+      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 学年別ビューに切り替え
+    const toggleBtn = document.querySelector<HTMLElement>(".category-view-toggle");
+    toggleBtn?.click();
+
+    // 単元に親カテゴリ名（hierarchy）が表示されること
+    const catItem = document.querySelector('.category-item[data-category="tenses-past"]');
+    const hierarchySpan = catItem?.querySelector(".category-hierarchy");
+    expect(hierarchySpan).not.toBeNull();
+    expect(hierarchySpan?.textContent).toContain("文法");
+  });
+
+  it("カテゴリ別ビューでは階層情報スパンが表示されない", async () => {
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/grammar.json"],
+    };
+    const grammarFile = {
+      subject: "english",
+      subjectName: "英語",
+      category: "tenses-past",
+      categoryName: "過去形",
+      parentCategory: "grammar",
+      parentCategoryName: "文法",
+      referenceGrade: "中学1年",
+      questions: [{ id: "g1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const u = String(url);
+      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // カテゴリ別ビュー（デフォルト）では階層情報は表示されない
+    const catItem = document.querySelector('.category-item[data-category="tenses-past"]');
+    const hierarchySpan = catItem?.querySelector(".category-hierarchy");
+    expect(hierarchySpan).toBeNull();
+  });
+});
+
+describe("QuizApp — 確認タブ絵文字仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("確認タブのテキストに絵文字が含まれる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const quizTab = document.querySelector('.panel-tab[data-panel="quiz"]');
+    expect(quizTab?.textContent).toContain("✅");
+    expect(quizTab?.textContent).toContain("確認");
+  });
+});

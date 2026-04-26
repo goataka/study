@@ -48,4 +48,6 @@ export interface IProgressRepository {
   saveUserName(name: string): void;
   loadHistory(): QuizRecord[];
   saveHistory(records: QuizRecord[]): void;
+  loadCategoryViewMode(): "category" | "grade";
+  saveCategoryViewMode(mode: "category" | "grade"): void;
 }
