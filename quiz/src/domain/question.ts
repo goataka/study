@@ -16,6 +16,9 @@ export interface Question {
   subjectName: string;
   category: string;
   categoryName: string;
+  /** 3階層目を使う場合のトップカテゴリ（例: "pronunciation"）。省略時は2階層 */
+  topCategory?: string;
+  topCategoryName?: string;
   parentCategory?: string;
   parentCategoryName?: string;
   guideUrl?: string;
@@ -46,6 +49,9 @@ export interface QuestionFile {
   subjectName: string;
   category: string;
   categoryName: string;
+  /** 3階層目を使う場合のトップカテゴリ（例: "pronunciation"）。省略時は2階層 */
+  topCategory?: string;
+  topCategoryName?: string;
   parentCategory?: string;
   parentCategoryName?: string;
   guideUrl?: string;
@@ -99,6 +105,12 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
   for (const field of ["subject", "subjectName", "category", "categoryName"]) {
     if (typeof qf[field] !== "string") {
       throw new Error(`QuestionFile must have a "${field}" string field`);
+    }
+  }
+  // topCategory と topCategoryName はオプション（両方あるか両方ないか）
+  if (qf.topCategory !== undefined || qf.topCategoryName !== undefined) {
+    if (typeof qf.topCategory !== "string" || typeof qf.topCategoryName !== "string") {
+      throw new Error('If topCategory or topCategoryName is present, both must be strings');
     }
   }
   // parentCategory と parentCategoryName はオプション（両方あるか両方ないか）
@@ -226,6 +238,8 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     subjectName: qf.subjectName,
     category: qf.category,
     categoryName: qf.categoryName,
+    topCategory: qf.topCategory,
+    topCategoryName: qf.topCategoryName,
     parentCategory: qf.parentCategory,
     parentCategoryName: qf.parentCategoryName,
     guideUrl: qf.guideUrl,

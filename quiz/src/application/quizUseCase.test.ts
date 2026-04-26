@@ -204,6 +204,84 @@ describe("QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent
   });
 });
 
+describe("QuizUseCase — getTopCategoriesForSubject / getParentCategoriesForTop 仕様", () => {
+  const makeQuestionWith3Levels = (
+    id: string,
+    subject: string,
+    category: string,
+    categoryName: string,
+    parentCategory?: string,
+    parentCategoryName?: string,
+    topCategory?: string,
+    topCategoryName?: string
+  ): Question => ({
+    id,
+    question: `Q ${id}`,
+    choices: ["A", "B", "C", "D"],
+    correct: 0,
+    explanation: `Exp ${id}`,
+    subject,
+    subjectName: "英語",
+    category,
+    categoryName,
+    topCategory,
+    topCategoryName,
+    parentCategory,
+    parentCategoryName,
+  });
+
+  const questions = [
+    makeQuestionWith3Levels("q1", "english", "tenses-past", "過去形", "tenses", "時制", "grammar", "文法"),
+    makeQuestionWith3Levels("q2", "english", "tenses-future", "未来形", "tenses", "時制", "grammar", "文法"),
+    makeQuestionWith3Levels("q3", "english", "phonics-1", "フォニックス1", "phonics", "フォニックス", "pronunciation", "発音"),
+    makeQuestionWith3Levels("q4", "english", "assimilation", "アシミレーション", "sound-changes", "音声変化", "pronunciation", "発音"),
+    makeQuestionWith3Levels("q5", "english", "kotowaza", "ことわざ", "vocabulary", "語彙", undefined, undefined),
+  ];
+
+  let useCase: QuizUseCase;
+
+  beforeEach(async () => {
+    useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+  });
+
+  it("getTopCategoriesForSubject でトップカテゴリが重複なく取得できる", () => {
+    const topCats = useCase.getTopCategoriesForSubject("english");
+    expect(Object.keys(topCats)).toHaveLength(2);
+    expect(topCats["grammar"]).toBe("文法");
+    expect(topCats["pronunciation"]).toBe("発音");
+  });
+
+  it("getTopCategoriesForSubject でトップカテゴリのない教科は空オブジェクトを返す", () => {
+    const topCats = useCase.getTopCategoriesForSubject("math");
+    expect(Object.keys(topCats)).toHaveLength(0);
+  });
+
+  it("getTopCategoriesForSubject でトップカテゴリのない問題は含まれない", () => {
+    const topCats = useCase.getTopCategoriesForSubject("english");
+    // vocabulary は topCategory なし
+    expect("vocabulary" in topCats).toBe(false);
+  });
+
+  it("getParentCategoriesForTop で指定トップカテゴリ配下の親カテゴリのみ返る", () => {
+    const parentCats = useCase.getParentCategoriesForTop("english", "pronunciation");
+    expect(Object.keys(parentCats)).toHaveLength(2);
+    expect(parentCats["phonics"]).toBe("フォニックス");
+    expect(parentCats["sound-changes"]).toBe("音声変化");
+  });
+
+  it("getParentCategoriesForTop で別のトップカテゴリを指定すると別の親カテゴリが返る", () => {
+    const parentCats = useCase.getParentCategoriesForTop("english", "grammar");
+    expect(Object.keys(parentCats)).toHaveLength(1);
+    expect(parentCats["tenses"]).toBe("時制");
+  });
+
+  it("getParentCategoriesForTop で存在しないトップカテゴリは空オブジェクトを返す", () => {
+    const parentCats = useCase.getParentCategoriesForTop("english", "nonexistent");
+    expect(Object.keys(parentCats)).toHaveLength(0);
+  });
+});
+
 describe("QuizUseCase — セッション開始仕様", () => {
   const questions = Array.from({ length: 15 }, (_, i) => makeQuestion(`q${i}`));
 
