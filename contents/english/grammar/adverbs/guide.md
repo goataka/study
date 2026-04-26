@@ -15,7 +15,7 @@ I `sometimes` play games.
 
 I play games `well`.
 
-She sings `beautifully`.
+She plays `beautifully`.
 
 - 動詞の後に置く
 - 形容詞 + ly で作る: beautiful → `beautifully`, slow → `slowly`
@@ -36,8 +36,8 @@ She sings `beautifully`.
 | 頻度 | I always play games. |
 | 頻度 | I (`sometimes`) play games. |
 | 様態 | I play games (`well`). |
-| 頻度 | I (`usually`) study English. |
-| 様態 | She sings (`beautifully`). |
+| 頻度 | I (`usually`) play games. |
+| 様態 | She plays (`beautifully`). |
 | 時 | I played games (`yesterday`). |
 
 ## 英作文解答

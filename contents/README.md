@@ -2,7 +2,7 @@
 
 ## アプリ
 
-![学習アプリ スクリーンショット](https://github.com/user-attachments/assets/2315331e-1561-49fe-bbe7-22366f0d25e7)
+![学習アプリ スクリーンショット](images/quiz-app-screenshot.png)
 
 - [学習アプリ](quiz/index.html) - ランダム10問の4択クイズ形式で学習できます
 
