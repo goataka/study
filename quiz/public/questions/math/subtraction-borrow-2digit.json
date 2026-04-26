@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "subtraction-borrow-2digit",
+  "categoryName": "2桁のひき算（くり下がりあり）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "subtraction",
+  "parentCategoryName": "ひき算",
+  "guideUrl": "../math/arithmetic/subtraction-2digit-borrow/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "52 - 37 = 15",
+  "referenceGrade": "小学2年",
+  "description": "くり下がりのある2けたのひき算を筆算で正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "2763522c-8603-523b-a316-d9f2fd2a20c5",
+      "question": "42 - 17 = ?",
+      "choices": [
+        "25",
+        "24",
+        "26",
+        "23"
+      ],
+      "correct": 0,
+      "explanation": "42 - 17 = 25"
+    },
+    {
+      "id": "9a87cc62-614e-5b1d-bb25-13dc2920b66e",
+      "question": "61 - 34 = ?",
+      "choices": [
+        "27",
+        "26",
+        "28",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "61 - 34 = 27"
+    },
+    {
+      "id": "214bbea3-aabb-5c01-9053-df4ade67718c",
+      "question": "84 - 56 = ?",
+      "choices": [
+        "28",
+        "27",
+        "29",
+        "26"
+      ],
+      "correct": 0,
+      "explanation": "84 - 56 = 28"
+    },
+    {
+      "id": "8a2b37a1-f717-5dd3-8589-ff156bd4b5dc",
+      "question": "93 - 47 = ?",
+      "choices": [
+        "46",
+        "45",
+        "47",
+        "44"
+      ],
+      "correct": 0,
+      "explanation": "93 - 47 = 46"
+    },
+    {
+      "id": "3276d405-a731-577b-b6a1-44efddd6a05c",
+      "question": "52 - 37 = ?",
+      "choices": [
+        "15",
+        "14",
+        "16",
+        "13"
+      ],
+      "correct": 0,
+      "explanation": "52 - 37 = 15"
+    },
+    {
+      "id": "44371454-6dab-5e5d-a3e9-09b443277e05",
+      "question": "71 - 48 = ?",
+      "choices": [
+        "23",
+        "22",
+        "24",
+        "21"
+      ],
+      "correct": 0,
+      "explanation": "71 - 48 = 23"
+    },
+    {
+      "id": "a72bf6cd-6c18-5384-9578-0086d99e183c",
+      "question": "83 - 56 = ?",
+      "choices": [
+        "27",
+        "26",
+        "28",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "83 - 56 = 27"
+    },
+    {
+      "id": "f2d2b18b-1e96-5ba6-820b-d9be06789fd8",
+      "question": "94 - 67 = ?",
+      "choices": [
+        "27",
+        "26",
+        "28",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "94 - 67 = 27"
+    },
+    {
+      "id": "ce4f927d-b369-59b2-a8b4-7883b3e75ed9",
+      "question": "65 - 38 = ?",
+      "choices": [
+        "27",
+        "26",
+        "28",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "65 - 38 = 27"
+    },
+    {
+      "id": "51946c10-0fa3-579b-b53e-d079a9381b23",
+      "question": "73 - 46 = ?",
+      "choices": [
+        "27",
+        "26",
+        "28",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "73 - 46 = 27"
+    },
+    {
+      "id": "4f3dc5f1-8bfb-5ece-8c44-4ada3e2bcdd7",
+      "question": "82 - 55 = ?",
+      "choices": [
+        "27",
+        "26",
+        "28",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "82 - 55 = 27"
+    },
+    {
+      "id": "19322d3c-28e9-56d1-a166-9ecbd33e0d8a",
+      "question": "91 - 63 = ?",
+      "choices": [
+        "28",
+        "27",
+        "29",
+        "26"
+      ],
+      "correct": 0,
+      "explanation": "91 - 63 = 28"
+    },
+    {
+      "id": "ed260d4c-0570-5bd4-b1a0-5311d9b59186",
+      "question": "75 - 49 = ?",
+      "choices": [
+        "26",
+        "25",
+        "27",
+        "24"
+      ],
+      "correct": 0,
+      "explanation": "75 - 49 = 26"
+    },
+    {
+      "id": "9acb7334-05f6-58df-8e26-ce7a17257fa9",
+      "question": "64 - 37 = ?",
+      "choices": [
+        "27",
+        "26",
+        "28",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "64 - 37 = 27"
+    },
+    {
+      "id": "c57ab240-636a-503c-87be-8417f5d048d1",
+      "question": "83 - 47 = ?",
+      "choices": [
+        "36",
+        "35",
+        "37",
+        "34"
+      ],
+      "correct": 0,
+      "explanation": "83 - 47 = 36"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition-no-carry-2digit",
+  "categoryName": "2桁のたし算（くり上がりなし）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "addition",
+  "parentCategoryName": "たし算",
+  "guideUrl": "../math/arithmetic/addition-2digit-no-carry/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "23 + 45 = 68",
+  "referenceGrade": "小学2年",
+  "description": "くり上がりのない2けたのたし算を筆算で正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "8253194a-9310-5056-bbbd-633800c3feac",
+      "question": "12 + 35 = ?",
+      "choices": [
+        "47",
+        "46",
+        "48",
+        "45"
+      ],
+      "correct": 0,
+      "explanation": "12 + 35 = 47"
+    },
+    {
+      "id": "e9aeb488-f253-5fc2-99d0-463a6ef2a6b0",
+      "question": "23 + 46 = ?",
+      "choices": [
+        "69",
+        "68",
+        "70",
+        "67"
+      ],
+      "correct": 0,
+      "explanation": "23 + 46 = 69"
+    },
+    {
+      "id": "8bb4e687-220d-5313-a21e-76e6f2b43a29",
+      "question": "41 + 53 = ?",
+      "choices": [
+        "94",
+        "93",
+        "95",
+        "92"
+      ],
+      "correct": 0,
+      "explanation": "41 + 53 = 94"
+    },
+    {
+      "id": "a50ae7ca-8202-5554-9d7d-6e41d72326ef",
+      "question": "30 + 47 = ?",
+      "choices": [
+        "77",
+        "76",
+        "78",
+        "75"
+      ],
+      "correct": 0,
+      "explanation": "30 + 47 = 77"
+    },
+    {
+      "id": "83dbd888-7ea8-53f1-a567-e0e922ddeedc",
+      "question": "21 + 63 = ?",
+      "choices": [
+        "84",
+        "83",
+        "85",
+        "82"
+      ],
+      "correct": 0,
+      "explanation": "21 + 63 = 84"
+    },
+    {
+      "id": "55687e5c-90a3-544b-b76f-d609f5687d09",
+      "question": "34 + 25 = ?",
+      "choices": [
+        "59",
+        "58",
+        "60",
+        "57"
+      ],
+      "correct": 0,
+      "explanation": "34 + 25 = 59"
+    },
+    {
+      "id": "adaf6f94-cbbd-5248-b9ca-21251d5c4967",
+      "question": "42 + 36 = ?",
+      "choices": [
+        "78",
+        "77",
+        "79",
+        "76"
+      ],
+      "correct": 0,
+      "explanation": "42 + 36 = 78"
+    },
+    {
+      "id": "44bee7c4-0e03-55a1-8871-7d31e0f80569",
+      "question": "51 + 28 = ?",
+      "choices": [
+        "79",
+        "78",
+        "80",
+        "77"
+      ],
+      "correct": 0,
+      "explanation": "51 + 28 = 79"
+    },
+    {
+      "id": "62577fcf-ed5e-5132-bbba-5d52311c5564",
+      "question": "63 + 14 = ?",
+      "choices": [
+        "77",
+        "76",
+        "78",
+        "75"
+      ],
+      "correct": 0,
+      "explanation": "63 + 14 = 77"
+    },
+    {
+      "id": "824f8ed3-3f09-59bd-b0ea-8ec4e8d14b4e",
+      "question": "72 + 17 = ?",
+      "choices": [
+        "89",
+        "88",
+        "90",
+        "87"
+      ],
+      "correct": 0,
+      "explanation": "72 + 17 = 89"
+    },
+    {
+      "id": "94486797-9df6-54e1-b3cf-0cff1e2b4785",
+      "question": "45 + 32 = ?",
+      "choices": [
+        "77",
+        "76",
+        "78",
+        "75"
+      ],
+      "correct": 0,
+      "explanation": "45 + 32 = 77"
+    },
+    {
+      "id": "12cb5417-bd8c-5395-90e6-26448cc0bb4f",
+      "question": "60 + 19 = ?",
+      "choices": [
+        "79",
+        "78",
+        "80",
+        "77"
+      ],
+      "correct": 0,
+      "explanation": "60 + 19 = 79"
+    },
+    {
+      "id": "6d4dce99-efbe-5468-9c4a-81f256ca46f8",
+      "question": "33 + 46 = ?",
+      "choices": [
+        "79",
+        "78",
+        "80",
+        "77"
+      ],
+      "correct": 0,
+      "explanation": "33 + 46 = 79"
+    },
+    {
+      "id": "f7e0f039-f0d5-5cdb-ba03-2a22cb516eb7",
+      "question": "81 + 14 = ?",
+      "choices": [
+        "95",
+        "94",
+        "96",
+        "93"
+      ],
+      "correct": 0,
+      "explanation": "81 + 14 = 95"
+    },
+    {
+      "id": "e0b2b56b-2aae-5bed-b501-f11b11975378",
+      "question": "53 + 26 = ?",
+      "choices": [
+        "79",
+        "78",
+        "80",
+        "77"
+      ],
+      "correct": 0,
+      "explanation": "53 + 26 = 79"
+    }
+  ]
+}

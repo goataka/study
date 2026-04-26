@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "subtraction-no-borrow-1digit",
+  "categoryName": "1桁のひき算（くり下がりなし）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "subtraction",
+  "parentCategoryName": "ひき算",
+  "guideUrl": "../math/arithmetic/subtraction-1digit-no-borrow/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "8 - 3 = 5",
+  "referenceGrade": "小学1年",
+  "description": "くり下がりのない1けたのひき算をすばやく正確にできるようにします。",
+  "questions": [
+    {
+      "id": "539c4e2d-c88b-5571-bff0-196ec9680009",
+      "question": "5 - 2 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "5 - 2 = 3"
+    },
+    {
+      "id": "05d501c4-0ce4-57cb-a9bb-ac4cbda2b799",
+      "question": "8 - 3 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "8 - 3 = 5"
+    },
+    {
+      "id": "8ac29909-c2ff-5d54-9a63-304ff3cff227",
+      "question": "7 - 4 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "7 - 4 = 3"
+    },
+    {
+      "id": "22afb1c8-d2fb-5352-a028-2575e42a0c90",
+      "question": "9 - 5 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "9 - 5 = 4"
+    },
+    {
+      "id": "c31b9969-33e6-5bca-bde3-f2a0efeeaf4f",
+      "question": "6 - 1 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "6 - 1 = 5"
+    },
+    {
+      "id": "c228d636-8884-5e46-81fe-fac332e4b531",
+      "question": "10 - 6 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "10 - 6 = 4"
+    },
+    {
+      "id": "8b7f1873-c42e-5160-bb75-9c46b0694c2a",
+      "question": "8 - 7 = ?",
+      "choices": [
+        "1",
+        "0",
+        "2",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "8 - 7 = 1"
+    },
+    {
+      "id": "7aed0d87-ee9d-5653-b46f-b0b85c20214d",
+      "question": "9 - 3 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "9 - 3 = 6"
+    },
+    {
+      "id": "c393d222-0f63-5a72-b21a-288509d7db9c",
+      "question": "7 - 2 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "7 - 2 = 5"
+    },
+    {
+      "id": "72f15785-b866-5ae9-b840-b145851828d4",
+      "question": "9 - 4 = ?",
+      "choices": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "9 - 4 = 5"
+    },
+    {
+      "id": "4ff23927-29b9-5b6f-bf5e-a5192d049e8e",
+      "question": "8 - 5 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "8 - 5 = 3"
+    },
+    {
+      "id": "c72dfdca-dea8-54b0-a9bf-577ad38701de",
+      "question": "6 - 2 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "6 - 2 = 4"
+    },
+    {
+      "id": "6a1672cc-8172-5516-b5f3-62d91769905f",
+      "question": "7 - 3 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "7 - 3 = 4"
+    },
+    {
+      "id": "5da07508-7355-5a99-97f4-2e728966642f",
+      "question": "9 - 6 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "9 - 6 = 3"
+    },
+    {
+      "id": "dbb9a9cb-5aba-51ac-8021-2d74e37e6fa5",
+      "question": "8 - 4 = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "8 - 4 = 4"
+    }
+  ]
+}

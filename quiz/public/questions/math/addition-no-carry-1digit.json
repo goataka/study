@@ -1,0 +1,197 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition-no-carry-1digit",
+  "categoryName": "1桁のたし算（くり上がりなし）",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "addition",
+  "parentCategoryName": "たし算",
+  "guideUrl": "../math/arithmetic/addition-1digit-no-carry/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "3 + 4 = 7",
+  "referenceGrade": "小学1年",
+  "description": "くり上がりのない1けたのたし算をすばやく正確にできるようにします。",
+  "questions": [
+    {
+      "id": "addcae4c-ce79-55af-bf70-064bc4415de7",
+      "question": "1 + 2 = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "1 + 2 = 3"
+    },
+    {
+      "id": "6686e39d-1c19-5ce0-9241-98b056f0b52c",
+      "question": "3 + 4 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "3 + 4 = 7"
+    },
+    {
+      "id": "278a59d4-3a44-58d2-8772-64176096bfd2",
+      "question": "5 + 1 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "5 + 1 = 6"
+    },
+    {
+      "id": "65090aca-b7a7-56ad-b741-98e593ac6652",
+      "question": "2 + 6 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "2 + 6 = 8"
+    },
+    {
+      "id": "761688dc-ed42-5a51-9de0-6d87ba3c087e",
+      "question": "4 + 3 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "4 + 3 = 7"
+    },
+    {
+      "id": "baea2e24-0193-5ef8-85bc-49d100d05197",
+      "question": "7 + 2 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "7 + 2 = 9"
+    },
+    {
+      "id": "90b3dbb2-43c9-52ec-a0a0-a8c23174d900",
+      "question": "3 + 5 = ?",
+      "choices": [
+        "8",
+        "7",
+        "9",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "3 + 5 = 8"
+    },
+    {
+      "id": "9ef14fd3-5e3b-544e-a032-65ee47f43804",
+      "question": "6 + 3 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "6 + 3 = 9"
+    },
+    {
+      "id": "dc2c924d-2092-562c-ac46-e99b087e13dd",
+      "question": "2 + 4 = ?",
+      "choices": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "2 + 4 = 6"
+    },
+    {
+      "id": "2eeb66bc-63d9-58dc-b082-57fa8b126026",
+      "question": "1 + 8 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "1 + 8 = 9"
+    },
+    {
+      "id": "ce6e4cd3-58b1-555e-b55f-5c9b5fb16f09",
+      "question": "4 + 5 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "4 + 5 = 9"
+    },
+    {
+      "id": "5e68fed0-1591-5b63-b3b6-99d6a4974d08",
+      "question": "2 + 7 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "2 + 7 = 9"
+    },
+    {
+      "id": "66cb2ae4-fab2-512f-be37-0cc3f0e66c6b",
+      "question": "5 + 4 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "5 + 4 = 9"
+    },
+    {
+      "id": "ee810225-62eb-5bd3-9c4a-54de95d08e72",
+      "question": "1 + 6 = ?",
+      "choices": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "1 + 6 = 7"
+    },
+    {
+      "id": "0a2aa93f-0934-5b8a-91b1-308925ea0b48",
+      "question": "3 + 6 = ?",
+      "choices": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "3 + 6 = 9"
+    }
+  ]
+}
