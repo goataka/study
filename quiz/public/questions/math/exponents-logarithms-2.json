@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "exponents-logarithms-2",
+  "categoryName": "📐 指数・対数 その２",
+  "topCategory": "advanced-math",
+  "topCategoryName": "高校数学",
+  "parentCategory": "precalculus",
+  "parentCategoryName": "高校数学",
+  "guideUrl": "../math/calculus/exponents-logarithms/guide",
+  "parentCategoryGuideUrl": "../math/calculus/guide",
+  "example": "log₂8 = 3",
+  "referenceGrade": "高校2年",
+  "description": "指数法則と対数の性質を使って計算できるようにします。",
+  "questions": [
+    {
+      "id": "0506c937-c831-5002-8966-270f05da0260",
+      "question": "log₂(1) = ?",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "-1"
+      ],
+      "correct": 0,
+      "explanation": "2^0 = 1 なので log₂(1) = 0"
+    },
+    {
+      "id": "f63256a5-698d-55a1-b86f-9e9768c5c593",
+      "question": "log₄(16) = ?",
+      "choices": [
+        "2",
+        "4",
+        "8",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "4² = 16 なので log₄(16) = 2"
+    },
+    {
+      "id": "d38c2b88-b239-5f7e-b90b-c7f535517816",
+      "question": "2^(1/2) = ?",
+      "choices": [
+        "√2",
+        "2",
+        "1/2",
+        "1/√2"
+      ],
+      "correct": 0,
+      "explanation": "2^(1/2) = √2"
+    },
+    {
+      "id": "59f3c243-1662-5c40-b7dc-5cf17a27c450",
+      "question": "log₃(81) = ?",
+      "choices": [
+        "4",
+        "3",
+        "9",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "3⁴ = 81 なので log₃(81) = 4"
+    },
+    {
+      "id": "c3bc0500-1714-52b3-b34a-a8a74d440a31",
+      "question": "log₁₀(0.1) = ?",
+      "choices": [
+        "-1",
+        "0.1",
+        "1",
+        "-0.1"
+      ],
+      "correct": 0,
+      "explanation": "10^(-1) = 0.1 なので log₁₀(0.1) = -1"
+    },
+    {
+      "id": "520f8b27-0e16-5397-9123-b2d34cceccdf",
+      "question": "2⁵ ÷ 2³ = ?",
+      "choices": [
+        "4",
+        "8",
+        "16",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "2⁵ ÷ 2³ = 2^(5-3) = 2² = 4"
+    },
+    {
+      "id": "2b5a1d59-cc4f-5fb2-a735-046eb16d1cd1",
+      "question": "log₂(16) - log₂(4) = ?",
+      "choices": [
+        "2",
+        "4",
+        "8",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "log₂(16/4) = log₂(4) = 2"
+    },
+    {
+      "id": "01dfa6ff-d250-5d7a-8ee3-40bcfc2770e6",
+      "question": "(3²)³ = ?",
+      "choices": [
+        "729",
+        "81",
+        "243",
+        "27"
+      ],
+      "correct": 0,
+      "explanation": "(3²)³ = 3^6 = 729"
+    },
+    {
+      "id": "b5f007db-4ac0-51ac-b853-8692294eb30e",
+      "question": "log₅(25) = ?",
+      "choices": [
+        "2",
+        "5",
+        "25",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "5² = 25 なので log₅(25) = 2"
+    },
+    {
+      "id": "f309cad7-7062-5ff2-86fa-f73a62dbbef2",
+      "question": "2^(-3) = ?",
+      "choices": [
+        "1/8",
+        "1/6",
+        "8",
+        "1/4"
+      ],
+      "correct": 0,
+      "explanation": "2^(-3) = 1/2³ = 1/8"
+    }
+  ]
+}

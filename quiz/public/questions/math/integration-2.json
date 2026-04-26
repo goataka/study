@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "integration-2",
+  "categoryName": "📊 積分 その２",
+  "topCategory": "advanced-math",
+  "topCategoryName": "高校数学",
+  "parentCategory": "calculus",
+  "parentCategoryName": "微積分",
+  "guideUrl": "../math/calculus/integration/guide",
+  "parentCategoryGuideUrl": "../math/calculus/guide",
+  "example": "∫2xdx = x² + C",
+  "referenceGrade": "高校3年",
+  "description": "多項式関数の不定積分と定積分を正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "a274ee69-7a50-55c0-a017-208d18563a70",
+      "question": "∫sin x dx = ?",
+      "choices": [
+        "-cos x + C",
+        "cos x + C",
+        "sin x + C",
+        "-sin x + C"
+      ],
+      "correct": 0,
+      "explanation": "∫sin x dx = -cos x + C"
+    },
+    {
+      "id": "ab6e73e8-d3d3-5ea7-afc9-a546ddaef6c8",
+      "question": "∫(1/x) dx = ?",
+      "choices": [
+        "ln|x| + C",
+        "1/x² + C",
+        "-1/x + C",
+        "ln x² + C"
+      ],
+      "correct": 0,
+      "explanation": "∫(1/x) dx = ln|x| + C"
+    },
+    {
+      "id": "c2a74be4-4a6a-57ff-acbf-e31c0248634d",
+      "question": "∫[0→π] sin x dx = ?",
+      "choices": [
+        "2",
+        "0",
+        "1",
+        "π"
+      ],
+      "correct": 0,
+      "explanation": "[-cos x]₀^π = -cos π + cos 0 = 1 + 1 = 2"
+    },
+    {
+      "id": "85b4c8ab-7073-53e2-8941-c59ece7fc95c",
+      "question": "∫(2x + 1)² dx（展開して積分）= ?",
+      "choices": [
+        "4x³/3 + 2x² + x + C",
+        "4x³ + 2x + C",
+        "2x² + x + C",
+        "(2x+1)³/2 + C"
+      ],
+      "correct": 0,
+      "explanation": "(2x+1)²=4x²+4x+1 → 4x³/3 + 2x² + x + C"
+    },
+    {
+      "id": "47585a0a-dda1-59eb-b889-85aa2aa9beac",
+      "question": "∫[1→2] (3x² - 1) dx = ?",
+      "choices": [
+        "6",
+        "5",
+        "4",
+        "7"
+      ],
+      "correct": 0,
+      "explanation": "[x³ - x]₁² = (8-2) - (1-1) = 6"
+    },
+    {
+      "id": "0e4c11d4-e0ea-5d97-adbf-c63f0d147728",
+      "question": "∫eˣ dx = ?",
+      "choices": [
+        "eˣ + C",
+        "eˣ/x + C",
+        "xeˣ + C",
+        "e^(x+1) + C"
+      ],
+      "correct": 0,
+      "explanation": "∫eˣ dx = eˣ + C"
+    },
+    {
+      "id": "958b9886-2c3f-578b-b8e8-be4d1117fc57",
+      "question": "∫(1/2) x² dx = ?",
+      "choices": [
+        "x³/6 + C",
+        "x²/4 + C",
+        "x³/2 + C",
+        "x²/2 + C"
+      ],
+      "correct": 0,
+      "explanation": "(1/2) × x³/3 + C = x³/6 + C"
+    },
+    {
+      "id": "5cd4c081-df10-5342-8212-281cd70ca4c3",
+      "question": "∫[0→2] x dx = ?",
+      "choices": [
+        "2",
+        "4",
+        "1",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "[x²/2]₀² = 4/2 = 2"
+    },
+    {
+      "id": "a642bd06-ee5e-578f-862c-ce394da609c9",
+      "question": "y = x² - 4 と x 軸で囲まれた面積（x = -2 から x = 2 の間）は？",
+      "choices": [
+        "32/3",
+        "16/3",
+        "8",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "∫[-2→2] (4-x²) dx = [4x - x³/3]₋₂² = (8-8/3)-(-8+8/3) = 32/3"
+    },
+    {
+      "id": "d4a78505-92c5-59ff-9802-f8a338ef00c9",
+      "question": "∫cos x dx = ?",
+      "choices": [
+        "sin x + C",
+        "-sin x + C",
+        "cos x + C",
+        "-cos x + C"
+      ],
+      "correct": 0,
+      "explanation": "∫cos x dx = sin x + C"
+    }
+  ]
+}

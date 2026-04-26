@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "x/2 > 2。両辺を2倍して x > 4"
+    },
+    {
+      "id": "7ef0a170-1655-5237-90c8-6391c4d1fb11",
+      "question": "3(x + 2) > 15 を解くと？",
+      "choices": [
+        "x > 3",
+        "x > 5",
+        "x < 3",
+        "x > 2"
+      ],
+      "correct": 0,
+      "explanation": "3x + 6 > 15 → 3x > 9 → x > 3"
+    },
+    {
+      "id": "8d19a9d5-c1ff-5377-86cc-3d8bec95f9d9",
+      "question": "-4x + 8 ≥ 0 を解くと？",
+      "choices": [
+        "x ≤ 2",
+        "x ≥ 2",
+        "x ≤ -2",
+        "x ≥ -2"
+      ],
+      "correct": 0,
+      "explanation": "-4x ≥ -8 → x ≤ 2（不等号の向きが変わる）"
     }
   ]
 }

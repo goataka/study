@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "simultaneous-eq",
-  "categoryName": "📐 連立方程式",
+  "category": "simultaneous-eq-1",
+  "categoryName": "📐 連立方程式 その１",
   "topCategory": "algebra",
   "topCategoryName": "代数",
   "parentCategory": "algebra-advanced",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "りんご=80円を代入。80+y=180なので、y=100円"
+    },
+    {
+      "id": "6876a920-caa1-5031-ab0e-1c6c8ab15e43",
+      "question": "4x - y = 9, 2x + y = 3 を解くと x = ?",
+      "choices": [
+        "2",
+        "3",
+        "1",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "加算すると 6x = 12 → x = 2"
+    },
+    {
+      "id": "9bfa7786-0cea-5bf6-ba29-57f3ce911ec1",
+      "question": "4x - y = 9, 2x + y = 3 を解くと y = ?",
+      "choices": [
+        "-1",
+        "1",
+        "3",
+        "-3"
+      ],
+      "correct": 0,
+      "explanation": "x=2 を代入: 4(2) - y = 9 → y = -1"
     }
   ]
 }
