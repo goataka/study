@@ -18,7 +18,7 @@ I `have played` games.
 | 過去完了 | `had` | I `had played` games. |
 | 未来完了 | `will have` | I `will have played` games. |
 
-## 解答
+## 一覧
 
 | パターン | 文 |
 |----------|------|

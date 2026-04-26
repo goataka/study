@@ -20,7 +20,7 @@ He said he would play games `the next day`.
 | `here` | `there` |
 | `this` | `that` |
 
-## 解答
+## 一覧
 
 | 直接話法 | 間接話法 |
 |----------|----------|

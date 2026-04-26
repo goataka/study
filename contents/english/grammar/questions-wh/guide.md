@@ -23,7 +23,7 @@
 | `which` | どちら | `Which` game do you play? |
 | `whose` | 誰の | `Whose` game is this? |
 
-## 解答
+## 一覧
 
 | 疑問詞 | 疑問文 |
 |--------|--------|

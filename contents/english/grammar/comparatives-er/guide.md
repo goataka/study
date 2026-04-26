@@ -20,7 +20,7 @@ I play games `better` than you.
 | 短母音 + 子音 | 子音を重ねて + er | big → `bigger` |
 | 長い語 | more + 原級 | often → `more often` |
 
-## 解答
+## 一覧
 
 ### 短い形容詞
 

@@ -20,7 +20,7 @@ I play games `the best` in my class.
 | 短母音 + 子音 | 子音を重ねて + est | big → `biggest` |
 | 長い語 | most + 原級 | often → `most often` |
 
-## 解答
+## 一覧
 
 ### 短い形容詞
 

@@ -28,7 +28,7 @@ If I had time, I `would` play.（時間があれば、するのに — 今はな
 第3条件文:
 If I had had time, I `would have` played.（時間があったら、したのに — 過去になかった）
 
-## 解答
+## 一覧
 
 ### 条件節の変化
 

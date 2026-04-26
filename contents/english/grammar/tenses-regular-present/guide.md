@@ -21,7 +21,7 @@ He `plays` games.
 | I / you / we / they | 原形 | I `play` |
 | he / she / it | 原形 + s/es | He `plays` |
 
-## 解答
+## 一覧
 
 | 主語 | 文 |
 |------|------|

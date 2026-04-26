@@ -34,7 +34,7 @@ I play games `in` the morning.
 | `for` | 目的・期間 | study `for` two hours |
 | `with` | 一緒に・道具 | play `with` friends |
 
-## 解答
+## 一覧
 
 | パターン | 文 |
 |----------|------|

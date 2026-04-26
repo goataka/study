@@ -18,7 +18,7 @@ The game `which` I play is fun.
 | 人 | `whom` / `who` / `that` | 可 | a boy (whom / who) I know |
 | 物 | `which` / `that` | 可 | a game (which) I play |
 
-## 解答
+## 一覧
 
 | 先行詞 | 文 |
 |--------|------|

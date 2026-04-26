@@ -17,7 +17,7 @@ I wish I `could play` games.（ゲームができたらいいのに）
 | 現在の願望 | I wish + 過去形 | I wish I `could play` games. |
 | 過去の後悔 | I wish + had + 過去分詞 | I wish I `had played` games more. |
 
-## 解答
+## 一覧
 
 | パターン | 文 |
 |----------|------|

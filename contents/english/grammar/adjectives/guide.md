@@ -21,7 +21,7 @@ The game is `exciting`.
 | 名詞の前 | 形容詞 + 名詞 | a `new` game |
 | be動詞の後 | be動詞 + 形容詞 | The game is `fun`. |
 
-## 解答
+## 一覧
 
 | パターン | 文 |
 |----------|------|
