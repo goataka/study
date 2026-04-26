@@ -138,6 +138,16 @@
     "japanese/kanji-high.json",
     "japanese/kanji-high-writing.json",
     "japanese/yojijukugo.json",
-    "japanese/kotowaza.json"
+    "japanese/kotowaza.json",
+    "japanese/kotowaza-elementary.json",
+    "japanese/kotowaza-secondary.json",
+    "japanese/kotowaza-high.json",
+    "japanese/yojijukugo-elementary.json",
+    "japanese/yojijukugo-secondary.json",
+    "japanese/yojijukugo-high.json",
+    "japanese/reading-sentence-structure.json",
+    "japanese/reading-equivalence.json",
+    "japanese/reading-contrast.json",
+    "japanese/reading-cause-effect.json"
   ]
 }
