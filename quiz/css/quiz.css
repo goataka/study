@@ -203,6 +203,16 @@ header h1 {
     gap: 2px;
 }
 
+.category-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.category-group.collapsed .category-item {
+    display: none;
+}
+
 .category-group-header {
     display: flex;
     align-items: center;
@@ -214,6 +224,27 @@ header h1 {
     letter-spacing: 0.5px;
     padding: 8px 10px 4px;
     margin-top: 4px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+
+.category-group-header:hover {
+    background: #f0f4f8;
+}
+
+/* 折りたたみ矢印インジケーター */
+.category-group-toggle::before {
+    content: "▼";
+    font-size: 10px;
+    display: inline-block;
+    transition: transform 0.2s;
+    color: #8b949e;
+}
+
+.category-group.collapsed .category-group-toggle::before {
+    transform: rotate(-90deg);
 }
 
 .category-group-learned-badge {
