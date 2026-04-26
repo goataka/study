@@ -12,18 +12,19 @@
 
 #### 📢 発音
 
-| # | 内容 | 解説 | 確認 | 例 |
-|---|------|------|--------|-----|
-| 01 | アルファベット（大文字・小文字と読み仮名） | [解説](english/pronunciation/alphabet/guide.md) | [確認](quiz/?subject=english&category=alphabet) | A(えー) B(びー) |
-| 02 | 50音（ひらがなとローマ字） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
-| 03 | フォニックス（1文字） | [解説](english/pronunciation/phonics-1letter/guide.md) | [確認](quiz/?subject=english&category=phonics-1) | `a`→/æ/ (apple) |
-| 04 | フォニックス（2文字・マジックE） | [解説](english/pronunciation/phonics-2letter/guide.md) | [確認](quiz/?subject=english&category=phonics-2) | `a_e`→/eɪ/ (cake) |
-| 05 | フォニックス（3文字） | [解説](english/pronunciation/phonics-3letter/guide.md) | [確認](quiz/?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
-| 06 | リンキング | [解説](english/pronunciation/linking/guide.md) | [確認](quiz/?subject=english&category=linking) | check_it→チェキッ |
-| 07 | リダクション | [解説](english/pronunciation/reduction/guide.md) | [確認](quiz/?subject=english&category=reduction) | for→/fər/ |
-| 08 | フラッピング | [解説](english/pronunciation/flapping/guide.md) | [確認](quiz/?subject=english&category=flapping) | water→ウォダー |
-| 09 | アシミレーション | [解説](english/pronunciation/assimilation/guide.md) | [確認](quiz/?subject=english&category=assimilation) | meet you→ミーチュー |
-| 10 | 発音記号（IPA） | [解説](english/pronunciation/phonetic-symbols/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols) | /æ/→ア（cat） |
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
+| アルファベット（大文字・小文字と読み仮名） | [解説](english/pronunciation/alphabet/guide.md) | [確認](quiz/?subject=english&category=alphabet) | A(えー) B(びー) |
+| 50音（ひらがなとローマ字） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
+| 拡張ローマ字（濁音・半濁音・拗音） | [解説](english/pronunciation/romaji-advanced/guide.md) | [確認](quiz/?subject=english&category=romaji-advanced) | が=ga ぱ=pa しゃ=sha |
+| フォニックス（1文字） | [解説](english/pronunciation/phonics-1letter/guide.md) | [確認](quiz/?subject=english&category=phonics-1) | `a`→/æ/ (apple) |
+| フォニックス（2文字・マジックE） | [解説](english/pronunciation/phonics-2letter/guide.md) | [確認](quiz/?subject=english&category=phonics-2) | `a_e`→/eɪ/ (cake) |
+| フォニックス（3文字） | [解説](english/pronunciation/phonics-3letter/guide.md) | [確認](quiz/?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
+| リンキング | [解説](english/pronunciation/linking/guide.md) | [確認](quiz/?subject=english&category=linking) | check_it→チェキッ |
+| リダクション | [解説](english/pronunciation/reduction/guide.md) | [確認](quiz/?subject=english&category=reduction) | for→/fər/ |
+| フラッピング | [解説](english/pronunciation/flapping/guide.md) | [確認](quiz/?subject=english&category=flapping) | water→ウォダー |
+| アシミレーション | [解説](english/pronunciation/assimilation/guide.md) | [確認](quiz/?subject=english&category=assimilation) | meet you→ミーチュー |
+| 発音記号（IPA） | [解説](english/pronunciation/phonetic-symbols/guide.md) | [確認](quiz/?subject=english&category=phonetic-symbols) | /æ/→ア（cat） |
 
 #### 📝 文法
 
