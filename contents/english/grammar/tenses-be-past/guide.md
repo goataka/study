@@ -1,11 +1,11 @@
 # be動詞の過去形
 
 現在形:
-The game `is` fun.
+I `am` a player.
 
 ## 過去形
 
-The game `was` fun.
+I `was` a player.
 
 - I / he / she / it → `was`
 - you / we / they → `were`
@@ -16,23 +16,23 @@ The game `was` fun.
 |------|------|--------|------|
 | 現在形 | I | `am` | I `am` a player. |
 | 現在形 | he/she | `is` | The game `is` fun. |
-| 過去形 | I/he/she | `was` | The game `was` fun. |
+| 過去形 | I/he/she | `was` | I `was` a player. |
 | 過去形 | you/we/they | `were` | Games `were` fun. |
 
 ## 例
 
 | 現在形 | 過去形 |
 |--------|--------|
+| I am a player. | I (was) a player. |
 | The game is fun. | The game (was) fun. |
-| I am a student. | I (was) a student. |
-| I am tired. | I (was) tired. |
-| I am at home. | I (was) at home. |
-| I am hungry. | I (was) hungry. |
+| I am good at games. | I (was) good at games. |
+| I am at the game center. | I (was) at the game center. |
+| I am happy to play. | I (was) happy to play. |
 
 ## 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|
-| 私は幸せでした。 | I was happy. |
-| 私は学生でした。 | I was a student. |
-| 私は疲れていました。 | I was tired. |
+| 私はプレイヤーでした。 | I was a player. |
+| ゲームは楽しかったです。 | The game was fun. |
+| 私はゲームが得意でした。 | I was good at games. |
