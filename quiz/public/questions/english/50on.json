@@ -2,7 +2,7 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "50on",
-  "categoryName": "🎌 五十音ローマ字",
+  "categoryName": "�� 五十音",
   "topCategory": "pronunciation",
   "topCategoryName": "発音",
   "parentCategory": "romaji",
@@ -11,7 +11,7 @@
   "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": "あ=a い=i う=u",
   "referenceGrade": "小学3年",
-  "description": "ひらがな（日本語の音）を英字（ローマ字）で表す方法を学びます。",
+  "description": "日本語の五十音をローマ字で表す方法を学びます。",
   "questions": [
     {
       "id": "3478adbb-1eeb-5867-a7be-a13ad30e71eb",

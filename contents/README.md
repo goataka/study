@@ -15,7 +15,7 @@
 | 内容 | 解説 | 確認 | 例 |
 |------|------|--------|-----|
 | アルファベット（大文字・小文字と読み仮名） | [解説](english/pronunciation/alphabet/guide.md) | [確認](quiz/?subject=english&category=alphabet) | A(えー) B(びー) |
-| 50音（ひらがなとローマ字） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
+| 五十音（ひらがな・ローマ字・促音・長音） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
 | 拡張ローマ字（濁音・半濁音・拗音） | [解説](english/pronunciation/romaji-advanced/guide.md) | [確認](quiz/?subject=english&category=romaji-advanced) | が=ga ぱ=pa しゃ=sha |
 | フォニックス（1文字） | [解説](english/pronunciation/phonics-1letter/guide.md) | [確認](quiz/?subject=english&category=phonics-1) | `a`→/æ/ (apple) |
 | フォニックス（2文字・マジックE） | [解説](english/pronunciation/phonics-2letter/guide.md) | [確認](quiz/?subject=english&category=phonics-2) | `a_e`→/eɪ/ (cake) |
