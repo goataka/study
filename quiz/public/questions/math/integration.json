@@ -4,7 +4,7 @@
   "category": "integration",
   "categoryName": "積分",
   "parentCategory": "calculus",
-  "parentCategoryName": "解析・高校数学",
+  "parentCategoryName": "微積分",
   "guideUrl": "../math/calculus/integration/guide",
   "example": "∫2xdx = x² + C",
   "referenceGrade": "高校3年",

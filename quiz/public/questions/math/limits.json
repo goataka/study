@@ -4,7 +4,7 @@
   "category": "limits",
   "categoryName": "極限",
   "parentCategory": "calculus",
-  "parentCategoryName": "解析・高校数学",
+  "parentCategoryName": "微積分",
   "guideUrl": "../math/calculus/limits/guide",
   "example": "lim(n→∞) 1/n = 0",
   "referenceGrade": "高校3年",
