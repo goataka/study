@@ -29,8 +29,8 @@
 
 | # | 内容 | 解説 | 確認 | 例 |
 |---|------|------|--------|-----|
-| 11 | 英語の文の構造 | [解説](english/grammar/sentence-structure/guide.md) | | `I` `play` `games`. （S+V+O） |
-| 12 | 名詞と代名詞 | [解説](english/grammar/nouns-pronouns/guide.md) | | `I` / `You` / `He` / `game` |
+| 11 | 英語の文の構造 | [解説](english/grammar/sentence-structure/guide.md) | - | `I` `play` `games`. （S+V+O） |
+| 12 | 名詞と代名詞 | [解説](english/grammar/nouns-pronouns/guide.md) | - | `I` / `You` / `He` / `game` |
 | 13 | 一般動詞の現在形 | [解説](english/grammar/tenses-regular-present/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-present) | I `play` games. |
 | 14 | 一般動詞の過去形 | [解説](english/grammar/tenses-regular-past/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-past) | I `played` games. |
 | 15 | 一般動詞の未来形 | [解説](english/grammar/tenses-regular-future/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-future) | I `will play` games. |
