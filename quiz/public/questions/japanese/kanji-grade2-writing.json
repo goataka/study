@@ -3,6 +3,8 @@
   "subjectName": "国語",
   "category": "kanji-grade2-writing",
   "categoryName": "漢字 - 小学2年 - 書き",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
   "parentCategory": "kanji-elementary-lower",
   "parentCategoryName": "小学漢字（1〜3年）",
   "example": "春・夏・秋・冬",

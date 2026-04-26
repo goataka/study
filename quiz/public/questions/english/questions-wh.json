@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "questions-wh",
   "categoryName": "疑問詞",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
   "parentCategory": "sentence-patterns",
   "parentCategoryName": "文型・疑問・否定",
   "guideUrl": "../english/grammar/questions-wh/guide",

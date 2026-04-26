@@ -95,6 +95,26 @@ export class QuizUseCase {
     return categories;
   }
 
+  getTopCategoriesForSubject(subject: string): Record<string, string> {
+    const topCategories: Record<string, string> = {};
+    for (const q of this.allQuestions) {
+      if (q.subject === subject && q.topCategory && !(q.topCategory in topCategories)) {
+        topCategories[q.topCategory] = q.topCategoryName ?? q.topCategory;
+      }
+    }
+    return topCategories;
+  }
+
+  getParentCategoriesForTop(subject: string, topCategory: string): Record<string, string> {
+    const parentCategories: Record<string, string> = {};
+    for (const q of this.allQuestions) {
+      if (q.subject === subject && q.topCategory === topCategory && q.parentCategory && !(q.parentCategory in parentCategories)) {
+        parentCategories[q.parentCategory] = q.parentCategoryName ?? q.parentCategory;
+      }
+    }
+    return parentCategories;
+  }
+
   /**
    * 一度でもクイズを実施したカテゴリのキー（"subject::category" 形式）を返す。
    * カテゴリの学習状態絵文字の判定に使用する。

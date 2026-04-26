@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "fractions-divide",
   "categoryName": "分数のわり算",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
   "parentCategory": "fractions",
   "parentCategoryName": "分数",
   "guideUrl": "../math/arithmetic/fractions-divide/guide",

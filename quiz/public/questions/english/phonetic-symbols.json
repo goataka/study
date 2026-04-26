@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "phonetic-symbols",
   "categoryName": "発音記号（IPA）",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
   "parentCategory": "phonics",
   "parentCategoryName": "フォニックス・音声記号",
   "guideUrl": "../english/pronunciation/phonetic-symbols/guide",

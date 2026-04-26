@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "integration",
   "categoryName": "積分",
+  "topCategory": "advanced-math",
+  "topCategoryName": "高校数学",
   "parentCategory": "calculus",
   "parentCategoryName": "微積分",
   "guideUrl": "../math/calculus/integration/guide",

@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "simultaneous-eq",
   "categoryName": "連立方程式",
+  "topCategory": "algebra",
+  "topCategoryName": "代数",
   "parentCategory": "algebra-advanced",
   "parentCategoryName": "発展代数",
   "guideUrl": "../math/algebra/simultaneous-eq/guide",

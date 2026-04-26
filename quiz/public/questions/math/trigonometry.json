@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "trigonometry",
   "categoryName": "三角関数",
+  "topCategory": "advanced-math",
+  "topCategoryName": "高校数学",
   "parentCategory": "precalculus",
   "parentCategoryName": "高校数学",
   "guideUrl": "../math/calculus/trigonometry/guide",

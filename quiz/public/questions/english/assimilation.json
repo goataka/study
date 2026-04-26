@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "assimilation",
   "categoryName": "音声変化 - アシミレーション",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
   "parentCategory": "sound-changes",
   "parentCategoryName": "音声変化",
   "guideUrl": "../english/pronunciation/assimilation/guide",

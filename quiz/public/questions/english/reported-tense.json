@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "reported-tense",
   "categoryName": "時制の一致",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
   "parentCategory": "reported-speech",
   "parentCategoryName": "話法",
   "guideUrl": "../english/grammar/reported-tense/guide",

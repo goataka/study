@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "subtraction-mixed",
   "categoryName": "ひき算 - まとめ",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
   "parentCategory": "subtraction",
   "parentCategoryName": "ひき算",
   "guideUrl": "../math/arithmetic/subtraction-mixed/guide",

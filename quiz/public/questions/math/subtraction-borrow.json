@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "subtraction-borrow",
   "categoryName": "ひき算 - くり下がりあり",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
   "parentCategory": "subtraction",
   "parentCategoryName": "ひき算",
   "guideUrl": "../math/arithmetic/subtraction-1digit-borrow/guide",

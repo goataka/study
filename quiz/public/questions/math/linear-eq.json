@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "linear-eq",
   "categoryName": "一次方程式",
+  "topCategory": "algebra",
+  "topCategoryName": "代数",
   "parentCategory": "algebra-basics",
   "parentCategoryName": "基本代数",
   "guideUrl": "../math/algebra/linear-eq/guide",

@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "ratio",
   "categoryName": "比",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
   "parentCategory": "ratio-percentage",
   "parentCategoryName": "比・割合",
   "guideUrl": "../math/arithmetic/ratio/guide",

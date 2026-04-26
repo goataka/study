@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "perfect",
   "categoryName": "完了形",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
   "parentCategory": "perfect",
   "parentCategoryName": "完了形",
   "guideUrl": "../english/grammar/perfect/guide",

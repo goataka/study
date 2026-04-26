@@ -3,6 +3,8 @@
   "subjectName": "国語",
   "category": "kanji-grade1-writing",
   "categoryName": "漢字 - 小学1年 - 書き",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
   "parentCategory": "kanji-elementary-lower",
   "parentCategoryName": "小学漢字（1〜3年）",
   "example": "山・川・火・水",

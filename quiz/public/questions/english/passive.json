@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "passive",
   "categoryName": "受動態",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
   "parentCategory": "passive",
   "parentCategoryName": "受動態",
   "guideUrl": "../english/grammar/passive/guide",

@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "conditionals-wish",
   "categoryName": "I wish",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
   "parentCategory": "conditionals",
   "parentCategoryName": "仮定法",
   "guideUrl": "../english/grammar/conditionals-wish/guide",

@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "division-no-remainder",
   "categoryName": "わり算 - あまりなし",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
   "parentCategory": "multiplication-division",
   "parentCategoryName": "かけ算・わり算",
   "guideUrl": "../math/arithmetic/division-1digit-no-remainder/guide",

@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "sequences",
   "categoryName": "数列",
+  "topCategory": "advanced-math",
+  "topCategoryName": "高校数学",
   "parentCategory": "precalculus",
   "parentCategoryName": "高校数学",
   "guideUrl": "../math/calculus/sequences/guide",

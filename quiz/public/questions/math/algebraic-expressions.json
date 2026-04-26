@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "algebraic-expressions",
   "categoryName": "文字式",
+  "topCategory": "algebra",
+  "topCategoryName": "代数",
   "parentCategory": "algebra-basics",
   "parentCategoryName": "基本代数",
   "guideUrl": "../math/algebra/algebraic-expressions/guide",

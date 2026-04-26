@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "phonics-2",
   "categoryName": "フォニックス - 2文字・マジックE",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
   "parentCategory": "phonics",
   "parentCategoryName": "フォニックス・音声記号",
   "guideUrl": "../english/pronunciation/phonics-2letter/guide",

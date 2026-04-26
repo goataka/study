@@ -3,6 +3,8 @@
   "subjectName": "数学",
   "category": "addition-mixed",
   "categoryName": "たし算 - まとめ",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
   "parentCategory": "addition",
   "parentCategoryName": "たし算",
   "guideUrl": "../math/arithmetic/addition-mixed/guide",

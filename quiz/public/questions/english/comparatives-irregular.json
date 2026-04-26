@@ -3,6 +3,8 @@
   "subjectName": "英語",
   "category": "comparatives-irregular",
   "categoryName": "不規則な比較変化",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
   "parentCategory": "comparatives",
   "parentCategoryName": "比較",
   "guideUrl": "../english/grammar/comparatives-irregular/guide",
