@@ -14,7 +14,7 @@
   "description": "名詞は「もの・ひと・場所・こと」の名前、代名詞は名詞の代わりに使う言葉です。",
   "questions": [
     {
-      "id": "b9350e5e-dce4-4807-852a-67bec9dc86c0",
+      "id": "d33c4500-73a0-58d3-8949-31a3b438ebde",
       "question": "___ play games. (私は)",
       "choices": [
         "I",
@@ -26,7 +26,7 @@
       "explanation": "主語として使う代名詞は主格：I（私は）"
     },
     {
-      "id": "0d6e0ba7-5134-4b8f-8420-d40516524fbc",
+      "id": "82ab1475-56c9-5c14-8b74-caad7fbf7456",
       "question": "___ plays soccer. (彼は)",
       "choices": [
         "He",
@@ -38,7 +38,7 @@
       "explanation": "主語として使う代名詞は主格：He（彼は）"
     },
     {
-      "id": "fedcaf22-7887-4e3b-bf0a-770e2fecdf82",
+      "id": "a4c7131a-5e58-5dcc-906f-7e081ab23989",
       "question": "___ reads books. (彼女は)",
       "choices": [
         "She",
@@ -50,7 +50,7 @@
       "explanation": "主語として使う代名詞は主格：She（彼女は）"
     },
     {
-      "id": "436ba5dc-eb55-4eea-9a55-d67aee055274",
+      "id": "53aa090d-ae66-5e85-8321-d6fadbb4bb14",
       "question": "___ like music. (私たちは)",
       "choices": [
         "We",
@@ -62,7 +62,7 @@
       "explanation": "主語として使う代名詞は主格：We（私たちは）"
     },
     {
-      "id": "474a8195-3fea-4589-9312-32211eb5d35b",
+      "id": "b7732fe5-da69-5670-b250-19f7046e632e",
       "question": "___ study English. (彼らは)",
       "choices": [
         "They",
@@ -74,7 +74,7 @@
       "explanation": "主語として使う代名詞は主格：They（彼らは）"
     },
     {
-      "id": "aa5bd075-c135-4cfb-a316-b1e7b3861b4d",
+      "id": "60983f11-54e8-5080-9cc2-0d5b73783f94",
       "question": "I have two ___. (cat の複数形)",
       "choices": [
         "cats",
@@ -86,7 +86,7 @@
       "explanation": "規則的な複数形は語尾に -s をつけます"
     },
     {
-      "id": "3a5a7ff6-04b8-447d-ba6c-7f29ecc1e9c3",
+      "id": "3c46a9d9-aa02-598d-9cc3-aac35e777464",
       "question": "She has three ___. (watch の複数形)",
       "choices": [
         "watches",
@@ -98,7 +98,7 @@
       "explanation": "ch で終わる語は -es をつけて複数形にします"
     },
     {
-      "id": "dffef0e5-b87c-4969-b54b-c516bae270fc",
+      "id": "f8530806-5a6f-5f56-804c-41dcd4773818",
       "question": "I play ___ game. (不定の単数名詞・子音で始まる)",
       "choices": [
         "a",
@@ -110,7 +110,7 @@
       "explanation": "子音で始まる単数名詞の前には a を使います"
     },
     {
-      "id": "3e8d5a57-60e4-4fa3-b01a-9c7b6827b588",
+      "id": "05154b2e-dc63-5874-8f43-906e10933670",
       "question": "She is ___ student. (不定の単数名詞・子音で始まる)",
       "choices": [
         "a",
@@ -122,7 +122,7 @@
       "explanation": "子音で始まる単数名詞の前には a を使います"
     },
     {
-      "id": "8d37cac2-2eb0-4048-8953-74139511e431",
+      "id": "3ab826b2-5e55-568a-b814-7bbb1a0ab936",
       "question": "He is ___ honest person. (不定の単数名詞・母音で始まる)",
       "choices": [
         "an",

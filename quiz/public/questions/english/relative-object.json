@@ -110,7 +110,7 @@
       "explanation": "目的格の関係代名詞は省略可能です"
     },
     {
-      "id": "28d37932-e8c2-4c59-b80d-a9a8ad39cdb9",
+      "id": "e1da8b47-8748-5170-bb96-6a09ead8e5d0",
       "question": "The song ___ she sang was beautiful. (物・目的格)",
       "choices": [
         "which",
@@ -122,7 +122,7 @@
       "explanation": "物の目的格の関係代名詞は which または that を使います"
     },
     {
-      "id": "4f0b5e61-d7d7-4a28-bc62-c571caee5927",
+      "id": "0f4d439c-41e5-5b83-b7c6-cb087064c728",
       "question": "The man ___ I talked to was kind. (人・目的格)",
       "choices": [
         "whom",

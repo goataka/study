@@ -110,7 +110,7 @@
       "explanation": "命令文の間接話法は told または asked を使います"
     },
     {
-      "id": "2d8229c9-c2a4-48c5-b8cb-3db35fb9968b",
+      "id": "27b213e3-ed39-5531-a97b-af41ca58f86d",
       "question": "She said, \"Come here.\" → She told me ___ there.",
       "choices": [
         "to come",
@@ -122,7 +122,7 @@
       "explanation": "肯定の命令文の間接話法は told/asked + 人 + to + 動詞原形です"
     },
     {
-      "id": "9fb3cb9f-2559-40f1-8fbd-06dcafc39cfc",
+      "id": "826373e6-7b18-5463-a810-9dd0c359fb36",
       "question": "He said, \"Don't run.\" → He told me ___ run.",
       "choices": [
         "not to",

@@ -110,7 +110,7 @@
       "explanation": "twice があるので経験を表します"
     },
     {
-      "id": "0ec7c6aa-04f7-4e39-8e20-123b0bcd920d",
+      "id": "9e45d026-8d33-56cc-ad72-457337e0792c",
       "question": "I have never tried sushi. この文の用法は？",
       "choices": [
         "経験",
@@ -122,7 +122,7 @@
       "explanation": "never は経験用法の否定を表します"
     },
     {
-      "id": "0a7ad404-ff2b-4bf6-a683-9f94e06fb843",
+      "id": "dfda0d3a-1c52-5a18-ad96-cfecee099bb9",
       "question": "She has just arrived. この文の用法は？",
       "choices": [
         "完了",

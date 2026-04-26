@@ -110,7 +110,7 @@
       "explanation": "子音+yで終わる語は、yをiに変えて -ed をつけます"
     },
     {
-      "id": "7a16045e-fa08-4320-9202-63018216435b",
+      "id": "9ece70f9-575f-58b1-b55d-7cfd74bbe8d6",
       "question": "She ___ her homework last night. (finish)",
       "choices": [
         "finished",
@@ -122,7 +122,7 @@
       "explanation": "規則動詞の過去形は動詞 + ed です"
     },
     {
-      "id": "42b6c53e-6d33-4fa0-babb-3a048541868c",
+      "id": "ac202d15-517e-50a1-a4c2-d970838a045a",
       "question": "They ___ soccer yesterday. (play)",
       "choices": [
         "played",
