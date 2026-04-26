@@ -125,13 +125,14 @@ Feature: 学習アプリ
     And I click the "採点する" button
     Then the result screen layout matches the snapshot
 
-  Scenario: 単元に解説ボタン（📖）が表示される
+  Scenario: 単元をクリックすると解説タブが開く
     When I click the "数学" tab
-    Then the category guide button should be visible
+    And I click the first category item
+    Then the guide panel should be active
 
-  Scenario: 解説ボタンをクリックすると解説タブが開く
+  Scenario: 単元をクリックすると解説タブに解説が表示される
     When I click the "数学" tab
-    And I click the first category guide button
+    And I click the first category item
     Then the guide panel should be active
 
   Scenario: 学年フィルターボタンが表示される

@@ -18,12 +18,18 @@ export class QuizUseCase {
   private categoryGuideMap = new Map<string, string>();
   /** subject::parentCategory -> parentCategoryGuideUrl のキャッシュ（O(1) 参照用） */
   private parentCategoryGuideMap = new Map<string, string>();
+  /** subject::topCategory -> topCategoryGuideUrl のキャッシュ（O(1) 参照用） */
+  private topCategoryGuideMap = new Map<string, string>();
   /** subject::category -> example のキャッシュ（O(1) 参照用） */
   private categoryExampleMap = new Map<string, string>();
   /** subject::category -> referenceGrade のキャッシュ（O(1) 参照用） */
   private categoryGradeMap = new Map<string, string>();
   /** subject::category -> description のキャッシュ（O(1) 参照用） */
   private categoryDescriptionMap = new Map<string, string>();
+  /** subject::category -> { parentId, parentName } のキャッシュ */
+  private categoryParentMap = new Map<string, { id: string; name: string }>();
+  /** subject::category -> { topId, topName } のキャッシュ */
+  private categoryTopMap = new Map<string, { id: string; name: string }>();
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
@@ -38,9 +44,12 @@ export class QuizUseCase {
     // subject::category -> guideUrl / referenceGrade / description のキャッシュを構築する
     this.categoryGuideMap.clear();
     this.parentCategoryGuideMap.clear();
+    this.topCategoryGuideMap.clear();
     this.categoryExampleMap.clear();
     this.categoryGradeMap.clear();
     this.categoryDescriptionMap.clear();
+    this.categoryParentMap.clear();
+    this.categoryTopMap.clear();
     for (const q of this.allQuestions) {
       const key = `${q.subject}::${q.category}`;
       if (q.guideUrl !== undefined && !this.categoryGuideMap.has(key)) {
@@ -52,6 +61,12 @@ export class QuizUseCase {
           this.parentCategoryGuideMap.set(parentKey, q.parentCategoryGuideUrl);
         }
       }
+      if (q.topCategoryGuideUrl !== undefined && q.topCategory !== undefined) {
+        const topKey = `${q.subject}::${q.topCategory}`;
+        if (!this.topCategoryGuideMap.has(topKey)) {
+          this.topCategoryGuideMap.set(topKey, q.topCategoryGuideUrl);
+        }
+      }
       if (q.example !== undefined && !this.categoryExampleMap.has(key)) {
         this.categoryExampleMap.set(key, q.example);
       }
@@ -60,6 +75,12 @@ export class QuizUseCase {
       }
       if (q.description !== undefined && !this.categoryDescriptionMap.has(key)) {
         this.categoryDescriptionMap.set(key, q.description);
+      }
+      if (q.parentCategory !== undefined && !this.categoryParentMap.has(key)) {
+        this.categoryParentMap.set(key, { id: q.parentCategory, name: q.parentCategoryName ?? q.parentCategory });
+      }
+      if (q.topCategory !== undefined && !this.categoryTopMap.has(key)) {
+        this.categoryTopMap.set(key, { id: q.topCategory, name: q.topCategoryName ?? q.topCategory });
       }
     }
   }
@@ -309,6 +330,30 @@ export class QuizUseCase {
    */
   getParentCategoryGuideUrl(subject: string, parentCategory: string): string | undefined {
     return this.parentCategoryGuideMap.get(`${subject}::${parentCategory}`);
+  }
+
+  /**
+   * 指定した教科・トップカテゴリの解説 URL を返す。
+   * 該当トップカテゴリに topCategoryGuideUrl が設定されていない場合は undefined を返す。
+   */
+  getTopCategoryGuideUrl(subject: string, topCategory: string): string | undefined {
+    return this.topCategoryGuideMap.get(`${subject}::${topCategory}`);
+  }
+
+  /**
+   * 指定した教科・カテゴリの親カテゴリ情報を返す。
+   * 親カテゴリが設定されていない場合は undefined を返す。
+   */
+  getParentCategoryForUnit(subject: string, categoryId: string): { id: string; name: string } | undefined {
+    return this.categoryParentMap.get(`${subject}::${categoryId}`);
+  }
+
+  /**
+   * 指定した教科・カテゴリのトップカテゴリ情報を返す。
+   * トップカテゴリが設定されていない場合は undefined を返す。
+   */
+  getTopCategoryForUnit(subject: string, categoryId: string): { id: string; name: string } | undefined {
+    return this.categoryTopMap.get(`${subject}::${categoryId}`);
   }
 
   /**

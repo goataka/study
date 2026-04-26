@@ -179,6 +179,38 @@ describe("LocalStorageProgressRepository — 正解連続数永続化仕様", ()
   });
 });
 
+describe("LocalStorageProgressRepository — カテゴリ表示モード永続化仕様", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("初回ロード時はカテゴリ別モードを返す", () => {
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadCategoryViewMode()).toBe("category");
+  });
+
+  it("学年別モードを保存して読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveCategoryViewMode("grade");
+    expect(repo.loadCategoryViewMode()).toBe("grade");
+  });
+
+  it("カテゴリ別モードを保存して読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveCategoryViewMode("grade");
+    repo.saveCategoryViewMode("category");
+    expect(repo.loadCategoryViewMode()).toBe("category");
+  });
+
+  it("別のインスタンスからも同じデータを読み込める（永続化確認）", () => {
+    const repo1 = new LocalStorageProgressRepository();
+    repo1.saveCategoryViewMode("grade");
+
+    const repo2 = new LocalStorageProgressRepository();
+    expect(repo2.loadCategoryViewMode()).toBe("grade");
+  });
+});
+
 describe("LocalStorageProgressRepository — フォントサイズ永続化仕様", () => {
   beforeEach(() => {
     localStorage.clear();

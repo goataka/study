@@ -324,28 +324,18 @@ header h1 {
     transform: rotate(-90deg);
 }
 
-/* 単元アイテムの解説ボタン */
-.category-item-guide-btn {
-    font-size: 15px;
-    padding: 0 3px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    color: #586069;
+/* 単元アイテムの解説ボタン（廃止：全解説はカテゴリ選択で表示） */
+
+/* 学年別ビューでの階層情報（カテゴリ・サブカテゴリ名） */
+.category-hierarchy {
+    font-size: 10px;
+    color: #8b949e;
+    margin-left: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
     flex-shrink: 0;
-    opacity: 0.6;
-    transition: opacity 0.15s, color 0.15s;
-    line-height: 1;
-}
-
-.category-item-guide-btn:hover {
-    opacity: 1;
-    color: #0366d6;
-}
-
-.category-item.active .category-item-guide-btn {
-    color: white;
-    opacity: 0.85;
 }
 
 /* カスタムスクロールバー（Webkit系ブラウザ用） */
@@ -404,6 +394,12 @@ header h1 {
 
 .category-top-group-header:hover {
     background: #0256b8;
+}
+
+/* トップカテゴリヘッダー選択中のアクティブ状態 */
+.category-top-group-header.active {
+    background: #024a9e;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.4);
 }
 
 /* トップカテゴリ折りたたみ矢印 */
@@ -468,6 +464,12 @@ header h1 {
     background: #f0f4f8;
 }
 
+/* 親カテゴリヘッダー選択中のアクティブ状態 */
+.category-group-header.active {
+    background: #e8f0f9;
+    color: #0366d6;
+}
+
 /* 折りたたみ矢印インジケーター */
 .category-group-toggle::before {
     content: "▼";
@@ -488,25 +490,7 @@ header h1 {
     letter-spacing: 0;
 }
 
-.category-group-guide-btn {
-    margin-left: auto;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 2px 4px;
-    border-radius: 4px;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: 0;
-    opacity: 0.7;
-    transition: opacity 0.15s, background 0.15s;
-}
-
-.category-group-guide-btn:hover {
-    opacity: 1;
-    background: rgba(3, 102, 214, 0.1);
-}
+/* カテゴリグループの解説ボタン（廃止：全解説はカテゴリ選択で表示） */
 
 .category-item {
     display: flex;

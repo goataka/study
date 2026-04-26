@@ -78,6 +78,14 @@ class StubProgressRepository implements IProgressRepository {
   getStoredHistory(): import("./ports").QuizRecord[] {
     return [...this.history];
   }
+  loadCategoryViewMode(): "category" | "grade" {
+    return "category";
+  }
+  saveCategoryViewMode(_mode: "category" | "grade"): void {}
+  loadFontSizeLevel(): "small" | "medium" | "large" | null {
+    return null;
+  }
+  saveFontSizeLevel(_level: "small" | "medium" | "large"): void {}
 }
 
 // ─── テスト ──────────────────────────────────────────────────────────────────

@@ -217,6 +217,66 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
     expect(() => validateQuestionFile(validQF)).not.toThrow();
   });
 
+  it("topCategoryGuideUrl が文字列の相対パスの場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({
+        ...validQF,
+        topCategory: "language",
+        topCategoryName: "言語",
+        topCategoryGuideUrl: "../english/language/guide",
+      })
+    ).not.toThrow();
+  });
+
+  it("topCategoryGuideUrl が https URL の場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({
+        ...validQF,
+        topCategory: "language",
+        topCategoryName: "言語",
+        topCategoryGuideUrl: "https://example.com/guide",
+      })
+    ).not.toThrow();
+  });
+
+  it("topCategoryGuideUrl が文字列でない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, topCategoryGuideUrl: 123 })
+    ).toThrow('"topCategoryGuideUrl" must be a string if present');
+  });
+
+  it("topCategoryGuideUrl が設定されているが topCategory がない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, topCategoryGuideUrl: "../english/language/guide" })
+    ).toThrow('"topCategoryGuideUrl" requires "topCategory" to be set');
+  });
+
+  it("topCategoryGuideUrl が javascript: スキームの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({
+        ...validQF,
+        topCategory: "language",
+        topCategoryName: "言語",
+        topCategoryGuideUrl: "javascript:alert(1)",
+      })
+    ).toThrow('"topCategoryGuideUrl" must be a relative path starting with "../" or an http/https URL');
+  });
+
+  it("topCategoryGuideUrl にパストラバーサルが含まれる場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({
+        ...validQF,
+        topCategory: "language",
+        topCategoryName: "言語",
+        topCategoryGuideUrl: "../english/../../etc/passwd",
+      })
+    ).toThrow('"topCategoryGuideUrl" must not contain path traversal sequences');
+  });
+
+  it("topCategoryGuideUrl が undefined の場合は受け入れる（オプションフィールド）", () => {
+    expect(() => validateQuestionFile(validQF)).not.toThrow();
+  });
+
   it("example が文字列の場合は受け入れる", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, example: "I `play` games." })
@@ -340,6 +400,26 @@ describe("expandQuestions — 問題展開仕様", () => {
     const questions = expandQuestions(qf);
     for (const q of questions) {
       expect(q.parentCategoryGuideUrl).toBeUndefined();
+    }
+  });
+
+  it("topCategoryGuideUrl がある場合は各問題に付加される", () => {
+    const qfWithTopGuide: QuestionFile = {
+      ...qf,
+      topCategory: "language",
+      topCategoryName: "言語",
+      topCategoryGuideUrl: "../english/language/guide",
+    };
+    const questions = expandQuestions(qfWithTopGuide);
+    for (const q of questions) {
+      expect(q.topCategoryGuideUrl).toBe("../english/language/guide");
+    }
+  });
+
+  it("topCategoryGuideUrl がない場合は各問題の topCategoryGuideUrl が undefined になる", () => {
+    const questions = expandQuestions(qf);
+    for (const q of questions) {
+      expect(q.topCategoryGuideUrl).toBeUndefined();
     }
   });
 });

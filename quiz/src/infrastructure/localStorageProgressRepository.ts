@@ -9,6 +9,7 @@ const STORAGE_KEY = "wrongQuestions";
 const CORRECT_STREAKS_KEY = "correctStreaks";
 const USER_NAME_KEY = "userName";
 const HISTORY_KEY = "quizHistory";
+const CATEGORY_VIEW_MODE_KEY = "categoryViewMode";
 const FONT_SIZE_KEY = "fontSizeLevel";
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
@@ -79,6 +80,23 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       localStorage.setItem(HISTORY_KEY, JSON.stringify(trimmed));
     } catch (error) {
       console.error("履歴の保存に失敗しました:", error);
+    }
+  }
+
+  loadCategoryViewMode(): "category" | "grade" {
+    try {
+      const saved = localStorage.getItem(CATEGORY_VIEW_MODE_KEY);
+      return saved === "grade" ? "grade" : "category";
+    } catch {
+      return "category";
+    }
+  }
+
+  saveCategoryViewMode(mode: "category" | "grade"): void {
+    try {
+      localStorage.setItem(CATEGORY_VIEW_MODE_KEY, mode);
+    } catch (error) {
+      console.error("表示モードの保存に失敗しました:", error);
     }
   }
 
