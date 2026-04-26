@@ -6,6 +6,8 @@
 
 | カテゴリ | 内容 |
 |----------|------|
+| [英語の文の構造](sentence-structure/guide) | S+V+O の語順と文の種類 |
+| [名詞と代名詞](nouns-pronouns/guide) | I・you・he など主語になる言葉 |
 | [時制（一般動詞）](tenses-regular-present/guide) | 現在形・過去形・未来形の使い方 |
 | [時制（be動詞）](tenses-be-present/guide) | be動詞の現在形・過去形・未来形 |
 | [不規則動詞](tenses-irregular/guide) | 不規則に変化する動詞の過去形 |

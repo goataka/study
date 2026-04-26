@@ -30,45 +30,47 @@
 
 | # | 内容 | 解説 | 確認 | 例 |
 |---|------|------|--------|-----|
-| 11 | 一般動詞の現在形 | [解説](english/grammar/tenses-regular-present/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-present) | I `play` games. |
-| 12 | 一般動詞の過去形 | [解説](english/grammar/tenses-regular-past/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-past) | I `played` games. |
-| 13 | 一般動詞の未来形 | [解説](english/grammar/tenses-regular-future/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-future) | I `will play` games. |
-| 14 | be動詞の現在形 | [解説](english/grammar/tenses-be-present/guide.md) | [確認](quiz/?subject=english&category=tenses-be-present) | The game `is` fun. |
-| 15 | be動詞の過去形 | [解説](english/grammar/tenses-be-past/guide.md) | [確認](quiz/?subject=english&category=tenses-be-past) | The game `was` fun. |
-| 16 | be動詞の未来形 | [解説](english/grammar/tenses-be-future/guide.md) | [確認](quiz/?subject=english&category=tenses-be-future) | The game `will be` fun. |
-| 17 | 不規則動詞の過去形 | [解説](english/grammar/tenses-irregular/guide.md) | [確認](quiz/?subject=english&category=tenses-irregular) | I `bought` games. |
-| 18 | 冠詞 | [解説](english/grammar/articles/guide.md) | [確認](quiz/?subject=english&category=articles) | I play `a` game. |
-| 19 | 形容詞 | [解説](english/grammar/adjectives/guide.md) | [確認](quiz/?subject=english&category=adjectives) | I play `fun` games. |
-| 20 | 副詞 | [解説](english/grammar/adverbs/guide.md) | [確認](quiz/?subject=english&category=adverbs) | I `always` play games. |
-| 21 | 前置詞 | [解説](english/grammar/prepositions/guide.md) | [確認](quiz/?subject=english&category=prepositions) | I play games `at` home. |
-| 22 | 接続詞 | [解説](english/grammar/conjunctions/guide.md) | [確認](quiz/?subject=english&category=conjunctions) | I play games `and` study. |
-| 23 | 進行形 | [解説](english/grammar/progressive/guide.md) | [確認](quiz/?subject=english&category=progressive) | I `am playing` games. |
-| 24 | -ing形の作り方 | [解説](english/grammar/progressive-ing/guide.md) | [確認](quiz/?subject=english&category=progressive-ing) | play→`playing` |
-| 25 | 完了形 | [解説](english/grammar/perfect/guide.md) | [確認](quiz/?subject=english&category=perfect) | I `have played` games. |
-| 26 | 過去分詞の変化 | [解説](english/grammar/perfect-participles/guide.md) | [確認](quiz/?subject=english&category=perfect-participles) | play→`played` |
-| 27 | 用法 | [解説](english/grammar/perfect-usage/guide.md) | [確認](quiz/?subject=english&category=perfect-usage) | I `have played` games `for` 3 years. |
-| 28 | 使い分け | [解説](english/grammar/modals-basic/guide.md) | [確認](quiz/?subject=english&category=modals-basic) | I `can play` games. |
-| 29 | 否定形 | [解説](english/grammar/modals-negative/guide.md) | [確認](quiz/?subject=english&category=modals-negative) | I `cannot play` games. |
-| 30 | 過去形 | [解説](english/grammar/modals-past/guide.md) | [確認](quiz/?subject=english&category=modals-past) | I `could play` games. |
-| 31 | 受動態 | [解説](english/grammar/passive/guide.md) | [確認](quiz/?subject=english&category=passive) | Games `are played` by me. |
-| 32 | 助動詞の受動態 | [解説](english/grammar/passive-modals/guide.md) | [確認](quiz/?subject=english&category=passive-modals) | Games `can be played` by anyone. |
-| 33 | 条件文 | [解説](english/grammar/conditionals-if/guide.md) | [確認](quiz/?subject=english&category=conditionals-if) | If I `had` time, I `would play` games. |
-| 34 | I wish | [解説](english/grammar/conditionals-wish/guide.md) | [確認](quiz/?subject=english&category=conditionals-wish) | I wish I `could play` games. |
-| 35 | unless | [解説](english/grammar/conditionals-unless/guide.md) | [確認](quiz/?subject=english&category=conditionals-unless) | I play games `unless` I am busy. |
-| 36 | 疑問文 | [解説](english/grammar/questions/guide.md) | [確認](quiz/?subject=english&category=questions) | `Do` you play games? |
-| 37 | 否定文 | [解説](english/grammar/negatives/guide.md) | [確認](quiz/?subject=english&category=negatives) | I `do not play` games. |
-| 38 | 疑問詞 | [解説](english/grammar/questions-wh/guide.md) | [確認](quiz/?subject=english&category=questions-wh) | `What` games do you play? |
-| 39 | 比較級 | [解説](english/grammar/comparatives-er/guide.md) | [確認](quiz/?subject=english&category=comparatives-er) | I play games `more` than you. |
-| 40 | 最上級 | [解説](english/grammar/comparatives-est/guide.md) | [確認](quiz/?subject=english&category=comparatives-est) | I play games `the most`. |
-| 41 | 不規則な比較変化 | [解説](english/grammar/comparatives-irregular/guide.md) | [確認](quiz/?subject=english&category=comparatives-irregular) | I play games `better` than you. |
-| 42 | 主格の関係代名詞 | [解説](english/grammar/relative-subject/guide.md) | [確認](quiz/?subject=english&category=relative-subject) | The boy `who` plays games is my friend. |
-| 43 | 目的格の関係代名詞 | [解説](english/grammar/relative-object/guide.md) | [確認](quiz/?subject=english&category=relative-object) | The game `which` I play is fun. |
-| 44 | 所有格の関係代名詞 | [解説](english/grammar/relative-possessive/guide.md) | [確認](quiz/?subject=english&category=relative-possessive) | The boy `whose` father plays games is my friend. |
-| 45 | 関係副詞 | [解説](english/grammar/relative-adverb/guide.md) | [確認](quiz/?subject=english&category=relative-adverb) | The place `where` I play games is quiet. |
-| 46 | 時制の一致 | [解説](english/grammar/reported-tense/guide.md) | [確認](quiz/?subject=english&category=reported-tense) | He said he `played` games. |
-| 47 | 疑問文の間接話法 | [解説](english/grammar/reported-question/guide.md) | [確認](quiz/?subject=english&category=reported-question) | He asked if I `played` games. |
-| 48 | 命令文の間接話法 | [解説](english/grammar/reported-imperative/guide.md) | [確認](quiz/?subject=english&category=reported-imperative) | He told me `to play` games. |
-| 49 | 指示語の変化 | [解説](english/grammar/reported-expressions/guide.md) | [確認](quiz/?subject=english&category=reported-expressions) | `this` game→`that` game |
+| 11 | 英語の文の構造 | [解説](english/grammar/sentence-structure/guide.md) | - | `I` `play` `games`. （S+V+O） |
+| 12 | 名詞と代名詞 | [解説](english/grammar/nouns-pronouns/guide.md) | - | `I` / `You` / `He` / `game` |
+| 13 | 一般動詞の現在形 | [解説](english/grammar/tenses-regular-present/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-present) | I `play` games. |
+| 14 | 一般動詞の過去形 | [解説](english/grammar/tenses-regular-past/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-past) | I `played` games. |
+| 15 | 一般動詞の未来形 | [解説](english/grammar/tenses-regular-future/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-future) | I `will play` games. |
+| 16 | be動詞の現在形 | [解説](english/grammar/tenses-be-present/guide.md) | [確認](quiz/?subject=english&category=tenses-be-present) | The game `is` fun. |
+| 17 | be動詞の過去形 | [解説](english/grammar/tenses-be-past/guide.md) | [確認](quiz/?subject=english&category=tenses-be-past) | The game `was` fun. |
+| 18 | be動詞の未来形 | [解説](english/grammar/tenses-be-future/guide.md) | [確認](quiz/?subject=english&category=tenses-be-future) | The game `will be` fun. |
+| 19 | 不規則動詞の過去形 | [解説](english/grammar/tenses-irregular/guide.md) | [確認](quiz/?subject=english&category=tenses-irregular) | I `bought` games. |
+| 20 | 冠詞 | [解説](english/grammar/articles/guide.md) | [確認](quiz/?subject=english&category=articles) | I play `a` game. |
+| 21 | 形容詞 | [解説](english/grammar/adjectives/guide.md) | [確認](quiz/?subject=english&category=adjectives) | I play `fun` games. |
+| 22 | 副詞 | [解説](english/grammar/adverbs/guide.md) | [確認](quiz/?subject=english&category=adverbs) | I `always` play games. |
+| 23 | 前置詞 | [解説](english/grammar/prepositions/guide.md) | [確認](quiz/?subject=english&category=prepositions) | I play games `at` home. |
+| 24 | 接続詞 | [解説](english/grammar/conjunctions/guide.md) | [確認](quiz/?subject=english&category=conjunctions) | I play games `and` study. |
+| 25 | 進行形 | [解説](english/grammar/progressive/guide.md) | [確認](quiz/?subject=english&category=progressive) | I `am playing` games. |
+| 26 | -ing形の作り方 | [解説](english/grammar/progressive-ing/guide.md) | [確認](quiz/?subject=english&category=progressive-ing) | play→`playing` |
+| 27 | 完了形 | [解説](english/grammar/perfect/guide.md) | [確認](quiz/?subject=english&category=perfect) | I `have played` games. |
+| 28 | 過去分詞の変化 | [解説](english/grammar/perfect-participles/guide.md) | [確認](quiz/?subject=english&category=perfect-participles) | play→`played` |
+| 29 | 用法 | [解説](english/grammar/perfect-usage/guide.md) | [確認](quiz/?subject=english&category=perfect-usage) | I `have played` games `for` 3 years. |
+| 30 | 使い分け | [解説](english/grammar/modals-basic/guide.md) | [確認](quiz/?subject=english&category=modals-basic) | I `can play` games. |
+| 31 | 否定形 | [解説](english/grammar/modals-negative/guide.md) | [確認](quiz/?subject=english&category=modals-negative) | I `cannot play` games. |
+| 32 | 過去形 | [解説](english/grammar/modals-past/guide.md) | [確認](quiz/?subject=english&category=modals-past) | I `could play` games. |
+| 33 | 受動態 | [解説](english/grammar/passive/guide.md) | [確認](quiz/?subject=english&category=passive) | Games `are played` by me. |
+| 34 | 助動詞の受動態 | [解説](english/grammar/passive-modals/guide.md) | [確認](quiz/?subject=english&category=passive-modals) | Games `can be played` by anyone. |
+| 35 | 条件文 | [解説](english/grammar/conditionals-if/guide.md) | [確認](quiz/?subject=english&category=conditionals-if) | If I `had` time, I `would play` games. |
+| 36 | I wish | [解説](english/grammar/conditionals-wish/guide.md) | [確認](quiz/?subject=english&category=conditionals-wish) | I wish I `could play` games. |
+| 37 | unless | [解説](english/grammar/conditionals-unless/guide.md) | [確認](quiz/?subject=english&category=conditionals-unless) | I play games `unless` I am busy. |
+| 38 | 疑問文 | [解説](english/grammar/questions/guide.md) | [確認](quiz/?subject=english&category=questions) | `Do` you play games? |
+| 39 | 否定文 | [解説](english/grammar/negatives/guide.md) | [確認](quiz/?subject=english&category=negatives) | I `do not play` games. |
+| 40 | 疑問詞 | [解説](english/grammar/questions-wh/guide.md) | [確認](quiz/?subject=english&category=questions-wh) | `What` games do you play? |
+| 41 | 比較級 | [解説](english/grammar/comparatives-er/guide.md) | [確認](quiz/?subject=english&category=comparatives-er) | I play games `more` than you. |
+| 42 | 最上級 | [解説](english/grammar/comparatives-est/guide.md) | [確認](quiz/?subject=english&category=comparatives-est) | I play games `the most`. |
+| 43 | 不規則な比較変化 | [解説](english/grammar/comparatives-irregular/guide.md) | [確認](quiz/?subject=english&category=comparatives-irregular) | I play games `better` than you. |
+| 44 | 主格の関係代名詞 | [解説](english/grammar/relative-subject/guide.md) | [確認](quiz/?subject=english&category=relative-subject) | The boy `who` plays games is my friend. |
+| 45 | 目的格の関係代名詞 | [解説](english/grammar/relative-object/guide.md) | [確認](quiz/?subject=english&category=relative-object) | The game `which` I play is fun. |
+| 46 | 所有格の関係代名詞 | [解説](english/grammar/relative-possessive/guide.md) | [確認](quiz/?subject=english&category=relative-possessive) | The boy `whose` father plays games is my friend. |
+| 47 | 関係副詞 | [解説](english/grammar/relative-adverb/guide.md) | [確認](quiz/?subject=english&category=relative-adverb) | The place `where` I play games is quiet. |
+| 48 | 時制の一致 | [解説](english/grammar/reported-tense/guide.md) | [確認](quiz/?subject=english&category=reported-tense) | He said he `played` games. |
+| 49 | 疑問文の間接話法 | [解説](english/grammar/reported-question/guide.md) | [確認](quiz/?subject=english&category=reported-question) | He asked if I `played` games. |
+| 50 | 命令文の間接話法 | [解説](english/grammar/reported-imperative/guide.md) | [確認](quiz/?subject=english&category=reported-imperative) | He told me `to play` games. |
+| 51 | 指示語の変化 | [解説](english/grammar/reported-expressions/guide.md) | [確認](quiz/?subject=english&category=reported-expressions) | `this` game→`that` game |
 
 ### 数学
 
