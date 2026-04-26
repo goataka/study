@@ -306,3 +306,64 @@ Then("the {string} category group should be expanded", async ({ page }, parentCa
   // 指定した親カテゴリのグループが展開されていること
   await expect(page.locator(`.category-group[data-parent-category="${parentCatId}"]`)).not.toHaveClass(/collapsed/);
 });
+
+// ─── 単元一覧の改善 (#501, #494, #495) ────────────────────────────────────────
+
+Then("the category guide button should be visible", async ({ page }) => {
+  // 解説ボタン（category-item-guide-btn）が少なくとも1つ表示されていること
+  await expect(page.locator(".category-item-guide-btn").first()).toBeVisible();
+});
+
+When("I click the first category guide button", async ({ page }) => {
+  // 最初の解説ボタンをクリックする
+  await page.locator(".category-item-guide-btn").first().click();
+});
+
+Then("the guide panel should be active", async ({ page }) => {
+  // 解説タブが有効になっていること（panelTab-guide が active クラスを持つ）
+  await expect(page.locator("#panelTab-guide")).toHaveClass(/active/);
+});
+
+Then("the grade filter buttons should be visible", async ({ page }) => {
+  // 学年フィルターボタンが表示されていること
+  await expect(page.locator(".grade-filter-btn").first()).toBeVisible();
+});
+
+When("I click the {string} grade filter button", async ({ page }, grade: string) => {
+  // 指定した学年のフィルターボタンをクリックする
+  await page.locator(".grade-filter-btn", { hasText: grade }).click();
+});
+
+Then("only categories with grade starting with {string} should be visible", async ({ page }, gradePrefix: string) => {
+  // 表示されているカテゴリアイテムの学年バッジがすべて指定のプレフィックスで始まること
+  const visibleItems = page.locator(".category-item:visible");
+  const count = await visibleItems.count();
+  expect(count).toBeGreaterThan(0);
+  for (let i = 0; i < count; i++) {
+    const gradeEl = visibleItems.nth(i).locator(".category-grade");
+    const gradeText = await gradeEl.textContent();
+    if (gradeText && gradeText.trim().length > 0) {
+      expect(gradeText.trim()).toMatch(new RegExp(`^${gradePrefix}`));
+    }
+  }
+});
+
+Then("the {string} grade filter button should be inactive", async ({ page }, grade: string) => {
+  // 指定した学年のフィルターボタンが aria-pressed="false" であること
+  await expect(page.locator(".grade-filter-btn", { hasText: grade })).toHaveAttribute("aria-pressed", "false");
+});
+
+Then("the category view toggle button should be visible", async ({ page }) => {
+  // ビューモード切替ボタンが表示されていること
+  await expect(page.locator(".category-view-toggle")).toBeVisible();
+});
+
+When("I click the view mode toggle button", async ({ page }) => {
+  // ビューモード切替ボタンをクリックする
+  await page.locator(".category-view-toggle").click();
+});
+
+Then("grade groups should be visible in the category list", async ({ page }) => {
+  // 学年グループ（category-grade-group）が表示されていること
+  await expect(page.locator(".category-grade-group").first()).toBeVisible();
+});

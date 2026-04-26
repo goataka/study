@@ -124,3 +124,31 @@ Feature: 学習クイズ
     And I answer all questions
     And I click the "採点する" button
     Then the result screen layout matches the snapshot
+
+  Scenario: 単元に解説ボタン（📖）が表示される
+    When I click the "数学" tab
+    Then the category guide button should be visible
+
+  Scenario: 解説ボタンをクリックすると解説タブが開く
+    When I click the "数学" tab
+    And I click the first category guide button
+    Then the guide panel should be active
+
+  Scenario: 学年フィルターボタンが表示される
+    When I click the "数学" tab
+    Then the grade filter buttons should be visible
+
+  Scenario: 学年フィルターで絞り込みができる
+    When I click the "数学" tab
+    And I click the "小学" grade filter button
+    Then only categories with grade starting with "小学" should be visible
+    And the "中学" grade filter button should be inactive
+
+  Scenario: ビューモード切替ボタンが表示される
+    When I click the "数学" tab
+    Then the category view toggle button should be visible
+
+  Scenario: 学年別ビューに切り替えると学年グループが表示される
+    When I click the "数学" tab
+    And I click the view mode toggle button
+    Then grade groups should be visible in the category list
