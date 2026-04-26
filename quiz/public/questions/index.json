@@ -13,6 +13,10 @@
   },
   "questionFiles": [
     "english/alphabet.json",
+    "english/alphabet-lowercase.json",
+    "english/alphabet-uppercase-writing.json",
+    "english/alphabet-lowercase-writing.json",
+    "english/symbols.json",
     "english/50on.json",
     "english/romaji-advanced.json",
     "english/phonics-1.json",

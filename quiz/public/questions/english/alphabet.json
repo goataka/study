@@ -2,7 +2,7 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "alphabet",
-  "categoryName": "🔤 アルファベット",
+  "categoryName": "🔤 アルファベット（大文字の読み）",
   "topCategory": "pronunciation",
   "topCategoryName": "発音",
   "parentCategory": "alphabet",
@@ -11,7 +11,7 @@
   "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": "A(えい) B(びー)",
   "referenceGrade": "小学3年",
-  "description": "英語で使う26文字のアルファベットの名前（読み方）を覚えます。",
+  "description": "英語で使う26文字のアルファベット大文字の名前（読み方）を覚えます。",
   "questions": [
     {
       "id": "fd31a226-8dc3-576f-9e55-b481c5b4c00b",

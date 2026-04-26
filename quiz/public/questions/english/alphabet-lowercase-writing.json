@@ -1,0 +1,200 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "alphabet-lowercase-writing",
+  "categoryName": "🔡 アルファベット（小文字の書き）",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "alphabet",
+  "parentCategoryName": "アルファベット",
+  "guideUrl": "../english/pronunciation/alphabet-lowercase-writing/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "えい→a びー→b",
+  "referenceGrade": "小学3年",
+  "description": "読み方から小文字アルファベット（a〜z）を書く練習をします。",
+  "questionType": "text-input",
+  "questions": [
+    {
+      "id": "9b25b666-3b4a-5bac-a56e-64681e684614",
+      "question": "「えい」の小文字を書いてください",
+      "choices": ["a"],
+      "correct": 0,
+      "explanation": "「えい」の小文字は「a」と書きます"
+    },
+    {
+      "id": "4ebb223b-9e21-543e-9226-1fa716fe6403",
+      "question": "「びー」の小文字を書いてください",
+      "choices": ["b"],
+      "correct": 0,
+      "explanation": "「びー」の小文字は「b」と書きます"
+    },
+    {
+      "id": "f8157b37-5ac1-5b10-9142-5bca217fccea",
+      "question": "「しー」の小文字を書いてください",
+      "choices": ["c"],
+      "correct": 0,
+      "explanation": "「しー」の小文字は「c」と書きます"
+    },
+    {
+      "id": "ff3b2cff-40ce-58b5-beed-f70cae173857",
+      "question": "「でぃー」の小文字を書いてください",
+      "choices": ["d"],
+      "correct": 0,
+      "explanation": "「でぃー」の小文字は「d」と書きます"
+    },
+    {
+      "id": "24acd8e0-4985-587e-a12e-d011c956a651",
+      "question": "「いー」の小文字を書いてください",
+      "choices": ["e"],
+      "correct": 0,
+      "explanation": "「いー」の小文字は「e」と書きます"
+    },
+    {
+      "id": "19757024-acc9-5790-a469-98c028bba680",
+      "question": "「えふ」の小文字を書いてください",
+      "choices": ["f"],
+      "correct": 0,
+      "explanation": "「えふ」の小文字は「f」と書きます"
+    },
+    {
+      "id": "d3b684ab-be2f-5398-9ab4-109a9747306e",
+      "question": "「じー」の小文字を書いてください",
+      "choices": ["g"],
+      "correct": 0,
+      "explanation": "「じー」の小文字は「g」と書きます"
+    },
+    {
+      "id": "6ad4fea5-671b-5d0d-b141-1d2132101b06",
+      "question": "「えいち」の小文字を書いてください",
+      "choices": ["h"],
+      "correct": 0,
+      "explanation": "「えいち」の小文字は「h」と書きます"
+    },
+    {
+      "id": "bb41990b-93ce-510d-9e20-753e3ab987fe",
+      "question": "「あい」の小文字を書いてください",
+      "choices": ["i"],
+      "correct": 0,
+      "explanation": "「あい」の小文字は「i」と書きます"
+    },
+    {
+      "id": "a6f4f11a-a7c2-5875-9e08-efa86c454d24",
+      "question": "「じぇい」の小文字を書いてください",
+      "choices": ["j"],
+      "correct": 0,
+      "explanation": "「じぇい」の小文字は「j」と書きます"
+    },
+    {
+      "id": "a029b8c2-60c7-5f3b-856a-818736cf8fdc",
+      "question": "「けー」の小文字を書いてください",
+      "choices": ["k"],
+      "correct": 0,
+      "explanation": "「けー」の小文字は「k」と書きます"
+    },
+    {
+      "id": "f6692124-4a31-5d36-bd11-bd4911e99413",
+      "question": "「える」の小文字を書いてください",
+      "choices": ["l"],
+      "correct": 0,
+      "explanation": "「える」の小文字は「l」と書きます"
+    },
+    {
+      "id": "41a24cf8-bd9f-5f9c-b0f2-d6d22a58645b",
+      "question": "「えむ」の小文字を書いてください",
+      "choices": ["m"],
+      "correct": 0,
+      "explanation": "「えむ」の小文字は「m」と書きます"
+    },
+    {
+      "id": "2cbfae0f-4cfe-58c1-a5a8-7105ab9404a8",
+      "question": "「えぬ」の小文字を書いてください",
+      "choices": ["n"],
+      "correct": 0,
+      "explanation": "「えぬ」の小文字は「n」と書きます"
+    },
+    {
+      "id": "eec4ddf9-03b0-576c-8675-1e34cf1ed0a8",
+      "question": "「おー」の小文字を書いてください",
+      "choices": ["o"],
+      "correct": 0,
+      "explanation": "「おー」の小文字は「o」と書きます"
+    },
+    {
+      "id": "7868337f-f0cc-5d7e-8158-46c210442668",
+      "question": "「ぴー」の小文字を書いてください",
+      "choices": ["p"],
+      "correct": 0,
+      "explanation": "「ぴー」の小文字は「p」と書きます"
+    },
+    {
+      "id": "4e4cc99f-660f-5707-8523-e644930445ba",
+      "question": "「きゅー」の小文字を書いてください",
+      "choices": ["q"],
+      "correct": 0,
+      "explanation": "「きゅー」の小文字は「q」と書きます"
+    },
+    {
+      "id": "4cb94108-3bd0-5015-be6f-364b82c55879",
+      "question": "「あーる」の小文字を書いてください",
+      "choices": ["r"],
+      "correct": 0,
+      "explanation": "「あーる」の小文字は「r」と書きます"
+    },
+    {
+      "id": "dd863115-e4f4-5be7-9512-8886b51f5b49",
+      "question": "「えす」の小文字を書いてください",
+      "choices": ["s"],
+      "correct": 0,
+      "explanation": "「えす」の小文字は「s」と書きます"
+    },
+    {
+      "id": "6ba4826a-884e-51e5-911c-5dfff571ca0a",
+      "question": "「てぃー」の小文字を書いてください",
+      "choices": ["t"],
+      "correct": 0,
+      "explanation": "「てぃー」の小文字は「t」と書きます"
+    },
+    {
+      "id": "fd2da9fa-7bab-5e1d-b6ec-14cf626774c5",
+      "question": "「ゆー」の小文字を書いてください",
+      "choices": ["u"],
+      "correct": 0,
+      "explanation": "「ゆー」の小文字は「u」と書きます"
+    },
+    {
+      "id": "419053f6-f62a-5be1-a9a7-3f5d8e1e4dbb",
+      "question": "「ぶい」の小文字を書いてください",
+      "choices": ["v"],
+      "correct": 0,
+      "explanation": "「ぶい」の小文字は「v」と書きます"
+    },
+    {
+      "id": "ef6d6818-9a0c-5166-b15f-3e742a4fc6c0",
+      "question": "「だぶりゅー」の小文字を書いてください",
+      "choices": ["w"],
+      "correct": 0,
+      "explanation": "「だぶりゅー」の小文字は「w」と書きます"
+    },
+    {
+      "id": "9b6c410e-bf69-5247-b35b-9795ed3c766d",
+      "question": "「えっくす」の小文字を書いてください",
+      "choices": ["x"],
+      "correct": 0,
+      "explanation": "「えっくす」の小文字は「x」と書きます"
+    },
+    {
+      "id": "fb0bf303-e8ca-523f-b937-f2212ec2a6d3",
+      "question": "「わい」の小文字を書いてください",
+      "choices": ["y"],
+      "correct": 0,
+      "explanation": "「わい」の小文字は「y」と書きます"
+    },
+    {
+      "id": "fcbb6fd6-ce70-5266-9b5b-283d37334e85",
+      "question": "「ぜっと」の小文字を書いてください",
+      "choices": ["z"],
+      "correct": 0,
+      "explanation": "「ぜっと」の小文字は「z」と書きます"
+    }
+  ]
+}
