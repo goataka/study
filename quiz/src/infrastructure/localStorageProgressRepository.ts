@@ -9,6 +9,7 @@ const STORAGE_KEY = "wrongQuestions";
 const CORRECT_STREAKS_KEY = "correctStreaks";
 const USER_NAME_KEY = "userName";
 const HISTORY_KEY = "quizHistory";
+const FONT_SIZE_KEY = "fontSizeLevel";
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
 
@@ -78,6 +79,22 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       localStorage.setItem(HISTORY_KEY, JSON.stringify(trimmed));
     } catch (error) {
       console.error("履歴の保存に失敗しました:", error);
+    }
+  }
+
+  loadFontSizeLevel(): string | null {
+    try {
+      return localStorage.getItem(FONT_SIZE_KEY);
+    } catch {
+      return null;
+    }
+  }
+
+  saveFontSizeLevel(level: string): void {
+    try {
+      localStorage.setItem(FONT_SIZE_KEY, level);
+    } catch (error) {
+      console.error("文字サイズの保存に失敗しました:", error);
     }
   }
 }

@@ -1380,6 +1380,45 @@ button:disabled {
     }
 }
 
+/* ヘッダー右側エリア（フォントサイズ＋ユーザー名） */
+.header-right-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* フォントサイズ切替ボタングループ */
+.font-size-btns {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.font-size-btn {
+    padding: 4px 10px;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    background: #f6f8fa;
+    color: #586069;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    font-family: inherit;
+}
+
+.font-size-btn:hover {
+    border-color: #0366d6;
+    color: #0366d6;
+    background: #f0f7ff;
+}
+
+.font-size-btn.active {
+    background: #0366d6;
+    color: white;
+    border-color: #0366d6;
+}
+
 /* ヘッダーのユーザー名エリア */
 .header-user-area {
     display: flex;
@@ -2075,4 +2114,62 @@ button:disabled {
     display: flex;
     gap: 12px;
     justify-content: center;
+}
+
+/* ─── フォントサイズ：中 ──────────────────────────────────────────────────── */
+
+body.font-size-medium .question-text {
+    font-size: 32px;
+}
+
+body.font-size-medium .choice-text {
+    font-size: 25px;
+}
+
+body.font-size-medium .feedback-result {
+    font-size: 25px;
+}
+
+body.font-size-medium .feedback-explanation {
+    font-size: 22px;
+}
+
+body.font-size-medium .primary-btn,
+body.font-size-medium .secondary-btn,
+body.font-size-medium .tertiary-btn {
+    font-size: 25px;
+}
+
+body.font-size-medium .nav-btn,
+body.font-size-medium .submit-btn {
+    font-size: 22px;
+}
+
+/* ─── フォントサイズ：大 ──────────────────────────────────────────────────── */
+
+body.font-size-large .question-text {
+    font-size: 39px;
+}
+
+body.font-size-large .choice-text {
+    font-size: 30px;
+}
+
+body.font-size-large .feedback-result {
+    font-size: 30px;
+}
+
+body.font-size-large .feedback-explanation {
+    font-size: 27px;
+}
+
+body.font-size-large .primary-btn,
+body.font-size-large .secondary-btn,
+body.font-size-large .tertiary-btn {
+    font-size: 30px;
+}
+
+body.font-size-large .nav-btn,
+body.font-size-large .submit-btn {
+    font-size: 27px;
 }
