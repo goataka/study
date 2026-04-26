@@ -30,7 +30,7 @@ export default defineConfig({
     headless: true,
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    { name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 1920, height: 1080 } } },
   ],
   // 外部URLの場合はローカルサーバーを起動しない
   webServer: isExternalUrl
