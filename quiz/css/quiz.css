@@ -5,10 +5,10 @@
     box-sizing: border-box;
 }
 
-/* 1920×1080 を基準として、画面幅にフィットするようスケーリング */
+/* 1920×1080 を基準として、画面幅・高さの両方にフィットするようスケーリング */
 /* zoom プロパティは CSS Specification Level 2 Rev 2 で標準化済み（Chrome/Edge/Firefox 126+ 対応） */
 html {
-    zoom: calc(100vw / 1920);
+    zoom: min(calc(100vw / 1920), calc(100vh / 1080));
 }
 
 body {
