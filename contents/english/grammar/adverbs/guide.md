@@ -2,7 +2,7 @@
 
 副詞は動詞・形容詞・他の副詞を修飾する語です。
 
-## 頻度の副詞
+## 📌 頻度の副詞
 
 I `always` play games.
 
@@ -11,7 +11,7 @@ I `sometimes` play games.
 - 一般動詞の前に置く
 - always（いつも）> usually（たいてい）> often（よく）> sometimes（時々）> never（決して〜ない）
 
-## 様態の副詞
+## 📌 様態の副詞
 
 I play games `well`.
 
@@ -20,7 +20,7 @@ She plays `beautifully`.
 - 動詞の後に置く
 - 形容詞 + ly で作る: beautiful → `beautifully`, slow → `slowly`
 
-## 副詞の種類と位置
+## 📌 副詞の種類と位置
 
 | 種類 | 位置 | 例 |
 |------|------|------|
@@ -29,7 +29,7 @@ She plays `beautifully`.
 | 時 | 文末 | I played games `yesterday`. |
 | 場所 | 文末 | I play games `here`. |
 
-## 例
+## 📝 例
 
 | パターン | 文 |
 |----------|------|
@@ -40,7 +40,7 @@ She plays `beautifully`.
 | 様態 | She plays (`beautifully`). |
 | 時 | I played games (`yesterday`). |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

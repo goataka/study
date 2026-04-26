@@ -2,7 +2,7 @@
 
 be動詞は「〜です」「〜にいる」を表す動詞です。
 
-## 主語によるbe動詞の変化
+## 📌 主語によるbe動詞の変化
 
 I `am` a player.
 
@@ -14,7 +14,7 @@ Games `are` fun.
 - he / she / it → `is`
 - you / we / they → `are`
 
-## 活用パターン
+## 📊 活用パターン
 
 | 主語 | be動詞 | 例 |
 |------|--------|------|
@@ -22,7 +22,7 @@ Games `are` fun.
 | he / she / it | `is` | The game `is` fun. |
 | you / we / they | `are` | Games `are` fun. |
 
-## 例
+## 📝 例
 
 | 主語 | 文 |
 |------|------|
@@ -33,7 +33,7 @@ Games `are` fun.
 | We | We (`are`) players. |
 | It | It (`is`) fun. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

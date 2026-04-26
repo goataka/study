@@ -3,13 +3,13 @@
 現在形:
 I `have` time. I `play` games.
 
-## 条件文
+## 📚 条件文
 
 If I `have` time, I `will play` games.
 
 - 「もし～なら」の条件を表す
 
-## 条件文の3パターン
+## 📊 条件文の3パターン
 
 | パターン | if 節 | 帰結節 | 意味 |
 |----------|-------|--------|------|
@@ -28,7 +28,7 @@ If I had time, I `would` play.（時間があれば、するのに — 今はな
 第3条件文:
 If I had had time, I `would have` played.（時間があったら、したのに — 過去になかった）
 
-## 例
+## 📝 例
 
 ### 条件節の変化
 
@@ -46,7 +46,7 @@ If I had had time, I `would have` played.（時間があったら、したのに
 | 第2条件文 | If I had time, I (would) play games. |
 | 第3条件文 | If I had had time, I (would have) played games. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

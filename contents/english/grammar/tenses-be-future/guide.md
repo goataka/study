@@ -3,14 +3,14 @@
 現在形:
 I `am` a player.
 
-## 未来形
+## 📚 未来形
 
 I `will be` a player.
 
 - `will be` + 形容詞/名詞で未来を表す
 - 主語に関係なく `will be` の形
 
-## 活用パターン
+## 📊 活用パターン
 
 | 時制 | be動詞 | 例 |
 |------|--------|------|
@@ -18,7 +18,7 @@ I `will be` a player.
 | 過去形 | was/were | I `was` a player. |
 | 未来形 | will be | I `will be` a player. |
 
-## 例
+## 📝 例
 
 | 現在形 | 未来形 |
 |--------|--------|
@@ -28,7 +28,7 @@ I `will be` a player.
 | I am at the game center. | I (will be) at the game center. |
 | I am happy to play. | I (will be) happy to play. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

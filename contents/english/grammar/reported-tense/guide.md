@@ -3,13 +3,13 @@
 直接話法:
 He said, "I `play` games."
 
-## 間接話法
+## 📚 間接話法
 
 He said that he `played` games.
 
 - 主節が過去形のとき、従属節の時制も1つ過去にずれる
 
-## 時制の一致パターン
+## 📊 時制の一致パターン
 
 | 直接話法 | 間接話法 |
 |----------|----------|
@@ -19,7 +19,7 @@ He said that he `played` games.
 | 未来形 `will play` | `would play` |
 | `can` | `could` |
 
-## 例
+## 📝 例
 
 | 直接話法 | 間接話法 |
 |----------|----------|
@@ -29,7 +29,7 @@ He said that he `played` games.
 | He said, "I will play games." | He said that he (would play) games. |
 | He said, "I can play games." | He said that he (could play) games. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

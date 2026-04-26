@@ -3,14 +3,14 @@
 肯定文:
 I `play` games.
 
-## 否定文
+## 📚 否定文
 
 I `do not play` games.
 
 - 一般動詞: `do/does/did` + `not` + 動詞の原形
 - be動詞: be動詞の後に `not`
 
-## 否定文のパターン
+## 📊 否定文のパターン
 
 | 種類 | 作り方 | 例 |
 |------|--------|------|
@@ -21,7 +21,7 @@ I `do not play` games.
 | be動詞（過去） | be + not | I `was not` happy. |
 | 進行形 | be + not + -ing | I `am not playing` games. |
 
-## 例
+## 📝 例
 
 ### 一般動詞の否定文
 
@@ -38,7 +38,7 @@ I `do not play` games.
 | I am happy. | I (am not) happy. |
 | I was happy. | I (was not / wasn't) happy. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

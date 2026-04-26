@@ -3,14 +3,14 @@
 原級:
 I play games `well`.
 
-## 比較級・最上級
+## 📚 比較級・最上級
 
 I play games `better` than you.
 I play games the `best` in my class.
 
 - 一部の形容詞・副詞は不規則に変化する
 
-## 不規則変化の一覧
+## 📊 不規則変化の一覧
 
 | 原級 | 比較級 | 最上級 |
 |------|--------|--------|
@@ -20,7 +20,7 @@ I play games the `best` in my class.
 | `little` | `less` | `least` |
 | `far` | `farther` / `further` | `farthest` / `furthest` |
 
-## 例
+## 📝 例
 
 | 原級 | 比較級 | 最上級 |
 |------|--------|--------|
@@ -29,7 +29,7 @@ I play games the `best` in my class.
 | many / much | (more) | (most) |
 | little | (less) | (least) |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

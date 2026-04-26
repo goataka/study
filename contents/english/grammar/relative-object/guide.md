@@ -3,7 +3,7 @@
 2つの文:
 I play a game. The game is fun.
 
-## 目的格の関係代名詞
+## 📚 目的格の関係代名詞
 
 The game `which` I play is fun.
 
@@ -11,14 +11,14 @@ The game `which` I play is fun.
 - 先行詞（物）→ `which` / `that`
 - 目的格の関係代名詞は省略できる
 
-## パターン
+## 📊 パターン
 
 | 先行詞 | 関係代名詞 | 省略 | 例 |
 |--------|-----------|------|------|
 | 人 | `whom` / `who` / `that` | 可 | a boy (whom / who) I know |
 | 物 | `which` / `that` | 可 | a game (which) I play |
 
-## 例
+## 📝 例
 
 | 先行詞 | 文 |
 |--------|------|
@@ -26,7 +26,7 @@ The game `which` I play is fun.
 | 物 | I have a book (which) I bought yesterday. |
 | 物 | I have a pen (which / that) I use every day. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|

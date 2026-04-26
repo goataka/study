@@ -3,14 +3,14 @@
 原級:
 I play games `well`.
 
-## 最上級
+## 📚 最上級
 
 I play games `the best` in my class.
 
 - 形容詞・副詞に `-est` をつける（短い語）
 - 長い語は `the most` + 原級
 
-## 最上級のパターン
+## 📊 最上級のパターン
 
 | ルール | 変化 | 例 |
 |--------|------|------|
@@ -20,7 +20,7 @@ I play games `the best` in my class.
 | 短母音 + 子音 | 子音を重ねて + est | big → `biggest` |
 | 長い語 | most + 原級 | often → `most often` |
 
-## 例
+## 📝 例
 
 ### 短い形容詞
 
@@ -38,7 +38,7 @@ I play games `the best` in my class.
 | This problem is difficult. | This problem is the (most difficult) of all. |
 | This flower is beautiful. | This flower is the (most beautiful) of all. |
 
-## 英作文解答
+## ✏️ 英作文解答
 
 | 日本語 | 英語 |
 |--------|------|
