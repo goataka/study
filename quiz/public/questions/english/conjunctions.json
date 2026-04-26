@@ -8,7 +8,7 @@
   "parentCategory": "parts-of-speech",
   "parentCategoryName": "品詞",
   "guideUrl": "../english/grammar/conjunctions/guide",
-"parentCategoryGuideUrl": "../english/grammar/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
   "example": "games `and` players",
   "referenceGrade": "中学1年",
   "description": "接続詞は文と文、語と語をつなぐ語です。",

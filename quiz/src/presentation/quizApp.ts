@@ -393,6 +393,8 @@ export class QuizApp {
       guideBtn.addEventListener("keydown", (e: KeyboardEvent) => {
         if (e.key === "Enter" || e.key === " ") {
           e.stopPropagation();
+          e.preventDefault();
+          this.showParentCategoryGuide(parentGuideUrl);
         }
       });
       groupHeader.appendChild(guideBtn);
