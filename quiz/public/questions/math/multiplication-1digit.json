@@ -192,66 +192,6 @@
       ],
       "correct": 0,
       "explanation": "9の段。9 × 6 = 54"
-    },
-    {
-      "id": "25668d98-dfce-51f7-97a1-7e60e9eccd24",
-      "question": "2 × 7 = ?",
-      "choices": [
-        "14",
-        "13",
-        "15",
-        "12"
-      ],
-      "correct": 0,
-      "explanation": "2の段。2 × 7 = 14"
-    },
-    {
-      "id": "3f31e3cf-0566-5bb4-9a63-b9bd52e6a409",
-      "question": "3 × 8 = ?",
-      "choices": [
-        "24",
-        "23",
-        "25",
-        "22"
-      ],
-      "correct": 0,
-      "explanation": "3の段。3 × 8 = 24"
-    },
-    {
-      "id": "1efdcfff-2902-5251-a65b-8cbe53854755",
-      "question": "4 × 6 = ?",
-      "choices": [
-        "24",
-        "23",
-        "25",
-        "22"
-      ],
-      "correct": 0,
-      "explanation": "4の段。4 × 6 = 24"
-    },
-    {
-      "id": "aae5966e-3c52-53d1-91de-d68520ace03c",
-      "question": "5 × 7 = ?",
-      "choices": [
-        "35",
-        "34",
-        "36",
-        "33"
-      ],
-      "correct": 0,
-      "explanation": "5の段。5 × 7 = 35"
-    },
-    {
-      "id": "198c3a68-5cf5-52a3-b537-4626b5e4f7d5",
-      "question": "6 × 9 = ?",
-      "choices": [
-        "54",
-        "53",
-        "55",
-        "52"
-      ],
-      "correct": 0,
-      "explanation": "6の段。6 × 9 = 54"
     }
   ]
 }
