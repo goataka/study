@@ -140,6 +140,12 @@ export class QuizApp {
    * - "parentCategory": 親カテゴリが選択中（単元は未選択）
    * - "unit": 特定の単元が選択中
    * - "none": 何も選択されていない
+   *
+   * 状態の不変条件:
+   * - `selectedTopCategoryId` が null でない場合、`filter.category` は "all"、`filter.parentCategory` は undefined
+   * - `filter.parentCategory` が設定されている場合、`selectedTopCategoryId` は null、`filter.category` は "all"
+   * - `filter.category` が "all" でない場合、`selectedTopCategoryId` は null
+   * これらは各選択ハンドラー（handleActivate, handleHeaderClick, handleTopHeaderClick）で保証される。
    */
   private getSelectionLevel(): "none" | "topCategory" | "parentCategory" | "unit" {
     if (this.selectedTopCategoryId !== null) return "topCategory";
