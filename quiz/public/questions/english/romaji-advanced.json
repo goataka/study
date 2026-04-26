@@ -11,7 +11,7 @@
   "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": "が=ga ぱ=pa しゃ=sha",
   "referenceGrade": "小学3年",
-  "description": "濁音（が行・ざ行・だ行・ば行）、半濁音（ぱ行）、拗音（きゃ・しゃ等）のローマ字表記を学びます。",
+  "description": "濁音（が行・ざ行・だ行・ば行）、半濁音（ぱ行）、拗音（きゃ・しゃ等）のローマ字表記を学びます。ぢ・づ の表記も含みます。",
   "questions": [
     {
       "id": "00c43d77-2110-56b2-9ec6-12446e648f0a",
@@ -144,6 +144,30 @@
       ],
       "correct": 0,
       "explanation": "「だ」は da と書きます（た=ta に濁点がついた音）"
+    },
+    {
+      "id": "e1caef88-4328-53da-943d-d660884acd3e",
+      "question": "「ぢ」のローマ字は？",
+      "choices": [
+        "ji",
+        "di",
+        "chi",
+        "zi"
+      ],
+      "correct": 0,
+      "explanation": "「ぢ」は ji と書きます（「じ」と同じ書き方）"
+    },
+    {
+      "id": "0776e730-6a67-5065-b66c-0f7c399fc99b",
+      "question": "「づ」のローマ字は？",
+      "choices": [
+        "zu",
+        "du",
+        "tsu",
+        "dzu"
+      ],
+      "correct": 0,
+      "explanation": "「づ」は zu と書きます（「ず」と同じ書き方）"
     },
     {
       "id": "f86acd3f-43c6-56df-b673-c3644a2a4306",
