@@ -125,10 +125,10 @@ export class QuizApp {
     if (saved !== null) {
       this.fontSizeLevel = saved;
     }
-    this.applyFontSize(this.fontSizeLevel);
+    this.applyFontSize(this.fontSizeLevel, false);
   }
 
-  private applyFontSize(level: "small" | "medium" | "large"): void {
+  private applyFontSize(level: "small" | "medium" | "large", persist = true): void {
     this.fontSizeLevel = level;
     document.body.classList.remove("font-size-medium", "font-size-large");
     if (level === "medium") {
@@ -142,9 +142,11 @@ export class QuizApp {
       btn.classList.toggle("active", active);
       btn.setAttribute("aria-pressed", String(active));
     });
-    // localStorageに保存
-    const progressRepo = new LocalStorageProgressRepository();
-    progressRepo.saveFontSizeLevel(level);
+    // 初期復元時は保存をスキップし、ユーザー操作時のみ保存する
+    if (persist) {
+      const progressRepo = new LocalStorageProgressRepository();
+      progressRepo.saveFontSizeLevel(level);
+    }
   }
 
   private loadQuestionCountFromDOM(): void {
