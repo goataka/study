@@ -696,26 +696,48 @@ header h1 {
     gap: 0;
     flex: 1;
     overflow-y: auto;
-    padding: 12px 16px;
+    padding: 0;
 }
 
-.overall-section {
-    margin-bottom: 16px;
+/* 総合タブの活動タブ */
+.overall-activity-tabs {
+    display: flex;
+    border-bottom: 2px solid #e1e4e8;
+    background: #f6f8fa;
+    flex-shrink: 0;
 }
 
-.overall-section-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: #24292e;
-    margin: 0 0 8px 0;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #e1e4e8;
-}
-
-/* 今日の活動 */
-.overall-today-content {
+.overall-activity-tab {
+    padding: 8px 16px;
     font-size: 14px;
-    color: #24292e;
+    font-weight: 600;
+    color: #586069;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.overall-activity-tab:hover {
+    color: #0366d6;
+}
+
+.overall-activity-tab.active {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+}
+
+/* 活動パネル */
+.overall-activity-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 16px;
+    gap: 8px;
+    min-height: 0;
 }
 
 .today-activity-empty {
@@ -723,48 +745,10 @@ header h1 {
     font-size: 13px;
 }
 
-.today-stats-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 6px;
-}
-
-.today-stat-badge {
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    background: #e8f0fe;
-    color: #0366d6;
-}
-
-.today-stat-badge.pass {
-    background: #e8f8f0;
-    color: #1a7f37;
-}
-
-.today-subject-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: 4px;
-}
-
-.today-subject-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: #24292e;
-}
-
-.today-subject-name {
-    font-weight: 600;
-}
-
-.today-subject-score {
-    color: #586069;
+.overall-today-list {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
 }
 
 /* 活動サマリ（SNS共有用） */
@@ -777,19 +761,20 @@ header h1 {
     padding: 8px 10px;
     white-space: pre-wrap;
     word-break: break-word;
-    margin-bottom: 8px;
     min-height: 48px;
     line-height: 1.5;
+    flex-shrink: 0;
 }
 
-.share-actions {
+/* コピー・共有・URL欄の横並び行 */
+.share-actions-row {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 6px;
+    flex-shrink: 0;
 }
 
 .share-copy-btn {
-    align-self: flex-start;
     padding: 4px 12px;
     font-size: 13px;
     border: 1px solid #0366d6;
@@ -797,6 +782,7 @@ header h1 {
     background: white;
     color: #0366d6;
     cursor: pointer;
+    white-space: nowrap;
     transition: background 0.15s, color 0.15s;
 }
 
@@ -805,11 +791,54 @@ header h1 {
     color: white;
 }
 
-.share-url-row {
+.share-url-open-btn {
+    padding: 4px 12px;
+    font-size: 13px;
+    border: 1px solid #1a7f37;
+    border-radius: 4px;
+    background: white;
+    color: #1a7f37;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+}
+
+.share-url-open-btn:hover {
+    background: #1a7f37;
+    color: white;
+}
+
+/* URLインライン編集エリア */
+.share-url-inline {
+    flex: 1;
+    min-width: 0;
+}
+
+.share-url-display-btn {
+    max-width: 100%;
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+    background: #f6f8fa;
+    color: #0366d6;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-align: left;
+    transition: background 0.15s;
+}
+
+.share-url-display-btn:hover {
+    background: #e8f0fe;
+}
+
+.share-url-edit-area {
     display: flex;
-    gap: 6px;
+    gap: 4px;
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .share-url-input {
@@ -825,34 +854,31 @@ header h1 {
 
 .share-url-save-btn {
     padding: 4px 10px;
-    font-size: 12px;
-    border: 1px solid #d1d5da;
+    font-size: 13px;
+    border: 1px solid #1a7f37;
     border-radius: 4px;
     background: white;
-    color: #586069;
+    color: #1a7f37;
     cursor: pointer;
     white-space: nowrap;
 }
 
 .share-url-save-btn:hover {
-    background: #f6f8fa;
-}
-
-.share-url-open-btn {
-    padding: 4px 10px;
-    font-size: 12px;
-    border: 1px solid #1a7f37;
-    border-radius: 4px;
-    background: white;
-    color: #1a7f37;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background 0.15s, color 0.15s;
-}
-
-.share-url-open-btn:hover {
     background: #1a7f37;
     color: white;
+}
+
+/* 総合タブ時のレイアウト: 単元選択を右、活動パネルを左 */
+.start-content-layout.all-subject-layout {
+    grid-template-columns: 2fr 1fr;
+}
+
+.start-content-layout.all-subject-layout .category-panel {
+    order: 2;
+}
+
+.start-content-layout.all-subject-layout .quiz-panel {
+    order: 1;
 }
 
 .quiz-panel {
@@ -2404,6 +2430,45 @@ body.font-size-medium .subject-overview-date {
     font-size: 16px;
 }
 
+body.font-size-medium .overall-activity-tab {
+    font-size: 17px;
+}
+
+body.font-size-medium .share-summary-text {
+    font-size: 15px;
+}
+
+body.font-size-medium .share-copy-btn,
+body.font-size-medium .share-url-open-btn {
+    font-size: 16px;
+}
+
+body.font-size-medium .share-url-display-btn,
+body.font-size-medium .share-url-input,
+body.font-size-medium .share-url-save-btn {
+    font-size: 15px;
+}
+
+body.font-size-medium .history-date {
+    font-size: 18px;
+}
+
+body.font-size-medium .history-subject {
+    font-size: 19px;
+}
+
+body.font-size-medium .history-mode {
+    font-size: 17px;
+}
+
+body.font-size-medium .history-score {
+    font-size: 19px;
+}
+
+body.font-size-medium .today-activity-empty {
+    font-size: 16px;
+}
+
 /* ─── フォントサイズ：大 ──────────────────────────────────────────────────── */
 
 body.font-size-large .question-text {
@@ -2487,4 +2552,43 @@ body.font-size-large .subject-overview-grade {
 
 body.font-size-large .subject-overview-date {
     font-size: 20px;
+}
+
+body.font-size-large .overall-activity-tab {
+    font-size: 20px;
+}
+
+body.font-size-large .share-summary-text {
+    font-size: 18px;
+}
+
+body.font-size-large .share-copy-btn,
+body.font-size-large .share-url-open-btn {
+    font-size: 19px;
+}
+
+body.font-size-large .share-url-display-btn,
+body.font-size-large .share-url-input,
+body.font-size-large .share-url-save-btn {
+    font-size: 18px;
+}
+
+body.font-size-large .history-date {
+    font-size: 21px;
+}
+
+body.font-size-large .history-subject {
+    font-size: 23px;
+}
+
+body.font-size-large .history-mode {
+    font-size: 20px;
+}
+
+body.font-size-large .history-score {
+    font-size: 23px;
+}
+
+body.font-size-large .today-activity-empty {
+    font-size: 19px;
 }

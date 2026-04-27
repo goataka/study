@@ -117,13 +117,28 @@ function setupTabDom(): void {
           <div id="questionListBody"></div>
         </div>
         <div id="overallSummaryPanel" class="hidden">
-          <div id="todayActivityContent"></div>
-          <div id="shareSummaryText"></div>
-          <input type="url" id="shareUrlInput">
-          <button id="saveShareUrlBtn" type="button">保存</button>
-          <a id="openShareUrlBtn" class="hidden" href="#" target="_blank">🔗 開く</a>
-          <button id="copySummaryBtn" type="button">📋 コピー</button>
-          <div id="overallHistoryList"></div>
+          <div class="overall-activity-tabs">
+            <button class="overall-activity-tab active" id="overallTab-today" data-tab="today" type="button" aria-selected="true">📅 今日の活動</button>
+            <button class="overall-activity-tab" id="overallTab-past" data-tab="past" type="button" aria-selected="false">📊 過去の活動</button>
+          </div>
+          <div id="overallTodayPanel" class="overall-activity-panel">
+            <div id="shareSummaryText"></div>
+            <div class="share-actions-row">
+              <button id="copySummaryBtn" type="button">📋 コピー</button>
+              <button id="openShareUrlBtn" class="hidden" type="button">📤 共有</button>
+              <div class="share-url-inline">
+                <button id="shareUrlDisplayBtn" type="button">URLを設定</button>
+                <div id="shareUrlEditArea" class="hidden">
+                  <input type="url" id="shareUrlInput">
+                  <button id="saveShareUrlBtn" type="button" aria-label="保存">✓</button>
+                </div>
+              </div>
+            </div>
+            <div id="todayActivityContent"></div>
+          </div>
+          <div id="overallPastPanel" class="overall-activity-panel hidden">
+            <div id="overallHistoryList"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -3357,7 +3372,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const container = document.getElementById("todayActivityContent");
-    expect(container?.textContent).toContain("8/10問正解");
+    expect(container?.textContent).toContain("8/10 (80%)");
   });
 
   it("活動サマリテキストに今日の日付が含まれる", async () => {
