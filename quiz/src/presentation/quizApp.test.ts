@@ -4218,18 +4218,19 @@ describe("QuizApp — フォントサイズ切替仕様", () => {
     const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
     guideFrame.classList.add("guide-frame");
 
-    const postedMessages: unknown[] = [];
-    const origPostMessage = guideFrame.contentWindow?.postMessage.bind(guideFrame.contentWindow);
+    const postedMessages: Array<{ msg: unknown; targetOrigin: string }> = [];
     if (guideFrame.contentWindow) {
-      guideFrame.contentWindow.postMessage = (msg: unknown) => {
-        postedMessages.push(msg);
-        origPostMessage?.(msg, "*");
+      guideFrame.contentWindow.postMessage = (msg: unknown, targetOrigin: string) => {
+        postedMessages.push({ msg, targetOrigin });
       };
     }
 
     const largeBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="large"]')!;
     largeBtn.click();
 
-    expect(postedMessages).toContainEqual({ type: "fontSizeChanged", level: "large" });
+    expect(postedMessages).toContainEqual({
+      msg: { type: "fontSizeChanged", level: "large" },
+      targetOrigin: "*",
+    });
   });
 });

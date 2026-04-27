@@ -21,7 +21,9 @@
     document.documentElement.classList.add('embedded-mode');
   }
   // クイズアプリからフォントサイズ変更メッセージを受け取り、html 要素にクラスを付与する
+  // e.source === window.parent で送信元を親フレームに限定し、第三者からの不正変更を防ぐ
   window.addEventListener('message', function(e) {
+    if (e.source !== window.parent) return;
     if (e.data && e.data.type === 'fontSizeChanged') {
       document.documentElement.classList.remove('font-size-medium', 'font-size-large');
       if (e.data.level === 'medium') {

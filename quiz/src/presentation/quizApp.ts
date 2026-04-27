@@ -166,13 +166,15 @@ export class QuizApp {
 
   /**
    * 解説 iframe にフォントサイズを postMessage で通知する。
-   * 解説ページはクイズアプリと同一オリジンで配信されるため、targetOrigin に window.location.origin を使用する。
+   * iframe は sandbox="allow-scripts"（allow-same-origin なし）で読み込まれるため
+   * iframe 側 origin が null 扱いになり、固定オリジンへの postMessage は届かない。
+   * そのため targetOrigin には "*" を使用する。
    */
   private notifyGuideFontSize(iframe: HTMLIFrameElement): void {
     try {
       iframe.contentWindow?.postMessage(
         { type: "fontSizeChanged", level: this.fontSizeLevel },
-        window.location.origin
+        "*"
       );
     } catch (_) {
       // iframe のコンテンツウィンドウへのアクセスが拒否された場合は無視する
