@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "物が主語の場合は that を使えます"
+    },
+    {
+      "id": "e216f4e0-826c-5cd5-b169-975398bc92ea",
+      "question": "I know a girl ___ can dance well. (人・主格)",
+      "choices": [
+        "who",
+        "which",
+        "whom",
+        "whose"
+      ],
+      "correct": 0,
+      "explanation": "人の主格の関係代名詞は who または that を使います"
+    },
+    {
+      "id": "a486089f-2a2d-59c1-a895-895f8db536ba",
+      "question": "The train ___ arrives at 9 is fast. (物・主格)",
+      "choices": [
+        "which",
+        "who",
+        "whom",
+        "whose"
+      ],
+      "correct": 0,
+      "explanation": "物の主格の関係代名詞は which または that を使います"
     }
   ]
 }

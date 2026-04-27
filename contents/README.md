@@ -31,7 +31,7 @@
 | # | 内容 | 解説 | 確認 | 例 |
 |---|------|------|--------|-----|
 | 11 | 英語の文の構造 | [解説](english/grammar/sentence-structure/guide.md) | - | `I` `play` `games`. （S+V+O） |
-| 12 | 名詞と代名詞 | [解説](english/grammar/nouns-pronouns/guide.md) | - | `I` / `You` / `He` / `game` |
+| 12 | 名詞と代名詞 | [解説](english/grammar/nouns-pronouns/guide.md) | [確認](quiz/?subject=english&category=nouns-pronouns) | `I` / `You` / `He` / `game` |
 | 13 | 一般動詞の現在形 | [解説](english/grammar/tenses-regular-present/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-present) | I `play` games. |
 | 14 | 一般動詞の過去形 | [解説](english/grammar/tenses-regular-past/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-past) | I `played` games. |
 | 15 | 一般動詞の未来形 | [解説](english/grammar/tenses-regular-future/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-future) | I `will play` games. |
@@ -55,8 +55,8 @@
 | 33 | 受動態 | [解説](english/grammar/passive/guide.md) | [確認](quiz/?subject=english&category=passive) | Games `are played` by me. |
 | 34 | 助動詞の受動態 | [解説](english/grammar/passive-modals/guide.md) | [確認](quiz/?subject=english&category=passive-modals) | Games `can be played` by anyone. |
 | 35 | 条件文 | [解説](english/grammar/conditionals-if/guide.md) | [確認](quiz/?subject=english&category=conditionals-if) | If I `had` time, I `would play` games. |
-| 36 | I wish | [解説](english/grammar/conditionals-wish/guide.md) | [確認](quiz/?subject=english&category=conditionals-wish) | I wish I `could play` games. |
-| 37 | unless | [解説](english/grammar/conditionals-unless/guide.md) | [確認](quiz/?subject=english&category=conditionals-unless) | I play games `unless` I am busy. |
+| 36 | 仮定法（願望） | [解説](english/grammar/conditionals-wish/guide.md) | [確認](quiz/?subject=english&category=conditionals-wish) | I wish I `could play` games. |
+| 37 | 条件文（〜しない限り） | [解説](english/grammar/conditionals-unless/guide.md) | [確認](quiz/?subject=english&category=conditionals-unless) | I play games `unless` I am busy. |
 | 38 | 疑問文 | [解説](english/grammar/questions/guide.md) | [確認](quiz/?subject=english&category=questions) | `Do` you play games? |
 | 39 | 否定文 | [解説](english/grammar/negatives/guide.md) | [確認](quiz/?subject=english&category=negatives) | I `do not play` games. |
 | 40 | 疑問詞 | [解説](english/grammar/questions-wh/guide.md) | [確認](quiz/?subject=english&category=questions-wh) | `What` games do you play? |

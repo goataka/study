@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "goodの最上級は best です（不規則変化）"
+    },
+    {
+      "id": "2626f2c0-7f56-5e1f-a1c4-4ba877a27a6a",
+      "question": "This is the ___ car of all. (fast)",
+      "choices": [
+        "fastest",
+        "most fast",
+        "faster",
+        "more fast"
+      ],
+      "correct": 0,
+      "explanation": "1音節の形容詞には -est をつけて最上級を作ります"
+    },
+    {
+      "id": "509d1588-c308-5dbb-a399-87900198188f",
+      "question": "She is the ___ student in the class. (young)",
+      "choices": [
+        "youngest",
+        "most young",
+        "younger",
+        "more young"
+      ],
+      "correct": 0,
+      "explanation": "1音節の形容詞には -est をつけて最上級を作ります"
     }
   ]
 }

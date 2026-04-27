@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "f5fd585e-210f-5338-b6a6-e4502870d076",
+      "question": "The weather is ___. (cold)",
+      "choices": [
+        "cold",
+        "coldly",
+        "colder",
+        "coldness"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の後には形容詞を置きます"
+    },
+    {
+      "id": "bf677931-06f4-5f4e-bff4-c766727a856e",
+      "question": "This is a ___ book. (thick)",
+      "choices": [
+        "thick",
+        "thickly",
+        "thicker",
+        "thickness"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
     }
   ]
 }

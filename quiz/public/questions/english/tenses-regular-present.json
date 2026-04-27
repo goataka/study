@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "三人称単数現在形には -s をつけます"
+    },
+    {
+      "id": "b2c15b5e-41ac-56bd-81ec-b87b3253d520",
+      "question": "He ___ the news every morning. (watch)",
+      "choices": [
+        "watches",
+        "watch",
+        "watched",
+        "watching"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在形には -es をつけます（ch で終わる語）"
+    },
+    {
+      "id": "485fad90-17ee-5341-9471-65a2de8033c2",
+      "question": "She ___ to school by bike. (go)",
+      "choices": [
+        "goes",
+        "go",
+        "going",
+        "went"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数現在形で go は goes になります"
     }
   ]
 }
