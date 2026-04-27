@@ -910,6 +910,7 @@ export class QuizApp {
       const val = picker.value;
       if (val && val <= QuizApp.currentDateString()) {
         this.selectedActivityDate = val;
+        this.syncDatePicker();
         const records = this.useCase.getHistory();
         this.renderOverallSummaryPanel(records);
       }
@@ -941,14 +942,15 @@ export class QuizApp {
    * カレンダーの値と次へボタンの disabled 状態を selectedActivityDate に同期する。
    */
   private syncDatePicker(): void {
+    const currentDate = QuizApp.currentDateString();
     const picker = document.getElementById("activityDatePicker") as HTMLInputElement | null;
     if (picker) {
       picker.value = this.selectedActivityDate;
-      picker.max = QuizApp.currentDateString();
+      picker.max = currentDate;
     }
     const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement | null;
     if (nextBtn) {
-      nextBtn.disabled = this.selectedActivityDate >= QuizApp.currentDateString();
+      nextBtn.disabled = this.selectedActivityDate >= currentDate;
     }
   }
 
@@ -1082,7 +1084,7 @@ export class QuizApp {
   /**
    * 活動日付でフィルタリングしたクイズ記録を返す。
    */
-  private filterTodayRecords(records: QuizRecord[]): QuizRecord[] {
+  private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
     const dateToCheck = this.parseActivityDate().toDateString();
     return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && r.mode !== "manual");
   }
@@ -1107,7 +1109,7 @@ export class QuizApp {
     const container = document.getElementById("todayActivityContent");
     if (!container) return;
 
-    const todayRecords = this.filterTodayRecords(records);
+    const todayRecords = this.filterRecordsBySelectedDate(records);
 
     container.innerHTML = "";
 
@@ -1143,7 +1145,7 @@ export class QuizApp {
   private buildShareSummaryText(records: QuizRecord[]): string {
     const [year, month, day] = this.selectedActivityDate.split("-");
     const dateStr = `${year}/${month}/${day}`;
-    const dateRecords = this.filterTodayRecords(records);
+    const dateRecords = this.filterRecordsBySelectedDate(records);
 
     const lines: string[] = ["【学習サマリ】", `📅 ${dateStr}`];
 

@@ -122,7 +122,7 @@ function setupTabDom(): void {
           <div id="overallTodayPanel" class="overall-activity-panel">
             <div class="activity-date-nav">
               <button id="prevDateBtn" type="button" aria-label="前の日へ">←</button>
-              <input type="date" id="activityDatePicker">
+              <input type="date" id="activityDatePicker" aria-label="日付を選択">
               <button id="nextDateBtn" type="button" aria-label="次の日へ">→</button>
             </div>
             <div id="shareSummaryText"></div>
