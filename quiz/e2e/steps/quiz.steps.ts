@@ -208,6 +208,18 @@ Then("the quiz screen should not have the practice-mode class", async ({ page })
   await expect(page.locator("#quizScreen")).not.toHaveClass(/practice-mode/);
 });
 
+When("I click the {string} font size button", async ({ page }, size: string) => {
+  await page.locator(`.font-size-btn`).filter({ hasText: size }).click();
+});
+
+Then("the body should have the {string} class", async ({ page }, className: string) => {
+  await expect(page.locator("body")).toHaveClass(new RegExp(className));
+});
+
+Then("the body should not have the {string} class", async ({ page }, className: string) => {
+  await expect(page.locator("body")).not.toHaveClass(new RegExp(className));
+});
+
 // ─── KanjiCanvas スタブを使ったひらがな候補フィルタの E2E 仕様 ──────────────
 
 // @kanji-stub タグのシナリオ用: kanji-canvas.min.js をスタブに差し替えて
