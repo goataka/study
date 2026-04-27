@@ -174,9 +174,17 @@
     "japanese/yojijukugo-elementary.json",
     "japanese/yojijukugo-secondary.json",
     "japanese/yojijukugo-high.json",
+    "japanese/kotowaza.json",
+    "japanese/kotowaza-2.json",
+    "japanese/yojijukugo.json",
+    "japanese/yojijukugo-2.json",
     "japanese/reading-sentence-structure.json",
+    "japanese/reading-sentence-structure-2.json",
     "japanese/reading-equivalence.json",
+    "japanese/reading-equivalence-2.json",
     "japanese/reading-contrast.json",
-    "japanese/reading-cause-effect.json"
+    "japanese/reading-contrast-2.json",
+    "japanese/reading-cause-effect.json",
+    "japanese/reading-cause-effect-2.json"
   ]
 }
