@@ -91,6 +91,7 @@ function setupTabDom(): void {
         <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
         <div id="categoryControls" class="category-controls"></div>
         <div id="categoryList" class="category-list"></div>
+        <div id="selectedUnitInfo" class="selected-unit-info hidden"></div>
         <div class="panel-tabs" role="tablist">
           <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
           <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題</button>
@@ -2324,7 +2325,7 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     expect(exampleEl).toBeNull();
   });
 
-  it("example ありのカテゴリでは例文が表示される", async () => {
+  it("example ありのカテゴリでは単元選択時に例文が選択情報パネルに表示される", async () => {
     setupTabDom();
     const manifest = {
       version: "2.0.0",
@@ -2358,13 +2359,19 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
-    const exampleEl = catItem?.querySelector(".category-example");
+    // 単元一覧には例文が含まれないこと
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    expect(catItem?.querySelector(".category-example")).toBeNull();
+
+    // 単元を選択すると選択情報パネルに例文が表示されること
+    catItem?.click();
+    const infoPanel = document.getElementById("selectedUnitInfo");
+    const exampleEl = infoPanel?.querySelector(".selected-unit-info-example");
     expect(exampleEl).not.toBeNull();
     expect(exampleEl?.textContent).toContain("I play games.");
   });
 
-  it("バッククォートで囲まれた部分が code 要素として表示される", async () => {
+  it("バッククォートで囲まれた部分が単元選択時の選択情報パネルで code 要素として表示される", async () => {
     setupTabDom();
     const manifest = {
       version: "2.0.0",
@@ -2398,15 +2405,19 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const catItem = document.querySelector('.category-item[data-category="tenses-regular-present"]');
-    const exampleEl = catItem?.querySelector(".category-example");
+    // 単元を選択して選択情報パネルを表示する
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-regular-present"]');
+    catItem?.click();
+
+    const infoPanel = document.getElementById("selectedUnitInfo");
+    const exampleEl = infoPanel?.querySelector(".selected-unit-info-example");
     expect(exampleEl).not.toBeNull();
     const highlightEl = exampleEl?.querySelector("code.category-example-highlight");
     expect(highlightEl).not.toBeNull();
     expect(highlightEl?.textContent).toBe("play");
   });
 
-  it("description ありのカテゴリでは説明文が単元一覧に表示される", async () => {
+  it("description ありのカテゴリでは単元選択時に説明文が選択情報パネルに表示される", async () => {
     setupTabDom();
     const manifest = {
       version: "2.0.0",
@@ -2440,8 +2451,14 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const catItem = document.querySelector('.category-item[data-category="tenses-regular-past"]');
-    const descEl = catItem?.querySelector(".category-item-description");
+    // 単元一覧には説明文が含まれないこと
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-regular-past"]');
+    expect(catItem?.querySelector(".category-item-description")).toBeNull();
+
+    // 単元を選択すると選択情報パネルに説明文が表示されること
+    catItem?.click();
+    const infoPanel = document.getElementById("selectedUnitInfo");
+    const descEl = infoPanel?.querySelector(".selected-unit-info-desc");
     expect(descEl).not.toBeNull();
     expect(descEl?.textContent).toBe("規則動詞は語尾に -ed をつけて過去形を作ります。");
   });
@@ -4456,5 +4473,91 @@ describe("QuizApp — フォントサイズ切替仕様", () => {
       msg: { type: "fontSizeChanged", level: "large" },
       targetOrigin: "*",
     });
+  });
+});
+
+describe("QuizApp — 選択中の単元情報パネル仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("初期状態では selectedUnitInfo は非表示", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const info = document.getElementById("selectedUnitInfo");
+    expect(info?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("単元を選択すると selectedUnitInfo が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+
+    const info = document.getElementById("selectedUnitInfo");
+    expect(info?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("単元選択時に selectedUnitInfo に単元名が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+
+    const nameEl = document.querySelector(".selected-unit-info-name");
+    expect(nameEl?.textContent).toBe("フォニックス（1文字）");
+  });
+
+  it("selectedUnitInfo の閉じるボタンをクリックすると選択が解除されパネルが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+
+    const closeBtn = document.querySelector<HTMLButtonElement>(".selected-unit-close-btn");
+    closeBtn?.click();
+
+    const info = document.getElementById("selectedUnitInfo");
+    expect(info?.classList.contains("hidden")).toBe(true);
+
+    // カテゴリ選択も解除されること
+    const subjectContent = document.getElementById("subjectContent");
+    expect(subjectContent?.classList.contains("category-only")).toBe(true);
+  });
+
+  it("同じ教科タブを再クリックすると selectedUnitInfo が非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+
+    // 同じ教科タブを再クリックすると category="all" にリセットされる
+    englishTab?.click();
+
+    const info = document.getElementById("selectedUnitInfo");
+    expect(info?.classList.contains("hidden")).toBe(true);
   });
 });

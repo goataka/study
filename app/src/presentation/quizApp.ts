@@ -1280,24 +1280,6 @@ export class QuizApp {
       }
     }
 
-    // 説明文と例文（設定されている場合のみ表示、タイトル→説明→例文の順）
-    const example = this.useCase.getCategoryExample(subject, categoryId);
-    const description = this.useCase.getCategoryDescription(subject, categoryId);
-
-    if (description) {
-      const descSpan = document.createElement("span");
-      descSpan.className = "category-item-description";
-      descSpan.textContent = description;
-      titleRow.appendChild(descSpan);
-    }
-
-    if (example !== undefined) {
-      const exampleSpan = document.createElement("span");
-      exampleSpan.className = "category-example";
-      this.renderBacktickText(exampleSpan, example);
-      titleRow.appendChild(exampleSpan);
-    }
-
     nameArea.appendChild(titleRow);
 
     // 進捗バーと完了率を横並びにするラッパー
@@ -1344,14 +1326,13 @@ export class QuizApp {
       e.stopPropagation();
       // 既に選択中の単元をクリックした場合は非選択に戻す（トグル）
       if (this.filter.subject === subject && this.filter.category === categoryId) {
-        this.filter.category = "all";
-        this.filter.parentCategory = undefined;
-      } else {
-        this.filter.subject = subject;
-        this.filter.category = categoryId;
-        this.filter.parentCategory = parentCatId;
-        this.selectedTopCategoryId = null;
+        this.deselectAndRefresh();
+        return;
       }
+      this.filter.subject = subject;
+      this.filter.category = categoryId;
+      this.filter.parentCategory = parentCatId;
+      this.selectedTopCategoryId = null;
       this.updateCategoryListActive();
       const categoryRecords = this.useCase.getHistory();
       this.autoSelectPanelTab(categoryRecords);
@@ -1500,8 +1481,110 @@ export class QuizApp {
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
   /**
-   * 解説パネルのコンテンツを現在選択中のカテゴリに合わせて更新する（メインパネル用）。
+   * 選択を完全に解除して UI を更新する共通処理。
+   * 閉じるボタンや単元アイテムのトグル（既選択クリック）から呼び出す。
    */
+  private deselectAndRefresh(): void {
+    this.filter.category = "all";
+    this.filter.parentCategory = undefined;
+    this.selectedTopCategoryId = null;
+    this.isPanelTabUserSelected = false;
+    this.updateCategoryListActive();
+    const records = this.useCase.getHistory();
+    this.autoSelectPanelTab(records);
+    this.updateStartScreen(records);
+  }
+
+  /**
+   * 選択中の単元・カテゴリ情報パネルを更新する。
+   * 単元・親カテゴリ・トップカテゴリが選択されている場合に情報を表示し、
+   * 閉じるボタン（×）で選択を解除できるようにする。
+   */
+  private updateSelectedUnitInfo(): void {
+    const container = document.getElementById("selectedUnitInfo");
+    if (!container) return;
+
+    const selLevel = this.getSelectionLevel();
+
+    if (selLevel === "none" || this.filter.subject === "all") {
+      container.classList.add("hidden");
+      return;
+    }
+
+    container.classList.remove("hidden");
+    container.innerHTML = "";
+
+    const body = document.createElement("div");
+    body.className = "selected-unit-info-body";
+
+    // ヘッダー行（名前 + 学年バッジ）
+    const headerRow = document.createElement("div");
+    headerRow.className = "selected-unit-info-header";
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "selected-unit-info-name";
+    if (selLevel === "unit") {
+      const cats = this.useCase.getCategoriesForSubject(this.filter.subject);
+      nameSpan.textContent = cats[this.filter.category] ?? this.filter.category;
+    } else if (selLevel === "parentCategory" && this.filter.parentCategory) {
+      const parentCats = this.useCase.getParentCategoriesForSubject(this.filter.subject);
+      nameSpan.textContent = parentCats[this.filter.parentCategory] ?? this.filter.parentCategory;
+    } else if (selLevel === "topCategory" && this.selectedTopCategoryId) {
+      const topCats = this.useCase.getTopCategoriesForSubject(this.filter.subject);
+      nameSpan.textContent = topCats[this.selectedTopCategoryId] ?? this.selectedTopCategoryId;
+    }
+    headerRow.appendChild(nameSpan);
+
+    // 学年バッジ（単元選択時のみ）
+    if (selLevel === "unit") {
+      const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
+      if (grade) {
+        const gradeSpan = document.createElement("span");
+        gradeSpan.className = "category-grade";
+        const gradeClass = gradeColorClass(grade);
+        if (gradeClass) gradeSpan.classList.add(gradeClass);
+        gradeSpan.textContent = grade;
+        headerRow.appendChild(gradeSpan);
+      }
+    }
+
+    body.appendChild(headerRow);
+
+    // 説明文と例文（単元選択時のみ）
+    if (selLevel === "unit") {
+      const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
+      if (description) {
+        const descDiv = document.createElement("div");
+        descDiv.className = "selected-unit-info-desc";
+        descDiv.textContent = description;
+        body.appendChild(descDiv);
+      }
+
+      const example = this.useCase.getCategoryExample(this.filter.subject, this.filter.category);
+      if (example !== undefined) {
+        const exampleDiv = document.createElement("div");
+        exampleDiv.className = "selected-unit-info-example";
+        this.renderBacktickText(exampleDiv, example);
+        body.appendChild(exampleDiv);
+      }
+    }
+
+    container.appendChild(body);
+
+    // 閉じるボタン（選択を解除して右パネルを閉じる）
+    const closeBtn = document.createElement("button");
+    closeBtn.className = "selected-unit-close-btn";
+    closeBtn.type = "button";
+    closeBtn.textContent = "✕";
+    closeBtn.title = "閉じる";
+    closeBtn.setAttribute("aria-label", "選択を解除して閉じる");
+    closeBtn.addEventListener("click", () => {
+      this.deselectAndRefresh();
+    });
+    container.appendChild(closeBtn);
+  }
+
+
   private updateGuidePanelContent(): void {
     this.updateGuidePanelContentByIds("guidePanelFrame", "guideNoContent");
   }
@@ -2232,6 +2315,9 @@ export class QuizApp {
       // 「総合」以外では現在アクティブなパネルを表示する（総合から戻った場合も含む）
       this.showPanelTab(this.activePanelTab);
     }
+
+    // 選択中の単元情報パネルを更新する
+    this.updateSelectedUnitInfo();
   }
 
   /**
