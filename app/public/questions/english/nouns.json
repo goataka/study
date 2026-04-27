@@ -1,0 +1,137 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "nouns",
+  "categoryName": "🏷️ 名詞",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
+  "parentCategory": "nouns",
+  "parentCategoryName": "名詞",
+  "guideUrl": "../english/grammar/nouns/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "`game` / `cat` / `music`",
+  "referenceGrade": "小学5年",
+  "description": "名詞は「もの・ひと・場所・こと」の名前です。単数・複数の変化を学びます。",
+  "questions": [
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000001",
+      "question": "I have two ___. (cat の複数形)",
+      "choices": [
+        "cats",
+        "cat",
+        "cates",
+        "caties"
+      ],
+      "correct": 0,
+      "explanation": "規則的な複数形は語尾に -s をつけます"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000002",
+      "question": "She has three ___. (watch の複数形)",
+      "choices": [
+        "watches",
+        "watchs",
+        "watch",
+        "watche"
+      ],
+      "correct": 0,
+      "explanation": "ch で終わる語は -es をつけて複数形にします"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000003",
+      "question": "There are five ___. (child の複数形)",
+      "choices": [
+        "children",
+        "childs",
+        "childes",
+        "childrens"
+      ],
+      "correct": 0,
+      "explanation": "child の複数形は不規則変化で children です"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000004",
+      "question": "I see two ___. (man の複数形)",
+      "choices": [
+        "men",
+        "mans",
+        "manes",
+        "manned"
+      ],
+      "correct": 0,
+      "explanation": "man の複数形は不規則変化で men です"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000005",
+      "question": "She has two ___. (city の複数形)",
+      "choices": [
+        "cities",
+        "citys",
+        "cityes",
+        "city"
+      ],
+      "correct": 0,
+      "explanation": "子音 + y で終わる語は y を i に変えて -es をつけます"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000006",
+      "question": "He has three ___. (box の複数形)",
+      "choices": [
+        "boxes",
+        "boxs",
+        "box",
+        "boxen"
+      ],
+      "correct": 0,
+      "explanation": "x で終わる語は -es をつけて複数形にします"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000007",
+      "question": "I drink ___. (数えられない名詞・水)",
+      "choices": [
+        "water",
+        "a water",
+        "waters",
+        "an water"
+      ],
+      "correct": 0,
+      "explanation": "water は不可算名詞なので a/an はつきません"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000008",
+      "question": "She likes ___. (数えられない名詞・音楽)",
+      "choices": [
+        "music",
+        "musics",
+        "a music",
+        "an music"
+      ],
+      "correct": 0,
+      "explanation": "music は不可算名詞なので a/an や複数形はつきません"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000009",
+      "question": "I have two ___. (book の複数形)",
+      "choices": [
+        "books",
+        "bookes",
+        "book",
+        "booky"
+      ],
+      "correct": 0,
+      "explanation": "規則的な複数形は語尾に -s をつけます"
+    },
+    {
+      "id": "a1b2c3d4-0001-5001-8001-000000000010",
+      "question": "There are three ___. (dish の複数形)",
+      "choices": [
+        "dishes",
+        "dishs",
+        "dish",
+        "dishen"
+      ],
+      "correct": 0,
+      "explanation": "sh で終わる語は -es をつけて複数形にします"
+    }
+  ]
+}

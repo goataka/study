@@ -1,0 +1,137 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "prepositions-time",
+  "categoryName": "📍 前置詞（時）",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
+  "parentCategory": "prepositions-time",
+  "parentCategoryName": "前置詞（時）",
+  "guideUrl": "../english/grammar/prepositions-time/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "I play games `on` Sunday.",
+  "referenceGrade": "小学5年",
+  "description": "時を表す前置詞（in, on, at, before, after, for）の使い分けを学びます。",
+  "questions": [
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000001",
+      "question": "I play games ___ Sunday.",
+      "choices": [
+        "on",
+        "in",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "曜日には on を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000002",
+      "question": "I play games ___ the morning.",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "to"
+      ],
+      "correct": 0,
+      "explanation": "morning/afternoon/evening には in を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000003",
+      "question": "I play games ___ 3 o'clock.",
+      "choices": [
+        "at",
+        "on",
+        "in",
+        "by"
+      ],
+      "correct": 0,
+      "explanation": "時刻には at を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000004",
+      "question": "She studies ___ June.",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "by"
+      ],
+      "correct": 0,
+      "explanation": "月には in を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000005",
+      "question": "I play games ___ two hours.",
+      "choices": [
+        "for",
+        "in",
+        "on",
+        "at"
+      ],
+      "correct": 0,
+      "explanation": "期間（〜の間）には for を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000006",
+      "question": "I play games ___ school.",
+      "choices": [
+        "after",
+        "before",
+        "during",
+        "until"
+      ],
+      "correct": 0,
+      "explanation": "〜の後には after を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000007",
+      "question": "She exercises ___ dinner.",
+      "choices": [
+        "before",
+        "after",
+        "during",
+        "for"
+      ],
+      "correct": 0,
+      "explanation": "〜の前には before を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000008",
+      "question": "I was born ___ 2010.",
+      "choices": [
+        "in",
+        "on",
+        "at",
+        "for"
+      ],
+      "correct": 0,
+      "explanation": "年には in を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000009",
+      "question": "I play games ___ my birthday.",
+      "choices": [
+        "on",
+        "in",
+        "at",
+        "for"
+      ],
+      "correct": 0,
+      "explanation": "特定の日（誕生日・記念日）には on を使います"
+    },
+    {
+      "id": "a1b2c3d4-0010-5010-8010-000000000010",
+      "question": "Please finish this ___ tomorrow.",
+      "choices": [
+        "by",
+        "until",
+        "for",
+        "during"
+      ],
+      "correct": 0,
+      "explanation": "〜までに（期限）には by を使います"
+    }
+  ]
+}

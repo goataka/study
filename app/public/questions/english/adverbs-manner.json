@@ -1,0 +1,137 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "adverbs-manner",
+  "categoryName": "🎯 副詞（様態・時・場所）",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
+  "parentCategory": "adverbs-manner",
+  "parentCategoryName": "副詞（様態・時・場所）",
+  "guideUrl": "../english/grammar/adverbs-manner/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "I play games `well`.",
+  "referenceGrade": "中学1年",
+  "description": "様態（well, fast）・時（yesterday）・場所（here）を表す副詞は、通常文末に置きます。",
+  "questions": [
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000001",
+      "question": "I play games ___. (well)",
+      "choices": [
+        "well",
+        "good",
+        "better",
+        "best"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は文末に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000002",
+      "question": "She plays ___. (beautifully)",
+      "choices": [
+        "beautifully",
+        "beautiful",
+        "beauty",
+        "beautify"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は文末に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000003",
+      "question": "I played games ___. (yesterday)",
+      "choices": [
+        "yesterday",
+        "yesterdays",
+        "yester",
+        "yesterday's"
+      ],
+      "correct": 0,
+      "explanation": "時を表す副詞は文末に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000004",
+      "question": "I play games ___. (here)",
+      "choices": [
+        "here",
+        "hear",
+        "hare",
+        "there"
+      ],
+      "correct": 0,
+      "explanation": "場所を表す副詞は文末に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000005",
+      "question": "He runs ___. (fast)",
+      "choices": [
+        "fast",
+        "fastly",
+        "faster",
+        "fastest"
+      ],
+      "correct": 0,
+      "explanation": "fast は形容詞・副詞ともに fast（fastly は間違い）"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000006",
+      "question": "She studies ___. (hard)",
+      "choices": [
+        "hard",
+        "hardly",
+        "hardness",
+        "harder"
+      ],
+      "correct": 0,
+      "explanation": "hard は副詞もそのまま hard（hardly は「ほとんど〜ない」の意味になるので注意）"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000007",
+      "question": "I will play games ___. (tomorrow)",
+      "choices": [
+        "tomorrow",
+        "tomorrows",
+        "tommorow",
+        "yesterday"
+      ],
+      "correct": 0,
+      "explanation": "時を表す副詞は文末に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000008",
+      "question": "She sings ___. (loudly)",
+      "choices": [
+        "loudly",
+        "loud",
+        "louder",
+        "loudness"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は形容詞 + ly で作ります"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000009",
+      "question": "I play games ___ my room. (in / 場所)",
+      "choices": [
+        "there",
+        "here",
+        "anywhere",
+        "nowhere"
+      ],
+      "correct": 0,
+      "explanation": "「あそこで/そこで」を表す場所の副詞は there（my room との対比）"
+    },
+    {
+      "id": "a1b2c3d4-0008-5008-8008-000000000010",
+      "question": "He speaks English ___. (fluently)",
+      "choices": [
+        "fluently",
+        "fluent",
+        "fluency",
+        "more fluent"
+      ],
+      "correct": 0,
+      "explanation": "様態を表す副詞は形容詞 + ly で作ります"
+    }
+  ]
+}

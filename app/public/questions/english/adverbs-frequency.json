@@ -1,0 +1,137 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "adverbs-frequency",
+  "categoryName": "🎯 副詞（頻度）",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
+  "parentCategory": "adverbs-frequency",
+  "parentCategoryName": "副詞（頻度）",
+  "guideUrl": "../english/grammar/adverbs-frequency/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "I `always` play games.",
+  "referenceGrade": "中学1年",
+  "description": "頻度の副詞（always, usually, often, sometimes, never）は一般動詞の前に置きます。",
+  "questions": [
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000001",
+      "question": "I ___ play games. (sometimes)",
+      "choices": [
+        "sometimes",
+        "sometime",
+        "some time",
+        "some times"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000002",
+      "question": "I ___ study English. (usually)",
+      "choices": [
+        "usually",
+        "usual",
+        "usuality",
+        "usualness"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000003",
+      "question": "She ___ reads books. (often)",
+      "choices": [
+        "often",
+        "off",
+        "offer",
+        "office"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000004",
+      "question": "He ___ plays games. (never)",
+      "choices": [
+        "never",
+        "ever",
+        "every",
+        "always"
+      ],
+      "correct": 0,
+      "explanation": "never（決して〜ない）は一般動詞の前に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000005",
+      "question": "I am ___ happy. (always)",
+      "choices": [
+        "always",
+        "all",
+        "all way",
+        "all ways"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の後に頻度の副詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000006",
+      "question": "She ___ goes to school early. (always)",
+      "choices": [
+        "always",
+        "all",
+        "all way",
+        "ever"
+      ],
+      "correct": 0,
+      "explanation": "always（いつも）は一般動詞の前に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000007",
+      "question": "He ___ eats breakfast. (rarely)",
+      "choices": [
+        "rarely",
+        "rare",
+        "rarely not",
+        "always"
+      ],
+      "correct": 0,
+      "explanation": "rarely（めったに〜ない）は一般動詞の前に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000008",
+      "question": "We ___ play together on weekends. (usually)",
+      "choices": [
+        "usually",
+        "usual",
+        "unusually",
+        "never"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000009",
+      "question": "She is ___ late for class. (sometimes)",
+      "choices": [
+        "sometimes",
+        "sometime",
+        "some time",
+        "never"
+      ],
+      "correct": 0,
+      "explanation": "be動詞の後に頻度の副詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0007-5007-8007-000000000010",
+      "question": "They ___ visit their grandparents. (often)",
+      "choices": [
+        "often",
+        "never",
+        "always",
+        "rarely"
+      ],
+      "correct": 0,
+      "explanation": "頻度を表す副詞は一般動詞の前に置きます"
+    }
+  ]
+}

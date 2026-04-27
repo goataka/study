@@ -1,0 +1,137 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "adjectives-attributive",
+  "categoryName": "🎨 形容詞（限定用法）",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
+  "parentCategory": "adjectives-attributive",
+  "parentCategoryName": "形容詞（限定用法）",
+  "guideUrl": "../english/grammar/adjectives-attributive/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "a `new` game",
+  "referenceGrade": "小学5年",
+  "description": "形容詞を名詞の前に置いて修飾します（限定用法）。",
+  "questions": [
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000001",
+      "question": "I play a ___ game. (new)",
+      "choices": [
+        "new",
+        "newly",
+        "news",
+        "newer"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000002",
+      "question": "The game has ___ stages. (long)",
+      "choices": [
+        "long",
+        "length",
+        "longer",
+        "longest"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000003",
+      "question": "He is a ___ player. (tall)",
+      "choices": [
+        "tall",
+        "taller",
+        "tallest",
+        "height"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000004",
+      "question": "This is a ___ game. (fast)",
+      "choices": [
+        "fast",
+        "faster",
+        "fastest",
+        "speed"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000005",
+      "question": "She is a ___ player. (smart)",
+      "choices": [
+        "smart",
+        "smarter",
+        "smartest",
+        "smartly"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000006",
+      "question": "This is a ___ book. (thick)",
+      "choices": [
+        "thick",
+        "thickly",
+        "thicker",
+        "thickness"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000007",
+      "question": "He has a ___ dog. (big)",
+      "choices": [
+        "big",
+        "bigger",
+        "biggest",
+        "bigly"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000008",
+      "question": "She reads a ___ book. (interesting)",
+      "choices": [
+        "interesting",
+        "interest",
+        "interested",
+        "interestingly"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000009",
+      "question": "I have a ___ cat. (cute)",
+      "choices": [
+        "cute",
+        "cutely",
+        "cuter",
+        "cuteness"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    },
+    {
+      "id": "a1b2c3d4-0005-5005-8005-000000000010",
+      "question": "We live in a ___ city. (beautiful)",
+      "choices": [
+        "beautiful",
+        "beauty",
+        "beautifully",
+        "beautify"
+      ],
+      "correct": 0,
+      "explanation": "名詞の前には形容詞を置きます"
+    }
+  ]
+}
