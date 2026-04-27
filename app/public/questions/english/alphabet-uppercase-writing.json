@@ -2,7 +2,7 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "alphabet-uppercase-writing",
-  "categoryName": "🔠 アルファベット（大文字の書き）",
+  "categoryName": "🔠 大文字の書き",
   "topCategory": "pronunciation",
   "topCategoryName": "発音",
   "parentCategory": "alphabet",
@@ -18,182 +18,234 @@
     {
       "id": "9ca47f49-3e7c-5ebe-8ae2-f0493686ac50",
       "question": "「えい」の大文字を書いてください",
-      "choices": ["A"],
+      "choices": [
+        "A"
+      ],
       "correct": 0,
       "explanation": "「えい」の大文字は「A」と書きます"
     },
     {
       "id": "82855073-aa8c-5a10-afb9-defadc507fef",
       "question": "「びー」の大文字を書いてください",
-      "choices": ["B"],
+      "choices": [
+        "B"
+      ],
       "correct": 0,
       "explanation": "「びー」の大文字は「B」と書きます"
     },
     {
       "id": "2cc85511-3af6-561a-95e0-33edb525cf1e",
       "question": "「しー」の大文字を書いてください",
-      "choices": ["C"],
+      "choices": [
+        "C"
+      ],
       "correct": 0,
       "explanation": "「しー」の大文字は「C」と書きます"
     },
     {
       "id": "cb80d12d-162a-5022-82cd-f93b28ff023d",
       "question": "「でぃー」の大文字を書いてください",
-      "choices": ["D"],
+      "choices": [
+        "D"
+      ],
       "correct": 0,
       "explanation": "「でぃー」の大文字は「D」と書きます"
     },
     {
       "id": "85e3e816-fe0d-5026-869b-9a33d1cc72c7",
       "question": "「いー」の大文字を書いてください",
-      "choices": ["E"],
+      "choices": [
+        "E"
+      ],
       "correct": 0,
       "explanation": "「いー」の大文字は「E」と書きます"
     },
     {
       "id": "8648b147-45c3-5b12-b72b-2c7d38d38d41",
       "question": "「えふ」の大文字を書いてください",
-      "choices": ["F"],
+      "choices": [
+        "F"
+      ],
       "correct": 0,
       "explanation": "「えふ」の大文字は「F」と書きます"
     },
     {
       "id": "e876af3f-83df-50c4-8eff-b1e4fe3f7e10",
       "question": "「じー」の大文字を書いてください",
-      "choices": ["G"],
+      "choices": [
+        "G"
+      ],
       "correct": 0,
       "explanation": "「じー」の大文字は「G」と書きます"
     },
     {
       "id": "87288668-90c4-5c0b-86f7-1cfb2f1a99c8",
       "question": "「えいち」の大文字を書いてください",
-      "choices": ["H"],
+      "choices": [
+        "H"
+      ],
       "correct": 0,
       "explanation": "「えいち」の大文字は「H」と書きます"
     },
     {
       "id": "77f0fc7b-3524-5831-8099-496d6d2daf29",
       "question": "「あい」の大文字を書いてください",
-      "choices": ["I"],
+      "choices": [
+        "I"
+      ],
       "correct": 0,
       "explanation": "「あい」の大文字は「I」と書きます"
     },
     {
       "id": "5a415edd-baac-58d9-a0e2-b995b9c1cfaa",
       "question": "「じぇい」の大文字を書いてください",
-      "choices": ["J"],
+      "choices": [
+        "J"
+      ],
       "correct": 0,
       "explanation": "「じぇい」の大文字は「J」と書きます"
     },
     {
       "id": "8d303448-bece-5f8f-b045-fe162658f5b0",
       "question": "「けー」の大文字を書いてください",
-      "choices": ["K"],
+      "choices": [
+        "K"
+      ],
       "correct": 0,
       "explanation": "「けー」の大文字は「K」と書きます"
     },
     {
       "id": "e05395df-e742-595d-b5e4-570adb31107d",
       "question": "「える」の大文字を書いてください",
-      "choices": ["L"],
+      "choices": [
+        "L"
+      ],
       "correct": 0,
       "explanation": "「える」の大文字は「L」と書きます"
     },
     {
       "id": "06e0f2cf-6639-52af-a83a-3cb069e3f89b",
       "question": "「えむ」の大文字を書いてください",
-      "choices": ["M"],
+      "choices": [
+        "M"
+      ],
       "correct": 0,
       "explanation": "「えむ」の大文字は「M」と書きます"
     },
     {
       "id": "0b0dd4e2-e2ec-565e-ba4c-eb1bcdcf6585",
       "question": "「えぬ」の大文字を書いてください",
-      "choices": ["N"],
+      "choices": [
+        "N"
+      ],
       "correct": 0,
       "explanation": "「えぬ」の大文字は「N」と書きます"
     },
     {
       "id": "7143bdc0-1bc7-5d1d-a215-39521a690ade",
       "question": "「おー」の大文字を書いてください",
-      "choices": ["O"],
+      "choices": [
+        "O"
+      ],
       "correct": 0,
       "explanation": "「おー」の大文字は「O」と書きます"
     },
     {
       "id": "ae451c12-cb4c-5355-bb3c-07e0cc101f43",
       "question": "「ぴー」の大文字を書いてください",
-      "choices": ["P"],
+      "choices": [
+        "P"
+      ],
       "correct": 0,
       "explanation": "「ぴー」の大文字は「P」と書きます"
     },
     {
       "id": "9d005a7c-d0de-59a3-9057-80fb53a958e3",
       "question": "「きゅー」の大文字を書いてください",
-      "choices": ["Q"],
+      "choices": [
+        "Q"
+      ],
       "correct": 0,
       "explanation": "「きゅー」の大文字は「Q」と書きます"
     },
     {
       "id": "eb193d4f-7367-53b5-9a90-e538919c21bb",
       "question": "「あーる」の大文字を書いてください",
-      "choices": ["R"],
+      "choices": [
+        "R"
+      ],
       "correct": 0,
       "explanation": "「あーる」の大文字は「R」と書きます"
     },
     {
       "id": "a8262990-8ef1-5ca3-ab21-70cf035615e4",
       "question": "「えす」の大文字を書いてください",
-      "choices": ["S"],
+      "choices": [
+        "S"
+      ],
       "correct": 0,
       "explanation": "「えす」の大文字は「S」と書きます"
     },
     {
       "id": "e898e12f-52a9-5463-867b-ddd583a6afcf",
       "question": "「てぃー」の大文字を書いてください",
-      "choices": ["T"],
+      "choices": [
+        "T"
+      ],
       "correct": 0,
       "explanation": "「てぃー」の大文字は「T」と書きます"
     },
     {
       "id": "c1561b85-d813-56e4-8234-7a5dd123eca5",
       "question": "「ゆー」の大文字を書いてください",
-      "choices": ["U"],
+      "choices": [
+        "U"
+      ],
       "correct": 0,
       "explanation": "「ゆー」の大文字は「U」と書きます"
     },
     {
       "id": "2d032391-2961-528f-948a-52f68704c2fc",
       "question": "「ぶい」の大文字を書いてください",
-      "choices": ["V"],
+      "choices": [
+        "V"
+      ],
       "correct": 0,
       "explanation": "「ぶい」の大文字は「V」と書きます"
     },
     {
       "id": "533a7d27-6fe7-594f-b59e-1ebf440715a9",
       "question": "「だぶりゅー」の大文字を書いてください",
-      "choices": ["W"],
+      "choices": [
+        "W"
+      ],
       "correct": 0,
       "explanation": "「だぶりゅー」の大文字は「W」と書きます"
     },
     {
       "id": "8d4d6e73-849e-5fd0-af21-3380db6ee9a1",
       "question": "「えっくす」の大文字を書いてください",
-      "choices": ["X"],
+      "choices": [
+        "X"
+      ],
       "correct": 0,
       "explanation": "「えっくす」の大文字は「X」と書きます"
     },
     {
       "id": "a0379dd3-578e-54a6-aff9-69baa09bd037",
       "question": "「わい」の大文字を書いてください",
-      "choices": ["Y"],
+      "choices": [
+        "Y"
+      ],
       "correct": 0,
       "explanation": "「わい」の大文字は「Y」と書きます"
     },
     {
       "id": "7148b1cb-9cbd-5e85-ae5b-942819264486",
       "question": "「ぜっと」の大文字を書いてください",
-      "choices": ["Z"],
+      "choices": [
+        "Z"
+      ],
       "correct": 0,
       "explanation": "「ぜっと」の大文字は「Z」と書きます"
     }

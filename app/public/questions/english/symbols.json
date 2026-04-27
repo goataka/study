@@ -2,11 +2,11 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "symbols",
-  "categoryName": "🔣 英語の記号",
+  "categoryName": "🔣 記号",
   "topCategory": "pronunciation",
   "topCategoryName": "発音",
-  "parentCategory": "symbols",
-  "parentCategoryName": "記号",
+  "parentCategory": "alphabet",
+  "parentCategoryName": "アルファベット",
   "guideUrl": "../english/pronunciation/symbols/guide",
   "parentCategoryGuideUrl": "../english/pronunciation/guide",
   "example": ".(ピリオド) ?(クエスチョンマーク)",
@@ -16,105 +16,180 @@
     {
       "id": "ddfbe984-55b1-53a8-8be8-e3cdbdf5a21a",
       "question": "「.」の読み方は？",
-      "choices": ["ピリオド", "カンマ", "コロン", "セミコロン"],
+      "choices": [
+        "ピリオド",
+        "カンマ",
+        "コロン",
+        "セミコロン"
+      ],
       "correct": 0,
       "explanation": "「.」は「ピリオド」と読みます。文の終わりに使います"
     },
     {
       "id": "83d59cd5-b9c2-5d07-8adb-2cbf5d43926f",
       "question": "「,」の読み方は？",
-      "choices": ["カンマ", "ピリオド", "コロン", "セミコロン"],
+      "choices": [
+        "カンマ",
+        "ピリオド",
+        "コロン",
+        "セミコロン"
+      ],
       "correct": 0,
       "explanation": "「,」は「カンマ」と読みます。句読点として使います"
     },
     {
       "id": "e658a493-623d-5ac4-a97f-38a83d082b7b",
       "question": "「?」の読み方は？",
-      "choices": ["クエスチョンマーク", "エクスクラメーションマーク", "ピリオド", "コロン"],
+      "choices": [
+        "クエスチョンマーク",
+        "エクスクラメーションマーク",
+        "ピリオド",
+        "コロン"
+      ],
       "correct": 0,
       "explanation": "「?」は「クエスチョンマーク」と読みます。疑問文の終わりに使います"
     },
     {
       "id": "e884aa53-6a0a-5572-840e-2fa164c6d86e",
       "question": "「!」の読み方は？",
-      "choices": ["エクスクラメーションマーク", "クエスチョンマーク", "ピリオド", "カンマ"],
+      "choices": [
+        "エクスクラメーションマーク",
+        "クエスチョンマーク",
+        "ピリオド",
+        "カンマ"
+      ],
       "correct": 0,
       "explanation": "「!」は「エクスクラメーションマーク」と読みます。感嘆文の終わりに使います"
     },
     {
       "id": "3fb0d083-8915-5a44-9ff3-3cac647aca8b",
       "question": "「:」の読み方は？",
-      "choices": ["コロン", "セミコロン", "ピリオド", "カンマ"],
+      "choices": [
+        "コロン",
+        "セミコロン",
+        "ピリオド",
+        "カンマ"
+      ],
       "correct": 0,
       "explanation": "「:」は「コロン」と読みます。説明や列挙の前に使います"
     },
     {
       "id": "8894542b-7544-547d-9979-1eba8cb07519",
       "question": "「;」の読み方は？",
-      "choices": ["セミコロン", "コロン", "ピリオド", "カンマ"],
+      "choices": [
+        "セミコロン",
+        "コロン",
+        "ピリオド",
+        "カンマ"
+      ],
       "correct": 0,
       "explanation": "「;」は「セミコロン」と読みます。文と文をつなぐときに使います"
     },
     {
       "id": "f437dd9b-be2a-526f-9aea-87c3a53df7d7",
       "question": "「'」の読み方は？",
-      "choices": ["アポストロフィー", "ダブルクォーテーション", "ハイフン", "アスタリスク"],
+      "choices": [
+        "アポストロフィー",
+        "ダブルクォーテーション",
+        "ハイフン",
+        "アスタリスク"
+      ],
       "correct": 0,
       "explanation": "「'」は「アポストロフィー」と読みます。短縮形（don't など）や所有格に使います"
     },
     {
       "id": "5fa6462b-b7f4-5364-a402-1536528c59e5",
       "question": "「\"」の読み方は？",
-      "choices": ["ダブルクォーテーション", "アポストロフィー", "ハイフン", "アスタリスク"],
+      "choices": [
+        "ダブルクォーテーション",
+        "アポストロフィー",
+        "ハイフン",
+        "アスタリスク"
+      ],
       "correct": 0,
       "explanation": "「\"」は「ダブルクォーテーション」と読みます。会話文や引用に使います"
     },
     {
       "id": "eee49e72-331b-55f4-a792-b385f0d22011",
       "question": "「@」の読み方は？",
-      "choices": ["アットマーク", "ハッシュ", "アスタリスク", "アンパサンド"],
+      "choices": [
+        "アットマーク",
+        "ハッシュ",
+        "アスタリスク",
+        "アンパサンド"
+      ],
       "correct": 0,
       "explanation": "「@」は「アットマーク」と読みます。メールアドレスで使います"
     },
     {
       "id": "9e89461d-e187-5c1f-ba3f-38cb33426d56",
       "question": "「#」の読み方は？",
-      "choices": ["ハッシュ", "アットマーク", "アスタリスク", "アンパサンド"],
+      "choices": [
+        "ハッシュ",
+        "アットマーク",
+        "アスタリスク",
+        "アンパサンド"
+      ],
       "correct": 0,
       "explanation": "「#」は「ハッシュ」と読みます。SNSのハッシュタグなどで使います"
     },
     {
       "id": "2fe46c49-bd6a-55fb-8aed-be1fc157b869",
       "question": "「*」の読み方は？",
-      "choices": ["アスタリスク", "ハイフン", "アットマーク", "ハッシュ"],
+      "choices": [
+        "アスタリスク",
+        "ハイフン",
+        "アットマーク",
+        "ハッシュ"
+      ],
       "correct": 0,
       "explanation": "「*」は「アスタリスク」と読みます。注釈や強調に使います"
     },
     {
       "id": "fb42cd56-0905-5732-9de2-48793a66603a",
       "question": "「&」の読み方は？",
-      "choices": ["アンパサンド", "アットマーク", "ハッシュ", "アスタリスク"],
+      "choices": [
+        "アンパサンド",
+        "アットマーク",
+        "ハッシュ",
+        "アスタリスク"
+      ],
       "correct": 0,
       "explanation": "「&」は「アンパサンド」と読みます。「and」の意味で使います"
     },
     {
       "id": "d82869a7-4163-52c8-b7c7-5deeb8acf782",
       "question": "「/」の読み方は？",
-      "choices": ["スラッシュ", "バックスラッシュ", "ハイフン", "アンダースコア"],
+      "choices": [
+        "スラッシュ",
+        "バックスラッシュ",
+        "ハイフン",
+        "アンダースコア"
+      ],
       "correct": 0,
       "explanation": "「/」は「スラッシュ」と読みます。URLやパスの区切りに使います"
     },
     {
       "id": "28ac7aa8-77f6-57d0-8ecd-5f2f8d68fde8",
       "question": "「-」の読み方は？",
-      "choices": ["ハイフン", "アンダースコア", "スラッシュ", "バックスラッシュ"],
+      "choices": [
+        "ハイフン",
+        "アンダースコア",
+        "スラッシュ",
+        "バックスラッシュ"
+      ],
       "correct": 0,
       "explanation": "「-」は「ハイフン」と読みます。単語と単語をつなぐときに使います"
     },
     {
       "id": "cb2b6333-843f-558b-8401-c2e0a5b974c9",
       "question": "「_」の読み方は？",
-      "choices": ["アンダースコア", "ハイフン", "スラッシュ", "バックスラッシュ"],
+      "choices": [
+        "アンダースコア",
+        "ハイフン",
+        "スラッシュ",
+        "バックスラッシュ"
+      ],
       "correct": 0,
       "explanation": "「_」は「アンダースコア」と読みます。プログラムやファイル名に使います"
     },
@@ -122,7 +197,9 @@
       "id": "8aedb5b0-4d7a-5ea9-9d8b-051c18664b62",
       "question": "「ピリオド」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["."],
+      "choices": [
+        "."
+      ],
       "correct": 0,
       "explanation": "「ピリオド」は「.」と書きます"
     },
@@ -130,7 +207,9 @@
       "id": "edebc97a-8828-5489-aca0-9e3c9d47b5eb",
       "question": "「カンマ」の記号を書いてください",
       "questionType": "text-input",
-      "choices": [","],
+      "choices": [
+        ","
+      ],
       "correct": 0,
       "explanation": "「カンマ」は「,」と書きます"
     },
@@ -138,7 +217,9 @@
       "id": "bf122acb-1c99-57a3-93eb-5715b5043de9",
       "question": "「クエスチョンマーク」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["?"],
+      "choices": [
+        "?"
+      ],
       "correct": 0,
       "explanation": "「クエスチョンマーク」は「?」と書きます"
     },
@@ -146,7 +227,9 @@
       "id": "eb383470-7d73-5f4d-a5d0-fbc681bfe308",
       "question": "「エクスクラメーションマーク」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["!"],
+      "choices": [
+        "!"
+      ],
       "correct": 0,
       "explanation": "「エクスクラメーションマーク」は「!」と書きます"
     },
@@ -154,7 +237,9 @@
       "id": "48582ef6-d87f-51a7-9e7d-3d22383bfc3c",
       "question": "「コロン」の記号を書いてください",
       "questionType": "text-input",
-      "choices": [":"],
+      "choices": [
+        ":"
+      ],
       "correct": 0,
       "explanation": "「コロン」は「:」と書きます"
     },
@@ -162,7 +247,9 @@
       "id": "b7b715a1-c70d-5d65-9314-e78aed6b8919",
       "question": "「セミコロン」の記号を書いてください",
       "questionType": "text-input",
-      "choices": [";"],
+      "choices": [
+        ";"
+      ],
       "correct": 0,
       "explanation": "「セミコロン」は「;」と書きます"
     },
@@ -170,7 +257,9 @@
       "id": "1774ecdd-24d3-56f3-9945-9b016e5a7482",
       "question": "「アポストロフィー」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["'"],
+      "choices": [
+        "'"
+      ],
       "correct": 0,
       "explanation": "「アポストロフィー」は「'」と書きます"
     },
@@ -178,7 +267,9 @@
       "id": "af728c63-ceeb-531e-b677-34829e46c16f",
       "question": "「アットマーク」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["@"],
+      "choices": [
+        "@"
+      ],
       "correct": 0,
       "explanation": "「アットマーク」は「@」と書きます"
     },
@@ -186,7 +277,9 @@
       "id": "bd5b5ddb-4195-594b-b6f3-e1aac490468d",
       "question": "「ハッシュ」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["#"],
+      "choices": [
+        "#"
+      ],
       "correct": 0,
       "explanation": "「ハッシュ」は「#」と書きます"
     },
@@ -194,7 +287,9 @@
       "id": "93002dcc-b689-5842-94eb-74b8d22f9d2c",
       "question": "「アスタリスク」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["*"],
+      "choices": [
+        "*"
+      ],
       "correct": 0,
       "explanation": "「アスタリスク」は「*」と書きます"
     },
@@ -202,7 +297,9 @@
       "id": "e3588286-1670-59c9-94b5-ec326e700724",
       "question": "「アンパサンド」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["&"],
+      "choices": [
+        "&"
+      ],
       "correct": 0,
       "explanation": "「アンパサンド」は「&」と書きます"
     },
@@ -210,7 +307,9 @@
       "id": "81a1c1ea-4ccd-5f58-80b8-e29f218f435d",
       "question": "「スラッシュ」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["/"],
+      "choices": [
+        "/"
+      ],
       "correct": 0,
       "explanation": "「スラッシュ」は「/」と書きます"
     },
@@ -218,7 +317,9 @@
       "id": "60c02931-bd53-5e7f-914c-b3ff13d08b60",
       "question": "「ハイフン」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["-"],
+      "choices": [
+        "-"
+      ],
       "correct": 0,
       "explanation": "「ハイフン」は「-」と書きます"
     },
@@ -226,7 +327,9 @@
       "id": "78f8a50a-b2db-58d8-b060-e6adb7c432d4",
       "question": "「アンダースコア」の記号を書いてください",
       "questionType": "text-input",
-      "choices": ["_"],
+      "choices": [
+        "_"
+      ],
       "correct": 0,
       "explanation": "「アンダースコア」は「_」と書きます"
     }
