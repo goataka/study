@@ -392,3 +392,13 @@ Then("a JSON file download should be triggered", async ({ page }) => {
   const filename = await page.evaluate(() => sessionStorage.getItem("_testDownloadFilename"));
   expect(filename).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
 });
+
+Then("the overall summary panel should be visible", async ({ page }) => {
+  // 総合タブの活動サマリパネルが表示されていること
+  await expect(page.locator("#overallSummaryPanel")).toBeVisible();
+});
+
+Then("the share summary text should contain {string}", async ({ page }, text: string) => {
+  // 活動サマリテキストに指定のテキストが含まれていること
+  await expect(page.locator("#shareSummaryText")).toContainText(text);
+});

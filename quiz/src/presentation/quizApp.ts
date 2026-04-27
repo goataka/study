@@ -20,6 +20,9 @@ const SUBJECTS = [
   { id: "japanese", name: "国語", icon: "📖" },
 ] as const;
 
+/** 総合タブ用の共有 URL localStorage キー */
+const OVERALL_SHARE_URL_KEY = "overallShareUrl";
+
 /** 参考学年文字列から CSS クラス名を返す（小学→grade-elementary, 中学→grade-middle, 高校→grade-high） */
 function gradeColorClass(referenceGrade: string): string {
   if (referenceGrade.startsWith("小")) return "grade-elementary";
@@ -58,6 +61,8 @@ export class QuizApp {
   private selectedTopCategoryId: string | null = null;
   /** フォントサイズレベル（small=デフォルト, medium, large） */
   private fontSizeLevel: "small" | "medium" | "large" = "small";
+  /** 総合タブの活動サマリ共有 URL */
+  private shareUrl: string = "";
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -78,6 +83,7 @@ export class QuizApp {
     }
     this.loadUserName();
     this.loadFontSize();
+    this.loadShareUrl();
     this.loadFilterFromURL();
     this.loadQuestionCountFromDOM();
     this.loadCategoryViewModeFromStorage();
@@ -92,6 +98,12 @@ export class QuizApp {
     // 学習済み非表示の初期状態をボタンのaria-pressed属性とテキストに反映する
     this.updateHideLearnedButton();
     this.updateUserNameDisplay("headerUserName");
+    // 共有URL入力フィールドの初期値を設定する
+    const shareUrlInput = document.getElementById("shareUrlInput") as HTMLInputElement | null;
+    if (shareUrlInput) {
+      shareUrlInput.value = this.shareUrl;
+    }
+    this.updateShareUrlOpenBtn();
   }
 
   /**
@@ -137,6 +149,27 @@ export class QuizApp {
       this.fontSizeLevel = saved;
     }
     this.applyFontSize(this.fontSizeLevel, false);
+  }
+
+  private loadShareUrl(): void {
+    try {
+      this.shareUrl = localStorage.getItem(OVERALL_SHARE_URL_KEY) ?? "";
+    } catch {
+      this.shareUrl = "";
+    }
+  }
+
+  private saveShareUrl(url: string): void {
+    try {
+      this.shareUrl = url;
+      if (url) {
+        localStorage.setItem(OVERALL_SHARE_URL_KEY, url);
+      } else {
+        localStorage.removeItem(OVERALL_SHARE_URL_KEY);
+      }
+    } catch {
+      // localStorage アクセスエラーは無視する
+    }
   }
 
   private applyFontSize(level: "small" | "medium" | "large", persist = true): void {
@@ -936,6 +969,233 @@ export class QuizApp {
     }
   }
 
+  // ─── 総合タブ専用サマリパネル ───────────────────────────────────────────────
+
+  /**
+   * 総合タブ専用のサマリパネルを描画する。
+   * 今日の活動・SNS共有サマリ・過去の活動を表示する。
+   */
+  private renderOverallSummaryPanel(allRecords?: QuizRecord[]): void {
+    const panel = document.getElementById("overallSummaryPanel");
+    if (!panel) return;
+
+    const records = allRecords ?? this.useCase.getHistory();
+    this.renderTodayActivity(records);
+    this.updateShareSummaryText(records);
+    this.renderOverallHistoryList(records);
+  }
+
+  /**
+   * 今日の活動セクションを描画する。
+   * 今日の日付と一致するクイズ記録を集計して表示する。
+   */
+  private renderTodayActivity(records: QuizRecord[]): void {
+    const container = document.getElementById("todayActivityContent");
+    if (!container) return;
+
+    const todayStr = new Date().toDateString();
+    const todayRecords = records.filter((r) => new Date(r.date).toDateString() === todayStr && r.mode !== "manual");
+
+    container.innerHTML = "";
+
+    if (todayRecords.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "today-activity-empty";
+      empty.textContent = "今日はまだクイズをしていません。";
+      container.appendChild(empty);
+      return;
+    }
+
+    const totalCount = todayRecords.reduce((s, r) => s + r.totalCount, 0);
+    const correctCount = todayRecords.reduce((s, r) => s + r.correctCount, 0);
+    const pct = Math.round((correctCount / totalCount) * 100);
+
+    const statsRow = document.createElement("div");
+    statsRow.className = "today-stats-row";
+
+    const sessionBadge = document.createElement("span");
+    sessionBadge.className = "today-stat-badge";
+    sessionBadge.textContent = `${todayRecords.length}回のクイズ`;
+
+    const questionBadge = document.createElement("span");
+    questionBadge.className = "today-stat-badge";
+    questionBadge.textContent = `合計${totalCount}問`;
+
+    const scoreBadge = document.createElement("span");
+    scoreBadge.className = `today-stat-badge${pct >= 70 ? " pass" : ""}`;
+    scoreBadge.textContent = `${correctCount}/${totalCount}問正解 (${pct}%)`;
+
+    statsRow.appendChild(sessionBadge);
+    statsRow.appendChild(questionBadge);
+    statsRow.appendChild(scoreBadge);
+    container.appendChild(statsRow);
+
+    // 教科別の内訳
+    const bySubject = new Map<string, { name: string; total: number; correct: number }>();
+    for (const r of todayRecords) {
+      const s = bySubject.get(r.subject) ?? { name: r.subjectName, total: 0, correct: 0 };
+      s.total += r.totalCount;
+      s.correct += r.correctCount;
+      bySubject.set(r.subject, s);
+    }
+
+    const subjectList = document.createElement("div");
+    subjectList.className = "today-subject-list";
+
+    for (const [, data] of bySubject) {
+      const item = document.createElement("div");
+      item.className = "today-subject-item";
+
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "today-subject-name";
+      nameSpan.textContent = data.name;
+
+      const scoreSpan = document.createElement("span");
+      scoreSpan.className = "today-subject-score";
+      const subjectPct = Math.round((data.correct / data.total) * 100);
+      scoreSpan.textContent = `${data.correct}/${data.total}問正解 (${subjectPct}%)`;
+
+      item.appendChild(nameSpan);
+      item.appendChild(scoreSpan);
+      subjectList.appendChild(item);
+    }
+
+    container.appendChild(subjectList);
+  }
+
+  /**
+   * SNS 共有用の活動サマリテキストを構築して shareSummaryText 要素に反映する。
+   */
+  private updateShareSummaryText(records: QuizRecord[]): void {
+    const el = document.getElementById("shareSummaryText");
+    if (el) {
+      el.textContent = this.buildShareSummaryText(records);
+    }
+  }
+
+  /**
+   * SNS 共有用の活動サマリテキストを構築して返す。
+   */
+  private buildShareSummaryText(records: QuizRecord[]): string {
+    const today = new Date();
+    const dateStr = `${today.getFullYear()}/${String(today.getMonth() + 1).padStart(2, "0")}/${String(today.getDate()).padStart(2, "0")}`;
+    const todayStr = today.toDateString();
+    const todayRecords = records.filter((r) => new Date(r.date).toDateString() === todayStr && r.mode !== "manual");
+
+    const lines: string[] = ["【今日の学習サマリ】", `📅 ${dateStr}`];
+
+    if (todayRecords.length === 0) {
+      lines.push("まだクイズをしていません。");
+      return lines.join("\n");
+    }
+
+    const subjectIconMap: Record<string, string> = { english: "📚", math: "🔢", japanese: "📖" };
+    const bySubject = new Map<string, { name: string; total: number; correct: number }>();
+    for (const r of todayRecords) {
+      const s = bySubject.get(r.subject) ?? { name: r.subjectName, total: 0, correct: 0 };
+      s.total += r.totalCount;
+      s.correct += r.correctCount;
+      bySubject.set(r.subject, s);
+    }
+
+    for (const [subjectId, data] of bySubject) {
+      const icon = subjectIconMap[subjectId] ?? "📝";
+      const subPct = Math.round((data.correct / data.total) * 100);
+      lines.push(`${icon} ${data.name}: ${data.correct}/${data.total}問正解 (${subPct}%)`);
+    }
+
+    const totalCount = todayRecords.reduce((s, r) => s + r.totalCount, 0);
+    const correctCount = todayRecords.reduce((s, r) => s + r.correctCount, 0);
+    const totalPct = Math.round((correctCount / totalCount) * 100);
+    lines.push("---");
+    lines.push(`合計: ${correctCount}/${totalCount}問正解 (${totalPct}%)`);
+
+    return lines.join("\n");
+  }
+
+  /**
+   * 活動サマリテキストをクリップボードにコピーする。
+   */
+  private copyShareSummary(): void {
+    const el = document.getElementById("shareSummaryText");
+    const text = el?.textContent ?? "";
+    if (!text) return;
+
+    const btn = document.getElementById("copySummaryBtn") as HTMLButtonElement | null;
+    const originalText = btn?.textContent ?? "";
+    const markCopied = (): void => {
+      if (btn) {
+        btn.textContent = "✅ コピーしました";
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 1500);
+      }
+    };
+
+    if (navigator.clipboard) {
+      void navigator.clipboard.writeText(text).then(markCopied).catch(() => {
+        this.fallbackCopy(text);
+        markCopied();
+      });
+    } else {
+      this.fallbackCopy(text);
+      markCopied();
+    }
+  }
+
+  /**
+   * navigator.clipboard が使用できない環境向けのコピーフォールバック。
+   */
+  private fallbackCopy(text: string): void {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+  }
+
+  /**
+   * 共有 URL の「開く」ボタン（アンカー要素）の状態を更新する。
+   */
+  private updateShareUrlOpenBtn(): void {
+    const btn = document.getElementById("openShareUrlBtn") as HTMLAnchorElement | null;
+    if (!btn) return;
+    if (this.shareUrl) {
+      btn.href = this.shareUrl;
+      btn.classList.remove("hidden");
+    } else {
+      btn.href = "#";
+      btn.classList.add("hidden");
+    }
+  }
+
+  /**
+   * 過去の活動（全履歴）を overallHistoryList に描画する。
+   * 最大 20 件まで表示する。
+   */
+  private renderOverallHistoryList(records: QuizRecord[]): void {
+    const historyList = document.getElementById("overallHistoryList");
+    if (!historyList) return;
+
+    historyList.innerHTML = "";
+
+    if (records.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "history-empty";
+      empty.textContent = "まだ回答記録がありません。クイズを解いてみましょう！";
+      historyList.appendChild(empty);
+      return;
+    }
+
+    const displayRecords = records.slice(0, 20);
+    displayRecords.forEach((record) => {
+      historyList.appendChild(this.buildHistoryItem(record));
+    });
+  }
+
   private createCategoryItem(
     subject: string,
     categoryId: string,
@@ -1605,6 +1865,18 @@ export class QuizApp {
 
     // データダウンロードボタン
     this.on("downloadDataBtn", "click", () => this.downloadUserData());
+
+    // 総合タブ: 活動サマリコピーボタン
+    this.on("copySummaryBtn", "click", () => this.copyShareSummary());
+
+    // 総合タブ: 共有URL保存ボタン
+    this.on("saveShareUrlBtn", "click", () => {
+      const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement | null;
+      if (urlInput) {
+        this.saveShareUrl(urlInput.value.trim());
+        this.updateShareUrlOpenBtn();
+      }
+    });
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -1639,6 +1911,9 @@ export class QuizApp {
     }
     if (this.activePanelTab === "guide") {
       this.updateGuidePanelContent();
+    }
+    if (this.filter.subject === "all") {
+      this.renderOverallSummaryPanel(allRecords);
     }
   }
 
@@ -1883,22 +2158,22 @@ export class QuizApp {
    * クイズパネルの表示/非表示を更新する。
    * 教科タブでカテゴリが未選択（category === "all"）の場合はクイズパネルを非表示にし、
    * カテゴリが選択されている場合は表示する。
-   * 「総合」タブ（subject === "all"）ではすべてのパネルタブとコンテンツを非表示にする。
+   * 「総合」タブ（subject === "all"）では通常のパネルタブを非表示にし、総合サマリパネルを表示する。
    */
   private updateQuizPanelVisibility(): void {
     const subjectContent = document.getElementById("subjectContent");
     if (!subjectContent) return;
 
-    // 「総合」タブではすべてのパネルタブとコンテンツを非表示にする
     const isAll = this.filter.subject === "all";
     const selLevel = this.getSelectionLevel();
     const noCategory = !isAll && selLevel === "none";
     const isCategoryLevel = !isAll && (selLevel === "topCategory" || selLevel === "parentCategory");
 
-    // 何も選択されていないか総合タブの場合は右パネルを非表示にしてカテゴリリストを全幅表示する
-    subjectContent.classList.toggle("category-only", noCategory || isAll);
+    // 何も選択されていない場合（総合タブを除く）は右パネルを非表示にしてカテゴリリストを全幅表示する
+    // 総合タブは総合サマリパネルを右に表示するため category-only にしない
+    subjectContent.classList.toggle("category-only", noCategory);
 
-    // 総合タブでは解説タブも含めすべてのパネルタブを非表示
+    // 総合タブでは通常のパネルタブを非表示
     ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
       document.getElementById(id)?.classList.toggle("hidden", isAll);
     });
@@ -1915,11 +2190,14 @@ export class QuizApp {
     });
 
     if (isAll) {
-      // コンテンツパネルもすべて非表示にする
+      // 通常のコンテンツパネルを非表示にして総合サマリパネルを表示
       ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
         document.getElementById(id)?.classList.add("hidden");
       });
+      document.getElementById("overallSummaryPanel")?.classList.remove("hidden");
     } else {
+      // 総合サマリパネルを非表示にして通常のパネルを表示
+      document.getElementById("overallSummaryPanel")?.classList.add("hidden");
       // 「総合」以外では現在アクティブなパネルを表示する（総合から戻った場合も含む）
       this.showPanelTab(this.activePanelTab);
     }
