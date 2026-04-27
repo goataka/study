@@ -110,27 +110,31 @@
 
           <!-- 総合タブ専用サマリパネル -->
           <div id="overallSummaryPanel" class="hidden overall-summary-panel" role="region" aria-label="総合サマリ">
-            <!-- 今日の活動 -->
-            <div class="overall-section">
-              <h3 class="overall-section-title">📅 今日の活動</h3>
-              <div id="todayActivityContent" class="overall-today-content"></div>
+            <!-- 活動タブ -->
+            <div class="overall-activity-tabs" role="tablist" aria-label="活動期間">
+              <button class="overall-activity-tab active" id="overallTab-today" data-tab="today" role="tab" type="button" aria-selected="true" aria-controls="overallTodayPanel">📅 今日の活動</button>
+              <button class="overall-activity-tab" id="overallTab-past" data-tab="past" role="tab" type="button" aria-selected="false" aria-controls="overallPastPanel">📊 過去の活動</button>
             </div>
-            <!-- 活動サマリ（SNS共有用） -->
-            <div class="overall-section">
-              <h3 class="overall-section-title">📢 活動サマリ</h3>
+            <!-- 今日の活動パネル -->
+            <div id="overallTodayPanel" class="overall-activity-panel" role="tabpanel" aria-labelledby="overallTab-today">
+              <!-- 活動サマリ（SNS共有用） -->
               <div id="shareSummaryText" class="share-summary-text"></div>
-              <div class="share-actions">
+              <div class="share-actions-row">
                 <button id="copySummaryBtn" class="share-copy-btn" type="button">📋 コピー</button>
-                <div class="share-url-row">
-                  <input type="url" id="shareUrlInput" class="share-url-input" placeholder="共有URLを入力（例: https://twitter.com）">
-                  <button id="saveShareUrlBtn" class="share-url-save-btn" type="button">保存</button>
-                  <a id="openShareUrlBtn" class="share-url-open-btn hidden" href="#" target="_blank" rel="noopener noreferrer">🔗 開く</a>
+                <button id="openShareUrlBtn" class="share-url-open-btn hidden" type="button">📤 共有</button>
+                <div class="share-url-inline">
+                  <button id="shareUrlDisplayBtn" class="share-url-display-btn" type="button" title="URLを編集" aria-expanded="false">URLを設定</button>
+                  <div id="shareUrlEditArea" class="share-url-edit-area hidden">
+                    <input type="url" id="shareUrlInput" class="share-url-input" aria-label="共有URL" placeholder="共有URLを入力（例: https://twitter.com）">
+                    <button id="saveShareUrlBtn" class="share-url-save-btn" type="button" aria-label="保存">✓</button>
+                  </div>
                 </div>
               </div>
+              <!-- 今日の活動一覧（履歴形式） -->
+              <div id="todayActivityContent" class="history-list overall-today-list"></div>
             </div>
-            <!-- 過去の活動 -->
-            <div class="overall-section">
-              <h3 class="overall-section-title">📊 過去の活動</h3>
+            <!-- 過去の活動パネル -->
+            <div id="overallPastPanel" class="overall-activity-panel hidden" role="tabpanel" aria-labelledby="overallTab-past">
               <div id="overallHistoryList" class="history-list"></div>
             </div>
           </div>
