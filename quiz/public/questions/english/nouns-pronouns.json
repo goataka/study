@@ -123,7 +123,7 @@
     },
     {
       "id": "3ab826b2-5e55-568a-b814-7bbb1a0ab936",
-      "question": "He is ___ honest person. (不定の単数名詞・母音で始まる)",
+      "question": "He is ___ honest person. (不定の単数名詞・発音が母音で始まる)",
       "choices": [
         "an",
         "a",
@@ -131,7 +131,7 @@
         "（なし）"
       ],
       "correct": 0,
-      "explanation": "母音（a, e, i, o, u）で始まる単数名詞の前には an を使います"
+      "explanation": "発音が母音で始まる単数名詞の前には an を使います（例: honest はつづりが h でも発音が母音で始まるので an）"
     }
   ]
 }
