@@ -3,7 +3,7 @@
  * IProgressRepository の実装。
  */
 
-import type { IProgressRepository, QuizRecord } from "../application/ports";
+import type { IProgressRepository, QuizRecord, UserDataExport } from "../application/ports";
 
 const STORAGE_KEY = "wrongQuestions";
 const CORRECT_STREAKS_KEY = "correctStreaks";
@@ -118,5 +118,17 @@ export class LocalStorageProgressRepository implements IProgressRepository {
     } catch (error) {
       console.error("文字サイズの保存に失敗しました:", error);
     }
+  }
+
+  exportAllData(): UserDataExport {
+    return {
+      exportedAt: new Date().toISOString(),
+      userName: this.loadUserName(),
+      wrongIds: this.loadWrongIds(),
+      correctStreaks: this.loadCorrectStreaks(),
+      history: this.loadHistory(),
+      categoryViewMode: this.loadCategoryViewMode(),
+      fontSizeLevel: this.loadFontSizeLevel(),
+    };
   }
 }

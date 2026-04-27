@@ -242,6 +242,23 @@ export class QuizApp {
     this.closeUserNameEdit();
   }
 
+  private downloadUserData(): void {
+    const data = this.useCase.exportAllData();
+    const json = JSON.stringify(data);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    const dateStr = new Date().toISOString().slice(0, 10);
+    a.download = `study-data-${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 0);
+  }
+
   private buildSubjectTabs(): void {
     const tabsContainer = document.querySelector(".subject-tabs");
     if (!tabsContainer) return;
@@ -1585,6 +1602,9 @@ export class QuizApp {
         }
       });
     });
+
+    // データダウンロードボタン
+    this.on("downloadDataBtn", "click", () => this.downloadUserData());
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
