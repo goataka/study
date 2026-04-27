@@ -3379,7 +3379,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const container = document.getElementById("todayActivityContent");
-    expect(container?.textContent).toContain("まだクイズをしていません");
+    expect(container?.textContent).toContain("この日はクイズをしていません");
   });
 
   it("今日の学習記録がある場合、todayActivityContent にスコアが表示される", async () => {

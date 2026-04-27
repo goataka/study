@@ -910,7 +910,7 @@ header h1 {
     color: white;
 }
 
-/* 総合タブ時のレイアウト: 単元選択を右、活動パネルを左 */
+/* 総合タブ時のレイアウト: 活動サマリ（左）とおすすめ単元（右）を等幅で表示 */
 .start-content-layout.all-subject-layout {
     grid-template-columns: 1fr 1fr;
 }

@@ -1114,7 +1114,7 @@ export class QuizApp {
     if (todayRecords.length === 0) {
       const empty = document.createElement("p");
       empty.className = "today-activity-empty";
-      empty.textContent = "この日はまだクイズをしていません。";
+      empty.textContent = "この日はクイズをしていません。";
       container.appendChild(empty);
       return;
     }
