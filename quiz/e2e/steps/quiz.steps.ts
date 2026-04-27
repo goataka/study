@@ -94,7 +94,7 @@ Given("I have selected a quiz category", async ({ page }) => {
 });
 
 When("I click the {string} button", async ({ page }, buttonText: string) => {
-  await page.getByRole("button", { name: buttonText }).click();
+  await page.getByRole("button", { name: buttonText, exact: true }).click();
 });
 
 Then("the quiz screen should be visible", async ({ page }) => {

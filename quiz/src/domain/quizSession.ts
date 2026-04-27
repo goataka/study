@@ -78,7 +78,9 @@ export class QuizSession {
     }
     this._userTextAnswers.set(questionIndex, text);
     const correctAnswer = question.choices[question.correct] ?? "";
-    const isCorrect = normalizeTextAnswer(text) === normalizeTextAnswer(correctAnswer);
+    const isCorrect = question.caseSensitive
+      ? normalizeTextAnswer(text, true) === normalizeTextAnswer(correctAnswer, true)
+      : normalizeTextAnswer(text) === normalizeTextAnswer(correctAnswer);
     this._userAnswers.set(questionIndex, isCorrect ? question.correct : -1);
   }
 
@@ -148,14 +150,18 @@ export class QuizSession {
 }
 
 /**
- * テキスト回答を正規化する（大文字小文字・全角半角・前後空白を統一）。
+ * テキスト回答を正規化する（全角半角・前後空白を統一）。
+ * caseSensitive が false（デフォルト）の場合は大文字小文字も統一する。
  */
-function normalizeTextAnswer(text: string): string {
-  return text
+function normalizeTextAnswer(text: string, caseSensitive = false): string {
+  let result = text
     .trim()
-    .toLowerCase()
     // 全角英数字を半角に変換
     .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
     // 空白を除去
     .replace(/\s+/g, "");
+  if (!caseSensitive) {
+    result = result.toLowerCase();
+  }
+  return result;
 }
