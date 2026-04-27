@@ -4544,7 +4544,7 @@ describe("QuizApp — 選択中の単元情報パネル仕様", () => {
     expect(subjectContent?.classList.contains("category-only")).toBe(true);
   });
 
-  it("教科タブ切り替え後は selectedUnitInfo が非表示", async () => {
+  it("同じ教科タブを再クリックすると selectedUnitInfo が非表示になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -4554,8 +4554,8 @@ describe("QuizApp — 選択中の単元情報パネル仕様", () => {
     const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
     catItem?.click();
 
-    // 別の教科タブを押して選択解除
-    englishTab?.click(); // 同じタブをもう一度押すと category="all" にリセット
+    // 同じ教科タブを再クリックすると category="all" にリセットされる
+    englishTab?.click();
 
     const info = document.getElementById("selectedUnitInfo");
     expect(info?.classList.contains("hidden")).toBe(true);

@@ -930,6 +930,14 @@ header h1 {
     color: white;
 }
 
+.selected-unit-close-btn:focus-visible {
+    background: #0366d6;
+    border-color: #0366d6;
+    color: white;
+    outline: 3px solid #9ecbff;
+    outline-offset: 2px;
+}
+
 /* インナータブ */
 .panel-tabs {
     display: flex;

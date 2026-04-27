@@ -1326,14 +1326,13 @@ export class QuizApp {
       e.stopPropagation();
       // 既に選択中の単元をクリックした場合は非選択に戻す（トグル）
       if (this.filter.subject === subject && this.filter.category === categoryId) {
-        this.filter.category = "all";
-        this.filter.parentCategory = undefined;
-      } else {
-        this.filter.subject = subject;
-        this.filter.category = categoryId;
-        this.filter.parentCategory = parentCatId;
-        this.selectedTopCategoryId = null;
+        this.deselectAndRefresh();
+        return;
       }
+      this.filter.subject = subject;
+      this.filter.category = categoryId;
+      this.filter.parentCategory = parentCatId;
+      this.selectedTopCategoryId = null;
       this.updateCategoryListActive();
       const categoryRecords = this.useCase.getHistory();
       this.autoSelectPanelTab(categoryRecords);
@@ -1482,6 +1481,21 @@ export class QuizApp {
   // ─── 解説パネル ────────────────────────────────────────────────────────────
 
   /**
+   * 選択を完全に解除して UI を更新する共通処理。
+   * 閉じるボタンや単元アイテムのトグル（既選択クリック）から呼び出す。
+   */
+  private deselectAndRefresh(): void {
+    this.filter.category = "all";
+    this.filter.parentCategory = undefined;
+    this.selectedTopCategoryId = null;
+    this.isPanelTabUserSelected = false;
+    this.updateCategoryListActive();
+    const records = this.useCase.getHistory();
+    this.autoSelectPanelTab(records);
+    this.updateStartScreen(records);
+  }
+
+  /**
    * 選択中の単元・カテゴリ情報パネルを更新する。
    * 単元・親カテゴリ・トップカテゴリが選択されている場合に情報を表示し、
    * 閉じるボタン（×）で選択を解除できるようにする。
@@ -1565,14 +1579,7 @@ export class QuizApp {
     closeBtn.title = "閉じる";
     closeBtn.setAttribute("aria-label", "選択を解除して閉じる");
     closeBtn.addEventListener("click", () => {
-      this.filter.category = "all";
-      this.filter.parentCategory = undefined;
-      this.selectedTopCategoryId = null;
-      this.isPanelTabUserSelected = false;
-      this.updateCategoryListActive();
-      const records = this.useCase.getHistory();
-      this.autoSelectPanelTab(records);
-      this.updateStartScreen(records);
+      this.deselectAndRefresh();
     });
     container.appendChild(closeBtn);
   }
