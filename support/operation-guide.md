@@ -1,0 +1,275 @@
+---
+permalink: /support/operation-guide/
+---
+
+# 操作ガイド
+
+学習アプリの画面構成と各機能、および学習コンテンツ一覧を説明します。
+
+## 画面構成
+
+### トップ画面
+
+アプリを開いたときに最初に表示される画面です。
+
+| 要素 | 説明 |
+|------|------|
+| 科目セレクター | 英語・数学・国語から科目を選択する |
+| カテゴリセレクター | 選んだ科目の学習単元を選択する |
+| スタートボタン | クイズを開始する |
+| 進捗表示 | 各カテゴリの学習状況（正解率など）を表示する |
+
+### クイズ画面
+
+クイズ中に表示される画面です。
+
+| 要素 | 説明 |
+|------|------|
+| 問題文 | 出題される問題 |
+| 選択肢（4択） | 回答候補。タップ（クリック）して回答する |
+| 進捗バー | 10問中の現在の問題番号を表示する |
+| 解説ボタン | 解説ページを開く |
+
+### 結果画面
+
+10問すべて回答した後に表示される画面です。
+
+| 要素 | 説明 |
+|------|------|
+| スコア | 10問中の正解数を表示する |
+| 正解率 | パーセントで正解率を表示する |
+| もう一度ボタン | 同じカテゴリをもう一度練習する |
+| カテゴリ変更ボタン | 別のカテゴリに切り替える |
+
+## フォントサイズ設定
+
+解説ページのフォントサイズは、クイズアプリ側の設定と連動します。
+
+- **標準**：デフォルトのフォントサイズ
+- **中**：1.2倍
+- **大**：1.5倍
+
+## コンテンツ
+
+### 英語
+
+#### 📢 発音
+
+##### 基礎
+
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
+| アルファベット（大文字の読み） | [解説](../../english/pronunciation/alphabet/guide) | [確認](../../app/?subject=english&category=alphabet) | A(えい) B(びー) |
+| アルファベット（小文字の読み） | [解説](../../english/pronunciation/alphabet-lowercase/guide) | [確認](../../app/?subject=english&category=alphabet-lowercase) | a(えい) b(びー) |
+| アルファベット（大文字の書き） | [解説](../../english/pronunciation/alphabet-uppercase-writing/guide) | [確認](../../app/?subject=english&category=alphabet-uppercase-writing) | えい→A びー→B |
+| アルファベット（小文字の書き） | [解説](../../english/pronunciation/alphabet-lowercase-writing/guide) | [確認](../../app/?subject=english&category=alphabet-lowercase-writing) | えい→a びー→b |
+| 記号 | [解説](../../english/pronunciation/symbols/guide) | [確認](../../app/?subject=english&category=symbols) | .(ピリオド) ?(クエスチョンマーク) |
+| 五十音（ひらがな・ローマ字・促音・長音） | [解説](../../english/pronunciation/50on/guide) | [確認](../../app/?subject=english&category=50on) | あ=a い=i う=u |
+| 濁音・半濁音・拗音 | [解説](../../english/pronunciation/romaji-advanced/guide) | [確認](../../app/?subject=english&category=romaji-advanced) | が=ga ぱ=pa しゃ=sha |
+
+##### フォニックス
+
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
+| 1文字（その１） | [解説](../../english/pronunciation/phonics-1letter/guide) | [確認](../../app/?subject=english&category=phonics-1) | `a`→/æ/ (apple) |
+| 1文字（その２） | [解説](../../english/pronunciation/phonics-1letter-2/guide) | [確認](../../app/?subject=english&category=phonics-1-2) | `a`→/æ/ (ant) |
+| 2文字・マジックE（その１） | [解説](../../english/pronunciation/phonics-2letter/guide) | [確認](../../app/?subject=english&category=phonics-2) | `a_e`→/eɪ/ (cake) |
+| 2文字・マジックE（その２） | [解説](../../english/pronunciation/phonics-2letter-2/guide) | [確認](../../app/?subject=english&category=phonics-2-2) | `sh`→/ʃ/ (shop) |
+| 3文字（その１） | [解説](../../english/pronunciation/phonics-3letter/guide) | [確認](../../app/?subject=english&category=phonics-3) | `igh`→/aɪ/ (night) |
+| 3文字（その２） | [解説](../../english/pronunciation/phonics-3letter-2/guide) | [確認](../../app/?subject=english&category=phonics-3-2) | `tch`→/tʃ/ (watch) |
+
+##### 音声変化
+
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
+| リンキング | [解説](../../english/pronunciation/linking/guide) | [確認](../../app/?subject=english&category=linking) | check_it→チェキッ |
+| リダクション | [解説](../../english/pronunciation/reduction/guide) | [確認](../../app/?subject=english&category=reduction) | for→/fər/ |
+| フラッピング | [解説](../../english/pronunciation/flapping/guide) | [確認](../../app/?subject=english&category=flapping) | water→ウォダー |
+| アシミレーション | [解説](../../english/pronunciation/assimilation/guide) | [確認](../../app/?subject=english&category=assimilation) | meet you→ミーチュー |
+
+##### 発音記号
+
+| 内容 | 解説 | 確認 | 例 |
+|------|------|--------|-----|
+| 短母音 | [解説](../../english/pronunciation/phonetic-symbols/short-vowels/guide) | [確認](../../app/?subject=english&category=phonetic-symbols-short-vowels) | `/æ/`→ア（cat） |
+| 長母音 | [解説](../../english/pronunciation/phonetic-symbols/long-vowels/guide) | [確認](../../app/?subject=english&category=phonetic-symbols-long-vowels) | `/iː/`→イー（see） |
+| R音性母音 | [解説](../../english/pronunciation/phonetic-symbols/r-vowels/guide) | [確認](../../app/?subject=english&category=phonetic-symbols-r-vowels) | `/ɜːr/`→アー（bird） |
+| 二重母音 | [解説](../../english/pronunciation/phonetic-symbols/diphthongs/guide) | [確認](../../app/?subject=english&category=phonetic-symbols-diphthongs) | `/aɪ/`→アイ（my） |
+| 破裂音 | [解説](../../english/pronunciation/phonetic-symbols/plosives/guide) | [確認](../../app/?subject=english&category=phonetic-symbols-plosives) | `/p/`→プ（pen） |
+| 摩擦音 | [解説](../../english/pronunciation/phonetic-symbols/fricatives/guide) | [確認](../../app/?subject=english&category=phonetic-symbols-fricatives) | `/θ/`→ス（think） |
+| 破擦音・鼻音 | [解説](../../english/pronunciation/phonetic-symbols/affricates-nasals/guide) | [確認](../../app/?subject=english&category=phonetic-symbols-affricates-nasals) | `/tʃ/`→チュ（chat） |
+| 接近音・流音 | [解説](../../english/pronunciation/phonetic-symbols/approximants/guide) | [確認](../../app/?subject=english&category=phonetic-symbols-approximants) | `/l/`→ル（let） |
+
+#### 📝 文法
+
+| # | 内容 | 解説 | 確認 | 例 |
+|---|------|------|--------|-----|
+| 11 | 英語の文の構造 | [解説](../../english/grammar/sentence-structure/guide) | - | `I` `play` `games`. （S+V+O） |
+| 12 | 名詞と代名詞 | [解説](../../english/grammar/nouns-pronouns/guide) | [確認](../../app/?subject=english&category=nouns-pronouns) | `I` / `You` / `He` / `game` |
+| 13 | 一般動詞の現在形 | [解説](../../english/grammar/tenses-regular-present/guide) | [確認](../../app/?subject=english&category=tenses-regular-present) | I `play` games. |
+| 14 | 一般動詞の過去形 | [解説](../../english/grammar/tenses-regular-past/guide) | [確認](../../app/?subject=english&category=tenses-regular-past) | I `played` games. |
+| 15 | 一般動詞の未来形 | [解説](../../english/grammar/tenses-regular-future/guide) | [確認](../../app/?subject=english&category=tenses-regular-future) | I `will play` games. |
+| 16 | be動詞の現在形 | [解説](../../english/grammar/tenses-be-present/guide) | [確認](../../app/?subject=english&category=tenses-be-present) | The game `is` fun. |
+| 17 | be動詞の過去形 | [解説](../../english/grammar/tenses-be-past/guide) | [確認](../../app/?subject=english&category=tenses-be-past) | The game `was` fun. |
+| 18 | be動詞の未来形 | [解説](../../english/grammar/tenses-be-future/guide) | [確認](../../app/?subject=english&category=tenses-be-future) | The game `will be` fun. |
+| 19 | 不規則動詞の過去形 | [解説](../../english/grammar/tenses-irregular/guide) | [確認](../../app/?subject=english&category=tenses-irregular) | I `bought` games. |
+| 20 | 冠詞 | [解説](../../english/grammar/articles/guide) | [確認](../../app/?subject=english&category=articles) | I play `a` game. |
+| 21 | 形容詞 | [解説](../../english/grammar/adjectives/guide) | [確認](../../app/?subject=english&category=adjectives) | I play `fun` games. |
+| 22 | 副詞 | [解説](../../english/grammar/adverbs/guide) | [確認](../../app/?subject=english&category=adverbs) | I `always` play games. |
+| 23 | 前置詞 | [解説](../../english/grammar/prepositions/guide) | [確認](../../app/?subject=english&category=prepositions) | I play games `at` home. |
+| 24 | 接続詞 | [解説](../../english/grammar/conjunctions/guide) | [確認](../../app/?subject=english&category=conjunctions) | I play games `and` study. |
+| 25 | 進行形 | [解説](../../english/grammar/progressive/guide) | [確認](../../app/?subject=english&category=progressive) | I `am playing` games. |
+| 26 | -ing形の作り方 | [解説](../../english/grammar/progressive-ing/guide) | [確認](../../app/?subject=english&category=progressive-ing) | play→`playing` |
+| 27 | 完了形 | [解説](../../english/grammar/perfect/guide) | [確認](../../app/?subject=english&category=perfect) | I `have played` games. |
+| 28 | 過去分詞の変化 | [解説](../../english/grammar/perfect-participles/guide) | [確認](../../app/?subject=english&category=perfect-participles) | play→`played` |
+| 29 | 用法 | [解説](../../english/grammar/perfect-usage/guide) | [確認](../../app/?subject=english&category=perfect-usage) | I `have played` games `for` 3 years. |
+| 30 | 使い分け | [解説](../../english/grammar/modals-basic/guide) | [確認](../../app/?subject=english&category=modals-basic) | I `can play` games. |
+| 31 | 否定形 | [解説](../../english/grammar/modals-negative/guide) | [確認](../../app/?subject=english&category=modals-negative) | I `cannot play` games. |
+| 32 | 過去形 | [解説](../../english/grammar/modals-past/guide) | [確認](../../app/?subject=english&category=modals-past) | I `could play` games. |
+| 33 | 受動態 | [解説](../../english/grammar/passive/guide) | [確認](../../app/?subject=english&category=passive) | Games `are played` by me. |
+| 34 | 助動詞の受動態 | [解説](../../english/grammar/passive-modals/guide) | [確認](../../app/?subject=english&category=passive-modals) | Games `can be played` by anyone. |
+| 35 | 条件文 | [解説](../../english/grammar/conditionals-if/guide) | [確認](../../app/?subject=english&category=conditionals-if) | If I `had` time, I `would play` games. |
+| 36 | 仮定法（願望） | [解説](../../english/grammar/conditionals-wish/guide) | [確認](../../app/?subject=english&category=conditionals-wish) | I wish I `could play` games. |
+| 37 | 条件文（〜しない限り） | [解説](../../english/grammar/conditionals-unless/guide) | [確認](../../app/?subject=english&category=conditionals-unless) | I play games `unless` I am busy. |
+| 38 | 疑問文 | [解説](../../english/grammar/questions/guide) | [確認](../../app/?subject=english&category=questions) | `Do` you play games? |
+| 39 | 否定文 | [解説](../../english/grammar/negatives/guide) | [確認](../../app/?subject=english&category=negatives) | I `do not play` games. |
+| 40 | 疑問詞 | [解説](../../english/grammar/questions-wh/guide) | [確認](../../app/?subject=english&category=questions-wh) | `What` games do you play? |
+| 41 | 比較級 | [解説](../../english/grammar/comparatives-er/guide) | [確認](../../app/?subject=english&category=comparatives-er) | I play games `more` than you. |
+| 42 | 最上級 | [解説](../../english/grammar/comparatives-est/guide) | [確認](../../app/?subject=english&category=comparatives-est) | I play games `the most`. |
+| 43 | 不規則な比較変化 | [解説](../../english/grammar/comparatives-irregular/guide) | [確認](../../app/?subject=english&category=comparatives-irregular) | I play games `better` than you. |
+| 44 | 主格の関係代名詞 | [解説](../../english/grammar/relative-subject/guide) | [確認](../../app/?subject=english&category=relative-subject) | The boy `who` plays games is my friend. |
+| 45 | 目的格の関係代名詞 | [解説](../../english/grammar/relative-object/guide) | [確認](../../app/?subject=english&category=relative-object) | The game `which` I play is fun. |
+| 46 | 所有格の関係代名詞 | [解説](../../english/grammar/relative-possessive/guide) | [確認](../../app/?subject=english&category=relative-possessive) | The boy `whose` father plays games is my friend. |
+| 47 | 関係副詞 | [解説](../../english/grammar/relative-adverb/guide) | [確認](../../app/?subject=english&category=relative-adverb) | The place `where` I play games is quiet. |
+| 48 | 時制の一致 | [解説](../../english/grammar/reported-tense/guide) | [確認](../../app/?subject=english&category=reported-tense) | He said he `played` games. |
+| 49 | 疑問文の間接話法 | [解説](../../english/grammar/reported-question/guide) | [確認](../../app/?subject=english&category=reported-question) | He asked if I `played` games. |
+| 50 | 命令文の間接話法 | [解説](../../english/grammar/reported-imperative/guide) | [確認](../../app/?subject=english&category=reported-imperative) | He told me `to play` games. |
+| 51 | 指示語の変化 | [解説](../../english/grammar/reported-expressions/guide) | [確認](../../app/?subject=english&category=reported-expressions) | `this` game→`that` game |
+
+### 数学
+
+#### 📊 算数・基本計算
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 01 | ➕ くり上がりなし その１ | 小学1年 | [解説](../../math/arithmetic/addition-1digit-no-carry/guide) | [確認](../../app/?subject=math&category=addition-no-carry-1digit) | 3 + 4 = 7 |
+| 02 | ➕ くり上がりなし その２ | 小学2年 | [解説](../../math/arithmetic/addition-2digit-no-carry/guide) | [確認](../../app/?subject=math&category=addition-no-carry-2digit) | 23 + 45 = 68 |
+| 03 | ➕ くり上がりなし その３ | 小学3年 | [解説](../../math/arithmetic/addition-3digit-no-carry/guide) | [確認](../../app/?subject=math&category=addition-no-carry-3digit) | 123 + 456 = 579 |
+| 04 | ➕ くり上がりあり | 小学1年〜3年 | [解説](../../math/arithmetic/addition-carry/guide) | [確認](../../app/?subject=math&category=addition-carry) | 7 + 8 = 15 |
+| 05 | ➕ まとめ | 小学3年 | [解説](../../math/arithmetic/addition-mixed/guide) | [確認](../../app/?subject=math&category=addition-mixed) | 6 + 9 = 15 |
+| 06 | ➕ 文章問題 | 小学3年 | [解説](../../math/arithmetic/addition-word-problems/guide) | [確認](../../app/?subject=math&category=addition-word-problems) | りんご3個＋4個＝？ |
+| 07 | ➖ くり下がりなし その１ | 小学1年 | [解説](../../math/arithmetic/subtraction-1digit-no-borrow/guide) | [確認](../../app/?subject=math&category=subtraction-no-borrow-1digit) | 8 - 3 = 5 |
+| 08 | ➖ くり下がりなし その２ | 小学2年 | [解説](../../math/arithmetic/subtraction-2digit-no-borrow/guide) | [確認](../../app/?subject=math&category=subtraction-no-borrow-2digit) | 58 - 23 = 35 |
+| 09 | ➖ くり下がりなし その３ | 小学3年 | [解説](../../math/arithmetic/subtraction-3digit-no-borrow/guide) | [確認](../../app/?subject=math&category=subtraction-no-borrow-3digit) | 689 - 234 = 455 |
+| 10 | ➖ くり下がりあり | 小学1年〜3年 | [解説](../../math/arithmetic/subtraction-borrow/guide) | [確認](../../app/?subject=math&category=subtraction-borrow) | 13 - 7 = 6 |
+| 11 | ➖ まとめ | 小学3年 | [解説](../../math/arithmetic/subtraction-mixed/guide) | [確認](../../app/?subject=math&category=subtraction-mixed) | 15 - 8 = 7 |
+| 12 | ➖ 文章問題 | 小学3年 | [解説](../../math/arithmetic/subtraction-word-problems/guide) | [確認](../../app/?subject=math&category=subtraction-word-problems) | クッキー12枚－5枚＝？ |
+| 13 | ✖️ その１（1桁×1桁・九九） | 小学2年 | [解説](../../math/arithmetic/multiplication-1digit/guide) | [確認](../../app/?subject=math&category=multiplication-1digit) | 6 × 7 = 42 |
+| 14 | ✖️ その２（2桁×1桁） | 小学3年 | [解説](../../math/arithmetic/multiplication-2digit/guide) | [確認](../../app/?subject=math&category=multiplication-2digit) | 23 × 4 = 92 |
+| 15 | ✖️ その３（3桁×1桁） | 小学3年 | [解説](../../math/arithmetic/multiplication-3digit/guide) | [確認](../../app/?subject=math&category=multiplication-3digit) | 123 × 4 = 492 |
+| 16 | ✖️ まとめ | 小学3年 | [解説](../../math/arithmetic/multiplication-mixed/guide) | [確認](../../app/?subject=math&category=multiplication-mixed) | 6 × 7 = 42 |
+| 17 | ✖️ 文章問題 | 小学3年 | [解説](../../math/arithmetic/multiplication-word-problems/guide) | [確認](../../app/?subject=math&category=multiplication-word-problems) | 1箱6個×4箱＝？ |
+| 18 | ➗ あまりなし その１ | 小学3年 | [解説](../../math/arithmetic/division-1digit-no-remainder/guide) | [確認](../../app/?subject=math&category=division-no-remainder-1digit) | 12 ÷ 4 = 3 |
+| 19 | ➗ あまりなし その２ | 小学3年 | [解説](../../math/arithmetic/division-2digit-no-remainder/guide) | [確認](../../app/?subject=math&category=division-no-remainder-2digit) | 84 ÷ 4 = 21 |
+| 20 | ➗ あまりなし その３ | 小学4年 | [解説](../../math/arithmetic/division-3digit-no-remainder/guide) | [確認](../../app/?subject=math&category=division-no-remainder-3digit) | 840 ÷ 12 = 70 |
+| 21 | ➗ あまりあり | 小学3年〜4年 | [解説](../../math/arithmetic/division-remainder/guide) | [確認](../../app/?subject=math&category=division-remainder) | 17 ÷ 5 = 3…2 |
+| 22 | ➗ まとめ | 小学4年 | [解説](../../math/arithmetic/division-mixed/guide) | [確認](../../app/?subject=math&category=division-mixed) | 23 ÷ 4 = 5…3 |
+| 23 | ➗ 文章問題 | 小学3年 | [解説](../../math/arithmetic/division-word-problems/guide) | [確認](../../app/?subject=math&category=division-word-problems) | 12個÷4人＝？ |
+| 24 | ➕ 分数のたし算（同分母） | 小学4年 | [解説](../../math/arithmetic/fractions-same-add/guide) | [確認](../../app/?subject=math&category=fractions-same-add) | 1/5 + 2/5 = 3/5 |
+| 25 | ➖ 分数のひき算（同分母） | 小学4年 | [解説](../../math/arithmetic/fractions-same-sub/guide) | [確認](../../app/?subject=math&category=fractions-same-sub) | 4/7 - 2/7 = 2/7 |
+| 26 | ➕ 分数のたし算（通分あり） | 小学5年 | [解説](../../math/arithmetic/fractions-diff-add/guide) | [確認](../../app/?subject=math&category=fractions-diff-add) | 1/2 + 1/3 = 5/6 |
+| 27 | ➖ 分数のひき算（通分あり） | 小学5年 | [解説](../../math/arithmetic/fractions-diff-sub/guide) | [確認](../../app/?subject=math&category=fractions-diff-sub) | 3/4 - 1/3 = 5/12 |
+| 28 | ✖️ 分数のかけ算 | 小学6年 | [解説](../../math/arithmetic/fractions-multiply/guide) | [確認](../../app/?subject=math&category=fractions-multiply) | 2/3 × 3/4 = 1/2 |
+| 29 | ➗ 分数のわり算 | 小学6年 | [解説](../../math/arithmetic/fractions-divide/guide) | [確認](../../app/?subject=math&category=fractions-divide) | 2/3 ÷ 4/5 = 5/6 |
+| 30 | ➕ 小数のたし算 | 小学5年 | [解説](../../math/arithmetic/decimals-addition/guide) | [確認](../../app/?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
+| 31 | ➖ 小数のひき算 | 小学5年 | [解説](../../math/arithmetic/decimals-subtraction/guide) | [確認](../../app/?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
+| 32 | ✖️ 小数のかけ算 | 小学5年 | [解説](../../math/arithmetic/decimals-multiplication/guide) | [確認](../../app/?subject=math&category=decimals-multiplication) | 0.3 × 0.4 = 0.12 |
+| 35 | 📊 比 | 小学6年 | [解説](../../math/arithmetic/ratio/guide) | [確認](../../app/?subject=math&category=ratio) | 4:6 = 2:3 |
+| 36 | 📊 割合 | 小学6年 | [解説](../../math/arithmetic/percentage/guide) | [確認](../../app/?subject=math&category=percentage) | 60人の30% = 18人 |
+
+#### 📐 代数
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 22 | 🔢 正負の数 | 中学1年 | [解説](../../math/algebra/positive-negative/guide) | [確認](../../app/?subject=math&category=positive-negative) | (-3) + (+5) = 2 |
+| 23 | 🔤 文字式 | 中学1年 | [解説](../../math/algebra/algebraic-expressions/guide) | [確認](../../app/?subject=math&category=algebraic-expressions) | 3a + 2a = 5a |
+| 24 | 📐 一次方程式 | 中学1年 | [解説](../../math/algebra/linear-eq/guide) | [確認](../../app/?subject=math&category=linear-eq) | 2x + 3 = 7 → x = 2 |
+| 25 | 📐 連立方程式 | 中学2年 | [解説](../../math/algebra/simultaneous-eq/guide) | [確認](../../app/?subject=math&category=simultaneous-eq) | x+y=5, x-y=1 → x=3,y=2 |
+| 26 | 📈 一次関数 | 中学2年 | [解説](../../math/algebra/linear-func/guide) | [確認](../../app/?subject=math&category=linear-func) | y = 2x + 1 |
+| 27 | 🎲 確率 | 中学2年 | [解説](../../math/algebra/probability/guide) | [確認](../../app/?subject=math&category=probability) | サイコロで偶数 = 3/6 = 1/2 |
+| 28 | 🔢 平方根 | 中学3年 | [解説](../../math/algebra/square-roots/guide) | [確認](../../app/?subject=math&category=square-roots) | √12 = 2√3 |
+| 29 | 📐 二次方程式 | 中学3年 | [解説](../../math/algebra/quadratic-eq/guide) | [確認](../../app/?subject=math&category=quadratic-eq) | x²-5x+6=0 → x=2,3 |
+
+#### 📈 解析・高校数学
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 30 | 📈 二次関数 | 高校1年 | [解説](../../math/calculus/quadratic-func/guide) | [確認](../../app/?subject=math&category=quadratic-func) | y = x² - 4x + 3 |
+| 31 | ⚖️ 不等式 | 高校1年 | [解説](../../math/calculus/inequalities/guide) | [確認](../../app/?subject=math&category=inequalities) | 2x - 3 > 5 → x > 4 |
+| 32 | 📐 三角関数 | 高校2年 | [解説](../../math/calculus/trigonometry/guide) | [確認](../../app/?subject=math&category=trigonometry) | sin30° = 1/2 |
+| 33 | 📊 指数・対数 | 高校2年 | [解説](../../math/calculus/exponents-logarithms/guide) | [確認](../../app/?subject=math&category=exponents-logarithms) | log₂8 = 3 |
+| 34 | 🔢 数列 | 高校2年 | [解説](../../math/calculus/sequences/guide) | [確認](../../app/?subject=math&category=sequences) | 1,3,5,7,… → aₙ=2n-1 |
+| 35 | ➡️ ベクトル | 高校2年 | [解説](../../math/calculus/vectors/guide) | [確認](../../app/?subject=math&category=vectors) | →a=(1,2), →b=(3,4) → →a+→b=(4,6) |
+| 36 | ♾️ 極限 | 高校3年 | [解説](../../math/calculus/limits/guide) | [確認](../../app/?subject=math&category=limits) | lim(n→∞) 1/n = 0 |
+| 37 | 📊 微分 | 高校3年 | [解説](../../math/calculus/differentiation/guide) | [確認](../../app/?subject=math&category=differentiation) | f(x)=x³ → f'(x)=3x² |
+| 38 | 📊 積分 | 高校3年 | [解説](../../math/calculus/integration/guide) | [確認](../../app/?subject=math&category=integration) | ∫2xdx = x² + C |
+
+### 国語
+
+#### 📖 漢字
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 01 | 漢字（小学1年） | 小学1年 | [解説](../../japanese/kanji/kanji-grade1/guide) | [確認](../../app/?subject=japanese&category=kanji-grade1) | 山・川・火・水 |
+| 02 | 漢字（小学2年） | 小学2年 | [解説](../../japanese/kanji/kanji-grade2/guide) | [確認](../../app/?subject=japanese&category=kanji-grade2) | 海・魚・鳥・読 |
+| 03 | 漢字（小学3年） | 小学3年 | [解説](../../japanese/kanji/kanji-grade3/guide) | [確認](../../app/?subject=japanese&category=kanji-grade3) | 明・暗・始・終 |
+| 04 | 漢字（小学4年） | 小学4年 | [解説](../../japanese/kanji/kanji-grade4/guide) | [確認](../../app/?subject=japanese&category=kanji-grade4) | 愛・熱・静・感 |
+| 05 | 漢字（小学5年） | 小学5年 | [解説](../../japanese/kanji/kanji-grade5/guide) | [確認](../../app/?subject=japanese&category=kanji-grade5) | 護・衛・複・雑 |
+| 06 | 漢字（小学6年） | 小学6年 | [解説](../../japanese/kanji/kanji-grade6/guide) | [確認](../../app/?subject=japanese&category=kanji-grade6) | 宙・射・危・険 |
+| 07 | 漢字（中学生） | 中学生 | [解説](../../japanese/kanji/kanji-secondary/guide) | [確認](../../app/?subject=japanese&category=kanji-secondary) | 背・滋・賢・縦 |
+| 08 | 漢字（高校生） | 高校生 | [解説](../../japanese/kanji/kanji-high/guide) | [確認](../../app/?subject=japanese&category=kanji-high) | 羅・曖・昧・冶 |
+
+#### 📚 ことわざ・四字熟語
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 09 | ことわざ（小学生） | 小学生 | [解説](../../japanese/kanji/kotowaza-elementary/guide) | [確認](../../app/?subject=japanese&category=kotowaza-elementary) | 七転び八起き |
+| 10 | ことわざ（中学生） | 中学生 | [解説](../../japanese/kanji/kotowaza-secondary/guide) | [確認](../../app/?subject=japanese&category=kotowaza-secondary) | 二兎を追う者は一兎をも得ず |
+| 11 | ことわざ（高校生） | 高校生 | [解説](../../japanese/kanji/kotowaza-high/guide) | [確認](../../app/?subject=japanese&category=kotowaza-high) | 三人寄れば文殊の知恵 |
+| 12 | 四字熟語（小学生） | 小学生 | [解説](../../japanese/kanji/yojijukugo-elementary/guide) | [確認](../../app/?subject=japanese&category=yojijukugo-elementary) | 一石二鳥 |
+| 13 | 四字熟語（中学生） | 中学生 | [解説](../../japanese/kanji/yojijukugo-secondary/guide) | [確認](../../app/?subject=japanese&category=yojijukugo-secondary) | 四面楚歌 |
+| 14 | 四字熟語（高校生） | 高校生 | [解説](../../japanese/kanji/yojijukugo-high/guide) | [確認](../../app/?subject=japanese&category=yojijukugo-high) | 千載一遇 |
+
+#### 📝 語彙
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 15 | ことわざ その１ | 中学生 | [解説](../../japanese/kanji/kotowaza/guide) | [確認](../../app/?subject=japanese&category=kotowaza) | 七転び八起き |
+| 16 | ことわざ その２ | 中学生 | [解説](../../japanese/kanji/kotowaza/guide) | [確認](../../app/?subject=japanese&category=kotowaza-2) | 三人寄れば文殊の知恵 |
+| 17 | 四字熟語 その１ | 中学生 | [解説](../../japanese/kanji/yojijukugo/guide) | [確認](../../app/?subject=japanese&category=yojijukugo) | 一石二鳥 |
+| 18 | 四字熟語 その２ | 中学生 | [解説](../../japanese/kanji/yojijukugo/guide) | [確認](../../app/?subject=japanese&category=yojijukugo-2) | 異口同音 |
+
+#### 📖 読解
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 19 | 文章構造（主語・述語）その１ | 小学生 | [解説](../../japanese/reading/sentence-structure/guide) | [確認](../../app/?subject=japanese&category=reading-sentence-structure) | 主語・述語 |
+| 20 | 文章構造（主語・述語）その２ | 小学生 | [解説](../../japanese/reading/sentence-structure/guide) | [確認](../../app/?subject=japanese&category=reading-sentence-structure-2) | 主語・述語 |
+| 21 | 同等・言い換え関係 その１ | 中学生 | [解説](../../japanese/reading/equivalence/guide) | [確認](../../app/?subject=japanese&category=reading-equivalence) | つまり・すなわち |
+| 22 | 同等・言い換え関係 その２ | 中学生 | [解説](../../japanese/reading/equivalence/guide) | [確認](../../app/?subject=japanese&category=reading-equivalence-2) | つまり・すなわち |
+| 23 | 対比関係 その１ | 中学生 | [解説](../../japanese/reading/contrast/guide) | [確認](../../app/?subject=japanese&category=reading-contrast) | しかし・一方 |
+| 24 | 対比関係 その２ | 中学生 | [解説](../../japanese/reading/contrast/guide) | [確認](../../app/?subject=japanese&category=reading-contrast-2) | しかし・一方 |
+| 25 | 因果関係 その１ | 中学生 | [解説](../../japanese/reading/cause-effect/guide) | [確認](../../app/?subject=japanese&category=reading-cause-effect) | だから・なぜなら |
+| 26 | 因果関係 その２ | 中学生 | [解説](../../japanese/reading/cause-effect/guide) | [確認](../../app/?subject=japanese&category=reading-cause-effect-2) | だから・なぜなら |
+
+## 科目別リンク
+
+- [英語の確認](../../app/?subject=english) - 英語の4択クイズ
+- [数学の確認](../../app/?subject=math) - 数学の4択クイズ
+- [国語の確認](../../app/?subject=japanese) - 国語の4択クイズ
+
+## 🔗 関連リンク
+
+- [スタートアップガイド](../startup-guide/) ─ 使い始め方と基本操作
+- [技術リファレンス](../technical-reference/) ─ 問題データのJSON形式
+- [トラブルシューティング](../troubleshooting/) ─ よくある質問
