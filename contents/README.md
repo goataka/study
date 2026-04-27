@@ -161,8 +161,21 @@
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 09 | ことわざ | 中学生 | [解説](japanese/kanji/kotowaza/guide.md) | [確認](quiz/?subject=japanese&category=kotowaza) | 七転び八起き |
-| 10 | 四字熟語 | 中学生 | [解説](japanese/kanji/yojijukugo/guide.md) | [確認](quiz/?subject=japanese&category=yojijukugo) | 一石二鳥 |
+| 09 | ことわざ（小学生） | 小学生 | [解説](japanese/kanji/kotowaza-elementary/guide.md) | [確認](quiz/?subject=japanese&category=kotowaza-elementary) | 七転び八起き |
+| 10 | ことわざ（中学生） | 中学生 | [解説](japanese/kanji/kotowaza-secondary/guide.md) | [確認](quiz/?subject=japanese&category=kotowaza-secondary) | 二兎を追う者は一兎をも得ず |
+| 11 | ことわざ（高校生） | 高校生 | [解説](japanese/kanji/kotowaza-high/guide.md) | [確認](quiz/?subject=japanese&category=kotowaza-high) | 三人寄れば文殊の知恵 |
+| 12 | 四字熟語（小学生） | 小学生 | [解説](japanese/kanji/yojijukugo-elementary/guide.md) | [確認](quiz/?subject=japanese&category=yojijukugo-elementary) | 一石二鳥 |
+| 13 | 四字熟語（中学生） | 中学生 | [解説](japanese/kanji/yojijukugo-secondary/guide.md) | [確認](quiz/?subject=japanese&category=yojijukugo-secondary) | 四面楚歌 |
+| 14 | 四字熟語（高校生） | 高校生 | [解説](japanese/kanji/yojijukugo-high/guide.md) | [確認](quiz/?subject=japanese&category=yojijukugo-high) | 千載一遇 |
+
+#### 📖 読解
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 15 | 文章構造（主語・述語） | 小学生 | [解説](japanese/reading/sentence-structure/guide.md) | [確認](quiz/?subject=japanese&category=reading-sentence-structure) | 主語・述語 |
+| 16 | 同等・言い換え関係 | 中学生 | [解説](japanese/reading/equivalence/guide.md) | [確認](quiz/?subject=japanese&category=reading-equivalence) | つまり・すなわち |
+| 17 | 対比関係 | 中学生 | [解説](japanese/reading/contrast/guide.md) | [確認](quiz/?subject=japanese&category=reading-contrast) | しかし・一方 |
+| 18 | 因果関係 | 中学生 | [解説](japanese/reading/cause-effect/guide.md) | [確認](quiz/?subject=japanese&category=reading-cause-effect) | だから・なぜなら |
 
 ## 科目別リンク
 
