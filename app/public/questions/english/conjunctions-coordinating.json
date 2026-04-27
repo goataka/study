@@ -1,0 +1,137 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "conjunctions-coordinating",
+  "categoryName": "🔗 等位接続詞",
+  "topCategory": "grammar",
+  "topCategoryName": "文法",
+  "parentCategory": "conjunctions-coordinating",
+  "parentCategoryName": "等位接続詞",
+  "guideUrl": "../english/grammar/conjunctions-coordinating/guide",
+  "parentCategoryGuideUrl": "../english/grammar/guide",
+  "example": "games `and` players",
+  "referenceGrade": "中学1年",
+  "description": "等位接続詞（and, but, or, so）は同じ種類の語・句・文を対等につなぎます。",
+  "questions": [
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000001",
+      "question": "I play games ___ study English. (選択)",
+      "choices": [
+        "or",
+        "and",
+        "but",
+        "so"
+      ],
+      "correct": 0,
+      "explanation": "選択を表すには or を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000002",
+      "question": "I play games, ___ I don't play every day. (逆接)",
+      "choices": [
+        "but",
+        "and",
+        "or",
+        "so"
+      ],
+      "correct": 0,
+      "explanation": "逆接を表すには but を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000003",
+      "question": "I play games ___ study English. (並列)",
+      "choices": [
+        "and",
+        "but",
+        "or",
+        "so"
+      ],
+      "correct": 0,
+      "explanation": "並列を表すには and を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000004",
+      "question": "I was tired, ___ I slept. (結果)",
+      "choices": [
+        "so",
+        "but",
+        "and",
+        "or"
+      ],
+      "correct": 0,
+      "explanation": "結果を表すには so を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000005",
+      "question": "I like games ___ books. (並列)",
+      "choices": [
+        "and",
+        "but",
+        "or",
+        "so"
+      ],
+      "correct": 0,
+      "explanation": "並列（〜と）を表すには and を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000006",
+      "question": "Do you want tea ___ coffee? (選択)",
+      "choices": [
+        "or",
+        "and",
+        "but",
+        "so"
+      ],
+      "correct": 0,
+      "explanation": "選択（〜か〜）を表すには or を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000007",
+      "question": "She wanted to play, ___ she was tired. (逆接)",
+      "choices": [
+        "but",
+        "and",
+        "or",
+        "so"
+      ],
+      "correct": 0,
+      "explanation": "逆接（しかし）を表すには but を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000008",
+      "question": "He studied hard, ___ he passed the test. (結果)",
+      "choices": [
+        "so",
+        "but",
+        "or",
+        "and"
+      ],
+      "correct": 0,
+      "explanation": "結果（だから）を表すには so を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000009",
+      "question": "She can sing ___ dance. (並列)",
+      "choices": [
+        "and",
+        "but",
+        "or",
+        "so"
+      ],
+      "correct": 0,
+      "explanation": "並列（〜と/そして）を表すには and を使います"
+    },
+    {
+      "id": "a1b2c3d4-0011-5011-8011-000000000010",
+      "question": "Study now ___ you will fail. (条件・脅し)",
+      "choices": [
+        "or",
+        "and",
+        "but",
+        "so"
+      ],
+      "correct": 0,
+      "explanation": "「〜しなければ」は or を使います（Study or you will fail = 勉強しなければ失敗するよ）"
+    }
+  ]
+}
