@@ -1119,10 +1119,10 @@ export class QuizApp {
       return;
     }
 
-    // 最新順に並べて履歴形式で表示
+    // 最新順に並べて履歴形式で表示（総合タブなので教科名プレフィックスを付ける）
     const sorted = [...todayRecords].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     sorted.forEach((record) => {
-      container.appendChild(this.buildHistoryItem(record));
+      container.appendChild(this.buildHistoryItem(record, true));
     });
   }
 
@@ -1756,7 +1756,11 @@ export class QuizApp {
     });
   }
 
-  private buildHistoryItem(record: QuizRecord): HTMLElement {
+  /**
+   * @param showSubjectPrefix true のとき「教科名 / 単元名」形式で表示する（総合タブ用）。
+   *                          false のとき単元名のみ表示する（教科別タブ用）。
+   */
+  private buildHistoryItem(record: QuizRecord, showSubjectPrefix = false): HTMLElement {
     const item = document.createElement("div");
     item.className = "history-item";
 
@@ -1782,7 +1786,9 @@ export class QuizApp {
 
     const subjectSpan = document.createElement("span");
     subjectSpan.className = "history-subject";
-    subjectSpan.textContent = `${record.subjectName} / ${record.categoryName}`;
+    subjectSpan.textContent = showSubjectPrefix
+      ? `${record.subjectName} / ${record.categoryName}`
+      : record.categoryName;
 
     const modeSpan = document.createElement("span");
     const modeClassMap: Record<string, string> = { retry: "history-mode--retry", practice: "history-mode--practice", manual: "history-mode--manual" };

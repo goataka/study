@@ -3307,6 +3307,25 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     const categoryItems = document.querySelectorAll(".category-item");
     expect(categoryItems.length).toBeGreaterThan(0);
   });
+
+  it("総合タブ時に allSubjectPanelTitle が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const title = document.getElementById("allSubjectPanelTitle");
+    expect(title?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("教科タブに切り替えると allSubjectPanelTitle が非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector<HTMLElement>('.subject-tab[data-subject="english"]');
+    englishTab?.click();
+
+    const title = document.getElementById("allSubjectPanelTitle");
+    expect(title?.classList.contains("hidden")).toBe(true);
+  });
 });
 
 // ─── 総合タブのサマリパネル仕様 ────────────────────────────────────────────
@@ -3569,6 +3588,93 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     expect(openSpy).toHaveBeenCalledWith("https://twitter.com", "_blank", "noopener,noreferrer");
     openSpy.mockRestore();
+  });
+
+  it("prevDateBtn をクリックすると活動サマリの日付が1日前に移動する", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
+    const beforeDate = picker.value;
+
+    document.getElementById("prevDateBtn")?.click();
+
+    const afterDate = picker.value;
+    const before = new Date(beforeDate + "T00:00:00");
+    const after = new Date(afterDate + "T00:00:00");
+    const diffDays = Math.round((before.getTime() - after.getTime()) / (1000 * 60 * 60 * 24));
+    expect(diffDays).toBe(1);
+  });
+
+  it("今日の日付では nextDateBtn が無効化される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement;
+    expect(nextBtn.disabled).toBe(true);
+  });
+
+  it("1日前に移動すると nextDateBtn が有効化される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("prevDateBtn")?.click();
+
+    const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement;
+    expect(nextBtn.disabled).toBe(false);
+  });
+
+  it("1日前に移動した後に nextDateBtn をクリックすると今日の日付に戻る", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
+    const today = picker.value;
+
+    document.getElementById("prevDateBtn")?.click();
+    document.getElementById("nextDateBtn")?.click();
+
+    expect(picker.value).toBe(today);
+  });
+
+  it("activityDatePicker で日付を変更すると活動一覧が更新される", async () => {
+    const yesterday = (() => {
+      const d = new Date();
+      d.setDate(d.getDate() - 1);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    })();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: yesterday + "T10:00:00.000",
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 今日では活動なし
+    const container = document.getElementById("todayActivityContent");
+    expect(container?.querySelector(".today-activity-empty")).not.toBeNull();
+
+    // カレンダーで昨日を選択
+    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
+    picker.value = yesterday;
+    picker.dispatchEvent(new Event("change", { bubbles: true }));
+
+    // 昨日の記録が表示される
+    expect(container?.querySelectorAll(".history-item").length).toBe(1);
   });
 });
 
