@@ -89,6 +89,7 @@ function setupTabDom(): void {
       <div class="subject-tabs" role="tablist"></div>
       <div id="subjectContent">
         <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
+        <span id="allSubjectPanelTitle" class="hidden">📌 おすすめ単元</span>
         <div id="categoryControls" class="category-controls"></div>
         <div id="categoryList" class="category-list"></div>
         <div id="selectedUnitInfo" class="selected-unit-info hidden"></div>
@@ -118,11 +119,12 @@ function setupTabDom(): void {
           <div id="questionListBody"></div>
         </div>
         <div id="overallSummaryPanel" class="hidden">
-          <div class="overall-activity-tabs">
-            <button class="overall-activity-tab active" id="overallTab-today" data-tab="today" type="button" aria-selected="true">📅 今日の活動</button>
-            <button class="overall-activity-tab" id="overallTab-past" data-tab="past" type="button" aria-selected="false">📊 過去の活動</button>
-          </div>
           <div id="overallTodayPanel" class="overall-activity-panel">
+            <div class="activity-date-nav">
+              <button id="prevDateBtn" type="button" aria-label="前の日へ">←</button>
+              <input type="date" id="activityDatePicker" aria-label="日付を選択">
+              <button id="nextDateBtn" type="button" aria-label="次の日へ">→</button>
+            </div>
             <div id="shareSummaryText"></div>
             <div class="share-actions-row">
               <button id="copySummaryBtn" type="button">📋 コピー</button>
@@ -136,9 +138,6 @@ function setupTabDom(): void {
               </div>
             </div>
             <div id="todayActivityContent"></div>
-          </div>
-          <div id="overallPastPanel" class="overall-activity-panel hidden">
-            <div id="overallHistoryList"></div>
           </div>
         </div>
       </div>
@@ -2340,6 +2339,22 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     expect(exampleEl).toBeNull();
   });
 
+  it("description も example もないカテゴリでは category-item-inline-info が存在しない", async () => {
+    setupTabDom();
+    setupFetchMock(); // mockQuestionFile には description も example もない
+    localStorage.clear();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const inlineInfo = catItem?.querySelector(".category-item-inline-info");
+    expect(inlineInfo).toBeNull();
+  });
+
   it("example ありのカテゴリでは単元選択時に例文が選択情報パネルに表示される", async () => {
     setupTabDom();
     const manifest = {
@@ -2374,9 +2389,9 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 単元一覧には例文が含まれないこと
+    // 単元一覧のインライン情報コンテナに例文が含まれること
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
-    expect(catItem?.querySelector(".category-example")).toBeNull();
+    expect(catItem?.querySelector(".category-item-inline-info .category-example")).not.toBeNull();
 
     // 単元を選択すると選択情報パネルに例文が表示されること
     catItem?.click();
@@ -2466,9 +2481,9 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 単元一覧には説明文が含まれないこと
+    // 単元一覧のインライン情報コンテナに説明文が含まれること
     const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-regular-past"]');
-    expect(catItem?.querySelector(".category-item-description")).toBeNull();
+    expect(catItem?.querySelector(".category-item-inline-info .category-item-description")).not.toBeNull();
 
     // 単元を選択すると選択情報パネルに説明文が表示されること
     catItem?.click();
@@ -3238,20 +3253,20 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
-    const recLabel = englishItem?.querySelector(".subject-overview-rec-label");
-    expect(recLabel?.textContent).toBe("推奨の単元: ");
+    const recName = englishItem?.querySelector(".subject-overview-rec-name");
+    expect(recName?.textContent).toBeTruthy();
   });
 
-  it("未学習の場合、教科アイテムには「未学習」と表示される", async () => {
+  it("未学習の場合、教科アイテムの枠外に「未学習」と表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
-    const dateDiv = englishItem?.querySelector(".subject-overview-date");
-    expect(dateDiv?.textContent).toBe("未学習");
+    const wrapper = document.querySelector('.subject-overview-wrapper:has([data-subject="english"])');
+    const outerDate = wrapper?.querySelector(".subject-overview-outer-date");
+    expect(outerDate?.textContent).toBe("未学習");
   });
 
-  it("学習履歴がある場合、最終学習日が表示される", async () => {
+  it("学習履歴がある場合、最終学習日が枠外に表示される", async () => {
     const studyDate = "2025-04-01T10:00:00.000Z";
     localStorage.setItem(
       "quizHistory",
@@ -3274,10 +3289,9 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
-    const dateDiv = englishItem?.querySelector(".subject-overview-date");
-    expect(dateDiv?.textContent).toContain("最終学習日:");
-    expect(dateDiv?.textContent).toContain("2025");
+    const wrapper = document.querySelector('.subject-overview-wrapper:has([data-subject="english"])');
+    const outerDate = wrapper?.querySelector(".subject-overview-outer-date");
+    expect(outerDate?.textContent).toContain("2025");
   });
 
   it("教科概要アイテムをクリックすると該当教科タブに切り替わる", async () => {
@@ -3308,6 +3322,25 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     const categoryItems = document.querySelectorAll(".category-item");
     expect(categoryItems.length).toBeGreaterThan(0);
+  });
+
+  it("総合タブ時に allSubjectPanelTitle が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const title = document.getElementById("allSubjectPanelTitle");
+    expect(title?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("教科タブに切り替えると allSubjectPanelTitle が非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector<HTMLElement>('.subject-tab[data-subject="english"]');
+    englishTab?.click();
+
+    const title = document.getElementById("allSubjectPanelTitle");
+    expect(title?.classList.contains("hidden")).toBe(true);
   });
 });
 
@@ -3362,7 +3395,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const container = document.getElementById("todayActivityContent");
-    expect(container?.textContent).toContain("まだクイズをしていません");
+    expect(container?.textContent).toContain("この日はクイズをしていません");
   });
 
   it("今日の学習記録がある場合、todayActivityContent にスコアが表示される", async () => {
@@ -3400,7 +3433,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     const today = new Date();
     const year = String(today.getFullYear());
     expect(summaryEl?.textContent).toContain(year);
-    expect(summaryEl?.textContent).toContain("今日の学習サマリ");
+    expect(summaryEl?.textContent).toContain("学習サマリ");
   });
 
   it("共有URLを保存すると openShareUrlBtn が表示される", async () => {
@@ -3482,71 +3515,6 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     const openBtn = document.getElementById("openShareUrlBtn");
     expect(openBtn?.classList.contains("hidden")).toBe(true);
-  });
-
-  it("過去の学習記録がある場合、overallHistoryList に履歴が表示される", async () => {
-    const pastDate = "2025-01-15T10:00:00.000Z";
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: pastDate,
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 4,
-          entries: [],
-        },
-      ])
-    );
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const historyList = document.getElementById("overallHistoryList");
-    const items = historyList?.querySelectorAll(".history-item");
-    expect(items?.length).toBeGreaterThan(0);
-  });
-
-  it("過去の学習記録がない場合、overallHistoryList に未実施メッセージが表示される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const historyList = document.getElementById("overallHistoryList");
-    expect(historyList?.textContent).toContain("まだ回答記録がありません");
-  });
-
-  it("「今日の活動」タブをクリックすると overallTodayPanel が表示され overallPastPanel が非表示になる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    // まず「過去の活動」タブを選択
-    document.getElementById("overallTab-past")?.click();
-    // 次に「今日の活動」タブを選択
-    document.getElementById("overallTab-today")?.click();
-
-    expect(document.getElementById("overallTodayPanel")?.classList.contains("hidden")).toBe(false);
-    expect(document.getElementById("overallPastPanel")?.classList.contains("hidden")).toBe(true);
-    expect(document.getElementById("overallTab-today")?.classList.contains("active")).toBe(true);
-    expect(document.getElementById("overallTab-today")?.getAttribute("aria-selected")).toBe("true");
-    expect(document.getElementById("overallTab-past")?.getAttribute("aria-selected")).toBe("false");
-  });
-
-  it("「過去の活動」タブをクリックすると overallPastPanel が表示され overallTodayPanel が非表示になる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    document.getElementById("overallTab-past")?.click();
-
-    expect(document.getElementById("overallPastPanel")?.classList.contains("hidden")).toBe(false);
-    expect(document.getElementById("overallTodayPanel")?.classList.contains("hidden")).toBe(true);
-    expect(document.getElementById("overallTab-past")?.classList.contains("active")).toBe(true);
-    expect(document.getElementById("overallTab-past")?.getAttribute("aria-selected")).toBe("true");
-    expect(document.getElementById("overallTab-today")?.getAttribute("aria-selected")).toBe("false");
   });
 
   it("shareUrlDisplayBtn をクリックすると編集エリアが開き入力フィールドに現在のURLが設定される", async () => {
@@ -3636,6 +3604,93 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     expect(openSpy).toHaveBeenCalledWith("https://twitter.com", "_blank", "noopener,noreferrer");
     openSpy.mockRestore();
+  });
+
+  it("prevDateBtn をクリックすると活動サマリの日付が1日前に移動する", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
+    const beforeDate = picker.value;
+
+    document.getElementById("prevDateBtn")?.click();
+
+    const afterDate = picker.value;
+    const before = new Date(beforeDate + "T00:00:00");
+    const after = new Date(afterDate + "T00:00:00");
+    const diffDays = Math.round((before.getTime() - after.getTime()) / (1000 * 60 * 60 * 24));
+    expect(diffDays).toBe(1);
+  });
+
+  it("今日の日付では nextDateBtn が無効化される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement;
+    expect(nextBtn.disabled).toBe(true);
+  });
+
+  it("1日前に移動すると nextDateBtn が有効化される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("prevDateBtn")?.click();
+
+    const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement;
+    expect(nextBtn.disabled).toBe(false);
+  });
+
+  it("1日前に移動した後に nextDateBtn をクリックすると今日の日付に戻る", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
+    const today = picker.value;
+
+    document.getElementById("prevDateBtn")?.click();
+    document.getElementById("nextDateBtn")?.click();
+
+    expect(picker.value).toBe(today);
+  });
+
+  it("activityDatePicker で日付を変更すると活動一覧が更新される", async () => {
+    const yesterday = (() => {
+      const d = new Date();
+      d.setDate(d.getDate() - 1);
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    })();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: yesterday + "T10:00:00.000",
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 今日では活動なし
+    const container = document.getElementById("todayActivityContent");
+    expect(container?.querySelector(".today-activity-empty")).not.toBeNull();
+
+    // カレンダーで昨日を選択
+    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
+    picker.value = yesterday;
+    picker.dispatchEvent(new Event("change", { bubbles: true }));
+
+    // 昨日の記録が表示される
+    expect(container?.querySelectorAll(".history-item").length).toBe(1);
   });
 });
 
@@ -4692,5 +4747,57 @@ describe("QuizApp — 選択中の単元情報パネル仕様", () => {
 
     const info = document.getElementById("selectedUnitInfo");
     expect(info?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("親カテゴリのみの単元選択時にカテゴリパスバッジが表示される", async () => {
+    setupTabDom();
+    setupFetchMockWithParent();
+    localStorage.clear();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+
+    const catLabel = document.querySelector(".selected-unit-info-category");
+    expect(catLabel).not.toBeNull();
+    expect(catLabel?.textContent).toBe("発音");
+  });
+
+  it("トップカテゴリ＋親カテゴリの単元選択時にカテゴリパスバッジが `Top › Parent` 形式で表示される", async () => {
+    setupTabDom();
+    setupFetchMockWith3Levels();
+    localStorage.clear();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-past"]');
+    catItem?.click();
+
+    const catLabel = document.querySelector(".selected-unit-info-category");
+    expect(catLabel).not.toBeNull();
+    expect(catLabel?.textContent).toBe("文法 › 動詞");
+  });
+
+  it("カテゴリ階層のない単元選択時にはカテゴリパスバッジが表示されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+
+    const catLabel = document.querySelector(".selected-unit-info-category");
+    expect(catLabel).toBeNull();
   });
 });
