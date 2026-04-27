@@ -112,69 +112,69 @@ permalink: /support/
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 01 | 1桁のたし算（くり上がりなし） | 小学1年 | [解説](../math/arithmetic/addition-1digit-no-carry/guide.md) | [確認](../app/?subject=math&category=addition-no-carry-1digit) | 3 + 4 = 7 |
-| 02 | 1桁のたし算（くり上がりあり） | 小学1年 | [解説](../math/arithmetic/addition-1digit-carry/guide.md) | [確認](../app/?subject=math&category=addition-carry-1digit) | 7 + 8 = 15 |
-| 03 | 2桁のたし算（くり上がりなし） | 小学2年 | [解説](../math/arithmetic/addition-2digit-no-carry/guide.md) | [確認](../app/?subject=math&category=addition-no-carry-2digit) | 23 + 45 = 68 |
-| 04 | 2桁のたし算（くり上がりあり） | 小学2年 | [解説](../math/arithmetic/addition-2digit-carry/guide.md) | [確認](../app/?subject=math&category=addition-carry-2digit) | 47 + 38 = 85 |
-| 05 | 3桁以上のたし算（くり上がりなし） | 小学3年 | [解説](../math/arithmetic/addition-3digit-no-carry/guide.md) | [確認](../app/?subject=math&category=addition-no-carry-3digit) | 123 + 456 = 579 |
-| 06 | 3桁以上のたし算（くり上がりあり） | 小学3年 | [解説](../math/arithmetic/addition-3digit-carry/guide.md) | [確認](../app/?subject=math&category=addition-carry-3digit) | 347 + 285 = 632 |
-| 07 | たし算（まとめ） | 小学3年 | [解説](../math/arithmetic/addition-mixed/guide.md) | [確認](../app/?subject=math&category=addition-mixed) | 6 + 9 = 15 |
-| 08 | 1桁のひき算（くり下がりなし） | 小学1年 | [解説](../math/arithmetic/subtraction-1digit-no-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-no-borrow-1digit) | 8 - 3 = 5 |
-| 09 | 1桁のひき算（くり下がりあり） | 小学1年 | [解説](../math/arithmetic/subtraction-1digit-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-borrow-1digit) | 13 - 7 = 6 |
-| 10 | 2桁のひき算（くり下がりなし） | 小学2年 | [解説](../math/arithmetic/subtraction-2digit-no-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-no-borrow-2digit) | 58 - 23 = 35 |
-| 11 | 2桁のひき算（くり下がりあり） | 小学2年 | [解説](../math/arithmetic/subtraction-2digit-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-borrow-2digit) | 52 - 37 = 15 |
-| 12 | 3桁以上のひき算（くり下がりなし） | 小学3年 | [解説](../math/arithmetic/subtraction-3digit-no-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-no-borrow-3digit) | 689 - 234 = 455 |
-| 13 | 3桁以上のひき算（くり下がりあり） | 小学3年 | [解説](../math/arithmetic/subtraction-3digit-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-borrow-3digit) | 503 - 278 = 225 |
-| 14 | ひき算（まとめ） | 小学3年 | [解説](../math/arithmetic/subtraction-mixed/guide.md) | [確認](../app/?subject=math&category=subtraction-mixed) | 15 - 8 = 7 |
-| 15 | 1桁のかけ算（九九） | 小学2年 | [解説](../math/arithmetic/multiplication-1digit/guide.md) | [確認](../app/?subject=math&category=multiplication-1digit) | 6 × 7 = 42 |
-| 16 | 2桁のかけ算 | 小学3年 | [解説](../math/arithmetic/multiplication-2digit/guide.md) | [確認](../app/?subject=math&category=multiplication-2digit) | 23 × 4 = 92 |
-| 17 | 3桁以上のかけ算 | 小学3年 | [解説](../math/arithmetic/multiplication-3digit/guide.md) | [確認](../app/?subject=math&category=multiplication-3digit) | 123 × 4 = 492 |
-| 18 | かけ算（まとめ） | 小学3年 | [解説](../math/arithmetic/multiplication-mixed/guide.md) | [確認](../app/?subject=math&category=multiplication-basic) | 6 × 7 = 42 |
-| 19 | 1桁のわり算（あまりなし） | 小学3年 | [解説](../math/arithmetic/division-1digit-no-remainder/guide.md) | [確認](../app/?subject=math&category=division-no-remainder-1digit) | 12 ÷ 4 = 3 |
-| 20 | 1桁のわり算（あまりあり） | 小学3年 | [解説](../math/arithmetic/division-1digit-remainder/guide.md) | [確認](../app/?subject=math&category=division-remainder-1digit) | 17 ÷ 5 = 3…2 |
-| 21 | 2桁のわり算（あまりなし） | 小学3年 | [解説](../math/arithmetic/division-2digit-no-remainder/guide.md) | [確認](../app/?subject=math&category=division-no-remainder-2digit) | 84 ÷ 4 = 21 |
-| 22 | 2桁のわり算（あまりあり） | 小学3年 | [解説](../math/arithmetic/division-2digit-remainder/guide.md) | [確認](../app/?subject=math&category=division-remainder-2digit) | 85 ÷ 12 = 7…1 |
-| 23 | 3桁以上のわり算（あまりなし） | 小学4年 | [解説](../math/arithmetic/division-3digit-no-remainder/guide.md) | [確認](../app/?subject=math&category=division-no-remainder-3digit) | 840 ÷ 12 = 70 |
-| 24 | 3桁以上のわり算（あまりあり） | 小学4年 | [解説](../math/arithmetic/division-3digit-remainder/guide.md) | [確認](../app/?subject=math&category=division-remainder-3digit) | 841 ÷ 12 = 70…1 |
-| 25 | わり算（まとめ） | 小学4年 | [解説](../math/arithmetic/division-mixed/guide.md) | [確認](../app/?subject=math&category=division-mixed) | 23 ÷ 4 = 5…3 |
-| 26 | たし算（同分母） | 小学4年 | [解説](../math/arithmetic/fractions-same-add/guide.md) | [確認](../app/?subject=math&category=fractions-same-add) | 1/5 + 2/5 = 3/5 |
-| 27 | ひき算（同分母） | 小学4年 | [解説](../math/arithmetic/fractions-same-sub/guide.md) | [確認](../app/?subject=math&category=fractions-same-sub) | 4/7 - 2/7 = 2/7 |
-| 28 | たし算（通分あり） | 小学5年 | [解説](../math/arithmetic/fractions-diff-add/guide.md) | [確認](../app/?subject=math&category=fractions-diff-add) | 1/2 + 1/3 = 5/6 |
-| 29 | ひき算（通分あり） | 小学5年 | [解説](../math/arithmetic/fractions-diff-sub/guide.md) | [確認](../app/?subject=math&category=fractions-diff-sub) | 3/4 - 1/3 = 5/12 |
-| 30 | かけ算 | 小学6年 | [解説](../math/arithmetic/fractions-multiply/guide.md) | [確認](../app/?subject=math&category=fractions-multiply) | 2/3 × 3/4 = 1/2 |
-| 31 | わり算 | 小学6年 | [解説](../math/arithmetic/fractions-divide/guide.md) | [確認](../app/?subject=math&category=fractions-divide) | 2/3 ÷ 4/5 = 5/6 |
-| 32 | たし算 | 小学5年 | [解説](../math/arithmetic/decimals-addition/guide.md) | [確認](../app/?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
-| 33 | ひき算 | 小学5年 | [解説](../math/arithmetic/decimals-subtraction/guide.md) | [確認](../app/?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
-| 34 | かけ算 | 小学5年 | [解説](../math/arithmetic/decimals-multiplication/guide.md) | [確認](../app/?subject=math&category=decimals-multiplication) | 0.3 × 0.4 = 0.12 |
-| 35 | 比 | 小学6年 | [解説](../math/arithmetic/ratio/guide.md) | [確認](../app/?subject=math&category=ratio) | 4:6 = 2:3 |
-| 36 | 割合 | 小学6年 | [解説](../math/arithmetic/percentage/guide.md) | [確認](../app/?subject=math&category=percentage) | 60人の30% = 18人 |
+| 01 | ➕ 1桁のたし算（くり上がりなし） | 小学1年 | [解説](../math/arithmetic/addition-1digit-no-carry/guide.md) | [確認](../app/?subject=math&category=addition-no-carry-1digit) | 3 + 4 = 7 |
+| 02 | ➕ 1桁のたし算（くり上がりあり） | 小学1年 | [解説](../math/arithmetic/addition-1digit-carry/guide.md) | [確認](../app/?subject=math&category=addition-carry-1digit) | 7 + 8 = 15 |
+| 03 | ➕ 2桁のたし算（くり上がりなし） | 小学2年 | [解説](../math/arithmetic/addition-2digit-no-carry/guide.md) | [確認](../app/?subject=math&category=addition-no-carry-2digit) | 23 + 45 = 68 |
+| 04 | ➕ 2桁のたし算（くり上がりあり） | 小学2年 | [解説](../math/arithmetic/addition-2digit-carry/guide.md) | [確認](../app/?subject=math&category=addition-carry-2digit) | 47 + 38 = 85 |
+| 05 | ➕ 3桁以上のたし算（くり上がりなし） | 小学3年 | [解説](../math/arithmetic/addition-3digit-no-carry/guide.md) | [確認](../app/?subject=math&category=addition-no-carry-3digit) | 123 + 456 = 579 |
+| 06 | ➕ 3桁以上のたし算（くり上がりあり） | 小学3年 | [解説](../math/arithmetic/addition-3digit-carry/guide.md) | [確認](../app/?subject=math&category=addition-carry-3digit) | 347 + 285 = 632 |
+| 07 | ➕ たし算（まとめ） | 小学3年 | [解説](../math/arithmetic/addition-mixed/guide.md) | [確認](../app/?subject=math&category=addition-mixed) | 6 + 9 = 15 |
+| 08 | ➖ 1桁のひき算（くり下がりなし） | 小学1年 | [解説](../math/arithmetic/subtraction-1digit-no-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-no-borrow-1digit) | 8 - 3 = 5 |
+| 09 | ➖ 1桁のひき算（くり下がりあり） | 小学1年 | [解説](../math/arithmetic/subtraction-1digit-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-borrow-1digit) | 13 - 7 = 6 |
+| 10 | ➖ 2桁のひき算（くり下がりなし） | 小学2年 | [解説](../math/arithmetic/subtraction-2digit-no-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-no-borrow-2digit) | 58 - 23 = 35 |
+| 11 | ➖ 2桁のひき算（くり下がりあり） | 小学2年 | [解説](../math/arithmetic/subtraction-2digit-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-borrow-2digit) | 52 - 37 = 15 |
+| 12 | ➖ 3桁以上のひき算（くり下がりなし） | 小学3年 | [解説](../math/arithmetic/subtraction-3digit-no-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-no-borrow-3digit) | 689 - 234 = 455 |
+| 13 | ➖ 3桁以上のひき算（くり下がりあり） | 小学3年 | [解説](../math/arithmetic/subtraction-3digit-borrow/guide.md) | [確認](../app/?subject=math&category=subtraction-borrow-3digit) | 503 - 278 = 225 |
+| 14 | ➖ ひき算（まとめ） | 小学3年 | [解説](../math/arithmetic/subtraction-mixed/guide.md) | [確認](../app/?subject=math&category=subtraction-mixed) | 15 - 8 = 7 |
+| 15 | ✖️ 1桁のかけ算（九九） | 小学2年 | [解説](../math/arithmetic/multiplication-1digit/guide.md) | [確認](../app/?subject=math&category=multiplication-1digit) | 6 × 7 = 42 |
+| 16 | ✖️ 2桁のかけ算（2桁×1桁） | 小学3年 | [解説](../math/arithmetic/multiplication-2digit/guide.md) | [確認](../app/?subject=math&category=multiplication-2digit) | 23 × 4 = 92 |
+| 17 | ✖️ 3桁以上のかけ算（3桁×1桁） | 小学3年 | [解説](../math/arithmetic/multiplication-3digit/guide.md) | [確認](../app/?subject=math&category=multiplication-3digit) | 123 × 4 = 492 |
+| 18 | ✖️ かけ算（まとめ） | 小学3年 | [解説](../math/arithmetic/multiplication-mixed/guide.md) | [確認](../app/?subject=math&category=multiplication-basic) | 6 × 7 = 42 |
+| 19 | ➗ 1桁のわり算（あまりなし） | 小学3年 | [解説](../math/arithmetic/division-1digit-no-remainder/guide.md) | [確認](../app/?subject=math&category=division-no-remainder-1digit) | 12 ÷ 4 = 3 |
+| 20 | ➗ 1桁のわり算（あまりあり） | 小学3年 | [解説](../math/arithmetic/division-1digit-remainder/guide.md) | [確認](../app/?subject=math&category=division-remainder-1digit) | 17 ÷ 5 = 3…2 |
+| 21 | ➗ 2桁のわり算（あまりなし） | 小学3年 | [解説](../math/arithmetic/division-2digit-no-remainder/guide.md) | [確認](../app/?subject=math&category=division-no-remainder-2digit) | 84 ÷ 4 = 21 |
+| 22 | ➗ 2桁のわり算（あまりあり） | 小学3年 | [解説](../math/arithmetic/division-2digit-remainder/guide.md) | [確認](../app/?subject=math&category=division-remainder-2digit) | 85 ÷ 12 = 7…1 |
+| 23 | ➗ 3桁以上のわり算（あまりなし） | 小学4年 | [解説](../math/arithmetic/division-3digit-no-remainder/guide.md) | [確認](../app/?subject=math&category=division-no-remainder-3digit) | 840 ÷ 12 = 70 |
+| 24 | ➗ 3桁以上のわり算（あまりあり） | 小学4年 | [解説](../math/arithmetic/division-3digit-remainder/guide.md) | [確認](../app/?subject=math&category=division-remainder-3digit) | 841 ÷ 12 = 70…1 |
+| 25 | ➗ わり算（まとめ） | 小学4年 | [解説](../math/arithmetic/division-mixed/guide.md) | [確認](../app/?subject=math&category=division-mixed) | 23 ÷ 4 = 5…3 |
+| 26 | ➕ 分数のたし算（同分母） | 小学4年 | [解説](../math/arithmetic/fractions-same-add/guide.md) | [確認](../app/?subject=math&category=fractions-same-add) | 1/5 + 2/5 = 3/5 |
+| 27 | ➖ 分数のひき算（同分母） | 小学4年 | [解説](../math/arithmetic/fractions-same-sub/guide.md) | [確認](../app/?subject=math&category=fractions-same-sub) | 4/7 - 2/7 = 2/7 |
+| 28 | ➕ 分数のたし算（通分あり） | 小学5年 | [解説](../math/arithmetic/fractions-diff-add/guide.md) | [確認](../app/?subject=math&category=fractions-diff-add) | 1/2 + 1/3 = 5/6 |
+| 29 | ➖ 分数のひき算（通分あり） | 小学5年 | [解説](../math/arithmetic/fractions-diff-sub/guide.md) | [確認](../app/?subject=math&category=fractions-diff-sub) | 3/4 - 1/3 = 5/12 |
+| 30 | ✖️ 分数のかけ算 | 小学6年 | [解説](../math/arithmetic/fractions-multiply/guide.md) | [確認](../app/?subject=math&category=fractions-multiply) | 2/3 × 3/4 = 1/2 |
+| 31 | ➗ 分数のわり算 | 小学6年 | [解説](../math/arithmetic/fractions-divide/guide.md) | [確認](../app/?subject=math&category=fractions-divide) | 2/3 ÷ 4/5 = 5/6 |
+| 32 | ➕ 小数のたし算 | 小学5年 | [解説](../math/arithmetic/decimals-addition/guide.md) | [確認](../app/?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
+| 33 | ➖ 小数のひき算 | 小学5年 | [解説](../math/arithmetic/decimals-subtraction/guide.md) | [確認](../app/?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
+| 34 | ✖️ 小数のかけ算 | 小学5年 | [解説](../math/arithmetic/decimals-multiplication/guide.md) | [確認](../app/?subject=math&category=decimals-multiplication) | 0.3 × 0.4 = 0.12 |
+| 35 | 📊 比 | 小学6年 | [解説](../math/arithmetic/ratio/guide.md) | [確認](../app/?subject=math&category=ratio) | 4:6 = 2:3 |
+| 36 | 📊 割合 | 小学6年 | [解説](../math/arithmetic/percentage/guide.md) | [確認](../app/?subject=math&category=percentage) | 60人の30% = 18人 |
 
 #### 📐 代数
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 22 | 正負の数 | 中学1年 | [解説](../math/algebra/positive-negative/guide.md) | [確認](../app/?subject=math&category=positive-negative) | (-3) + (+5) = 2 |
-| 23 | 文字式 | 中学1年 | [解説](../math/algebra/algebraic-expressions/guide.md) | [確認](../app/?subject=math&category=algebraic-expressions) | 3a + 2a = 5a |
-| 24 | 一次方程式 | 中学1年 | [解説](../math/algebra/linear-eq/guide.md) | [確認](../app/?subject=math&category=linear-eq) | 2x + 3 = 7 → x = 2 |
-| 25 | 連立方程式 | 中学2年 | [解説](../math/algebra/simultaneous-eq/guide.md) | [確認](../app/?subject=math&category=simultaneous-eq) | x+y=5, x-y=1 → x=3,y=2 |
-| 26 | 一次関数 | 中学2年 | [解説](../math/algebra/linear-func/guide.md) | [確認](../app/?subject=math&category=linear-func) | y = 2x + 1 |
-| 27 | 確率 | 中学2年 | [解説](../math/algebra/probability/guide.md) | [確認](../app/?subject=math&category=probability) | サイコロで偶数 = 3/6 = 1/2 |
-| 28 | 平方根 | 中学3年 | [解説](../math/algebra/square-roots/guide.md) | [確認](../app/?subject=math&category=square-roots) | √12 = 2√3 |
-| 29 | 二次方程式 | 中学3年 | [解説](../math/algebra/quadratic-eq/guide.md) | [確認](../app/?subject=math&category=quadratic-eq) | x²-5x+6=0 → x=2,3 |
+| 22 | 🔢 正負の数 | 中学1年 | [解説](../math/algebra/positive-negative/guide.md) | [確認](../app/?subject=math&category=positive-negative) | (-3) + (+5) = 2 |
+| 23 | 🔤 文字式 | 中学1年 | [解説](../math/algebra/algebraic-expressions/guide.md) | [確認](../app/?subject=math&category=algebraic-expressions) | 3a + 2a = 5a |
+| 24 | 📐 一次方程式 | 中学1年 | [解説](../math/algebra/linear-eq/guide.md) | [確認](../app/?subject=math&category=linear-eq) | 2x + 3 = 7 → x = 2 |
+| 25 | 📐 連立方程式 | 中学2年 | [解説](../math/algebra/simultaneous-eq/guide.md) | [確認](../app/?subject=math&category=simultaneous-eq) | x+y=5, x-y=1 → x=3,y=2 |
+| 26 | 📈 一次関数 | 中学2年 | [解説](../math/algebra/linear-func/guide.md) | [確認](../app/?subject=math&category=linear-func) | y = 2x + 1 |
+| 27 | 🎲 確率 | 中学2年 | [解説](../math/algebra/probability/guide.md) | [確認](../app/?subject=math&category=probability) | サイコロで偶数 = 3/6 = 1/2 |
+| 28 | 🔢 平方根 | 中学3年 | [解説](../math/algebra/square-roots/guide.md) | [確認](../app/?subject=math&category=square-roots) | √12 = 2√3 |
+| 29 | 📐 二次方程式 | 中学3年 | [解説](../math/algebra/quadratic-eq/guide.md) | [確認](../app/?subject=math&category=quadratic-eq) | x²-5x+6=0 → x=2,3 |
 
 #### 📈 解析・高校数学
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 30 | 二次関数 | 高校1年 | [解説](../math/calculus/quadratic-func/guide.md) | [確認](../app/?subject=math&category=quadratic-func) | y = x² - 4x + 3 |
-| 31 | 不等式 | 高校1年 | [解説](../math/calculus/inequalities/guide.md) | [確認](../app/?subject=math&category=inequalities) | 2x - 3 > 5 → x > 4 |
-| 32 | 三角関数 | 高校2年 | [解説](../math/calculus/trigonometry/guide.md) | [確認](../app/?subject=math&category=trigonometry) | sin30° = 1/2 |
-| 33 | 指数・対数 | 高校2年 | [解説](../math/calculus/exponents-logarithms/guide.md) | [確認](../app/?subject=math&category=exponents-logarithms) | log₂8 = 3 |
-| 34 | 数列 | 高校2年 | [解説](../math/calculus/sequences/guide.md) | [確認](../app/?subject=math&category=sequences) | 1,3,5,7,… → aₙ=2n-1 |
-| 35 | ベクトル | 高校2年 | [解説](../math/calculus/vectors/guide.md) | [確認](../app/?subject=math&category=vectors) | →a=(1,2), →b=(3,4) → →a+→b=(4,6) |
-| 36 | 極限 | 高校3年 | [解説](../math/calculus/limits/guide.md) | [確認](../app/?subject=math&category=limits) | lim(n→∞) 1/n = 0 |
-| 37 | 微分 | 高校3年 | [解説](../math/calculus/differentiation/guide.md) | [確認](../app/?subject=math&category=differentiation) | f(x)=x³ → f'(x)=3x² |
-| 38 | 積分 | 高校3年 | [解説](../math/calculus/integration/guide.md) | [確認](../app/?subject=math&category=integration) | ∫2xdx = x² + C |
+| 30 | 📈 二次関数 | 高校1年 | [解説](../math/calculus/quadratic-func/guide.md) | [確認](../app/?subject=math&category=quadratic-func) | y = x² - 4x + 3 |
+| 31 | ⚖️ 不等式 | 高校1年 | [解説](../math/calculus/inequalities/guide.md) | [確認](../app/?subject=math&category=inequalities) | 2x - 3 > 5 → x > 4 |
+| 32 | 📐 三角関数 | 高校2年 | [解説](../math/calculus/trigonometry/guide.md) | [確認](../app/?subject=math&category=trigonometry) | sin30° = 1/2 |
+| 33 | 📊 指数・対数 | 高校2年 | [解説](../math/calculus/exponents-logarithms/guide.md) | [確認](../app/?subject=math&category=exponents-logarithms) | log₂8 = 3 |
+| 34 | 🔢 数列 | 高校2年 | [解説](../math/calculus/sequences/guide.md) | [確認](../app/?subject=math&category=sequences) | 1,3,5,7,… → aₙ=2n-1 |
+| 35 | ➡️ ベクトル | 高校2年 | [解説](../math/calculus/vectors/guide.md) | [確認](../app/?subject=math&category=vectors) | →a=(1,2), →b=(3,4) → →a+→b=(4,6) |
+| 36 | ♾️ 極限 | 高校3年 | [解説](../math/calculus/limits/guide.md) | [確認](../app/?subject=math&category=limits) | lim(n→∞) 1/n = 0 |
+| 37 | 📊 微分 | 高校3年 | [解説](../math/calculus/differentiation/guide.md) | [確認](../app/?subject=math&category=differentiation) | f(x)=x³ → f'(x)=3x² |
+| 38 | 📊 積分 | 高校3年 | [解説](../math/calculus/integration/guide.md) | [確認](../app/?subject=math&category=integration) | ∫2xdx = x² + C |
 
 ### 国語
 
