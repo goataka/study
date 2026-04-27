@@ -611,11 +611,31 @@ header h1 {
     gap: 0;
 }
 
+/* 教科名行（枠の外） */
+.subject-overview-subject-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 4px 2px 2px;
+}
+
+.subject-overview-icon {
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.subject-overview-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #24292e;
+}
+
 .subject-overview-outer-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 2px 4px 2px 2px;
+    padding: 0 4px 2px 2px;
     font-size: 12px;
     color: #586069;
 }
@@ -633,7 +653,7 @@ header h1 {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 10px 12px;
+    padding: 8px 12px;
     border-radius: 8px;
     border: 1px solid #e1e4e8;
     background: white;
@@ -650,12 +670,6 @@ header h1 {
 .subject-overview-item:focus {
     outline: 2px solid #0366d6;
     outline-offset: 2px;
-}
-
-.subject-overview-header {
-    font-size: 17px;
-    font-weight: 700;
-    color: #24292e;
 }
 
 .subject-overview-recommended {
@@ -733,7 +747,7 @@ header h1 {
     flex: 1;
     min-width: 0;
     padding: 3px 6px;
-    font-size: 13px;
+    font-size: 18px;
     border: 1px solid #d1d5da;
     border-radius: 4px;
     background: white;
@@ -898,17 +912,22 @@ header h1 {
     color: white;
 }
 
-/* 総合タブ時のレイアウト: 活動サマリ（左）とおすすめ単元（右）を等幅で表示 */
+/* 総合タブ時のレイアウト: おすすめ単元（左）と活動サマリ（右）を等幅で表示 */
 .start-content-layout.all-subject-layout {
     grid-template-columns: 1fr 1fr;
 }
 
+/* 総合タブで単元選択時: おすすめ単元（左）と解説パネル（右）を1:2で表示 */
+.start-content-layout.all-subject-layout.all-subject-unit-selected {
+    grid-template-columns: 1fr 2fr;
+}
+
 .start-content-layout.all-subject-layout .category-panel {
-    order: 2;
+    order: 1;
 }
 
 .start-content-layout.all-subject-layout .quiz-panel {
-    order: 1;
+    order: 2;
 }
 
 .quiz-panel {
@@ -2665,8 +2684,20 @@ body.font-size-medium .category-progress-pct {
     font-size: 16px;
 }
 
-body.font-size-medium .subject-overview-header {
-    font-size: 21px;
+body.font-size-medium .subject-overview-icon {
+    font-size: 22px;
+}
+
+body.font-size-medium .subject-overview-name {
+    font-size: 20px;
+}
+
+body.font-size-medium .subject-overview-outer-cat {
+    font-size: 15px;
+}
+
+body.font-size-medium .all-subject-panel-title {
+    font-size: 17px;
 }
 
 body.font-size-medium .subject-overview-recommended {
@@ -2905,8 +2936,20 @@ body.font-size-large .category-progress-pct {
     font-size: 20px;
 }
 
-body.font-size-large .subject-overview-header {
-    font-size: 26px;
+body.font-size-large .subject-overview-icon {
+    font-size: 28px;
+}
+
+body.font-size-large .subject-overview-name {
+    font-size: 24px;
+}
+
+body.font-size-large .subject-overview-outer-cat {
+    font-size: 18px;
+}
+
+body.font-size-large .all-subject-panel-title {
+    font-size: 20px;
 }
 
 body.font-size-large .subject-overview-recommended {

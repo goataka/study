@@ -65,6 +65,8 @@ export class QuizApp {
   private shareUrl: string = "";
   /** 活動サマリで表示する日付（YYYY-MM-DD 形式） */
   private selectedActivityDate: string = QuizApp.currentDateString();
+  /** 総合タブから単元を選択した場合の選択情報（null の場合は未選択） */
+  private overallUnitSelected: { subject: string; categoryId: string; categoryName: string } | null = null;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -335,6 +337,7 @@ export class QuizApp {
         this.filter.category = "all";
         this.filter.parentCategory = undefined;
         this.selectedTopCategoryId = null;
+        this.overallUnitSelected = null;
 
         tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
           t.classList.remove("active");
@@ -951,7 +954,7 @@ export class QuizApp {
 
   /**
    * 「総合」タブ用の教科一覧を描画する。
-   * 各教科カードに推奨の単元・学年・最終学習日を表示し、クリックで教科タブへ遷移する。
+   * 各教科カードに推奨の単元・学年・最終学習日を表示し、クリックで解説パネルを表示する。
    */
   private renderAllSubjectList(): void {
     const categoryList = document.getElementById("categoryList");
@@ -968,6 +971,19 @@ export class QuizApp {
       // ラッパー（枠外情報 + カード）
       const wrapper = document.createElement("div");
       wrapper.className = "subject-overview-wrapper";
+
+      // 教科名行（枠外）: アイコンと名称を別要素で表示
+      const subjectRow = document.createElement("div");
+      subjectRow.className = "subject-overview-subject-row";
+      const iconSpan = document.createElement("span");
+      iconSpan.className = "subject-overview-icon";
+      iconSpan.textContent = subject.icon;
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "subject-overview-name";
+      nameSpan.textContent = subject.name;
+      subjectRow.appendChild(iconSpan);
+      subjectRow.appendChild(nameSpan);
+      wrapper.appendChild(subjectRow);
 
       // 枠外情報行（カテゴリ名 + 最終学習日）
       const outerInfo = document.createElement("div");
@@ -996,17 +1012,12 @@ export class QuizApp {
 
       wrapper.appendChild(outerInfo);
 
-      // カード（クリック可能）
+      // カード（クリック可能）: 推奨単元を日付（枠外情報）の下に表示
       const item = document.createElement("div");
       item.className = "subject-overview-item";
       item.setAttribute("role", "button");
       item.setAttribute("tabindex", "0");
       item.dataset.subject = subject.id;
-
-      // 教科名ヘッダー
-      const headerDiv = document.createElement("div");
-      headerDiv.className = "subject-overview-header";
-      headerDiv.textContent = `${subject.icon} ${subject.name}`;
 
       // 推奨単元名・学年
       const recDiv = document.createElement("div");
@@ -1032,32 +1043,15 @@ export class QuizApp {
         recDiv.textContent = "単元なし";
       }
 
-      item.appendChild(headerDiv);
       item.appendChild(recDiv);
 
-      // クリックで該当教科タブへ切り替え
+      // クリックで教科タブに遷移せず、総合のまま解説パネルを表示する
       const handleActivate = (): void => {
-        this.filter.subject = subject.id;
-        this.filter.category = recommended ? recommended.id : "all";
-        this.filter.parentCategory = undefined;
-        this.selectedTopCategoryId = null;
-
-        const tabsContainer = document.querySelector(".subject-tabs");
-        if (tabsContainer) {
-          tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
-            t.classList.remove("active");
-            t.setAttribute("aria-selected", "false");
-          });
-          const subjectTab = tabsContainer.querySelector<HTMLElement>(
-            `.subject-tab[data-subject="${subject.id}"]`
-          );
-          subjectTab?.classList.add("active");
-          subjectTab?.setAttribute("aria-selected", "true");
-        }
-
-        this.renderCategoryList();
+        this.overallUnitSelected = recommended
+          ? { subject: subject.id, categoryId: recommended.id, categoryName: recommended.name }
+          : null;
+        this.isPanelTabUserSelected = false;
         const overviewRecords = this.useCase.getHistory();
-        this.autoSelectPanelTab(overviewRecords);
         this.updateStartScreen(overviewRecords);
       };
 
@@ -1597,6 +1591,35 @@ export class QuizApp {
 
     const selLevel = this.getSelectionLevel();
 
+    // 総合タブから単元が選択されている場合: 単元名と閉じるボタンを表示
+    if (this.overallUnitSelected !== null) {
+      container.classList.remove("hidden");
+      container.innerHTML = "";
+
+      const body = document.createElement("div");
+      body.className = "selected-unit-info-body";
+
+      const headerRow = document.createElement("div");
+      headerRow.className = "selected-unit-info-header";
+
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "selected-unit-info-name";
+      nameSpan.textContent = this.overallUnitSelected.categoryName;
+      headerRow.appendChild(nameSpan);
+      body.appendChild(headerRow);
+      container.appendChild(body);
+
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "selected-unit-close-btn";
+      closeBtn.type = "button";
+      closeBtn.textContent = "✕";
+      closeBtn.title = "閉じる";
+      closeBtn.setAttribute("aria-label", "単元の解説を閉じる");
+      closeBtn.addEventListener("click", () => this.closeOverallUnitView());
+      container.appendChild(closeBtn);
+      return;
+    }
+
     if (selLevel === "none" || this.filter.subject === "all") {
       container.classList.add("hidden");
       return;
@@ -1693,6 +1716,15 @@ export class QuizApp {
   }
 
   /**
+   * 総合タブから選択した単元の解説表示を閉じ、総合タブの概要画面に戻る。
+   */
+  private closeOverallUnitView(): void {
+    this.overallUnitSelected = null;
+    const records = this.useCase.getHistory();
+    this.updateStartScreen(records);
+  }
+
+  /**
    * 親カテゴリの解説を解説パネルに表示する。
    * 解説タブに切り替えて、指定した親カテゴリの解説 URL を iframe に設定する。
    */
@@ -1729,16 +1761,25 @@ export class QuizApp {
     const noContent = document.getElementById(noContentId);
     if (!guideFrame) return;
 
-    const selLevel = this.getSelectionLevel();
     let guideUrl: string | undefined;
-    if (selLevel === "unit") {
-      guideUrl = this.useCase.getCategoryGuideUrl(this.filter.subject, this.filter.category);
-    } else if (selLevel === "parentCategory" && this.filter.parentCategory) {
-      guideUrl = this.useCase.getParentCategoryGuideUrl(this.filter.subject, this.filter.parentCategory);
-    } else if (selLevel === "topCategory" && this.selectedTopCategoryId) {
-      guideUrl = this.useCase.getTopCategoryGuideUrl(this.filter.subject, this.selectedTopCategoryId);
+
+    if (this.overallUnitSelected !== null) {
+      // 総合タブから単元選択時: overallUnitSelected の教科・単元で解説 URL を取得
+      guideUrl = this.useCase.getCategoryGuideUrl(
+        this.overallUnitSelected.subject,
+        this.overallUnitSelected.categoryId
+      );
     } else {
-      guideUrl = this.useCase.getFirstAvailableGuideUrl();
+      const selLevel = this.getSelectionLevel();
+      if (selLevel === "unit") {
+        guideUrl = this.useCase.getCategoryGuideUrl(this.filter.subject, this.filter.category);
+      } else if (selLevel === "parentCategory" && this.filter.parentCategory) {
+        guideUrl = this.useCase.getParentCategoryGuideUrl(this.filter.subject, this.filter.parentCategory);
+      } else if (selLevel === "topCategory" && this.selectedTopCategoryId) {
+        guideUrl = this.useCase.getTopCategoryGuideUrl(this.filter.subject, this.selectedTopCategoryId);
+      } else {
+        guideUrl = this.useCase.getFirstAvailableGuideUrl();
+      }
     }
 
     if (guideUrl) {
@@ -2115,6 +2156,16 @@ export class QuizApp {
         this.closeShareUrlEdit();
       }
     });
+
+    // 総合タブ: URL編集中に編集エリア外をクリックしたらキャンセル
+    document.addEventListener("mousedown", (e: MouseEvent) => {
+      const editArea = document.getElementById("shareUrlEditArea");
+      if (!editArea || editArea.classList.contains("hidden")) return;
+      const inline = document.querySelector(".share-url-inline");
+      if (inline && !inline.contains(e.target as Node)) {
+        this.closeShareUrlEdit();
+      }
+    });
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -2151,7 +2202,12 @@ export class QuizApp {
       this.updateGuidePanelContent();
     }
     if (this.filter.subject === "all") {
-      this.renderOverallSummaryPanel(allRecords);
+      if (this.overallUnitSelected !== null) {
+        // 総合タブで単元選択中: 解説コンテンツを更新する
+        this.updateGuidePanelContent();
+      } else {
+        this.renderOverallSummaryPanel(allRecords);
+      }
     }
   }
 
@@ -2403,14 +2459,17 @@ export class QuizApp {
     if (!subjectContent) return;
 
     const isAll = this.filter.subject === "all";
+    const hasOverallUnit = this.overallUnitSelected !== null;
     const selLevel = this.getSelectionLevel();
     const noCategory = !isAll && selLevel === "none";
     const isCategoryLevel = !isAll && (selLevel === "topCategory" || selLevel === "parentCategory");
 
-    // 総合タブ時は単元選択を右・活動パネルを左にするレイアウトを適用
+    // 総合タブ時は単元選択を左・活動パネルを右にするレイアウトを適用
     subjectContent.classList.toggle("all-subject-layout", isAll);
+    // 総合タブで単元選択時は1:2比率のレイアウトを適用
+    subjectContent.classList.toggle("all-subject-unit-selected", isAll && hasOverallUnit);
     // 何も選択されていない場合（総合タブを除く）は右パネルを非表示にしてカテゴリリストを全幅表示する
-    // 総合タブは総合サマリパネルを左に表示するため category-only にしない
+    // 総合タブは総合サマリパネルを右に表示するため category-only にしない
     subjectContent.classList.toggle("category-only", noCategory);
 
     // 総合タブでは通常のパネルタブを非表示
@@ -2430,11 +2489,19 @@ export class QuizApp {
     });
 
     if (isAll) {
-      // 通常のコンテンツパネルを非表示にして総合サマリパネルを表示
-      ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
-        document.getElementById(id)?.classList.add("hidden");
-      });
-      document.getElementById("overallSummaryPanel")?.classList.remove("hidden");
+      if (hasOverallUnit) {
+        // 総合タブから単元選択時: 解説パネルを表示
+        ["quizModePanel", "historyContent", "questionListContent", "overallSummaryPanel"].forEach((id) => {
+          document.getElementById(id)?.classList.add("hidden");
+        });
+        document.getElementById("guideContent")?.classList.remove("hidden");
+      } else {
+        // 通常のコンテンツパネルを非表示にして総合サマリパネルを表示
+        ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
+          document.getElementById(id)?.classList.add("hidden");
+        });
+        document.getElementById("overallSummaryPanel")?.classList.remove("hidden");
+      }
     } else {
       // 総合サマリパネルを非表示にして通常のパネルを表示
       document.getElementById("overallSummaryPanel")?.classList.add("hidden");
