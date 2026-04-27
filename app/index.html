@@ -57,6 +57,7 @@
         <div class="category-panel">
           <div class="category-panel-header">
             <button id="hideLearnedBtn" class="hide-learned-btn" type="button" aria-pressed="true" aria-label="学習済カテゴリを非表示">✅ 学習済を表示</button>
+            <span id="allSubjectPanelTitle" class="all-subject-panel-title hidden">📌 おすすめ単元</span>
           </div>
           <div id="categoryControls" class="category-controls"></div>
           <div id="categoryList" class="category-list"></div>
@@ -109,14 +110,15 @@
           </div>
 
           <!-- 総合タブ専用サマリパネル -->
-          <div id="overallSummaryPanel" class="hidden overall-summary-panel" role="region" aria-label="総合サマリ">
-            <!-- 活動タブ -->
-            <div class="overall-activity-tabs" role="tablist" aria-label="活動期間">
-              <button class="overall-activity-tab active" id="overallTab-today" data-tab="today" role="tab" type="button" aria-selected="true" aria-controls="overallTodayPanel">📅 今日の活動</button>
-              <button class="overall-activity-tab" id="overallTab-past" data-tab="past" role="tab" type="button" aria-selected="false" aria-controls="overallPastPanel">📊 過去の活動</button>
-            </div>
-            <!-- 今日の活動パネル -->
-            <div id="overallTodayPanel" class="overall-activity-panel" role="tabpanel" aria-labelledby="overallTab-today">
+          <div id="overallSummaryPanel" class="hidden overall-summary-panel" role="region" aria-label="活動サマリ">
+            <!-- 活動サマリパネル -->
+            <div id="overallTodayPanel" class="overall-activity-panel">
+              <!-- 日付ナビゲーション -->
+              <div class="activity-date-nav">
+                <button id="prevDateBtn" class="activity-date-nav-btn" type="button" aria-label="前の日へ">←</button>
+                <input type="date" id="activityDatePicker" class="activity-date-picker">
+                <button id="nextDateBtn" class="activity-date-nav-btn" type="button" aria-label="次の日へ">→</button>
+              </div>
               <!-- 活動サマリ（SNS共有用） -->
               <div id="shareSummaryText" class="share-summary-text"></div>
               <div class="share-actions-row">
@@ -130,12 +132,8 @@
                   </div>
                 </div>
               </div>
-              <!-- 今日の活動一覧（履歴形式） -->
+              <!-- 活動一覧（履歴形式） -->
               <div id="todayActivityContent" class="history-list overall-today-list"></div>
-            </div>
-            <!-- 過去の活動パネル -->
-            <div id="overallPastPanel" class="overall-activity-panel hidden" role="tabpanel" aria-labelledby="overallTab-past">
-              <div id="overallHistoryList" class="history-list"></div>
             </div>
           </div>
         </div>

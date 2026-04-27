@@ -63,6 +63,8 @@ export class QuizApp {
   private fontSizeLevel: "small" | "medium" | "large" = "small";
   /** 総合タブの活動サマリ共有 URL */
   private shareUrl: string = "";
+  /** 活動サマリで表示する日付（YYYY-MM-DD 形式） */
+  private selectedActivityDate: string = this.todayDateString();
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -90,7 +92,7 @@ export class QuizApp {
     this.setupEventListeners();
     this.buildSubjectTabs();
     this.buildPanelTabs();
-    this.buildOverallActivityTabs();
+    this.setupActivityDateNavigation();
     this.updateSubjectStats();
     this.selectFirstUnlearnedCategory();
     const initRecords = this.useCase.getHistory();
@@ -876,28 +878,72 @@ export class QuizApp {
   }
 
   /**
-   * 総合タブ内の「今日の活動」「過去の活動」タブを初期化する。
+   * 総合タブの日付ナビゲーション（前/次ボタンとカレンダー）を初期化する。
    */
-  private buildOverallActivityTabs(): void {
-    document.querySelectorAll<HTMLElement>(".overall-activity-tab").forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const tabName = tab.dataset.tab as "today" | "past";
-        this.switchOverallActivityTab(tabName);
-      });
+  private setupActivityDateNavigation(): void {
+    // カレンダーの初期値と最大値を設定
+    this.syncDatePicker();
+
+    this.on("prevDateBtn", "click", () => {
+      const d = new Date(this.selectedActivityDate + "T00:00:00");
+      d.setDate(d.getDate() - 1);
+      this.selectedActivityDate = this.formatDateString(d);
+      this.syncDatePicker();
+      const records = this.useCase.getHistory();
+      this.renderOverallSummaryPanel(records);
+    });
+
+    this.on("nextDateBtn", "click", () => {
+      const d = new Date(this.selectedActivityDate + "T00:00:00");
+      d.setDate(d.getDate() + 1);
+      const next = this.formatDateString(d);
+      if (next <= this.todayDateString()) {
+        this.selectedActivityDate = next;
+        this.syncDatePicker();
+        const records = this.useCase.getHistory();
+        this.renderOverallSummaryPanel(records);
+      }
+    });
+
+    const picker = document.getElementById("activityDatePicker") as HTMLInputElement | null;
+    picker?.addEventListener("change", () => {
+      const val = picker.value;
+      if (val && val <= this.todayDateString()) {
+        this.selectedActivityDate = val;
+        const records = this.useCase.getHistory();
+        this.renderOverallSummaryPanel(records);
+      }
     });
   }
 
   /**
-   * 総合タブ内のアクティブタブを切り替える。
+   * 今日の日付を YYYY-MM-DD 形式で返す。
    */
-  private switchOverallActivityTab(tabName: "today" | "past"): void {
-    document.querySelectorAll<HTMLElement>(".overall-activity-tab").forEach((t) => {
-      const isActive = t.dataset.tab === tabName;
-      t.classList.toggle("active", isActive);
-      t.setAttribute("aria-selected", String(isActive));
-    });
-    document.getElementById("overallTodayPanel")?.classList.toggle("hidden", tabName !== "today");
-    document.getElementById("overallPastPanel")?.classList.toggle("hidden", tabName !== "past");
+  private todayDateString(): string {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+
+  /**
+   * Date オブジェクトを YYYY-MM-DD 形式の文字列に変換して返す。
+   */
+  private formatDateString(d: Date): string {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+
+  /**
+   * カレンダーの値と次へボタンの disabled 状態を selectedActivityDate に同期する。
+   */
+  private syncDatePicker(): void {
+    const picker = document.getElementById("activityDatePicker") as HTMLInputElement | null;
+    if (picker) {
+      picker.value = this.selectedActivityDate;
+      picker.max = this.todayDateString();
+    }
+    const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement | null;
+    if (nextBtn) {
+      nextBtn.disabled = this.selectedActivityDate >= this.todayDateString();
+    }
   }
 
   /**
@@ -916,6 +962,38 @@ export class QuizApp {
       const recommended = this.useCase.getRecommendedCategoryForSubject(subject.id);
       const lastStudyDate = this.useCase.getLastStudyDateForSubject(subject.id);
 
+      // ラッパー（枠外情報 + カード）
+      const wrapper = document.createElement("div");
+      wrapper.className = "subject-overview-wrapper";
+
+      // 枠外情報行（カテゴリ名 + 最終学習日）
+      const outerInfo = document.createElement("div");
+      outerInfo.className = "subject-overview-outer-info";
+
+      if (recommended) {
+        const parentCat = this.useCase.getParentCategoryForUnit(subject.id, recommended.id);
+        if (parentCat) {
+          const catSpan = document.createElement("span");
+          catSpan.className = "subject-overview-outer-cat";
+          catSpan.textContent = parentCat.name;
+          outerInfo.appendChild(catSpan);
+        }
+      }
+
+      const outerDate = document.createElement("span");
+      outerDate.className = "subject-overview-outer-date";
+      if (lastStudyDate) {
+        const d = new Date(lastStudyDate);
+        const dateStr = `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
+        outerDate.textContent = dateStr;
+      } else {
+        outerDate.textContent = "未学習";
+      }
+      outerInfo.appendChild(outerDate);
+
+      wrapper.appendChild(outerInfo);
+
+      // カード（クリック可能）
       const item = document.createElement("div");
       item.className = "subject-overview-item";
       item.setAttribute("role", "button");
@@ -927,20 +1005,14 @@ export class QuizApp {
       headerDiv.className = "subject-overview-header";
       headerDiv.textContent = `${subject.icon} ${subject.name}`;
 
-      // 推奨の単元・学年
+      // 推奨単元名・学年
       const recDiv = document.createElement("div");
       recDiv.className = "subject-overview-recommended";
 
       if (recommended) {
-        const recLabel = document.createElement("span");
-        recLabel.className = "subject-overview-rec-label";
-        recLabel.textContent = "推奨の単元: ";
-
         const recName = document.createElement("span");
         recName.className = "subject-overview-rec-name";
         recName.textContent = recommended.name;
-
-        recDiv.appendChild(recLabel);
         recDiv.appendChild(recName);
 
         if (recommended.referenceGrade) {
@@ -957,20 +1029,8 @@ export class QuizApp {
         recDiv.textContent = "単元なし";
       }
 
-      // 最終学習日
-      const dateDiv = document.createElement("div");
-      dateDiv.className = "subject-overview-date";
-      if (lastStudyDate) {
-        const d = new Date(lastStudyDate);
-        const dateStr = `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
-        dateDiv.textContent = `最終学習日: ${dateStr}`;
-      } else {
-        dateDiv.textContent = "未学習";
-      }
-
       item.appendChild(headerDiv);
       item.appendChild(recDiv);
-      item.appendChild(dateDiv);
 
       // クリックで該当教科タブへ切り替え
       const handleActivate = (): void => {
@@ -1006,26 +1066,24 @@ export class QuizApp {
         }
       });
 
-      categoryList.appendChild(item);
+      wrapper.appendChild(item);
+      categoryList.appendChild(wrapper);
     }
   }
 
   // ─── 総合タブ専用サマリパネル ───────────────────────────────────────────────
 
-  /** 総合タブの過去の活動履歴を最大何件まで表示するか */
-  private static readonly MAX_OVERALL_HISTORY_ITEMS = 20;
-
   /**
-   * 今日のクイズ記録（手動確認済みを除く）をフィルタリングして返す。
+   * 活動日付でフィルタリングしたクイズ記録を返す。
    */
   private filterTodayRecords(records: QuizRecord[]): QuizRecord[] {
-    const todayStr = new Date().toDateString();
-    return records.filter((r) => new Date(r.date).toDateString() === todayStr && r.mode !== "manual");
+    const d = new Date(this.selectedActivityDate + "T00:00:00");
+    const dateToCheck = d.toDateString();
+    return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && r.mode !== "manual");
   }
 
   /**
    * 総合タブ専用のサマリパネルを描画する。
-   * 今日の活動・過去の活動を表示する。
    */
   private renderOverallSummaryPanel(allRecords?: QuizRecord[]): void {
     const panel = document.getElementById("overallSummaryPanel");
@@ -1034,12 +1092,11 @@ export class QuizApp {
     const records = allRecords ?? this.useCase.getHistory();
     this.renderTodayActivity(records);
     this.updateShareSummaryText(records);
-    this.renderOverallHistoryList(records);
   }
 
   /**
    * 今日の活動セクションを描画する。
-   * 今日の日付と一致するクイズ記録を履歴と同じ形式で表示する。
+   * selectedActivityDate の日付と一致するクイズ記録を履歴と同じ形式で表示する。
    */
   private renderTodayActivity(records: QuizRecord[]): void {
     const container = document.getElementById("todayActivityContent");
@@ -1052,7 +1109,7 @@ export class QuizApp {
     if (todayRecords.length === 0) {
       const empty = document.createElement("p");
       empty.className = "today-activity-empty";
-      empty.textContent = "今日はまだクイズをしていません。";
+      empty.textContent = "この日はまだクイズをしていません。";
       container.appendChild(empty);
       return;
     }
@@ -1076,15 +1133,16 @@ export class QuizApp {
 
   /**
    * SNS 共有用の活動サマリテキストを構築して返す。
+   * selectedActivityDate の日付を基準とし、各単元の成績を含む。
    */
   private buildShareSummaryText(records: QuizRecord[]): string {
-    const today = new Date();
-    const dateStr = `${today.getFullYear()}/${String(today.getMonth() + 1).padStart(2, "0")}/${String(today.getDate()).padStart(2, "0")}`;
-    const todayRecords = this.filterTodayRecords(records);
+    const [year, month, day] = this.selectedActivityDate.split("-");
+    const dateStr = `${year}/${month}/${day}`;
+    const dateRecords = this.filterTodayRecords(records);
 
-    const lines: string[] = ["【今日の学習サマリ】", `📅 ${dateStr}`];
+    const lines: string[] = ["【学習サマリ】", `📅 ${dateStr}`];
 
-    if (todayRecords.length === 0) {
+    if (dateRecords.length === 0) {
       lines.push("まだクイズをしていません。");
       return lines.join("\n");
     }
@@ -1092,22 +1150,30 @@ export class QuizApp {
     const subjectIconMap = Object.fromEntries(
       SUBJECTS.filter((s) => s.id !== "all").map((s) => [s.id, s.icon])
     );
-    const bySubject = new Map<string, { name: string; total: number; correct: number }>();
-    for (const r of todayRecords) {
-      const s = bySubject.get(r.subject) ?? { name: r.subjectName, total: 0, correct: 0 };
-      s.total += r.totalCount;
-      s.correct += r.correctCount;
-      bySubject.set(r.subject, s);
+
+    // 教科＋単元ごとに集計
+    const byUnit = new Map<string, { subjectName: string; categoryName: string; icon: string; total: number; correct: number }>();
+    for (const r of dateRecords) {
+      const key = `${r.subject}::${r.category}`;
+      const u = byUnit.get(key) ?? {
+        subjectName: r.subjectName,
+        categoryName: r.categoryName,
+        icon: subjectIconMap[r.subject] ?? "📝",
+        total: 0,
+        correct: 0,
+      };
+      u.total += r.totalCount;
+      u.correct += r.correctCount;
+      byUnit.set(key, u);
     }
 
-    for (const [subjectId, data] of bySubject) {
-      const icon = subjectIconMap[subjectId] ?? "📝";
-      const subPct = Math.round((data.correct / data.total) * 100);
-      lines.push(`${icon} ${data.name}: ${data.correct}/${data.total}問正解 (${subPct}%)`);
+    for (const data of byUnit.values()) {
+      const pct = Math.round((data.correct / data.total) * 100);
+      lines.push(`${data.icon} ${data.subjectName} / ${data.categoryName}: ${data.correct}/${data.total}問正解 (${pct}%)`);
     }
 
-    const totalCount = todayRecords.reduce((s, r) => s + r.totalCount, 0);
-    const correctCount = todayRecords.reduce((s, r) => s + r.correctCount, 0);
+    const totalCount = dateRecords.reduce((s, r) => s + r.totalCount, 0);
+    const correctCount = dateRecords.reduce((s, r) => s + r.correctCount, 0);
     const totalPct = Math.round((correctCount / totalCount) * 100);
     lines.push("---");
     lines.push(`合計: ${correctCount}/${totalCount}問正解 (${totalPct}%)`);
@@ -1162,6 +1228,7 @@ export class QuizApp {
 
   /**
    * 共有 URL の「共有」ボタンの状態と URL 表示ボタンのテキストを更新する。
+   * URL が設定されている場合は表示ボタンをグレー調に変更する。
    */
   private updateShareUrlOpenBtn(): void {
     const btn = document.getElementById("openShareUrlBtn") as HTMLButtonElement | null;
@@ -1172,10 +1239,11 @@ export class QuizApp {
         btn.classList.add("hidden");
       }
     }
-    // URL 表示ボタンのテキストを更新
+    // URL 表示ボタンのテキストと色状態を更新
     const displayBtn = document.getElementById("shareUrlDisplayBtn") as HTMLButtonElement | null;
     if (displayBtn) {
       displayBtn.textContent = this.shareUrl || "URLを設定";
+      displayBtn.classList.toggle("share-url-set", !!this.shareUrl);
     }
   }
 
@@ -1221,30 +1289,6 @@ export class QuizApp {
       this.updateShareUrlOpenBtn();
     }
     this.closeShareUrlEdit();
-  }
-
-  /**
-   * 過去の活動（全履歴）を overallHistoryList に描画する。
-   * 最大 20 件まで表示する。
-   */
-  private renderOverallHistoryList(records: QuizRecord[]): void {
-    const historyList = document.getElementById("overallHistoryList");
-    if (!historyList) return;
-
-    historyList.innerHTML = "";
-
-    if (records.length === 0) {
-      const empty = document.createElement("p");
-      empty.className = "history-empty";
-      empty.textContent = "まだ回答記録がありません。クイズを解いてみましょう！";
-      historyList.appendChild(empty);
-      return;
-    }
-
-    const displayRecords = records.slice(0, QuizApp.MAX_OVERALL_HISTORY_ITEMS);
-    displayRecords.forEach((record) => {
-      historyList.appendChild(this.buildHistoryItem(record));
-    });
   }
 
   private createCategoryItem(
@@ -1733,7 +1777,7 @@ export class QuizApp {
 
     const subjectSpan = document.createElement("span");
     subjectSpan.className = "history-subject";
-    subjectSpan.textContent = record.categoryName;
+    subjectSpan.textContent = `${record.subjectName} / ${record.categoryName}`;
 
     const modeSpan = document.createElement("span");
     const modeClassMap: Record<string, string> = { retry: "history-mode--retry", practice: "history-mode--practice", manual: "history-mode--manual" };
@@ -2352,6 +2396,11 @@ export class QuizApp {
       // 「総合」以外では現在アクティブなパネルを表示する（総合から戻った場合も含む）
       this.showPanelTab(this.activePanelTab);
     }
+
+    // 「おすすめ単元」タイトルは総合タブ時のみ表示
+    document.getElementById("allSubjectPanelTitle")?.classList.toggle("hidden", !isAll);
+    // 学習済み非表示ボタンは総合タブ時は非表示
+    document.getElementById("hideLearnedBtn")?.classList.toggle("hidden", isAll);
 
     // 選択中の単元情報パネルを更新する
     this.updateSelectedUnitInfo();
