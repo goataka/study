@@ -1676,6 +1676,14 @@ button:disabled {
     background: #f0f7ff;
 }
 
+.support-btn:focus-visible {
+    border-color: #0366d6;
+    color: #0366d6;
+    background: #f0f7ff;
+    outline: 2px solid #0366d6;
+    outline-offset: 2px;
+}
+
 /* ユーザー情報表示 */
 .user-info {
     text-align: right;

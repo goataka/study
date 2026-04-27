@@ -47,7 +47,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const QUESTIONS_DIR = path.join(__dirname, "..", "..", "public", "questions");
 const INDEX_FILE = path.join(QUESTIONS_DIR, "index.json");
 // app/src/infrastructure から見て ../../../support が support/ ディレクトリ
-const CONTENTS_DIR = path.join(__dirname, "..", "..", "..", "support");
+const SUPPORT_DIR = path.join(__dirname, "..", "..", "..", "support");
 
 // ─── ユーティリティ ──────────────────────────────────────────────────────────
 
@@ -306,9 +306,10 @@ describe("guideUrl — support/ 側の guide.md 存在チェック", () => {
     for (const qf of questionFiles) {
       if (!qf.guideUrl) continue;
       // guideUrl は "../english/pronunciation/alphabet/guide" のような相対パス
-      // "../" を除いて support/ 配下のパスに変換し .md を付加する
+      // "../" を除いて support/ 配下のパスに変換し、拡張子がない場合のみ .md を付加する
       const relativePath = qf.guideUrl.replace(/^\.\.\//, "");
-      const guideMdPath = path.join(CONTENTS_DIR, `${relativePath}.md`);
+      const withMd = relativePath.endsWith(".md") ? relativePath : `${relativePath}.md`;
+      const guideMdPath = path.join(SUPPORT_DIR, withMd);
       if (!fs.existsSync(guideMdPath)) {
         missing.push(`${qf.subject}/${qf.category}: ${guideMdPath}`);
       }
@@ -328,7 +329,8 @@ describe("guideUrl — support/ 側の guide.md 存在チェック", () => {
       if (/^https?:\/\//i.test(qf.parentCategoryGuideUrl)) continue;
       // parentCategoryGuideUrl は "../english/grammar/guide" のような相対パス
       const relativePath = qf.parentCategoryGuideUrl.replace(/^\.\.\//, "");
-      const guideMdPath = path.join(CONTENTS_DIR, `${relativePath}.md`);
+      const withMd = relativePath.endsWith(".md") ? relativePath : `${relativePath}.md`;
+      const guideMdPath = path.join(SUPPORT_DIR, withMd);
       if (!fs.existsSync(guideMdPath)) {
         missing.push(`${qf.subject}/${qf.parentCategory} (${qf.category}): ${guideMdPath}`);
       }

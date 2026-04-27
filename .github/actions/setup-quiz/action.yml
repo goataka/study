@@ -1,6 +1,6 @@
 # app ディレクトリの Node.js 環境をセットアップするコンポジットアクション
 # 各ジョブで繰り返される「Node.js セットアップ + npm ci」の共通処理を集約する
-name: "Setup Quiz"
+name: "Setup App"
 description: "Node.js のセットアップと app の依存関係をインストールする"
 
 inputs:

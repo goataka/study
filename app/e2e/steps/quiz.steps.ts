@@ -408,9 +408,17 @@ Then("the support button should be visible in the header", async ({ page }) => {
   await expect(page.locator("#supportBtn")).toBeVisible();
 });
 
-Then("the support button should open in a new tab", async ({ page }) => {
-  // サポートボタン（?）が target="_blank" で別タブを開くリンクであること
+Then("the support button should open support page in a new tab", async ({ page }) => {
+  // サポートボタン（?）をクリックすると別タブが開くこと
   const supportBtn = page.locator("#supportBtn");
   await expect(supportBtn).toHaveAttribute("target", "_blank");
   await expect(supportBtn).toHaveAttribute("href", "../support/");
+
+  const [supportPage] = await Promise.all([
+    page.waitForEvent("popup"),
+    supportBtn.click(),
+  ]);
+
+  await supportPage.waitForLoadState();
+  expect(supportPage.url()).toContain("support");
 });
