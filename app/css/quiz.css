@@ -1543,17 +1543,39 @@ button:disabled {
     gap: 4px;
 }
 
+/* フォントサイズボタン前のアイコン（文字サイズコントロールであることを示す） */
+.font-size-icon {
+    font-size: 18px;
+    font-weight: 700;
+    color: #586069;
+    margin-right: 2px;
+    user-select: none;
+    line-height: 1;
+}
+
 .font-size-btn {
     padding: 4px 10px;
     border: 1px solid #d1d5da;
     border-radius: 6px;
     background: #f6f8fa;
     color: #586069;
-    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
     font-family: inherit;
+}
+
+/* 各ボタンのテキストサイズは、そのボタンが表すサイズを表示する */
+.font-size-btn[data-size="small"] {
+    font-size: 11px;
+}
+
+.font-size-btn[data-size="medium"] {
+    font-size: 15px;
+}
+
+.font-size-btn[data-size="large"] {
+    font-size: 19px;
 }
 
 .font-size-btn:hover {
@@ -2321,6 +2343,98 @@ button:disabled {
 
 /* ─── フォントサイズ：中 ──────────────────────────────────────────────────── */
 
+body.font-size-medium header h1 {
+    font-size: 34px;
+}
+
+body.font-size-medium .subject-tab {
+    font-size: 18px;
+}
+
+body.font-size-medium .panel-tab {
+    font-size: 18px;
+}
+
+body.font-size-medium .stats-info {
+    font-size: 18px;
+}
+
+body.font-size-medium .question-count-label {
+    font-size: 21px;
+}
+
+body.font-size-medium .count-label {
+    font-size: 20px;
+}
+
+body.font-size-medium .category-description {
+    font-size: 18px;
+}
+
+body.font-size-medium #questionNumber {
+    font-size: 21px;
+}
+
+body.font-size-medium .topic-badge {
+    font-size: 16px;
+}
+
+body.font-size-medium #resultScreen h2 {
+    font-size: 30px;
+}
+
+body.font-size-medium .result-details h3 {
+    font-size: 25px;
+}
+
+body.font-size-medium .result-question {
+    font-size: 21px;
+}
+
+body.font-size-medium .result-answer {
+    font-size: 18px;
+}
+
+body.font-size-medium .history-empty {
+    font-size: 19px;
+}
+
+body.font-size-medium .history-date {
+    font-size: 17px;
+}
+
+body.font-size-medium .history-subject {
+    font-size: 18px;
+}
+
+body.font-size-medium .history-score {
+    font-size: 18px;
+}
+
+body.font-size-medium .history-mode {
+    font-size: 16px;
+}
+
+body.font-size-medium .history-entry {
+    font-size: 17px;
+}
+
+body.font-size-medium .history-section-title {
+    font-size: 21px;
+}
+
+body.font-size-medium .question-list-text {
+    font-size: 19px;
+}
+
+body.font-size-medium .question-list-correct {
+    font-size: 17px;
+}
+
+body.font-size-medium .question-list-hint {
+    font-size: 17px;
+}
+
 body.font-size-medium .question-text {
     font-size: 32px;
 }
@@ -2405,6 +2519,98 @@ body.font-size-medium .subject-overview-date {
 }
 
 /* ─── フォントサイズ：大 ──────────────────────────────────────────────────── */
+
+body.font-size-large header h1 {
+    font-size: 40px;
+}
+
+body.font-size-large .subject-tab {
+    font-size: 22px;
+}
+
+body.font-size-large .panel-tab {
+    font-size: 22px;
+}
+
+body.font-size-large .stats-info {
+    font-size: 21px;
+}
+
+body.font-size-large .question-count-label {
+    font-size: 25px;
+}
+
+body.font-size-large .count-label {
+    font-size: 23px;
+}
+
+body.font-size-large .category-description {
+    font-size: 21px;
+}
+
+body.font-size-large #questionNumber {
+    font-size: 24px;
+}
+
+body.font-size-large .topic-badge {
+    font-size: 19px;
+}
+
+body.font-size-large #resultScreen h2 {
+    font-size: 36px;
+}
+
+body.font-size-large .result-details h3 {
+    font-size: 30px;
+}
+
+body.font-size-large .result-question {
+    font-size: 24px;
+}
+
+body.font-size-large .result-answer {
+    font-size: 21px;
+}
+
+body.font-size-large .history-empty {
+    font-size: 22px;
+}
+
+body.font-size-large .history-date {
+    font-size: 20px;
+}
+
+body.font-size-large .history-subject {
+    font-size: 21px;
+}
+
+body.font-size-large .history-score {
+    font-size: 21px;
+}
+
+body.font-size-large .history-mode {
+    font-size: 19px;
+}
+
+body.font-size-large .history-entry {
+    font-size: 20px;
+}
+
+body.font-size-large .history-section-title {
+    font-size: 24px;
+}
+
+body.font-size-large .question-list-text {
+    font-size: 22px;
+}
+
+body.font-size-large .question-list-correct {
+    font-size: 20px;
+}
+
+body.font-size-large .question-list-hint {
+    font-size: 20px;
+}
 
 body.font-size-large .question-text {
     font-size: 39px;
