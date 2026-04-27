@@ -286,33 +286,6 @@ header h1 {
     background: #d1d5da;
 }
 
-.category-grade-group-header.grade-elementary {
-    color: #c0392b;
-    background: #fde8e8;
-}
-
-.category-grade-group-header.grade-elementary:hover {
-    background: #f9c6c6;
-}
-
-.category-grade-group-header.grade-middle {
-    color: #0366d6;
-    background: #e8f0fe;
-}
-
-.category-grade-group-header.grade-middle:hover {
-    background: #c8d8fb;
-}
-
-.category-grade-group-header.grade-high {
-    color: #1a7f37;
-    background: #e8f8f0;
-}
-
-.category-grade-group-header.grade-high:hover {
-    background: #c3edda;
-}
-
 .category-grade-group-toggle::before {
     content: "▼";
     font-size: 10px;
@@ -568,6 +541,21 @@ header h1 {
     color: rgba(255, 255, 255, 0.8);
 }
 
+/* 説明・例文インラインコンテナ（右パネル非表示時のみ表示） */
+.category-item-inline-info {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    text-align: right;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.start-content-layout.category-only .category-item .category-item-inline-info {
+    display: flex;
+}
+
 .category-status {
     font-size: 16px;
     flex-shrink: 0;
@@ -617,6 +605,30 @@ header h1 {
 }
 
 /* 総合タブ — 教科概要カード */
+.subject-overview-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.subject-overview-outer-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 4px 2px 2px;
+    font-size: 12px;
+    color: #586069;
+}
+
+.subject-overview-outer-cat {
+    font-weight: 600;
+    color: #444d56;
+}
+
+.subject-overview-outer-date {
+    color: #8a9299;
+}
+
 .subject-overview-item {
     display: flex;
     flex-direction: column;
@@ -654,10 +666,6 @@ header h1 {
     color: #24292e;
 }
 
-.subject-overview-rec-label {
-    color: #586069;
-}
-
 .subject-overview-rec-name {
     font-weight: 600;
 }
@@ -684,9 +692,52 @@ header h1 {
     background: #e8f8f0;
 }
 
-.subject-overview-date {
+/* おすすめ単元パネルタイトル（総合タブ時に右列ヘッダーに表示） */
+.all-subject-panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0366d6;
+}
+
+/* 日付ナビゲーション */
+.activity-date-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    padding-bottom: 4px;
+}
+
+.activity-date-nav-btn {
+    padding: 3px 8px;
+    font-size: 14px;
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    line-height: 1;
+}
+
+.activity-date-nav-btn:hover:not(:disabled) {
+    background: #e8f0fe;
+    border-color: #0366d6;
+}
+
+.activity-date-nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.activity-date-picker {
+    flex: 1;
+    min-width: 0;
+    padding: 3px 6px;
     font-size: 13px;
-    color: #586069;
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+    background: white;
+    color: #24292e;
 }
 
 /* 総合タブ専用サマリパネル */
@@ -697,36 +748,6 @@ header h1 {
     flex: 1;
     overflow-y: auto;
     padding: 0;
-}
-
-/* 総合タブの活動タブ */
-.overall-activity-tabs {
-    display: flex;
-    border-bottom: 2px solid #e1e4e8;
-    background: #f6f8fa;
-    flex-shrink: 0;
-}
-
-.overall-activity-tab {
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #586069;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    cursor: pointer;
-    transition: color 0.15s, border-color 0.15s;
-}
-
-.overall-activity-tab:hover {
-    color: #0366d6;
-}
-
-.overall-activity-tab.active {
-    color: #0366d6;
-    border-bottom-color: #0366d6;
 }
 
 /* 活動パネル */
@@ -818,9 +839,9 @@ header h1 {
     max-width: 100%;
     padding: 4px 10px;
     font-size: 12px;
-    border: 1px solid #d1d5da;
+    border: none;
     border-radius: 4px;
-    background: #f6f8fa;
+    background: transparent;
     color: #0366d6;
     cursor: pointer;
     text-overflow: ellipsis;
@@ -828,11 +849,20 @@ header h1 {
     white-space: nowrap;
     display: block;
     text-align: left;
-    transition: background 0.15s;
+    transition: color 0.15s, background 0.15s;
 }
 
 .share-url-display-btn:hover {
     background: #e8f0fe;
+}
+
+.share-url-display-btn.share-url-set {
+    color: #999;
+}
+
+.share-url-display-btn.share-url-set:hover {
+    background: #f0f0f0;
+    color: #666;
 }
 
 .share-url-edit-area {
@@ -868,9 +898,9 @@ header h1 {
     color: white;
 }
 
-/* 総合タブ時のレイアウト: 単元選択を右、活動パネルを左 */
+/* 総合タブ時のレイアウト: 活動サマリ（左）とおすすめ単元（右）を等幅で表示 */
 .start-content-layout.all-subject-layout {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .start-content-layout.all-subject-layout .category-panel {
@@ -920,6 +950,16 @@ header h1 {
     font-size: 16px;
     font-weight: 700;
     color: #0366d6;
+}
+
+/* カテゴリパスラベル（単元選択時に単元名の前に表示） */
+.selected-unit-info-category {
+    font-size: 12px;
+    color: #586069;
+    background: #f0f0f0;
+    padding: 1px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
 }
 
 .selected-unit-info-desc {
@@ -2562,6 +2602,25 @@ body.font-size-medium .submit-btn {
     font-size: 22px;
 }
 
+body.font-size-medium .selected-unit-info-name {
+    font-size: 20px;
+}
+
+body.font-size-medium .selected-unit-info-category {
+    font-size: 15px;
+}
+
+body.font-size-medium .selected-unit-info-desc,
+body.font-size-medium .selected-unit-info-example {
+    font-size: 16px;
+}
+
+body.font-size-medium .selected-unit-close-btn {
+    font-size: 17px;
+    width: 30px;
+    height: 30px;
+}
+
 body.font-size-medium .category-top-group-header {
     font-size: 16px;
 }
@@ -2572,6 +2631,10 @@ body.font-size-medium .category-group-header {
 
 body.font-size-medium .category-top-group .category-group-header {
     font-size: 14px;
+}
+
+body.font-size-medium .category-grade-group-header {
+    font-size: 16px;
 }
 
 body.font-size-medium .category-name {
@@ -2614,12 +2677,13 @@ body.font-size-medium .subject-overview-grade {
     font-size: 15px;
 }
 
-body.font-size-medium .subject-overview-date {
+body.font-size-medium .subject-overview-outer-date {
     font-size: 16px;
 }
 
-body.font-size-medium .overall-activity-tab {
-    font-size: 17px;
+body.font-size-medium .activity-date-nav-btn,
+body.font-size-medium .activity-date-picker {
+    font-size: 16px;
 }
 
 body.font-size-medium .share-summary-text {
@@ -2778,6 +2842,25 @@ body.font-size-large .submit-btn {
     font-size: 27px;
 }
 
+body.font-size-large .selected-unit-info-name {
+    font-size: 24px;
+}
+
+body.font-size-large .selected-unit-info-category {
+    font-size: 18px;
+}
+
+body.font-size-large .selected-unit-info-desc,
+body.font-size-large .selected-unit-info-example {
+    font-size: 19px;
+}
+
+body.font-size-large .selected-unit-close-btn {
+    font-size: 20px;
+    width: 34px;
+    height: 34px;
+}
+
 body.font-size-large .category-top-group-header {
     font-size: 20px;
 }
@@ -2788,6 +2871,10 @@ body.font-size-large .category-group-header {
 
 body.font-size-large .category-top-group .category-group-header {
     font-size: 22px;
+}
+
+body.font-size-large .category-grade-group-header {
+    font-size: 20px;
 }
 
 body.font-size-large .category-name {
@@ -2830,12 +2917,13 @@ body.font-size-large .subject-overview-grade {
     font-size: 18px;
 }
 
-body.font-size-large .subject-overview-date {
+body.font-size-large .subject-overview-outer-date {
     font-size: 20px;
 }
 
-body.font-size-large .overall-activity-tab {
-    font-size: 20px;
+body.font-size-large .activity-date-nav-btn,
+body.font-size-large .activity-date-picker {
+    font-size: 19px;
 }
 
 body.font-size-large .share-summary-text {
