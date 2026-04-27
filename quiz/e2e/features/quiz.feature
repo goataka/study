@@ -18,6 +18,14 @@ Feature: 学習アプリ
     Then the start screen should be visible
     And the subject overview items should be visible
 
+  Scenario: 総合タブには活動サマリパネルが表示される
+    Then the start screen should be visible
+    And the overall summary panel should be visible
+
+  Scenario: 総合タブの活動サマリには今日の学習サマリが含まれる
+    Then the start screen should be visible
+    And the share summary text should contain "今日の学習サマリ"
+
   Scenario: 単元を選択するとクイズパネルが表示される
     When I click the "英語" tab
     And I click the first category item

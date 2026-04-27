@@ -116,6 +116,15 @@ function setupTabDom(): void {
         <div id="questionListContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-questions">
           <div id="questionListBody"></div>
         </div>
+        <div id="overallSummaryPanel" class="hidden">
+          <div id="todayActivityContent"></div>
+          <div id="shareSummaryText"></div>
+          <input type="url" id="shareUrlInput">
+          <button id="saveShareUrlBtn" type="button">保存</button>
+          <a id="openShareUrlBtn" class="hidden" href="#" target="_blank">🔗 開く</a>
+          <button id="copySummaryBtn" type="button">📋 コピー</button>
+          <div id="overallHistoryList"></div>
+        </div>
       </div>
     </div>
     <div id="quizScreen" class="screen">
@@ -2532,13 +2541,18 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化後は総合タブが表示されクイズパネルが非表示になる（category-only クラスが付く）", async () => {
+  it("初期化後は総合タブが表示され通常パネルタブが非表示になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 総合タブでは右パネルを非表示にしてカテゴリリストを全幅表示するため category-only クラスが付く
+    // 総合タブでは通常のパネルタブが非表示になる
+    const guideTab = document.getElementById("panelTab-guide");
+    const quizTab = document.getElementById("panelTab-quiz");
+    expect(guideTab?.classList.contains("hidden")).toBe(true);
+    expect(quizTab?.classList.contains("hidden")).toBe(true);
+    // 総合タブでは右パネルを隠さない（総合サマリパネルを表示する）ため category-only クラスは付かない
     const subjectContent = document.getElementById("subjectContent");
-    expect(subjectContent?.classList.contains("category-only")).toBe(true);
+    expect(subjectContent?.classList.contains("category-only")).toBe(false);
   });
 
   it("教科タブをクリックすると category-only クラスが付く（カテゴリ未選択状態）", async () => {
@@ -3262,6 +3276,216 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     const categoryItems = document.querySelectorAll(".category-item");
     expect(categoryItems.length).toBeGreaterThan(0);
+  });
+});
+
+// ─── 総合タブのサマリパネル仕様 ────────────────────────────────────────────
+
+describe("QuizApp — 総合タブのサマリパネル仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("初期化後に総合タブでは overallSummaryPanel が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const panel = document.getElementById("overallSummaryPanel");
+    expect(panel?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("教科タブに切り替えると overallSummaryPanel が非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector<HTMLElement>('.subject-tab[data-subject="english"]');
+    englishTab?.click();
+
+    const panel = document.getElementById("overallSummaryPanel");
+    expect(panel?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("総合タブに戻ると overallSummaryPanel が再表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector<HTMLElement>('.subject-tab[data-subject="english"]');
+    englishTab?.click();
+
+    const allTab = document.querySelector<HTMLElement>('.subject-tab[data-subject="all"]');
+    allTab?.click();
+
+    const panel = document.getElementById("overallSummaryPanel");
+    expect(panel?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("今日の学習記録がない場合、todayActivityContent に未実施メッセージが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const container = document.getElementById("todayActivityContent");
+    expect(container?.textContent).toContain("まだクイズをしていません");
+  });
+
+  it("今日の学習記録がある場合、todayActivityContent にスコアが表示される", async () => {
+    const today = new Date().toISOString();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: today,
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 8,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const container = document.getElementById("todayActivityContent");
+    expect(container?.textContent).toContain("8/10問正解");
+  });
+
+  it("活動サマリテキストに今日の日付が含まれる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const summaryEl = document.getElementById("shareSummaryText");
+    const today = new Date();
+    const year = String(today.getFullYear());
+    expect(summaryEl?.textContent).toContain(year);
+    expect(summaryEl?.textContent).toContain("今日の学習サマリ");
+  });
+
+  it("共有URLを保存すると openShareUrlBtn が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
+    urlInput.value = "https://twitter.com";
+    document.getElementById("saveShareUrlBtn")?.click();
+
+    const openBtn = document.getElementById("openShareUrlBtn");
+    expect(openBtn?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("共有URLが空の場合 openShareUrlBtn が非表示になる", async () => {
+    localStorage.setItem("overallShareUrl", "https://twitter.com");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // URLをクリアして保存
+    const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
+    urlInput.value = "";
+    document.getElementById("saveShareUrlBtn")?.click();
+
+    const openBtn = document.getElementById("openShareUrlBtn");
+    expect(openBtn?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("保存した共有URLが localStorageに保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
+    urlInput.value = "https://example.com/share";
+    document.getElementById("saveShareUrlBtn")?.click();
+
+    expect(localStorage.getItem("overallShareUrl")).toBe("https://example.com/share");
+  });
+
+  it("localhost に共有URLが保存されていれば初期表示時に openShareUrlBtn が表示される", async () => {
+    localStorage.setItem("overallShareUrl", "https://twitter.com");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const openBtn = document.getElementById("openShareUrlBtn");
+    expect(openBtn?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("javascript: スキームの URL を保存しても openShareUrlBtn が非表示のままになる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
+    urlInput.value = "javascript:alert(1)";
+    document.getElementById("saveShareUrlBtn")?.click();
+
+    const openBtn = document.getElementById("openShareUrlBtn");
+    expect(openBtn?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("javascript: スキームの URL は localStorage に保存されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
+    urlInput.value = "javascript:alert(1)";
+    document.getElementById("saveShareUrlBtn")?.click();
+
+    expect(localStorage.getItem("overallShareUrl")).toBeNull();
+  });
+
+  it("localStorage に javascript: の URL が保存されていても初期表示時に openShareUrlBtn が非表示のままになる", async () => {
+    localStorage.setItem("overallShareUrl", "javascript:alert(1)");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const openBtn = document.getElementById("openShareUrlBtn");
+    expect(openBtn?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("過去の学習記録がある場合、overallHistoryList に履歴が表示される", async () => {
+    const pastDate = "2025-01-15T10:00:00.000Z";
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: pastDate,
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyList = document.getElementById("overallHistoryList");
+    const items = historyList?.querySelectorAll(".history-item");
+    expect(items?.length).toBeGreaterThan(0);
+  });
+
+  it("過去の学習記録がない場合、overallHistoryList に未実施メッセージが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyList = document.getElementById("overallHistoryList");
+    expect(historyList?.textContent).toContain("まだ回答記録がありません");
   });
 });
 

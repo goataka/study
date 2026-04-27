@@ -103,6 +103,33 @@
           <div id="questionListContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-questions">
             <div id="questionListBody" class="question-list-panel-body"></div>
           </div>
+
+          <!-- 総合タブ専用サマリパネル -->
+          <div id="overallSummaryPanel" class="hidden overall-summary-panel" role="region" aria-label="総合サマリ">
+            <!-- 今日の活動 -->
+            <div class="overall-section">
+              <h3 class="overall-section-title">📅 今日の活動</h3>
+              <div id="todayActivityContent" class="overall-today-content"></div>
+            </div>
+            <!-- 活動サマリ（SNS共有用） -->
+            <div class="overall-section">
+              <h3 class="overall-section-title">📢 活動サマリ</h3>
+              <div id="shareSummaryText" class="share-summary-text"></div>
+              <div class="share-actions">
+                <button id="copySummaryBtn" class="share-copy-btn" type="button">📋 コピー</button>
+                <div class="share-url-row">
+                  <input type="url" id="shareUrlInput" class="share-url-input" placeholder="共有URLを入力（例: https://twitter.com）">
+                  <button id="saveShareUrlBtn" class="share-url-save-btn" type="button">保存</button>
+                  <a id="openShareUrlBtn" class="share-url-open-btn hidden" href="#" target="_blank" rel="noopener noreferrer">🔗 開く</a>
+                </div>
+              </div>
+            </div>
+            <!-- 過去の活動 -->
+            <div class="overall-section">
+              <h3 class="overall-section-title">📊 過去の活動</h3>
+              <div id="overallHistoryList" class="history-list"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
