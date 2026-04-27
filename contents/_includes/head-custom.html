@@ -8,9 +8,11 @@
   /* 解説ページの先頭に表示される「学習ドリル」サイトリンクを非表示にする */
   .markdown-body > h1:not([id]) { display: none; }
   /* フォントサイズ：中（クイズアプリのフォントサイズ設定に連動） */
-  html.embedded-mode.font-size-medium body { font-size: 1.2em; }
+  html.embedded-mode.font-size-medium { font-size: 1.2em; }
+  html.embedded-mode.font-size-medium body { font-size: 1em; }
   /* フォントサイズ：大（クイズアプリのフォントサイズ設定に連動） */
-  html.embedded-mode.font-size-large body { font-size: 1.5em; }
+  html.embedded-mode.font-size-large { font-size: 1.5em; }
+  html.embedded-mode.font-size-large body { font-size: 1em; }
 </style>
 <script>
   // ?embedded=1 が付与されているとき（クイズの解説 iframe として表示されるとき）、
