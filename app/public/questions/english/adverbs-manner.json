@@ -111,15 +111,15 @@
     },
     {
       "id": "a1b2c3d4-0008-5008-8008-000000000009",
-      "question": "I play games ___ my room. (in / 場所)",
+      "question": "I play games ___. (somewhere/どこかで)",
       "choices": [
-        "there",
-        "here",
+        "somewhere",
         "anywhere",
-        "nowhere"
+        "nowhere",
+        "everywhere"
       ],
       "correct": 0,
-      "explanation": "「あそこで/そこで」を表す場所の副詞は there（my room との対比）"
+      "explanation": "「どこかで」を表す場所の副詞は somewhere を使います"
     },
     {
       "id": "a1b2c3d4-0008-5008-8008-000000000010",
