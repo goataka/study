@@ -202,14 +202,27 @@ permalink: /support/
 | 13 | 四字熟語（中学生） | 中学生 | [解説](../japanese/kanji/yojijukugo-secondary/guide.md) | [確認](../app/?subject=japanese&category=yojijukugo-secondary) | 四面楚歌 |
 | 14 | 四字熟語（高校生） | 高校生 | [解説](../japanese/kanji/yojijukugo-high/guide.md) | [確認](../app/?subject=japanese&category=yojijukugo-high) | 千載一遇 |
 
+#### 📝 語彙
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 15 | ことわざ その１ | 中学生 | [解説](../japanese/kanji/kotowaza/guide.md) | [確認](../app/?subject=japanese&category=kotowaza) | 七転び八起き |
+| 16 | ことわざ その２ | 中学生 | [解説](../japanese/kanji/kotowaza/guide.md) | [確認](../app/?subject=japanese&category=kotowaza-2) | 三人寄れば文殊の知恵 |
+| 17 | 四字熟語 その１ | 中学生 | [解説](../japanese/kanji/yojijukugo/guide.md) | [確認](../app/?subject=japanese&category=yojijukugo) | 一石二鳥 |
+| 18 | 四字熟語 その２ | 中学生 | [解説](../japanese/kanji/yojijukugo/guide.md) | [確認](../app/?subject=japanese&category=yojijukugo-2) | 異口同音 |
+
 #### 📖 読解
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 15 | 文章構造（主語・述語） | 小学生 | [解説](../japanese/reading/sentence-structure/guide.md) | [確認](../app/?subject=japanese&category=reading-sentence-structure) | 主語・述語 |
-| 16 | 同等・言い換え関係 | 中学生 | [解説](../japanese/reading/equivalence/guide.md) | [確認](../app/?subject=japanese&category=reading-equivalence) | つまり・すなわち |
-| 17 | 対比関係 | 中学生 | [解説](../japanese/reading/contrast/guide.md) | [確認](../app/?subject=japanese&category=reading-contrast) | しかし・一方 |
-| 18 | 因果関係 | 中学生 | [解説](../japanese/reading/cause-effect/guide.md) | [確認](../app/?subject=japanese&category=reading-cause-effect) | だから・なぜなら |
+| 19 | 文章構造（主語・述語）その１ | 小学生 | [解説](../japanese/reading/sentence-structure/guide.md) | [確認](../app/?subject=japanese&category=reading-sentence-structure) | 主語・述語 |
+| 20 | 文章構造（主語・述語）その２ | 小学生 | [解説](../japanese/reading/sentence-structure/guide.md) | [確認](../app/?subject=japanese&category=reading-sentence-structure-2) | 主語・述語 |
+| 21 | 同等・言い換え関係 その１ | 中学生 | [解説](../japanese/reading/equivalence/guide.md) | [確認](../app/?subject=japanese&category=reading-equivalence) | つまり・すなわち |
+| 22 | 同等・言い換え関係 その２ | 中学生 | [解説](../japanese/reading/equivalence/guide.md) | [確認](../app/?subject=japanese&category=reading-equivalence-2) | つまり・すなわち |
+| 23 | 対比関係 その１ | 中学生 | [解説](../japanese/reading/contrast/guide.md) | [確認](../app/?subject=japanese&category=reading-contrast) | しかし・一方 |
+| 24 | 対比関係 その２ | 中学生 | [解説](../japanese/reading/contrast/guide.md) | [確認](../app/?subject=japanese&category=reading-contrast-2) | しかし・一方 |
+| 25 | 因果関係 その１ | 中学生 | [解説](../japanese/reading/cause-effect/guide.md) | [確認](../app/?subject=japanese&category=reading-cause-effect) | だから・なぜなら |
+| 26 | 因果関係 その２ | 中学生 | [解説](../japanese/reading/cause-effect/guide.md) | [確認](../app/?subject=japanese&category=reading-cause-effect-2) | だから・なぜなら |
 
 ## 科目別リンク
 
