@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "simultaneous-eq-2",
+  "categoryName": "📐 連立方程式 その２",
+  "topCategory": "algebra",
+  "topCategoryName": "代数",
+  "parentCategory": "algebra-advanced",
+  "parentCategoryName": "発展代数",
+  "guideUrl": "../math/algebra/simultaneous-eq/guide",
+  "parentCategoryGuideUrl": "../math/algebra/guide",
+  "example": "x+y=5, x-y=1 → x=3,y=2",
+  "referenceGrade": "中学2年",
+  "description": "加減法や代入法を使って連立方程式を解けるようにします。",
+  "questions": [
+    {
+      "id": "9fbff705-7066-580e-b6fa-d909b5032a92",
+      "question": "x + y = 10, 2x - y = 2 を解くと x = ?",
+      "choices": [
+        "4",
+        "6",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "explanation": "加算: 3x = 12 → x = 4"
+    },
+    {
+      "id": "a0141c94-7689-54e2-b0a9-c2b0f7c7ed88",
+      "question": "x + y = 10, 2x - y = 2 を解くと y = ?",
+      "choices": [
+        "6",
+        "4",
+        "5",
+        "8"
+      ],
+      "correct": 0,
+      "explanation": "x = 4 を代入: y = 6"
+    },
+    {
+      "id": "f21ce496-fe99-5200-9981-9c3cc0c77215",
+      "question": "3x + 2y = 12, x + y = 5 を解くと x = ?",
+      "choices": [
+        "2",
+        "3",
+        "4",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "y = 5-x を代入: 3x + 2(5-x) = 12 → x = 2"
+    },
+    {
+      "id": "7d75cffa-41c9-5289-a660-dc86315c9be6",
+      "question": "3x + 2y = 12, x + y = 5 を解くと y = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "x = 2 を代入: y = 3"
+    },
+    {
+      "id": "d0ca388d-bb16-5ee6-9573-2c99444d9aae",
+      "question": "2x + y = 9, x - y = 3 を解くと x = ?",
+      "choices": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correct": 0,
+      "explanation": "加算: 3x = 12 → x = 4"
+    },
+    {
+      "id": "60c5338a-341d-5549-98ce-062e9657c816",
+      "question": "2x + y = 9, x - y = 3 を解くと y = ?",
+      "choices": [
+        "1",
+        "2",
+        "3",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "x = 4 を代入: y = 9 - 8 = 1"
+    },
+    {
+      "id": "f9320920-7fe9-502f-950b-1da82a4c7d5d",
+      "question": "リンゴ1個とバナナ2本で250円、リンゴ2個とバナナ1本で200円のとき、リンゴ1個は？",
+      "choices": [
+        "50円",
+        "100円",
+        "75円",
+        "150円"
+      ],
+      "correct": 0,
+      "explanation": "r+2b=250, 2r+b=200。2×(2式)-(1式): 3r=150 → r=50円"
+    },
+    {
+      "id": "82ec54f6-d464-54ae-8e4b-ed6e1a5d65de",
+      "question": "リンゴ1個とバナナ2本で250円、リンゴ2個とバナナ1本で200円のとき、バナナ1本は？",
+      "choices": [
+        "100円",
+        "50円",
+        "75円",
+        "125円"
+      ],
+      "correct": 0,
+      "explanation": "r=50を代入: 50+2b=250 → b=100円"
+    },
+    {
+      "id": "c8e08d86-72e8-5ff4-8efb-e3ec0c42a560",
+      "question": "3a + b = 11, a - b = 1 を解くと a = ?",
+      "choices": [
+        "3",
+        "4",
+        "2",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "加算: 4a = 12 → a = 3"
+    },
+    {
+      "id": "55a905a7-ea9d-5e66-965b-9bfd5e750e3a",
+      "question": "3a + b = 11, a - b = 1 を解くと b = ?",
+      "choices": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "correct": 0,
+      "explanation": "a = 3 を代入: 3 - b = 1 → b = 2"
+    }
+  ]
+}

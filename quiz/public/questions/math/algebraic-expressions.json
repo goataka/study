@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "まず分配法則。5×2a=10a、5×(-3)=-15。10a-15+4a=14a-15"
+    },
+    {
+      "id": "e367e3e2-4f65-5870-b55f-af2774ce0a93",
+      "question": "3(2a + 4) - 2(a + 3) = ?",
+      "choices": [
+        "4a + 6",
+        "4a + 3",
+        "6a + 6",
+        "4a - 6"
+      ],
+      "correct": 0,
+      "explanation": "6a + 12 - 2a - 6 = 4a + 6"
+    },
+    {
+      "id": "f8dd1ad2-3b02-5205-9455-3ce9f0151e1f",
+      "question": "x + y + 2x - 3y = ?",
+      "choices": [
+        "3x - 2y",
+        "3x + 2y",
+        "x - 2y",
+        "3x - 4y"
+      ],
+      "correct": 0,
+      "explanation": "x + 2x + y - 3y = 3x - 2y"
     }
   ]
 }

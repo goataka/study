@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "limits",
-  "categoryName": "♾️ 極限",
+  "category": "limits-1",
+  "categoryName": "♾️ 極限 その１",
   "topCategory": "advanced-math",
   "topCategoryName": "高校数学",
   "parentCategory": "calculus",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "分子分母をxで割ると、(2+1/x)/(3-1/x)。x→∞で極限は2/3"
+    },
+    {
+      "id": "15d7b9ee-3514-5c1d-bfb3-1ca784b0f45b",
+      "question": "lim(x→0) (1-cos x)/x = ?",
+      "choices": [
+        "0",
+        "1",
+        "∞",
+        "1/2"
+      ],
+      "correct": 0,
+      "explanation": "lim(x→0) (1-cos x)/x = 0（ロピタルの定理: sin(0)/1 = 0）"
+    },
+    {
+      "id": "370fc937-2f74-5751-96f4-af71bb38d0df",
+      "question": "lim(n→∞) (n+1)/n = ?",
+      "choices": [
+        "1",
+        "2",
+        "0",
+        "∞"
+      ],
+      "correct": 0,
+      "explanation": "(n+1)/n = 1 + 1/n → 1 + 0 = 1"
     }
   ]
 }

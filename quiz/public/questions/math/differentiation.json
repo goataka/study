@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "differentiation",
-  "categoryName": "📈 微分",
+  "category": "differentiation-1",
+  "categoryName": "📈 微分 その１",
   "topCategory": "advanced-math",
   "topCategoryName": "高校数学",
   "parentCategory": "calculus",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "f'(x) = -3x² + 6x = -3x(x-2) = 0よりx=0,2。x=2で符号が負→正→負なので極大。f(2) = -8 + 12 + 1 = 5"
+    },
+    {
+      "id": "d47a213b-03a9-5728-97cf-231901d1ce70",
+      "question": "f(x) = sin x の導関数 f'(x) = ?",
+      "choices": [
+        "cos x",
+        "-cos x",
+        "sin x",
+        "-sin x"
+      ],
+      "correct": 0,
+      "explanation": "sin x の導関数は cos x"
+    },
+    {
+      "id": "f9eb9066-9936-5bbb-887b-b0f4357dae32",
+      "question": "f(x) = eˣ の導関数 f'(x) = ?",
+      "choices": [
+        "eˣ",
+        "xeˣ",
+        "eˣ/x",
+        "1/eˣ"
+      ],
+      "correct": 0,
+      "explanation": "eˣ の導関数は eˣ（自分自身）"
     }
   ]
 }
