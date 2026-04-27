@@ -971,6 +971,17 @@ export class QuizApp {
 
   // ─── 総合タブ専用サマリパネル ───────────────────────────────────────────────
 
+  /** 総合タブの過去の活動履歴を最大何件まで表示するか */
+  private static readonly MAX_OVERALL_HISTORY_ITEMS = 20;
+
+  /**
+   * 今日のクイズ記録（手動確認済みを除く）をフィルタリングして返す。
+   */
+  private filterTodayRecords(records: QuizRecord[]): QuizRecord[] {
+    const todayStr = new Date().toDateString();
+    return records.filter((r) => new Date(r.date).toDateString() === todayStr && r.mode !== "manual");
+  }
+
   /**
    * 総合タブ専用のサマリパネルを描画する。
    * 今日の活動・SNS共有サマリ・過去の活動を表示する。
@@ -993,8 +1004,7 @@ export class QuizApp {
     const container = document.getElementById("todayActivityContent");
     if (!container) return;
 
-    const todayStr = new Date().toDateString();
-    const todayRecords = records.filter((r) => new Date(r.date).toDateString() === todayStr && r.mode !== "manual");
+    const todayRecords = this.filterTodayRecords(records);
 
     container.innerHTML = "";
 
@@ -1079,8 +1089,7 @@ export class QuizApp {
   private buildShareSummaryText(records: QuizRecord[]): string {
     const today = new Date();
     const dateStr = `${today.getFullYear()}/${String(today.getMonth() + 1).padStart(2, "0")}/${String(today.getDate()).padStart(2, "0")}`;
-    const todayStr = today.toDateString();
-    const todayRecords = records.filter((r) => new Date(r.date).toDateString() === todayStr && r.mode !== "manual");
+    const todayRecords = this.filterTodayRecords(records);
 
     const lines: string[] = ["【今日の学習サマリ】", `📅 ${dateStr}`];
 
@@ -1145,6 +1154,7 @@ export class QuizApp {
 
   /**
    * navigator.clipboard が使用できない環境向けのコピーフォールバック。
+   * document.execCommand('copy') は非推奨だが、navigator.clipboard 非対応環境用の代替として使用する。
    */
   private fallbackCopy(text: string): void {
     const textarea = document.createElement("textarea");
@@ -1190,7 +1200,7 @@ export class QuizApp {
       return;
     }
 
-    const displayRecords = records.slice(0, 20);
+    const displayRecords = records.slice(0, QuizApp.MAX_OVERALL_HISTORY_ITEMS);
     displayRecords.forEach((record) => {
       historyList.appendChild(this.buildHistoryItem(record));
     });
