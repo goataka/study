@@ -2,14 +2,14 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-high-writing",
-  "categoryName": "✏️ 漢字 - 高校生 - 書き",
+  "categoryName": "✏️ 漢字 - 中学生 - 書き その２",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
-  "parentCategory": "kanji-high",
-  "parentCategoryName": "高校漢字",
+  "parentCategory": "kanji-secondary",
+  "parentCategoryName": "中学漢字",
   "example": "羅・曖・昧・冶",
   "questionType": "text-input",
-  "referenceGrade": "高校生",
+  "referenceGrade": "中学生",
   "questions": [
     {
       "id": "1ff67300-59d5-5c99-849f-28c2a76b6d35",
