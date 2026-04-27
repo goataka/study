@@ -1344,10 +1344,10 @@ export class QuizApp {
       inlineInfo.appendChild(descSpan);
     }
     if (example !== undefined) {
-      const exSpan = document.createElement("span");
-      exSpan.className = "category-example";
-      this.renderBacktickText(exSpan, example);
-      inlineInfo.appendChild(exSpan);
+      const exampleSpan = document.createElement("span");
+      exampleSpan.className = "category-example";
+      this.renderBacktickText(exampleSpan, example);
+      inlineInfo.appendChild(exampleSpan);
     }
 
     item.appendChild(statusSpan);
