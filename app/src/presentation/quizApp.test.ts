@@ -3546,6 +3546,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     expect(editArea?.classList.contains("hidden")).toBe(false);
     expect(displayBtn?.classList.contains("hidden")).toBe(true);
+    expect(displayBtn?.getAttribute("aria-expanded")).toBe("true");
     expect(input?.value).toBe("https://twitter.com");
   });
 
@@ -3571,9 +3572,11 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     input.value = "https://example.com";
     document.getElementById("saveShareUrlBtn")?.click();
 
+    const displayBtn = document.getElementById("shareUrlDisplayBtn");
     expect(document.getElementById("shareUrlEditArea")?.classList.contains("hidden")).toBe(true);
-    expect(document.getElementById("shareUrlDisplayBtn")?.classList.contains("hidden")).toBe(false);
-    expect(document.getElementById("shareUrlDisplayBtn")?.textContent).toBe("https://example.com");
+    expect(displayBtn?.classList.contains("hidden")).toBe(false);
+    expect(displayBtn?.getAttribute("aria-expanded")).toBe("false");
+    expect(displayBtn?.textContent).toBe("https://example.com");
   });
 
   it("共有URLのURLInputでEnterキーを押すと保存して編集エリアが閉じる", async () => {
@@ -3589,7 +3592,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(localStorage.getItem("overallShareUrl")).toBe("https://example.com/enter");
   });
 
-  it("共有URLのURLInputでEscapeキーを押すと保存せずに編集エリアが閉じる", async () => {
+  it("共有URLのURLInputでEscapeキーを押すと保存せずに編集エリアが閉じ aria-expanded が false になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -3598,7 +3601,9 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     input.value = "https://example.com/escape";
     input.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
 
+    const displayBtn = document.getElementById("shareUrlDisplayBtn");
     expect(document.getElementById("shareUrlEditArea")?.classList.contains("hidden")).toBe(true);
+    expect(displayBtn?.getAttribute("aria-expanded")).toBe("false");
     expect(localStorage.getItem("overallShareUrl")).toBeNull();
   });
 

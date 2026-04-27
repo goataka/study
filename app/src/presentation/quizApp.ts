@@ -1190,6 +1190,7 @@ export class QuizApp {
 
     input.value = this.shareUrl;
     displayBtn.classList.add("hidden");
+    displayBtn.setAttribute("aria-expanded", "true");
     editArea.classList.remove("hidden");
     input.focus();
     input.select();
@@ -1197,6 +1198,7 @@ export class QuizApp {
 
   /**
    * 共有 URL のインライン編集エリアを閉じる。
+   * フォーカスを表示ボタンに戻す。
    */
   private closeShareUrlEdit(): void {
     const displayBtn = document.getElementById("shareUrlDisplayBtn");
@@ -1205,6 +1207,8 @@ export class QuizApp {
 
     editArea.classList.add("hidden");
     displayBtn.classList.remove("hidden");
+    displayBtn.setAttribute("aria-expanded", "false");
+    displayBtn.focus();
   }
 
   /**
