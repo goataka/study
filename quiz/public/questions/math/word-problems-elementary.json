@@ -5,6 +5,8 @@
   "categoryName": "📖 文章問題（小学生）",
   "topCategory": "word-problems",
   "topCategoryName": "文章問題",
+  "parentCategory": "word-problems",
+  "parentCategoryName": "文章問題",
   "guideUrl": "../math/word-problems/elementary/guide",
   "parentCategoryGuideUrl": "../math/word-problems/guide",
   "example": "リンゴが3個あって2個もらいました。全部で何個？",
