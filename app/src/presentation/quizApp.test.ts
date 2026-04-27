@@ -3502,6 +3502,119 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     const historyList = document.getElementById("overallHistoryList");
     expect(historyList?.textContent).toContain("まだ回答記録がありません");
   });
+
+  it("「今日の活動」タブをクリックすると overallTodayPanel が表示され overallPastPanel が非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // まず「過去の活動」タブを選択
+    document.getElementById("overallTab-past")?.click();
+    // 次に「今日の活動」タブを選択
+    document.getElementById("overallTab-today")?.click();
+
+    expect(document.getElementById("overallTodayPanel")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("overallPastPanel")?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("overallTab-today")?.classList.contains("active")).toBe(true);
+    expect(document.getElementById("overallTab-today")?.getAttribute("aria-selected")).toBe("true");
+    expect(document.getElementById("overallTab-past")?.getAttribute("aria-selected")).toBe("false");
+  });
+
+  it("「過去の活動」タブをクリックすると overallPastPanel が表示され overallTodayPanel が非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("overallTab-past")?.click();
+
+    expect(document.getElementById("overallPastPanel")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("overallTodayPanel")?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("overallTab-past")?.classList.contains("active")).toBe(true);
+    expect(document.getElementById("overallTab-past")?.getAttribute("aria-selected")).toBe("true");
+    expect(document.getElementById("overallTab-today")?.getAttribute("aria-selected")).toBe("false");
+  });
+
+  it("shareUrlDisplayBtn をクリックすると編集エリアが開き入力フィールドに現在のURLが設定される", async () => {
+    localStorage.setItem("overallShareUrl", "https://twitter.com");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("shareUrlDisplayBtn")?.click();
+
+    const editArea = document.getElementById("shareUrlEditArea");
+    const displayBtn = document.getElementById("shareUrlDisplayBtn");
+    const input = document.getElementById("shareUrlInput") as HTMLInputElement;
+
+    expect(editArea?.classList.contains("hidden")).toBe(false);
+    expect(displayBtn?.classList.contains("hidden")).toBe(true);
+    expect(input?.value).toBe("https://twitter.com");
+  });
+
+  it("URL未設定時に shareUrlDisplayBtn をクリックすると編集エリアが開き入力は空", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("shareUrlDisplayBtn")?.click();
+
+    const input = document.getElementById("shareUrlInput") as HTMLInputElement;
+    expect(input?.value).toBe("");
+    expect(document.getElementById("shareUrlEditArea")?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("saveShareUrlBtn をクリックすると編集エリアが閉じ表示ボタンが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 編集エリアを開く
+    document.getElementById("shareUrlDisplayBtn")?.click();
+
+    const input = document.getElementById("shareUrlInput") as HTMLInputElement;
+    input.value = "https://example.com";
+    document.getElementById("saveShareUrlBtn")?.click();
+
+    expect(document.getElementById("shareUrlEditArea")?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("shareUrlDisplayBtn")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("shareUrlDisplayBtn")?.textContent).toBe("https://example.com");
+  });
+
+  it("共有URLのURLInputでEnterキーを押すと保存して編集エリアが閉じる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("shareUrlDisplayBtn")?.click();
+    const input = document.getElementById("shareUrlInput") as HTMLInputElement;
+    input.value = "https://example.com/enter";
+    input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+
+    expect(document.getElementById("shareUrlEditArea")?.classList.contains("hidden")).toBe(true);
+    expect(localStorage.getItem("overallShareUrl")).toBe("https://example.com/enter");
+  });
+
+  it("共有URLのURLInputでEscapeキーを押すと保存せずに編集エリアが閉じる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("shareUrlDisplayBtn")?.click();
+    const input = document.getElementById("shareUrlInput") as HTMLInputElement;
+    input.value = "https://example.com/escape";
+    input.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
+
+    expect(document.getElementById("shareUrlEditArea")?.classList.contains("hidden")).toBe(true);
+    expect(localStorage.getItem("overallShareUrl")).toBeNull();
+  });
+
+  it("openShareUrlBtn をクリックすると window.open が正しい引数で呼ばれる", async () => {
+    localStorage.setItem("overallShareUrl", "https://twitter.com");
+
+    const openSpy = vi.spyOn(window, "open").mockImplementation(() => null);
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("openShareUrlBtn")?.click();
+
+    expect(openSpy).toHaveBeenCalledWith("https://twitter.com", "_blank", "noopener,noreferrer");
+    openSpy.mockRestore();
+  });
 });
 
 // ─── 確認ダイアログ仕様 ────────────────────────────────────────────────────
