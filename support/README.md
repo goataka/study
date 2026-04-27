@@ -188,8 +188,8 @@ permalink: /support/
 | 04 | 漢字（小学4年） | 小学4年 | [解説](../japanese/kanji/kanji-grade4/guide.md) | [確認](../app/?subject=japanese&category=kanji-grade4) | 愛・熱・静・感 |
 | 05 | 漢字（小学5年） | 小学5年 | [解説](../japanese/kanji/kanji-grade5/guide.md) | [確認](../app/?subject=japanese&category=kanji-grade5) | 護・衛・複・雑 |
 | 06 | 漢字（小学6年） | 小学6年 | [解説](../japanese/kanji/kanji-grade6/guide.md) | [確認](../app/?subject=japanese&category=kanji-grade6) | 宙・射・危・険 |
-| 07 | 漢字（中学生） | 中学生 | [解説](../japanese/kanji/kanji-secondary/guide.md) | [確認](../app/?subject=japanese&category=kanji-secondary) | 背・滋・賢・縦 |
-| 08 | 漢字（高校生） | 高校生 | [解説](../japanese/kanji/kanji-high/guide.md) | [確認](../app/?subject=japanese&category=kanji-high) | 羅・曖・昧・冶 |
+| 07 | 漢字（中学生）その１ | 中学生 | [解説](../japanese/kanji/kanji-secondary/guide.md) | [確認](../app/?subject=japanese&category=kanji-secondary) | 背・滋・賢・縦 |
+| 08 | 漢字（中学生）その２ | 中学生 | [解説](../japanese/kanji/kanji-high/guide.md) | [確認](../app/?subject=japanese&category=kanji-high) | 羅・曖・昧・冶 |
 
 #### 📚 ことわざ・四字熟語
 
