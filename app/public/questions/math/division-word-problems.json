@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "division-word-problems",
+  "categoryName": "➗ 文章問題",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "division",
+  "parentCategoryName": "わり算",
+  "guideUrl": "../math/arithmetic/division-word-problems/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "12個÷4人＝？",
+  "referenceGrade": "小学3年",
+  "description": "わり算を使った文章問題です。",
+  "questions": [
+    {
+      "id": "54d56ff1-b27d-5cec-8eba-0075ed92bc85",
+      "question": "12個のりんごを4人で同じ数ずつ分けます。1人何個ですか？",
+      "choices": [
+        "3個",
+        "4個",
+        "2個",
+        "5個"
+      ],
+      "correct": 0,
+      "explanation": "12 ÷ 4 = 3個"
+    },
+    {
+      "id": "6415c276-d9a4-5004-8da3-e42d7f610f1a",
+      "question": "30本の花を6本ずつ花瓶に入れます。花瓶は何本必要ですか？",
+      "choices": [
+        "5本",
+        "4本",
+        "6本",
+        "3本"
+      ],
+      "correct": 0,
+      "explanation": "30 ÷ 6 = 5本"
+    },
+    {
+      "id": "bb812047-6671-5c9d-82a9-b2ed74b0f57f",
+      "question": "25個のあめを3人で分けます。1人何個もらえて、何個余りますか？",
+      "choices": [
+        "8個、1個余り",
+        "7個、4個余り",
+        "9個、余りなし",
+        "8個、2個余り"
+      ],
+      "correct": 0,
+      "explanation": "25 ÷ 3 = 8 あまり 1"
+    },
+    {
+      "id": "5a7b99a0-5b3a-51e5-8cdf-ec1361b3cb8b",
+      "question": "48枚の色紙を8人で同じ数ずつ分けます。1人何枚ですか？",
+      "choices": [
+        "6枚",
+        "5枚",
+        "7枚",
+        "8枚"
+      ],
+      "correct": 0,
+      "explanation": "48 ÷ 8 = 6枚"
+    },
+    {
+      "id": "ac80c396-0c34-5ad0-82d9-d81b927eef5c",
+      "question": "100円で7円のシールを何枚買えますか？また、お釣りはいくらですか？",
+      "choices": [
+        "14枚、2円",
+        "13枚、9円",
+        "15枚、余りなし",
+        "14枚、5円"
+      ],
+      "correct": 0,
+      "explanation": "100 ÷ 7 = 14 あまり 2"
+    },
+    {
+      "id": "4dca1be0-ea72-5c5c-95a8-350efe592556",
+      "question": "72個のチョコレートを9人で均等に分けます。1人何個ですか？",
+      "choices": [
+        "8個",
+        "7個",
+        "9個",
+        "6個"
+      ],
+      "correct": 0,
+      "explanation": "72 ÷ 9 = 8個"
+    },
+    {
+      "id": "cc48fa58-f477-59be-a5e9-4dcab2afdd73",
+      "question": "84枚のカードを4人で同じ数ずつ分けます。1人何枚ですか？",
+      "choices": [
+        "21枚",
+        "20枚",
+        "22枚",
+        "24枚"
+      ],
+      "correct": 0,
+      "explanation": "84 ÷ 4 = 21枚"
+    },
+    {
+      "id": "6f2c66f9-860f-5921-868c-3af205c2e5df",
+      "question": "67人の子どもを5人ずつのグループに分けます。グループはいくつできて、何人余りますか？",
+      "choices": [
+        "13グループ、2人余り",
+        "12グループ、7人余り",
+        "14グループ、余りなし",
+        "13グループ、3人余り"
+      ],
+      "correct": 0,
+      "explanation": "67 ÷ 5 = 13 あまり 2"
+    },
+    {
+      "id": "19720e3f-9ba8-5e64-b347-f519b50a2248",
+      "question": "840円のお金を12人で均等に分けます。1人何円ですか？",
+      "choices": [
+        "70円",
+        "60円",
+        "80円",
+        "75円"
+      ],
+      "correct": 0,
+      "explanation": "840 ÷ 12 = 70円"
+    },
+    {
+      "id": "6207e4f0-0449-56c9-9b2d-07762dbb9246",
+      "question": "375個のみかんを6個ずつ箱に詰めます。箱はいくつできて、何個余りますか？",
+      "choices": [
+        "62箱、3個余り",
+        "61箱、9個余り",
+        "63箱、余りなし",
+        "62箱、5個余り"
+      ],
+      "correct": 0,
+      "explanation": "375 ÷ 6 = 62 あまり 3"
+    }
+  ]
+}

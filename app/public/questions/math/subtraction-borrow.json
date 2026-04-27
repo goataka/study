@@ -7,7 +7,7 @@
   "topCategoryName": "算数・基本計算",
   "parentCategory": "subtraction",
   "parentCategoryName": "ひき算",
-  "guideUrl": "../math/arithmetic/subtraction-1digit-borrow/guide",
+  "guideUrl": "../math/arithmetic/subtraction-borrow/guide",
   "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "13 - 7 = 6",
   "referenceGrade": "小学1年",
