@@ -2150,6 +2150,58 @@ body.font-size-medium .submit-btn {
     font-size: 22px;
 }
 
+body.font-size-medium .category-top-group-header {
+    font-size: 16px;
+}
+
+body.font-size-medium .category-group-header {
+    font-size: 20px;
+}
+
+body.font-size-medium .category-name {
+    font-size: 21px;
+}
+
+body.font-size-medium .category-example {
+    font-size: 18px;
+}
+
+body.font-size-medium .category-item-description {
+    font-size: 17px;
+}
+
+body.font-size-medium .category-status {
+    font-size: 20px;
+}
+
+body.font-size-medium .category-stats {
+    font-size: 18px;
+}
+
+body.font-size-medium .category-grade {
+    font-size: 17px;
+}
+
+body.font-size-medium .category-progress-pct {
+    font-size: 16px;
+}
+
+body.font-size-medium .subject-overview-header {
+    font-size: 21px;
+}
+
+body.font-size-medium .subject-overview-recommended {
+    font-size: 17px;
+}
+
+body.font-size-medium .subject-overview-grade {
+    font-size: 15px;
+}
+
+body.font-size-medium .subject-overview-date {
+    font-size: 16px;
+}
+
 /* ─── フォントサイズ：大 ──────────────────────────────────────────────────── */
 
 body.font-size-large .question-text {
@@ -2177,4 +2229,56 @@ body.font-size-large .tertiary-btn {
 body.font-size-large .nav-btn,
 body.font-size-large .submit-btn {
     font-size: 27px;
+}
+
+body.font-size-large .category-top-group-header {
+    font-size: 20px;
+}
+
+body.font-size-large .category-group-header {
+    font-size: 24px;
+}
+
+body.font-size-large .category-name {
+    font-size: 26px;
+}
+
+body.font-size-large .category-example {
+    font-size: 22px;
+}
+
+body.font-size-large .category-item-description {
+    font-size: 21px;
+}
+
+body.font-size-large .category-status {
+    font-size: 24px;
+}
+
+body.font-size-large .category-stats {
+    font-size: 22px;
+}
+
+body.font-size-large .category-grade {
+    font-size: 21px;
+}
+
+body.font-size-large .category-progress-pct {
+    font-size: 20px;
+}
+
+body.font-size-large .subject-overview-header {
+    font-size: 26px;
+}
+
+body.font-size-large .subject-overview-recommended {
+    font-size: 21px;
+}
+
+body.font-size-large .subject-overview-grade {
+    font-size: 18px;
+}
+
+body.font-size-large .subject-overview-date {
+    font-size: 20px;
 }
