@@ -64,7 +64,7 @@ export class QuizApp {
   /** 総合タブの活動サマリ共有 URL */
   private shareUrl: string = "";
   /** 活動サマリで表示する日付（YYYY-MM-DD 形式） */
-  private selectedActivityDate: string = this.todayDateString();
+  private selectedActivityDate: string = QuizApp.currentDateString();
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -885,19 +885,19 @@ export class QuizApp {
     this.syncDatePicker();
 
     this.on("prevDateBtn", "click", () => {
-      const d = new Date(this.selectedActivityDate + "T00:00:00");
+      const d = this.parseActivityDate();
       d.setDate(d.getDate() - 1);
-      this.selectedActivityDate = this.formatDateString(d);
+      this.selectedActivityDate = QuizApp.formatDate(d);
       this.syncDatePicker();
       const records = this.useCase.getHistory();
       this.renderOverallSummaryPanel(records);
     });
 
     this.on("nextDateBtn", "click", () => {
-      const d = new Date(this.selectedActivityDate + "T00:00:00");
+      const d = this.parseActivityDate();
       d.setDate(d.getDate() + 1);
-      const next = this.formatDateString(d);
-      if (next <= this.todayDateString()) {
+      const next = QuizApp.formatDate(d);
+      if (next <= QuizApp.currentDateString()) {
         this.selectedActivityDate = next;
         this.syncDatePicker();
         const records = this.useCase.getHistory();
@@ -908,7 +908,7 @@ export class QuizApp {
     const picker = document.getElementById("activityDatePicker") as HTMLInputElement | null;
     picker?.addEventListener("change", () => {
       const val = picker.value;
-      if (val && val <= this.todayDateString()) {
+      if (val && val <= QuizApp.currentDateString()) {
         this.selectedActivityDate = val;
         const records = this.useCase.getHistory();
         this.renderOverallSummaryPanel(records);
@@ -917,17 +917,23 @@ export class QuizApp {
   }
 
   /**
-   * 今日の日付を YYYY-MM-DD 形式で返す。
+   * selectedActivityDate を Date オブジェクトとして返す。
    */
-  private todayDateString(): string {
-    const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  private parseActivityDate(): Date {
+    return new Date(this.selectedActivityDate + "T00:00:00");
   }
 
   /**
-   * Date オブジェクトを YYYY-MM-DD 形式の文字列に変換して返す。
+   * 今日の日付を YYYY-MM-DD 形式で返す（static）。
    */
-  private formatDateString(d: Date): string {
+  private static currentDateString(): string {
+    return QuizApp.formatDate(new Date());
+  }
+
+  /**
+   * Date オブジェクトを YYYY-MM-DD 形式の文字列に変換して返す（static）。
+   */
+  private static formatDate(d: Date): string {
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   }
 
@@ -938,11 +944,11 @@ export class QuizApp {
     const picker = document.getElementById("activityDatePicker") as HTMLInputElement | null;
     if (picker) {
       picker.value = this.selectedActivityDate;
-      picker.max = this.todayDateString();
+      picker.max = QuizApp.currentDateString();
     }
     const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement | null;
     if (nextBtn) {
-      nextBtn.disabled = this.selectedActivityDate >= this.todayDateString();
+      nextBtn.disabled = this.selectedActivityDate >= QuizApp.currentDateString();
     }
   }
 
@@ -1077,8 +1083,7 @@ export class QuizApp {
    * 活動日付でフィルタリングしたクイズ記録を返す。
    */
   private filterTodayRecords(records: QuizRecord[]): QuizRecord[] {
-    const d = new Date(this.selectedActivityDate + "T00:00:00");
-    const dateToCheck = d.toDateString();
+    const dateToCheck = this.parseActivityDate().toDateString();
     return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && r.mode !== "manual");
   }
 
