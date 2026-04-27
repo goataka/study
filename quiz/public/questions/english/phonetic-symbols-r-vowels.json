@@ -1,0 +1,41 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonetic-symbols-r-vowels",
+  "categoryName": "🔊 発音記号 — R音性母音",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonetic-symbols",
+  "parentCategoryName": "発音記号",
+  "guideUrl": "../english/pronunciation/phonetic-symbols/r-vowels/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "/ɜːr/→アー（bird）",
+  "referenceGrade": "中学1年",
+  "description": "舌を丸めるR音性母音の発音記号（IPA）2種を学びます。",
+  "questions": [
+    {
+      "id": "b8bb3c84-206d-5941-bfef-bf53bbd7cb61",
+      "question": "/ɜːr/ はどんな音？",
+      "choices": [
+        "「アー」と「エー」の中間の長い音（舌を丸める）",
+        "口を大きく開けた長い「アー」",
+        "力を抜いた短い「ア」（シュワー）",
+        "舌を丸めた弱いR音性「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/ɜːr/ は「アー」と「エー」の中間のような長い音で、舌を丸めてR音を加える。bird, word, nurse などに使われる。"
+    },
+    {
+      "id": "7982791b-bb35-5691-aebb-3f14dcee4e2c",
+      "question": "/ɚ/ はどんな音？",
+      "choices": [
+        "舌を丸めた弱いR音性「ア」（弱形シュワー）",
+        "舌を丸めた長い「アー」（強勢あり）",
+        "力を抜いた短い「ア」（R音なし）",
+        "「オウ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/ɚ/ はR音性シュワー。舌を丸めながら弱く「ア」と発音する。butter, teacher, doctor などの語尾（強勢のない-er）に出る。"
+    }
+  ]
+}

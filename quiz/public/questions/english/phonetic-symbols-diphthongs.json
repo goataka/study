@@ -1,0 +1,77 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonetic-symbols-diphthongs",
+  "categoryName": "🔊 発音記号 — 二重母音",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonetic-symbols",
+  "parentCategoryName": "発音記号",
+  "guideUrl": "../english/pronunciation/phonetic-symbols/diphthongs/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "/aɪ/→アイ（my）",
+  "referenceGrade": "中学1年",
+  "description": "2音が滑らかにつながる二重母音の発音記号（IPA）5種を学びます。",
+  "questions": [
+    {
+      "id": "7f638f0c-8f18-5a69-962b-9deb393c92e5",
+      "question": "/aɪ/ はどんな音？",
+      "choices": [
+        "「アイ」（二重母音）",
+        "「エイ」（二重母音）",
+        "「アウ」（二重母音）",
+        "「オイ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/aɪ/ は「アイ」と滑らかにつなぐ二重母音。my, fly, night などに使われる。"
+    },
+    {
+      "id": "3fdfad9a-007c-5447-89f8-d6d90eb43f9d",
+      "question": "/aʊ/ はどんな音？",
+      "choices": [
+        "「アウ」（二重母音）",
+        "「アイ」（二重母音）",
+        "「オウ」（二重母音）",
+        "「オイ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/aʊ/ は「アウ」と滑らかにつなぐ二重母音。cow, now, out などに使われる。"
+    },
+    {
+      "id": "9c44637c-9e3f-516a-9405-5d51f5e8b0a5",
+      "question": "/eɪ/ はどんな音？",
+      "choices": [
+        "「エイ」（二重母音）",
+        "「アイ」（二重母音）",
+        "「オイ」（二重母音）",
+        "「アウ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/eɪ/ は「エイ」と滑らかにつなぐ二重母音。say, day, make などに使われる。"
+    },
+    {
+      "id": "f951aaa9-ddcc-558e-a516-a4fe5b7a3c2b",
+      "question": "/oʊ/ はどんな音？",
+      "choices": [
+        "「オウ」（二重母音、主に米英語）",
+        "「アウ」（二重母音）",
+        "「エイ」（二重母音）",
+        "「アイ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/oʊ/ は「オウ」と滑らかにつなぐ二重母音。主にアメリカ英語。go, home, stone などに使われる。"
+    },
+    {
+      "id": "fcd88e84-053f-5c24-85a6-596601946f01",
+      "question": "/ɔɪ/ はどんな音？",
+      "choices": [
+        "「オイ」（二重母音）",
+        "「アイ」（二重母音）",
+        "「アウ」（二重母音）",
+        "「エイ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/ɔɪ/ は「オイ」と滑らかにつなぐ二重母音。boy, coin, voice などに使われる。"
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonics-3-2",
+  "categoryName": "🔤 フォニックス - 3文字（その２）",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonics",
+  "parentCategoryName": "フォニックス",
+  "guideUrl": "../english/pronunciation/phonics-3letter-2/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "`tch`→/tʃ/ (watch)",
+  "referenceGrade": "小学5年",
+  "description": "3文字の特殊な音パターンを別の例単語で練習します。",
+  "questions": [
+    {
+      "id": "dc33d1c9-f9d4-5613-a59c-520600c6c524",
+      "question": "「watch」の「tch」の音は？",
+      "choices": [
+        "チ",
+        "ク",
+        "シュ",
+        "ジ"
+      ],
+      "correct": 0,
+      "explanation": "watch = ウ ア チ"
+    },
+    {
+      "id": "0fab55b9-af2f-541b-9322-a6b8d4bfe07b",
+      "question": "「pitch」の「tch」の音は？",
+      "choices": [
+        "チ",
+        "シュ",
+        "ジュ",
+        "ク"
+      ],
+      "correct": 0,
+      "explanation": "pitch = プ イ チ"
+    },
+    {
+      "id": "4a93b2b5-935f-5028-b075-4b1ae667c634",
+      "question": "「lodge」の「dge」の音は？",
+      "choices": [
+        "ジ",
+        "チ",
+        "ジュ",
+        "ズ"
+      ],
+      "correct": 0,
+      "explanation": "lodge = ル オ ジ"
+    },
+    {
+      "id": "7633e46a-e959-53db-9239-1e56b821f898",
+      "question": "「badge」の「dge」の音は？",
+      "choices": [
+        "ジ",
+        "ジュ",
+        "チ",
+        "ズ"
+      ],
+      "correct": 0,
+      "explanation": "badge = ブ ア ジ"
+    },
+    {
+      "id": "18baed5b-9b08-5c39-ba58-20b13f2e9e01",
+      "question": "「right」の「igh」の音は？",
+      "choices": [
+        "アイ",
+        "ア",
+        "アウ",
+        "エイ"
+      ],
+      "correct": 0,
+      "explanation": "right = ル アイ ト"
+    },
+    {
+      "id": "4eddecea-200b-59ee-9617-35e5b1ee5e4e",
+      "question": "「high」の「igh」の音は？",
+      "choices": [
+        "アイ",
+        "ア",
+        "エイ",
+        "オウ"
+      ],
+      "correct": 0,
+      "explanation": "high = ハ アイ"
+    },
+    {
+      "id": "2d6b2346-672c-5d45-be39-e92b7653343b",
+      "question": "「scheme」の「sch」の音は？",
+      "choices": [
+        "スク",
+        "シュ",
+        "ス",
+        "チ"
+      ],
+      "correct": 0,
+      "explanation": "scheme = スク イー ム"
+    },
+    {
+      "id": "135d8c7b-713c-5cde-b96a-0fbeabcb2e0a",
+      "question": "「throne」の「thr」の音は？",
+      "choices": [
+        "スル",
+        "ストゥル",
+        "シュル",
+        "スクル"
+      ],
+      "correct": 0,
+      "explanation": "throne = スル オウ ヌ"
+    },
+    {
+      "id": "e9b5dbd9-df41-58bc-8c99-68b01a862cca",
+      "question": "「shrug」の「shr」の音は？",
+      "choices": [
+        "シュル",
+        "スル",
+        "ストゥル",
+        "スクル"
+      ],
+      "correct": 0,
+      "explanation": "shrug = シュル ア グ"
+    },
+    {
+      "id": "5f1c9621-1ac7-52da-a4f3-60603515a4cf",
+      "question": "「strap」の「str」の音は？",
+      "choices": [
+        "ストゥル",
+        "スル",
+        "スプル",
+        "シュル"
+      ],
+      "correct": 0,
+      "explanation": "strap = ストゥル ア プ"
+    },
+    {
+      "id": "ba7a7b93-f9e8-5b6a-b242-c390ef5c0aa1",
+      "question": "「spray」の「spr」の音は？",
+      "choices": [
+        "スプル",
+        "ストゥル",
+        "スル",
+        "スクル"
+      ],
+      "correct": 0,
+      "explanation": "spray = スプル エイ"
+    },
+    {
+      "id": "b3580934-2094-5df4-807f-a223577fb25a",
+      "question": "「split」の「spl」の音は？",
+      "choices": [
+        "スプル",
+        "ストゥル",
+        "シュル",
+        "スクル"
+      ],
+      "correct": 0,
+      "explanation": "split = スプル イ ト"
+    },
+    {
+      "id": "c2526e9c-91ac-56ca-a4e1-60478e2c6184",
+      "question": "「scrub」の「scr」の音は？",
+      "choices": [
+        "スクル",
+        "ストゥル",
+        "スプル",
+        "シュル"
+      ],
+      "correct": 0,
+      "explanation": "scrub = スクル ア ブ"
+    }
+  ]
+}

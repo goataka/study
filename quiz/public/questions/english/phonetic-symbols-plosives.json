@@ -1,0 +1,101 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonetic-symbols-plosives",
+  "categoryName": "🔊 発音記号 — 破裂音",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonetic-symbols",
+  "parentCategoryName": "発音記号",
+  "guideUrl": "../english/pronunciation/phonetic-symbols/plosives/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "/p/→プ（pen）",
+  "referenceGrade": "中学1年",
+  "description": "息を止めてから開放する破裂音の発音記号（IPA）7種を学びます。",
+  "questions": [
+    {
+      "id": "040597cf-915d-58a6-8522-e913bac86175",
+      "question": "/p/ はどんな音？",
+      "choices": [
+        "唇を閉じて開く無声破裂音",
+        "唇を閉じて開く有声破裂音",
+        "舌先を歯茎に当てる無声破裂音",
+        "舌の奥を使う無声破裂音"
+      ],
+      "correct": 0,
+      "explanation": "/p/ は唇を閉じて一気に開く無声破裂音（声帯を振動させない）。pen, cup, top などに使われる。/b/ の無声バージョン。"
+    },
+    {
+      "id": "b601c1bb-d73d-5be0-a3eb-31dff1e59387",
+      "question": "/b/ はどんな音？",
+      "choices": [
+        "唇を閉じて開く有声破裂音",
+        "唇を閉じて開く無声破裂音",
+        "舌先を歯茎に当てる有声破裂音",
+        "舌の奥を使う有声破裂音"
+      ],
+      "correct": 0,
+      "explanation": "/b/ は唇を閉じて一気に開く有声破裂音（声帯を振動させる）。bad, cab, job などに使われる。/p/ の有声バージョン。"
+    },
+    {
+      "id": "94329237-8e10-5fdf-8f65-6f3a8223bcd6",
+      "question": "/t/ はどんな音？",
+      "choices": [
+        "舌先を歯茎に当てる無声破裂音",
+        "舌先を歯茎に当てる有声破裂音",
+        "唇を閉じて開く無声破裂音",
+        "舌先を上の歯に当てる無声音"
+      ],
+      "correct": 0,
+      "explanation": "/t/ は舌先を歯茎（上の歯の裏）に当てて離す無声破裂音。tea, cat, hit などに使われる。/d/ の無声バージョン。"
+    },
+    {
+      "id": "f2420f6c-bf96-5824-a412-14bd8b2c4338",
+      "question": "/d/ はどんな音？",
+      "choices": [
+        "舌先を歯茎に当てる有声破裂音",
+        "舌先を歯茎に当てる無声破裂音",
+        "唇を閉じて開く有声破裂音",
+        "舌先を上の歯に当てる有声音"
+      ],
+      "correct": 0,
+      "explanation": "/d/ は舌先を歯茎に当てて離す有声破裂音。did, bad, red などに使われる。/t/ の有声バージョン。"
+    },
+    {
+      "id": "d2c4f28e-0935-517b-9988-c300f01874df",
+      "question": "/k/ はどんな音？",
+      "choices": [
+        "舌の奥を軟口蓋に当てる無声破裂音",
+        "舌の奥を軟口蓋に当てる有声破裂音",
+        "舌先を歯茎に当てる無声破裂音",
+        "唇を閉じて開く無声破裂音"
+      ],
+      "correct": 0,
+      "explanation": "/k/ は舌の奥を軟口蓋（上あごの奥）に当てて離す無声破裂音。cat, back, key などに使われる。/ɡ/ の無声バージョン。"
+    },
+    {
+      "id": "5a394088-8abb-543a-a28c-f8a1fe0f19af",
+      "question": "/ɡ/ はどんな音？",
+      "choices": [
+        "舌の奥を軟口蓋に当てる有声破裂音",
+        "舌の奥を軟口蓋に当てる無声破裂音",
+        "舌先を歯茎に当てる有声破裂音",
+        "唇を閉じて開く有声破裂音"
+      ],
+      "correct": 0,
+      "explanation": "/ɡ/ は舌の奥を軟口蓋に当てて離す有声破裂音。go, bag, big などに使われる。/k/ の有声バージョン。"
+    },
+    {
+      "id": "852b0bf3-4b01-504a-82bb-084dbb587b92",
+      "question": "/ʔ/（声門閉鎖音）はどんな音？",
+      "choices": [
+        "声門（のどの声帯）を閉じて出す破裂音",
+        "唇を閉じて開く無声破裂音",
+        "舌先を歯茎に当てる無声破裂音",
+        "息だけを出す無声摩擦音"
+      ],
+      "correct": 0,
+      "explanation": "/ʔ/ は声門閉鎖音。のどの声帯を閉じてから一気に開く音。主にアメリカ英語で bottle（ボ/ʔ/ル）、button などの「t」が弱化した場合に現れる。"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonetic-symbols-long-vowels",
+  "categoryName": "🔊 発音記号 — 長母音",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonetic-symbols",
+  "parentCategoryName": "発音記号",
+  "guideUrl": "../english/pronunciation/phonetic-symbols/long-vowels/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "/iː/→イー（see）",
+  "referenceGrade": "中学1年",
+  "description": "長く伸ばす母音の発音記号（IPA）4種を学びます。",
+  "questions": [
+    {
+      "id": "38e7f281-2d7f-5a9b-983f-d081d25cc997",
+      "question": "/iː/ はどんな音？",
+      "choices": [
+        "長くはっきりした「イー」（唇を横に引く）",
+        "短くゆるい「イ」",
+        "「ア」と「エ」の間",
+        "力を抜いた短い「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/iː/ は長くはっきりした「イー」。唇を横に引いて発音する。see, feel, team などに使われる。「ː」は長母音を表す記号。"
+    },
+    {
+      "id": "3d35a104-f0a5-5595-ba3e-c705c76b2493",
+      "question": "/uː/ はどんな音？",
+      "choices": [
+        "長くはっきりした「ウー」（唇を丸める）",
+        "短くゆるい「ウ」",
+        "力を抜いた短い「ア」",
+        "「オウ」（二重母音）"
+      ],
+      "correct": 0,
+      "explanation": "/uː/ は長くはっきりした「ウー」。唇を丸めて前に突き出して発音する。too, food, blue などに使われる。"
+    },
+    {
+      "id": "c8620977-7e58-54e0-8c00-86dd3f3b22eb",
+      "question": "/ɑː/ はどんな音？",
+      "choices": [
+        "口を大きく開けた長い「アー」",
+        "口を軽く縦に開けた短い「ア」",
+        "「ア」と「エ」の間",
+        "力を抜いた短い「ア」"
+      ],
+      "correct": 0,
+      "explanation": "/ɑː/ は口を大きく開けた長い「アー」。far, car, bar などに使われる。"
+    },
+    {
+      "id": "6d31538f-fa4f-5b85-9e1d-ea4c6f2cbfd1",
+      "question": "/ɔː/ はどんな音？",
+      "choices": [
+        "口を丸めた長い「オー」",
+        "口を丸く開けた短い「オ」",
+        "「オウ」（二重母音）",
+        "口を大きく開けた長い「アー」"
+      ],
+      "correct": 0,
+      "explanation": "/ɔː/ は口を丸めた長い「オー」。law, talk, all などに使われる。"
+    }
+  ]
+}

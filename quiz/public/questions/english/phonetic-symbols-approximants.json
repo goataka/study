@@ -1,0 +1,65 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "phonetic-symbols-approximants",
+  "categoryName": "🔊 発音記号 — 接近音・流音",
+  "topCategory": "pronunciation",
+  "topCategoryName": "発音",
+  "parentCategory": "phonetic-symbols",
+  "parentCategoryName": "発音記号",
+  "guideUrl": "../english/pronunciation/phonetic-symbols/approximants/guide",
+  "parentCategoryGuideUrl": "../english/pronunciation/guide",
+  "example": "/l/→ル（let）",
+  "referenceGrade": "中学1年",
+  "description": "滑らかな接近音・流音の発音記号（IPA）4種を学びます。",
+  "questions": [
+    {
+      "id": "f3bfc4aa-0bc9-5c89-9f23-b97f5cbcd785",
+      "question": "/l/ はどんな音？",
+      "choices": [
+        "舌先を歯茎に当てた流音（「ル」に近い）",
+        "舌を丸めた接近音（日本語の「ラ」とは異なる）",
+        "舌の奥を使った鼻音",
+        "「イ」から滑らかに次の音へ移る半母音"
+      ],
+      "correct": 0,
+      "explanation": "/l/ は舌先を歯茎に当てた流音。let, tall, feel などに使われる。日本語の「ラ行」に近いが、舌先をしっかり歯茎に付ける点が違う。/r/ と混同しやすい。"
+    },
+    {
+      "id": "4455d25c-33db-5268-8a07-b40c370cf110",
+      "question": "/r/ はどんな音？",
+      "choices": [
+        "舌を丸めて上に向けた接近音（日本語の「ラ」とは異なる）",
+        "舌先を歯茎に当てた流音",
+        "唇を丸めた半母音",
+        "「イ」から滑らかに次の音へ移る半母音"
+      ],
+      "correct": 0,
+      "explanation": "/r/ は舌先を丸めて上に向けた接近音。red, run, around などに使われる。日本語の「ラ行」とは異なり、舌先を歯茎に当てない。"
+    },
+    {
+      "id": "fb782808-4718-5b9b-9c67-f90a1ed3976a",
+      "question": "/w/ はどんな音？",
+      "choices": [
+        "唇を丸めた半母音（「ウ」から次の音へ滑る）",
+        "「イ」から滑らかに次の音へ移る半母音",
+        "舌を丸めた接近音",
+        "息だけを出す無声摩擦音"
+      ],
+      "correct": 0,
+      "explanation": "/w/ は唇を丸めて前に突き出し、次の母音へ滑らかに移る半母音。wet, we, when などに使われる。日本語の「ウ」に近いが、唇をより丸める。"
+    },
+    {
+      "id": "d5e7e982-d086-54f8-aa8d-0ff86ebe0ca3",
+      "question": "/j/ はどんな音？",
+      "choices": [
+        "「イ」から滑らかに次の音へ移る半母音",
+        "「ヤ」行の子音（破裂あり）",
+        "「ジュ」（濁った音）",
+        "唇を丸めた半母音"
+      ],
+      "correct": 0,
+      "explanation": "/j/ は「イ」の口の形から次の音に滑らかに移る半母音。yes, year, you などに使われる。日本語の「ヤ行」の子音に近い。"
+    }
+  ]
+}
