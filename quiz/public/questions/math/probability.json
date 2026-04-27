@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "probability",
-  "categoryName": "🎲 確率",
+  "category": "probability-1",
+  "categoryName": "🎲 確率 その１",
   "topCategory": "algebra",
   "topCategoryName": "代数",
   "parentCategory": "algebra-advanced",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "全体36通り。合計7は(1,6)(2,5)(3,4)(4,3)(5,2)(6,1)の6通り。確率 = 6/36 = 1/6"
+    },
+    {
+      "id": "d6d33304-3998-5337-9674-25f2fcd83b91",
+      "question": "赤玉4個、白玉6個の袋から1個取り出すとき、白玉を引く確率は？",
+      "choices": [
+        "3/5",
+        "2/5",
+        "1/2",
+        "1/3"
+      ],
+      "correct": 0,
+      "explanation": "白玉6個 / 合計10個 = 6/10 = 3/5"
+    },
+    {
+      "id": "4b5f54a7-c784-52c2-a616-bd933ff248b9",
+      "question": "サイコロを1回振って3の倍数が出る確率は？",
+      "choices": [
+        "1/3",
+        "1/6",
+        "1/2",
+        "2/3"
+      ],
+      "correct": 0,
+      "explanation": "3の倍数は3と6の2通り。2/6 = 1/3"
     }
   ]
 }

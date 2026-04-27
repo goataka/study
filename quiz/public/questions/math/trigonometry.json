@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "trigonometry",
-  "categoryName": "📐 三角関数",
+  "category": "trigonometry-1",
+  "categoryName": "📐 三角関数 その１",
   "topCategory": "advanced-math",
   "topCategoryName": "高校数学",
   "parentCategory": "precalculus",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "加法定理の公式。sin(α + β) = sin α cos β + cos α sin β"
+    },
+    {
+      "id": "44d9323a-25df-577b-ab7f-045eeadcccc4",
+      "question": "cos(α + β) = ?",
+      "choices": [
+        "cos α cos β - sin α sin β",
+        "cos α cos β + sin α sin β",
+        "sin α cos β + cos α sin β",
+        "sin α sin β - cos α cos β"
+      ],
+      "correct": 0,
+      "explanation": "加法定理: cos(α + β) = cos α cos β - sin α sin β"
+    },
+    {
+      "id": "89316c2e-4d6d-50b1-8209-4e0e63cf71de",
+      "question": "tan θ = sin θ / cos θ のとき、sin²θ + cos²θ = 1 を使って tan²θ + 1 = ?",
+      "choices": [
+        "1/cos²θ",
+        "1/sin²θ",
+        "1",
+        "tan²θ"
+      ],
+      "correct": 0,
+      "explanation": "両辺を cos²θ で割ると、tan²θ + 1 = 1/cos²θ"
     }
   ]
 }

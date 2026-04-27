@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "複数形の現在完了は have + 過去分詞です"
+    },
+    {
+      "id": "fb706492-0804-5042-8143-050e8892142d",
+      "question": "She ___ never been to London. (現在完了)",
+      "choices": [
+        "has",
+        "have",
+        "had",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の現在完了は has + 過去分詞です"
+    },
+    {
+      "id": "eac0a6e6-aee3-547e-9a0c-bd473b5afac6",
+      "question": "They ___ finished the project by last Friday. (過去完了)",
+      "choices": [
+        "had",
+        "have",
+        "has",
+        "will have"
+      ],
+      "correct": 0,
+      "explanation": "過去完了は had + 過去分詞です"
     }
   ]
 }

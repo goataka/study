@@ -16,8 +16,12 @@
 
 | 内容 | 解説 | 確認 | 例 |
 |------|------|--------|-----|
-| アルファベット（大文字・小文字と読み仮名） | [解説](english/pronunciation/alphabet/guide.md) | [確認](quiz/?subject=english&category=alphabet) | A(えー) B(びー) |
-| 50音（ひらがなとローマ字） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
+| アルファベット（大文字の読み） | [解説](english/pronunciation/alphabet/guide.md) | [確認](quiz/?subject=english&category=alphabet) | A(えい) B(びー) |
+| アルファベット（小文字の読み） | [解説](english/pronunciation/alphabet-lowercase/guide.md) | [確認](quiz/?subject=english&category=alphabet-lowercase) | a(えい) b(びー) |
+| アルファベット（大文字の書き） | [解説](english/pronunciation/alphabet-uppercase-writing/guide.md) | [確認](quiz/?subject=english&category=alphabet-uppercase-writing) | えい→A びー→B |
+| アルファベット（小文字の書き） | [解説](english/pronunciation/alphabet-lowercase-writing/guide.md) | [確認](quiz/?subject=english&category=alphabet-lowercase-writing) | えい→a びー→b |
+| 英語の記号 | [解説](english/pronunciation/symbols/guide.md) | [確認](quiz/?subject=english&category=symbols) | .(ピリオド) ?(クエスチョンマーク) |
+| 五十音（ひらがな・ローマ字・促音・長音） | [解説](english/pronunciation/50on/guide.md) | [確認](quiz/?subject=english&category=50on) | あ=a い=i う=u |
 | 拡張ローマ字（濁音・半濁音・拗音） | [解説](english/pronunciation/romaji-advanced/guide.md) | [確認](quiz/?subject=english&category=romaji-advanced) | が=ga ぱ=pa しゃ=sha |
 
 ##### フォニックス
@@ -58,7 +62,7 @@
 | # | 内容 | 解説 | 確認 | 例 |
 |---|------|------|--------|-----|
 | 11 | 英語の文の構造 | [解説](english/grammar/sentence-structure/guide.md) | - | `I` `play` `games`. （S+V+O） |
-| 12 | 名詞と代名詞 | [解説](english/grammar/nouns-pronouns/guide.md) | - | `I` / `You` / `He` / `game` |
+| 12 | 名詞と代名詞 | [解説](english/grammar/nouns-pronouns/guide.md) | [確認](quiz/?subject=english&category=nouns-pronouns) | `I` / `You` / `He` / `game` |
 | 13 | 一般動詞の現在形 | [解説](english/grammar/tenses-regular-present/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-present) | I `play` games. |
 | 14 | 一般動詞の過去形 | [解説](english/grammar/tenses-regular-past/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-past) | I `played` games. |
 | 15 | 一般動詞の未来形 | [解説](english/grammar/tenses-regular-future/guide.md) | [確認](quiz/?subject=english&category=tenses-regular-future) | I `will play` games. |
@@ -82,8 +86,8 @@
 | 33 | 受動態 | [解説](english/grammar/passive/guide.md) | [確認](quiz/?subject=english&category=passive) | Games `are played` by me. |
 | 34 | 助動詞の受動態 | [解説](english/grammar/passive-modals/guide.md) | [確認](quiz/?subject=english&category=passive-modals) | Games `can be played` by anyone. |
 | 35 | 条件文 | [解説](english/grammar/conditionals-if/guide.md) | [確認](quiz/?subject=english&category=conditionals-if) | If I `had` time, I `would play` games. |
-| 36 | I wish | [解説](english/grammar/conditionals-wish/guide.md) | [確認](quiz/?subject=english&category=conditionals-wish) | I wish I `could play` games. |
-| 37 | unless | [解説](english/grammar/conditionals-unless/guide.md) | [確認](quiz/?subject=english&category=conditionals-unless) | I play games `unless` I am busy. |
+| 36 | 仮定法（願望） | [解説](english/grammar/conditionals-wish/guide.md) | [確認](quiz/?subject=english&category=conditionals-wish) | I wish I `could play` games. |
+| 37 | 条件文（〜しない限り） | [解説](english/grammar/conditionals-unless/guide.md) | [確認](quiz/?subject=english&category=conditionals-unless) | I play games `unless` I am busy. |
 | 38 | 疑問文 | [解説](english/grammar/questions/guide.md) | [確認](quiz/?subject=english&category=questions) | `Do` you play games? |
 | 39 | 否定文 | [解説](english/grammar/negatives/guide.md) | [確認](quiz/?subject=english&category=negatives) | I `do not play` games. |
 | 40 | 疑問詞 | [解説](english/grammar/questions-wh/guide.md) | [確認](quiz/?subject=english&category=questions-wh) | `What` games do you play? |
@@ -188,8 +192,21 @@
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 09 | ことわざ | 中学生 | [解説](japanese/kanji/kotowaza/guide.md) | [確認](quiz/?subject=japanese&category=kotowaza) | 七転び八起き |
-| 10 | 四字熟語 | 中学生 | [解説](japanese/kanji/yojijukugo/guide.md) | [確認](quiz/?subject=japanese&category=yojijukugo) | 一石二鳥 |
+| 09 | ことわざ（小学生） | 小学生 | [解説](japanese/kanji/kotowaza-elementary/guide.md) | [確認](quiz/?subject=japanese&category=kotowaza-elementary) | 七転び八起き |
+| 10 | ことわざ（中学生） | 中学生 | [解説](japanese/kanji/kotowaza-secondary/guide.md) | [確認](quiz/?subject=japanese&category=kotowaza-secondary) | 二兎を追う者は一兎をも得ず |
+| 11 | ことわざ（高校生） | 高校生 | [解説](japanese/kanji/kotowaza-high/guide.md) | [確認](quiz/?subject=japanese&category=kotowaza-high) | 三人寄れば文殊の知恵 |
+| 12 | 四字熟語（小学生） | 小学生 | [解説](japanese/kanji/yojijukugo-elementary/guide.md) | [確認](quiz/?subject=japanese&category=yojijukugo-elementary) | 一石二鳥 |
+| 13 | 四字熟語（中学生） | 中学生 | [解説](japanese/kanji/yojijukugo-secondary/guide.md) | [確認](quiz/?subject=japanese&category=yojijukugo-secondary) | 四面楚歌 |
+| 14 | 四字熟語（高校生） | 高校生 | [解説](japanese/kanji/yojijukugo-high/guide.md) | [確認](quiz/?subject=japanese&category=yojijukugo-high) | 千載一遇 |
+
+#### 📖 読解
+
+| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
+|---|------|----------|------|--------|-----|
+| 15 | 文章構造（主語・述語） | 小学生 | [解説](japanese/reading/sentence-structure/guide.md) | [確認](quiz/?subject=japanese&category=reading-sentence-structure) | 主語・述語 |
+| 16 | 同等・言い換え関係 | 中学生 | [解説](japanese/reading/equivalence/guide.md) | [確認](quiz/?subject=japanese&category=reading-equivalence) | つまり・すなわち |
+| 17 | 対比関係 | 中学生 | [解説](japanese/reading/contrast/guide.md) | [確認](quiz/?subject=japanese&category=reading-contrast) | しかし・一方 |
+| 18 | 因果関係 | 中学生 | [解説](japanese/reading/cause-effect/guide.md) | [確認](quiz/?subject=japanese&category=reading-cause-effect) | だから・なぜなら |
 
 ## 科目別リンク
 

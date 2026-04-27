@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "exponents-logarithms",
-  "categoryName": "📐 指数・対数",
+  "category": "exponents-logarithms-1",
+  "categoryName": "📐 指数・対数 その１",
   "topCategory": "advanced-math",
   "topCategoryName": "高校数学",
   "parentCategory": "precalculus",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "4^(1/2) = √4 = 2。分数の指数は累乗根を表します"
+    },
+    {
+      "id": "887a2d40-1717-5970-95bc-3259f534e473",
+      "question": "log₁₀(1000) = ?",
+      "choices": [
+        "3",
+        "2",
+        "4",
+        "10"
+      ],
+      "correct": 0,
+      "explanation": "10³ = 1000 なので log₁₀(1000) = 3"
+    },
+    {
+      "id": "4294dede-efe2-52f5-b637-a98eb943c300",
+      "question": "2^0 = ?",
+      "choices": [
+        "1",
+        "0",
+        "2",
+        "1/2"
+      ],
+      "correct": 0,
+      "explanation": "任意の数の0乗は1なので 2^0 = 1"
     }
   ]
 }

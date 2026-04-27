@@ -2,7 +2,7 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "conditionals-wish",
-  "categoryName": "💭 I wish",
+  "categoryName": "💭 仮定法（願望）",
   "topCategory": "grammar",
   "topCategoryName": "文法",
   "parentCategory": "conditionals",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "未来の願望には would を使います"
+    },
+    {
+      "id": "9013e3f0-e925-5873-8619-3c4b70d65b20",
+      "question": "I wish I ___ fly. (能力の願望)",
+      "choices": [
+        "could",
+        "can",
+        "would",
+        "will"
+      ],
+      "correct": 0,
+      "explanation": "能力の願望には could を使います"
+    },
+    {
+      "id": "2995f89b-0d78-5009-a97f-a3fa812b6c73",
+      "question": "I wish I ___ gone there. (過去の願望)",
+      "choices": [
+        "had",
+        "have",
+        "would have",
+        "could have"
+      ],
+      "correct": 0,
+      "explanation": "過去の願望には had + 過去分詞を使います"
     }
   ]
 }

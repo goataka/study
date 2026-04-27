@@ -208,6 +208,18 @@ Then("the quiz screen should not have the practice-mode class", async ({ page })
   await expect(page.locator("#quizScreen")).not.toHaveClass(/practice-mode/);
 });
 
+When("I click the {string} font size button", async ({ page }, size: string) => {
+  await page.locator(`.font-size-btn`).filter({ hasText: size }).click();
+});
+
+Then("the body should have the {string} class", async ({ page }, className: string) => {
+  await expect(page.locator("body")).toHaveClass(new RegExp(className));
+});
+
+Then("the body should not have the {string} class", async ({ page }, className: string) => {
+  await expect(page.locator("body")).not.toHaveClass(new RegExp(className));
+});
+
 // ─── KanjiCanvas スタブを使ったひらがな候補フィルタの E2E 仕様 ──────────────
 
 // @kanji-stub タグのシナリオ用: kanji-canvas.min.js をスタブに差し替えて
@@ -357,4 +369,26 @@ When("I click the view mode toggle button", async ({ page }) => {
 Then("grade groups should be visible in the category list", async ({ page }) => {
   // 学年グループ（category-grade-group）が表示されていること
   await expect(page.locator(".category-grade-group").first()).toBeVisible();
+});
+
+Then("the download data button should be visible in the header", async ({ page }) => {
+  // ダウンロードボタンがヘッダーに表示されていること
+  await expect(page.locator("#downloadDataBtn")).toBeVisible();
+});
+
+When("I click the download data button", async ({ page }) => {
+  // ダウンロードイベントを監視してボタンをクリックし、結果をページストレージに保存する
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    page.locator("#downloadDataBtn").click(),
+  ]);
+  await page.evaluate((filename) => {
+    sessionStorage.setItem("_testDownloadFilename", filename);
+  }, download.suggestedFilename());
+});
+
+Then("a JSON file download should be triggered", async ({ page }) => {
+  // ダウンロードされたファイル名が JSON 形式であること
+  const filename = await page.evaluate(() => sessionStorage.getItem("_testDownloadFilename"));
+  expect(filename).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
 });

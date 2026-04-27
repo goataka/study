@@ -2,7 +2,7 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "conditionals-unless",
-  "categoryName": "🚫 unless",
+  "categoryName": "🚫 条件文（〜しない限り）",
   "topCategory": "grammar",
   "topCategoryName": "文法",
   "parentCategory": "conditionals",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "unless節では現在形を使います"
+    },
+    {
+      "id": "94e7217b-25bf-5427-8a14-6f6775c2ab59",
+      "question": "Unless you ___ quiet, I will leave. (be)",
+      "choices": [
+        "are",
+        "were",
+        "be",
+        "will be"
+      ],
+      "correct": 0,
+      "explanation": "unless は if not と同じ意味で、現在形を使います"
+    },
+    {
+      "id": "9f1fd250-4e9b-5b0d-8f0a-b45332319eb3",
+      "question": "She won't come ___ you invite her.",
+      "choices": [
+        "unless",
+        "if",
+        "when",
+        "because"
+      ],
+      "correct": 0,
+      "explanation": "unless は「～しない限り」という意味の接続詞です"
     }
   ]
 }

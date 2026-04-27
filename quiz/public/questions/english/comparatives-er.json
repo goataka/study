@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "短い形容詞の比較級は -er をつけます"
+    },
+    {
+      "id": "a9275a0b-4850-5425-b246-d6e8e62b8ed7",
+      "question": "This car is ___ than that one. (fast)",
+      "choices": [
+        "faster",
+        "more fast",
+        "fastest",
+        "most fast"
+      ],
+      "correct": 0,
+      "explanation": "1音節の形容詞には -er をつけて比較級を作ります"
+    },
+    {
+      "id": "066d9253-ad62-5bf4-9e48-d0b9769e3d5a",
+      "question": "She is ___ than I am. (young)",
+      "choices": [
+        "younger",
+        "more young",
+        "youngest",
+        "most young"
+      ],
+      "correct": 0,
+      "explanation": "1音節の形容詞には -er をつけて比較級を作ります"
     }
   ]
 }

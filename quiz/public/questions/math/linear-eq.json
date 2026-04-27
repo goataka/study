@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "両辺を3で割って x + 2 = 5。x = 5 - 2 = 3"
+    },
+    {
+      "id": "9470bed8-3dc7-5c01-8a76-65d3f2f5e912",
+      "question": "5(x - 2) = 3x + 4 を解くと x = ?",
+      "choices": [
+        "7",
+        "5",
+        "9",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "5x - 10 = 3x + 4 → 2x = 14 → x = 7"
+    },
+    {
+      "id": "90cb4502-5f49-5580-8bee-1db384813edc",
+      "question": "x/3 + 2 = 5 を解くと x = ?",
+      "choices": [
+        "9",
+        "3",
+        "6",
+        "12"
+      ],
+      "correct": 0,
+      "explanation": "x/3 = 3 → x = 9"
     }
   ]
 }

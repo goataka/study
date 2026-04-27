@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "integration",
-  "categoryName": "📊 積分",
+  "category": "integration-1",
+  "categoryName": "📊 積分 その１",
   "topCategory": "advanced-math",
   "topCategoryName": "高校数学",
   "parentCategory": "calculus",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "∫5x⁴dx = 5×(x⁵/5) = x⁵ + C"
+    },
+    {
+      "id": "02416cff-2c11-5198-86ae-06a316dd403a",
+      "question": "∫cos x dx = ?",
+      "choices": [
+        "sin x + C",
+        "cos x + C",
+        "-sin x + C",
+        "-cos x + C"
+      ],
+      "correct": 0,
+      "explanation": "∫cos x dx = sin x + C"
+    },
+    {
+      "id": "1c12c915-4d2a-531e-9ed0-234a2371afc6",
+      "question": "∫eˣ dx = ?",
+      "choices": [
+        "eˣ + C",
+        "xeˣ + C",
+        "eˣ/x + C",
+        "1/eˣ + C"
+      ],
+      "correct": 0,
+      "explanation": "∫eˣ dx = eˣ + C"
     }
   ]
 }

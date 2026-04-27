@@ -1,9 +1,9 @@
-# I wish
+# 仮定法（願望）
 
 現在形:
 I `cannot play` games.（ゲームができない）
 
-## 📚 I wish
+## 📚 仮定法（I wish）
 
 I wish I `could play` games.（ゲームができたらいいのに）
 

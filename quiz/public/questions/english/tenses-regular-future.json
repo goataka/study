@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
+    },
+    {
+      "id": "a0a5b1dd-5b78-59bc-9ea7-4f0c0ec9c0d4",
+      "question": "She ___ her friend tomorrow. (visit)",
+      "choices": [
+        "will visit",
+        "visits",
+        "visited",
+        "visiting"
+      ],
+      "correct": 0,
+      "explanation": "未来形は will + 動詞の原形です"
+    },
+    {
+      "id": "2f9c5c0b-cf6c-5ed5-9e53-80849ef74790",
+      "question": "We ___ the test next week. (take)",
+      "choices": [
+        "will take",
+        "take",
+        "took",
+        "taking"
+      ],
+      "correct": 0,
+      "explanation": "未来形は will + 動詞の原形です"
     }
   ]
 }

@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
+    },
+    {
+      "id": "9534d763-013b-5cf3-a09f-f8f1c0690714",
+      "question": "The event ___ postponed. (may + 受動態)",
+      "choices": [
+        "may be",
+        "may being",
+        "may been",
+        "maybe"
+      ],
+      "correct": 0,
+      "explanation": "may + be + 過去分詞で助動詞の受動態になります"
+    },
+    {
+      "id": "d91505be-a86e-5b33-8e95-e70532ccf374",
+      "question": "The homework ___ done by tomorrow. (must + 受動態)",
+      "choices": [
+        "must be",
+        "must being",
+        "must been",
+        "must have"
+      ],
+      "correct": 0,
+      "explanation": "must + be + 過去分詞で助動詞の受動態になります"
     }
   ]
 }

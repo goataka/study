@@ -334,6 +334,24 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
     const { description: _description, ...withoutDescription } = { ...validQF, description: undefined };
     expect(() => validateQuestionFile(withoutDescription)).not.toThrow();
   });
+
+  it("caseSensitive が true の場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, caseSensitive: true })
+    ).not.toThrow();
+  });
+
+  it("caseSensitive が false の場合は受け入れる", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, caseSensitive: false })
+    ).not.toThrow();
+  });
+
+  it("caseSensitive がブール値でない場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, caseSensitive: "true" })
+    ).toThrow('"caseSensitive" must be a boolean if present');
+  });
 });
 
 describe("expandQuestions — 問題展開仕様", () => {
@@ -420,6 +438,24 @@ describe("expandQuestions — 問題展開仕様", () => {
     const questions = expandQuestions(qf);
     for (const q of questions) {
       expect(q.topCategoryGuideUrl).toBeUndefined();
+    }
+  });
+
+  it("caseSensitive がある場合は各問題に付加される", () => {
+    const qfCaseSensitive: QuestionFile = {
+      ...qf,
+      caseSensitive: true,
+    };
+    const questions = expandQuestions(qfCaseSensitive);
+    for (const q of questions) {
+      expect(q.caseSensitive).toBe(true);
+    }
+  });
+
+  it("caseSensitive がない場合は各問題の caseSensitive が undefined になる", () => {
+    const questions = expandQuestions(qf);
+    for (const q of questions) {
+      expect(q.caseSensitive).toBeUndefined();
     }
   });
 });
