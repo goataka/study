@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "addition-word-problems",
+  "categoryName": "➕ 文章問題",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "addition",
+  "parentCategoryName": "たし算",
+  "guideUrl": "../math/arithmetic/addition-word-problems/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "りんご3個＋4個＝？",
+  "referenceGrade": "小学3年",
+  "description": "たし算を使った文章問題です。",
+  "questions": [
+    {
+      "id": "c8465abe-857a-5ab3-ba73-09a21d3f8141",
+      "question": "りんごが3個あります。4個もらいました。全部で何個ですか？",
+      "choices": [
+        "7個",
+        "5個",
+        "8個",
+        "6個"
+      ],
+      "correct": 0,
+      "explanation": "3 + 4 = 7個"
+    },
+    {
+      "id": "ccdcf18a-0415-5e23-b56f-e6fc1a6eec2f",
+      "question": "バスに15人乗っています。次の停留所で8人乗りました。今何人いますか？",
+      "choices": [
+        "23人",
+        "20人",
+        "25人",
+        "22人"
+      ],
+      "correct": 0,
+      "explanation": "15 + 8 = 23人"
+    },
+    {
+      "id": "6004c17c-bd00-5c75-9dbd-be5703cef9bb",
+      "question": "本が24冊あります。12冊増えました。全部で何冊ですか？",
+      "choices": [
+        "36冊",
+        "34冊",
+        "38冊",
+        "32冊"
+      ],
+      "correct": 0,
+      "explanation": "24 + 12 = 36冊"
+    },
+    {
+      "id": "1c452955-ec12-58ad-89a9-787299d720b2",
+      "question": "赤いボールが17個、青いボールが25個あります。合わせて何個ですか？",
+      "choices": [
+        "42個",
+        "40個",
+        "44個",
+        "38個"
+      ],
+      "correct": 0,
+      "explanation": "17 + 25 = 42個"
+    },
+    {
+      "id": "a3957072-d003-5e3e-aa76-aa223563651a",
+      "question": "お金が135円あります。48円もらいました。全部でいくらですか？",
+      "choices": [
+        "183円",
+        "180円",
+        "185円",
+        "173円"
+      ],
+      "correct": 0,
+      "explanation": "135 + 48 = 183円"
+    },
+    {
+      "id": "6d91f246-a123-5bea-940d-4a381fb44598",
+      "question": "クラスに男の子が16人、女の子が14人います。全部で何人ですか？",
+      "choices": [
+        "30人",
+        "28人",
+        "32人",
+        "26人"
+      ],
+      "correct": 0,
+      "explanation": "16 + 14 = 30人"
+    },
+    {
+      "id": "eae1d13d-4ac4-53f9-a522-a1aea075aed6",
+      "question": "えんぴつが45本あります。27本もらいました。全部で何本ですか？",
+      "choices": [
+        "72本",
+        "70本",
+        "74本",
+        "68本"
+      ],
+      "correct": 0,
+      "explanation": "45 + 27 = 72本"
+    },
+    {
+      "id": "e7981d3a-fbbe-5294-87ab-f93fb2e59b21",
+      "question": "図書館に本が256冊あります。新しく138冊入りました。全部で何冊ですか？",
+      "choices": [
+        "394冊",
+        "384冊",
+        "404冊",
+        "390冊"
+      ],
+      "correct": 0,
+      "explanation": "256 + 138 = 394冊"
+    },
+    {
+      "id": "790f4d62-8337-5407-a076-3757bb902c35",
+      "question": "農家でリンゴが367個、なしが245個収穫できました。合わせて何個ですか？",
+      "choices": [
+        "612個",
+        "602個",
+        "622個",
+        "610個"
+      ],
+      "correct": 0,
+      "explanation": "367 + 245 = 612個"
+    },
+    {
+      "id": "ca9bb081-6256-51e1-a055-b4c480edcfef",
+      "question": "電車に428人乗っています。次の駅で175人乗りました。今何人ですか？",
+      "choices": [
+        "603人",
+        "593人",
+        "613人",
+        "600人"
+      ],
+      "correct": 0,
+      "explanation": "428 + 175 = 603人"
+    }
+  ]
+}

@@ -6,18 +6,53 @@
 
 ## 📚 学習カテゴリ一覧
 
+### ➕ たし算
+
 | カテゴリ | 内容 |
 |----------|------|
-| [たし算（くり上がりなし）](addition-1digit-no-carry/guide) | 繰り上がりのない足し算 |
-| [たし算（くり上がりあり）](addition-1digit-carry/guide) | 繰り上がりのある足し算 |
-| [たし算（まとめ）](addition-mixed/guide) | くり上がりあり・なしの混合問題 |
-| [ひき算（くり下がりなし）](subtraction-1digit-no-borrow/guide) | 繰り下がりのない引き算 |
-| [ひき算（くり下がりあり）](subtraction-1digit-borrow/guide) | 繰り下がりのある引き算 |
-| [ひき算（まとめ）](subtraction-mixed/guide) | くり下がりあり・なしの混合問題 |
-| [かけ算](multiplication-1digit/guide) | 九九と掛け算の基本 |
-| [わり算（あまりなし）](division-1digit-no-remainder/guide) | 割り切れる割り算 |
-| [わり算（あまりあり）](division-1digit-remainder/guide) | 余りのある割り算 |
-| [わり算（まとめ）](division-mixed/guide) | あまりあり・なしの混合問題 |
+| [くり上がりなし その１](addition-1digit-no-carry/guide) | 1桁・繰り上がりのないたし算 |
+| [くり上がりなし その２](addition-2digit-no-carry/guide) | 2桁・繰り上がりのないたし算 |
+| [くり上がりなし その３](addition-3digit-no-carry/guide) | 3桁以上・繰り上がりのないたし算 |
+| [くり上がりあり](addition-carry/guide) | 1〜3桁・繰り上がりのあるたし算 |
+| [まとめ](addition-mixed/guide) | 全桁・くり上がりあり・なし混合 |
+| [文章問題](addition-word-problems/guide) | たし算を使った文章問題 |
+
+### ➖ ひき算
+
+| カテゴリ | 内容 |
+|----------|------|
+| [くり下がりなし その１](subtraction-1digit-no-borrow/guide) | 1桁・繰り下がりのないひき算 |
+| [くり下がりなし その２](subtraction-2digit-no-borrow/guide) | 2桁・繰り下がりのないひき算 |
+| [くり下がりなし その３](subtraction-3digit-no-borrow/guide) | 3桁以上・繰り下がりのないひき算 |
+| [くり下がりあり](subtraction-borrow/guide) | 1〜3桁・繰り下がりのあるひき算 |
+| [まとめ](subtraction-mixed/guide) | 全桁・くり下がりあり・なし混合 |
+| [文章問題](subtraction-word-problems/guide) | ひき算を使った文章問題 |
+
+### ✖️ かけ算
+
+| カテゴリ | 内容 |
+|----------|------|
+| [その１（1桁×1桁・九九）](multiplication-1digit/guide) | 九九と1桁のかけ算 |
+| [その２（2桁×1桁）](multiplication-2digit/guide) | 2桁×1桁の筆算 |
+| [その３（3桁×1桁）](multiplication-3digit/guide) | 3桁×1桁の筆算 |
+| [まとめ](multiplication-mixed/guide) | 全桁の混合問題 |
+| [文章問題](multiplication-word-problems/guide) | かけ算を使った文章問題 |
+
+### ➗ わり算
+
+| カテゴリ | 内容 |
+|----------|------|
+| [あまりなし その１](division-1digit-no-remainder/guide) | 1桁・割り切れるわり算 |
+| [あまりなし その２](division-2digit-no-remainder/guide) | 2桁・割り切れるわり算 |
+| [あまりなし その３](division-3digit-no-remainder/guide) | 3桁以上・割り切れるわり算 |
+| [あまりあり](division-remainder/guide) | 1〜3桁・余りのあるわり算 |
+| [まとめ](division-mixed/guide) | 全桁・あまりあり・なし混合 |
+| [文章問題](division-word-problems/guide) | わり算を使った文章問題 |
+
+### 分数・小数・比
+
+| カテゴリ | 内容 |
+|----------|------|
 | [分数のたし算（同分母）](fractions-same-add/guide) | 分母が同じ分数の足し算 |
 | [分数のひき算（同分母）](fractions-same-sub/guide) | 分母が同じ分数の引き算 |
 | [分数のたし算（異分母）](fractions-diff-add/guide) | 通分が必要な分数の足し算 |

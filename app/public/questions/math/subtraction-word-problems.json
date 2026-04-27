@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "subtraction-word-problems",
+  "categoryName": "➖ 文章問題",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "subtraction",
+  "parentCategoryName": "ひき算",
+  "guideUrl": "../math/arithmetic/subtraction-word-problems/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "クッキー12枚－5枚＝？",
+  "referenceGrade": "小学3年",
+  "description": "ひき算を使った文章問題です。",
+  "questions": [
+    {
+      "id": "2ef2f717-3868-56a1-a0c8-14f3a2de29af",
+      "question": "クッキーが12枚あります。5枚食べました。残りは何枚ですか？",
+      "choices": [
+        "7枚",
+        "6枚",
+        "8枚",
+        "9枚"
+      ],
+      "correct": 0,
+      "explanation": "12 - 5 = 7枚"
+    },
+    {
+      "id": "704fe709-3ddd-57ae-82cd-0cc8ebe3f22e",
+      "question": "バスに23人乗っています。8人降りました。残りは何人ですか？",
+      "choices": [
+        "15人",
+        "14人",
+        "16人",
+        "13人"
+      ],
+      "correct": 0,
+      "explanation": "23 - 8 = 15人"
+    },
+    {
+      "id": "031f85a0-31a8-5ccd-a1eb-e0a55e1753cc",
+      "question": "本が48冊あります。17冊貸しました。残りは何冊ですか？",
+      "choices": [
+        "31冊",
+        "30冊",
+        "32冊",
+        "29冊"
+      ],
+      "correct": 0,
+      "explanation": "48 - 17 = 31冊"
+    },
+    {
+      "id": "90bb226e-a456-54c6-907e-57796f69e7f3",
+      "question": "赤い花が35本、白い花が19本あります。赤い花は白い花より何本多いですか？",
+      "choices": [
+        "16本",
+        "14本",
+        "18本",
+        "15本"
+      ],
+      "correct": 0,
+      "explanation": "35 - 19 = 16本"
+    },
+    {
+      "id": "328543eb-e3e4-56d1-bf94-e3090e32e930",
+      "question": "250円持っています。75円のお菓子を買いました。残りはいくらですか？",
+      "choices": [
+        "175円",
+        "165円",
+        "185円",
+        "170円"
+      ],
+      "correct": 0,
+      "explanation": "250 - 75 = 175円"
+    },
+    {
+      "id": "9f3b8aa9-aaba-5288-afd6-742505a08473",
+      "question": "池に魚が56匹います。15匹釣れました。残りは何匹ですか？",
+      "choices": [
+        "41匹",
+        "40匹",
+        "42匹",
+        "39匹"
+      ],
+      "correct": 0,
+      "explanation": "56 - 15 = 41匹"
+    },
+    {
+      "id": "322da92b-7112-5c02-9620-1fa1ab538d14",
+      "question": "えんぴつが82本あります。37本使いました。残りは何本ですか？",
+      "choices": [
+        "45本",
+        "44本",
+        "46本",
+        "43本"
+      ],
+      "correct": 0,
+      "explanation": "82 - 37 = 45本"
+    },
+    {
+      "id": "2d275a7b-ceff-5a1b-8eba-577889af760b",
+      "question": "学校に児童が523人います。148人が欠席しました。今日は何人いますか？",
+      "choices": [
+        "375人",
+        "365人",
+        "385人",
+        "376人"
+      ],
+      "correct": 0,
+      "explanation": "523 - 148 = 375人"
+    },
+    {
+      "id": "954939f6-d456-5ffe-9b89-d638efa6a091",
+      "question": "工場でりんごが700個あります。245個出荷しました。残りは何個ですか？",
+      "choices": [
+        "455個",
+        "445個",
+        "465個",
+        "450個"
+      ],
+      "correct": 0,
+      "explanation": "700 - 245 = 455個"
+    },
+    {
+      "id": "121bda07-0578-570e-a104-9683040572ac",
+      "question": "電車に604人乗っています。次の駅で278人降りました。残りは何人ですか？",
+      "choices": [
+        "326人",
+        "316人",
+        "336人",
+        "325人"
+      ],
+      "correct": 0,
+      "explanation": "604 - 278 = 326人"
+    }
+  ]
+}

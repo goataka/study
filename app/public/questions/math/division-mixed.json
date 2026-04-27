@@ -2,7 +2,7 @@
   "subject": "math",
   "subjectName": "数学",
   "category": "division-mixed",
-  "categoryName": "➗ わり算 - まとめ",
+  "categoryName": "➗ まとめ",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
   "parentCategory": "multiplication-division",
@@ -86,52 +86,52 @@
       "explanation": "あまりあり。7 × 3 = 21。23 - 21 = 2。答え 3 あまり 2"
     },
     {
-      "id": "b2dcae65-2fe7-50d9-a35a-0406a0f853e5",
-      "question": "36 ÷ 9 = ?",
+      "id": "cdd73ca6-d028-57cc-b5c6-86fcc8194634",
+      "question": "84 ÷ 4 = ?",
       "choices": [
-        "4",
-        "3",
-        "5",
-        "6"
+        "21",
+        "20",
+        "22",
+        "24"
       ],
       "correct": 0,
-      "explanation": "あまりなし。9 × 4 = 36なので、36 ÷ 9 = 4"
+      "explanation": "84 ÷ 4 = 21"
     },
     {
-      "id": "e8deeabe-3bbb-5540-99fe-ab5738b416ac",
-      "question": "26 ÷ 8 = ? あまり ?",
+      "id": "30aa6478-6de4-51f2-bf1f-e17a875f4ce8",
+      "question": "73 ÷ 4 = ? あまり ?",
       "choices": [
-        "3 あまり 2",
-        "3 あまり 1",
-        "4 あまり 2",
-        "2 あまり 10"
+        "18 あまり 1",
+        "17 あまり 1",
+        "18 あまり 2",
+        "19 あまり 1"
       ],
       "correct": 0,
-      "explanation": "あまりあり。8 × 3 = 24。26 - 24 = 2。答え 3 あまり 2"
+      "explanation": "73 ÷ 4 = 18 あまり 1"
     },
     {
-      "id": "0f5b8775-4fa7-5350-9efd-14f9d4fb3e29",
-      "question": "32 ÷ 8 = ?",
+      "id": "d1af61ee-525b-5e48-861b-12a9f649b9f3",
+      "question": "840 ÷ 12 = ?",
       "choices": [
-        "4",
-        "5",
-        "3",
-        "6"
+        "70",
+        "60",
+        "80",
+        "75"
       ],
       "correct": 0,
-      "explanation": "32 ÷ 8 = 4"
+      "explanation": "840 ÷ 12 = 70"
     },
     {
-      "id": "a7ff2871-cc5b-531c-82ae-d5bb3716107f",
-      "question": "29 ÷ 6 = ? あまり ?",
+      "id": "202f56e7-ddb0-5237-802e-fe1fded263a6",
+      "question": "371 ÷ 4 = ? あまり ?",
       "choices": [
-        "4あまり5",
-        "5あまり1",
-        "4あまり4",
-        "5あまり2"
+        "92 あまり 3",
+        "91 あまり 3",
+        "93 あまり 1",
+        "92 あまり 2"
       ],
       "correct": 0,
-      "explanation": "29 ÷ 6 = 4 あまり 5"
+      "explanation": "371 ÷ 4 = 92 あまり 3"
     }
   ]
 }

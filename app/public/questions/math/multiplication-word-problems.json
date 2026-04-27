@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "multiplication-word-problems",
+  "categoryName": "✖️ 文章問題",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "multiplication",
+  "parentCategoryName": "かけ算",
+  "guideUrl": "../math/arithmetic/multiplication-word-problems/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "1箱6個×4箱＝？",
+  "referenceGrade": "小学3年",
+  "description": "かけ算を使った文章問題です。",
+  "questions": [
+    {
+      "id": "eee8a3f9-1e8f-5b9c-8224-191dce0ba058",
+      "question": "1箱に6個入ったお菓子が4箱あります。全部で何個ですか？",
+      "choices": [
+        "24個",
+        "20個",
+        "28個",
+        "22個"
+      ],
+      "correct": 0,
+      "explanation": "6 × 4 = 24個"
+    },
+    {
+      "id": "e421445c-677c-5ba2-a1f2-a3517d0a90fe",
+      "question": "1列に8人が3列並んでいます。全部で何人ですか？",
+      "choices": [
+        "24人",
+        "22人",
+        "26人",
+        "20人"
+      ],
+      "correct": 0,
+      "explanation": "8 × 3 = 24人"
+    },
+    {
+      "id": "95e53ce3-4c2c-5430-aa71-cfa1b941981f",
+      "question": "1本12円のえんぴつを5本買います。代金はいくらですか？",
+      "choices": [
+        "60円",
+        "50円",
+        "70円",
+        "55円"
+      ],
+      "correct": 0,
+      "explanation": "12 × 5 = 60円"
+    },
+    {
+      "id": "4b816bd6-921f-5bfb-8fc5-002c61840f74",
+      "question": "毎日15分ずつ勉強します。7日間では何分ですか？",
+      "choices": [
+        "105分",
+        "100分",
+        "110分",
+        "95分"
+      ],
+      "correct": 0,
+      "explanation": "15 × 7 = 105分"
+    },
+    {
+      "id": "f52980ef-ad59-54e1-a754-c9b29b92d7e8",
+      "question": "1袋に24個入ったキャンディが3袋あります。全部で何個ですか？",
+      "choices": [
+        "72個",
+        "68個",
+        "76個",
+        "70個"
+      ],
+      "correct": 0,
+      "explanation": "24 × 3 = 72個"
+    },
+    {
+      "id": "ed352123-5cd5-5d08-a204-f73bbe5f3473",
+      "question": "横に7個、縦に6個並べた形にタイルを並べます。タイルは全部で何枚ですか？",
+      "choices": [
+        "42枚",
+        "40枚",
+        "44枚",
+        "38枚"
+      ],
+      "correct": 0,
+      "explanation": "7 × 6 = 42枚"
+    },
+    {
+      "id": "131b72a3-ce5a-5a75-aa67-48c5c569c41b",
+      "question": "1台32人乗れるバスが4台来ました。全部で何人乗れますか？",
+      "choices": [
+        "128人",
+        "120人",
+        "136人",
+        "124人"
+      ],
+      "correct": 0,
+      "explanation": "32 × 4 = 128人"
+    },
+    {
+      "id": "93056675-37e9-5f4f-8aec-12d04f463eee",
+      "question": "1メートル45円のリボンを6メートル買います。代金はいくらですか？",
+      "choices": [
+        "270円",
+        "260円",
+        "280円",
+        "265円"
+      ],
+      "correct": 0,
+      "explanation": "45 × 6 = 270円"
+    },
+    {
+      "id": "aec354f0-7e39-5fec-a145-e6aec3af0591",
+      "question": "1日に123個作れる工場が5日間働きます。全部で何個作れますか？",
+      "choices": [
+        "615個",
+        "605個",
+        "625個",
+        "610個"
+      ],
+      "correct": 0,
+      "explanation": "123 × 5 = 615個"
+    },
+    {
+      "id": "a133be83-844c-53c7-a954-a607039d5f69",
+      "question": "1パックに36個入った卵が7パックあります。全部で何個ですか？",
+      "choices": [
+        "252個",
+        "242個",
+        "262個",
+        "250個"
+      ],
+      "correct": 0,
+      "explanation": "36 × 7 = 252個"
+    }
+  ]
+}
