@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "禁止を表すには must not を使います"
+    },
+    {
+      "id": "3c13858c-b908-59f9-a6e2-87ffad3df081",
+      "question": "You ___ park here. (～してはいけない)",
+      "choices": [
+        "must not",
+        "should not",
+        "cannot",
+        "may not"
+      ],
+      "correct": 0,
+      "explanation": "must not は「～してはいけない（禁止）」を表します"
+    },
+    {
+      "id": "5bbe3528-2e54-5434-a0fd-6e0afc52407c",
+      "question": "I ___ find my keys. (～できない)",
+      "choices": [
+        "cannot",
+        "must not",
+        "will not",
+        "may not"
+      ],
+      "correct": 0,
+      "explanation": "cannot は「～できない」という否定の能力を表します"
     }
   ]
 }

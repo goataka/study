@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "mayはmightに変わります"
+    },
+    {
+      "id": "7bf7a2dc-332f-5226-bf8e-41ab415434e4",
+      "question": "He said, \"I must go.\" → He said that he ___ go.",
+      "choices": [
+        "had to",
+        "must",
+        "would",
+        "should"
+      ],
+      "correct": 0,
+      "explanation": "must は間接話法で had to に変わります"
+    },
+    {
+      "id": "bd23ad99-27af-5b6e-8d31-336213afb5dc",
+      "question": "She said, \"I was sleeping.\" → She said that she ___ sleeping.",
+      "choices": [
+        "had been",
+        "was",
+        "is",
+        "were"
+      ],
+      "correct": 0,
+      "explanation": "過去進行形は間接話法で過去完了進行形 had been -ing に変わります"
     }
   ]
 }

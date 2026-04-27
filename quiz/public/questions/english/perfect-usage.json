@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "twice があるので経験を表します"
+    },
+    {
+      "id": "9e45d026-8d33-56cc-ad72-457337e0792c",
+      "question": "I have never tried sushi. この文の用法は？",
+      "choices": [
+        "経験",
+        "継続",
+        "完了",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "never は経験用法の否定を表します"
+    },
+    {
+      "id": "dfda0d3a-1c52-5a18-ad96-cfecee099bb9",
+      "question": "She has just arrived. この文の用法は？",
+      "choices": [
+        "完了",
+        "経験",
+        "継続",
+        "結果"
+      ],
+      "correct": 0,
+      "explanation": "just は完了用法で「ちょうど～したところ」を表します"
     }
   ]
 }

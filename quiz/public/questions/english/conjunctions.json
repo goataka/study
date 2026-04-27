@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "逆接を表すには Although を使います"
+    },
+    {
+      "id": "451d4adb-e3b1-5e17-bba9-7d3f34d1bad0",
+      "question": "I was hungry, ___ I ate lunch. (結果)",
+      "choices": [
+        "so",
+        "but",
+        "or",
+        "because"
+      ],
+      "correct": 0,
+      "explanation": "so は「だから・その結果」という意味の接続詞です"
+    },
+    {
+      "id": "d532f55d-56c0-5ee1-b603-9bd69087e31f",
+      "question": "___ I finish this, I will take a break. (時)",
+      "choices": [
+        "When",
+        "But",
+        "Or",
+        "So"
+      ],
+      "correct": 0,
+      "explanation": "when は「～するとき」という意味の接続詞です"
     }
   ]
 }

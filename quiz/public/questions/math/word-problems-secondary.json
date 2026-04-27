@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "word-problems-secondary",
+  "categoryName": "📖 文章問題（中学生）",
+  "topCategory": "word-problems",
+  "topCategoryName": "文章問題",
+  "parentCategory": "word-problems",
+  "parentCategoryName": "文章問題",
+  "guideUrl": "../math/word-problems/secondary/guide",
+  "parentCategoryGuideUrl": "../math/word-problems/guide",
+  "example": "速さ60km/hで2時間走ったときの距離は？",
+  "referenceGrade": "中学2年",
+  "description": "方程式を使った文章問題を解く力をつけます。",
+  "questions": [
+    {
+      "id": "fdddd519-423a-5455-a32c-4ce806bb5640",
+      "question": "時速60kmで2時間走ったときの距離は何kmですか？",
+      "choices": [
+        "120km",
+        "100km",
+        "130km",
+        "90km"
+      ],
+      "correct": 0,
+      "explanation": "距離 = 速さ × 時間 = 60 × 2 = 120km"
+    },
+    {
+      "id": "893d7324-b679-5192-bf9a-a056695ce26b",
+      "question": "180kmの道のりを時速45kmで走ると何時間かかりますか？",
+      "choices": [
+        "4時間",
+        "3時間",
+        "5時間",
+        "6時間"
+      ],
+      "correct": 0,
+      "explanation": "時間 = 距離 ÷ 速さ = 180 ÷ 45 = 4時間"
+    },
+    {
+      "id": "f209e923-fbda-5e2e-aad1-accc8c56d19f",
+      "question": "現在、父は40歳、子は12歳です。父の年齢が子の年齢の2倍になるのは何年後ですか？",
+      "choices": [
+        "16年後",
+        "20年後",
+        "14年後",
+        "18年後"
+      ],
+      "correct": 0,
+      "explanation": "x年後: 40+x = 2(12+x) → x = 16"
+    },
+    {
+      "id": "bf8a6d3b-1fa3-51b3-be55-abb580f19305",
+      "question": "みかん1個の値段がりんご1個より30円安い。りんご3個とみかん2個で460円のとき、みかん1個は何円ですか？",
+      "choices": [
+        "74円",
+        "80円",
+        "60円",
+        "90円"
+      ],
+      "correct": 0,
+      "explanation": "みかん=x円、りんご=x+30円。3(x+30)+2x=460 → 5x=370 → x=74"
+    },
+    {
+      "id": "65113ab2-fb76-5cf3-b31a-2299d3d82cb9",
+      "question": "ある数の3倍から5を引いたら22になりました。ある数は何ですか？",
+      "choices": [
+        "9",
+        "8",
+        "7",
+        "10"
+      ],
+      "correct": 0,
+      "explanation": "3x - 5 = 22 → 3x = 27 → x = 9"
+    },
+    {
+      "id": "1e07fffc-2380-5629-a08a-db5eff2e5751",
+      "question": "5:8 の比で全体が 520 のとき、小さい方の量はいくつですか？",
+      "choices": [
+        "200",
+        "320",
+        "250",
+        "160"
+      ],
+      "correct": 0,
+      "explanation": "5/(5+8) × 520 = 200"
+    },
+    {
+      "id": "f89762c2-e9d1-51cf-94f2-41148d254bf9",
+      "question": "あるクラスで、60点以上の生徒が全体の40%にあたる14人いました。クラスは何人ですか？",
+      "choices": [
+        "35人",
+        "30人",
+        "40人",
+        "28人"
+      ],
+      "correct": 0,
+      "explanation": "0.4 × x = 14 → x = 35人"
+    },
+    {
+      "id": "45438e43-0a7f-5747-bedc-e7e948602f6e",
+      "question": "袋に赤玉4個、白玉6個入っています。1個取り出すとき赤玉が出る確率は？",
+      "choices": [
+        "2/5",
+        "4/6",
+        "1/3",
+        "3/5"
+      ],
+      "correct": 0,
+      "explanation": "4/10 = 2/5"
+    },
+    {
+      "id": "a3685597-7ee0-5f14-83fb-290d6f430c14",
+      "question": "2つの連続する整数の和が57のとき、小さい方の整数は何ですか？",
+      "choices": [
+        "28",
+        "29",
+        "27",
+        "30"
+      ],
+      "correct": 0,
+      "explanation": "n + (n+1) = 57 → n = 28"
+    },
+    {
+      "id": "1a464384-42ce-5c88-b229-f5268c51c608",
+      "question": "仕事全体を A は10日、B は15日で終わります。2人で一緒に取り組むと何日かかりますか？",
+      "choices": [
+        "6日",
+        "5日",
+        "8日",
+        "7日"
+      ],
+      "correct": 0,
+      "explanation": "1日の仕事量: 1/10+1/15=1/6 → 6日"
+    }
+  ]
+}

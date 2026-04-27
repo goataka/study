@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "quadratic-eq-2",
+  "categoryName": "📐 二次方程式 その２",
+  "topCategory": "algebra",
+  "topCategoryName": "代数",
+  "parentCategory": "algebra-advanced",
+  "parentCategoryName": "発展代数",
+  "guideUrl": "../math/algebra/quadratic-eq/guide",
+  "parentCategoryGuideUrl": "../math/algebra/guide",
+  "example": "x²-5x+6=0 → x=2,3",
+  "referenceGrade": "中学3年",
+  "description": "因数分解と解の公式を使い分けて、二次方程式を確実に解けるようにします。",
+  "questions": [
+    {
+      "id": "fcc63d3a-187f-5cd3-bf2d-bdfd179ec575",
+      "question": "x² - 3x - 10 = 0 を解くと？",
+      "choices": [
+        "x = 5, x = -2",
+        "x = 2, x = -5",
+        "x = 5, x = 2",
+        "x = -5, x = -2"
+      ],
+      "correct": 0,
+      "explanation": "(x-5)(x+2) = 0 → x = 5 または x = -2"
+    },
+    {
+      "id": "d881733c-cb3f-513b-aa0a-622f1e7f55ef",
+      "question": "x² + 6x + 9 = 0 を解くと？",
+      "choices": [
+        "x = -3",
+        "x = 3",
+        "x = ±3",
+        "x = 9"
+      ],
+      "correct": 0,
+      "explanation": "(x+3)² = 0 → x = -3（重解）"
+    },
+    {
+      "id": "7d61ada9-edfd-5778-b7e1-90ec0fe6f747",
+      "question": "2x² - 5x + 2 = 0 を解くと？",
+      "choices": [
+        "x = 2, x = 1/2",
+        "x = 5, x = 1",
+        "x = 1, x = 2",
+        "x = -2, x = -1/2"
+      ],
+      "correct": 0,
+      "explanation": "(2x-1)(x-2) = 0 → x = 1/2 または x = 2"
+    },
+    {
+      "id": "3b1dba8a-7f9b-576e-8005-656b208f96cc",
+      "question": "x² - 2x - 3 = 0 を解の公式で解くと？",
+      "choices": [
+        "x = 3, x = -1",
+        "x = 1, x = -3",
+        "x = 2, x = -1",
+        "x = -2, x = 1"
+      ],
+      "correct": 0,
+      "explanation": "D = 4 + 12 = 16。x = (2±4)/2 → x = 3 または x = -1"
+    },
+    {
+      "id": "0284237b-a15f-5c0c-87ea-144b84036ff1",
+      "question": "x² + 4x + 4 = 9 を解くと？",
+      "choices": [
+        "x = 1, x = -5",
+        "x = 3, x = -3",
+        "x = 1, x = 3",
+        "x = -1, x = 5"
+      ],
+      "correct": 0,
+      "explanation": "(x+2)² = 9 → x+2 = ±3 → x = 1 または x = -5"
+    },
+    {
+      "id": "615a30a9-dda9-5b85-bbd6-5fb858faef8d",
+      "question": "3x² + 6x = 0 を解くと？",
+      "choices": [
+        "x = 0, x = -2",
+        "x = 0, x = 2",
+        "x = -2",
+        "x = 2"
+      ],
+      "correct": 0,
+      "explanation": "3x(x+2) = 0 → x = 0 または x = -2"
+    },
+    {
+      "id": "806df443-8550-5c5b-8d2e-04b3f1ca9ab8",
+      "question": "x² - 8x + 16 = 0 を解くと？",
+      "choices": [
+        "x = 4",
+        "x = ±4",
+        "x = -4",
+        "x = 8"
+      ],
+      "correct": 0,
+      "explanation": "(x-4)² = 0 → x = 4（重解）"
+    },
+    {
+      "id": "f7fc640f-5196-5fdb-820b-d6aa113fdeec",
+      "question": "x² - 5 = 0 を解くと？",
+      "choices": [
+        "x = ±√5",
+        "x = 5",
+        "x = ±5",
+        "x = √5"
+      ],
+      "correct": 0,
+      "explanation": "x² = 5 → x = ±√5"
+    },
+    {
+      "id": "b33cdcaa-1355-5b99-bac4-05de09386694",
+      "question": "x² + 2x - 15 = 0 を解くと？",
+      "choices": [
+        "x = -5, x = 3",
+        "x = -3, x = 5",
+        "x = 5, x = 3",
+        "x = -5, x = -3"
+      ],
+      "correct": 0,
+      "explanation": "(x+5)(x-3) = 0 → x = -5 または x = 3"
+    },
+    {
+      "id": "52b90fad-8769-5e42-b2dc-68fb47acf46b",
+      "question": "2x² - 7x + 3 = 0 を解くと？",
+      "choices": [
+        "x = 3, x = 1/2",
+        "x = 7, x = 1",
+        "x = 3, x = 2",
+        "x = 1, x = 3"
+      ],
+      "correct": 0,
+      "explanation": "(2x-1)(x-3) = 0 → x = 1/2 または x = 3"
+    }
+  ]
+}

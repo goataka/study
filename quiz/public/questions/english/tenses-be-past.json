@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "Youの過去形には were を使います"
+    },
+    {
+      "id": "6ef801ed-a06e-5daa-8e18-a320afbf78e5",
+      "question": "The children ___ noisy yesterday. (be動詞・過去)",
+      "choices": [
+        "were",
+        "are",
+        "will be",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "複数の主語には were を使います"
+    },
+    {
+      "id": "436306b0-1811-50dc-bac2-e4f4928b921f",
+      "question": "She ___ at the library yesterday. (be動詞・過去)",
+      "choices": [
+        "was",
+        "were",
+        "is",
+        "has been"
+      ],
+      "correct": 0,
+      "explanation": "三人称単数の過去は was を使います"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "subject": "english",
   "subjectName": "英語",
   "category": "reduction",
-  "categoryName": "🎵 リダクション",
+  "categoryName": "🎵 リダクション（その１）",
   "topCategory": "pronunciation",
   "topCategoryName": "発音",
   "parentCategory": "sound-changes",
@@ -72,6 +72,66 @@
       ],
       "correct": 0,
       "explanation": "t が消失して、ソータ"
+    },
+    {
+      "id": "52cbcf0d-9a49-59e0-b82e-575a2daf3d2a",
+      "question": "「out of」はどう発音する？",
+      "choices": [
+        "アウダ",
+        "アウト オブ",
+        "アウトブ",
+        "アウトオブ"
+      ],
+      "correct": 0,
+      "explanation": "t が母音間でフラップ化し、of が弱化して、アウダ"
+    },
+    {
+      "id": "4c9668de-2c10-5357-8e99-8742b6def4d6",
+      "question": "「got to」はどう発音する？",
+      "choices": [
+        "ゴダ",
+        "ゴット トゥ",
+        "ゴッタ",
+        "ガダ"
+      ],
+      "correct": 0,
+      "explanation": "t が弱化して、ゴダ"
+    },
+    {
+      "id": "bcd9b441-6bba-5142-9049-ba586199cbb3",
+      "question": "「used to」はどう発音する？",
+      "choices": [
+        "ユースタ",
+        "ユーズド トゥ",
+        "ユーズタ",
+        "ユーストゥ"
+      ],
+      "correct": 0,
+      "explanation": "d が弱化して、ユースタ"
+    },
+    {
+      "id": "df4d57c6-b8e4-5a8d-ac42-31094407f036",
+      "question": "「give me」はどう発音する？",
+      "choices": [
+        "ギミ",
+        "ギヴ ミー",
+        "ギブミー",
+        "ギヴミ"
+      ],
+      "correct": 0,
+      "explanation": "v が弱化して、ギミ"
+    },
+    {
+      "id": "83de7396-f71e-53a7-b474-0cd6a178c88e",
+      "question": "「let me」はどう発音する？",
+      "choices": [
+        "レミ",
+        "レット ミー",
+        "レットミー",
+        "レトミ"
+      ],
+      "correct": 0,
+      "explanation": "t が脱落して、レミ"
     }
   ]
 }

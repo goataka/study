@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "vectors",
-  "categoryName": "➡️ ベクトル",
+  "category": "vectors-1",
+  "categoryName": "➡️ ベクトル その１",
   "topCategory": "advanced-math",
   "topCategoryName": "高校数学",
   "parentCategory": "precalculus",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "1×0 + 0×1 = 0。内積が0なので、2つのベクトルは直交（垂直）です"
+    },
+    {
+      "id": "6d4e24c1-647c-5d7c-b7c6-74590f6fc98d",
+      "question": "ベクトル a = (1, 2)、b = (3, -1) のとき、2a + b = ?",
+      "choices": [
+        "(5, 3)",
+        "(4, 1)",
+        "(7, 3)",
+        "(2, 4)"
+      ],
+      "correct": 0,
+      "explanation": "2(1,2) + (3,-1) = (2,4) + (3,-1) = (5,3)"
+    },
+    {
+      "id": "f6942e1d-0e6e-538c-a6f1-f077ed86691a",
+      "question": "ベクトル a = (2, -3) の大きさ |a| = ?",
+      "choices": [
+        "√13",
+        "√5",
+        "√7",
+        "5"
+      ],
+      "correct": 0,
+      "explanation": "|a| = √(2² + (-3)²) = √(4+9) = √13"
     }
   ]
 }

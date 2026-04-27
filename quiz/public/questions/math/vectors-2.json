@@ -1,0 +1,137 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "vectors-2",
+  "categoryName": "➡️ ベクトル その２",
+  "topCategory": "advanced-math",
+  "topCategoryName": "高校数学",
+  "parentCategory": "precalculus",
+  "parentCategoryName": "高校数学",
+  "guideUrl": "../math/calculus/vectors/guide",
+  "parentCategoryGuideUrl": "../math/calculus/guide",
+  "example": "→a=(1,2), →b=(3,4) → →a+→b=(4,6)",
+  "referenceGrade": "高校2年",
+  "description": "ベクトルの基本演算と内積の計算ができるようにします。",
+  "questions": [
+    {
+      "id": "a58729fc-6188-5745-8c68-8594999a6cd9",
+      "question": "ベクトル a = (3, -4) の大きさ |a| は？",
+      "choices": [
+        "5",
+        "7",
+        "√7",
+        "1"
+      ],
+      "correct": 0,
+      "explanation": "|a| = √(9+16) = √25 = 5"
+    },
+    {
+      "id": "a3fefaee-f1db-5d21-8b44-af202196fb6a",
+      "question": "ベクトル a = (2, 1)、b = (1, 3) の内積 a·b は？",
+      "choices": [
+        "5",
+        "7",
+        "2",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "2×1 + 1×3 = 5"
+    },
+    {
+      "id": "bc5a9d05-9179-5e1f-9003-73ef7f1f33a7",
+      "question": "a = (1, 0)、b = (0, 1) のなす角は？",
+      "choices": [
+        "90°",
+        "45°",
+        "60°",
+        "180°"
+      ],
+      "correct": 0,
+      "explanation": "a·b = 0 なので θ = 90°"
+    },
+    {
+      "id": "7dedcd8e-f4f2-5981-931c-92949a39c834",
+      "question": "ベクトル a = (6, 8) の単位ベクトルは？",
+      "choices": [
+        "(3/5, 4/5)",
+        "(6/8, 8/6)",
+        "(3/10, 4/10)",
+        "(1/2, 1/2)"
+      ],
+      "correct": 0,
+      "explanation": "|a| = 10、単位ベクトル = (6/10, 8/10) = (3/5, 4/5)"
+    },
+    {
+      "id": "de0d3e12-801e-5517-b148-badfa48b58c4",
+      "question": "a = (2, 3)、b = (-2, 1) のとき、a - 2b は？",
+      "choices": [
+        "(6, 1)",
+        "(-2, 5)",
+        "(4, 4)",
+        "(0, 5)"
+      ],
+      "correct": 0,
+      "explanation": "(2,3) - 2(-2,1) = (2,3) - (-4,2) = (6,1)"
+    },
+    {
+      "id": "1bc05d80-35db-5a37-a929-04947fca34eb",
+      "question": "2次元ベクトルの内積 a·b = a₁b₁ + a₂b₂ を使って、a=(1,2), b=(3,-1) の内積は？",
+      "choices": [
+        "1",
+        "5",
+        "-1",
+        "3"
+      ],
+      "correct": 0,
+      "explanation": "1×3 + 2×(-1) = 3 - 2 = 1"
+    },
+    {
+      "id": "c76631c0-00a9-5e7f-be4d-9da24aa74aa5",
+      "question": "ベクトル a = (1, √3) と x 軸のなす角は？",
+      "choices": [
+        "60°",
+        "30°",
+        "45°",
+        "90°"
+      ],
+      "correct": 0,
+      "explanation": "tan θ = √3/1 = √3 より θ = 60°"
+    },
+    {
+      "id": "4245bd61-1038-5962-a6b0-ef0cdb196891",
+      "question": "ベクトル a = (-3, 4) の大きさ |a| は？",
+      "choices": [
+        "5",
+        "7",
+        "√7",
+        "25"
+      ],
+      "correct": 0,
+      "explanation": "|a| = √(9+16) = 5"
+    },
+    {
+      "id": "d451a299-2940-582b-8e69-e920ab49bed1",
+      "question": "a = (2, 4)、b = (1, 2) のとき、a = kb となる k は？",
+      "choices": [
+        "2",
+        "4",
+        "1",
+        "1/2"
+      ],
+      "correct": 0,
+      "explanation": "2 = k×1 → k = 2。確認: 4 = k×2 = 4 ✓"
+    },
+    {
+      "id": "3649b2e4-8cf8-578c-927a-12edcbebc941",
+      "question": "a = (3, 1) と b = (1, 3) は直交するか？a·b を計算して答えよ。",
+      "choices": [
+        "直交しない（a·b = 6）",
+        "直交する（a·b = 0）",
+        "平行である",
+        "逆向きである"
+      ],
+      "correct": 0,
+      "explanation": "a·b = 3×1 + 1×3 = 6 ≠ 0 なので直交しない"
+    }
+  ]
+}

@@ -73,6 +73,17 @@ Feature: 学習アプリ
     When I open the guide panel tab
     Then the guide iframe src should contain "embedded=1"
 
+  Scenario: フォントサイズ「大」に切り替えるとbodyにfont-size-largeクラスが付与される
+    Given I have selected a quiz category
+    When I click the "大" font size button
+    Then the body should have the "font-size-large" class
+
+  Scenario: フォントサイズ「小」に戻すとfont-size-largeクラスが除去される
+    Given I have selected a quiz category
+    When I click the "大" font size button
+    And I click the "小" font size button
+    Then the body should not have the "font-size-large" class
+
   Scenario: 練習クイズ開始時にquizScreenにpractice-modeクラスが付与される
     Given I have selected a quiz category
     When I click the "練習" button
@@ -153,3 +164,10 @@ Feature: 学習アプリ
     When I click the "数学" tab
     And I click the view mode toggle button
     Then grade groups should be visible in the category list
+
+  Scenario: データダウンロードボタンがツールバーに表示される
+    Then the download data button should be visible in the header
+
+  Scenario: データダウンロードボタンをクリックするとJSONファイルがダウンロードされる
+    When I click the download data button
+    Then a JSON file download should be triggered

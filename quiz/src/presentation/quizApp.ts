@@ -153,10 +153,31 @@ export class QuizApp {
       btn.classList.toggle("active", active);
       btn.setAttribute("aria-pressed", String(active));
     });
+    // 解説 iframe にもフォントサイズを通知する
+    document.querySelectorAll<HTMLIFrameElement>(".guide-frame").forEach((iframe) => {
+      this.notifyGuideFontSize(iframe);
+    });
     // 初期復元時は保存をスキップし、ユーザー操作時のみ保存する
     if (persist) {
       const progressRepo = new LocalStorageProgressRepository();
       progressRepo.saveFontSizeLevel(level);
+    }
+  }
+
+  /**
+   * 解説 iframe にフォントサイズを postMessage で通知する。
+   * iframe は sandbox="allow-scripts"（allow-same-origin なし）で読み込まれるため
+   * iframe 側 origin が null 扱いになり、固定オリジンへの postMessage は届かない。
+   * そのため targetOrigin には "*" を使用する。
+   */
+  private notifyGuideFontSize(iframe: HTMLIFrameElement): void {
+    try {
+      iframe.contentWindow?.postMessage(
+        { type: "fontSizeChanged", level: this.fontSizeLevel },
+        "*"
+      );
+    } catch (_) {
+      // iframe のコンテンツウィンドウへのアクセスが拒否された場合は無視する
     }
   }
 
@@ -219,6 +240,23 @@ export class QuizApp {
     progressRepo.saveUserName(this.userName);
     this.updateUserNameDisplay("headerUserName");
     this.closeUserNameEdit();
+  }
+
+  private downloadUserData(): void {
+    const data = this.useCase.exportAllData();
+    const json = JSON.stringify(data);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    const dateStr = new Date().toISOString().slice(0, 10);
+    a.download = `study-data-${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 0);
   }
 
   private buildSubjectTabs(): void {
@@ -1193,6 +1231,9 @@ export class QuizApp {
     const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
     if (guideFrame.getAttribute("src") !== embeddedUrl) {
       guideFrame.src = embeddedUrl;
+      guideFrame.addEventListener("load", () => { this.notifyGuideFontSize(guideFrame); }, { once: true });
+    } else {
+      this.notifyGuideFontSize(guideFrame);
     }
     guideFrame.classList.remove("hidden");
     noContent?.classList.add("hidden");
@@ -1228,6 +1269,9 @@ export class QuizApp {
       const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
       if (guideFrame.getAttribute("src") !== embeddedUrl) {
         guideFrame.src = embeddedUrl;
+        guideFrame.addEventListener("load", () => { this.notifyGuideFontSize(guideFrame!); }, { once: true });
+      } else {
+        this.notifyGuideFontSize(guideFrame);
       }
       guideFrame.classList.remove("hidden");
       noContent?.classList.add("hidden");
@@ -1558,6 +1602,9 @@ export class QuizApp {
         }
       });
     });
+
+    // データダウンロードボタン
+    this.on("downloadDataBtn", "click", () => this.downloadUserData());
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────

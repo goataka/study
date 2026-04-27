@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "未来形には will be を使います"
+    },
+    {
+      "id": "dc1efa95-04b9-5463-aab0-39e82cad79c3",
+      "question": "The students ___ excited tomorrow. (be動詞・未来)",
+      "choices": [
+        "will be",
+        "are",
+        "were",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "未来形の be 動詞は will be です"
+    },
+    {
+      "id": "b9a7f034-d78b-5c66-8f2f-2759cc2b0bb8",
+      "question": "My parents ___ home tonight. (be動詞・未来)",
+      "choices": [
+        "will be",
+        "are",
+        "were",
+        "have been"
+      ],
+      "correct": 0,
+      "explanation": "未来形の be 動詞は will be です"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "subject": "math",
   "subjectName": "数学",
-  "category": "quadratic-eq",
-  "categoryName": "📐 二次方程式",
+  "category": "quadratic-eq-1",
+  "categoryName": "📐 二次方程式 その１",
   "topCategory": "algebra",
   "topCategoryName": "代数",
   "parentCategory": "algebra-advanced",
@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "因数分解すると(x+4)(x-2) = 0。よって x = -4, 2"
+    },
+    {
+      "id": "9601b683-1d56-55f1-a1ce-8e28e884ad84",
+      "question": "2x² - 8 = 0 を解くと？",
+      "choices": [
+        "x = ±2",
+        "x = ±4",
+        "x = 2",
+        "x = ±√2"
+      ],
+      "correct": 0,
+      "explanation": "2x² = 8 → x² = 4 → x = ±2"
+    },
+    {
+      "id": "a518cefc-0f93-5e5c-b772-4353492892b5",
+      "question": "x² - 4x + 4 = 0 を解くと？",
+      "choices": [
+        "x = 2",
+        "x = ±2",
+        "x = -2",
+        "x = 4"
+      ],
+      "correct": 0,
+      "explanation": "(x-2)² = 0 → x = 2（重解）"
     }
   ]
 }

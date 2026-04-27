@@ -108,6 +108,30 @@
       ],
       "correct": 0,
       "explanation": "複数形の一般的な名詞には冠詞は不要です"
+    },
+    {
+      "id": "c343421a-2c85-5704-b98c-c9aeb19c74d0",
+      "question": "I have ___ apple.",
+      "choices": [
+        "an",
+        "a",
+        "the",
+        "（なし）"
+      ],
+      "correct": 0,
+      "explanation": "母音で始まる語の前には an を使います"
+    },
+    {
+      "id": "a18efb67-6378-5d6e-b466-790f026d4733",
+      "question": "I went to ___ park near my house.",
+      "choices": [
+        "the",
+        "a",
+        "an",
+        "（なし）"
+      ],
+      "correct": 0,
+      "explanation": "お互いに分かっている特定のものには the を使います"
     }
   ]
 }

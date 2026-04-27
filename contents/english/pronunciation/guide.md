@@ -11,7 +11,7 @@
 | [アルファベット（大文字の書き）](alphabet-uppercase-writing/guide) | 読み方から大文字アルファベットを書く練習 |
 | [アルファベット（小文字の書き）](alphabet-lowercase-writing/guide) | 読み方から小文字アルファベットを書く練習 |
 | [英語の記号](symbols/guide) | ピリオド・カンマ・クエスチョンマークなどの読み書き |
-| [五十音と英語](50on/guide) | 日本語の五十音と英語の音の対応 |
+| [五十音](50on/guide) | 日本語の五十音表・ローマ字・促音・長音 |
 | [拡張ローマ字](romaji-advanced/guide) | 濁音・半濁音・拗音のローマ字表記 |
 | [フォニックス（1文字）](phonics-1letter/guide) | 1文字の母音・子音の読み方 |
 | [フォニックス（2文字）](phonics-2letter/guide) | 2文字の組み合わせ音（二重字）|
