@@ -179,3 +179,9 @@ Feature: 学習アプリ
   Scenario: データダウンロードボタンをクリックするとJSONファイルがダウンロードされる
     When I click the download data button
     Then a JSON file download should be triggered
+
+  Scenario: サポートボタン（?）がヘッダーに表示される
+    Then the support button should be visible in the header
+
+  Scenario: サポートボタン（?）が別タブリンクになっている
+    Then the support button should open in a new tab

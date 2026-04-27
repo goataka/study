@@ -402,3 +402,15 @@ Then("the share summary text should contain {string}", async ({ page }, text: st
   // 活動サマリテキストに指定のテキストが含まれていること
   await expect(page.locator("#shareSummaryText")).toContainText(text);
 });
+
+Then("the support button should be visible in the header", async ({ page }) => {
+  // サポートボタン（?）がヘッダーに表示されていること
+  await expect(page.locator("#supportBtn")).toBeVisible();
+});
+
+Then("the support button should open in a new tab", async ({ page }) => {
+  // サポートボタン（?）が target="_blank" で別タブを開くリンクであること
+  const supportBtn = page.locator("#supportBtn");
+  await expect(supportBtn).toHaveAttribute("target", "_blank");
+  await expect(supportBtn).toHaveAttribute("href", "../support/");
+});

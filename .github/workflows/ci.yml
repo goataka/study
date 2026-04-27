@@ -11,11 +11,11 @@ env:
 
 jobs:
   test-and-build:
-    name: 単体テスト・ビルド（quiz）
+    name: 単体テスト・ビルド（app）
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: quiz
+        working-directory: app
     permissions:
       contents: read
     steps:
@@ -36,11 +36,11 @@ jobs:
         run: npm run build
 
   e2e:
-    name: E2Eテスト（quiz）
+    name: E2Eテスト（app）
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: quiz
+        working-directory: app
     permissions:
       contents: read
     steps:
@@ -64,11 +64,11 @@ jobs:
         run: npm run test:e2e
 
   visual-regression:
-    name: ビジュアルリグレッションテスト（quiz）
+    name: ビジュアルリグレッションテスト（app）
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: quiz
+        working-directory: app
     permissions:
       contents: write
     steps:
@@ -122,7 +122,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vr-report
-          path: quiz/vr-report/
+          path: app/vr-report/
           retention-days: 7
 
   markdownlint:

@@ -3757,7 +3757,7 @@ describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
       subjectName: "英語",
       category: "tenses-present",
       categoryName: "現在形",
-      guideUrl: "../contents/english/tenses-present/guide.md",
+      guideUrl: "../english/grammar/tenses-present/guide.md",
       questions: Array.from({ length: 3 }, (_, i) => ({
         id: `q${i + 1}`,
         question: `問題 ${i + 1}`,
@@ -3809,7 +3809,7 @@ describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
       subjectName: "英語",
       category: "tenses-present",
       categoryName: "現在形",
-      guideUrl: "../contents/english/tenses-present/guide.md",
+      guideUrl: "../english/grammar/tenses-present/guide.md",
       questions: Array.from({ length: 3 }, (_, i) => ({
         id: `q${i + 1}`,
         question: `問題 ${i + 1}`,

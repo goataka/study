@@ -104,7 +104,7 @@
 
 ### README
 
-- `contents/README.md` にはすべてのドリルへのリンクテーブルを維持すること
+- `support/README.md` にはすべてのドリルへのリンクテーブルを維持すること
 
 ### 解説ルール
 
@@ -126,7 +126,7 @@
 文法ドリルには解説・例・英作文解答をすべて `guide.md` 内に統合する。
 
 ```
-contents/english/
+support/english/
   01-alphabet/
     guide.md
   12-tenses-regular-past/
@@ -157,7 +157,7 @@ contents/english/
 
 ### README
 
-contents/README.md にはすべてのドリルへのリンクテーブルを維持すること。
+support/README.md にはすべてのドリルへのリンクテーブルを維持すること。
 
 ```markdown
 | ドリル | 解説 |
@@ -202,16 +202,16 @@ I `played` games.
 | 過去形 | 動詞 + ed | I `played` |
 ```
 
-## クイズ（quiz/）のルール
+## アプリ（app/）のルール
 
 ### 動作保証
 
-`quiz/` フォルダのコードを変更した場合は、必ず以下の手順を守ること：
+`app/` フォルダのコードを変更した場合は、必ず以下の手順を守ること：
 
 1. **コミット前にテストを実行する**
 
    ```bash
-   cd quiz && npm run build && npm run test && npm run test:e2e
+   cd app && npm run build && npm run test && npm run test:e2e
    ```
 
    lefthook の `pre-commit` フックが自動的にこのコマンドを実行するため、`lefthook install` 済みの環境ではコミット時に自動チェックされる。
@@ -244,10 +244,10 @@ I `played` games.
 
 ### DDD アーキテクチャ構造
 
-`quiz/src/` は DDD（ドメイン駆動設計）のレイヤー構造で整理されている：
+`app/src/` は DDD（ドメイン駆動設計）のレイヤー構造で整理されている：
 
 ```
-quiz/src/
+app/src/
   domain/           # ビジネスロジック（純粋関数・エンティティ・集約）
     question.ts     # Question エンティティ、型定義、バリデーション関数
     question.test.ts
@@ -275,8 +275,8 @@ quiz/src/
 ### E2E テスト（Playwright + Gherkin）
 
 ```bash
-cd quiz && npm run test:e2e     # Gherkin シナリオを実行
-cd quiz && npm run test:e2e:ui  # UI モードで実行
+cd app && npm run test:e2e     # Gherkin シナリオを実行
+cd app && npm run test:e2e:ui  # UI モードで実行
 ```
 
 - フィーチャーファイル: `e2e/features/**/*.feature`
@@ -294,7 +294,7 @@ cd quiz && npm run test:e2e:ui  # UI モードで実行
 各トピックは `guide.md`（解説・例を統合）1ファイルで構成する。
 
 ```
-contents/math/
+support/math/
   01-addition-no-carry/
     guide.md
   ...
