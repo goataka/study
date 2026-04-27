@@ -2158,6 +2158,10 @@ body.font-size-medium .category-group-header {
     font-size: 20px;
 }
 
+body.font-size-medium .category-top-group .category-group-header {
+    font-size: 14px;
+}
+
 body.font-size-medium .category-name {
     font-size: 21px;
 }
@@ -2237,6 +2241,10 @@ body.font-size-large .category-top-group-header {
 
 body.font-size-large .category-group-header {
     font-size: 24px;
+}
+
+body.font-size-large .category-top-group .category-group-header {
+    font-size: 22px;
 }
 
 body.font-size-large .category-name {
