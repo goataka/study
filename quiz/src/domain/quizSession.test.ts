@@ -300,3 +300,57 @@ describe("QuizSession — selectTextAnswer ガード仕様", () => {
     expect(() => session.selectTextAnswer(0, "A")).toThrow("selectTextAnswer cannot be called on a non-text-input question");
   });
 });
+
+describe("QuizSession — caseSensitive 採点仕様", () => {
+  const makeCaseSensitiveQuestion = (id: string, correct: string): Question => ({
+    id,
+    question: `「えい」の大文字を書いてください`,
+    choices: [correct],
+    correct: 0,
+    explanation: `正解は ${correct}`,
+    subject: "english",
+    subjectName: "英語",
+    category: "alphabet-uppercase-writing",
+    categoryName: "アルファベット（大文字の書き）",
+    questionType: "text-input",
+    caseSensitive: true,
+  });
+
+  it("caseSensitive=true で大文字を正解、小文字を不正解と判定する", () => {
+    const q = makeCaseSensitiveQuestion("cs-1", "A");
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "A");
+    expect(session.getAnswer(0)).toBe(0); // correct
+  });
+
+  it("caseSensitive=true で小文字を入力すると不正解になる", () => {
+    const q = makeCaseSensitiveQuestion("cs-2", "A");
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "a");
+    expect(session.getAnswer(0)).toBe(-1); // incorrect
+  });
+
+  it("caseSensitive=true で小文字を正解、大文字を不正解と判定する", () => {
+    const q = makeCaseSensitiveQuestion("cs-3", "a");
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "A");
+    expect(session.getAnswer(0)).toBe(-1); // incorrect
+  });
+
+  it("caseSensitive=true でも全角文字を半角に正規化する", () => {
+    const q = makeCaseSensitiveQuestion("cs-4", "A");
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "Ａ"); // 全角
+    expect(session.getAnswer(0)).toBe(0); // correct
+  });
+
+  it("caseSensitive が未設定（デフォルト）の場合は大文字小文字を区別しない", () => {
+    const q: Question = {
+      ...makeCaseSensitiveQuestion("cs-5", "a"),
+      caseSensitive: undefined,
+    };
+    const session = new QuizSession([q]);
+    session.selectTextAnswer(0, "A");
+    expect(session.getAnswer(0)).toBe(0); // correct (case insensitive)
+  });
+});

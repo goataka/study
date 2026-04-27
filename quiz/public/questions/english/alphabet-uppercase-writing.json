@@ -13,6 +13,7 @@
   "referenceGrade": "小学3年",
   "description": "読み方から大文字アルファベット（A〜Z）を書く練習をします。",
   "questionType": "text-input",
+  "caseSensitive": true,
   "questions": [
     {
       "id": "9ca47f49-3e7c-5ebe-8ae2-f0493686ac50",

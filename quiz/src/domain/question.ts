@@ -34,6 +34,8 @@ export interface Question {
   description?: string;
   /** 問題種別: "multiple-choice"（4択, デフォルト）または "text-input"（テキスト入力） */
   questionType?: QuestionType;
+  /** text-input 問題で大文字/小文字を区別するか（デフォルト: false） */
+  caseSensitive?: boolean;
 }
 
 /** 各問題ファイルの生データ（メタ情報なし） */
@@ -45,6 +47,8 @@ export interface RawQuestion {
   explanation: string;
   /** 問題種別（省略時はファイルまたはデフォルトの種別を継承） */
   questionType?: QuestionType;
+  /** text-input 問題で大文字/小文字を区別するか（ファイルレベルの設定を継承） */
+  caseSensitive?: boolean;
 }
 
 /** 問題ファイル1件のスキーマ */
@@ -71,6 +75,8 @@ export interface QuestionFile {
   description?: string;
   /** ファイル全体のデフォルト問題種別（省略時は "multiple-choice"） */
   questionType?: QuestionType;
+  /** text-input 問題で大文字/小文字を区別するか（省略時: false） */
+  caseSensitive?: boolean;
   questions: RawQuestion[];
 }
 
@@ -232,6 +238,10 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     throw new Error('"questionType" must be "multiple-choice" or "text-input"');
   }
   const fileQuestionType = (qf.questionType as QuestionType | undefined) ?? "multiple-choice";
+  // caseSensitive はオプションのブール値
+  if (qf.caseSensitive !== undefined && typeof qf.caseSensitive !== "boolean") {
+    throw new Error('"caseSensitive" must be a boolean if present');
+  }
 
   if (!Array.isArray(qf.questions)) {
     throw new Error('QuestionFile must have a "questions" array');
@@ -309,6 +319,7 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     referenceGrade: qf.referenceGrade,
     description: qf.description,
     questionType: q.questionType ?? fileQuestionType,
+    caseSensitive: q.caseSensitive ?? qf.caseSensitive,
   }));
 }
 

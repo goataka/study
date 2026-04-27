@@ -13,6 +13,7 @@
   "referenceGrade": "小学3年",
   "description": "読み方から小文字アルファベット（a〜z）を書く練習をします。",
   "questionType": "text-input",
+  "caseSensitive": true,
   "questions": [
     {
       "id": "9b25b666-3b4a-5bac-a56e-64681e684614",
