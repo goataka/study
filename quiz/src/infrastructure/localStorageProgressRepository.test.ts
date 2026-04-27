@@ -313,7 +313,7 @@ describe("LocalStorageProgressRepository — エクスポート仕様", () => {
   it("exportedAt が ISO 8601 形式の文字列である", () => {
     const repo = new LocalStorageProgressRepository();
     const data = repo.exportAllData();
-    expect(() => new Date(data.exportedAt)).not.toThrow();
+    expect(Date.parse(data.exportedAt)).not.toBeNaN();
     expect(new Date(data.exportedAt).toISOString()).toBe(data.exportedAt);
   });
 });

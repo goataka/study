@@ -223,7 +223,7 @@ export class QuizApp {
 
   private downloadUserData(): void {
     const data = this.useCase.exportAllData();
-    const json = JSON.stringify(data, null, 2);
+    const json = JSON.stringify(data);
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -232,8 +232,10 @@ export class QuizApp {
     a.download = `study-data-${dateStr}.json`;
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 0);
   }
 
   private buildSubjectTabs(): void {

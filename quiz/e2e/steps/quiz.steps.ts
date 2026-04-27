@@ -365,17 +365,18 @@ Then("the download data button should be visible in the header", async ({ page }
 });
 
 When("I click the download data button", async ({ page }) => {
-  // ダウンロードイベントを監視してボタンをクリックし、ファイル名を検証する
+  // ダウンロードイベントを監視してボタンをクリックし、結果をページストレージに保存する
   const [download] = await Promise.all([
     page.waitForEvent("download"),
     page.locator("#downloadDataBtn").click(),
   ]);
-  const filename = download.suggestedFilename();
-  expect(filename).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
+  await page.evaluate((filename) => {
+    sessionStorage.setItem("_testDownloadFilename", filename);
+  }, download.suggestedFilename());
 });
 
 Then("a JSON file download should be triggered", async ({ page }) => {
-  // When ステップでダウンロードとファイル名検証は完了済み。
-  // ここではダウンロードボタンが引き続き操作可能であることを確認する。
-  await expect(page.locator("#downloadDataBtn")).toBeEnabled();
+  // ダウンロードされたファイル名が JSON 形式であること
+  const filename = await page.evaluate(() => sessionStorage.getItem("_testDownloadFilename"));
+  expect(filename).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
 });
