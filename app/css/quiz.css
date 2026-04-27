@@ -1651,6 +1651,39 @@ button:disabled {
     background: #f0f7ff;
 }
 
+/* サポートリンクボタン */
+.support-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #d1d5da;
+    border-radius: 50%;
+    background: #f6f8fa;
+    color: #586069;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.support-btn:hover {
+    border-color: #0366d6;
+    color: #0366d6;
+    background: #f0f7ff;
+}
+
+.support-btn:focus-visible {
+    border-color: #0366d6;
+    color: #0366d6;
+    background: #f0f7ff;
+    outline: 2px solid #0366d6;
+    outline-offset: 2px;
+}
+
 /* ユーザー情報表示 */
 .user-info {
     text-align: right;

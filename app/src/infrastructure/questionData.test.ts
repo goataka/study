@@ -5,7 +5,7 @@
  * - 各カテゴリファイルの構造・フォーマット検証
  * - 問題IDのグローバル一意性チェック
  * - 後方互換性チェック（旧 questions.json と同じ問題セットが存在するか）
- * - guideUrl の整合性チェック（対応する contents/ の guide.md が存在するか）
+ * - guideUrl の整合性チェック（対応する support/ の guide.md が存在するか）
  */
 
 import fs from "fs";
@@ -46,8 +46,8 @@ interface QuestionsManifest {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const QUESTIONS_DIR = path.join(__dirname, "..", "..", "public", "questions");
 const INDEX_FILE = path.join(QUESTIONS_DIR, "index.json");
-// quiz/src/infrastructure から見て ../../../contents が contents/ ディレクトリ
-const CONTENTS_DIR = path.join(__dirname, "..", "..", "..", "contents");
+// app/src/infrastructure から見て ../../../support が support/ ディレクトリ
+const SUPPORT_DIR = path.join(__dirname, "..", "..", "..", "support");
 
 // ─── ユーティリティ ──────────────────────────────────────────────────────────
 
@@ -297,8 +297,8 @@ describe("後方互換性 — questions.json との整合性", () => {
   });
 });
 
-describe("guideUrl — contents/ 側の guide.md 存在チェック", () => {
-  it("guideUrl が設定されているカテゴリの guide.md が contents/ に存在する", () => {
+describe("guideUrl — support/ 側の guide.md 存在チェック", () => {
+  it("guideUrl が設定されているカテゴリの guide.md が support/ に存在する", () => {
     const manifest = loadManifest();
     const questionFiles = loadAllQuestionFiles(manifest);
     const missing: string[] = [];
@@ -306,9 +306,10 @@ describe("guideUrl — contents/ 側の guide.md 存在チェック", () => {
     for (const qf of questionFiles) {
       if (!qf.guideUrl) continue;
       // guideUrl は "../english/pronunciation/alphabet/guide" のような相対パス
-      // "../" を除いて contents/ 配下のパスに変換し .md を付加する
+      // "../" を除いて support/ 配下のパスに変換し、拡張子がない場合のみ .md を付加する
       const relativePath = qf.guideUrl.replace(/^\.\.\//, "");
-      const guideMdPath = path.join(CONTENTS_DIR, `${relativePath}.md`);
+      const withMd = relativePath.endsWith(".md") ? relativePath : `${relativePath}.md`;
+      const guideMdPath = path.join(SUPPORT_DIR, withMd);
       if (!fs.existsSync(guideMdPath)) {
         missing.push(`${qf.subject}/${qf.category}: ${guideMdPath}`);
       }
@@ -317,7 +318,7 @@ describe("guideUrl — contents/ 側の guide.md 存在チェック", () => {
     expect(missing).toHaveLength(0);
   });
 
-  it("parentCategoryGuideUrl が設定されているカテゴリの guide.md が contents/ に存在する", () => {
+  it("parentCategoryGuideUrl が設定されているカテゴリの guide.md が support/ に存在する", () => {
     const manifest = loadManifest();
     const questionFiles = loadAllQuestionFiles(manifest);
     const missing: string[] = [];
@@ -328,7 +329,8 @@ describe("guideUrl — contents/ 側の guide.md 存在チェック", () => {
       if (/^https?:\/\//i.test(qf.parentCategoryGuideUrl)) continue;
       // parentCategoryGuideUrl は "../english/grammar/guide" のような相対パス
       const relativePath = qf.parentCategoryGuideUrl.replace(/^\.\.\//, "");
-      const guideMdPath = path.join(CONTENTS_DIR, `${relativePath}.md`);
+      const withMd = relativePath.endsWith(".md") ? relativePath : `${relativePath}.md`;
+      const guideMdPath = path.join(SUPPORT_DIR, withMd);
       if (!fs.existsSync(guideMdPath)) {
         missing.push(`${qf.subject}/${qf.parentCategory} (${qf.category}): ${guideMdPath}`);
       }

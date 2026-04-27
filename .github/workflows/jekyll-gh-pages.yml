@@ -1,4 +1,4 @@
-# Jekyllサイト（contents/）とViteクイズアプリ（quiz/）をGitHub Pagesにデプロイするワークフロー
+# Jekyllサイト（support/）とViteアプリ（app/）をGitHub Pagesにデプロイするワークフロー
 name: Deploy to GitHub Pages
 
 on:
@@ -35,22 +35,22 @@ jobs:
 
       - name: Viteビルド
         run: npm run build
-        working-directory: quiz
+        working-directory: app
 
       - name: GitHub Pages のセットアップ
         uses: actions/configure-pages@v5
 
-      - name: Jekyllサイトのビルド（contents/）
+      - name: Jekyllサイトのビルド（support/）
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./contents
+          source: ./support
           destination: ./_site
 
-      - name: クイズビルドをサイトにコピー
+      - name: アプリビルドをサイトにコピー
         working-directory: ${{ github.workspace }}
         run: |
-          sudo mkdir -p _site/quiz
-          sudo cp -r quiz/dist/. _site/quiz/
+          sudo mkdir -p _site/app
+          sudo cp -r app/dist/. _site/app/
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v3
@@ -77,7 +77,7 @@ jobs:
     needs: deploy
     defaults:
       run:
-        working-directory: quiz
+        working-directory: app
     permissions:
       contents: read
     steps:
@@ -96,7 +96,7 @@ jobs:
 
       - name: 本番サイトの準備完了を確認
         env:
-          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}quiz/
+          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}app/
         run: |
           echo "Waiting for production site to be ready at ${PLAYWRIGHT_BASE_URL}"
           for i in $(seq 1 12); do
@@ -113,6 +113,6 @@ jobs:
 
       - name: 本番環境E2Eテスト実行
         env:
-          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}quiz/
+          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}app/
         run: npm run test:e2e
 
