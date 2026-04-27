@@ -153,22 +153,41 @@ export class QuizApp {
 
   private loadShareUrl(): void {
     try {
-      this.shareUrl = localStorage.getItem(OVERALL_SHARE_URL_KEY) ?? "";
+      const stored = localStorage.getItem(OVERALL_SHARE_URL_KEY) ?? "";
+      // ロード時にも http/https 検証を行い、不正なスキームを除外する
+      this.shareUrl = this.sanitizeShareUrl(stored);
     } catch {
       this.shareUrl = "";
     }
   }
 
   private saveShareUrl(url: string): void {
+    // http/https のみ許可し、それ以外のスキームは空扱いにする
+    const sanitized = this.sanitizeShareUrl(url);
     try {
-      this.shareUrl = url;
-      if (url) {
-        localStorage.setItem(OVERALL_SHARE_URL_KEY, url);
+      this.shareUrl = sanitized;
+      if (sanitized) {
+        localStorage.setItem(OVERALL_SHARE_URL_KEY, sanitized);
       } else {
         localStorage.removeItem(OVERALL_SHARE_URL_KEY);
       }
     } catch {
       // localStorage アクセスエラーは無視する
+    }
+  }
+
+  /**
+   * 共有 URL を検証し、http/https スキームの場合のみそのまま返す。
+   * それ以外（javascript: 等）は空文字を返す。
+   */
+  private sanitizeShareUrl(url: string): string {
+    const trimmed = url.trim();
+    if (!trimmed) return "";
+    try {
+      const parsed = new URL(trimmed);
+      return parsed.protocol === "https:" || parsed.protocol === "http:" ? trimmed : "";
+    } catch {
+      return "";
     }
   }
 
@@ -1098,7 +1117,9 @@ export class QuizApp {
       return lines.join("\n");
     }
 
-    const subjectIconMap: Record<string, string> = { english: "📚", math: "🔢", japanese: "📖" };
+    const subjectIconMap = Object.fromEntries(
+      SUBJECTS.filter((s) => s.id !== "all").map((s) => [s.id, s.icon])
+    );
     const bySubject = new Map<string, { name: string; total: number; correct: number }>();
     for (const r of todayRecords) {
       const s = bySubject.get(r.subject) ?? { name: r.subjectName, total: 0, correct: 0 };

@@ -3409,7 +3409,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(localStorage.getItem("overallShareUrl")).toBe("https://example.com/share");
   });
 
-  it("localStorage に共有URLが保存されていれば初期表示時に openShareUrlBtn が表示される", async () => {
+  it("localhost に共有URLが保存されていれば初期表示時に openShareUrlBtn が表示される", async () => {
     localStorage.setItem("overallShareUrl", "https://twitter.com");
 
     new QuizApp();
@@ -3417,6 +3417,39 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     const openBtn = document.getElementById("openShareUrlBtn");
     expect(openBtn?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("javascript: スキームの URL を保存しても openShareUrlBtn が非表示のままになる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
+    urlInput.value = "javascript:alert(1)";
+    document.getElementById("saveShareUrlBtn")?.click();
+
+    const openBtn = document.getElementById("openShareUrlBtn");
+    expect(openBtn?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("javascript: スキームの URL は localStorage に保存されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
+    urlInput.value = "javascript:alert(1)";
+    document.getElementById("saveShareUrlBtn")?.click();
+
+    expect(localStorage.getItem("overallShareUrl")).toBeNull();
+  });
+
+  it("localStorage に javascript: の URL が保存されていても初期表示時に openShareUrlBtn が非表示のままになる", async () => {
+    localStorage.setItem("overallShareUrl", "javascript:alert(1)");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const openBtn = document.getElementById("openShareUrlBtn");
+    expect(openBtn?.classList.contains("hidden")).toBe(true);
   });
 
   it("過去の学習記録がある場合、overallHistoryList に履歴が表示される", async () => {
