@@ -98,7 +98,7 @@ https://goataka.github.io/study/app/questions/japanese/kanji-grade1.json
 | `topCategoryName` | string | 大カテゴリの表示名 |
 | `parentCategory` | string | 親カテゴリID |
 | `parentCategoryName` | string | 親カテゴリの表示名 |
-| `guideUrl` | string | 解説ページへのURL（問題ファイルからの相対パス） |
+| `guideUrl` | string | 解説ページへのURL（`/app/` を基準とした相対URL） |
 | `parentCategoryGuideUrl` | string | 親カテゴリの解説ページへのURL |
 | `example` | string | 例文・例題 |
 | `referenceGrade` | string | 参考学年 |
@@ -124,7 +124,7 @@ https://goataka.github.io/study/app/questions/japanese/kanji-grade1.json
 
 ## 🔗 関連リンク
 
-- [スタートアップガイド](startup-guide) ─ 使い始め方と基本操作
-- [操作ガイド](operation-guide) ─ 画面構成と各機能
-- [コンテンツ一覧](operation-guide#コンテンツ) ─ 学習できる全科目・単元
-- [トラブルシューティング](troubleshooting) ─ よくある質問
+- [スタートアップガイド](../startup-guide/) ─ 使い始め方と基本操作
+- [操作ガイド](../operation-guide/) ─ 画面構成と各機能
+- [コンテンツ一覧](../operation-guide/#コンテンツ) ─ 学習できる全科目・単元
+- [トラブルシューティング](../troubleshooting/) ─ よくある質問

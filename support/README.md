@@ -19,8 +19,12 @@ permalink: /support/
 | [🔧 技術リファレンス](technical-reference) | 問題データ（JSON）の仕様 |
 | [❓ トラブルシューティング](troubleshooting) | よくある質問（FAQ） |
 
-## 🔗 クイズを始める
+## 📝 ドリル一覧
 
-- [英語のクイズ](../app/?subject=english) ─ 英語の4択クイズ
-- [数学のクイズ](../app/?subject=math) ─ 数学の4択クイズ
-- [国語のクイズ](../app/?subject=japanese) ─ 国語の4択クイズ
+全科目・単元の一覧は[操作ガイド（コンテンツ一覧）](operation-guide#コンテンツ)を参照してください。
+
+| 科目 | 解説・一覧 | クイズ |
+|------|-----------|--------|
+| 英語ドリル | [解説・一覧](operation-guide#英語) | [英語のクイズ](../app/?subject=english) |
+| 数学ドリル | [解説・一覧](operation-guide#数学) | [数学のクイズ](../app/?subject=math) |
+| 国語ドリル | [解説・一覧](operation-guide#国語) | [国語のクイズ](../app/?subject=japanese) |

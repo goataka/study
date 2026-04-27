@@ -10,9 +10,9 @@ permalink: /support/startup-guide/
 
 ### ステップ1：アプリを開く
 
-[学習アプリ](../app/) にアクセスします。
+[学習アプリ](../../app/) にアクセスします。
 
-![学習アプリ スクリーンショット](../images/quiz-app-screenshot.png)
+![学習アプリ スクリーンショット](../../images/quiz-app-screenshot.png)
 
 ### ステップ2：科目を選ぶ
 
@@ -45,12 +45,12 @@ permalink: /support/startup-guide/
 
 各コンテンツには解説ページがあります。クイズの前後に解説を読むと理解が深まります。
 
-- コンテンツ一覧は[操作ガイド](operation-guide)を参照してください
+- コンテンツ一覧は[操作ガイド](../operation-guide/)を参照してください
 - 解説ページはクイズ中の「解説を見る」からも開けます
 
 ## 🔗 関連リンク
 
-- [操作ガイド](operation-guide) ─ 画面構成と各機能の詳細
-- [コンテンツ一覧](operation-guide#コンテンツ) ─ 学習できる全科目・単元
-- [技術リファレンス](technical-reference) ─ 問題データのJSON形式
-- [トラブルシューティング](troubleshooting) ─ よくある質問
+- [操作ガイド](../operation-guide/) ─ 画面構成と各機能の詳細
+- [コンテンツ一覧](../operation-guide/#コンテンツ) ─ 学習できる全科目・単元
+- [技術リファレンス](../technical-reference/) ─ 問題データのJSON形式
+- [トラブルシューティング](../troubleshooting/) ─ よくある質問
