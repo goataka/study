@@ -127,7 +127,7 @@ permalink: /support/
 | 13 | ✖️ その１（1桁×1桁・九九） | 小学2年 | [解説](../math/arithmetic/multiplication-1digit/guide.md) | [確認](../app/?subject=math&category=multiplication-1digit) | 6 × 7 = 42 |
 | 14 | ✖️ その２（2桁×1桁） | 小学3年 | [解説](../math/arithmetic/multiplication-2digit/guide.md) | [確認](../app/?subject=math&category=multiplication-2digit) | 23 × 4 = 92 |
 | 15 | ✖️ その３（3桁×1桁） | 小学3年 | [解説](../math/arithmetic/multiplication-3digit/guide.md) | [確認](../app/?subject=math&category=multiplication-3digit) | 123 × 4 = 492 |
-| 16 | ✖️ まとめ | 小学3年 | [解説](../math/arithmetic/multiplication-mixed/guide.md) | [確認](../app/?subject=math&category=multiplication-basic) | 6 × 7 = 42 |
+| 16 | ✖️ まとめ | 小学3年 | [解説](../math/arithmetic/multiplication-mixed/guide.md) | [確認](../app/?subject=math&category=multiplication-mixed) | 6 × 7 = 42 |
 | 17 | ✖️ 文章問題 | 小学3年 | [解説](../math/arithmetic/multiplication-word-problems/guide.md) | [確認](../app/?subject=math&category=multiplication-word-problems) | 1箱6個×4箱＝？ |
 | 18 | ➗ あまりなし その１ | 小学3年 | [解説](../math/arithmetic/division-1digit-no-remainder/guide.md) | [確認](../app/?subject=math&category=division-no-remainder-1digit) | 12 ÷ 4 = 3 |
 | 19 | ➗ あまりなし その２ | 小学3年 | [解説](../math/arithmetic/division-2digit-no-remainder/guide.md) | [確認](../app/?subject=math&category=division-no-remainder-2digit) | 84 ÷ 4 = 21 |

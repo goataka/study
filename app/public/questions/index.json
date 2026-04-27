@@ -105,6 +105,7 @@
     "math/multiplication-1digit.json",
     "math/multiplication-2digit.json",
     "math/multiplication-3digit.json",
+    "math/multiplication-mixed.json",
     "math/multiplication-word-problems.json",
     "math/division-no-remainder.json",
     "math/division-no-remainder-1digit.json",
