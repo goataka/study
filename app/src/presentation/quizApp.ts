@@ -598,11 +598,6 @@ export class QuizApp {
       headerText.textContent = grade;
       groupHeader.appendChild(headerText);
 
-      const gradeClass = gradeColorClass(grade);
-      if (gradeClass) {
-        groupHeader.classList.add(gradeClass);
-      }
-
       groupDiv.appendChild(groupHeader);
 
       for (const [catId, catName] of Object.entries(cats)) {
@@ -1388,10 +1383,35 @@ export class QuizApp {
     const statsSpan = document.createElement("span");
     statsSpan.className = "category-stats";
 
-    item.appendChild(statusSpan);
-    item.appendChild(nameArea);
-    item.appendChild(gradeSpan);
-    item.appendChild(statsSpan);
+    // 説明・例文（右パネル非表示時のみ CSS で表示）
+    const description = this.useCase.getCategoryDescription(subject, categoryId);
+    const example = this.useCase.getCategoryExample(subject, categoryId);
+    if (description !== undefined || example !== undefined) {
+      const inlineInfo = document.createElement("span");
+      inlineInfo.className = "category-item-inline-info";
+      if (description) {
+        const descSpan = document.createElement("span");
+        descSpan.className = "category-item-description";
+        descSpan.textContent = description;
+        inlineInfo.appendChild(descSpan);
+      }
+      if (example !== undefined) {
+        const exampleSpan = document.createElement("span");
+        exampleSpan.className = "category-example";
+        this.renderBacktickText(exampleSpan, example);
+        inlineInfo.appendChild(exampleSpan);
+      }
+      item.appendChild(statusSpan);
+      item.appendChild(nameArea);
+      item.appendChild(gradeSpan);
+      item.appendChild(statsSpan);
+      item.appendChild(inlineInfo);
+    } else {
+      item.appendChild(statusSpan);
+      item.appendChild(nameArea);
+      item.appendChild(gradeSpan);
+      item.appendChild(statsSpan);
+    }
 
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
@@ -1595,6 +1615,18 @@ export class QuizApp {
     const nameSpan = document.createElement("span");
     nameSpan.className = "selected-unit-info-name";
     if (selLevel === "unit") {
+      // カテゴリパスラベル（親カテゴリ・トップカテゴリ）を先に追加
+      const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
+      const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
+      const catParts: string[] = [];
+      if (topInfo) catParts.push(topInfo.name);
+      if (parentInfo) catParts.push(parentInfo.name);
+      if (catParts.length > 0) {
+        const catLabel = document.createElement("span");
+        catLabel.className = "selected-unit-info-category";
+        catLabel.textContent = catParts.join(" › ");
+        headerRow.appendChild(catLabel);
+      }
       const cats = this.useCase.getCategoriesForSubject(this.filter.subject);
       nameSpan.textContent = cats[this.filter.category] ?? this.filter.category;
     } else if (selLevel === "parentCategory" && this.filter.parentCategory) {
