@@ -2340,6 +2340,22 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
     expect(exampleEl).toBeNull();
   });
 
+  it("description も example もないカテゴリでは category-item-inline-info が存在しない", async () => {
+    setupTabDom();
+    setupFetchMock(); // mockQuestionFile には description も example もない
+    localStorage.clear();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const inlineInfo = catItem?.querySelector(".category-item-inline-info");
+    expect(inlineInfo).toBeNull();
+  });
+
   it("example ありのカテゴリでは単元選択時に例文が選択情報パネルに表示される", async () => {
     setupTabDom();
     const manifest = {
@@ -4692,5 +4708,57 @@ describe("QuizApp — 選択中の単元情報パネル仕様", () => {
 
     const info = document.getElementById("selectedUnitInfo");
     expect(info?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("親カテゴリのみの単元選択時にカテゴリパスバッジが表示される", async () => {
+    setupTabDom();
+    setupFetchMockWithParent();
+    localStorage.clear();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+
+    const catLabel = document.querySelector(".selected-unit-info-category");
+    expect(catLabel).not.toBeNull();
+    expect(catLabel?.textContent).toBe("発音");
+  });
+
+  it("トップカテゴリ＋親カテゴリの単元選択時にカテゴリパスバッジが `Top › Parent` 形式で表示される", async () => {
+    setupTabDom();
+    setupFetchMockWith3Levels();
+    localStorage.clear();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-past"]');
+    catItem?.click();
+
+    const catLabel = document.querySelector(".selected-unit-info-category");
+    expect(catLabel).not.toBeNull();
+    expect(catLabel?.textContent).toBe("文法 › 動詞");
+  });
+
+  it("カテゴリ階層のない単元選択時にはカテゴリパスバッジが表示されない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+
+    const catLabel = document.querySelector(".selected-unit-info-category");
+    expect(catLabel).toBeNull();
   });
 });

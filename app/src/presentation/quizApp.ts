@@ -1335,26 +1335,32 @@ export class QuizApp {
     // 説明・例文（右パネル非表示時のみ CSS で表示）
     const description = this.useCase.getCategoryDescription(subject, categoryId);
     const example = this.useCase.getCategoryExample(subject, categoryId);
-    const inlineInfo = document.createElement("span");
-    inlineInfo.className = "category-item-inline-info";
-    if (description) {
-      const descSpan = document.createElement("span");
-      descSpan.className = "category-item-description";
-      descSpan.textContent = description;
-      inlineInfo.appendChild(descSpan);
+    if (description !== undefined || example !== undefined) {
+      const inlineInfo = document.createElement("span");
+      inlineInfo.className = "category-item-inline-info";
+      if (description) {
+        const descSpan = document.createElement("span");
+        descSpan.className = "category-item-description";
+        descSpan.textContent = description;
+        inlineInfo.appendChild(descSpan);
+      }
+      if (example !== undefined) {
+        const exampleSpan = document.createElement("span");
+        exampleSpan.className = "category-example";
+        this.renderBacktickText(exampleSpan, example);
+        inlineInfo.appendChild(exampleSpan);
+      }
+      item.appendChild(statusSpan);
+      item.appendChild(nameArea);
+      item.appendChild(gradeSpan);
+      item.appendChild(statsSpan);
+      item.appendChild(inlineInfo);
+    } else {
+      item.appendChild(statusSpan);
+      item.appendChild(nameArea);
+      item.appendChild(gradeSpan);
+      item.appendChild(statsSpan);
     }
-    if (example !== undefined) {
-      const exampleSpan = document.createElement("span");
-      exampleSpan.className = "category-example";
-      this.renderBacktickText(exampleSpan, example);
-      inlineInfo.appendChild(exampleSpan);
-    }
-
-    item.appendChild(statusSpan);
-    item.appendChild(nameArea);
-    item.appendChild(gradeSpan);
-    item.appendChild(statsSpan);
-    item.appendChild(inlineInfo);
 
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
