@@ -23,9 +23,9 @@ permalink: /support/
 | アルファベット（小文字の読み） | [解説](../english/pronunciation/alphabet-lowercase/guide.md) | [確認](../app/?subject=english&category=alphabet-lowercase) | a(えい) b(びー) |
 | アルファベット（大文字の書き） | [解説](../english/pronunciation/alphabet-uppercase-writing/guide.md) | [確認](../app/?subject=english&category=alphabet-uppercase-writing) | えい→A びー→B |
 | アルファベット（小文字の書き） | [解説](../english/pronunciation/alphabet-lowercase-writing/guide.md) | [確認](../app/?subject=english&category=alphabet-lowercase-writing) | えい→a びー→b |
-| 英語の記号 | [解説](../english/pronunciation/symbols/guide.md) | [確認](../app/?subject=english&category=symbols) | .(ピリオド) ?(クエスチョンマーク) |
+| 記号 | [解説](../english/pronunciation/symbols/guide.md) | [確認](../app/?subject=english&category=symbols) | .(ピリオド) ?(クエスチョンマーク) |
 | 五十音（ひらがな・ローマ字・促音・長音） | [解説](../english/pronunciation/50on/guide.md) | [確認](../app/?subject=english&category=50on) | あ=a い=i う=u |
-| 拡張ローマ字（濁音・半濁音・拗音） | [解説](../english/pronunciation/romaji-advanced/guide.md) | [確認](../app/?subject=english&category=romaji-advanced) | が=ga ぱ=pa しゃ=sha |
+| 濁音・半濁音・拗音 | [解説](../english/pronunciation/romaji-advanced/guide.md) | [確認](../app/?subject=english&category=romaji-advanced) | が=ga ぱ=pa しゃ=sha |
 
 ##### フォニックス
 

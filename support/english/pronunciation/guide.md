@@ -12,9 +12,9 @@
 | [アルファベット（小文字の読み）](alphabet-lowercase/guide) | アルファベット小文字の名前と読み方 |
 | [アルファベット（大文字の書き）](alphabet-uppercase-writing/guide) | 読み方から大文字アルファベットを書く練習 |
 | [アルファベット（小文字の書き）](alphabet-lowercase-writing/guide) | 読み方から小文字アルファベットを書く練習 |
-| [英語の記号](symbols/guide) | ピリオド・カンマ・クエスチョンマークなどの読み書き |
+| [記号](symbols/guide) | ピリオド・カンマ・クエスチョンマークなどの読み書き |
 | [五十音](50on/guide) | 日本語の五十音表・ローマ字・促音・長音 |
-| [拡張ローマ字](romaji-advanced/guide) | 濁音・半濁音・拗音のローマ字表記 |
+| [濁音・半濁音・拗音](romaji-advanced/guide) | 濁音・半濁音・拗音のローマ字表記 |
 
 ### フォニックス
 
