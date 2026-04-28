@@ -10,8 +10,8 @@
   "guideUrl": "../math/arithmetic/addition-mixed/guide",
   "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "6 + 9 = 15",
-  "referenceGrade": "小学1年",
-  "description": "くり上がりなし・ありを混ぜた計算で、たし算の力を確かめます。",
+  "referenceGrade": "小学3年",
+  "description": "くり上がりなし・ありを混ぜた計算と文章問題で、たし算の力を確かめます。",
   "questions": [
     {
       "id": "f1d35157-8721-57ad-acae-b81577a67472",
@@ -132,6 +132,30 @@
       ],
       "correct": 0,
       "explanation": "357 + 246 = 603"
+    },
+    {
+      "id": "ceaf52d0-a620-57d6-8151-165e5099d35a",
+      "question": "えんぴつが37本あります。24本もらいました。全部で何本ですか？",
+      "choices": [
+        "61本",
+        "60本",
+        "62本",
+        "51本"
+      ],
+      "correct": 0,
+      "explanation": "37 + 24 = 61本"
+    },
+    {
+      "id": "e7af8e25-852c-55c0-ac0a-f9bc9df8292c",
+      "question": "バスに156人乗っています。次の停留所で47人乗りました。今何人ですか？",
+      "choices": [
+        "203人",
+        "193人",
+        "213人",
+        "200人"
+      ],
+      "correct": 0,
+      "explanation": "156 + 47 = 203人"
     }
   ]
 }

@@ -162,40 +162,47 @@ permalink: /support/operation-guide/
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 01 | ➕ くり上がりなし その１ | 小学1年 | [解説](../../math/arithmetic/addition-1digit-no-carry/guide) | [確認](../../?subject=math&category=addition-no-carry-1digit) | 3 + 4 = 7 |
-| 02 | ➕ くり上がりなし その２ | 小学2年 | [解説](../../math/arithmetic/addition-2digit-no-carry/guide) | [確認](../../?subject=math&category=addition-no-carry-2digit) | 23 + 45 = 68 |
-| 03 | ➕ くり上がりなし その３ | 小学3年 | [解説](../../math/arithmetic/addition-3digit-no-carry/guide) | [確認](../../?subject=math&category=addition-no-carry-3digit) | 123 + 456 = 579 |
-| 04 | ➕ くり上がりあり | 小学1年〜3年 | [解説](../../math/arithmetic/addition-carry/guide) | [確認](../../?subject=math&category=addition-carry) | 7 + 8 = 15 |
-| 05 | ➕ まとめ | 小学3年 | [解説](../../math/arithmetic/addition-mixed/guide) | [確認](../../?subject=math&category=addition-mixed) | 6 + 9 = 15 |
-| 06 | ➕ 文章問題 | 小学3年 | [解説](../../math/arithmetic/addition-word-problems/guide) | [確認](../../?subject=math&category=addition-word-problems) | りんご3個＋4個＝？ |
-| 07 | ➖ くり下がりなし その１ | 小学1年 | [解説](../../math/arithmetic/subtraction-1digit-no-borrow/guide) | [確認](../../?subject=math&category=subtraction-no-borrow-1digit) | 8 - 3 = 5 |
-| 08 | ➖ くり下がりなし その２ | 小学2年 | [解説](../../math/arithmetic/subtraction-2digit-no-borrow/guide) | [確認](../../?subject=math&category=subtraction-no-borrow-2digit) | 58 - 23 = 35 |
-| 09 | ➖ くり下がりなし その３ | 小学3年 | [解説](../../math/arithmetic/subtraction-3digit-no-borrow/guide) | [確認](../../?subject=math&category=subtraction-no-borrow-3digit) | 689 - 234 = 455 |
-| 10 | ➖ くり下がりあり | 小学1年〜3年 | [解説](../../math/arithmetic/subtraction-borrow/guide) | [確認](../../?subject=math&category=subtraction-borrow) | 13 - 7 = 6 |
-| 11 | ➖ まとめ | 小学3年 | [解説](../../math/arithmetic/subtraction-mixed/guide) | [確認](../../?subject=math&category=subtraction-mixed) | 15 - 8 = 7 |
-| 12 | ➖ 文章問題 | 小学3年 | [解説](../../math/arithmetic/subtraction-word-problems/guide) | [確認](../../?subject=math&category=subtraction-word-problems) | クッキー12枚－5枚＝？ |
-| 13 | ✖️ その１（1桁×1桁・九九） | 小学2年 | [解説](../../math/arithmetic/multiplication-1digit/guide) | [確認](../../?subject=math&category=multiplication-1digit) | 6 × 7 = 42 |
-| 14 | ✖️ その２（2桁×1桁） | 小学3年 | [解説](../../math/arithmetic/multiplication-2digit/guide) | [確認](../../?subject=math&category=multiplication-2digit) | 23 × 4 = 92 |
-| 15 | ✖️ その３（3桁×1桁） | 小学3年 | [解説](../../math/arithmetic/multiplication-3digit/guide) | [確認](../../?subject=math&category=multiplication-3digit) | 123 × 4 = 492 |
-| 16 | ✖️ まとめ | 小学3年 | [解説](../../math/arithmetic/multiplication-mixed/guide) | [確認](../../?subject=math&category=multiplication-mixed) | 6 × 7 = 42 |
-| 17 | ✖️ 文章問題 | 小学3年 | [解説](../../math/arithmetic/multiplication-word-problems/guide) | [確認](../../?subject=math&category=multiplication-word-problems) | 1箱6個×4箱＝？ |
-| 18 | ➗ あまりなし その１ | 小学3年 | [解説](../../math/arithmetic/division-1digit-no-remainder/guide) | [確認](../../?subject=math&category=division-no-remainder-1digit) | 12 ÷ 4 = 3 |
-| 19 | ➗ あまりなし その２ | 小学3年 | [解説](../../math/arithmetic/division-2digit-no-remainder/guide) | [確認](../../?subject=math&category=division-no-remainder-2digit) | 84 ÷ 4 = 21 |
-| 20 | ➗ あまりなし その３ | 小学4年 | [解説](../../math/arithmetic/division-3digit-no-remainder/guide) | [確認](../../?subject=math&category=division-no-remainder-3digit) | 840 ÷ 12 = 70 |
-| 21 | ➗ あまりあり | 小学3年〜4年 | [解説](../../math/arithmetic/division-remainder/guide) | [確認](../../?subject=math&category=division-remainder) | 17 ÷ 5 = 3…2 |
-| 22 | ➗ まとめ | 小学4年 | [解説](../../math/arithmetic/division-mixed/guide) | [確認](../../?subject=math&category=division-mixed) | 23 ÷ 4 = 5…3 |
-| 23 | ➗ 文章問題 | 小学3年 | [解説](../../math/arithmetic/division-word-problems/guide) | [確認](../../?subject=math&category=division-word-problems) | 12個÷4人＝？ |
-| 24 | ➕ 分数のたし算（同分母） | 小学4年 | [解説](../../math/arithmetic/fractions-same-add/guide) | [確認](../../?subject=math&category=fractions-same-add) | 1/5 + 2/5 = 3/5 |
-| 25 | ➖ 分数のひき算（同分母） | 小学4年 | [解説](../../math/arithmetic/fractions-same-sub/guide) | [確認](../../?subject=math&category=fractions-same-sub) | 4/7 - 2/7 = 2/7 |
-| 26 | ➕ 分数のたし算（通分あり） | 小学5年 | [解説](../../math/arithmetic/fractions-diff-add/guide) | [確認](../../?subject=math&category=fractions-diff-add) | 1/2 + 1/3 = 5/6 |
-| 27 | ➖ 分数のひき算（通分あり） | 小学5年 | [解説](../../math/arithmetic/fractions-diff-sub/guide) | [確認](../../?subject=math&category=fractions-diff-sub) | 3/4 - 1/3 = 5/12 |
-| 28 | ✖️ 分数のかけ算 | 小学6年 | [解説](../../math/arithmetic/fractions-multiply/guide) | [確認](../../?subject=math&category=fractions-multiply) | 2/3 × 3/4 = 1/2 |
-| 29 | ➗ 分数のわり算 | 小学6年 | [解説](../../math/arithmetic/fractions-divide/guide) | [確認](../../?subject=math&category=fractions-divide) | 2/3 ÷ 4/5 = 5/6 |
-| 30 | ➕ 小数のたし算 | 小学5年 | [解説](../../math/arithmetic/decimals-addition/guide) | [確認](../../?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
-| 31 | ➖ 小数のひき算 | 小学5年 | [解説](../../math/arithmetic/decimals-subtraction/guide) | [確認](../../?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
-| 32 | ✖️ 小数のかけ算 | 小学5年 | [解説](../../math/arithmetic/decimals-multiplication/guide) | [確認](../../?subject=math&category=decimals-multiplication) | 0.3 × 0.4 = 0.12 |
-| 35 | 📊 比 | 小学6年 | [解説](../../math/arithmetic/ratio/guide) | [確認](../../?subject=math&category=ratio) | 4:6 = 2:3 |
-| 36 | 📊 割合 | 小学6年 | [解説](../../math/arithmetic/percentage/guide) | [確認](../../?subject=math&category=percentage) | 60人の30% = 18人 |
+| 01 | ➕ １桁・くり上がりなし | 小学1年 | [解説](../../math/arithmetic/addition-1digit-no-carry/guide) | [確認](../../?subject=math&category=addition-no-carry-1digit) | 3 + 4 = 7 |
+| 02 | ➕ １桁・くり上がりあり | 小学1年 | [解説](../../math/arithmetic/addition-1digit-carry/guide) | [確認](../../?subject=math&category=addition-carry-1digit) | 7 + 8 = 15 |
+| 03 | ➕ ２桁・くり上がりなし | 小学2年 | [解説](../../math/arithmetic/addition-2digit-no-carry/guide) | [確認](../../?subject=math&category=addition-no-carry-2digit) | 23 + 45 = 68 |
+| 04 | ➕ ２桁・くり上がりあり | 小学2年 | [解説](../../math/arithmetic/addition-2digit-carry/guide) | [確認](../../?subject=math&category=addition-carry-2digit) | 47 + 38 = 85 |
+| 05 | ➕ ３桁・くり上がりなし | 小学3年 | [解説](../../math/arithmetic/addition-3digit-no-carry/guide) | [確認](../../?subject=math&category=addition-no-carry-3digit) | 123 + 456 = 579 |
+| 06 | ➕ ３桁・くり上がりあり | 小学3年 | [解説](../../math/arithmetic/addition-3digit-carry/guide) | [確認](../../?subject=math&category=addition-carry-3digit) | 357 + 246 = 603 |
+| 07 | ➕ 文章問題 | 小学3年 | [解説](../../math/arithmetic/addition-word-problems/guide) | [確認](../../?subject=math&category=addition-word-problems) | りんご3個＋4個＝？ |
+| 08 | ➕ まとめ | 小学3年 | [解説](../../math/arithmetic/addition-mixed/guide) | [確認](../../?subject=math&category=addition-mixed) | 6 + 9 = 15 |
+| 09 | ➖ １桁・くり下がりなし | 小学1年 | [解説](../../math/arithmetic/subtraction-1digit-no-borrow/guide) | [確認](../../?subject=math&category=subtraction-no-borrow-1digit) | 8 - 3 = 5 |
+| 10 | ➖ １桁・くり下がりあり | 小学1年 | [解説](../../math/arithmetic/subtraction-1digit-borrow/guide) | [確認](../../?subject=math&category=subtraction-borrow-1digit) | 13 - 7 = 6 |
+| 11 | ➖ ２桁・くり下がりなし | 小学2年 | [解説](../../math/arithmetic/subtraction-2digit-no-borrow/guide) | [確認](../../?subject=math&category=subtraction-no-borrow-2digit) | 58 - 23 = 35 |
+| 12 | ➖ ２桁・くり下がりあり | 小学2年 | [解説](../../math/arithmetic/subtraction-2digit-borrow/guide) | [確認](../../?subject=math&category=subtraction-borrow-2digit) | 52 - 37 = 15 |
+| 13 | ➖ ３桁・くり下がりなし | 小学3年 | [解説](../../math/arithmetic/subtraction-3digit-no-borrow/guide) | [確認](../../?subject=math&category=subtraction-no-borrow-3digit) | 689 - 234 = 455 |
+| 14 | ➖ ３桁・くり下がりあり | 小学3年 | [解説](../../math/arithmetic/subtraction-3digit-borrow/guide) | [確認](../../?subject=math&category=subtraction-borrow-3digit) | 523 - 247 = 276 |
+| 15 | ➖ 文章問題 | 小学3年 | [解説](../../math/arithmetic/subtraction-word-problems/guide) | [確認](../../?subject=math&category=subtraction-word-problems) | クッキー12枚－5枚＝？ |
+| 16 | ➖ まとめ | 小学3年 | [解説](../../math/arithmetic/subtraction-mixed/guide) | [確認](../../?subject=math&category=subtraction-mixed) | 15 - 8 = 7 |
+| 17 | ✖️ １桁（九九） | 小学2年 | [解説](../../math/arithmetic/multiplication-1digit/guide) | [確認](../../?subject=math&category=multiplication-1digit) | 6 × 7 = 42 |
+| 18 | ✖️ ２桁 | 小学3年 | [解説](../../math/arithmetic/multiplication-2digit/guide) | [確認](../../?subject=math&category=multiplication-2digit) | 23 × 4 = 92 |
+| 19 | ✖️ ３桁 | 小学3年 | [解説](../../math/arithmetic/multiplication-3digit/guide) | [確認](../../?subject=math&category=multiplication-3digit) | 123 × 4 = 492 |
+| 20 | ✖️ 文章問題 | 小学3年 | [解説](../../math/arithmetic/multiplication-word-problems/guide) | [確認](../../?subject=math&category=multiplication-word-problems) | 1箱6個×4箱＝？ |
+| 21 | ✖️ まとめ | 小学3年 | [解説](../../math/arithmetic/multiplication-mixed/guide) | [確認](../../?subject=math&category=multiplication-mixed) | 6 × 7 = 42 |
+| 22 | ➗ １桁・あまりなし | 小学3年 | [解説](../../math/arithmetic/division-1digit-no-remainder/guide) | [確認](../../?subject=math&category=division-no-remainder-1digit) | 12 ÷ 4 = 3 |
+| 23 | ➗ １桁・あまりあり | 小学3年 | [解説](../../math/arithmetic/division-1digit-remainder/guide) | [確認](../../?subject=math&category=division-remainder-1digit) | 10 ÷ 3 = 3…1 |
+| 24 | ➗ ２桁・あまりなし | 小学3年 | [解説](../../math/arithmetic/division-2digit-no-remainder/guide) | [確認](../../?subject=math&category=division-no-remainder-2digit) | 84 ÷ 4 = 21 |
+| 25 | ➗ ２桁・あまりあり | 小学3年 | [解説](../../math/arithmetic/division-2digit-remainder/guide) | [確認](../../?subject=math&category=division-remainder-2digit) | 85 ÷ 12 = 7…1 |
+| 26 | ➗ ３桁・あまりなし | 小学4年 | [解説](../../math/arithmetic/division-3digit-no-remainder/guide) | [確認](../../?subject=math&category=division-no-remainder-3digit) | 840 ÷ 12 = 70 |
+| 27 | ➗ ３桁・あまりあり | 小学4年 | [解説](../../math/arithmetic/division-3digit-remainder/guide) | [確認](../../?subject=math&category=division-remainder-3digit) | 841 ÷ 12 = 70…1 |
+| 28 | ➗ 文章問題 | 小学3年 | [解説](../../math/arithmetic/division-word-problems/guide) | [確認](../../?subject=math&category=division-word-problems) | 12個÷4人＝？ |
+| 29 | ➗ まとめ | 小学4年 | [解説](../../math/arithmetic/division-mixed/guide) | [確認](../../?subject=math&category=division-mixed) | 23 ÷ 4 = 5…3 |
+| 30 | ➕ 分数のたし算（同分母） | 小学4年 | [解説](../../math/arithmetic/fractions-same-add/guide) | [確認](../../?subject=math&category=fractions-same-add) | 1/5 + 2/5 = 3/5 |
+| 31 | ➖ 分数のひき算（同分母） | 小学4年 | [解説](../../math/arithmetic/fractions-same-sub/guide) | [確認](../../?subject=math&category=fractions-same-sub) | 4/7 - 2/7 = 2/7 |
+| 32 | ➕ 分数のたし算（通分あり） | 小学5年 | [解説](../../math/arithmetic/fractions-diff-add/guide) | [確認](../../?subject=math&category=fractions-diff-add) | 1/2 + 1/3 = 5/6 |
+| 33 | ➖ 分数のひき算（通分あり） | 小学5年 | [解説](../../math/arithmetic/fractions-diff-sub/guide) | [確認](../../?subject=math&category=fractions-diff-sub) | 3/4 - 1/3 = 5/12 |
+| 34 | ✖️ 分数のかけ算 | 小学6年 | [解説](../../math/arithmetic/fractions-multiply/guide) | [確認](../../?subject=math&category=fractions-multiply) | 2/3 × 3/4 = 1/2 |
+| 35 | ➗ 分数のわり算 | 小学6年 | [解説](../../math/arithmetic/fractions-divide/guide) | [確認](../../?subject=math&category=fractions-divide) | 2/3 ÷ 4/5 = 5/6 |
+| 36 | ➕ 小数のたし算 | 小学4年 | [解説](../../math/arithmetic/decimals-addition/guide) | [確認](../../?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
+| 37 | ➖ 小数のひき算 | 小学4年 | [解説](../../math/arithmetic/decimals-subtraction/guide) | [確認](../../?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
+| 38 | ✖️ 小数のかけ算 | 小学5年 | [解説](../../math/arithmetic/decimals-multiplication/guide) | [確認](../../?subject=math&category=decimals-multiplication) | 0.3 × 0.4 = 0.12 |
+| 39 | ➗ 小数のわり算 | 小学5年 | [解説](../../math/arithmetic/decimals-division/guide) | [確認](../../?subject=math&category=decimals-division) | 1.2 ÷ 0.4 = 3 |
+| 40 | 📊 比 | 小学6年 | [解説](../../math/arithmetic/ratio/guide) | [確認](../../?subject=math&category=ratio) | 4:6 = 2:3 |
+| 41 | 📊 割合 | 小学6年 | [解説](../../math/arithmetic/percentage/guide) | [確認](../../?subject=math&category=percentage) | 60人の30% = 18人 |
 
 #### 📐 代数
 

@@ -10,8 +10,8 @@
   "guideUrl": "../math/arithmetic/subtraction-mixed/guide",
   "parentCategoryGuideUrl": "../math/arithmetic/guide",
   "example": "15 - 8 = 7",
-  "referenceGrade": "小学1年",
-  "description": "くり下がりなし・ありを混ぜた計算で、ひき算の力を確かめます。",
+  "referenceGrade": "小学3年",
+  "description": "くり下がりなし・ありを混ぜた計算と文章問題で、ひき算の力を確かめます。",
   "questions": [
     {
       "id": "2061a4b0-d19f-52e3-8bb1-896c9cdcfaf6",
@@ -132,6 +132,30 @@
       ],
       "correct": 0,
       "explanation": "523 - 247 = 276"
+    },
+    {
+      "id": "1b6470e9-6f55-5800-a303-4fd54aaf0d71",
+      "question": "クッキーが48枚あります。23枚食べました。残りは何枚ですか？",
+      "choices": [
+        "25枚",
+        "24枚",
+        "26枚",
+        "15枚"
+      ],
+      "correct": 0,
+      "explanation": "48 - 23 = 25枚"
+    },
+    {
+      "id": "ec908a29-6717-5af2-8a7b-e019a4010938",
+      "question": "農場に羊が347頭います。135頭が売れました。残りは何頭ですか？",
+      "choices": [
+        "212頭",
+        "202頭",
+        "222頭",
+        "210頭"
+      ],
+      "correct": 0,
+      "explanation": "347 - 135 = 212頭"
     }
   ]
 }
