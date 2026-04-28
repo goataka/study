@@ -109,6 +109,8 @@ export class QuizApp {
     this.updateUserNameDisplay("headerUserName");
     // 共有URL表示ボタンの初期値を設定する
     this.updateShareUrlOpenBtn();
+    // ヘッダーに今日の日付を表示する
+    this.updateHeaderTodayDate();
   }
 
   /**
@@ -1127,12 +1129,17 @@ export class QuizApp {
   }
 
   /**
-   * 活動日付ラベルを今日の日付に更新する。
+   * 活動ラベルを本日実施した単元数（⭐の数）に更新する。
    */
   private updateActivityDateDisplay(): void {
     const el = document.getElementById("overallActivityDateLabel");
     if (!el) return;
-    el.textContent = `📅 ${this.selectedActivityDate.replace(/-/g, "/")}`;
+    const records = this.useCase.getHistory();
+    const todayRecords = this.filterRecordsBySelectedDate(records);
+    // 本日やった単元数をユニークカウント（unit ごとに集計）
+    const unitKeys = new Set(todayRecords.map((r) => `${r.subject}::${r.category}`));
+    const count = unitKeys.size;
+    el.textContent = count > 0 ? "⭐".repeat(Math.min(count, 10)) : "";
   }
 
   /**
@@ -1164,7 +1171,7 @@ export class QuizApp {
     if (todayRecords.length === 0) {
       const empty = document.createElement("p");
       empty.className = "today-activity-empty";
-      empty.textContent = "この日はクイズをしていません。";
+      empty.textContent = "この日はまだ問題を解いていません。";
       container.appendChild(empty);
       return;
     }
@@ -1439,9 +1446,8 @@ export class QuizApp {
     // 説明・例文（右パネル非表示時のみ CSS で表示）
     const description = this.useCase.getCategoryDescription(subject, categoryId);
     const example = this.useCase.getCategoryExample(subject, categoryId);
-    item.appendChild(statusSpan);
-    item.appendChild(nameArea);
-    item.appendChild(gradeSpan);
+
+    // 説明・例文インライン情報は nameArea の末尾に追加（横位置を固定するため）
     if (description !== undefined || example !== undefined) {
       const inlineInfo = document.createElement("span");
       inlineInfo.className = "category-item-inline-info";
@@ -1457,8 +1463,12 @@ export class QuizApp {
         this.renderBacktickText(exampleSpan, example);
         inlineInfo.appendChild(exampleSpan);
       }
-      item.appendChild(inlineInfo);
+      nameArea.appendChild(inlineInfo);
     }
+
+    item.appendChild(statusSpan);
+    item.appendChild(nameArea);
+    item.appendChild(gradeSpan);
     item.appendChild(statsSpan);
 
     const handleActivate = (e: Event): void => {
@@ -2108,16 +2118,7 @@ export class QuizApp {
       });
     }
 
-    // ヘッダーのユーザー名ボタン：クリックで編集モードを開く
-    const headerUserName = document.getElementById("headerUserName");
-    headerUserName?.addEventListener("click", () => this.openUserNameEdit());
-    headerUserName?.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        this.openUserNameEdit();
-      }
-    });
-
+    // ヘッダーのユーザー名は表示のみ（クリック編集なし）
     // 保存ボタン
     const headerUserNameSaveBtn = document.getElementById("headerUserNameSaveBtn");
     headerUserNameSaveBtn?.addEventListener("click", () => this.saveHeaderUserName());
@@ -2578,6 +2579,8 @@ export class QuizApp {
 
     // 「おすすめ単元」タイトルは総合タブ時のみ表示
     document.getElementById("allSubjectPanelTitle")?.classList.toggle("hidden", !isAll);
+    // 「単元一覧」タイトルは教科別タブ時のみ表示
+    document.getElementById("categoryListTitle")?.classList.toggle("hidden", isAll);
     // 学習済み非表示ボタンは総合タブ時は非表示
     document.getElementById("hideLearnedBtn")?.classList.toggle("hidden", isAll);
     // 日付ナビゲーションは総合タブかつ単元未選択時のみ表示
@@ -3237,6 +3240,18 @@ export class QuizApp {
     if (el) {
       el.textContent = `👤 ${this.userName}`;
     }
+  }
+
+  /**
+   * ヘッダーに今日の日付を表示する。
+   */
+  private updateHeaderTodayDate(): void {
+    const el = document.getElementById("headerTodayDate");
+    if (!el) return;
+    const now = new Date();
+    const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+    const dateStr = `${now.getFullYear()}/${String(now.getMonth() + 1).padStart(2, "0")}/${String(now.getDate()).padStart(2, "0")}（${weekdays[now.getDay()]}）`;
+    el.textContent = dateStr;
   }
 
   private setText(id: string, text: string): void {

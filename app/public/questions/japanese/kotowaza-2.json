@@ -8,8 +8,8 @@
   "example": "三人寄れば文殊の知恵",
   "referenceGrade": "中学生",
   "description": "日本のことわざの意味と使い方をさらに覚えます。",
-  "guideUrl": "../japanese/kanji/kotowaza/guide",
-  "parentCategoryGuideUrl": "../japanese/vocabulary/guide",
+  "guideUrl": "./japanese/kanji/kotowaza/guide",
+  "parentCategoryGuideUrl": "./japanese/vocabulary/guide",
   "questions": [
     {
       "id": "0adb243e-2a94-5ca7-a60d-1eb4991ac009",

@@ -124,7 +124,8 @@ https://goataka.github.io/study/questions/japanese/kanji-grade1.json
 
 ## 🔗 関連リンク
 
+- [サポートトップ](../) ─ サポートページのトップ
 - [スタートアップガイド](../startup-guide/) ─ 使い始め方と基本操作
 - [操作ガイド](../operation-guide/) ─ 画面構成と各機能
-- [コンテンツ一覧](../operation-guide/#コンテンツ) ─ 学習できる全科目・単元
+- [コンテンツ一覧](../content-list/) ─ 学習できる全教科・単元
 - [トラブルシューティング](../troubleshooting/) ─ よくある質問

@@ -8,8 +8,8 @@
   "example": "つまり・すなわち",
   "referenceGrade": "中学生",
   "description": "文章中の同等・言い換え関係を表す接続語と読み取り方を学びます。",
-  "guideUrl": "../japanese/reading/equivalence/guide",
-  "parentCategoryGuideUrl": "../japanese/reading/guide",
+  "guideUrl": "./japanese/reading/equivalence/guide",
+  "parentCategoryGuideUrl": "./japanese/reading/guide",
   "questions": [
     {
       "id": "7315a840-68df-5909-a6e5-0ea98c9fb345",

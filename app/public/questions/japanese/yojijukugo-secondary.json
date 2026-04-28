@@ -8,8 +8,8 @@
   "example": "四面楚歌",
   "referenceGrade": "中学生",
   "description": "中学生向け四字熟語の意味と読み方を覚えます。",
-  "guideUrl": "../japanese/kanji/yojijukugo-secondary/guide",
-  "parentCategoryGuideUrl": "../japanese/vocabulary/guide",
+  "guideUrl": "./japanese/kanji/yojijukugo-secondary/guide",
+  "parentCategoryGuideUrl": "./japanese/vocabulary/guide",
   "questions": [
     {
       "id": "36ea54f8-19a3-5e19-9b1d-ef9b434db804",

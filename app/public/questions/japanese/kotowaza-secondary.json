@@ -8,8 +8,8 @@
   "example": "二兎を追う者は一兎をも得ず",
   "referenceGrade": "中学生",
   "description": "中学生向けことわざの意味と使い方を覚えます。",
-  "guideUrl": "../japanese/kanji/kotowaza-secondary/guide",
-  "parentCategoryGuideUrl": "../japanese/vocabulary/guide",
+  "guideUrl": "./japanese/kanji/kotowaza-secondary/guide",
+  "parentCategoryGuideUrl": "./japanese/vocabulary/guide",
   "questions": [
     {
       "id": "f187871c-14a8-5169-877b-c7e421c12288",

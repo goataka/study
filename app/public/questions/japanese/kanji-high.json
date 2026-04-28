@@ -11,8 +11,8 @@
   "questionType": "text-input",
   "referenceGrade": "中学生",
   "description": "中学生で習う漢字の読み方（訓読み・音読み）をさらに覚えます。",
-  "guideUrl": "../japanese/kanji/kanji-high/guide",
-  "parentCategoryGuideUrl": "../japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-high/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "5a32452f-9ac6-50a0-8f88-85a4748dd00c",

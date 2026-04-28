@@ -8,8 +8,8 @@
   "example": "主語・述語",
   "referenceGrade": "小学生",
   "description": "文章の主語・述語・修飾語などの基本的な構造をさらに深く学びます。",
-  "guideUrl": "../japanese/reading/sentence-structure/guide",
-  "parentCategoryGuideUrl": "../japanese/reading/guide",
+  "guideUrl": "./japanese/reading/sentence-structure/guide",
+  "parentCategoryGuideUrl": "./japanese/reading/guide",
   "questions": [
     {
       "id": "5805c198-a963-5f2f-9c86-dc259968992f",

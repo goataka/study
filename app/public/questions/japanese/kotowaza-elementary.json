@@ -8,8 +8,8 @@
   "example": "七転び八起き",
   "referenceGrade": "小学生",
   "description": "小学生向けことわざの意味と使い方を覚えます。",
-  "guideUrl": "../japanese/kanji/kotowaza-elementary/guide",
-  "parentCategoryGuideUrl": "../japanese/vocabulary/guide",
+  "guideUrl": "./japanese/kanji/kotowaza-elementary/guide",
+  "parentCategoryGuideUrl": "./japanese/vocabulary/guide",
   "questions": [
     {
       "id": "a7a1621e-207e-5c7d-abf1-c137d9db0970",

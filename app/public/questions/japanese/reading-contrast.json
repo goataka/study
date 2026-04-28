@@ -8,8 +8,8 @@
   "example": "しかし・一方",
   "referenceGrade": "中学生",
   "description": "文章中の対比・逆接関係を表す接続語と読み取り方を学びます。",
-  "guideUrl": "../japanese/reading/contrast/guide",
-  "parentCategoryGuideUrl": "../japanese/reading/guide",
+  "guideUrl": "./japanese/reading/contrast/guide",
+  "parentCategoryGuideUrl": "./japanese/reading/guide",
   "questions": [
     {
       "id": "de1875e7-3222-58f2-b894-475b188a7685",

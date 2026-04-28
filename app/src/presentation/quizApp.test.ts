@@ -3477,7 +3477,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const container = document.getElementById("todayActivityContent");
-    expect(container?.textContent).toContain("この日はクイズをしていません");
+    expect(container?.textContent).toContain("この日はまだ問題を解いていません");
   });
 
   it("今日の学習記録がある場合、todayActivityContent にスコアが表示される", async () => {
@@ -3688,14 +3688,13 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     openSpy.mockRestore();
   });
 
-  it("overallActivityDateLabel に今日の日付が表示される", async () => {
+  it("overallActivityDateLabel に本日の実施単元数が⭐で表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const label = document.getElementById("overallActivityDateLabel");
-    const today = new Date();
-    const year = String(today.getFullYear());
-    expect(label?.textContent).toContain(year);
+    // 学習記録がない場合は空文字
+    expect(label?.textContent).toBe("");
   });
 
   it("シェアタブをクリックすると overallSharePanel が表示され overallLearnedPanel が非表示になる", async () => {
