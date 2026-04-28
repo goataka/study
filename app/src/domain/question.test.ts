@@ -141,9 +141,15 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
     ).toThrow('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
   });
 
-  it("guideUrl にパストラバーサルが含まれる場合は拒否する", () => {
+  it("guideUrl にパストラバーサルが含まれる場合は拒否する（../ プレフィックス）", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, guideUrl: "../math/../../etc/passwd" })
+    ).toThrow('"guideUrl" must not contain path traversal sequences');
+  });
+
+  it("guideUrl にパストラバーサルが含まれる場合は拒否する（./ プレフィックス）", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "./math/../../../etc/passwd" })
     ).toThrow('"guideUrl" must not contain path traversal sequences');
   });
 

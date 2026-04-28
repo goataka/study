@@ -138,9 +138,9 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (typeof qf.guideUrl !== "string") {
       throw new Error('"guideUrl" must be a string if present');
     }
-    // 安全なスキームのみ許可：./ または ../ で始まる相対パス、または http/https の絶対URL
+    // 安全なスキームのみ許可：./ または ../ で始まる相対パス（直後が . や / でない）または http/https の絶対URL
     // 例: ./math/arithmetic/... や ../math/arithmetic/... は許可
-    // ..//path や ../.path, ../../../ は拒否
+    // ..//path や ../.path は初期チェックで拒否、./some/../bad や ../bad/../../etc はトラバーサルチェックで拒否
     const isCurrentRelative = /^\.\/[^./]/.test(qf.guideUrl);
     const isParentRelative = /^\.\.\/[^./]/.test(qf.guideUrl);
     const isRelative = isCurrentRelative || isParentRelative;
@@ -148,7 +148,7 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (!isRelative && !isAbsolute) {
       throw new Error('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
     }
-    // パストラバーサル防止：URL デコード後にさらなる ../ が含まれないことを確認
+    // パストラバーサル防止：URL デコード後にさらなる .. が含まれないことを確認
     if (isRelative) {
       let decoded = qf.guideUrl;
       try {
