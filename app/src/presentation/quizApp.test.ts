@@ -90,6 +90,11 @@ function setupTabDom(): void {
       <div id="subjectContent">
         <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
         <span id="allSubjectPanelTitle" class="hidden">📌 おすすめ単元</span>
+        <div id="overallDateNav" class="hidden">
+          <input type="date" id="activityDatePicker" aria-label="日付を選択">
+          <button id="prevDateBtn" type="button" aria-label="前の日へ">←</button>
+          <button id="nextDateBtn" type="button" aria-label="次の日へ">→</button>
+        </div>
         <div id="categoryControls" class="category-controls"></div>
         <div id="categoryList" class="category-list"></div>
         <div id="selectedUnitInfo" class="selected-unit-info hidden"></div>
@@ -119,12 +124,10 @@ function setupTabDom(): void {
           <div id="questionListBody"></div>
         </div>
         <div id="overallSummaryPanel" class="hidden">
-          <div id="overallTodayPanel" class="overall-activity-panel">
-            <div class="activity-date-nav">
-              <input type="date" id="activityDatePicker" aria-label="日付を選択">
-              <button id="prevDateBtn" type="button" aria-label="前の日へ">←</button>
-              <button id="nextDateBtn" type="button" aria-label="次の日へ">→</button>
-            </div>
+          <div class="overall-panel-tabs" role="tablist">
+            <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習済み</button>
+          </div>
+          <div id="overallLearnedPanel" class="overall-activity-panel">
             <div id="shareSummaryText"></div>
             <div class="share-actions-row">
               <button id="copySummaryBtn" type="button">📋 コピー</button>
@@ -3238,14 +3241,13 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     });
   });
 
-  it("各教科概要アイテムに role=button が設定されている", async () => {
+  it("推奨単元がある教科概要アイテムに role=button が設定されている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const overviewItems = document.querySelectorAll(".subject-overview-item");
-    overviewItems.forEach((item) => {
-      expect(item.getAttribute("role")).toBe("button");
-    });
+    // 推奨単元がある英語アイテム（モックデータには英語の問題のみある）
+    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
+    expect(englishItem?.getAttribute("role")).toBe("button");
   });
 
   it("英語教科アイテムには推奨の単元テキストが表示される", async () => {
@@ -3257,16 +3259,16 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(recName?.textContent).toBeTruthy();
   });
 
-  it("未学習の場合、教科アイテムの枠外に「未学習」と表示される", async () => {
+  it("未学習の場合、教科アイテムの進捗率は0%と表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const wrapper = document.querySelector('.subject-overview-wrapper:has([data-subject="english"])');
-    const outerDate = wrapper?.querySelector(".subject-overview-outer-date");
-    expect(outerDate?.textContent).toBe("未学習");
+    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
+    const pctSpan = englishItem?.querySelector(".subject-overview-pct");
+    expect(pctSpan?.textContent).toBe("0%");
   });
 
-  it("学習履歴がある場合、最終学習日が枠外に表示される", async () => {
+  it("学習履歴がある場合でも最終学習日は表示されない（outerDateは廃止）", async () => {
     const studyDate = "2025-04-01T10:00:00.000Z";
     localStorage.setItem(
       "quizHistory",
@@ -3291,7 +3293,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     const wrapper = document.querySelector('.subject-overview-wrapper:has([data-subject="english"])');
     const outerDate = wrapper?.querySelector(".subject-overview-outer-date");
-    expect(outerDate?.textContent).toContain("2025");
+    expect(outerDate).toBeNull();
   });
 
   it("教科概要アイテムをクリックしても総合タブのままで教科タブに切り替わらない", async () => {
@@ -3427,7 +3429,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(container?.textContent).toContain("8/10 (80%)");
   });
 
-  it("活動サマリテキストに今日の日付が含まれる", async () => {
+  it("活動サマリテキストに今日の日付が含まれる（学習サマリヘッダーは含まれない）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -3435,7 +3437,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     const today = new Date();
     const year = String(today.getFullYear());
     expect(summaryEl?.textContent).toContain(year);
-    expect(summaryEl?.textContent).toContain("学習サマリ");
+    expect(summaryEl?.textContent).not.toContain("学習サマリ");
   });
 
   it("共有URLを保存すると openShareUrlBtn が表示される", async () => {

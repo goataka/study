@@ -59,6 +59,12 @@
             <button id="hideLearnedBtn" class="hide-learned-btn" type="button" aria-pressed="true" aria-label="学習済カテゴリを非表示">✅ 学習済を表示</button>
             <span id="allSubjectPanelTitle" class="all-subject-panel-title hidden">📌 おすすめ単元</span>
           </div>
+          <!-- 総合タブの日付ナビゲーション（おすすめ単元の上） -->
+          <div id="overallDateNav" class="activity-date-nav hidden">
+            <input type="date" id="activityDatePicker" class="activity-date-picker" aria-label="日付を選択">
+            <button id="prevDateBtn" class="activity-date-nav-btn" type="button" aria-label="前の日へ">←</button>
+            <button id="nextDateBtn" class="activity-date-nav-btn" type="button" aria-label="次の日へ">→</button>
+          </div>
           <div id="categoryControls" class="category-controls"></div>
           <div id="categoryList" class="category-list"></div>
         </div>
@@ -111,14 +117,12 @@
 
           <!-- 総合タブ専用サマリパネル -->
           <div id="overallSummaryPanel" class="hidden overall-summary-panel" role="region" aria-label="活動サマリ">
-            <!-- 活動サマリパネル -->
-            <div id="overallTodayPanel" class="overall-activity-panel">
-              <!-- 日付ナビゲーション -->
-              <div class="activity-date-nav">
-                <input type="date" id="activityDatePicker" class="activity-date-picker" aria-label="日付を選択">
-                <button id="prevDateBtn" class="activity-date-nav-btn" type="button" aria-label="前の日へ">←</button>
-                <button id="nextDateBtn" class="activity-date-nav-btn" type="button" aria-label="次の日へ">→</button>
-              </div>
+            <!-- タブバー（総合タブ専用） -->
+            <div class="panel-tabs overall-panel-tabs" role="tablist" aria-label="概要パネル切り替え">
+              <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習済み</button>
+            </div>
+            <!-- 学習済み活動パネル -->
+            <div id="overallLearnedPanel" class="overall-activity-panel">
               <!-- 活動サマリ（SNS共有用） -->
               <div id="shareSummaryText" class="share-summary-text"></div>
               <div class="share-actions-row">

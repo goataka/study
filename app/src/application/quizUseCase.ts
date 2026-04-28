@@ -400,10 +400,21 @@ export class QuizUseCase {
    * カテゴリが存在しない場合は null を返す。
    */
   getRecommendedCategoryForSubject(subject: string): { id: string; name: string; referenceGrade?: string } | null {
+    const results = this.getRecommendedCategoriesForSubject(subject, 1);
+    return results.length > 0 ? results[0]! : null;
+  }
+
+  /**
+   * 指定した教科の推奨カテゴリを最大 count 件返す。
+   * 未学習または学習中（間違いあり）のカテゴリを優先して返す。
+   * すべて学習済みの場合は先頭からカテゴリを返す。
+   * カテゴリが存在しない場合は空配列を返す。
+   */
+  getRecommendedCategoriesForSubject(subject: string, count: number): { id: string; name: string; referenceGrade?: string }[] {
     const studiedKeys = this.getStudiedCategoryKeys();
     const categories = this.getCategoriesForSubject(subject);
     const entries = Object.entries(categories);
-    if (entries.length === 0) return null;
+    if (entries.length === 0) return [];
 
     const wrongSet = new Set(this.wrongIds);
     const wrongCountsByCategory = new Map<string, number>();
@@ -412,18 +423,53 @@ export class QuizUseCase {
       wrongCountsByCategory.set(question.category, (wrongCountsByCategory.get(question.category) ?? 0) + 1);
     }
 
+    const result: { id: string; name: string; referenceGrade?: string }[] = [];
     for (const [catId, catName] of entries) {
+      if (result.length >= count) break;
       const key = `${subject}::${catId}`;
       const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
       const isLearned = studiedKeys.has(key) && wrongCount === 0;
       if (!isLearned) {
-        return { id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key) };
+        result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key) });
       }
     }
 
-    // すべて学習済みの場合は最初のカテゴリを返す
-    const [catId, catName] = entries[0]!;
-    return { id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(`${subject}::${catId}`) };
+    // 未学習カテゴリが足りない場合は学習済みカテゴリで補完する
+    if (result.length < count) {
+      for (const [catId, catName] of entries) {
+        if (result.length >= count) break;
+        const key = `${subject}::${catId}`;
+        const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
+        const isLearned = studiedKeys.has(key) && wrongCount === 0;
+        if (isLearned && !result.some((r) => r.id === catId)) {
+          result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key) });
+        }
+      }
+    }
+
+    return result;
+  }
+
+  /**
+   * 指定した教科・カテゴリの進捗率（0-100 の整数）を返す。
+   * 問題数ゼロの場合は 0 を返す。
+   * 未学習（学習履歴なし・間違いなし）の場合も 0 を返す。
+   */
+  getCategoryProgressPct(subject: string, categoryId: string): number {
+    let total = 0;
+    let wrong = 0;
+    const wrongSet = new Set(this.wrongIds);
+    for (const q of this.allQuestions) {
+      if (q.subject !== subject || q.category !== categoryId) continue;
+      total++;
+      if (wrongSet.has(q.id)) wrong++;
+    }
+    if (total === 0) return 0;
+    const key = `${subject}::${categoryId}`;
+    const studied = this.getStudiedCategoryKeys().has(key);
+    // 未学習かつ間違いなしの場合は 0 を返す
+    if (!studied && wrong === 0) return 0;
+    return Math.round(((total - wrong) / total) * 100);
   }
 
   /**

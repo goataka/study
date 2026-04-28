@@ -67,6 +67,8 @@ export class QuizApp {
   private selectedActivityDate: string = QuizApp.currentDateString();
   /** 総合タブから単元を選択した場合の選択情報（null の場合は未選択） */
   private overallUnitSelected: { subject: string; categoryId: string; categoryName: string } | null = null;
+  /** 総合タブで各教科に表示するおすすめ単元数 */
+  private overallRecommendedCount: number = 1;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -705,7 +707,11 @@ export class QuizApp {
     controlsEl.innerHTML = "";
 
     const subject = this.filter.subject;
-    if (subject === "all") return;
+    if (subject === "all") {
+      // 総合タブ: おすすめ単元数切替ボタンを表示する
+      this.renderOverallRecommendedCountControls(controlsEl);
+      return;
+    }
 
     // ── ビューモード切替ボタン ──
     const viewToggleBtn = document.createElement("button");
@@ -781,6 +787,33 @@ export class QuizApp {
         this.renderCategoryList();
       });
       controlsEl.appendChild(btn);
+    }
+  }
+
+  /**
+   * 総合タブ専用：おすすめ単元数切替ボタンを描画する。
+   */
+  private renderOverallRecommendedCountControls(container: HTMLElement): void {
+    const label = document.createElement("span");
+    label.className = "overall-rec-count-label";
+    label.textContent = "表示数:";
+    container.appendChild(label);
+
+    const counts = [1, 3, 5];
+    for (const n of counts) {
+      const btn = document.createElement("button");
+      btn.className = "overall-rec-count-btn";
+      btn.type = "button";
+      btn.textContent = String(n);
+      btn.setAttribute("aria-pressed", String(this.overallRecommendedCount === n));
+      if (this.overallRecommendedCount === n) {
+        btn.classList.add("active");
+      }
+      btn.addEventListener("click", () => {
+        this.overallRecommendedCount = n;
+        this.renderCategoryList();
+      });
+      container.appendChild(btn);
     }
   }
 
@@ -954,7 +987,7 @@ export class QuizApp {
 
   /**
    * 「総合」タブ用の教科一覧を描画する。
-   * 各教科カードに推奨の単元・学年・最終学習日を表示し、クリックで解説パネルを表示する。
+   * 各教科カードに推奨の単元・学年・進捗率を表示し、クリックで解説パネルを表示する。
    */
   private renderAllSubjectList(): void {
     const categoryList = document.getElementById("categoryList");
@@ -965,8 +998,7 @@ export class QuizApp {
     const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all");
 
     for (const subject of nonAllSubjects) {
-      const recommended = this.useCase.getRecommendedCategoryForSubject(subject.id);
-      const lastStudyDate = this.useCase.getLastStudyDateForSubject(subject.id);
+      const recommendedList = this.useCase.getRecommendedCategoriesForSubject(subject.id, this.overallRecommendedCount);
 
       // ラッパー（枠外情報 + カード）
       const wrapper = document.createElement("div");
@@ -985,11 +1017,23 @@ export class QuizApp {
       subjectRow.appendChild(nameSpan);
       wrapper.appendChild(subjectRow);
 
-      // 枠外情報行（カテゴリ名 + 最終学習日）
-      const outerInfo = document.createElement("div");
-      outerInfo.className = "subject-overview-outer-info";
+      if (recommendedList.length === 0) {
+        // 単元なしの場合はシンプルなカードを表示
+        const item = document.createElement("div");
+        item.className = "subject-overview-item";
+        item.dataset.subject = subject.id;
+        item.textContent = "単元なし";
+        wrapper.appendChild(item);
+        categoryList.appendChild(wrapper);
+        continue;
+      }
 
-      if (recommended) {
+      // おすすめ単元ごとにカードを生成する
+      for (const recommended of recommendedList) {
+        // 枠外情報行（カテゴリ名）
+        const outerInfo = document.createElement("div");
+        outerInfo.className = "subject-overview-outer-info";
+
         const parentCat = this.useCase.getParentCategoryForUnit(subject.id, recommended.id);
         if (parentCat) {
           const catSpan = document.createElement("span");
@@ -997,33 +1041,19 @@ export class QuizApp {
           catSpan.textContent = parentCat.name;
           outerInfo.appendChild(catSpan);
         }
-      }
+        wrapper.appendChild(outerInfo);
 
-      const outerDate = document.createElement("span");
-      outerDate.className = "subject-overview-outer-date";
-      if (lastStudyDate) {
-        const d = new Date(lastStudyDate);
-        const dateStr = `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, "0")}/${String(d.getDate()).padStart(2, "0")}`;
-        outerDate.textContent = dateStr;
-      } else {
-        outerDate.textContent = "未学習";
-      }
-      outerInfo.appendChild(outerDate);
+        // カード（クリック可能）: 推奨単元を表示
+        const item = document.createElement("div");
+        item.className = "subject-overview-item";
+        item.setAttribute("role", "button");
+        item.setAttribute("tabindex", "0");
+        item.dataset.subject = subject.id;
 
-      wrapper.appendChild(outerInfo);
+        // 推奨単元名・学年・進捗率
+        const recDiv = document.createElement("div");
+        recDiv.className = "subject-overview-recommended";
 
-      // カード（クリック可能）: 推奨単元を日付（枠外情報）の下に表示
-      const item = document.createElement("div");
-      item.className = "subject-overview-item";
-      item.setAttribute("role", "button");
-      item.setAttribute("tabindex", "0");
-      item.dataset.subject = subject.id;
-
-      // 推奨単元名・学年
-      const recDiv = document.createElement("div");
-      recDiv.className = "subject-overview-recommended";
-
-      if (recommended) {
         const recName = document.createElement("span");
         recName.className = "subject-overview-rec-name";
         recName.textContent = recommended.name;
@@ -1039,31 +1069,39 @@ export class QuizApp {
           gradeSpan.textContent = recommended.referenceGrade;
           recDiv.appendChild(gradeSpan);
         }
-      } else {
-        recDiv.textContent = "単元なし";
+
+        // 進捗率（各教科の単元一覧の縮小時に合わせた表示）
+        const pct = this.useCase.getCategoryProgressPct(subject.id, recommended.id);
+        const pctSpan = document.createElement("span");
+        pctSpan.className = "subject-overview-pct";
+        if (pct === 100) {
+          pctSpan.classList.add("progress-fill-done");
+        }
+        pctSpan.textContent = `${pct}%`;
+        recDiv.appendChild(pctSpan);
+
+        item.appendChild(recDiv);
+
+        // クリックで教科タブに遷移せず、総合のまま解説パネルを表示する
+        const rec = recommended;
+        const handleActivate = (): void => {
+          this.overallUnitSelected = { subject: subject.id, categoryId: rec.id, categoryName: rec.name };
+          this.isPanelTabUserSelected = false;
+          const overviewRecords = this.useCase.getHistory();
+          this.updateStartScreen(overviewRecords);
+        };
+
+        item.addEventListener("click", handleActivate);
+        item.addEventListener("keydown", (e: KeyboardEvent) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleActivate();
+          }
+        });
+
+        wrapper.appendChild(item);
       }
 
-      item.appendChild(recDiv);
-
-      // クリックで教科タブに遷移せず、総合のまま解説パネルを表示する
-      const handleActivate = (): void => {
-        this.overallUnitSelected = recommended
-          ? { subject: subject.id, categoryId: recommended.id, categoryName: recommended.name }
-          : null;
-        this.isPanelTabUserSelected = false;
-        const overviewRecords = this.useCase.getHistory();
-        this.updateStartScreen(overviewRecords);
-      };
-
-      item.addEventListener("click", handleActivate);
-      item.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleActivate();
-        }
-      });
-
-      wrapper.appendChild(item);
       categoryList.appendChild(wrapper);
     }
   }
@@ -1130,13 +1168,14 @@ export class QuizApp {
   /**
    * SNS 共有用の活動サマリテキストを構築して返す。
    * selectedActivityDate の日付を基準とし、各単元の成績を含む。
+   * テキストに「学習サマリ」ヘッダーは含めず、単元数で合計を表示する。
    */
   private buildShareSummaryText(records: QuizRecord[]): string {
     const [year, month, day] = this.selectedActivityDate.split("-");
     const dateStr = `${year}/${month}/${day}`;
     const dateRecords = this.filterRecordsBySelectedDate(records);
 
-    const lines: string[] = ["【学習サマリ】", `📅 ${dateStr}`];
+    const lines: string[] = [`📅 ${dateStr}`];
 
     if (dateRecords.length === 0) {
       lines.push("まだクイズをしていません。");
@@ -1168,11 +1207,10 @@ export class QuizApp {
       lines.push(`${data.icon} ${data.subjectName} / ${data.categoryName}: ${data.correct}/${data.total}問正解 (${pct}%)`);
     }
 
-    const totalCount = dateRecords.reduce((s, r) => s + r.totalCount, 0);
-    const correctCount = dateRecords.reduce((s, r) => s + r.correctCount, 0);
-    const totalPct = Math.round((correctCount / totalCount) * 100);
+    // 合計は単元数で表示する
+    const unitCount = byUnit.size;
     lines.push("---");
-    lines.push(`合計: ${correctCount}/${totalCount}問正解 (${totalPct}%)`);
+    lines.push(`合計: ${unitCount}単元`);
 
     return lines.join("\n");
   }
@@ -1847,7 +1885,10 @@ export class QuizApp {
     header.setAttribute("aria-expanded", "false");
 
     const date = new Date(record.date);
-    const dateStr = `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+    // 総合タブの実施済み単元リストでは時刻のみ表示する
+    const dateStr = showSubjectPrefix
+      ? `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`
+      : `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
 
     const isManual = record.mode === "manual";
     const pct = Math.round((record.correctCount / record.totalCount) * 100);
@@ -2513,6 +2554,8 @@ export class QuizApp {
     document.getElementById("allSubjectPanelTitle")?.classList.toggle("hidden", !isAll);
     // 学習済み非表示ボタンは総合タブ時は非表示
     document.getElementById("hideLearnedBtn")?.classList.toggle("hidden", isAll);
+    // 日付ナビゲーションは総合タブかつ単元未選択時のみ表示
+    document.getElementById("overallDateNav")?.classList.toggle("hidden", !isAll || hasOverallUnit);
 
     // 選択中の単元情報パネルを更新する
     this.updateSelectedUnitInfo();
