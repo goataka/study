@@ -268,6 +268,12 @@ header h1 {
     display: none;
 }
 
+/* 学年別ビューのカテゴリアイテムをグレー地に黒字で表示 */
+.category-grade-group .category-item {
+    background: #f6f8fa;
+    color: #24292e;
+}
+
 .category-grade-group-header {
     font-size: 13px;
     font-weight: 600;

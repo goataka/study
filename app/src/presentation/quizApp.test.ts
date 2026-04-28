@@ -2207,7 +2207,13 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
           mode: "random",
           totalCount: 5,
           correctCount: 5,
-          entries: [],
+          entries: [
+            { questionId: "q1", questionText: "問題 1", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 1", categoryName: "フォニックス（1文字）" },
+            { questionId: "q2", questionText: "問題 2", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 2", categoryName: "フォニックス（1文字）" },
+            { questionId: "q3", questionText: "問題 3", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 3", categoryName: "フォニックス（1文字）" },
+            { questionId: "q4", questionText: "問題 4", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 4", categoryName: "フォニックス（1文字）" },
+            { questionId: "q5", questionText: "問題 5", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 5", categoryName: "フォニックス（1文字）" },
+          ],
         },
       ])
     );
@@ -2262,7 +2268,13 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
           mode: "random",
           totalCount: 5,
           correctCount: 5,
-          entries: [],
+          entries: [
+            { questionId: "q1", questionText: "問題 1", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 1", categoryName: "フォニックス（1文字）" },
+            { questionId: "q2", questionText: "問題 2", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 2", categoryName: "フォニックス（1文字）" },
+            { questionId: "q3", questionText: "問題 3", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 3", categoryName: "フォニックス（1文字）" },
+            { questionId: "q4", questionText: "問題 4", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 4", categoryName: "フォニックス（1文字）" },
+            { questionId: "q5", questionText: "問題 5", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 5", categoryName: "フォニックス（1文字）" },
+          ],
         },
       ])
     );
@@ -2295,7 +2307,13 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
           mode: "random",
           totalCount: 5,
           correctCount: 4,
-          entries: [],
+          entries: [
+            { questionId: "q1", questionText: "問題 1", isCorrect: false, userAnswerIndex: 1, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 1", categoryName: "フォニックス（1文字）" },
+            { questionId: "q2", questionText: "問題 2", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 2", categoryName: "フォニックス（1文字）" },
+            { questionId: "q3", questionText: "問題 3", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 3", categoryName: "フォニックス（1文字）" },
+            { questionId: "q4", questionText: "問題 4", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 4", categoryName: "フォニックス（1文字）" },
+            { questionId: "q5", questionText: "問題 5", isCorrect: true, userAnswerIndex: 0, correctAnswerIndex: 0, choices: ["ア", "イ", "ウ", "エ"], explanation: "解説 5", categoryName: "フォニックス（1文字）" },
+          ],
         },
       ])
     );
