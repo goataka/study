@@ -305,9 +305,9 @@ describe("guideUrl — support/ 側の guide.md 存在チェック", () => {
 
     for (const qf of questionFiles) {
       if (!qf.guideUrl) continue;
-      // guideUrl は "../english/pronunciation/alphabet/guide" のような相対パス
-      // "../" を除いて support/ 配下のパスに変換し、拡張子がない場合のみ .md を付加する
-      const relativePath = qf.guideUrl.replace(/^\.\.\//, "");
+      // guideUrl は "./english/pronunciation/alphabet/guide" または "../english/pronunciation/alphabet/guide" のような相対パス
+      // "./" または "../" を除いて support/ 配下のパスに変換し、拡張子がない場合のみ .md を付加する
+      const relativePath = qf.guideUrl.replace(/^\.\.?\//, "");
       const withMd = relativePath.endsWith(".md") ? relativePath : `${relativePath}.md`;
       const guideMdPath = path.join(SUPPORT_DIR, withMd);
       if (!fs.existsSync(guideMdPath)) {
@@ -327,8 +327,8 @@ describe("guideUrl — support/ 側の guide.md 存在チェック", () => {
       if (!qf.parentCategoryGuideUrl) continue;
       // 絶対 URL（http/https）はファイル存在チェックをスキップ
       if (/^https?:\/\//i.test(qf.parentCategoryGuideUrl)) continue;
-      // parentCategoryGuideUrl は "../english/grammar/guide" のような相対パス
-      const relativePath = qf.parentCategoryGuideUrl.replace(/^\.\.\//, "");
+      // parentCategoryGuideUrl は "./english/grammar/guide" または "../english/grammar/guide" のような相対パス
+      const relativePath = qf.parentCategoryGuideUrl.replace(/^\.\.?\//, "");
       const withMd = relativePath.endsWith(".md") ? relativePath : `${relativePath}.md`;
       const guideMdPath = path.join(SUPPORT_DIR, withMd);
       if (!fs.existsSync(guideMdPath)) {
