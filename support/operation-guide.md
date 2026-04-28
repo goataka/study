@@ -197,8 +197,8 @@ permalink: /support/operation-guide/
 | 33 | ➖ 分数のひき算（通分あり） | 小学5年 | [解説](../../math/arithmetic/fractions-diff-sub/guide) | [確認](../../?subject=math&category=fractions-diff-sub) | 3/4 - 1/3 = 5/12 |
 | 34 | ✖️ 分数のかけ算 | 小学6年 | [解説](../../math/arithmetic/fractions-multiply/guide) | [確認](../../?subject=math&category=fractions-multiply) | 2/3 × 3/4 = 1/2 |
 | 35 | ➗ 分数のわり算 | 小学6年 | [解説](../../math/arithmetic/fractions-divide/guide) | [確認](../../?subject=math&category=fractions-divide) | 2/3 ÷ 4/5 = 5/6 |
-| 36 | ➕ 小数のたし算 | 小学5年 | [解説](../../math/arithmetic/decimals-addition/guide) | [確認](../../?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
-| 37 | ➖ 小数のひき算 | 小学5年 | [解説](../../math/arithmetic/decimals-subtraction/guide) | [確認](../../?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
+| 36 | ➕ 小数のたし算 | 小学4年 | [解説](../../math/arithmetic/decimals-addition/guide) | [確認](../../?subject=math&category=decimals-addition) | 1.2 + 3.4 = 4.6 |
+| 37 | ➖ 小数のひき算 | 小学4年 | [解説](../../math/arithmetic/decimals-subtraction/guide) | [確認](../../?subject=math&category=decimals-subtraction) | 5.3 - 2.1 = 3.2 |
 | 38 | ✖️ 小数のかけ算 | 小学5年 | [解説](../../math/arithmetic/decimals-multiplication/guide) | [確認](../../?subject=math&category=decimals-multiplication) | 0.3 × 0.4 = 0.12 |
 | 39 | ➗ 小数のわり算 | 小学5年 | [解説](../../math/arithmetic/decimals-division/guide) | [確認](../../?subject=math&category=decimals-division) | 1.2 ÷ 0.4 = 3 |
 | 40 | 📊 比 | 小学6年 | [解説](../../math/arithmetic/ratio/guide) | [確認](../../?subject=math&category=ratio) | 4:6 = 2:3 |
