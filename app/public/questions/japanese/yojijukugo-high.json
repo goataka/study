@@ -8,8 +8,8 @@
   "example": "千載一遇",
   "referenceGrade": "高校生",
   "description": "高校生向け四字熟語の意味と読み方を覚えます。",
-  "guideUrl": "../japanese/kanji/yojijukugo-high/guide",
-  "parentCategoryGuideUrl": "../japanese/vocabulary/guide",
+  "guideUrl": "./japanese/kanji/yojijukugo-high/guide",
+  "parentCategoryGuideUrl": "./japanese/vocabulary/guide",
   "questions": [
     {
       "id": "8170c674-eba4-52d8-abbc-43ce14aab89c",

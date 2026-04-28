@@ -75,6 +75,7 @@ permalink: /support/troubleshooting/
 
 ## 🔗 関連リンク
 
+- [サポートトップ](../) ─ サポートページのトップ
 - [スタートアップガイド](../startup-guide/) ─ 使い始め方と基本操作
 - [操作ガイド](../operation-guide/) ─ 画面構成と各機能
 - [技術リファレンス](../technical-reference/) ─ 問題データのJSON形式

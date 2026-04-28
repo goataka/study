@@ -51,6 +51,16 @@ header {
 header h1 {
     color: #0366d6;
     font-size: 30px;
+    flex-shrink: 0;
+}
+
+.header-today-date {
+    font-size: 16px;
+    color: #586069;
+    font-weight: 500;
+    margin-left: 16px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .title-btn {
@@ -161,8 +171,17 @@ header h1 {
 
 .category-panel-header {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 8px;
+    gap: 6px;
+}
+
+.category-list-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #24292e;
+    flex-shrink: 0;
 }
 
 .hide-learned-btn {
@@ -275,17 +294,17 @@ header h1 {
 }
 
 .category-grade-group-header {
-    font-size: 13px;
-    font-weight: 600;
-    padding: 4px 8px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 5px 8px;
     border-radius: 4px;
     cursor: pointer;
     user-select: none;
     display: flex;
     align-items: center;
     gap: 6px;
-    color: #24292e;
-    background: #eaecef;
+    color: #1a1e23;
+    background: #d1d5da;
 }
 
 .category-grade-group-header:hover {
@@ -551,11 +570,8 @@ header h1 {
 .category-item-inline-info {
     display: none;
     flex-direction: column;
-    align-items: flex-end;
     gap: 2px;
-    text-align: right;
     min-width: 0;
-    overflow: hidden;
 }
 
 .start-content-layout.category-only .category-item .category-item-inline-info {
@@ -788,11 +804,12 @@ header h1 {
     margin: 0 2px;
 }
 
-/* おすすめ単元パネルタイトル（総合タブ時に右列ヘッダーに表示） */
+/* おすすめ単元パネルタイトル（総合タブ時に左パネルヘッダーに表示） */
 .all-subject-panel-title {
     font-size: 14px;
     font-weight: 700;
     color: #0366d6;
+    flex-shrink: 0;
 }
 
 /* 日付ナビゲーション（左パネル上部・総合タブ専用） */
@@ -1835,17 +1852,15 @@ button:disabled {
     text-overflow: ellipsis;
     white-space: nowrap;
     background: none;
-    border: 1px solid transparent;
+    border: none;
     border-radius: 6px;
     padding: 4px 8px;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+    pointer-events: none;
 }
 
 .header-user-name:hover,
 .header-user-name:focus {
-    border-color: #d1d5da;
-    background: #f6f8fa;
     outline: none;
 }
 

@@ -8,8 +8,8 @@
   "example": "一石二鳥",
   "referenceGrade": "小学生",
   "description": "小学生向け四字熟語の意味と読み方を覚えます。",
-  "guideUrl": "../japanese/kanji/yojijukugo-elementary/guide",
-  "parentCategoryGuideUrl": "../japanese/vocabulary/guide",
+  "guideUrl": "./japanese/kanji/yojijukugo-elementary/guide",
+  "parentCategoryGuideUrl": "./japanese/vocabulary/guide",
   "questions": [
     {
       "id": "abdc7d63-8051-562e-83d7-b8240c33e254",

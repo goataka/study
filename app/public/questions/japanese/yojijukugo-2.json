@@ -8,8 +8,8 @@
   "example": "異口同音",
   "referenceGrade": "中学生",
   "description": "四字熟語の意味と使い方をさらに覚えます。",
-  "guideUrl": "../japanese/kanji/yojijukugo/guide",
-  "parentCategoryGuideUrl": "../japanese/vocabulary/guide",
+  "guideUrl": "./japanese/kanji/yojijukugo/guide",
+  "parentCategoryGuideUrl": "./japanese/vocabulary/guide",
   "questions": [
     {
       "id": "7bd8f5f5-c090-5da8-b68e-92b332dc978d",

@@ -11,8 +11,8 @@
   "questionType": "text-input",
   "referenceGrade": "小学1年",
   "description": "小学1年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
-  "guideUrl": "../japanese/kanji/kanji-grade1/guide",
-  "parentCategoryGuideUrl": "../japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "5a373e06-a35a-509b-bb36-13dd462a26b4",

@@ -8,8 +8,8 @@
   "example": "情けは人のためならず",
   "referenceGrade": "高校生",
   "description": "高校生向けことわざの意味と使い方を覚えます。",
-  "guideUrl": "../japanese/kanji/kotowaza-high/guide",
-  "parentCategoryGuideUrl": "../japanese/vocabulary/guide",
+  "guideUrl": "./japanese/kanji/kotowaza-high/guide",
+  "parentCategoryGuideUrl": "./japanese/vocabulary/guide",
   "questions": [
     {
       "id": "ca4b46ed-3112-5182-a884-599824cb61cd",

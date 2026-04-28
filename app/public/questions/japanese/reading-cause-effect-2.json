@@ -8,8 +8,8 @@
   "example": "だから・なぜなら",
   "referenceGrade": "中学生",
   "description": "文章中の因果関係（原因と結果）を表す接続語と読み取り方をさらに深く学びます。",
-  "guideUrl": "../japanese/reading/cause-effect/guide",
-  "parentCategoryGuideUrl": "../japanese/reading/guide",
+  "guideUrl": "./japanese/reading/cause-effect/guide",
+  "parentCategoryGuideUrl": "./japanese/reading/guide",
   "questions": [
     {
       "id": "b6eda3f9-6a72-5efe-94a6-3541e2a5d28b",

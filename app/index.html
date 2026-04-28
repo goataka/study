@@ -27,6 +27,7 @@
   <div class="container">
     <header>
       <h1 id="titleBtn" role="button" tabindex="0" class="title-btn" title="スタート画面へ戻る">学習アプリ</h1>
+      <span id="headerTodayDate" class="header-today-date"></span>
       <div class="header-right-area">
         <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
           <span class="font-size-icon" aria-hidden="true">A</span>
@@ -37,7 +38,7 @@
         <button id="downloadDataBtn" class="download-data-btn" type="button" title="データをダウンロードする" aria-label="データをダウンロードする">⬇️</button>
         <a id="supportBtn" class="support-btn" href="./support/" target="_blank" rel="noopener noreferrer" title="サポートページを開く" aria-label="サポートページを開く">?</a>
         <div class="header-user-area">
-          <button id="headerUserName" class="header-user-name" title="名前を変更する（クリック）" aria-label="名前を変更する"></button>
+          <button id="headerUserName" class="header-user-name" tabindex="-1" aria-hidden="true"></button>
           <div id="headerUserEdit" class="header-user-edit hidden">
             <input type="text" id="headerUserNameInput" class="header-user-name-input" maxlength="20" placeholder="名前を入力">
             <button id="headerUserNameSaveBtn" class="header-user-save-btn" aria-label="保存">✓</button>
@@ -56,8 +57,9 @@
         <!-- カテゴリリスト -->
         <div class="category-panel">
           <div class="category-panel-header">
+            <span id="categoryListTitle" class="category-list-title">📚 単元一覧</span>
             <button id="hideLearnedBtn" class="hide-learned-btn" type="button" aria-pressed="true" aria-label="学習済カテゴリを非表示">✅ 学習済を表示</button>
-            <span id="allSubjectPanelTitle" class="all-subject-panel-title hidden">📌 おすすめ単元</span>
+            <span id="allSubjectPanelTitle" class="all-subject-panel-title hidden">✨ おすすめ単元</span>
           </div>
           <!-- 総合タブの日付ナビゲーション（おすすめ単元の上） -->
           <div id="overallDateNav" class="activity-date-nav hidden">
