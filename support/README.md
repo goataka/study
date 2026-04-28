@@ -8,7 +8,7 @@ permalink: /support/
 
 ![学習アプリ スクリーンショット](../images/quiz-app-screenshot.png)
 
-- [学習アプリ](../app/) ─ ランダム10問の4択クイズ形式で学習できます
+- [学習アプリ](../) ─ ランダム10問の4択クイズ形式で学習できます
 
 ## 📖 ガイド
 
@@ -25,6 +25,6 @@ permalink: /support/
 
 | 科目 | 解説・一覧 | クイズ |
 |------|-----------|--------|
-| 英語ドリル | [解説・一覧](operation-guide#英語) | [英語のクイズ](../app/?subject=english) |
-| 数学ドリル | [解説・一覧](operation-guide#数学) | [数学のクイズ](../app/?subject=math) |
-| 国語ドリル | [解説・一覧](operation-guide#国語) | [国語のクイズ](../app/?subject=japanese) |
+| 英語ドリル | [解説・一覧](operation-guide#英語) | [英語のクイズ](../?subject=english) |
+| 数学ドリル | [解説・一覧](operation-guide#数学) | [数学のクイズ](../?subject=math) |
+| 国語ドリル | [解説・一覧](operation-guide#国語) | [国語のクイズ](../?subject=japanese) |

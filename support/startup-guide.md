@@ -10,7 +10,7 @@ permalink: /support/startup-guide/
 
 ### ステップ1：アプリを開く
 
-[学習アプリ](../../app/) にアクセスします。
+[学習アプリ](../../) にアクセスします。
 
 ![学習アプリ スクリーンショット](../../images/quiz-app-screenshot.png)
 
