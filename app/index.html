@@ -34,8 +34,8 @@
           <button class="font-size-btn" data-size="medium" aria-pressed="false" title="文字サイズ：中">中</button>
           <button class="font-size-btn" data-size="large" aria-pressed="false" title="文字サイズ：大">大</button>
         </div>
-        <a id="supportBtn" class="support-btn" href="./support/" target="_blank" rel="noopener noreferrer" title="サポート（学習ドリル）を別タブで開く" aria-label="サポートを開く">?</a>
-        <button id="downloadDataBtn" class="download-data-btn" type="button" title="データをJSONでダウンロード" aria-label="データをJSONでダウンロード">⬇️ データ保存</button>
+        <button id="downloadDataBtn" class="download-data-btn" type="button" title="データをダウンロードする" aria-label="データをダウンロードする">⬇️</button>
+        <a id="supportBtn" class="support-btn" href="./support/" target="_blank" rel="noopener noreferrer" title="サポートページを開く" aria-label="サポートページを開く">?</a>
         <div class="header-user-area">
           <button id="headerUserName" class="header-user-name" title="名前を変更する（クリック）" aria-label="名前を変更する"></button>
           <div id="headerUserEdit" class="header-user-edit hidden">
@@ -61,9 +61,7 @@
           </div>
           <!-- 総合タブの日付ナビゲーション（おすすめ単元の上） -->
           <div id="overallDateNav" class="activity-date-nav hidden">
-            <input type="date" id="activityDatePicker" class="activity-date-picker" aria-label="日付を選択">
-            <button id="prevDateBtn" class="activity-date-nav-btn" type="button" aria-label="前の日へ">←</button>
-            <button id="nextDateBtn" class="activity-date-nav-btn" type="button" aria-label="次の日へ">→</button>
+            <span id="activityDateDisplay" class="activity-date-display"></span>
           </div>
           <div id="categoryControls" class="category-controls"></div>
           <div id="categoryList" class="category-list"></div>
@@ -120,9 +118,19 @@
             <!-- タブバー（総合タブ専用） -->
             <div class="panel-tabs overall-panel-tabs" role="tablist" aria-label="概要パネル切り替え">
               <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習済み</button>
+              <button class="panel-tab" id="overallTab-share" data-overall-panel="share" role="tab" type="button" aria-selected="false">📤 シェア</button>
             </div>
             <!-- 学習済み活動パネル -->
             <div id="overallLearnedPanel" class="overall-activity-panel">
+              <!-- 活動日付表示 -->
+              <div class="overall-activity-date-row">
+                <span id="overallActivityDateLabel" class="overall-activity-date"></span>
+              </div>
+              <!-- 活動一覧（履歴形式） -->
+              <div id="todayActivityContent" class="history-list overall-today-list"></div>
+            </div>
+            <!-- シェアパネル -->
+            <div id="overallSharePanel" class="overall-activity-panel hidden">
               <!-- 活動サマリ（SNS共有用） -->
               <div id="shareSummaryText" class="share-summary-text"></div>
               <div class="share-actions-row">
@@ -136,8 +144,6 @@
                   </div>
                 </div>
               </div>
-              <!-- 活動一覧（履歴形式） -->
-              <div id="todayActivityContent" class="history-list overall-today-list"></div>
             </div>
           </div>
         </div>
