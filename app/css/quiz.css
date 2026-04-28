@@ -594,7 +594,7 @@ header h1 {
 
 /* 説明・例文インラインコンテナ（category-item-right に置き換え済み - 後方互換のため保持） */
 .category-item-inline-info {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 2px;
     min-width: 0;
