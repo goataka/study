@@ -244,20 +244,15 @@ permalink: /support/operation-guide/
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
 | 09 | ことわざ（小学生） | 小学生 | [解説](../../japanese/kanji/kotowaza-elementary/guide) | [確認](../../?subject=japanese&category=kotowaza-elementary) | 七転び八起き |
-| 10 | ことわざ（中学生） | 中学生 | [解説](../../japanese/kanji/kotowaza-secondary/guide) | [確認](../../?subject=japanese&category=kotowaza-secondary) | 二兎を追う者は一兎をも得ず |
-| 11 | ことわざ（高校生） | 高校生 | [解説](../../japanese/kanji/kotowaza-high/guide) | [確認](../../?subject=japanese&category=kotowaza-high) | 三人寄れば文殊の知恵 |
-| 12 | 四字熟語（小学生） | 小学生 | [解説](../../japanese/kanji/yojijukugo-elementary/guide) | [確認](../../?subject=japanese&category=yojijukugo-elementary) | 一石二鳥 |
-| 13 | 四字熟語（中学生） | 中学生 | [解説](../../japanese/kanji/yojijukugo-secondary/guide) | [確認](../../?subject=japanese&category=yojijukugo-secondary) | 四面楚歌 |
-| 14 | 四字熟語（高校生） | 高校生 | [解説](../../japanese/kanji/yojijukugo-high/guide) | [確認](../../?subject=japanese&category=yojijukugo-high) | 千載一遇 |
-
-#### 📝 語彙
-
-| # | 内容 | 参考学年 | 解説 | 確認 | 例 |
-|---|------|----------|------|--------|-----|
-| 15 | ことわざ その１ | 中学生 | [解説](../../japanese/kanji/kotowaza/guide) | [確認](../../?subject=japanese&category=kotowaza) | 七転び八起き |
-| 16 | ことわざ その２ | 中学生 | [解説](../../japanese/kanji/kotowaza/guide) | [確認](../../?subject=japanese&category=kotowaza-2) | 三人寄れば文殊の知恵 |
-| 17 | 四字熟語 その１ | 中学生 | [解説](../../japanese/kanji/yojijukugo/guide) | [確認](../../?subject=japanese&category=yojijukugo) | 一石二鳥 |
-| 18 | 四字熟語 その２ | 中学生 | [解説](../../japanese/kanji/yojijukugo/guide) | [確認](../../?subject=japanese&category=yojijukugo-2) | 異口同音 |
+| 10 | ことわざ（中学生）その１ | 中学生 | [解説](../../japanese/kanji/kotowaza-secondary/guide) | [確認](../../?subject=japanese&category=kotowaza-secondary) | 二兎を追う者は一兎をも得ず |
+| 11 | ことわざ（中学生）その２ | 中学生 | [解説](../../japanese/kanji/kotowaza/guide) | [確認](../../?subject=japanese&category=kotowaza) | 七転び八起き |
+| 12 | ことわざ（中学生）その３ | 中学生 | [解説](../../japanese/kanji/kotowaza/guide) | [確認](../../?subject=japanese&category=kotowaza-2) | 三人寄れば文殊の知恵 |
+| 13 | ことわざ（高校生） | 高校生 | [解説](../../japanese/kanji/kotowaza-high/guide) | [確認](../../?subject=japanese&category=kotowaza-high) | 三人寄れば文殊の知恵 |
+| 14 | 四字熟語（小学生） | 小学生 | [解説](../../japanese/kanji/yojijukugo-elementary/guide) | [確認](../../?subject=japanese&category=yojijukugo-elementary) | 一石二鳥 |
+| 15 | 四字熟語（中学生）その１ | 中学生 | [解説](../../japanese/kanji/yojijukugo-secondary/guide) | [確認](../../?subject=japanese&category=yojijukugo-secondary) | 四面楚歌 |
+| 16 | 四字熟語（中学生）その２ | 中学生 | [解説](../../japanese/kanji/yojijukugo/guide) | [確認](../../?subject=japanese&category=yojijukugo) | 一石二鳥 |
+| 17 | 四字熟語（中学生）その３ | 中学生 | [解説](../../japanese/kanji/yojijukugo/guide) | [確認](../../?subject=japanese&category=yojijukugo-2) | 異口同音 |
+| 18 | 四字熟語（高校生） | 高校生 | [解説](../../japanese/kanji/yojijukugo-high/guide) | [確認](../../?subject=japanese&category=yojijukugo-high) | 千載一遇 |
 
 #### 📖 読解
 
