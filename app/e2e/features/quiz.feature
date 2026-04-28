@@ -22,9 +22,9 @@ Feature: 学習アプリ
     Then the start screen should be visible
     And the overall summary panel should be visible
 
-  Scenario: 総合タブの活動サマリには学習サマリが含まれる
+  Scenario: 総合タブの活動サマリには日付が含まれる
     Then the start screen should be visible
-    And the share summary text should contain "学習サマリ"
+    And the share summary text should contain "📅"
 
   Scenario: 単元を選択するとクイズパネルが表示される
     When I click the "英語" tab
