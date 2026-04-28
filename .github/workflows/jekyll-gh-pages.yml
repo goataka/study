@@ -1,4 +1,5 @@
 # Jekyllサイト（support/）とViteアプリ（app/）をGitHub Pagesにデプロイするワークフロー
+# アプリはサイトのトップ（/）に配置し、サポートコンテンツは /support/ 以下に配置する
 name: Deploy to GitHub Pages
 
 on:
@@ -49,8 +50,7 @@ jobs:
       - name: アプリビルドをサイトにコピー
         working-directory: ${{ github.workspace }}
         run: |
-          sudo mkdir -p _site/app
-          sudo cp -r app/dist/. _site/app/
+          sudo cp -r app/dist/. _site/
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v3
@@ -96,7 +96,7 @@ jobs:
 
       - name: 本番サイトの準備完了を確認
         env:
-          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}app/
+          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: |
           echo "Waiting for production site to be ready at ${PLAYWRIGHT_BASE_URL}"
           for i in $(seq 1 12); do
@@ -113,6 +113,6 @@ jobs:
 
       - name: 本番環境E2Eテスト実行
         env:
-          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}app/
+          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: npm run test:e2e
 
