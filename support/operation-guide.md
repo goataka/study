@@ -62,4 +62,3 @@ permalink: /support/operation-guide/
 - [スタートアップガイド](../startup-guide/) ─ 使い始め方と基本操作
 - [技術リファレンス](../technical-reference/) ─ 問題データのJSON形式
 - [トラブルシューティング](../troubleshooting/) ─ よくある質問
-
