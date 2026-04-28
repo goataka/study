@@ -725,6 +725,20 @@ header h1 {
     background: #e8f8f0;
 }
 
+/* おすすめ単元数切替コントロール（教科別、subject-overview-subject-row 内） */
+.subject-rec-count-controls {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: auto;
+}
+
+.subject-rec-count-label {
+    font-size: 11px;
+    color: #586069;
+    margin-right: 2px;
+}
+
 /* おすすめ単元数切替コントロール（総合タブ専用） */
 .overall-rec-count-label {
     font-size: 12px;
@@ -754,6 +768,26 @@ header h1 {
     color: white;
 }
 
+/* カテゴリグループ（おすすめ単元、同一親カテゴリのまとめ） */
+.subject-overview-cat-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 2px;
+}
+
+/* カテゴリグループのヘッダー（トップカテゴリ › 親カテゴリ） */
+.subject-overview-cat-header {
+    font-size: 11px;
+    color: #586069;
+    padding: 0 2px 1px 2px;
+}
+
+.subject-overview-cat-header-arrow {
+    color: #a0a0a0;
+    margin: 0 2px;
+}
+
 /* おすすめ単元パネルタイトル（総合タブ時に右列ヘッダーに表示） */
 .all-subject-panel-title {
     font-size: 14px;
@@ -770,36 +804,10 @@ header h1 {
     padding: 4px 8px 4px 8px;
 }
 
-.activity-date-nav-btn {
-    padding: 3px 8px;
-    font-size: 14px;
-    border: 1px solid #d1d5da;
-    border-radius: 4px;
-    background: white;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
-    line-height: 1;
-}
-
-.activity-date-nav-btn:hover:not(:disabled) {
-    background: #e8f0fe;
-    border-color: #0366d6;
-}
-
-.activity-date-nav-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-.activity-date-picker {
-    flex: 1;
-    min-width: 0;
-    padding: 3px 6px;
-    font-size: 18px;
-    border: 1px solid #d1d5da;
-    border-radius: 4px;
-    background: white;
-    color: #24292e;
+.activity-date-display {
+    font-size: 13px;
+    color: #586069;
+    font-weight: 500;
 }
 
 /* 総合タブ専用サマリパネル */
@@ -829,6 +837,17 @@ header h1 {
     padding: 12px 16px;
     gap: 8px;
     min-height: 0;
+}
+
+/* 活動日付行 */
+.overall-activity-date-row {
+    flex-shrink: 0;
+}
+
+.overall-activity-date {
+    font-size: 13px;
+    font-weight: 600;
+    color: #24292e;
 }
 
 .today-activity-empty {
@@ -968,13 +987,8 @@ header h1 {
     color: white;
 }
 
-/* 総合タブ時のレイアウト: おすすめ単元（左）と活動サマリ（右）を等幅で表示 */
+/* 総合タブ時のレイアウト: おすすめ単元（左）と活動サマリ（右）を通常レイアウトと同じ比率で表示 */
 .start-content-layout.all-subject-layout {
-    grid-template-columns: 1fr 1fr;
-}
-
-/* 総合タブで単元選択時: おすすめ単元（左）と解説パネル（右）を1:2で表示 */
-.start-content-layout.all-subject-layout.all-subject-unit-selected {
     grid-template-columns: 1fr 2fr;
 }
 
@@ -2768,9 +2782,8 @@ body.font-size-medium .subject-overview-grade {
     font-size: 15px;
 }
 
-body.font-size-medium .activity-date-nav-btn,
-body.font-size-medium .activity-date-picker {
-    font-size: 20px;
+body.font-size-medium .activity-date-display {
+    font-size: 16px;
 }
 
 body.font-size-medium .share-summary-text {
@@ -3020,9 +3033,8 @@ body.font-size-large .subject-overview-pct {
     font-size: 17px;
 }
 
-body.font-size-large .activity-date-nav-btn,
-body.font-size-large .activity-date-picker {
-    font-size: 22px;
+body.font-size-large .activity-date-display {
+    font-size: 18px;
 }
 
 body.font-size-large .share-summary-text {

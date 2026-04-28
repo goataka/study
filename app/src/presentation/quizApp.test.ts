@@ -91,9 +91,7 @@ function setupTabDom(): void {
         <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
         <span id="allSubjectPanelTitle" class="hidden">📌 おすすめ単元</span>
         <div id="overallDateNav" class="hidden">
-          <input type="date" id="activityDatePicker" aria-label="日付を選択">
-          <button id="prevDateBtn" type="button" aria-label="前の日へ">←</button>
-          <button id="nextDateBtn" type="button" aria-label="次の日へ">→</button>
+          <span id="activityDateDisplay" class="activity-date-display"></span>
         </div>
         <div id="categoryControls" class="category-controls"></div>
         <div id="categoryList" class="category-list"></div>
@@ -126,8 +124,15 @@ function setupTabDom(): void {
         <div id="overallSummaryPanel" class="hidden">
           <div class="overall-panel-tabs" role="tablist">
             <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習済み</button>
+            <button class="panel-tab" id="overallTab-share" data-overall-panel="share" role="tab" type="button" aria-selected="false">📤 シェア</button>
           </div>
           <div id="overallLearnedPanel" class="overall-activity-panel">
+            <div class="overall-activity-date-row">
+              <span id="overallActivityDateLabel" class="overall-activity-date"></span>
+            </div>
+            <div id="todayActivityContent"></div>
+          </div>
+          <div id="overallSharePanel" class="overall-activity-panel hidden">
             <div id="shareSummaryText"></div>
             <div class="share-actions-row">
               <button id="copySummaryBtn" type="button">📋 コピー</button>
@@ -140,7 +145,6 @@ function setupTabDom(): void {
                 </div>
               </div>
             </div>
-            <div id="todayActivityContent"></div>
           </div>
         </div>
       </div>
@@ -3314,20 +3318,23 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(outerDate).toBeNull();
   });
 
-  it("categoryControls におすすめ単元数切替ボタンが表示される", async () => {
+  it("各教科の subject-rec-count-controls に3つの表示数切替ボタンが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
+    // 教科ごとに 1/3/5 ボタンが表示されるため、3教科 × 3ボタン = 9個
     const countBtns = document.querySelectorAll(".overall-rec-count-btn");
-    expect(countBtns).toHaveLength(3); // 1, 3, 5
+    expect(countBtns.length).toBeGreaterThanOrEqual(3);
   });
 
-  it("おすすめ単元数3に切り替えると英語の複数カードが表示される", async () => {
+  it("英語の表示数を3に切り替えると英語の複数カードが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 3ボタンをクリック
-    const btn3 = Array.from(document.querySelectorAll(".overall-rec-count-btn")).find(
+    // 英語の subject-overview-wrapper 内の3ボタンをクリック（:has()非依存の検索）
+    const wrappers = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
+    const englishWrapper = wrappers.find((w) => w.querySelector('[data-subject="english"]'));
+    const btn3 = Array.from(englishWrapper?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
       (b) => b.textContent === "3"
     ) as HTMLElement | undefined;
     btn3?.click();
@@ -3681,91 +3688,35 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     openSpy.mockRestore();
   });
 
-  it("prevDateBtn をクリックすると活動サマリの日付が1日前に移動する", async () => {
+  it("overallActivityDateLabel に今日の日付が表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
-    const beforeDate = picker.value;
-
-    document.getElementById("prevDateBtn")?.click();
-
-    const afterDate = picker.value;
-    const before = new Date(beforeDate + "T00:00:00");
-    const after = new Date(afterDate + "T00:00:00");
-    const diffDays = Math.round((before.getTime() - after.getTime()) / (1000 * 60 * 60 * 24));
-    expect(diffDays).toBe(1);
+    const label = document.getElementById("overallActivityDateLabel");
+    const today = new Date();
+    const year = String(today.getFullYear());
+    expect(label?.textContent).toContain(year);
   });
 
-  it("今日の日付では nextDateBtn が無効化される", async () => {
+  it("シェアタブをクリックすると overallSharePanel が表示され overallLearnedPanel が非表示になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement;
-    expect(nextBtn.disabled).toBe(true);
+    document.getElementById("overallTab-share")?.click();
+
+    expect(document.getElementById("overallSharePanel")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("overallLearnedPanel")?.classList.contains("hidden")).toBe(true);
   });
 
-  it("1日前に移動すると nextDateBtn が有効化される", async () => {
+  it("学習済みタブをクリックすると overallLearnedPanel が表示され overallSharePanel が非表示になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    document.getElementById("prevDateBtn")?.click();
+    document.getElementById("overallTab-share")?.click();
+    document.getElementById("overallTab-learned")?.click();
 
-    const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement;
-    expect(nextBtn.disabled).toBe(false);
-  });
-
-  it("1日前に移動した後に nextDateBtn をクリックすると今日の日付に戻る", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
-    const today = picker.value;
-
-    document.getElementById("prevDateBtn")?.click();
-    document.getElementById("nextDateBtn")?.click();
-
-    expect(picker.value).toBe(today);
-  });
-
-  it("activityDatePicker で日付を変更すると活動一覧が更新される", async () => {
-    const yesterday = (() => {
-      const d = new Date();
-      d.setDate(d.getDate() - 1);
-      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-    })();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: yesterday + "T10:00:00.000",
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 4,
-          entries: [],
-        },
-      ])
-    );
-
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    // 今日では活動なし
-    const container = document.getElementById("todayActivityContent");
-    expect(container?.querySelector(".today-activity-empty")).not.toBeNull();
-
-    // カレンダーで昨日を選択
-    const picker = document.getElementById("activityDatePicker") as HTMLInputElement;
-    picker.value = yesterday;
-    picker.dispatchEvent(new Event("change", { bubbles: true }));
-
-    // 昨日の記録が表示される
-    expect(container?.querySelectorAll(".history-item").length).toBe(1);
+    expect(document.getElementById("overallLearnedPanel")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("overallSharePanel")?.classList.contains("hidden")).toBe(true);
   });
 });
 

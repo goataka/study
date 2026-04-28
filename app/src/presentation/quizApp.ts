@@ -63,12 +63,14 @@ export class QuizApp {
   private fontSizeLevel: "small" | "medium" | "large" = "small";
   /** 総合タブの活動サマリ共有 URL */
   private shareUrl: string = "";
-  /** 活動サマリで表示する日付（YYYY-MM-DD 形式） */
+  /** 活動サマリで表示する日付（YYYY-MM-DD 形式）: 常に今日の日付 */
   private selectedActivityDate: string = QuizApp.currentDateString();
   /** 総合タブから単元を選択した場合の選択情報（null の場合は未選択） */
   private overallUnitSelected: { subject: string; categoryId: string; categoryName: string } | null = null;
-  /** 総合タブで各教科に表示するおすすめ単元数 */
-  private overallRecommendedCount: number = 1;
+  /** 総合タブで各教科ごとに表示するおすすめ単元数 */
+  private subjectRecommendedCounts: Map<string, number> = new Map();
+  /** 総合タブの現在アクティブなサマリパネル */
+  private activeOverallPanel: "learned" | "share" = "learned";
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -96,7 +98,7 @@ export class QuizApp {
     this.setupEventListeners();
     this.buildSubjectTabs();
     this.buildPanelTabs();
-    this.setupActivityDateNavigation();
+    this.setupOverallPanelTabs();
     this.updateSubjectStats();
     this.selectFirstUnlearnedCategory();
     const initRecords = this.useCase.getHistory();
@@ -362,10 +364,11 @@ export class QuizApp {
   }
 
   /**
-   * インナーパネルタブ（クイズモード選択 / 解説 / 履歴 / 問題一覧）を初期化する
+   * インナーパネルタブ（クイズモード選択 / 解説 / 履歴 / 問題一覧）を初期化する。
+   * data-panel 属性を持つタブのみを対象とし、総合タブ専用の data-overall-panel タブは除外する。
    */
   private buildPanelTabs(): void {
-    document.querySelectorAll<HTMLElement>(".panel-tab").forEach((tab) => {
+    document.querySelectorAll<HTMLElement>(".panel-tab[data-panel]").forEach((tab) => {
       tab.addEventListener("click", () => {
         const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
         this.activePanelTab = panel;
@@ -378,6 +381,19 @@ export class QuizApp {
         } else if (panel === "questions") {
           this.renderQuestionList();
         }
+      });
+    });
+  }
+
+  /**
+   * 総合タブ専用のサマリパネルタブ（学習済み / シェア）を初期化する。
+   */
+  private setupOverallPanelTabs(): void {
+    document.querySelectorAll<HTMLElement>(".panel-tab[data-overall-panel]").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const panel = tab.dataset.overallPanel as "learned" | "share";
+        this.activeOverallPanel = panel;
+        this.showOverallPanel(panel);
       });
     });
   }
@@ -708,8 +724,7 @@ export class QuizApp {
 
     const subject = this.filter.subject;
     if (subject === "all") {
-      // 総合タブ: おすすめ単元数切替ボタンを表示する
-      this.renderOverallRecommendedCountControls(controlsEl);
+      // 総合タブ: 表示数コントロールは各教科ごとに renderAllSubjectList 内で描画するため不要
       return;
     }
 
@@ -787,33 +802,6 @@ export class QuizApp {
         this.renderCategoryList();
       });
       controlsEl.appendChild(btn);
-    }
-  }
-
-  /**
-   * 総合タブ専用：おすすめ単元数切替ボタンを描画する。
-   */
-  private renderOverallRecommendedCountControls(container: HTMLElement): void {
-    const label = document.createElement("span");
-    label.className = "overall-rec-count-label";
-    label.textContent = "表示数:";
-    container.appendChild(label);
-
-    const counts = [1, 3, 5];
-    for (const n of counts) {
-      const btn = document.createElement("button");
-      btn.className = "overall-rec-count-btn";
-      btn.type = "button";
-      btn.textContent = String(n);
-      btn.setAttribute("aria-pressed", String(this.overallRecommendedCount === n));
-      if (this.overallRecommendedCount === n) {
-        btn.classList.add("active");
-      }
-      btn.addEventListener("click", () => {
-        this.overallRecommendedCount = n;
-        this.renderCategoryList();
-      });
-      container.appendChild(btn);
     }
   }
 
@@ -909,46 +897,6 @@ export class QuizApp {
   }
 
   /**
-   * 総合タブの日付ナビゲーション（前/次ボタンとカレンダー）を初期化する。
-   */
-  private setupActivityDateNavigation(): void {
-    // カレンダーの初期値と最大値を設定
-    this.syncDatePicker();
-
-    this.on("prevDateBtn", "click", () => {
-      const d = this.parseActivityDate();
-      d.setDate(d.getDate() - 1);
-      this.selectedActivityDate = QuizApp.formatDate(d);
-      this.syncDatePicker();
-      const records = this.useCase.getHistory();
-      this.renderOverallSummaryPanel(records);
-    });
-
-    this.on("nextDateBtn", "click", () => {
-      const d = this.parseActivityDate();
-      d.setDate(d.getDate() + 1);
-      const next = QuizApp.formatDate(d);
-      if (next <= QuizApp.currentDateString()) {
-        this.selectedActivityDate = next;
-        this.syncDatePicker();
-        const records = this.useCase.getHistory();
-        this.renderOverallSummaryPanel(records);
-      }
-    });
-
-    const picker = document.getElementById("activityDatePicker") as HTMLInputElement | null;
-    picker?.addEventListener("change", () => {
-      const val = picker.value;
-      if (val && val <= QuizApp.currentDateString()) {
-        this.selectedActivityDate = val;
-        this.syncDatePicker();
-        const records = this.useCase.getHistory();
-        this.renderOverallSummaryPanel(records);
-      }
-    });
-  }
-
-  /**
    * selectedActivityDate を Date オブジェクトとして返す。
    */
   private parseActivityDate(): Date {
@@ -970,24 +918,9 @@ export class QuizApp {
   }
 
   /**
-   * カレンダーの値と次へボタンの disabled 状態を selectedActivityDate に同期する。
-   */
-  private syncDatePicker(): void {
-    const currentDate = QuizApp.currentDateString();
-    const picker = document.getElementById("activityDatePicker") as HTMLInputElement | null;
-    if (picker) {
-      picker.value = this.selectedActivityDate;
-      picker.max = currentDate;
-    }
-    const nextBtn = document.getElementById("nextDateBtn") as HTMLButtonElement | null;
-    if (nextBtn) {
-      nextBtn.disabled = this.selectedActivityDate >= currentDate;
-    }
-  }
-
-  /**
    * 「総合」タブ用の教科一覧を描画する。
    * 各教科カードに推奨の単元・学年・進捗率を表示し、クリックで解説パネルを表示する。
+   * 同一カテゴリの単元はまとめて表示し、トップカテゴリ・親カテゴリも合わせて表示する。
    */
   private renderAllSubjectList(): void {
     const categoryList = document.getElementById("categoryList");
@@ -998,13 +931,14 @@ export class QuizApp {
     const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all");
 
     for (const subject of nonAllSubjects) {
-      const recommendedList = this.useCase.getRecommendedCategoriesForSubject(subject.id, this.overallRecommendedCount);
+      const count = this.subjectRecommendedCounts.get(subject.id) ?? 1;
+      const recommendedList = this.useCase.getRecommendedCategoriesForSubject(subject.id, count);
 
-      // ラッパー（枠外情報 + カード）
+      // ラッパー
       const wrapper = document.createElement("div");
       wrapper.className = "subject-overview-wrapper";
 
-      // 教科名行（枠外）: アイコンと名称を別要素で表示
+      // 教科名行: アイコン・名称と教科ごとの表示数コントロール
       const subjectRow = document.createElement("div");
       subjectRow.className = "subject-overview-subject-row";
       const iconSpan = document.createElement("span");
@@ -1015,6 +949,29 @@ export class QuizApp {
       nameSpan.textContent = subject.name;
       subjectRow.appendChild(iconSpan);
       subjectRow.appendChild(nameSpan);
+
+      // 教科ごとの表示数コントロール（1 / 3 / 5）
+      const countControls = document.createElement("div");
+      countControls.className = "subject-rec-count-controls";
+      const countLabel = document.createElement("span");
+      countLabel.className = "subject-rec-count-label";
+      countLabel.textContent = "表示数:";
+      countControls.appendChild(countLabel);
+      for (const n of [1, 3, 5]) {
+        const btn = document.createElement("button");
+        btn.className = "overall-rec-count-btn";
+        btn.type = "button";
+        btn.textContent = String(n);
+        btn.setAttribute("aria-pressed", String(count === n));
+        if (count === n) btn.classList.add("active");
+        const capturedSubjectId = subject.id;
+        btn.addEventListener("click", () => {
+          this.subjectRecommendedCounts.set(capturedSubjectId, n);
+          this.renderCategoryList();
+        });
+        countControls.appendChild(btn);
+      }
+      subjectRow.appendChild(countControls);
       wrapper.appendChild(subjectRow);
 
       if (recommendedList.length === 0) {
@@ -1028,79 +985,117 @@ export class QuizApp {
         continue;
       }
 
-      // おすすめ単元ごとにカードを生成する
+      // 同一親カテゴリでグループ化する
+      // key: "topCatId::parentCatId" （どちらかが空の場合は空文字）
+      type CatGroupKey = string;
+      const groupOrder: CatGroupKey[] = [];
+      const groupMap = new Map<CatGroupKey, {
+        topCatId: string; topCatName: string;
+        parentCatId: string; parentCatName: string;
+        items: typeof recommendedList;
+      }>();
+
       for (const recommended of recommendedList) {
-        // 枠外情報行（カテゴリ名）
-        const outerInfo = document.createElement("div");
-        outerInfo.className = "subject-overview-outer-info";
-
         const parentCat = this.useCase.getParentCategoryForUnit(subject.id, recommended.id);
-        if (parentCat) {
-          const catSpan = document.createElement("span");
-          catSpan.className = "subject-overview-outer-cat";
-          catSpan.textContent = parentCat.name;
-          outerInfo.appendChild(catSpan);
+        const topCat = this.useCase.getTopCategoryForUnit(subject.id, recommended.id);
+        const topCatId = topCat?.id ?? "";
+        const topCatName = topCat?.name ?? "";
+        const parentCatId = parentCat?.id ?? "";
+        const parentCatName = parentCat?.name ?? "";
+        const key: CatGroupKey = `${topCatId}::${parentCatId}`;
+        if (!groupMap.has(key)) {
+          groupMap.set(key, { topCatId, topCatName, parentCatId, parentCatName, items: [] });
+          groupOrder.push(key);
         }
-        wrapper.appendChild(outerInfo);
+        groupMap.get(key)!.items.push(recommended);
+      }
 
-        // カード（クリック可能）: 推奨単元を表示
-        const item = document.createElement("div");
-        item.className = "subject-overview-item";
-        item.setAttribute("role", "button");
-        item.setAttribute("tabindex", "0");
-        item.dataset.subject = subject.id;
+      // グループごとにヘッダーとカードを描画する
+      for (const key of groupOrder) {
+        const group = groupMap.get(key)!;
+        const catGroup = document.createElement("div");
+        catGroup.className = "subject-overview-cat-group";
 
-        // 推奨単元名・学年・進捗率
-        const recDiv = document.createElement("div");
-        recDiv.className = "subject-overview-recommended";
-
-        const recName = document.createElement("span");
-        recName.className = "subject-overview-rec-name";
-        recName.textContent = recommended.name;
-        recDiv.appendChild(recName);
-
-        if (recommended.referenceGrade) {
-          const gradeSpan = document.createElement("span");
-          gradeSpan.className = "subject-overview-grade";
-          const gradeClassName = gradeColorClass(recommended.referenceGrade);
-          if (gradeClassName) {
-            gradeSpan.classList.add(gradeClassName);
+        // カテゴリヘッダー（topCat › parentCat, もしくは parentCat のみ）
+        if (group.parentCatId) {
+          const catHeader = document.createElement("div");
+          catHeader.className = "subject-overview-cat-header";
+          if (group.topCatId && group.topCatId !== group.parentCatId) {
+            const topSpan = document.createElement("span");
+            topSpan.textContent = group.topCatName;
+            catHeader.appendChild(topSpan);
+            const arrow = document.createElement("span");
+            arrow.className = "subject-overview-cat-header-arrow";
+            arrow.textContent = " › ";
+            catHeader.appendChild(arrow);
           }
-          gradeSpan.textContent = recommended.referenceGrade;
-          recDiv.appendChild(gradeSpan);
+          const parentSpan = document.createElement("span");
+          parentSpan.className = "subject-overview-outer-cat";
+          parentSpan.textContent = group.parentCatName;
+          catHeader.appendChild(parentSpan);
+          catGroup.appendChild(catHeader);
         }
 
-        // 進捗率（各教科の単元一覧の縮小時に合わせた表示）
-        const pct = this.useCase.getCategoryProgressPct(subject.id, recommended.id);
-        const pctSpan = document.createElement("span");
-        pctSpan.className = "subject-overview-pct";
-        if (pct === 100) {
-          pctSpan.classList.add("progress-fill-done");
-        }
-        pctSpan.textContent = `${pct}%`;
-        recDiv.appendChild(pctSpan);
+        // グループ内の各単元カード
+        for (const recommended of group.items) {
+          const item = document.createElement("div");
+          item.className = "subject-overview-item";
+          item.setAttribute("role", "button");
+          item.setAttribute("tabindex", "0");
+          item.dataset.subject = subject.id;
 
-        item.appendChild(recDiv);
+          const recDiv = document.createElement("div");
+          recDiv.className = "subject-overview-recommended";
 
-        // クリックで教科タブに遷移せず、総合のまま解説パネルを表示する
-        // ループ変数をクロージャでキャプチャするための定数
-        const capturedRec = recommended;
-        const handleActivate = (): void => {
-          this.overallUnitSelected = { subject: subject.id, categoryId: capturedRec.id, categoryName: capturedRec.name };
-          this.isPanelTabUserSelected = false;
-          const overviewRecords = this.useCase.getHistory();
-          this.updateStartScreen(overviewRecords);
-        };
+          const recName = document.createElement("span");
+          recName.className = "subject-overview-rec-name";
+          recName.textContent = recommended.name;
+          recDiv.appendChild(recName);
 
-        item.addEventListener("click", handleActivate);
-        item.addEventListener("keydown", (e: KeyboardEvent) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleActivate();
+          if (recommended.referenceGrade) {
+            const gradeSpan = document.createElement("span");
+            gradeSpan.className = "subject-overview-grade";
+            const gradeClassName = gradeColorClass(recommended.referenceGrade);
+            if (gradeClassName) {
+              gradeSpan.classList.add(gradeClassName);
+            }
+            gradeSpan.textContent = recommended.referenceGrade;
+            recDiv.appendChild(gradeSpan);
           }
-        });
 
-        wrapper.appendChild(item);
+          const pct = this.useCase.getCategoryProgressPct(subject.id, recommended.id);
+          const pctSpan = document.createElement("span");
+          pctSpan.className = "subject-overview-pct";
+          if (pct === 100) {
+            pctSpan.classList.add("progress-fill-done");
+          }
+          pctSpan.textContent = `${pct}%`;
+          recDiv.appendChild(pctSpan);
+
+          item.appendChild(recDiv);
+
+          const capturedRec = recommended;
+          const capturedSubjectId = subject.id;
+          const handleActivate = (): void => {
+            this.overallUnitSelected = { subject: capturedSubjectId, categoryId: capturedRec.id, categoryName: capturedRec.name };
+            this.activePanelTab = "guide";
+            this.isPanelTabUserSelected = false;
+            const overviewRecords = this.useCase.getHistory();
+            this.updateStartScreen(overviewRecords);
+          };
+
+          item.addEventListener("click", handleActivate);
+          item.addEventListener("keydown", (e: KeyboardEvent) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleActivate();
+            }
+          });
+
+          catGroup.appendChild(item);
+        }
+
+        wrapper.appendChild(catGroup);
       }
 
       categoryList.appendChild(wrapper);
@@ -1125,8 +1120,33 @@ export class QuizApp {
     if (!panel) return;
 
     const records = allRecords ?? this.useCase.getHistory();
+    this.updateActivityDateDisplay();
     this.renderTodayActivity(records);
     this.updateShareSummaryText(records);
+    this.showOverallPanel(this.activeOverallPanel);
+  }
+
+  /**
+   * 活動日付ラベルを今日の日付に更新する。
+   */
+  private updateActivityDateDisplay(): void {
+    const el = document.getElementById("overallActivityDateLabel");
+    if (!el) return;
+    el.textContent = `📅 ${this.selectedActivityDate.replace(/-/g, "/")}`;
+  }
+
+  /**
+   * 総合タブのサマリパネルタブ（学習済み / シェア）を切り替える。
+   */
+  private showOverallPanel(tab: "learned" | "share"): void {
+    document.getElementById("overallLearnedPanel")?.classList.toggle("hidden", tab !== "learned");
+    document.getElementById("overallSharePanel")?.classList.toggle("hidden", tab !== "share");
+
+    document.querySelectorAll<HTMLElement>(".panel-tab[data-overall-panel]").forEach((t) => {
+      const isActive = t.dataset.overallPanel === tab;
+      t.classList.toggle("active", isActive);
+      t.setAttribute("aria-selected", String(isActive));
+    });
   }
 
   /**
