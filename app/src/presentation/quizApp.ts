@@ -1360,11 +1360,11 @@ export class QuizApp {
 
     nameArea.appendChild(progressRow);
 
-    // 参考学年バッジ（referenceGrade が設定されている場合のみ表示）
+    // 参考学年バッジ（referenceGrade が設定されている場合のみ表示、学年別ビューでは非表示）
     const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
     const gradeSpan = document.createElement("span");
     gradeSpan.className = "category-grade";
-    if (referenceGrade) {
+    if (referenceGrade && this.categoryViewMode !== "grade") {
       gradeSpan.textContent = referenceGrade;
       const gradeClass = gradeColorClass(referenceGrade);
       if (gradeClass) {
@@ -1380,6 +1380,9 @@ export class QuizApp {
     // 説明・例文（右パネル非表示時のみ CSS で表示）
     const description = this.useCase.getCategoryDescription(subject, categoryId);
     const example = this.useCase.getCategoryExample(subject, categoryId);
+    item.appendChild(statusSpan);
+    item.appendChild(nameArea);
+    item.appendChild(gradeSpan);
     if (description !== undefined || example !== undefined) {
       const inlineInfo = document.createElement("span");
       inlineInfo.className = "category-item-inline-info";
@@ -1395,17 +1398,9 @@ export class QuizApp {
         this.renderBacktickText(exampleSpan, example);
         inlineInfo.appendChild(exampleSpan);
       }
-      item.appendChild(statusSpan);
-      item.appendChild(nameArea);
-      item.appendChild(gradeSpan);
-      item.appendChild(statsSpan);
       item.appendChild(inlineInfo);
-    } else {
-      item.appendChild(statusSpan);
-      item.appendChild(nameArea);
-      item.appendChild(gradeSpan);
-      item.appendChild(statsSpan);
     }
+    item.appendChild(statsSpan);
 
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
@@ -2216,21 +2211,31 @@ export class QuizApp {
     const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
     const wrongSet = new Set(this.useCase.wrongQuestionIds);
 
-    const statsMap = new Map<string, { total: number; wrong: number }>();
-    const addStat = (key: string, isWrong: boolean): void => {
-      const s = statsMap.get(key) ?? { total: 0, wrong: 0 };
+    // 回答済み問題IDのセットを履歴エントリから構築する
+    const answeredIds = new Set<string>();
+    for (const record of this.useCase.getHistory()) {
+      for (const entry of record.entries) {
+        answeredIds.add(entry.questionId);
+      }
+    }
+
+    const statsMap = new Map<string, { total: number; wrong: number; answeredCorrect: number }>();
+    const addStat = (key: string, isWrong: boolean, isAnsweredCorrect: boolean): void => {
+      const s = statsMap.get(key) ?? { total: 0, wrong: 0, answeredCorrect: 0 };
       s.total++;
       if (isWrong) s.wrong++;
+      if (isAnsweredCorrect) s.answeredCorrect++;
       statsMap.set(key, s);
     };
 
     for (const q of allQuestions) {
       const isWrong = wrongSet.has(q.id);
-      addStat("all::all", isWrong);
-      addStat(`${q.subject}::all`, isWrong);
-      addStat(`${q.subject}::${q.category}`, isWrong);
+      const isAnsweredCorrect = answeredIds.has(q.id) && !isWrong;
+      addStat("all::all", isWrong, isAnsweredCorrect);
+      addStat(`${q.subject}::all`, isWrong, isAnsweredCorrect);
+      addStat(`${q.subject}::${q.category}`, isWrong, isAnsweredCorrect);
       if (q.parentCategory) {
-        addStat(`${q.subject}::parent::${q.parentCategory}`, isWrong);
+        addStat(`${q.subject}::parent::${q.parentCategory}`, isWrong, isAnsweredCorrect);
       }
     }
 
@@ -2253,7 +2258,7 @@ export class QuizApp {
         key = `${subject}::all`;
       }
 
-      const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
+      const stat = statsMap.get(key) ?? { total: 0, wrong: 0, answeredCorrect: 0 };
       const statsEl = el.querySelector(".category-stats");
       if (statsEl) {
         statsEl.textContent = formatCategoryStats(stat);
@@ -2265,7 +2270,7 @@ export class QuizApp {
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
         if (isStudied || stat.wrong > 0) {
-          const pct = stat.total > 0 ? Math.round(((stat.total - stat.wrong) / stat.total) * 100) : 0;
+          const pct = stat.total > 0 ? Math.round((stat.answeredCorrect / stat.total) * 100) : 0;
           progressFill.style.width = `${pct}%`;
           progressFill.classList.toggle("progress-fill-done", pct === 100);
           if (progressPct) {
