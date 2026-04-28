@@ -13,7 +13,7 @@ permalink: /support/technical-reference/
 ### インデックスファイル
 
 ```text
-https://goataka.github.io/study/app/questions/index.json
+https://goataka.github.io/study/questions/index.json
 ```
 
 インデックスファイルには、利用可能な全問題ファイルの一覧が含まれます。
@@ -21,15 +21,15 @@ https://goataka.github.io/study/app/questions/index.json
 ### 問題ファイル
 
 ```text
-https://goataka.github.io/study/app/questions/{subject}/{category}.json
+https://goataka.github.io/study/questions/{subject}/{category}.json
 ```
 
 例：
 
 ```text
-https://goataka.github.io/study/app/questions/english/alphabet.json
-https://goataka.github.io/study/app/questions/math/addition-no-carry-1digit.json
-https://goataka.github.io/study/app/questions/japanese/kanji-grade1.json
+https://goataka.github.io/study/questions/english/alphabet.json
+https://goataka.github.io/study/questions/math/addition-no-carry-1digit.json
+https://goataka.github.io/study/questions/japanese/kanji-grade1.json
 ```
 
 ## インデックスファイルの形式
@@ -98,7 +98,7 @@ https://goataka.github.io/study/app/questions/japanese/kanji-grade1.json
 | `topCategoryName` | string | 大カテゴリの表示名 |
 | `parentCategory` | string | 親カテゴリID |
 | `parentCategoryName` | string | 親カテゴリの表示名 |
-| `guideUrl` | string | 解説ページへのURL（`/app/` を基準とした相対URL） |
+| `guideUrl` | string | 解説ページへのURL（サイトルートを基準とした相対URL） |
 | `parentCategoryGuideUrl` | string | 親カテゴリの解説ページへのURL |
 | `example` | string | 例文・例題 |
 | `referenceGrade` | string | 参考学年 |
