@@ -4,6 +4,14 @@
 
 接続詞は文と文、語と語をつなぐ語です。
 
+## 📚 単元一覧
+
+| 単元 | 内容 |
+|------|------|
+| [等位接続詞](../conjunctions-coordinating/guide) | and・but・or・so |
+| [従属接続詞](../conjunctions-subordinating/guide) | because・when・if・though |
+| まとめ（このページ） | 接続詞の総合練習 |
+
 ## 📌 等位接続詞
 
 I play games `and` study English.
