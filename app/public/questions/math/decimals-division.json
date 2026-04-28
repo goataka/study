@@ -1,0 +1,87 @@
+{
+  "subject": "math",
+  "subjectName": "数学",
+  "category": "decimals-division",
+  "categoryName": "➗ わり算",
+  "topCategory": "arithmetic",
+  "topCategoryName": "算数・基本計算",
+  "parentCategory": "decimals",
+  "parentCategoryName": "小数",
+  "guideUrl": "../math/arithmetic/decimals-division/guide",
+  "parentCategoryGuideUrl": "../math/arithmetic/guide",
+  "example": "2.4 ÷ 0.8 = 3",
+  "referenceGrade": "小学5年",
+  "description": "小数のわり算を正確に計算できるようにします。",
+  "questions": [
+    {
+      "id": "0cba873d-a449-537c-bef3-f1f0e5669153",
+      "question": "1.2 ÷ 0.4 = ?",
+      "choices": ["3", "0.3", "30", "0.03"],
+      "correct": 0,
+      "explanation": "1.2 ÷ 0.4 = 12 ÷ 4 = 3"
+    },
+    {
+      "id": "091ecdba-36e4-586f-acf9-2550c1e05ff3",
+      "question": "2.4 ÷ 0.6 = ?",
+      "choices": ["4", "0.4", "40", "0.04"],
+      "correct": 0,
+      "explanation": "2.4 ÷ 0.6 = 24 ÷ 6 = 4"
+    },
+    {
+      "id": "ab581364-ba4f-5e00-9f20-550a3b7b635c",
+      "question": "1.5 ÷ 0.5 = ?",
+      "choices": ["3", "0.3", "30", "0.3"],
+      "correct": 0,
+      "explanation": "1.5 ÷ 0.5 = 15 ÷ 5 = 3"
+    },
+    {
+      "id": "9370c8b5-a08c-520f-bae5-f167cf3d84fa",
+      "question": "0.9 ÷ 0.3 = ?",
+      "choices": ["3", "0.3", "30", "0.03"],
+      "correct": 0,
+      "explanation": "0.9 ÷ 0.3 = 9 ÷ 3 = 3"
+    },
+    {
+      "id": "b3b350f4-3b83-5dc6-a278-7da3e3a4ec7c",
+      "question": "3.6 ÷ 1.2 = ?",
+      "choices": ["3", "0.3", "36", "0.03"],
+      "correct": 0,
+      "explanation": "3.6 ÷ 1.2 = 36 ÷ 12 = 3"
+    },
+    {
+      "id": "d4a242ae-34f8-5a5f-9a90-dd7072ce24a6",
+      "question": "4.8 ÷ 1.6 = ?",
+      "choices": ["3", "0.3", "30", "48"],
+      "correct": 0,
+      "explanation": "4.8 ÷ 1.6 = 48 ÷ 16 = 3"
+    },
+    {
+      "id": "21a3be20-cb5d-55d5-a6ec-b22069199a2f",
+      "question": "7.2 ÷ 0.8 = ?",
+      "choices": ["9", "0.9", "90", "0.09"],
+      "correct": 0,
+      "explanation": "7.2 ÷ 0.8 = 72 ÷ 8 = 9"
+    },
+    {
+      "id": "0f5fa1e9-dd1b-5329-8c87-4fcfd2bb731e",
+      "question": "6.3 ÷ 0.7 = ?",
+      "choices": ["9", "0.9", "90", "63"],
+      "correct": 0,
+      "explanation": "6.3 ÷ 0.7 = 63 ÷ 7 = 9"
+    },
+    {
+      "id": "3c936f7a-d0eb-5882-886e-58de401bb660",
+      "question": "5.4 ÷ 0.9 = ?",
+      "choices": ["6", "0.6", "60", "54"],
+      "correct": 0,
+      "explanation": "5.4 ÷ 0.9 = 54 ÷ 9 = 6"
+    },
+    {
+      "id": "3e8f4af6-974a-5c97-ac25-cf9764339a7b",
+      "question": "8.4 ÷ 1.4 = ?",
+      "choices": ["6", "0.6", "60", "84"],
+      "correct": 0,
+      "explanation": "8.4 ÷ 1.4 = 84 ÷ 14 = 6"
+    }
+  ]
+}
