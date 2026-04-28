@@ -1691,6 +1691,7 @@ export class QuizApp {
       const catParts: string[] = [];
       if (topInfo) catParts.push(topInfo.name);
       if (parentInfo) catParts.push(parentInfo.name);
+      const grade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
       if (catParts.length > 0) {
         const metaRow = document.createElement("div");
         metaRow.className = "selected-unit-info-meta-row";
@@ -1698,7 +1699,6 @@ export class QuizApp {
         catLabel.className = "selected-unit-info-category";
         catLabel.textContent = catParts.join(" › ");
         metaRow.appendChild(catLabel);
-        const grade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
         if (grade) {
           const gradeSpan = document.createElement("span");
           gradeSpan.className = "category-grade";
@@ -1708,6 +1708,14 @@ export class QuizApp {
           metaRow.appendChild(gradeSpan);
         }
         headerRow.appendChild(metaRow);
+      } else if (grade) {
+        // カテゴリパスがない場合でも学年バッジは表示する
+        const gradeSpan = document.createElement("span");
+        gradeSpan.className = "category-grade";
+        const gradeClass = gradeColorClass(grade);
+        if (gradeClass) gradeSpan.classList.add(gradeClass);
+        gradeSpan.textContent = grade;
+        headerRow.appendChild(gradeSpan);
       }
 
       // 単元名はカテゴリの下に表示
@@ -2114,7 +2122,7 @@ export class QuizApp {
     const bodyEl = document.getElementById("questionListBody");
     if (!bodyEl) return;
 
-    const questions = this.useCase.getFilteredQuestions(this.filter);
+    const questions = this.useCase.getFilteredQuestions(this.getEffectiveFilter());
 
     bodyEl.innerHTML = "";
     if (questions.length === 0) {
@@ -2310,6 +2318,22 @@ export class QuizApp {
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
 
+  /**
+   * 現在有効なクイズフィルターを返す。
+   * 総合タブからおすすめ単元を選択している場合は、その単元の subject/categoryId を含むフィルターを返す。
+   * それ以外の場合は通常の this.filter をそのまま返す。
+   */
+  private getEffectiveFilter(): QuizFilter {
+    if (this.overallUnitSelected !== null) {
+      return {
+        subject: this.overallUnitSelected.subject,
+        category: this.overallUnitSelected.categoryId,
+        parentCategory: undefined,
+      };
+    }
+    return this.filter;
+  }
+
   private updateStartScreen(allRecords?: QuizRecord[]): void {
     this.updateSubjectStats();
     this.updateQuizPanelVisibility();
@@ -2318,8 +2342,9 @@ export class QuizApp {
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement | null;
     if (!statsInfo || !retryBtn) return;
 
-    const filteredCount = this.useCase.getFilteredQuestions(this.filter).length;
-    const wrongCount = this.useCase.getWrongCount(this.filter);
+    const effectiveFilter = this.getEffectiveFilter();
+    const filteredCount = this.useCase.getFilteredQuestions(effectiveFilter).length;
+    const wrongCount = this.useCase.getWrongCount(effectiveFilter);
 
     statsInfo.textContent =
       wrongCount > 0
@@ -2330,11 +2355,11 @@ export class QuizApp {
 
     // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
     if (markLearnedBtn) {
-      markLearnedBtn.disabled = this.filter.category === "all";
+      markLearnedBtn.disabled = effectiveFilter.category === "all";
       markLearnedBtn.textContent = this.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 学習済みにする";
     }
 
-    this.renderHistoryList(this.filter, allRecords);
+    this.renderHistoryList(effectiveFilter, allRecords);
     if (this.activePanelTab === "questions") {
       this.renderQuestionList();
     }
@@ -2579,10 +2604,11 @@ export class QuizApp {
    * 現在選択中のカテゴリが学習済み（🏆）かどうかを返す。
    */
   private isCurrentCategoryLearned(): boolean {
-    if (this.filter.category === "all") return false;
+    const effectiveFilter = this.getEffectiveFilter();
+    if (effectiveFilter.category === "all") return false;
     const studiedKeys = this.useCase.getStudiedCategoryKeys();
-    const wrongCount = this.useCase.getWrongCount(this.filter);
-    return studiedKeys.has(`${this.filter.subject}::${this.filter.category}`) && wrongCount === 0;
+    const wrongCount = this.useCase.getWrongCount(effectiveFilter);
+    return studiedKeys.has(`${effectiveFilter.subject}::${effectiveFilter.category}`) && wrongCount === 0;
   }
 
   /**
@@ -2590,10 +2616,11 @@ export class QuizApp {
    * 学習済みなら未学習に戻し、そうでなければ学習済みにする。
    */
   private toggleLearnedStatus(): void {
+    const effectiveFilter = this.getEffectiveFilter();
     if (this.isCurrentCategoryLearned()) {
-      this.useCase.unmarkCategoryAsLearned(this.filter);
+      this.useCase.unmarkCategoryAsLearned(effectiveFilter);
     } else {
-      this.useCase.markCategoryAsLearned(this.filter);
+      this.useCase.markCategoryAsLearned(effectiveFilter);
     }
     this.updateStartScreen();
   }
@@ -2681,7 +2708,7 @@ export class QuizApp {
 
   private startQuiz(mode: QuizMode): void {
     try {
-      this.currentSession = this.useCase.startSession(mode, this.filter, this.questionCount);
+      this.currentSession = this.useCase.startSession(mode, this.getEffectiveFilter(), this.questionCount);
     } catch (error) {
       alert(error instanceof Error ? error.message : "エラーが発生しました");
       return;

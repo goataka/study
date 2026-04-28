@@ -332,7 +332,11 @@ header h1 {
     padding: 1px 6px;
     border-radius: 10px;
     white-space: nowrap;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    min-width: 0;
+    max-width: 45%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin-left: auto;
 }
 

@@ -3424,6 +3424,91 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     const title = document.getElementById("allSubjectPanelTitle");
     expect(title?.classList.contains("hidden")).toBe(true);
   });
+
+  it("総合タブのおすすめ単元をクリックすると（履歴なし）解説タブが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector<HTMLElement>(
+      '.subject-overview-item[data-subject="english"]'
+    );
+    englishItem?.click();
+
+    // 解説タブが表示され、overallSummaryPanel が非表示になる
+    const guideContent = document.getElementById("guideContent");
+    expect(guideContent?.classList.contains("hidden")).toBe(false);
+
+    // パネルタブが表示される（教科画面と同じ）
+    const guideTab = document.getElementById("panelTab-guide");
+    expect(guideTab?.classList.contains("hidden")).toBe(false);
+
+    // 解説タブがアクティブ
+    expect(guideTab?.classList.contains("active")).toBe(true);
+  });
+
+  it("総合タブのおすすめ単元をクリックすると（履歴あり）確認タブが表示される", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 3,
+          correctCount: 3,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector<HTMLElement>(
+      '.subject-overview-item[data-subject="english"]'
+    );
+    englishItem?.click();
+
+    // 確認タブがアクティブ（quizModePanel が表示される）
+    const quizPanel = document.getElementById("quizModePanel");
+    expect(quizPanel?.classList.contains("hidden")).toBe(false);
+
+    // パネルタブが表示される
+    const quizTab = document.getElementById("panelTab-quiz");
+    expect(quizTab?.classList.contains("hidden")).toBe(false);
+    expect(quizTab?.classList.contains("active")).toBe(true);
+  });
+
+  it("総合タブのおすすめ単元をクリックすると selectedUnitInfo に単元名が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector<HTMLElement>(
+      '.subject-overview-item[data-subject="english"]'
+    );
+    englishItem?.click();
+
+    const nameEl = document.querySelector(".selected-unit-info-name");
+    expect(nameEl?.textContent).toBeTruthy();
+  });
+
+  it("総合タブのおすすめ単元選択後にgetEffectiveFilterが選択単元のフィルターを使う（問題数がゼロより大きい）", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector<HTMLElement>(
+      '.subject-overview-item[data-subject="english"]'
+    );
+    englishItem?.click();
+
+    // フィルタが有効になると statsInfo には問題数が表示される（0問ではない）
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).not.toContain("全0問");
+  });
 });
 
 // ─── 総合タブのサマリパネル仕様 ────────────────────────────────────────────
