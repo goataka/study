@@ -436,12 +436,13 @@ export class QuizUseCase {
 
     // 未学習カテゴリが足りない場合は学習済みカテゴリで補完する
     if (result.length < count) {
+      const addedIds = new Set(result.map((r) => r.id));
       for (const [catId, catName] of entries) {
         if (result.length >= count) break;
         const key = `${subject}::${catId}`;
         const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
         const isLearned = studiedKeys.has(key) && wrongCount === 0;
-        if (isLearned && !result.some((r) => r.id === catId)) {
+        if (isLearned && !addedIds.has(catId)) {
           result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key) });
         }
       }

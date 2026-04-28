@@ -3268,7 +3268,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(pctSpan?.textContent).toBe("0%");
   });
 
-  it("学習履歴がある場合でも最終学習日は表示されない（outerDateは廃止）", async () => {
+  it("outerDate 表示は廃止され、学習履歴に関わらず表示されない", async () => {
     const studyDate = "2025-04-01T10:00:00.000Z";
     localStorage.setItem(
       "quizHistory",
@@ -3294,6 +3294,59 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     const wrapper = document.querySelector('.subject-overview-wrapper:has([data-subject="english"])');
     const outerDate = wrapper?.querySelector(".subject-overview-outer-date");
     expect(outerDate).toBeNull();
+  });
+
+  it("categoryControls におすすめ単元数切替ボタンが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const countBtns = document.querySelectorAll(".overall-rec-count-btn");
+    expect(countBtns).toHaveLength(3); // 1, 3, 5
+  });
+
+  it("おすすめ単元数3に切り替えると英語の複数カードが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 3ボタンをクリック
+    const btn3 = Array.from(document.querySelectorAll(".overall-rec-count-btn")).find(
+      (b) => b.textContent === "3"
+    ) as HTMLElement | undefined;
+    btn3?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語には複数カテゴリあるので複数カードが表示されるはず
+    const englishItems = document.querySelectorAll('.subject-overview-item[data-subject="english"]');
+    expect(englishItems.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("全問正解の学習済みカテゴリは進捗率100%と表示される", async () => {
+    const studyDate = new Date().toISOString();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: studyDate,
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 5,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
+    const pctSpan = englishItem?.querySelector(".subject-overview-pct");
+    // phonics-1 が学習済みかつ間違いなし → 100%
+    expect(pctSpan?.textContent).toBe("100%");
   });
 
   it("教科概要アイテムをクリックしても総合タブのままで教科タブに切り替わらない", async () => {

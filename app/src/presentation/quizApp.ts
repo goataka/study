@@ -1083,9 +1083,10 @@ export class QuizApp {
         item.appendChild(recDiv);
 
         // クリックで教科タブに遷移せず、総合のまま解説パネルを表示する
-        const rec = recommended;
+        // ループ変数をクロージャでキャプチャするための定数
+        const capturedRec = recommended;
         const handleActivate = (): void => {
-          this.overallUnitSelected = { subject: subject.id, categoryId: rec.id, categoryName: rec.name };
+          this.overallUnitSelected = { subject: subject.id, categoryId: capturedRec.id, categoryName: capturedRec.name };
           this.isPanelTabUserSelected = false;
           const overviewRecords = this.useCase.getHistory();
           this.updateStartScreen(overviewRecords);
