@@ -2416,7 +2416,7 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
 
     // 単元一覧のインライン情報コンテナに例文が含まれること
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
-    expect(catItem?.querySelector(".category-item-inline-info .category-example")).not.toBeNull();
+    expect(catItem?.querySelector(".category-item-right .category-example")).not.toBeNull();
 
     // 単元を選択すると選択情報パネルに例文が表示されること
     catItem?.click();
@@ -2508,7 +2508,7 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
 
     // 単元一覧のインライン情報コンテナに説明文が含まれること
     const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-regular-past"]');
-    expect(catItem?.querySelector(".category-item-inline-info .category-item-description")).not.toBeNull();
+    expect(catItem?.querySelector(".category-item-right .category-item-description")).not.toBeNull();
 
     // 単元を選択すると選択情報パネルに説明文が表示されること
     catItem?.click();

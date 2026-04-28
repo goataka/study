@@ -1024,6 +1024,7 @@ export class QuizApp {
           catHeader.className = "subject-overview-cat-header";
           if (group.topCatId && group.topCatId !== group.parentCatId) {
             const topSpan = document.createElement("span");
+            topSpan.className = "subject-overview-outer-cat";
             topSpan.textContent = group.topCatName;
             catHeader.appendChild(topSpan);
             const arrow = document.createElement("span");
@@ -1080,9 +1081,9 @@ export class QuizApp {
           const capturedSubjectId = subject.id;
           const handleActivate = (): void => {
             this.overallUnitSelected = { subject: capturedSubjectId, categoryId: capturedRec.id, categoryName: capturedRec.name };
-            this.activePanelTab = "guide";
             this.isPanelTabUserSelected = false;
             const overviewRecords = this.useCase.getHistory();
+            this.autoSelectPanelTab(overviewRecords);
             this.updateStartScreen(overviewRecords);
           };
 
@@ -1443,33 +1444,37 @@ export class QuizApp {
     const statsSpan = document.createElement("span");
     statsSpan.className = "category-stats";
 
-    // 説明・例文（右パネル非表示時のみ CSS で表示）
+    // 左列に statusSpan・nameArea・gradeSpan・statsSpan をまとめる
+    const leftCol = document.createElement("div");
+    leftCol.className = "category-item-left";
+    leftCol.appendChild(statusSpan);
+    leftCol.appendChild(nameArea);
+    leftCol.appendChild(gradeSpan);
+    leftCol.appendChild(statsSpan);
+    item.appendChild(leftCol);
+
+    // 説明・例文は右列に常時表示
     const description = this.useCase.getCategoryDescription(subject, categoryId);
     const example = this.useCase.getCategoryExample(subject, categoryId);
 
-    // 説明・例文インライン情報は nameArea の末尾に追加（横位置を固定するため）
     if (description !== undefined || example !== undefined) {
-      const inlineInfo = document.createElement("span");
-      inlineInfo.className = "category-item-inline-info";
+      item.classList.add("category-item-has-info");
+      const rightCol = document.createElement("div");
+      rightCol.className = "category-item-right";
       if (description) {
         const descSpan = document.createElement("span");
         descSpan.className = "category-item-description";
         descSpan.textContent = description;
-        inlineInfo.appendChild(descSpan);
+        rightCol.appendChild(descSpan);
       }
       if (example !== undefined) {
         const exampleSpan = document.createElement("span");
         exampleSpan.className = "category-example";
         this.renderBacktickText(exampleSpan, example);
-        inlineInfo.appendChild(exampleSpan);
+        rightCol.appendChild(exampleSpan);
       }
-      nameArea.appendChild(inlineInfo);
+      item.appendChild(rightCol);
     }
-
-    item.appendChild(statusSpan);
-    item.appendChild(nameArea);
-    item.appendChild(gradeSpan);
-    item.appendChild(statsSpan);
 
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
@@ -1611,6 +1616,17 @@ export class QuizApp {
       this.showPanelTab(this.activePanelTab);
       return;
     }
+    // 総合タブから単元選択時: 履歴があれば確認タブ、なければ解説タブ
+    if (this.overallUnitSelected !== null) {
+      const hasHistory = allRecords.some(
+        (r) =>
+          r.subject === this.overallUnitSelected!.subject &&
+          r.category === this.overallUnitSelected!.categoryId
+      );
+      this.activePanelTab = hasHistory ? "quiz" : "guide";
+      this.showPanelTab(this.activePanelTab);
+      return;
+    }
     const selLevel = this.getSelectionLevel();
     if (selLevel === "topCategory" || selLevel === "parentCategory") {
       // カテゴリ/サブカテゴリ選択時は常に解説タブを表示
@@ -1655,10 +1671,13 @@ export class QuizApp {
 
     const selLevel = this.getSelectionLevel();
 
-    // 総合タブから単元が選択されている場合: 単元名と閉じるボタンを表示
+    // 総合タブから単元が選択されている場合: 教科の画面と同じ形式で詳細を表示
     if (this.overallUnitSelected !== null) {
       container.classList.remove("hidden");
       container.innerHTML = "";
+
+      const subject = this.overallUnitSelected.subject;
+      const categoryId = this.overallUnitSelected.categoryId;
 
       const body = document.createElement("div");
       body.className = "selected-unit-info-body";
@@ -1666,11 +1685,54 @@ export class QuizApp {
       const headerRow = document.createElement("div");
       headerRow.className = "selected-unit-info-header";
 
+      // カテゴリパスと学年を同じ行に表示
+      const topInfo = this.useCase.getTopCategoryForUnit(subject, categoryId);
+      const parentInfo = this.useCase.getParentCategoryForUnit(subject, categoryId);
+      const catParts: string[] = [];
+      if (topInfo) catParts.push(topInfo.name);
+      if (parentInfo) catParts.push(parentInfo.name);
+      if (catParts.length > 0) {
+        const metaRow = document.createElement("div");
+        metaRow.className = "selected-unit-info-meta-row";
+        const catLabel = document.createElement("span");
+        catLabel.className = "selected-unit-info-category";
+        catLabel.textContent = catParts.join(" › ");
+        metaRow.appendChild(catLabel);
+        const grade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
+        if (grade) {
+          const gradeSpan = document.createElement("span");
+          gradeSpan.className = "category-grade";
+          const gradeClass = gradeColorClass(grade);
+          if (gradeClass) gradeSpan.classList.add(gradeClass);
+          gradeSpan.textContent = grade;
+          metaRow.appendChild(gradeSpan);
+        }
+        headerRow.appendChild(metaRow);
+      }
+
+      // 単元名はカテゴリの下に表示
       const nameSpan = document.createElement("span");
       nameSpan.className = "selected-unit-info-name";
       nameSpan.textContent = this.overallUnitSelected.categoryName;
       headerRow.appendChild(nameSpan);
       body.appendChild(headerRow);
+
+      // 説明文と例文
+      const description = this.useCase.getCategoryDescription(subject, categoryId);
+      if (description) {
+        const descDiv = document.createElement("div");
+        descDiv.className = "selected-unit-info-desc";
+        descDiv.textContent = description;
+        body.appendChild(descDiv);
+      }
+      const example = this.useCase.getCategoryExample(subject, categoryId);
+      if (example !== undefined) {
+        const exampleDiv = document.createElement("div");
+        exampleDiv.className = "selected-unit-info-example";
+        this.renderBacktickText(exampleDiv, example);
+        body.appendChild(exampleDiv);
+      }
+
       container.appendChild(body);
 
       const closeBtn = document.createElement("button");
@@ -1702,17 +1764,30 @@ export class QuizApp {
     const nameSpan = document.createElement("span");
     nameSpan.className = "selected-unit-info-name";
     if (selLevel === "unit") {
-      // カテゴリパスラベル（親カテゴリ・トップカテゴリ）を先に追加
+      // カテゴリパスと学年を同じメタ行に表示し、単元名はその下に
       const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
       const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
       const catParts: string[] = [];
       if (topInfo) catParts.push(topInfo.name);
       if (parentInfo) catParts.push(parentInfo.name);
       if (catParts.length > 0) {
+        const metaRow = document.createElement("div");
+        metaRow.className = "selected-unit-info-meta-row";
         const catLabel = document.createElement("span");
         catLabel.className = "selected-unit-info-category";
         catLabel.textContent = catParts.join(" › ");
-        headerRow.appendChild(catLabel);
+        metaRow.appendChild(catLabel);
+        // 学年バッジをカテゴリの右に配置
+        const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
+        if (grade) {
+          const gradeSpan = document.createElement("span");
+          gradeSpan.className = "category-grade";
+          const gradeClass = gradeColorClass(grade);
+          if (gradeClass) gradeSpan.classList.add(gradeClass);
+          gradeSpan.textContent = grade;
+          metaRow.appendChild(gradeSpan);
+        }
+        headerRow.appendChild(metaRow);
       }
       const cats = this.useCase.getCategoriesForSubject(this.filter.subject);
       nameSpan.textContent = cats[this.filter.category] ?? this.filter.category;
@@ -1725,16 +1800,21 @@ export class QuizApp {
     }
     headerRow.appendChild(nameSpan);
 
-    // 学年バッジ（単元選択時のみ）
+    // 学年バッジ（単元選択時のみ、かつカテゴリパスがない場合のみ headerRow 直下に追加）
     if (selLevel === "unit") {
-      const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
-      if (grade) {
-        const gradeSpan = document.createElement("span");
-        gradeSpan.className = "category-grade";
-        const gradeClass = gradeColorClass(grade);
-        if (gradeClass) gradeSpan.classList.add(gradeClass);
-        gradeSpan.textContent = grade;
-        headerRow.appendChild(gradeSpan);
+      const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
+      const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
+      const hasMetaRow = topInfo !== undefined || parentInfo !== undefined;
+      if (!hasMetaRow) {
+        const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
+        if (grade) {
+          const gradeSpan = document.createElement("span");
+          gradeSpan.className = "category-grade";
+          const gradeClass = gradeColorClass(grade);
+          if (gradeClass) gradeSpan.classList.add(gradeClass);
+          gradeSpan.textContent = grade;
+          headerRow.appendChild(gradeSpan);
+        }
       }
     }
 
@@ -2118,7 +2198,9 @@ export class QuizApp {
       });
     }
 
-    // ヘッダーのユーザー名は表示のみ（クリック編集なし）
+    // ヘッダーのユーザー名をクリックして編集を開く
+    const headerUserNameBtn = document.getElementById("headerUserName");
+    headerUserNameBtn?.addEventListener("click", () => this.openUserNameEdit());
     // 保存ボタン
     const headerUserNameSaveBtn = document.getElementById("headerUserNameSaveBtn");
     headerUserNameSaveBtn?.addEventListener("click", () => this.saveHeaderUserName());
@@ -2540,9 +2622,9 @@ export class QuizApp {
     // 総合タブは総合サマリパネルを右に表示するため category-only にしない
     subjectContent.classList.toggle("category-only", noCategory);
 
-    // 総合タブでは通常のパネルタブを非表示
+    // 総合タブでは単元未選択時のみパネルタブを非表示（単元選択時は教科画面と同じ表示）
     ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-      document.getElementById(id)?.classList.toggle("hidden", isAll);
+      document.getElementById(id)?.classList.toggle("hidden", isAll && !hasOverallUnit);
     });
 
     // カテゴリ/サブカテゴリ選択時は確認・問題一覧・履歴タブを非表示
@@ -2558,11 +2640,9 @@ export class QuizApp {
 
     if (isAll) {
       if (hasOverallUnit) {
-        // 総合タブから単元選択時: 解説パネルを表示
-        ["quizModePanel", "historyContent", "questionListContent", "overallSummaryPanel"].forEach((id) => {
-          document.getElementById(id)?.classList.add("hidden");
-        });
-        document.getElementById("guideContent")?.classList.remove("hidden");
+        // 総合タブから単元選択時: 教科の画面と同じレイアウトで表示
+        document.getElementById("overallSummaryPanel")?.classList.add("hidden");
+        this.showPanelTab(this.activePanelTab);
       } else {
         // 通常のコンテンツパネルを非表示にして総合サマリパネルを表示
         ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
