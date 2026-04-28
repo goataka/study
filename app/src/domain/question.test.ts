@@ -120,24 +120,36 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
   it("guideUrl が javascript: スキームの場合は拒否する", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, guideUrl: "javascript:alert(1)" })
-    ).toThrow('"guideUrl" must be a relative path starting with "../" or an http/https URL');
+    ).toThrow('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
   });
 
   it("guideUrl が data: スキームの場合は拒否する", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, guideUrl: "data:text/html,<script>alert(1)</script>" })
-    ).toThrow('"guideUrl" must be a relative path starting with "../" or an http/https URL');
+    ).toThrow('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
   });
 
-  it("guideUrl が想定外の相対パスの場合は拒否する", () => {
+  it("guideUrl が ./ 相対パスの場合は受け入れる", () => {
     expect(() =>
-      validateQuestionFile({ ...validQF, guideUrl: "./guide.md" })
-    ).toThrow('"guideUrl" must be a relative path starting with "../" or an http/https URL');
+      validateQuestionFile({ ...validQF, guideUrl: "./english/grammar/guide" })
+    ).not.toThrow();
   });
 
-  it("guideUrl にパストラバーサルが含まれる場合は拒否する", () => {
+  it("guideUrl がプレフィックスなしの相対パスの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "guide.md" })
+    ).toThrow('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
+  });
+
+  it("guideUrl にパストラバーサルが含まれる場合は拒否する（../ プレフィックス）", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, guideUrl: "../math/../../etc/passwd" })
+    ).toThrow('"guideUrl" must not contain path traversal sequences');
+  });
+
+  it("guideUrl にパストラバーサルが含まれる場合は拒否する（./ プレフィックス）", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "./math/../../../etc/passwd" })
     ).toThrow('"guideUrl" must not contain path traversal sequences');
   });
 
@@ -199,7 +211,7 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
         parentCategoryName: "算数",
         parentCategoryGuideUrl: "javascript:alert(1)",
       })
-    ).toThrow('"parentCategoryGuideUrl" must be a relative path starting with "../" or an http/https URL');
+    ).toThrow('"parentCategoryGuideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
   });
 
   it("parentCategoryGuideUrl にパストラバーサルが含まれる場合は拒否する", () => {
@@ -259,7 +271,7 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
         topCategoryName: "言語",
         topCategoryGuideUrl: "javascript:alert(1)",
       })
-    ).toThrow('"topCategoryGuideUrl" must be a relative path starting with "../" or an http/https URL');
+    ).toThrow('"topCategoryGuideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
   });
 
   it("topCategoryGuideUrl にパストラバーサルが含まれる場合は拒否する", () => {

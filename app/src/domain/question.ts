@@ -138,14 +138,17 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (typeof qf.guideUrl !== "string") {
       throw new Error('"guideUrl" must be a string if present');
     }
-    // 安全なスキームのみ許可：../ で始まる相対パス（1階層上のみ、直後が . や / でない）または http/https の絶対URL
-    // 例: ../math/arithmetic/... は許可, ..//path や ../.path, ../../../ は拒否
-    const isRelative = /^\.\.\/[^./]/.test(qf.guideUrl);
+    // 安全なスキームのみ許可：./ または ../ で始まる相対パス（直後が . や / でない）または http/https の絶対URL
+    // 例: ./math/arithmetic/... や ../math/arithmetic/... は許可
+    // ..//path や ../.path は初期チェックで拒否、./some/../bad や ../bad/../../etc はトラバーサルチェックで拒否
+    const isCurrentRelative = /^\.\/[^./]/.test(qf.guideUrl);
+    const isParentRelative = /^\.\.\/[^./]/.test(qf.guideUrl);
+    const isRelative = isCurrentRelative || isParentRelative;
     const isAbsolute = /^https?:\/\//i.test(qf.guideUrl);
     if (!isRelative && !isAbsolute) {
-      throw new Error('"guideUrl" must be a relative path starting with "../" or an http/https URL');
+      throw new Error('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
     }
-    // パストラバーサル防止：URL デコード後にさらなる ../ が含まれないことを確認
+    // パストラバーサル防止：URL デコード後にさらなる .. が含まれないことを確認
     if (isRelative) {
       let decoded = qf.guideUrl;
       try {
@@ -153,8 +156,9 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       } catch {
         // デコード失敗の場合は元の文字列で検証
       }
-      // ../ 以降のパスに追加の .. が含まれないことを確認
-      if (decoded.slice("../".length).includes("..")) {
+      // プレフィックス（./ または ../）を除いたパスに .. が含まれないことを確認
+      const prefix = isParentRelative ? "../" : "./";
+      if (decoded.slice(prefix.length).includes("..")) {
         throw new Error('"guideUrl" must not contain path traversal sequences');
       }
     }
@@ -168,10 +172,12 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (!qf.parentCategory) {
       throw new Error('"parentCategoryGuideUrl" requires "parentCategory" to be set');
     }
-    const isRelative = /^\.\.\/[^./]/.test(qf.parentCategoryGuideUrl);
+    const isCurrentRelative = /^\.\/[^./]/.test(qf.parentCategoryGuideUrl);
+    const isParentRelative = /^\.\.\/[^./]/.test(qf.parentCategoryGuideUrl);
+    const isRelative = isCurrentRelative || isParentRelative;
     const isAbsolute = /^https?:\/\//i.test(qf.parentCategoryGuideUrl);
     if (!isRelative && !isAbsolute) {
-      throw new Error('"parentCategoryGuideUrl" must be a relative path starting with "../" or an http/https URL');
+      throw new Error('"parentCategoryGuideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
     }
     if (isRelative) {
       let decoded = qf.parentCategoryGuideUrl;
@@ -180,7 +186,8 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       } catch {
         // デコード失敗の場合は元の文字列で検証
       }
-      if (decoded.slice("../".length).includes("..")) {
+      const prefix = isParentRelative ? "../" : "./";
+      if (decoded.slice(prefix.length).includes("..")) {
         throw new Error('"parentCategoryGuideUrl" must not contain path traversal sequences');
       }
     }
@@ -194,10 +201,12 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     if (!qf.topCategory) {
       throw new Error('"topCategoryGuideUrl" requires "topCategory" to be set');
     }
-    const isRelative = /^\.\.\/[^./]/.test(qf.topCategoryGuideUrl);
+    const isCurrentRelative = /^\.\/[^./]/.test(qf.topCategoryGuideUrl);
+    const isParentRelative = /^\.\.\/[^./]/.test(qf.topCategoryGuideUrl);
+    const isRelative = isCurrentRelative || isParentRelative;
     const isAbsolute = /^https?:\/\//i.test(qf.topCategoryGuideUrl);
     if (!isRelative && !isAbsolute) {
-      throw new Error('"topCategoryGuideUrl" must be a relative path starting with "../" or an http/https URL');
+      throw new Error('"topCategoryGuideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
     }
     if (isRelative) {
       let decoded = qf.topCategoryGuideUrl;
@@ -206,7 +215,8 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       } catch {
         // デコード失敗の場合は元の文字列で検証
       }
-      if (decoded.slice("../".length).includes("..")) {
+      const prefix = isParentRelative ? "../" : "./";
+      if (decoded.slice(prefix.length).includes("..")) {
         throw new Error('"topCategoryGuideUrl" must not contain path traversal sequences');
       }
     }
