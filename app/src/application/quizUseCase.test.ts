@@ -850,6 +850,130 @@ describe("QuizUseCase — getRecommendedCategoryForSubject 仕様", () => {
   });
 });
 
+// ─── getRecommendedCategoriesForSubject 仕様 ──────────────────────────────────
+
+describe("QuizUseCase — getRecommendedCategoriesForSubject 仕様", () => {
+  it("count=1 の場合は最初の未学習カテゴリを1件返す", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics-1"),
+      makeQuestion("q2", "english", "phonics-2"),
+      makeQuestion("q3", "english", "phonics-3"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    const recs = useCase.getRecommendedCategoriesForSubject("english", 1);
+    expect(recs).toHaveLength(1);
+    expect(recs[0]!.id).toBe("phonics-1");
+  });
+
+  it("count=3 の場合は最大3件の未学習カテゴリを返す", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics-1"),
+      makeQuestion("q2", "english", "phonics-2"),
+      makeQuestion("q3", "english", "phonics-3"),
+      makeQuestion("q4", "english", "phonics-4"),
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    const recs = useCase.getRecommendedCategoriesForSubject("english", 3);
+    expect(recs).toHaveLength(3);
+    expect(recs.map((r) => r.id)).toEqual(["phonics-1", "phonics-2", "phonics-3"]);
+  });
+
+  it("未学習カテゴリが count より少ない場合は学習済みカテゴリで補完する", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics-1"),
+      makeQuestion("q2", "english", "phonics-2"),
+      makeQuestion("q3", "english", "phonics-3"),
+    ];
+    const history: import("./ports").QuizRecord[] = [
+      {
+        id: "r1", date: new Date().toISOString(), subject: "english", subjectName: "英語",
+        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
+        totalCount: 1, correctCount: 1, entries: [],
+      },
+      {
+        id: "r2", date: new Date().toISOString(), subject: "english", subjectName: "英語",
+        category: "phonics-2", categoryName: "フォニックス2", mode: "random",
+        totalCount: 1, correctCount: 1, entries: [],
+      },
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository([], history));
+    await useCase.initialize();
+
+    const recs = useCase.getRecommendedCategoriesForSubject("english", 3);
+    expect(recs).toHaveLength(3);
+    // phonics-3が未学習 → 最初、phonics-1/2が学習済みで補完
+    expect(recs[0]!.id).toBe("phonics-3");
+  });
+
+  it("問題が存在しない教科では空配列を返す", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics-1")];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    const recs = useCase.getRecommendedCategoriesForSubject("math", 3);
+    expect(recs).toHaveLength(0);
+  });
+});
+
+// ─── getCategoryProgressPct 仕様 ─────────────────────────────────────────────
+
+describe("QuizUseCase — getCategoryProgressPct 仕様", () => {
+  it("未学習カテゴリの場合は 0 を返す", async () => {
+    const questions = [makeQuestion("q1", "english", "phonics-1")];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getCategoryProgressPct("english", "phonics-1")).toBe(0);
+  });
+
+  it("問題が存在しないカテゴリの場合は 0 を返す", async () => {
+    const useCase = new QuizUseCase(new StubQuestionRepository([]), new StubProgressRepository());
+    await useCase.initialize();
+
+    expect(useCase.getCategoryProgressPct("english", "phonics-1")).toBe(0);
+  });
+
+  it("全問正解の学習済みカテゴリでは 100 を返す", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics-1"),
+      makeQuestion("q2", "english", "phonics-1"),
+    ];
+    const history: import("./ports").QuizRecord[] = [
+      {
+        id: "r1", date: new Date().toISOString(), subject: "english", subjectName: "英語",
+        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
+        totalCount: 2, correctCount: 2, entries: [],
+      },
+    ];
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository([], history));
+    await useCase.initialize();
+
+    expect(useCase.getCategoryProgressPct("english", "phonics-1")).toBe(100);
+  });
+
+  it("間違いがある場合は (total - wrong) / total * 100 の値を返す", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "phonics-1"),
+      makeQuestion("q2", "english", "phonics-1"),
+      makeQuestion("q3", "english", "phonics-1"),
+      makeQuestion("q4", "english", "phonics-1"),
+    ];
+    // q1 が間違い
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository(questions),
+      new StubProgressRepository(["q1"])
+    );
+    await useCase.initialize();
+
+    // (4 - 1) / 4 * 100 = 75
+    expect(useCase.getCategoryProgressPct("english", "phonics-1")).toBe(75);
+  });
+});
+
 describe("QuizUseCase — getLastStudyDateForSubject 仕様", () => {
   it("学習履歴がない場合は null を返す", async () => {
     const useCase = new QuizUseCase(new StubQuestionRepository([]), new StubProgressRepository());
