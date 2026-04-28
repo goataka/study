@@ -147,6 +147,18 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
     ).toThrow('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
   });
 
+  it("guideUrl が複数セグメントのプレフィックスなし相対パスの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "math/guide.md" })
+    ).toThrow('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
+  });
+
+  it("guideUrl が絶対パスの場合は拒否する", () => {
+    expect(() =>
+      validateQuestionFile({ ...validQF, guideUrl: "/absolute/path" })
+    ).toThrow('"guideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
+  });
+
   it("guideUrl にパストラバーサルが含まれる場合は拒否する（../ベース）", () => {
     expect(() =>
       validateQuestionFile({ ...validQF, guideUrl: "../math/../../etc/passwd" })

@@ -153,8 +153,14 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       } catch {
         // デコード失敗の場合は元の文字列で検証
       }
+      // デコード後も期待するプレフィックスで始まることを確認（URLデコードによる変化への防御）
+      const startsWithDotDot = decoded.startsWith("../");
+      const startsWithDot = decoded.startsWith("./");
+      if (!startsWithDotDot && !startsWithDot) {
+        throw new Error('"guideUrl" must not contain path traversal sequences');
+      }
       // ./ または ../ 以降のパスに追加の .. が含まれないことを確認
-      const prefix = decoded.startsWith("../") ? "../" : "./";
+      const prefix = startsWithDotDot ? "../" : "./";
       if (decoded.slice(prefix.length).includes("..")) {
         throw new Error('"guideUrl" must not contain path traversal sequences');
       }
@@ -181,7 +187,12 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       } catch {
         // デコード失敗の場合は元の文字列で検証
       }
-      const prefix = decoded.startsWith("../") ? "../" : "./";
+      const startsWithDotDot = decoded.startsWith("../");
+      const startsWithDot = decoded.startsWith("./");
+      if (!startsWithDotDot && !startsWithDot) {
+        throw new Error('"parentCategoryGuideUrl" must not contain path traversal sequences');
+      }
+      const prefix = startsWithDotDot ? "../" : "./";
       if (decoded.slice(prefix.length).includes("..")) {
         throw new Error('"parentCategoryGuideUrl" must not contain path traversal sequences');
       }
@@ -208,7 +219,12 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       } catch {
         // デコード失敗の場合は元の文字列で検証
       }
-      const prefix = decoded.startsWith("../") ? "../" : "./";
+      const startsWithDotDot = decoded.startsWith("../");
+      const startsWithDot = decoded.startsWith("./");
+      if (!startsWithDotDot && !startsWithDot) {
+        throw new Error('"topCategoryGuideUrl" must not contain path traversal sequences');
+      }
+      const prefix = startsWithDotDot ? "../" : "./";
       if (decoded.slice(prefix.length).includes("..")) {
         throw new Error('"topCategoryGuideUrl" must not contain path traversal sequences');
       }
