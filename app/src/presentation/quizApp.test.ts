@@ -121,8 +121,8 @@ function setupTabDom(): void {
         <div id="overallSummaryPanel" class="hidden">
           <div id="overallTodayPanel" class="overall-activity-panel">
             <div class="activity-date-nav">
-              <button id="prevDateBtn" type="button" aria-label="前の日へ">←</button>
               <input type="date" id="activityDatePicker" aria-label="日付を選択">
+              <button id="prevDateBtn" type="button" aria-label="前の日へ">←</button>
               <button id="nextDateBtn" type="button" aria-label="次の日へ">→</button>
             </div>
             <div id="shareSummaryText"></div>
@@ -3294,7 +3294,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(outerDate?.textContent).toContain("2025");
   });
 
-  it("教科概要アイテムをクリックすると該当教科タブに切り替わる", async () => {
+  it("教科概要アイテムをクリックしても総合タブのままで教科タブに切り替わらない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -3304,14 +3304,13 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     englishItem?.click();
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]');
-    expect(englishTab?.classList.contains("active")).toBe(true);
-    expect(englishTab?.getAttribute("aria-selected")).toBe("true");
+    expect(englishTab?.classList.contains("active")).toBe(false);
 
     const allTab = document.querySelector('.subject-tab[data-subject="all"]');
-    expect(allTab?.classList.contains("active")).toBe(false);
+    expect(allTab?.classList.contains("active")).toBe(true);
   });
 
-  it("教科概要アイテムをクリックするとカテゴリリストが描画される", async () => {
+  it("教科概要アイテムをクリックすると解説パネルが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -3320,8 +3319,11 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     );
     englishItem?.click();
 
-    const categoryItems = document.querySelectorAll(".category-item");
-    expect(categoryItems.length).toBeGreaterThan(0);
+    const guideContent = document.getElementById("guideContent");
+    expect(guideContent?.classList.contains("hidden")).toBe(false);
+
+    const overallPanel = document.getElementById("overallSummaryPanel");
+    expect(overallPanel?.classList.contains("hidden")).toBe(true);
   });
 
   it("総合タブ時に allSubjectPanelTitle が表示される", async () => {
