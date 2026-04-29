@@ -1718,21 +1718,27 @@ export class QuizApp {
         headerRow.appendChild(gradeSpan);
       }
 
-      // 単元名はカテゴリの下に表示
+      // 単元名（左）と説明文（右）を横並びで表示
+      const nameDescRow = document.createElement("div");
+      nameDescRow.className = "selected-unit-info-name-desc-row";
       const nameSpan = document.createElement("span");
       nameSpan.className = "selected-unit-info-name";
       nameSpan.textContent = this.overallUnitSelected.categoryName;
-      headerRow.appendChild(nameSpan);
-      body.appendChild(headerRow);
+      nameDescRow.appendChild(nameSpan);
 
-      // 説明文と例文
+      // 説明文は単元名の右に配置
       const description = this.useCase.getCategoryDescription(subject, categoryId);
       if (description) {
         const descDiv = document.createElement("div");
         descDiv.className = "selected-unit-info-desc";
         descDiv.textContent = description;
-        body.appendChild(descDiv);
+        nameDescRow.appendChild(descDiv);
       }
+
+      headerRow.appendChild(nameDescRow);
+      body.appendChild(headerRow);
+
+      // 例文は詳細行に表示
       const example = this.useCase.getCategoryExample(subject, categoryId);
       if (example !== undefined) {
         const exampleDiv = document.createElement("div");
@@ -1751,11 +1757,14 @@ export class QuizApp {
       closeBtn.setAttribute("aria-label", "単元の解説を閉じる");
       closeBtn.addEventListener("click", () => this.closeOverallUnitView());
       container.appendChild(closeBtn);
+
+      document.getElementById("categoryList")?.classList.add("detail-active");
       return;
     }
 
     if (selLevel === "none" || this.filter.subject === "all") {
       container.classList.add("hidden");
+      document.getElementById("categoryList")?.classList.remove("detail-active");
       return;
     }
 
@@ -1768,6 +1777,10 @@ export class QuizApp {
     // ヘッダー行（名前 + 学年バッジ）
     const headerRow = document.createElement("div");
     headerRow.className = "selected-unit-info-header";
+
+    // 単元名（左）と説明文（右）を横並びにするラッパー
+    const nameDescRow = document.createElement("div");
+    nameDescRow.className = "selected-unit-info-name-desc-row";
 
     const nameSpan = document.createElement("span");
     nameSpan.className = "selected-unit-info-name";
@@ -1806,7 +1819,8 @@ export class QuizApp {
       const topCats = this.useCase.getTopCategoriesForSubject(this.filter.subject);
       nameSpan.textContent = topCats[this.selectedTopCategoryId] ?? this.selectedTopCategoryId;
     }
-    headerRow.appendChild(nameSpan);
+    nameDescRow.appendChild(nameSpan);
+    headerRow.appendChild(nameDescRow);
 
     // 学年バッジ（単元選択時のみ、かつカテゴリパスがない場合のみ headerRow 直下に追加）
     if (selLevel === "unit") {
@@ -1835,7 +1849,7 @@ export class QuizApp {
         const descDiv = document.createElement("div");
         descDiv.className = "selected-unit-info-desc";
         descDiv.textContent = description;
-        body.appendChild(descDiv);
+        nameDescRow.appendChild(descDiv);  // 単元名の右に配置
       }
 
       const example = this.useCase.getCategoryExample(this.filter.subject, this.filter.category);
@@ -1860,8 +1874,9 @@ export class QuizApp {
       this.deselectAndRefresh();
     });
     container.appendChild(closeBtn);
-  }
 
+    document.getElementById("categoryList")?.classList.add("detail-active");
+  }
 
   private updateGuidePanelContent(): void {
     this.updateGuidePanelContentByIds("guidePanelFrame", "guideNoContent");
@@ -2440,7 +2455,7 @@ export class QuizApp {
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
         if (isStudied || stat.wrong > 0) {
-          const pct = stat.total > 0 ? Math.round((stat.answeredCorrect / stat.total) * 100) : 0;
+          const pct = stat.total > 0 ? Math.round(((stat.total - stat.wrong) / stat.total) * 100) : 0;
           progressFill.style.width = `${pct}%`;
           progressFill.classList.toggle("progress-fill-done", pct === 100);
           if (progressPct) {
