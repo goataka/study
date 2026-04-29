@@ -1898,7 +1898,11 @@ export class QuizApp {
 
   /**
    * 指定した div 要素に解説 HTML を fetch してシャドウ DOM で埋め込む。
-   * iframe の代わりに使用することで親ページのフォントサイズが自然に継承される。
+   * iframe の代わりに使用することで、親ページのフォントサイズが自然に継承される。
+   *
+   * @param container - 解説コンテンツを挿入するコンテナ要素
+   * @param guideUrl  - 解説ページの URL（Jekyll 生成 HTML）
+   * @param noContent - 解説なしメッセージ要素（任意）
    */
   private async loadGuideContent(container: HTMLElement, guideUrl: string, noContent?: HTMLElement): Promise<void> {
     // 既に同じ URL を表示中なら再ロードしない
@@ -1920,14 +1924,9 @@ export class QuizApp {
         container.appendChild(shadowHost);
       }
 
-      // シャドウ DOM にスタイルとコンテンツを注入する
-      let shadow: ShadowRoot;
-      try {
-        shadow = shadowHost.shadowRoot ?? shadowHost.attachShadow({ mode: "open" });
-      } catch {
-        // すでに shadowRoot がある場合はそのまま使用する
-        shadow = shadowHost.shadowRoot!;
-      }
+      // シャドウ DOM を取得またはアタッチする
+      // shadowRoot は既にアタッチ済みの場合は再アタッチできないため、既存のものを使用する
+      const shadow: ShadowRoot = shadowHost.shadowRoot ?? shadowHost.attachShadow({ mode: "open" });
 
       // head 内のスタイル要素を収集してシャドウに追加する
       const styleHtml = Array.from(doc.head.querySelectorAll("style, link[rel='stylesheet']"))
@@ -1954,7 +1953,12 @@ export class QuizApp {
     } catch (err) {
       console.error("解説の読み込みに失敗しました:", err);
       container.dataset.loadedUrl = "";
-      container.innerHTML = `<p class="guide-no-content">解説の読み込みに失敗しました。</p>`;
+      // innerHTML を上書きせず、エラーメッセージのみ追加する
+      container.querySelectorAll(".guide-error-msg").forEach((el) => el.remove());
+      const errorMsg = document.createElement("p");
+      errorMsg.className = "guide-error-msg guide-no-content";
+      errorMsg.textContent = "解説の読み込みに失敗しました。";
+      container.appendChild(errorMsg);
       noContent?.classList.add("hidden");
     }
   }
