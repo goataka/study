@@ -1950,7 +1950,7 @@ export class QuizApp {
       const doc = parser.parseFromString(html, "text/html");
 
       // XSS 対策: script 要素・on* 属性・危険な要素を除去する
-      doc.querySelectorAll("script, iframe, object, embed").forEach((el) => el.remove());
+      doc.querySelectorAll("script, iframe, object, embed, link[rel='import'], meta[http-equiv='refresh']").forEach((el) => el.remove());
       doc.querySelectorAll("*").forEach((el) => {
         Array.from(el.attributes)
           .filter((attr) => attr.name.startsWith("on"))
