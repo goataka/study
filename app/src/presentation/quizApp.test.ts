@@ -20,6 +20,21 @@ const kanjiCanvasMock = {
 };
 (globalThis as unknown as Record<string, unknown>).KanjiCanvas = kanjiCanvasMock;
 
+/**
+ * 非同期処理の完了を条件ベースで待機するユーティリティ。
+ * setTimeout(10ms) のような時間依存待機の代替として使用する。
+ */
+async function waitForCondition(
+  condition: () => boolean,
+  { timeout = 500, interval = 5 }: { timeout?: number; interval?: number } = {}
+): Promise<void> {
+  const deadline = Date.now() + timeout;
+  while (!condition()) {
+    if (Date.now() >= deadline) throw new Error("waitForCondition: タイムアウト");
+    await new Promise((resolve) => setTimeout(resolve, interval));
+  }
+}
+
 // ─── DOM スタブのセットアップ ────────────────────────────────────────────────
 
 /** テストに必要な最小限のHTML要素を生成する */
@@ -838,7 +853,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     expect(guideTab?.classList.contains("active")).toBe(true);
 
     // 解説コンテナに解説 URL がロードされること
-    await new Promise((resolve) => setTimeout(resolve, 10));
+    await waitForCondition(() => !!document.getElementById("guidePanelFrame")?.dataset.loadedUrl);
     const guideFrame = document.getElementById("guidePanelFrame");
     expect(guideFrame?.dataset.loadedUrl).toContain("grammar");
     expect(guideFrame?.classList.contains("hidden")).toBe(false);
@@ -969,7 +984,7 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
     guideTab?.click();
 
-    await new Promise((resolve) => setTimeout(resolve, 10));
+    await waitForCondition(() => !!document.getElementById("guidePanelFrame")?.dataset.loadedUrl);
     const guideFrame = document.getElementById("guidePanelFrame");
     expect(guideFrame).not.toBeNull();
     expect(guideFrame?.dataset.loadedUrl).toContain("guide");

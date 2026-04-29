@@ -53,7 +53,21 @@ export class LocalStorageProgressRepository implements IProgressRepository {
   loadQuestionStats(): Record<string, { total: number; correct: number }> {
     try {
       const saved = localStorage.getItem(QUESTION_STATS_KEY);
-      return saved ? (JSON.parse(saved) as Record<string, { total: number; correct: number }>) : {};
+      if (!saved) return {};
+      const raw = JSON.parse(saved) as Record<string, unknown>;
+      // 壊れたデータや旧形式に備え、total/correct が有限の非負整数かを検証して正規化する
+      const normalized: Record<string, { total: number; correct: number }> = {};
+      for (const [id, val] of Object.entries(raw)) {
+        if (val !== null && typeof val === "object") {
+          const { total, correct } = val as Record<string, unknown>;
+          normalized[id] = {
+            total: Number.isFinite(total) && typeof total === "number" && total >= 0 ? Math.trunc(total) : 0,
+            correct:
+              Number.isFinite(correct) && typeof correct === "number" && correct >= 0 ? Math.trunc(correct) : 0,
+          };
+        }
+      }
+      return normalized;
     } catch {
       return {};
     }

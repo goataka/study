@@ -71,6 +71,8 @@ export class QuizApp {
   private subjectRecommendedCounts: Map<string, number> = new Map();
   /** 総合タブの現在アクティブなサマリパネル */
   private activeOverallPanel: "learned" | "share" = "learned";
+  /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
+  private guideLoadCounter: number = 0;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -1838,7 +1840,7 @@ export class QuizApp {
 
   /**
    * 親カテゴリの解説を解説パネルに表示する。
-   * 解説タブに切り替えて、指定した親カテゴリの解説 URL を iframe に設定する。
+   * 解説タブに切り替えて、指定した親カテゴリの解説 URL を解説コンテナにロードする。
    */
   private showParentCategoryGuide(guideUrl: string): void {
     this.activePanelTab = "guide";
@@ -1853,7 +1855,7 @@ export class QuizApp {
   }
 
   /**
-   * 指定した iframe と空表示要素 ID を使って解説コンテンツを更新する共通処理。
+   * 指定したコンテナ要素と空表示要素 ID を使って解説コンテンツを更新する共通処理。
    * 選択レベルに応じて解説URLを決定する：
    * - 単元選択: 単元の guideUrl
    * - 親カテゴリ選択: parentCategoryGuideUrl
@@ -1900,21 +1902,60 @@ export class QuizApp {
    * 指定した div 要素に解説 HTML を fetch してシャドウ DOM で埋め込む。
    * iframe の代わりに使用することで、親ページのフォントサイズが自然に継承される。
    *
+   * セキュリティ: script 要素・on* 属性を除去したうえでシャドウ DOM に挿入する。
+   * レースコンディション対策: 最後に開始したリクエストのみ反映し、古いリクエストを破棄する。
+   *
    * @param container - 解説コンテンツを挿入するコンテナ要素
-   * @param guideUrl  - 解説ページの URL（Jekyll 生成 HTML）
+   * @param guideUrl  - 解説ページの URL（相対パスまたは同一オリジンの Jekyll 生成 HTML）
    * @param noContent - 解説なしメッセージ要素（任意）
    */
   private async loadGuideContent(container: HTMLElement, guideUrl: string, noContent?: HTMLElement): Promise<void> {
     // 既に同じ URL を表示中なら再ロードしない
     if (container.dataset.loadedUrl === guideUrl) return;
 
+    // リクエストごとにトークンを割り当て、最新リクエスト以外は結果を破棄する
+    const token = ++this.guideLoadCounter;
+
+    // 絶対 URL（外部オリジン）は CORS リスクがあるため fetch せず別タブで開くリンクを表示する
+    try {
+      const parsed = new URL(guideUrl, window.location.href);
+      if (parsed.origin !== window.location.origin) {
+        if (token !== this.guideLoadCounter) return;
+        container.dataset.loadedUrl = "";
+        container.querySelectorAll(".guide-error-msg").forEach((el) => el.remove());
+        const link = document.createElement("p");
+        link.className = "guide-error-msg guide-no-content";
+        const anchor = document.createElement("a");
+        anchor.href = guideUrl;
+        anchor.target = "_blank";
+        anchor.rel = "noopener noreferrer";
+        anchor.textContent = "解説を別タブで開く";
+        link.appendChild(anchor);
+        container.appendChild(link);
+        noContent?.classList.add("hidden");
+        container.classList.remove("hidden");
+        return;
+      }
+    } catch {
+      // URL パースに失敗した場合はそのまま fetch を試みる
+    }
+
     try {
       const response = await fetch(guideUrl);
+      if (token !== this.guideLoadCounter) return; // 古いリクエストは破棄
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const html = await response.text();
 
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
+
+      // XSS 対策: script 要素・on* 属性・危険な要素を除去する
+      doc.querySelectorAll("script, iframe, object, embed").forEach((el) => el.remove());
+      doc.querySelectorAll("*").forEach((el) => {
+        Array.from(el.attributes)
+          .filter((attr) => attr.name.startsWith("on"))
+          .forEach((attr) => el.removeAttribute(attr.name));
+      });
 
       // シャドウホストを作成（または既存を再利用）
       let shadowHost = container.querySelector<HTMLElement>(".guide-shadow-host");
@@ -1941,9 +1982,9 @@ export class QuizApp {
           body { font-size: 1em !important; }
         </style>`;
 
-      // body のコンテンツを取得（header.site-header と footer.site-footer を除く）
+      // body のコンテンツを取得（header.site-header・footer.site-footer・スクリプト類を除く）
       const bodyClone = doc.body.cloneNode(true) as HTMLBodyElement;
-      bodyClone.querySelectorAll("header.site-header, footer.site-footer").forEach((el) => el.remove());
+      bodyClone.querySelectorAll("header.site-header, footer.site-footer, script").forEach((el) => el.remove());
 
       shadow.innerHTML = embeddedStyle + styleHtml + bodyClone.innerHTML;
 
@@ -1951,6 +1992,7 @@ export class QuizApp {
       container.classList.remove("hidden");
       noContent?.classList.add("hidden");
     } catch (err) {
+      if (token !== this.guideLoadCounter) return; // 古いリクエストは破棄
       console.error("解説の読み込みに失敗しました:", err);
       container.dataset.loadedUrl = "";
       // innerHTML を上書きせず、エラーメッセージのみ追加する

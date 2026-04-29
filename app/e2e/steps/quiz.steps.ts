@@ -89,7 +89,8 @@ Given("I have selected a quiz category", async ({ page }) => {
   const firstItem = page.locator(".category-item[data-category]").first();
   await firstItem.click();
   // 履歴がない場合は解説タブが表示されるため、確認タブを明示的にクリックする
-  await page.locator("#panelTab-quiz").click();
+  // Shadow DOM を piercing して重複 ID が出る場合があるため first() で絞り込む
+  await page.locator("#panelTab-quiz").first().click();
   await expect(page.locator("#quizModePanel")).toBeVisible();
 });
 

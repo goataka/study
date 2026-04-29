@@ -38,14 +38,17 @@ class StubProgressRepository implements IProgressRepository {
   private ids: string[];
   private history: import("./ports").QuizRecord[];
   private streaks: Record<string, number>;
+  private stats: Record<string, { total: number; correct: number }>;
   constructor(
     initialIds: string[] = [],
     initialHistory: import("./ports").QuizRecord[] = [],
-    initialStreaks: Record<string, number> = {}
+    initialStreaks: Record<string, number> = {},
+    initialStats: Record<string, { total: number; correct: number }> = {}
   ) {
     this.ids = [...initialIds];
     this.history = [...initialHistory];
     this.streaks = { ...initialStreaks };
+    this.stats = { ...initialStats };
   }
   loadWrongIds(): string[] {
     return [...this.ids];
@@ -87,16 +90,21 @@ class StubProgressRepository implements IProgressRepository {
   }
   saveFontSizeLevel(_level: "small" | "medium" | "large"): void {}
   loadQuestionStats(): Record<string, { total: number; correct: number }> {
-    return {};
+    return { ...this.stats };
   }
-  saveQuestionStats(_stats: Record<string, { total: number; correct: number }>): void {}
+  saveQuestionStats(stats: Record<string, { total: number; correct: number }>): void {
+    this.stats = { ...stats };
+  }
+  getStoredStats(): Record<string, { total: number; correct: number }> {
+    return { ...this.stats };
+  }
   exportAllData(): import("./ports").UserDataExport {
     return {
       exportedAt: new Date().toISOString(),
       userName: null,
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
-      questionStats: {},
+      questionStats: this.loadQuestionStats(),
       history: this.loadHistory(),
       categoryViewMode: "category",
       fontSizeLevel: null,
@@ -445,6 +453,92 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
 
     expect(progressRepo.getStoredIds()).not.toContain("q1");
     expect(Object.keys(progressRepo.getStoredStreaks())).toHaveLength(0);
+  });
+});
+
+describe("QuizUseCase — questionStats（問題別統計）仕様", () => {
+  it("正解した問題の total と correct が 1 ずつ増える", async () => {
+    const q = makeQuestion("q1");
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    const session = useCase.startSession("random", { subject: "all", category: "all" });
+    session.selectAnswer(0, session.questions[0]!.correct);
+    useCase.submitSession(session);
+
+    const stat = progressRepo.getStoredStats()["q1"];
+    expect(stat).toEqual({ total: 1, correct: 1 });
+  });
+
+  it("不正解の場合は total のみ増え correct は増えない", async () => {
+    const q = makeQuestion("q1");
+    q.correct = 0;
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    const session = useCase.startSession("random", { subject: "all", category: "all" });
+    const wrongIndex = session.questions[0]!.correct === 0 ? 1 : 0;
+    session.selectAnswer(0, wrongIndex);
+    useCase.submitSession(session);
+
+    const stat = progressRepo.getStoredStats()["q1"];
+    expect(stat).toEqual({ total: 1, correct: 0 });
+  });
+
+  it("複数回回答した場合に total と correct が累積される", async () => {
+    const q = makeQuestion("q1");
+    const progressRepo = new StubProgressRepository(["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    // 1回目: 正解
+    const s1 = useCase.startSession("retry", { subject: "all", category: "all" });
+    s1.selectAnswer(0, s1.questions[0]!.correct);
+    useCase.submitSession(s1);
+
+    // 2回目: 不正解
+    const s2 = useCase.startSession("retry", { subject: "all", category: "all" });
+    const wrongIndex = s2.questions[0]!.correct === 0 ? 1 : 0;
+    s2.selectAnswer(0, wrongIndex);
+    useCase.submitSession(s2);
+
+    const stat = progressRepo.getStoredStats()["q1"];
+    expect(stat?.total).toBe(2);
+    expect(stat?.correct).toBe(1);
+  });
+
+  it("getQuestionStat は保存済み統計を返す", async () => {
+    const q = makeQuestion("q1");
+    const progressRepo = new StubProgressRepository([], [], {}, { q1: { total: 5, correct: 3 } });
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    expect(useCase.getQuestionStat("q1")).toEqual({ total: 5, correct: 3 });
+  });
+
+  it("統計がない問題では getQuestionStat が { total: 0, correct: 0 } を返す", async () => {
+    const q = makeQuestion("q1");
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    expect(useCase.getQuestionStat("q1")).toEqual({ total: 0, correct: 0 });
+  });
+
+  it("submitSession 後に progressRepo.saveQuestionStats が更新値で呼ばれる", async () => {
+    const q = makeQuestion("q1");
+    const progressRepo = new StubProgressRepository();
+    const saveSpy = vi.spyOn(progressRepo, "saveQuestionStats");
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    const session = useCase.startSession("random", { subject: "all", category: "all" });
+    session.selectAnswer(0, session.questions[0]!.correct);
+    useCase.submitSession(session);
+
+    expect(saveSpy).toHaveBeenCalledWith(expect.objectContaining({ q1: { total: 1, correct: 1 } }));
   });
 });
 

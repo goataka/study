@@ -51,6 +51,9 @@ jobs:
         with:
           token: ${{ secrets.COPILOT_CLASSIC }}
 
+      - name: Git safe directory の設定（コンテナ内UID不一致対応）
+        run: git config --global --add safe.directory /__w/study/study
+
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
         with:
