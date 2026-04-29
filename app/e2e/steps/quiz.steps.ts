@@ -263,7 +263,7 @@ Given("I have navigated to a hiragana text-input question", async ({ page }) => 
   await kanjiItem.click();
   await page.locator("#panelTab-quiz").first().click();
   await expect(page.locator("#quizModePanel").first()).toBeVisible();
-  await page.getByRole("button", { name: "スタート" }).click();
+  await page.getByRole("button", { name: "スタート", exact: true }).click();
   await expect(page.locator("#quizScreen")).toBeVisible();
   // text-input 問題が表示され KanjiCanvas 入力エリアが可視状態であることを確認
   await expect(page.locator("#kanjiInputArea")).not.toHaveClass(/hidden/);
@@ -424,5 +424,6 @@ Then("the support button should open support page in a new tab", async ({ page }
 });
 
 When("I select {string} quiz order", async ({ page }, order: string) => {
-  await page.locator(`input[name="quizOrder"][value="${order}"]`).check();
+  // シャドウDOM内の重複を避けるため #quizModePanel にスコープを絞る
+  await page.locator(`#quizModePanel input[name="quizOrder"][value="${order}"]`).check();
 });
