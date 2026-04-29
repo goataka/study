@@ -38,6 +38,8 @@ jobs:
   e2e:
     name: E2Eテスト（app）
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
     defaults:
       run:
         working-directory: app
@@ -53,9 +55,6 @@ jobs:
         uses: ./.github/actions/setup-quiz
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Playwright ブラウザのインストール
-        run: npx playwright install --with-deps chromium
 
       - name: Viteビルド（E2E用）
         run: npm run build

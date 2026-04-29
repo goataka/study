@@ -112,7 +112,7 @@ function setupTabDom(): void {
           <button id="markLearnedBtn" disabled>学習済みにする</button>
         </div>
         <div id="guideContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
-          <iframe id="guidePanelFrame" title="解説"></iframe>
+          <div id="guidePanelFrame" title="解説"></div>
           <p id="guideNoContent" class="hidden">このカテゴリには解説がありません。</p>
         </div>
         <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
@@ -815,6 +815,12 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
       if (urlStr.includes("grammar.json")) {
         return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFileWithParentGuide) } as Response);
       }
+      if (urlStr.includes("grammar/guide")) {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve("<html><head></head><body><main><p>文法解説</p></main></body></html>"),
+        } as Response);
+      }
       return Promise.resolve({ ok: true, json: () => Promise.resolve(mockPhonicsFile) } as Response);
     });
 
@@ -831,10 +837,11 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
     expect(guideTab?.classList.contains("active")).toBe(true);
 
-    // iframe に親カテゴリの解説 URL が設定されること
-    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
-    expect(guideFrame.src).toContain("grammar");
-    expect(guideFrame.classList.contains("hidden")).toBe(false);
+    // 解説コンテナに解説 URL がロードされること
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    const guideFrame = document.getElementById("guidePanelFrame");
+    expect(guideFrame?.dataset.loadedUrl).toContain("grammar");
+    expect(guideFrame?.classList.contains("hidden")).toBe(false);
   });
 
   it("親カテゴリヘッダーをクリックするとグループの折りたたみ状態が変化する", async () => {
@@ -940,12 +947,18 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     expect(historyIdx).toBeGreaterThan(quizIdx);
   });
 
-  it("guideUrl ありのカテゴリで解説タブをクリックすると iframe に URL が設定される", async () => {
+  it("guideUrl ありのカテゴリで解説タブをクリックすると解説コンテナに URL がロードされる", async () => {
     setupTabDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
       if (urlStr.includes("index.json")) {
         return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      if (urlStr.includes("01-alphabet/guide")) {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve("<html><head></head><body><main><p>解説内容</p></main></body></html>"),
+        } as Response);
       }
       return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithGuide) } as Response);
     });
@@ -956,10 +969,11 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
     guideTab?.click();
 
-    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    const guideFrame = document.getElementById("guidePanelFrame");
     expect(guideFrame).not.toBeNull();
-    expect(guideFrame.src).toContain("guide");
-    expect(guideFrame.classList.contains("hidden")).toBe(false);
+    expect(guideFrame?.dataset.loadedUrl).toContain("guide");
+    expect(guideFrame?.classList.contains("hidden")).toBe(false);
 
     const noContent = document.getElementById("guideNoContent");
     expect(noContent?.classList.contains("hidden")).toBe(true);
@@ -3910,7 +3924,7 @@ describe("QuizApp — 確認ダイアログ仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const msg = document.getElementById("confirmDialogMessage");
-    expect(msg?.textContent).toContain("スタート画面に戻りますか");
+    expect(msg?.textContent).toContain("単元選択に戻りますか");
   });
 
   it("確認ダイアログDOM要素がない場合はwindow.confirmにフォールバックする", async () => {
@@ -3959,7 +3973,7 @@ describe("QuizApp — 確認ダイアログ仕様", () => {
     document.getElementById("titleBtn")?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    expect(confirmSpy).toHaveBeenCalledWith(expect.stringContaining("スタート画面に戻りますか"));
+    expect(confirmSpy).toHaveBeenCalledWith(expect.stringContaining("単元選択に戻りますか"));
     const startScreen = document.getElementById("startScreen");
     expect(startScreen?.classList.contains("hidden")).toBe(false);
   });
@@ -4782,32 +4796,14 @@ describe("QuizApp — フォントサイズ切替仕様", () => {
     expect(localStorage.getItem("fontSizeLevel")).toBe("small");
   });
 
-  it("フォントサイズ変更時に .guide-frame の iframe へ fontSizeChanged メッセージが送信される", async () => {
-    setupTabDom();
-    setupFetchMock();
-    localStorage.clear();
-    document.body.classList.remove("font-size-medium", "font-size-large");
-
+  it("フォントサイズ変更時にlocalStorageに値が保存される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement;
-    guideFrame.classList.add("guide-frame");
-
-    const postedMessages: Array<{ msg: unknown; targetOrigin: string }> = [];
-    if (guideFrame.contentWindow) {
-      guideFrame.contentWindow.postMessage = (msg: unknown, targetOrigin: string) => {
-        postedMessages.push({ msg, targetOrigin });
-      };
-    }
 
     const largeBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="large"]')!;
     largeBtn.click();
 
-    expect(postedMessages).toContainEqual({
-      msg: { type: "fontSizeChanged", level: "large" },
-      targetOrigin: "*",
-    });
+    expect(localStorage.getItem("fontSizeLevel")).toBe("large");
   });
 });
 

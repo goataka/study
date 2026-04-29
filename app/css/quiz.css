@@ -55,7 +55,7 @@ header h1 {
 }
 
 .header-today-date {
-    font-size: 16px;
+    font-size: 30px;
     color: #586069;
     font-weight: 500;
     margin-left: 16px;
@@ -213,8 +213,12 @@ header h1 {
 }
 
 /* 詳細エリア表示中は単元一覧の説明・例文を非表示（高さ維持） */
+.category-list.detail-active .category-item.category-item-has-info {
+    grid-template-columns: 1fr;
+}
+
 .category-list.detail-active .category-item-right {
-    visibility: hidden;
+    display: none;
 }
 
 /* カテゴリ操作コントロール */
@@ -610,7 +614,7 @@ header h1 {
 }
 
 .category-status {
-    font-size: 16px;
+    font-size: 14px;
     flex-shrink: 0;
     line-height: 1;
 }
@@ -679,7 +683,7 @@ header h1 {
 }
 
 .subject-overview-name {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     color: #24292e;
 }
@@ -1082,17 +1086,25 @@ header h1 {
     gap: 4px;
 }
 
-/* カテゴリ + 学年を横並びにするメタ行 */
-.selected-unit-info-meta-row {
+/* カテゴリ + 学年 + 例文を横並びにする詳細行（タイトルの下） */
+.selected-unit-info-detail-row {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* カテゴリ + 学年グループ（左寄せ） */
+.selected-unit-info-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
 }
 
 /* 単元詳細の学年バッジはカテゴリバッジと同サイズ */
-.selected-unit-info-meta-row .category-grade {
+.selected-unit-info-left .category-grade {
     font-size: 12px;
-    margin-left: auto;
 }
 
 .selected-unit-info-name {
@@ -1111,14 +1123,6 @@ header h1 {
     white-space: nowrap;
 }
 
-/* 単元名と説明文を横並びにするラッパー */
-.selected-unit-info-name-desc-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    width: 100%;
-}
-
 .selected-unit-info-desc {
     font-size: 13px;
     color: #444d56;
@@ -1129,6 +1133,8 @@ header h1 {
 .selected-unit-info-example {
     font-size: 13px;
     color: #586069;
+    margin-left: auto;
+    text-align: right;
 }
 
 .selected-unit-info-example::before {
@@ -1400,10 +1406,10 @@ button:disabled {
     padding: 0;
     width: 30px;
     height: 30px;
-    border: 1px solid #d32f2f;
+    border: 1px solid #999;
     border-radius: 50%;
     background: white;
-    color: #d32f2f;
+    color: #999;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
     margin-left: auto;
@@ -1414,7 +1420,7 @@ button:disabled {
 }
 
 .cancel-quiz-btn:hover {
-    background-color: #d32f2f;
+    background-color: #666;
     color: white;
 }
 
@@ -1763,6 +1769,23 @@ button:disabled {
     white-space: nowrap;
 }
 
+/* 回答統計バッジ（回答数/正解数） */
+.question-list-stat {
+    font-size: 13px;
+    color: #586069;
+    background: rgba(0, 0, 0, 0.06);
+    padding: 2px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* 完了した問題（正解3回以上）の強調表示 */
+.question-list-item.question-list-completed {
+    background: #fffbf0;
+    border-left: 3px solid #f9c513;
+}
+
 .question-list-hint-btn {
     background: none;
     border: none;
@@ -2039,10 +2062,19 @@ button:disabled {
 .guide-frame {
     width: 100%;
     flex: 1;
-    height: 0; /* flex: 1 が iframes に効くよう明示的に height: 0 を指定 */
+    min-height: 0;
     border: none;
     display: block;
     background: white;
+    overflow-y: auto;
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+/* シャドウDOM ホスト要素のスタイル */
+.guide-shadow-host {
+    display: block;
+    width: 100%;
 }
 
 /* カテゴリ名エリア（名前 + 進捗バー） */
@@ -2102,7 +2134,6 @@ button:disabled {
     width: 0%;
     background: #0366d6;
     border-radius: 2px;
-    transition: width 0.3s ease;
 }
 
 .category-progress-fill.progress-fill-done {
@@ -2825,7 +2856,7 @@ body.font-size-medium .category-item-description {
 }
 
 body.font-size-medium .category-status {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 body.font-size-medium .category-stats {
@@ -2845,7 +2876,7 @@ body.font-size-medium .subject-overview-icon {
 }
 
 body.font-size-medium .subject-overview-name {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 body.font-size-medium .subject-overview-outer-cat {
@@ -2904,7 +2935,7 @@ body.font-size-medium .today-activity-empty {
 }
 
 body.font-size-medium .header-today-date {
-    font-size: 18px;
+    font-size: 34px;
 }
 
 body.font-size-medium .grade-filter-btn {
@@ -3112,7 +3143,7 @@ body.font-size-large .category-item-description {
 }
 
 body.font-size-large .category-status {
-    font-size: 24px;
+    font-size: 19px;
 }
 
 body.font-size-large .category-stats {
@@ -3132,7 +3163,7 @@ body.font-size-large .subject-overview-icon {
 }
 
 body.font-size-large .subject-overview-name {
-    font-size: 24px;
+    font-size: 19px;
 }
 
 body.font-size-large .subject-overview-outer-cat {
@@ -3191,7 +3222,7 @@ body.font-size-large .today-activity-empty {
 }
 
 body.font-size-large .header-today-date {
-    font-size: 21px;
+    font-size: 40px;
 }
 
 body.font-size-large .grade-filter-btn {

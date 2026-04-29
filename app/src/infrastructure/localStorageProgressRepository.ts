@@ -7,6 +7,7 @@ import type { IProgressRepository, QuizRecord, UserDataExport } from "../applica
 
 const STORAGE_KEY = "wrongQuestions";
 const CORRECT_STREAKS_KEY = "correctStreaks";
+const QUESTION_STATS_KEY = "questionStats";
 const USER_NAME_KEY = "userName";
 const HISTORY_KEY = "quizHistory";
 const CATEGORY_VIEW_MODE_KEY = "categoryViewMode";
@@ -46,6 +47,23 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       localStorage.setItem(CORRECT_STREAKS_KEY, JSON.stringify(streaks));
     } catch (error) {
       console.error("正解連続数の保存に失敗しました:", error);
+    }
+  }
+
+  loadQuestionStats(): Record<string, { total: number; correct: number }> {
+    try {
+      const saved = localStorage.getItem(QUESTION_STATS_KEY);
+      return saved ? (JSON.parse(saved) as Record<string, { total: number; correct: number }>) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  saveQuestionStats(stats: Record<string, { total: number; correct: number }>): void {
+    try {
+      localStorage.setItem(QUESTION_STATS_KEY, JSON.stringify(stats));
+    } catch (error) {
+      console.error("問題統計の保存に失敗しました:", error);
     }
   }
 
@@ -126,6 +144,7 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       userName: this.loadUserName(),
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
+      questionStats: this.loadQuestionStats(),
       history: this.loadHistory(),
       categoryViewMode: this.loadCategoryViewMode(),
       fontSizeLevel: this.loadFontSizeLevel(),

@@ -86,6 +86,22 @@ class StubProgressRepository implements IProgressRepository {
     return null;
   }
   saveFontSizeLevel(_level: "small" | "medium" | "large"): void {}
+  loadQuestionStats(): Record<string, { total: number; correct: number }> {
+    return {};
+  }
+  saveQuestionStats(_stats: Record<string, { total: number; correct: number }>): void {}
+  exportAllData(): import("./ports").UserDataExport {
+    return {
+      exportedAt: new Date().toISOString(),
+      userName: null,
+      wrongIds: this.loadWrongIds(),
+      correctStreaks: this.loadCorrectStreaks(),
+      questionStats: {},
+      history: this.loadHistory(),
+      categoryViewMode: "category",
+      fontSizeLevel: null,
+    };
+  }
 }
 
 // ─── テスト ──────────────────────────────────────────────────────────────────
