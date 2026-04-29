@@ -1,3 +1,4 @@
+// キャッシュバージョン: 新しいデプロイ時にバージョン番号を更新すること
 const CACHE_NAME = 'study-app-v1';
 const URLS_TO_CACHE = [
   './',
@@ -10,6 +11,8 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => response || fetch(event.request))
+    caches.match(event.request).then(
+      (response) => response || fetch(event.request).catch(() => new Response('', { status: 503 }))
+    )
   );
 });
