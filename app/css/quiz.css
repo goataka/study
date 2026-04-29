@@ -180,12 +180,12 @@ header h1 {
 .category-list-title {
     font-size: 14px;
     font-weight: 700;
-    color: #24292e;
+    color: #0366d6;
     flex-shrink: 0;
 }
 
 .hide-learned-btn {
-    font-size: 13px;
+    font-size: 14px;
     padding: 3px 8px;
     border: 1px solid #d1d5da;
     border-radius: 4px;
@@ -212,6 +212,11 @@ header h1 {
     display: none;
 }
 
+/* 詳細エリア表示中は単元一覧の説明・例文を非表示（高さ維持） */
+.category-list.detail-active .category-item-right {
+    visibility: hidden;
+}
+
 /* カテゴリ操作コントロール */
 .category-controls {
     display: flex;
@@ -222,7 +227,7 @@ header h1 {
 }
 
 .category-view-toggle {
-    font-size: 12px;
+    font-size: 14px;
     padding: 3px 8px;
     border: 1px solid #d1d5da;
     border-radius: 4px;
@@ -1106,14 +1111,31 @@ header h1 {
     white-space: nowrap;
 }
 
+/* 単元名と説明文を横並びにするラッパー */
+.selected-unit-info-name-desc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    width: 100%;
+}
+
 .selected-unit-info-desc {
     font-size: 13px;
     color: #444d56;
+    margin-left: auto;
+    text-align: right;
 }
 
 .selected-unit-info-example {
     font-size: 13px;
     color: #586069;
+}
+
+.selected-unit-info-example::before {
+    content: "例）";
+    font-style: normal;
+    margin-right: 2px;
+    opacity: 0.7;
 }
 
 .selected-unit-close-btn {
@@ -2834,10 +2856,6 @@ body.font-size-medium .subject-overview-pct {
     font-size: 14px;
 }
 
-body.font-size-medium .all-subject-panel-title {
-    font-size: 17px;
-}
-
 body.font-size-medium .subject-overview-recommended {
     font-size: 17px;
 }
@@ -2894,6 +2912,22 @@ body.font-size-medium .grade-filter-btn {
 }
 
 body.font-size-medium .grade-filter-label {
+    font-size: 16px;
+}
+
+body.font-size-medium .category-list-title {
+    font-size: 16px;
+}
+
+body.font-size-medium .hide-learned-btn {
+    font-size: 16px;
+}
+
+body.font-size-medium .category-view-toggle {
+    font-size: 16px;
+}
+
+body.font-size-medium .all-subject-panel-title {
     font-size: 16px;
 }
 
@@ -3105,10 +3139,6 @@ body.font-size-large .subject-overview-outer-cat {
     font-size: 18px;
 }
 
-body.font-size-large .all-subject-panel-title {
-    font-size: 20px;
-}
-
 body.font-size-large .subject-overview-recommended {
     font-size: 21px;
 }
@@ -3169,6 +3199,22 @@ body.font-size-large .grade-filter-btn {
 }
 
 body.font-size-large .grade-filter-label {
+    font-size: 19px;
+}
+
+body.font-size-large .category-list-title {
+    font-size: 19px;
+}
+
+body.font-size-large .hide-learned-btn {
+    font-size: 19px;
+}
+
+body.font-size-large .category-view-toggle {
+    font-size: 19px;
+}
+
+body.font-size-large .all-subject-panel-title {
     font-size: 19px;
 }
 

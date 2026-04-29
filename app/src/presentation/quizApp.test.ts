@@ -2340,6 +2340,43 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     expect(pct?.classList.contains("hidden")).toBe(false);
     expect(pct?.textContent).toBe("80%");
   });
+
+  it("手動で学習済みにしたカテゴリ（entries が空の manual レコード）の進捗バーは 100% になる", async () => {
+    // manual モードは entries が空でも履歴レコードが存在する（学習済みマーク機能）
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "manual",
+          totalCount: 5,
+          correctCount: 5,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
+    const pctEl = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+
+    expect(fill?.style.width).toBe("100%");
+    expect(fill?.classList.contains("progress-fill-done")).toBe(true);
+    expect(pctEl?.classList.contains("hidden")).toBe(false);
+    expect(pctEl?.textContent).toBe("100%");
+  });
 });
 
 describe("QuizApp — カテゴリ例文表示仕様", () => {
