@@ -1957,6 +1957,10 @@ export class QuizApp {
           .forEach((attr) => el.removeAttribute(attr.name));
       });
 
+      // シャドウDOM外からのID選択（Playwright等）と主ページIDとの衝突を防ぐため、
+      // 注入コンテンツ内のすべての id 属性を除去する
+      doc.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+
       // シャドウホストを作成（または既存を再利用）
       let shadowHost = container.querySelector<HTMLElement>(".guide-shadow-host");
       if (!shadowHost) {

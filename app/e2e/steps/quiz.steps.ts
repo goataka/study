@@ -91,7 +91,7 @@ Given("I have selected a quiz category", async ({ page }) => {
   // 履歴がない場合は解説タブが表示されるため、確認タブを明示的にクリックする
   // Shadow DOM を piercing して重複 ID が出る場合があるため first() で絞り込む
   await page.locator("#panelTab-quiz").first().click();
-  await expect(page.locator("#quizModePanel")).toBeVisible();
+  await expect(page.locator("#quizModePanel").first()).toBeVisible();
 });
 
 When("I click the {string} button", async ({ page }, buttonText: string) => {
@@ -262,8 +262,8 @@ Given("I have navigated to a hiragana text-input question", async ({ page }) => 
   // 「漢字 - 小学1年 - 読み」カテゴリを選択（ひらがな正解の text-input 問題）
   const kanjiItem = page.locator(".category-item[data-category='kanji-grade1']");
   await kanjiItem.click();
-  await page.locator("#panelTab-quiz").click();
-  await expect(page.locator("#quizModePanel")).toBeVisible();
+  await page.locator("#panelTab-quiz").first().click();
+  await expect(page.locator("#quizModePanel").first()).toBeVisible();
   await page.getByRole("button", { name: "本番" }).click();
   await expect(page.locator("#quizScreen")).toBeVisible();
   // text-input 問題が表示され KanjiCanvas 入力エリアが可視状態であることを確認
@@ -324,7 +324,7 @@ Then("the {string} category group should be expanded", async ({ page }, parentCa
 
 Then("the guide panel should be active", async ({ page }) => {
   // 解説タブが有効になっていること（panelTab-guide が active クラスを持つ）
-  await expect(page.locator("#panelTab-guide")).toHaveClass(/active/);
+  await expect(page.locator("#panelTab-guide").first()).toHaveClass(/active/);
 });
 
 Then("the grade filter buttons should be visible", async ({ page }) => {
