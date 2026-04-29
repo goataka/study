@@ -2261,13 +2261,13 @@ export class QuizApp {
   // ─── イベント登録 ──────────────────────────────────────────────────────────
 
   private setupEventListeners(): void {
-    this.on("startRandomBtn", "click", () => { void this.startQuiz("random"); });
+    this.on("startRandomBtn", "click", () => { this.startQuiz("random").catch(console.error); });
     this.on("markLearnedBtn", "click", () => this.toggleLearnedStatus());
     this.on("prevBtn", "click", () => this.navigate(-1));
     this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
-    this.on("retryAllBtn", "click", () => { void this.startQuiz("random"); });
-    this.on("retryWrongBtn", "click", () => { void this.startQuiz("retry"); });
+    this.on("retryAllBtn", "click", () => { this.startQuiz("random").catch(console.error); });
+    this.on("retryWrongBtn", "click", () => { this.startQuiz("retry").catch(console.error); });
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
     this.on("cancelQuizBtn", "click", () => { void this.navigateToStart(); });
 
