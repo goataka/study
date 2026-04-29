@@ -2396,31 +2396,21 @@ export class QuizApp {
     const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
     const wrongSet = new Set(this.useCase.wrongQuestionIds);
 
-    // 回答済み問題IDのセットを履歴エントリから構築する
-    const answeredIds = new Set<string>();
-    for (const record of this.useCase.getHistory()) {
-      for (const entry of record.entries) {
-        answeredIds.add(entry.questionId);
-      }
-    }
-
-    const statsMap = new Map<string, { total: number; wrong: number; answeredCorrect: number }>();
-    const addStat = (key: string, isWrong: boolean, isAnsweredCorrect: boolean): void => {
-      const s = statsMap.get(key) ?? { total: 0, wrong: 0, answeredCorrect: 0 };
+    const statsMap = new Map<string, { total: number; wrong: number }>();
+    const addStat = (key: string, isWrong: boolean): void => {
+      const s = statsMap.get(key) ?? { total: 0, wrong: 0 };
       s.total++;
       if (isWrong) s.wrong++;
-      if (isAnsweredCorrect) s.answeredCorrect++;
       statsMap.set(key, s);
     };
 
     for (const q of allQuestions) {
       const isWrong = wrongSet.has(q.id);
-      const isAnsweredCorrect = answeredIds.has(q.id) && !isWrong;
-      addStat("all::all", isWrong, isAnsweredCorrect);
-      addStat(`${q.subject}::all`, isWrong, isAnsweredCorrect);
-      addStat(`${q.subject}::${q.category}`, isWrong, isAnsweredCorrect);
+      addStat("all::all", isWrong);
+      addStat(`${q.subject}::all`, isWrong);
+      addStat(`${q.subject}::${q.category}`, isWrong);
       if (q.parentCategory) {
-        addStat(`${q.subject}::parent::${q.parentCategory}`, isWrong, isAnsweredCorrect);
+        addStat(`${q.subject}::parent::${q.parentCategory}`, isWrong);
       }
     }
 
@@ -2443,7 +2433,7 @@ export class QuizApp {
         key = `${subject}::all`;
       }
 
-      const stat = statsMap.get(key) ?? { total: 0, wrong: 0, answeredCorrect: 0 };
+      const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
       const statsEl = el.querySelector(".category-stats");
       if (statsEl) {
         statsEl.textContent = formatCategoryStats(stat);
@@ -2455,7 +2445,12 @@ export class QuizApp {
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
         if (isStudied || stat.wrong > 0) {
-          const pct = stat.total > 0 ? Math.round(((stat.total - stat.wrong) / stat.total) * 100) : 0;
+          const pct =
+            stat.total > 0
+              ? Math.round(((stat.total - stat.wrong) / stat.total) * 100)
+              : isStudied
+                ? 100
+                : 0;
           progressFill.style.width = `${pct}%`;
           progressFill.classList.toggle("progress-fill-done", pct === 100);
           if (progressPct) {
