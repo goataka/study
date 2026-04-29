@@ -48,6 +48,8 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 export class IndexedDBProgressRepository implements IProgressRepository {
   private db: IDBDatabase | null = null;
   private cache: ProgressCache = IndexedDBProgressRepository.defaultCache();
+  /** 進行中の書き込みトランザクション Promise を追跡する（テスト用 flush のため） */
+  private pendingWrites: Promise<void>[] = [];
 
   private static defaultCache(): ProgressCache {
     return {
@@ -70,50 +72,64 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   async initialize(): Promise<void> {
     try {
       this.db = await this.openDB();
-      this.cache = await this.loadAllFromDB();
+      this.cache = await this.loadAllFromDB(this.db);
     } catch (error) {
       console.error("IndexedDB の初期化に失敗しました（メモリのみで動作します）:", error);
     }
+  }
+
+  /**
+   * 進行中のすべての書き込みが完了するまで待機する。
+   * 主にテストで使用する。
+   */
+  async flush(): Promise<void> {
+    await Promise.all(this.pendingWrites);
+    this.pendingWrites = [];
   }
 
   private openDB(): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(DB_NAME, DB_VERSION);
 
-      request.onupgradeneeded = (event) => {
-        const db = (event.target as IDBOpenDBRequest).result;
+      request.onupgradeneeded = () => {
+        const db = request.result;
         if (!db.objectStoreNames.contains(STORE_NAME)) {
           db.createObjectStore(STORE_NAME);
         }
       };
 
-      request.onsuccess = (event) => {
-        resolve((event.target as IDBOpenDBRequest).result);
+      request.onsuccess = () => {
+        resolve(request.result);
       };
 
-      request.onerror = (event) => {
-        reject((event.target as IDBOpenDBRequest).error);
+      request.onerror = () => {
+        reject(request.error ?? new Error("IndexedDB のオープンに失敗しました"));
       };
     });
   }
 
-  private getFromDB(key: string): Promise<unknown> {
-    return new Promise((resolve, reject) => {
-      if (!this.db) {
-        resolve(undefined);
-        return;
-      }
-      const request = this.db
-        .transaction(STORE_NAME, "readonly")
-        .objectStore(STORE_NAME)
-        .get(key);
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  private async loadAllFromDB(): Promise<ProgressCache> {
+  /** 1 つの readonly トランザクションで全キーを一括読み込みする */
+  private async loadAllFromDB(db: IDBDatabase): Promise<ProgressCache> {
     const cache = IndexedDBProgressRepository.defaultCache();
+
+    const transaction = db.transaction(STORE_NAME, "readonly");
+    const store = transaction.objectStore(STORE_NAME);
+
+    const getValue = (key: string): Promise<unknown> =>
+      new Promise((resolve, reject) => {
+        const req = store.get(key);
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () =>
+          reject(req.error ?? new Error(`IndexedDB から ${key} の取得に失敗しました`));
+      });
+
+    const transactionDone = new Promise<void>((resolve, reject) => {
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () =>
+        reject(transaction.error ?? new Error("IndexedDB の読み込みトランザクションに失敗しました"));
+      transaction.onabort = () =>
+        reject(transaction.error ?? new Error("IndexedDB の読み込みトランザクションが中断されました"));
+    });
 
     const [
       wrongQuestions,
@@ -126,16 +142,18 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       fontSizeLevel,
       shareUrl,
     ] = await Promise.all([
-      this.getFromDB(KEY_WRONG_QUESTIONS),
-      this.getFromDB(KEY_CORRECT_STREAKS),
-      this.getFromDB(KEY_MASTERED_IDS),
-      this.getFromDB(KEY_QUESTION_STATS),
-      this.getFromDB(KEY_USER_NAME),
-      this.getFromDB(KEY_QUIZ_HISTORY),
-      this.getFromDB(KEY_CATEGORY_VIEW_MODE),
-      this.getFromDB(KEY_FONT_SIZE_LEVEL),
-      this.getFromDB(KEY_SHARE_URL),
+      getValue(KEY_WRONG_QUESTIONS),
+      getValue(KEY_CORRECT_STREAKS),
+      getValue(KEY_MASTERED_IDS),
+      getValue(KEY_QUESTION_STATS),
+      getValue(KEY_USER_NAME),
+      getValue(KEY_QUIZ_HISTORY),
+      getValue(KEY_CATEGORY_VIEW_MODE),
+      getValue(KEY_FONT_SIZE_LEVEL),
+      getValue(KEY_SHARE_URL),
     ]);
+
+    await transactionDone;
 
     if (Array.isArray(wrongQuestions)) {
       cache.wrongQuestions = wrongQuestions as string[];
@@ -194,19 +212,22 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   /** キャッシュを更新し、IndexedDB に非同期で書き込む */
   private persistKey(key: string, value: unknown): void {
     if (!this.db) return;
-    try {
-      const tx = this.db.transaction(STORE_NAME, "readwrite");
-      const store = tx.objectStore(STORE_NAME);
-      store.put(value, key);
-      tx.onerror = (event) => {
-        console.error(
-          `IndexedDB 書き込みエラー (${key}):`,
-          (event.target as IDBTransaction).error
-        );
-      };
-    } catch (error) {
-      console.error(`IndexedDB 書き込みエラー (${key}):`, error);
-    }
+    const writePromise = new Promise<void>((resolve, reject) => {
+      try {
+        const tx = (this.db as IDBDatabase).transaction(STORE_NAME, "readwrite");
+        const store = tx.objectStore(STORE_NAME);
+        store.put(value, key);
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => {
+          console.error(`IndexedDB 書き込みエラー (${key}):`, tx.error);
+          reject(tx.error);
+        };
+      } catch (error) {
+        console.error(`IndexedDB 書き込みエラー (${key}):`, error);
+        reject(error);
+      }
+    });
+    this.pendingWrites.push(writePromise.catch(() => undefined));
   }
 
   // ─── IProgressRepository 実装 ───────────────────────────────────────────────
