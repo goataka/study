@@ -10,13 +10,16 @@
   <script>
     /* 1920×1080 を基準として画面全体にフィットするようズームスケーリングを適用する */
     /* clientWidth/clientHeight を使用してスクロールバーを除いた表示領域を取得する */
+    /* モバイル（横幅 768px 未満）では zoom を無効にして CSS レスポンシブに任せる */
     (function () {
       function applyZoom() {
         var el = document.documentElement;
-        document.documentElement.style.zoom = Math.min(
-          el.clientWidth / 1920,
-          el.clientHeight / 1080
-        );
+        var w = el.clientWidth;
+        if (w < 768) {
+          el.style.zoom = '';
+          return;
+        }
+        el.style.zoom = Math.min(w / 1920, el.clientHeight / 1080);
       }
       applyZoom();
       window.addEventListener('resize', applyZoom);

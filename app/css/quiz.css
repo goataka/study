@@ -1815,6 +1815,70 @@ button:disabled {
     display: none;
 }
 
+/* ─── スマホ対応（767px 以下）: 固定キャンバスを解除してレスポンシブに ──── */
+@media (max-width: 767px) {
+    /* 固定 1920×1080 キャンバスを解除してレスポンシブレイアウトに切り替え */
+    body {
+        width: 100%;
+        height: auto;
+        min-height: 100svh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 8px;
+    }
+
+    .container {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .screen {
+        flex: none;
+        overflow-y: visible;
+    }
+
+    /* ヘッダーをコンパクトに（折り返し2行レイアウト） */
+    header {
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        padding: 10px 12px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    .header-today-date {
+        font-size: 16px;
+        margin-left: 4px;
+    }
+
+    .header-right-area {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    /* スタートコンテンツを縦積みに（all-subject-layout 適用時も同様） */
+    .start-content-layout,
+    .start-content-layout.all-subject-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* クイズを縦積みに */
+    .quiz-landscape-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* メモエリアの高さをスマホ向けに制限 */
+    .quiz-notes-col {
+        max-height: 300px;
+    }
+
+    .notes-canvas {
+        min-height: 150px;
+    }
+}
+
 /* レスポンシブ対応 */
 @media (max-width: 900px) {
     /* クイズのランドスケープレイアウトをスタック表示に */
