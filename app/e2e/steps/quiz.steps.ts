@@ -45,8 +45,8 @@ Then("the header should remain visible", async ({ page }) => {
 });
 
 Then("the quiz panel should remain visible", async ({ page }) => {
-  // クイズパネルが表示されていることを確認
-  const quizPanel = page.locator(".quiz-panel");
+  // クイズパネルが表示されていることを確認（Shadow DOM piercing による重複を避けるため first() を使用）
+  const quizPanel = page.locator(".quiz-panel").first();
   await expect(quizPanel).toBeVisible();
 
   // クイズパネルがビューポート内に完全に収まっていることを確認
@@ -70,8 +70,8 @@ Then("the subject overview items should be visible", async ({ page }) => {
 });
 
 Then("the quiz panel should be visible", async ({ page }) => {
-  // クイズパネルが表示されていることを確認
-  const quizPanel = page.locator(".quiz-panel");
+  // クイズパネルが表示されていることを確認（Shadow DOM piercing による重複を避けるため first() を使用）
+  const quizPanel = page.locator(".quiz-panel").first();
   await expect(quizPanel).toBeVisible();
 });
 
@@ -172,12 +172,10 @@ When("I open the guide panel tab", async ({ page }) => {
   await expect(page.locator("#guideContent")).not.toHaveClass(/hidden/);
 });
 
-Then("the guide iframe src should contain {string}", async ({ page }, text: string) => {
-  // iframe の src に指定テキストが含まれていることを確認（embedded=1 クエリ付与の検証）
-  const frame = page.locator("#guidePanelFrame");
-  await expect(frame).not.toHaveAttribute("src", "about:blank");
-  const src = await frame.getAttribute("src");
-  expect(src).toContain(text);
+Then("the guide shadow host should be attached", async ({ page }) => {
+  // シャドウDOMホストが解説パネルにアタッチされていることを確認（iframe からシャドウDOM方式に変更済み）
+  const shadowHost = page.locator("#guidePanelFrame .guide-shadow-host");
+  await expect(shadowHost).toBeAttached();
 });
 
 When("I open the history panel", async ({ page }) => {
@@ -210,7 +208,8 @@ Then("the quiz screen should not have the practice-mode class", async ({ page })
 });
 
 When("I click the {string} font size button", async ({ page }, size: string) => {
-  await page.locator(`.font-size-btn`).filter({ hasText: size }).click();
+  // Shadow DOM piercing による重複を避けるため first() を使用
+  await page.locator(`.font-size-btn`).filter({ hasText: size }).first().click();
 });
 
 Then("the body should have the {string} class", async ({ page }, className: string) => {
