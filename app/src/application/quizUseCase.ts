@@ -14,6 +14,7 @@ export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
   private correctStreaks: Record<string, number>;
+  private masteredIds: string[];
   private questionStats: Record<string, { total: number; correct: number }>;
   /** subject::category -> guideUrl のキャッシュ（O(1) 参照用） */
   private categoryGuideMap = new Map<string, string>();
@@ -38,6 +39,7 @@ export class QuizUseCase {
   ) {
     this.wrongIds = this.progressRepo.loadWrongIds();
     this.correctStreaks = this.progressRepo.loadCorrectStreaks();
+    this.masteredIds = this.progressRepo.loadMasteredIds();
     this.questionStats = this.progressRepo.loadQuestionStats();
   }
 
@@ -172,10 +174,20 @@ export class QuizUseCase {
     const filtered = this.getFilteredQuestions(filter);
 
     if (mode === "random") {
-      const questions = QuizSession.pickRandom(filtered, count);
+      const masteredSet = new Set(this.masteredIds);
+      const unmastered = filtered.filter((q) => !masteredSet.has(q.id));
+      if (unmastered.length === 0) {
+        throw new Error("ALL_MASTERED");
+      }
+      const questions = QuizSession.pickRandom(unmastered, count);
       return new QuizSession(questions);
     } else if (mode === "practice") {
-      const questions = QuizSession.pickInOrder(filtered, count);
+      const masteredSet = new Set(this.masteredIds);
+      const unmastered = filtered.filter((q) => !masteredSet.has(q.id));
+      if (unmastered.length === 0) {
+        throw new Error("ALL_MASTERED");
+      }
+      const questions = QuizSession.pickInOrder(unmastered, count);
       return new QuizSession(questions);
     } else {
       const wrongSet = new Set(this.wrongIds);
@@ -184,6 +196,20 @@ export class QuizUseCase {
         throw new Error("間違えた問題がありません");
       }
       return new QuizSession(retryQuestions);
+    }
+  }
+
+  startSessionWithAllQuestions(mode: QuizMode, filter: QuizFilter, count = 10): QuizSession {
+    const filtered = this.getFilteredQuestions(filter);
+    if (filtered.length === 0) {
+      throw new Error("問題がありません");
+    }
+    if (mode === "practice") {
+      const questions = QuizSession.pickInOrder(filtered, count);
+      return new QuizSession(questions);
+    } else {
+      const questions = QuizSession.pickRandom(filtered, count);
+      return new QuizSession(questions);
     }
   }
 
@@ -198,15 +224,17 @@ export class QuizUseCase {
       this.questionStats[r.question.id] = stat;
 
       if (r.isCorrect) {
-        if (this.wrongIds.includes(r.question.id)) {
-          // 間違えた問題を正解した場合、連続正解数をカウント
-          this.correctStreaks[r.question.id] = (this.correctStreaks[r.question.id] ?? 0) + 1;
-          const streak = this.correctStreaks[r.question.id] ?? 0;
-          if (streak >= 3) {
-            // 3回正解で学習済みとして wrongIds から除く
-            this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
-            delete this.correctStreaks[r.question.id];
+        // 全問題の連続正解数をカウント
+        this.correctStreaks[r.question.id] = (this.correctStreaks[r.question.id] ?? 0) + 1;
+        const streak = this.correctStreaks[r.question.id] ?? 0;
+        if (streak >= 3) {
+          // 3回連続正解で習得済みとして管理
+          if (!this.masteredIds.includes(r.question.id)) {
+            this.masteredIds.push(r.question.id);
           }
+          delete this.correctStreaks[r.question.id];
+          // wrongIds からも除く
+          this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
         }
       } else {
         if (!this.wrongIds.includes(r.question.id)) {
@@ -214,13 +242,24 @@ export class QuizUseCase {
         }
         // 不正解の場合、連続正解数をリセット
         this.correctStreaks[r.question.id] = 0;
+        // 習得済みから除く
+        this.masteredIds = this.masteredIds.filter((id) => id !== r.question.id);
       }
     }
 
     this.progressRepo.saveWrongIds(this.wrongIds);
     this.progressRepo.saveCorrectStreaks(this.correctStreaks);
     this.progressRepo.saveQuestionStats(this.questionStats);
+    this.progressRepo.saveMasteredIds(this.masteredIds);
     return results;
+  }
+
+  getMasteredIds(): string[] {
+    return [...this.masteredIds];
+  }
+
+  getCorrectStreak(questionId: string): number {
+    return this.correctStreaks[questionId] ?? 0;
   }
 
   /**
@@ -291,6 +330,14 @@ export class QuizUseCase {
     this.progressRepo.saveWrongIds(this.wrongIds);
     this.progressRepo.saveCorrectStreaks(this.correctStreaks);
 
+    // 対象カテゴリの問題を masteredIds に追加する
+    for (const id of questionIds) {
+      if (!this.masteredIds.includes(id)) {
+        this.masteredIds.push(id);
+      }
+    }
+    this.progressRepo.saveMasteredIds(this.masteredIds);
+
     // 履歴に手動マークのレコードを追加
     const firstQuestion = questions[0]!;
     const subjectName = firstQuestion.subjectName ?? firstQuestion.subject;
@@ -328,6 +375,11 @@ export class QuizUseCase {
     }
 
     this.progressRepo.saveWrongIds(this.wrongIds);
+
+    // 対象カテゴリの問題を masteredIds から除く
+    const questionIdSet = new Set(questions.map((q) => q.id));
+    this.masteredIds = this.masteredIds.filter((id) => !questionIdSet.has(id));
+    this.progressRepo.saveMasteredIds(this.masteredIds);
   }
 
   /** 履歴レコードを先頭に追加して保存する共通ヘルパー。 */

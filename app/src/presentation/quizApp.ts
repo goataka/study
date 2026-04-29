@@ -73,6 +73,7 @@ export class QuizApp {
   private activeOverallPanel: "learned" | "share" = "learned";
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
+  private quizOrder: "random" | "straight" = "random";
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -1758,13 +1759,19 @@ export class QuizApp {
 
     // 詳細行（単元選択時のみ）: カテゴリ + 学年（左） / 例文（右）
     if (selLevel === "unit") {
-      // 説明文（タイトルの下に表示）
+      // 説明文（単元名と同じ行に右寄せで表示）
       const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
       if (description) {
+        const nameRow = document.createElement("div");
+        nameRow.className = "selected-unit-info-name-row";
+        // nameSpan はすでに body に追加されているので取り出して nameRow へ移す
+        body.removeChild(nameSpan);
+        nameRow.appendChild(nameSpan);
         const descDiv = document.createElement("div");
         descDiv.className = "selected-unit-info-desc";
         descDiv.textContent = description;
-        body.appendChild(descDiv);
+        nameRow.appendChild(descDiv);
+        body.appendChild(nameRow);
       }
 
       const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
@@ -2077,17 +2084,8 @@ export class QuizApp {
       ? `${record.subjectName} / ${record.categoryName}`
       : record.categoryName;
 
-    const modeSpan = document.createElement("span");
-    const modeClassMap: Record<string, string> = { retry: "history-mode--retry", practice: "history-mode--practice", manual: "history-mode--manual" };
-    const modeLabelMap: Record<string, string> = { retry: "復習", practice: "練習", manual: "手動" };
-    const modeClass = modeClassMap[record.mode] ?? "history-mode--random";
-    const modeLabel = modeLabelMap[record.mode] ?? "本番";
-    modeSpan.className = `history-mode ${modeClass}`;
-    modeSpan.textContent = modeLabel;
-
     metaDiv.appendChild(dateSpan);
     metaDiv.appendChild(subjectSpan);
-    metaDiv.appendChild(modeSpan);
 
     const scoreSpan = document.createElement("span");
     if (isManual) {
@@ -2202,8 +2200,9 @@ export class QuizApp {
     item.className = "question-list-item";
 
     const stat = this.useCase.getQuestionStat(question.id);
-    // 3回以上正解したら完了（🏆）
-    const isCompleted = stat.correct >= 3;
+    // 習得済みなら完了（🏆）
+    const isCompleted = this.useCase.getMasteredIds().includes(question.id);
+    const streak = this.useCase.getCorrectStreak(question.id);
     if (isCompleted) {
       item.classList.add("question-list-completed");
     }
@@ -2225,7 +2224,13 @@ export class QuizApp {
     const statSpan = document.createElement("span");
     statSpan.className = "question-list-stat";
     if (stat.total > 0) {
-      statSpan.textContent = isCompleted ? `🏆 ${stat.correct}/${stat.total}` : `${stat.correct}/${stat.total}`;
+      if (isCompleted) {
+        statSpan.textContent = `🏆 ${stat.correct}/${stat.total}`;
+      } else if (streak > 0) {
+        statSpan.textContent = `🔥${streak}/3 ${stat.correct}/${stat.total}`;
+      } else {
+        statSpan.textContent = `${stat.correct}/${stat.total}`;
+      }
     } else {
       statSpan.textContent = "-";
     }
@@ -2256,15 +2261,13 @@ export class QuizApp {
   // ─── イベント登録 ──────────────────────────────────────────────────────────
 
   private setupEventListeners(): void {
-    this.on("startRandomBtn", "click", () => this.startQuiz("random"));
-    this.on("startPracticeBtn", "click", () => this.startQuiz("practice"));
-    this.on("startRetryBtn", "click", () => this.startQuiz("retry"));
+    this.on("startRandomBtn", "click", () => { void this.startQuiz("random"); });
     this.on("markLearnedBtn", "click", () => this.toggleLearnedStatus());
     this.on("prevBtn", "click", () => this.navigate(-1));
     this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
-    this.on("retryAllBtn", "click", () => this.startQuiz("random"));
-    this.on("retryWrongBtn", "click", () => this.startQuiz("retry"));
+    this.on("retryAllBtn", "click", () => { void this.startQuiz("random"); });
+    this.on("retryWrongBtn", "click", () => { void this.startQuiz("retry"); });
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
     this.on("cancelQuizBtn", "click", () => { void this.navigateToStart(); });
 
@@ -2312,6 +2315,17 @@ export class QuizApp {
         const target = e.target as HTMLInputElement;
         if (target.checked) {
           this.questionCount = parseInt(target.value);
+        }
+      });
+    });
+
+    // 並び順選択の変更を監視
+    const orderInputs = document.querySelectorAll<HTMLInputElement>('input[name="quizOrder"]');
+    orderInputs.forEach((input) => {
+      input.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.checked) {
+          this.quizOrder = target.value as "random" | "straight";
         }
       });
     });
@@ -2412,20 +2426,20 @@ export class QuizApp {
     this.updateSubjectStats();
     this.updateQuizPanelVisibility();
     const statsInfo = document.getElementById("statsInfo");
-    const retryBtn = document.getElementById("startRetryBtn") as HTMLButtonElement | null;
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement | null;
-    if (!statsInfo || !retryBtn) return;
+    if (!statsInfo) return;
 
     const effectiveFilter = this.getEffectiveFilter();
     const filteredCount = this.useCase.getFilteredQuestions(effectiveFilter).length;
     const wrongCount = this.useCase.getWrongCount(effectiveFilter);
+    const masteredInFilter = this.useCase.getFilteredQuestions(effectiveFilter)
+      .filter((q) => this.useCase.getMasteredIds().includes(q.id)).length;
 
-    statsInfo.textContent =
-      wrongCount > 0
+    statsInfo.textContent = masteredInFilter > 0
+      ? `全${filteredCount}問 / 学習済み${masteredInFilter}問`
+      : wrongCount > 0
         ? `全${filteredCount}問 / 間違えた問題が${wrongCount}問あります`
         : `全${filteredCount}問 / 間違えた問題はありません`;
-
-    retryBtn.disabled = wrongCount === 0;
 
     // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
     if (markLearnedBtn) {
@@ -2776,15 +2790,31 @@ export class QuizApp {
     this.updateStartScreen();
   }
 
-  private startQuiz(mode: QuizMode): void {
+  private async startQuiz(mode: QuizMode): Promise<void> {
+    // "random" モードでストレート順が選択されている場合は "practice" モードを使用する
+    const effectiveMode: QuizMode = (mode === "random" && this.quizOrder === "straight") ? "practice" : mode;
     try {
-      this.currentSession = this.useCase.startSession(mode, this.getEffectiveFilter(), this.questionCount);
+      this.currentSession = this.useCase.startSession(effectiveMode, this.getEffectiveFilter(), this.questionCount);
     } catch (error) {
-      alert(error instanceof Error ? error.message : "エラーが発生しました");
-      return;
+      if (error instanceof Error && error.message === "ALL_MASTERED") {
+        const confirmed = await this.showConfirmDialog("すべての問題が学習済みです。全問題からランダムに出題しますか？");
+        if (confirmed) {
+          try {
+            this.currentSession = this.useCase.startSessionWithAllQuestions(effectiveMode, this.getEffectiveFilter(), this.questionCount);
+          } catch (innerError) {
+            alert(innerError instanceof Error ? innerError.message : "エラーが発生しました");
+            return;
+          }
+        } else {
+          return;
+        }
+      } else {
+        alert(error instanceof Error ? error.message : "エラーが発生しました");
+        return;
+      }
     }
 
-    this.currentMode = mode;
+    this.currentMode = effectiveMode;
 
     // メモ状態をリセット
     this.notesStates.clear();

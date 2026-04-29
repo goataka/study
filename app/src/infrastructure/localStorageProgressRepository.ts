@@ -7,6 +7,7 @@ import type { IProgressRepository, QuizRecord, UserDataExport } from "../applica
 
 const STORAGE_KEY = "wrongQuestions";
 const CORRECT_STREAKS_KEY = "correctStreaks";
+const MASTERED_IDS_KEY = "masteredIds";
 const QUESTION_STATS_KEY = "questionStats";
 const USER_NAME_KEY = "userName";
 const HISTORY_KEY = "quizHistory";
@@ -47,6 +48,23 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       localStorage.setItem(CORRECT_STREAKS_KEY, JSON.stringify(streaks));
     } catch (error) {
       console.error("正解連続数の保存に失敗しました:", error);
+    }
+  }
+
+  loadMasteredIds(): string[] {
+    try {
+      const saved = localStorage.getItem(MASTERED_IDS_KEY);
+      return saved ? (JSON.parse(saved) as string[]) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  saveMasteredIds(ids: string[]): void {
+    try {
+      localStorage.setItem(MASTERED_IDS_KEY, JSON.stringify(ids));
+    } catch (error) {
+      console.error("習得済みIDの保存に失敗しました:", error);
     }
   }
 
@@ -158,6 +176,7 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       userName: this.loadUserName(),
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
+      masteredIds: this.loadMasteredIds(),
       questionStats: this.loadQuestionStats(),
       history: this.loadHistory(),
       categoryViewMode: this.loadCategoryViewMode(),

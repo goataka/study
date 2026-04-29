@@ -1403,40 +1403,40 @@ describe("QuizApp — 履歴モード表示仕様", () => {
     entries: [],
   });
 
-  it("mode=random の履歴は「本番」と表示される", async () => {
+  it("mode=random の履歴には履歴モード表示がない", async () => {
     localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
-    expect(modeEl?.textContent).toBe("本番");
+    expect(modeEl).toBeNull();
   });
 
-  it("mode=practice の履歴は「練習」と表示される", async () => {
+  it("mode=practice の履歴には履歴モード表示がない", async () => {
     localStorage.setItem("quizHistory", JSON.stringify([buildRecord("practice")]));
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
-    expect(modeEl?.textContent).toBe("練習");
+    expect(modeEl).toBeNull();
   });
 
-  it("mode=retry の履歴は「復習」と表示される", async () => {
+  it("mode=retry の履歴には履歴モード表示がない", async () => {
     localStorage.setItem("quizHistory", JSON.stringify([buildRecord("retry")]));
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
-    expect(modeEl?.textContent).toBe("復習");
+    expect(modeEl).toBeNull();
   });
 
-  it("mode=manual の履歴は「手動」と表示される", async () => {
+  it("mode=manual の履歴には履歴モード表示がない", async () => {
     localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
-    expect(modeEl?.textContent).toBe("手動");
+    expect(modeEl).toBeNull();
   });
 
   it("mode=manual の履歴のスコアは「-」と表示される", async () => {

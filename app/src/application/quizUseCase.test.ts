@@ -39,16 +39,19 @@ class StubProgressRepository implements IProgressRepository {
   private history: import("./ports").QuizRecord[];
   private streaks: Record<string, number>;
   private stats: Record<string, { total: number; correct: number }>;
+  private masteredIds: string[];
   constructor(
     initialIds: string[] = [],
     initialHistory: import("./ports").QuizRecord[] = [],
     initialStreaks: Record<string, number> = {},
-    initialStats: Record<string, { total: number; correct: number }> = {}
+    initialStats: Record<string, { total: number; correct: number }> = {},
+    initialMasteredIds: string[] = []
   ) {
     this.ids = [...initialIds];
     this.history = [...initialHistory];
     this.streaks = { ...initialStreaks };
     this.stats = { ...initialStats };
+    this.masteredIds = [...initialMasteredIds];
   }
   loadWrongIds(): string[] {
     return [...this.ids];
@@ -67,6 +70,15 @@ class StubProgressRepository implements IProgressRepository {
   }
   getStoredStreaks(): Record<string, number> {
     return { ...this.streaks };
+  }
+  loadMasteredIds(): string[] {
+    return [...this.masteredIds];
+  }
+  saveMasteredIds(ids: string[]): void {
+    this.masteredIds = [...ids];
+  }
+  getStoredMasteredIds(): string[] {
+    return [...this.masteredIds];
   }
   loadUserName(): string | null {
     return null;
@@ -104,6 +116,7 @@ class StubProgressRepository implements IProgressRepository {
       userName: null,
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
+      masteredIds: this.loadMasteredIds(),
       questionStats: this.loadQuestionStats(),
       history: this.loadHistory(),
       categoryViewMode: "category",
@@ -441,7 +454,7 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
     expect(progressRepo.getStoredIds()).toContain("q1");
   });
 
-  it("wrongIds にない問題を正解しても何も起きない", async () => {
+  it("wrongIds にない問題を正解すると連続正解数がカウントされる", async () => {
     const q = makeQuestion("q1");
     const progressRepo = new StubProgressRepository(); // wrongIds は空
     const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
@@ -452,7 +465,7 @@ describe("QuizUseCase — 採点・進捗保存仕様", () => {
     useCase.submitSession(session);
 
     expect(progressRepo.getStoredIds()).not.toContain("q1");
-    expect(Object.keys(progressRepo.getStoredStreaks())).toHaveLength(0);
+    expect(progressRepo.getStoredStreaks()["q1"]).toBe(1);
   });
 });
 

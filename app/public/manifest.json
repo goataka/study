@@ -1,0 +1,16 @@
+{
+  "name": "学習アプリ",
+  "short_name": "学習",
+  "description": "子供向け学習アプリ",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0366d6",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
