@@ -2201,7 +2201,7 @@ export class QuizApp {
 
     const stat = this.useCase.getQuestionStat(question.id);
     // 習得済みなら完了（🏆）
-    const isCompleted = this.useCase.getMasteredIds().includes(question.id);
+    const isCompleted = this.useCase.isMastered(question.id);
     const streak = this.useCase.getCorrectStreak(question.id);
     if (isCompleted) {
       item.classList.add("question-list-completed");
@@ -2430,10 +2430,12 @@ export class QuizApp {
     if (!statsInfo) return;
 
     const effectiveFilter = this.getEffectiveFilter();
-    const filteredCount = this.useCase.getFilteredQuestions(effectiveFilter).length;
+    const filteredQuestions = this.useCase.getFilteredQuestions(effectiveFilter);
+    const filteredCount = filteredQuestions.length;
     const wrongCount = this.useCase.getWrongCount(effectiveFilter);
-    const masteredInFilter = this.useCase.getFilteredQuestions(effectiveFilter)
-      .filter((q) => this.useCase.getMasteredIds().includes(q.id)).length;
+    const masteredIdsSet = new Set(this.useCase.getMasteredIds());
+    const masteredInFilter = filteredQuestions
+      .filter((q) => masteredIdsSet.has(q.id)).length;
 
     statsInfo.textContent = masteredInFilter > 0
       ? `全${filteredCount}問 / 学習済み${masteredInFilter}問`
@@ -2801,7 +2803,8 @@ export class QuizApp {
         const confirmed = await this.showConfirmDialog("すべての問題が学習済みです。全問題からランダムに出題しますか？");
         if (confirmed) {
           try {
-            this.currentSession = this.useCase.startSessionWithAllQuestions(effectiveMode, this.getEffectiveFilter(), this.questionCount);
+            // 全問出題時は常にランダム順で開始する
+            this.currentSession = this.useCase.startSessionWithAllQuestions("random", this.getEffectiveFilter(), this.questionCount);
           } catch (innerError) {
             alert(innerError instanceof Error ? innerError.message : "エラーが発生しました");
             return;
