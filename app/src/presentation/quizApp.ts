@@ -71,6 +71,8 @@ export class QuizApp {
   private subjectRecommendedCounts: Map<string, number> = new Map();
   /** 総合タブの現在アクティブなサマリパネル */
   private activeOverallPanel: "learned" | "share" = "learned";
+  /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
+  private guideLoadCounter: number = 0;
 
   constructor() {
     this.useCase = new QuizUseCase(
@@ -212,31 +214,10 @@ export class QuizApp {
       btn.classList.toggle("active", active);
       btn.setAttribute("aria-pressed", String(active));
     });
-    // 解説 iframe にもフォントサイズを通知する
-    document.querySelectorAll<HTMLIFrameElement>(".guide-frame").forEach((iframe) => {
-      this.notifyGuideFontSize(iframe);
-    });
     // 初期復元時は保存をスキップし、ユーザー操作時のみ保存する
     if (persist) {
       const progressRepo = new LocalStorageProgressRepository();
       progressRepo.saveFontSizeLevel(level);
-    }
-  }
-
-  /**
-   * 解説 iframe にフォントサイズを postMessage で通知する。
-   * iframe は sandbox="allow-scripts"（allow-same-origin なし）で読み込まれるため
-   * iframe 側 origin が null 扱いになり、固定オリジンへの postMessage は届かない。
-   * そのため targetOrigin には "*" を使用する。
-   */
-  private notifyGuideFontSize(iframe: HTMLIFrameElement): void {
-    try {
-      iframe.contentWindow?.postMessage(
-        { type: "fontSizeChanged", level: this.fontSizeLevel },
-        "*"
-      );
-    } catch (_) {
-      // iframe のコンテンツウィンドウへのアクセスが拒否された場合は無視する
     }
   }
 
@@ -1664,6 +1645,10 @@ export class QuizApp {
    * 選択中の単元・カテゴリ情報パネルを更新する。
    * 単元・親カテゴリ・トップカテゴリが選択されている場合に情報を表示し、
    * 閉じるボタン（×）で選択を解除できるようにする。
+   *
+   * レイアウト（単元選択時）:
+   *   [単元名]
+   *   [カテゴリ › 親カテゴリ] [学年]       [例文（右寄せ）]
    */
   private updateSelectedUnitInfo(): void {
     const container = document.getElementById("selectedUnitInfo");
@@ -1682,69 +1667,51 @@ export class QuizApp {
       const body = document.createElement("div");
       body.className = "selected-unit-info-body";
 
-      const headerRow = document.createElement("div");
-      headerRow.className = "selected-unit-info-header";
+      // タイトル行: 単元名のみ
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "selected-unit-info-name";
+      nameSpan.textContent = this.overallUnitSelected.categoryName;
+      body.appendChild(nameSpan);
 
-      // カテゴリパスと学年を同じ行に表示
+      // 詳細行: カテゴリ + 学年（左） / 例文（右）
       const topInfo = this.useCase.getTopCategoryForUnit(subject, categoryId);
       const parentInfo = this.useCase.getParentCategoryForUnit(subject, categoryId);
       const catParts: string[] = [];
       if (topInfo) catParts.push(topInfo.name);
       if (parentInfo) catParts.push(parentInfo.name);
       const grade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
+      const example = this.useCase.getCategoryExample(subject, categoryId);
+
+      const detailRow = document.createElement("div");
+      detailRow.className = "selected-unit-info-detail-row";
+
+      const leftGroup = document.createElement("div");
+      leftGroup.className = "selected-unit-info-left";
       if (catParts.length > 0) {
-        const metaRow = document.createElement("div");
-        metaRow.className = "selected-unit-info-meta-row";
         const catLabel = document.createElement("span");
         catLabel.className = "selected-unit-info-category";
         catLabel.textContent = catParts.join(" › ");
-        metaRow.appendChild(catLabel);
-        if (grade) {
-          const gradeSpan = document.createElement("span");
-          gradeSpan.className = "category-grade";
-          const gradeClass = gradeColorClass(grade);
-          if (gradeClass) gradeSpan.classList.add(gradeClass);
-          gradeSpan.textContent = grade;
-          metaRow.appendChild(gradeSpan);
-        }
-        headerRow.appendChild(metaRow);
-      } else if (grade) {
-        // カテゴリパスがない場合でも学年バッジは表示する
+        leftGroup.appendChild(catLabel);
+      }
+      if (grade) {
         const gradeSpan = document.createElement("span");
         gradeSpan.className = "category-grade";
         const gradeClass = gradeColorClass(grade);
         if (gradeClass) gradeSpan.classList.add(gradeClass);
         gradeSpan.textContent = grade;
-        headerRow.appendChild(gradeSpan);
+        leftGroup.appendChild(gradeSpan);
       }
+      detailRow.appendChild(leftGroup);
 
-      // 単元名（左）と説明文（右）を横並びで表示
-      const nameDescRow = document.createElement("div");
-      nameDescRow.className = "selected-unit-info-name-desc-row";
-      const nameSpan = document.createElement("span");
-      nameSpan.className = "selected-unit-info-name";
-      nameSpan.textContent = this.overallUnitSelected.categoryName;
-      nameDescRow.appendChild(nameSpan);
-
-      // 説明文は単元名の右に配置
-      const description = this.useCase.getCategoryDescription(subject, categoryId);
-      if (description) {
-        const descDiv = document.createElement("div");
-        descDiv.className = "selected-unit-info-desc";
-        descDiv.textContent = description;
-        nameDescRow.appendChild(descDiv);
-      }
-
-      headerRow.appendChild(nameDescRow);
-      body.appendChild(headerRow);
-
-      // 例文は詳細行に表示
-      const example = this.useCase.getCategoryExample(subject, categoryId);
       if (example !== undefined) {
         const exampleDiv = document.createElement("div");
         exampleDiv.className = "selected-unit-info-example";
         this.renderBacktickText(exampleDiv, example);
-        body.appendChild(exampleDiv);
+        detailRow.appendChild(exampleDiv);
+      }
+
+      if (leftGroup.childElementCount > 0 || example !== undefined) {
+        body.appendChild(detailRow);
       }
 
       container.appendChild(body);
@@ -1774,42 +1741,10 @@ export class QuizApp {
     const body = document.createElement("div");
     body.className = "selected-unit-info-body";
 
-    // ヘッダー行（名前 + 学年バッジ）
-    const headerRow = document.createElement("div");
-    headerRow.className = "selected-unit-info-header";
-
-    // 単元名（左）と説明文（右）を横並びにするラッパー
-    const nameDescRow = document.createElement("div");
-    nameDescRow.className = "selected-unit-info-name-desc-row";
-
     const nameSpan = document.createElement("span");
     nameSpan.className = "selected-unit-info-name";
+
     if (selLevel === "unit") {
-      // カテゴリパスと学年を同じメタ行に表示し、単元名はその下に
-      const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
-      const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
-      const catParts: string[] = [];
-      if (topInfo) catParts.push(topInfo.name);
-      if (parentInfo) catParts.push(parentInfo.name);
-      if (catParts.length > 0) {
-        const metaRow = document.createElement("div");
-        metaRow.className = "selected-unit-info-meta-row";
-        const catLabel = document.createElement("span");
-        catLabel.className = "selected-unit-info-category";
-        catLabel.textContent = catParts.join(" › ");
-        metaRow.appendChild(catLabel);
-        // 学年バッジをカテゴリの右に配置
-        const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
-        if (grade) {
-          const gradeSpan = document.createElement("span");
-          gradeSpan.className = "category-grade";
-          const gradeClass = gradeColorClass(grade);
-          if (gradeClass) gradeSpan.classList.add(gradeClass);
-          gradeSpan.textContent = grade;
-          metaRow.appendChild(gradeSpan);
-        }
-        headerRow.appendChild(metaRow);
-      }
       const cats = this.useCase.getCategoriesForSubject(this.filter.subject);
       nameSpan.textContent = cats[this.filter.category] ?? this.filter.category;
     } else if (selLevel === "parentCategory" && this.filter.parentCategory) {
@@ -1819,45 +1754,57 @@ export class QuizApp {
       const topCats = this.useCase.getTopCategoriesForSubject(this.filter.subject);
       nameSpan.textContent = topCats[this.selectedTopCategoryId] ?? this.selectedTopCategoryId;
     }
-    nameDescRow.appendChild(nameSpan);
-    headerRow.appendChild(nameDescRow);
+    body.appendChild(nameSpan);
 
-    // 学年バッジ（単元選択時のみ、かつカテゴリパスがない場合のみ headerRow 直下に追加）
+    // 詳細行（単元選択時のみ）: カテゴリ + 学年（左） / 例文（右）
     if (selLevel === "unit") {
-      const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
-      const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
-      const hasMetaRow = topInfo !== undefined || parentInfo !== undefined;
-      if (!hasMetaRow) {
-        const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
-        if (grade) {
-          const gradeSpan = document.createElement("span");
-          gradeSpan.className = "category-grade";
-          const gradeClass = gradeColorClass(grade);
-          if (gradeClass) gradeSpan.classList.add(gradeClass);
-          gradeSpan.textContent = grade;
-          headerRow.appendChild(gradeSpan);
-        }
-      }
-    }
-
-    body.appendChild(headerRow);
-
-    // 説明文と例文（単元選択時のみ）
-    if (selLevel === "unit") {
+      // 説明文（タイトルの下に表示）
       const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
       if (description) {
         const descDiv = document.createElement("div");
         descDiv.className = "selected-unit-info-desc";
         descDiv.textContent = description;
-        nameDescRow.appendChild(descDiv);  // 単元名の右に配置
+        body.appendChild(descDiv);
       }
 
+      const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
+      const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
+      const catParts: string[] = [];
+      if (topInfo) catParts.push(topInfo.name);
+      if (parentInfo) catParts.push(parentInfo.name);
+      const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
       const example = this.useCase.getCategoryExample(this.filter.subject, this.filter.category);
+
+      const detailRow = document.createElement("div");
+      detailRow.className = "selected-unit-info-detail-row";
+
+      const leftGroup = document.createElement("div");
+      leftGroup.className = "selected-unit-info-left";
+      if (catParts.length > 0) {
+        const catLabel = document.createElement("span");
+        catLabel.className = "selected-unit-info-category";
+        catLabel.textContent = catParts.join(" › ");
+        leftGroup.appendChild(catLabel);
+      }
+      if (grade) {
+        const gradeSpan = document.createElement("span");
+        gradeSpan.className = "category-grade";
+        const gradeClass = gradeColorClass(grade);
+        if (gradeClass) gradeSpan.classList.add(gradeClass);
+        gradeSpan.textContent = grade;
+        leftGroup.appendChild(gradeSpan);
+      }
+      detailRow.appendChild(leftGroup);
+
       if (example !== undefined) {
         const exampleDiv = document.createElement("div");
         exampleDiv.className = "selected-unit-info-example";
         this.renderBacktickText(exampleDiv, example);
-        body.appendChild(exampleDiv);
+        detailRow.appendChild(exampleDiv);
+      }
+
+      if (leftGroup.childElementCount > 0 || example !== undefined) {
+        body.appendChild(detailRow);
       }
     }
 
@@ -1893,30 +1840,22 @@ export class QuizApp {
 
   /**
    * 親カテゴリの解説を解説パネルに表示する。
-   * 解説タブに切り替えて、指定した親カテゴリの解説 URL を iframe に設定する。
+   * 解説タブに切り替えて、指定した親カテゴリの解説 URL を解説コンテナにロードする。
    */
   private showParentCategoryGuide(guideUrl: string): void {
     this.activePanelTab = "guide";
     this.isPanelTabUserSelected = true;
     this.showPanelTab("guide");
 
-    const guideFrame = document.getElementById("guidePanelFrame") as HTMLIFrameElement | null;
+    const guideFrame = document.getElementById("guidePanelFrame");
     const noContent = document.getElementById("guideNoContent");
     if (!guideFrame) return;
 
-    const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
-    if (guideFrame.getAttribute("src") !== embeddedUrl) {
-      guideFrame.src = embeddedUrl;
-      guideFrame.addEventListener("load", () => { this.notifyGuideFontSize(guideFrame); }, { once: true });
-    } else {
-      this.notifyGuideFontSize(guideFrame);
-    }
-    guideFrame.classList.remove("hidden");
-    noContent?.classList.add("hidden");
+    void this.loadGuideContent(guideFrame, guideUrl, noContent ?? undefined);
   }
 
   /**
-   * 指定した iframe と空表示要素 ID を使って解説コンテンツを更新する共通処理。
+   * 指定したコンテナ要素と空表示要素 ID を使って解説コンテンツを更新する共通処理。
    * 選択レベルに応じて解説URLを決定する：
    * - 単元選択: 単元の guideUrl
    * - 親カテゴリ選択: parentCategoryGuideUrl
@@ -1924,7 +1863,7 @@ export class QuizApp {
    * - 未選択: 最初に利用可能な guideUrl
    */
   private updateGuidePanelContentByIds(frameId: string, noContentId: string): void {
-    const guideFrame = document.getElementById(frameId) as HTMLIFrameElement | null;
+    const guideFrame = document.getElementById(frameId);
     const noContent = document.getElementById(noContentId);
     if (!guideFrame) return;
 
@@ -1950,20 +1889,123 @@ export class QuizApp {
     }
 
     if (guideUrl) {
-      // iframe 内であることを示す ?embedded=1 を付与してナビゲーション非表示スクリプトをトリガーする
-      const embeddedUrl = guideUrl.includes("?") ? `${guideUrl}&embedded=1` : `${guideUrl}?embedded=1`;
-      if (guideFrame.getAttribute("src") !== embeddedUrl) {
-        guideFrame.src = embeddedUrl;
-        guideFrame.addEventListener("load", () => { this.notifyGuideFontSize(guideFrame!); }, { once: true });
-      } else {
-        this.notifyGuideFontSize(guideFrame);
-      }
       guideFrame.classList.remove("hidden");
       noContent?.classList.add("hidden");
+      void this.loadGuideContent(guideFrame, guideUrl, noContent ?? undefined);
     } else {
-      guideFrame.src = "about:blank";
       guideFrame.classList.add("hidden");
       noContent?.classList.remove("hidden");
+    }
+  }
+
+  /**
+   * 指定した div 要素に解説 HTML を fetch してシャドウ DOM で埋め込む。
+   * iframe の代わりに使用することで、親ページのフォントサイズが自然に継承される。
+   *
+   * セキュリティ: script 要素・on* 属性を除去したうえでシャドウ DOM に挿入する。
+   * レースコンディション対策: 最後に開始したリクエストのみ反映し、古いリクエストを破棄する。
+   *
+   * @param container - 解説コンテンツを挿入するコンテナ要素
+   * @param guideUrl  - 解説ページの URL（相対パスまたは同一オリジンの Jekyll 生成 HTML）
+   * @param noContent - 解説なしメッセージ要素（任意）
+   */
+  private async loadGuideContent(container: HTMLElement, guideUrl: string, noContent?: HTMLElement): Promise<void> {
+    // 既に同じ URL を表示中なら再ロードしない
+    if (container.dataset.loadedUrl === guideUrl) return;
+
+    // リクエストごとにトークンを割り当て、最新リクエスト以外は結果を破棄する
+    const token = ++this.guideLoadCounter;
+
+    // 絶対 URL（外部オリジン）は CORS リスクがあるため fetch せず別タブで開くリンクを表示する
+    try {
+      const parsed = new URL(guideUrl, window.location.href);
+      if (parsed.origin !== window.location.origin) {
+        if (token !== this.guideLoadCounter) return;
+        container.dataset.loadedUrl = "";
+        container.querySelectorAll(".guide-error-msg").forEach((el) => el.remove());
+        const link = document.createElement("p");
+        link.className = "guide-error-msg guide-no-content";
+        const anchor = document.createElement("a");
+        anchor.href = guideUrl;
+        anchor.target = "_blank";
+        anchor.rel = "noopener noreferrer";
+        anchor.textContent = "解説を別タブで開く";
+        link.appendChild(anchor);
+        container.appendChild(link);
+        noContent?.classList.add("hidden");
+        container.classList.remove("hidden");
+        return;
+      }
+    } catch {
+      // URL パースに失敗した場合はそのまま fetch を試みる
+    }
+
+    try {
+      const response = await fetch(guideUrl);
+      if (token !== this.guideLoadCounter) return; // 古いリクエストは破棄
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const html = await response.text();
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+
+      // XSS 対策: script 要素・on* 属性・危険な要素を除去する
+      doc.querySelectorAll("script, iframe, object, embed, link[rel='import'], meta[http-equiv='refresh']").forEach((el) => el.remove());
+      doc.querySelectorAll("*").forEach((el) => {
+        Array.from(el.attributes)
+          .filter((attr) => attr.name.startsWith("on"))
+          .forEach((attr) => el.removeAttribute(attr.name));
+      });
+
+      // シャドウDOM外からのID選択（Playwright等）と主ページIDとの衝突を防ぐため、
+      // 注入コンテンツ内のすべての id 属性を除去する
+      doc.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
+
+      // シャドウホストを作成（または既存を再利用）
+      let shadowHost = container.querySelector<HTMLElement>(".guide-shadow-host");
+      if (!shadowHost) {
+        shadowHost = document.createElement("div");
+        shadowHost.className = "guide-shadow-host";
+        container.appendChild(shadowHost);
+      }
+
+      // シャドウ DOM を取得またはアタッチする
+      // shadowRoot は既にアタッチ済みの場合は再アタッチできないため、既存のものを使用する
+      const shadow: ShadowRoot = shadowHost.shadowRoot ?? shadowHost.attachShadow({ mode: "open" });
+
+      // head 内のスタイル要素を収集してシャドウに追加する
+      const styleHtml = Array.from(doc.head.querySelectorAll("style, link[rel='stylesheet']"))
+        .map((el) => el.outerHTML)
+        .join("\n");
+
+      // サイトヘッダー・フッターを非表示にし、フォントサイズを親から継承するためのスタイル
+      const embeddedStyle = `
+        <style>
+          :host { display: block; font-size: inherit; font-family: inherit; }
+          header.site-header, footer.site-footer, nav { display: none !important; }
+          body { font-size: 1em !important; }
+        </style>`;
+
+      // body のコンテンツを取得（header.site-header・footer.site-footer・スクリプト類を除く）
+      const bodyClone = doc.body.cloneNode(true) as HTMLBodyElement;
+      bodyClone.querySelectorAll("header.site-header, footer.site-footer, script").forEach((el) => el.remove());
+
+      shadow.innerHTML = embeddedStyle + styleHtml + bodyClone.innerHTML;
+
+      container.dataset.loadedUrl = guideUrl;
+      container.classList.remove("hidden");
+      noContent?.classList.add("hidden");
+    } catch (err) {
+      if (token !== this.guideLoadCounter) return; // 古いリクエストは破棄
+      console.error("解説の読み込みに失敗しました:", err);
+      container.dataset.loadedUrl = "";
+      // innerHTML を上書きせず、エラーメッセージのみ追加する
+      container.querySelectorAll(".guide-error-msg").forEach((el) => el.remove());
+      const errorMsg = document.createElement("p");
+      errorMsg.className = "guide-error-msg guide-no-content";
+      errorMsg.textContent = "解説の読み込みに失敗しました。";
+      container.appendChild(errorMsg);
+      noContent?.classList.add("hidden");
     }
   }
 
@@ -2153,11 +2195,18 @@ export class QuizApp {
   }
 
   /**
-   * 問題一覧の1問分のHTML要素を構築する（問題・正解・ヒントのみ表示）
+   * 問題一覧の1問分のHTML要素を構築する（問題・正解・統計・ヒントを表示）
    */
   private buildQuestionListItem(question: Question): HTMLElement {
     const item = document.createElement("div");
     item.className = "question-list-item";
+
+    const stat = this.useCase.getQuestionStat(question.id);
+    // 3回以上正解したら完了（🏆）
+    const isCompleted = stat.correct >= 3;
+    if (isCompleted) {
+      item.classList.add("question-list-completed");
+    }
 
     const rowDiv = document.createElement("div");
     rowDiv.className = "question-list-row";
@@ -2171,6 +2220,16 @@ export class QuizApp {
     correctDiv.className = "question-list-correct";
     correctDiv.textContent = `✓ ${question.choices[question.correct]}`;
     rowDiv.appendChild(correctDiv);
+
+    // 回答統計バッジ
+    const statSpan = document.createElement("span");
+    statSpan.className = "question-list-stat";
+    if (stat.total > 0) {
+      statSpan.textContent = isCompleted ? `🏆 ${stat.correct}/${stat.total}` : `${stat.correct}/${stat.total}`;
+    } else {
+      statSpan.textContent = "-";
+    }
+    rowDiv.appendChild(statSpan);
 
     const hintBtn = document.createElement("button");
     hintBtn.className = "question-list-hint-btn";
@@ -2439,16 +2498,17 @@ export class QuizApp {
         statsEl.textContent = formatCategoryStats(stat);
       }
 
-      // 進捗バーと完了率を更新（学習履歴がある場合）
+      // 進捗バーと完了率を更新（学習履歴がある場合、または教科全体の学習履歴がある場合）
       const progressFill = el.querySelector(".category-progress-fill") as HTMLElement | null;
       const progressPct = el.querySelector(".category-progress-pct") as HTMLElement | null;
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
-        if (isStudied || stat.wrong > 0) {
+        const isSubjectStudied = category !== "all" && studiedKeys.has(`${subject}::all`);
+        if (isStudied || isSubjectStudied || stat.wrong > 0) {
           const pct =
             stat.total > 0
               ? Math.round(((stat.total - stat.wrong) / stat.total) * 100)
-              : isStudied
+              : isStudied || isSubjectStudied
                 ? 100
                 : 0;
           progressFill.style.width = `${pct}%`;
@@ -2747,7 +2807,11 @@ export class QuizApp {
     const idx = session.currentIndex;
 
     this.setText("questionNumber", `問題 ${idx + 1} / ${total}`);
-    this.setText("topicName", question.categoryName ?? question.category);
+    const topicParts: string[] = [];
+    if (question.topCategoryName) topicParts.push(question.topCategoryName);
+    if (question.parentCategoryName) topicParts.push(question.parentCategoryName);
+    topicParts.push(question.categoryName ?? question.category);
+    this.setText("topicName", topicParts.join(" › "));
 
     const progress = ((idx + 1) / total) * 100;
     (document.getElementById("progressFill") as HTMLElement).style.width = `${progress}%`;
@@ -3301,7 +3365,7 @@ export class QuizApp {
    */
   private async navigateToStart(): Promise<void> {
     if (this.isQuizInProgress()) {
-      const confirmed = await this.showConfirmDialog("クイズが途中です。スタート画面に戻りますか？（進行状況は保存されません）");
+      const confirmed = await this.showConfirmDialog("問題が途中です。単元選択に戻りますか？（進行状況は保存されません）");
       if (!confirmed) return;
     }
     this.showScreen("start");

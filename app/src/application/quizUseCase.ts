@@ -14,6 +14,7 @@ export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
   private correctStreaks: Record<string, number>;
+  private questionStats: Record<string, { total: number; correct: number }>;
   /** subject::category -> guideUrl のキャッシュ（O(1) 参照用） */
   private categoryGuideMap = new Map<string, string>();
   /** subject::parentCategory -> parentCategoryGuideUrl のキャッシュ（O(1) 参照用） */
@@ -37,6 +38,7 @@ export class QuizUseCase {
   ) {
     this.wrongIds = this.progressRepo.loadWrongIds();
     this.correctStreaks = this.progressRepo.loadCorrectStreaks();
+    this.questionStats = this.progressRepo.loadQuestionStats();
   }
 
   async initialize(): Promise<void> {
@@ -146,6 +148,14 @@ export class QuizUseCase {
   }
 
   /**
+   * 指定した問題の回答統計（総回答数・正解数）を返す。
+   * 該当問題の統計がない場合は { total: 0, correct: 0 } を返す。
+   */
+  getQuestionStat(questionId: string): { total: number; correct: number } {
+    return this.questionStats[questionId] ?? { total: 0, correct: 0 };
+  }
+
+  /**
    * 一度でもクイズを実施したカテゴリのキー（"subject::category" 形式）を返す。
    * カテゴリの学習状態絵文字の判定に使用する。
    */
@@ -181,6 +191,12 @@ export class QuizUseCase {
     const results = session.getResults();
 
     for (const r of results) {
+      // 問題ごとの回答統計を更新（全問題対象）
+      const stat = this.questionStats[r.question.id] ?? { total: 0, correct: 0 };
+      stat.total++;
+      if (r.isCorrect) stat.correct++;
+      this.questionStats[r.question.id] = stat;
+
       if (r.isCorrect) {
         if (this.wrongIds.includes(r.question.id)) {
           // 間違えた問題を正解した場合、連続正解数をカウント
@@ -203,6 +219,7 @@ export class QuizUseCase {
 
     this.progressRepo.saveWrongIds(this.wrongIds);
     this.progressRepo.saveCorrectStreaks(this.correctStreaks);
+    this.progressRepo.saveQuestionStats(this.questionStats);
     return results;
   }
 

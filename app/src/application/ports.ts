@@ -44,6 +44,7 @@ export interface UserDataExport {
   userName: string | null;
   wrongIds: string[];
   correctStreaks: Record<string, number>;
+  questionStats: Record<string, { total: number; correct: number }>;
   history: QuizRecord[];
   categoryViewMode: "category" | "grade";
   fontSizeLevel: "small" | "medium" | "large" | null;
@@ -55,6 +56,8 @@ export interface IProgressRepository {
   saveWrongIds(ids: string[]): void;
   loadCorrectStreaks(): Record<string, number>;
   saveCorrectStreaks(streaks: Record<string, number>): void;
+  loadQuestionStats(): Record<string, { total: number; correct: number }>;
+  saveQuestionStats(stats: Record<string, { total: number; correct: number }>): void;
   loadUserName(): string | null;
   saveUserName(name: string): void;
   loadHistory(): QuizRecord[];

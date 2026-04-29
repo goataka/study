@@ -76,10 +76,10 @@ Feature: 学習アプリ
     When I click the "スタート画面に戻る" button
     Then the start screen should be visible
 
-  Scenario: 解説パネルのiframeにembedded=1クエリが付与される
+  Scenario: 解説パネルにシャドウDOMコンテナが表示される
     Given I have selected a quiz category
     When I open the guide panel tab
-    Then the guide iframe src should contain "embedded=1"
+    Then the guide shadow host should be attached
 
   Scenario: フォントサイズ「大」に切り替えるとbodyにfont-size-largeクラスが付与される
     Given I have selected a quiz category
