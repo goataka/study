@@ -257,10 +257,12 @@ app/src/
     ports.ts        # IQuestionRepository / IProgressRepository インターフェース
     quizUseCase.ts  # クイズの開始・採点・進捗保存を統括
     quizUseCase.test.ts
-  infrastructure/   # 外部システムとの接続（fetch、localStorage）
+  infrastructure/   # 外部システムとの接続（fetch、IndexedDB）
     remoteQuestionRepository.ts       # IQuestionRepository の実装（fetch）
     remoteQuestionRepository.test.ts
-    localStorageProgressRepository.ts # IProgressRepository の実装（localStorage）
+    indexedDBProgressRepository.ts    # IProgressRepository の実装（IndexedDB）
+    indexedDBProgressRepository.test.ts
+    localStorageProgressRepository.ts # IProgressRepository の実装（localStorage、テスト用）
     questionData.test.ts              # JSON データ整合性テスト
   presentation/     # UI コントローラー（DOM 操作）
     quizApp.ts      # QuizUseCase を使う UI コントローラー

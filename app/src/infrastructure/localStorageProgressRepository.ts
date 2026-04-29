@@ -13,6 +13,7 @@ const USER_NAME_KEY = "userName";
 const HISTORY_KEY = "quizHistory";
 const CATEGORY_VIEW_MODE_KEY = "categoryViewMode";
 const FONT_SIZE_KEY = "fontSizeLevel";
+const SHARE_URL_KEY = "overallShareUrl";
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
 
@@ -167,6 +168,26 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       localStorage.setItem(FONT_SIZE_KEY, level);
     } catch (error) {
       console.error("文字サイズの保存に失敗しました:", error);
+    }
+  }
+
+  loadShareUrl(): string {
+    try {
+      return localStorage.getItem(SHARE_URL_KEY) ?? "";
+    } catch {
+      return "";
+    }
+  }
+
+  saveShareUrl(url: string): void {
+    try {
+      if (url) {
+        localStorage.setItem(SHARE_URL_KEY, url);
+      } else {
+        localStorage.removeItem(SHARE_URL_KEY);
+      }
+    } catch (error) {
+      console.error("共有URLの保存に失敗しました:", error);
     }
   }
 

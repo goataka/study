@@ -69,5 +69,7 @@ export interface IProgressRepository {
   saveCategoryViewMode(mode: "category" | "grade"): void;
   loadFontSizeLevel(): "small" | "medium" | "large" | null;
   saveFontSizeLevel(level: "small" | "medium" | "large"): void;
+  loadShareUrl(): string;
+  saveShareUrl(url: string): void;
   exportAllData(): UserDataExport;
 }
