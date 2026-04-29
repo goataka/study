@@ -32,3 +32,16 @@ Feature: 縦方向ズームスケーリング
     Given the viewport is 2560x1440
     And the quiz application is loaded
     Then the html zoom should be approximately 1.3333
+
+  # モバイル対応: 横幅 768px 未満では zoom を無効にしてレスポンシブ CSS に任せる
+
+  Scenario: 390×844のスマホ縦持ちではズームが適用されない
+    Given the viewport is 390x844
+    And the quiz application is loaded
+    Then the html zoom should not be applied
+
+  Scenario: 390×844のスマホ縦持ちでスタート画面が表示される
+    Given the viewport is 390x844
+    And the quiz application is loaded
+    Then the start screen should be visible
+    And the header should remain visible

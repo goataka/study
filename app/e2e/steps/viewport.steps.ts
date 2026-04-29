@@ -37,3 +37,10 @@ Then("the html zoom should be approximately {float}", async ({ page }, expectedZ
   });
   expect(zoom).toBeCloseTo(expectedZoom, 2);
 });
+
+// html 要素に zoom が適用されていないことを確認（モバイル対応の検証）
+Then("the html zoom should not be applied", async ({ page }) => {
+  const zoomValue = await page.evaluate(() => document.documentElement.style.zoom);
+  expect(zoomValue).toBe('');
+});
+
