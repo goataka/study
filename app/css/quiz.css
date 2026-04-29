@@ -1130,6 +1130,13 @@ header h1 {
     text-align: right;
 }
 
+.selected-unit-info-name-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+
 .selected-unit-info-example {
     font-size: 13px;
     color: #586069;
@@ -2141,6 +2148,13 @@ button:disabled {
     width: 100%;
 }
 
+body.font-size-medium .guide-frame .guide-shadow-host {
+    font-size: 1.2em;
+}
+body.font-size-large .guide-frame .guide-shadow-host {
+    font-size: 1.5em;
+}
+
 /* カテゴリ名エリア（名前 + 進捗バー） */
 .category-name-area {
     flex: 1;
@@ -2360,6 +2374,40 @@ button:disabled {
 }
 
 .count-label input[type="radio"] {
+    cursor: pointer;
+    accent-color: #0366d6;
+}
+
+/* 並び順選択 */
+.quiz-order-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+}
+
+.quiz-order-label {
+    font-size: 14px;
+    color: #586069;
+    white-space: nowrap;
+}
+
+.quiz-order-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.order-label {
+    font-size: 14px;
+    color: #24292e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.order-label input[type="radio"] {
     cursor: pointer;
     accent-color: #0366d6;
 }
@@ -2691,12 +2739,22 @@ button:disabled {
     cursor: crosshair;
     background: white;
     touch-action: none;
+    flex: 0 0 auto;
+}
+
+.kanji-input-body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
 }
 
 .kanji-candidate-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 50px;
     min-height: 40px;
 }
 

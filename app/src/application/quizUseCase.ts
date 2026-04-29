@@ -10,10 +10,16 @@ import type { IQuestionRepository, IProgressRepository, QuizRecord, UserDataExpo
 
 export type { QuizMode, QuizFilter, AnswerResult, QuizRecord, UserDataExport };
 
+/** 全問習得済み時にスローするエラーメッセージ定数 */
+export const ERROR_ALL_MASTERED = "ALL_MASTERED";
+
 export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
   private correctStreaks: Record<string, number>;
+  private masteredIds: string[];
+  /** masteredIds の Set キャッシュ（isMastered() を O(1) にするため） */
+  private masteredSet: Set<string>;
   private questionStats: Record<string, { total: number; correct: number }>;
   /** subject::category -> guideUrl のキャッシュ（O(1) 参照用） */
   private categoryGuideMap = new Map<string, string>();
@@ -38,6 +44,8 @@ export class QuizUseCase {
   ) {
     this.wrongIds = this.progressRepo.loadWrongIds();
     this.correctStreaks = this.progressRepo.loadCorrectStreaks();
+    this.masteredIds = this.progressRepo.loadMasteredIds();
+    this.masteredSet = new Set(this.masteredIds);
     this.questionStats = this.progressRepo.loadQuestionStats();
   }
 
@@ -172,10 +180,18 @@ export class QuizUseCase {
     const filtered = this.getFilteredQuestions(filter);
 
     if (mode === "random") {
-      const questions = QuizSession.pickRandom(filtered, count);
+      const unmastered = filtered.filter((q) => !this.masteredSet.has(q.id));
+      if (unmastered.length === 0) {
+        throw new Error(ERROR_ALL_MASTERED);
+      }
+      const questions = QuizSession.pickRandom(unmastered, count);
       return new QuizSession(questions);
     } else if (mode === "practice") {
-      const questions = QuizSession.pickInOrder(filtered, count);
+      const unmastered = filtered.filter((q) => !this.masteredSet.has(q.id));
+      if (unmastered.length === 0) {
+        throw new Error(ERROR_ALL_MASTERED);
+      }
+      const questions = QuizSession.pickInOrder(unmastered, count);
       return new QuizSession(questions);
     } else {
       const wrongSet = new Set(this.wrongIds);
@@ -184,6 +200,20 @@ export class QuizUseCase {
         throw new Error("間違えた問題がありません");
       }
       return new QuizSession(retryQuestions);
+    }
+  }
+
+  startSessionWithAllQuestions(mode: QuizMode, filter: QuizFilter, count = 10): QuizSession {
+    const filtered = this.getFilteredQuestions(filter);
+    if (filtered.length === 0) {
+      throw new Error("問題がありません");
+    }
+    if (mode === "practice") {
+      const questions = QuizSession.pickInOrder(filtered, count);
+      return new QuizSession(questions);
+    } else {
+      const questions = QuizSession.pickRandom(filtered, count);
+      return new QuizSession(questions);
     }
   }
 
@@ -198,21 +228,24 @@ export class QuizUseCase {
       this.questionStats[r.question.id] = stat;
 
       if (r.isCorrect) {
-        if (this.wrongIds.includes(r.question.id)) {
-          // 間違えた問題を正解した場合、連続正解数をカウント
-          this.correctStreaks[r.question.id] = (this.correctStreaks[r.question.id] ?? 0) + 1;
-          const streak = this.correctStreaks[r.question.id] ?? 0;
-          if (streak >= 3) {
-            // 3回正解で学習済みとして wrongIds から除く
-            this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
-            delete this.correctStreaks[r.question.id];
+        // 全問題の連続正解数をカウント
+        this.correctStreaks[r.question.id] = (this.correctStreaks[r.question.id] ?? 0) + 1;
+        const streak = this.correctStreaks[r.question.id] ?? 0;
+        if (streak >= 3) {
+          // 3回連続正解で習得済みとして管理
+          if (!this.masteredSet.has(r.question.id)) {
+            this.masteredIds.push(r.question.id);
+            this.masteredSet.add(r.question.id);
           }
+          delete this.correctStreaks[r.question.id];
+          // wrongIds からも除く
+          this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
         }
       } else {
         if (!this.wrongIds.includes(r.question.id)) {
           this.wrongIds.push(r.question.id);
         }
-        // 不正解の場合、連続正解数をリセット
+        // 不正解の場合、連続正解数をリセット（習得済みは維持する）
         this.correctStreaks[r.question.id] = 0;
       }
     }
@@ -220,7 +253,20 @@ export class QuizUseCase {
     this.progressRepo.saveWrongIds(this.wrongIds);
     this.progressRepo.saveCorrectStreaks(this.correctStreaks);
     this.progressRepo.saveQuestionStats(this.questionStats);
+    this.progressRepo.saveMasteredIds(this.masteredIds);
     return results;
+  }
+
+  getMasteredIds(): string[] {
+    return [...this.masteredIds];
+  }
+
+  isMastered(questionId: string): boolean {
+    return this.masteredSet.has(questionId);
+  }
+
+  getCorrectStreak(questionId: string): number {
+    return this.correctStreaks[questionId] ?? 0;
   }
 
   /**
@@ -291,6 +337,14 @@ export class QuizUseCase {
     this.progressRepo.saveWrongIds(this.wrongIds);
     this.progressRepo.saveCorrectStreaks(this.correctStreaks);
 
+    // 対象カテゴリの問題を masteredIds に追加する
+    for (const id of questionIds) {
+      if (!this.masteredIds.includes(id)) {
+        this.masteredIds.push(id);
+      }
+    }
+    this.progressRepo.saveMasteredIds(this.masteredIds);
+
     // 履歴に手動マークのレコードを追加
     const firstQuestion = questions[0]!;
     const subjectName = firstQuestion.subjectName ?? firstQuestion.subject;
@@ -328,6 +382,11 @@ export class QuizUseCase {
     }
 
     this.progressRepo.saveWrongIds(this.wrongIds);
+
+    // 対象カテゴリの問題を masteredIds から除く
+    const questionIdSet = new Set(questions.map((q) => q.id));
+    this.masteredIds = this.masteredIds.filter((id) => !questionIdSet.has(id));
+    this.progressRepo.saveMasteredIds(this.masteredIds);
   }
 
   /** 履歴レコードを先頭に追加して保存する共通ヘルパー。 */

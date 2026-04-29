@@ -33,25 +33,25 @@ Feature: 学習アプリ
 
   Scenario: 本番クイズを開始できる
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     Then the quiz screen should be visible
     And I should see question 1
 
   Scenario: 問題に回答して次の問題に進める
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     And I select the first choice
     Then the "次へ" button should be enabled
 
   Scenario: 全問回答後に採点できる
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     And I answer all questions
     Then I should see the "採点する" button
 
   Scenario: 採点後に結果画面が表示される
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     And I answer all questions
     And I click the "採点する" button
     Then the result screen should be visible
@@ -59,7 +59,7 @@ Feature: 学習アプリ
 
   Scenario: 結果画面から「もう一度」でクイズ画面に戻れる
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     And I answer all questions
     And I click the "採点する" button
     Then the result screen should be visible
@@ -69,7 +69,7 @@ Feature: 学習アプリ
 
   Scenario: 結果画面から「スタート画面に戻る」で戻れる
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     And I answer all questions
     And I click the "採点する" button
     Then the result screen should be visible
@@ -92,15 +92,16 @@ Feature: 学習アプリ
     And I click the "小" font size button
     Then the body should not have the "font-size-large" class
 
-  Scenario: 練習クイズ開始時にquizScreenにpractice-modeクラスが付与される
+  Scenario: ストレート順でクイズ開始時にquizScreenにpractice-modeクラスが付与される
     Given I have selected a quiz category
-    When I click the "練習" button
+    When I select "straight" quiz order
+    And I click the "スタート" button
     Then the quiz screen should be visible
     And the quiz screen should have the practice-mode class
 
   Scenario: 本番クイズ開始時にquizScreenにpractice-modeクラスが付与されない
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     Then the quiz screen should be visible
     And the quiz screen should not have the practice-mode class
 
@@ -133,13 +134,13 @@ Feature: 学習アプリ
   @vr
   Scenario: クイズ画面のビジュアル確認
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     Then the quiz screen layout matches the snapshot
 
   @vr
   Scenario: 結果画面のビジュアル確認
     Given I have selected a quiz category
-    When I click the "本番" button
+    When I click the "スタート" button
     And I answer all questions
     And I click the "採点する" button
     Then the result screen layout matches the snapshot
