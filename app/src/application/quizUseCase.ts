@@ -10,6 +10,9 @@ import type { IQuestionRepository, IProgressRepository, QuizRecord, UserDataExpo
 
 export type { QuizMode, QuizFilter, AnswerResult, QuizRecord, UserDataExport };
 
+/** 全問習得済み時にスローするエラーメッセージ定数 */
+export const ERROR_ALL_MASTERED = "ALL_MASTERED";
+
 export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
@@ -177,7 +180,7 @@ export class QuizUseCase {
       const masteredSet = new Set(this.masteredIds);
       const unmastered = filtered.filter((q) => !masteredSet.has(q.id));
       if (unmastered.length === 0) {
-        throw new Error("ALL_MASTERED");
+        throw new Error(ERROR_ALL_MASTERED);
       }
       const questions = QuizSession.pickRandom(unmastered, count);
       return new QuizSession(questions);
@@ -185,7 +188,7 @@ export class QuizUseCase {
       const masteredSet = new Set(this.masteredIds);
       const unmastered = filtered.filter((q) => !masteredSet.has(q.id));
       if (unmastered.length === 0) {
-        throw new Error("ALL_MASTERED");
+        throw new Error(ERROR_ALL_MASTERED);
       }
       const questions = QuizSession.pickInOrder(unmastered, count);
       return new QuizSession(questions);

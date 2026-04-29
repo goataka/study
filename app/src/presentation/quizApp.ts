@@ -3,7 +3,7 @@
  * ビジネスロジックはすべて QuizUseCase に委譲する。
  */
 
-import { QuizUseCase } from "../application/quizUseCase";
+import { QuizUseCase, ERROR_ALL_MASTERED } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
 import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
@@ -2791,12 +2791,13 @@ export class QuizApp {
   }
 
   private async startQuiz(mode: QuizMode): Promise<void> {
-    // "random" モードでストレート順が選択されている場合は "practice" モードを使用する
+    // "random" モードでストレート順が選択されている場合は内部的に "practice"（順番通り）モードを使用する。
+    // ストレート＝問題を登録順に出題するため、QuizSession.pickInOrder を使う practice モードにマップする。
     const effectiveMode: QuizMode = (mode === "random" && this.quizOrder === "straight") ? "practice" : mode;
     try {
       this.currentSession = this.useCase.startSession(effectiveMode, this.getEffectiveFilter(), this.questionCount);
     } catch (error) {
-      if (error instanceof Error && error.message === "ALL_MASTERED") {
+      if (error instanceof Error && error.message === ERROR_ALL_MASTERED) {
         const confirmed = await this.showConfirmDialog("すべての問題が学習済みです。全問題からランダムに出題しますか？");
         if (confirmed) {
           try {
@@ -2820,7 +2821,7 @@ export class QuizApp {
     this.notesStates.clear();
 
     this.showScreen("quiz");
-    document.getElementById("quizScreen")?.classList.toggle("practice-mode", mode === "practice");
+    document.getElementById("quizScreen")?.classList.toggle("practice-mode", effectiveMode === "practice");
     this.initializeNotesCanvas();
     this.notesCanvas?.clear();
     this.renderQuestion();
