@@ -1879,7 +1879,7 @@ button:disabled {
     }
 }
 
-/* レスポンシブ対応 */
+/* レスポンシブ対応（768px〜900px: zoom 適用のデスクトップモード、クイズのみ縦積みに） */
 @media (max-width: 900px) {
     /* クイズのランドスケープレイアウトをスタック表示に */
     .quiz-landscape-layout {
