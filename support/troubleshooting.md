@@ -6,6 +6,12 @@ permalink: /support/troubleshooting/
 
 よくある質問（FAQ）と問題の解決方法を説明します。
 
+## 目次
+
+- [よくある質問（FAQ）](#よくある質問faq)
+- [不具合・要望の報告](#不具合要望の報告)
+- [関連リンク](#-関連リンク)
+
 ## よくある質問（FAQ）
 
 ### アプリについて
@@ -77,5 +83,5 @@ permalink: /support/troubleshooting/
 
 - [サポートトップ](../) ─ サポートページのトップ
 - [スタートアップガイド](../startup-guide/) ─ 使い始め方と基本操作
-- [操作ガイド](../operation-guide/) ─ 画面構成と各機能
+- [機能リファレンス](../operation-guide/) ─ 画面構成と各機能
 - [技術リファレンス](../technical-reference/) ─ 問題データのJSON形式

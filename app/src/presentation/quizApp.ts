@@ -1814,8 +1814,8 @@ export class QuizApp {
    * 閉じるボタン（×）で選択を解除できるようにする。
    *
    * レイアウト（単元選択時）:
-   *   行1: [タイトル（左）] [カテゴリ・学年（右）]
-   *   行2: [説明（左）] [例文（右）]
+   *   行1: [タイトル（左）] [説明（右）]
+   *   行2: [カテゴリ・学年（左）] [例文（右）]
    *   行3: [ステータスバー（全幅）]
    */
   private updateSelectedUnitInfo(): void {
@@ -1844,7 +1844,7 @@ export class QuizApp {
       const example = this.useCase.getCategoryExample(subject, categoryId);
       const description = this.useCase.getCategoryDescription(subject, categoryId);
 
-      // 行1: タイトル（左） / カテゴリ+学年（右）
+      // 行1: タイトル（左） / 説明（右）
       const headerRow = document.createElement("div");
       headerRow.className = "selected-unit-info-header-row";
 
@@ -1856,37 +1856,41 @@ export class QuizApp {
       headerLeft.appendChild(nameSpan);
       headerRow.appendChild(headerLeft);
 
-      const headerRight = document.createElement("div");
-      headerRight.className = "selected-unit-info-header-right";
-      if (catParts.length > 0) {
-        const catLabel = document.createElement("span");
-        catLabel.className = "selected-unit-info-category";
-        catLabel.textContent = catParts.join(" › ");
-        headerRight.appendChild(catLabel);
-      }
-      if (grade) {
-        const gradeSpan = document.createElement("span");
-        gradeSpan.className = "category-grade";
-        const gradeClass = gradeColorClass(grade);
-        if (gradeClass) gradeSpan.classList.add(gradeClass);
-        gradeSpan.textContent = grade;
-        headerRight.appendChild(gradeSpan);
-      }
-      if (headerRight.childElementCount > 0) {
+      if (description !== undefined) {
+        const headerRight = document.createElement("div");
+        headerRight.className = "selected-unit-info-header-right";
+        const descDiv = document.createElement("div");
+        descDiv.className = "selected-unit-info-desc-right selected-unit-info-desc";
+        descDiv.textContent = description;
+        headerRight.appendChild(descDiv);
         headerRow.appendChild(headerRight);
       }
       body.appendChild(headerRow);
 
-      // 行2: 説明（左） / 例文（右）
-      if (description !== undefined || example !== undefined) {
+      // 行2: カテゴリ+学年（左） / 例文（右）
+      const hasCatOrGrade = catParts.length > 0 || !!grade;
+      if (hasCatOrGrade || example !== undefined) {
         const descRow = document.createElement("div");
         descRow.className = "selected-unit-info-desc-row";
-        if (description !== undefined) {
-          const descLeft = document.createElement("div");
-          descLeft.className = "selected-unit-info-desc-left selected-unit-info-desc";
-          descLeft.textContent = description;
-          descRow.appendChild(descLeft);
+
+        const descLeft = document.createElement("div");
+        descLeft.className = "selected-unit-info-desc-left";
+        if (catParts.length > 0) {
+          const catLabel = document.createElement("span");
+          catLabel.className = "selected-unit-info-category";
+          catLabel.textContent = catParts.join(" › ");
+          descLeft.appendChild(catLabel);
         }
+        if (grade) {
+          const gradeSpan = document.createElement("span");
+          gradeSpan.className = "category-grade";
+          const gradeClass = gradeColorClass(grade);
+          if (gradeClass) gradeSpan.classList.add(gradeClass);
+          gradeSpan.textContent = grade;
+          descLeft.appendChild(gradeSpan);
+        }
+        descRow.appendChild(descLeft);
+
         if (example !== undefined) {
           const descRight = document.createElement("div");
           descRight.className = "selected-unit-info-desc-right selected-unit-info-example";
@@ -1948,7 +1952,7 @@ export class QuizApp {
       const example = this.useCase.getCategoryExample(this.filter.subject, this.filter.category);
       const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
 
-      // 行1: タイトル（左） / カテゴリ+学年（右）
+      // 行1: タイトル（左） / 説明（右）
       const headerRow = document.createElement("div");
       headerRow.className = "selected-unit-info-header-row";
 
@@ -1957,37 +1961,41 @@ export class QuizApp {
       headerLeft.appendChild(nameSpan);
       headerRow.appendChild(headerLeft);
 
-      const headerRight = document.createElement("div");
-      headerRight.className = "selected-unit-info-header-right";
-      if (catParts.length > 0) {
-        const catLabel = document.createElement("span");
-        catLabel.className = "selected-unit-info-category";
-        catLabel.textContent = catParts.join(" › ");
-        headerRight.appendChild(catLabel);
-      }
-      if (grade) {
-        const gradeSpan = document.createElement("span");
-        gradeSpan.className = "category-grade";
-        const gradeClass = gradeColorClass(grade);
-        if (gradeClass) gradeSpan.classList.add(gradeClass);
-        gradeSpan.textContent = grade;
-        headerRight.appendChild(gradeSpan);
-      }
-      if (headerRight.childElementCount > 0) {
+      if (description !== undefined) {
+        const headerRight = document.createElement("div");
+        headerRight.className = "selected-unit-info-header-right";
+        const descDiv = document.createElement("div");
+        descDiv.className = "selected-unit-info-desc-right selected-unit-info-desc";
+        descDiv.textContent = description;
+        headerRight.appendChild(descDiv);
         headerRow.appendChild(headerRight);
       }
       body.appendChild(headerRow);
 
-      // 行2: 説明（左） / 例文（右）
-      if (description !== undefined || example !== undefined) {
+      // 行2: カテゴリ+学年（左） / 例文（右）
+      const hasCatOrGrade = catParts.length > 0 || !!grade;
+      if (hasCatOrGrade || example !== undefined) {
         const descRow = document.createElement("div");
         descRow.className = "selected-unit-info-desc-row";
-        if (description !== undefined) {
-          const descLeft = document.createElement("div");
-          descLeft.className = "selected-unit-info-desc-left selected-unit-info-desc";
-          descLeft.textContent = description;
-          descRow.appendChild(descLeft);
+
+        const descLeft = document.createElement("div");
+        descLeft.className = "selected-unit-info-desc-left";
+        if (catParts.length > 0) {
+          const catLabel = document.createElement("span");
+          catLabel.className = "selected-unit-info-category";
+          catLabel.textContent = catParts.join(" › ");
+          descLeft.appendChild(catLabel);
         }
+        if (grade) {
+          const gradeSpan = document.createElement("span");
+          gradeSpan.className = "category-grade";
+          const gradeClass = gradeColorClass(grade);
+          if (gradeClass) gradeSpan.classList.add(gradeClass);
+          gradeSpan.textContent = grade;
+          descLeft.appendChild(gradeSpan);
+        }
+        descRow.appendChild(descLeft);
+
         if (example !== undefined) {
           const descRight = document.createElement("div");
           descRight.className = "selected-unit-info-desc-right selected-unit-info-example";
@@ -2174,8 +2182,11 @@ export class QuizApp {
       // body のコンテンツを取得（site-header・site-footer・post-header・スタイル等を除く）
       const bodyClone = doc.body.cloneNode(true) as HTMLBodyElement;
       bodyClone.querySelectorAll(
-        "header.site-header, footer.site-footer, footer, header.post-header, style, .site-nav"
+        "header.site-header, footer.site-footer, footer, header.post-header, style, .site-nav, .site-title, a.site-title"
       ).forEach((el) => el.remove());
+      // 「This site is open source. Improve this page.」等の GitHub Pages 固有要素を除去
+      // Minima テーマの edit-link クラスや、特定の GitHub リポジトリリンクを含む要素を除去する
+      bodyClone.querySelectorAll(".edit-link, .gh-edit-link, [class*='improve'], [class*='edit-page']").forEach((el) => el.remove());
 
       // guide-content コンテナを作成（または既存を再利用）して直接挿入する
       let guideContent = container.querySelector<HTMLElement>(".guide-content");

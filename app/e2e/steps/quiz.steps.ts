@@ -425,3 +425,28 @@ When("I select {string} quiz order", async ({ page }, order: string) => {
   // シャドウDOM内の重複を避けるため #quizModePanel にスコープを絞る
   await page.locator(`#quizModePanel input[name="quizOrder"][value="${order}"]`).check();
 });
+
+When("I select the category item {string}", async ({ page }, categoryId: string) => {
+  // 指定した data-category 属性を持つカテゴリアイテムをクリックする
+  await page.locator(`.category-item[data-category="${categoryId}"]`).click();
+});
+
+When("I click the quiz panel tab", async ({ page }) => {
+  // 確認タブ（quizモード）をクリックする（Shadow DOM piercing 回避のため first() を使用）
+  await page.locator("#panelTab-quiz").first().click();
+});
+
+Then("the quiz mode panel should be visible", async ({ page }) => {
+  await expect(page.locator("#quizModePanel").first()).toBeVisible();
+});
+
+When("I apply the {string} status filter", async ({ page }, filter: string) => {
+  const btnId = `filterStatus${filter.charAt(0).toUpperCase()}${filter.slice(1)}`;
+  await page.locator(`#${btnId}`).click();
+});
+
+Then("learned category items should be visible in the category list", async ({ page }) => {
+  // 学習済み（.learned クラス付き）のカテゴリアイテムが少なくとも1つ表示されていること
+  const learnedItems = page.locator(".category-item.learned");
+  await expect(learnedItems.first()).toBeVisible();
+});

@@ -21,8 +21,8 @@ permalink: /support/
 
 全教科・単元の一覧は[コンテンツ一覧](content-list)を参照してください。
 
-| 教科 | 解説・一覧 | 問題 |
-|------|-----------|------|
-| 英語 | [解説・一覧](content-list#英語) | [問題](../?subject=english) |
-| 数学 | [解説・一覧](content-list#数学) | [問題](../?subject=math) |
-| 国語 | [解説・一覧](content-list#国語) | [問題](../?subject=japanese) |
+| 教科 | 解説 | 問題 |
+|------|------|------|
+| 英語 | [解説](content-list#英語) | [問題](../?subject=english) |
+| 数学 | [解説](content-list#数学) | [問題](../?subject=math) |
+| 国語 | [解説](content-list#国語) | [問題](../?subject=japanese) |

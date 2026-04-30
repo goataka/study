@@ -121,6 +121,18 @@ Feature: 学習アプリ
     When I click the "verb" category group header again
     Then the "verb" category group should be expanded
 
+  Scenario: 折りたたみ状態で「学習済み」フィルターを適用すると学習済みアイテムが表示される
+    When I click the "英語" tab
+    And I select the category item "tenses-regular-present"
+    And I click the quiz panel tab
+    Then the quiz mode panel should be visible
+    When I click the "✅ 学習済みにする" button
+    And I confirm the dialog
+    And I click the "verb" category group header
+    Then the "verb" category group should be collapsed
+    When I apply the "learned" status filter
+    Then learned category items should be visible in the category list
+
   @kanji-stub
   Scenario: ひらがな問題では手書き認識でひらがな以外の候補が表示されない
     Given I have navigated to a hiragana text-input question
