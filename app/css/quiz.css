@@ -58,9 +58,18 @@ header h1 {
     font-size: 30px;
     color: #586069;
     font-weight: 500;
-    margin-left: 16px;
     white-space: nowrap;
     flex-shrink: 0;
+}
+
+/* ヘッダー中央エリア（ユーザー名 + 日付） */
+.header-center-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: flex-end;
+    padding-right: 16px;
 }
 
 .title-btn {
@@ -957,7 +966,7 @@ header h1 {
 }
 
 .overall-activity-date {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: #24292e;
 }
@@ -1304,6 +1313,8 @@ header h1 {
     padding: 24px 30px;
     flex: 1;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 #historyContent {
@@ -1999,7 +2010,11 @@ button:disabled {
 
     .header-today-date {
         font-size: 16px;
-        margin-left: 4px;
+    }
+
+    .header-center-area {
+        gap: 4px;
+        padding-right: 8px;
     }
 
     .header-right-area {
@@ -3789,7 +3804,9 @@ body.font-size-large .subject-overview-cat-header {
 .admin-panel {
     padding: 16px 20px;
     flex: 1;
-    overflow-y: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .admin-section {
@@ -3814,7 +3831,236 @@ body.font-size-large .subject-overview-cat-header {
     padding: 10px 12px;
     white-space: pre-wrap;
     word-break: break-all;
-    max-height: 200px;
+    flex: 1;
     overflow-y: auto;
     color: #24292e;
 }
+
+/* タブコンテンツ領域（flexコンテナ内で残り高さを占有） */
+.admin-tab-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ─── 管理タブのタブ切り替え ────────────────────────────────────────────── */
+.admin-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #e1e4e8;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.admin-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.admin-tab-btn {
+    padding: 6px 14px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    background: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #586069;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.admin-tab-btn:hover {
+    color: #0366d6;
+}
+
+.admin-tab-btn.active {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+}
+
+/* ─── 学習済みにするボタン（下寄せ、グレー） ────────────────────────────── */
+.mark-learned-section {
+    margin-top: auto;
+    padding-top: 12px;
+}
+
+.mark-learned-btn {
+    padding: 10px 20px;
+    font-size: 15px;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    background: #f6f8fa;
+    color: #586069;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+    font-weight: 600;
+    width: 100%;
+}
+
+.mark-learned-btn:hover:not(:disabled) {
+    background: #e8f0fe;
+    border-color: #0366d6;
+    color: #0366d6;
+}
+
+.mark-learned-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ─── 学習状況フィルターラベル ──────────────────────────────────────────── */
+.category-status-filter-label {
+    font-size: 12px;
+    color: #586069;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ─── 単元一覧フィルター行：学年フィルタを右寄せ ──────────────────────── */
+.category-controls-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.category-controls-spacer {
+    flex: 1;
+}
+
+/* 学年フィルターグループ（右寄せ） */
+.grade-filter-group {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ─── 手書き漢字入力：候補エリアのラップ ──────────────────────────────── */
+.kanji-candidates-area {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: 4px;
+}
+
+/* ─── フォントサイズ：中 追加ターゲット ─────────────────────────────────── */
+body.font-size-medium .header-user-name {
+    font-size: 20px;
+}
+
+body.font-size-medium .download-data-btn {
+    font-size: 17px;
+}
+
+body.font-size-medium .support-btn {
+    font-size: 17px;
+    width: 32px;
+    height: 32px;
+}
+
+body.font-size-medium .reload-btn {
+    font-size: 17px;
+    width: 32px;
+    height: 32px;
+}
+
+body.font-size-medium .overall-activity-date {
+    font-size: 19px;
+}
+
+body.font-size-medium .category-status-filter-btn {
+    font-size: 14px;
+}
+
+body.font-size-medium .category-status-filter-label {
+    font-size: 14px;
+}
+
+body.font-size-medium .mark-learned-btn {
+    font-size: 17px;
+}
+
+/* ─── フォントサイズ：大 追加ターゲット ─────────────────────────────────── */
+body.font-size-large .header-user-name {
+    font-size: 23px;
+}
+
+body.font-size-large .download-data-btn {
+    font-size: 20px;
+}
+
+body.font-size-large .support-btn {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+}
+
+body.font-size-large .reload-btn {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+}
+
+body.font-size-large .overall-activity-date {
+    font-size: 22px;
+}
+
+body.font-size-large .category-status-filter-btn {
+    font-size: 17px;
+}
+
+body.font-size-large .category-status-filter-label {
+    font-size: 17px;
+}
+
+body.font-size-large .mark-learned-btn {
+    font-size: 20px;
+}
+
+/* ─── 単元詳細: 新レイアウト（タイトル/カテゴリ/説明/例文/ステータス） ── */
+.selected-unit-info-header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.selected-unit-info-header-left {
+    flex: 1;
+}
+
+.selected-unit-info-header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.selected-unit-info-desc-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    align-items: start;
+}
+
+.selected-unit-info-desc-left {
+    font-size: 13px;
+    color: #444;
+}
+
+.selected-unit-info-desc-right {
+    font-size: 13px;
+    color: #444;
+    text-align: right;
+}
+

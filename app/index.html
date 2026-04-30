@@ -15,10 +15,10 @@
   <meta property="og:title" content="学習アプリ">
   <meta property="og:description" content="子供向け学習アプリ">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://goataka.github.io/study/favicon.svg">
+  <meta property="og:image" content="https://goataka.github.io/study/ogp.png">
   <meta property="og:url" content="https://goataka.github.io/study/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://goataka.github.io/study/favicon.svg">
+  <meta name="twitter:image" content="https://goataka.github.io/study/ogp.png">
   <meta name="twitter:title" content="学習アプリ">
   <meta name="twitter:description" content="子供向け学習アプリ">
   <script>
@@ -44,23 +44,25 @@
   <div class="container">
     <header>
       <h1 id="titleBtn" role="button" tabindex="0" class="title-btn" title="スタート画面へ戻る">学習アプリ</h1>
-      <span id="headerTodayDate" class="header-today-date"></span>
-      <div class="header-right-area">
-        <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
-          <span class="font-size-icon" aria-hidden="true">A</span>
-          <button class="font-size-btn active" data-size="small" aria-pressed="true" title="文字サイズ：小">小</button>
-          <button class="font-size-btn" data-size="medium" aria-pressed="false" title="文字サイズ：中">中</button>
-          <button class="font-size-btn" data-size="large" aria-pressed="false" title="文字サイズ：大">大</button>
-        </div>
-        <a id="supportBtn" class="support-btn" href="./support/" target="_blank" rel="noopener noreferrer" title="サポートページを開く" aria-label="サポートページを開く">ℹ️</a>
-        <button id="reloadBtn" class="reload-btn" type="button" title="ページを更新する" aria-label="ページを更新する">🔄</button>
-        <button id="downloadDataBtn" class="download-data-btn" type="button" title="データをダウンロードする" aria-label="データをダウンロードする">⬇️</button>
+      <div class="header-center-area">
         <div class="header-user-area">
           <button id="headerUserName" class="header-user-name" type="button" title="名前を編集する" aria-label="名前を編集する"></button>
           <div id="headerUserEdit" class="header-user-edit hidden">
             <input type="text" id="headerUserNameInput" class="header-user-name-input" maxlength="20" placeholder="名前を入力">
             <button id="headerUserNameSaveBtn" class="header-user-save-btn" aria-label="保存">✓</button>
           </div>
+        </div>
+        <span id="headerTodayDate" class="header-today-date"></span>
+      </div>
+      <div class="header-right-area">
+        <button id="reloadBtn" class="reload-btn" type="button" title="ページを更新する" aria-label="ページを更新する">🔄</button>
+        <button id="downloadDataBtn" class="download-data-btn" type="button" title="データをダウンロードする" aria-label="データをダウンロードする">⬇️</button>
+        <a id="supportBtn" class="support-btn" href="./support/" target="_blank" rel="noopener noreferrer" title="サポートページを開く" aria-label="サポートページを開く">ℹ️</a>
+        <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
+          <span class="font-size-icon" aria-hidden="true">A</span>
+          <button class="font-size-btn active" data-size="small" aria-pressed="true" title="文字サイズ：小">小</button>
+          <button class="font-size-btn" data-size="medium" aria-pressed="false" title="文字サイズ：中">中</button>
+          <button class="font-size-btn" data-size="large" aria-pressed="false" title="文字サイズ：大">大</button>
         </div>
       </div>
     </header>
@@ -77,6 +79,7 @@
           <div class="category-panel-header">
             <span id="categoryListTitle" class="category-list-title">📚 単元一覧</span>
             <div class="category-status-filter" role="group" aria-label="学習状態フィルター">
+              <span class="category-status-filter-label">学習状況：</span>
               <button id="filterStatusAll" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
               <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
               <button id="filterStatusStudying" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
@@ -108,7 +111,6 @@
             <div id="statsInfo" class="stats-info">読み込み中...</div>
             <div class="button-group">
               <button id="startRandomBtn" class="primary-btn">スタート</button>
-              <button id="markLearnedBtn" class="tertiary-btn" disabled>✅ 学習済みにする</button>
             </div>
             <div class="question-count-section">
               <span class="question-count-label">問題数：</span>
@@ -131,6 +133,9 @@
                 <label class="order-label"><input type="radio" name="quizLearned" value="exclude" checked> 含めない</label>
                 <label class="order-label"><input type="radio" name="quizLearned" value="include"> 含める</label>
               </div>
+            </div>
+            <div class="mark-learned-section">
+              <button id="markLearnedBtn" class="mark-learned-btn" disabled>✅ 学習済みにする</button>
             </div>
           </div>
 
@@ -251,14 +256,16 @@
               <div id="kanjiInputArea" class="hidden">
                 <div class="kanji-input-header">
                   <span class="kanji-input-label">1文字ずつ書いてください</span>
-                  <div class="kanji-input-controls">
-                    <button id="kanjiDeleteLastBtn" class="kanji-ctrl-btn" type="button" title="最後の1画を消す" aria-label="最後の1画を消す">↩</button>
-                    <button id="kanjiEraseBtn" class="kanji-ctrl-btn" type="button" title="全部消す" aria-label="全部消す">🗑️</button>
-                  </div>
                 </div>
                 <div class="kanji-input-body">
                   <canvas id="kanjiCanvas" class="kanji-canvas" width="400" height="400" data-stroke-numbers="false"></canvas>
-                  <div id="kanjiCandidateList" class="kanji-candidate-list"></div>
+                  <div class="kanji-candidates-area">
+                    <div id="kanjiCandidateList" class="kanji-candidate-list"></div>
+                    <div class="kanji-input-controls">
+                      <button id="kanjiDeleteLastBtn" class="kanji-ctrl-btn" type="button" title="最後の1画を消す" aria-label="最後の1画を消す">↩</button>
+                      <button id="kanjiEraseBtn" class="kanji-ctrl-btn" type="button" title="全部消す" aria-label="全部消す">🗑️</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

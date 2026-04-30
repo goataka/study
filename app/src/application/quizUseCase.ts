@@ -242,11 +242,14 @@ export class QuizUseCase {
           this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
         }
       } else {
-        if (!this.wrongIds.includes(r.question.id)) {
+        // 習得済みの問題は間違えても wrongIds に追加しない（学習済み状態を維持する）
+        if (!this.masteredSet.has(r.question.id) && !this.wrongIds.includes(r.question.id)) {
           this.wrongIds.push(r.question.id);
         }
         // 不正解の場合、連続正解数をリセット（習得済みは維持する）
-        this.correctStreaks[r.question.id] = 0;
+        if (!this.masteredSet.has(r.question.id)) {
+          this.correctStreaks[r.question.id] = 0;
+        }
       }
     }
 
