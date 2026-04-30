@@ -2329,9 +2329,7 @@ button:disabled {
     box-sizing: border-box;
 }
 
-/* シャドウDOM ホスト要素のスタイル（廃止済み・直接DOM挿入に変更） */
-
-/* 解説コンテンツラッパー */
+/* 解説コンテンツラッパー（直接DOM挿入方式） */
 .guide-content {
     display: block;
     width: 100%;
@@ -2364,10 +2362,26 @@ button:disabled {
     color: #24292e;
 }
 
-.guide-content h1 { font-size: 1.8em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-.guide-content h2 { font-size: 1.4em; border-bottom: 1px solid #eaecef; padding-bottom: 0.2em; }
-.guide-content h3 { font-size: 1.15em; }
-.guide-content h4 { font-size: 1em; font-style: italic; }
+.guide-content h1 {
+    font-size: 1.8em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3em;
+}
+
+.guide-content h2 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.2em;
+}
+
+.guide-content h3 {
+    font-size: 1.15em;
+}
+
+.guide-content h4 {
+    font-size: 1em;
+    font-style: italic;
+}
 
 /* 最初の h1（ページタイトル）は非表示 */
 .guide-content > h1:first-child {
