@@ -2446,10 +2446,9 @@ button:disabled {
     font-style: italic;
 }
 
-/* すべての h1 を非表示・コピー対象から除外 */
+/* すべての h1 を非表示 */
 .guide-content h1 {
     display: none;
-    user-select: none;
 }
 
 /* #startScreen h2 のセンタリングを解説コンテンツ内で上書き */

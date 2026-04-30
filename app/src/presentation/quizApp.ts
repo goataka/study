@@ -47,7 +47,6 @@ export class QuizApp {
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
   private isPanelTabUserSelected: boolean = false;
-  private hideLearnedCategories: boolean = false;
   /** カテゴリ一覧の学習状態フィルター */
   private categoryStatusFilter: "all" | "unlearned" | "studying" | "learned" = "all";
   /** 折りたたまれている親カテゴリID のセット */
@@ -1043,7 +1042,6 @@ export class QuizApp {
     const categoryList = document.getElementById("categoryList");
     if (!categoryList) return;
     categoryList.innerHTML = "";
-    categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
 
     const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin");
 
@@ -2888,38 +2886,6 @@ export class QuizApp {
   }
 
   /**
-   * 学習済み非表示ボタンの aria-pressed 属性とラベルを現在の状態に合わせて更新する
-   * （後方互換のため保持）
-   */
-  private updateHideLearnedButton(): void {
-    // 新フィルターボタンに移行済み。何もしない。
-  }
-
-  /**
-   * 学習済カテゴリの表示/非表示を切り替える（後方互換のため保持）
-   */
-  private toggleHideLearned(): void {
-    this.hideLearnedCategories = !this.hideLearnedCategories;
-    const categoryList = document.getElementById("categoryList");
-    if (categoryList) {
-      categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
-    }
-    this.updateGroupHeaderLearnedBadges();
-  }
-
-  /**
-   * グループヘッダーのバッジをクリアする（後方互換のため保持）
-   */
-  private updateGroupHeaderLearnedBadges(): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
-
-    categoryList.querySelectorAll<HTMLElement>(".category-group-learned-badge").forEach((badge) => {
-      badge.textContent = "";
-    });
-  }
-
-  /**
    * 指定した親カテゴリの折りたたみ状態をトグルする。
    * 折りたたまれていれば展開し、展開されていれば折りたたむ。
    */
@@ -3605,7 +3571,7 @@ export class QuizApp {
     const total = results.length;
     const percentage = Math.round((correctCount / total) * 100);
 
-    // 単元名を表示する
+    // 単元名を表示する（単一カテゴリでの確認時はすべての問題が同じカテゴリ名を持つ）
     const resultUnitName = document.getElementById("resultUnitName");
     if (resultUnitName) {
       const categoryName = this.filter.category !== "all" && results.length > 0
