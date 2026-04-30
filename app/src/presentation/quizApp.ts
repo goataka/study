@@ -47,7 +47,7 @@ export class QuizApp {
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
   private isPanelTabUserSelected: boolean = false;
-  private hideLearnedCategories: boolean = true;
+  private hideLearnedCategories: boolean = false;
   /** カテゴリ一覧の学習状態フィルター */
   private categoryStatusFilter: "all" | "unlearned" | "studying" | "learned" = "all";
   /** 折りたたまれている親カテゴリID のセット */
@@ -2832,7 +2832,7 @@ export class QuizApp {
         }
       }
 
-      // 学習状態の絵文字を更新（⬜未学習 / 🔄学習中 / 🏆学習済）
+      // 学習状態の絵文字を更新（⬜未学習 / 🔄学習中 / ✅学習済）
       // isAllMastered: クイズ履歴がなくても全問題を手動で学習済みにした場合（masteredSet 経由）
       // isLearned: クイズ履歴があって不正解なし、または全問題が学習済みのいずれか
       const isAllMastered = stat.total > 0 && stat.mastered === stat.total;
@@ -2847,12 +2847,10 @@ export class QuizApp {
         } else if (stat.wrong > 0) {
           statusEl.textContent = "🔄";
         } else {
-          statusEl.textContent = "🏆";
+          statusEl.textContent = "✅";
         }
       }
     });
-
-    this.updateGroupHeaderLearnedBadges();
   }
 
   /**
@@ -2861,7 +2859,6 @@ export class QuizApp {
   private setCategoryStatusFilter(filter: "all" | "unlearned" | "studying" | "learned"): void {
     this.categoryStatusFilter = filter;
     this.applyCategoryStatusFilter();
-    this.updateGroupHeaderLearnedBadges();
   }
 
   /**
@@ -2870,7 +2867,7 @@ export class QuizApp {
   private applyCategoryStatusFilter(): void {
     const categoryList = document.getElementById("categoryList");
     if (categoryList) {
-      categoryList.classList.remove("filter-unlearned", "filter-studying", "filter-learned");
+      categoryList.classList.remove("filter-unlearned", "filter-studying", "filter-learned", "hide-learned");
       if (this.categoryStatusFilter !== "all") {
         categoryList.classList.add(`filter-${this.categoryStatusFilter}`);
       }
@@ -2888,8 +2885,6 @@ export class QuizApp {
       btn?.classList.toggle("active", isActive);
       btn?.setAttribute("aria-pressed", isActive ? "true" : "false");
     }
-    // グループヘッダーのバッジをフィルター状態に合わせて更新する
-    this.updateGroupHeaderLearnedBadges();
   }
 
   /**
@@ -2913,28 +2908,14 @@ export class QuizApp {
   }
 
   /**
-   * 学習済みを非表示にしている場合、各グループヘッダーの右に非表示数だけ🏆を表示する
+   * グループヘッダーのバッジをクリアする（後方互換のため保持）
    */
   private updateGroupHeaderLearnedBadges(): void {
     const categoryList = document.getElementById("categoryList");
     if (!categoryList) return;
 
-    // 学習済みが非表示になるフィルター（未学習または学習中のみ表示）のときにバッジを表示する
-    const showBadge = this.categoryStatusFilter === "unlearned" || this.categoryStatusFilter === "studying";
-
-    categoryList.querySelectorAll<HTMLElement>(".category-group-header").forEach((header) => {
-      // 新構造: ヘッダーは .category-group の子要素
-      const groupContainer = header.closest<HTMLElement>(".category-group");
-      let learnedCount = 0;
-
-      if (groupContainer) {
-        learnedCount = groupContainer.querySelectorAll<HTMLElement>(".category-item.learned").length;
-      }
-
-      const badge = header.querySelector(".category-group-learned-badge");
-      if (badge) {
-        badge.textContent = showBadge && learnedCount > 0 ? "🏆".repeat(learnedCount) : "";
-      }
+    categoryList.querySelectorAll<HTMLElement>(".category-group-learned-badge").forEach((badge) => {
+      badge.textContent = "";
     });
   }
 
@@ -3624,6 +3605,16 @@ export class QuizApp {
     const total = results.length;
     const percentage = Math.round((correctCount / total) * 100);
 
+    // 単元名を表示する
+    const resultUnitName = document.getElementById("resultUnitName");
+    if (resultUnitName) {
+      const categoryName = this.filter.category !== "all" && results.length > 0
+        ? (results[0].question.categoryName ?? "")
+        : "";
+      resultUnitName.textContent = categoryName;
+      resultUnitName.classList.toggle("hidden", !categoryName);
+    }
+
     // 正答数に応じた前向きなメッセージ
     const resultMessage = document.getElementById("resultMessage");
     if (resultMessage) {
@@ -3694,27 +3685,25 @@ export class QuizApp {
     questionText.className = "result-question";
     questionText.textContent = question.question;
 
-    const topic = document.createElement("span");
-    topic.className = "result-topic";
-    topic.textContent = `[${question.categoryName}]`;
-
-    header.appendChild(icon);
-    header.appendChild(questionText);
-    header.appendChild(topic);
-
-    const answer = document.createElement("div");
-    answer.className = "result-answer";
-
-    const userAnswerDiv = document.createElement("div");
-    userAnswerDiv.appendChild(document.createTextNode("あなたの解答: "));
+    // あなたの解答を問題と同じ行の右側に表示する
+    const userAnswerInline = document.createElement("span");
+    userAnswerInline.className = "result-user-answer";
+    const userAnswerLabel = document.createTextNode("あなた: ");
     const userAnswerValue = document.createElement("strong");
     if (question.questionType === "text-input") {
       userAnswerValue.textContent = r.userAnswerText ?? "（未入力）";
     } else {
       userAnswerValue.textContent = question.choices[userAnswerIndex] ?? "未回答";
     }
-    userAnswerDiv.appendChild(userAnswerValue);
-    answer.appendChild(userAnswerDiv);
+    userAnswerInline.appendChild(userAnswerLabel);
+    userAnswerInline.appendChild(userAnswerValue);
+
+    header.appendChild(icon);
+    header.appendChild(questionText);
+    header.appendChild(userAnswerInline);
+
+    const answer = document.createElement("div");
+    answer.className = "result-answer";
 
     const correctDiv = document.createElement("div");
     correctDiv.appendChild(document.createTextNode("正解: "));
