@@ -166,7 +166,9 @@ header h1 {
     border-radius: 8px;
     padding: 12px;
     min-height: 200px;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .category-panel-header {
@@ -347,6 +349,12 @@ header h1 {
     overflow: hidden;
     text-overflow: ellipsis;
     margin-left: auto;
+}
+
+#categoryList {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
 }
 
 /* カスタムスクロールバー（Webkit系ブラウザ用） */
@@ -1103,10 +1111,6 @@ header h1 {
 }
 
 /* 単元詳細の学年バッジはカテゴリバッジと同サイズ */
-.selected-unit-info-left .category-grade {
-    font-size: 12px;
-}
-
 .selected-unit-info-name {
     font-size: 16px;
     font-weight: 700;
@@ -1313,7 +1317,7 @@ button:disabled {
     text-align: center;
     color: #666;
     font-size: 16px;
-    margin-top: 20px;
+    margin-bottom: 16px;
 }
 
 .category-description {
@@ -1742,6 +1746,38 @@ button:disabled {
     min-height: 0;
 }
 
+.question-list-filter-bar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 16px;
+    border-bottom: 1px solid #e1e4e8;
+    background: #f6f8fa;
+    flex-shrink: 0;
+}
+
+.question-list-filter-btn {
+    font-size: 14px;
+    padding: 4px 12px;
+    border: 1px solid #d1d5da;
+    border-radius: 12px;
+    background: white;
+    color: #586069;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.question-list-filter-btn:hover {
+    background: #e8f0fe;
+    border-color: #0366d6;
+    color: #0366d6;
+}
+
+.question-list-filter-btn.active {
+    background: #0366d6;
+    border-color: #0366d6;
+    color: white;
+}
+
 /* 問題一覧アイテム */
 .question-list-item {
     border: 1px solid #e1e4e8;
@@ -2089,7 +2125,7 @@ button:disabled {
     width: 28px;
     height: 28px;
     border: 1px solid #d1d5da;
-    border-radius: 50%;
+    border-radius: 6px;
     background: #f6f8fa;
     color: #586069;
     font-size: 14px;
@@ -2387,8 +2423,9 @@ body.font-size-large .guide-frame .guide-shadow-host {
 }
 
 .quiz-order-label {
-    font-size: 14px;
-    color: #586069;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
     white-space: nowrap;
 }
 
@@ -2399,8 +2436,8 @@ body.font-size-large .guide-frame .guide-shadow-host {
 }
 
 .order-label {
-    font-size: 14px;
-    color: #24292e;
+    font-size: 17px;
+    color: #333;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -2410,6 +2447,14 @@ body.font-size-large .guide-frame .guide-shadow-host {
 .order-label input[type="radio"] {
     cursor: pointer;
     accent-color: #0366d6;
+}
+
+/* 学習済みフィルター */
+.quiz-learned-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
 }
 
 @media (max-width: 600px) {
@@ -2731,15 +2776,14 @@ body.font-size-large .guide-frame .guide-shadow-host {
 
 .kanji-canvas {
     display: block;
-    width: 100%;
-    max-width: 256px;
+    flex: 1;
+    min-width: 0;
     height: 256px;
     border: 2px solid #e1e4e8;
     border-radius: 6px;
     cursor: crosshair;
     background: white;
     touch-action: none;
-    flex: 0 0 auto;
 }
 
 .kanji-input-body {
@@ -2748,6 +2792,8 @@ body.font-size-large .guide-frame .guide-shadow-host {
     align-items: flex-start;
     gap: 8px;
     width: 100%;
+    flex: 1;
+    min-height: 0;
 }
 
 .kanji-candidate-list {
@@ -2833,6 +2879,18 @@ body.font-size-medium .question-count-label {
 
 body.font-size-medium .count-label {
     font-size: 20px;
+}
+
+body.font-size-medium .quiz-order-label {
+    font-size: 21px;
+}
+
+body.font-size-medium .order-label {
+    font-size: 20px;
+}
+
+body.font-size-medium .category-group-learned-badge {
+    font-size: 22px;
 }
 
 body.font-size-medium .category-description {
@@ -3122,6 +3180,18 @@ body.font-size-large .count-label {
     font-size: 23px;
 }
 
+body.font-size-large .quiz-order-label {
+    font-size: 24px;
+}
+
+body.font-size-large .order-label {
+    font-size: 23px;
+}
+
+body.font-size-large .category-group-learned-badge {
+    font-size: 26px;
+}
+
 body.font-size-large .category-description {
     font-size: 21px;
 }
@@ -3381,4 +3451,38 @@ body.font-size-large .handwriting-confirm-btn {
 
 body.font-size-large .subject-overview-cat-header {
     font-size: 17px;
+}
+
+/* ─── 管理タブパネル ──────────────────────────────────────────────────────── */
+.admin-panel {
+    padding: 16px 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.admin-section {
+    margin-bottom: 24px;
+}
+
+.admin-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0366d6;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #e1e4e8;
+}
+
+.admin-data {
+    font-size: 13px;
+    font-family: monospace;
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 10px 12px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 200px;
+    overflow-y: auto;
+    color: #24292e;
 }

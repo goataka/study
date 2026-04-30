@@ -181,6 +181,15 @@ function setupTabDom(): void {
       <button id="retryWrongBtn">間違えた問題</button>
       <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
+    <div id="confirmDialog" class="confirm-dialog-overlay hidden">
+      <div class="confirm-dialog">
+        <p id="confirmDialogMessage"></p>
+        <div class="confirm-dialog-buttons">
+          <button id="confirmDialogOk">OK</button>
+          <button id="confirmDialogCancel">キャンセル</button>
+        </div>
+      </div>
+    </div>
   `;
 }
 
@@ -411,7 +420,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const tabs = document.querySelectorAll(".subject-tab[data-subject]");
-    expect(tabs.length).toBe(4);
+    expect(tabs.length).toBe(5);
   });
 
   it("問題ロード後に英語タブに role=tab が設定されている", async () => {
@@ -1904,6 +1913,8 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
 
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
     markLearnedBtn.click();
+    document.getElementById("confirmDialogOk")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 学習済みになるので 🏆 が表示される
     const statusEl = catItem?.querySelector(".category-status");
@@ -1922,6 +1933,8 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
 
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
     markLearnedBtn.click();
+    document.getElementById("confirmDialogOk")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
     // 学習済みになったのでボタンが「未学習に戻す」に変わる
     expect(markLearnedBtn.textContent).toBe("↩ 未学習に戻す");
   });
@@ -1939,10 +1952,14 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
     // 学習済みにする
     markLearnedBtn.click();
+    document.getElementById("confirmDialogOk")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
     expect(catItem?.querySelector(".category-status")?.textContent).toBe("🏆");
 
     // 未学習に戻す
     markLearnedBtn.click();
+    document.getElementById("confirmDialogOk")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
     expect(catItem?.querySelector(".category-status")?.textContent).toBe("🔄");
     expect(markLearnedBtn.textContent).toBe("✅ 学習済みにする");
   });
