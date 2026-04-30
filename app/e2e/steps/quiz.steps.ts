@@ -172,10 +172,10 @@ When("I open the guide panel tab", async ({ page }) => {
   await expect(page.locator("#guideContent")).not.toHaveClass(/hidden/);
 });
 
-Then("the guide shadow host should be attached", async ({ page }) => {
-  // シャドウDOMホストが解説パネルにアタッチされていることを確認（iframe からシャドウDOM方式に変更済み）
-  const shadowHost = page.locator("#guidePanelFrame .guide-shadow-host");
-  await expect(shadowHost).toBeAttached();
+Then("the guide content div should be attached", async ({ page }) => {
+  // 解説コンテンツdivが解説パネルにアタッチされていることを確認（Shadow DOMからの直接DOM挿入方式に変更済み）
+  const guideContent = page.locator("#guidePanelFrame .guide-content");
+  await expect(guideContent).toBeAttached();
 });
 
 When("I open the history panel", async ({ page }) => {
