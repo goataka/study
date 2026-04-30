@@ -68,8 +68,8 @@ header h1 {
     align-items: center;
     gap: 8px;
     flex: 1;
-    justify-content: flex-end;
-    padding-right: 16px;
+    justify-content: center;
+    padding-right: 0;
 }
 
 .title-btn {
@@ -269,6 +269,25 @@ header h1 {
 /* 学習状態フィルター: 学習済のみ表示 */
 .category-list.filter-learned .category-item:not(.learned) {
     display: none;
+}
+
+/* フィルター有効時は折りたたみ状態に関わらずマッチするアイテムを表示する */
+.category-list.filter-learned .category-item.learned,
+.category-list.filter-learned .category-grade-group .category-item.learned,
+.category-list.filter-learned .category-top-group .category-item.learned {
+    display: grid;
+}
+
+.category-list.filter-studying .category-item.studying,
+.category-list.filter-studying .category-grade-group .category-item.studying,
+.category-list.filter-studying .category-top-group .category-item.studying {
+    display: grid;
+}
+
+.category-list.filter-unlearned .category-item:not(.learned):not(.studying),
+.category-list.filter-unlearned .category-grade-group .category-item:not(.learned):not(.studying),
+.category-list.filter-unlearned .category-top-group .category-item:not(.learned):not(.studying) {
+    display: grid;
 }
 
 /* 詳細エリア表示中は単元一覧の説明・例文を非表示（高さ維持） */
@@ -620,7 +639,7 @@ header h1 {
 }
 
 .category-name {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: #24292e;
 }
@@ -631,7 +650,7 @@ header h1 {
 
 /* カテゴリ例文 */
 .category-example {
-    font-size: 15px;
+    font-size: 16px;
     color: #24292e;
     align-self: flex-end;
     text-align: right;
@@ -665,7 +684,7 @@ header h1 {
 
 /* カテゴリ説明文（単元一覧内） */
 .category-item-description {
-    font-size: 14px;
+    font-size: 15px;
     color: #586069;
     line-height: 1.4;
 }
@@ -689,7 +708,7 @@ header h1 {
 }
 
 .category-stats {
-    font-size: 15px;
+    font-size: 16px;
     color: #586069;
     white-space: nowrap;
     background: rgba(0, 0, 0, 0.06);
@@ -1212,7 +1231,6 @@ header h1 {
     background: #e1e4e8;
     border-radius: 3px;
     overflow: hidden;
-    max-width: 160px;
 }
 
 .selected-unit-progress-fill {
@@ -2242,20 +2260,19 @@ button:disabled {
 /* ヘッダーのデータダウンロードボタン */
 .download-data-btn {
     padding: 4px 10px;
-    border: 1px solid #d1d5da;
+    border: none;
     border-radius: 6px;
     background: #f6f8fa;
     color: #586069;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition: background 0.2s, color 0.2s;
     font-family: inherit;
     white-space: nowrap;
 }
 
 .download-data-btn:hover {
-    border-color: #0366d6;
     color: #0366d6;
     background: #f0f7ff;
 }
@@ -2267,19 +2284,18 @@ button:disabled {
     justify-content: center;
     width: 28px;
     height: 28px;
-    border: 1px solid #d1d5da;
+    border: none;
     border-radius: 6px;
     background: #f6f8fa;
     color: #586069;
     font-size: 14px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition: background 0.2s, color 0.2s;
     flex-shrink: 0;
     padding: 0;
 }
 
 .reload-btn:hover {
-    border-color: #0366d6;
     color: #0366d6;
     background: #f0f7ff;
 }
@@ -2291,26 +2307,24 @@ button:disabled {
     justify-content: center;
     width: 28px;
     height: 28px;
-    border: 1px solid #d1d5da;
+    border: none;
     border-radius: 6px;
     background: #f6f8fa;
     color: #586069;
     font-size: 14px;
     font-weight: 700;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition: background 0.2s, color 0.2s;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .support-btn:hover {
-    border-color: #0366d6;
     color: #0366d6;
     background: #f0f7ff;
 }
 
 .support-btn:focus-visible {
-    border-color: #0366d6;
     color: #0366d6;
     background: #f0f7ff;
     outline: 2px solid #0366d6;
@@ -2364,7 +2378,12 @@ button:disabled {
 .guide-content footer,
 .guide-content nav,
 .guide-content .site-nav,
-.guide-content .post-header {
+.guide-content .post-header,
+.guide-content .site-title,
+.guide-content a.site-title,
+.guide-content .wrapper > h1,
+.guide-content [class*="edit-link"],
+.guide-content [class*="improve"] {
     display: none !important;
 }
 
@@ -2408,6 +2427,21 @@ button:disabled {
 .guide-content > h1:first-child {
     display: none;
 }
+
+/* #startScreen h2 のセンタリングを解説コンテンツ内で上書き */
+#startScreen .guide-content h1,
+#startScreen .guide-content h2,
+#startScreen .guide-content h3,
+#startScreen .guide-content h4,
+#startScreen .guide-content h5,
+#startScreen .guide-content h6 {
+    text-align: left;
+    font-size: revert;
+}
+
+#startScreen .guide-content h1 { font-size: 1.8em; margin-bottom: 0.5em; }
+#startScreen .guide-content h2 { font-size: 1.4em; margin-bottom: 0.5em; }
+#startScreen .guide-content h3 { font-size: 1.15em; margin-bottom: 0.5em; }
 
 /* 段落・リスト */
 .guide-content p,
@@ -3462,9 +3496,12 @@ body.font-size-medium .guide-frame .guide-content {
 }
 
 /* 中フォントサイズ時の見出し: 基本サイズ（h1=1.8em, h2=1.4em, h3=1.15em）× 1.2 */
-body.font-size-medium .guide-frame .guide-content h1 { font-size: 2.16em; }
-body.font-size-medium .guide-frame .guide-content h2 { font-size: 1.68em; }
-body.font-size-medium .guide-frame .guide-content h3 { font-size: 1.38em; }
+body.font-size-medium .guide-frame .guide-content h1,
+body.font-size-medium #startScreen .guide-content h1 { font-size: 2.16em; }
+body.font-size-medium .guide-frame .guide-content h2,
+body.font-size-medium #startScreen .guide-content h2 { font-size: 1.68em; }
+body.font-size-medium .guide-frame .guide-content h3,
+body.font-size-medium #startScreen .guide-content h3 { font-size: 1.38em; }
 
 body.font-size-medium .header-today-date {
     font-size: 34px;
@@ -3774,9 +3811,12 @@ body.font-size-large .guide-frame .guide-content {
 }
 
 /* 大フォントサイズ時の見出し: 基本サイズ（h1=1.8em, h2=1.4em, h3=1.15em）× 1.5 */
-body.font-size-large .guide-frame .guide-content h1 { font-size: 2.7em; }
-body.font-size-large .guide-frame .guide-content h2 { font-size: 2.1em; }
-body.font-size-large .guide-frame .guide-content h3 { font-size: 1.725em; }
+body.font-size-large .guide-frame .guide-content h1,
+body.font-size-large #startScreen .guide-content h1 { font-size: 2.7em; }
+body.font-size-large .guide-frame .guide-content h2,
+body.font-size-large #startScreen .guide-content h2 { font-size: 2.1em; }
+body.font-size-large .guide-frame .guide-content h3,
+body.font-size-large #startScreen .guide-content h3 { font-size: 1.725em; }
 
 
 body.font-size-large .header-today-date {
