@@ -1,5 +1,6 @@
 import { createBdd } from "playwright-bdd";
 import { expect } from "@playwright/test";
+import { waitForStatsInfoLoaded } from "../helpers/statsInfo";
 
 const { Before, Then } = createBdd();
 
@@ -16,16 +17,10 @@ Before({ tags: "@vr" }, async ({ page }) => {
   });
 });
 
-// 問題データのロード完了を待つタイムアウト（ms）
-// statsInfo に "全X問" が表示されるまで最大10秒待つ
-const STATS_LOAD_TIMEOUT = 10_000;
-
 // スタート画面のスクリーンショット比較
 // statsInfo（問題数）はデータ依存のため除外する
 Then("the start screen matches the snapshot", async ({ page }) => {
-  await expect(page.locator("#statsInfo")).toContainText(/全\d+問/, {
-    timeout: STATS_LOAD_TIMEOUT,
-  });
+  await waitForStatsInfoLoaded(page);
   await expect(page).toHaveScreenshot("start-screen.png", {
     mask: [page.locator("#statsInfo")],
   });
