@@ -2609,12 +2609,11 @@ export class QuizApp {
       .filter((q) => masteredIdsSet.has(q.id)).length;
     const studiedKeys = this.useCase.getStudiedCategoryKeys();
     const wrongSet = new Set(this.useCase.wrongQuestionIds);
+    // 学習中: 学習履歴があり・未習得かつ・間違えた問題
     const inProgressInFilter = filteredQuestions
       .filter((q) => {
         const key = `${q.subject}::${q.category}`;
-        return studiedKeys.has(key) && !masteredIdsSet.has(q.id) && !wrongSet.has(q.id)
-          ? false
-          : studiedKeys.has(key) && !masteredIdsSet.has(q.id);
+        return studiedKeys.has(key) && !masteredIdsSet.has(q.id) && wrongSet.has(q.id);
       }).length;
 
     statsInfo.textContent = `全：${filteredCount}問 / 学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問`;
@@ -3605,8 +3604,12 @@ export class QuizApp {
       const okBtn = document.getElementById("confirmDialogOk") as HTMLButtonElement | null;
       const cancelBtn = document.getElementById("confirmDialogCancel") as HTMLButtonElement | null;
       if (!overlay || !msgEl || !okBtn || !cancelBtn) {
-        if (alertOnly) { alert(message); resolve(true); }
-        else { resolve(window.confirm(message)); }
+        if (alertOnly) {
+          alert(message);
+          resolve(true);
+        } else {
+          resolve(window.confirm(message));
+        }
         return;
       }
       msgEl.textContent = message;
@@ -3639,6 +3642,7 @@ export class QuizApp {
         if (e.key === "Tab") {
           e.preventDefault();
           if (alertOnly) {
+            // アラートモードではOKボタンのみ。Tabキーを押してもOKボタンにフォーカスを維持する
             okBtn.focus();
           } else if (document.activeElement === okBtn) {
             cancelBtn.focus();
