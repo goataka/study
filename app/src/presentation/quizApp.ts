@@ -2315,7 +2315,6 @@ export class QuizApp {
     this.on("nextBtn", "click", () => this.navigate(1));
     this.on("submitBtn", "click", () => this.submitQuiz());
     this.on("retryAllBtn", "click", () => { this.startQuiz("random").catch(console.error); });
-    this.on("retryWrongBtn", "click", () => { this.startQuiz("retry").catch(console.error); });
     this.on("backToStartBtn", "click", () => this.showScreen("start"));
     this.on("cancelQuizBtn", "click", () => { void this.navigateToStart(); });
 
@@ -3353,16 +3352,6 @@ export class QuizApp {
     if (resultDetails) {
       resultDetails.innerHTML = "<h3>解答一覧</h3>";
       results.forEach((r) => resultDetails.appendChild(this.buildResultItem(r)));
-    }
-
-    const wrongCount = this.useCase.wrongQuestionIds.length;
-    const retryWrongBtn = document.getElementById("retryWrongBtn") as HTMLButtonElement | null;
-    if (retryWrongBtn) {
-      retryWrongBtn.disabled = wrongCount === 0;
-      retryWrongBtn.textContent =
-        wrongCount > 0
-          ? `復習 (${wrongCount}問)`
-          : "復習";
     }
 
     this.showScreen("result");
