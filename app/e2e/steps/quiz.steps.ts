@@ -98,6 +98,11 @@ When("I click the {string} button", async ({ page }, buttonText: string) => {
   await page.getByRole("button", { name: buttonText, exact: true }).click();
 });
 
+When("I confirm the dialog", async ({ page }) => {
+  await page.locator("#confirmDialogOk").click();
+  await expect(page.locator("#confirmDialog")).toBeHidden();
+});
+
 Then("the quiz screen should be visible", async ({ page }) => {
   await expect(page.locator("#quizScreen")).toBeVisible();
 });

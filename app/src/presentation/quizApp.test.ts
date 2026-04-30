@@ -125,6 +125,10 @@ function setupTabDom(): void {
           <button id="startRandomBtn">ランダム</button>
           <button id="startRetryBtn" disabled>間違えた問題</button>
           <button id="markLearnedBtn" disabled>学習済みにする</button>
+          <input type="radio" name="quizOrder" value="straight">
+          <input type="radio" name="quizOrder" value="random" checked>
+          <input type="radio" name="quizLearned" value="exclude" checked>
+          <input type="radio" name="quizLearned" value="include">
         </div>
         <div id="guideContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
           <div id="guidePanelFrame" title="解説"></div>
@@ -134,6 +138,9 @@ function setupTabDom(): void {
           <div id="historyList"></div>
         </div>
         <div id="questionListContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-questions">
+          <button id="questionListFilterAll" class="question-list-filter-btn active" type="button">すべて</button>
+          <button id="questionListFilterUnlearned" class="question-list-filter-btn" type="button">未学習</button>
+          <button id="questionListFilterLearned" class="question-list-filter-btn" type="button">学習済み</button>
           <div id="questionListBody"></div>
         </div>
         <div id="overallSummaryPanel" class="hidden">
@@ -2083,6 +2090,63 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
 
     const questionListContent = document.getElementById("questionListContent");
     expect(questionListContent?.classList.contains("hidden")).toBe(true);
+  });
+
+  it("「学習済み」フィルターボタンをクリックすると学習済み問題のみ表示される", async () => {
+    // 問題を習得済みにしてから確認
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q3"]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    // 学習済みフィルターをクリック
+    const learnedBtn = document.getElementById("questionListFilterLearned") as HTMLElement;
+    learnedBtn?.click();
+
+    const items = document.querySelectorAll(".question-list-item");
+    // q1, q3 のみが学習済みなので2件
+    expect(items.length).toBe(2);
+    // アクティブボタンが切り替わること
+    expect(learnedBtn?.classList.contains("active")).toBe(true);
+    expect(document.getElementById("questionListFilterAll")?.classList.contains("active")).toBe(false);
+  });
+
+  it("「未学習」フィルターボタンをクリックすると未学習問題のみ表示される", async () => {
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q3"]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const unlearnedBtn = document.getElementById("questionListFilterUnlearned") as HTMLElement;
+    unlearnedBtn?.click();
+
+    const items = document.querySelectorAll(".question-list-item");
+    // q2, q4, q5 が未学習なので3件
+    expect(items.length).toBe(3);
+    expect(unlearnedBtn?.classList.contains("active")).toBe(true);
+  });
+
+  it("「すべて」フィルターボタンをクリックすると全問題が再表示される", async () => {
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q3"]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    // まず学習済みで絞り込む
+    document.getElementById("questionListFilterLearned")?.click();
+    expect(document.querySelectorAll(".question-list-item").length).toBe(2);
+
+    // すべてに戻す
+    const allBtn = document.getElementById("questionListFilterAll") as HTMLElement;
+    allBtn?.click();
+    expect(document.querySelectorAll(".question-list-item").length).toBe(5);
+    expect(allBtn?.classList.contains("active")).toBe(true);
   });
 });
 
@@ -4974,5 +5038,75 @@ describe("QuizApp — 選択中の単元情報パネル仕様", () => {
 
     const catLabel = document.querySelector(".selected-unit-info-category");
     expect(catLabel).toBeNull();
+  });
+});
+
+describe("QuizApp — 学習済みフィルター（含める/含めない）仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("初期状態では「含めない」が選択されており全問習得済み時にスタートできない", async () => {
+    // 全問を習得済みにする
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // 「含めない」がデフォルトで選択されていることを確認
+    const excludeRadio = document.querySelector<HTMLInputElement>('input[name="quizLearned"][value="exclude"]');
+    expect(excludeRadio?.checked).toBe(true);
+
+    // 確認ダイアログが表示される（全問習得済みのため）
+    const startBtn = document.getElementById("startRandomBtn") as HTMLButtonElement;
+    startBtn.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 確認ダイアログが表示されていること（キャンセルする）
+    const confirmDialog = document.getElementById("confirmDialog");
+    expect(confirmDialog?.classList.contains("hidden")).toBe(false);
+    // キャンセルしてスタート画面に留まることを確認
+    document.getElementById("confirmDialogCancel")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    // ダイアログが閉じてスタート画面のまま（クイズ画面に遷移しない）
+    expect(confirmDialog?.classList.contains("hidden")).toBe(true);
+    const startScreen = document.getElementById("startScreen");
+    expect(startScreen?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("「含める」を選択すると学習済み問題も含めてスタートできる", async () => {
+    // 全問を習得済みにする
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // 「含める」に変更する
+    const includeRadio = document.querySelector<HTMLInputElement>('input[name="quizLearned"][value="include"]');
+    includeRadio!.checked = true;
+    includeRadio?.dispatchEvent(new Event("change", { bubbles: true }));
+
+    // スタートボタンをクリック（ダイアログなしでスタートするはず）
+    const startBtn = document.getElementById("startRandomBtn") as HTMLButtonElement;
+    startBtn.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // クイズ画面に遷移していること
+    const quizScreen = document.getElementById("quizScreen");
+    expect(quizScreen?.classList.contains("hidden")).toBe(false);
   });
 });

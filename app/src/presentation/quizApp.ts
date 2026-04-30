@@ -333,7 +333,6 @@ export class QuizApp {
         tab.classList.add("active");
         tab.setAttribute("aria-selected", "true");
 
-        document.querySelector<HTMLElement>(".quiz-panel")?.classList.remove("hidden");
         this.renderCategoryList();
         this.updateStartScreen();
       });
@@ -417,6 +416,9 @@ export class QuizApp {
     if (subject === "admin") {
       const subjectContent = document.getElementById("subjectContent");
       subjectContent?.classList.add("category-only");
+      // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
+      const controlsEl = document.getElementById("categoryControls");
+      if (controlsEl) controlsEl.innerHTML = "";
       this.renderAdminContent(categoryList);
       return;
     }
@@ -439,13 +441,19 @@ export class QuizApp {
   private renderAdminContent(categoryList: HTMLElement): void {
     const data = this.useCase.exportAllData();
 
+    /** 配列を先頭 N 件に絞り、件数サマリを付けた表示用値を返す */
+    const truncateArray = (arr: unknown[], maxItems = 50): unknown => {
+      if (arr.length <= maxItems) return arr;
+      return [...arr.slice(0, maxItems), `... (${arr.length - maxItems}件省略、合計${arr.length}件)`];
+    };
+
     const container = document.createElement("div");
     container.className = "admin-panel";
 
     const sections: Array<{ title: string; content: unknown }> = [
-      { title: "履歴 (history)", content: data.history },
-      { title: "間違えた問題ID (wrongIds)", content: data.wrongIds },
-      { title: "習得済みID (masteredIds)", content: data.masteredIds },
+      { title: "履歴 (history)", content: truncateArray(data.history) },
+      { title: "間違えた問題ID (wrongIds)", content: truncateArray(data.wrongIds) },
+      { title: "習得済みID (masteredIds)", content: truncateArray(data.masteredIds) },
       { title: "連続正解数 (correctStreaks)", content: data.correctStreaks },
       { title: "問題統計 (questionStats)", content: data.questionStats },
     ];
@@ -461,12 +469,7 @@ export class QuizApp {
 
       const dataEl = document.createElement("pre");
       dataEl.className = "admin-data";
-      const jsonStr = JSON.stringify(content, null, 2);
-      // 大量データの場合は先頭部分のみ表示してパフォーマンス問題を防ぐ
-      const MAX_CHARS = 5000;
-      dataEl.textContent = jsonStr.length > MAX_CHARS
-        ? jsonStr.slice(0, MAX_CHARS) + `\n... (${jsonStr.length - MAX_CHARS}文字省略)`
-        : jsonStr;
+      dataEl.textContent = JSON.stringify(content, null, 2);
       section.appendChild(dataEl);
 
       container.appendChild(section);

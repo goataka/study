@@ -358,21 +358,25 @@ header h1 {
 }
 
 /* カスタムスクロールバー（Webkit系ブラウザ用） */
-.category-panel::-webkit-scrollbar {
+.category-panel::-webkit-scrollbar,
+#categoryList::-webkit-scrollbar {
     width: 8px;
 }
 
-.category-panel::-webkit-scrollbar-track {
+.category-panel::-webkit-scrollbar-track,
+#categoryList::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
 }
 
-.category-panel::-webkit-scrollbar-thumb {
+.category-panel::-webkit-scrollbar-thumb,
+#categoryList::-webkit-scrollbar-thumb {
     background: #c1c7cd;
     border-radius: 4px;
 }
 
-.category-panel::-webkit-scrollbar-thumb:hover {
+.category-panel::-webkit-scrollbar-thumb:hover,
+#categoryList::-webkit-scrollbar-thumb:hover {
     background: #a8adb3;
 }
 
