@@ -528,6 +528,7 @@ export class QuizApp {
         btn.classList.toggle("active", i === index);
         btn.setAttribute("aria-selected", String(i === index));
       });
+      contentArea.setAttribute("aria-labelledby", `admin-tab-${index}`);
       contentArea.innerHTML = "";
       const { content } = sections[index]!;
       const dataEl = document.createElement("pre");
@@ -541,6 +542,7 @@ export class QuizApp {
       btn.className = "admin-tab-btn";
       btn.type = "button";
       btn.textContent = title;
+      btn.setAttribute("id", `admin-tab-${index}`);
       btn.setAttribute("role", "tab");
       btn.setAttribute("aria-selected", "false");
       btn.setAttribute("aria-controls", "admin-tabpanel");
