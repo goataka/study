@@ -145,8 +145,9 @@ export class NotesCanvas {
     // canvas.width / dpr と offsetWidth の比を使ってスケールを検出し、正しい描画座標に変換する。
     const dpr = window.devicePixelRatio || 1;
     const offsetWidth = this.canvas.offsetWidth || rect.width;
+    const offsetHeight = this.canvas.offsetHeight || rect.height;
     const scaleX = this.canvas.width / dpr / offsetWidth;
-    const scaleY = this.canvas.height / dpr / (this.canvas.offsetHeight || rect.height);
+    const scaleY = this.canvas.height / dpr / offsetHeight;
 
     return {
       x: (clientX - rect.left) * scaleX,
