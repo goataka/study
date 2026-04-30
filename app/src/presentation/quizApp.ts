@@ -1231,6 +1231,7 @@ export class QuizApp {
     return records.filter((r) =>
       new Date(r.date).toDateString() === dateToCheck &&
       r.mode !== "manual" &&
+      // 教科全体（category="all"）の履歴は総合タブの学習済み一覧に表示しない
       r.category !== "all"
     );
   }
@@ -2696,7 +2697,7 @@ export class QuizApp {
     const masteredIdsSet = new Set(this.useCase.getMasteredIds());
     const masteredInFilter = filteredQuestions
       .filter((q) => masteredIdsSet.has(q.id)).length;
-    // 学習中: 1回以上回答済みで未習得の問題
+    // 学習中: 1回以上回答済みで未習得の問題（イシュー要件: 1回以上回答で学習済みになっていないもの）
     const inProgressInFilter = filteredQuestions
       .filter((q) => {
         return this.useCase.getQuestionStat(q.id).total > 0 && !masteredIdsSet.has(q.id);
@@ -3033,6 +3034,12 @@ export class QuizApp {
       subjectContent.classList.add("category-only");
       subjectContent.classList.remove("all-subject-layout");
       subjectContent.classList.remove("all-subject-unit-selected");
+      // 管理タブでは学習状態フィルターを非表示にする
+      const adminStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
+      if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
+      // 管理タブでは「おすすめ単元」タイトルを非表示、「IndexDB」タイトルを表示
+      document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
+      document.getElementById("categoryListTitle")?.classList.remove("hidden");
       return;
     }
 

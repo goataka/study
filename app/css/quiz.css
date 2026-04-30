@@ -1313,6 +1313,8 @@ header h1 {
     padding: 24px 30px;
     flex: 1;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 #historyContent {
@@ -3708,11 +3710,6 @@ body.font-size-large .subject-overview-cat-header {
 }
 
 /* ─── 学習済みにするボタン（下寄せ、グレー） ────────────────────────────── */
-#quizModePanel {
-    display: flex;
-    flex-direction: column;
-}
-
 .mark-learned-section {
     margin-top: auto;
     padding-top: 12px;
