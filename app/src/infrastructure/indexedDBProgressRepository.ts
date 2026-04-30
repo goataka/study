@@ -8,7 +8,7 @@
  * - initialize() を呼び出すことで IndexedDB からキャッシュを初期化する
  */
 
-import type { IProgressRepository, QuizRecord, UserDataExport } from "../application/ports";
+import type { IProgressRepository, QuizRecord, QuizSettings, UserDataExport } from "../application/ports";
 
 const DB_NAME = "studyProgressDB";
 const DB_VERSION = 1;
@@ -23,6 +23,7 @@ const KEY_QUIZ_HISTORY = "quizHistory";
 const KEY_CATEGORY_VIEW_MODE = "categoryViewMode";
 const KEY_FONT_SIZE_LEVEL = "fontSizeLevel";
 const KEY_SHARE_URL = "overallShareUrl";
+const KEY_QUIZ_SETTINGS = "quizSettings";
 
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
@@ -38,6 +39,7 @@ interface ProgressCache {
   categoryViewMode: "category" | "grade";
   fontSizeLevel: "small" | "medium" | "large" | null;
   shareUrl: string;
+  quizSettings: QuizSettings;
 }
 
 /** プレーンオブジェクト（null 非許容、配列非許容）かどうかを判定する型ガード */
@@ -62,6 +64,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       categoryViewMode: "category",
       fontSizeLevel: null,
       shareUrl: "",
+      quizSettings: { questionCount: 10, quizOrder: "random", includeMastered: false },
     };
   }
 
@@ -141,6 +144,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       categoryViewMode,
       fontSizeLevel,
       shareUrl,
+      quizSettings,
     ] = await Promise.all([
       getValue(KEY_WRONG_QUESTIONS),
       getValue(KEY_CORRECT_STREAKS),
@@ -151,6 +155,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       getValue(KEY_CATEGORY_VIEW_MODE),
       getValue(KEY_FONT_SIZE_LEVEL),
       getValue(KEY_SHARE_URL),
+      getValue(KEY_QUIZ_SETTINGS),
     ]);
 
     await transactionDone;
@@ -181,6 +186,14 @@ export class IndexedDBProgressRepository implements IProgressRepository {
     }
     if (typeof shareUrl === "string") {
       cache.shareUrl = shareUrl;
+    }
+    if (isPlainObject(quizSettings)) {
+      const qs = quizSettings as Record<string, unknown>;
+      cache.quizSettings = {
+        questionCount: typeof qs.questionCount === "number" ? qs.questionCount : 10,
+        quizOrder: qs.quizOrder === "straight" ? "straight" : "random",
+        includeMastered: typeof qs.includeMastered === "boolean" ? qs.includeMastered : false,
+      };
     }
 
     return cache;
@@ -312,6 +325,15 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   saveShareUrl(url: string): void {
     this.cache.shareUrl = url;
     this.persistKey(KEY_SHARE_URL, url);
+  }
+
+  loadQuizSettings(): QuizSettings {
+    return this.cache.quizSettings;
+  }
+
+  saveQuizSettings(settings: QuizSettings): void {
+    this.cache.quizSettings = settings;
+    this.persistKey(KEY_QUIZ_SETTINGS, settings);
   }
 
   exportAllData(): UserDataExport {

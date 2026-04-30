@@ -1,18 +1,13 @@
 import { createBdd } from "playwright-bdd";
 import { expect } from "@playwright/test";
+import { waitForStatsInfoLoaded } from "../helpers/statsInfo";
 
 const { Before, Given, When, Then } = createBdd();
-
-const STATS_LOAD_TIMEOUT = 10_000;
 
 Given("the quiz application is loaded", async ({ page }) => {
   await page.goto(".");
   // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ
-  // [1-9] で先頭を非ゼロにし、\d* で2桁以上に対応（例: 全1問, 全108問）
-  // 全0問はロード失敗を示すため、このパターンには一致しない
-  await expect(page.locator("#statsInfo")).toContainText(/全[1-9]\d*問/, {
-    timeout: STATS_LOAD_TIMEOUT,
-  });
+  await waitForStatsInfoLoaded(page);
 });
 
 Then("the start screen should be visible", async ({ page }) => {
@@ -256,9 +251,7 @@ Before({ tags: "@kanji-stub" }, async ({ page }) => {
 
 Given("I have navigated to a hiragana text-input question", async ({ page }) => {
   await page.goto(".");
-  await expect(page.locator("#statsInfo")).toContainText(/全\d+問/, {
-    timeout: STATS_LOAD_TIMEOUT,
-  });
+  await waitForStatsInfoLoaded(page);
   // 国語タブ → 漢字（ひらがな正解の読み問題）
   const japaneseTab = page.locator(".subject-tab").filter({ hasText: "国語" });
   await japaneseTab.click();

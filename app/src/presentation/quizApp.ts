@@ -48,6 +48,8 @@ export class QuizApp {
   /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
   private isPanelTabUserSelected: boolean = false;
   private hideLearnedCategories: boolean = true;
+  /** カテゴリ一覧の学習状態フィルター */
+  private categoryStatusFilter: "all" | "unlearned" | "studying" | "learned" = "all";
   /** 折りたたまれている親カテゴリID のセット */
   private collapsedParentCategories: Set<string> = new Set();
   /** 折りたたまれているトップカテゴリID のセット */
@@ -74,7 +76,7 @@ export class QuizApp {
   private activeOverallPanel: "learned" | "share" = "learned";
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
-  private questionListFilter: "all" | "learned" | "unlearned" = "all";
+  private questionListFilter: "all" | "learned" | "unlearned" = "unlearned";
   private quizOrder: "random" | "straight" = "random";
   private includeMastered: boolean = false;
 
@@ -111,6 +113,7 @@ export class QuizApp {
     this.loadUserName();
     this.loadFontSize();
     this.loadShareUrl();
+    this.loadQuizSettings();
     this.loadFilterFromURL();
     this.loadQuestionCountFromDOM();
     this.loadCategoryViewModeFromStorage();
@@ -123,8 +126,8 @@ export class QuizApp {
     const initRecords = this.useCase.getHistory();
     this.autoSelectPanelTab(initRecords);
     this.updateStartScreen(initRecords);
-    // 学習済み非表示の初期状態をボタンのaria-pressed属性とテキストに反映する
-    this.updateHideLearnedButton();
+    // 学習状態フィルターの初期状態を画面に適用する
+    this.applyCategoryStatusFilter();
     this.updateUserNameDisplay("headerUserName");
     // 共有URL表示ボタンの初期値を設定する
     this.updateShareUrlOpenBtn();
@@ -178,6 +181,35 @@ export class QuizApp {
     const stored = this.progressRepo.loadShareUrl();
     // ロード時にも http/https 検証を行い、不正なスキームを除外する
     this.shareUrl = this.sanitizeShareUrl(stored);
+  }
+
+  /**
+   * 保存されたクイズ設定を読み込み、フィールドと DOM に反映する。
+   */
+  private loadQuizSettings(): void {
+    const settings = this.progressRepo.loadQuizSettings();
+    this.questionCount = settings.questionCount;
+    this.quizOrder = settings.quizOrder;
+    this.includeMastered = settings.includeMastered;
+
+    // DOM への反映
+    const countInput = document.querySelector<HTMLInputElement>(`input[name="questionCount"][value="${settings.questionCount}"]`);
+    if (countInput) countInput.checked = true;
+    const orderInput = document.querySelector<HTMLInputElement>(`input[name="quizOrder"][value="${settings.quizOrder}"]`);
+    if (orderInput) orderInput.checked = true;
+    const learnedInput = document.querySelector<HTMLInputElement>(`input[name="quizLearned"][value="${settings.includeMastered ? "include" : "exclude"}"]`);
+    if (learnedInput) learnedInput.checked = true;
+  }
+
+  /**
+   * 現在のクイズ設定を保存する。
+   */
+  private saveQuizSettings(): void {
+    this.progressRepo.saveQuizSettings({
+      questionCount: this.questionCount,
+      quizOrder: this.quizOrder,
+      includeMastered: this.includeMastered,
+    });
   }
 
   private saveShareUrl(url: string): void {
@@ -419,12 +451,19 @@ export class QuizApp {
       // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
       const controlsEl = document.getElementById("categoryControls");
       if (controlsEl) controlsEl.innerHTML = "";
+      // タイトルを「🛢️ IndexDB」に変更
+      const titleEl = document.getElementById("categoryListTitle");
+      if (titleEl) titleEl.textContent = "🛢️ IndexDB";
       this.renderAdminContent(categoryList);
       return;
     }
 
     // コントロールを先に描画し、教科切替時の学年フィルターの妥当性チェックを行う
     this.renderCategoryViewControls();
+
+    // タイトルを「📚 単元一覧」に戻す（管理タブから切り替えた場合）
+    const titleEl = document.getElementById("categoryListTitle");
+    if (titleEl) titleEl.textContent = "📚 単元一覧";
 
     if (this.categoryViewMode === "grade") {
       this.renderCategoryListByGrade();
@@ -434,8 +473,8 @@ export class QuizApp {
 
     // アクティブ状態を更新
     this.updateCategoryListActive();
-    // 学習済の非表示状態を維持する
-    categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
+    // 学習状態フィルターを適用する
+    this.applyCategoryStatusFilter();
   }
 
   private renderAdminContent(categoryList: HTMLElement): void {
@@ -451,6 +490,16 @@ export class QuizApp {
     container.className = "admin-panel";
 
     const sections: Array<{ title: string; content: unknown }> = [
+      {
+        title: "設定 (settings)",
+        content: {
+          userName: data.userName ?? "ゲスト",
+          fontSizeLevel: data.fontSizeLevel ?? "small",
+          categoryViewMode: data.categoryViewMode,
+          quizSettings: this.progressRepo.loadQuizSettings(),
+          shareUrl: this.shareUrl || "(未設定)",
+        },
+      },
       { title: "履歴 (history)", content: truncateArray(data.history) },
       { title: "間違えた問題ID (wrongIds)", content: truncateArray(data.wrongIds) },
       { title: "習得済みID (masteredIds)", content: truncateArray(data.masteredIds) },
@@ -1808,21 +1857,6 @@ export class QuizApp {
 
     // 詳細行（単元選択時のみ）: カテゴリ + 学年（左） / 例文（右）
     if (selLevel === "unit") {
-      // 説明文（単元名と同じ行に右寄せで表示）
-      const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
-      if (description) {
-        const nameRow = document.createElement("div");
-        nameRow.className = "selected-unit-info-name-row";
-        // nameSpan はすでに body に追加されているので取り出して nameRow へ移す
-        body.removeChild(nameSpan);
-        nameRow.appendChild(nameSpan);
-        const descDiv = document.createElement("div");
-        descDiv.className = "selected-unit-info-desc";
-        descDiv.textContent = description;
-        nameRow.appendChild(descDiv);
-        body.appendChild(nameRow);
-      }
-
       const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
       const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
       const catParts: string[] = [];
@@ -1830,6 +1864,7 @@ export class QuizApp {
       if (parentInfo) catParts.push(parentInfo.name);
       const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
       const example = this.useCase.getCategoryExample(this.filter.subject, this.filter.category);
+      const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
 
       const detailRow = document.createElement("div");
       detailRow.className = "selected-unit-info-detail-row";
@@ -1861,6 +1896,32 @@ export class QuizApp {
 
       if (leftGroup.childElementCount > 0 || example !== undefined) {
         body.appendChild(detailRow);
+      }
+
+      // カテゴリの下に進捗バーを表示
+      const { mastered, total } = this.useCase.getMasteredCountForCategory(this.filter.subject, this.filter.category);
+      const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
+      const progressRow = document.createElement("div");
+      progressRow.className = "selected-unit-progress-row";
+      const progressBar = document.createElement("div");
+      progressBar.className = "selected-unit-progress-bar";
+      const progressFill = document.createElement("div");
+      progressFill.className = "selected-unit-progress-fill";
+      progressFill.style.width = `${pct}%`;
+      progressBar.appendChild(progressFill);
+      const progressLabel = document.createElement("span");
+      progressLabel.className = "selected-unit-progress-label";
+      progressLabel.textContent = `${mastered}/${total}`;
+      progressRow.appendChild(progressBar);
+      progressRow.appendChild(progressLabel);
+      body.appendChild(progressRow);
+
+      // 説明を表示
+      if (description) {
+        const descDiv = document.createElement("div");
+        descDiv.className = "selected-unit-info-desc";
+        descDiv.textContent = description;
+        body.appendChild(descDiv);
       }
     }
 
@@ -2243,6 +2304,10 @@ export class QuizApp {
       questions = questions.filter((q) => !this.useCase.isMastered(q.id));
     }
 
+    // フィルター済み問題数を表示
+    const countEl = document.getElementById("questionListFilterCount");
+    if (countEl) countEl.textContent = `${questions.length}問`;
+
     bodyEl.innerHTML = "";
     if (questions.length === 0) {
       const empty = document.createElement("p");
@@ -2257,7 +2322,7 @@ export class QuizApp {
   }
 
   /**
-   * 問題一覧の1問分のHTML要素を構築する（問題・正解・統計・ヒントを表示）
+   * 問題一覧の1問分のHTML要素を構築する（問題・統計・ヒント（正解を含む）を表示）
    */
   private buildQuestionListItem(question: Question): HTMLElement {
     const item = document.createElement("div");
@@ -2279,22 +2344,17 @@ export class QuizApp {
     textDiv.textContent = question.question;
     rowDiv.appendChild(textDiv);
 
-    const correctDiv = document.createElement("span");
-    correctDiv.className = "question-list-correct";
-    correctDiv.textContent = `✓ ${question.choices[question.correct]}`;
-    rowDiv.appendChild(correctDiv);
-
-    // 回答統計バッジ
+    // 回答統計バッジ（連続正答数を星で表示）
     const statSpan = document.createElement("span");
     statSpan.className = "question-list-stat";
     if (stat.total > 0) {
-      if (isCompleted) {
-        statSpan.textContent = `🏆 ${stat.correct}/${stat.total}`;
-      } else if (streak > 0) {
-        statSpan.textContent = `🔥${streak}/3 ${stat.correct}/${stat.total}`;
-      } else {
-        statSpan.textContent = `${stat.correct}/${stat.total}`;
-      }
+      const maxStreak = 3;
+      const filledStar = "⭐";
+      const emptyStar = "☆";
+      const starStr = isCompleted
+        ? "🏆"
+        : Array.from({ length: maxStreak }, (_, i) => i < streak ? filledStar : emptyStar).join("");
+      statSpan.textContent = `${starStr} 全${stat.total}回`;
     } else {
       statSpan.textContent = "-";
     }
@@ -2311,7 +2371,20 @@ export class QuizApp {
 
     const hintDiv = document.createElement("div");
     hintDiv.className = "question-list-hint hidden";
-    hintDiv.textContent = question.explanation;
+
+    // 正解をヒントの中に表示
+    const correctDiv = document.createElement("span");
+    correctDiv.className = "question-list-correct";
+    correctDiv.textContent = `✓ ${question.choices[question.correct]}`;
+    hintDiv.appendChild(correctDiv);
+
+    if (question.explanation) {
+      const explanationDiv = document.createElement("div");
+      explanationDiv.className = "question-list-hint-explanation";
+      explanationDiv.textContent = question.explanation;
+      hintDiv.appendChild(explanationDiv);
+    }
+
     item.appendChild(hintDiv);
 
     hintBtn.addEventListener("click", () => {
@@ -2395,6 +2468,7 @@ export class QuizApp {
         const target = e.target as HTMLInputElement;
         if (target.checked) {
           this.questionCount = parseInt(target.value);
+          this.saveQuizSettings();
         }
       });
     });
@@ -2406,6 +2480,7 @@ export class QuizApp {
         const target = e.target as HTMLInputElement;
         if (target.checked) {
           this.quizOrder = target.value as "random" | "straight";
+          this.saveQuizSettings();
         }
       });
     });
@@ -2417,6 +2492,7 @@ export class QuizApp {
         const target = e.target as HTMLInputElement;
         if (target.checked) {
           this.includeMastered = target.value === "include";
+          this.saveQuizSettings();
         }
       });
     });
@@ -2429,8 +2505,21 @@ export class QuizApp {
     this.on("kanjiDeleteLastBtn", "click", () => this.kanjiDeleteLast());
     this.on("kanjiEraseBtn", "click", () => this.kanjiErase());
 
-    // 学習済カテゴリの非表示トグル
-    this.on("hideLearnedBtn", "click", () => this.toggleHideLearned());
+    // カテゴリ学習状態フィルターボタン
+    const statusFilterBtns: Array<{ id: string; filter: "all" | "unlearned" | "studying" | "learned" }> = [
+      { id: "filterStatusAll", filter: "all" },
+      { id: "filterStatusUnlearned", filter: "unlearned" },
+      { id: "filterStatusStudying", filter: "studying" },
+      { id: "filterStatusLearned", filter: "learned" },
+    ];
+    statusFilterBtns.forEach(({ id, filter }) => {
+      document.getElementById(id)?.addEventListener("click", () => {
+        this.setCategoryStatusFilter(filter);
+      });
+    });
+
+    // ページ更新ボタン
+    this.on("reloadBtn", "click", () => location.reload());
 
     const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
     penSizeSelect?.addEventListener("change", (e) => {
@@ -2523,12 +2612,19 @@ export class QuizApp {
     const effectiveFilter = this.getEffectiveFilter();
     const filteredQuestions = this.useCase.getFilteredQuestions(effectiveFilter);
     const filteredCount = filteredQuestions.length;
-    const wrongCount = this.useCase.getWrongCount(effectiveFilter);
     const masteredIdsSet = new Set(this.useCase.getMasteredIds());
     const masteredInFilter = filteredQuestions
       .filter((q) => masteredIdsSet.has(q.id)).length;
+    const studiedKeys = this.useCase.getStudiedCategoryKeys();
+    const wrongSet = new Set(this.useCase.wrongQuestionIds);
+    // 学習中: 学習履歴があり・未習得かつ・間違えた問題
+    const inProgressInFilter = filteredQuestions
+      .filter((q) => {
+        const key = `${q.subject}::${q.category}`;
+        return studiedKeys.has(key) && !masteredIdsSet.has(q.id) && wrongSet.has(q.id);
+      }).length;
 
-    statsInfo.textContent = `全${filteredCount}問 / 学習済み${masteredInFilter}問`;
+    statsInfo.textContent = `全：${filteredCount}問 / 学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問`;
 
     // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
     if (markLearnedBtn) {
@@ -2557,28 +2653,31 @@ export class QuizApp {
     // 全問題を1回だけ走査して subject/category/parentCategory ごとの統計を集計する
     const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
     const wrongSet = new Set(this.useCase.wrongQuestionIds);
+    const masteredSet = new Set(this.useCase.getMasteredIds());
 
-    const statsMap = new Map<string, { total: number; wrong: number }>();
-    const addStat = (key: string, isWrong: boolean): void => {
-      const s = statsMap.get(key) ?? { total: 0, wrong: 0 };
+    const statsMap = new Map<string, { total: number; wrong: number; mastered: number }>();
+    const addStat = (key: string, isWrong: boolean, isMastered: boolean): void => {
+      const s = statsMap.get(key) ?? { total: 0, wrong: 0, mastered: 0 };
       s.total++;
       if (isWrong) s.wrong++;
+      if (isMastered) s.mastered++;
       statsMap.set(key, s);
     };
 
     for (const q of allQuestions) {
       const isWrong = wrongSet.has(q.id);
-      addStat("all::all", isWrong);
-      addStat(`${q.subject}::all`, isWrong);
-      addStat(`${q.subject}::${q.category}`, isWrong);
+      const isMastered = masteredSet.has(q.id);
+      addStat("all::all", isWrong, isMastered);
+      addStat(`${q.subject}::all`, isWrong, isMastered);
+      addStat(`${q.subject}::${q.category}`, isWrong, isMastered);
       if (q.parentCategory) {
-        addStat(`${q.subject}::parent::${q.parentCategory}`, isWrong);
+        addStat(`${q.subject}::parent::${q.parentCategory}`, isWrong, isMastered);
       }
     }
 
-    const formatCategoryStats = (stat: { total: number; wrong: number }): string => {
+    const formatCategoryStats = (stat: { total: number; wrong: number; mastered: number }): string => {
       if (stat.total === 0) return "";
-      return `${stat.wrong}/${stat.total}`;
+      return `${stat.mastered}/${stat.total}`;
     };
 
     // カテゴリアイテムの統計を更新
@@ -2595,7 +2694,7 @@ export class QuizApp {
         key = `${subject}::all`;
       }
 
-      const stat = statsMap.get(key) ?? { total: 0, wrong: 0 };
+      const stat = statsMap.get(key) ?? { total: 0, wrong: 0, mastered: 0 };
       const statsEl = el.querySelector(".category-stats");
       if (statsEl) {
         statsEl.textContent = formatCategoryStats(stat);
@@ -2632,7 +2731,9 @@ export class QuizApp {
 
       // 学習状態の絵文字を更新（⬜未学習 / 🔄学習中 / 🏆学習済）
       const isLearned = studiedKeys.has(key) && stat.wrong === 0;
+      const isStudying = studiedKeys.has(key) && stat.wrong > 0;
       el.classList.toggle("learned", isLearned);
+      el.classList.toggle("studying", isStudying);
       const statusEl = el.querySelector(".category-status");
       if (statusEl) {
         if (!studiedKeys.has(key)) {
@@ -2649,7 +2750,52 @@ export class QuizApp {
   }
 
   /**
-   * 学習済カテゴリの表示/非表示を切り替える
+   * カテゴリ一覧の学習状態フィルターを設定してリストに反映する
+   */
+  private setCategoryStatusFilter(filter: "all" | "unlearned" | "studying" | "learned"): void {
+    this.categoryStatusFilter = filter;
+    this.applyCategoryStatusFilter();
+    this.updateGroupHeaderLearnedBadges();
+  }
+
+  /**
+   * 現在の categoryStatusFilter に応じて categoryList に CSS クラスを付与する
+   */
+  private applyCategoryStatusFilter(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (categoryList) {
+      categoryList.classList.remove("filter-unlearned", "filter-studying", "filter-learned");
+      if (this.categoryStatusFilter !== "all") {
+        categoryList.classList.add(`filter-${this.categoryStatusFilter}`);
+      }
+    }
+    // ボタンのアクティブ状態と aria-pressed を更新
+    const btnIds: Record<string, string> = {
+      all: "filterStatusAll",
+      unlearned: "filterStatusUnlearned",
+      studying: "filterStatusStudying",
+      learned: "filterStatusLearned",
+    };
+    for (const [state, id] of Object.entries(btnIds)) {
+      const btn = document.getElementById(id);
+      const isActive = state === this.categoryStatusFilter;
+      btn?.classList.toggle("active", isActive);
+      btn?.setAttribute("aria-pressed", isActive ? "true" : "false");
+    }
+    // グループヘッダーのバッジをフィルター状態に合わせて更新する
+    this.updateGroupHeaderLearnedBadges();
+  }
+
+  /**
+   * 学習済み非表示ボタンの aria-pressed 属性とラベルを現在の状態に合わせて更新する
+   * （後方互換のため保持）
+   */
+  private updateHideLearnedButton(): void {
+    // 新フィルターボタンに移行済み。何もしない。
+  }
+
+  /**
+   * 学習済カテゴリの表示/非表示を切り替える（後方互換のため保持）
    */
   private toggleHideLearned(): void {
     this.hideLearnedCategories = !this.hideLearnedCategories;
@@ -2657,20 +2803,7 @@ export class QuizApp {
     if (categoryList) {
       categoryList.classList.toggle("hide-learned", this.hideLearnedCategories);
     }
-    this.updateHideLearnedButton();
     this.updateGroupHeaderLearnedBadges();
-  }
-
-  /**
-   * 学習済み非表示ボタンの aria-pressed 属性とラベルを現在の状態に合わせて更新する
-   */
-  private updateHideLearnedButton(): void {
-    const btn = document.getElementById("hideLearnedBtn");
-    if (btn) {
-      btn.setAttribute("aria-pressed", String(this.hideLearnedCategories));
-      btn.setAttribute("aria-label", "学習済カテゴリを非表示");
-      btn.textContent = this.hideLearnedCategories ? "✅ 学習済を表示" : "⬜ 学習済を非表示";
-    }
   }
 
   /**
@@ -2679,6 +2812,9 @@ export class QuizApp {
   private updateGroupHeaderLearnedBadges(): void {
     const categoryList = document.getElementById("categoryList");
     if (!categoryList) return;
+
+    // 学習済みが非表示になるフィルター（未学習または学習中のみ表示）のときにバッジを表示する
+    const showBadge = this.categoryStatusFilter === "unlearned" || this.categoryStatusFilter === "studying";
 
     categoryList.querySelectorAll<HTMLElement>(".category-group-header").forEach((header) => {
       // 新構造: ヘッダーは .category-group の子要素
@@ -2691,7 +2827,7 @@ export class QuizApp {
 
       const badge = header.querySelector(".category-group-learned-badge");
       if (badge) {
-        badge.textContent = this.hideLearnedCategories && learnedCount > 0 ? "🏆".repeat(learnedCount) : "";
+        badge.textContent = showBadge && learnedCount > 0 ? "🏆".repeat(learnedCount) : "";
       }
     });
   }
@@ -2875,8 +3011,9 @@ export class QuizApp {
     document.getElementById("allSubjectPanelTitle")?.classList.toggle("hidden", !isAll);
     // 「単元一覧」タイトルは教科別タブ時のみ表示
     document.getElementById("categoryListTitle")?.classList.toggle("hidden", isAll);
-    // 学習済み非表示ボタンは総合タブ時は非表示
-    document.getElementById("hideLearnedBtn")?.classList.toggle("hidden", isAll);
+    // 学習状態フィルターボタンは総合タブ時は非表示
+    const statusFilterEl = document.querySelector(".category-status-filter") as HTMLElement | null;
+    if (statusFilterEl) statusFilterEl.classList.toggle("hidden", isAll);
     // 日付ナビゲーションは総合タブかつ単元未選択時のみ表示
     document.getElementById("overallDateNav")?.classList.toggle("hidden", !isAll || hasOverallUnit);
 
@@ -3351,6 +3488,17 @@ export class QuizApp {
     const total = results.length;
     const percentage = Math.round((correctCount / total) * 100);
 
+    // 正答数に応じた前向きなメッセージ
+    const resultMessage = document.getElementById("resultMessage");
+    if (resultMessage) {
+      let message = "";
+      if (percentage === 100) message = "🌟 満点！すごい！";
+      else if (percentage >= 80) message = "🎉 よくできました！";
+      else if (percentage >= 60) message = "😊 もう少し！次はきっとできる！";
+      else message = "💪 がんばれ！次は必ず正解できます！";
+      resultMessage.textContent = message;
+    }
+
     const scoreDisplay = document.getElementById("scoreDisplay");
     if (scoreDisplay) {
       const isPerfect = correctCount === total;
@@ -3371,6 +3519,27 @@ export class QuizApp {
     }
 
     this.showScreen("result");
+
+    // 回答完了後にスクロール位置をトップに戻す
+    const resultScreen = document.getElementById("resultScreen");
+    if (resultScreen) resultScreen.scrollTop = 0;
+
+    // 単元がすべて学習済みになったらポップアップメッセージ
+    void this.checkAllMasteredAndCongratulate();
+  }
+
+  /**
+   * 現在のフィルター対象の問題がすべて学習済みかチェックし、達成時におめでとうメッセージを表示する。
+   */
+  private async checkAllMasteredAndCongratulate(): Promise<void> {
+    const effectiveFilter = this.getEffectiveFilter();
+    const filteredQuestions = this.useCase.getFilteredQuestions(effectiveFilter);
+    if (filteredQuestions.length === 0) return;
+    const masteredSet = new Set(this.useCase.getMasteredIds());
+    const allMastered = filteredQuestions.every((q) => masteredSet.has(q.id));
+    if (allMastered) {
+      await this.showConfirmDialog("🎉 おめでとうございます！\nこの単元のすべての問題を学習済みにしました！", true);
+    }
   }
 
   private buildResultItem(r: AnswerResult): HTMLElement {
@@ -3441,23 +3610,34 @@ export class QuizApp {
   /**
    * カスタム確認ダイアログを表示し、ユーザーの選択を Promise で返す。
    */
-  private showConfirmDialog(message: string): Promise<boolean> {
+  private showConfirmDialog(message: string, alertOnly = false): Promise<boolean> {
     return new Promise((resolve) => {
       const overlay = document.getElementById("confirmDialog");
       const msgEl = document.getElementById("confirmDialogMessage");
       const okBtn = document.getElementById("confirmDialogOk") as HTMLButtonElement | null;
       const cancelBtn = document.getElementById("confirmDialogCancel") as HTMLButtonElement | null;
       if (!overlay || !msgEl || !okBtn || !cancelBtn) {
-        resolve(window.confirm(message));
+        if (alertOnly) {
+          alert(message);
+          resolve(true);
+        } else {
+          resolve(window.confirm(message));
+        }
         return;
       }
       msgEl.textContent = message;
       overlay.classList.remove("hidden");
+      if (alertOnly) {
+        cancelBtn.classList.add("hidden");
+      } else {
+        cancelBtn.classList.remove("hidden");
+      }
 
       const previousFocus = document.activeElement as HTMLElement | null;
 
       const close = (result: boolean): void => {
         overlay.classList.add("hidden");
+        cancelBtn.classList.remove("hidden");
         okBtn.removeEventListener("click", onOk);
         cancelBtn.removeEventListener("click", onCancel);
         overlay.removeEventListener("keydown", onKeydown);
@@ -3469,12 +3649,15 @@ export class QuizApp {
       const onKeydown = (e: KeyboardEvent): void => {
         if (e.key === "Escape") {
           e.preventDefault();
-          close(false);
+          close(alertOnly ? true : false);
         }
         // フォーカストラップ: Tabキーをダイアログ内のボタンに限定する
         if (e.key === "Tab") {
           e.preventDefault();
-          if (document.activeElement === okBtn) {
+          if (alertOnly) {
+            // アラートモードではOKボタンのみ。Tabキーを押してもOKボタンにフォーカスを維持する
+            okBtn.focus();
+          } else if (document.activeElement === okBtn) {
             cancelBtn.focus();
           } else {
             okBtn.focus();

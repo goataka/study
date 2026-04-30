@@ -103,7 +103,10 @@ function setupTabDom(): void {
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
       <div id="subjectContent">
-        <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
+        <button id="filterStatusAll" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
+        <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
+        <button id="filterStatusStudying" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
+        <button id="filterStatusLearned" class="category-status-filter-btn" type="button" aria-pressed="false">学習済</button>
         <span id="allSubjectPanelTitle" class="hidden">📌 おすすめ単元</span>
         <div id="overallDateNav" class="hidden">
           <span id="activityDateDisplay" class="activity-date-display"></span>
@@ -138,9 +141,10 @@ function setupTabDom(): void {
           <div id="historyList"></div>
         </div>
         <div id="questionListContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-questions">
-          <button id="questionListFilterAll" class="question-list-filter-btn active" type="button">すべて</button>
-          <button id="questionListFilterUnlearned" class="question-list-filter-btn" type="button">未学習</button>
+          <button id="questionListFilterAll" class="question-list-filter-btn" type="button">すべて</button>
+          <button id="questionListFilterUnlearned" class="question-list-filter-btn active" type="button">未学習</button>
           <button id="questionListFilterLearned" class="question-list-filter-btn" type="button">学習済み</button>
+          <span id="questionListFilterCount" class="question-list-filter-count"></span>
           <div id="questionListBody"></div>
         </div>
         <div id="overallSummaryPanel" class="hidden">
@@ -407,7 +411,7 @@ describe("QuizApp — 問題ロード後の仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const statsInfo = document.getElementById("statsInfo");
-    expect(statsInfo?.textContent).toContain("全5問");
+    expect(statsInfo?.textContent).toContain("全：5問");
   });
 });
 
@@ -457,7 +461,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     englishTab?.click();
 
     const statsInfo = document.getElementById("statsInfo");
-    expect(statsInfo?.textContent).toContain("全5問");
+    expect(statsInfo?.textContent).toContain("全：5問");
   });
 
   it("英語タブをクリックするとアクティブタブが切り替わる", async () => {
@@ -502,7 +506,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     catItem?.click();
 
     const statsInfo = document.getElementById("statsInfo");
-    expect(statsInfo?.textContent).toContain("全5問");
+    expect(statsInfo?.textContent).toContain("全：5問");
   });
 
   it("カテゴリアイテムに role=button と tabindex=0 が設定されている", async () => {
@@ -716,7 +720,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     grammarCatItem?.click();
 
     const statsInfo = document.getElementById("statsInfo");
-    expect(statsInfo?.textContent).toContain("全3問");
+    expect(statsInfo?.textContent).toContain("全：3問");
   });
 
   it("グループヘッダーをクリックするとグループが折りたたまれる", async () => {
@@ -1517,7 +1521,7 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 });
 
-describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
+describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
@@ -1528,93 +1532,72 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期状態ではcategoryListにhide-learnedクラスが付与されている", async () => {
+  it("初期状態ではcategoryListにフィルタークラスが付与されていない（すべて表示）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const categoryList = document.getElementById("categoryList");
-    expect(categoryList?.classList.contains("hide-learned")).toBe(true);
+    expect(categoryList?.classList.contains("filter-unlearned")).toBe(false);
+    expect(categoryList?.classList.contains("filter-studying")).toBe(false);
+    expect(categoryList?.classList.contains("filter-learned")).toBe(false);
   });
 
-  it("初期状態ではaria-pressedがtrueである", async () => {
+  it("「学習済」ボタンをクリックするとcategoryListにfilter-learnedクラスが付与される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const btn = document.getElementById("hideLearnedBtn");
+    const btn = document.getElementById("filterStatusLearned") as HTMLElement;
+    btn?.click();
+
+    const categoryList = document.getElementById("categoryList");
+    expect(categoryList?.classList.contains("filter-learned")).toBe(true);
+  });
+
+  it("「未学習」ボタンをクリックするとcategoryListにfilter-unlearnedクラスが付与される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("filterStatusUnlearned") as HTMLElement;
+    btn?.click();
+
+    const categoryList = document.getElementById("categoryList");
+    expect(categoryList?.classList.contains("filter-unlearned")).toBe(true);
+  });
+
+  it("「学習中」ボタンをクリックするとcategoryListにfilter-studyingクラスが付与される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("filterStatusStudying") as HTMLElement;
+    btn?.click();
+
+    const categoryList = document.getElementById("categoryList");
+    expect(categoryList?.classList.contains("filter-studying")).toBe(true);
+  });
+
+  it("「学習済」を選択後「すべて」ボタンをクリックするとフィルタークラスが解除される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("filterStatusLearned")?.click();
+    document.getElementById("filterStatusAll")?.click();
+
+    const categoryList = document.getElementById("categoryList");
+    expect(categoryList?.classList.contains("filter-learned")).toBe(false);
+  });
+
+  it("「学習済」ボタン選択時にactiveクラスが付与される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const btn = document.getElementById("filterStatusLearned") as HTMLElement;
+    btn?.click();
+
+    expect(btn?.classList.contains("active")).toBe(true);
+    expect(document.getElementById("filterStatusAll")?.classList.contains("active")).toBe(false);
+    // aria-pressed も更新される
     expect(btn?.getAttribute("aria-pressed")).toBe("true");
-  });
-
-  it("「学習済を非表示」ボタンをクリックするとcategoryListからhide-learnedクラスが解除される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
-
-    const categoryList = document.getElementById("categoryList");
-    expect(categoryList?.classList.contains("hide-learned")).toBe(false);
-  });
-
-  it("「学習済を非表示」ボタンを2回クリックするとhide-learnedクラスが再付与される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
-    btn?.click();
-
-    const categoryList = document.getElementById("categoryList");
-    expect(categoryList?.classList.contains("hide-learned")).toBe(true);
-  });
-
-  it("ボタンクリック後はaria-pressedがfalseになる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
-
-    expect(btn?.getAttribute("aria-pressed")).toBe("false");
-  });
-
-  it("2回クリック後はaria-pressedがtrueに戻る", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
-    btn?.click();
-
-    expect(btn?.getAttribute("aria-pressed")).toBe("true");
-  });
-
-  it("初期状態（非表示ON）ではボタンのテキストが「✅ 学習済を表示」になる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const btn = document.getElementById("hideLearnedBtn");
-    expect(btn?.textContent).toBe("✅ 学習済を表示");
-  });
-
-  it("ボタンクリック後（非表示OFF）はボタンのテキストが「⬜ 学習済を非表示」になる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
-
-    expect(btn?.textContent).toBe("⬜ 学習済を非表示");
-  });
-
-  it("2回クリック後（非表示ON）はボタンのテキストが「✅ 学習済を表示」に戻る", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
-    btn?.click();
-
-    expect(btn?.textContent).toBe("✅ 学習済を表示");
+    expect(document.getElementById("filterStatusAll")?.getAttribute("aria-pressed")).toBe("false");
   });
 
   it("学習済カテゴリ（履歴あり・間違いなし）にはlearnedクラスが付与される", async () => {
@@ -1679,8 +1662,7 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     expect(catItem?.classList.contains("learned")).toBe(false);
   });
 
-  it("hide-learned ON かつ learned クラスあり — 両クラスが同時に成立する（非表示の前提条件を満たす）", async () => {
-    // 履歴に phonics-1 を登録（学習済）
+  it("filter-learned フィルター適用時、learnedクラスを持つカテゴリが表示対象となる", async () => {
     localStorage.setItem(
       "quizHistory",
       JSON.stringify([
@@ -1707,15 +1689,17 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
+    document.getElementById("filterStatusLearned")?.click();
+
     const categoryList = document.getElementById("categoryList");
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
 
-    // 両クラスが同時に成立していること（CSSによる非表示の前提）
-    expect(categoryList?.classList.contains("hide-learned")).toBe(true);
+    // filter-learned クラスが付与され、learned なカテゴリが表示対象
+    expect(categoryList?.classList.contains("filter-learned")).toBe(true);
     expect(catItem?.classList.contains("learned")).toBe(true);
   });
 
-  it("学習済み非表示ON時、グループヘッダーのバッジに学習済み数だけ🏆が表示される", async () => {
+  it("未学習フィルター時、グループヘッダーのバッジに学習済み数だけ🏆が表示される", async () => {
     setupFetchMockWithParent();
     localStorage.setItem(
       "quizHistory",
@@ -1741,6 +1725,9 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
+
+    // 未学習フィルターを選択（学習済みが非表示になる）
+    document.getElementById("filterStatusUnlearned")?.click();
 
     // phonics-1 は "発音" グループに属するため、発音グループヘッダーのバッジに🏆が表示される
     const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
@@ -1748,7 +1735,7 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     expect(badge?.textContent).toBe("🏆");
   });
 
-  it("学習済み非表示OFFにするとグループヘッダーのバッジが消える", async () => {
+  it("すべて表示フィルターに戻すとグループヘッダーのバッジが消える", async () => {
     setupFetchMockWithParent();
     localStorage.setItem(
       "quizHistory",
@@ -1775,9 +1762,8 @@ describe("QuizApp — 学習済カテゴリ非表示トグル仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 非表示をOFFにする
-    const btn = document.getElementById("hideLearnedBtn") as HTMLElement;
-    btn?.click();
+    // すべて表示に切り替える（badge は hide-learned がOFFの時に表示されない）
+    document.getElementById("filterStatusAll")?.click();
 
     const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
     const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
@@ -2040,7 +2026,7 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
     expect(numberEls.length).toBe(0); // 第N問の要素が存在しないこと
   });
 
-  it("問題一覧の問題と正解が同じ行（question-list-row）に表示される", async () => {
+  it("問題一覧の正解はヒント内（question-list-hint）に表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2052,8 +2038,15 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
 
     rows.forEach((row) => {
       expect(row.querySelector(".question-list-text")).not.toBeNull();
-      expect(row.querySelector(".question-list-correct")).not.toBeNull();
+      // 正解は行ではなくヒント内に移動した
+      expect(row.querySelector(".question-list-correct")).toBeNull();
       expect(row.querySelector(".question-list-hint-btn")).not.toBeNull();
+    });
+
+    // 正解は hint 内に存在する
+    const hints = document.querySelectorAll(".question-list-hint");
+    hints.forEach((hint) => {
+      expect(hint.querySelector(".question-list-correct")).not.toBeNull();
     });
   });
 
@@ -2706,7 +2699,10 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
         <div class="subject-tabs" role="tablist"></div>
         <div class="start-content-layout" id="subjectContent">
           <div class="category-panel">
-            <button id="hideLearnedBtn" aria-pressed="false">✅ 学習済を非表示</button>
+            <button id="filterStatusAll" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
+            <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
+            <button id="filterStatusStudying" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
+            <button id="filterStatusLearned" class="category-status-filter-btn" type="button" aria-pressed="false">学習済</button>
             <div id="categoryList" class="category-list"></div>
           </div>
           <div class="quiz-panel">
@@ -3654,7 +3650,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     // フィルタが有効になると statsInfo には問題数が表示される（0問ではない）
     const statsInfo = document.getElementById("statsInfo");
-    expect(statsInfo?.textContent).not.toContain("全0問");
+    expect(statsInfo?.textContent).not.toContain("全：0問");
   });
 });
 
@@ -5108,5 +5104,70 @@ describe("QuizApp — 学習済みフィルター（含める/含めない）仕
     // クイズ画面に遷移していること
     const quizScreen = document.getElementById("quizScreen");
     expect(quizScreen?.classList.contains("hidden")).toBe(false);
+  });
+});
+
+describe("QuizApp — クイズ設定永続化仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("保存済みクイズ設定（問題数）が初期化時に DOM に反映される", async () => {
+    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 20, quizOrder: "random", includeMastered: false }));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const radio20 = document.querySelector<HTMLInputElement>('input[name="questionCount"][value="20"]');
+    const radio10 = document.querySelector<HTMLInputElement>('input[name="questionCount"][value="10"]');
+    expect(radio20?.checked).toBe(true);
+    expect(radio10?.checked).toBe(false);
+  });
+
+  it("保存済みクイズ設定（並び順）が初期化時に DOM に反映される", async () => {
+    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 10, quizOrder: "straight", includeMastered: false }));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const radioStraight = document.querySelector<HTMLInputElement>('input[name="quizOrder"][value="straight"]');
+    expect(radioStraight?.checked).toBe(true);
+  });
+
+  it("保存済みクイズ設定（学習済み含む）が初期化時に DOM に反映される", async () => {
+    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 10, quizOrder: "random", includeMastered: true }));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const includeRadio = document.querySelector<HTMLInputElement>('input[name="quizLearned"][value="include"]');
+    expect(includeRadio?.checked).toBe(true);
+  });
+
+  it("問題数ラジオを変更すると localStorage に設定が保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const radio5 = document.querySelector<HTMLInputElement>('input[name="questionCount"][value="5"]');
+    radio5!.checked = true;
+    radio5?.dispatchEvent(new Event("change", { bubbles: true }));
+
+    const saved = JSON.parse(localStorage.getItem("quizSettings") ?? "{}");
+    expect(saved.questionCount).toBe(5);
+  });
+
+  it("並び順ラジオを変更すると localStorage に設定が保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const radioStraight = document.querySelector<HTMLInputElement>('input[name="quizOrder"][value="straight"]');
+    radioStraight!.checked = true;
+    radioStraight?.dispatchEvent(new Event("change", { bubbles: true }));
+
+    const saved = JSON.parse(localStorage.getItem("quizSettings") ?? "{}");
+    expect(saved.quizOrder).toBe("straight");
   });
 });

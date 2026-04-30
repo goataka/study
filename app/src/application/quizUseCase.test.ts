@@ -125,6 +125,10 @@ class StubProgressRepository implements IProgressRepository {
   }
   loadShareUrl(): string { return ""; }
   saveShareUrl(_url: string): void {}
+  loadQuizSettings(): import("./ports").QuizSettings {
+    return { questionCount: 10, quizOrder: "random", includeMastered: false };
+  }
+  saveQuizSettings(_settings: import("./ports").QuizSettings): void {}
 }
 
 // ─── テスト ──────────────────────────────────────────────────────────────────
@@ -1345,5 +1349,66 @@ describe("QuizUseCase — getUniqueGradesForSubject / getCategoriesForGrade / ge
       const cats = uc.getCategoriesWithoutGrade("english");
       expect(Object.keys(cats)).toHaveLength(0);
     });
+  });
+});
+
+describe("QuizUseCase — getMasteredCountForCategory 仕様", () => {
+  it("カテゴリ内に問題がない場合は { mastered: 0, total: 0 } を返す", async () => {
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([makeQuestion("q1", "english", "phonics")]),
+      new StubProgressRepository()
+    );
+    await useCase.initialize();
+    expect(useCase.getMasteredCountForCategory("english", "linking")).toEqual({ mastered: 0, total: 0 });
+  });
+
+  it("未習得問題のみの場合は mastered: 0 を返す", async () => {
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([
+        makeQuestion("q1", "english", "phonics"),
+        makeQuestion("q2", "english", "phonics"),
+      ]),
+      new StubProgressRepository()
+    );
+    await useCase.initialize();
+    expect(useCase.getMasteredCountForCategory("english", "phonics")).toEqual({ mastered: 0, total: 2 });
+  });
+
+  it("部分的に習得済みの場合は習得済み数と総数を正しく返す", async () => {
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([
+        makeQuestion("q1", "english", "phonics"),
+        makeQuestion("q2", "english", "phonics"),
+        makeQuestion("q3", "english", "phonics"),
+      ]),
+      new StubProgressRepository([], [], {}, {}, ["q1"])
+    );
+    await useCase.initialize();
+    expect(useCase.getMasteredCountForCategory("english", "phonics")).toEqual({ mastered: 1, total: 3 });
+  });
+
+  it("全問習得済みの場合は mastered === total を返す", async () => {
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([
+        makeQuestion("q1", "english", "phonics"),
+        makeQuestion("q2", "english", "phonics"),
+      ]),
+      new StubProgressRepository([], [], {}, {}, ["q1", "q2"])
+    );
+    await useCase.initialize();
+    expect(useCase.getMasteredCountForCategory("english", "phonics")).toEqual({ mastered: 2, total: 2 });
+  });
+
+  it("別教科のカテゴリ同名問題を混同しない", async () => {
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository([
+        makeQuestion("q1", "english", "phonics"),
+        makeQuestion("q2", "math", "phonics"),
+      ]),
+      new StubProgressRepository([], [], {}, {}, ["q1", "q2"])
+    );
+    await useCase.initialize();
+    expect(useCase.getMasteredCountForCategory("english", "phonics")).toEqual({ mastered: 1, total: 1 });
+    expect(useCase.getMasteredCountForCategory("math", "phonics")).toEqual({ mastered: 1, total: 1 });
   });
 });
