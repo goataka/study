@@ -2039,7 +2039,6 @@ export class QuizApp {
         <style>
           :host { display: block; font-size: inherit; font-family: inherit; }
           header.site-header, footer.site-footer, nav { display: none !important; }
-          body { font-size: 1em !important; }
         </style>`;
 
       // body のコンテンツを取得（header.site-header・footer.site-footer・スクリプト類を除く）

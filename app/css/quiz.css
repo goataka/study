@@ -2188,11 +2188,11 @@ button:disabled {
     width: 100%;
 }
 
-body.font-size-medium .guide-frame .guide-shadow-host {
-    font-size: 1.2em;
-}
-body.font-size-large .guide-frame .guide-shadow-host {
-    font-size: 1.5em;
+.guide-no-content {
+    color: #586069;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 17px;
 }
 
 /* カテゴリ名エリア（名前 + 進捗バー） */
@@ -3118,6 +3118,14 @@ body.font-size-medium .today-activity-empty {
     font-size: 16px;
 }
 
+body.font-size-medium .guide-no-content {
+    font-size: 19px;
+}
+
+body.font-size-medium .guide-frame .guide-shadow-host {
+    font-size: 1.2em;
+}
+
 body.font-size-medium .header-today-date {
     font-size: 34px;
 }
@@ -3415,6 +3423,14 @@ body.font-size-large .history-score {
 
 body.font-size-large .today-activity-empty {
     font-size: 19px;
+}
+
+body.font-size-large .guide-no-content {
+    font-size: 22px;
+}
+
+body.font-size-large .guide-frame .guide-shadow-host {
+    font-size: 1.5em;
 }
 
 body.font-size-large .header-today-date {
