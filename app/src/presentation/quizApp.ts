@@ -3574,8 +3574,9 @@ export class QuizApp {
     // 単元名を表示する（単一カテゴリでの確認時はすべての問題が同じカテゴリ名を持つ）
     const resultUnitName = document.getElementById("resultUnitName");
     if (resultUnitName) {
-      const categoryName = this.filter.category !== "all" && results.length > 0
-        ? (results[0].question.categoryName ?? "")
+      const firstResult = results[0];
+      const categoryName = this.filter.category !== "all" && firstResult !== undefined
+        ? (firstResult.question.categoryName ?? "")
         : "";
       resultUnitName.textContent = categoryName;
       resultUnitName.classList.toggle("hidden", !categoryName);

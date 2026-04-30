@@ -186,6 +186,7 @@ function setupTabDom(): void {
       <button id="submitBtn" disabled>提出</button>
     </div>
     <div id="resultScreen" class="screen">
+      <div id="resultUnitName" class="result-unit-name hidden"></div>
       <div id="resultScore"></div>
       <div id="resultDetails"></div>
       <button id="retryAllBtn">もう一度</button>
@@ -1538,6 +1539,46 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
     expect(categoryList?.classList.contains("filter-unlearned")).toBe(false);
     expect(categoryList?.classList.contains("filter-studying")).toBe(false);
     expect(categoryList?.classList.contains("filter-learned")).toBe(false);
+    // hide-learned クラスも付与されていないこと（バグ修正の回帰防止）
+    expect(categoryList?.classList.contains("hide-learned")).toBe(false);
+  });
+
+  it("「すべて」フィルター選択時に hide-learned クラスが付与されず学習済みカテゴリが表示対象になる", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 5,
+          correctCount: 5,
+          entries: [],
+        },
+      ])
+    );
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 「すべて」フィルターを選択
+    document.getElementById("filterStatusAll")?.click();
+
+    const categoryList = document.getElementById("categoryList");
+    // hide-learned クラスが付与されないこと
+    expect(categoryList?.classList.contains("hide-learned")).toBe(false);
+
+    // 学習済みカテゴリが .learned クラスを持ち、DOM上に存在すること
+    const learnedItem = document.querySelector('.category-item[data-category="phonics-1"]');
+    expect(learnedItem?.classList.contains("learned")).toBe(true);
   });
 
   it("「学習済」ボタンをクリックするとcategoryListにfilter-learnedクラスが付与される", async () => {
@@ -2191,6 +2232,8 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
         <button id="submitBtn" disabled>提出</button>
       </div>
       <div id="resultScreen" class="screen">
+        <div id="resultUnitName" class="result-unit-name hidden"></div>
+        <div id="resultMessage" class="result-message"></div>
         <div id="scoreDisplay"></div>
         <div id="resultDetails"></div>
         <button id="retryAllBtn">もう一度</button>
@@ -2285,6 +2328,83 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
     const scoreCircle = document.querySelector(".score-circle");
     expect(scoreCircle?.classList.contains("perfect")).toBe(false);
     expect(document.querySelector(".score-perfect-icon")).toBeNull();
+  });
+});
+
+describe("QuizApp — 確認結果画面の単元名表示仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("単元を選択してクイズを完了すると確認結果に単元名が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // phonics-1 単元を選択
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // クイズを開始して全問正解
+    document.getElementById("startRandomBtn")?.click();
+    for (let i = 0; i < 5; i++) {
+      const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
+      const correctLabel = Array.from(labels).find(
+        (l) => l.querySelector(".choice-text")?.textContent === "ア"
+      );
+      correctLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
+
+      const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
+      const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
+      if (!submitBtn.classList.contains("hidden") && !submitBtn.disabled) {
+        submitBtn.click();
+        break;
+      } else if (!nextBtn.classList.contains("hidden") && !nextBtn.disabled) {
+        nextBtn.click();
+      }
+    }
+
+    const resultUnitName = document.getElementById("resultUnitName");
+    expect(resultUnitName?.textContent).toBe("フォニックス（1文字）");
+    expect(resultUnitName?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("カテゴリが「すべて」の状態でクイズを完了すると resultUnitName は hidden のまま", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    // 単元を選択せずそのままスタート（filter.category は "all"）
+    document.getElementById("startRandomBtn")?.click();
+    for (let i = 0; i < 5; i++) {
+      const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
+      const correctLabel = Array.from(labels).find(
+        (l) => l.querySelector(".choice-text")?.textContent === "ア"
+      );
+      correctLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
+
+      const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
+      const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
+      if (!submitBtn.classList.contains("hidden") && !submitBtn.disabled) {
+        submitBtn.click();
+        break;
+      } else if (!nextBtn.classList.contains("hidden") && !nextBtn.disabled) {
+        nextBtn.click();
+      }
+    }
+
+    const resultUnitName = document.getElementById("resultUnitName");
+    expect(resultUnitName?.classList.contains("hidden")).toBe(true);
   });
 });
 
