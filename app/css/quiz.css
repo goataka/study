@@ -3461,6 +3461,7 @@ body.font-size-medium .guide-frame .guide-content {
     font-size: 1.2em;
 }
 
+/* 中フォントサイズ時の見出し: 基本サイズ（h1=1.8em, h2=1.4em, h3=1.15em）× 1.2 */
 body.font-size-medium .guide-frame .guide-content h1 { font-size: 2.16em; }
 body.font-size-medium .guide-frame .guide-content h2 { font-size: 1.68em; }
 body.font-size-medium .guide-frame .guide-content h3 { font-size: 1.38em; }
@@ -3772,6 +3773,7 @@ body.font-size-large .guide-frame .guide-content {
     font-size: 1.5em;
 }
 
+/* 大フォントサイズ時の見出し: 基本サイズ（h1=1.8em, h2=1.4em, h3=1.15em）× 1.5 */
 body.font-size-large .guide-frame .guide-content h1 { font-size: 2.7em; }
 body.font-size-large .guide-frame .guide-content h2 { font-size: 2.1em; }
 body.font-size-large .guide-frame .guide-content h3 { font-size: 1.725em; }

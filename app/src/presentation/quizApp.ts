@@ -1377,7 +1377,7 @@ export class QuizApp {
       // トップカテゴリと親カテゴリが同名の場合は重複を避けてトップカテゴリを省略する
       const pathParts: string[] = [data.subjectName];
       const shouldIncludeTopCategory = topCat !== undefined && topCat.name !== parentCat?.name;
-      if (shouldIncludeTopCategory) pathParts.push(topCat!.name);
+      if (shouldIncludeTopCategory && topCat) pathParts.push(topCat.name);
       if (parentCat) pathParts.push(parentCat.name);
       pathParts.push(data.categoryName);
 
@@ -3410,7 +3410,9 @@ export class QuizApp {
   }
 
   /**
-   * 文字列がラテン文字（ASCII英数字・記号）のみで構成されているかどうかを判定する。
+   * 文字列がラテン文字（ASCII 0x20–0x7E の印字可能文字）のみで構成されているかどうかを判定する。
+   * @param str 判定対象の文字列
+   * @returns ラテン文字（ASCII 0x20–0x7E）のみで構成されている場合は true
    */
   private isLatinOnly(str: string): boolean {
     return /^[\x20-\x7E]+$/.test(str);
