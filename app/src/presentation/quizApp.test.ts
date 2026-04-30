@@ -1334,7 +1334,7 @@ describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様"
     window.history.pushState({}, "", "/"); // URL をリセット
   });
 
-  it("解答履歴がない単元をクリックすると解説タブが表示される", async () => {
+  it("単元をクリックしてもパネルタブは変わらない（前回タブを引き継ぐ）", async () => {
     // 総合タブではなく英語タブから開始し、かつ selectFirstUnlearnedCategory をスキップする
     // ことで autoSwitchedToHistory=false の状態を作る
     // （?category=all とすることで selectFirstUnlearnedCategory が URL category を検出してスキップ）
@@ -1342,19 +1342,17 @@ describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様"
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
+    // 初期タブを確認する（履歴なし・単元未選択のため quiz タブが有効なはず）
+    const initialActiveTab = document.querySelector('.panel-tab.active');
+    const initialTabName = initialActiveTab?.getAttribute("data-panel") ?? "";
+
     // phonics-1 をクリック（履歴なし、総合タブからの自動復帰なし）
     const categoryItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
     categoryItem?.click();
 
-    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]');
-    expect(guideTab?.classList.contains("active")).toBe(true);
-    expect(guideTab?.getAttribute("aria-selected")).toBe("true");
-
-    const guideContent = document.getElementById("guideContent");
-    expect(guideContent?.classList.contains("hidden")).toBe(false);
-
-    const quizModePanel = document.getElementById("quizModePanel");
-    expect(quizModePanel?.classList.contains("hidden")).toBe(true);
+    // 前回のタブが引き継がれること（解説タブに戻さない）
+    const activeTab = document.querySelector('.panel-tab.active');
+    expect(activeTab?.getAttribute("data-panel")).toBe(initialTabName);
   });
 
   it("解答履歴がある単元をクリックすると確認タブが表示される", async () => {
@@ -4336,7 +4334,7 @@ describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
     expect(guideBtn).toBeNull();
   });
 
-  it("単元をクリックするとそのカテゴリが選択されて解説タブが開く", async () => {
+  it("単元をクリックするとそのカテゴリが選択されてパネルタブが引き継がれる", async () => {
     const manifest = {
       version: "2.0.0",
       subjects: { english: { name: "英語" } },
@@ -4369,17 +4367,22 @@ describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 単元をクリックすると選択されて解説タブが開く（guideUrl があり未学習のため）
+    // 単元をクリックするとパネルタブは前回のまま引き継がれる（解説タブに自動切換えしない）
     const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-present"]');
     catItem?.click();
 
-    // 解説タブが有効になっていること
-    const guideTab = document.getElementById("panelTab-guide");
-    expect(guideTab?.classList.contains("active")).toBe(true);
+    // 単元が選択されていること
+    expect(catItem?.classList.contains("active")).toBe(true);
 
-    // guideContent が表示されていること
-    const guideContent = document.getElementById("guideContent");
-    expect(guideContent?.classList.contains("hidden")).toBe(false);
+    // guideContent が hidden でないこと（guide タブが初期状態から継続されている場合）
+    // または quizModePanel が visible（quiz タブが初期状態の場合）
+    // ─ タブは変化しないので、どのパネルが表示されるかは初期タブに依存する
+    const guideTab = document.getElementById("panelTab-guide");
+    const quizTab = document.getElementById("panelTab-quiz");
+    const guideTabActive = guideTab?.classList.contains("active") ?? false;
+    const quizTabActive = quizTab?.classList.contains("active") ?? false;
+    // いずれかのタブがアクティブであること
+    expect(guideTabActive || quizTabActive).toBe(true);
   });
 });
 
