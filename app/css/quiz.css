@@ -737,6 +737,10 @@ header h1 {
     gap: 0;
 }
 
+.subject-overview-wrapper + .subject-overview-wrapper {
+    margin-top: 10px;
+}
+
 /* 教科名行（枠の外） */
 .subject-overview-subject-row {
     display: flex;
@@ -2351,12 +2355,16 @@ button:disabled {
     word-wrap: break-word;
     padding: 0 4px;
     box-sizing: border-box;
+    text-align: left;
 }
 
 /* Jekyll/kramdown が出力する不要要素を非表示 */
 .guide-content header.site-header,
 .guide-content footer.site-footer,
-.guide-content nav {
+.guide-content footer,
+.guide-content nav,
+.guide-content .site-nav,
+.guide-content .post-header {
     display: none !important;
 }
 
@@ -2372,6 +2380,7 @@ button:disabled {
     font-weight: 600;
     line-height: 1.25;
     color: #24292e;
+    text-align: left;
 }
 
 .guide-content h1 {
@@ -3452,6 +3461,11 @@ body.font-size-medium .guide-frame .guide-content {
     font-size: 1.2em;
 }
 
+/* 中フォントサイズ時の見出し: 基本サイズ（h1=1.8em, h2=1.4em, h3=1.15em）× 1.2 */
+body.font-size-medium .guide-frame .guide-content h1 { font-size: 2.16em; }
+body.font-size-medium .guide-frame .guide-content h2 { font-size: 1.68em; }
+body.font-size-medium .guide-frame .guide-content h3 { font-size: 1.38em; }
+
 body.font-size-medium .header-today-date {
     font-size: 34px;
 }
@@ -3758,6 +3772,11 @@ body.font-size-large .guide-no-content {
 body.font-size-large .guide-frame .guide-content {
     font-size: 1.5em;
 }
+
+/* 大フォントサイズ時の見出し: 基本サイズ（h1=1.8em, h2=1.4em, h3=1.15em）× 1.5 */
+body.font-size-large .guide-frame .guide-content h1 { font-size: 2.7em; }
+body.font-size-large .guide-frame .guide-content h2 { font-size: 2.1em; }
+body.font-size-large .guide-frame .guide-content h3 { font-size: 1.725em; }
 
 
 body.font-size-large .header-today-date {

@@ -3111,6 +3111,18 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     expect(kanjiInputArea?.classList.contains("hidden")).toBe(false);
   });
 
+  it("クイズ開始直後（ストローク前）は候補ボタンが表示されない", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("や  き");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    // ストロークを描かずに確認
+    const candidateBtns = document.querySelectorAll(".kanji-candidate-btn");
+    expect(candidateBtns.length).toBe(0);
+  });
+
   it("テキスト入力問題ではKanjiCanvasが初期化される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -3339,6 +3351,40 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     const candidateBtns = document.querySelectorAll<HTMLButtonElement>(".kanji-candidate-btn");
     const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
     expect(candidateTexts).toEqual(["や", "き"]);
+  });
+
+  it("英語問題（正解がラテン文字）では漢字・ひらがなの候補が除外される", async () => {
+    const mockEnglishWritingFile = {
+      subject: "english",
+      subjectName: "英語",
+      category: "english-writing",
+      categoryName: "英語書き取り",
+      questionType: "text-input",
+      questions: [
+        { id: "ew1", question: "「play」の過去形を書いてください", choices: ["played"], correct: 0, explanation: "played" },
+      ],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockTextInputManifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockEnglishWritingFile) } as Response);
+    });
+    kanjiCanvasMock.recognize.mockReturnValue("p  山  q  や  r");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const candidateBtns = document.querySelectorAll<HTMLButtonElement>(".kanji-candidate-btn");
+    const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
+    // 英語問題ではラテン文字のみ表示（漢字・ひらがなは除外）
+    expect(candidateTexts).toEqual(["p", "q", "r"]);
   });
 
   it("漢字書き取り問題（正解が漢字）では認識候補がフィルタされず漢字も表示される", async () => {
@@ -3744,6 +3790,40 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     const year = String(today.getFullYear());
     expect(summaryEl?.textContent).toContain(year);
     expect(summaryEl?.textContent).not.toContain("学習サマリ");
+  });
+
+  it("シェアテキストに教科・トップカテゴリ・親カテゴリ・単元名がパス形式で含まれる", async () => {
+    setupFetchMockWith3Levels();
+
+    const today = new Date().toISOString();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: today,
+          subject: "english",
+          subjectName: "英語",
+          category: "tenses-past",
+          categoryName: "過去形",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 7,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const summaryEl = document.getElementById("shareSummaryText");
+    // 教科 > トップカテゴリ > 親カテゴリ > 単元名 の形式が含まれること
+    expect(summaryEl?.textContent).toContain("英語");
+    expect(summaryEl?.textContent).toContain("文法");
+    expect(summaryEl?.textContent).toContain("動詞");
+    expect(summaryEl?.textContent).toContain("過去形");
+    expect(summaryEl?.textContent).toContain("7/10問正解");
   });
 
   it("共有URLを保存すると openShareUrlBtn が表示される", async () => {

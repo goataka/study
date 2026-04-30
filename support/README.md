@@ -13,7 +13,7 @@ permalink: /support/
 | ガイド | 内容 |
 |--------|------|
 | [🚀 スタートアップガイド](startup-guide) | 使い始め方、基本的な操作 |
-| [🖥️ 操作ガイド](operation-guide) | 画面構成と各機能の説明 |
+| [🖥️ 機能リファレンス](operation-guide) | 画面構成と各機能の説明 |
 | [🔧 技術リファレンス](technical-reference) | 問題データ（JSON）の仕様 |
 | [❓ トラブルシューティング](troubleshooting) | よくある質問（FAQ） |
 
@@ -21,8 +21,8 @@ permalink: /support/
 
 全教科・単元の一覧は[コンテンツ一覧](content-list)を参照してください。
 
-| 教科 | 解説・一覧 | 確認 |
+| 教科 | 解説・一覧 | 問題 |
 |------|-----------|------|
-| 英語 | [解説・一覧](operation-guide#英語) | [確認](../?subject=english) |
-| 数学 | [解説・一覧](operation-guide#数学) | [確認](../?subject=math) |
-| 国語 | [解説・一覧](operation-guide#国語) | [確認](../?subject=japanese) |
+| 英語 | [解説・一覧](content-list#英語) | [問題](../?subject=english) |
+| 数学 | [解説・一覧](content-list#数学) | [問題](../?subject=math) |
+| 国語 | [解説・一覧](content-list#国語) | [問題](../?subject=japanese) |
