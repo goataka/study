@@ -2192,13 +2192,9 @@ export class QuizApp {
       bodyClone.querySelectorAll(
         "header.site-header, footer.site-footer, footer, header.post-header, style, .site-nav, .site-title, a.site-title"
       ).forEach((el) => el.remove());
-      // 「This site is open source. Improve this page.」等の GitHub Pages 固有テキストを除去
-      bodyClone.querySelectorAll("a[href*='github.com']").forEach((el) => {
-        const text = el.textContent ?? "";
-        if (text.includes("Improve this page") || text.includes("open source")) {
-          el.closest("p, li, div")?.remove() ?? el.remove();
-        }
-      });
+      // 「This site is open source. Improve this page.」等の GitHub Pages 固有要素を除去
+      // Minima テーマの edit-link クラスや、特定の GitHub リポジトリリンクを含む要素を除去する
+      bodyClone.querySelectorAll(".edit-link, .gh-edit-link, [class*='improve'], [class*='edit-page']").forEach((el) => el.remove());
 
       // guide-content コンテナを作成（または既存を再利用）して直接挿入する
       let guideContent = container.querySelector<HTMLElement>(".guide-content");

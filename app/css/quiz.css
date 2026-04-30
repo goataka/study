@@ -2436,7 +2436,6 @@ button:disabled {
 #startScreen .guide-content h5,
 #startScreen .guide-content h6 {
     text-align: left;
-    font-size: revert;
 }
 
 #startScreen .guide-content h1 { font-size: 1.8em; margin-bottom: 0.5em; }
