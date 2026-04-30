@@ -6,8 +6,6 @@ permalink: /support/
 
 [学習アプリ](../)のサポートページです。
 
-![学習アプリ スクリーンショット](../images/quiz-app-screenshot.png)
-
 ## 📖 ガイド
 
 | ガイド | 内容 |

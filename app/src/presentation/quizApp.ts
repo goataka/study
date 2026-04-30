@@ -501,10 +501,10 @@ export class QuizApp {
         },
       },
       { title: "履歴", content: truncateArray(data.history) },
-      { title: "wrongIds", content: truncateArray(data.wrongIds) },
-      { title: "masteredIds", content: truncateArray(data.masteredIds) },
-      { title: "correctStreaks", content: data.correctStreaks },
-      { title: "questionStats", content: data.questionStats },
+      { title: "不正解問題", content: truncateArray(data.wrongIds) },
+      { title: "学習済み問題", content: truncateArray(data.masteredIds) },
+      { title: "連続正解", content: data.correctStreaks },
+      { title: "問題統計", content: data.questionStats },
     ];
 
     // タブバー
@@ -1637,6 +1637,8 @@ export class QuizApp {
       this.selectedTopCategoryId = null;
       this.updateCategoryListActive();
       const categoryRecords = this.useCase.getHistory();
+      // 単元を切り替えても前回のパネルタブを引き継ぐ（解説タブへの自動切換えを抑制）
+      this.isPanelTabUserSelected = true;
       this.autoSelectPanelTab(categoryRecords);
       this.updateStartScreen(categoryRecords);
     };
@@ -1899,6 +1901,24 @@ export class QuizApp {
         }
         body.appendChild(descRow);
       }
+
+      // 行3: ステータスバー（全幅）
+      const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, categoryId);
+      const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
+      const progressRow = document.createElement("div");
+      progressRow.className = "selected-unit-progress-row";
+      const progressBar = document.createElement("div");
+      progressBar.className = "selected-unit-progress-bar";
+      const progressFill = document.createElement("div");
+      progressFill.className = "selected-unit-progress-fill";
+      progressFill.style.width = `${pct}%`;
+      progressBar.appendChild(progressFill);
+      const progressLabel = document.createElement("span");
+      progressLabel.className = "selected-unit-progress-label";
+      progressLabel.textContent = `${mastered}/${total}`;
+      progressRow.appendChild(progressBar);
+      progressRow.appendChild(progressLabel);
+      body.appendChild(progressRow);
 
       container.appendChild(body);
 
@@ -2187,6 +2207,12 @@ export class QuizApp {
       // 「This site is open source. Improve this page.」等の GitHub Pages 固有要素を除去
       // Minima テーマの edit-link クラスや、特定の GitHub リポジトリリンクを含む要素を除去する
       bodyClone.querySelectorAll(".edit-link, .gh-edit-link, [class*='improve'], [class*='edit-page']").forEach((el) => el.remove());
+      // テキストに「This site is open source」を含む要素を除去する
+      bodyClone.querySelectorAll("p").forEach((p) => {
+        if (p.textContent?.includes("This site is open source")) {
+          p.remove();
+        }
+      });
 
       // guide-content コンテナを作成（または既存を再利用）して直接挿入する
       let guideContent = container.querySelector<HTMLElement>(".guide-content");
@@ -2807,13 +2833,16 @@ export class QuizApp {
       }
 
       // 学習状態の絵文字を更新（⬜未学習 / 🔄学習中 / 🏆学習済）
-      const isLearned = studiedKeys.has(key) && stat.wrong === 0;
+      // isAllMastered: クイズ履歴がなくても全問題を手動で学習済みにした場合（masteredSet 経由）
+      // isLearned: クイズ履歴があって不正解なし、または全問題が学習済みのいずれか
+      const isAllMastered = stat.total > 0 && stat.mastered === stat.total;
+      const isLearned = (studiedKeys.has(key) && stat.wrong === 0) || isAllMastered;
       const isStudying = studiedKeys.has(key) && stat.wrong > 0;
       el.classList.toggle("learned", isLearned);
       el.classList.toggle("studying", isStudying);
       const statusEl = el.querySelector(".category-status");
       if (statusEl) {
-        if (!studiedKeys.has(key)) {
+        if (!studiedKeys.has(key) && !isAllMastered) {
           statusEl.textContent = "⬜";
         } else if (stat.wrong > 0) {
           statusEl.textContent = "🔄";
@@ -2994,7 +3023,11 @@ export class QuizApp {
     if (effectiveFilter.category === "all") return false;
     const studiedKeys = this.useCase.getStudiedCategoryKeys();
     const wrongCount = this.useCase.getWrongCount(effectiveFilter);
-    return studiedKeys.has(`${effectiveFilter.subject}::${effectiveFilter.category}`) && wrongCount === 0;
+    // studiedKeys 経由（クイズ実施後に不正解なし）、または全問題が masteredIds にある場合
+    const key = `${effectiveFilter.subject}::${effectiveFilter.category}`;
+    if (studiedKeys.has(key) && wrongCount === 0) return true;
+    const { mastered, total } = this.useCase.getMasteredCountForCategory(effectiveFilter.subject, effectiveFilter.category);
+    return total > 0 && mastered === total;
   }
 
   /**
