@@ -1415,7 +1415,7 @@ button:disabled {
 /* クイズ画面 */
 .quiz-landscape-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     gap: 20px;
     align-items: stretch;
     flex: 1;
@@ -2020,11 +2020,8 @@ button:disabled {
 
     /* メモエリアの高さをスマホ向けに制限 */
     .quiz-notes-col {
-        max-height: 300px;
-    }
-
-    .notes-canvas {
-        min-height: 150px;
+        max-height: 600px;
+        overflow-y: auto;
     }
 
     /* スマホでは解説・例文を単元タイトルの下に折り返し */
@@ -2499,7 +2496,7 @@ button:disabled {
     display: block;
     width: 100%;
     flex: 1;
-    min-height: 300px;
+    min-height: 600px;
     cursor: crosshair;
     touch-action: none; /* タッチイベントのデフォルト動作を無効化 */
     background: #f6f8fa;
@@ -2518,6 +2515,12 @@ button:disabled {
 }
 
 /* モバイル対応 */
+@media (max-width: 767px) {
+    .notes-canvas {
+        min-height: 300px;
+    }
+}
+
 @media (max-width: 600px) {
     .notes-header {
         flex-direction: column;
