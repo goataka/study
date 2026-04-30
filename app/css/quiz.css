@@ -2021,10 +2021,7 @@ button:disabled {
     /* メモエリアの高さをスマホ向けに制限 */
     .quiz-notes-col {
         max-height: 600px;
-    }
-
-    .notes-canvas {
-        min-height: 300px;
+        overflow-y: auto;
     }
 
     /* スマホでは解説・例文を単元タイトルの下に折り返し */
@@ -2518,6 +2515,12 @@ button:disabled {
 }
 
 /* モバイル対応 */
+@media (max-width: 767px) {
+    .notes-canvas {
+        min-height: 300px;
+    }
+}
+
 @media (max-width: 600px) {
     .notes-header {
         flex-direction: column;
