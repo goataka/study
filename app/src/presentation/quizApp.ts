@@ -461,7 +461,12 @@ export class QuizApp {
 
       const dataEl = document.createElement("pre");
       dataEl.className = "admin-data";
-      dataEl.textContent = JSON.stringify(content, null, 2);
+      const jsonStr = JSON.stringify(content, null, 2);
+      // 大量データの場合は先頭部分のみ表示してパフォーマンス問題を防ぐ
+      const MAX_CHARS = 5000;
+      dataEl.textContent = jsonStr.length > MAX_CHARS
+        ? jsonStr.slice(0, MAX_CHARS) + `\n... (${jsonStr.length - MAX_CHARS}文字省略)`
+        : jsonStr;
       section.appendChild(dataEl);
 
       container.appendChild(section);
@@ -2786,7 +2791,7 @@ export class QuizApp {
         this.useCase.markCategoryAsLearned(effectiveFilter);
       }
       this.updateStartScreen();
-    });
+    }).catch(console.error);
   }
 
   /**
