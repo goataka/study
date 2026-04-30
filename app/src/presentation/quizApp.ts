@@ -1814,8 +1814,8 @@ export class QuizApp {
    * 閉じるボタン（×）で選択を解除できるようにする。
    *
    * レイアウト（単元選択時）:
-   *   行1: [タイトル（左）] [カテゴリ・学年（右）]
-   *   行2: [説明（左）] [例文（右）]
+   *   行1: [タイトル（左）] [説明（右）]
+   *   行2: [カテゴリ・学年（左）] [例文（右）]
    *   行3: [ステータスバー（全幅）]
    */
   private updateSelectedUnitInfo(): void {
@@ -1875,10 +1875,6 @@ export class QuizApp {
 
         const descLeft = document.createElement("div");
         descLeft.className = "selected-unit-info-desc-left";
-        descLeft.style.display = "flex";
-        descLeft.style.alignItems = "center";
-        descLeft.style.gap = "6px";
-        descLeft.style.flexWrap = "wrap";
         if (catParts.length > 0) {
           const catLabel = document.createElement("span");
           catLabel.className = "selected-unit-info-category";
@@ -1984,10 +1980,6 @@ export class QuizApp {
 
         const descLeft = document.createElement("div");
         descLeft.className = "selected-unit-info-desc-left";
-        descLeft.style.display = "flex";
-        descLeft.style.alignItems = "center";
-        descLeft.style.gap = "6px";
-        descLeft.style.flexWrap = "wrap";
         if (catParts.length > 0) {
           const catLabel = document.createElement("span");
           catLabel.className = "selected-unit-info-category";

@@ -425,3 +425,14 @@ When("I select {string} quiz order", async ({ page }, order: string) => {
   // シャドウDOM内の重複を避けるため #quizModePanel にスコープを絞る
   await page.locator(`#quizModePanel input[name="quizOrder"][value="${order}"]`).check();
 });
+
+When("I apply the {string} status filter", async ({ page }, filter: string) => {
+  const btnId = `filterStatus${filter.charAt(0).toUpperCase()}${filter.slice(1)}`;
+  await page.locator(`#${btnId}`).click();
+});
+
+Then("learned category items should be visible in the category list", async ({ page }) => {
+  // 学習済み（.learned クラス付き）のカテゴリアイテムが少なくとも1つ表示されていること
+  const learnedItems = page.locator(".category-item.learned");
+  await expect(learnedItems.first()).toBeVisible();
+});

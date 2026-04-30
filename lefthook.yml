@@ -5,6 +5,8 @@ pre-commit:
     build-and-test:
       run: npm run build && npm run test && npm run test:e2e
       root: app/
+    markdownlint:
+      run: npx --yes markdownlint-cli --fix "**/*.md" --ignore node_modules --ignore app/node_modules 2>/dev/null; npx --yes markdownlint-cli "**/*.md" --ignore node_modules --ignore app/node_modules
 
 # pre-push は core.hooksPath が上書きされた環境（Copilot サンドボックス等）で
 # pre-commit フックが実行されない場合の安全網として機能する。
