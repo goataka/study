@@ -1697,6 +1697,28 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
     expect(catItem?.classList.contains("learned")).toBe(true);
   });
 
+  it("quizHistoryが空でもmasteredIdsに全問題が含まれる場合、learnedクラスが付与される", async () => {
+    // クイズ未実施（履歴なし）でも、全問題を手動で学習済みにした場合に learned 扱いになること
+    localStorage.setItem("quizHistory", JSON.stringify([]));
+    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    // mockQuestionFile は 5問（q1〜q5）
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
+
+    // 履歴なし・不正解なしでも masteredIds が全問分あれば learned クラスが付与される
+    expect(catItem?.classList.contains("learned")).toBe(true);
+    // 絵文字も🏆になること
+    const statusEl = catItem?.querySelector(".category-status");
+    expect(statusEl?.textContent).toBe("🏆");
+  });
+
   it("未学習フィルター時、グループヘッダーのバッジに学習済み数だけ🏆が表示される", async () => {
     setupFetchMockWithParent();
     localStorage.setItem(

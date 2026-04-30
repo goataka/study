@@ -3023,7 +3023,11 @@ export class QuizApp {
     if (effectiveFilter.category === "all") return false;
     const studiedKeys = this.useCase.getStudiedCategoryKeys();
     const wrongCount = this.useCase.getWrongCount(effectiveFilter);
-    return studiedKeys.has(`${effectiveFilter.subject}::${effectiveFilter.category}`) && wrongCount === 0;
+    // studiedKeys 経由（クイズ実施後に不正解なし）、または全問題が masteredIds にある場合
+    const key = `${effectiveFilter.subject}::${effectiveFilter.category}`;
+    if (studiedKeys.has(key) && wrongCount === 0) return true;
+    const { mastered, total } = this.useCase.getMasteredCountForCategory(effectiveFilter.subject, effectiveFilter.category);
+    return total > 0 && mastered === total;
   }
 
   /**

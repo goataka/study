@@ -324,6 +324,18 @@ Then("the guide panel should be active", async ({ page }) => {
   await expect(page.locator("#panelTab-guide").first()).toHaveClass(/active/);
 });
 
+Then("a panel tab should be active", async ({ page }) => {
+  // いずれかのパネルタブがアクティブになっていること（タブ引き継ぎ仕様）
+  const activeTab = page.locator(".panel-tab.active").first();
+  await expect(activeTab).toBeVisible();
+});
+
+Then("the selected unit info should be visible", async ({ page }) => {
+  // 単元詳細情報エリアが表示されていること
+  const unitInfo = page.locator("#selectedUnitInfo").first();
+  await expect(unitInfo).not.toHaveClass(/hidden/);
+});
+
 Then("the grade filter buttons should be visible", async ({ page }) => {
   // 学年フィルターボタンが表示されていること
   await expect(page.locator(".grade-filter-btn").first()).toBeVisible();
