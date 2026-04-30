@@ -1374,8 +1374,10 @@ export class QuizApp {
       const parentCat = this.useCase.getParentCategoryForUnit(data.subject, category);
 
       // パス: 教科 > トップカテゴリ > 親カテゴリ > 単元名（存在する階層のみ表示）
+      // トップカテゴリと親カテゴリが同名の場合は重複を避けてトップカテゴリを省略する
       const pathParts: string[] = [data.subjectName];
-      if (topCat && topCat.name !== parentCat?.name) pathParts.push(topCat.name);
+      const shouldIncludeTopCategory = topCat !== undefined && topCat.name !== parentCat?.name;
+      if (shouldIncludeTopCategory) pathParts.push(topCat!.name);
       if (parentCat) pathParts.push(parentCat.name);
       pathParts.push(data.categoryName);
 

@@ -3792,6 +3792,40 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(summaryEl?.textContent).not.toContain("学習サマリ");
   });
 
+  it("シェアテキストに教科・トップカテゴリ・親カテゴリ・単元名がパス形式で含まれる", async () => {
+    setupFetchMockWith3Levels();
+
+    const today = new Date().toISOString();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: today,
+          subject: "english",
+          subjectName: "英語",
+          category: "tenses-past",
+          categoryName: "過去形",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 7,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const summaryEl = document.getElementById("shareSummaryText");
+    // 教科 > トップカテゴリ > 親カテゴリ > 単元名 の形式が含まれること
+    expect(summaryEl?.textContent).toContain("英語");
+    expect(summaryEl?.textContent).toContain("文法");
+    expect(summaryEl?.textContent).toContain("動詞");
+    expect(summaryEl?.textContent).toContain("過去形");
+    expect(summaryEl?.textContent).toContain("7/10問正解");
+  });
+
   it("共有URLを保存すると openShareUrlBtn が表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
