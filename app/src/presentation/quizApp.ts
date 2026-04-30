@@ -2016,10 +2016,10 @@ export class QuizApp {
   }
 
   /**
-   * 指定した div 要素に解説 HTML を fetch してシャドウ DOM で埋め込む。
-   * iframe の代わりに使用することで、親ページのフォントサイズが自然に継承される。
+   * 指定した div 要素に解説 HTML を fetch して直接挿入する。
+   * Shadow DOM や iframe を使わず、親ページのフォントサイズが自然に継承される。
    *
-   * セキュリティ: script 要素・on* 属性を除去したうえでシャドウ DOM に挿入する。
+   * セキュリティ: script 要素・on* 属性・外部リソースを除去したうえで挿入する。
    * レースコンディション対策: 最後に開始したリクエストのみ反映し、古いリクエストを破棄する。
    *
    * @param container - 解説コンテンツを挿入するコンテナ要素
@@ -2074,48 +2074,21 @@ export class QuizApp {
           .forEach((attr) => el.removeAttribute(attr.name));
       });
 
-      // シャドウDOM外からのID選択（Playwright等）と主ページIDとの衝突を防ぐため、
-      // 注入コンテンツ内のすべての id 属性を除去する
+      // 注入コンテンツ内のすべての id 属性を除去して主ページIDとの衝突を防ぐ
       doc.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
-
-      // シャドウホストを作成（または既存を再利用）
-      let shadowHost = container.querySelector<HTMLElement>(".guide-shadow-host");
-      if (!shadowHost) {
-        shadowHost = document.createElement("div");
-        shadowHost.className = "guide-shadow-host";
-        container.appendChild(shadowHost);
-      }
-
-      // シャドウ DOM を取得またはアタッチする
-      // shadowRoot は既にアタッチ済みの場合は再アタッチできないため、既存のものを使用する
-      const shadow: ShadowRoot = shadowHost.shadowRoot ?? shadowHost.attachShadow({ mode: "open" });
-
-      // head 内のスタイル要素を収集してシャドウに追加する
-      const styleHtml = Array.from(doc.head.querySelectorAll("style, link[rel='stylesheet']"))
-        .map((el) => el.outerHTML)
-        .join("\n");
-
-      // サイトヘッダー・フッターを非表示にし、フォントサイズを親から継承するためのスタイル。
-      // このスタイルは解説コンテンツのCSS（styleHtml）より後に置くことで、
-      // 解説コンテンツ側の固定 font-size 指定を上書きできる。
-      const embeddedStyle = `
-        <style>
-          :host { display: block; font-size: inherit; font-family: inherit; }
-          header.site-header, footer.site-footer, nav { display: none !important; }
-          body { font-size: inherit; }
-        </style>`;
 
       // body のコンテンツを取得（header.site-header・footer.site-footer・スクリプト類を除く）
       const bodyClone = doc.body.cloneNode(true) as HTMLBodyElement;
       bodyClone.querySelectorAll("header.site-header, footer.site-footer, script").forEach((el) => el.remove());
 
-      // インライン style 属性の font-size を除去して、ホスト要素からの継承が有効になるようにする
-      bodyClone.querySelectorAll<HTMLElement>("[style]").forEach((el) => {
-        el.style.removeProperty("font-size");
-      });
-
-      // embeddedStyle を styleHtml より後に置くことで解説コンテンツの固定 font-size を上書きする
-      shadow.innerHTML = styleHtml + embeddedStyle + bodyClone.innerHTML;
+      // guide-content コンテナを作成（または既存を再利用）して直接挿入する
+      let guideContent = container.querySelector<HTMLElement>(".guide-content");
+      if (!guideContent) {
+        guideContent = document.createElement("div");
+        guideContent.className = "guide-content";
+        container.appendChild(guideContent);
+      }
+      guideContent.innerHTML = bodyClone.innerHTML;
 
       container.dataset.loadedUrl = guideUrl;
       container.classList.remove("hidden");
