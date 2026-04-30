@@ -123,7 +123,9 @@ Feature: 学習アプリ
 
   Scenario: 折りたたみ状態で「学習済み」フィルターを適用すると学習済みアイテムが表示される
     When I click the "英語" tab
-    And I click the first category item
+    And I select the category item "tenses-regular-present"
+    And I click the quiz panel tab
+    Then the quiz mode panel should be visible
     When I click the "✅ 学習済みにする" button
     And I confirm the dialog
     And I click the "verb" category group header
