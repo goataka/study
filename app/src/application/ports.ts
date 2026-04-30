@@ -38,6 +38,13 @@ export interface QuizRecord {
   entries: QuizRecordEntry[];
 }
 
+/** クイズ設定（確認タブで選択した問題数・並び順・学習済み含む/含まない） */
+export interface QuizSettings {
+  questionCount: number;
+  quizOrder: "random" | "straight";
+  includeMastered: boolean;
+}
+
 /** 利用者データのエクスポート形式 */
 export interface UserDataExport {
   exportedAt: string;
@@ -71,5 +78,7 @@ export interface IProgressRepository {
   saveFontSizeLevel(level: "small" | "medium" | "large"): void;
   loadShareUrl(): string;
   saveShareUrl(url: string): void;
+  loadQuizSettings(): QuizSettings;
+  saveQuizSettings(settings: QuizSettings): void;
   exportAllData(): UserDataExport;
 }

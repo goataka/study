@@ -3,7 +3,7 @@
  * IProgressRepository の実装。
  */
 
-import type { IProgressRepository, QuizRecord, UserDataExport } from "../application/ports";
+import type { IProgressRepository, QuizRecord, QuizSettings, UserDataExport } from "../application/ports";
 
 const STORAGE_KEY = "wrongQuestions";
 const CORRECT_STREAKS_KEY = "correctStreaks";
@@ -14,6 +14,7 @@ const HISTORY_KEY = "quizHistory";
 const CATEGORY_VIEW_MODE_KEY = "categoryViewMode";
 const FONT_SIZE_KEY = "fontSizeLevel";
 const SHARE_URL_KEY = "overallShareUrl";
+const QUIZ_SETTINGS_KEY = "quizSettings";
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
 
@@ -188,6 +189,31 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       }
     } catch (error) {
       console.error("共有URLの保存に失敗しました:", error);
+    }
+  }
+
+  loadQuizSettings(): QuizSettings {
+    try {
+      const saved = localStorage.getItem(QUIZ_SETTINGS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved) as QuizSettings;
+        return {
+          questionCount: typeof parsed.questionCount === "number" ? parsed.questionCount : 10,
+          quizOrder: parsed.quizOrder === "straight" ? "straight" : "random",
+          includeMastered: typeof parsed.includeMastered === "boolean" ? parsed.includeMastered : false,
+        };
+      }
+    } catch {
+      // ignore
+    }
+    return { questionCount: 10, quizOrder: "random", includeMastered: false };
+  }
+
+  saveQuizSettings(settings: QuizSettings): void {
+    try {
+      localStorage.setItem(QUIZ_SETTINGS_KEY, JSON.stringify(settings));
+    } catch (error) {
+      console.error("クイズ設定の保存に失敗しました:", error);
     }
   }
 

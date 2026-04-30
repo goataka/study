@@ -550,6 +550,20 @@ export class QuizUseCase {
   }
 
   /**
+   * 指定した教科・カテゴリの学習済み（習得済み）問題数と総問題数を返す。
+   */
+  getMasteredCountForCategory(subject: string, categoryId: string): { mastered: number; total: number } {
+    let total = 0;
+    let mastered = 0;
+    for (const q of this.allQuestions) {
+      if (q.subject !== subject || q.category !== categoryId) continue;
+      total++;
+      if (this.masteredSet.has(q.id)) mastered++;
+    }
+    return { mastered, total };
+  }
+
+  /**
    * 指定した教科の最終学習日（ISO 8601 文字列）を返す。
    * 学習記録がない場合は null を返す。
    */
