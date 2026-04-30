@@ -2780,8 +2780,8 @@ button:disabled {
 
 .kanji-canvas {
     display: block;
-    flex: 1;
-    min-width: 0;
+    width: 256px;
+    flex-shrink: 0;
     height: 256px;
     border: 2px solid #e1e4e8;
     border-radius: 6px;
