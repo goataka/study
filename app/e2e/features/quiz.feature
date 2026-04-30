@@ -108,6 +108,7 @@ Feature: 学習アプリ
   Scenario: 手動確認済み記録は実施記録でread-only表示になる
     Given I have selected a quiz category
     When I click the "✅ 学習済みにする" button
+    And I confirm the dialog
     And I open the history panel
     Then the manual history record score should show "-"
     And the manual history record should have no toggle arrow
