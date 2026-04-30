@@ -103,10 +103,10 @@ function setupTabDom(): void {
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
       <div id="subjectContent">
-        <button id="filterStatusAll" class="category-status-filter-btn active" type="button">すべて</button>
-        <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button">未学習</button>
-        <button id="filterStatusStudying" class="category-status-filter-btn" type="button">学習中</button>
-        <button id="filterStatusLearned" class="category-status-filter-btn" type="button">学習済</button>
+        <button id="filterStatusAll" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
+        <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
+        <button id="filterStatusStudying" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
+        <button id="filterStatusLearned" class="category-status-filter-btn" type="button" aria-pressed="false">学習済</button>
         <span id="allSubjectPanelTitle" class="hidden">📌 おすすめ単元</span>
         <div id="overallDateNav" class="hidden">
           <span id="activityDateDisplay" class="activity-date-display"></span>
@@ -1595,6 +1595,9 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
 
     expect(btn?.classList.contains("active")).toBe(true);
     expect(document.getElementById("filterStatusAll")?.classList.contains("active")).toBe(false);
+    // aria-pressed も更新される
+    expect(btn?.getAttribute("aria-pressed")).toBe("true");
+    expect(document.getElementById("filterStatusAll")?.getAttribute("aria-pressed")).toBe("false");
   });
 
   it("学習済カテゴリ（履歴あり・間違いなし）にはlearnedクラスが付与される", async () => {
@@ -2696,10 +2699,10 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
         <div class="subject-tabs" role="tablist"></div>
         <div class="start-content-layout" id="subjectContent">
           <div class="category-panel">
-            <button id="filterStatusAll" class="category-status-filter-btn active" type="button">すべて</button>
-            <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button">未学習</button>
-            <button id="filterStatusStudying" class="category-status-filter-btn" type="button">学習中</button>
-            <button id="filterStatusLearned" class="category-status-filter-btn" type="button">学習済</button>
+            <button id="filterStatusAll" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
+            <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
+            <button id="filterStatusStudying" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
+            <button id="filterStatusLearned" class="category-status-filter-btn" type="button" aria-pressed="false">学習済</button>
             <div id="categoryList" class="category-list"></div>
           </div>
           <div class="quiz-panel">
@@ -5101,5 +5104,70 @@ describe("QuizApp — 学習済みフィルター（含める/含めない）仕
     // クイズ画面に遷移していること
     const quizScreen = document.getElementById("quizScreen");
     expect(quizScreen?.classList.contains("hidden")).toBe(false);
+  });
+});
+
+describe("QuizApp — クイズ設定永続化仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("保存済みクイズ設定（問題数）が初期化時に DOM に反映される", async () => {
+    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 20, quizOrder: "random", includeMastered: false }));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const radio20 = document.querySelector<HTMLInputElement>('input[name="questionCount"][value="20"]');
+    const radio10 = document.querySelector<HTMLInputElement>('input[name="questionCount"][value="10"]');
+    expect(radio20?.checked).toBe(true);
+    expect(radio10?.checked).toBe(false);
+  });
+
+  it("保存済みクイズ設定（並び順）が初期化時に DOM に反映される", async () => {
+    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 10, quizOrder: "straight", includeMastered: false }));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const radioStraight = document.querySelector<HTMLInputElement>('input[name="quizOrder"][value="straight"]');
+    expect(radioStraight?.checked).toBe(true);
+  });
+
+  it("保存済みクイズ設定（学習済み含む）が初期化時に DOM に反映される", async () => {
+    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 10, quizOrder: "random", includeMastered: true }));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const includeRadio = document.querySelector<HTMLInputElement>('input[name="quizLearned"][value="include"]');
+    expect(includeRadio?.checked).toBe(true);
+  });
+
+  it("問題数ラジオを変更すると localStorage に設定が保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const radio5 = document.querySelector<HTMLInputElement>('input[name="questionCount"][value="5"]');
+    radio5!.checked = true;
+    radio5?.dispatchEvent(new Event("change", { bubbles: true }));
+
+    const saved = JSON.parse(localStorage.getItem("quizSettings") ?? "{}");
+    expect(saved.questionCount).toBe(5);
+  });
+
+  it("並び順ラジオを変更すると localStorage に設定が保存される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const radioStraight = document.querySelector<HTMLInputElement>('input[name="quizOrder"][value="straight"]');
+    radioStraight!.checked = true;
+    radioStraight?.dispatchEvent(new Event("change", { bubbles: true }));
+
+    const saved = JSON.parse(localStorage.getItem("quizSettings") ?? "{}");
+    expect(saved.quizOrder).toBe("straight");
   });
 });

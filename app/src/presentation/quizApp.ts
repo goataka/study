@@ -126,8 +126,7 @@ export class QuizApp {
     const initRecords = this.useCase.getHistory();
     this.autoSelectPanelTab(initRecords);
     this.updateStartScreen(initRecords);
-    // 学習済み非表示の初期状態をボタンのaria-pressed属性とテキストに反映する
-    this.updateHideLearnedButton();
+    // 学習状態フィルターの初期状態を画面に適用する
     this.applyCategoryStatusFilter();
     this.updateUserNameDisplay("headerUserName");
     // 共有URL表示ボタンの初期値を設定する
@@ -2761,7 +2760,7 @@ export class QuizApp {
         categoryList.classList.add(`filter-${this.categoryStatusFilter}`);
       }
     }
-    // ボタンのアクティブ状態を更新
+    // ボタンのアクティブ状態と aria-pressed を更新
     const btnIds: Record<string, string> = {
       all: "filterStatusAll",
       unlearned: "filterStatusUnlearned",
@@ -2769,8 +2768,13 @@ export class QuizApp {
       learned: "filterStatusLearned",
     };
     for (const [state, id] of Object.entries(btnIds)) {
-      document.getElementById(id)?.classList.toggle("active", state === this.categoryStatusFilter);
+      const btn = document.getElementById(id);
+      const isActive = state === this.categoryStatusFilter;
+      btn?.classList.toggle("active", isActive);
+      btn?.setAttribute("aria-pressed", isActive ? "true" : "false");
     }
+    // グループヘッダーのバッジをフィルター状態に合わせて更新する
+    this.updateGroupHeaderLearnedBadges();
   }
 
   /**
