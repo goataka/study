@@ -3058,7 +3058,7 @@ function setupTextInputDom(): void {
         <div id="kanjiInputArea" class="hidden">
           <button id="kanjiDeleteLastBtn" type="button">↩</button>
           <button id="kanjiEraseBtn" type="button">🗑️</button>
-          <canvas id="kanjiCanvas" width="256" height="256"></canvas>
+          <canvas id="kanjiCanvas" width="400" height="400"></canvas>
           <div id="kanjiCandidateList"></div>
         </div>
       </div>

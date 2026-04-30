@@ -2039,7 +2039,7 @@ button:disabled {
 
     /* メモエリアの高さをスマホ向けに制限 */
     .quiz-notes-col {
-        max-height: 600px;
+        max-height: 800px;
         overflow-y: auto;
     }
 
@@ -2618,7 +2618,7 @@ button:disabled {
 .notes-area {
     border: 2px solid #e1e4e8;
     border-radius: 8px;
-    overflow: hidden;
+    overflow-y: auto;
     background: white;
     flex: 1;
     display: flex;
@@ -2681,7 +2681,7 @@ button:disabled {
     display: block;
     width: 100%;
     flex: 1;
-    min-height: 600px;
+    min-height: 400px;
     cursor: crosshair;
     touch-action: none; /* タッチイベントのデフォルト動作を無効化 */
     background: #f6f8fa;
@@ -2702,7 +2702,7 @@ button:disabled {
 /* モバイル対応 */
 @media (max-width: 767px) {
     .notes-canvas {
-        min-height: 300px;
+        min-height: 200px;
     }
 }
 
@@ -3115,9 +3115,9 @@ button:disabled {
 
 .kanji-canvas {
     display: block;
-    width: 256px;
+    width: 400px;
     flex-shrink: 0;
-    height: 256px;
+    height: 400px;
     border: 2px solid #e1e4e8;
     border-radius: 6px;
     cursor: crosshair;
