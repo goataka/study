@@ -534,6 +534,33 @@ describe("QuizUseCase — masteredIds（習得済み）仕様", () => {
     expect(useCase.isMastered("q1")).toBe(true);
   });
 
+  it("習得済みの問題は不正解でも wrongIds に追加されない", async () => {
+    const q = makeQuestion("q1");
+    q.correct = 0;
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+
+    // 3回連続正解で習得済みに
+    for (let i = 0; i < 3; i++) {
+      const session = useCase.startSession("random", { subject: "all", category: "all" });
+      session.selectAnswer(0, session.questions[0]!.correct);
+      useCase.submitSession(session);
+    }
+    expect(progressRepo.getStoredMasteredIds()).toContain("q1");
+
+    // 全問出題モードで不正解にしても wrongIds に追加されない
+    const session = useCase.startSessionWithAllQuestions("random", { subject: "all", category: "all" });
+    const wrongIndex = session.questions[0]!.correct === 0 ? 1 : 0;
+    session.selectAnswer(0, wrongIndex); // 不正解
+    useCase.submitSession(session);
+
+    // 習得済み問題は wrongIds に追加されない（学習済み状態を維持する）
+    expect(progressRepo.getStoredIds()).not.toContain("q1");
+    // 習得済み問題は不正解でも correctStreaks がリセットされない（undefined のまま）
+    expect(progressRepo.getStoredStreaks()["q1"]).toBeUndefined();
+  });
+
   it("全問習得済み時に startSession('random') は ERROR_ALL_MASTERED をスロー", async () => {
     const q = makeQuestion("q1");
     const progressRepo = new StubProgressRepository([], [], {}, {}, ["q1"]);
