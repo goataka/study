@@ -2042,12 +2042,16 @@ export class QuizApp {
           :host { display: block; font-size: inherit; font-family: inherit; }
           header.site-header, footer.site-footer, nav { display: none !important; }
           body { font-size: inherit; }
-          [style*="font-size"] { font-size: inherit !important; }
         </style>`;
 
       // body のコンテンツを取得（header.site-header・footer.site-footer・スクリプト類を除く）
       const bodyClone = doc.body.cloneNode(true) as HTMLBodyElement;
       bodyClone.querySelectorAll("header.site-header, footer.site-footer, script").forEach((el) => el.remove());
+
+      // インライン style 属性の font-size を除去して、ホスト要素からの継承が有効になるようにする
+      bodyClone.querySelectorAll<HTMLElement>("[style]").forEach((el) => {
+        el.style.removeProperty("font-size");
+      });
 
       // embeddedStyle を styleHtml より後に置くことで解説コンテンツの固定 font-size を上書きする
       shadow.innerHTML = styleHtml + embeddedStyle + bodyClone.innerHTML;
