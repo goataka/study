@@ -491,7 +491,7 @@ export class QuizApp {
 
     const sections: Array<{ title: string; content: unknown }> = [
       {
-        title: "設定 (settings)",
+        title: "設定",
         content: {
           userName: data.userName ?? "ゲスト",
           fontSizeLevel: data.fontSizeLevel ?? "small",
@@ -500,29 +500,55 @@ export class QuizApp {
           shareUrl: this.shareUrl || "(未設定)",
         },
       },
-      { title: "履歴 (history)", content: truncateArray(data.history) },
-      { title: "間違えた問題ID (wrongIds)", content: truncateArray(data.wrongIds) },
-      { title: "習得済みID (masteredIds)", content: truncateArray(data.masteredIds) },
-      { title: "連続正解数 (correctStreaks)", content: data.correctStreaks },
-      { title: "問題統計 (questionStats)", content: data.questionStats },
+      { title: "履歴", content: truncateArray(data.history) },
+      { title: "wrongIds", content: truncateArray(data.wrongIds) },
+      { title: "masteredIds", content: truncateArray(data.masteredIds) },
+      { title: "correctStreaks", content: data.correctStreaks },
+      { title: "questionStats", content: data.questionStats },
     ];
 
-    sections.forEach(({ title, content }) => {
-      const section = document.createElement("div");
-      section.className = "admin-section";
+    // タブバー
+    const tabBar = document.createElement("div");
+    tabBar.className = "admin-tabs";
+    container.appendChild(tabBar);
 
-      const titleEl = document.createElement("div");
-      titleEl.className = "admin-section-title";
-      titleEl.textContent = title;
-      section.appendChild(titleEl);
+    // タブコンテンツ
+    const contentArea = document.createElement("div");
+    contentArea.style.flex = "1";
+    contentArea.style.overflow = "hidden";
+    contentArea.style.display = "flex";
+    contentArea.style.flexDirection = "column";
+    container.appendChild(contentArea);
 
+    let activeTabIndex = 0;
+
+    const showTab = (index: number): void => {
+      activeTabIndex = index;
+      tabBar.querySelectorAll(".admin-tab-btn").forEach((btn, i) => {
+        btn.classList.toggle("active", i === index);
+      });
+      contentArea.innerHTML = "";
+      const { content } = sections[index]!;
       const dataEl = document.createElement("pre");
       dataEl.className = "admin-data";
+      dataEl.style.flex = "1";
+      dataEl.style.overflow = "auto";
+      dataEl.style.maxHeight = "none";
       dataEl.textContent = JSON.stringify(content, null, 2);
-      section.appendChild(dataEl);
+      contentArea.appendChild(dataEl);
+    };
 
-      container.appendChild(section);
+    sections.forEach(({ title }, index) => {
+      const btn = document.createElement("button");
+      btn.className = "admin-tab-btn";
+      btn.type = "button";
+      btn.textContent = title;
+      btn.addEventListener("click", () => showTab(index));
+      tabBar.appendChild(btn);
     });
+
+    // 初期表示
+    showTab(activeTabIndex);
 
     categoryList.appendChild(container);
   }
@@ -854,10 +880,18 @@ export class QuizApp {
 
     if (prefixes.length < 2) return; // 1種類以下なら表示しない
 
+    // 学年フィルターを右寄せにするためラッパーを用意する
+    const gradeFilterGroup = document.createElement("div");
+    gradeFilterGroup.className = "grade-filter-group";
+    gradeFilterGroup.style.marginLeft = "auto";
+    gradeFilterGroup.style.display = "flex";
+    gradeFilterGroup.style.alignItems = "center";
+    gradeFilterGroup.style.gap = "5px";
+
     const filterLabel = document.createElement("span");
     filterLabel.className = "grade-filter-label";
     filterLabel.textContent = "学年:";
-    controlsEl.appendChild(filterLabel);
+    gradeFilterGroup.appendChild(filterLabel);
 
     // 「すべて」ボタン
     const allBtn = document.createElement("button");
@@ -869,7 +903,7 @@ export class QuizApp {
       this.selectedGradeFilter = null;
       this.renderCategoryList();
     });
-    controlsEl.appendChild(allBtn);
+    gradeFilterGroup.appendChild(allBtn);
 
     // 各学年プレフィックスボタン
     const labelMap: Record<string, string> = { "小学": "小学", "中学": "中学", "高校": "高校" };
@@ -883,8 +917,10 @@ export class QuizApp {
         this.selectedGradeFilter = prefix;
         this.renderCategoryList();
       });
-      controlsEl.appendChild(btn);
+      gradeFilterGroup.appendChild(btn);
     }
+
+    controlsEl.appendChild(gradeFilterGroup);
   }
 
   /**
@@ -1192,7 +1228,11 @@ export class QuizApp {
    */
   private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
     const dateToCheck = this.parseActivityDate().toDateString();
-    return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && r.mode !== "manual");
+    return records.filter((r) =>
+      new Date(r.date).toDateString() === dateToCheck &&
+      r.mode !== "manual" &&
+      r.category !== "all"
+    );
   }
 
   /**
@@ -1210,7 +1250,7 @@ export class QuizApp {
   }
 
   /**
-   * 活動ラベルを本日実施した単元数（⭐の数）に更新する。
+   * 活動ラベルを本日実施した単元数（⭐の数、完了単元は🏆）に更新する。
    */
   private updateActivityDateDisplay(): void {
     const el = document.getElementById("overallActivityDateLabel");
@@ -1219,8 +1259,23 @@ export class QuizApp {
     const todayRecords = this.filterRecordsBySelectedDate(records);
     // 本日やった単元数をユニークカウント（unit ごとに集計）
     const unitKeys = new Set(todayRecords.map((r) => `${r.subject}::${r.category}`));
-    const count = unitKeys.size;
-    el.textContent = count > 0 ? "⭐".repeat(Math.min(count, 10)) : "";
+    let masteredCount = 0;
+    let studiedCount = 0;
+    for (const key of unitKeys) {
+      const sepIdx = key.indexOf("::");
+      const subj = key.slice(0, sepIdx);
+      const cat = key.slice(sepIdx + 2);
+      const { mastered, total } = this.useCase.getMasteredCountForCategory(subj, cat);
+      if (total > 0 && mastered === total) {
+        masteredCount++;
+      } else {
+        studiedCount++;
+      }
+    }
+    const symbols =
+      "🏆".repeat(Math.min(masteredCount, 5)) +
+      "⭐".repeat(Math.min(studiedCount, 5));
+    el.textContent = symbols;
   }
 
   /**
@@ -1746,8 +1801,9 @@ export class QuizApp {
    * 閉じるボタン（×）で選択を解除できるようにする。
    *
    * レイアウト（単元選択時）:
-   *   [単元名]
-   *   [カテゴリ › 親カテゴリ] [学年]       [例文（右寄せ）]
+   *   行1: [タイトル（左）] [カテゴリ・学年（右）]
+   *   行2: [説明（左）] [例文（右）]
+   *   行3: [ステータスバー（全幅）]
    */
   private updateSelectedUnitInfo(): void {
     const container = document.getElementById("selectedUnitInfo");
@@ -1766,13 +1822,6 @@ export class QuizApp {
       const body = document.createElement("div");
       body.className = "selected-unit-info-body";
 
-      // タイトル行: 単元名のみ
-      const nameSpan = document.createElement("span");
-      nameSpan.className = "selected-unit-info-name";
-      nameSpan.textContent = this.overallUnitSelected.categoryName;
-      body.appendChild(nameSpan);
-
-      // 詳細行: カテゴリ + 学年（左） / 例文（右）
       const topInfo = this.useCase.getTopCategoryForUnit(subject, categoryId);
       const parentInfo = this.useCase.getParentCategoryForUnit(subject, categoryId);
       const catParts: string[] = [];
@@ -1780,17 +1829,27 @@ export class QuizApp {
       if (parentInfo) catParts.push(parentInfo.name);
       const grade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
       const example = this.useCase.getCategoryExample(subject, categoryId);
+      const description = this.useCase.getCategoryDescription(subject, categoryId);
 
-      const detailRow = document.createElement("div");
-      detailRow.className = "selected-unit-info-detail-row";
+      // 行1: タイトル（左） / カテゴリ+学年（右）
+      const headerRow = document.createElement("div");
+      headerRow.className = "selected-unit-info-header-row";
 
-      const leftGroup = document.createElement("div");
-      leftGroup.className = "selected-unit-info-left";
+      const headerLeft = document.createElement("div");
+      headerLeft.className = "selected-unit-info-header-left";
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "selected-unit-info-name";
+      nameSpan.textContent = this.overallUnitSelected.categoryName;
+      headerLeft.appendChild(nameSpan);
+      headerRow.appendChild(headerLeft);
+
+      const headerRight = document.createElement("div");
+      headerRight.className = "selected-unit-info-header-right";
       if (catParts.length > 0) {
         const catLabel = document.createElement("span");
         catLabel.className = "selected-unit-info-category";
         catLabel.textContent = catParts.join(" › ");
-        leftGroup.appendChild(catLabel);
+        headerRight.appendChild(catLabel);
       }
       if (grade) {
         const gradeSpan = document.createElement("span");
@@ -1798,19 +1857,30 @@ export class QuizApp {
         const gradeClass = gradeColorClass(grade);
         if (gradeClass) gradeSpan.classList.add(gradeClass);
         gradeSpan.textContent = grade;
-        leftGroup.appendChild(gradeSpan);
+        headerRight.appendChild(gradeSpan);
       }
-      detailRow.appendChild(leftGroup);
-
-      if (example !== undefined) {
-        const exampleDiv = document.createElement("div");
-        exampleDiv.className = "selected-unit-info-example";
-        this.renderBacktickText(exampleDiv, example);
-        detailRow.appendChild(exampleDiv);
+      if (headerRight.childElementCount > 0) {
+        headerRow.appendChild(headerRight);
       }
+      body.appendChild(headerRow);
 
-      if (leftGroup.childElementCount > 0 || example !== undefined) {
-        body.appendChild(detailRow);
+      // 行2: 説明（左） / 例文（右）
+      if (description !== undefined || example !== undefined) {
+        const descRow = document.createElement("div");
+        descRow.className = "selected-unit-info-desc-row";
+        if (description !== undefined) {
+          const descLeft = document.createElement("div");
+          descLeft.className = "selected-unit-info-desc-left selected-unit-info-desc";
+          descLeft.textContent = description;
+          descRow.appendChild(descLeft);
+        }
+        if (example !== undefined) {
+          const descRight = document.createElement("div");
+          descRight.className = "selected-unit-info-desc-right selected-unit-info-example";
+          this.renderBacktickText(descRight, example);
+          descRow.appendChild(descRight);
+        }
+        body.appendChild(descRow);
       }
 
       container.appendChild(body);
@@ -1853,9 +1923,8 @@ export class QuizApp {
       const topCats = this.useCase.getTopCategoriesForSubject(this.filter.subject);
       nameSpan.textContent = topCats[this.selectedTopCategoryId] ?? this.selectedTopCategoryId;
     }
-    body.appendChild(nameSpan);
 
-    // 詳細行（単元選択時のみ）: カテゴリ + 学年（左） / 例文（右）
+    // 詳細行（単元選択時のみ）: 新レイアウト
     if (selLevel === "unit") {
       const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
       const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
@@ -1866,16 +1935,22 @@ export class QuizApp {
       const example = this.useCase.getCategoryExample(this.filter.subject, this.filter.category);
       const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
 
-      const detailRow = document.createElement("div");
-      detailRow.className = "selected-unit-info-detail-row";
+      // 行1: タイトル（左） / カテゴリ+学年（右）
+      const headerRow = document.createElement("div");
+      headerRow.className = "selected-unit-info-header-row";
 
-      const leftGroup = document.createElement("div");
-      leftGroup.className = "selected-unit-info-left";
+      const headerLeft = document.createElement("div");
+      headerLeft.className = "selected-unit-info-header-left";
+      headerLeft.appendChild(nameSpan);
+      headerRow.appendChild(headerLeft);
+
+      const headerRight = document.createElement("div");
+      headerRight.className = "selected-unit-info-header-right";
       if (catParts.length > 0) {
         const catLabel = document.createElement("span");
         catLabel.className = "selected-unit-info-category";
         catLabel.textContent = catParts.join(" › ");
-        leftGroup.appendChild(catLabel);
+        headerRight.appendChild(catLabel);
       }
       if (grade) {
         const gradeSpan = document.createElement("span");
@@ -1883,22 +1958,33 @@ export class QuizApp {
         const gradeClass = gradeColorClass(grade);
         if (gradeClass) gradeSpan.classList.add(gradeClass);
         gradeSpan.textContent = grade;
-        leftGroup.appendChild(gradeSpan);
+        headerRight.appendChild(gradeSpan);
       }
-      detailRow.appendChild(leftGroup);
+      if (headerRight.childElementCount > 0) {
+        headerRow.appendChild(headerRight);
+      }
+      body.appendChild(headerRow);
 
-      if (example !== undefined) {
-        const exampleDiv = document.createElement("div");
-        exampleDiv.className = "selected-unit-info-example";
-        this.renderBacktickText(exampleDiv, example);
-        detailRow.appendChild(exampleDiv);
+      // 行2: 説明（左） / 例文（右）
+      if (description !== undefined || example !== undefined) {
+        const descRow = document.createElement("div");
+        descRow.className = "selected-unit-info-desc-row";
+        if (description !== undefined) {
+          const descLeft = document.createElement("div");
+          descLeft.className = "selected-unit-info-desc-left selected-unit-info-desc";
+          descLeft.textContent = description;
+          descRow.appendChild(descLeft);
+        }
+        if (example !== undefined) {
+          const descRight = document.createElement("div");
+          descRight.className = "selected-unit-info-desc-right selected-unit-info-example";
+          this.renderBacktickText(descRight, example);
+          descRow.appendChild(descRight);
+        }
+        body.appendChild(descRow);
       }
 
-      if (leftGroup.childElementCount > 0 || example !== undefined) {
-        body.appendChild(detailRow);
-      }
-
-      // カテゴリの下に進捗バーを表示
+      // 行3: ステータスバー（全幅）
       const { mastered, total } = this.useCase.getMasteredCountForCategory(this.filter.subject, this.filter.category);
       const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
       const progressRow = document.createElement("div");
@@ -1915,14 +2001,9 @@ export class QuizApp {
       progressRow.appendChild(progressBar);
       progressRow.appendChild(progressLabel);
       body.appendChild(progressRow);
-
-      // 説明を表示
-      if (description) {
-        const descDiv = document.createElement("div");
-        descDiv.className = "selected-unit-info-desc";
-        descDiv.textContent = description;
-        body.appendChild(descDiv);
-      }
+    } else {
+      // カテゴリ・トップカテゴリ選択時: タイトルのみ
+      body.appendChild(nameSpan);
     }
 
     container.appendChild(body);
@@ -2615,13 +2696,10 @@ export class QuizApp {
     const masteredIdsSet = new Set(this.useCase.getMasteredIds());
     const masteredInFilter = filteredQuestions
       .filter((q) => masteredIdsSet.has(q.id)).length;
-    const studiedKeys = this.useCase.getStudiedCategoryKeys();
-    const wrongSet = new Set(this.useCase.wrongQuestionIds);
-    // 学習中: 学習履歴があり・未習得かつ・間違えた問題
+    // 学習中: 1回以上回答済みで未習得の問題
     const inProgressInFilter = filteredQuestions
       .filter((q) => {
-        const key = `${q.subject}::${q.category}`;
-        return studiedKeys.has(key) && !masteredIdsSet.has(q.id) && wrongSet.has(q.id);
+        return this.useCase.getQuestionStat(q.id).total > 0 && !masteredIdsSet.has(q.id);
       }).length;
 
     statsInfo.textContent = `全：${filteredCount}問 / 学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問`;
@@ -3011,9 +3089,9 @@ export class QuizApp {
     document.getElementById("allSubjectPanelTitle")?.classList.toggle("hidden", !isAll);
     // 「単元一覧」タイトルは教科別タブ時のみ表示
     document.getElementById("categoryListTitle")?.classList.toggle("hidden", isAll);
-    // 学習状態フィルターボタンは総合タブ時は非表示
+    // 学習状態フィルターボタンは総合タブ・管理タブでは非表示
     const statusFilterEl = document.querySelector(".category-status-filter") as HTMLElement | null;
-    if (statusFilterEl) statusFilterEl.classList.toggle("hidden", isAll);
+    if (statusFilterEl) statusFilterEl.classList.toggle("hidden", isAll || this.filter.subject === "admin");
     // 日付ナビゲーションは総合タブかつ単元未選択時のみ表示
     document.getElementById("overallDateNav")?.classList.toggle("hidden", !isAll || hasOverallUnit);
 
