@@ -1351,10 +1351,11 @@ export class QuizApp {
     );
 
     // 教科＋単元ごとに集計
-    const byUnit = new Map<string, { subjectName: string; categoryName: string; icon: string; total: number; correct: number }>();
+    const byUnit = new Map<string, { subject: string; subjectName: string; categoryName: string; icon: string; total: number; correct: number }>();
     for (const r of dateRecords) {
       const key = `${r.subject}::${r.category}`;
       const u = byUnit.get(key) ?? {
+        subject: r.subject,
         subjectName: r.subjectName,
         categoryName: r.categoryName,
         icon: subjectIconMap[r.subject] ?? "📝",
@@ -1366,9 +1367,19 @@ export class QuizApp {
       byUnit.set(key, u);
     }
 
-    for (const data of byUnit.values()) {
+    for (const [key, data] of byUnit.entries()) {
       const pct = Math.round((data.correct / data.total) * 100);
-      lines.push(`${data.icon} ${data.subjectName} / ${data.categoryName}: ${data.correct}/${data.total}問正解 (${pct}%)`);
+      const category = key.split("::")[1] ?? "";
+      const topCat = this.useCase.getTopCategoryForUnit(data.subject, category);
+      const parentCat = this.useCase.getParentCategoryForUnit(data.subject, category);
+
+      // パス: 教科 > トップカテゴリ > 親カテゴリ > 単元名（存在する階層のみ表示）
+      const pathParts: string[] = [data.subjectName];
+      if (topCat && topCat.name !== parentCat?.name) pathParts.push(topCat.name);
+      if (parentCat) pathParts.push(parentCat.name);
+      pathParts.push(data.categoryName);
+
+      lines.push(`${data.icon} ${pathParts.join(" > ")}: ${data.correct}/${data.total}問正解 (${pct}%)`);
     }
 
     // 合計は単元数で表示する
@@ -2158,9 +2169,11 @@ export class QuizApp {
       // 注入コンテンツ内のすべての id 属性を除去して主ページIDとの衝突を防ぐ
       doc.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
 
-      // body のコンテンツを取得（header.site-header・footer.site-footer・スクリプト類を除く）
+      // body のコンテンツを取得（site-header・site-footer・post-header・スタイル等を除く）
       const bodyClone = doc.body.cloneNode(true) as HTMLBodyElement;
-      bodyClone.querySelectorAll("header.site-header, footer.site-footer, script").forEach((el) => el.remove());
+      bodyClone.querySelectorAll(
+        "header.site-header, footer.site-footer, footer, header.post-header, style, .site-nav"
+      ).forEach((el) => el.remove());
 
       // guide-content コンテナを作成（または既存を再利用）して直接挿入する
       let guideContent = container.querySelector<HTMLElement>(".guide-content");
@@ -3319,7 +3332,7 @@ export class QuizApp {
     if (showKanji) {
       this.initializeKanjiCanvas();
       this.kanjiErase();
-      this.updateKanjiCandidates();
+      // 初期化時はストロークがないため候補は表示しない
     }
   }
 
@@ -3395,20 +3408,36 @@ export class QuizApp {
   }
 
   /**
+   * 文字列がラテン文字（ASCII英数字・記号）のみで構成されているかどうかを判定する。
+   */
+  private isLatinOnly(str: string): boolean {
+    return /^[\x20-\x7E]+$/.test(str);
+  }
+
+  /**
    * KanjiCanvasで描かれたストロークを認識して候補ボタンを更新する。
    * ひらがな問題（正解がひらがなのみ）の場合はひらがな以外の候補を除外する。
+   * 英語問題（正解がラテン文字のみ）の場合はラテン文字以外の候補を除外する。
+   * ストロークが描かれていない場合は候補を表示しない。
    */
   private updateKanjiCandidates(): void {
     const candidateList = document.getElementById("kanjiCandidateList");
     if (!candidateList || !this.isKanjiCanvasAvailable()) return;
 
     const result = KanjiCanvas.recognize("kanjiCanvas");
+    // ストロークがない場合（認識結果が空）は候補を表示しない
+    if (!result.trim()) {
+      candidateList.innerHTML = "";
+      return;
+    }
     let candidates = result.trim().split(/\s+/).filter(Boolean);
 
     const question = this.currentSession?.currentQuestion;
     const correctAnswer = question?.choices[question.correct];
     if (correctAnswer !== undefined && this.isHiraganaOnly(correctAnswer)) {
       candidates = candidates.filter((char) => this.isHiraganaOnly(char));
+    } else if (correctAnswer !== undefined && this.isLatinOnly(correctAnswer)) {
+      candidates = candidates.filter((char) => this.isLatinOnly(char));
     }
 
     candidates = candidates.slice(0, 5);
