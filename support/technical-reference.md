@@ -122,6 +122,38 @@ https://goataka.github.io/study/questions/japanese/kanji-grade1.json
 | `math` | 数学 | 算数から高校数学まで |
 | `japanese` | 国語 | 漢字・ことわざ・読解 |
 
+## データ永続化
+
+アプリの進捗データ（回答履歴・間違えた問題・習得済み問題など）は **IndexedDB** を使用してブラウザに保存されます。
+
+### データベース構造
+
+| 項目 | 値 |
+|------|-----|
+| データベース名 | `studyProgressDB` |
+| バージョン | `1` |
+| オブジェクトストア | `keyValue` |
+
+### 保存されるデータ
+
+| キー | 型 | 説明 |
+|------|-----|------|
+| `wrongQuestions` | string[] | 間違えた問題IDのリスト |
+| `correctStreaks` | object | 問題IDごとの正解連続数 |
+| `masteredIds` | string[] | 習得済み問題IDのリスト |
+| `questionStats` | object | 問題IDごとの回答統計（total/correct） |
+| `userName` | string | ユーザー名 |
+| `quizHistory` | array | クイズ回答履歴（最大100件） |
+| `categoryViewMode` | string | カテゴリ表示モード（`category` / `grade`） |
+| `fontSizeLevel` | string | フォントサイズ設定（`small` / `medium` / `large`） |
+| `overallShareUrl` | string | 活動サマリの共有URL |
+
+### 注意事項
+
+- データはブラウザのIndexedDBに保存されるため、ブラウザのデータを削除するとリセットされます
+- 異なるブラウザやデバイス間でのデータ同期はサポートしていません
+- データのエクスポート機能を使用してバックアップすることをお勧めします
+
 ## 🔗 関連リンク
 
 - [サポートトップ](../) ─ サポートページのトップ

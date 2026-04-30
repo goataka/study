@@ -7,8 +7,10 @@ import { QuizUseCase, ERROR_ALL_MASTERED } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
 import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
+import type { IProgressRepository } from "../application/ports";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
+import { IndexedDBProgressRepository } from "../infrastructure/indexedDBProgressRepository";
 import { NotesCanvas } from "./notesCanvas";
 import type { DrawingState } from "./notesCanvas";
 
@@ -20,9 +22,6 @@ const SUBJECTS = [
   { id: "japanese", name: "国語", icon: "📖" },
 ] as const;
 
-/** 総合タブ用の共有 URL localStorage キー */
-const OVERALL_SHARE_URL_KEY = "overallShareUrl";
-
 /** 参考学年文字列から CSS クラス名を返す（小学→grade-elementary, 中学→grade-middle, 高校→grade-high） */
 function gradeColorClass(referenceGrade: string): string {
   if (referenceGrade.startsWith("小")) return "grade-elementary";
@@ -32,7 +31,8 @@ function gradeColorClass(referenceGrade: string): string {
 }
 
 export class QuizApp {
-  private readonly useCase: QuizUseCase;
+  private useCase!: QuizUseCase;
+  private progressRepo: IProgressRepository;
   private currentSession: QuizSession | null = null;
   private currentMode: QuizMode = "random";
   private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
@@ -75,17 +75,30 @@ export class QuizApp {
   private guideLoadCounter: number = 0;
   private quizOrder: "random" | "straight" = "random";
 
-  constructor() {
-    this.useCase = new QuizUseCase(
-      new RemoteQuestionRepository("questions"),
-      new LocalStorageProgressRepository()
-    );
-    this.init();
+  /**
+   * @param progressRepo 進捗リポジトリ（省略時は LocalStorageProgressRepository を使用）。
+   *   本番環境では IndexedDBProgressRepository を渡すこと。
+   *   テスト環境では LocalStorageProgressRepository（デフォルト）をそのまま使用できる。
+   */
+  constructor(progressRepo?: IProgressRepository) {
+    this.progressRepo = progressRepo ?? new LocalStorageProgressRepository();
+    void this.init();
   }
 
   // ─── 初期化 ────────────────────────────────────────────────────────────────
 
   private async init(): Promise<void> {
+    // initialize() を持つリポジトリ（IndexedDBProgressRepository など）を初期化する
+    const repo = this.progressRepo as { initialize?: () => Promise<void> };
+    if (typeof repo.initialize === "function") {
+      await repo.initialize();
+    }
+
+    this.useCase = new QuizUseCase(
+      new RemoteQuestionRepository("questions"),
+      this.progressRepo
+    );
+
     try {
       await this.useCase.initialize();
     } catch (error) {
@@ -117,11 +130,10 @@ export class QuizApp {
   }
 
   /**
-   * localStorage から学年別/カテゴリ別表示モードを読み込む。
+   * 進捗リポジトリから学年別/カテゴリ別表示モードを読み込む。
    */
   private loadCategoryViewModeFromStorage(): void {
-    const progressRepo = new LocalStorageProgressRepository();
-    this.categoryViewMode = progressRepo.loadCategoryViewMode();
+    this.categoryViewMode = this.progressRepo.loadCategoryViewMode();
   }
 
   /**
@@ -145,16 +157,14 @@ export class QuizApp {
   }
 
   private loadUserName(): void {
-    const progressRepo = new LocalStorageProgressRepository();
-    const savedName = progressRepo.loadUserName();
+    const savedName = this.progressRepo.loadUserName();
     if (savedName) {
       this.userName = savedName;
     }
   }
 
   private loadFontSize(): void {
-    const progressRepo = new LocalStorageProgressRepository();
-    const saved = progressRepo.loadFontSizeLevel();
+    const saved = this.progressRepo.loadFontSizeLevel();
     if (saved !== null) {
       this.fontSizeLevel = saved;
     }
@@ -162,28 +172,16 @@ export class QuizApp {
   }
 
   private loadShareUrl(): void {
-    try {
-      const stored = localStorage.getItem(OVERALL_SHARE_URL_KEY) ?? "";
-      // ロード時にも http/https 検証を行い、不正なスキームを除外する
-      this.shareUrl = this.sanitizeShareUrl(stored);
-    } catch {
-      this.shareUrl = "";
-    }
+    const stored = this.progressRepo.loadShareUrl();
+    // ロード時にも http/https 検証を行い、不正なスキームを除外する
+    this.shareUrl = this.sanitizeShareUrl(stored);
   }
 
   private saveShareUrl(url: string): void {
     // http/https のみ許可し、それ以外のスキームは空扱いにする
     const sanitized = this.sanitizeShareUrl(url);
-    try {
-      this.shareUrl = sanitized;
-      if (sanitized) {
-        localStorage.setItem(OVERALL_SHARE_URL_KEY, sanitized);
-      } else {
-        localStorage.removeItem(OVERALL_SHARE_URL_KEY);
-      }
-    } catch {
-      // localStorage アクセスエラーは無視する
-    }
+    this.shareUrl = sanitized;
+    this.progressRepo.saveShareUrl(sanitized);
   }
 
   /**
@@ -217,8 +215,7 @@ export class QuizApp {
     });
     // 初期復元時は保存をスキップし、ユーザー操作時のみ保存する
     if (persist) {
-      const progressRepo = new LocalStorageProgressRepository();
-      progressRepo.saveFontSizeLevel(level);
+      this.progressRepo.saveFontSizeLevel(level);
     }
   }
 
@@ -277,8 +274,7 @@ export class QuizApp {
 
     const name = input.value.trim();
     this.userName = name || "ゲスト";
-    const progressRepo = new LocalStorageProgressRepository();
-    progressRepo.saveUserName(this.userName);
+    this.progressRepo.saveUserName(this.userName);
     this.updateUserNameDisplay("headerUserName");
     this.closeUserNameEdit();
   }
@@ -723,7 +719,7 @@ export class QuizApp {
       : "学年別表示に切り替える";
     viewToggleBtn.addEventListener("click", () => {
       this.categoryViewMode = this.categoryViewMode === "category" ? "grade" : "category";
-      new LocalStorageProgressRepository().saveCategoryViewMode(this.categoryViewMode);
+      this.progressRepo.saveCategoryViewMode(this.categoryViewMode);
       this.renderCategoryList();
     });
     controlsEl.appendChild(viewToggleBtn);
@@ -3536,5 +3532,5 @@ export class QuizApp {
 
 // アプリケーション起動
 document.addEventListener("DOMContentLoaded", () => {
-  new QuizApp();
+  new QuizApp(new IndexedDBProgressRepository());
 });

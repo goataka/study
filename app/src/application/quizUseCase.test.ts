@@ -123,6 +123,8 @@ class StubProgressRepository implements IProgressRepository {
       fontSizeLevel: null,
     };
   }
+  loadShareUrl(): string { return ""; }
+  saveShareUrl(_url: string): void {}
 }
 
 // ─── テスト ──────────────────────────────────────────────────────────────────
