@@ -1719,7 +1719,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
     expect(statusEl?.textContent).toBe("✅");
   });
 
-  it("未学習フィルター時、グループヘッダーのバッジに学習済みのトロフィーは表示されない", async () => {
+  it("未学習フィルター時、グループヘッダーのバッジは常に空（トロフィー機能廃止）", async () => {
     setupFetchMockWithParent();
     localStorage.setItem(
       "quizHistory",
@@ -1746,16 +1746,16 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 未学習フィルターを選択（学習済みが非表示になる）
+    // 未学習フィルターを選択
     document.getElementById("filterStatusUnlearned")?.click();
 
-    // グループヘッダーのバッジにはトロフィーが表示されない
+    // バッジ要素は存在するが常に空（トロフィー表示機能は廃止済み）
     const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
     const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
     expect(badge?.textContent).toBe("");
   });
 
-  it("すべて表示フィルターに戻すとグループヘッダーのバッジが消える", async () => {
+  it("すべて表示フィルターに戻してもグループヘッダーのバッジは空のまま", async () => {
     setupFetchMockWithParent();
     localStorage.setItem(
       "quizHistory",
@@ -1782,7 +1782,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // すべて表示に切り替える（badge は hide-learned がOFFの時に表示されない）
+    // すべて表示に切り替える（バッジは常に空）
     document.getElementById("filterStatusAll")?.click();
 
     const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
