@@ -3433,18 +3433,6 @@ body.font-size-large .guide-frame .guide-shadow-host {
     font-size: 1.5em;
 }
 
-/*
-  解説コンテンツ側で font-size を固定しているケース（例: markdown→HTML 変換結果など）でも
-  アプリ側の文字サイズ切替が効くように、注入先コンテナ内の font-size を継承させる。
-  すべてを上書きすると意図した見出しサイズなども崩れるため、相対的な倍率だけ変える。
-*/
-body.font-size-medium .guide-frame .guide-shadow-host * {
-    font-size: 1.2em;
-}
-
-body.font-size-large .guide-frame .guide-shadow-host * {
-    font-size: 1.5em;
-}
 
 body.font-size-large .header-today-date {
     font-size: 40px;
