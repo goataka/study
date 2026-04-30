@@ -2034,18 +2034,27 @@ export class QuizApp {
         .map((el) => el.outerHTML)
         .join("\n");
 
-      // サイトヘッダー・フッターを非表示にし、フォントサイズを親から継承するためのスタイル
+      // サイトヘッダー・フッターを非表示にし、フォントサイズを親から継承するためのスタイル。
+      // このスタイルは解説コンテンツのCSS（styleHtml）より後に置くことで、
+      // 解説コンテンツ側の固定 font-size 指定を上書きできる。
       const embeddedStyle = `
         <style>
           :host { display: block; font-size: inherit; font-family: inherit; }
           header.site-header, footer.site-footer, nav { display: none !important; }
+          body { font-size: inherit; }
         </style>`;
 
       // body のコンテンツを取得（header.site-header・footer.site-footer・スクリプト類を除く）
       const bodyClone = doc.body.cloneNode(true) as HTMLBodyElement;
       bodyClone.querySelectorAll("header.site-header, footer.site-footer, script").forEach((el) => el.remove());
 
-      shadow.innerHTML = embeddedStyle + styleHtml + bodyClone.innerHTML;
+      // インライン style 属性の font-size を除去して、ホスト要素からの継承が有効になるようにする
+      bodyClone.querySelectorAll<HTMLElement>("[style]").forEach((el) => {
+        el.style.removeProperty("font-size");
+      });
+
+      // embeddedStyle を styleHtml より後に置くことで解説コンテンツの固定 font-size を上書きする
+      shadow.innerHTML = styleHtml + embeddedStyle + bodyClone.innerHTML;
 
       container.dataset.loadedUrl = guideUrl;
       container.classList.remove("hidden");
