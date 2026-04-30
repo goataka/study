@@ -557,6 +557,8 @@ describe("QuizUseCase — masteredIds（習得済み）仕様", () => {
 
     // 習得済み問題は wrongIds に追加されない（学習済み状態を維持する）
     expect(progressRepo.getStoredIds()).not.toContain("q1");
+    // 習得済み問題は不正解でも correctStreaks がリセットされない（undefined のまま）
+    expect(progressRepo.getStoredStreaks()["q1"]).toBeUndefined();
   });
 
   it("全問習得済み時に startSession('random') は ERROR_ALL_MASTERED をスロー", async () => {

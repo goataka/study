@@ -966,7 +966,7 @@ header h1 {
 }
 
 .overall-activity-date {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 600;
     color: #24292e;
 }
@@ -3640,7 +3640,9 @@ body.font-size-large .subject-overview-cat-header {
 .admin-panel {
     padding: 16px 20px;
     flex: 1;
-    overflow-y: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .admin-section {
@@ -3665,9 +3667,17 @@ body.font-size-large .subject-overview-cat-header {
     padding: 10px 12px;
     white-space: pre-wrap;
     word-break: break-all;
-    max-height: 200px;
+    flex: 1;
     overflow-y: auto;
     color: #24292e;
+}
+
+/* タブコンテンツ領域（flexコンテナ内で残り高さを占有） */
+.admin-tab-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ─── 管理タブのタブ切り替え ────────────────────────────────────────────── */
@@ -3760,9 +3770,12 @@ body.font-size-large .subject-overview-cat-header {
     flex: 1;
 }
 
-/* ─── 活動日付ラベルのフォントサイズ ─────────────────────────────────────── */
-.overall-activity-date {
-    font-size: 16px;
+/* 学年フィルターグループ（右寄せ） */
+.grade-filter-group {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 /* ─── 手書き漢字入力：候補エリアのラップ ──────────────────────────────── */

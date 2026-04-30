@@ -510,14 +510,14 @@ export class QuizApp {
     // タブバー
     const tabBar = document.createElement("div");
     tabBar.className = "admin-tabs";
+    tabBar.setAttribute("role", "tablist");
     container.appendChild(tabBar);
 
     // タブコンテンツ
     const contentArea = document.createElement("div");
-    contentArea.style.flex = "1";
-    contentArea.style.overflow = "hidden";
-    contentArea.style.display = "flex";
-    contentArea.style.flexDirection = "column";
+    contentArea.className = "admin-tab-content";
+    contentArea.setAttribute("role", "tabpanel");
+    contentArea.setAttribute("id", "admin-tabpanel");
     container.appendChild(contentArea);
 
     let activeTabIndex = 0;
@@ -526,14 +526,12 @@ export class QuizApp {
       activeTabIndex = index;
       tabBar.querySelectorAll(".admin-tab-btn").forEach((btn, i) => {
         btn.classList.toggle("active", i === index);
+        btn.setAttribute("aria-selected", String(i === index));
       });
       contentArea.innerHTML = "";
       const { content } = sections[index]!;
       const dataEl = document.createElement("pre");
       dataEl.className = "admin-data";
-      dataEl.style.flex = "1";
-      dataEl.style.overflow = "auto";
-      dataEl.style.maxHeight = "none";
       dataEl.textContent = JSON.stringify(content, null, 2);
       contentArea.appendChild(dataEl);
     };
@@ -543,6 +541,9 @@ export class QuizApp {
       btn.className = "admin-tab-btn";
       btn.type = "button";
       btn.textContent = title;
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-selected", "false");
+      btn.setAttribute("aria-controls", "admin-tabpanel");
       btn.addEventListener("click", () => showTab(index));
       tabBar.appendChild(btn);
     });
@@ -883,10 +884,6 @@ export class QuizApp {
     // 学年フィルターを右寄せにするためラッパーを用意する
     const gradeFilterGroup = document.createElement("div");
     gradeFilterGroup.className = "grade-filter-group";
-    gradeFilterGroup.style.marginLeft = "auto";
-    gradeFilterGroup.style.display = "flex";
-    gradeFilterGroup.style.alignItems = "center";
-    gradeFilterGroup.style.gap = "5px";
 
     const filterLabel = document.createElement("span");
     filterLabel.className = "grade-filter-label";
@@ -3037,6 +3034,8 @@ export class QuizApp {
       // 管理タブでは学習状態フィルターを非表示にする
       const adminStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
       if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
+      // 管理タブでは日付ナビを非表示にする
+      document.getElementById("overallDateNav")?.classList.add("hidden");
       // 管理タブでは「おすすめ単元」タイトルを非表示、「IndexDB」タイトルを表示
       document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
       document.getElementById("categoryListTitle")?.classList.remove("hidden");
