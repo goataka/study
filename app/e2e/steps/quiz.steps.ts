@@ -459,3 +459,24 @@ Then("the admin reset button should be visible", async ({ page }) => {
   // 初期化ボタンが表示されていること
   await expect(page.locator(".admin-reset-btn")).toBeVisible();
 });
+
+Then("the admin export tab button should be visible", async ({ page }) => {
+  // 管理タブの「📤 エクスポート」タブボタンが表示されていること
+  await expect(page.locator("#admin-tab-export")).toBeVisible();
+});
+
+When("I click the admin export tab", async ({ page }) => {
+  // 管理タブの「📤 エクスポート」タブをクリックする
+  await page.locator("#admin-tab-export").click();
+});
+
+Then("an admin JSON file download should be triggered", async ({ page }) => {
+  // エクスポートボタンをクリックするとJSONファイルがダウンロードされること
+  const exportBtn = page.locator(".admin-import-apply-btn");
+  await expect(exportBtn).toBeVisible();
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    exportBtn.click(),
+  ]);
+  expect(download.suggestedFilename()).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
+});

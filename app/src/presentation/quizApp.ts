@@ -795,17 +795,7 @@ export class QuizApp {
         exportBtn.textContent = "⬇️ データをエクスポートする";
         exportBtn.style.marginTop = "8px";
         exportBtn.addEventListener("click", () => {
-          const allData = this.useCase.exportAllData();
-          const json = JSON.stringify(allData);
-          const blob = new Blob([json], { type: "application/json" });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          const dateStr = new Date().toISOString().slice(0, 10);
-          a.download = `study-data-${dateStr}.json`;
-          document.body.appendChild(a);
-          a.click();
-          setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
+          this.downloadUserData();
         });
         exportSection.appendChild(exportBtn);
         subContentArea.appendChild(exportSection);

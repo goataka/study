@@ -201,3 +201,12 @@ Feature: 学習アプリ
     When I click the "管理" tab
     And I click the admin reset tab
     Then the admin reset button should be visible
+
+  Scenario: 管理タブのエクスポートタブが表示される
+    When I click the "管理" tab
+    Then the admin export tab button should be visible
+
+  Scenario: 管理タブのエクスポートボタンをクリックするとJSONファイルがダウンロードされる
+    When I click the "管理" tab
+    And I click the admin export tab
+    Then an admin JSON file download should be triggered
