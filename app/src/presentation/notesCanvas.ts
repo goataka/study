@@ -145,11 +145,14 @@ export class NotesCanvas {
 
     // CSS zoom が document.documentElement に適用されると、ブラウザのバージョンによって
     // getBoundingClientRect が CSS 座標（ズーム非考慮）または視覚座標（ズーム考慮）を返す。
-    // zoom: html 要素に設定されている CSS zoom 値（なければ 1.0）
-    // bcrIsZoomAware: rect.width が offsetWidth × zoom に近い場合は BCR がズーム考慮済み
-    const zoom = parseFloat(document.documentElement.style.zoom || "1") || 1;
+    // getComputedStyle で取得した zoom 値を使い、スケール誤差を補正する。
+    // bcrIsZoomAware: rect.width が offsetWidth × zoom に近い（8%以内）場合は BCR がズーム考慮済み
+    const computedZoom = getComputedStyle(document.documentElement).zoom;
+    const zoom = parseFloat(computedZoom || "1") || 1;
     const offsetWidth = this.canvas.offsetWidth || 1;
-    const bcrIsZoomAware = zoom !== 1 && Math.abs(rect.width / offsetWidth - zoom) < 0.08;
+    /** BCR がズーム考慮済みか判定する誤差許容（8%） */
+    const BCR_ZOOM_TOLERANCE = 0.08;
+    const bcrIsZoomAware = zoom !== 1 && Math.abs(rect.width / offsetWidth - zoom) < BCR_ZOOM_TOLERANCE;
 
     // 視覚座標系でのキャンバス左上隅位置
     const canvasLeft = bcrIsZoomAware ? rect.left : rect.left * zoom;

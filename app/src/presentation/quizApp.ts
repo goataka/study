@@ -490,9 +490,13 @@ export class QuizApp {
     const container = document.createElement("div");
     container.className = "admin-panel";
 
-    const sections: Array<{ title: string; content: unknown; fullContent?: unknown }> = [
+    /** ファイルダウンロード用の英字キー */
+    type SectionKey = "settings" | "history" | "wrong" | "mastered" | "streaks" | "stats";
+    const sections: Array<{ title: string; fileKey: SectionKey; editable: boolean; content: unknown; fullContent?: unknown }> = [
       {
         title: "設定",
+        fileKey: "settings",
+        editable: false,
         content: {
           userName: data.userName ?? "ゲスト",
           fontSizeLevel: data.fontSizeLevel ?? "small",
@@ -501,11 +505,11 @@ export class QuizApp {
           shareUrl: this.shareUrl || "(未設定)",
         },
       },
-      { title: "履歴", content: truncateArray(data.history), fullContent: data.history },
-      { title: "不正解問題", content: truncateArray(data.wrongIds), fullContent: data.wrongIds },
-      { title: "学習済み問題", content: truncateArray(data.masteredIds), fullContent: data.masteredIds },
-      { title: "連続正解", content: data.correctStreaks },
-      { title: "問題統計", content: data.questionStats },
+      { title: "履歴", fileKey: "history", editable: true, content: truncateArray(data.history), fullContent: data.history },
+      { title: "不正解問題", fileKey: "wrong", editable: true, content: truncateArray(data.wrongIds), fullContent: data.wrongIds },
+      { title: "学習済み問題", fileKey: "mastered", editable: true, content: truncateArray(data.masteredIds), fullContent: data.masteredIds },
+      { title: "連続正解", fileKey: "streaks", editable: true, content: data.correctStreaks },
+      { title: "問題統計", fileKey: "stats", editable: true, content: data.questionStats },
     ];
 
     // タブバー
@@ -534,26 +538,27 @@ export class QuizApp {
       let parsed: unknown;
       try {
         parsed = JSON.parse(jsonText);
-      } catch {
-        return "JSONの形式が正しくありません。";
+      } catch (e) {
+        const msg = e instanceof SyntaxError ? e.message : String(e);
+        return `JSONの形式が正しくありません: ${msg}`;
       }
-      const title = sections[index]!.title;
+      const { fileKey } = sections[index]!;
       try {
-        if (title === "履歴") {
+        if (fileKey === "history") {
           if (!Array.isArray(parsed)) return "配列形式で入力してください。";
           this.progressRepo.saveHistory(parsed as QuizRecord[]);
-        } else if (title === "不正解問題") {
+        } else if (fileKey === "wrong") {
           if (!Array.isArray(parsed)) return "配列形式で入力してください。";
           this.progressRepo.saveWrongIds(parsed as string[]);
-        } else if (title === "学習済み問題") {
+        } else if (fileKey === "mastered") {
           if (!Array.isArray(parsed)) return "配列形式で入力してください。";
           this.progressRepo.saveMasteredIds(parsed as string[]);
-        } else if (title === "連続正解") {
+        } else if (fileKey === "streaks") {
           if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
             return "オブジェクト形式で入力してください。";
           }
           this.progressRepo.saveCorrectStreaks(parsed as Record<string, number>);
-        } else if (title === "問題統計") {
+        } else if (fileKey === "stats") {
           if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
             return "オブジェクト形式で入力してください。";
           }
@@ -608,8 +613,8 @@ export class QuizApp {
         const a = document.createElement("a");
         a.href = url;
         const dateStr = new Date().toISOString().slice(0, 10);
-        const sectionTitle = sections[index]!.title;
-        a.download = `study-${sectionTitle}-${dateStr}.json`;
+        const fileKey = sections[index]!.fileKey;
+        a.download = `study-${fileKey}-${dateStr}.json`;
         document.body.appendChild(a);
         a.click();
         setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
@@ -617,8 +622,7 @@ export class QuizApp {
       btnBar.appendChild(dlBtn);
 
       // 編集可能なセクションのみ編集ボタンを表示
-      const editableSection = ["履歴", "不正解問題", "学習済み問題", "連続正解", "問題統計"].includes(sections[index]!.title);
-      if (editableSection) {
+      if (sections[index]!.editable) {
         const editBtn = document.createElement("button");
         editBtn.className = "admin-data-action-btn";
         editBtn.type = "button";
