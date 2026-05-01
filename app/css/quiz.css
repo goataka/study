@@ -4605,10 +4605,11 @@ body.font-size-large .admin-import-apply-btn {
     }
     .admin-panel {
         grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+        min-height: 0;
     }
     .admin-menu-bar {
-        max-height: 120px;
+        max-height: 30vh;
         overflow-y: auto;
     }
     .category-panel {
