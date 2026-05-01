@@ -661,8 +661,10 @@ export class QuizApp {
             try {
               parsedData = JSON.parse(reader.result as string);
               // ファイル名からセクションを推定（例: study-history-2024-01-01.json）
+              // settings はインポート対象外
               detectedFileKey = null;
-              for (const sec of sections) {
+              const importableSections = sections.filter((sec) => sec.fileKey !== "settings");
+              for (const sec of importableSections) {
                 if (file.name.includes(sec.fileKey)) {
                   detectedFileKey = sec.fileKey;
                   break;
@@ -673,11 +675,15 @@ export class QuizApp {
                 ? preview.slice(0, 2000) + "\n...(省略)"
                 : preview;
               previewEl.style.display = "block";
-              applyBtn.style.display = "block";
               if (detectedFileKey) {
                 applyBtn.textContent = `✅ ${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey} を更新する`;
+                applyBtn.style.display = "block";
+              } else if (file.name.includes("settings")) {
+                previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
+                applyBtn.style.display = "none";
               } else {
                 applyBtn.textContent = "✅ データを更新する（種類不明）";
+                applyBtn.style.display = "block";
               }
             } catch {
               previewEl.textContent = "JSONの解析に失敗しました。ファイルを確認してください。";
@@ -717,9 +723,14 @@ export class QuizApp {
               } else if (detectedFileKey === "streaks") {
                 this.progressRepo.saveCorrectStreaks(parsedData as Record<string, number>);
               }
-              void this.useCase.initialize().then(() => {
-                window.location.reload();
-              });
+              void this.useCase.initialize()
+                .then(() => {
+                  window.location.reload();
+                })
+                .catch((err: unknown) => {
+                  console.error("データ再読み込みに失敗しました", err);
+                  alert("データの更新後の再読み込みに失敗しました。問題データを確認してください。");
+                });
             } catch (err) {
               console.error("データ更新に失敗しました", err);
               alert("データの更新に失敗しました。ファイルの形式を確認してください。");
@@ -742,8 +753,10 @@ export class QuizApp {
       resetSubTabBtn.className = "admin-tab-btn";
       resetSubTabBtn.type = "button";
       resetSubTabBtn.textContent = "🗑️ 初期化";
+      resetSubTabBtn.setAttribute("id", "admin-tab-reset");
       resetSubTabBtn.setAttribute("role", "tab");
       resetSubTabBtn.setAttribute("aria-selected", "false");
+      resetSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
       resetSubTabBtn.addEventListener("click", showResetTab);
       subTabBar.appendChild(resetSubTabBtn);
 
@@ -751,10 +764,15 @@ export class QuizApp {
       importSubTabBtn.className = "admin-tab-btn";
       importSubTabBtn.type = "button";
       importSubTabBtn.textContent = "📥 インポート";
+      importSubTabBtn.setAttribute("id", "admin-tab-import");
       importSubTabBtn.setAttribute("role", "tab");
       importSubTabBtn.setAttribute("aria-selected", "false");
+      importSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
       importSubTabBtn.addEventListener("click", showImportTab);
       subTabBar.appendChild(importSubTabBtn);
+
+      subContentArea.setAttribute("role", "tabpanel");
+      subContentArea.setAttribute("id", "admin-manage-tabpanel");
 
       // 初期表示
       showResetTab();
@@ -2407,8 +2425,8 @@ export class QuizApp {
 
       // 行3: ステータスバー（全幅）
       const { mastered, total } = this.useCase.getMasteredCountForCategory(this.filter.subject, this.filter.category);
-      const wrongCount = this.useCase.getWrongCount({ subject: this.filter.subject, category: this.filter.category });
-      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
+      const inProgressCountSidebar = this.useCase.getInProgressCount({ subject: this.filter.subject, category: this.filter.category });
+      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCountSidebar, total);
       const progressRow = document.createElement("div");
       progressRow.className = "selected-unit-progress-row";
       const progressBar = document.createElement("div");
@@ -2423,7 +2441,7 @@ export class QuizApp {
       progressBar.appendChild(progressFillInProgress);
       const progressLabel = document.createElement("span");
       progressLabel.className = "selected-unit-progress-label";
-      progressLabel.textContent = wrongCount > 0 ? `${mastered}(${wrongCount})/${total}` : `${mastered}/${total}`;
+      progressLabel.textContent = inProgressCountSidebar > 0 ? `${mastered}(${inProgressCountSidebar})/${total}` : `${mastered}/${total}`;
       progressRow.appendChild(progressBar);
       progressRow.appendChild(progressLabel);
       body.appendChild(progressRow);
@@ -3366,12 +3384,8 @@ export class QuizApp {
   private isCurrentCategoryLearned(): boolean {
     const effectiveFilter = this.getEffectiveFilter();
     if (effectiveFilter.category === "all") return false;
-    const studiedKeys = this.useCase.getStudiedCategoryKeys();
-    const wrongCount = this.useCase.getWrongCount(effectiveFilter);
-    // studiedKeys 経由（クイズ実施後に不正解なし）、または全問題が masteredIds にある場合
-    const key = `${effectiveFilter.subject}::${effectiveFilter.category}`;
-    if (studiedKeys.has(key) && wrongCount === 0) return true;
     const { mastered, total } = this.useCase.getMasteredCountForCategory(effectiveFilter.subject, effectiveFilter.category);
+    // 全問題が masteredIds にある場合のみ「学習済み」とみなす（updateSubjectStats と統一）
     return total > 0 && mastered === total;
   }
 

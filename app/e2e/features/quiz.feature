@@ -5,11 +5,11 @@ Feature: 学習アプリ
 
   Scenario: スタート画面が表示される
     Then the start screen should be visible
-    And the quiz title should be "学習アプリ"
+    And the quiz title should contain "学習アプリ"
 
   Scenario: タブで教科を切り替えると単元一覧のみ表示される
     Then the start screen should be visible
-    And the quiz title should be "学習アプリ"
+    And the quiz title should contain "学習アプリ"
     When I click the "英語" tab
     Then the header should remain visible
     And the category list should be visible

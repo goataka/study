@@ -179,11 +179,12 @@ export class QuizUseCase {
   }
 
   /**
-   * 全問題の回答統計を一括で返す（読み取り専用スナップショット）。
+   * 全問題の回答統計を一括で返す（浅いコピー）。
    * ループ内での個別呼び出しを避け、パフォーマンスを改善するために使用する。
+   * 呼び出し側のミューテートがユースケース内部状態に影響しないよう浅いコピーを返す。
    */
-  getAllQuestionStats(): Readonly<Record<string, { total: number; correct: number }>> {
-    return this.questionStats;
+  getAllQuestionStats(): Record<string, { total: number; correct: number }> {
+    return { ...this.questionStats };
   }
 
   /**
@@ -375,6 +376,7 @@ export class QuizUseCase {
       if (!this.masteredIds.includes(id)) {
         this.masteredIds.push(id);
       }
+      this.masteredSet.add(id);
     }
     this.progressRepo.saveMasteredIds(this.masteredIds);
 
@@ -419,6 +421,9 @@ export class QuizUseCase {
     // 対象カテゴリの問題を masteredIds から除く
     const questionIdSet = new Set(questions.map((q) => q.id));
     this.masteredIds = this.masteredIds.filter((id) => !questionIdSet.has(id));
+    for (const id of questionIdSet) {
+      this.masteredSet.delete(id);
+    }
     this.progressRepo.saveMasteredIds(this.masteredIds);
   }
 
