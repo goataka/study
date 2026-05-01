@@ -156,7 +156,7 @@ export class QuizApp {
         }
       }
     } catch {
-      // ignore
+      // JSON.parse が失敗した場合はデフォルト値（各教科1件）を使用する
     }
   }
 
@@ -169,7 +169,7 @@ export class QuizApp {
       });
       localStorage.setItem("recommendedCounts", JSON.stringify(obj));
     } catch {
-      // ignore
+      // localStorage が使用できない場合は保存をスキップする
     }
   }
 

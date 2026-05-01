@@ -3232,7 +3232,8 @@ button:disabled {
     gap: 8px;
 }
 
-/* canvasのborderによる座標ずれを防ぐためwrapperにborderを設定 */
+/* canvasのborder: 2pxがgetBoundingClientRect()の座標にずれを生じさせるため、
+   borderをwrapperに移動し、canvas自体はborderなしにして正確な座標計算を確保する */
 .kanji-canvas-wrapper {
     border: 2px solid #e1e4e8;
     border-radius: 6px;
