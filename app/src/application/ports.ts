@@ -50,6 +50,7 @@ export interface UserDataExport {
   history: QuizRecord[];
   categoryViewMode: "category" | "grade";
   fontSizeLevel: "small" | "medium" | "large" | null;
+  recommendedCounts?: Record<string, number>;
 }
 
 /** 進捗データ永続化の抽象インターフェース */
@@ -74,6 +75,8 @@ export interface IProgressRepository {
   saveShareUrl(url: string): void;
   loadQuizSettings(): QuizSettings;
   saveQuizSettings(settings: QuizSettings): void;
+  loadRecommendedCounts(): Record<string, number>;
+  saveRecommendedCounts(counts: Record<string, number>): void;
   exportAllData(): UserDataExport;
   clearAllData(): Promise<void>;
 }

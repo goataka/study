@@ -2694,9 +2694,12 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
+    const fillInProgress = catItem?.querySelector(".category-progress-fill-inprogress") as HTMLElement | null;
     const stats = catItem?.querySelector(".category-stats") as HTMLElement | null;
 
     expect(fill?.style.width).toBe("80%");
+    // 学習中バー: 1/5 = 20%
+    expect(fillInProgress?.style.width).toBe("20%");
     expect(stats?.textContent).toBe("4(1)/5");
   });
 
@@ -3789,6 +3792,38 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     // 英語には複数カテゴリあるので複数カードが表示されるはず
     const englishItems = document.querySelectorAll('.subject-overview-item[data-subject="english"]');
     expect(englishItems.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("表示数ボタンを押すと progressRepo に保存され、次回 new QuizApp() で復元される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語の3ボタンをクリック
+    const wrappers = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
+    const englishWrapper = wrappers.find((w) => w.querySelector('[data-subject="english"]'));
+    const btn3 = Array.from(englishWrapper?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
+      (b) => b.textContent === "3"
+    ) as HTMLElement | undefined;
+    btn3?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // localStorage（LocalStorageProgressRepository）に保存されていることを確認
+    const saved = localStorage.getItem("recommendedCounts");
+    expect(saved).not.toBeNull();
+    const parsed = JSON.parse(saved!) as Record<string, number>;
+    expect(parsed["english"]).toBe(3);
+
+    // 再初期化して復元されることを確認
+    document.body.innerHTML = document.body.innerHTML; // DOM リセットは不要（同じ DOM 使いまわし）
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const wrappers2 = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
+    const englishWrapper2 = wrappers2.find((w) => w.querySelector('[data-subject="english"]'));
+    const activeBtn = Array.from(englishWrapper2?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
+      (b) => b.textContent === "3"
+    ) as HTMLElement | undefined;
+    expect(activeBtn?.classList.contains("active")).toBe(true);
   });
 
   it("全問正解の学習済みカテゴリは進捗率100%と表示される", async () => {

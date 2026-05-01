@@ -876,15 +876,6 @@ header h1 {
     flex-shrink: 0;
 }
 
-.subject-overview-recommended {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 6px;
-    font-size: 16px;
-    color: #24292e;
-}
-
 .subject-overview-rec-name {
     font-size: 16px;
     font-weight: 600;
@@ -3577,10 +3568,6 @@ body.font-size-medium .subject-overview-pct {
     font-size: 14px;
 }
 
-body.font-size-medium .subject-overview-recommended {
-    font-size: 18px;
-}
-
 body.font-size-medium .subject-overview-rec-name {
     font-size: 18px;
 }
@@ -3900,7 +3887,7 @@ body.font-size-large .subject-overview-outer-cat {
     font-size: 18px;
 }
 
-body.font-size-large .subject-overview-recommended {
+body.font-size-large .subject-overview-rec-name {
     font-size: 22px;
 }
 

@@ -24,6 +24,7 @@ const KEY_CATEGORY_VIEW_MODE = "categoryViewMode";
 const KEY_FONT_SIZE_LEVEL = "fontSizeLevel";
 const KEY_SHARE_URL = "overallShareUrl";
 const KEY_QUIZ_SETTINGS = "quizSettings";
+const KEY_RECOMMENDED_COUNTS = "recommendedCounts";
 
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
@@ -40,6 +41,7 @@ interface ProgressCache {
   fontSizeLevel: "small" | "medium" | "large" | null;
   shareUrl: string;
   quizSettings: QuizSettings;
+  recommendedCounts: Record<string, number>;
 }
 
 /** プレーンオブジェクト（null 非許容、配列非許容）かどうかを判定する型ガード */
@@ -65,6 +67,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       fontSizeLevel: null,
       shareUrl: "",
       quizSettings: { questionCount: 10, quizOrder: "random", includeMastered: false },
+      recommendedCounts: {},
     };
   }
 
@@ -145,6 +148,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       fontSizeLevel,
       shareUrl,
       quizSettings,
+      recommendedCounts,
     ] = await Promise.all([
       getValue(KEY_WRONG_QUESTIONS),
       getValue(KEY_CORRECT_STREAKS),
@@ -156,6 +160,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       getValue(KEY_FONT_SIZE_LEVEL),
       getValue(KEY_SHARE_URL),
       getValue(KEY_QUIZ_SETTINGS),
+      getValue(KEY_RECOMMENDED_COUNTS),
     ]);
 
     await transactionDone;
@@ -194,6 +199,13 @@ export class IndexedDBProgressRepository implements IProgressRepository {
         quizOrder: qs.quizOrder === "straight" ? "straight" : "random",
         includeMastered: typeof qs.includeMastered === "boolean" ? qs.includeMastered : false,
       };
+    }
+    if (isPlainObject(recommendedCounts)) {
+      const result: Record<string, number> = {};
+      for (const [k, v] of Object.entries(recommendedCounts as Record<string, unknown>)) {
+        if (typeof v === "number" && v > 0) result[k] = v;
+      }
+      cache.recommendedCounts = result;
     }
 
     return cache;
@@ -336,6 +348,15 @@ export class IndexedDBProgressRepository implements IProgressRepository {
     this.persistKey(KEY_QUIZ_SETTINGS, settings);
   }
 
+  loadRecommendedCounts(): Record<string, number> {
+    return this.cache.recommendedCounts;
+  }
+
+  saveRecommendedCounts(counts: Record<string, number>): void {
+    this.cache.recommendedCounts = counts;
+    this.persistKey(KEY_RECOMMENDED_COUNTS, counts);
+  }
+
   exportAllData(): UserDataExport {
     return {
       exportedAt: new Date().toISOString(),
@@ -346,6 +367,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       history: this.loadHistory(),
       categoryViewMode: this.loadCategoryViewMode(),
       fontSizeLevel: this.loadFontSizeLevel(),
+      recommendedCounts: this.loadRecommendedCounts(),
     };
   }
 

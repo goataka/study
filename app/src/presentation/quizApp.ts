@@ -32,6 +32,19 @@ function gradeColorClass(referenceGrade: string): string {
   return "";
 }
 
+/**
+ * 2色進捗バーの幅（%）を計算する。
+ * Math.round の丸め誤差で masteredPct + inProgressPct が 100% を超えないようにクランプする。
+ */
+function calcDualProgressPct(
+  mastered: number, wrong: number, total: number
+): { masteredPct: number; inProgressPct: number } {
+  if (total === 0) return { masteredPct: 0, inProgressPct: 0 };
+  const masteredPct = Math.round((mastered / total) * 100);
+  const inProgressPct = Math.min(Math.round((wrong / total) * 100), 100 - masteredPct);
+  return { masteredPct, inProgressPct };
+}
+
 export class QuizApp {
   private useCase!: QuizUseCase;
   private progressRepo: IProgressRepository;
@@ -143,34 +156,21 @@ export class QuizApp {
     this.categoryViewMode = this.progressRepo.loadCategoryViewMode();
   }
 
-  /** おすすめ単元の表示数をlocalStorageから読み込む */
+  /** おすすめ単元の表示数をリポジトリから読み込む */
   private loadRecommendedCounts(): void {
-    try {
-      const saved = localStorage.getItem("recommendedCounts");
-      if (saved) {
-        const parsed = JSON.parse(saved) as Record<string, number>;
-        for (const [subjectId, count] of Object.entries(parsed)) {
-          if (typeof count === "number" && count > 0) {
-            this.subjectRecommendedCounts.set(subjectId, count);
-          }
-        }
-      }
-    } catch {
-      // JSON.parse が失敗した場合はデフォルト値（各教科1件）を使用する
+    const counts = this.progressRepo.loadRecommendedCounts();
+    for (const [subjectId, count] of Object.entries(counts)) {
+      this.subjectRecommendedCounts.set(subjectId, count);
     }
   }
 
-  /** おすすめ単元の表示数をlocalStorageに保存する */
+  /** おすすめ単元の表示数をリポジトリに保存する */
   private saveRecommendedCounts(): void {
-    try {
-      const obj: Record<string, number> = {};
-      this.subjectRecommendedCounts.forEach((count, subjectId) => {
-        obj[subjectId] = count;
-      });
-      localStorage.setItem("recommendedCounts", JSON.stringify(obj));
-    } catch {
-      // localStorage が使用できない場合は保存をスキップする
-    }
+    const obj: Record<string, number> = {};
+    this.subjectRecommendedCounts.forEach((count, subjectId) => {
+      obj[subjectId] = count;
+    });
+    this.progressRepo.saveRecommendedCounts(obj);
   }
 
   /**
@@ -1264,6 +1264,7 @@ export class QuizApp {
       }
 
       // グループごとにヘッダーとカードを描画する
+      const studiedKeys = this.useCase.getStudiedCategoryKeys();
       for (const key of groupOrder) {
         const group = groupMap.get(key)!;
         const catGroup = document.createElement("div");
@@ -1305,7 +1306,6 @@ export class QuizApp {
 
           const { mastered, total } = this.useCase.getMasteredCountForCategory(subject.id, recommended.id);
           const wrongCount = this.useCase.getWrongCount({ subject: subject.id, category: recommended.id });
-          const studiedKeys = this.useCase.getStudiedCategoryKeys();
           const catKey = `${subject.id}::${recommended.id}`;
           const isAllMastered = total > 0 && mastered === total;
           const isLearned = (studiedKeys.has(catKey) && wrongCount === 0) || isAllMastered;
@@ -1348,8 +1348,7 @@ export class QuizApp {
           progressBar.className = "subject-overview-progress-bar";
           const progressFill = document.createElement("div");
           progressFill.className = "subject-overview-progress-fill";
-          const masteredPct = total > 0 ? Math.round((mastered / total) * 100) : 0;
-          const inProgressPct = total > 0 ? Math.round((wrongCount / total) * 100) : 0;
+          const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
           progressFill.style.width = `${masteredPct}%`;
           progressBar.appendChild(progressFill);
           const progressFillInProgress = document.createElement("div");
@@ -2079,8 +2078,7 @@ export class QuizApp {
       // 行3: ステータスバー（全幅）
       const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, categoryId);
       const wrongCount = this.useCase.getWrongCount({ subject, category: categoryId });
-      const masteredPct = total > 0 ? Math.round((mastered / total) * 100) : 0;
-      const inProgressPct = total > 0 ? Math.round((wrongCount / total) * 100) : 0;
+      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
       const progressRow = document.createElement("div");
       progressRow.className = "selected-unit-progress-row";
       const progressBar = document.createElement("div");
@@ -2208,8 +2206,7 @@ export class QuizApp {
       // 行3: ステータスバー（全幅）
       const { mastered, total } = this.useCase.getMasteredCountForCategory(this.filter.subject, this.filter.category);
       const wrongCount = this.useCase.getWrongCount({ subject: this.filter.subject, category: this.filter.category });
-      const masteredPct = total > 0 ? Math.round((mastered / total) * 100) : 0;
-      const inProgressPct = total > 0 ? Math.round((wrongCount / total) * 100) : 0;
+      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
       const progressRow = document.createElement("div");
       progressRow.className = "selected-unit-progress-row";
       const progressBar = document.createElement("div");
@@ -3014,8 +3011,7 @@ export class QuizApp {
         const isStudied = studiedKeys.has(key);
         const isSubjectStudied = category !== "all" && studiedKeys.has(`${subject}::all`);
         if (isStudied || isSubjectStudied || stat.mastered > 0 || stat.wrong > 0) {
-          const masteredPct = stat.total > 0 ? Math.round((stat.mastered / stat.total) * 100) : 0;
-          const inProgressPct = stat.total > 0 ? Math.round((stat.wrong / stat.total) * 100) : 0;
+          const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.wrong, stat.total);
           progressFill.style.width = `${masteredPct}%`;
           progressFill.classList.toggle("progress-fill-done", masteredPct === 100);
           if (progressFillInProgress) {
