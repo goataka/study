@@ -32,6 +32,19 @@ function gradeColorClass(referenceGrade: string): string {
   return "";
 }
 
+/**
+ * 2色進捗バーの幅（%）を計算する。
+ * Math.round の丸め誤差で masteredPct + inProgressPct が 100% を超えないようにクランプする。
+ */
+function calcDualProgressPct(
+  mastered: number, wrong: number, total: number
+): { masteredPct: number; inProgressPct: number } {
+  if (total === 0) return { masteredPct: 0, inProgressPct: 0 };
+  const masteredPct = Math.round((mastered / total) * 100);
+  const inProgressPct = Math.min(Math.round((wrong / total) * 100), 100 - masteredPct);
+  return { masteredPct, inProgressPct };
+}
+
 export class QuizApp {
   private useCase!: QuizUseCase;
   private progressRepo: IProgressRepository;
@@ -117,6 +130,7 @@ export class QuizApp {
     this.loadFilterFromURL();
     this.loadQuestionCountFromDOM();
     this.loadCategoryViewModeFromStorage();
+    this.loadRecommendedCounts();
     this.setupEventListeners();
     this.buildSubjectTabs();
     this.buildPanelTabs();
@@ -140,6 +154,23 @@ export class QuizApp {
    */
   private loadCategoryViewModeFromStorage(): void {
     this.categoryViewMode = this.progressRepo.loadCategoryViewMode();
+  }
+
+  /** おすすめ単元の表示数をリポジトリから読み込む */
+  private loadRecommendedCounts(): void {
+    const counts = this.progressRepo.loadRecommendedCounts();
+    for (const [subjectId, count] of Object.entries(counts)) {
+      this.subjectRecommendedCounts.set(subjectId, count);
+    }
+  }
+
+  /** おすすめ単元の表示数をリポジトリに保存する */
+  private saveRecommendedCounts(): void {
+    const obj: Record<string, number> = {};
+    this.subjectRecommendedCounts.forEach((count, subjectId) => {
+      obj[subjectId] = count;
+    });
+    this.progressRepo.saveRecommendedCounts(obj);
   }
 
   /**
@@ -1188,6 +1219,7 @@ export class QuizApp {
         const capturedSubjectId = subject.id;
         btn.addEventListener("click", () => {
           this.subjectRecommendedCounts.set(capturedSubjectId, n);
+          this.saveRecommendedCounts();
           this.renderCategoryList();
         });
         countControls.appendChild(btn);
@@ -1232,6 +1264,7 @@ export class QuizApp {
       }
 
       // グループごとにヘッダーとカードを描画する
+      const studiedKeys = this.useCase.getStudiedCategoryKeys();
       for (const key of groupOrder) {
         const group = groupMap.get(key)!;
         const catGroup = document.createElement("div");
@@ -1266,13 +1299,35 @@ export class QuizApp {
           item.setAttribute("tabindex", "0");
           item.dataset.subject = subject.id;
 
-          const recDiv = document.createElement("div");
-          recDiv.className = "subject-overview-recommended";
+          // 単元一覧と同じレイアウト: ステータスアイコン + 名前エリア
+          const statusSpan = document.createElement("span");
+          statusSpan.className = "subject-overview-status";
+          statusSpan.setAttribute("aria-hidden", "true");
 
+          const { mastered, total } = this.useCase.getMasteredCountForCategory(subject.id, recommended.id);
+          const wrongCount = this.useCase.getWrongCount({ subject: subject.id, category: recommended.id });
+          const catKey = `${subject.id}::${recommended.id}`;
+          const isAllMastered = total > 0 && mastered === total;
+          const isLearned = (studiedKeys.has(catKey) && wrongCount === 0) || isAllMastered;
+          const isStudying = studiedKeys.has(catKey) && wrongCount > 0;
+          if (isLearned || isAllMastered) {
+            statusSpan.textContent = "✅";
+          } else if (isStudying) {
+            statusSpan.textContent = "🔄";
+          } else {
+            statusSpan.textContent = "⬜";
+          }
+
+          const nameArea = document.createElement("div");
+          nameArea.className = "subject-overview-name-area";
+
+          // タイトル行: 名前（左）+ 学年バッジ（右）
+          const titleRow = document.createElement("div");
+          titleRow.className = "subject-overview-title-row";
           const recName = document.createElement("span");
           recName.className = "subject-overview-rec-name";
           recName.textContent = recommended.name;
-          recDiv.appendChild(recName);
+          titleRow.appendChild(recName);
 
           if (recommended.referenceGrade) {
             const gradeSpan = document.createElement("span");
@@ -1282,19 +1337,36 @@ export class QuizApp {
               gradeSpan.classList.add(gradeClassName);
             }
             gradeSpan.textContent = recommended.referenceGrade;
-            recDiv.appendChild(gradeSpan);
+            titleRow.appendChild(gradeSpan);
           }
+          nameArea.appendChild(titleRow);
 
-          const pct = this.useCase.getCategoryProgressPct(subject.id, recommended.id);
-          const pctSpan = document.createElement("span");
-          pctSpan.className = "subject-overview-pct";
-          if (pct === 100) {
-            pctSpan.classList.add("progress-fill-done");
+          // 進捗行: 進捗バー（緑+黄）+ 進捗数値
+          const progressRow = document.createElement("div");
+          progressRow.className = "subject-overview-progress-row";
+          const progressBar = document.createElement("div");
+          progressBar.className = "subject-overview-progress-bar";
+          const progressFill = document.createElement("div");
+          progressFill.className = "subject-overview-progress-fill";
+          const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
+          progressFill.style.width = `${masteredPct}%`;
+          progressBar.appendChild(progressFill);
+          const progressFillInProgress = document.createElement("div");
+          progressFillInProgress.className = "subject-overview-progress-fill-inprogress";
+          progressFillInProgress.style.width = `${inProgressPct}%`;
+          progressBar.appendChild(progressFillInProgress);
+          progressRow.appendChild(progressBar);
+
+          if (total > 0 && (mastered > 0 || wrongCount > 0 || studiedKeys.has(catKey))) {
+            const pctSpan = document.createElement("span");
+            pctSpan.className = "subject-overview-pct";
+            pctSpan.textContent = wrongCount > 0 ? `${mastered}(${wrongCount})/${total}` : `${mastered}/${total}`;
+            progressRow.appendChild(pctSpan);
           }
-          pctSpan.textContent = `${pct}%`;
-          recDiv.appendChild(pctSpan);
+          nameArea.appendChild(progressRow);
 
-          item.appendChild(recDiv);
+          item.appendChild(statusSpan);
+          item.appendChild(nameArea);
 
           const capturedRec = recommended;
           const capturedSubjectId = subject.id;
@@ -1379,7 +1451,7 @@ export class QuizApp {
     const symbols =
       "🏆".repeat(Math.min(masteredCount, 5)) +
       "⭐".repeat(Math.min(studiedCount, 5));
-    el.textContent = symbols;
+    el.textContent = `学習数：${symbols}`;
   }
 
   /**
@@ -1661,7 +1733,7 @@ export class QuizApp {
 
     nameArea.appendChild(titleRow);
 
-    // 進捗バーと完了率を横並びにするラッパー
+    // 進捗バーと進捗数値を横並びにするラッパー
     const progressRow = document.createElement("div");
     progressRow.className = "category-progress-row";
 
@@ -1670,12 +1742,15 @@ export class QuizApp {
     const progressFill = document.createElement("div");
     progressFill.className = "category-progress-fill";
     progressBar.appendChild(progressFill);
+    const progressFillInProgress = document.createElement("div");
+    progressFillInProgress.className = "category-progress-fill-inprogress";
+    progressBar.appendChild(progressFillInProgress);
 
-    const progressPct = document.createElement("span");
-    progressPct.className = "category-progress-pct hidden";
+    const statsSpan = document.createElement("span");
+    statsSpan.className = "category-stats";
 
     progressRow.appendChild(progressBar);
-    progressRow.appendChild(progressPct);
+    progressRow.appendChild(statsSpan);
 
     nameArea.appendChild(progressRow);
 
@@ -1689,20 +1764,14 @@ export class QuizApp {
       if (gradeClass) {
         gradeSpan.classList.add(gradeClass);
       }
-    } else {
-      gradeSpan.classList.add("hidden");
+      titleRow.appendChild(gradeSpan);
     }
 
-    const statsSpan = document.createElement("span");
-    statsSpan.className = "category-stats";
-
-    // 左列に statusSpan・nameArea・gradeSpan・statsSpan をまとめる
+    // 左列に statusSpan・nameArea をまとめる（gradeSpan・statsSpanは nameArea 内に配置済み）
     const leftCol = document.createElement("div");
     leftCol.className = "category-item-left";
     leftCol.appendChild(statusSpan);
     leftCol.appendChild(nameArea);
-    leftCol.appendChild(gradeSpan);
-    leftCol.appendChild(statsSpan);
     item.appendChild(leftCol);
 
     // 説明・例文は右列に常時表示
@@ -2008,18 +2077,23 @@ export class QuizApp {
 
       // 行3: ステータスバー（全幅）
       const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, categoryId);
-      const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
+      const wrongCount = this.useCase.getWrongCount({ subject, category: categoryId });
+      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
       const progressRow = document.createElement("div");
       progressRow.className = "selected-unit-progress-row";
       const progressBar = document.createElement("div");
       progressBar.className = "selected-unit-progress-bar";
       const progressFill = document.createElement("div");
       progressFill.className = "selected-unit-progress-fill";
-      progressFill.style.width = `${pct}%`;
+      progressFill.style.width = `${masteredPct}%`;
       progressBar.appendChild(progressFill);
+      const progressFillInProgress = document.createElement("div");
+      progressFillInProgress.className = "selected-unit-progress-fill-inprogress";
+      progressFillInProgress.style.width = `${inProgressPct}%`;
+      progressBar.appendChild(progressFillInProgress);
       const progressLabel = document.createElement("span");
       progressLabel.className = "selected-unit-progress-label";
-      progressLabel.textContent = `${mastered}/${total}`;
+      progressLabel.textContent = wrongCount > 0 ? `${mastered}(${wrongCount})/${total}` : `${mastered}/${total}`;
       progressRow.appendChild(progressBar);
       progressRow.appendChild(progressLabel);
       body.appendChild(progressRow);
@@ -2131,18 +2205,23 @@ export class QuizApp {
 
       // 行3: ステータスバー（全幅）
       const { mastered, total } = this.useCase.getMasteredCountForCategory(this.filter.subject, this.filter.category);
-      const pct = total > 0 ? Math.round((mastered / total) * 100) : 0;
+      const wrongCount = this.useCase.getWrongCount({ subject: this.filter.subject, category: this.filter.category });
+      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
       const progressRow = document.createElement("div");
       progressRow.className = "selected-unit-progress-row";
       const progressBar = document.createElement("div");
       progressBar.className = "selected-unit-progress-bar";
       const progressFill = document.createElement("div");
       progressFill.className = "selected-unit-progress-fill";
-      progressFill.style.width = `${pct}%`;
+      progressFill.style.width = `${masteredPct}%`;
       progressBar.appendChild(progressFill);
+      const progressFillInProgress = document.createElement("div");
+      progressFillInProgress.className = "selected-unit-progress-fill-inprogress";
+      progressFillInProgress.style.width = `${inProgressPct}%`;
+      progressBar.appendChild(progressFillInProgress);
       const progressLabel = document.createElement("span");
       progressLabel.className = "selected-unit-progress-label";
-      progressLabel.textContent = `${mastered}/${total}`;
+      progressLabel.textContent = wrongCount > 0 ? `${mastered}(${wrongCount})/${total}` : `${mastered}/${total}`;
       progressRow.appendChild(progressBar);
       progressRow.appendChild(progressLabel);
       body.appendChild(progressRow);
@@ -2897,6 +2976,11 @@ export class QuizApp {
 
     const formatCategoryStats = (stat: { total: number; wrong: number; mastered: number }): string => {
       if (stat.total === 0) return "";
+      // 未学習（mastered=0 かつ wrong=0）の場合は表示しない
+      if (stat.mastered === 0 && stat.wrong === 0) return "";
+      if (stat.wrong > 0) {
+        return `${stat.mastered}(${stat.wrong})/${stat.total}`;
+      }
       return `${stat.mastered}/${stat.total}`;
     };
 
@@ -2920,26 +3004,24 @@ export class QuizApp {
         statsEl.textContent = formatCategoryStats(stat);
       }
 
-      // 進捗バーと完了率を更新（学習履歴がある場合、または教科全体の学習履歴がある場合）
+      // 進捗バーと進捗数値を更新（学習履歴がある場合、または教科全体の学習履歴がある場合）
       const progressFill = el.querySelector(".category-progress-fill") as HTMLElement | null;
-      const progressPct = el.querySelector(".category-progress-pct") as HTMLElement | null;
+      const progressFillInProgress = el.querySelector(".category-progress-fill-inprogress") as HTMLElement | null;
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
         const isSubjectStudied = category !== "all" && studiedKeys.has(`${subject}::all`);
         if (isStudied || isSubjectStudied || stat.mastered > 0 || stat.wrong > 0) {
-          const pct = stat.total > 0 ? Math.round((stat.mastered / stat.total) * 100) : 0;
-          progressFill.style.width = `${pct}%`;
-          progressFill.classList.toggle("progress-fill-done", pct === 100);
-          if (progressPct) {
-            progressPct.textContent = `${pct}%`;
-            progressPct.classList.remove("hidden");
+          const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.wrong, stat.total);
+          progressFill.style.width = `${masteredPct}%`;
+          progressFill.classList.toggle("progress-fill-done", masteredPct === 100);
+          if (progressFillInProgress) {
+            progressFillInProgress.style.width = `${inProgressPct}%`;
           }
         } else {
           progressFill.style.width = "0%";
           progressFill.classList.remove("progress-fill-done");
-          if (progressPct) {
-            progressPct.textContent = "";
-            progressPct.classList.add("hidden");
+          if (progressFillInProgress) {
+            progressFillInProgress.style.width = "0%";
           }
         }
       }

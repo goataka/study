@@ -2595,7 +2595,7 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     expect(fill?.classList.contains("progress-fill-done")).toBe(true);
   });
 
-  it("カテゴリアイテムには .category-progress-pct が含まれる", async () => {
+  it("カテゴリアイテムには .category-stats が含まれる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2603,10 +2603,10 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     englishTab?.click();
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
-    expect(catItem?.querySelector(".category-progress-pct")).not.toBeNull();
+    expect(catItem?.querySelector(".category-stats")).not.toBeNull();
   });
 
-  it("未学習カテゴリの完了率テキストは非表示（hidden クラスあり）", async () => {
+  it("未学習カテゴリの進捗数値は空文字になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2614,11 +2614,11 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     englishTab?.click();
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
-    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
-    expect(pct?.classList.contains("hidden")).toBe(true);
+    const stats = catItem?.querySelector(".category-stats") as HTMLElement | null;
+    expect(stats?.textContent).toBe("");
   });
 
-  it("学習済（間違いなし）カテゴリの完了率テキストは 100% になり hidden クラスが外れる", async () => {
+  it("学習済（間違いなし）カテゴリの進捗数値は mastered/total 形式になる", async () => {
     localStorage.setItem(
       "quizHistory",
       JSON.stringify([
@@ -2653,12 +2653,11 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     englishTab?.click();
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
-    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
-    expect(pct?.classList.contains("hidden")).toBe(false);
-    expect(pct?.textContent).toBe("100%");
+    const stats = catItem?.querySelector(".category-stats") as HTMLElement | null;
+    expect(stats?.textContent).toBe("5/5");
   });
 
-  it("間違い問題ありのカテゴリの完了率テキストは 80% になり hidden クラスが外れ、バー幅も 80% になる", async () => {
+  it("間違い問題ありのカテゴリの進捗数値は mastered(wrong)/total 形式になり、バー幅も 80% になる", async () => {
     // mockQuestionFile には q1–q5 の5問がある。q1 を間違いとして登録し、q2–q5 を習得済みとする。
     localStorage.setItem(
       "quizHistory",
@@ -2695,11 +2694,13 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
-    const pct = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+    const fillInProgress = catItem?.querySelector(".category-progress-fill-inprogress") as HTMLElement | null;
+    const stats = catItem?.querySelector(".category-stats") as HTMLElement | null;
 
     expect(fill?.style.width).toBe("80%");
-    expect(pct?.classList.contains("hidden")).toBe(false);
-    expect(pct?.textContent).toBe("80%");
+    // 学習中バー: 1/5 = 20%
+    expect(fillInProgress?.style.width).toBe("20%");
+    expect(stats?.textContent).toBe("4(1)/5");
   });
 
   it("手動で学習済みにしたカテゴリ（entries が空の manual レコード）の進捗バーは 100% になる", async () => {
@@ -2733,12 +2734,11 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const fill = catItem?.querySelector(".category-progress-fill") as HTMLElement | null;
-    const pctEl = catItem?.querySelector(".category-progress-pct") as HTMLElement | null;
+    const statsEl = catItem?.querySelector(".category-stats") as HTMLElement | null;
 
     expect(fill?.style.width).toBe("100%");
     expect(fill?.classList.contains("progress-fill-done")).toBe(true);
-    expect(pctEl?.classList.contains("hidden")).toBe(false);
-    expect(pctEl?.textContent).toBe("100%");
+    expect(statsEl?.textContent).toBe("5/5");
   });
 });
 
@@ -3730,13 +3730,13 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(recName?.textContent).toBeTruthy();
   });
 
-  it("未学習の場合、教科アイテムの進捗率は0%と表示される", async () => {
+  it("未学習の場合、教科アイテムの進捗率は表示されない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
     const pctSpan = englishItem?.querySelector(".subject-overview-pct");
-    expect(pctSpan?.textContent).toBe("0%");
+    expect(pctSpan).toBeNull();
   });
 
   it("outerDate 表示は廃止され、学習履歴に関わらず表示されない", async () => {
@@ -3794,6 +3794,38 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(englishItems.length).toBeGreaterThanOrEqual(1);
   });
 
+  it("表示数ボタンを押すと progressRepo に保存され、次回 new QuizApp() で復元される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 英語の3ボタンをクリック
+    const wrappers = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
+    const englishWrapper = wrappers.find((w) => w.querySelector('[data-subject="english"]'));
+    const btn3 = Array.from(englishWrapper?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
+      (b) => b.textContent === "3"
+    ) as HTMLElement | undefined;
+    btn3?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // localStorage（LocalStorageProgressRepository）に保存されていることを確認
+    const saved = localStorage.getItem("recommendedCounts");
+    expect(saved).not.toBeNull();
+    const parsed = JSON.parse(saved!) as Record<string, number>;
+    expect(parsed["english"]).toBe(3);
+
+    // 再初期化して復元されることを確認
+    document.body.innerHTML = document.body.innerHTML; // DOM リセットは不要（同じ DOM 使いまわし）
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const wrappers2 = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
+    const englishWrapper2 = wrappers2.find((w) => w.querySelector('[data-subject="english"]'));
+    const activeBtn = Array.from(englishWrapper2?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
+      (b) => b.textContent === "3"
+    ) as HTMLElement | undefined;
+    expect(activeBtn?.classList.contains("active")).toBe(true);
+  });
+
   it("全問正解の学習済みカテゴリは進捗率100%と表示される", async () => {
     const studyDate = new Date().toISOString();
     localStorage.setItem(
@@ -3821,8 +3853,8 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
     const pctSpan = englishItem?.querySelector(".subject-overview-pct");
-    // phonics-1 が学習済みかつ全問習得済み → 100%
-    expect(pctSpan?.textContent).toBe("100%");
+    // phonics-1 が学習済みかつ全問習得済み → 5/5
+    expect(pctSpan?.textContent).toBe("5/5");
   });
 
   it("教科概要アイテムをクリックしても総合タブのままで教科タブに切り替わらない", async () => {
@@ -4263,8 +4295,8 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const label = document.getElementById("overallActivityDateLabel");
-    // 学習記録がない場合は空文字
-    expect(label?.textContent).toBe("");
+    // 学習記録がない場合は「学習数：」プレフィックスのみ
+    expect(label?.textContent).toBe("学習数：");
   });
 
   it("シェアタブをクリックすると overallSharePanel が表示され overallLearnedPanel が非表示になる", async () => {

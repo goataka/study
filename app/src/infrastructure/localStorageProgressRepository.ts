@@ -15,6 +15,7 @@ const CATEGORY_VIEW_MODE_KEY = "categoryViewMode";
 const FONT_SIZE_KEY = "fontSizeLevel";
 const SHARE_URL_KEY = "overallShareUrl";
 const QUIZ_SETTINGS_KEY = "quizSettings";
+const RECOMMENDED_COUNTS_KEY = "recommendedCounts";
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
 
@@ -217,6 +218,31 @@ export class LocalStorageProgressRepository implements IProgressRepository {
     }
   }
 
+  loadRecommendedCounts(): Record<string, number> {
+    try {
+      const saved = localStorage.getItem(RECOMMENDED_COUNTS_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved) as Record<string, unknown>;
+        const result: Record<string, number> = {};
+        for (const [k, v] of Object.entries(parsed)) {
+          if (typeof v === "number" && v > 0) result[k] = v;
+        }
+        return result;
+      }
+    } catch {
+      // JSON.parse が失敗した場合はデフォルト値（各教科1件）を使用する
+    }
+    return {};
+  }
+
+  saveRecommendedCounts(counts: Record<string, number>): void {
+    try {
+      localStorage.setItem(RECOMMENDED_COUNTS_KEY, JSON.stringify(counts));
+    } catch (error) {
+      console.error("おすすめ単元表示数の保存に失敗しました:", error);
+    }
+  }
+
   exportAllData(): UserDataExport {
     return {
       exportedAt: new Date().toISOString(),
@@ -227,6 +253,7 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       history: this.loadHistory(),
       categoryViewMode: this.loadCategoryViewMode(),
       fontSizeLevel: this.loadFontSizeLevel(),
+      recommendedCounts: this.loadRecommendedCounts(),
     };
   }
 
@@ -242,6 +269,7 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       FONT_SIZE_KEY,
       SHARE_URL_KEY,
       QUIZ_SETTINGS_KEY,
+      RECOMMENDED_COUNTS_KEY,
     ];
     for (const key of keys) {
       try {
