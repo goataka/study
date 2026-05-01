@@ -473,3 +473,56 @@ describe("IndexedDBProgressRepository — 問題統計永続化仕様", () => {
     expect(repo2.loadQuestionStats()).toEqual({ q1: { total: 5, correct: 3 } });
   });
 });
+
+describe("IndexedDBProgressRepository — clearAllData 仕様", () => {
+  beforeEach(() => {
+    resetIndexedDB();
+  });
+
+  it("clearAllData() を呼ぶと全ての load* がデフォルト値を返す", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    repo.saveWrongIds(["q1", "q2"]);
+    repo.saveCorrectStreaks({ q1: 3 });
+    repo.saveMasteredIds(["q3"]);
+    repo.saveUserName("太郎");
+    repo.saveFontSizeLevel("large");
+    repo.saveCategoryViewMode("grade");
+    repo.saveHistory([makeRecord("r1")]);
+
+    await repo.clearAllData();
+
+    expect(repo.loadWrongIds()).toEqual([]);
+    expect(repo.loadCorrectStreaks()).toEqual({});
+    expect(repo.loadMasteredIds()).toEqual([]);
+    expect(repo.loadUserName()).toBeNull();
+    expect(repo.loadFontSizeLevel()).toBeNull();
+    expect(repo.loadCategoryViewMode()).toBe("category");
+    expect(repo.loadHistory()).toEqual([]);
+  });
+
+  it("clearAllData() 後に IndexedDB から再ロードするとデフォルト値が返る", async () => {
+    const repo1 = new IndexedDBProgressRepository();
+    await repo1.initialize();
+    repo1.saveWrongIds(["q1"]);
+    repo1.saveMasteredIds(["q2"]);
+    repo1.saveUserName("太郎");
+
+    await repo1.flush();
+    await repo1.clearAllData();
+
+    // 別のインスタンスで再ロードしてもデフォルト値になっていること
+    const repo2 = new IndexedDBProgressRepository();
+    await repo2.initialize();
+    expect(repo2.loadWrongIds()).toEqual([]);
+    expect(repo2.loadMasteredIds()).toEqual([]);
+    expect(repo2.loadUserName()).toBeNull();
+  });
+
+  it("DB 未初期化状態でも clearAllData() が正常に完了する", async () => {
+    const repo = new IndexedDBProgressRepository();
+    // initialize() を呼ばずに clearAllData() を呼ぶ
+    await expect(repo.clearAllData()).resolves.toBeUndefined();
+    expect(repo.loadWrongIds()).toEqual([]);
+  });
+});

@@ -358,3 +358,42 @@ describe("LocalStorageProgressRepository — エクスポート仕様", () => {
     expect(new Date(data.exportedAt).toISOString()).toBe(data.exportedAt);
   });
 });
+
+describe("LocalStorageProgressRepository — clearAllData 仕様", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("clearAllData() を呼ぶと全ての load* がデフォルト値を返す", async () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveWrongIds(["q1", "q2"]);
+    repo.saveCorrectStreaks({ q1: 3 });
+    repo.saveMasteredIds(["q3"]);
+    repo.saveUserName("太郎");
+    repo.saveFontSizeLevel("large");
+    repo.saveCategoryViewMode("grade");
+
+    await repo.clearAllData();
+
+    expect(repo.loadWrongIds()).toEqual([]);
+    expect(repo.loadCorrectStreaks()).toEqual({});
+    expect(repo.loadMasteredIds()).toEqual([]);
+    expect(repo.loadUserName()).toBeNull();
+    expect(repo.loadFontSizeLevel()).toBeNull();
+    expect(repo.loadCategoryViewMode()).toBe("category");
+    expect(repo.loadHistory()).toEqual([]);
+  });
+
+  it("clearAllData() を呼ぶと localStorage からキーが削除される", async () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveWrongIds(["q1"]);
+    repo.saveUserName("太郎");
+
+    await repo.clearAllData();
+
+    // 別のインスタンスからも消えていることを確認
+    const repo2 = new LocalStorageProgressRepository();
+    expect(repo2.loadWrongIds()).toEqual([]);
+    expect(repo2.loadUserName()).toBeNull();
+  });
+});

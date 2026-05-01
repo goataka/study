@@ -462,3 +462,18 @@ Then("learned category items should be visible in the category list", async ({ p
   const learnedItems = page.locator(".category-item.learned");
   await expect(learnedItems.first()).toBeVisible();
 });
+
+Then("the admin reset tab button should be visible", async ({ page }) => {
+  // 管理タブの「🗑️ 初期化」タブボタンが表示されていること
+  await expect(page.locator("#admin-tab-reset")).toBeVisible();
+});
+
+When("I click the admin reset tab", async ({ page }) => {
+  // 管理タブの「🗑️ 初期化」タブをクリックする
+  await page.locator("#admin-tab-reset").click();
+});
+
+Then("the admin reset button should be visible", async ({ page }) => {
+  // 初期化ボタンが表示されていること
+  await expect(page.locator(".admin-reset-btn")).toBeVisible();
+});

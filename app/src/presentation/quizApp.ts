@@ -619,6 +619,7 @@ export class QuizApp {
       });
       resetTabBtn.classList.add("active");
       resetTabBtn.setAttribute("aria-selected", "true");
+      contentArea.setAttribute("aria-labelledby", "admin-tab-reset");
       contentArea.innerHTML = "";
       // 初期化ボタンを表示
       const resetSection = document.createElement("div");
@@ -635,10 +636,17 @@ export class QuizApp {
           "すべての学習データを削除します。この操作は元に戻せません。続けますか？"
         ).then((confirmed) => {
           if (confirmed) {
-            void this.useCase.clearAllData().then(() => {
-              window.location.reload();
-            });
+            void this.useCase.clearAllData()
+              .then(() => {
+                window.location.reload();
+              })
+              .catch((err: unknown) => {
+                console.error("データ初期化に失敗しました", err);
+                alert("データの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
+              });
           }
+        }).catch((err: unknown) => {
+          console.error("確認ダイアログでエラーが発生しました", err);
         });
       });
       resetSection.appendChild(resetDesc);

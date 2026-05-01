@@ -1559,6 +1559,77 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 });
 
+describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様", () => {
+  // mockQuestionFile の問題 q1 のchoices は ["ア", "イ", "ウ", "エ"]、correct: 0
+  const buildRecordWithEntries = (entries: Array<{ questionId: string; isCorrect: boolean; userAnswerIndex: number }>) => ({
+    id: "r1",
+    date: new Date().toISOString(),
+    subject: "english",
+    subjectName: "英語",
+    category: "phonics-1",
+    categoryName: "フォニックス（1文字）",
+    mode: "random",
+    totalCount: entries.length,
+    correctCount: entries.filter((e) => e.isCorrect).length,
+    entries,
+  });
+
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("正解エントリーでは問題文と「正解:」テキストが表示される", async () => {
+    const record = buildRecordWithEntries([{ questionId: "q1", isCorrect: true, userAnswerIndex: 0 }]);
+    localStorage.setItem("quizHistory", JSON.stringify([record]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 履歴を展開するためにヘッダーをクリック
+    const header = document.querySelector<HTMLElement>(".history-item-header");
+    header?.click();
+
+    const questionP = document.querySelector(".history-entry-question");
+    const answerP = document.querySelector(".history-entry-answer");
+    expect(questionP?.textContent).toBe("問題 1"); // mockQuestionFile の q1 の question
+    expect(answerP?.textContent).toContain("正解:");
+  });
+
+  it("不正解エントリーでは「あなたの回答:」と「→ 正解:」が表示される", async () => {
+    const record = buildRecordWithEntries([{ questionId: "q1", isCorrect: false, userAnswerIndex: 1 }]);
+    localStorage.setItem("quizHistory", JSON.stringify([record]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const header = document.querySelector<HTMLElement>(".history-item-header");
+    header?.click();
+
+    const answerP = document.querySelector(".history-entry-answer");
+    expect(answerP?.textContent).toContain("あなたの回答:");
+    expect(answerP?.textContent).toContain("→ 正解:");
+  });
+
+  it("questionId が存在しない場合はフォールバック表示になる", async () => {
+    const record = buildRecordWithEntries([{ questionId: "nonexistent-q", isCorrect: true, userAnswerIndex: 0 }]);
+    localStorage.setItem("quizHistory", JSON.stringify([record]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const header = document.querySelector<HTMLElement>(".history-item-header");
+    header?.click();
+
+    const questionP = document.querySelector(".history-entry-question");
+    expect(questionP?.textContent).toContain("nonexistent-q");
+    const answerP = document.querySelector(".history-entry-answer");
+    expect(answerP?.textContent).toBe("正解");
+  });
+});
+
 describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
   beforeEach(() => {
     setupTabDom();

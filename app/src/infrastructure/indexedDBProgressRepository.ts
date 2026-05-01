@@ -352,12 +352,18 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   async clearAllData(): Promise<void> {
     // キャッシュをリセット（DBが未初期化でもメモリ上のデータはクリアする）
     this.cache = IndexedDBProgressRepository.defaultCache();
-    // IndexedDB のストアをクリア
+    // IndexedDB のストアをクリア。DB が未初期化の場合は deleteDatabase で永続データも確実に削除する。
     if (!this.db) {
-      // DB未初期化の場合はメモリキャッシュのみリセット。
-      // この状態は initialize() が呼ばれる前（通常はアプリ起動直後）にのみ発生する。
-      // 初期化後は必ずDBが存在するため、実際にデータが残ることはない。
-      console.warn("IndexedDB が初期化されていないため、メモリキャッシュのみリセットしました");
+      await new Promise<void>((resolve, reject) => {
+        const req = indexedDB.deleteDatabase(DB_NAME);
+        req.onsuccess = () => resolve();
+        req.onerror = () => reject(req.error ?? new Error("IndexedDB 削除に失敗しました"));
+        req.onblocked = () => {
+          // blocked は完全な失敗ではないためログを残して resolve する
+          console.warn("IndexedDB deleteDatabase がブロックされました（他のタブが開いている可能性があります）");
+          resolve();
+        };
+      });
       return;
     }
     await new Promise<void>((resolve, reject) => {
