@@ -187,13 +187,6 @@ Feature: 学習アプリ
     And I click the view mode toggle button
     Then grade groups should be visible in the category list
 
-  Scenario: データダウンロードボタンがツールバーに表示される
-    Then the download data button should be visible in the header
-
-  Scenario: データダウンロードボタンをクリックするとJSONファイルがダウンロードされる
-    When I click the download data button
-    Then a JSON file download should be triggered
-
   Scenario: サポートボタン（?）がヘッダーに表示される
     Then the support button should be visible in the header
 
@@ -208,3 +201,12 @@ Feature: 学習アプリ
     When I click the "管理" tab
     And I click the admin reset tab
     Then the admin reset button should be visible
+
+  Scenario: 管理タブのエクスポートタブが表示される
+    When I click the "管理" tab
+    Then the admin export tab button should be visible
+
+  Scenario: 管理タブのエクスポートボタンをクリックするとJSONファイルがダウンロードされる
+    When I click the "管理" tab
+    And I click the admin export tab
+    Then an admin JSON file download should be triggered

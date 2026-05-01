@@ -385,28 +385,6 @@ Then("grade groups should be visible in the category list", async ({ page }) => 
   await expect(page.locator(".category-grade-group").first()).toBeVisible();
 });
 
-Then("the download data button should be visible in the header", async ({ page }) => {
-  // ダウンロードボタンがヘッダーに表示されていること
-  await expect(page.locator("#downloadDataBtn")).toBeVisible();
-});
-
-When("I click the download data button", async ({ page }) => {
-  // ダウンロードイベントを監視してボタンをクリックし、結果をページストレージに保存する
-  const [download] = await Promise.all([
-    page.waitForEvent("download"),
-    page.locator("#downloadDataBtn").click(),
-  ]);
-  await page.evaluate((filename) => {
-    sessionStorage.setItem("_testDownloadFilename", filename);
-  }, download.suggestedFilename());
-});
-
-Then("a JSON file download should be triggered", async ({ page }) => {
-  // ダウンロードされたファイル名が JSON 形式であること
-  const filename = await page.evaluate(() => sessionStorage.getItem("_testDownloadFilename"));
-  expect(filename).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
-});
-
 Then("the overall summary panel should be visible", async ({ page }) => {
   // 総合タブの活動サマリパネルが表示されていること
   await expect(page.locator("#overallSummaryPanel")).toBeVisible();
@@ -480,4 +458,25 @@ When("I click the admin reset tab", async ({ page }) => {
 Then("the admin reset button should be visible", async ({ page }) => {
   // 初期化ボタンが表示されていること
   await expect(page.locator(".admin-reset-btn")).toBeVisible();
+});
+
+Then("the admin export tab button should be visible", async ({ page }) => {
+  // 管理タブの「📤 エクスポート」タブボタンが表示されていること
+  await expect(page.locator("#admin-tab-export")).toBeVisible();
+});
+
+When("I click the admin export tab", async ({ page }) => {
+  // 管理タブの「📤 エクスポート」タブをクリックする
+  await page.locator("#admin-tab-export").click();
+});
+
+Then("an admin JSON file download should be triggered", async ({ page }) => {
+  // エクスポートボタンをクリックするとJSONファイルがダウンロードされること
+  const exportBtn = page.locator(".admin-import-apply-btn");
+  await expect(exportBtn).toBeVisible();
+  const [download] = await Promise.all([
+    page.waitForEvent("download"),
+    exportBtn.click(),
+  ]);
+  expect(download.suggestedFilename()).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
 });

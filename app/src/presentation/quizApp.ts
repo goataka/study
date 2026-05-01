@@ -771,6 +771,47 @@ export class QuizApp {
       importSubTabBtn.addEventListener("click", showImportTab);
       subTabBar.appendChild(importSubTabBtn);
 
+      // エクスポートタブのコンテンツ表示
+      const showExportTab = (): void => {
+        subTabBar.querySelectorAll(".admin-tab-btn").forEach(b => {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        exportSubTabBtn.classList.add("active");
+        exportSubTabBtn.setAttribute("aria-selected", "true");
+        subContentArea.innerHTML = "";
+
+        const exportSection = document.createElement("div");
+        exportSection.className = "admin-reset-section";
+
+        const exportDesc = document.createElement("p");
+        exportDesc.className = "admin-reset-desc";
+        exportDesc.textContent = "すべての学習データをJSONファイルとしてダウンロードします。定期的なバックアップにご利用ください。";
+        exportSection.appendChild(exportDesc);
+
+        const exportBtn = document.createElement("button");
+        exportBtn.className = "admin-import-apply-btn";
+        exportBtn.type = "button";
+        exportBtn.textContent = "⬇️ データをエクスポートする";
+        exportBtn.style.marginTop = "8px";
+        exportBtn.addEventListener("click", () => {
+          this.downloadUserData();
+        });
+        exportSection.appendChild(exportBtn);
+        subContentArea.appendChild(exportSection);
+      };
+
+      const exportSubTabBtn = document.createElement("button");
+      exportSubTabBtn.className = "admin-tab-btn";
+      exportSubTabBtn.type = "button";
+      exportSubTabBtn.textContent = "📤 エクスポート";
+      exportSubTabBtn.setAttribute("id", "admin-tab-export");
+      exportSubTabBtn.setAttribute("role", "tab");
+      exportSubTabBtn.setAttribute("aria-selected", "false");
+      exportSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
+      exportSubTabBtn.addEventListener("click", showExportTab);
+      subTabBar.appendChild(exportSubTabBtn);
+
       subContentArea.setAttribute("role", "tabpanel");
       subContentArea.setAttribute("id", "admin-manage-tabpanel");
 
@@ -830,25 +871,6 @@ export class QuizApp {
           });
         });
         btnBar.appendChild(copyBtn);
-
-        const dlBtn = document.createElement("button");
-        dlBtn.className = "admin-data-action-btn";
-        dlBtn.type = "button";
-        dlBtn.textContent = "⬇️ ダウンロード";
-        dlBtn.title = "JSONファイルとしてダウンロード";
-        dlBtn.addEventListener("click", () => {
-          const blob = new Blob([fullJsonText], { type: "application/json" });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          const dateStr = new Date().toISOString().slice(0, 10);
-          const fileKey = sections[index]!.fileKey;
-          a.download = `study-${fileKey}-${dateStr}.json`;
-          document.body.appendChild(a);
-          a.click();
-          setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
-        });
-        btnBar.appendChild(dlBtn);
 
         tabContentArea.appendChild(btnBar);
 
@@ -3064,9 +3086,6 @@ export class QuizApp {
         }
       });
     });
-
-    // データダウンロードボタン
-    this.on("downloadDataBtn", "click", () => this.downloadUserData());
 
     // 総合タブ: 活動サマリコピーボタン
     this.on("copySummaryBtn", "click", () => this.copyShareSummary());
