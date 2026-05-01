@@ -143,25 +143,15 @@ export class NotesCanvas {
       clientY = touch.clientY;
     }
 
-    // CSS zoom が document.documentElement に適用されると、ブラウザのバージョンによって
-    // getBoundingClientRect が CSS 座標（ズーム非考慮）または視覚座標（ズーム考慮）を返す。
-    // getComputedStyle で取得した zoom 値を使い、スケール誤差を補正する。
-    // bcrIsZoomAware: rect.width が offsetWidth × zoom に近い（8%以内）場合は BCR がズーム考慮済み
-    const computedZoom = getComputedStyle(document.documentElement).zoom;
-    const zoom = parseFloat(computedZoom || "1") || 1;
-    const offsetWidth = this.canvas.offsetWidth || 1;
-    /** BCR がズーム考慮済みか判定する誤差許容（8%） */
-    const BCR_ZOOM_TOLERANCE = 0.08;
-    const bcrIsZoomAware = zoom !== 1 && Math.abs(rect.width / offsetWidth - zoom) < BCR_ZOOM_TOLERANCE;
+    // getBoundingClientRect は視覚サイズ（CSS zoom 適用後）を返す。
+    // offsetWidth は CSS ピクセルサイズ（zoom 非考慮）を返す。
+    // 両者の比率でスケール補正することで、ブラウザ差異・CSS zoom に依存せず正確な描画座標を求める。
+    const scaleX = this.canvas.offsetWidth / (rect.width || 1);
+    const scaleY = this.canvas.offsetHeight / (rect.height || 1);
 
-    // 視覚座標系でのキャンバス左上隅位置
-    const canvasLeft = bcrIsZoomAware ? rect.left : rect.left * zoom;
-    const canvasTop = bcrIsZoomAware ? rect.top : rect.top * zoom;
-
-    // 視覚オフセットを CSS ピクセルに変換して描画座標を求める
     return {
-      x: (clientX - canvasLeft) / zoom,
-      y: (clientY - canvasTop) / zoom,
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY,
     };
   }
 

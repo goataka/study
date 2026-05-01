@@ -66,7 +66,7 @@ header h1 {
 .header-center-area {
     display: flex;
     align-items: baseline;
-    gap: 8px;
+    gap: 24px;
     flex: 1;
     justify-content: center;
     padding-right: 0;
@@ -822,7 +822,7 @@ header h1 {
     align-items: center;
     justify-content: flex-start;
     gap: 6px;
-    font-size: 14px;
+    font-size: 16px;
     color: #24292e;
 }
 
@@ -3435,7 +3435,7 @@ body.font-size-medium .category-grade-group-header {
 }
 
 body.font-size-medium .category-name {
-    font-size: 17px;
+    font-size: 18px;
 }
 
 body.font-size-medium .category-example {
@@ -3479,7 +3479,7 @@ body.font-size-medium .subject-overview-pct {
 }
 
 body.font-size-medium .subject-overview-recommended {
-    font-size: 17px;
+    font-size: 18px;
 }
 
 body.font-size-medium .subject-overview-grade {
@@ -3762,7 +3762,7 @@ body.font-size-large .category-grade-group-header {
 }
 
 body.font-size-large .category-name {
-    font-size: 21px;
+    font-size: 22px;
 }
 
 body.font-size-large .category-example {
@@ -3802,7 +3802,7 @@ body.font-size-large .subject-overview-outer-cat {
 }
 
 body.font-size-large .subject-overview-recommended {
-    font-size: 21px;
+    font-size: 22px;
 }
 
 body.font-size-large .subject-overview-grade {
@@ -3932,7 +3932,7 @@ body.font-size-large .subject-overview-cat-header {
 }
 
 .admin-data {
-    font-size: 15px;
+    font-size: 16px;
     font-family: monospace;
     background: #f6f8fa;
     border: 1px solid #e1e4e8;
@@ -4180,7 +4180,7 @@ body.font-size-medium .admin-tab-btn {
 }
 
 body.font-size-medium .admin-data {
-    font-size: 17px;
+    font-size: 18px;
 }
 
 /* ─── フォントサイズ：大 追加ターゲット ─────────────────────────────────── */
@@ -4227,7 +4227,7 @@ body.font-size-large .admin-tab-btn {
 }
 
 body.font-size-large .admin-data {
-    font-size: 21px;
+    font-size: 22px;
 }
 
 /* ─── 単元詳細: 新レイアウト（タイトル/カテゴリ/説明/例文/ステータス） ── */

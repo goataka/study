@@ -1226,27 +1226,31 @@ describe("QuizUseCase — getCategoryProgressPct 仕様", () => {
         totalCount: 2, correctCount: 2, entries: [],
       },
     ];
-    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository([], history));
+    // 進捗率は mastered / total で算出するため全問題を masteredIds に設定する
+    const useCase = new QuizUseCase(
+      new StubQuestionRepository(questions),
+      new StubProgressRepository([], history, {}, {}, ["q1", "q2"])
+    );
     await useCase.initialize();
 
     expect(useCase.getCategoryProgressPct("english", "phonics-1")).toBe(100);
   });
 
-  it("間違いがある場合は (total - wrong) / total * 100 の値を返す", async () => {
+  it("間違いがある場合は mastered / total * 100 の値を返す", async () => {
     const questions = [
       makeQuestion("q1", "english", "phonics-1"),
       makeQuestion("q2", "english", "phonics-1"),
       makeQuestion("q3", "english", "phonics-1"),
       makeQuestion("q4", "english", "phonics-1"),
     ];
-    // q1 が間違い
+    // q2〜q4 が習得済み（q1 は間違い）
     const useCase = new QuizUseCase(
       new StubQuestionRepository(questions),
-      new StubProgressRepository(["q1"])
+      new StubProgressRepository(["q1"], [], {}, {}, ["q2", "q3", "q4"])
     );
     await useCase.initialize();
 
-    // (4 - 1) / 4 * 100 = 75
+    // mastered(3) / total(4) * 100 = 75
     expect(useCase.getCategoryProgressPct("english", "phonics-1")).toBe(75);
   });
 });
