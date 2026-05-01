@@ -533,45 +533,6 @@ export class QuizApp {
       return JSON.stringify(sec.fullContent ?? sec.content, null, 2);
     };
 
-    /** 編集内容を保存してDBに反映する */
-    const saveEditedData = (index: number, jsonText: string): string | null => {
-      let parsed: unknown;
-      try {
-        parsed = JSON.parse(jsonText);
-      } catch (e) {
-        const msg = e instanceof SyntaxError ? e.message : String(e);
-        return `JSONの形式が正しくありません: ${msg}`;
-      }
-      const { fileKey } = sections[index]!;
-      try {
-        if (fileKey === "history") {
-          if (!Array.isArray(parsed)) return "配列形式で入力してください。";
-          this.progressRepo.saveHistory(parsed as QuizRecord[]);
-        } else if (fileKey === "wrong") {
-          if (!Array.isArray(parsed)) return "配列形式で入力してください。";
-          this.progressRepo.saveWrongIds(parsed as string[]);
-        } else if (fileKey === "mastered") {
-          if (!Array.isArray(parsed)) return "配列形式で入力してください。";
-          this.progressRepo.saveMasteredIds(parsed as string[]);
-        } else if (fileKey === "streaks") {
-          if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
-            return "オブジェクト形式で入力してください。";
-          }
-          this.progressRepo.saveCorrectStreaks(parsed as Record<string, number>);
-        } else if (fileKey === "stats") {
-          if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
-            return "オブジェクト形式で入力してください。";
-          }
-          this.progressRepo.saveQuestionStats(parsed as Record<string, { total: number; correct: number }>);
-        } else {
-          return "このセクションは編集できません。";
-        }
-      } catch {
-        return "保存に失敗しました。";
-      }
-      return null; // 成功
-    };
-
     const showTab = (index: number): void => {
       activeTabIndex = index;
       tabBar.querySelectorAll(".admin-tab-btn").forEach((btn, i) => {
@@ -2300,12 +2261,11 @@ export class QuizApp {
       bodyClone.querySelectorAll(".edit-link, .gh-edit-link, [class*='improve'], [class*='edit-page']").forEach((el) => el.remove());
       // テキストに「This site is open source」または「Improve this page」を含む要素を除去する
       // ただし h1〜h6・table・ul・ol 等のコンテンツ構造を持つ要素は除去しない（親コンテナの誤削除を防ぐ）
-      /** コンテンツ構造要素のセレクタ（これを含む要素は edit リンク除去の対象外とする） */
-      const CONTENT_STRUCTURE_SELECTOR = "h1, h2, h3, h4, h5, h6, table, ul, ol";
+      const contentStructureSelector = "h1, h2, h3, h4, h5, h6, table, ul, ol";
       bodyClone.querySelectorAll("p, div, span, aside").forEach((el) => {
         const text = el.textContent ?? "";
         if ((text.includes("This site is open source") || text.includes("Improve this page")) &&
-            !el.querySelector(CONTENT_STRUCTURE_SELECTOR)) {
+            !el.querySelector(contentStructureSelector)) {
           el.remove();
         }
       });
@@ -2905,7 +2865,7 @@ export class QuizApp {
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
         const isSubjectStudied = category !== "all" && studiedKeys.has(`${subject}::all`);
-        if (isStudied || isSubjectStudied || stat.mastered > 0) {
+        if (isStudied || isSubjectStudied || stat.mastered > 0 || stat.wrong > 0) {
           const pct = stat.total > 0 ? Math.round((stat.mastered / stat.total) * 100) : 0;
           progressFill.style.width = `${pct}%`;
           progressFill.classList.toggle("progress-fill-done", pct === 100);

@@ -545,23 +545,26 @@ export class QuizUseCase {
   /**
    * 指定した教科・カテゴリの進捗率（0-100 の整数）を返す。
    * 問題数ゼロの場合は 0 を返す。
-   * 未学習（学習履歴なし・間違いなし）の場合も 0 を返す。
+   * 未学習（学習履歴なし・間違いなし・習得済みなし）の場合も 0 を返す。
+   * 進捗率は mastered / total で算出する（カテゴリ一覧の進捗バーと統一）。
    */
   getCategoryProgressPct(subject: string, categoryId: string): number {
     let total = 0;
+    let mastered = 0;
     let wrong = 0;
     const wrongSet = new Set(this.wrongIds);
     for (const q of this.allQuestions) {
       if (q.subject !== subject || q.category !== categoryId) continue;
       total++;
+      if (this.masteredSet.has(q.id)) mastered++;
       if (wrongSet.has(q.id)) wrong++;
     }
     if (total === 0) return 0;
     const key = `${subject}::${categoryId}`;
     const studied = this.getStudiedCategoryKeys().has(key);
-    // 未学習かつ間違いなしの場合は 0 を返す
-    if (!studied && wrong === 0) return 0;
-    return Math.round(((total - wrong) / total) * 100);
+    // 未学習かつ習得済みなし・間違いなしの場合は 0 を返す
+    if (!studied && mastered === 0 && wrong === 0) return 0;
+    return Math.round((mastered / total) * 100);
   }
 
   /**

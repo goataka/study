@@ -1038,6 +1038,45 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     expect(noContent?.classList.contains("hidden")).toBe(false);
   });
 
+  it("「This site is open source」を含む div でもコンテンツ構造（h2 等）を含む場合は除去されない", async () => {
+    setupTabDom();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifestForGuide) } as Response);
+      }
+      if (urlStr.includes("01-alphabet/guide")) {
+        // コンテンツ構造を持つ div の中に "This site is open source" が存在するケース
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve(`<html><head></head><body>
+            <div class="content-wrapper">
+              <h2>解説タイトル</h2>
+              <p>メイン解説テキスト This site is open source Improve this page</p>
+              <ul><li>項目1</li></ul>
+            </div>
+            <p>This site is open source. Improve this page.</p>
+          </body></html>`),
+        } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFileWithGuide) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
+    guideTab?.click();
+
+    await waitForCondition(() => !!document.getElementById("guidePanelFrame")?.dataset.loadedUrl);
+    const guideFrame = document.getElementById("guidePanelFrame");
+    // コンテンツ構造（h2）を含む div は除去されないこと
+    expect(guideFrame?.innerHTML).toContain("解説タイトル");
+    // コンテンツ構造を持たない p タグは除去されること
+    expect(guideFrame?.querySelector(".guide-content")?.innerHTML ?? "").not.toContain("This site is open source. Improve this page.");
+  });
+
+
   it("クイズ画面に #guideLink が存在しない", async () => {
     setupMinimalDom();
     global.fetch = vi.fn((url: string) => {
@@ -2377,7 +2416,7 @@ describe("QuizApp — 確認結果画面の単元名表示仕様", () => {
     expect(resultUnitName?.classList.contains("hidden")).toBe(false);
   });
 
-  it("カテゴリが「すべて」の状態でクイズを完了すると resultUnitName は hidden のまま", async () => {
+  it("カテゴリが「すべて」の状態でクイズを完了すると resultUnitName に教科名が表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2406,6 +2445,7 @@ describe("QuizApp — 確認結果画面の単元名表示仕様", () => {
     const resultUnitName = document.getElementById("resultUnitName");
     // カテゴリが「すべて」の場合でも最初の問題の単元名・教科を表示する
     expect(resultUnitName?.classList.contains("hidden")).toBe(false);
+    expect(resultUnitName?.textContent).toContain("英語");
   });
 });
 
@@ -3702,13 +3742,15 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
         },
       ])
     );
+    // getCategoryProgressPct は mastered / total で算出するため全問題を masteredIds に設定する
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
     const pctSpan = englishItem?.querySelector(".subject-overview-pct");
-    // phonics-1 が学習済みかつ間違いなし → 100%
+    // phonics-1 が学習済みかつ全問習得済み → 100%
     expect(pctSpan?.textContent).toBe("100%");
   });
 
