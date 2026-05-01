@@ -2373,7 +2373,7 @@ describe("QuizApp — 確認結果画面の単元名表示仕様", () => {
     }
 
     const resultUnitName = document.getElementById("resultUnitName");
-    expect(resultUnitName?.textContent).toBe("フォニックス（1文字）");
+    expect(resultUnitName?.textContent).toBe("英語 › フォニックス（1文字）");
     expect(resultUnitName?.classList.contains("hidden")).toBe(false);
   });
 
@@ -2404,7 +2404,8 @@ describe("QuizApp — 確認結果画面の単元名表示仕様", () => {
     }
 
     const resultUnitName = document.getElementById("resultUnitName");
-    expect(resultUnitName?.classList.contains("hidden")).toBe(true);
+    // カテゴリが「すべて」の場合でも最初の問題の単元名・教科を表示する
+    expect(resultUnitName?.classList.contains("hidden")).toBe(false);
   });
 });
 
@@ -2468,6 +2469,8 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
       ])
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    // 進捗バーは mastered / total を使うため全問題を mastered に設定する
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2529,6 +2532,8 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
       ])
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    // 進捗バーは mastered / total を使うため全問題を mastered に設定する
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2543,7 +2548,7 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
   });
 
   it("間違い問題ありのカテゴリの完了率テキストは 80% になり hidden クラスが外れ、バー幅も 80% になる", async () => {
-    // mockQuestionFile には q1–q5 の5問がある。q1 を間違いとして登録する。
+    // mockQuestionFile には q1–q5 の5問がある。q1 を間違いとして登録し、q2–q5 を習得済みとする。
     localStorage.setItem(
       "quizHistory",
       JSON.stringify([
@@ -2568,6 +2573,8 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
       ])
     );
     localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
+    // 進捗バーは mastered / total を使うため q2–q5 の4問を mastered に設定する（4/5 = 80%）
+    localStorage.setItem("masteredIds", JSON.stringify(["q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2604,6 +2611,8 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
       ])
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    // markCategoryAsLearned は masteredIds にも追加するため、テストでも masteredIds を設定する
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

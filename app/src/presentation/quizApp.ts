@@ -621,59 +621,6 @@ export class QuizApp {
       });
       btnBar.appendChild(dlBtn);
 
-      // 編集可能なセクションのみ編集ボタンを表示
-      if (sections[index]!.editable) {
-        const editBtn = document.createElement("button");
-        editBtn.className = "admin-data-action-btn";
-        editBtn.type = "button";
-        editBtn.textContent = "✏️ 編集";
-        editBtn.title = "データを編集してDBに反映";
-        editBtn.addEventListener("click", () => {
-          // 既にeditareaがあれば閉じる
-          const existingEdit = contentArea.querySelector(".admin-edit-area");
-          if (existingEdit) { existingEdit.remove(); editBtn.textContent = "✏️ 編集"; return; }
-
-          editBtn.textContent = "✕ 閉じる";
-          const editArea = document.createElement("div");
-          editArea.className = "admin-edit-area";
-
-          const textarea = document.createElement("textarea");
-          textarea.className = "admin-edit-textarea";
-          textarea.value = fullJsonText;
-          textarea.rows = 15;
-          editArea.appendChild(textarea);
-
-          const saveRow = document.createElement("div");
-          saveRow.className = "admin-edit-save-row";
-
-          const errorMsg = document.createElement("span");
-          errorMsg.className = "admin-edit-error";
-
-          const saveBtn = document.createElement("button");
-          saveBtn.type = "button";
-          saveBtn.className = "admin-data-action-btn admin-save-btn";
-          saveBtn.textContent = "💾 保存";
-          saveBtn.addEventListener("click", () => {
-            const err = saveEditedData(index, textarea.value);
-            if (err) {
-              errorMsg.textContent = err;
-            } else {
-              errorMsg.textContent = "✓ 保存しました";
-              setTimeout(() => { errorMsg.textContent = ""; }, 2000);
-              // データを再描画
-              this.useCase.reloadProgressData();
-              showTab(index);
-            }
-          });
-          saveRow.appendChild(errorMsg);
-          saveRow.appendChild(saveBtn);
-          editArea.appendChild(saveRow);
-
-          contentArea.appendChild(editArea);
-        });
-        btnBar.appendChild(editBtn);
-      }
-
       contentArea.appendChild(btnBar);
 
       const dataEl = document.createElement("pre");
@@ -2352,9 +2299,11 @@ export class QuizApp {
       // Minima テーマの edit-link クラスや、特定の GitHub リポジトリリンクを含む要素を除去する
       bodyClone.querySelectorAll(".edit-link, .gh-edit-link, [class*='improve'], [class*='edit-page']").forEach((el) => el.remove());
       // テキストに「This site is open source」または「Improve this page」を含む要素を除去する
+      // ただし h1〜h6・table・ul・ol 等のコンテンツ構造を持つ要素は除去しない（親コンテナの誤削除を防ぐ）
       bodyClone.querySelectorAll("p, div, span, aside").forEach((el) => {
         const text = el.textContent ?? "";
-        if (text.includes("This site is open source") || text.includes("Improve this page")) {
+        if ((text.includes("This site is open source") || text.includes("Improve this page")) &&
+            !el.querySelector("h1, h2, h3, h4, h5, h6, table, ul, ol")) {
           el.remove();
         }
       });
@@ -2954,13 +2903,8 @@ export class QuizApp {
       if (progressFill) {
         const isStudied = studiedKeys.has(key);
         const isSubjectStudied = category !== "all" && studiedKeys.has(`${subject}::all`);
-        if (isStudied || isSubjectStudied || stat.wrong > 0) {
-          const pct =
-            stat.total > 0
-              ? Math.round(((stat.total - stat.wrong) / stat.total) * 100)
-              : isStudied || isSubjectStudied
-                ? 100
-                : 0;
+        if (isStudied || isSubjectStudied || stat.mastered > 0) {
+          const pct = stat.total > 0 ? Math.round((stat.mastered / stat.total) * 100) : 0;
           progressFill.style.width = `${pct}%`;
           progressFill.classList.toggle("progress-fill-done", pct === 100);
           if (progressPct) {
@@ -3718,23 +3662,24 @@ export class QuizApp {
     const total = results.length;
     const percentage = Math.round((correctCount / total) * 100);
 
-    // 単元名を表示する（単一カテゴリでの確認時はすべての問題が同じカテゴリ名を持つ）
+    // 単元名・カテゴリ・教科を表示する（クイズ結果画面の上部）
     const resultUnitName = document.getElementById("resultUnitName");
     if (resultUnitName) {
       const firstResult = results[0];
-      const categoryName = this.filter.category !== "all" && firstResult !== undefined
-        ? (firstResult.question.categoryName ?? "")
-        : "";
-      if (categoryName) {
-        // カテゴリ階層（トップ › 親 › 単元名）を構築する
-        const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
-        const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
+      if (firstResult) {
+        const q = firstResult.question;
         const parts: string[] = [];
-        if (topInfo) parts.push(topInfo.name);
-        if (parentInfo) parts.push(parentInfo.name);
-        parts.push(categoryName);
-        resultUnitName.textContent = parts.join(" › ");
-        resultUnitName.classList.remove("hidden");
+        if (q.subjectName) parts.push(q.subjectName);
+        if (q.topCategoryName) parts.push(q.topCategoryName);
+        if (q.parentCategoryName) parts.push(q.parentCategoryName);
+        if (q.categoryName) parts.push(q.categoryName);
+        if (parts.length > 0) {
+          resultUnitName.textContent = parts.join(" › ");
+          resultUnitName.classList.remove("hidden");
+        } else {
+          resultUnitName.textContent = "";
+          resultUnitName.classList.add("hidden");
+        }
       } else {
         resultUnitName.textContent = "";
         resultUnitName.classList.add("hidden");
