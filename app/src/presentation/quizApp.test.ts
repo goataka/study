@@ -1770,7 +1770,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
         },
       ])
     );
-    // 間違いなし・全問题習得済み
+    // 間違いなし・全問題習得済み
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
     localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
@@ -1989,7 +1989,7 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
         },
       ])
     );
-    // 間違いなし・全問题習得済み
+    // 間違いなし・全問題習得済み
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
     localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 

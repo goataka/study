@@ -179,6 +179,14 @@ export class QuizUseCase {
   }
 
   /**
+   * 全問題の回答統計を一括で返す（読み取り専用スナップショット）。
+   * ループ内での個別呼び出しを避け、パフォーマンスを改善するために使用する。
+   */
+  getAllQuestionStats(): Readonly<Record<string, { total: number; correct: number }>> {
+    return this.questionStats;
+  }
+
+  /**
    * 一度でもクイズを実施したカテゴリのキー（"subject::category" 形式）を返す。
    * カテゴリの学習状態絵文字の判定に使用する。
    */

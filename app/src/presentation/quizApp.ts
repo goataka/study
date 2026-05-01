@@ -694,6 +694,17 @@ export class QuizApp {
             alert("対応するデータ種類が判定できませんでした。ファイル名に history / mastered / streaks を含めてください。");
             return;
           }
+          // 基本バリデーション
+          if ((detectedFileKey === "history" || detectedFileKey === "mastered") && !Array.isArray(parsedData)) {
+            const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+            alert(`「${label}」データの形式が正しくありません（配列が必要です）。ファイルを確認してください。`);
+            return;
+          }
+          if (detectedFileKey === "streaks" && (typeof parsedData !== "object" || Array.isArray(parsedData) || parsedData === null)) {
+            const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+            alert(`「${label}」データの形式が正しくありません（オブジェクトが必要です）。ファイルを確認してください。`);
+            return;
+          }
           void this.showConfirmDialog(
             `「${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey}」データを選択したファイルの内容で上書きします。よろしいですか？`
           ).then((confirmed) => {
@@ -3143,6 +3154,8 @@ export class QuizApp {
     // 全問題を1回だけ走査して subject/category/parentCategory ごとの統計を集計する
     const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
     const masteredSet = new Set(this.useCase.getMasteredIds());
+    // questionStats をキャッシュして各問題のループ内で再利用する
+    const allQuestionStats = this.useCase.getAllQuestionStats();
 
     const statsMap = new Map<string, { total: number; inProgress: number; mastered: number }>();
     const addStat = (key: string, isInProgress: boolean, isMastered: boolean): void => {
@@ -3154,10 +3167,10 @@ export class QuizApp {
     };
 
     for (const q of allQuestions) {
-      const stat = this.useCase.getQuestionStat(q.id);
+      const qStat = allQuestionStats[q.id];
       const isMastered = masteredSet.has(q.id);
       // 1回以上回答済みで未習得の問題を「学習中」とカウント
-      const isInProgress = stat.total > 0 && !isMastered;
+      const isInProgress = (qStat?.total ?? 0) > 0 && !isMastered;
       addStat("all::all", isInProgress, isMastered);
       addStat(`${q.subject}::all`, isInProgress, isMastered);
       addStat(`${q.subject}::${q.category}`, isInProgress, isMastered);
