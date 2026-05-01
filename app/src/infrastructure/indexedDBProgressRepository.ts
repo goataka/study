@@ -353,7 +353,10 @@ export class IndexedDBProgressRepository implements IProgressRepository {
     // キャッシュをリセット
     this.cache = IndexedDBProgressRepository.defaultCache();
     // IndexedDB のストアをクリア
-    if (!this.db) return;
+    if (!this.db) {
+      console.warn("IndexedDB が初期化されていないため、メモリキャッシュのみリセットしました");
+      return;
+    }
     await new Promise<void>((resolve, reject) => {
       try {
         const tx = (this.db as IDBDatabase).transaction(STORE_NAME, "readwrite");
