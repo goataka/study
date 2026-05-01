@@ -48,10 +48,25 @@ header {
     z-index: 100;
 }
 
+/* ヘッダーのタイトルエリア（アイコン + タイトル + 小中高ラベル） */
+.header-title-area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
 header h1 {
     color: #0366d6;
     font-size: 30px;
     flex-shrink: 0;
+}
+
+.header-grade-label {
+    font-size: 13px;
+    color: #586069;
+    font-weight: 500;
+    letter-spacing: 0.05em;
 }
 
 .header-today-date {
@@ -82,6 +97,19 @@ header h1 {
     color: #0255b8;
     outline: none;
     text-decoration: underline;
+}
+
+/* フッター */
+.app-footer {
+    text-align: center;
+    padding: 4px 0 2px;
+    font-size: 11px;
+    color: #959da5;
+    flex-shrink: 0;
+}
+
+.app-footer-copyright {
+    letter-spacing: 0.05em;
 }
 
 
@@ -2464,7 +2492,7 @@ button:disabled {
 .guide-content {
     display: block;
     width: 100%;
-    font-size: 1em;
+    font-size: 22px;
     line-height: 1.6;
     color: #24292e;
     word-wrap: break-word;
@@ -2495,6 +2523,7 @@ button:disabled {
 .guide-content h4,
 .guide-content h5,
 .guide-content h6 {
+    font-size: 22px;
     margin-top: 1em;
     margin-bottom: 0.5em;
     font-weight: 600;
@@ -2504,24 +2533,13 @@ button:disabled {
 }
 
 .guide-content h1 {
-    font-size: 1.8em;
     border-bottom: 1px solid #eaecef;
     padding-bottom: 0.3em;
 }
 
 .guide-content h2 {
-    font-size: 1.4em;
     border-bottom: 1px solid #eaecef;
     padding-bottom: 0.2em;
-}
-
-.guide-content h3 {
-    font-size: 1.2em;
-}
-
-.guide-content h4 {
-    font-size: 1em;
-    font-style: italic;
 }
 
 /* すべての h1 を非表示 */
@@ -2538,10 +2556,6 @@ button:disabled {
 #startScreen .guide-content h6 {
     text-align: left;
 }
-
-#startScreen .guide-content h1 { font-size: 1.8em; margin-bottom: 0.5em; }
-#startScreen .guide-content h2 { font-size: 1.4em; margin-bottom: 0.5em; }
-#startScreen .guide-content h3 { font-size: 1.15em; margin-bottom: 0.5em; }
 
 /* 段落・リスト */
 .guide-content p,
@@ -4397,6 +4411,85 @@ body.font-size-large .admin-data-action-btn {
     background: #c82333;
 }
 
+/* 管理画面: メニューバー */
+.admin-menu-bar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0 0;
+    border-bottom: 2px solid #e1e4e8;
+    margin-bottom: 8px;
+}
+
+.admin-menu-btn {
+    padding: 8px 16px;
+    border: 1px solid #e1e4e8;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    background: #f6f8fa;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #586069;
+    font-family: inherit;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-menu-btn.active {
+    background: white;
+    color: #0366d6;
+    border-color: #e1e4e8;
+    margin-bottom: -2px;
+    padding-bottom: 10px;
+}
+
+.admin-menu-btn:hover:not(.active) {
+    background: #e1e4e8;
+}
+
+.admin-menu-content {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* 管理画面: インポートセクション */
+.admin-import-label {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #0366d6;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    user-select: none;
+}
+
+.admin-import-label:hover {
+    background: #0256b9;
+}
+
+.admin-import-filename {
+    font-size: 13px;
+    color: #586069;
+    margin-left: 8px;
+}
+
+.admin-import-apply-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.admin-import-apply-btn:hover {
+    background: #218838;
+}
+
 /* モバイル対応 */
 @media (max-width: 767px) {
     body {
@@ -4416,6 +4509,9 @@ body.font-size-large .admin-data-action-btn {
     }
     header h1 {
         font-size: 20px;
+    }
+    .header-grade-label {
+        font-size: 11px;
     }
     .header-center-area {
         order: 3;
