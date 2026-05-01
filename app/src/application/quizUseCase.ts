@@ -37,6 +37,8 @@ export class QuizUseCase {
   private categoryParentMap = new Map<string, { id: string; name: string }>();
   /** subject::category -> { topId, topName } のキャッシュ */
   private categoryTopMap = new Map<string, { id: string; name: string }>();
+  /** questionId -> Question のキャッシュ（O(1) 参照用） */
+  private questionsById = new Map<string, Question>();
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
@@ -60,8 +62,10 @@ export class QuizUseCase {
     this.categoryDescriptionMap.clear();
     this.categoryParentMap.clear();
     this.categoryTopMap.clear();
+    this.questionsById.clear();
     for (const q of this.allQuestions) {
       const key = `${q.subject}::${q.category}`;
+      this.questionsById.set(q.id, q);
       if (q.guideUrl !== undefined && !this.categoryGuideMap.has(key)) {
         this.categoryGuideMap.set(key, q.guideUrl);
       }
@@ -632,9 +636,9 @@ export class QuizUseCase {
     return categories;
   }
 
-  /** 問題IDから問題を検索する。見つからない場合は undefined を返す。 */
+  /** 問題IDから問題を検索する（O(1)）。見つからない場合は undefined を返す。 */
   getQuestionById(questionId: string): Question | undefined {
-    return this.allQuestions.find(q => q.id === questionId);
+    return this.questionsById.get(questionId);
   }
 
   /** すべての学習データを削除し、メモリキャッシュもリセットする。 */
