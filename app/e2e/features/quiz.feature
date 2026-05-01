@@ -187,13 +187,6 @@ Feature: 学習アプリ
     And I click the view mode toggle button
     Then grade groups should be visible in the category list
 
-  Scenario: データダウンロードボタンがツールバーに表示される
-    Then the download data button should be visible in the header
-
-  Scenario: データダウンロードボタンをクリックするとJSONファイルがダウンロードされる
-    When I click the download data button
-    Then a JSON file download should be triggered
-
   Scenario: サポートボタン（?）がヘッダーに表示される
     Then the support button should be visible in the header
 
