@@ -758,7 +758,6 @@ export class QuizApp {
       resetSubTabBtn.setAttribute("aria-selected", "false");
       resetSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
       resetSubTabBtn.addEventListener("click", showResetTab);
-      subTabBar.appendChild(resetSubTabBtn);
 
       const importSubTabBtn = document.createElement("button");
       importSubTabBtn.className = "admin-tab-btn";
@@ -769,7 +768,6 @@ export class QuizApp {
       importSubTabBtn.setAttribute("aria-selected", "false");
       importSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
       importSubTabBtn.addEventListener("click", showImportTab);
-      subTabBar.appendChild(importSubTabBtn);
 
       // エクスポートタブのコンテンツ表示
       const showExportTab = (): void => {
@@ -810,13 +808,17 @@ export class QuizApp {
       exportSubTabBtn.setAttribute("aria-selected", "false");
       exportSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
       exportSubTabBtn.addEventListener("click", showExportTab);
+
+      // インポート → エクスポート → 初期化 の順に追加
+      subTabBar.appendChild(importSubTabBtn);
       subTabBar.appendChild(exportSubTabBtn);
+      subTabBar.appendChild(resetSubTabBtn);
 
       subContentArea.setAttribute("role", "tabpanel");
       subContentArea.setAttribute("id", "admin-manage-tabpanel");
 
       // 初期表示
-      showResetTab();
+      showImportTab();
     };
 
     // ── 🛢️データ参照セクション ────────────────────────────────────

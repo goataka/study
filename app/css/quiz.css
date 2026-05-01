@@ -51,8 +51,9 @@ header {
 /* ヘッダーのタイトルエリア（アイコン + タイトル + 小中高ラベル） */
 .header-title-area {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
     flex-shrink: 0;
 }
 
@@ -67,8 +68,8 @@ header h1 {
 
 /* ヘッダーロゴ（ファビコンと同じデザイン） */
 .header-logo {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     flex-shrink: 0;
 }
 
@@ -4024,9 +4025,11 @@ body.font-size-large .subject-overview-cat-header {
     padding: 16px 20px;
     flex: 1;
     overflow: hidden;
-    display: flex;
-    flex-direction: row;
-    gap: 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    align-items: stretch;
+    min-height: 0;
 }
 
 .admin-section {
@@ -4059,7 +4062,7 @@ body.font-size-large .subject-overview-cat-header {
 /* タブコンテンツ領域（flexコンテナ内で残り高さを占有） */
 .admin-tab-content {
     flex: 1;
-    overflow: hidden;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
@@ -4300,6 +4303,30 @@ body.font-size-medium .admin-data-action-btn {
     font-size: 16px;
 }
 
+body.font-size-medium .admin-reset-desc {
+    font-size: 17px;
+}
+
+body.font-size-medium .admin-reset-btn {
+    font-size: 17px;
+}
+
+body.font-size-medium .admin-menu-btn {
+    font-size: 17px;
+}
+
+body.font-size-medium .admin-import-label {
+    font-size: 17px;
+}
+
+body.font-size-medium .admin-import-filename {
+    font-size: 16px;
+}
+
+body.font-size-medium .admin-import-apply-btn {
+    font-size: 17px;
+}
+
 /* ─── フォントサイズ：大 追加ターゲット ─────────────────────────────────── */
 body.font-size-large .header-user-name {
     font-size: 40px;
@@ -4349,6 +4376,30 @@ body.font-size-large .admin-data {
 
 body.font-size-large .admin-data-action-btn {
     font-size: 19px;
+}
+
+body.font-size-large .admin-reset-desc {
+    font-size: 20px;
+}
+
+body.font-size-large .admin-reset-btn {
+    font-size: 20px;
+}
+
+body.font-size-large .admin-menu-btn {
+    font-size: 20px;
+}
+
+body.font-size-large .admin-import-label {
+    font-size: 20px;
+}
+
+body.font-size-large .admin-import-filename {
+    font-size: 19px;
+}
+
+body.font-size-large .admin-import-apply-btn {
+    font-size: 20px;
 }
 
 /* ─── 単元詳細: 新レイアウト（タイトル/カテゴリ/説明/例文/ステータス） ── */
@@ -4426,13 +4477,14 @@ body.font-size-large .admin-data-action-btn {
 
 /* 管理画面: メニューバー（縦並び） */
 .admin-menu-bar {
+    background: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 8px 0;
-    border-right: 2px solid #e1e4e8;
-    margin-right: 12px;
-    min-width: 130px;
+    overflow: hidden;
     flex-shrink: 0;
 }
 
@@ -4462,11 +4514,13 @@ body.font-size-large .admin-data-action-btn {
 }
 
 .admin-menu-content {
-    flex: 1;
-    min-width: 0;
-    overflow-y: auto;
+    background: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 /* 管理画面: インポートセクション */
@@ -4548,6 +4602,15 @@ body.font-size-large .admin-data-action-btn {
     }
     .start-content-layout {
         flex-direction: column;
+    }
+    .admin-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+        min-height: 0;
+    }
+    .admin-menu-bar {
+        max-height: 30vh;
+        overflow-y: auto;
     }
     .category-panel {
         max-height: 40vh;
