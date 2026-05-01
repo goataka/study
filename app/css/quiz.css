@@ -2281,8 +2281,9 @@ button:disabled {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 28px;
     height: 28px;
-    padding: 4px 10px;
+    padding: 0;
     border: 1px solid #d1d5da;
     border-radius: 6px;
     background: #f6f8fa;
@@ -2293,6 +2294,7 @@ button:disabled {
     transition: background 0.2s, color 0.2s;
     font-family: inherit;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .download-data-btn:hover {
@@ -2432,13 +2434,13 @@ button:disabled {
 }
 
 .guide-content h2 {
-    font-size: 1.15em;
+    font-size: 1.4em;
     border-bottom: 1px solid #eaecef;
     padding-bottom: 0.2em;
 }
 
 .guide-content h3 {
-    font-size: 1.15em;
+    font-size: 1.2em;
 }
 
 .guide-content h4 {
@@ -3314,6 +3316,10 @@ body.font-size-medium .result-question {
     font-size: 21px;
 }
 
+body.font-size-medium .result-user-answer {
+    font-size: 18px;
+}
+
 body.font-size-medium .result-answer {
     font-size: 18px;
 }
@@ -3399,6 +3405,10 @@ body.font-size-medium .selected-unit-info .category-grade {
 
 body.font-size-medium .selected-unit-info-desc,
 body.font-size-medium .selected-unit-info-example {
+    font-size: 16px;
+}
+
+body.font-size-medium .selected-unit-progress-label {
     font-size: 16px;
 }
 
@@ -3527,9 +3537,9 @@ body.font-size-medium .guide-frame .guide-content {
 body.font-size-medium .guide-frame .guide-content h1,
 body.font-size-medium #startScreen .guide-content h1 { font-size: 2.16em; }
 body.font-size-medium .guide-frame .guide-content h2,
-body.font-size-medium #startScreen .guide-content h2 { font-size: 1.38em; }
+body.font-size-medium #startScreen .guide-content h2 { font-size: 1.68em; }
 body.font-size-medium .guide-frame .guide-content h3,
-body.font-size-medium #startScreen .guide-content h3 { font-size: 1.38em; }
+body.font-size-medium #startScreen .guide-content h3 { font-size: 1.44em; }
 
 body.font-size-medium .header-today-date {
     font-size: 34px;
@@ -3633,6 +3643,10 @@ body.font-size-large .result-question {
     font-size: 24px;
 }
 
+body.font-size-large .result-user-answer {
+    font-size: 21px;
+}
+
 body.font-size-large .result-answer {
     font-size: 21px;
 }
@@ -3718,6 +3732,10 @@ body.font-size-large .selected-unit-info .category-grade {
 
 body.font-size-large .selected-unit-info-desc,
 body.font-size-large .selected-unit-info-example {
+    font-size: 19px;
+}
+
+body.font-size-large .selected-unit-progress-label {
     font-size: 19px;
 }
 
@@ -3846,9 +3864,9 @@ body.font-size-large .guide-frame .guide-content {
 body.font-size-large .guide-frame .guide-content h1,
 body.font-size-large #startScreen .guide-content h1 { font-size: 2.7em; }
 body.font-size-large .guide-frame .guide-content h2,
-body.font-size-large #startScreen .guide-content h2 { font-size: 1.725em; }
+body.font-size-large #startScreen .guide-content h2 { font-size: 2.1em; }
 body.font-size-large .guide-frame .guide-content h3,
-body.font-size-large #startScreen .guide-content h3 { font-size: 1.725em; }
+body.font-size-large #startScreen .guide-content h3 { font-size: 1.8em; }
 
 
 body.font-size-large .header-today-date {
@@ -3974,6 +3992,82 @@ body.font-size-large .subject-overview-cat-header {
     border-bottom-color: #0366d6;
 }
 
+/* ─── 管理タブ データエリアのボタンバー ──────────────────────────────── */
+.admin-data-btn-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-bottom: 6px;
+    flex-shrink: 0;
+}
+
+.admin-data-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    background: #f6f8fa;
+    color: #586069;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-data-action-btn:hover {
+    background: #f0f7ff;
+    color: #0366d6;
+}
+
+.admin-save-btn {
+    background: #28a745;
+    color: #fff;
+    border-color: #1e7e34;
+}
+
+.admin-save-btn:hover {
+    background: #218838;
+    color: #fff;
+}
+
+.admin-edit-area {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.admin-edit-textarea {
+    width: 100%;
+    font-family: monospace;
+    font-size: 13px;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 8px 10px;
+    resize: vertical;
+    box-sizing: border-box;
+    color: #24292e;
+    background: #fff;
+}
+
+.admin-edit-save-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.admin-edit-error {
+    font-size: 13px;
+    color: #28a745;
+    flex: 1;
+}
+
 /* ─── 学習済みにするボタン（下寄せ、グレー） ────────────────────────────── */
 .mark-learned-section {
     margin-top: auto;
@@ -4049,6 +4143,7 @@ body.font-size-medium .header-user-name {
 
 body.font-size-medium .download-data-btn {
     font-size: 17px;
+    width: 32px;
     height: 32px;
 }
 
@@ -4095,6 +4190,7 @@ body.font-size-large .header-user-name {
 
 body.font-size-large .download-data-btn {
     font-size: 20px;
+    width: 36px;
     height: 36px;
 }
 

@@ -474,6 +474,8 @@ export class QuizApp {
     this.updateCategoryListActive();
     // 学習状態フィルターを適用する
     this.applyCategoryStatusFilter();
+    // 進捗バー・学習状態を更新する（ビューモード・フィルター切替後も正確に反映する）
+    this.updateSubjectStats();
   }
 
   private renderAdminContent(categoryList: HTMLElement): void {
@@ -488,9 +490,13 @@ export class QuizApp {
     const container = document.createElement("div");
     container.className = "admin-panel";
 
-    const sections: Array<{ title: string; content: unknown }> = [
+    /** ファイルダウンロード用の英字キー */
+    type SectionKey = "settings" | "history" | "wrong" | "mastered" | "streaks" | "stats";
+    const sections: Array<{ title: string; fileKey: SectionKey; editable: boolean; content: unknown; fullContent?: unknown }> = [
       {
         title: "設定",
+        fileKey: "settings",
+        editable: false,
         content: {
           userName: data.userName ?? "ゲスト",
           fontSizeLevel: data.fontSizeLevel ?? "small",
@@ -499,11 +505,11 @@ export class QuizApp {
           shareUrl: this.shareUrl || "(未設定)",
         },
       },
-      { title: "履歴", content: truncateArray(data.history) },
-      { title: "不正解問題", content: truncateArray(data.wrongIds) },
-      { title: "学習済み問題", content: truncateArray(data.masteredIds) },
-      { title: "連続正解", content: data.correctStreaks },
-      { title: "問題統計", content: data.questionStats },
+      { title: "履歴", fileKey: "history", editable: true, content: truncateArray(data.history), fullContent: data.history },
+      { title: "不正解問題", fileKey: "wrong", editable: true, content: truncateArray(data.wrongIds), fullContent: data.wrongIds },
+      { title: "学習済み問題", fileKey: "mastered", editable: true, content: truncateArray(data.masteredIds), fullContent: data.masteredIds },
+      { title: "連続正解", fileKey: "streaks", editable: true, content: data.correctStreaks },
+      { title: "問題統計", fileKey: "stats", editable: true, content: data.questionStats },
     ];
 
     // タブバー
@@ -521,6 +527,51 @@ export class QuizApp {
 
     let activeTabIndex = 0;
 
+    /** セクションの完全な JSON テキストを返す（fullContent があればそちらを使う） */
+    const getFullJson = (index: number): string => {
+      const sec = sections[index]!;
+      return JSON.stringify(sec.fullContent ?? sec.content, null, 2);
+    };
+
+    /** 編集内容を保存してDBに反映する */
+    const saveEditedData = (index: number, jsonText: string): string | null => {
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(jsonText);
+      } catch (e) {
+        const msg = e instanceof SyntaxError ? e.message : String(e);
+        return `JSONの形式が正しくありません: ${msg}`;
+      }
+      const { fileKey } = sections[index]!;
+      try {
+        if (fileKey === "history") {
+          if (!Array.isArray(parsed)) return "配列形式で入力してください。";
+          this.progressRepo.saveHistory(parsed as QuizRecord[]);
+        } else if (fileKey === "wrong") {
+          if (!Array.isArray(parsed)) return "配列形式で入力してください。";
+          this.progressRepo.saveWrongIds(parsed as string[]);
+        } else if (fileKey === "mastered") {
+          if (!Array.isArray(parsed)) return "配列形式で入力してください。";
+          this.progressRepo.saveMasteredIds(parsed as string[]);
+        } else if (fileKey === "streaks") {
+          if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+            return "オブジェクト形式で入力してください。";
+          }
+          this.progressRepo.saveCorrectStreaks(parsed as Record<string, number>);
+        } else if (fileKey === "stats") {
+          if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+            return "オブジェクト形式で入力してください。";
+          }
+          this.progressRepo.saveQuestionStats(parsed as Record<string, { total: number; correct: number }>);
+        } else {
+          return "このセクションは編集できません。";
+        }
+      } catch {
+        return "保存に失敗しました。";
+      }
+      return null; // 成功
+    };
+
     const showTab = (index: number): void => {
       activeTabIndex = index;
       tabBar.querySelectorAll(".admin-tab-btn").forEach((btn, i) => {
@@ -529,10 +580,105 @@ export class QuizApp {
       });
       contentArea.setAttribute("aria-labelledby", `admin-tab-${index}`);
       contentArea.innerHTML = "";
+
       const { content } = sections[index]!;
+      const jsonText = JSON.stringify(content, null, 2);
+      const fullJsonText = getFullJson(index);
+
+      // ボタンバー（右上）
+      const btnBar = document.createElement("div");
+      btnBar.className = "admin-data-btn-bar";
+
+      const copyBtn = document.createElement("button");
+      copyBtn.className = "admin-data-action-btn";
+      copyBtn.type = "button";
+      copyBtn.textContent = "📋 コピー";
+      copyBtn.title = "クリップボードにコピー";
+      copyBtn.addEventListener("click", () => {
+        void navigator.clipboard.writeText(fullJsonText).then(() => {
+          copyBtn.textContent = "✓ コピー済";
+          setTimeout(() => { copyBtn.textContent = "📋 コピー"; }, 1500);
+        });
+      });
+      btnBar.appendChild(copyBtn);
+
+      const dlBtn = document.createElement("button");
+      dlBtn.className = "admin-data-action-btn";
+      dlBtn.type = "button";
+      dlBtn.textContent = "⬇️ ダウンロード";
+      dlBtn.title = "JSONファイルとしてダウンロード";
+      dlBtn.addEventListener("click", () => {
+        const blob = new Blob([fullJsonText], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        const dateStr = new Date().toISOString().slice(0, 10);
+        const fileKey = sections[index]!.fileKey;
+        a.download = `study-${fileKey}-${dateStr}.json`;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
+      });
+      btnBar.appendChild(dlBtn);
+
+      // 編集可能なセクションのみ編集ボタンを表示
+      if (sections[index]!.editable) {
+        const editBtn = document.createElement("button");
+        editBtn.className = "admin-data-action-btn";
+        editBtn.type = "button";
+        editBtn.textContent = "✏️ 編集";
+        editBtn.title = "データを編集してDBに反映";
+        editBtn.addEventListener("click", () => {
+          // 既にeditareaがあれば閉じる
+          const existingEdit = contentArea.querySelector(".admin-edit-area");
+          if (existingEdit) { existingEdit.remove(); editBtn.textContent = "✏️ 編集"; return; }
+
+          editBtn.textContent = "✕ 閉じる";
+          const editArea = document.createElement("div");
+          editArea.className = "admin-edit-area";
+
+          const textarea = document.createElement("textarea");
+          textarea.className = "admin-edit-textarea";
+          textarea.value = fullJsonText;
+          textarea.rows = 15;
+          editArea.appendChild(textarea);
+
+          const saveRow = document.createElement("div");
+          saveRow.className = "admin-edit-save-row";
+
+          const errorMsg = document.createElement("span");
+          errorMsg.className = "admin-edit-error";
+
+          const saveBtn = document.createElement("button");
+          saveBtn.type = "button";
+          saveBtn.className = "admin-data-action-btn admin-save-btn";
+          saveBtn.textContent = "💾 保存";
+          saveBtn.addEventListener("click", () => {
+            const err = saveEditedData(index, textarea.value);
+            if (err) {
+              errorMsg.textContent = err;
+            } else {
+              errorMsg.textContent = "✓ 保存しました";
+              setTimeout(() => { errorMsg.textContent = ""; }, 2000);
+              // データを再描画
+              this.useCase.reloadProgressData();
+              showTab(index);
+            }
+          });
+          saveRow.appendChild(errorMsg);
+          saveRow.appendChild(saveBtn);
+          editArea.appendChild(saveRow);
+
+          contentArea.appendChild(editArea);
+        });
+        btnBar.appendChild(editBtn);
+      }
+
+      contentArea.appendChild(btnBar);
+
       const dataEl = document.createElement("pre");
       dataEl.className = "admin-data";
-      dataEl.textContent = JSON.stringify(content, null, 2);
+      dataEl.textContent = jsonText;
       contentArea.appendChild(dataEl);
     };
 
@@ -2205,10 +2351,11 @@ export class QuizApp {
       // 「This site is open source. Improve this page.」等の GitHub Pages 固有要素を除去
       // Minima テーマの edit-link クラスや、特定の GitHub リポジトリリンクを含む要素を除去する
       bodyClone.querySelectorAll(".edit-link, .gh-edit-link, [class*='improve'], [class*='edit-page']").forEach((el) => el.remove());
-      // テキストに「This site is open source」を含む要素を除去する
-      bodyClone.querySelectorAll("p").forEach((p) => {
-        if (p.textContent?.includes("This site is open source")) {
-          p.remove();
+      // テキストに「This site is open source」または「Improve this page」を含む要素を除去する
+      bodyClone.querySelectorAll("p, div, span, aside").forEach((el) => {
+        const text = el.textContent ?? "";
+        if (text.includes("This site is open source") || text.includes("Improve this page")) {
+          el.remove();
         }
       });
 
@@ -3578,8 +3725,20 @@ export class QuizApp {
       const categoryName = this.filter.category !== "all" && firstResult !== undefined
         ? (firstResult.question.categoryName ?? "")
         : "";
-      resultUnitName.textContent = categoryName;
-      resultUnitName.classList.toggle("hidden", !categoryName);
+      if (categoryName) {
+        // カテゴリ階層（トップ › 親 › 単元名）を構築する
+        const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
+        const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
+        const parts: string[] = [];
+        if (topInfo) parts.push(topInfo.name);
+        if (parentInfo) parts.push(parentInfo.name);
+        parts.push(categoryName);
+        resultUnitName.textContent = parts.join(" › ");
+        resultUnitName.classList.remove("hidden");
+      } else {
+        resultUnitName.textContent = "";
+        resultUnitName.classList.add("hidden");
+      }
     }
 
     // 正答数に応じた前向きなメッセージ

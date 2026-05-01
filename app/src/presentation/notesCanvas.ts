@@ -41,12 +41,15 @@ export class NotesCanvas {
   private setupCanvas(): void {
     if (!this.canvas || !this.ctx) return;
 
-    // キャンバスのサイズを実際の表示サイズに合わせる
-    const rect = this.canvas.getBoundingClientRect();
+    // CSS zoom が html 要素に適用されると getBoundingClientRect は
+    // ブラウザによりズーム考慮済みの視覚座標を返す場合があるため、
+    // CSS ピクセル幅/高さは offsetWidth/offsetHeight から取得する（常に CSS ピクセル）
     const dpr = window.devicePixelRatio || 1;
+    const cssWidth = this.canvas.offsetWidth || 1;
+    const cssHeight = this.canvas.offsetHeight || 1;
 
-    this.canvas.width = rect.width * dpr;
-    this.canvas.height = rect.height * dpr;
+    this.canvas.width = cssWidth * dpr;
+    this.canvas.height = cssHeight * dpr;
 
     this.ctx.scale(dpr, dpr);
 
@@ -142,16 +145,23 @@ export class NotesCanvas {
 
     // CSS zoom が document.documentElement に適用されると、ブラウザのバージョンによって
     // getBoundingClientRect が CSS 座標（ズーム非考慮）または視覚座標（ズーム考慮）を返す。
-    // canvas.width / dpr と offsetWidth の比を使ってスケールを検出し、正しい描画座標に変換する。
-    const dpr = window.devicePixelRatio || 1;
-    const offsetWidth = this.canvas.offsetWidth || rect.width;
-    const offsetHeight = this.canvas.offsetHeight || rect.height;
-    const scaleX = this.canvas.width / dpr / offsetWidth;
-    const scaleY = this.canvas.height / dpr / offsetHeight;
+    // getComputedStyle で取得した zoom 値を使い、スケール誤差を補正する。
+    // bcrIsZoomAware: rect.width が offsetWidth × zoom に近い（8%以内）場合は BCR がズーム考慮済み
+    const computedZoom = getComputedStyle(document.documentElement).zoom;
+    const zoom = parseFloat(computedZoom || "1") || 1;
+    const offsetWidth = this.canvas.offsetWidth || 1;
+    /** BCR がズーム考慮済みか判定する誤差許容（8%） */
+    const BCR_ZOOM_TOLERANCE = 0.08;
+    const bcrIsZoomAware = zoom !== 1 && Math.abs(rect.width / offsetWidth - zoom) < BCR_ZOOM_TOLERANCE;
 
+    // 視覚座標系でのキャンバス左上隅位置
+    const canvasLeft = bcrIsZoomAware ? rect.left : rect.left * zoom;
+    const canvasTop = bcrIsZoomAware ? rect.top : rect.top * zoom;
+
+    // 視覚オフセットを CSS ピクセルに変換して描画座標を求める
     return {
-      x: (clientX - rect.left) * scaleX,
-      y: (clientY - rect.top) * scaleY,
+      x: (clientX - canvasLeft) / zoom,
+      y: (clientY - canvasTop) / zoom,
     };
   }
 
@@ -178,8 +188,7 @@ export class NotesCanvas {
   public clear(): void {
     if (!this.canvas || !this.ctx) return;
 
-    const rect = this.canvas.getBoundingClientRect();
-    this.ctx.clearRect(0, 0, rect.width, rect.height);
+    this.ctx.clearRect(0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight);
   }
 
   public save(): DrawingState | null {
@@ -199,8 +208,7 @@ export class NotesCanvas {
       if (!this.ctx || !this.canvas) return;
       if (token !== this.restoreToken) return; // 古い呼び出しはスキップ
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      const rect = this.canvas.getBoundingClientRect();
-      this.ctx.drawImage(img, 0, 0, rect.width, rect.height);
+      this.ctx.drawImage(img, 0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight);
     };
     img.src = state.dataUrl;
   }

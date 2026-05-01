@@ -316,6 +316,18 @@ export class QuizUseCase {
   }
 
   /**
+   * 進捗データをリポジトリから再ロードしてメモリ上のキャッシュを更新する。
+   * 管理タブでのデータ編集後に呼び出す。
+   */
+  reloadProgressData(): void {
+    this.wrongIds = this.progressRepo.loadWrongIds();
+    this.correctStreaks = this.progressRepo.loadCorrectStreaks();
+    this.masteredIds = this.progressRepo.loadMasteredIds();
+    this.masteredSet = new Set(this.masteredIds);
+    this.questionStats = this.progressRepo.loadQuestionStats();
+  }
+
+  /**
    * 指定したカテゴリを手動で学習済みとしてマークする。
    * 解答なしでも単元を学習済みにできる機能。
    * 対象カテゴリの問題を wrongIds から除き、履歴に manual レコードを追加する。
