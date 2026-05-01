@@ -113,7 +113,6 @@ header h1 {
 .app-footer {
     text-align: center;
     padding: 4px 0 2px;
-    font-size: 13px;
     color: #959da5;
     flex-shrink: 0;
 }
