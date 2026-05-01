@@ -343,10 +343,27 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
       masteredIds: this.loadMasteredIds(),
-      questionStats: this.loadQuestionStats(),
       history: this.loadHistory(),
       categoryViewMode: this.loadCategoryViewMode(),
       fontSizeLevel: this.loadFontSizeLevel(),
     };
+  }
+
+  async clearAllData(): Promise<void> {
+    // キャッシュをリセット
+    this.cache = IndexedDBProgressRepository.defaultCache();
+    // IndexedDB のストアをクリア
+    if (!this.db) return;
+    await new Promise<void>((resolve, reject) => {
+      try {
+        const tx = (this.db as IDBDatabase).transaction(STORE_NAME, "readwrite");
+        const store = tx.objectStore(STORE_NAME);
+        store.clear();
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error ?? new Error("IndexedDB クリアに失敗しました"));
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 }

@@ -295,13 +295,8 @@ export class QuizUseCase {
       correctCount,
       entries: results.map((r) => ({
         questionId: r.question.id,
-        questionText: r.question.question,
         isCorrect: r.isCorrect,
         userAnswerIndex: r.userAnswerIndex,
-        correctAnswerIndex: r.question.correct,
-        choices: [...r.question.choices],
-        explanation: r.question.explanation,
-        categoryName: r.question.categoryName ?? r.question.category,
         userAnswerText: r.userAnswerText,
       })),
     });
@@ -635,5 +630,20 @@ export class QuizUseCase {
       }
     }
     return categories;
+  }
+
+  /** 問題IDから問題を検索する。見つからない場合は undefined を返す。 */
+  getQuestionById(questionId: string): Question | undefined {
+    return this.allQuestions.find(q => q.id === questionId);
+  }
+
+  /** すべての学習データを削除し、メモリキャッシュもリセットする。 */
+  async clearAllData(): Promise<void> {
+    await this.progressRepo.clearAllData();
+    this.wrongIds = [];
+    this.correctStreaks = {};
+    this.masteredIds = [];
+    this.masteredSet = new Set();
+    this.questionStats = {};
   }
 }

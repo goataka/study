@@ -7,6 +7,7 @@ import { QuizUseCase, ERROR_ALL_MASTERED } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
 import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
+import { shuffleChoices } from "../domain/question";
 import type { IProgressRepository } from "../application/ports";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
@@ -491,7 +492,7 @@ export class QuizApp {
     container.className = "admin-panel";
 
     /** ファイルダウンロード用の英字キー */
-    type SectionKey = "settings" | "history" | "wrong" | "mastered" | "streaks" | "stats";
+    type SectionKey = "settings" | "history" | "mastered" | "streaks";
     const sections: Array<{ title: string; fileKey: SectionKey; editable: boolean; content: unknown; fullContent?: unknown }> = [
       {
         title: "設定",
@@ -506,10 +507,8 @@ export class QuizApp {
         },
       },
       { title: "履歴", fileKey: "history", editable: true, content: truncateArray(data.history), fullContent: data.history },
-      { title: "不正解問題", fileKey: "wrong", editable: true, content: truncateArray(data.wrongIds), fullContent: data.wrongIds },
       { title: "学習済み問題", fileKey: "mastered", editable: true, content: truncateArray(data.masteredIds), fullContent: data.masteredIds },
       { title: "連続正解", fileKey: "streaks", editable: true, content: data.correctStreaks },
-      { title: "問題統計", fileKey: "stats", editable: true, content: data.questionStats },
     ];
 
     // タブバー
@@ -602,6 +601,51 @@ export class QuizApp {
       btn.addEventListener("click", () => showTab(index));
       tabBar.appendChild(btn);
     });
+
+    // 初期化タブ
+    const resetTabBtn = document.createElement("button");
+    resetTabBtn.className = "admin-tab-btn";
+    resetTabBtn.type = "button";
+    resetTabBtn.textContent = "🗑️ 初期化";
+    resetTabBtn.setAttribute("id", "admin-tab-reset");
+    resetTabBtn.setAttribute("role", "tab");
+    resetTabBtn.setAttribute("aria-selected", "false");
+    resetTabBtn.setAttribute("aria-controls", "admin-tabpanel");
+    resetTabBtn.addEventListener("click", () => {
+      // データタブのアクティブを解除
+      tabBar.querySelectorAll(".admin-tab-btn").forEach(btn => {
+        btn.classList.remove("active");
+        btn.setAttribute("aria-selected", "false");
+      });
+      resetTabBtn.classList.add("active");
+      resetTabBtn.setAttribute("aria-selected", "true");
+      contentArea.innerHTML = "";
+      // 初期化ボタンを表示
+      const resetSection = document.createElement("div");
+      resetSection.className = "admin-reset-section";
+      const resetDesc = document.createElement("p");
+      resetDesc.className = "admin-reset-desc";
+      resetDesc.textContent = "すべての学習データ（履歴・学習済み・進捗）を削除します。";
+      const resetBtn = document.createElement("button");
+      resetBtn.className = "admin-reset-btn";
+      resetBtn.type = "button";
+      resetBtn.textContent = "🗑️ 全データを初期化する";
+      resetBtn.addEventListener("click", () => {
+        void this.showConfirmDialog(
+          "すべての学習データを削除します。この操作は元に戻せません。続けますか？"
+        ).then((confirmed) => {
+          if (confirmed) {
+            void this.useCase.clearAllData().then(() => {
+              window.location.reload();
+            });
+          }
+        });
+      });
+      resetSection.appendChild(resetDesc);
+      resetSection.appendChild(resetBtn);
+      contentArea.appendChild(resetSection);
+    });
+    tabBar.appendChild(resetTabBtn);
 
     // 初期表示
     showTab(activeTabIndex);
@@ -2405,18 +2449,27 @@ export class QuizApp {
         const contentDiv = document.createElement("div");
         contentDiv.className = "history-entry-content";
 
+        const question = this.useCase.getQuestionById(entry.questionId);
+
         const questionP = document.createElement("p");
         questionP.className = "history-entry-question";
-        questionP.textContent = entry.questionText;
 
         const answerP = document.createElement("p");
         answerP.className = "history-entry-answer";
-        const userAnswer = entry.userAnswerText ?? (entry.choices[entry.userAnswerIndex] ?? "未回答");
-        const correctAnswer = entry.choices[entry.correctAnswerIndex] ?? "";
-        if (entry.isCorrect) {
-          answerP.textContent = `正解: ${correctAnswer}`;
+
+        if (question) {
+          const shuffled = shuffleChoices(question);
+          questionP.textContent = question.question;
+          const userAnswer = entry.userAnswerText ?? (shuffled.choices[entry.userAnswerIndex] ?? "未回答");
+          const correctAnswer = shuffled.choices[shuffled.correct] ?? "";
+          if (entry.isCorrect) {
+            answerP.textContent = `正解: ${correctAnswer}`;
+          } else {
+            answerP.textContent = `あなたの回答: ${userAnswer} → 正解: ${correctAnswer}`;
+          }
         } else {
-          answerP.textContent = `あなたの回答: ${userAnswer} → 正解: ${correctAnswer}`;
+          questionP.textContent = `(問題ID: ${entry.questionId})`;
+          answerP.textContent = entry.isCorrect ? "正解" : "不正解";
         }
 
         contentDiv.appendChild(questionP);

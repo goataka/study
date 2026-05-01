@@ -117,7 +117,6 @@ class StubProgressRepository implements IProgressRepository {
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
       masteredIds: this.loadMasteredIds(),
-      questionStats: this.loadQuestionStats(),
       history: this.loadHistory(),
       categoryViewMode: "category",
       fontSizeLevel: null,
@@ -129,6 +128,13 @@ class StubProgressRepository implements IProgressRepository {
     return { questionCount: 10, quizOrder: "random", includeMastered: false };
   }
   saveQuizSettings(_settings: import("./ports").QuizSettings): void {}
+  async clearAllData(): Promise<void> {
+    this.ids = [];
+    this.history = [];
+    this.streaks = {};
+    this.stats = {};
+    this.masteredIds = [];
+  }
 }
 
 // ─── テスト ──────────────────────────────────────────────────────────────────
