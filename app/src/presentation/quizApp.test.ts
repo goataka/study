@@ -1672,6 +1672,8 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
       ])
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    // ✅ が表示されるには全問題が masteredIds に含まれる必要がある
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -1749,8 +1751,8 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
     expect(document.getElementById("filterStatusAll")?.getAttribute("aria-pressed")).toBe("false");
   });
 
-  it("学習済カテゴリ（履歴あり・間違いなし）にはlearnedクラスが付与される", async () => {
-    // 履歴に phonics-1 を登録（学習済）
+  it("学習済カテゴリ（全問題が masteredIds に含まれる）にはlearnedクラスが付与される", async () => {
+    // 全問題が masteredIds に含まれる場合に learned クラスが付与される
     localStorage.setItem(
       "quizHistory",
       JSON.stringify([
@@ -1768,8 +1770,9 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
         },
       ])
     );
-    // 間違いなし
+    // 間違いなし・全問題習得済み
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -1830,6 +1833,8 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
       ])
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    // ✅（learned）には全問題が masteredIds に含まれる必要がある
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -1965,8 +1970,8 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
     expect(statusEl?.textContent).toBe("⬜");
   });
 
-  it("学習済（履歴あり・間違いなし）のカテゴリは ✅ が表示される", async () => {
-    // 履歴に phonics-1 を登録（学習済）
+  it("学習済（全問題が masteredIds に含まれる）のカテゴリは ✅ が表示される", async () => {
+    // 履歴に phonics-1 を登録（学習済）+ 全問題を masteredIds に設定
     localStorage.setItem(
       "quizHistory",
       JSON.stringify([
@@ -1984,8 +1989,9 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
         },
       ])
     );
-    // 間違いなし
+    // 間違いなし・全問題習得済み
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2606,7 +2612,7 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     expect(catItem?.querySelector(".category-stats")).not.toBeNull();
   });
 
-  it("未学習カテゴリの進捗数値は空文字になる", async () => {
+  it("未学習カテゴリの進捗数値は 0/total 形式になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -2615,7 +2621,7 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const stats = catItem?.querySelector(".category-stats") as HTMLElement | null;
-    expect(stats?.textContent).toBe("");
+    expect(stats?.textContent).toBe("0/5");
   });
 
   it("学習済（間違いなし）カテゴリの進捗数値は mastered/total 形式になる", async () => {
@@ -2657,8 +2663,8 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     expect(stats?.textContent).toBe("5/5");
   });
 
-  it("間違い問題ありのカテゴリの進捗数値は mastered(wrong)/total 形式になり、バー幅も 80% になる", async () => {
-    // mockQuestionFile には q1–q5 の5問がある。q1 を間違いとして登録し、q2–q5 を習得済みとする。
+  it("学習中問題ありのカテゴリの進捗数値は mastered(inProgress)/total 形式になり、バー幅も 80% になる", async () => {
+    // mockQuestionFile には q1–q5 の5問がある。q1 を学習中（1回解答済み未習得）として登録し、q2–q5 を習得済みとする。
     localStorage.setItem(
       "quizHistory",
       JSON.stringify([
@@ -2685,6 +2691,8 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
     localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
     // 進捗バーは mastered / total を使うため q2–q5 の4問を mastered に設定する（4/5 = 80%）
     localStorage.setItem("masteredIds", JSON.stringify(["q2", "q3", "q4", "q5"]));
+    // q1 は1回回答済みで未習得（学習中）
+    localStorage.setItem("questionStats", JSON.stringify({ q1: { total: 1, correct: 0 } }));
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -3730,13 +3738,13 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(recName?.textContent).toBeTruthy();
   });
 
-  it("未学習の場合、教科アイテムの進捗率は表示されない", async () => {
+  it("未学習の場合、教科アイテムの進捗率は 0/total 形式で表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
     const pctSpan = englishItem?.querySelector(".subject-overview-pct");
-    expect(pctSpan).toBeNull();
+    expect(pctSpan?.textContent).toBe("0/5");
   });
 
   it("outerDate 表示は廃止され、学習履歴に関わらず表示されない", async () => {

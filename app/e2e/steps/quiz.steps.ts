@@ -18,6 +18,10 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
   await expect(page.locator("h1")).toHaveText(title);
 });
 
+Then("the quiz title should contain {string}", async ({ page }, title: string) => {
+  await expect(page.locator("h1")).toContainText(title);
+});
+
 When("I click the {string} tab", async ({ page }, tabText: string) => {
   // タブボタンをクリック
   const tab = page.locator(".subject-tab").filter({ hasText: tabText });

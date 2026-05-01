@@ -109,6 +109,17 @@ export class QuizUseCase {
     return filtered.filter((q) => wrongSet.has(q.id)).length;
   }
 
+  /**
+   * 指定したフィルターに一致する問題のうち、1回以上回答済みで未習得の問題数を返す。
+   * 進捗バーの「学習中」カウントに使用する。
+   */
+  getInProgressCount(filter: QuizFilter): number {
+    const filtered = this.getFilteredQuestions(filter);
+    return filtered.filter((q) =>
+      (this.questionStats[q.id]?.total ?? 0) > 0 && !this.masteredSet.has(q.id)
+    ).length;
+  }
+
   getCategoriesForSubject(subject: string): Record<string, string> {
     const categories: Record<string, string> = {};
     for (const q of this.allQuestions) {
@@ -165,6 +176,15 @@ export class QuizUseCase {
    */
   getQuestionStat(questionId: string): { total: number; correct: number } {
     return this.questionStats[questionId] ?? { total: 0, correct: 0 };
+  }
+
+  /**
+   * 全問題の回答統計を一括で返す（浅いコピー）。
+   * ループ内での個別呼び出しを避け、パフォーマンスを改善するために使用する。
+   * 呼び出し側のミューテートがユースケース内部状態に影響しないよう浅いコピーを返す。
+   */
+  getAllQuestionStats(): Record<string, { total: number; correct: number }> {
+    return { ...this.questionStats };
   }
 
   /**
@@ -356,6 +376,7 @@ export class QuizUseCase {
       if (!this.masteredIds.includes(id)) {
         this.masteredIds.push(id);
       }
+      this.masteredSet.add(id);
     }
     this.progressRepo.saveMasteredIds(this.masteredIds);
 
@@ -400,6 +421,9 @@ export class QuizUseCase {
     // 対象カテゴリの問題を masteredIds から除く
     const questionIdSet = new Set(questions.map((q) => q.id));
     this.masteredIds = this.masteredIds.filter((id) => !questionIdSet.has(id));
+    for (const id of questionIdSet) {
+      this.masteredSet.delete(id);
+    }
     this.progressRepo.saveMasteredIds(this.masteredIds);
   }
 

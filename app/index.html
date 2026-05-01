@@ -48,7 +48,10 @@
 <body>
   <div class="container">
     <header>
-      <h1 id="titleBtn" role="button" tabindex="0" class="title-btn" title="スタート画面へ戻る">学習アプリ</h1>
+      <div class="header-title-area">
+        <h1 id="titleBtn" role="button" tabindex="0" class="title-btn" title="スタート画面へ戻る">📚 学習アプリ</h1>
+        <span class="header-grade-label">小・中・高</span>
+      </div>
       <div class="header-center-area">
         <div class="header-user-area">
           <button id="headerUserName" class="header-user-name" type="button" title="名前を編集する" aria-label="名前を編集する"></button>
@@ -161,9 +164,9 @@
           <!-- 問題一覧パネル -->
           <div id="questionListContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-questions">
             <div class="question-list-filter-bar">
-              <button id="questionListFilterAll" class="question-list-filter-btn" type="button">すべて</button>
-              <button id="questionListFilterUnlearned" class="question-list-filter-btn active" type="button">未学習</button>
-              <button id="questionListFilterLearned" class="question-list-filter-btn" type="button">学習済み</button>
+              <button id="questionListFilterAll" class="question-list-filter-btn active" type="button">すべて</button>
+              <button id="questionListFilterUnlearned" class="question-list-filter-btn" type="button">未学習</button>
+              <button id="questionListFilterLearned" class="question-list-filter-btn" type="button">学習済</button>
               <span id="questionListFilterCount" class="question-list-filter-count"></span>
             </div>
             <div id="questionListBody" class="question-list-panel-body"></div>
@@ -298,6 +301,10 @@
       </div>
     </div>
   </div>
+
+  <footer class="app-footer">
+    <span class="app-footer-copyright">&copy; goataka</span>
+  </footer>
 
   <!-- 確認ダイアログ -->
   <div id="confirmDialog" class="confirm-dialog-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="confirmDialogMessage">

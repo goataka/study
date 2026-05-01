@@ -89,7 +89,7 @@ export class QuizApp {
   private activeOverallPanel: "learned" | "share" = "learned";
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
-  private questionListFilter: "all" | "learned" | "unlearned" = "unlearned";
+  private questionListFilter: "all" | "learned" | "unlearned" = "all";
   private quizOrder: "random" | "straight" = "random";
   private includeMastered: boolean = false;
 
@@ -542,152 +542,373 @@ export class QuizApp {
       { title: "連続正解", fileKey: "streaks", editable: true, content: data.correctStreaks },
     ];
 
-    // タブバー
-    const tabBar = document.createElement("div");
-    tabBar.className = "admin-tabs";
-    tabBar.setAttribute("role", "tablist");
-    container.appendChild(tabBar);
+    // ─── トップメニュー ───────────────────────────────────────────────
+    const menuBar = document.createElement("div");
+    menuBar.className = "admin-menu-bar";
 
-    // タブコンテンツ
     const contentArea = document.createElement("div");
-    contentArea.className = "admin-tab-content";
-    contentArea.setAttribute("role", "tabpanel");
-    contentArea.setAttribute("id", "admin-tabpanel");
+    contentArea.className = "admin-menu-content";
+
+    let activeMenu: "manage" | "view" | null = null;
+
+    // ── 🛢️データ管理セクション ────────────────────────────────────
+    const showManageContent = (): void => {
+      contentArea.innerHTML = "";
+
+      // サブメニュータブ（初期化 / インポート）
+      const subTabBar = document.createElement("div");
+      subTabBar.className = "admin-tabs";
+      subTabBar.setAttribute("role", "tablist");
+      contentArea.appendChild(subTabBar);
+
+      const subContentArea = document.createElement("div");
+      subContentArea.className = "admin-tab-content";
+      contentArea.appendChild(subContentArea);
+
+      // 初期化タブのコンテンツ表示
+      const showResetTab = (): void => {
+        subTabBar.querySelectorAll(".admin-tab-btn").forEach(b => {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        resetSubTabBtn.classList.add("active");
+        resetSubTabBtn.setAttribute("aria-selected", "true");
+        subContentArea.innerHTML = "";
+        const resetSection = document.createElement("div");
+        resetSection.className = "admin-reset-section";
+        const resetDesc = document.createElement("p");
+        resetDesc.className = "admin-reset-desc";
+        resetDesc.textContent = "すべての学習データ（履歴・学習済み・進捗）を削除します。";
+        const resetBtn = document.createElement("button");
+        resetBtn.className = "admin-reset-btn";
+        resetBtn.type = "button";
+        resetBtn.textContent = "🗑️ 全データを初期化する";
+        resetBtn.addEventListener("click", () => {
+          void this.showConfirmDialog(
+            "すべての学習データを削除します。この操作は元に戻せません。続けますか？"
+          ).then((confirmed) => {
+            if (confirmed) {
+              void this.useCase.clearAllData()
+                .then(() => {
+                  window.location.reload();
+                })
+                .catch((err: unknown) => {
+                  console.error("データ初期化に失敗しました", err);
+                  alert("データの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
+                });
+            }
+          }).catch((err: unknown) => {
+            console.error("確認ダイアログでエラーが発生しました", err);
+          });
+        });
+        resetSection.appendChild(resetDesc);
+        resetSection.appendChild(resetBtn);
+        subContentArea.appendChild(resetSection);
+      };
+
+      // インポートタブのコンテンツ表示
+      const showImportTab = (): void => {
+        subTabBar.querySelectorAll(".admin-tab-btn").forEach(b => {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        importSubTabBtn.classList.add("active");
+        importSubTabBtn.setAttribute("aria-selected", "true");
+        subContentArea.innerHTML = "";
+
+        const importSection = document.createElement("div");
+        importSection.className = "admin-reset-section";
+
+        const importDesc = document.createElement("p");
+        importDesc.className = "admin-reset-desc";
+        importDesc.textContent = "ダウンロードしたJSONファイルを選択して、学習データを更新します。";
+        importSection.appendChild(importDesc);
+
+        const fileLabel = document.createElement("label");
+        fileLabel.className = "admin-import-label";
+        fileLabel.textContent = "📂 JSONファイルを選択";
+
+        const fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.accept = ".json,application/json";
+        fileInput.className = "admin-import-input";
+        fileInput.style.display = "none";
+
+        const fileNameSpan = document.createElement("span");
+        fileNameSpan.className = "admin-import-filename";
+        fileNameSpan.textContent = "（未選択）";
+
+        const previewEl = document.createElement("pre");
+        previewEl.className = "admin-data";
+        previewEl.style.marginTop = "8px";
+        previewEl.style.display = "none";
+
+        const applyBtn = document.createElement("button");
+        applyBtn.className = "admin-import-apply-btn";
+        applyBtn.type = "button";
+        applyBtn.textContent = "✅ データを更新する";
+        applyBtn.style.display = "none";
+
+        let parsedData: unknown = null;
+        let detectedFileKey: SectionKey | null = null;
+
+        fileInput.addEventListener("change", () => {
+          const file = fileInput.files?.[0];
+          if (!file) return;
+          fileNameSpan.textContent = file.name;
+          const reader = new FileReader();
+          reader.onload = (): void => {
+            try {
+              parsedData = JSON.parse(reader.result as string);
+              // ファイル名からセクションを推定（例: study-history-2024-01-01.json）
+              // settings はインポート対象外
+              detectedFileKey = null;
+              const importableSections = sections.filter((sec) => sec.fileKey !== "settings");
+              for (const sec of importableSections) {
+                if (file.name.includes(sec.fileKey)) {
+                  detectedFileKey = sec.fileKey;
+                  break;
+                }
+              }
+              const preview = JSON.stringify(parsedData, null, 2);
+              previewEl.textContent = preview.length > 2000
+                ? preview.slice(0, 2000) + "\n...(省略)"
+                : preview;
+              previewEl.style.display = "block";
+              if (detectedFileKey) {
+                applyBtn.textContent = `✅ ${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey} を更新する`;
+                applyBtn.style.display = "block";
+              } else if (file.name.includes("settings")) {
+                previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
+                applyBtn.style.display = "none";
+              } else {
+                applyBtn.textContent = "✅ データを更新する（種類不明）";
+                applyBtn.style.display = "block";
+              }
+            } catch {
+              previewEl.textContent = "JSONの解析に失敗しました。ファイルを確認してください。";
+              previewEl.style.display = "block";
+              applyBtn.style.display = "none";
+              parsedData = null;
+            }
+          };
+          reader.readAsText(file);
+        });
+
+        applyBtn.addEventListener("click", () => {
+          if (!parsedData || !detectedFileKey) {
+            alert("対応するデータ種類が判定できませんでした。ファイル名に history / mastered / streaks を含めてください。");
+            return;
+          }
+          // 基本バリデーション
+          if ((detectedFileKey === "history" || detectedFileKey === "mastered") && !Array.isArray(parsedData)) {
+            const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+            alert(`「${label}」データの形式が正しくありません（配列が必要です）。ファイルを確認してください。`);
+            return;
+          }
+          if (detectedFileKey === "streaks" && (typeof parsedData !== "object" || Array.isArray(parsedData) || parsedData === null)) {
+            const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+            alert(`「${label}」データの形式が正しくありません（オブジェクトが必要です）。ファイルを確認してください。`);
+            return;
+          }
+          void this.showConfirmDialog(
+            `「${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey}」データを選択したファイルの内容で上書きします。よろしいですか？`
+          ).then((confirmed) => {
+            if (!confirmed) return;
+            try {
+              if (detectedFileKey === "history") {
+                this.progressRepo.saveHistory(parsedData as ReturnType<typeof this.progressRepo.loadHistory>);
+              } else if (detectedFileKey === "mastered") {
+                this.progressRepo.saveMasteredIds(parsedData as string[]);
+              } else if (detectedFileKey === "streaks") {
+                this.progressRepo.saveCorrectStreaks(parsedData as Record<string, number>);
+              }
+              void this.useCase.initialize()
+                .then(() => {
+                  window.location.reload();
+                })
+                .catch((err: unknown) => {
+                  console.error("データ再読み込みに失敗しました", err);
+                  alert("データの更新後の再読み込みに失敗しました。問題データを確認してください。");
+                });
+            } catch (err) {
+              console.error("データ更新に失敗しました", err);
+              alert("データの更新に失敗しました。ファイルの形式を確認してください。");
+            }
+          }).catch((err: unknown) => {
+            console.error("確認ダイアログでエラーが発生しました", err);
+          });
+        });
+
+        fileLabel.appendChild(fileInput);
+        importSection.appendChild(fileLabel);
+        importSection.appendChild(fileNameSpan);
+        importSection.appendChild(previewEl);
+        importSection.appendChild(applyBtn);
+        subContentArea.appendChild(importSection);
+      };
+
+      // サブタブボタンを作成
+      const resetSubTabBtn = document.createElement("button");
+      resetSubTabBtn.className = "admin-tab-btn";
+      resetSubTabBtn.type = "button";
+      resetSubTabBtn.textContent = "🗑️ 初期化";
+      resetSubTabBtn.setAttribute("id", "admin-tab-reset");
+      resetSubTabBtn.setAttribute("role", "tab");
+      resetSubTabBtn.setAttribute("aria-selected", "false");
+      resetSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
+      resetSubTabBtn.addEventListener("click", showResetTab);
+      subTabBar.appendChild(resetSubTabBtn);
+
+      const importSubTabBtn = document.createElement("button");
+      importSubTabBtn.className = "admin-tab-btn";
+      importSubTabBtn.type = "button";
+      importSubTabBtn.textContent = "📥 インポート";
+      importSubTabBtn.setAttribute("id", "admin-tab-import");
+      importSubTabBtn.setAttribute("role", "tab");
+      importSubTabBtn.setAttribute("aria-selected", "false");
+      importSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
+      importSubTabBtn.addEventListener("click", showImportTab);
+      subTabBar.appendChild(importSubTabBtn);
+
+      subContentArea.setAttribute("role", "tabpanel");
+      subContentArea.setAttribute("id", "admin-manage-tabpanel");
+
+      // 初期表示
+      showResetTab();
+    };
+
+    // ── 🛢️データ参照セクション ────────────────────────────────────
+    const showViewContent = (): void => {
+      contentArea.innerHTML = "";
+
+      const tabBar = document.createElement("div");
+      tabBar.className = "admin-tabs";
+      tabBar.setAttribute("role", "tablist");
+      contentArea.appendChild(tabBar);
+
+      const tabContentArea = document.createElement("div");
+      tabContentArea.className = "admin-tab-content";
+      tabContentArea.setAttribute("role", "tabpanel");
+      tabContentArea.setAttribute("id", "admin-tabpanel");
+      contentArea.appendChild(tabContentArea);
+
+      let activeTabIndex = 0;
+
+      /** セクションの完全な JSON テキストを返す（fullContent があればそちらを使う） */
+      const getFullJson = (index: number): string => {
+        const sec = sections[index]!;
+        return JSON.stringify(sec.fullContent ?? sec.content, null, 2);
+      };
+
+      const showTab = (index: number): void => {
+        activeTabIndex = index;
+        tabBar.querySelectorAll(".admin-tab-btn").forEach((btn, i) => {
+          btn.classList.toggle("active", i === index);
+          btn.setAttribute("aria-selected", String(i === index));
+        });
+        tabContentArea.setAttribute("aria-labelledby", `admin-tab-${index}`);
+        tabContentArea.innerHTML = "";
+
+        const { content } = sections[index]!;
+        const jsonText = JSON.stringify(content, null, 2);
+        const fullJsonText = getFullJson(index);
+
+        // ボタンバー（右上）
+        const btnBar = document.createElement("div");
+        btnBar.className = "admin-data-btn-bar";
+
+        const copyBtn = document.createElement("button");
+        copyBtn.className = "admin-data-action-btn";
+        copyBtn.type = "button";
+        copyBtn.textContent = "📋 コピー";
+        copyBtn.title = "クリップボードにコピー";
+        copyBtn.addEventListener("click", () => {
+          void navigator.clipboard.writeText(fullJsonText).then(() => {
+            copyBtn.textContent = "✓ コピー済";
+            setTimeout(() => { copyBtn.textContent = "📋 コピー"; }, 1500);
+          });
+        });
+        btnBar.appendChild(copyBtn);
+
+        const dlBtn = document.createElement("button");
+        dlBtn.className = "admin-data-action-btn";
+        dlBtn.type = "button";
+        dlBtn.textContent = "⬇️ ダウンロード";
+        dlBtn.title = "JSONファイルとしてダウンロード";
+        dlBtn.addEventListener("click", () => {
+          const blob = new Blob([fullJsonText], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          const dateStr = new Date().toISOString().slice(0, 10);
+          const fileKey = sections[index]!.fileKey;
+          a.download = `study-${fileKey}-${dateStr}.json`;
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
+        });
+        btnBar.appendChild(dlBtn);
+
+        tabContentArea.appendChild(btnBar);
+
+        const dataEl = document.createElement("pre");
+        dataEl.className = "admin-data";
+        dataEl.textContent = jsonText;
+        tabContentArea.appendChild(dataEl);
+      };
+
+      sections.forEach(({ title }, index) => {
+        const btn = document.createElement("button");
+        btn.className = "admin-tab-btn";
+        btn.type = "button";
+        btn.textContent = title;
+        btn.setAttribute("id", `admin-tab-${index}`);
+        btn.setAttribute("role", "tab");
+        btn.setAttribute("aria-selected", "false");
+        btn.setAttribute("aria-controls", "admin-tabpanel");
+        btn.addEventListener("click", () => showTab(index));
+        tabBar.appendChild(btn);
+      });
+
+      // 初期表示
+      showTab(activeTabIndex);
+    };
+
+    // メニューボタン
+    const manageBtn = document.createElement("button");
+    manageBtn.className = "admin-menu-btn";
+    manageBtn.type = "button";
+    manageBtn.textContent = "🛢️ データ管理";
+    manageBtn.addEventListener("click", () => {
+      if (activeMenu === "manage") return;
+      activeMenu = "manage";
+      manageBtn.classList.add("active");
+      viewBtn.classList.remove("active");
+      showManageContent();
+    });
+    menuBar.appendChild(manageBtn);
+
+    const viewBtn = document.createElement("button");
+    viewBtn.className = "admin-menu-btn";
+    viewBtn.type = "button";
+    viewBtn.textContent = "🛢️ データ参照";
+    viewBtn.addEventListener("click", () => {
+      if (activeMenu === "view") return;
+      activeMenu = "view";
+      viewBtn.classList.add("active");
+      manageBtn.classList.remove("active");
+      showViewContent();
+    });
+    menuBar.appendChild(viewBtn);
+
+    container.appendChild(menuBar);
     container.appendChild(contentArea);
 
-    let activeTabIndex = 0;
-
-    /** セクションの完全な JSON テキストを返す（fullContent があればそちらを使う） */
-    const getFullJson = (index: number): string => {
-      const sec = sections[index]!;
-      return JSON.stringify(sec.fullContent ?? sec.content, null, 2);
-    };
-
-    const showTab = (index: number): void => {
-      activeTabIndex = index;
-      tabBar.querySelectorAll(".admin-tab-btn").forEach((btn, i) => {
-        btn.classList.toggle("active", i === index);
-        btn.setAttribute("aria-selected", String(i === index));
-      });
-      contentArea.setAttribute("aria-labelledby", `admin-tab-${index}`);
-      contentArea.innerHTML = "";
-
-      const { content } = sections[index]!;
-      const jsonText = JSON.stringify(content, null, 2);
-      const fullJsonText = getFullJson(index);
-
-      // ボタンバー（右上）
-      const btnBar = document.createElement("div");
-      btnBar.className = "admin-data-btn-bar";
-
-      const copyBtn = document.createElement("button");
-      copyBtn.className = "admin-data-action-btn";
-      copyBtn.type = "button";
-      copyBtn.textContent = "📋 コピー";
-      copyBtn.title = "クリップボードにコピー";
-      copyBtn.addEventListener("click", () => {
-        void navigator.clipboard.writeText(fullJsonText).then(() => {
-          copyBtn.textContent = "✓ コピー済";
-          setTimeout(() => { copyBtn.textContent = "📋 コピー"; }, 1500);
-        });
-      });
-      btnBar.appendChild(copyBtn);
-
-      const dlBtn = document.createElement("button");
-      dlBtn.className = "admin-data-action-btn";
-      dlBtn.type = "button";
-      dlBtn.textContent = "⬇️ ダウンロード";
-      dlBtn.title = "JSONファイルとしてダウンロード";
-      dlBtn.addEventListener("click", () => {
-        const blob = new Blob([fullJsonText], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        const dateStr = new Date().toISOString().slice(0, 10);
-        const fileKey = sections[index]!.fileKey;
-        a.download = `study-${fileKey}-${dateStr}.json`;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 0);
-      });
-      btnBar.appendChild(dlBtn);
-
-      contentArea.appendChild(btnBar);
-
-      const dataEl = document.createElement("pre");
-      dataEl.className = "admin-data";
-      dataEl.textContent = jsonText;
-      contentArea.appendChild(dataEl);
-    };
-
-    sections.forEach(({ title }, index) => {
-      const btn = document.createElement("button");
-      btn.className = "admin-tab-btn";
-      btn.type = "button";
-      btn.textContent = title;
-      btn.setAttribute("id", `admin-tab-${index}`);
-      btn.setAttribute("role", "tab");
-      btn.setAttribute("aria-selected", "false");
-      btn.setAttribute("aria-controls", "admin-tabpanel");
-      btn.addEventListener("click", () => showTab(index));
-      tabBar.appendChild(btn);
-    });
-
-    // 初期化タブ
-    const resetTabBtn = document.createElement("button");
-    resetTabBtn.className = "admin-tab-btn";
-    resetTabBtn.type = "button";
-    resetTabBtn.textContent = "🗑️ 初期化";
-    resetTabBtn.setAttribute("id", "admin-tab-reset");
-    resetTabBtn.setAttribute("role", "tab");
-    resetTabBtn.setAttribute("aria-selected", "false");
-    resetTabBtn.setAttribute("aria-controls", "admin-tabpanel");
-    resetTabBtn.addEventListener("click", () => {
-      // データタブのアクティブを解除
-      tabBar.querySelectorAll(".admin-tab-btn").forEach(btn => {
-        btn.classList.remove("active");
-        btn.setAttribute("aria-selected", "false");
-      });
-      resetTabBtn.classList.add("active");
-      resetTabBtn.setAttribute("aria-selected", "true");
-      contentArea.setAttribute("aria-labelledby", "admin-tab-reset");
-      contentArea.innerHTML = "";
-      // 初期化ボタンを表示
-      const resetSection = document.createElement("div");
-      resetSection.className = "admin-reset-section";
-      const resetDesc = document.createElement("p");
-      resetDesc.className = "admin-reset-desc";
-      resetDesc.textContent = "すべての学習データ（履歴・学習済み・進捗）を削除します。";
-      const resetBtn = document.createElement("button");
-      resetBtn.className = "admin-reset-btn";
-      resetBtn.type = "button";
-      resetBtn.textContent = "🗑️ 全データを初期化する";
-      resetBtn.addEventListener("click", () => {
-        void this.showConfirmDialog(
-          "すべての学習データを削除します。この操作は元に戻せません。続けますか？"
-        ).then((confirmed) => {
-          if (confirmed) {
-            void this.useCase.clearAllData()
-              .then(() => {
-                window.location.reload();
-              })
-              .catch((err: unknown) => {
-                console.error("データ初期化に失敗しました", err);
-                alert("データの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
-              });
-          }
-        }).catch((err: unknown) => {
-          console.error("確認ダイアログでエラーが発生しました", err);
-        });
-      });
-      resetSection.appendChild(resetDesc);
-      resetSection.appendChild(resetBtn);
-      contentArea.appendChild(resetSection);
-    });
-    tabBar.appendChild(resetTabBtn);
-
-    // 初期表示
-    showTab(activeTabIndex);
+    // 初期表示: データ管理
+    activeMenu = "manage";
+    manageBtn.classList.add("active");
+    showManageContent();
 
     categoryList.appendChild(container);
   }
@@ -1305,12 +1526,11 @@ export class QuizApp {
           statusSpan.setAttribute("aria-hidden", "true");
 
           const { mastered, total } = this.useCase.getMasteredCountForCategory(subject.id, recommended.id);
-          const wrongCount = this.useCase.getWrongCount({ subject: subject.id, category: recommended.id });
+          const inProgressCount = this.useCase.getInProgressCount({ subject: subject.id, category: recommended.id });
           const catKey = `${subject.id}::${recommended.id}`;
           const isAllMastered = total > 0 && mastered === total;
-          const isLearned = (studiedKeys.has(catKey) && wrongCount === 0) || isAllMastered;
-          const isStudying = studiedKeys.has(catKey) && wrongCount > 0;
-          if (isLearned || isAllMastered) {
+          const isStudying = !isAllMastered && (inProgressCount > 0 || studiedKeys.has(catKey));
+          if (isAllMastered) {
             statusSpan.textContent = "✅";
           } else if (isStudying) {
             statusSpan.textContent = "🔄";
@@ -1348,7 +1568,7 @@ export class QuizApp {
           progressBar.className = "subject-overview-progress-bar";
           const progressFill = document.createElement("div");
           progressFill.className = "subject-overview-progress-fill";
-          const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
+          const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCount, total);
           progressFill.style.width = `${masteredPct}%`;
           progressBar.appendChild(progressFill);
           const progressFillInProgress = document.createElement("div");
@@ -1357,10 +1577,10 @@ export class QuizApp {
           progressBar.appendChild(progressFillInProgress);
           progressRow.appendChild(progressBar);
 
-          if (total > 0 && (mastered > 0 || wrongCount > 0 || studiedKeys.has(catKey))) {
+          if (total > 0) {
             const pctSpan = document.createElement("span");
             pctSpan.className = "subject-overview-pct";
-            pctSpan.textContent = wrongCount > 0 ? `${mastered}(${wrongCount})/${total}` : `${mastered}/${total}`;
+            pctSpan.textContent = inProgressCount > 0 ? `${mastered}(${inProgressCount})/${total}` : `${mastered}/${total}`;
             progressRow.appendChild(pctSpan);
           }
           nameArea.appendChild(progressRow);
@@ -2077,8 +2297,8 @@ export class QuizApp {
 
       // 行3: ステータスバー（全幅）
       const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, categoryId);
-      const wrongCount = this.useCase.getWrongCount({ subject, category: categoryId });
-      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
+      const inProgressCount = this.useCase.getInProgressCount({ subject, category: categoryId });
+      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCount, total);
       const progressRow = document.createElement("div");
       progressRow.className = "selected-unit-progress-row";
       const progressBar = document.createElement("div");
@@ -2093,7 +2313,7 @@ export class QuizApp {
       progressBar.appendChild(progressFillInProgress);
       const progressLabel = document.createElement("span");
       progressLabel.className = "selected-unit-progress-label";
-      progressLabel.textContent = wrongCount > 0 ? `${mastered}(${wrongCount})/${total}` : `${mastered}/${total}`;
+      progressLabel.textContent = inProgressCount > 0 ? `${mastered}(${inProgressCount})/${total}` : `${mastered}/${total}`;
       progressRow.appendChild(progressBar);
       progressRow.appendChild(progressLabel);
       body.appendChild(progressRow);
@@ -2205,8 +2425,8 @@ export class QuizApp {
 
       // 行3: ステータスバー（全幅）
       const { mastered, total } = this.useCase.getMasteredCountForCategory(this.filter.subject, this.filter.category);
-      const wrongCount = this.useCase.getWrongCount({ subject: this.filter.subject, category: this.filter.category });
-      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, wrongCount, total);
+      const inProgressCountSidebar = this.useCase.getInProgressCount({ subject: this.filter.subject, category: this.filter.category });
+      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCountSidebar, total);
       const progressRow = document.createElement("div");
       progressRow.className = "selected-unit-progress-row";
       const progressBar = document.createElement("div");
@@ -2221,7 +2441,7 @@ export class QuizApp {
       progressBar.appendChild(progressFillInProgress);
       const progressLabel = document.createElement("span");
       progressLabel.className = "selected-unit-progress-label";
-      progressLabel.textContent = wrongCount > 0 ? `${mastered}(${wrongCount})/${total}` : `${mastered}/${total}`;
+      progressLabel.textContent = inProgressCountSidebar > 0 ? `${mastered}(${inProgressCountSidebar})/${total}` : `${mastered}/${total}`;
       progressRow.appendChild(progressBar);
       progressRow.appendChild(progressLabel);
       body.appendChild(progressRow);
@@ -2951,35 +3171,37 @@ export class QuizApp {
   private updateSubjectStats(): void {
     // 全問題を1回だけ走査して subject/category/parentCategory ごとの統計を集計する
     const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
-    const wrongSet = new Set(this.useCase.wrongQuestionIds);
     const masteredSet = new Set(this.useCase.getMasteredIds());
+    // questionStats をキャッシュして各問題のループ内で再利用する
+    const allQuestionStats = this.useCase.getAllQuestionStats();
 
-    const statsMap = new Map<string, { total: number; wrong: number; mastered: number }>();
-    const addStat = (key: string, isWrong: boolean, isMastered: boolean): void => {
-      const s = statsMap.get(key) ?? { total: 0, wrong: 0, mastered: 0 };
+    const statsMap = new Map<string, { total: number; inProgress: number; mastered: number }>();
+    const addStat = (key: string, isInProgress: boolean, isMastered: boolean): void => {
+      const s = statsMap.get(key) ?? { total: 0, inProgress: 0, mastered: 0 };
       s.total++;
-      if (isWrong) s.wrong++;
+      if (isInProgress) s.inProgress++;
       if (isMastered) s.mastered++;
       statsMap.set(key, s);
     };
 
     for (const q of allQuestions) {
-      const isWrong = wrongSet.has(q.id);
+      const qStat = allQuestionStats[q.id];
       const isMastered = masteredSet.has(q.id);
-      addStat("all::all", isWrong, isMastered);
-      addStat(`${q.subject}::all`, isWrong, isMastered);
-      addStat(`${q.subject}::${q.category}`, isWrong, isMastered);
+      // 1回以上回答済みで未習得の問題を「学習中」とカウント
+      const isInProgress = (qStat?.total ?? 0) > 0 && !isMastered;
+      addStat("all::all", isInProgress, isMastered);
+      addStat(`${q.subject}::all`, isInProgress, isMastered);
+      addStat(`${q.subject}::${q.category}`, isInProgress, isMastered);
       if (q.parentCategory) {
-        addStat(`${q.subject}::parent::${q.parentCategory}`, isWrong, isMastered);
+        addStat(`${q.subject}::parent::${q.parentCategory}`, isInProgress, isMastered);
       }
     }
 
-    const formatCategoryStats = (stat: { total: number; wrong: number; mastered: number }): string => {
+    const formatCategoryStats = (stat: { total: number; inProgress: number; mastered: number }): string => {
       if (stat.total === 0) return "";
-      // 未学習（mastered=0 かつ wrong=0）の場合は表示しない
-      if (stat.mastered === 0 && stat.wrong === 0) return "";
-      if (stat.wrong > 0) {
-        return `${stat.mastered}(${stat.wrong})/${stat.total}`;
+      // 常に進捗数値を表示する
+      if (stat.inProgress > 0) {
+        return `${stat.mastered}(${stat.inProgress})/${stat.total}`;
       }
       return `${stat.mastered}/${stat.total}`;
     };
@@ -2998,20 +3220,18 @@ export class QuizApp {
         key = `${subject}::all`;
       }
 
-      const stat = statsMap.get(key) ?? { total: 0, wrong: 0, mastered: 0 };
+      const stat = statsMap.get(key) ?? { total: 0, inProgress: 0, mastered: 0 };
       const statsEl = el.querySelector(".category-stats");
       if (statsEl) {
         statsEl.textContent = formatCategoryStats(stat);
       }
 
-      // 進捗バーと進捗数値を更新（学習履歴がある場合、または教科全体の学習履歴がある場合）
+      // 進捗バーと進捗数値を更新
       const progressFill = el.querySelector(".category-progress-fill") as HTMLElement | null;
       const progressFillInProgress = el.querySelector(".category-progress-fill-inprogress") as HTMLElement | null;
       if (progressFill) {
-        const isStudied = studiedKeys.has(key);
-        const isSubjectStudied = category !== "all" && studiedKeys.has(`${subject}::all`);
-        if (isStudied || isSubjectStudied || stat.mastered > 0 || stat.wrong > 0) {
-          const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.wrong, stat.total);
+        if (stat.mastered > 0 || stat.inProgress > 0) {
+          const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.inProgress, stat.total);
           progressFill.style.width = `${masteredPct}%`;
           progressFill.classList.toggle("progress-fill-done", masteredPct === 100);
           if (progressFillInProgress) {
@@ -3027,21 +3247,21 @@ export class QuizApp {
       }
 
       // 学習状態の絵文字を更新（⬜未学習 / 🔄学習中 / ✅学習済）
-      // isAllMastered: クイズ履歴がなくても全問題を手動で学習済みにした場合（masteredSet 経由）
-      // isLearned: クイズ履歴があって不正解なし、または全問題が学習済みのいずれか
+      // ✅: 全問題が masteredIds にある（明示的に学習済みにした、またはクイズで習得）
+      // 🔄: 1回以上回答済みで未習得の問題あり、またはクイズ履歴あり
+      // ⬜: 未学習（一度も回答していない）
       const isAllMastered = stat.total > 0 && stat.mastered === stat.total;
-      const isLearned = (studiedKeys.has(key) && stat.wrong === 0) || isAllMastered;
-      const isStudying = studiedKeys.has(key) && stat.wrong > 0;
-      el.classList.toggle("learned", isLearned);
+      const isStudying = !isAllMastered && (stat.inProgress > 0 || studiedKeys.has(key));
+      el.classList.toggle("learned", isAllMastered);
       el.classList.toggle("studying", isStudying);
       const statusEl = el.querySelector(".category-status");
       if (statusEl) {
-        if (!studiedKeys.has(key) && !isAllMastered) {
-          statusEl.textContent = "⬜";
-        } else if (stat.wrong > 0) {
+        if (isAllMastered) {
+          statusEl.textContent = "✅";
+        } else if (isStudying) {
           statusEl.textContent = "🔄";
         } else {
-          statusEl.textContent = "✅";
+          statusEl.textContent = "⬜";
         }
       }
     });
@@ -3164,12 +3384,8 @@ export class QuizApp {
   private isCurrentCategoryLearned(): boolean {
     const effectiveFilter = this.getEffectiveFilter();
     if (effectiveFilter.category === "all") return false;
-    const studiedKeys = this.useCase.getStudiedCategoryKeys();
-    const wrongCount = this.useCase.getWrongCount(effectiveFilter);
-    // studiedKeys 経由（クイズ実施後に不正解なし）、または全問題が masteredIds にある場合
-    const key = `${effectiveFilter.subject}::${effectiveFilter.category}`;
-    if (studiedKeys.has(key) && wrongCount === 0) return true;
     const { mastered, total } = this.useCase.getMasteredCountForCategory(effectiveFilter.subject, effectiveFilter.category);
+    // 全問題が masteredIds にある場合のみ「学習済み」とみなす（updateSubjectStats と統一）
     return total > 0 && mastered === total;
   }
 
@@ -3573,10 +3789,18 @@ export class QuizApp {
       return;
     }
     if (this.kanjiCanvasInitialized) return;
+    // CSS zoom によるキャンバス座標ズレを防ぐため、canvasの属性サイズを表示サイズに合わせる
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement | null;
+    if (canvas) {
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        canvas.width = Math.round(rect.width);
+        canvas.height = Math.round(rect.height);
+      }
+    }
     KanjiCanvas.init("kanjiCanvas");
     // 書き順番号と線の色変化を無効化する（全ストロークをデフォルト色 #333 で統一）
     KanjiCanvas.strokeColors = [];
-    const canvas = document.getElementById("kanjiCanvas");
     if (canvas) {
       canvas.addEventListener("mouseup", () => this.updateKanjiCandidates());
       canvas.addEventListener("touchend", () => this.updateKanjiCandidates());

@@ -1524,3 +1524,64 @@ describe("QuizUseCase — clearAllData 仕様", () => {
     expect(() => useCase.startSession("random", { subject: "all", category: "all" })).not.toThrow();
   });
 });
+
+// ─── getInProgressCount / getAllQuestionStats 仕様テスト ────────────────────
+
+describe("QuizUseCase — getInProgressCount / getAllQuestionStats 仕様", () => {
+  it("1回以上回答済みで未習得の問題をカウントする", async () => {
+    const q1 = makeQuestion("q1");
+    const q2 = makeQuestion("q2");
+    const q3 = makeQuestion("q3");
+    // q1: 回答済み・未習得（学習中）
+    // q2: 回答済み・習得済み（masteredIds に含まれる）
+    // q3: 未回答・未習得
+    const stats = { q1: { total: 1, correct: 0 }, q2: { total: 2, correct: 2 } };
+    const progressRepo = new StubProgressRepository([], [], {}, stats, ["q2"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository([q1, q2, q3]), progressRepo);
+    await useCase.initialize();
+
+    const count = useCase.getInProgressCount({ subject: "english", category: "phonics" });
+
+    // q1 のみが学習中（1回以上回答済み・未習得）
+    expect(count).toBe(1);
+  });
+
+  it("masteredIds に含まれる問題はカウントされない", async () => {
+    const q1 = makeQuestion("q1");
+    // q1: 回答済みだが既に習得済み
+    const stats = { q1: { total: 3, correct: 3 } };
+    const progressRepo = new StubProgressRepository([], [], {}, stats, ["q1"]);
+    const useCase = new QuizUseCase(new StubQuestionRepository([q1]), progressRepo);
+    await useCase.initialize();
+
+    const count = useCase.getInProgressCount({ subject: "english", category: "phonics" });
+
+    expect(count).toBe(0);
+  });
+
+  it("未回答の問題はカウントされない", async () => {
+    const q1 = makeQuestion("q1");
+    const progressRepo = new StubProgressRepository([], [], {}, {}, []);
+    const useCase = new QuizUseCase(new StubQuestionRepository([q1]), progressRepo);
+    await useCase.initialize();
+
+    const count = useCase.getInProgressCount({ subject: "english", category: "phonics" });
+
+    expect(count).toBe(0);
+  });
+
+  it("getAllQuestionStats() は questionStats の浅いコピーを返す", async () => {
+    const q1 = makeQuestion("q1");
+    const stats = { q1: { total: 2, correct: 1 } };
+    const progressRepo = new StubProgressRepository([], [], {}, stats, []);
+    const useCase = new QuizUseCase(new StubQuestionRepository([q1]), progressRepo);
+    await useCase.initialize();
+
+    const result = useCase.getAllQuestionStats();
+
+    expect(result["q1"]).toEqual({ total: 2, correct: 1 });
+    // 呼び出し側がミューテートしてもユースケース内部に影響しない
+    (result as Record<string, { total: number; correct: number }>)["q1"] = { total: 99, correct: 99 };
+    expect(useCase.getQuestionStat("q1")).toEqual({ total: 2, correct: 1 });
+  });
+});
