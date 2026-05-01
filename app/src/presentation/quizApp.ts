@@ -2300,10 +2300,12 @@ export class QuizApp {
       bodyClone.querySelectorAll(".edit-link, .gh-edit-link, [class*='improve'], [class*='edit-page']").forEach((el) => el.remove());
       // テキストに「This site is open source」または「Improve this page」を含む要素を除去する
       // ただし h1〜h6・table・ul・ol 等のコンテンツ構造を持つ要素は除去しない（親コンテナの誤削除を防ぐ）
+      /** コンテンツ構造要素のセレクタ（これを含む要素は edit リンク除去の対象外とする） */
+      const CONTENT_STRUCTURE_SELECTOR = "h1, h2, h3, h4, h5, h6, table, ul, ol";
       bodyClone.querySelectorAll("p, div, span, aside").forEach((el) => {
         const text = el.textContent ?? "";
         if ((text.includes("This site is open source") || text.includes("Improve this page")) &&
-            !el.querySelector("h1, h2, h3, h4, h5, h6, table, ul, ol")) {
+            !el.querySelector(CONTENT_STRUCTURE_SELECTOR)) {
           el.remove();
         }
       });
