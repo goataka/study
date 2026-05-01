@@ -2356,6 +2356,25 @@ button:disabled {
     outline-offset: 2px;
 }
 
+/* GitHubリンクボタン */
+.github-btn {
+    color: #586069;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.2s, background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.github-btn:hover,
+.github-btn:focus {
+    color: #0366d6;
+    background-color: #f0f0f0;
+    outline: none;
+}
+
 /* ユーザー情報表示 */
 .user-info {
     text-align: right;
@@ -4273,3 +4292,93 @@ body.font-size-large .admin-data {
     text-align: right;
 }
 
+
+/* 管理画面: 初期化セクション */
+.admin-reset-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+}
+
+.admin-reset-desc {
+    color: #586069;
+    font-size: 14px;
+}
+
+.admin-reset-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.admin-reset-btn:hover {
+    background: #c82333;
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+    body {
+        width: 100%;
+        height: auto;
+        overflow: auto;
+        padding: 8px;
+    }
+    .container {
+        max-width: 100%;
+        height: auto;
+    }
+    header {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px;
+    }
+    header h1 {
+        font-size: 20px;
+    }
+    .header-center-area {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+    .header-right-area {
+        gap: 4px;
+    }
+    .header-today-date {
+        font-size: 14px;
+    }
+    .screen {
+        padding: 8px;
+        overflow-y: auto;
+    }
+    .start-content-layout {
+        flex-direction: column;
+    }
+    .category-panel {
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+    .quiz-panel {
+        min-height: 0;
+    }
+    .font-size-btns {
+        gap: 2px;
+    }
+    .font-size-btn {
+        padding: 2px 6px;
+        font-size: 12px;
+    }
+    .quiz-landscape-layout {
+        flex-direction: column;
+    }
+    .quiz-notes-col {
+        display: none;
+    }
+}

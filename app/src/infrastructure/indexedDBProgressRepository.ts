@@ -343,10 +343,39 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
       masteredIds: this.loadMasteredIds(),
-      questionStats: this.loadQuestionStats(),
       history: this.loadHistory(),
       categoryViewMode: this.loadCategoryViewMode(),
       fontSizeLevel: this.loadFontSizeLevel(),
     };
+  }
+
+  async clearAllData(): Promise<void> {
+    // キャッシュをリセット（DBが未初期化でもメモリ上のデータはクリアする）
+    this.cache = IndexedDBProgressRepository.defaultCache();
+    // IndexedDB のストアをクリア。DB が未初期化の場合は deleteDatabase で永続データも確実に削除する。
+    if (!this.db) {
+      await new Promise<void>((resolve, reject) => {
+        const req = indexedDB.deleteDatabase(DB_NAME);
+        req.onsuccess = () => resolve();
+        req.onerror = () => reject(req.error ?? new Error("IndexedDB 削除に失敗しました"));
+        req.onblocked = () => {
+          // blocked は完全な失敗ではないためログを残して resolve する
+          console.warn("IndexedDB deleteDatabase がブロックされました（他のタブが開いている可能性があります）");
+          resolve();
+        };
+      });
+      return;
+    }
+    await new Promise<void>((resolve, reject) => {
+      try {
+        const tx = (this.db as IDBDatabase).transaction(STORE_NAME, "readwrite");
+        const store = tx.objectStore(STORE_NAME);
+        store.clear();
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error ?? new Error("IndexedDB クリアに失敗しました"));
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 }

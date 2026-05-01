@@ -224,10 +224,31 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
       masteredIds: this.loadMasteredIds(),
-      questionStats: this.loadQuestionStats(),
       history: this.loadHistory(),
       categoryViewMode: this.loadCategoryViewMode(),
       fontSizeLevel: this.loadFontSizeLevel(),
     };
+  }
+
+  async clearAllData(): Promise<void> {
+    const keys = [
+      STORAGE_KEY,
+      CORRECT_STREAKS_KEY,
+      MASTERED_IDS_KEY,
+      QUESTION_STATS_KEY,
+      USER_NAME_KEY,
+      HISTORY_KEY,
+      CATEGORY_VIEW_MODE_KEY,
+      FONT_SIZE_KEY,
+      SHARE_URL_KEY,
+      QUIZ_SETTINGS_KEY,
+    ];
+    for (const key of keys) {
+      try {
+        localStorage.removeItem(key);
+      } catch {
+        // ignore
+      }
+    }
   }
 }

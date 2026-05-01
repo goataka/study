@@ -13,13 +13,8 @@ export interface IQuestionRepository {
 /** 1問分の回答記録 */
 export interface QuizRecordEntry {
   questionId: string;
-  questionText: string;
   isCorrect: boolean;
   userAnswerIndex: number;
-  correctAnswerIndex: number;
-  choices: string[];
-  explanation: string;
-  categoryName: string;
   /** text-input 問題でユーザーが実際に入力したテキスト */
   userAnswerText?: string;
 }
@@ -52,7 +47,6 @@ export interface UserDataExport {
   wrongIds: string[];
   correctStreaks: Record<string, number>;
   masteredIds: string[];
-  questionStats: Record<string, { total: number; correct: number }>;
   history: QuizRecord[];
   categoryViewMode: "category" | "grade";
   fontSizeLevel: "small" | "medium" | "large" | null;
@@ -81,4 +75,5 @@ export interface IProgressRepository {
   loadQuizSettings(): QuizSettings;
   saveQuizSettings(settings: QuizSettings): void;
   exportAllData(): UserDataExport;
+  clearAllData(): Promise<void>;
 }
