@@ -4805,7 +4805,8 @@ body.font-size-large .admin-import-apply-btn {
     body.font-size-large .header-today-date {
         font-size: 22px;
     }
-    /* 単元詳細をボトムシートとしてオーバーラップ表示（問題画面と同様のオーバーレイ） */
+    /* 単元詳細をボトムシートとしてオーバーラップ表示（問題画面と同様のオーバーレイ）
+       注: :has() は Chrome 105+, Safari 15.4+, Firefox 121+ で対応（2022〜2023年以降の主要ブラウザ）*/
     .quiz-panel:has(#selectedUnitInfo:not(.hidden)) {
         position: fixed;
         bottom: 0;
