@@ -3125,6 +3125,16 @@ export class QuizApp {
         this.closeShareUrlEdit();
       }
     });
+
+    // スマホ用：単元一覧に戻るボタン
+    document.getElementById("mobileBackBtn")?.addEventListener("click", () => {
+      this.navigateBackToList();
+    });
+
+    // ヘッダーのメニューボタン（管理パネルへのナビゲーション）
+    document.getElementById("adminMenuBtn")?.addEventListener("click", () => {
+      this.navigateToAdmin();
+    });
   }
 
   // ─── スタート画面 ──────────────────────────────────────────────────────────
@@ -3143,6 +3153,53 @@ export class QuizApp {
       };
     }
     return this.filter;
+  }
+
+  /**
+   * スマホ用：単元詳細パネルから単元一覧パネルに戻る。
+   * 単元・カテゴリ選択を解除して単元一覧を表示する。
+   */
+  private navigateBackToList(): void {
+    if (this.filter.subject === "all") {
+      // 総合タブの場合は単元選択を解除する
+      this.overallUnitSelected = null;
+    } else {
+      // 通常タブの場合は単元・カテゴリ選択を解除する
+      this.filter.category = "all";
+      this.filter.parentCategory = undefined;
+      this.selectedTopCategoryId = null;
+    }
+    this.isPanelTabUserSelected = false;
+    const records = this.useCase.getHistory();
+    this.updateStartScreen(records);
+  }
+
+  /**
+   * 管理パネルに移動する。モバイルのメニューボタンから呼び出される。
+   */
+  private navigateToAdmin(): void {
+    const tabsContainer = document.querySelector(".subject-tabs");
+    if (!tabsContainer) return;
+
+    this.filter.subject = "admin";
+    this.filter.category = "all";
+    this.filter.parentCategory = undefined;
+    this.selectedTopCategoryId = null;
+    this.overallUnitSelected = null;
+
+    tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
+      t.classList.remove("active");
+      (t as HTMLElement).setAttribute("aria-selected", "false");
+    });
+    // 管理タブを非表示にしている場合も含め、data-subject="admin" のタブをアクティブに
+    const adminTab = tabsContainer.querySelector('.subject-tab[data-subject="admin"]') as HTMLElement | null;
+    if (adminTab) {
+      adminTab.classList.add("active");
+      adminTab.setAttribute("aria-selected", "true");
+    }
+
+    this.renderCategoryList();
+    this.updateStartScreen();
   }
 
   private updateStartScreen(allRecords?: QuizRecord[]): void {
