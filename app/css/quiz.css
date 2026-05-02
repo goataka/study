@@ -2463,6 +2463,9 @@ button:disabled {
     text-decoration: none;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
     padding: 4px;
     border-radius: 6px;
     transition: color 0.2s, background-color 0.2s;
@@ -4274,6 +4277,20 @@ body.font-size-medium .support-btn {
     height: 32px;
 }
 
+body.font-size-medium .github-btn {
+    width: 32px;
+    height: 32px;
+}
+
+body.font-size-medium .github-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+body.font-size-medium .header-grade-label {
+    font-size: 15px;
+}
+
 body.font-size-medium .reload-btn {
     font-size: 17px;
     width: 32px;
@@ -4347,6 +4364,20 @@ body.font-size-large .support-btn {
     font-size: 20px;
     width: 36px;
     height: 36px;
+}
+
+body.font-size-large .github-btn {
+    width: 36px;
+    height: 36px;
+}
+
+body.font-size-large .github-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+body.font-size-large .header-grade-label {
+    font-size: 18px;
 }
 
 body.font-size-large .reload-btn {
@@ -4634,11 +4665,11 @@ body.font-size-large .admin-import-apply-btn {
     .header-grade-label {
         font-size: 11px;
     }
-    /* ユーザー名と日付は折り返し可能に */
+    /* ユーザー名と日付はセンタリング、フォントサイズボタンは下の行に */
     .header-center-area {
         order: 3;
         width: 100%;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 6px 12px;
         flex-wrap: wrap;
     }
@@ -4656,12 +4687,12 @@ body.font-size-large .admin-import-apply-btn {
     .header-right-area {
         gap: 4px;
     }
-    /* メニューボタンをモバイルで表示 */
-    .admin-menu-header-btn {
+    /* 管理タブをモバイルで表示（管理メニューはタブで操作する） */
+    .subject-tab[data-subject="admin"] {
         display: inline-flex;
     }
-    /* 管理タブをモバイルで非表示 */
-    .subject-tab[data-subject="admin"] {
+    /* 歯車メニューボタンはモバイルでは不要（タブで代替） */
+    .admin-menu-header-btn {
         display: none;
     }
     .screen {
@@ -4680,36 +4711,24 @@ body.font-size-large .admin-import-apply-btn {
         max-height: 30vh;
         overflow-y: auto;
     }
-    /* カテゴリパネルの高さ制限を解除して画面下まで表示 */
+    /* カテゴリパネルと quiz-panel は常に両方表示（縦積み） */
     .category-panel {
         max-height: none;
         flex: 1;
         min-height: 0;
     }
-    /* 単元詳細パネルの切り替え表示：単元選択時はカテゴリパネルを非表示にして quiz-panel のみ表示 */
-    /* 適用シナリオ:
-       - 通常タブ（英語/数学/国語）で単元選択時: category-only クラスがなく all-subject-layout もない状態
-       - 総合タブ（.all-subject-layout）で単元選択時: .all-subject-unit-selected クラスが付与される
-       （総合タブで単元未選択の場合は .all-subject-layout のみで .all-subject-unit-selected はなく、
-         このルールは適用されず両パネルが表示される） */
-    .start-content-layout:not(.category-only):not(.all-subject-layout) .category-panel,
-    .start-content-layout.all-subject-unit-selected .category-panel {
-        display: none;
-    }
-    /* 戻るボタンはモバイルではデフォルトで表示する */
+    /* 単元一覧への戻るボタンは不要（縦積みで常に両パネル表示） */
     .mobile-back-btn {
-        display: flex;
-    }
-    /* 単元未選択の状態（category-only: 通常タブ / all-subject-layoutのみ: 総合タブ）では非表示 */
-    .start-content-layout.category-only .mobile-back-btn,
-    .start-content-layout.all-subject-layout:not(.all-subject-unit-selected) .mobile-back-btn {
         display: none;
     }
     .quiz-panel {
         min-height: 0;
     }
+    /* フォントサイズボタンはユーザー名の下の行に（width: 100% で折り返し） */
     .font-size-btns {
         gap: 2px;
+        width: 100%;
+        justify-content: center;
     }
     .font-size-btn {
         padding: 2px 6px;
@@ -4718,7 +4737,48 @@ body.font-size-large .admin-import-apply-btn {
     .quiz-landscape-layout {
         flex-direction: column;
     }
+    /* 手書き入力パネルをモバイルでも表示 */
     .quiz-notes-col {
+        display: flex;
+    }
+    /* パネルタブは横スクロールで折り返さない */
+    .panel-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+    }
+    .panel-tabs::-webkit-scrollbar {
         display: none;
+    }
+    /* 単元詳細タイトルは折り返さない */
+    .selected-unit-info-name {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    /* 単元詳細: 説明はタイトルの下に（縦並び） */
+    .selected-unit-info-header-row {
+        flex-direction: column;
+    }
+    .selected-unit-info-header-right {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    /* 単元詳細の説明が枠からはみ出ない */
+    .selected-unit-info-desc {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+    .selected-unit-info-desc-right {
+        text-align: left;
+    }
+    /* 解説コンテンツのフォントサイズをモバイルで正しく拡大する
+       （デスクトップはemベース、モバイルは明示的pxで正しくスケーリング）
+       small（デフォルト）: .guide-content { font-size: 22px } はファイル上部で定義済み */
+    body.font-size-medium .guide-frame .guide-content {
+        font-size: 26px;
+    }
+    body.font-size-large .guide-frame .guide-content {
+        font-size: 33px;
     }
 }
