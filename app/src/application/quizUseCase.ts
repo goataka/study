@@ -524,7 +524,7 @@ export class QuizUseCase {
    * すべて学習済みの場合は先頭からカテゴリを返す。
    * カテゴリが存在しない場合は空配列を返す。
    */
-  getRecommendedCategoriesForSubject(subject: string, count: number): { id: string; name: string; referenceGrade?: string }[] {
+  getRecommendedCategoriesForSubject(subject: string, count: number): { id: string; name: string; referenceGrade?: string; isLearned: boolean }[] {
     const studiedKeys = this.getStudiedCategoryKeys();
     const categories = this.getCategoriesForSubject(subject);
     const entries = Object.entries(categories);
@@ -537,14 +537,14 @@ export class QuizUseCase {
       wrongCountsByCategory.set(question.category, (wrongCountsByCategory.get(question.category) ?? 0) + 1);
     }
 
-    const result: { id: string; name: string; referenceGrade?: string }[] = [];
+    const result: { id: string; name: string; referenceGrade?: string; isLearned: boolean }[] = [];
     for (const [catId, catName] of entries) {
       if (result.length >= count) break;
       const key = `${subject}::${catId}`;
       const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
       const isLearned = studiedKeys.has(key) && wrongCount === 0;
       if (!isLearned) {
-        result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key) });
+        result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key), isLearned: false });
       }
     }
 
@@ -557,7 +557,7 @@ export class QuizUseCase {
         const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
         const isLearned = studiedKeys.has(key) && wrongCount === 0;
         if (isLearned && !addedIds.has(catId)) {
-          result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key) });
+          result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key), isLearned: true });
         }
       }
     }
