@@ -1508,6 +1508,24 @@ export class QuizApp {
         groupMap.get(key)!.items.push(recommended);
       }
 
+      // 未学習単元を含むグループを先頭に（未学習を上から表示するため）
+      groupOrder.sort((a, b) => {
+        const aHasUnlearned = groupMap.get(a)!.items.some((i) => !i.isLearned);
+        const bHasUnlearned = groupMap.get(b)!.items.some((i) => !i.isLearned);
+        if (aHasUnlearned && !bHasUnlearned) return -1;
+        if (!aHasUnlearned && bHasUnlearned) return 1;
+        return 0;
+      });
+      // 各グループ内でも未学習単元を先頭に
+      for (const key of groupOrder) {
+        const group = groupMap.get(key)!;
+        group.items.sort((a, b) => {
+          if (!a.isLearned && b.isLearned) return -1;
+          if (a.isLearned && !b.isLearned) return 1;
+          return 0;
+        });
+      }
+
       // グループごとにヘッダーとカードを描画する
       const studiedKeys = this.useCase.getStudiedCategoryKeys();
       for (const key of groupOrder) {

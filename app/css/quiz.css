@@ -1424,6 +1424,7 @@ header h1 {
     cursor: pointer;
     border-bottom: 2px solid transparent;
     transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
 }
 
 .panel-tab:hover {
@@ -4261,6 +4262,11 @@ body.font-size-large .subject-overview-cat-header {
 }
 
 /* ─── フォントサイズ：中 追加ターゲット ─────────────────────────────────── */
+body.font-size-medium .header-logo {
+    width: 34px;
+    height: 34px;
+}
+
 body.font-size-medium .header-user-name {
     font-size: 34px;
 }
@@ -4350,6 +4356,11 @@ body.font-size-medium .admin-import-apply-btn {
 }
 
 /* ─── フォントサイズ：大 追加ターゲット ─────────────────────────────────── */
+body.font-size-large .header-logo {
+    width: 40px;
+    height: 40px;
+}
+
 body.font-size-large .header-user-name {
     font-size: 40px;
 }
@@ -4724,11 +4735,14 @@ body.font-size-large .admin-import-apply-btn {
     .quiz-panel {
         min-height: 0;
     }
-    /* フォントサイズボタンはユーザー名の下の行に（width: 100% で折り返し） */
-    .font-size-btns {
-        gap: 2px;
+    /* ユーザー名はフォントサイズボタン等と別行に（width: 100% で折り返し） */
+    .header-user-area {
         width: 100%;
         justify-content: center;
+    }
+    /* フォントサイズボタンはサポート・GitHubアイコンと同じ行に */
+    .font-size-btns {
+        gap: 2px;
     }
     .font-size-btn {
         padding: 2px 6px;
@@ -4772,13 +4786,47 @@ body.font-size-large .admin-import-apply-btn {
     .selected-unit-info-desc-right {
         text-align: left;
     }
-    /* 解説コンテンツのフォントサイズをモバイルで正しく拡大する
-       （デスクトップはemベース、モバイルは明示的pxで正しくスケーリング）
-       small（デフォルト）: .guide-content { font-size: 22px } はファイル上部で定義済み */
+    /* 解説コンテンツのフォントサイズをモバイルで縮小（デスクトップの 22px/26px/33px より小さく） */
+    .guide-frame .guide-content {
+        font-size: 16px;
+    }
     body.font-size-medium .guide-frame .guide-content {
-        font-size: 26px;
+        font-size: 20px;
     }
     body.font-size-large .guide-frame .guide-content {
-        font-size: 33px;
+        font-size: 26px;
+    }
+    /* ユーザ名と日付のフォントをモバイルでは教科タブと同じサイズに */
+    body.font-size-medium .header-user-name,
+    body.font-size-medium .header-today-date {
+        font-size: 18px;
+    }
+    body.font-size-large .header-user-name,
+    body.font-size-large .header-today-date {
+        font-size: 22px;
+    }
+    /* 単元詳細をボトムシートとしてオーバーラップ表示（問題画面と同様のオーバーレイ） */
+    .quiz-panel:has(#selectedUnitInfo:not(.hidden)) {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 65vh;
+        z-index: 99;
+        overflow-y: auto;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+    }
+    /* ボトムシート表示時はカテゴリパネルを暗くして操作不可に */
+    .start-content-layout:has(#selectedUnitInfo:not(.hidden)) .category-panel {
+        position: relative;
+        pointer-events: none;
+    }
+    .start-content-layout:has(#selectedUnitInfo:not(.hidden)) .category-panel::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
     }
 }
