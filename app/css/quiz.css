@@ -4687,16 +4687,20 @@ body.font-size-large .admin-import-apply-btn {
         min-height: 0;
     }
     /* 単元詳細パネルの切り替え表示：単元選択時はカテゴリパネルを非表示にして quiz-panel のみ表示 */
-    /* 総合タブで単元未選択時（all-subject-layout のみ）では両パネルを引き続き表示する */
+    /* 適用シナリオ:
+       - 通常タブ（英語/数学/国語）で単元選択時: category-only クラスがなく all-subject-layout もない状態
+       - 総合タブ（.all-subject-layout）で単元選択時: .all-subject-unit-selected クラスが付与される
+       （総合タブで単元未選択の場合は .all-subject-layout のみで .all-subject-unit-selected はなく、
+         このルールは適用されず両パネルが表示される） */
     .start-content-layout:not(.category-only):not(.all-subject-layout) .category-panel,
     .start-content-layout.all-subject-unit-selected .category-panel {
         display: none;
     }
-    /* 戻るボタンをモバイルで表示（単元選択時のみ） */
-    /* 総合タブで単元未選択時（all-subject-layout）と通常タブで単元未選択時（category-only）は非表示 */
+    /* 戻るボタンはモバイルではデフォルトで表示する */
     .mobile-back-btn {
         display: flex;
     }
+    /* 単元未選択の状態（category-only: 通常タブ / all-subject-layoutのみ: 総合タブ）では非表示 */
     .start-content-layout.category-only .mobile-back-btn,
     .start-content-layout.all-subject-layout:not(.all-subject-unit-selected) .mobile-back-btn {
         display: none;
