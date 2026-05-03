@@ -794,6 +794,9 @@ export class QuizApp {
       submenu.className = "admin-view-submenu";
 
       const showDataContent = (index: number): void => {
+        const section = sections[index];
+        if (!section) return;
+
         contentArea.innerHTML = "";
         contentArea.classList.add("admin-data-open");
 
@@ -803,7 +806,7 @@ export class QuizApp {
 
         const titleLabel = document.createElement("span");
         titleLabel.className = "admin-data-header-title";
-        titleLabel.textContent = sections[index]!.title;
+        titleLabel.textContent = section.title;
         headerRow.appendChild(titleLabel);
 
         const closeBtn = document.createElement("button");
@@ -824,7 +827,7 @@ export class QuizApp {
         headerRow.appendChild(closeBtn);
         contentArea.appendChild(headerRow);
 
-        const { content } = sections[index]!;
+        const { content } = section;
         const jsonText = JSON.stringify(content, null, 2);
         const fullJsonText = getFullJson(index);
 
