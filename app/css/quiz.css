@@ -4937,9 +4937,8 @@ body.font-size-large .admin-import-apply-btn {
         z-index: 99;
         overflow-y: auto;
         border-radius: 0;
-        box-shadow: none;
     }
-    /* ボトムシート表示時はカテゴリパネルを操作不可に */
+    /* 単元詳細表示時はカテゴリパネルを操作不可に */
     .start-content-layout:has(#selectedUnitInfo:not(.hidden)) .category-panel {
         pointer-events: none;
     }
