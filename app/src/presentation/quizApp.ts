@@ -3152,7 +3152,7 @@ export class QuizApp {
       }
     });
 
-    // ブラウザの戻るボタンでスタート画面に戻る
+    // ブラウザの戻るボタンでスタート画面に戻る（setupEventListeners はコンストラクタから1度だけ呼ばれる）
     window.addEventListener("popstate", () => {
       const startScreen = document.getElementById("startScreen");
       if (!startScreen?.classList.contains("hidden")) return;
@@ -4322,7 +4322,7 @@ export class QuizApp {
   private showScreen(screenName: "start" | "quiz" | "result"): void {
     // ブラウザ履歴に状態を追加（クイズ・結果画面への遷移時）
     if (screenName === "quiz" || screenName === "result") {
-      window.history.pushState({ screen: screenName }, "");
+      window.history.pushState({ screen: screenName }, document.title);
     }
     document.querySelectorAll(".screen").forEach((s) => s.classList.add("hidden"));
     const idMap = { start: "startScreen", quiz: "quizScreen", result: "resultScreen" };
