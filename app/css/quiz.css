@@ -2565,6 +2565,7 @@ button:disabled {
 .guide-content h2 {
     border-bottom: 1px solid #eaecef;
     padding-bottom: 0.2em;
+    font-size: 16px; /* panel-tab と同じフォントサイズ */
 }
 
 /* すべての h1 を非表示 */
@@ -3666,7 +3667,7 @@ body.font-size-medium .guide-frame .guide-content {
 body.font-size-medium .guide-frame .guide-content h1,
 body.font-size-medium #startScreen .guide-content h1 { font-size: 2.16em; }
 body.font-size-medium .guide-frame .guide-content h2,
-body.font-size-medium #startScreen .guide-content h2 { font-size: 1.68em; }
+body.font-size-medium #startScreen .guide-content h2 { font-size: 18px; /* panel-tab と同じフォントサイズ */ }
 body.font-size-medium .guide-frame .guide-content h3,
 body.font-size-medium #startScreen .guide-content h3 { font-size: 1.44em; }
 
@@ -3989,7 +3990,7 @@ body.font-size-large .guide-frame .guide-content {
 body.font-size-large .guide-frame .guide-content h1,
 body.font-size-large #startScreen .guide-content h1 { font-size: 2.7em; }
 body.font-size-large .guide-frame .guide-content h2,
-body.font-size-large #startScreen .guide-content h2 { font-size: 2.1em; }
+body.font-size-large #startScreen .guide-content h2 { font-size: 22px; /* panel-tab と同じフォントサイズ */ }
 body.font-size-large .guide-frame .guide-content h3,
 body.font-size-large #startScreen .guide-content h3 { font-size: 1.8em; }
 
@@ -4745,28 +4746,94 @@ body.font-size-large .admin-import-apply-btn {
     background: #ddeeff;
 }
 
-/* スマホ用：管理コンテンツの戻るボタン行（デスクトップでは非表示） */
+/* スマホ用：管理コンテンツの閉じるボタン行（デスクトップでは非表示） */
 .admin-manage-close-row {
     display: none;
 }
 
-.admin-manage-close-btn {
+/* 管理画面: データ管理タブバー */
+.admin-manage-tabs {
     display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #0366d6;
-    background: #eef4ff;
-    border: 1px solid #c8d8f8;
-    border-radius: 6px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
+    border-bottom: 1px solid #e1e4e8;
+    background: #f6f8fa;
+    flex-shrink: 0;
+    overflow-x: auto;
 }
 
-.admin-manage-close-btn:hover {
-    background: #ddeeff;
+.admin-manage-tab {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #586069;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.admin-manage-tab:hover:not(.active) {
+    background: #e8f0fe;
+}
+
+.admin-manage-tab.active {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+    background: white;
+}
+
+/* 管理画面: データ管理タブパネル */
+.admin-manage-tab-panel {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 管理画面: データ参照タブバー */
+.admin-data-tabs {
+    display: flex;
+    border-bottom: 1px solid #e1e4e8;
+    background: #f6f8fa;
+    flex-shrink: 0;
+    overflow-x: auto;
+}
+
+.admin-data-tab {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #586069;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.admin-data-tab:hover:not(.active) {
+    background: #e8f0fe;
+}
+
+.admin-data-tab.active {
+    color: #0366d6;
+    border-bottom-color: #0366d6;
+    background: white;
+}
+
+/* 管理画面: データ参照タブコンテンツ */
+.admin-data-tab-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
 }
 
 .admin-import-apply-btn:hover {
@@ -5005,8 +5072,8 @@ body.font-size-large .admin-import-apply-btn {
     .admin-menu-content {
         display: none;
     }
-    /* 管理コンテンツ（インポート等のパネル）: フルスクリーンオーバーレイとして表示 */
-    .admin-menu-content:has(.admin-manage-panels) {
+    /* 管理コンテンツ（データ管理タブ）: フルスクリーンオーバーレイとして表示 */
+    .admin-menu-content.admin-manage-open {
         display: flex;
         position: fixed;
         inset: 0;
@@ -5016,7 +5083,7 @@ body.font-size-large .admin-import-apply-btn {
         border: none;
     }
     /* 管理コンテンツオーバーレイのバックドロップ */
-    #startScreen:has(.admin-menu-content:has(.admin-manage-panels))::before {
+    #startScreen:has(.admin-menu-content.admin-manage-open)::before {
         content: '';
         position: fixed;
         inset: 0;
@@ -5024,9 +5091,11 @@ body.font-size-large .admin-import-apply-btn {
         z-index: 98;
         pointer-events: none;
     }
-    /* 管理コンテンツの戻るボタン（デスクトップでは非表示） */
+    /* 管理コンテンツの閉じるボタン行（デスクトップでは非表示） */
     .admin-manage-close-row {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 8px 12px;
         background: #f6f8fa;
         border-bottom: 1px solid #e1e4e8;
