@@ -482,9 +482,9 @@ export class QuizApp {
       // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
       const controlsEl = document.getElementById("categoryControls");
       if (controlsEl) controlsEl.innerHTML = "";
-      // タイトルを「🛢️ IndexedDB」に変更
+      // タイトルを「⚙️ 管理」に変更
       const titleEl = document.getElementById("categoryListTitle");
-      if (titleEl) titleEl.textContent = "🛢️ IndexedDB";
+      if (titleEl) titleEl.textContent = "⚙️ 管理";
       this.renderAdminContent(categoryList);
       return;
     }
@@ -554,6 +554,9 @@ export class QuizApp {
     // ── 🛢️データ管理セクション ────────────────────────────────────
     const showManageContent = (): void => {
       contentArea.innerHTML = "";
+      contentArea.classList.remove("admin-data-open");
+      // データ参照サブメニューを削除
+      menuBar.querySelectorAll(".admin-view-submenu").forEach((el) => el.remove());
 
       // パネルコンテナ（縦積みパネル）
       const panelsContainer = document.createElement("div");
@@ -772,22 +775,13 @@ export class QuizApp {
       panelsContainer.appendChild(resetPanel);
     };
 
-    // ── 🛢️データ参照セクション ────────────────────────────────────
+    // ── 📊データ参照セクション ────────────────────────────────────
     const showViewContent = (): void => {
+      contentArea.classList.remove("admin-data-open");
       contentArea.innerHTML = "";
 
-      const tabBar = document.createElement("div");
-      tabBar.className = "admin-tabs";
-      tabBar.setAttribute("role", "tablist");
-      contentArea.appendChild(tabBar);
-
-      const tabContentArea = document.createElement("div");
-      tabContentArea.className = "admin-tab-content";
-      tabContentArea.setAttribute("role", "tabpanel");
-      tabContentArea.setAttribute("id", "admin-tabpanel");
-      contentArea.appendChild(tabContentArea);
-
-      let activeTabIndex = 0;
+      // 既存サブメニューを削除してから再構築
+      menuBar.querySelectorAll(".admin-view-submenu").forEach((el) => el.remove());
 
       /** セクションの完全な JSON テキストを返す（fullContent があればそちらを使う） */
       const getFullJson = (index: number): string => {
@@ -795,20 +789,49 @@ export class QuizApp {
         return JSON.stringify(sec.fullContent ?? sec.content, null, 2);
       };
 
-      const showTab = (index: number): void => {
-        activeTabIndex = index;
-        tabBar.querySelectorAll(".admin-tab-btn").forEach((btn, i) => {
-          btn.classList.toggle("active", i === index);
-          btn.setAttribute("aria-selected", String(i === index));
-        });
-        tabContentArea.setAttribute("aria-labelledby", `admin-tab-${index}`);
-        tabContentArea.innerHTML = "";
+      // サブメニューコンテナ（データ種別一覧）
+      const submenu = document.createElement("div");
+      submenu.className = "admin-view-submenu";
 
-        const { content } = sections[index]!;
+      const showDataContent = (index: number): void => {
+        const section = sections[index];
+        if (!section) return;
+
+        contentArea.innerHTML = "";
+        contentArea.classList.add("admin-data-open");
+
+        // ヘッダー行（タイトル＋閉じるボタン）
+        const headerRow = document.createElement("div");
+        headerRow.className = "admin-data-header-row";
+
+        const titleLabel = document.createElement("span");
+        titleLabel.className = "admin-data-header-title";
+        titleLabel.textContent = section.title;
+        headerRow.appendChild(titleLabel);
+
+        const closeBtn = document.createElement("button");
+        closeBtn.className = "admin-data-close-btn";
+        closeBtn.type = "button";
+        closeBtn.textContent = "✕";
+        closeBtn.setAttribute("aria-label", "閉じる");
+        closeBtn.addEventListener("click", () => {
+          contentArea.classList.remove("admin-data-open");
+          contentArea.innerHTML = "";
+          submenu.querySelectorAll(".admin-view-item-btn").forEach((b) => b.classList.remove("active"));
+          // プレースホルダーを再表示
+          const ph = document.createElement("div");
+          ph.className = "admin-data-placeholder";
+          ph.textContent = "← データの種類を選択してください";
+          contentArea.appendChild(ph);
+        });
+        headerRow.appendChild(closeBtn);
+        contentArea.appendChild(headerRow);
+
+        const { content } = section;
         const jsonText = JSON.stringify(content, null, 2);
         const fullJsonText = getFullJson(index);
 
-        // ボタンバー（右上）
+        // コピーボタンバー
         const btnBar = document.createElement("div");
         btnBar.className = "admin-data-btn-bar";
 
@@ -824,30 +847,34 @@ export class QuizApp {
           });
         });
         btnBar.appendChild(copyBtn);
-
-        tabContentArea.appendChild(btnBar);
+        contentArea.appendChild(btnBar);
 
         const dataEl = document.createElement("pre");
         dataEl.className = "admin-data";
         dataEl.textContent = jsonText;
-        tabContentArea.appendChild(dataEl);
+        contentArea.appendChild(dataEl);
       };
 
       sections.forEach(({ title }, index) => {
         const btn = document.createElement("button");
-        btn.className = "admin-tab-btn";
+        btn.className = "admin-menu-btn admin-view-item-btn";
         btn.type = "button";
         btn.textContent = title;
-        btn.setAttribute("id", `admin-tab-${index}`);
-        btn.setAttribute("role", "tab");
-        btn.setAttribute("aria-selected", "false");
-        btn.setAttribute("aria-controls", "admin-tabpanel");
-        btn.addEventListener("click", () => showTab(index));
-        tabBar.appendChild(btn);
+        btn.addEventListener("click", () => {
+          submenu.querySelectorAll(".admin-view-item-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          showDataContent(index);
+        });
+        submenu.appendChild(btn);
       });
 
-      // 初期表示
-      showTab(activeTabIndex);
+      menuBar.appendChild(submenu);
+
+      // プレースホルダー（データ未選択時）
+      const placeholder = document.createElement("div");
+      placeholder.className = "admin-data-placeholder";
+      placeholder.textContent = "← データの種類を選択してください";
+      contentArea.appendChild(placeholder);
     };
 
     // メニューボタン
@@ -867,7 +894,7 @@ export class QuizApp {
     const viewBtn = document.createElement("button");
     viewBtn.className = "admin-menu-btn";
     viewBtn.type = "button";
-    viewBtn.textContent = "🛢️ IndexedDB 参照";
+    viewBtn.textContent = "📊 データ参照";
     viewBtn.addEventListener("click", () => {
       if (activeMenu === "view") return;
       activeMenu = "view";
@@ -3476,7 +3503,7 @@ export class QuizApp {
       if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
       // 管理タブでは日付ナビを非表示にする
       document.getElementById("overallDateNav")?.classList.add("hidden");
-      // 管理タブでは「おすすめ単元」タイトルを非表示、「IndexedDB」タイトルを表示
+      // 管理タブでは「おすすめ単元」タイトルを非表示、「管理」タイトルを表示
       document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
       document.getElementById("categoryListTitle")?.classList.remove("hidden");
       return;

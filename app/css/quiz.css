@@ -4601,6 +4601,71 @@ body.font-size-large .admin-import-apply-btn {
     min-width: 0;
 }
 
+/* 管理画面: データ参照サブメニュー */
+.admin-view-submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 4px;
+    padding-top: 4px;
+    border-top: 1px solid #e1e4e8;
+}
+
+.admin-view-submenu .admin-view-item-btn {
+    padding-left: 24px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* 管理画面: データ参照コンテンツヘッダー */
+.admin-data-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+    flex-shrink: 0;
+}
+
+.admin-data-header-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0366d6;
+}
+
+.admin-data-close-btn {
+    flex-shrink: 0;
+    background: none;
+    border: 1px solid #c8d8f8;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    color: #586069;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.admin-data-close-btn:hover {
+    background: #0366d6;
+    border-color: #0366d6;
+    color: white;
+}
+
+/* 管理画面: データ参照プレースホルダー */
+.admin-data-placeholder {
+    padding: 24px 16px;
+    color: #8b949e;
+    font-size: 14px;
+    text-align: center;
+}
+
 /* 管理画面: インポートセクション */
 .admin-import-label {
     display: inline-block;
@@ -4828,11 +4893,33 @@ body.font-size-large .admin-import-apply-btn {
     .guide-frame .guide-content {
         font-size: 13px;
     }
+    /* 解説コンテンツの見出しもモバイルで縮小（デスクトップは 22px だが本文と同程度に抑える） */
+    .guide-frame .guide-content h2,
+    .guide-frame .guide-content h3,
+    .guide-frame .guide-content h4,
+    .guide-frame .guide-content h5,
+    .guide-frame .guide-content h6 {
+        font-size: 14px;
+    }
     body.font-size-medium .guide-frame .guide-content {
         font-size: 16px;
     }
+    body.font-size-medium .guide-frame .guide-content h2,
+    body.font-size-medium .guide-frame .guide-content h3,
+    body.font-size-medium .guide-frame .guide-content h4,
+    body.font-size-medium .guide-frame .guide-content h5,
+    body.font-size-medium .guide-frame .guide-content h6 {
+        font-size: 17px;
+    }
     body.font-size-large .guide-frame .guide-content {
         font-size: 20px;
+    }
+    body.font-size-large .guide-frame .guide-content h2,
+    body.font-size-large .guide-frame .guide-content h3,
+    body.font-size-large .guide-frame .guide-content h4,
+    body.font-size-large .guide-frame .guide-content h5,
+    body.font-size-large .guide-frame .guide-content h6 {
+        font-size: 21px;
     }
     /* ユーザ名と日付のフォントをモバイルでは教科タブと同じサイズに */
     body.font-size-medium .header-user-name,
@@ -4856,17 +4943,31 @@ body.font-size-large .admin-import-apply-btn {
         border-radius: 12px 12px 0 0;
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
     }
-    /* ボトムシート表示時はカテゴリパネルを暗くして操作不可に */
+    /* ボトムシート表示時はカテゴリパネルを操作不可に */
     .start-content-layout:has(#selectedUnitInfo:not(.hidden)) .category-panel {
-        position: relative;
         pointer-events: none;
     }
-    .start-content-layout:has(#selectedUnitInfo:not(.hidden)) .category-panel::after {
+    /* 全画面バックドロップ（単元詳細・管理データ参照の両方に適用） */
+    #startScreen:has(#selectedUnitInfo:not(.hidden))::before,
+    #startScreen:has(.admin-menu-content.admin-data-open)::before {
         content: '';
-        position: absolute;
+        position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.25);
-        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 98;
+        pointer-events: none;
+    }
+    /* 管理データ参照: コンテンツをボトムシートとしてオーバーラップ表示 */
+    .admin-menu-content.admin-data-open {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 65vh;
+        z-index: 99;
+        overflow-y: auto;
+        border-radius: 12px 12px 0 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
     }
     /* 問題画面・結果画面をモバイルでフルスクリーンオーバーレイとして表示 */
     #quizScreen:not(.hidden),
