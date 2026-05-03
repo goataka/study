@@ -555,17 +555,24 @@ export class QuizApp {
     const showManageContent = (): void => {
       contentArea.innerHTML = "";
       contentArea.classList.remove("admin-data-open");
+      contentArea.classList.add("admin-manage-open");
       // データ参照サブメニューを削除
       menuBar.querySelectorAll(".admin-view-submenu").forEach((el) => el.remove());
 
       // ── モバイル用：閉じるボタン行（デスクトップではCSSで非表示） ──────
       const closeRow = document.createElement("div");
       closeRow.className = "admin-manage-close-row";
+      const closeTitle = document.createElement("span");
+      closeTitle.className = "admin-data-header-title";
+      closeTitle.textContent = "🛢️ データ管理";
+      closeRow.appendChild(closeTitle);
       const closeBtn = document.createElement("button");
-      closeBtn.className = "admin-manage-close-btn";
+      closeBtn.className = "admin-data-close-btn";
       closeBtn.type = "button";
-      closeBtn.textContent = "← 戻る";
+      closeBtn.textContent = "✕";
+      closeBtn.setAttribute("aria-label", "閉じる");
       closeBtn.addEventListener("click", () => {
+        contentArea.classList.remove("admin-manage-open");
         contentArea.innerHTML = "";
         activeMenu = null;
         manageBtn.classList.remove("active");
@@ -574,229 +581,240 @@ export class QuizApp {
       closeRow.appendChild(closeBtn);
       contentArea.appendChild(closeRow);
 
-      // パネルコンテナ（縦積みパネル）
-      const panelsContainer = document.createElement("div");
-      panelsContainer.className = "admin-manage-panels";
-      contentArea.appendChild(panelsContainer);
+      // ── タブバー ─────────────────────────────────────────────
+      const tabBar = document.createElement("div");
+      tabBar.className = "admin-manage-tabs";
 
-      // ── インポートパネル ──────────────────────────────────────
-      const importPanel = document.createElement("div");
-      importPanel.className = "admin-manage-panel";
+      const tabPanelArea = document.createElement("div");
+      tabPanelArea.className = "admin-manage-tab-panel";
 
-      const importTitle = document.createElement("div");
-      importTitle.className = "admin-manage-panel-title";
-      importTitle.textContent = "📥 インポート";
-      importPanel.appendChild(importTitle);
+      type ManageTab = "import" | "export" | "reset";
+      const tabDefs: Array<{ id: ManageTab; label: string }> = [
+        { id: "import", label: "📥 インポート" },
+        { id: "export", label: "📤 エクスポート" },
+        { id: "reset", label: "🗑️ 初期化" },
+      ];
 
-      const importSection = document.createElement("div");
-      importSection.className = "admin-reset-section";
+      const showTabContent = (tabId: ManageTab): void => {
+        tabBar.querySelectorAll(".admin-manage-tab").forEach((t) => t.classList.remove("active"));
+        const activeTab = tabBar.querySelector<HTMLButtonElement>(`.admin-manage-tab[data-tab="${tabId}"]`);
+        if (activeTab) activeTab.classList.add("active");
 
-      const importDesc = document.createElement("p");
-      importDesc.className = "admin-reset-desc";
-      importDesc.textContent = "ダウンロードしたJSONファイルを選択して、学習データを更新します。";
-      importSection.appendChild(importDesc);
+        tabPanelArea.innerHTML = "";
 
-      const fileLabel = document.createElement("label");
-      fileLabel.className = "admin-import-label";
-      fileLabel.textContent = "📂 JSONファイルを選択";
+        if (tabId === "import") {
+          // ── インポートコンテンツ ────────────────────────────────
+          const section = document.createElement("div");
+          section.className = "admin-reset-section";
 
-      const fileInput = document.createElement("input");
-      fileInput.type = "file";
-      fileInput.accept = ".json,application/json";
-      fileInput.className = "admin-import-input";
-      fileInput.style.display = "none";
+          const importDesc = document.createElement("p");
+          importDesc.className = "admin-reset-desc";
+          importDesc.textContent = "ダウンロードしたJSONファイルを選択して、学習データを更新します。";
+          section.appendChild(importDesc);
 
-      const fileNameSpan = document.createElement("span");
-      fileNameSpan.className = "admin-import-filename";
-      fileNameSpan.textContent = "（未選択）";
+          const fileLabel = document.createElement("label");
+          fileLabel.className = "admin-import-label";
+          fileLabel.textContent = "📂 JSONファイルを選択";
 
-      const previewEl = document.createElement("pre");
-      previewEl.className = "admin-data";
-      previewEl.style.marginTop = "8px";
-      previewEl.style.display = "none";
+          const fileInput = document.createElement("input");
+          fileInput.type = "file";
+          fileInput.accept = ".json,application/json";
+          fileInput.className = "admin-import-input";
+          fileInput.style.display = "none";
 
-      const applyBtn = document.createElement("button");
-      applyBtn.className = "admin-import-apply-btn";
-      applyBtn.type = "button";
-      applyBtn.textContent = "✅ データを更新する";
-      applyBtn.style.display = "none";
+          const fileNameSpan = document.createElement("span");
+          fileNameSpan.className = "admin-import-filename";
+          fileNameSpan.textContent = "（未選択）";
 
-      let parsedData: unknown = null;
-      let detectedFileKey: SectionKey | null = null;
+          const previewEl = document.createElement("pre");
+          previewEl.className = "admin-data";
+          previewEl.style.marginTop = "8px";
+          previewEl.style.display = "none";
 
-      fileInput.addEventListener("change", () => {
-        const file = fileInput.files?.[0];
-        if (!file) return;
-        fileNameSpan.textContent = file.name;
-        const reader = new FileReader();
-        reader.onload = (): void => {
-          try {
-            parsedData = JSON.parse(reader.result as string);
-            // ファイル名からセクションを推定（例: study-history-2024-01-01.json）
-            // settings はインポート対象外
-            detectedFileKey = null;
-            const importableSections = sections.filter((sec) => sec.fileKey !== "settings");
-            for (const sec of importableSections) {
-              if (file.name.includes(sec.fileKey)) {
-                detectedFileKey = sec.fileKey;
-                break;
+          const applyBtn = document.createElement("button");
+          applyBtn.className = "admin-import-apply-btn";
+          applyBtn.type = "button";
+          applyBtn.textContent = "✅ データを更新する";
+          applyBtn.style.display = "none";
+
+          let parsedData: unknown = null;
+          let detectedFileKey: SectionKey | null = null;
+
+          fileInput.addEventListener("change", () => {
+            const file = fileInput.files?.[0];
+            if (!file) return;
+            fileNameSpan.textContent = file.name;
+            const reader = new FileReader();
+            reader.onload = (): void => {
+              try {
+                parsedData = JSON.parse(reader.result as string);
+                // ファイル名からセクションを推定（例: study-history-2024-01-01.json）
+                // settings はインポート対象外
+                detectedFileKey = null;
+                const importableSections = sections.filter((sec) => sec.fileKey !== "settings");
+                for (const sec of importableSections) {
+                  if (file.name.includes(sec.fileKey)) {
+                    detectedFileKey = sec.fileKey;
+                    break;
+                  }
+                }
+                const preview = JSON.stringify(parsedData, null, 2);
+                previewEl.textContent = preview.length > 2000
+                  ? preview.slice(0, 2000) + "\n...(省略)"
+                  : preview;
+                previewEl.style.display = "block";
+                if (detectedFileKey) {
+                  applyBtn.textContent = `✅ ${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey} を更新する`;
+                  applyBtn.style.display = "block";
+                } else if (file.name.includes("settings")) {
+                  previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
+                  applyBtn.style.display = "none";
+                } else {
+                  applyBtn.textContent = "✅ データを更新する（種類不明）";
+                  applyBtn.style.display = "block";
+                }
+              } catch {
+                previewEl.textContent = "JSONの解析に失敗しました。ファイルを確認してください。";
+                previewEl.style.display = "block";
+                applyBtn.style.display = "none";
+                parsedData = null;
               }
+            };
+            reader.readAsText(file);
+          });
+
+          applyBtn.addEventListener("click", () => {
+            if (!parsedData || !detectedFileKey) {
+              alert("対応するデータ種類が判定できませんでした。ファイル名に history / mastered / streaks を含めてください。");
+              return;
             }
-            const preview = JSON.stringify(parsedData, null, 2);
-            previewEl.textContent = preview.length > 2000
-              ? preview.slice(0, 2000) + "\n...(省略)"
-              : preview;
-            previewEl.style.display = "block";
-            if (detectedFileKey) {
-              applyBtn.textContent = `✅ ${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey} を更新する`;
-              applyBtn.style.display = "block";
-            } else if (file.name.includes("settings")) {
-              previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
-              applyBtn.style.display = "none";
-            } else {
-              applyBtn.textContent = "✅ データを更新する（種類不明）";
-              applyBtn.style.display = "block";
+            // 基本バリデーション
+            if ((detectedFileKey === "history" || detectedFileKey === "mastered") && !Array.isArray(parsedData)) {
+              const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+              alert(`「${label}」データの形式が正しくありません（配列が必要です）。ファイルを確認してください。`);
+              return;
             }
-          } catch {
-            previewEl.textContent = "JSONの解析に失敗しました。ファイルを確認してください。";
-            previewEl.style.display = "block";
-            applyBtn.style.display = "none";
-            parsedData = null;
-          }
-        };
-        reader.readAsText(file);
-      });
-
-      applyBtn.addEventListener("click", () => {
-        if (!parsedData || !detectedFileKey) {
-          alert("対応するデータ種類が判定できませんでした。ファイル名に history / mastered / streaks を含めてください。");
-          return;
-        }
-        // 基本バリデーション
-        if ((detectedFileKey === "history" || detectedFileKey === "mastered") && !Array.isArray(parsedData)) {
-          const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
-          alert(`「${label}」データの形式が正しくありません（配列が必要です）。ファイルを確認してください。`);
-          return;
-        }
-        if (detectedFileKey === "streaks" && (typeof parsedData !== "object" || Array.isArray(parsedData) || parsedData === null)) {
-          const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
-          alert(`「${label}」データの形式が正しくありません（オブジェクトが必要です）。ファイルを確認してください。`);
-          return;
-        }
-        void this.showConfirmDialog(
-          `「${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey}」データを選択したファイルの内容で上書きします。よろしいですか？`
-        ).then((confirmed) => {
-          if (!confirmed) return;
-          try {
-            if (detectedFileKey === "history") {
-              this.progressRepo.saveHistory(parsedData as ReturnType<typeof this.progressRepo.loadHistory>);
-            } else if (detectedFileKey === "mastered") {
-              this.progressRepo.saveMasteredIds(parsedData as string[]);
-            } else if (detectedFileKey === "streaks") {
-              this.progressRepo.saveCorrectStreaks(parsedData as Record<string, number>);
+            if (detectedFileKey === "streaks" && (typeof parsedData !== "object" || Array.isArray(parsedData) || parsedData === null)) {
+              const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+              alert(`「${label}」データの形式が正しくありません（オブジェクトが必要です）。ファイルを確認してください。`);
+              return;
             }
-            void this.useCase.initialize()
-              .then(() => {
-                window.location.reload();
-              })
-              .catch((err: unknown) => {
-                console.error("データ再読み込みに失敗しました", err);
-                alert("データの更新後の再読み込みに失敗しました。問題データを確認してください。");
-              });
-          } catch (err) {
-            console.error("データ更新に失敗しました", err);
-            alert("データの更新に失敗しました。ファイルの形式を確認してください。");
-          }
-        }).catch((err: unknown) => {
-          console.error("確認ダイアログでエラーが発生しました", err);
-        });
+            void this.showConfirmDialog(
+              `「${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey}」データを選択したファイルの内容で上書きします。よろしいですか？`
+            ).then((confirmed) => {
+              if (!confirmed) return;
+              try {
+                if (detectedFileKey === "history") {
+                  this.progressRepo.saveHistory(parsedData as ReturnType<typeof this.progressRepo.loadHistory>);
+                } else if (detectedFileKey === "mastered") {
+                  this.progressRepo.saveMasteredIds(parsedData as string[]);
+                } else if (detectedFileKey === "streaks") {
+                  this.progressRepo.saveCorrectStreaks(parsedData as Record<string, number>);
+                }
+                void this.useCase.initialize()
+                  .then(() => {
+                    window.location.reload();
+                  })
+                  .catch((err: unknown) => {
+                    console.error("データ再読み込みに失敗しました", err);
+                    alert("データの更新後の再読み込みに失敗しました。問題データを確認してください。");
+                  });
+              } catch (err) {
+                console.error("データ更新に失敗しました", err);
+                alert("データの更新に失敗しました。ファイルの形式を確認してください。");
+              }
+            }).catch((err: unknown) => {
+              console.error("確認ダイアログでエラーが発生しました", err);
+            });
+          });
+
+          fileLabel.appendChild(fileInput);
+          section.appendChild(fileLabel);
+          section.appendChild(fileNameSpan);
+          section.appendChild(previewEl);
+          section.appendChild(applyBtn);
+          tabPanelArea.appendChild(section);
+
+        } else if (tabId === "export") {
+          // ── エクスポートコンテンツ ──────────────────────────────
+          const section = document.createElement("div");
+          section.className = "admin-reset-section";
+
+          const exportDesc = document.createElement("p");
+          exportDesc.className = "admin-reset-desc";
+          exportDesc.textContent = "すべての学習データをJSONファイルとしてダウンロードします。定期的なバックアップにご利用ください。";
+          section.appendChild(exportDesc);
+
+          const exportBtn = document.createElement("button");
+          exportBtn.className = "admin-import-apply-btn";
+          exportBtn.type = "button";
+          exportBtn.textContent = "⬇️ データをエクスポートする";
+          exportBtn.style.marginTop = "8px";
+          exportBtn.addEventListener("click", () => {
+            this.downloadUserData();
+          });
+          section.appendChild(exportBtn);
+          tabPanelArea.appendChild(section);
+
+        } else if (tabId === "reset") {
+          // ── 初期化コンテンツ ────────────────────────────────────
+          const section = document.createElement("div");
+          section.className = "admin-reset-section";
+
+          const resetDesc = document.createElement("p");
+          resetDesc.className = "admin-reset-desc";
+          resetDesc.textContent = "すべての学習データ（履歴・学習済み・進捗）を削除します。";
+          const resetBtn = document.createElement("button");
+          resetBtn.className = "admin-reset-btn";
+          resetBtn.type = "button";
+          resetBtn.textContent = "🗑️ 全データを初期化する";
+          resetBtn.addEventListener("click", () => {
+            void this.showConfirmDialog(
+              "すべての学習データを削除します。この操作は元に戻せません。続けますか？"
+            ).then((confirmed) => {
+              if (confirmed) {
+                void this.useCase.clearAllData()
+                  .then(() => {
+                    window.location.reload();
+                  })
+                  .catch((err: unknown) => {
+                    console.error("データ初期化に失敗しました", err);
+                    alert("データの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
+                  });
+              }
+            }).catch((err: unknown) => {
+              console.error("確認ダイアログでエラーが発生しました", err);
+            });
+          });
+          section.appendChild(resetDesc);
+          section.appendChild(resetBtn);
+          tabPanelArea.appendChild(section);
+        }
+      };
+
+      tabDefs.forEach(({ id, label }) => {
+        const btn = document.createElement("button");
+        btn.className = "admin-manage-tab";
+        btn.type = "button";
+        btn.textContent = label;
+        btn.dataset.tab = id;
+        btn.addEventListener("click", () => showTabContent(id));
+        tabBar.appendChild(btn);
       });
 
-      fileLabel.appendChild(fileInput);
-      importSection.appendChild(fileLabel);
-      importSection.appendChild(fileNameSpan);
-      importSection.appendChild(previewEl);
-      importSection.appendChild(applyBtn);
-      importPanel.appendChild(importSection);
-      panelsContainer.appendChild(importPanel);
+      contentArea.appendChild(tabBar);
+      contentArea.appendChild(tabPanelArea);
 
-      // ── エクスポートパネル ──────────────────────────────────────
-      const exportPanel = document.createElement("div");
-      exportPanel.className = "admin-manage-panel";
-
-      const exportTitle = document.createElement("div");
-      exportTitle.className = "admin-manage-panel-title";
-      exportTitle.textContent = "📤 エクスポート";
-      exportPanel.appendChild(exportTitle);
-
-      const exportSection = document.createElement("div");
-      exportSection.className = "admin-reset-section";
-
-      const exportDesc = document.createElement("p");
-      exportDesc.className = "admin-reset-desc";
-      exportDesc.textContent = "すべての学習データをJSONファイルとしてダウンロードします。定期的なバックアップにご利用ください。";
-      exportSection.appendChild(exportDesc);
-
-      const exportBtn = document.createElement("button");
-      exportBtn.className = "admin-import-apply-btn";
-      exportBtn.type = "button";
-      exportBtn.textContent = "⬇️ データをエクスポートする";
-      exportBtn.style.marginTop = "8px";
-      exportBtn.addEventListener("click", () => {
-        this.downloadUserData();
-      });
-      exportSection.appendChild(exportBtn);
-      exportPanel.appendChild(exportSection);
-      panelsContainer.appendChild(exportPanel);
-
-      // ── 初期化パネル ──────────────────────────────────────────
-      const resetPanel = document.createElement("div");
-      resetPanel.className = "admin-manage-panel";
-
-      const resetTitle = document.createElement("div");
-      resetTitle.className = "admin-manage-panel-title";
-      resetTitle.textContent = "🗑️ 初期化";
-      resetPanel.appendChild(resetTitle);
-
-      const resetSection = document.createElement("div");
-      resetSection.className = "admin-reset-section";
-      const resetDesc = document.createElement("p");
-      resetDesc.className = "admin-reset-desc";
-      resetDesc.textContent = "すべての学習データ（履歴・学習済み・進捗）を削除します。";
-      const resetBtn = document.createElement("button");
-      resetBtn.className = "admin-reset-btn";
-      resetBtn.type = "button";
-      resetBtn.textContent = "🗑️ 全データを初期化する";
-      resetBtn.addEventListener("click", () => {
-        void this.showConfirmDialog(
-          "すべての学習データを削除します。この操作は元に戻せません。続けますか？"
-        ).then((confirmed) => {
-          if (confirmed) {
-            void this.useCase.clearAllData()
-              .then(() => {
-                window.location.reload();
-              })
-              .catch((err: unknown) => {
-                console.error("データ初期化に失敗しました", err);
-                alert("データの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
-              });
-          }
-        }).catch((err: unknown) => {
-          console.error("確認ダイアログでエラーが発生しました", err);
-        });
-      });
-      resetSection.appendChild(resetDesc);
-      resetSection.appendChild(resetBtn);
-      resetPanel.appendChild(resetSection);
-      panelsContainer.appendChild(resetPanel);
+      // 最初のタブ（インポート）を表示
+      showTabContent("import");
     };
 
     // ── 📊データ参照セクション ────────────────────────────────────
     const showViewContent = (): void => {
-      contentArea.classList.remove("admin-data-open");
+      contentArea.classList.remove("admin-manage-open");
       contentArea.innerHTML = "";
 
-      // 既存サブメニューを削除してから再構築
+      // 既存サブメニューを削除
       menuBar.querySelectorAll(".admin-view-submenu").forEach((el) => el.remove());
 
       /** セクションの完全な JSON テキストを返す（fullContent があればそちらを使う） */
@@ -805,43 +823,46 @@ export class QuizApp {
         return JSON.stringify(sec.fullContent ?? sec.content, null, 2);
       };
 
-      // サブメニューコンテナ（データ種別一覧）
-      const submenu = document.createElement("div");
-      submenu.className = "admin-view-submenu";
-
-      const showDataContent = (index: number): void => {
-        const section = sections[index];
-        if (!section) return;
-
+      // ── モバイル用：閉じるボタン行（デスクトップではCSSで非表示） ──────
+      const closeRow = document.createElement("div");
+      closeRow.className = "admin-manage-close-row";
+      const closeTitle = document.createElement("span");
+      closeTitle.className = "admin-data-header-title";
+      closeTitle.textContent = "📊 データ参照";
+      closeRow.appendChild(closeTitle);
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "admin-data-close-btn";
+      closeBtn.type = "button";
+      closeBtn.textContent = "✕";
+      closeBtn.setAttribute("aria-label", "閉じる");
+      closeBtn.addEventListener("click", () => {
+        contentArea.classList.remove("admin-data-open");
         contentArea.innerHTML = "";
+        activeMenu = null;
+        manageBtn.classList.remove("active");
+        viewBtn.classList.remove("active");
+      });
+      closeRow.appendChild(closeBtn);
+      contentArea.appendChild(closeRow);
+
+      // ── タブバー ─────────────────────────────────────────────
+      const tabBar = document.createElement("div");
+      tabBar.className = "admin-data-tabs";
+
+      // タブコンテンツエリア
+      const tabContent = document.createElement("div");
+      tabContent.className = "admin-data-tab-content";
+
+      const showDataTab = (index: number): void => {
+        tabBar.querySelectorAll(".admin-data-tab").forEach((t) => t.classList.remove("active"));
+        const activeTab = tabBar.querySelectorAll<HTMLButtonElement>(".admin-data-tab")[index];
+        if (activeTab) activeTab.classList.add("active");
+
+        tabContent.innerHTML = "";
         contentArea.classList.add("admin-data-open");
 
-        // ヘッダー行（タイトル＋閉じるボタン）
-        const headerRow = document.createElement("div");
-        headerRow.className = "admin-data-header-row";
-
-        const titleLabel = document.createElement("span");
-        titleLabel.className = "admin-data-header-title";
-        titleLabel.textContent = section.title;
-        headerRow.appendChild(titleLabel);
-
-        const closeBtn = document.createElement("button");
-        closeBtn.className = "admin-data-close-btn";
-        closeBtn.type = "button";
-        closeBtn.textContent = "✕";
-        closeBtn.setAttribute("aria-label", "閉じる");
-        closeBtn.addEventListener("click", () => {
-          contentArea.classList.remove("admin-data-open");
-          contentArea.innerHTML = "";
-          submenu.querySelectorAll(".admin-view-item-btn").forEach((b) => b.classList.remove("active"));
-          // プレースホルダーを再表示
-          const ph = document.createElement("div");
-          ph.className = "admin-data-placeholder";
-          ph.textContent = "← データの種類を選択してください";
-          contentArea.appendChild(ph);
-        });
-        headerRow.appendChild(closeBtn);
-        contentArea.appendChild(headerRow);
+        const section = sections[index];
+        if (!section) return;
 
         const { content } = section;
         const jsonText = JSON.stringify(content, null, 2);
@@ -863,34 +884,30 @@ export class QuizApp {
           });
         });
         btnBar.appendChild(copyBtn);
-        contentArea.appendChild(btnBar);
+        tabContent.appendChild(btnBar);
 
         const dataEl = document.createElement("pre");
         dataEl.className = "admin-data";
         dataEl.textContent = jsonText;
-        contentArea.appendChild(dataEl);
+        tabContent.appendChild(dataEl);
       };
 
       sections.forEach(({ title }, index) => {
         const btn = document.createElement("button");
-        btn.className = "admin-menu-btn admin-view-item-btn";
+        btn.className = "admin-data-tab";
         btn.type = "button";
         btn.textContent = title;
         btn.addEventListener("click", () => {
-          submenu.querySelectorAll(".admin-view-item-btn").forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          showDataContent(index);
+          showDataTab(index);
         });
-        submenu.appendChild(btn);
+        tabBar.appendChild(btn);
       });
 
-      menuBar.appendChild(submenu);
+      contentArea.appendChild(tabBar);
+      contentArea.appendChild(tabContent);
 
-      // プレースホルダー（データ未選択時）
-      const placeholder = document.createElement("div");
-      placeholder.className = "admin-data-placeholder";
-      placeholder.textContent = "← データの種類を選択してください";
-      contentArea.appendChild(placeholder);
+      // 最初のタブを選択
+      showDataTab(0);
     };
 
     // メニューボタン
@@ -899,7 +916,14 @@ export class QuizApp {
     manageBtn.type = "button";
     manageBtn.textContent = "🛢️ データ管理";
     manageBtn.addEventListener("click", () => {
-      if (activeMenu === "manage") return;
+      if (activeMenu === "manage") {
+        // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
+        activeMenu = null;
+        manageBtn.classList.remove("active");
+        contentArea.innerHTML = "";
+        contentArea.classList.remove("admin-manage-open", "admin-data-open");
+        return;
+      }
       activeMenu = "manage";
       manageBtn.classList.add("active");
       viewBtn.classList.remove("active");
@@ -912,7 +936,14 @@ export class QuizApp {
     viewBtn.type = "button";
     viewBtn.textContent = "📊 データ参照";
     viewBtn.addEventListener("click", () => {
-      if (activeMenu === "view") return;
+      if (activeMenu === "view") {
+        // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
+        activeMenu = null;
+        viewBtn.classList.remove("active");
+        contentArea.innerHTML = "";
+        contentArea.classList.remove("admin-manage-open", "admin-data-open");
+        return;
+      }
       activeMenu = "view";
       viewBtn.classList.add("active");
       manageBtn.classList.remove("active");
@@ -923,10 +954,7 @@ export class QuizApp {
     container.appendChild(menuBar);
     container.appendChild(contentArea);
 
-    // 初期表示: データ管理
-    activeMenu = "manage";
-    manageBtn.classList.add("active");
-    showManageContent();
+    // 初期表示: メニューのみ（コンテンツ未選択）
 
     categoryList.appendChild(container);
   }
@@ -3138,6 +3166,22 @@ export class QuizApp {
       }
     });
 
+    // ブラウザの戻るボタンでスタート画面に戻る（setupEventListeners はコンストラクタから1度だけ呼ばれる）
+    // クイズ進行中の場合は確認ダイアログを表示し、キャンセルされたら履歴に再プッシュして戻る操作を打ち消す
+    window.addEventListener("popstate", () => {
+      const startScreen = document.getElementById("startScreen");
+      if (!startScreen?.classList.contains("hidden")) return;
+      void this.navigateToStart().then(() => {
+        // キャンセル時（スタート画面に遷移しなかった場合）は履歴エントリを再追加して「進む」操作を封じる
+        const stillOnStart = !document.getElementById("startScreen")?.classList.contains("hidden");
+        if (!stillOnStart) {
+          const activeScreen = document.querySelector(".screen:not(.hidden)");
+          const screenName = activeScreen?.id === "quizScreen" ? "quiz" : "result";
+          window.history.pushState({ screen: screenName }, document.title);
+        }
+      });
+    });
+
     // スマホ用：単元一覧に戻るボタン
     document.getElementById("mobileBackBtn")?.addEventListener("click", () => {
       this.navigateBackToList();
@@ -4299,6 +4343,14 @@ export class QuizApp {
   }
 
   private showScreen(screenName: "start" | "quiz" | "result"): void {
+    // ブラウザ履歴を管理する:
+    // - クイズ/結果画面への遷移時は pushState で新しいエントリを追加（戻るボタンで戻れる）
+    // - スタート画面への遷移時は replaceState で現在のエントリを置き換え（スタック上に中間状態を残さない）
+    if (screenName === "quiz" || screenName === "result") {
+      window.history.pushState({ screen: screenName }, document.title);
+    } else {
+      window.history.replaceState({ screen: "start" }, document.title);
+    }
     document.querySelectorAll(".screen").forEach((s) => s.classList.add("hidden"));
     const idMap = { start: "startScreen", quiz: "quizScreen", result: "resultScreen" };
     document.getElementById(idMap[screenName])?.classList.remove("hidden");
