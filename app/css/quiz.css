@@ -4745,6 +4745,30 @@ body.font-size-large .admin-import-apply-btn {
     background: #ddeeff;
 }
 
+/* スマホ用：管理コンテンツの戻るボタン行（デスクトップでは非表示） */
+.admin-manage-close-row {
+    display: none;
+}
+
+.admin-manage-close-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0366d6;
+    background: #eef4ff;
+    border: 1px solid #c8d8f8;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.admin-manage-close-btn:hover {
+    background: #ddeeff;
+}
+
 .admin-import-apply-btn:hover {
     background: #218838;
 }
@@ -4892,33 +4916,44 @@ body.font-size-large .admin-import-apply-btn {
     .guide-frame .guide-content {
         font-size: 13px;
     }
-    /* 解説コンテンツの見出しもモバイルで縮小（デスクトップは 22px だが本文と同程度に抑える） */
-    .guide-frame .guide-content h2,
+    /* 解説コンテンツの見出しもモバイルで縮小（h2 はパネルタブに合わせるため別途定義） */
     .guide-frame .guide-content h3,
     .guide-frame .guide-content h4,
     .guide-frame .guide-content h5,
     .guide-frame .guide-content h6 {
         font-size: 14px;
     }
+    /* h2 はパネルタブと同じフォントサイズ（基本: 16px） */
+    .guide-frame .guide-content h2 {
+        font-size: 16px;
+    }
     body.font-size-medium .guide-frame .guide-content {
         font-size: 16px;
     }
-    body.font-size-medium .guide-frame .guide-content h2,
+    /* h3〜h6 モバイル縮小（フォントサイズ中、h2 はパネルタブに合わせるため別途定義） */
     body.font-size-medium .guide-frame .guide-content h3,
     body.font-size-medium .guide-frame .guide-content h4,
     body.font-size-medium .guide-frame .guide-content h5,
     body.font-size-medium .guide-frame .guide-content h6 {
         font-size: 17px;
     }
+    /* h2 はパネルタブと同じフォントサイズ（フォントサイズ中: 18px） */
+    body.font-size-medium .guide-frame .guide-content h2 {
+        font-size: 18px;
+    }
     body.font-size-large .guide-frame .guide-content {
         font-size: 20px;
     }
-    body.font-size-large .guide-frame .guide-content h2,
+    /* h3〜h6 モバイル縮小（フォントサイズ大、h2 はパネルタブに合わせるため別途定義） */
     body.font-size-large .guide-frame .guide-content h3,
     body.font-size-large .guide-frame .guide-content h4,
     body.font-size-large .guide-frame .guide-content h5,
     body.font-size-large .guide-frame .guide-content h6 {
         font-size: 21px;
+    }
+    /* h2 はパネルタブと同じフォントサイズ（フォントサイズ大: 22px） */
+    body.font-size-large .guide-frame .guide-content h2 {
+        font-size: 22px;
     }
     /* ユーザ名と日付のフォントをモバイルでは教科タブと同じサイズに */
     body.font-size-medium .header-user-name,
@@ -4929,12 +4964,12 @@ body.font-size-large .admin-import-apply-btn {
     body.font-size-large .header-today-date {
         font-size: 22px;
     }
-    /* 単元詳細をフルスクリーンオーバーラップ表示（問題画面と同様のオーバーレイ）
+    /* 単元詳細をフルスクリーンオーバーラップ表示（ヘッダー z-index:100 より前面に）
        注: :has() は Chrome 105+, Safari 15.4+, Firefox 121+ で対応（2022〜2023年以降の主要ブラウザ）*/
     .quiz-panel:has(#selectedUnitInfo:not(.hidden)) {
         position: fixed;
         inset: 0;
-        z-index: 99;
+        z-index: 101;
         overflow-y: auto;
         border-radius: 0;
     }
@@ -4951,17 +4986,68 @@ body.font-size-large .admin-import-apply-btn {
         z-index: 98;
         pointer-events: none;
     }
-    /* 管理データ参照: コンテンツをボトムシートとしてオーバーラップ表示 */
+    /* 管理データ参照: コンテンツをフルスクリーンオーバーレイとして表示（単元詳細と同様） */
     .admin-menu-content.admin-data-open {
+        display: flex;
         position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 65vh;
-        z-index: 99;
+        inset: 0;
+        z-index: 101;
         overflow-y: auto;
-        border-radius: 12px 12px 0 0;
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 0;
+        box-shadow: none;
+        height: auto;
+    }
+    /* 管理パネル: メニューバーのみ表示（コンテンツはオーバーレイとして分離） */
+    .admin-panel {
+        grid-template-columns: 1fr;
+    }
+    /* 管理コンテンツエリアはデフォルト非表示 */
+    .admin-menu-content {
+        display: none;
+    }
+    /* 管理コンテンツ（インポート等のパネル）: フルスクリーンオーバーレイとして表示 */
+    .admin-menu-content:has(.admin-manage-panels) {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 101;
+        overflow-y: auto;
+        border-radius: 0;
+        border: none;
+    }
+    /* 管理コンテンツオーバーレイのバックドロップ */
+    #startScreen:has(.admin-menu-content:has(.admin-manage-panels))::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 98;
+        pointer-events: none;
+    }
+    /* 管理コンテンツの戻るボタン（デスクトップでは非表示） */
+    .admin-manage-close-row {
+        display: flex;
+        padding: 8px 12px;
+        background: #f6f8fa;
+        border-bottom: 1px solid #e1e4e8;
+        flex-shrink: 0;
+    }
+    /* 履歴アイテム: タイトルは折り返さず、正答率は次の行に */
+    .history-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    .history-meta {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+    .history-subject {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
     /* 問題画面・結果画面をモバイルでフルスクリーンオーバーレイとして表示 */
     #quizScreen:not(.hidden),

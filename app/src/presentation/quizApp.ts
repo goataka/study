@@ -558,6 +558,22 @@ export class QuizApp {
       // データ参照サブメニューを削除
       menuBar.querySelectorAll(".admin-view-submenu").forEach((el) => el.remove());
 
+      // ── モバイル用：閉じるボタン行（デスクトップではCSSで非表示） ──────
+      const closeRow = document.createElement("div");
+      closeRow.className = "admin-manage-close-row";
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "admin-manage-close-btn";
+      closeBtn.type = "button";
+      closeBtn.textContent = "← 戻る";
+      closeBtn.addEventListener("click", () => {
+        contentArea.innerHTML = "";
+        activeMenu = null;
+        manageBtn.classList.remove("active");
+        viewBtn.classList.remove("active");
+      });
+      closeRow.appendChild(closeBtn);
+      contentArea.appendChild(closeRow);
+
       // パネルコンテナ（縦積みパネル）
       const panelsContainer = document.createElement("div");
       panelsContainer.className = "admin-manage-panels";
