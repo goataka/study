@@ -99,6 +99,11 @@ header h1 {
     padding-right: 0;
 }
 
+/* モバイル用ヘッダー改行スペーサー（デスクトップでは非表示） */
+.header-center-break {
+    display: none;
+}
+
 .title-btn {
     cursor: pointer;
     transition: color 0.2s;
@@ -4522,6 +4527,32 @@ body.font-size-large .admin-import-apply-btn {
     background: #c82333;
 }
 
+/* 管理画面: 管理パネル（インポート・エクスポート・初期化の縦積みパネル） */
+.admin-manage-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.admin-manage-panel {
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    background: white;
+    overflow: hidden;
+}
+
+.admin-manage-panel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0366d6;
+    padding: 8px 16px;
+    background: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+}
+
 /* 管理画面: メニューバー（縦並び） */
 .admin-menu-bar {
     background: #f6f8fa;
@@ -4685,18 +4716,24 @@ body.font-size-large .admin-import-apply-btn {
         flex-wrap: wrap;
     }
     .header-user-name {
-        white-space: normal;
-        overflow: visible;
-        text-overflow: clip;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         max-width: none;
         font-size: 16px;
     }
     .header-today-date {
         font-size: 14px;
-        white-space: normal;
+        white-space: nowrap;
     }
     .header-right-area {
         gap: 4px;
+    }
+    /* モバイル用ヘッダー改行スペーサー：モバイルでは表示してフォントサイズボタンを改行 */
+    .header-center-break {
+        display: block;
+        flex-basis: 100%;
+        height: 0;
     }
     /* 管理タブをモバイルで表示（管理メニューはタブで操作する） */
     .subject-tab[data-subject="admin"] {
@@ -4735,14 +4772,15 @@ body.font-size-large .admin-import-apply-btn {
     .quiz-panel {
         min-height: 0;
     }
-    /* ユーザー名はフォントサイズボタン等と別行に（width: 100% で折り返し） */
+    /* ユーザ名・日付・更新ボタンは1行に（header-center-break より前の要素） */
     .header-user-area {
-        width: 100%;
         justify-content: center;
+        flex-shrink: 0;
     }
-    /* フォントサイズボタンはサポート・GitHubアイコンと同じ行に */
+    /* フォントサイズボタン・サポート・GitHubアイコンは次の行に（header-center-break より後） */
     .font-size-btns {
         gap: 2px;
+        justify-content: center;
     }
     .font-size-btn {
         padding: 2px 6px;
@@ -4788,13 +4826,13 @@ body.font-size-large .admin-import-apply-btn {
     }
     /* 解説コンテンツのフォントサイズをモバイルで縮小（デスクトップの 22px/26px/33px より小さく） */
     .guide-frame .guide-content {
-        font-size: 16px;
+        font-size: 13px;
     }
     body.font-size-medium .guide-frame .guide-content {
-        font-size: 20px;
+        font-size: 16px;
     }
     body.font-size-large .guide-frame .guide-content {
-        font-size: 26px;
+        font-size: 20px;
     }
     /* ユーザ名と日付のフォントをモバイルでは教科タブと同じサイズに */
     body.font-size-medium .header-user-name,
@@ -4829,5 +4867,15 @@ body.font-size-large .admin-import-apply-btn {
         inset: 0;
         background: rgba(0, 0, 0, 0.25);
         border-radius: 8px;
+    }
+    /* 問題画面・結果画面をモバイルでフルスクリーンオーバーレイとして表示 */
+    #quizScreen:not(.hidden),
+    #resultScreen:not(.hidden) {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        border-radius: 0;
+        overflow-y: auto;
+        padding: 8px;
     }
 }

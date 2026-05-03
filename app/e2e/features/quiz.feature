@@ -193,20 +193,18 @@ Feature: 学習アプリ
   Scenario: サポートボタン（?）をクリックすると別タブでサポートページが開く
     Then the support button should open support page in a new tab
 
-  Scenario: 管理タブの初期化タブが表示される
+  Scenario: 管理タブの初期化パネルが表示される
     When I click the "管理" tab
-    Then the admin reset tab button should be visible
+    Then the admin reset panel should be visible
 
   Scenario: 管理タブの初期化ボタンをクリックすると確認ダイアログが表示される
     When I click the "管理" tab
-    And I click the admin reset tab
     Then the admin reset button should be visible
 
-  Scenario: 管理タブのエクスポートタブが表示される
+  Scenario: 管理タブのエクスポートパネルが表示される
     When I click the "管理" tab
-    Then the admin export tab button should be visible
+    Then the admin export panel should be visible
 
   Scenario: 管理タブのエクスポートボタンをクリックするとJSONファイルがダウンロードされる
     When I click the "管理" tab
-    And I click the admin export tab
     Then an admin JSON file download should be triggered

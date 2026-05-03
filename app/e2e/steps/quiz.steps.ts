@@ -445,14 +445,14 @@ Then("learned category items should be visible in the category list", async ({ p
   await expect(learnedItems.first()).toBeVisible();
 });
 
-Then("the admin reset tab button should be visible", async ({ page }) => {
-  // 管理タブの「🗑️ 初期化」タブボタンが表示されていること
-  await expect(page.locator("#admin-tab-reset")).toBeVisible();
+Then("the admin reset panel should be visible", async ({ page }) => {
+  // 管理タブの「🗑️ 初期化」パネルタイトルが表示されていること
+  await expect(page.locator(".admin-manage-panel-title").filter({ hasText: "初期化" })).toBeVisible();
 });
 
 When("I click the admin reset tab", async ({ page }) => {
-  // 管理タブの「🗑️ 初期化」タブをクリックする
-  await page.locator("#admin-tab-reset").click();
+  // 旧タブ式UIからパネル式UIへ変更済み。パネルは常時表示のため操作不要。
+  await expect(page.locator(".admin-manage-panel-title").filter({ hasText: "初期化" })).toBeVisible();
 });
 
 Then("the admin reset button should be visible", async ({ page }) => {
@@ -460,19 +460,20 @@ Then("the admin reset button should be visible", async ({ page }) => {
   await expect(page.locator(".admin-reset-btn")).toBeVisible();
 });
 
-Then("the admin export tab button should be visible", async ({ page }) => {
-  // 管理タブの「📤 エクスポート」タブボタンが表示されていること
-  await expect(page.locator("#admin-tab-export")).toBeVisible();
+Then("the admin export panel should be visible", async ({ page }) => {
+  // 管理タブの「📤 エクスポート」パネルタイトルが表示されていること
+  await expect(page.locator(".admin-manage-panel-title").filter({ hasText: "エクスポート" })).toBeVisible();
 });
 
 When("I click the admin export tab", async ({ page }) => {
-  // 管理タブの「📤 エクスポート」タブをクリックする
-  await page.locator("#admin-tab-export").click();
+  // 旧タブ式UIからパネル式UIへ変更済み。パネルは常時表示のため操作不要。
+  await expect(page.locator(".admin-manage-panel-title").filter({ hasText: "エクスポート" })).toBeVisible();
 });
 
 Then("an admin JSON file download should be triggered", async ({ page }) => {
-  // エクスポートボタンをクリックするとJSONファイルがダウンロードされること
-  const exportBtn = page.locator(".admin-import-apply-btn");
+  // エクスポートパネル内のボタンをクリックするとJSONファイルがダウンロードされること
+  const exportPanel = page.locator(".admin-manage-panel").filter({ hasText: "エクスポート" });
+  const exportBtn = exportPanel.locator(".admin-import-apply-btn");
   await expect(exportBtn).toBeVisible();
   const [download] = await Promise.all([
     page.waitForEvent("download"),
