@@ -4816,12 +4816,11 @@ body.font-size-large .admin-import-apply-btn {
         flex-direction: column;
     }
     .admin-panel {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto minmax(0, 1fr);
-        min-height: 0;
+        grid-template-columns: 1fr 2fr;
+        padding: 8px;
+        gap: 8px;
     }
     .admin-menu-bar {
-        max-height: 30vh;
         overflow-y: auto;
     }
     /* カテゴリパネルと quiz-panel は常に両方表示（縦積み） */
@@ -4930,25 +4929,20 @@ body.font-size-large .admin-import-apply-btn {
     body.font-size-large .header-today-date {
         font-size: 22px;
     }
-    /* 単元詳細をボトムシートとしてオーバーラップ表示（問題画面と同様のオーバーレイ）
+    /* 単元詳細をフルスクリーンオーバーラップ表示（問題画面と同様のオーバーレイ）
        注: :has() は Chrome 105+, Safari 15.4+, Firefox 121+ で対応（2022〜2023年以降の主要ブラウザ）*/
     .quiz-panel:has(#selectedUnitInfo:not(.hidden)) {
         position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 65vh;
+        inset: 0;
         z-index: 99;
         overflow-y: auto;
-        border-radius: 12px 12px 0 0;
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+        border-radius: 0;
     }
-    /* ボトムシート表示時はカテゴリパネルを操作不可に */
+    /* 単元詳細表示時はカテゴリパネルを操作不可に */
     .start-content-layout:has(#selectedUnitInfo:not(.hidden)) .category-panel {
         pointer-events: none;
     }
-    /* 全画面バックドロップ（単元詳細・管理データ参照の両方に適用） */
-    #startScreen:has(#selectedUnitInfo:not(.hidden))::before,
+    /* 全画面バックドロップ（管理データ参照に適用） */
     #startScreen:has(.admin-menu-content.admin-data-open)::before {
         content: '';
         position: fixed;
