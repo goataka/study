@@ -916,7 +916,14 @@ export class QuizApp {
     manageBtn.type = "button";
     manageBtn.textContent = "🛢️ データ管理";
     manageBtn.addEventListener("click", () => {
-      if (activeMenu === "manage") return;
+      if (activeMenu === "manage") {
+        // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
+        activeMenu = null;
+        manageBtn.classList.remove("active");
+        contentArea.innerHTML = "";
+        contentArea.classList.remove("admin-manage-open", "admin-data-open");
+        return;
+      }
       activeMenu = "manage";
       manageBtn.classList.add("active");
       viewBtn.classList.remove("active");
@@ -929,7 +936,14 @@ export class QuizApp {
     viewBtn.type = "button";
     viewBtn.textContent = "📊 データ参照";
     viewBtn.addEventListener("click", () => {
-      if (activeMenu === "view") return;
+      if (activeMenu === "view") {
+        // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
+        activeMenu = null;
+        viewBtn.classList.remove("active");
+        contentArea.innerHTML = "";
+        contentArea.classList.remove("admin-manage-open", "admin-data-open");
+        return;
+      }
       activeMenu = "view";
       viewBtn.classList.add("active");
       manageBtn.classList.remove("active");
@@ -3153,10 +3167,19 @@ export class QuizApp {
     });
 
     // ブラウザの戻るボタンでスタート画面に戻る（setupEventListeners はコンストラクタから1度だけ呼ばれる）
+    // クイズ進行中の場合は確認ダイアログを表示し、キャンセルされたら履歴に再プッシュして戻る操作を打ち消す
     window.addEventListener("popstate", () => {
       const startScreen = document.getElementById("startScreen");
       if (!startScreen?.classList.contains("hidden")) return;
-      this.showScreen("start");
+      void this.navigateToStart().then(() => {
+        // キャンセル時（スタート画面に遷移しなかった場合）は履歴エントリを再追加して「進む」操作を封じる
+        const stillOnStart = !document.getElementById("startScreen")?.classList.contains("hidden");
+        if (!stillOnStart) {
+          const activeScreen = document.querySelector(".screen:not(.hidden)");
+          const screenName = activeScreen?.id === "quizScreen" ? "quiz" : "result";
+          window.history.pushState({ screen: screenName }, document.title);
+        }
+      });
     });
 
     // スマホ用：単元一覧に戻るボタン
@@ -4320,9 +4343,13 @@ export class QuizApp {
   }
 
   private showScreen(screenName: "start" | "quiz" | "result"): void {
-    // ブラウザ履歴に状態を追加（クイズ・結果画面への遷移時）
+    // ブラウザ履歴を管理する:
+    // - クイズ/結果画面への遷移時は pushState で新しいエントリを追加（戻るボタンで戻れる）
+    // - スタート画面への遷移時は replaceState で現在のエントリを置き換え（スタック上に中間状態を残さない）
     if (screenName === "quiz" || screenName === "result") {
       window.history.pushState({ screen: screenName }, document.title);
+    } else {
+      window.history.replaceState({ screen: "start" }, document.title);
     }
     document.querySelectorAll(".screen").forEach((s) => s.classList.add("hidden"));
     const idMap = { start: "startScreen", quiz: "quizScreen", result: "resultScreen" };
