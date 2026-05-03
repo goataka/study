@@ -482,9 +482,9 @@ export class QuizApp {
       // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
       const controlsEl = document.getElementById("categoryControls");
       if (controlsEl) controlsEl.innerHTML = "";
-      // タイトルを「🛢️ IndexDB」に変更
+      // タイトルを「🛢️ IndexedDB」に変更
       const titleEl = document.getElementById("categoryListTitle");
-      if (titleEl) titleEl.textContent = "🛢️ IndexDB";
+      if (titleEl) titleEl.textContent = "🛢️ IndexedDB";
       this.renderAdminContent(categoryList);
       return;
     }
@@ -555,270 +555,221 @@ export class QuizApp {
     const showManageContent = (): void => {
       contentArea.innerHTML = "";
 
-      // サブメニュータブ（初期化 / インポート）
-      const subTabBar = document.createElement("div");
-      subTabBar.className = "admin-tabs";
-      subTabBar.setAttribute("role", "tablist");
-      contentArea.appendChild(subTabBar);
+      // パネルコンテナ（縦積みパネル）
+      const panelsContainer = document.createElement("div");
+      panelsContainer.className = "admin-manage-panels";
+      contentArea.appendChild(panelsContainer);
 
-      const subContentArea = document.createElement("div");
-      subContentArea.className = "admin-tab-content";
-      contentArea.appendChild(subContentArea);
+      // ── インポートパネル ──────────────────────────────────────
+      const importPanel = document.createElement("div");
+      importPanel.className = "admin-manage-panel";
 
-      // 初期化タブのコンテンツ表示
-      const showResetTab = (): void => {
-        subTabBar.querySelectorAll(".admin-tab-btn").forEach(b => {
-          b.classList.remove("active");
-          b.setAttribute("aria-selected", "false");
-        });
-        resetSubTabBtn.classList.add("active");
-        resetSubTabBtn.setAttribute("aria-selected", "true");
-        subContentArea.innerHTML = "";
-        const resetSection = document.createElement("div");
-        resetSection.className = "admin-reset-section";
-        const resetDesc = document.createElement("p");
-        resetDesc.className = "admin-reset-desc";
-        resetDesc.textContent = "すべての学習データ（履歴・学習済み・進捗）を削除します。";
-        const resetBtn = document.createElement("button");
-        resetBtn.className = "admin-reset-btn";
-        resetBtn.type = "button";
-        resetBtn.textContent = "🗑️ 全データを初期化する";
-        resetBtn.addEventListener("click", () => {
-          void this.showConfirmDialog(
-            "すべての学習データを削除します。この操作は元に戻せません。続けますか？"
-          ).then((confirmed) => {
-            if (confirmed) {
-              void this.useCase.clearAllData()
-                .then(() => {
-                  window.location.reload();
-                })
-                .catch((err: unknown) => {
-                  console.error("データ初期化に失敗しました", err);
-                  alert("データの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
-                });
+      const importTitle = document.createElement("div");
+      importTitle.className = "admin-manage-panel-title";
+      importTitle.textContent = "📥 インポート";
+      importPanel.appendChild(importTitle);
+
+      const importSection = document.createElement("div");
+      importSection.className = "admin-reset-section";
+
+      const importDesc = document.createElement("p");
+      importDesc.className = "admin-reset-desc";
+      importDesc.textContent = "ダウンロードしたJSONファイルを選択して、学習データを更新します。";
+      importSection.appendChild(importDesc);
+
+      const fileLabel = document.createElement("label");
+      fileLabel.className = "admin-import-label";
+      fileLabel.textContent = "📂 JSONファイルを選択";
+
+      const fileInput = document.createElement("input");
+      fileInput.type = "file";
+      fileInput.accept = ".json,application/json";
+      fileInput.className = "admin-import-input";
+      fileInput.style.display = "none";
+
+      const fileNameSpan = document.createElement("span");
+      fileNameSpan.className = "admin-import-filename";
+      fileNameSpan.textContent = "（未選択）";
+
+      const previewEl = document.createElement("pre");
+      previewEl.className = "admin-data";
+      previewEl.style.marginTop = "8px";
+      previewEl.style.display = "none";
+
+      const applyBtn = document.createElement("button");
+      applyBtn.className = "admin-import-apply-btn";
+      applyBtn.type = "button";
+      applyBtn.textContent = "✅ データを更新する";
+      applyBtn.style.display = "none";
+
+      let parsedData: unknown = null;
+      let detectedFileKey: SectionKey | null = null;
+
+      fileInput.addEventListener("change", () => {
+        const file = fileInput.files?.[0];
+        if (!file) return;
+        fileNameSpan.textContent = file.name;
+        const reader = new FileReader();
+        reader.onload = (): void => {
+          try {
+            parsedData = JSON.parse(reader.result as string);
+            // ファイル名からセクションを推定（例: study-history-2024-01-01.json）
+            // settings はインポート対象外
+            detectedFileKey = null;
+            const importableSections = sections.filter((sec) => sec.fileKey !== "settings");
+            for (const sec of importableSections) {
+              if (file.name.includes(sec.fileKey)) {
+                detectedFileKey = sec.fileKey;
+                break;
+              }
             }
-          }).catch((err: unknown) => {
-            console.error("確認ダイアログでエラーが発生しました", err);
-          });
-        });
-        resetSection.appendChild(resetDesc);
-        resetSection.appendChild(resetBtn);
-        subContentArea.appendChild(resetSection);
-      };
-
-      // インポートタブのコンテンツ表示
-      const showImportTab = (): void => {
-        subTabBar.querySelectorAll(".admin-tab-btn").forEach(b => {
-          b.classList.remove("active");
-          b.setAttribute("aria-selected", "false");
-        });
-        importSubTabBtn.classList.add("active");
-        importSubTabBtn.setAttribute("aria-selected", "true");
-        subContentArea.innerHTML = "";
-
-        const importSection = document.createElement("div");
-        importSection.className = "admin-reset-section";
-
-        const importDesc = document.createElement("p");
-        importDesc.className = "admin-reset-desc";
-        importDesc.textContent = "ダウンロードしたJSONファイルを選択して、学習データを更新します。";
-        importSection.appendChild(importDesc);
-
-        const fileLabel = document.createElement("label");
-        fileLabel.className = "admin-import-label";
-        fileLabel.textContent = "📂 JSONファイルを選択";
-
-        const fileInput = document.createElement("input");
-        fileInput.type = "file";
-        fileInput.accept = ".json,application/json";
-        fileInput.className = "admin-import-input";
-        fileInput.style.display = "none";
-
-        const fileNameSpan = document.createElement("span");
-        fileNameSpan.className = "admin-import-filename";
-        fileNameSpan.textContent = "（未選択）";
-
-        const previewEl = document.createElement("pre");
-        previewEl.className = "admin-data";
-        previewEl.style.marginTop = "8px";
-        previewEl.style.display = "none";
-
-        const applyBtn = document.createElement("button");
-        applyBtn.className = "admin-import-apply-btn";
-        applyBtn.type = "button";
-        applyBtn.textContent = "✅ データを更新する";
-        applyBtn.style.display = "none";
-
-        let parsedData: unknown = null;
-        let detectedFileKey: SectionKey | null = null;
-
-        fileInput.addEventListener("change", () => {
-          const file = fileInput.files?.[0];
-          if (!file) return;
-          fileNameSpan.textContent = file.name;
-          const reader = new FileReader();
-          reader.onload = (): void => {
-            try {
-              parsedData = JSON.parse(reader.result as string);
-              // ファイル名からセクションを推定（例: study-history-2024-01-01.json）
-              // settings はインポート対象外
-              detectedFileKey = null;
-              const importableSections = sections.filter((sec) => sec.fileKey !== "settings");
-              for (const sec of importableSections) {
-                if (file.name.includes(sec.fileKey)) {
-                  detectedFileKey = sec.fileKey;
-                  break;
-                }
-              }
-              const preview = JSON.stringify(parsedData, null, 2);
-              previewEl.textContent = preview.length > 2000
-                ? preview.slice(0, 2000) + "\n...(省略)"
-                : preview;
-              previewEl.style.display = "block";
-              if (detectedFileKey) {
-                applyBtn.textContent = `✅ ${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey} を更新する`;
-                applyBtn.style.display = "block";
-              } else if (file.name.includes("settings")) {
-                previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
-                applyBtn.style.display = "none";
-              } else {
-                applyBtn.textContent = "✅ データを更新する（種類不明）";
-                applyBtn.style.display = "block";
-              }
-            } catch {
-              previewEl.textContent = "JSONの解析に失敗しました。ファイルを確認してください。";
-              previewEl.style.display = "block";
+            const preview = JSON.stringify(parsedData, null, 2);
+            previewEl.textContent = preview.length > 2000
+              ? preview.slice(0, 2000) + "\n...(省略)"
+              : preview;
+            previewEl.style.display = "block";
+            if (detectedFileKey) {
+              applyBtn.textContent = `✅ ${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey} を更新する`;
+              applyBtn.style.display = "block";
+            } else if (file.name.includes("settings")) {
+              previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
               applyBtn.style.display = "none";
-              parsedData = null;
+            } else {
+              applyBtn.textContent = "✅ データを更新する（種類不明）";
+              applyBtn.style.display = "block";
             }
-          };
-          reader.readAsText(file);
-        });
+          } catch {
+            previewEl.textContent = "JSONの解析に失敗しました。ファイルを確認してください。";
+            previewEl.style.display = "block";
+            applyBtn.style.display = "none";
+            parsedData = null;
+          }
+        };
+        reader.readAsText(file);
+      });
 
-        applyBtn.addEventListener("click", () => {
-          if (!parsedData || !detectedFileKey) {
-            alert("対応するデータ種類が判定できませんでした。ファイル名に history / mastered / streaks を含めてください。");
-            return;
-          }
-          // 基本バリデーション
-          if ((detectedFileKey === "history" || detectedFileKey === "mastered") && !Array.isArray(parsedData)) {
-            const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
-            alert(`「${label}」データの形式が正しくありません（配列が必要です）。ファイルを確認してください。`);
-            return;
-          }
-          if (detectedFileKey === "streaks" && (typeof parsedData !== "object" || Array.isArray(parsedData) || parsedData === null)) {
-            const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
-            alert(`「${label}」データの形式が正しくありません（オブジェクトが必要です）。ファイルを確認してください。`);
-            return;
-          }
-          void this.showConfirmDialog(
-            `「${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey}」データを選択したファイルの内容で上書きします。よろしいですか？`
-          ).then((confirmed) => {
-            if (!confirmed) return;
-            try {
-              if (detectedFileKey === "history") {
-                this.progressRepo.saveHistory(parsedData as ReturnType<typeof this.progressRepo.loadHistory>);
-              } else if (detectedFileKey === "mastered") {
-                this.progressRepo.saveMasteredIds(parsedData as string[]);
-              } else if (detectedFileKey === "streaks") {
-                this.progressRepo.saveCorrectStreaks(parsedData as Record<string, number>);
-              }
-              void this.useCase.initialize()
-                .then(() => {
-                  window.location.reload();
-                })
-                .catch((err: unknown) => {
-                  console.error("データ再読み込みに失敗しました", err);
-                  alert("データの更新後の再読み込みに失敗しました。問題データを確認してください。");
-                });
-            } catch (err) {
-              console.error("データ更新に失敗しました", err);
-              alert("データの更新に失敗しました。ファイルの形式を確認してください。");
+      applyBtn.addEventListener("click", () => {
+        if (!parsedData || !detectedFileKey) {
+          alert("対応するデータ種類が判定できませんでした。ファイル名に history / mastered / streaks を含めてください。");
+          return;
+        }
+        // 基本バリデーション
+        if ((detectedFileKey === "history" || detectedFileKey === "mastered") && !Array.isArray(parsedData)) {
+          const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+          alert(`「${label}」データの形式が正しくありません（配列が必要です）。ファイルを確認してください。`);
+          return;
+        }
+        if (detectedFileKey === "streaks" && (typeof parsedData !== "object" || Array.isArray(parsedData) || parsedData === null)) {
+          const label = sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+          alert(`「${label}」データの形式が正しくありません（オブジェクトが必要です）。ファイルを確認してください。`);
+          return;
+        }
+        void this.showConfirmDialog(
+          `「${sections.find(s => s.fileKey === detectedFileKey)?.title ?? detectedFileKey}」データを選択したファイルの内容で上書きします。よろしいですか？`
+        ).then((confirmed) => {
+          if (!confirmed) return;
+          try {
+            if (detectedFileKey === "history") {
+              this.progressRepo.saveHistory(parsedData as ReturnType<typeof this.progressRepo.loadHistory>);
+            } else if (detectedFileKey === "mastered") {
+              this.progressRepo.saveMasteredIds(parsedData as string[]);
+            } else if (detectedFileKey === "streaks") {
+              this.progressRepo.saveCorrectStreaks(parsedData as Record<string, number>);
             }
-          }).catch((err: unknown) => {
-            console.error("確認ダイアログでエラーが発生しました", err);
-          });
+            void this.useCase.initialize()
+              .then(() => {
+                window.location.reload();
+              })
+              .catch((err: unknown) => {
+                console.error("データ再読み込みに失敗しました", err);
+                alert("データの更新後の再読み込みに失敗しました。問題データを確認してください。");
+              });
+          } catch (err) {
+            console.error("データ更新に失敗しました", err);
+            alert("データの更新に失敗しました。ファイルの形式を確認してください。");
+          }
+        }).catch((err: unknown) => {
+          console.error("確認ダイアログでエラーが発生しました", err);
         });
+      });
 
-        fileLabel.appendChild(fileInput);
-        importSection.appendChild(fileLabel);
-        importSection.appendChild(fileNameSpan);
-        importSection.appendChild(previewEl);
-        importSection.appendChild(applyBtn);
-        subContentArea.appendChild(importSection);
-      };
+      fileLabel.appendChild(fileInput);
+      importSection.appendChild(fileLabel);
+      importSection.appendChild(fileNameSpan);
+      importSection.appendChild(previewEl);
+      importSection.appendChild(applyBtn);
+      importPanel.appendChild(importSection);
+      panelsContainer.appendChild(importPanel);
 
-      // サブタブボタンを作成
-      const resetSubTabBtn = document.createElement("button");
-      resetSubTabBtn.className = "admin-tab-btn";
-      resetSubTabBtn.type = "button";
-      resetSubTabBtn.textContent = "🗑️ 初期化";
-      resetSubTabBtn.setAttribute("id", "admin-tab-reset");
-      resetSubTabBtn.setAttribute("role", "tab");
-      resetSubTabBtn.setAttribute("aria-selected", "false");
-      resetSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
-      resetSubTabBtn.addEventListener("click", showResetTab);
+      // ── エクスポートパネル ──────────────────────────────────────
+      const exportPanel = document.createElement("div");
+      exportPanel.className = "admin-manage-panel";
 
-      const importSubTabBtn = document.createElement("button");
-      importSubTabBtn.className = "admin-tab-btn";
-      importSubTabBtn.type = "button";
-      importSubTabBtn.textContent = "📥 インポート";
-      importSubTabBtn.setAttribute("id", "admin-tab-import");
-      importSubTabBtn.setAttribute("role", "tab");
-      importSubTabBtn.setAttribute("aria-selected", "false");
-      importSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
-      importSubTabBtn.addEventListener("click", showImportTab);
+      const exportTitle = document.createElement("div");
+      exportTitle.className = "admin-manage-panel-title";
+      exportTitle.textContent = "📤 エクスポート";
+      exportPanel.appendChild(exportTitle);
 
-      // エクスポートタブのコンテンツ表示
-      const showExportTab = (): void => {
-        subTabBar.querySelectorAll(".admin-tab-btn").forEach(b => {
-          b.classList.remove("active");
-          b.setAttribute("aria-selected", "false");
+      const exportSection = document.createElement("div");
+      exportSection.className = "admin-reset-section";
+
+      const exportDesc = document.createElement("p");
+      exportDesc.className = "admin-reset-desc";
+      exportDesc.textContent = "すべての学習データをJSONファイルとしてダウンロードします。定期的なバックアップにご利用ください。";
+      exportSection.appendChild(exportDesc);
+
+      const exportBtn = document.createElement("button");
+      exportBtn.className = "admin-import-apply-btn";
+      exportBtn.type = "button";
+      exportBtn.textContent = "⬇️ データをエクスポートする";
+      exportBtn.style.marginTop = "8px";
+      exportBtn.addEventListener("click", () => {
+        this.downloadUserData();
+      });
+      exportSection.appendChild(exportBtn);
+      exportPanel.appendChild(exportSection);
+      panelsContainer.appendChild(exportPanel);
+
+      // ── 初期化パネル ──────────────────────────────────────────
+      const resetPanel = document.createElement("div");
+      resetPanel.className = "admin-manage-panel";
+
+      const resetTitle = document.createElement("div");
+      resetTitle.className = "admin-manage-panel-title";
+      resetTitle.textContent = "🗑️ 初期化";
+      resetPanel.appendChild(resetTitle);
+
+      const resetSection = document.createElement("div");
+      resetSection.className = "admin-reset-section";
+      const resetDesc = document.createElement("p");
+      resetDesc.className = "admin-reset-desc";
+      resetDesc.textContent = "すべての学習データ（履歴・学習済み・進捗）を削除します。";
+      const resetBtn = document.createElement("button");
+      resetBtn.className = "admin-reset-btn";
+      resetBtn.type = "button";
+      resetBtn.textContent = "🗑️ 全データを初期化する";
+      resetBtn.addEventListener("click", () => {
+        void this.showConfirmDialog(
+          "すべての学習データを削除します。この操作は元に戻せません。続けますか？"
+        ).then((confirmed) => {
+          if (confirmed) {
+            void this.useCase.clearAllData()
+              .then(() => {
+                window.location.reload();
+              })
+              .catch((err: unknown) => {
+                console.error("データ初期化に失敗しました", err);
+                alert("データの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
+              });
+          }
+        }).catch((err: unknown) => {
+          console.error("確認ダイアログでエラーが発生しました", err);
         });
-        exportSubTabBtn.classList.add("active");
-        exportSubTabBtn.setAttribute("aria-selected", "true");
-        subContentArea.innerHTML = "";
-
-        const exportSection = document.createElement("div");
-        exportSection.className = "admin-reset-section";
-
-        const exportDesc = document.createElement("p");
-        exportDesc.className = "admin-reset-desc";
-        exportDesc.textContent = "すべての学習データをJSONファイルとしてダウンロードします。定期的なバックアップにご利用ください。";
-        exportSection.appendChild(exportDesc);
-
-        const exportBtn = document.createElement("button");
-        exportBtn.className = "admin-import-apply-btn";
-        exportBtn.type = "button";
-        exportBtn.textContent = "⬇️ データをエクスポートする";
-        exportBtn.style.marginTop = "8px";
-        exportBtn.addEventListener("click", () => {
-          this.downloadUserData();
-        });
-        exportSection.appendChild(exportBtn);
-        subContentArea.appendChild(exportSection);
-      };
-
-      const exportSubTabBtn = document.createElement("button");
-      exportSubTabBtn.className = "admin-tab-btn";
-      exportSubTabBtn.type = "button";
-      exportSubTabBtn.textContent = "📤 エクスポート";
-      exportSubTabBtn.setAttribute("id", "admin-tab-export");
-      exportSubTabBtn.setAttribute("role", "tab");
-      exportSubTabBtn.setAttribute("aria-selected", "false");
-      exportSubTabBtn.setAttribute("aria-controls", "admin-manage-tabpanel");
-      exportSubTabBtn.addEventListener("click", showExportTab);
-
-      // インポート → エクスポート → 初期化 の順に追加
-      subTabBar.appendChild(importSubTabBtn);
-      subTabBar.appendChild(exportSubTabBtn);
-      subTabBar.appendChild(resetSubTabBtn);
-
-      subContentArea.setAttribute("role", "tabpanel");
-      subContentArea.setAttribute("id", "admin-manage-tabpanel");
-
-      // 初期表示
-      showImportTab();
+      });
+      resetSection.appendChild(resetDesc);
+      resetSection.appendChild(resetBtn);
+      resetPanel.appendChild(resetSection);
+      panelsContainer.appendChild(resetPanel);
     };
 
     // ── 🛢️データ参照セクション ────────────────────────────────────
@@ -916,7 +867,7 @@ export class QuizApp {
     const viewBtn = document.createElement("button");
     viewBtn.className = "admin-menu-btn";
     viewBtn.type = "button";
-    viewBtn.textContent = "🛢️ データ参照";
+    viewBtn.textContent = "🛢️ IndexedDB 参照";
     viewBtn.addEventListener("click", () => {
       if (activeMenu === "view") return;
       activeMenu = "view";
@@ -3525,7 +3476,7 @@ export class QuizApp {
       if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
       // 管理タブでは日付ナビを非表示にする
       document.getElementById("overallDateNav")?.classList.add("hidden");
-      // 管理タブでは「おすすめ単元」タイトルを非表示、「IndexDB」タイトルを表示
+      // 管理タブでは「おすすめ単元」タイトルを非表示、「IndexedDB」タイトルを表示
       document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
       document.getElementById("categoryListTitle")?.classList.remove("hidden");
       return;
