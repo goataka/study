@@ -271,17 +271,18 @@
               <div id="kanjiInputArea" class="hidden">
                 <div class="kanji-input-header">
                   <span class="kanji-input-label">1文字ずつ書いてください</span>
+                  <div class="kanji-input-controls">
+                    <button id="kanjiDeleteLastBtn" class="kanji-ctrl-btn" type="button" title="最後の1画を消す" aria-label="最後の1画を消す">↩</button>
+                    <button id="kanjiEraseBtn" class="kanji-ctrl-btn" type="button" title="全部消す" aria-label="全部消す">🗑️</button>
+                    <button id="kanjiToggleBtn" class="kanji-ctrl-btn" type="button" title="入力エリアを折りたたむ" aria-label="入力エリアを折りたたむ" aria-expanded="true">▲</button>
+                  </div>
                 </div>
-                <div class="kanji-input-body">
+                <div id="kanjiInputBody" class="kanji-input-body">
                   <div class="kanji-canvas-wrapper">
                     <canvas id="kanjiCanvas" class="kanji-canvas" width="400" height="400" data-stroke-numbers="false"></canvas>
                   </div>
                   <div class="kanji-candidates-area">
                     <div id="kanjiCandidateList" class="kanji-candidate-list"></div>
-                    <div class="kanji-input-controls">
-                      <button id="kanjiDeleteLastBtn" class="kanji-ctrl-btn" type="button" title="最後の1画を消す" aria-label="最後の1画を消す">↩</button>
-                      <button id="kanjiEraseBtn" class="kanji-ctrl-btn" type="button" title="全部消す" aria-label="全部消す">🗑️</button>
-                    </div>
                   </div>
                 </div>
               </div>

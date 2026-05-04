@@ -174,11 +174,26 @@ export class QuizApp {
   }
 
   /**
-   * URL パラメータからフィルターを読み込む
+   * URLのクエリパラメータとフラグメントを統合して URLSearchParams を返す。
+   * クエリパラメータが優先され、フラグメント側は補完として使用する。
+   */
+  private getURLParams(): URLSearchParams {
+    const params = new URLSearchParams(window.location.search);
+    const hashParams = new URLSearchParams(window.location.hash.slice(1));
+    // フラグメントの値はクエリパラメータに存在しない場合のみ補完する
+    hashParams.forEach((value, key) => {
+      if (!params.has(key)) params.set(key, value);
+    });
+    return params;
+  }
+
+  /**
+   * URL パラメータまたは URL フラグメントからフィルターを読み込む
    * 例: ?subject=english&category=tenses-regular-present
+   *     #subject=english&category=tenses-regular-present
    */
   private loadFilterFromURL(): void {
-    const params = new URLSearchParams(window.location.search);
+    const params = this.getURLParams();
     const subject = params.get("subject");
     const category = params.get("category");
 
@@ -3091,6 +3106,16 @@ export class QuizApp {
     this.on("kanjiDeleteLastBtn", "click", () => this.kanjiDeleteLast());
     this.on("kanjiEraseBtn", "click", () => this.kanjiErase());
 
+    // KanjiCanvas折りたたみトグルボタン
+    document.getElementById("kanjiToggleBtn")?.addEventListener("click", () => {
+      const body = document.getElementById("kanjiInputBody");
+      const btn = document.getElementById("kanjiToggleBtn");
+      if (!body || !btn) return;
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      body.classList.toggle("hidden", isExpanded);
+      this.applyKanjiToggleBtnState(btn, !isExpanded);
+    });
+
     // カテゴリ学習状態フィルターボタン
     const statusFilterBtns: Array<{ id: string; filter: "all" | "unlearned" | "studying" | "learned" }> = [
       { id: "filterStatusAll", filter: "all" },
@@ -3860,6 +3885,13 @@ export class QuizApp {
     if (kanjiInputArea) {
       kanjiInputArea.classList.toggle("hidden", !showKanji);
     }
+    // KanjiCanvas表示時はトグルボタンを展開状態にリセットする
+    if (showKanji) {
+      const kanjiInputBody = document.getElementById("kanjiInputBody");
+      const kanjiToggleBtn = document.getElementById("kanjiToggleBtn");
+      if (kanjiInputBody) kanjiInputBody.classList.remove("hidden");
+      if (kanjiToggleBtn) this.applyKanjiToggleBtnState(kanjiToggleBtn, true);
+    }
     // KanjiCanvas使用時はノートキャンバスと通常コントロールを非表示
     if (notesCanvas) {
       notesCanvas.classList.toggle("hidden", showKanji);
@@ -3881,6 +3913,19 @@ export class QuizApp {
    */
   private isKanjiCanvasAvailable(): boolean {
     return typeof (globalThis as unknown as { KanjiCanvas?: unknown }).KanjiCanvas !== "undefined";
+  }
+
+  /**
+   * KanjiCanvas 折りたたみボタンの表示状態を更新する。
+   * @param btn ボタン要素
+   * @param expanded 展開状態のとき true
+   */
+  private applyKanjiToggleBtnState(btn: HTMLElement, expanded: boolean): void {
+    btn.setAttribute("aria-expanded", String(expanded));
+    btn.textContent = expanded ? "▲" : "▼";
+    const label = expanded ? "入力エリアを折りたたむ" : "入力エリアを展開する";
+    btn.title = label;
+    btn.setAttribute("aria-label", label);
   }
 
   /**
@@ -4370,8 +4415,8 @@ export class QuizApp {
    * URLパラメータでカテゴリが明示指定されている場合はスキップする。
    */
   private selectFirstUnlearnedCategory(): void {
-    // URLパラメータで特定カテゴリが指定されている場合はディープリンク挙動を維持する
-    if (new URLSearchParams(window.location.search).has("category")) return;
+    // URLパラメータまたはフラグメントで特定カテゴリが指定されている場合はディープリンク挙動を維持する
+    if (this.getURLParams().has("category")) return;
 
     const categoryList = document.getElementById("categoryList");
     if (!categoryList) return;
