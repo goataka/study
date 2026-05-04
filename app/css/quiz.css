@@ -2176,15 +2176,22 @@ button:disabled {
         grid-template-columns: 1fr;
     }
 
-    /* クイズを縦積みに */
+    /* クイズを縦積みに。flex: none にして viewport 高さに縛られずコンテンツ高さにする */
     .quiz-landscape-layout {
         grid-template-columns: 1fr;
+        flex: none;
     }
 
-    /* メモエリアの高さをスマホ向けに制限 */
+    /* メモエリアはスクロールで到達できる高さに（縦積みの最下部に配置） */
     .quiz-notes-col {
-        max-height: 800px;
-        overflow-y: auto;
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    /* クイズメイン列は内部スクロールなし（外側の quizScreen がスクロール） */
+    .quiz-main-col {
+        overflow-y: visible;
+        min-height: auto;
     }
 
     /* スマホでは解説・例文を単元タイトルの下に折り返し */
@@ -2206,6 +2213,14 @@ button:disabled {
     .category-status-filter-btn {
         font-size: 11px;
         padding: 2px 5px;
+    }
+
+    /* 単元一覧の学習状況フィルターを折り返し可能にする */
+    .category-panel-header {
+        flex-wrap: wrap;
+    }
+    .category-status-filter {
+        flex-wrap: wrap;
     }
 }
 
@@ -4455,6 +4470,39 @@ body.font-size-large .admin-import-apply-btn {
     font-size: 20px;
 }
 
+/* 管理タブの内容（データ管理・データ参照）をフォントサイズ設定の対象に追加 */
+body.font-size-medium .admin-manage-tab,
+body.font-size-medium .admin-data-tab {
+    font-size: 15px;
+}
+
+body.font-size-medium .admin-manage-panel-title,
+body.font-size-medium .admin-data-header-title {
+    font-size: 17px;
+}
+
+body.font-size-medium .admin-data-close-btn {
+    font-size: 17px;
+    width: 30px;
+    height: 30px;
+}
+
+body.font-size-large .admin-manage-tab,
+body.font-size-large .admin-data-tab {
+    font-size: 18px;
+}
+
+body.font-size-large .admin-manage-panel-title,
+body.font-size-large .admin-data-header-title {
+    font-size: 20px;
+}
+
+body.font-size-large .admin-data-close-btn {
+    font-size: 20px;
+    width: 34px;
+    height: 34px;
+}
+
 /* ─── 単元詳細: 新レイアウト（タイトル/カテゴリ/説明/例文/ステータス） ── */
 .selected-unit-info-header-row {
     display: flex;
@@ -4948,6 +4996,19 @@ body.font-size-large .admin-import-apply-btn {
     .quiz-notes-col {
         display: flex;
     }
+    /* 問題番号・単元名・中止ボタン行: スマホでは単元名を次の行に */
+    .question-info {
+        flex-wrap: wrap;
+    }
+    .topic-badge {
+        position: static;
+        transform: none;
+        order: 3;
+        width: 100%;
+        text-align: center;
+        max-width: 100%;
+        margin-top: 4px;
+    }
     /* パネルタブは横スクロールで折り返さない */
     .panel-tabs {
         overflow-x: auto;
@@ -5127,5 +5188,31 @@ body.font-size-large .admin-import-apply-btn {
         border-radius: 0;
         overflow-y: auto;
         padding: 8px;
+    }
+    /* 手書き漢字入力: スマホではキャンバスを上、候補ボタンを下に縦積みで表示 */
+    .kanji-input-body {
+        flex-direction: column;
+    }
+    .kanji-canvas {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+    }
+    .kanji-candidates-area {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-height: auto;
+    }
+    .kanji-candidate-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    /* テキスト入力が選択肢に被らないよう、text-answer-wrapper を選択肢より下に配置 */
+    .choices-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .text-answer-wrapper {
+        order: 10;
     }
 }

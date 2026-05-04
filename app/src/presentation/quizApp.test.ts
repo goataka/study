@@ -3324,10 +3324,18 @@ function setupTextInputDom(): void {
         <div class="notes-controls"></div>
         <canvas id="notesCanvas"></canvas>
         <div id="kanjiInputArea" class="hidden">
-          <button id="kanjiDeleteLastBtn" type="button">↩</button>
-          <button id="kanjiEraseBtn" type="button">🗑️</button>
-          <canvas id="kanjiCanvas" width="400" height="400"></canvas>
-          <div id="kanjiCandidateList"></div>
+          <div class="kanji-input-header">
+            <span class="kanji-input-label">1文字ずつ書いてください</span>
+            <div class="kanji-input-controls">
+              <button id="kanjiDeleteLastBtn" type="button">↩</button>
+              <button id="kanjiEraseBtn" type="button">🗑️</button>
+              <button id="kanjiToggleBtn" type="button" aria-expanded="true">▲</button>
+            </div>
+          </div>
+          <div id="kanjiInputBody" class="kanji-input-body">
+            <canvas id="kanjiCanvas" width="400" height="400"></canvas>
+            <div id="kanjiCandidateList"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -3687,6 +3695,73 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
     // 漢字問題では全候補が表示される（フィルタされない）
     expect(candidateTexts).toEqual(["山", "川", "や", "き"]);
+  });
+
+  it("▲トグルボタンをクリックするとkanjiInputBodyが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const toggleBtn = document.getElementById("kanjiToggleBtn");
+    const inputBody = document.getElementById("kanjiInputBody");
+
+    // クリック前は展開状態
+    expect(inputBody?.classList.contains("hidden")).toBe(false);
+    expect(toggleBtn?.getAttribute("aria-expanded")).toBe("true");
+    expect(toggleBtn?.textContent).toBe("▲");
+
+    // クリックで折りたたむ
+    toggleBtn?.click();
+
+    expect(inputBody?.classList.contains("hidden")).toBe(true);
+    expect(toggleBtn?.getAttribute("aria-expanded")).toBe("false");
+    expect(toggleBtn?.textContent).toBe("▼");
+  });
+
+  it("▼トグルボタンを再クリックするとkanjiInputBodyが再表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const toggleBtn = document.getElementById("kanjiToggleBtn");
+    const inputBody = document.getElementById("kanjiInputBody");
+
+    // 一度折りたたむ
+    toggleBtn?.click();
+    expect(inputBody?.classList.contains("hidden")).toBe(true);
+
+    // 再度クリックで展開
+    toggleBtn?.click();
+    expect(inputBody?.classList.contains("hidden")).toBe(false);
+    expect(toggleBtn?.getAttribute("aria-expanded")).toBe("true");
+    expect(toggleBtn?.textContent).toBe("▲");
+  });
+
+  it("次の問題へ移動するとトグルボタンが展開状態にリセットされる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const toggleBtn = document.getElementById("kanjiToggleBtn");
+    const inputBody = document.getElementById("kanjiInputBody");
+
+    // 折りたたんだ状態にする
+    toggleBtn?.click();
+    expect(inputBody?.classList.contains("hidden")).toBe(true);
+
+    // テキスト入力で回答して次の問題へ移動
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    if (textInput) textInput.value = "やま";
+    const submitBtn = document.querySelector<HTMLButtonElement>(".text-answer-submit-btn");
+    submitBtn?.click();
+
+    const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
+    nextBtn?.click();
+
+    // 次の問題ではトグルが展開状態にリセットされている
+    expect(inputBody?.classList.contains("hidden")).toBe(false);
+    expect(toggleBtn?.getAttribute("aria-expanded")).toBe("true");
+    expect(toggleBtn?.textContent).toBe("▲");
   });
 });
 
