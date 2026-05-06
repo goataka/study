@@ -87,6 +87,38 @@ describe("LocalStorageProgressRepository — ユーザー名永続化仕様", ()
   });
 });
 
+describe("LocalStorageProgressRepository — ユーザーアバター永続化仕様", () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it("初回ロード時はnullを返す", () => {
+    const repo = new LocalStorageProgressRepository();
+    expect(repo.loadUserAvatar()).toBeNull();
+  });
+
+  it("保存したアバターを正しく読み込める", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveUserAvatar("data:image/png;base64,abc123");
+    expect(repo.loadUserAvatar()).toBe("data:image/png;base64,abc123");
+  });
+
+  it("上書き保存が正しく機能する", () => {
+    const repo = new LocalStorageProgressRepository();
+    repo.saveUserAvatar("data:image/png;base64,old");
+    repo.saveUserAvatar("data:image/jpeg;base64,new");
+    expect(repo.loadUserAvatar()).toBe("data:image/jpeg;base64,new");
+  });
+
+  it("別のインスタンスからも同じデータを読み込める（永続化確認）", () => {
+    const repo1 = new LocalStorageProgressRepository();
+    repo1.saveUserAvatar("data:image/png;base64,persistent");
+
+    const repo2 = new LocalStorageProgressRepository();
+    expect(repo2.loadUserAvatar()).toBe("data:image/png;base64,persistent");
+  });
+});
+
 describe("LocalStorageProgressRepository — 回答履歴永続化仕様", () => {
   const makeRecord = (id: string): QuizRecord => ({
     id,
@@ -370,6 +402,7 @@ describe("LocalStorageProgressRepository — clearAllData 仕様", () => {
     repo.saveCorrectStreaks({ q1: 3 });
     repo.saveMasteredIds(["q3"]);
     repo.saveUserName("太郎");
+    repo.saveUserAvatar("data:image/png;base64,abc");
     repo.saveFontSizeLevel("large");
     repo.saveCategoryViewMode("grade");
 
@@ -379,6 +412,7 @@ describe("LocalStorageProgressRepository — clearAllData 仕様", () => {
     expect(repo.loadCorrectStreaks()).toEqual({});
     expect(repo.loadMasteredIds()).toEqual([]);
     expect(repo.loadUserName()).toBeNull();
+    expect(repo.loadUserAvatar()).toBeNull();
     expect(repo.loadFontSizeLevel()).toBeNull();
     expect(repo.loadCategoryViewMode()).toBe("category");
     expect(repo.loadHistory()).toEqual([]);
@@ -388,6 +422,7 @@ describe("LocalStorageProgressRepository — clearAllData 仕様", () => {
     const repo = new LocalStorageProgressRepository();
     repo.saveWrongIds(["q1"]);
     repo.saveUserName("太郎");
+    repo.saveUserAvatar("data:image/png;base64,abc");
 
     await repo.clearAllData();
 
@@ -395,5 +430,6 @@ describe("LocalStorageProgressRepository — clearAllData 仕様", () => {
     const repo2 = new LocalStorageProgressRepository();
     expect(repo2.loadWrongIds()).toEqual([]);
     expect(repo2.loadUserName()).toBeNull();
+    expect(repo2.loadUserAvatar()).toBeNull();
   });
 });

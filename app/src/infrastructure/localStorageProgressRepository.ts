@@ -281,6 +281,7 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       MASTERED_IDS_KEY,
       QUESTION_STATS_KEY,
       USER_NAME_KEY,
+      USER_AVATAR_KEY,
       HISTORY_KEY,
       CATEGORY_VIEW_MODE_KEY,
       FONT_SIZE_KEY,

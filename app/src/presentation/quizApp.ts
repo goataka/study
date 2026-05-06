@@ -225,7 +225,9 @@ export class QuizApp {
   }
 
   private loadUserAvatar(): void {
-    this.userAvatarDataUrl = this.progressRepo.loadUserAvatar();
+    const stored = this.progressRepo.loadUserAvatar();
+    // data:image/ スキームのみ許可（外部URLや壊れたデータを除外）
+    this.userAvatarDataUrl = stored && stored.startsWith("data:image/") ? stored : null;
   }
 
   private loadFontSize(): void {
@@ -3370,10 +3372,10 @@ export class QuizApp {
       headerUserAvatarInput.value = "";
     });
 
-    // アバターラベルのキーボード操作（Enterで画像選択ダイアログを開く）
+    // アバターラベルのキーボード操作（Enter/Spaceで画像選択ダイアログを開く）
     const headerUserAvatar = document.getElementById("headerUserAvatar");
     headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         headerUserAvatarInput?.click();
       }
@@ -4852,7 +4854,7 @@ export class QuizApp {
       img.classList.add("visible");
       placeholder.classList.add("hidden");
     } else {
-      img.src = "";
+      img.removeAttribute("src");
       img.classList.remove("visible");
       placeholder.classList.remove("hidden");
     }
