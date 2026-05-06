@@ -1483,13 +1483,18 @@ header h1 {
     z-index: 2;
 }
 
-/* 2行目のヘッダー（親カテゴリ）を1行目の高さ分下にずらして固定 */
+/* 2行目のヘッダー（親カテゴリ）を1行目の高さ分下にずらして固定。
+   1行目の高さ: padding 4px×2 + line-height 1.5×11px ≈ 25px → 27px に設定 */
+.progress-matrix-table {
+    --matrix-top-header-height: 27px;
+}
+
 .progress-matrix-table thead tr:nth-child(2) th {
     background: #f0f7ff;
     color: #586069;
     font-weight: 600;
     position: sticky;
-    top: 27px; /* 1行目の高さ（padding 4px*2 + font ~18px ≈ 27px）に合わせる */
+    top: var(--matrix-top-header-height);
     z-index: 2;
 }
 
@@ -1695,14 +1700,14 @@ header h1 {
     display: block;
 }
 
-.avatar-crop-handle:hover {
+.avatar-crop-handle:hover,
+.avatar-crop-handle:focus-visible {
     background: rgba(3, 102, 214, 0.9);
 }
 
 .avatar-crop-handle:focus-visible {
     outline: 3px solid #f6a400;
     outline-offset: 2px;
-    background: rgba(3, 102, 214, 0.9);
 }
 
 /* 切り抜き位置ヒントテキスト */
