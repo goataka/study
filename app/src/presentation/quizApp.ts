@@ -2073,9 +2073,8 @@ export class QuizApp {
     const subject = this.progressSubjectId;
     const grades = this.useCase.getUniqueGradesForSubject(subject);
 
-    // 全カテゴリを列として収集する
-    const allCatIds: string[] = [];
-    const allCatNames: string[] = [];
+    // 全カテゴリを列として収集する（id + name をセットで管理）
+    const allCats: { id: string; name: string }[] = [];
     const gradeCatMap = new Map<string, string[]>(); // grade → catIds
 
     for (const grade of grades) {
@@ -2083,14 +2082,13 @@ export class QuizApp {
       const ids = Object.keys(cats);
       gradeCatMap.set(grade, ids);
       for (const [catId, catName] of Object.entries(cats)) {
-        if (!allCatIds.includes(catId)) {
-          allCatIds.push(catId);
-          allCatNames.push(catName);
+        if (!allCats.some((c) => c.id === catId)) {
+          allCats.push({ id: catId, name: catName });
         }
       }
     }
 
-    if (grades.length === 0 || allCatIds.length === 0) {
+    if (grades.length === 0 || allCats.length === 0) {
       const empty = document.createElement("div");
       empty.className = "progress-block-group";
       empty.textContent = "単元がありません";
@@ -2125,9 +2123,9 @@ export class QuizApp {
       const cornerTh = document.createElement("th");
       cornerTh.textContent = "学年 \\ 単元";
       headerRow.appendChild(cornerTh);
-      for (const catName of allCatNames) {
+      for (const { name } of allCats) {
         const th = document.createElement("th");
-        th.textContent = catName;
+        th.textContent = name;
         headerRow.appendChild(th);
       }
       thead.appendChild(headerRow);
@@ -2139,7 +2137,7 @@ export class QuizApp {
         const th = document.createElement("td");
         th.textContent = grade;
         tr.appendChild(th);
-        for (const catId of allCatIds) {
+        for (const { id: catId } of allCats) {
           const td = document.createElement("td");
           const status = getStatus(grade, catId);
           if (status === "mastered") {
@@ -2173,9 +2171,7 @@ export class QuizApp {
       table.appendChild(thead);
 
       const tbody = document.createElement("tbody");
-      for (let i = 0; i < allCatIds.length; i++) {
-        const catId = allCatIds[i] ?? "";
-        const catName = allCatNames[i] ?? "";
+      for (const { id: catId, name: catName } of allCats) {
         const tr = document.createElement("tr");
         const th = document.createElement("td");
         th.textContent = catName;
