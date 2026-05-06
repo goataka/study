@@ -427,12 +427,12 @@ describe("QuizApp — 教科タブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("問題ロード後にタブに教科（総合・英語・数学・国語）が4件描画される", async () => {
+  it("問題ロード後にタブに教科（おすすめ・進度・英語・数学・国語・管理）が6件描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const tabs = document.querySelectorAll(".subject-tab[data-subject]");
-    expect(tabs.length).toBe(5);
+    expect(tabs.length).toBe(6);
   });
 
   it("問題ロード後に英語タブに role=tab が設定されている", async () => {
@@ -445,7 +445,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     });
   });
 
-  it("初期状態では「総合」タブがアクティブになっている", async () => {
+  it("初期状態では「おすすめ」タブがアクティブになっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -532,6 +532,104 @@ describe("QuizApp — 教科タブ仕様", () => {
     tabs.forEach((tab) => {
       expect(tab.querySelector(".tab-stats")).toBeNull();
     });
+  });
+});
+
+describe("QuizApp — 進度タブ仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("進度タブをクリックすると教科セレクターが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const selector = document.querySelector(".progress-subject-selector");
+    expect(selector).not.toBeNull();
+
+    const btns = document.querySelectorAll(".progress-subject-btn");
+    expect(btns.length).toBeGreaterThan(0);
+  });
+
+  it("進度タブの教科セレクターボタンに aria-pressed が設定されている", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const btns = document.querySelectorAll(".progress-subject-btn");
+    btns.forEach((btn) => {
+      expect(btn.hasAttribute("aria-pressed")).toBe(true);
+    });
+  });
+
+  it("進度タブでアクティブな教科ボタンの aria-pressed が true になっている", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const activeBtn = document.querySelector(".progress-subject-btn.active");
+    expect(activeBtn?.getAttribute("aria-pressed")).toBe("true");
+
+    const inactiveBtns = document.querySelectorAll(".progress-subject-btn:not(.active)");
+    inactiveBtns.forEach((btn) => {
+      expect(btn.getAttribute("aria-pressed")).toBe("false");
+    });
+  });
+
+  it("進度タブをクリックするとカテゴリリストが描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const categoryItems = document.querySelectorAll(".category-item[data-category]");
+    expect(categoryItems.length).toBeGreaterThan(0);
+  });
+
+  it("進度タブ内の単元をクリックすると対応する教科タブへ遷移する", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    // 進度タブに切替
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    // 表示されている単元をクリック（英語が初期選択されているのでphonics-1が存在するはず）
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // 英語タブがアクティブになっているはず
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]');
+    expect(englishTab?.classList.contains("active")).toBe(true);
+  });
+
+  it("進度タブ内の単元をクリックすると単元が選択状態になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
+    catItem?.click();
+
+    // statsInfo が更新されている（単元が選択された状態）
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("全：");
   });
 });
 
