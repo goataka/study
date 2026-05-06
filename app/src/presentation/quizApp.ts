@@ -3855,18 +3855,18 @@ export class QuizApp {
   }
 
   /**
-   * 読み上げボタンの表示を更新する。英語の問題のみボタンを表示し、
-   * Web Speech API（SpeechSynthesis）でアメリカ英語（en-US）で読み上げる。
-   * SpeechSynthesis がサポートされていないブラウザでは読み上げをスキップする。
+   * 読み上げボタンの表示を更新する。英語の問題かつ Web Speech API が利用可能な場合のみ
+   * ボタンを表示し、クリック時にアメリカ英語（en-US）で読み上げる。
    */
   private updateSpeakButton(question: Question): void {
     const btn = document.getElementById("speakBtn");
     if (!btn) return;
 
-    if (question.subject === "english") {
+    const isSpeechAvailable = typeof window.speechSynthesis !== "undefined" && typeof SpeechSynthesisUtterance !== "undefined";
+
+    if (question.subject === "english" && isSpeechAvailable) {
       btn.classList.remove("hidden");
       btn.onclick = () => {
-        if (!window.speechSynthesis) return;
         try {
           window.speechSynthesis.cancel();
           const utterance = new SpeechSynthesisUtterance(question.question);

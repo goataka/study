@@ -832,11 +832,27 @@ describe("QuizApp — 読み上げボタン仕様", () => {
     expect(utterance.lang).toBe("en-US");
   });
 
-  it("読み上げボタンをクリックすると前の発話をキャンセルしてから読み上げる", async () => {
+  it("読み上げボタンをクリックすると cancel → speak の順で呼ばれる", async () => {
+    const callOrder: string[] = [];
+    speechSynthesisMock.cancel.mockImplementation(() => callOrder.push("cancel"));
+    speechSynthesisMock.speak.mockImplementation(() => callOrder.push("speak"));
+
     await startQuiz();
     const btn = document.getElementById("speakBtn") as HTMLButtonElement;
     btn.click();
-    expect(speechSynthesisMock.cancel).toHaveBeenCalledTimes(1);
+
+    expect(callOrder).toEqual(["cancel", "speak"]);
+  });
+
+  it("speechSynthesis が利用できない場合は読み上げボタンが非表示になる", async () => {
+    Object.defineProperty(window, "speechSynthesis", {
+      value: undefined,
+      writable: true,
+      configurable: true,
+    });
+    await startQuiz();
+    const btn = document.getElementById("speakBtn");
+    expect(btn?.classList.contains("hidden")).toBe(true);
   });
 });
 
