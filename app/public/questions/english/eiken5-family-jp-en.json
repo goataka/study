@@ -11,107 +11,182 @@
   "description": "家族・人に関する言葉を日本語から英語に訳す問題です。",
   "questions": [
     {
-      "id": "eiken5-family-jp-en-0001",
+      "id": "53e120ff-3bd3-5b7e-9087-dc3d0fc93199",
       "question": "「おとうさん」を英語で書くと？",
-      "choices": ["father", "mother", "brother", "grandfather"],
+      "choices": [
+        "father",
+        "mother",
+        "brother",
+        "grandfather"
+      ],
       "correct": 0,
       "explanation": "「おとうさん」は英語で father です"
     },
     {
-      "id": "eiken5-family-jp-en-0002",
+      "id": "f3ca940f-1eae-52bd-bb34-9f0dffdec686",
       "question": "「おかあさん」を英語で書くと？",
-      "choices": ["mother", "father", "sister", "grandmother"],
+      "choices": [
+        "mother",
+        "father",
+        "sister",
+        "grandmother"
+      ],
       "correct": 0,
       "explanation": "「おかあさん」は英語で mother です"
     },
     {
-      "id": "eiken5-family-jp-en-0003",
+      "id": "ef85f78a-640e-51b0-9f0e-a8e165779588",
       "question": "「おにいさん・おとうとさん」を英語で書くと？",
-      "choices": ["brother", "sister", "father", "friend"],
+      "choices": [
+        "brother",
+        "sister",
+        "father",
+        "friend"
+      ],
       "correct": 0,
       "explanation": "「おにいさん・おとうとさん」は英語で brother です"
     },
     {
-      "id": "eiken5-family-jp-en-0004",
+      "id": "3bd38766-da1f-5f58-93a3-f415677e5cb0",
       "question": "「おねえさん・いもうとさん」を英語で書くと？",
-      "choices": ["sister", "brother", "mother", "girl"],
+      "choices": [
+        "sister",
+        "brother",
+        "mother",
+        "girl"
+      ],
       "correct": 0,
       "explanation": "「おねえさん・いもうとさん」は英語で sister です"
     },
     {
-      "id": "eiken5-family-jp-en-0005",
+      "id": "5f3b66ca-9353-5065-be6d-5987c3fd709d",
       "question": "「おじいさん」を英語で書くと？",
-      "choices": ["grandfather", "grandmother", "father", "man"],
+      "choices": [
+        "grandfather",
+        "grandmother",
+        "father",
+        "man"
+      ],
       "correct": 0,
       "explanation": "「おじいさん」は英語で grandfather です"
     },
     {
-      "id": "eiken5-family-jp-en-0006",
+      "id": "a449b457-1326-5117-a747-a58a58fc2d13",
       "question": "「おばあさん」を英語で書くと？",
-      "choices": ["grandmother", "grandfather", "mother", "woman"],
+      "choices": [
+        "grandmother",
+        "grandfather",
+        "mother",
+        "woman"
+      ],
       "correct": 0,
       "explanation": "「おばあさん」は英語で grandmother です"
     },
     {
-      "id": "eiken5-family-jp-en-0007",
+      "id": "de9e3b90-4323-5e7e-85f7-dd30786c9c33",
       "question": "「ともだち」を英語で書くと？",
-      "choices": ["friend", "teacher", "doctor", "child"],
+      "choices": [
+        "friend",
+        "teacher",
+        "doctor",
+        "child"
+      ],
       "correct": 0,
       "explanation": "「ともだち」は英語で friend です"
     },
     {
-      "id": "eiken5-family-jp-en-0008",
+      "id": "e2370280-edc2-517d-b228-746c0d63a4f2",
       "question": "「せんせい」を英語で書くと？",
-      "choices": ["teacher", "doctor", "friend", "man"],
+      "choices": [
+        "teacher",
+        "doctor",
+        "friend",
+        "man"
+      ],
       "correct": 0,
       "explanation": "「せんせい」は英語で teacher です"
     },
     {
-      "id": "eiken5-family-jp-en-0009",
+      "id": "9d502904-6912-5dec-b0d3-d683eea96633",
       "question": "「いしゃ」を英語で書くと？",
-      "choices": ["doctor", "teacher", "friend", "woman"],
+      "choices": [
+        "doctor",
+        "teacher",
+        "friend",
+        "woman"
+      ],
       "correct": 0,
       "explanation": "「いしゃ」は英語で doctor です"
     },
     {
-      "id": "eiken5-family-jp-en-0010",
+      "id": "27ce2313-a2c3-5668-bf78-ff85d99134c7",
       "question": "「こども」を英語で書くと？",
-      "choices": ["child", "baby", "boy", "girl"],
+      "choices": [
+        "child",
+        "baby",
+        "boy",
+        "girl"
+      ],
       "correct": 0,
       "explanation": "「こども」は英語で child です"
     },
     {
-      "id": "eiken5-family-jp-en-0011",
+      "id": "88b37fd0-332e-5f35-b248-e913df16dc57",
       "question": "「おとこのこ」を英語で書くと？",
-      "choices": ["boy", "girl", "child", "man"],
+      "choices": [
+        "boy",
+        "girl",
+        "child",
+        "man"
+      ],
       "correct": 0,
       "explanation": "「おとこのこ」は英語で boy です"
     },
     {
-      "id": "eiken5-family-jp-en-0012",
+      "id": "5097cc0e-6cb0-531d-af01-37b5b46576a9",
       "question": "「おんなのこ」を英語で書くと？",
-      "choices": ["girl", "boy", "child", "woman"],
+      "choices": [
+        "girl",
+        "boy",
+        "child",
+        "woman"
+      ],
       "correct": 0,
       "explanation": "「おんなのこ」は英語で girl です"
     },
     {
-      "id": "eiken5-family-jp-en-0013",
+      "id": "01cbc12c-6857-55ca-863f-b25f29bd003d",
       "question": "「おとこのひと」を英語で書くと？",
-      "choices": ["man", "woman", "boy", "father"],
+      "choices": [
+        "man",
+        "woman",
+        "boy",
+        "father"
+      ],
       "correct": 0,
       "explanation": "「おとこのひと」は英語で man です"
     },
     {
-      "id": "eiken5-family-jp-en-0014",
+      "id": "488478df-0e8b-5204-8d49-419bbc4a71ba",
       "question": "「おんなのひと」を英語で書くと？",
-      "choices": ["woman", "man", "girl", "mother"],
+      "choices": [
+        "woman",
+        "man",
+        "girl",
+        "mother"
+      ],
       "correct": 0,
       "explanation": "「おんなのひと」は英語で woman です"
     },
     {
-      "id": "eiken5-family-jp-en-0015",
+      "id": "c0c31a78-a61a-5b0d-bcd9-0567b029864f",
       "question": "「あかちゃん」を英語で書くと？",
-      "choices": ["baby", "child", "boy", "girl"],
+      "choices": [
+        "baby",
+        "child",
+        "boy",
+        "girl"
+      ],
       "correct": 0,
       "explanation": "「あかちゃん」は英語で baby です"
     }

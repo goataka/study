@@ -11,107 +11,182 @@
   "description": "学校・文具に関する言葉を使った文章の穴埋め問題です。",
   "questions": [
     {
-      "id": "eiken5-school-fill-0001",
+      "id": "9eeda779-8ef7-5d30-87d3-54f002f2bb5f",
       "question": "I go to ___ every day. (まいにちがっこうへ行きます)",
-      "choices": ["school", "classroom", "library", "room"],
+      "choices": [
+        "school",
+        "classroom",
+        "library",
+        "room"
+      ],
       "correct": 0,
       "explanation": "「がっこう」は school です。I go to school every day. でまいにちがっこうへ行くという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0002",
+      "id": "741bbeea-e5b1-5f3a-a37c-32ec3c33d708",
       "question": "There are thirty students in the ___. (そのきょうしつには30人のせいとがいます)",
-      "choices": ["classroom", "school", "library", "door"],
+      "choices": [
+        "classroom",
+        "school",
+        "library",
+        "door"
+      ],
       "correct": 0,
       "explanation": "「きょうしつ」は classroom です。There are thirty students in the classroom. でそのきょうしつには30人のせいとがいるという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0003",
+      "id": "4597c314-de64-5b5a-8408-ad35c2b9a21e",
       "question": "Put your book on the ___. (ほんをつくえの上においてください)",
-      "choices": ["desk", "chair", "bag", "book"],
+      "choices": [
+        "desk",
+        "chair",
+        "bag",
+        "book"
+      ],
       "correct": 0,
       "explanation": "「つくえ」は desk です。Put your book on the desk. でほんをつくえの上においてくださいという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0004",
+      "id": "edb97d33-d2a8-5ce8-a533-4b06c17fc9f6",
       "question": "Sit on your ___. (いすにすわってください)",
-      "choices": ["chair", "desk", "door", "window"],
+      "choices": [
+        "chair",
+        "desk",
+        "door",
+        "window"
+      ],
       "correct": 0,
       "explanation": "「いす」は chair です。Sit on your chair. でいすにすわってくださいという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0005",
+      "id": "4ad53ce8-f0a2-50df-a7cb-9f0a961935c0",
       "question": "I read a ___. (わたしはほんを読みます)",
-      "choices": ["book", "pencil", "notebook", "bag"],
+      "choices": [
+        "book",
+        "pencil",
+        "notebook",
+        "bag"
+      ],
       "correct": 0,
       "explanation": "「ほん」は book です。I read a book. でわたしはほんを読むという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0006",
+      "id": "d7112f99-397b-500f-b018-ca5eec16820f",
       "question": "Write with a ___. (えんぴつで書いてください)",
-      "choices": ["pencil", "pen", "eraser", "book"],
+      "choices": [
+        "pencil",
+        "pen",
+        "eraser",
+        "book"
+      ],
       "correct": 0,
       "explanation": "「えんぴつ」は pencil です。Write with a pencil. でえんぴつで書いてくださいという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0007",
+      "id": "dd3fa195-6711-5045-af4e-4c1b3bd12fd0",
       "question": "I write with a ___. (わたしはペンで書きます)",
-      "choices": ["pen", "pencil", "eraser", "notebook"],
+      "choices": [
+        "pen",
+        "pencil",
+        "eraser",
+        "notebook"
+      ],
       "correct": 0,
       "explanation": "「ペン」は pen です。I write with a pen. でわたしはペンで書くという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0008",
+      "id": "6f4320b2-a2f4-54a5-aefe-829124b7a097",
       "question": "I use an ___ for mistakes. (まちがいにけしゴムを使います)",
-      "choices": ["eraser", "pencil", "pen", "bag"],
+      "choices": [
+        "eraser",
+        "pencil",
+        "pen",
+        "bag"
+      ],
       "correct": 0,
       "explanation": "「けしゴム」は eraser です。I use an eraser for mistakes. でまちがいにけしゴムを使うという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0009",
+      "id": "5f07e9c9-ea70-5991-b0c0-ed403166de22",
       "question": "I carry my ___ to school. (がっこうにかばんを持っていきます)",
-      "choices": ["bag", "book", "notebook", "eraser"],
+      "choices": [
+        "bag",
+        "book",
+        "notebook",
+        "eraser"
+      ],
       "correct": 0,
       "explanation": "「かばん」は bag です。I carry my bag to school. でがっこうにかばんを持っていくという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0010",
+      "id": "0ab5302b-2074-5f17-abc3-f9ce533268ad",
       "question": "Write in your ___. (ノートに書いてください)",
-      "choices": ["notebook", "book", "bag", "pen"],
+      "choices": [
+        "notebook",
+        "book",
+        "bag",
+        "pen"
+      ],
       "correct": 0,
       "explanation": "「ノート」は notebook です。Write in your notebook. でノートに書いてくださいという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0011",
+      "id": "4f6e6c25-12f2-51c0-8176-3b705c1dad40",
       "question": "The ___ explains the lesson. (そのせんせいはじゅぎょうを説明します)",
-      "choices": ["teacher", "student", "doctor", "friend"],
+      "choices": [
+        "teacher",
+        "student",
+        "doctor",
+        "friend"
+      ],
       "correct": 0,
       "explanation": "「せんせい」は teacher です。The teacher explains the lesson. でそのせんせいはじゅぎょうを説明するという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0012",
+      "id": "3bcc1d3e-192d-5435-81a1-d05a9c8461fd",
       "question": "The ___ studies hard. (そのせいとはよく勉強します)",
-      "choices": ["student", "teacher", "child", "boy"],
+      "choices": [
+        "student",
+        "teacher",
+        "child",
+        "boy"
+      ],
       "correct": 0,
       "explanation": "「せいと」は student です。The student studies hard. でそのせいとはよく勉強するという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0013",
+      "id": "77cf1b1f-9c82-5315-80bf-c9b96f0f300e",
       "question": "I read books at the ___. (わたしはとしょかんで本を読みます)",
-      "choices": ["library", "school", "classroom", "room"],
+      "choices": [
+        "library",
+        "school",
+        "classroom",
+        "room"
+      ],
       "correct": 0,
       "explanation": "「としょかん」は library です。I read books at the library. でわたしはとしょかんで本を読むという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0014",
+      "id": "ccbe97f8-3cda-57f8-8dfa-81f05f85dc1f",
       "question": "Open the ___. (ドアをあけてください)",
-      "choices": ["door", "window", "desk", "chair"],
+      "choices": [
+        "door",
+        "window",
+        "desk",
+        "chair"
+      ],
       "correct": 0,
       "explanation": "「ドア」は door です。Open the door. でドアをあけてくださいという意味になります"
     },
     {
-      "id": "eiken5-school-fill-0015",
+      "id": "cb6cec2f-73b3-5c90-ab05-9b21db561906",
       "question": "Look out the ___. (まどの外を見てください)",
-      "choices": ["window", "door", "desk", "classroom"],
+      "choices": [
+        "window",
+        "door",
+        "desk",
+        "classroom"
+      ],
       "correct": 0,
       "explanation": "「まど」は window です。Look out the window. でまどの外を見てくださいという意味になります"
     }
