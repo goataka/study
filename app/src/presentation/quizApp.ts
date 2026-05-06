@@ -4872,10 +4872,16 @@ export class QuizApp {
     const reader = new FileReader();
     reader.onload = (e) => {
       const result = e.target?.result;
-      if (typeof result !== "string") return;
+      if (typeof result !== "string") {
+        console.error("アバター画像の読み込みに失敗しました");
+        return;
+      }
       this.userAvatarDataUrl = result;
       this.progressRepo.saveUserAvatar(result);
       this.updateUserAvatarDisplay();
+    };
+    reader.onerror = () => {
+      console.error("アバター画像の読み込みに失敗しました");
     };
     reader.readAsDataURL(file);
   }
