@@ -17,7 +17,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
     /* 机の木目：横方向の木目写真（右下マーク除去済み） */
     background-color: #7a4e28;
-    background-image: url("./wood-bg.png");
+    background-image: url("../public/wood-bg.png");
     background-repeat: repeat;
     background-size: 1424px 747px;
     /* 1920×1080 を基準キャンバスとして固定し、zoom によって画面全体にフィットさせる */
