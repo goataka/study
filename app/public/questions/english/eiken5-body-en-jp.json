@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-body-en-jp",
+  "categoryName": "🧍 身体（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-body",
+  "parentCategoryName": "身体",
+  "referenceGrade": "小学3年",
+  "description": "身体の部位を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "59e389e7-ea9d-5e0c-98b7-44936edb52ca",
+      "question": "「head」の意味は？",
+      "choices": [
+        "あたま",
+        "かお",
+        "かみのけ",
+        "かた"
+      ],
+      "correct": 0,
+      "explanation": "head は「あたま」です"
+    },
+    {
+      "id": "9e617aff-f03d-5b31-9f32-9e1bc6ca3387",
+      "question": "「eye」の意味は？",
+      "choices": [
+        "め",
+        "みみ",
+        "はな",
+        "くち"
+      ],
+      "correct": 0,
+      "explanation": "eye は「め」です"
+    },
+    {
+      "id": "715fb258-dd32-516d-8420-6d1fbc439c8f",
+      "question": "「ear」の意味は？",
+      "choices": [
+        "みみ",
+        "め",
+        "はな",
+        "くち"
+      ],
+      "correct": 0,
+      "explanation": "ear は「みみ」です"
+    },
+    {
+      "id": "014f986f-3481-5cb0-b9b5-1f6619bd8d7c",
+      "question": "「nose」の意味は？",
+      "choices": [
+        "はな",
+        "くち",
+        "め",
+        "みみ"
+      ],
+      "correct": 0,
+      "explanation": "nose は「はな」です"
+    },
+    {
+      "id": "d4a95b6f-cdec-5cb6-9b35-01ddb764fcaf",
+      "question": "「mouth」の意味は？",
+      "choices": [
+        "くち",
+        "はな",
+        "かお",
+        "は（歯）"
+      ],
+      "correct": 0,
+      "explanation": "mouth は「くち」です"
+    },
+    {
+      "id": "c5a462b0-dfc0-505f-8b87-6a99c166802c",
+      "question": "「hand」の意味は？",
+      "choices": [
+        "て",
+        "うで",
+        "ゆび",
+        "あし（脚）"
+      ],
+      "correct": 0,
+      "explanation": "hand は「て」です"
+    },
+    {
+      "id": "cb67047d-d9c3-5ed2-aa37-b8382ab0850f",
+      "question": "「foot」の意味は？",
+      "choices": [
+        "あし（足）",
+        "あし（脚）",
+        "て",
+        "せなか"
+      ],
+      "correct": 0,
+      "explanation": "foot は「あし（足）」です"
+    },
+    {
+      "id": "bface865-d0d0-5b11-a05b-6e443c6a675f",
+      "question": "「arm」の意味は？",
+      "choices": [
+        "うで",
+        "て",
+        "あし（脚）",
+        "かた"
+      ],
+      "correct": 0,
+      "explanation": "arm は「うで」です"
+    },
+    {
+      "id": "e3dde84b-d7b3-57d5-8239-b63c96d26d8b",
+      "question": "「leg」の意味は？",
+      "choices": [
+        "あし（脚）",
+        "あし（足）",
+        "うで",
+        "せなか"
+      ],
+      "correct": 0,
+      "explanation": "leg は「あし（脚）」です"
+    },
+    {
+      "id": "0e414635-a048-55b3-aefc-bd60a96628b8",
+      "question": "「face」の意味は？",
+      "choices": [
+        "かお",
+        "あたま",
+        "かみのけ",
+        "は（歯）"
+      ],
+      "correct": 0,
+      "explanation": "face は「かお」です"
+    },
+    {
+      "id": "415a0a02-6b4e-5915-9001-09c94d338042",
+      "question": "「finger」の意味は？",
+      "choices": [
+        "ゆび",
+        "て",
+        "うで",
+        "あし（脚）"
+      ],
+      "correct": 0,
+      "explanation": "finger は「ゆび」です"
+    },
+    {
+      "id": "686ae86f-1aad-5842-939d-2e61f717905a",
+      "question": "「hair」の意味は？",
+      "choices": [
+        "かみのけ",
+        "あたま",
+        "かお",
+        "せなか"
+      ],
+      "correct": 0,
+      "explanation": "hair は「かみのけ」です"
+    },
+    {
+      "id": "8de06f15-d3f6-51e6-b894-46b83685339d",
+      "question": "「tooth」の意味は？",
+      "choices": [
+        "は（歯）",
+        "くち",
+        "はな",
+        "かお"
+      ],
+      "correct": 0,
+      "explanation": "tooth は「は（歯）」です"
+    },
+    {
+      "id": "453e5711-c59e-542f-b302-7ab6a31f54d5",
+      "question": "「back」の意味は？",
+      "choices": [
+        "せなか",
+        "かた",
+        "うで",
+        "あし（脚）"
+      ],
+      "correct": 0,
+      "explanation": "back は「せなか」です"
+    },
+    {
+      "id": "0b18dfdb-8b08-522d-aacc-9549abbd242d",
+      "question": "「shoulder」の意味は？",
+      "choices": [
+        "かた",
+        "せなか",
+        "うで",
+        "あたま"
+      ],
+      "correct": 0,
+      "explanation": "shoulder は「かた」です"
+    }
+  ]
+}

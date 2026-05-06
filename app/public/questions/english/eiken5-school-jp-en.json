@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-school-jp-en",
+  "categoryName": "🏫 学校・文具（日→英）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-school",
+  "parentCategoryName": "学校・文具",
+  "referenceGrade": "小学4年",
+  "description": "学校・文具に関する言葉を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "f29e0636-c620-5f3e-9f6a-bab691cbacb7",
+      "question": "「がっこう」を英語で書くと？",
+      "choices": [
+        "school",
+        "classroom",
+        "library",
+        "room"
+      ],
+      "correct": 0,
+      "explanation": "「がっこう」は英語で school です"
+    },
+    {
+      "id": "e3247352-27df-5eb1-8df6-0458dfb133d8",
+      "question": "「きょうしつ」を英語で書くと？",
+      "choices": [
+        "classroom",
+        "school",
+        "library",
+        "door"
+      ],
+      "correct": 0,
+      "explanation": "「きょうしつ」は英語で classroom です"
+    },
+    {
+      "id": "4bc532a9-8277-55fe-a029-83c4d8393742",
+      "question": "「つくえ」を英語で書くと？",
+      "choices": [
+        "desk",
+        "chair",
+        "bag",
+        "book"
+      ],
+      "correct": 0,
+      "explanation": "「つくえ」は英語で desk です"
+    },
+    {
+      "id": "b0625527-8171-576b-9530-3cd4bbe00e36",
+      "question": "「いす」を英語で書くと？",
+      "choices": [
+        "chair",
+        "desk",
+        "door",
+        "window"
+      ],
+      "correct": 0,
+      "explanation": "「いす」は英語で chair です"
+    },
+    {
+      "id": "e7bf4196-4786-5009-bd36-40c3ba7ada81",
+      "question": "「ほん」を英語で書くと？",
+      "choices": [
+        "book",
+        "pencil",
+        "notebook",
+        "bag"
+      ],
+      "correct": 0,
+      "explanation": "「ほん」は英語で book です"
+    },
+    {
+      "id": "9e60a600-288f-533f-9cbf-170ef8d8037a",
+      "question": "「えんぴつ」を英語で書くと？",
+      "choices": [
+        "pencil",
+        "pen",
+        "eraser",
+        "book"
+      ],
+      "correct": 0,
+      "explanation": "「えんぴつ」は英語で pencil です"
+    },
+    {
+      "id": "d5f04012-4a8a-55fd-80e7-2ab7e1f5793d",
+      "question": "「ペン」を英語で書くと？",
+      "choices": [
+        "pen",
+        "pencil",
+        "eraser",
+        "notebook"
+      ],
+      "correct": 0,
+      "explanation": "「ペン」は英語で pen です"
+    },
+    {
+      "id": "2c88e823-04f5-583a-9e8e-52414af0ec0e",
+      "question": "「けしゴム」を英語で書くと？",
+      "choices": [
+        "eraser",
+        "pencil",
+        "pen",
+        "bag"
+      ],
+      "correct": 0,
+      "explanation": "「けしゴム」は英語で eraser です"
+    },
+    {
+      "id": "3d942b35-8e84-5171-898d-b59b55c43a84",
+      "question": "「かばん」を英語で書くと？",
+      "choices": [
+        "bag",
+        "book",
+        "notebook",
+        "eraser"
+      ],
+      "correct": 0,
+      "explanation": "「かばん」は英語で bag です"
+    },
+    {
+      "id": "2bd25a07-d30c-5e8b-ace6-25a86f017d8a",
+      "question": "「ノート」を英語で書くと？",
+      "choices": [
+        "notebook",
+        "book",
+        "bag",
+        "pen"
+      ],
+      "correct": 0,
+      "explanation": "「ノート」は英語で notebook です"
+    },
+    {
+      "id": "35ff41af-5f12-54ed-bbbf-5b4590df0883",
+      "question": "「せんせい」を英語で書くと？",
+      "choices": [
+        "teacher",
+        "student",
+        "doctor",
+        "friend"
+      ],
+      "correct": 0,
+      "explanation": "「せんせい」は英語で teacher です"
+    },
+    {
+      "id": "b68007ee-33c6-5894-bc54-f30096b5fdff",
+      "question": "「せいと」を英語で書くと？",
+      "choices": [
+        "student",
+        "teacher",
+        "child",
+        "boy"
+      ],
+      "correct": 0,
+      "explanation": "「せいと」は英語で student です"
+    },
+    {
+      "id": "08b8b17f-9bc1-5ee4-9fca-a756d2927256",
+      "question": "「としょかん」を英語で書くと？",
+      "choices": [
+        "library",
+        "school",
+        "classroom",
+        "room"
+      ],
+      "correct": 0,
+      "explanation": "「としょかん」は英語で library です"
+    },
+    {
+      "id": "b57ce1c9-f3ed-552b-b07d-68304de145e4",
+      "question": "「ドア」を英語で書くと？",
+      "choices": [
+        "door",
+        "window",
+        "desk",
+        "chair"
+      ],
+      "correct": 0,
+      "explanation": "「ドア」は英語で door です"
+    },
+    {
+      "id": "14000777-33a7-55ec-83d4-d95184173d93",
+      "question": "「まど」を英語で書くと？",
+      "choices": [
+        "window",
+        "door",
+        "desk",
+        "classroom"
+      ],
+      "correct": 0,
+      "explanation": "「まど」は英語で window です"
+    }
+  ]
+}

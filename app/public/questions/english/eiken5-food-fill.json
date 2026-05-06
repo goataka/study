@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-food-fill",
+  "categoryName": "🍎 食べ物・飲み物（穴埋め）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-food",
+  "parentCategoryName": "食べ物・飲み物",
+  "referenceGrade": "小学3年",
+  "description": "食べ物・飲み物の名前を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "3c51ba6c-73bf-5ead-bc90-5a837ecdaf6d",
+      "question": "I eat an ___ every day. (まいにちりんごを食べます)",
+      "choices": [
+        "apple",
+        "orange",
+        "banana",
+        "cake"
+      ],
+      "correct": 0,
+      "explanation": "「りんご」は apple です。I eat an apple every day. でまいにちりんごを食べるという意味になります"
+    },
+    {
+      "id": "6a2694d4-5803-5828-b39a-b1542ba598e6",
+      "question": "I like ___. (オレンジが好きです)",
+      "choices": [
+        "orange",
+        "apple",
+        "banana",
+        "salad"
+      ],
+      "correct": 0,
+      "explanation": "「オレンジ」は orange です。I like orange. でオレンジが好きという意味になります"
+    },
+    {
+      "id": "7a64e144-de7b-578b-9744-b26ab4602660",
+      "question": "A monkey likes ___. (さるはバナナが好きです)",
+      "choices": [
+        "banana",
+        "apple",
+        "orange",
+        "bread"
+      ],
+      "correct": 0,
+      "explanation": "「バナナ」は banana です。A monkey likes banana. でさるはバナナが好きという意味になります"
+    },
+    {
+      "id": "b3232846-7e51-5f1f-bf76-33d3d3db3f05",
+      "question": "We have ___ for breakfast. (朝食にパンを食べます)",
+      "choices": [
+        "bread",
+        "rice",
+        "cake",
+        "egg"
+      ],
+      "correct": 0,
+      "explanation": "「パン」は bread です。We have bread for breakfast. で朝食にパンを食べるという意味になります"
+    },
+    {
+      "id": "ce24ecde-233c-5eb9-a7d5-0dbe9ca7fbc6",
+      "question": "We eat ___ and fish. (ごはんとさかなを食べます)",
+      "choices": [
+        "rice",
+        "bread",
+        "meat",
+        "salad"
+      ],
+      "correct": 0,
+      "explanation": "「ごはん」は rice です。We eat rice and fish. でごはんとさかなを食べるという意味になります"
+    },
+    {
+      "id": "373e5f35-62bd-5836-b083-889fcff42299",
+      "question": "She drinks ___ in the morning. (かのじょは朝ぎゅうにゅうを飲みます)",
+      "choices": [
+        "milk",
+        "water",
+        "juice",
+        "tea"
+      ],
+      "correct": 0,
+      "explanation": "「ぎゅうにゅう」は milk です。She drinks milk in the morning. でかのじょは朝ぎゅうにゅうを飲むという意味になります"
+    },
+    {
+      "id": "0b1def45-758e-5132-8a58-3aad8bc52a2d",
+      "question": "I want some ___. (みずがほしいです)",
+      "choices": [
+        "water",
+        "milk",
+        "juice",
+        "coffee"
+      ],
+      "correct": 0,
+      "explanation": "「みず」は water です。I want some water. でみずがほしいという意味になります"
+    },
+    {
+      "id": "74d87d8a-a9a1-5e7f-b7e4-a7670dca5049",
+      "question": "I drink orange ___. (オレンジジュースを飲みます)",
+      "choices": [
+        "juice",
+        "water",
+        "milk",
+        "tea"
+      ],
+      "correct": 0,
+      "explanation": "「ジュース」は juice です。I drink orange juice. でオレンジジュースを飲むという意味になります"
+    },
+    {
+      "id": "0300568f-e260-5024-8895-2f35f05e6705",
+      "question": "I like ___ with sugar. (さとうを入れたおちゃが好きです)",
+      "choices": [
+        "tea",
+        "coffee",
+        "juice",
+        "milk"
+      ],
+      "correct": 0,
+      "explanation": "「おちゃ」は tea です。I like tea with sugar. でさとうを入れたおちゃが好きという意味になります"
+    },
+    {
+      "id": "0257fccc-850b-581d-9bb1-a2c198c5741a",
+      "question": "He drinks ___ every morning. (かれはまいあさコーヒーを飲みます)",
+      "choices": [
+        "coffee",
+        "tea",
+        "water",
+        "juice"
+      ],
+      "correct": 0,
+      "explanation": "「コーヒー」は coffee です。He drinks coffee every morning. でかれはまいあさコーヒーを飲むという意味になります"
+    },
+    {
+      "id": "ecdd05fb-ccc4-507c-8cc5-a6632dec1724",
+      "question": "I eat ___ for breakfast. (朝食にたまごを食べます)",
+      "choices": [
+        "egg",
+        "bread",
+        "rice",
+        "meat"
+      ],
+      "correct": 0,
+      "explanation": "「たまご」は egg です。I eat egg for breakfast. で朝食にたまごを食べるという意味になります"
+    },
+    {
+      "id": "ceea5c4e-4ffd-540a-a6e8-075c00a9a410",
+      "question": "My birthday ___ is sweet. (たんじょう日のケーキは甘いです)",
+      "choices": [
+        "cake",
+        "bread",
+        "egg",
+        "salad"
+      ],
+      "correct": 0,
+      "explanation": "「ケーキ」は cake です。My birthday cake is sweet. でたんじょう日のケーキは甘いという意味になります"
+    },
+    {
+      "id": "5d40ddc7-9de0-52cb-96db-cbc866786bc0",
+      "question": "We eat ___ and rice. (さかなとごはんを食べます)",
+      "choices": [
+        "fish",
+        "meat",
+        "egg",
+        "salad"
+      ],
+      "correct": 0,
+      "explanation": "「さかな」は fish です。We eat fish and rice. でさかなとごはんを食べるという意味になります"
+    },
+    {
+      "id": "3fb43bc5-b8ff-5d24-8a70-ac9bb75961cc",
+      "question": "I like ___ and vegetables. (にくとやさいが好きです)",
+      "choices": [
+        "meat",
+        "fish",
+        "egg",
+        "bread"
+      ],
+      "correct": 0,
+      "explanation": "「にく」は meat です。I like meat and vegetables. でにくとやさいが好きという意味になります"
+    },
+    {
+      "id": "77e97cdb-2a36-5b56-a63c-0b46d34f61af",
+      "question": "I eat ___ for lunch. (ひるごはんにサラダを食べます)",
+      "choices": [
+        "salad",
+        "meat",
+        "rice",
+        "cake"
+      ],
+      "correct": 0,
+      "explanation": "「サラダ」は salad です。I eat salad for lunch. でひるごはんにサラダを食べるという意味になります"
+    }
+  ]
+}

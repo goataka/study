@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-daily-fill",
+  "categoryName": "🌞 日常生活（穴埋め）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-daily",
+  "parentCategoryName": "日常生活",
+  "referenceGrade": "小学4年",
+  "description": "日常生活に関する言葉を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "1cbc12b6-a738-5559-b9f2-d6707c5e2359",
+      "question": "I get up in the ___. (わたしはあさ起きます)",
+      "choices": [
+        "morning",
+        "afternoon",
+        "evening",
+        "night"
+      ],
+      "correct": 0,
+      "explanation": "「あさ」は morning です。I get up in the morning. でわたしはあさ起きるという意味になります"
+    },
+    {
+      "id": "5df76b10-061f-506e-b269-50d57f1d858d",
+      "question": "We eat lunch in the ___. (わたしたちはごごにひるごはんを食べます)",
+      "choices": [
+        "afternoon",
+        "morning",
+        "evening",
+        "day"
+      ],
+      "correct": 0,
+      "explanation": "「午後」は afternoon です。We eat lunch in the afternoon. でわたしたちはごごにひるごはんを食べるという意味になります"
+    },
+    {
+      "id": "9745224b-3f6b-5468-a365-db6ef0ee0651",
+      "question": "The sun sets in the ___. (たいようはゆうがたにしずみます)",
+      "choices": [
+        "evening",
+        "afternoon",
+        "night",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "「ゆうがた」は evening です。The sun sets in the evening. でたいようはゆうがたにしずむという意味になります"
+    },
+    {
+      "id": "37d86110-1195-5a59-a7c9-0ddcf2474bb0",
+      "question": "I sleep at ___. (わたしはよるねます)",
+      "choices": [
+        "night",
+        "evening",
+        "morning",
+        "day"
+      ],
+      "correct": 0,
+      "explanation": "「よる」は night です。I sleep at night. でわたしはよるねるという意味になります"
+    },
+    {
+      "id": "2a7aaca8-a75f-5e07-b8f6-cf97848cd662",
+      "question": "It is a nice ___. (いい日です)",
+      "choices": [
+        "day",
+        "week",
+        "month",
+        "year"
+      ],
+      "correct": 0,
+      "explanation": "「日」は day です。It is a nice day. でいい日ですという意味になります"
+    },
+    {
+      "id": "b2a1adf2-e690-5c36-8324-34c014c4fe03",
+      "question": "There are seven days in a ___. (1しゅうは7日あります)",
+      "choices": [
+        "week",
+        "day",
+        "month",
+        "year"
+      ],
+      "correct": 0,
+      "explanation": "「しゅう」は week です。There are seven days in a week. で1しゅうは7日あるという意味になります"
+    },
+    {
+      "id": "1c4bbb57-6369-5e4f-886d-39a0c168a691",
+      "question": "January is a cold ___. (1月はさむい月です)",
+      "choices": [
+        "month",
+        "week",
+        "year",
+        "day"
+      ],
+      "correct": 0,
+      "explanation": "「つき・月」は month です。January is a cold month. で1月はさむい月ですという意味になります"
+    },
+    {
+      "id": "67115e3a-2706-57e1-b607-1face2f01924",
+      "question": "Happy New ___! (あけましておめでとう！)",
+      "choices": [
+        "Year",
+        "Month",
+        "Week",
+        "Time"
+      ],
+      "correct": 0,
+      "explanation": "「とし・年」は year です。Happy New Year! であけましておめでとうという意味になります"
+    },
+    {
+      "id": "93326b84-9c8b-50a8-8126-5ead3aae2729",
+      "question": "What ___ is it? (いまなんじですか？)",
+      "choices": [
+        "time",
+        "year",
+        "day",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "「じかん」は time です。What time is it? でいまなんじですかという意味になります"
+    },
+    {
+      "id": "654bddd1-a6a1-545a-8870-9b9cfa507bad",
+      "question": "I eat ___ at seven. (7時にあさごはんを食べます)",
+      "choices": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "time"
+      ],
+      "correct": 0,
+      "explanation": "「あさごはん」は breakfast です。I eat breakfast at seven. で7時にあさごはんを食べるという意味になります"
+    },
+    {
+      "id": "4f39f941-de8c-58dd-bf43-5a2253bf7c3e",
+      "question": "We have ___ at school. (がっこうでひるごはんを食べます)",
+      "choices": [
+        "lunch",
+        "breakfast",
+        "dinner",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "「ひるごはん」は lunch です。We have lunch at school. でがっこうでひるごはんを食べるという意味になります"
+    },
+    {
+      "id": "2c637787-d153-54fa-9989-e931553eb29a",
+      "question": "My family eats ___ together. (かぞくはいっしょにゆうごはんを食べます)",
+      "choices": [
+        "dinner",
+        "lunch",
+        "breakfast",
+        "evening"
+      ],
+      "correct": 0,
+      "explanation": "「ゆうごはん」は dinner です。My family eats dinner together. でかぞくはいっしょにゆうごはんを食べるという意味になります"
+    },
+    {
+      "id": "5bffa4db-b054-582a-9c89-b5a1df3aabd6",
+      "question": "I ___ eight hours. (わたしは8時間ねます)",
+      "choices": [
+        "sleep",
+        "work",
+        "play",
+        "time"
+      ],
+      "correct": 0,
+      "explanation": "「ねる」は sleep です。I sleep eight hours. でわたしは8時間ねるという意味になります"
+    },
+    {
+      "id": "7bf530a7-72ba-594b-a6ee-35e68ee29ddd",
+      "question": "My father goes to ___. (わたしのおとうさんはしごとに行きます)",
+      "choices": [
+        "work",
+        "sleep",
+        "play",
+        "day"
+      ],
+      "correct": 0,
+      "explanation": "「しごと」は work です。My father goes to work. でわたしのおとうさんはしごとに行くという意味になります"
+    },
+    {
+      "id": "0e40877d-1b3f-537a-9e8e-81da0f9afb84",
+      "question": "Let's ___ soccer! (サッカーをあそびましょう！)",
+      "choices": [
+        "play",
+        "work",
+        "sleep",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "「あそぶ」は play です。Let's play soccer! でサッカーをあそびましょうという意味になります"
+    }
+  ]
+}

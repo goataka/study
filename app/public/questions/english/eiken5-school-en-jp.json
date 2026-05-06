@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-school-en-jp",
+  "categoryName": "🏫 学校・文具（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-school",
+  "parentCategoryName": "学校・文具",
+  "referenceGrade": "小学4年",
+  "description": "学校・文具に関する言葉を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "44a5d82f-0ee3-507f-8521-5ef639965812",
+      "question": "「school」の意味は？",
+      "choices": [
+        "がっこう",
+        "きょうしつ",
+        "としょかん",
+        "へや"
+      ],
+      "correct": 0,
+      "explanation": "school は「がっこう」です"
+    },
+    {
+      "id": "9d9ff555-f7f0-5fef-995e-b01d714c6571",
+      "question": "「classroom」の意味は？",
+      "choices": [
+        "きょうしつ",
+        "がっこう",
+        "としょかん",
+        "ドア"
+      ],
+      "correct": 0,
+      "explanation": "classroom は「きょうしつ」です"
+    },
+    {
+      "id": "051289ed-b0ea-5f7e-822b-7c403e6f1434",
+      "question": "「desk」の意味は？",
+      "choices": [
+        "つくえ",
+        "いす",
+        "かばん",
+        "ほん"
+      ],
+      "correct": 0,
+      "explanation": "desk は「つくえ」です"
+    },
+    {
+      "id": "a4e343e3-bbd0-5037-8628-c99b030930a2",
+      "question": "「chair」の意味は？",
+      "choices": [
+        "いす",
+        "つくえ",
+        "ドア",
+        "まど"
+      ],
+      "correct": 0,
+      "explanation": "chair は「いす」です"
+    },
+    {
+      "id": "a4f1970e-fc80-535e-ab26-e65e322a84f4",
+      "question": "「book」の意味は？",
+      "choices": [
+        "ほん",
+        "えんぴつ",
+        "ノート",
+        "かばん"
+      ],
+      "correct": 0,
+      "explanation": "book は「ほん」です"
+    },
+    {
+      "id": "54ac5076-9065-5827-ac02-e0f78b0679f4",
+      "question": "「pencil」の意味は？",
+      "choices": [
+        "えんぴつ",
+        "ペン",
+        "けしゴム",
+        "ほん"
+      ],
+      "correct": 0,
+      "explanation": "pencil は「えんぴつ」です"
+    },
+    {
+      "id": "c1aeeec4-6180-5613-8905-335396c48b9b",
+      "question": "「pen」の意味は？",
+      "choices": [
+        "ペン",
+        "えんぴつ",
+        "けしゴム",
+        "ノート"
+      ],
+      "correct": 0,
+      "explanation": "pen は「ペン」です"
+    },
+    {
+      "id": "de6d8281-0167-5894-ac16-c4bda05f4848",
+      "question": "「eraser」の意味は？",
+      "choices": [
+        "けしゴム",
+        "えんぴつ",
+        "ペン",
+        "かばん"
+      ],
+      "correct": 0,
+      "explanation": "eraser は「けしゴム」です"
+    },
+    {
+      "id": "ffe26378-8f66-56d5-a8d8-522a657bc8be",
+      "question": "「bag」の意味は？",
+      "choices": [
+        "かばん",
+        "ほん",
+        "ノート",
+        "けしゴム"
+      ],
+      "correct": 0,
+      "explanation": "bag は「かばん」です"
+    },
+    {
+      "id": "2b4fe248-6d4e-58c6-9590-ab9461870b2e",
+      "question": "「notebook」の意味は？",
+      "choices": [
+        "ノート",
+        "ほん",
+        "かばん",
+        "ペン"
+      ],
+      "correct": 0,
+      "explanation": "notebook は「ノート」です"
+    },
+    {
+      "id": "c37de0a4-65ca-52c1-a736-1ead90c3cba2",
+      "question": "「teacher」の意味は？",
+      "choices": [
+        "せんせい",
+        "せいと",
+        "いしゃ",
+        "ともだち"
+      ],
+      "correct": 0,
+      "explanation": "teacher は「せんせい」です"
+    },
+    {
+      "id": "56937978-9926-56f8-8366-494bd895156f",
+      "question": "「student」の意味は？",
+      "choices": [
+        "せいと",
+        "せんせい",
+        "こども",
+        "おとこのこ"
+      ],
+      "correct": 0,
+      "explanation": "student は「せいと」です"
+    },
+    {
+      "id": "482d383f-7037-52c5-a56a-97546816ba22",
+      "question": "「library」の意味は？",
+      "choices": [
+        "としょかん",
+        "がっこう",
+        "きょうしつ",
+        "へや"
+      ],
+      "correct": 0,
+      "explanation": "library は「としょかん」です"
+    },
+    {
+      "id": "81717237-6556-55ff-8647-f1e998fa90b9",
+      "question": "「door」の意味は？",
+      "choices": [
+        "ドア",
+        "まど",
+        "つくえ",
+        "いす"
+      ],
+      "correct": 0,
+      "explanation": "door は「ドア」です"
+    },
+    {
+      "id": "bfc94003-59d9-52fc-8fda-fd27df0a8c28",
+      "question": "「window」の意味は？",
+      "choices": [
+        "まど",
+        "ドア",
+        "つくえ",
+        "きょうしつ"
+      ],
+      "correct": 0,
+      "explanation": "window は「まど」です"
+    }
+  ]
+}

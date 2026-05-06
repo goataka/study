@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-family-en-jp",
+  "categoryName": "👨‍👩‍👧‍👦 家族・人（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-family",
+  "parentCategoryName": "家族・人",
+  "referenceGrade": "小学3年",
+  "description": "家族・人に関する言葉を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "de42db7d-8f11-5822-b43e-e07a9c4d7661",
+      "question": "「father」の意味は？",
+      "choices": [
+        "おとうさん",
+        "おかあさん",
+        "おにいさん",
+        "おじいさん"
+      ],
+      "correct": 0,
+      "explanation": "father は「おとうさん」です"
+    },
+    {
+      "id": "ef38c6a4-7de4-597b-96a7-00de2d910444",
+      "question": "「mother」の意味は？",
+      "choices": [
+        "おかあさん",
+        "おとうさん",
+        "おねえさん",
+        "おばあさん"
+      ],
+      "correct": 0,
+      "explanation": "mother は「おかあさん」です"
+    },
+    {
+      "id": "f8bc26b9-2bba-538d-9971-8da94047c5ef",
+      "question": "「brother」の意味は？",
+      "choices": [
+        "おにいさん・おとうとさん",
+        "おねえさん・いもうとさん",
+        "おとうさん",
+        "ともだち"
+      ],
+      "correct": 0,
+      "explanation": "brother は「おにいさん・おとうとさん」です"
+    },
+    {
+      "id": "2c67b704-253e-56b7-b2c2-afefb256adde",
+      "question": "「sister」の意味は？",
+      "choices": [
+        "おねえさん・いもうとさん",
+        "おにいさん・おとうとさん",
+        "おかあさん",
+        "おんなのこ"
+      ],
+      "correct": 0,
+      "explanation": "sister は「おねえさん・いもうとさん」です"
+    },
+    {
+      "id": "ad144f52-c1e9-551c-92ae-4ca496239840",
+      "question": "「grandfather」の意味は？",
+      "choices": [
+        "おじいさん",
+        "おばあさん",
+        "おとうさん",
+        "おとこのひと"
+      ],
+      "correct": 0,
+      "explanation": "grandfather は「おじいさん」です"
+    },
+    {
+      "id": "3c994443-e4a4-58b2-831d-3401108af19f",
+      "question": "「grandmother」の意味は？",
+      "choices": [
+        "おばあさん",
+        "おじいさん",
+        "おかあさん",
+        "おんなのひと"
+      ],
+      "correct": 0,
+      "explanation": "grandmother は「おばあさん」です"
+    },
+    {
+      "id": "15173102-152f-5997-b8a6-622a204c287b",
+      "question": "「friend」の意味は？",
+      "choices": [
+        "ともだち",
+        "せんせい",
+        "いしゃ",
+        "こども"
+      ],
+      "correct": 0,
+      "explanation": "friend は「ともだち」です"
+    },
+    {
+      "id": "a8dc7eee-9ceb-5d01-a08b-0d5f7bb6dc84",
+      "question": "「teacher」の意味は？",
+      "choices": [
+        "せんせい",
+        "いしゃ",
+        "ともだち",
+        "おとこのひと"
+      ],
+      "correct": 0,
+      "explanation": "teacher は「せんせい」です"
+    },
+    {
+      "id": "f0758291-55a4-5d47-ae36-1dffa063343b",
+      "question": "「doctor」の意味は？",
+      "choices": [
+        "いしゃ",
+        "せんせい",
+        "ともだち",
+        "おんなのひと"
+      ],
+      "correct": 0,
+      "explanation": "doctor は「いしゃ」です"
+    },
+    {
+      "id": "c30c480b-c6ec-5892-8e2a-d31e7e983dbd",
+      "question": "「child」の意味は？",
+      "choices": [
+        "こども",
+        "あかちゃん",
+        "おとこのこ",
+        "おんなのこ"
+      ],
+      "correct": 0,
+      "explanation": "child は「こども」です"
+    },
+    {
+      "id": "b0f0ee29-6753-56ff-99d7-e29e3986729e",
+      "question": "「boy」の意味は？",
+      "choices": [
+        "おとこのこ",
+        "おんなのこ",
+        "こども",
+        "おとこのひと"
+      ],
+      "correct": 0,
+      "explanation": "boy は「おとこのこ」です"
+    },
+    {
+      "id": "39e34d2c-c343-5b06-bfd1-e9c75f29b533",
+      "question": "「girl」の意味は？",
+      "choices": [
+        "おんなのこ",
+        "おとこのこ",
+        "こども",
+        "おんなのひと"
+      ],
+      "correct": 0,
+      "explanation": "girl は「おんなのこ」です"
+    },
+    {
+      "id": "1d2eda68-4d89-596d-b9cd-899a6724110a",
+      "question": "「man」の意味は？",
+      "choices": [
+        "おとこのひと",
+        "おんなのひと",
+        "おとこのこ",
+        "おとうさん"
+      ],
+      "correct": 0,
+      "explanation": "man は「おとこのひと」です"
+    },
+    {
+      "id": "f4ab4429-79f6-59a5-b62a-1654febe4a62",
+      "question": "「woman」の意味は？",
+      "choices": [
+        "おんなのひと",
+        "おとこのひと",
+        "おんなのこ",
+        "おかあさん"
+      ],
+      "correct": 0,
+      "explanation": "woman は「おんなのひと」です"
+    },
+    {
+      "id": "faa26e1e-89c3-5ba4-8547-486f186c2d6a",
+      "question": "「baby」の意味は？",
+      "choices": [
+        "あかちゃん",
+        "こども",
+        "おとこのこ",
+        "おんなのこ"
+      ],
+      "correct": 0,
+      "explanation": "baby は「あかちゃん」です"
+    }
+  ]
+}

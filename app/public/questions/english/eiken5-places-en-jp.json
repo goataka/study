@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-places-en-jp",
+  "categoryName": "🏠 場所（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-places",
+  "parentCategoryName": "場所",
+  "referenceGrade": "小学4年",
+  "description": "場所に関する言葉を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "efc489a2-8578-5a0f-84c0-e5170faec2e2",
+      "question": "「house」の意味は？",
+      "choices": [
+        "いえ",
+        "こうえん",
+        "がっこう",
+        "びょういん"
+      ],
+      "correct": 0,
+      "explanation": "house は「いえ」です"
+    },
+    {
+      "id": "76996c5c-6379-53ac-bffd-2efe7d3225ed",
+      "question": "「park」の意味は？",
+      "choices": [
+        "こうえん",
+        "いえ",
+        "にわ",
+        "かいがん"
+      ],
+      "correct": 0,
+      "explanation": "park は「こうえん」です"
+    },
+    {
+      "id": "421b267c-0c05-59e7-a3be-7b0246b8ac12",
+      "question": "「school」の意味は？",
+      "choices": [
+        "がっこう",
+        "としょかん",
+        "いえ",
+        "みせ"
+      ],
+      "correct": 0,
+      "explanation": "school は「がっこう」です"
+    },
+    {
+      "id": "fcbded83-abba-5422-89ed-4c3dd8a9c041",
+      "question": "「hospital」の意味は？",
+      "choices": [
+        "びょういん",
+        "がっこう",
+        "みせ",
+        "えき"
+      ],
+      "correct": 0,
+      "explanation": "hospital は「びょういん」です"
+    },
+    {
+      "id": "bfe27ab1-149d-5c68-b5bd-2293ac430e6a",
+      "question": "「store」の意味は？",
+      "choices": [
+        "みせ",
+        "びょういん",
+        "としょかん",
+        "まち"
+      ],
+      "correct": 0,
+      "explanation": "store は「みせ」です"
+    },
+    {
+      "id": "b7e07d96-968d-5a2b-9199-2d493b964182",
+      "question": "「library」の意味は？",
+      "choices": [
+        "としょかん",
+        "がっこう",
+        "みせ",
+        "へや"
+      ],
+      "correct": 0,
+      "explanation": "library は「としょかん」です"
+    },
+    {
+      "id": "5d349359-d4a7-590b-8f98-e01beefd1537",
+      "question": "「station」の意味は？",
+      "choices": [
+        "えき",
+        "まち",
+        "とおり",
+        "くに"
+      ],
+      "correct": 0,
+      "explanation": "station は「えき」です"
+    },
+    {
+      "id": "72a681fb-dee5-5acd-928f-3fffc77a6012",
+      "question": "「city」の意味は？",
+      "choices": [
+        "まち・都市",
+        "くに・いなか",
+        "えき",
+        "とおり"
+      ],
+      "correct": 0,
+      "explanation": "city は「まち・都市」です"
+    },
+    {
+      "id": "2751a69f-3d26-5276-87e5-c2af7ac37be5",
+      "question": "「country」の意味は？",
+      "choices": [
+        "くに・いなか",
+        "まち・都市",
+        "とおり",
+        "やま"
+      ],
+      "correct": 0,
+      "explanation": "country は「くに・いなか」です"
+    },
+    {
+      "id": "98bf1937-3fdb-5b78-84f5-b4dd527e8396",
+      "question": "「street」の意味は？",
+      "choices": [
+        "とおり",
+        "まち",
+        "くに",
+        "かわ"
+      ],
+      "correct": 0,
+      "explanation": "street は「とおり」です"
+    },
+    {
+      "id": "8885c18d-d65a-51c6-acf5-5a3b12e89f32",
+      "question": "「room」の意味は？",
+      "choices": [
+        "へや",
+        "いえ",
+        "にわ",
+        "としょかん"
+      ],
+      "correct": 0,
+      "explanation": "room は「へや」です"
+    },
+    {
+      "id": "ed050ef0-94ae-537c-9d6e-ecf303d64682",
+      "question": "「garden」の意味は？",
+      "choices": [
+        "にわ",
+        "こうえん",
+        "へや",
+        "かいがん"
+      ],
+      "correct": 0,
+      "explanation": "garden は「にわ」です"
+    },
+    {
+      "id": "2f71da5a-fe4b-5eb9-a93e-b6d87ee98d75",
+      "question": "「beach」の意味は？",
+      "choices": [
+        "かいがん",
+        "やま",
+        "かわ",
+        "こうえん"
+      ],
+      "correct": 0,
+      "explanation": "beach は「かいがん」です"
+    },
+    {
+      "id": "9485a89e-a39f-5a0b-8dde-134d0b3f726c",
+      "question": "「mountain」の意味は？",
+      "choices": [
+        "やま",
+        "かいがん",
+        "かわ",
+        "くに"
+      ],
+      "correct": 0,
+      "explanation": "mountain は「やま」です"
+    },
+    {
+      "id": "e866f0b8-8ad3-5178-ad40-4fad4953e057",
+      "question": "「river」の意味は？",
+      "choices": [
+        "かわ",
+        "やま",
+        "かいがん",
+        "とおり"
+      ],
+      "correct": 0,
+      "explanation": "river は「かわ」です"
+    }
+  ]
+}

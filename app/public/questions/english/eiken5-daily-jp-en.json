@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-daily-jp-en",
+  "categoryName": "🌞 日常生活（日→英）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-daily",
+  "parentCategoryName": "日常生活",
+  "referenceGrade": "小学4年",
+  "description": "日常生活に関する言葉を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "bdf56715-018a-5dd6-aba5-7d5be4c39c57",
+      "question": "「あさ」を英語で書くと？",
+      "choices": [
+        "morning",
+        "afternoon",
+        "evening",
+        "night"
+      ],
+      "correct": 0,
+      "explanation": "「あさ」は英語で morning です"
+    },
+    {
+      "id": "d965fd9c-7447-586e-9241-19d6d2fbe8b5",
+      "question": "「ひる・午後」を英語で書くと？",
+      "choices": [
+        "afternoon",
+        "morning",
+        "evening",
+        "day"
+      ],
+      "correct": 0,
+      "explanation": "「ひる・午後」は英語で afternoon です"
+    },
+    {
+      "id": "f30f4dad-9629-5cda-a348-51437d0ce5c1",
+      "question": "「ゆうがた」を英語で書くと？",
+      "choices": [
+        "evening",
+        "afternoon",
+        "night",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "「ゆうがた」は英語で evening です"
+    },
+    {
+      "id": "c921d6ca-836f-5d24-aa22-cfe7d39a644a",
+      "question": "「よる」を英語で書くと？",
+      "choices": [
+        "night",
+        "evening",
+        "morning",
+        "day"
+      ],
+      "correct": 0,
+      "explanation": "「よる」は英語で night です"
+    },
+    {
+      "id": "940d1db9-1405-571d-9bf0-58cdd137221d",
+      "question": "「ひ・日」を英語で書くと？",
+      "choices": [
+        "day",
+        "week",
+        "month",
+        "year"
+      ],
+      "correct": 0,
+      "explanation": "「ひ・日」は英語で day です"
+    },
+    {
+      "id": "35ced80b-aa65-5759-bd3f-6c083c9e5989",
+      "question": "「しゅう」を英語で書くと？",
+      "choices": [
+        "week",
+        "day",
+        "month",
+        "year"
+      ],
+      "correct": 0,
+      "explanation": "「しゅう」は英語で week です"
+    },
+    {
+      "id": "435d87dd-595c-5585-8fba-96de106d20c5",
+      "question": "「つき・月」を英語で書くと？",
+      "choices": [
+        "month",
+        "week",
+        "year",
+        "day"
+      ],
+      "correct": 0,
+      "explanation": "「つき・月」は英語で month です"
+    },
+    {
+      "id": "5684013d-6103-52c4-9454-e15aac93a568",
+      "question": "「とし・年」を英語で書くと？",
+      "choices": [
+        "year",
+        "month",
+        "week",
+        "time"
+      ],
+      "correct": 0,
+      "explanation": "「とし・年」は英語で year です"
+    },
+    {
+      "id": "3e35ae3a-ee08-5824-a46b-d92879251da8",
+      "question": "「じかん」を英語で書くと？",
+      "choices": [
+        "time",
+        "year",
+        "day",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "「じかん」は英語で time です"
+    },
+    {
+      "id": "e792db25-e514-5136-9b7b-ff2135b7a23c",
+      "question": "「あさごはん」を英語で書くと？",
+      "choices": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "time"
+      ],
+      "correct": 0,
+      "explanation": "「あさごはん」は英語で breakfast です"
+    },
+    {
+      "id": "9e28b57c-8266-573a-982e-28e2a48030c0",
+      "question": "「ひるごはん」を英語で書くと？",
+      "choices": [
+        "lunch",
+        "breakfast",
+        "dinner",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "「ひるごはん」は英語で lunch です"
+    },
+    {
+      "id": "0a56ec0c-8b1b-581c-af48-a1b0f6329eab",
+      "question": "「ゆうごはん」を英語で書くと？",
+      "choices": [
+        "dinner",
+        "lunch",
+        "breakfast",
+        "evening"
+      ],
+      "correct": 0,
+      "explanation": "「ゆうごはん」は英語で dinner です"
+    },
+    {
+      "id": "b60abb58-9c48-554a-9c1e-108c8f734958",
+      "question": "「ねる」を英語で書くと？",
+      "choices": [
+        "sleep",
+        "work",
+        "play",
+        "time"
+      ],
+      "correct": 0,
+      "explanation": "「ねる」は英語で sleep です"
+    },
+    {
+      "id": "5b6e4098-c146-549a-a689-dc4c2ac81381",
+      "question": "「しごと・はたらく」を英語で書くと？",
+      "choices": [
+        "work",
+        "sleep",
+        "play",
+        "day"
+      ],
+      "correct": 0,
+      "explanation": "「しごと・はたらく」は英語で work です"
+    },
+    {
+      "id": "4846e34a-a0fd-536e-b464-5f8d38479fc9",
+      "question": "「あそぶ・プレイ」を英語で書くと？",
+      "choices": [
+        "play",
+        "work",
+        "sleep",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "「あそぶ・プレイ」は英語で play です"
+    }
+  ]
+}

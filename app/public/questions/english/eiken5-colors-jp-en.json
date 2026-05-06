@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-colors-jp-en",
+  "categoryName": "🎨 色・数（日→英）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-colors",
+  "parentCategoryName": "色・数",
+  "referenceGrade": "小学3年",
+  "description": "色・数の言葉を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "3bcd835a-74ea-54f2-8c5d-be2d2e59ea11",
+      "question": "「あか」を英語で書くと？",
+      "choices": [
+        "red",
+        "blue",
+        "green",
+        "yellow"
+      ],
+      "correct": 0,
+      "explanation": "「あか」は英語で red です"
+    },
+    {
+      "id": "d78b6e53-b424-532e-92e3-574b7dedea2b",
+      "question": "「あお」を英語で書くと？",
+      "choices": [
+        "blue",
+        "red",
+        "green",
+        "purple"
+      ],
+      "correct": 0,
+      "explanation": "「あお」は英語で blue です"
+    },
+    {
+      "id": "76ff8993-d166-5aac-b7ac-711984ed26fd",
+      "question": "「みどり」を英語で書くと？",
+      "choices": [
+        "green",
+        "blue",
+        "yellow",
+        "brown"
+      ],
+      "correct": 0,
+      "explanation": "「みどり」は英語で green です"
+    },
+    {
+      "id": "5377f71c-5c78-5811-87d0-6116a5a5f209",
+      "question": "「きいろ」を英語で書くと？",
+      "choices": [
+        "yellow",
+        "green",
+        "orange",
+        "white"
+      ],
+      "correct": 0,
+      "explanation": "「きいろ」は英語で yellow です"
+    },
+    {
+      "id": "3a3cc514-6d9f-5066-8302-583c92a2b43f",
+      "question": "「しろ」を英語で書くと？",
+      "choices": [
+        "white",
+        "black",
+        "yellow",
+        "pink"
+      ],
+      "correct": 0,
+      "explanation": "「しろ」は英語で white です"
+    },
+    {
+      "id": "4b2b12c9-cd75-526e-8278-d474783ccbe2",
+      "question": "「くろ」を英語で書くと？",
+      "choices": [
+        "black",
+        "white",
+        "brown",
+        "purple"
+      ],
+      "correct": 0,
+      "explanation": "「くろ」は英語で black です"
+    },
+    {
+      "id": "4bf12577-90d6-56b0-8543-993c91d60e3f",
+      "question": "「ピンク」を英語で書くと？",
+      "choices": [
+        "pink",
+        "red",
+        "purple",
+        "orange"
+      ],
+      "correct": 0,
+      "explanation": "「ピンク」は英語で pink です"
+    },
+    {
+      "id": "0b0ec86d-f2d1-560c-8610-ee516e8fac1d",
+      "question": "「むらさき」を英語で書くと？",
+      "choices": [
+        "purple",
+        "pink",
+        "blue",
+        "black"
+      ],
+      "correct": 0,
+      "explanation": "「むらさき」は英語で purple です"
+    },
+    {
+      "id": "d5b15e32-dd9f-59e8-ac55-5c2fcbc5fcca",
+      "question": "「オレンジ（色）」を英語で書くと？",
+      "choices": [
+        "orange",
+        "yellow",
+        "red",
+        "pink"
+      ],
+      "correct": 0,
+      "explanation": "「オレンジ（色）」は英語で orange です"
+    },
+    {
+      "id": "fd62e240-63c3-539c-87b7-3cf92a13e1c5",
+      "question": "「ちゃいろ」を英語で書くと？",
+      "choices": [
+        "brown",
+        "black",
+        "green",
+        "orange"
+      ],
+      "correct": 0,
+      "explanation": "「ちゃいろ」は英語で brown です"
+    },
+    {
+      "id": "1e74223e-ad22-5321-90c3-e5770f5a7175",
+      "question": "「1（いち）」を英語で書くと？",
+      "choices": [
+        "one",
+        "two",
+        "three",
+        "four"
+      ],
+      "correct": 0,
+      "explanation": "「1」は英語で one です"
+    },
+    {
+      "id": "aecf19f5-9b21-5bf6-9b05-52940e12988e",
+      "question": "「2（に）」を英語で書くと？",
+      "choices": [
+        "two",
+        "one",
+        "three",
+        "four"
+      ],
+      "correct": 0,
+      "explanation": "「2」は英語で two です"
+    },
+    {
+      "id": "ac6d6ede-dbad-5859-a83d-9a6c1d1276f0",
+      "question": "「3（さん）」を英語で書くと？",
+      "choices": [
+        "three",
+        "two",
+        "four",
+        "five"
+      ],
+      "correct": 0,
+      "explanation": "「3」は英語で three です"
+    },
+    {
+      "id": "e2193518-da88-5366-8729-4fa27f3b1212",
+      "question": "「4（し・よん）」を英語で書くと？",
+      "choices": [
+        "four",
+        "three",
+        "five",
+        "two"
+      ],
+      "correct": 0,
+      "explanation": "「4」は英語で four です"
+    },
+    {
+      "id": "f6312ed6-3de6-52c5-85a4-0e23e06fd22f",
+      "question": "「5（ご）」を英語で書くと？",
+      "choices": [
+        "five",
+        "four",
+        "three",
+        "two"
+      ],
+      "correct": 0,
+      "explanation": "「5」は英語で five です"
+    }
+  ]
+}

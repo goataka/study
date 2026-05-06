@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-body-jp-en",
+  "categoryName": "🧍 身体（日→英）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-body",
+  "parentCategoryName": "身体",
+  "referenceGrade": "小学3年",
+  "description": "身体の部位を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eda259b5-2bae-513d-95fc-a8dc5bc1ea6a",
+      "question": "「あたま」を英語で書くと？",
+      "choices": [
+        "head",
+        "face",
+        "hair",
+        "shoulder"
+      ],
+      "correct": 0,
+      "explanation": "「あたま」は英語で head です"
+    },
+    {
+      "id": "c3a60260-7391-5488-9496-9947c7028de4",
+      "question": "「め」を英語で書くと？",
+      "choices": [
+        "eye",
+        "ear",
+        "nose",
+        "mouth"
+      ],
+      "correct": 0,
+      "explanation": "「め」は英語で eye です"
+    },
+    {
+      "id": "36603b31-7baf-5da2-9db2-d40243abf176",
+      "question": "「みみ」を英語で書くと？",
+      "choices": [
+        "ear",
+        "eye",
+        "nose",
+        "mouth"
+      ],
+      "correct": 0,
+      "explanation": "「みみ」は英語で ear です"
+    },
+    {
+      "id": "0257702e-7006-5f7d-94b1-e8c532c5cdf2",
+      "question": "「はな」を英語で書くと？",
+      "choices": [
+        "nose",
+        "mouth",
+        "eye",
+        "ear"
+      ],
+      "correct": 0,
+      "explanation": "「はな」は英語で nose です"
+    },
+    {
+      "id": "5929f667-7b0e-5fbb-bc08-8d89dd4af74c",
+      "question": "「くち」を英語で書くと？",
+      "choices": [
+        "mouth",
+        "nose",
+        "face",
+        "tooth"
+      ],
+      "correct": 0,
+      "explanation": "「くち」は英語で mouth です"
+    },
+    {
+      "id": "28b015c5-3b5f-5181-b4d3-06df324264eb",
+      "question": "「て」を英語で書くと？",
+      "choices": [
+        "hand",
+        "arm",
+        "finger",
+        "leg"
+      ],
+      "correct": 0,
+      "explanation": "「て」は英語で hand です"
+    },
+    {
+      "id": "b67f5105-4177-5b98-ae1e-7d33f2f68ac8",
+      "question": "「あし（足）」を英語で書くと？",
+      "choices": [
+        "foot",
+        "leg",
+        "hand",
+        "back"
+      ],
+      "correct": 0,
+      "explanation": "「あし（足）」は英語で foot です"
+    },
+    {
+      "id": "c4a057b7-58c3-535c-92d5-e51e2ce2f55e",
+      "question": "「うで」を英語で書くと？",
+      "choices": [
+        "arm",
+        "hand",
+        "leg",
+        "shoulder"
+      ],
+      "correct": 0,
+      "explanation": "「うで」は英語で arm です"
+    },
+    {
+      "id": "8649df40-2459-5d90-952c-0ec5f988da30",
+      "question": "「あし（脚）」を英語で書くと？",
+      "choices": [
+        "leg",
+        "foot",
+        "arm",
+        "back"
+      ],
+      "correct": 0,
+      "explanation": "「あし（脚）」は英語で leg です"
+    },
+    {
+      "id": "afe70332-2feb-5a60-afb4-6fecbcaef1fb",
+      "question": "「かお」を英語で書くと？",
+      "choices": [
+        "face",
+        "head",
+        "hair",
+        "tooth"
+      ],
+      "correct": 0,
+      "explanation": "「かお」は英語で face です"
+    },
+    {
+      "id": "2f4e2d2d-4100-5098-9a00-fca04e270234",
+      "question": "「ゆび」を英語で書くと？",
+      "choices": [
+        "finger",
+        "hand",
+        "arm",
+        "leg"
+      ],
+      "correct": 0,
+      "explanation": "「ゆび」は英語で finger です"
+    },
+    {
+      "id": "98ee3e5b-c48d-5986-9bb8-703cc597e414",
+      "question": "「かみのけ」を英語で書くと？",
+      "choices": [
+        "hair",
+        "head",
+        "face",
+        "back"
+      ],
+      "correct": 0,
+      "explanation": "「かみのけ」は英語で hair です"
+    },
+    {
+      "id": "8bf80fa0-dbfa-5dfb-b1b1-eeac3d9f2459",
+      "question": "「は（歯）」を英語で書くと？",
+      "choices": [
+        "tooth",
+        "mouth",
+        "nose",
+        "face"
+      ],
+      "correct": 0,
+      "explanation": "「は（歯）」は英語で tooth です"
+    },
+    {
+      "id": "817cecdd-af89-5264-8372-d869cf45f763",
+      "question": "「せなか」を英語で書くと？",
+      "choices": [
+        "back",
+        "shoulder",
+        "arm",
+        "leg"
+      ],
+      "correct": 0,
+      "explanation": "「せなか」は英語で back です"
+    },
+    {
+      "id": "240b8075-242d-56d5-bd35-fc0a0abf7c10",
+      "question": "「かた」を英語で書くと？",
+      "choices": [
+        "shoulder",
+        "back",
+        "arm",
+        "head"
+      ],
+      "correct": 0,
+      "explanation": "「かた」は英語で shoulder です"
+    }
+  ]
+}
