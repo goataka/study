@@ -396,8 +396,8 @@ Then("the share summary text should contain {string}", async ({ page }, text: st
 });
 
 Then("the support button should be visible in the footer", async ({ page }) => {
-  // サポートボタン（?）がフッター（footer.app-footer）内に表示されていること
-  await expect(page.locator("footer.app-footer #supportBtn")).toBeVisible();
+  // サポートボタン（?）がヘッダーの日付エリア（.header-date-area）内に表示されていること
+  await expect(page.locator(".header-date-area #supportBtn")).toBeVisible();
 });
 
 Then("the support button should open support page in a new tab", async ({ page }) => {

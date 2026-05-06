@@ -56,6 +56,8 @@ export class QuizApp {
   private userAvatarDataUrl: string | null = null;
   /** アバター画像の切り抜き位置（"top" | "center" | "bottom"） */
   private userAvatarCropPosition: "top" | "center" | "bottom" = "center";
+  /** ダイアログで選択中の画像（確定前） */
+  private pendingAvatarDataUrl: string | null = null;
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
@@ -2067,28 +2069,31 @@ export class QuizApp {
 
   /**
    * 進度詳細のマトリクスビューを描画する。
-   * 学年（行）× 単元（列）のテーブル形式で進度を表示する。縦横切り替えに対応。
+   * 横（列）= カテゴリ、縦（行）= 学年、セル内 = 単元名ブロック。
    */
   private renderProgressDetailMatrix(container: HTMLElement): void {
     const subject = this.progressSubjectId;
     const grades = this.useCase.getUniqueGradesForSubject(subject);
 
-    // 全カテゴリを列として収集する（id + name をセットで管理）
-    const allCats: { id: string; name: string }[] = [];
-    const gradeCatMap = new Map<string, string[]>(); // grade → catIds
+    // トップカテゴリを列として収集する
+    const topCatsMap = this.useCase.getTopCategoriesForSubject(subject);
+    const topCats: { id: string; name: string }[] = Object.entries(topCatsMap).map(([id, name]) => ({ id, name }));
 
-    for (const grade of grades) {
-      const cats = this.useCase.getCategoriesForGrade(subject, grade);
-      const ids = Object.keys(cats);
-      gradeCatMap.set(grade, ids);
-      for (const [catId, catName] of Object.entries(cats)) {
-        if (!allCats.some((c) => c.id === catId)) {
-          allCats.push({ id: catId, name: catName });
-        }
-      }
+    // トップカテゴリなしの単元も別列として収集する
+    const allCats = this.useCase.getCategoriesForSubject(subject);
+    const noTopCats: { id: string; name: string }[] = [];
+    for (const [catId, catName] of Object.entries(allCats)) {
+      const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
+      if (!topInfo) noTopCats.push({ id: catId, name: catName });
     }
 
-    if (grades.length === 0 || allCats.length === 0) {
+    // 表示用の列定義: トップカテゴリ列 + 「その他」列（必要な場合）
+    const columns: { id: string; name: string; isOther?: boolean }[] = [
+      ...topCats,
+      ...(noTopCats.length > 0 ? [{ id: "__other__", name: "その他", isOther: true }] : []),
+    ];
+
+    if (grades.length === 0 || columns.length === 0) {
       const empty = document.createElement("div");
       empty.className = "progress-block-group";
       empty.textContent = "単元がありません";
@@ -2104,97 +2109,66 @@ export class QuizApp {
     wrapper.style.minHeight = "0";
 
     const table = document.createElement("table");
-    table.className = "progress-matrix-table";
+    table.className = "progress-matrix-table progress-matrix-table-units";
 
-    const getStatus = (grade: string, catId: string): "mastered" | "in-progress" | "empty" => {
-      const catIds = gradeCatMap.get(grade) ?? [];
-      if (!catIds.includes(catId)) return "empty";
-      const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
-      const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
-      if (mastered > 0 && mastered === total) return "mastered";
-      if (inProgress > 0 || mastered > 0) return "in-progress";
-      return "empty";
-    };
-
-    if (!this.progressMatrixTransposed) {
-      // 行: 学年、列: 単元
-      const thead = document.createElement("thead");
-      const headerRow = document.createElement("tr");
-      const cornerTh = document.createElement("th");
-      cornerTh.textContent = "学年 \\ 単元";
-      headerRow.appendChild(cornerTh);
-      for (const { name } of allCats) {
-        const th = document.createElement("th");
-        th.textContent = name;
-        headerRow.appendChild(th);
-      }
-      thead.appendChild(headerRow);
-      table.appendChild(thead);
-
-      const tbody = document.createElement("tbody");
-      for (const grade of grades) {
-        const tr = document.createElement("tr");
-        const th = document.createElement("td");
-        th.textContent = grade;
-        tr.appendChild(th);
-        for (const { id: catId } of allCats) {
-          const td = document.createElement("td");
-          const status = getStatus(grade, catId);
-          if (status === "mastered") {
-            td.className = "progress-matrix-cell-mastered";
-            td.textContent = "✓";
-          } else if (status === "in-progress") {
-            td.className = "progress-matrix-cell-in-progress";
-            td.textContent = "◐";
-          } else {
-            td.className = "progress-matrix-cell-empty";
-            td.textContent = "—";
-          }
-          tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-      }
-      table.appendChild(tbody);
-    } else {
-      // 縦横反転: 行: 単元、列: 学年
-      const thead = document.createElement("thead");
-      const headerRow = document.createElement("tr");
-      const cornerTh = document.createElement("th");
-      cornerTh.textContent = "単元 \\ 学年";
-      headerRow.appendChild(cornerTh);
-      for (const grade of grades) {
-        const th = document.createElement("th");
-        th.textContent = grade;
-        headerRow.appendChild(th);
-      }
-      thead.appendChild(headerRow);
-      table.appendChild(thead);
-
-      const tbody = document.createElement("tbody");
-      for (const { id: catId, name: catName } of allCats) {
-        const tr = document.createElement("tr");
-        const th = document.createElement("td");
-        th.textContent = catName;
-        tr.appendChild(th);
-        for (const grade of grades) {
-          const td = document.createElement("td");
-          const status = getStatus(grade, catId);
-          if (status === "mastered") {
-            td.className = "progress-matrix-cell-mastered";
-            td.textContent = "✓";
-          } else if (status === "in-progress") {
-            td.className = "progress-matrix-cell-in-progress";
-            td.textContent = "◐";
-          } else {
-            td.className = "progress-matrix-cell-empty";
-            td.textContent = "—";
-          }
-          tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-      }
-      table.appendChild(tbody);
+    // ヘッダー行: 学年 \ カテゴリ + 各カテゴリ名
+    const thead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    const cornerTh = document.createElement("th");
+    cornerTh.textContent = "学年 \\ カテゴリ";
+    headerRow.appendChild(cornerTh);
+    for (const col of columns) {
+      const th = document.createElement("th");
+      th.textContent = col.name;
+      headerRow.appendChild(th);
     }
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    for (const grade of grades) {
+      const tr = document.createElement("tr");
+      const gradeCell = document.createElement("td");
+      gradeCell.textContent = grade;
+      tr.appendChild(gradeCell);
+
+      for (const col of columns) {
+        const td = document.createElement("td");
+        td.className = "progress-matrix-cell-units";
+
+        // この学年・このカテゴリに属する単元を収集する
+        const gradeCats = this.useCase.getCategoriesForGrade(subject, grade);
+        for (const [catId, catName] of Object.entries(gradeCats)) {
+          let belongs = false;
+          if (col.isOther) {
+            const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
+            belongs = !topInfo;
+          } else {
+            const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
+            belongs = topInfo?.id === col.id;
+          }
+          if (!belongs) continue;
+
+          const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
+          const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
+
+          const block = document.createElement("span");
+          block.className = "progress-block progress-block-sm";
+          block.textContent = catName;
+          block.title = catName;
+          if (mastered > 0 && mastered === total) {
+            block.classList.add("mastered");
+          } else if (inProgress > 0 || mastered > 0) {
+            block.classList.add("in-progress");
+          }
+          td.appendChild(block);
+        }
+
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    table.appendChild(tbody);
 
     wrapper.appendChild(table);
     container.appendChild(wrapper);
@@ -3553,32 +3527,52 @@ export class QuizApp {
     const headerUserNameSaveBtn = document.getElementById("headerUserNameSaveBtn");
     headerUserNameSaveBtn?.addEventListener("click", () => this.saveHeaderUserName());
 
-    // アバター画像ファイル選択
+    // アバターボタンクリック → ダイアログを開く
+    const headerUserAvatar = document.getElementById("headerUserAvatar");
+    const avatarCropDialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
+    headerUserAvatar?.addEventListener("click", () => {
+      this.openAvatarCropDialog();
+    });
+    headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        this.openAvatarCropDialog();
+      }
+    });
+
+    // ダイアログ内のファイル選択
     const headerUserAvatarInput = document.getElementById("headerUserAvatarInput") as HTMLInputElement | null;
     headerUserAvatarInput?.addEventListener("change", (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
-      if (file) this.handleAvatarUpload(file);
+      if (file) this.previewAvatarInDialog(file);
       // ファイル選択後にリセットして同じファイルを再選択可能に
       headerUserAvatarInput.value = "";
     });
 
-    // アバターラベルのキーボード操作（Enter/Spaceで画像選択ダイアログを開く）
-    const headerUserAvatar = document.getElementById("headerUserAvatar");
-    headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        headerUserAvatarInput?.click();
+    // ダイアログ確定ボタン
+    document.getElementById("avatarCropConfirmBtn")?.addEventListener("click", () => {
+      this.confirmAvatarCrop();
+    });
+
+    // ダイアログキャンセルボタン
+    document.getElementById("avatarCropCancelBtn")?.addEventListener("click", () => {
+      avatarCropDialog?.close();
+      this.pendingAvatarDataUrl = null;
+    });
+
+    // ダイアログ外クリックで閉じる
+    avatarCropDialog?.addEventListener("click", (e) => {
+      if (e.target === avatarCropDialog) {
+        avatarCropDialog.close();
+        this.pendingAvatarDataUrl = null;
       }
     });
 
-    // アバター切り抜き位置ボタン
-    document.querySelectorAll<HTMLButtonElement>(".avatar-crop-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const position = btn.dataset.position as "top" | "center" | "bottom" | undefined;
-        if (!position) return;
-        this.userAvatarCropPosition = position;
-        try { localStorage.setItem("avatarCropPosition", position); } catch { /* noop */ }
-        this.updateUserAvatarDisplay();
+    // ダイアログ内のラジオボタン変更でプレビュー更新
+    const avatarCropDialog2 = document.getElementById("avatarCropDialog");
+    avatarCropDialog2?.querySelectorAll<HTMLInputElement>("input[name='avatarCrop']").forEach((r) => {
+      r.addEventListener("change", () => {
+        this.updateDialogPreview(this.pendingAvatarDataUrl);
       });
     });
 
@@ -5069,31 +5063,68 @@ export class QuizApp {
       // 切り抜き位置を適用する
       const posMap = { top: "center top", center: "center center", bottom: "center bottom" };
       img.style.objectPosition = posMap[this.userAvatarCropPosition] ?? "center center";
-      // 切り抜き位置コントロールを表示する
-      const cropControls = document.getElementById("avatarCropControls");
-      cropControls?.classList.remove("hidden");
-      // アクティブボタンを更新する
-      document.querySelectorAll<HTMLButtonElement>(".avatar-crop-btn").forEach((btn) => {
-        const active = btn.dataset.position === this.userAvatarCropPosition;
-        btn.classList.toggle("active", active);
-        btn.setAttribute("aria-pressed", String(active));
-      });
     } else {
       img.removeAttribute("src");
       img.classList.remove("visible");
       placeholder.classList.remove("hidden");
-      // 画像なしの場合は切り抜き位置コントロールを非表示にする
-      document.getElementById("avatarCropControls")?.classList.add("hidden");
     }
   }
 
   /**
-   * アバター画像ファイルを読み込んで保存・表示する。
-   * 最大5MBまで対応。
+   * アバター画像選択・切り抜きダイアログを開く。
    */
-  private handleAvatarUpload(file: File): void {
+  private openAvatarCropDialog(): void {
+    const dialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
+    if (!dialog) return;
+    // 現在の切り抜き位置をラジオボタンに反映する
+    const radios = dialog.querySelectorAll<HTMLInputElement>("input[name='avatarCrop']");
+    radios.forEach((r) => {
+      r.checked = r.value === this.userAvatarCropPosition;
+    });
+    // プレビューを現在の画像で初期化する
+    this.pendingAvatarDataUrl = this.userAvatarDataUrl;
+    this.updateDialogPreview(this.userAvatarDataUrl);
+    dialog.showModal();
+  }
+
+  /**
+   * ダイアログのプレビュー画像を更新する。
+   */
+  private updateDialogPreview(dataUrl: string | null): void {
+    const preview = document.getElementById("avatarCropPreview") as HTMLImageElement | null;
+    const placeholder = document.getElementById("avatarCropPreviewPlaceholder");
+    if (!preview || !placeholder) return;
+    if (dataUrl) {
+      preview.src = dataUrl;
+      preview.classList.add("visible");
+      placeholder.classList.add("hidden");
+      const pos = this.getDialogCropPosition();
+      const posMap = { top: "center top", center: "center center", bottom: "center bottom" };
+      preview.style.objectPosition = posMap[pos] ?? "center center";
+    } else {
+      preview.removeAttribute("src");
+      preview.classList.remove("visible");
+      placeholder.classList.remove("hidden");
+    }
+  }
+
+  /**
+   * ダイアログで選択中の切り抜き位置を返す。
+   */
+  private getDialogCropPosition(): "top" | "center" | "bottom" {
+    const dialog = document.getElementById("avatarCropDialog");
+    if (!dialog) return "center";
+    const checked = dialog.querySelector<HTMLInputElement>("input[name='avatarCrop']:checked");
+    const val = checked?.value;
+    return (val === "top" || val === "center" || val === "bottom") ? val : "center";
+  }
+
+  /**
+   * ダイアログで画像ファイルを選択したときのプレビュー処理。
+   */
+  private previewAvatarInDialog(file: File): void {
     if (!file.type.startsWith("image/")) return;
-    const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+    const MAX_SIZE = 5 * 1024 * 1024;
     if (file.size > MAX_SIZE) {
       alert("画像ファイルサイズは5MB以下にしてください。");
       return;
@@ -5101,18 +5132,28 @@ export class QuizApp {
     const reader = new FileReader();
     reader.onload = (e) => {
       const result = e.target?.result;
-      if (typeof result !== "string") {
-        console.error("アバター画像の読み込みに失敗しました");
-        return;
-      }
-      this.userAvatarDataUrl = result;
-      this.progressRepo.saveUserAvatar(result);
-      this.updateUserAvatarDisplay();
-    };
-    reader.onerror = () => {
-      console.error("アバター画像の読み込みに失敗しました");
+      if (typeof result !== "string") return;
+      this.pendingAvatarDataUrl = result;
+      this.updateDialogPreview(result);
     };
     reader.readAsDataURL(file);
+  }
+
+  /**
+   * ダイアログの確定ボタン処理。
+   */
+  private confirmAvatarCrop(): void {
+    const dialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
+    const pos = this.getDialogCropPosition();
+    this.userAvatarCropPosition = pos;
+    try { localStorage.setItem("avatarCropPosition", pos); } catch { /* noop */ }
+    if (this.pendingAvatarDataUrl !== null) {
+      this.userAvatarDataUrl = this.pendingAvatarDataUrl;
+      this.progressRepo.saveUserAvatar(this.pendingAvatarDataUrl);
+      this.pendingAvatarDataUrl = null;
+    }
+    this.updateUserAvatarDisplay();
+    dialog?.close();
   }
 
   /**
