@@ -1473,20 +1473,32 @@ header h1 {
     white-space: nowrap;
 }
 
-.progress-matrix-table th {
+/* 1行目のヘッダー（トップカテゴリ）を上端に固定 */
+.progress-matrix-table thead tr:first-child th {
+    background: #ddeeff;
+    color: #0366d6;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+/* 2行目のヘッダー（親カテゴリ）を1行目の高さ分下にずらして固定 */
+.progress-matrix-table thead tr:nth-child(2) th {
     background: #f0f7ff;
     color: #586069;
     font-weight: 600;
     position: sticky;
-    top: 0;
-    z-index: 1;
+    top: 27px; /* 1行目の高さ（padding 4px*2 + font ~18px ≈ 27px）に合わせる */
+    z-index: 2;
 }
 
-.progress-matrix-table th:first-child {
+/* コーナーセル（学年/カテゴリの交差セル）のみ左・上両方に固定 */
+.progress-matrix-table thead tr:first-child th:first-child {
     position: sticky;
     left: 0;
-    z-index: 2;
-    background: #e0efff;
+    z-index: 4;
+    background: #c8dfff;
 }
 
 .progress-matrix-table td:first-child {
@@ -1640,6 +1652,9 @@ header h1 {
     position: relative;
     cursor: ns-resize;
     user-select: none;
+    /* モバイルでのドラッグ時にページスクロールを防ぐ */
+    touch-action: none;
+    overscroll-behavior: contain;
 }
 
 .avatar-crop-preview {
@@ -1681,6 +1696,12 @@ header h1 {
 }
 
 .avatar-crop-handle:hover {
+    background: rgba(3, 102, 214, 0.9);
+}
+
+.avatar-crop-handle:focus-visible {
+    outline: 3px solid #f6a400;
+    outline-offset: 2px;
     background: rgba(3, 102, 214, 0.9);
 }
 
