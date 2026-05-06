@@ -89,7 +89,7 @@ export class QuizApp {
   /** 総合タブの現在アクティブなサマリパネル */
   private activeOverallPanel: "learned" | "share" = "learned";
   /** 進度タブで選択中の教科ID */
-  private progressSubjectId: string = "english";
+  private progressSubjectId: string = SUBJECTS.find((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress")?.id ?? "english";
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
   private questionListFilter: "all" | "learned" | "unlearned" = "all";
