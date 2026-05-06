@@ -39,11 +39,9 @@ body {
 }
 
 header {
-    /* ノート紙風：不透明白地 + 薄い青の罫線（ノートの上部） */
+    /* ヘッダー（罫線なし、白地） */
     background-color: white;
-    background-image: repeating-linear-gradient(
-        transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px
-    );
+    background-image: none;
     padding: 10px 20px;
     /* 角丸なし（ノート全体のデザインに合わせる） */
     border-radius: 0;
@@ -63,6 +61,8 @@ header {
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
+    border-bottom: 2px solid #586069;
+    padding-bottom: 2px;
 }
 
 header h1 {
@@ -139,23 +139,30 @@ header h1 {
     text-decoration: underline;
 }
 
-/* フッター（ノートの下部：白地＋罫線＋左の赤マージン線） */
+/* フッター（ノートの下部：罫線なし、シンプルなボーダーのみ） */
 .app-footer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 6px 12px 8px;
-    /* ノート紙風：白地 + 薄い青の罫線 */
+    padding: 4px 12px;
     background-color: white;
-    background-image: repeating-linear-gradient(
-        transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px
-    );
+    background-image: none;
     border-top: 2px solid #c8d8e8;
     border-radius: 0;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
     color: #586069;
+    min-height: 8px;
+}
+
+/* ノート外の下部エリア（コピーライト + フォントサイズ） */
+.outer-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 4px 2px;
+    flex-shrink: 0;
 }
 
 /* コピーライト（ノートの外・白字） */
@@ -163,13 +170,12 @@ header h1 {
     text-align: center;
     font-size: 12px;
     color: white;
-    padding: 4px 0 2px;
+    padding: 2px 0;
     letter-spacing: 0.05em;
     flex-shrink: 0;
 }
 
 
-/* 画面表示制御 */
 .screen {
     /* ノート：机の上に置いた1冊のノート（不透明白地、強い影） */
     background: white;
@@ -200,6 +206,27 @@ header h1 {
     padding: 0;
     border-radius: 0;
     overflow: hidden;
+    position: relative;
+}
+
+/* 折り目（ノート全体の上下を通る折り目の表現） */
+#startScreen::before {
+    content: '';
+    position: absolute;
+    left: calc((100% - 12px) / 3);
+    top: 0;
+    bottom: 0;
+    width: 12px;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.04) 0%,
+        #d8d8d8 20%,
+        #ebebeb 50%,
+        #d8d8d8 80%,
+        rgba(0, 0, 0, 0.04) 100%
+    );
+    z-index: 10;
+    pointer-events: none;
 }
 
 #startScreen h2 {
@@ -224,6 +251,47 @@ header h1 {
     flex-shrink: 0;
     padding: 8px 4px 0;
     position: relative;
+}
+
+/* サポート・GitHubリンク（付箋スタイル：管理タブの右） */
+.tabs-links-area {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+    padding: 8px 4px 0;
+}
+
+.tabs-link-note {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px 6px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: none;
+    border-radius: 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transform: translateY(2px);
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
+    transition: filter 0.15s, transform 0.1s;
+}
+
+.tabs-link-note:hover {
+    filter: brightness(1.08);
+    transform: translateY(0);
+}
+
+.tabs-link-note-support {
+    background: #d8f0e8;
+    color: #1a6a40;
+}
+
+.tabs-link-note-github {
+    background: #e8e0f0;
+    color: #3a1a6a;
 }
 
 /* 教科タブ */
@@ -325,10 +393,12 @@ header h1 {
 
 /* カテゴリパネル */
 .category-panel {
-    /* ノート紙風：白地 + 薄青の罫線 + 左端の赤マージン線 */
+    /* ノート紙風：白地 + 薄青の罫線（32px間隔で均等に配置） */
     background-color: white;
     background-image:
         repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+    /* padding分だけ背景をオフセットして罫線を均等に表示する */
+    background-position: 0 12px;
     border: none;
     border-right: none;
     border-radius: 0;
@@ -1237,7 +1307,7 @@ header h1 {
 }
 
 .progress-subject-list-name {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
     color: #24292e;
     white-space: nowrap;
@@ -1246,7 +1316,7 @@ header h1 {
 }
 
 .progress-subject-list-stats {
-    font-size: 11px;
+    font-size: 12px;
     color: #586069;
 }
 
@@ -1304,7 +1374,11 @@ header h1 {
     font-size: 13px;
     font-weight: 700;
     color: #24292e;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .progress-block-group-stats {
@@ -1325,13 +1399,13 @@ header h1 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 80px;
-    max-width: 160px;
+    min-width: 60px;
+    max-width: 140px;
     height: auto;
     padding: 3px 6px;
     border-radius: 3px;
     font-size: 11px;
-    cursor: default;
+    cursor: pointer;
     border: 1px solid #d1d5da;
     background: #f6f8fa;
     color: #b0b8c1;
@@ -1340,6 +1414,7 @@ header h1 {
     text-overflow: ellipsis;
     white-space: nowrap;
     line-height: 1.3;
+    word-break: keep-all;
 }
 
 .progress-block.mastered {
@@ -1355,7 +1430,7 @@ header h1 {
 }
 
 .progress-block:hover {
-    filter: brightness(1.1);
+    filter: brightness(0.92);
     z-index: 1;
 }
 
@@ -1443,23 +1518,54 @@ header h1 {
     padding: 4px;
     vertical-align: top;
     text-align: left;
+    white-space: normal;
+    max-width: 120px;
 }
 
 .progress-matrix-table-units .progress-matrix-cell-units {
-    min-width: 100px;
+    min-width: 80px;
 }
 
-/* 小サイズの単元ブロック（マトリクス内） */
+/* マトリクスセル内の単元ブロックを縦配置にする */
+.progress-matrix-cell-units-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* 小サイズの単元ブロック（マトリクス内）：縦配置・幅いっぱい */
 .progress-block-sm {
     font-size: 10px;
-    min-width: 60px;
-    max-width: 120px;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
     padding: 2px 4px;
-    margin: 1px;
-    display: inline-flex;
+    margin: 0;
+    display: flex;
+    white-space: normal;
+    word-break: keep-all;
+    text-align: left;
+    justify-content: flex-start;
 }
 
-/* アバター切り抜き位置コントロール（廃止：ダイアログ内に移動） */
+/* マトリクスの親カテゴリ行ヘッダー */
+.progress-matrix-parent-header {
+    font-size: 10px;
+    font-weight: 700;
+    color: #0366d6;
+    padding: 2px 4px;
+    background: #f0f7ff;
+    border-bottom: 1px solid #c8d8e8;
+}
+
+/* マトリクスのトップカテゴリ列スパンヘッダー */
+.progress-matrix-top-header {
+    background: #e0efff;
+    font-weight: 700;
+    color: #0255b8;
+    text-align: center;
+    border-bottom: 2px solid #c8d8e8;
+}
 
 /* アバター画像選択・切り抜きダイアログ */
 .avatar-crop-dialog {
@@ -1469,6 +1575,12 @@ header h1 {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     min-width: 240px;
     max-width: 320px;
+    /* スクリーン中央に配置 */
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .avatar-crop-dialog::backdrop {
@@ -1512,9 +1624,10 @@ header h1 {
     display: none;
 }
 
+/* プレビューラップ：overflow visible でハンドルがはみ出せるように */
 .avatar-crop-preview-wrap {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     border: 2px solid #d0d8e0;
     overflow: hidden;
@@ -1522,6 +1635,9 @@ header h1 {
     align-items: center;
     justify-content: center;
     background: #f0f4f8;
+    position: relative;
+    cursor: ns-resize;
+    user-select: none;
 }
 
 .avatar-crop-preview {
@@ -1529,6 +1645,7 @@ header h1 {
     height: 100%;
     object-fit: cover;
     display: none;
+    pointer-events: none;
 }
 
 .avatar-crop-preview.visible {
@@ -1536,22 +1653,41 @@ header h1 {
 }
 
 .avatar-crop-preview-placeholder {
-    font-size: 36px;
+    font-size: 48px;
     line-height: 1;
+    pointer-events: none;
 }
 
-.avatar-crop-positions {
-    display: flex;
-    gap: 12px;
+/* ドラッグ可能なトリム位置ハンドル（プレビュー画像上の〇） */
+.avatar-crop-handle {
+    position: absolute;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: rgba(3, 102, 214, 0.7);
+    transform: translate(-50%, -50%);
+    cursor: ns-resize;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    transition: background 0.1s;
+    display: none;
 }
 
-.avatar-crop-radio-label {
-    font-size: 13px;
-    color: #586069;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
+.avatar-crop-handle.visible {
+    display: block;
+}
+
+.avatar-crop-handle:hover {
+    background: rgba(3, 102, 214, 0.9);
+}
+
+/* 切り抜き位置ヒントテキスト */
+.avatar-crop-hint {
+    font-size: 11px;
+    color: #8a9ab0;
+    margin: -4px 0 0;
+    text-align: center;
 }
 
 .avatar-crop-dialog-btns {
@@ -3001,7 +3137,7 @@ button:disabled {
 
 .header-user-name {
     font-size: 15px;
-    color: #586069;
+    color: white;
     font-weight: 600;
     max-width: 160px;
     overflow: hidden;
@@ -3017,8 +3153,8 @@ button:disabled {
 
 .header-user-name:hover,
 .header-user-name:focus {
-    background: #f0f4f8;
-    color: #0366d6;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
     outline: none;
 }
 
@@ -4132,6 +4268,14 @@ body.font-size-medium .progress-matrix-table {
     font-size: 13px;
 }
 
+body.font-size-medium .progress-subject-list-name {
+    font-size: 22px;
+}
+
+body.font-size-medium .progress-subject-list-stats {
+    font-size: 14px;
+}
+
 body.font-size-medium #questionNumber {
     font-size: 21px;
 }
@@ -4469,6 +4613,14 @@ body.font-size-large .progress-block-group-name {
 
 body.font-size-large .progress-matrix-table {
     font-size: 15px;
+}
+
+body.font-size-large .progress-subject-list-name {
+    font-size: 26px;
+}
+
+body.font-size-large .progress-subject-list-stats {
+    font-size: 16px;
 }
 
 body.font-size-large #questionNumber {
