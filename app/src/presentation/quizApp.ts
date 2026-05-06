@@ -473,12 +473,15 @@ export class QuizApp {
       tab.addEventListener("click", () => {
         const mode = tab.dataset.progressDetailPanel as "grade" | "category";
         this.progressDetailViewMode = mode;
-        // タブのアクティブ状態を更新
+        // タブのアクティブ状態・tabindex を更新
         document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((t) => {
           const active = t.dataset.progressDetailPanel === mode;
           t.classList.toggle("active", active);
           t.setAttribute("aria-selected", String(active));
+          t.setAttribute("tabindex", active ? "0" : "-1");
         });
+        // tabpanel の aria-labelledby を更新する
+        document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", `progressDetailTab-${mode}`);
         // 詳細コンテンツを再描画
         this.renderProgressDetailContent();
       });
@@ -1772,14 +1775,14 @@ export class QuizApp {
       nameSpan.textContent = subj.name;
       nameArea.appendChild(nameSpan);
 
-      // 教科全体の学習済み単元数 / 総単元数
+      // 教科全体の学習済み単元数 / 総単元数（全問習得済みの単元のみカウント）
       const allCats = this.useCase.getCategoriesForSubject(subj.id);
       const catIds = Object.keys(allCats);
       let masteredUnitCount = 0;
       const totalUnitCount = catIds.length;
       for (const catId of catIds) {
-        const { mastered } = this.useCase.getMasteredCountForCategory(subj.id, catId);
-        if (mastered > 0) masteredUnitCount++;
+        const { mastered, total } = this.useCase.getMasteredCountForCategory(subj.id, catId);
+        if (total > 0 && mastered === total) masteredUnitCount++;
       }
       const statsSpan = document.createElement("span");
       statsSpan.className = "progress-subject-list-stats";
@@ -1811,12 +1814,16 @@ export class QuizApp {
     if (!panel) return;
     panel.classList.remove("hidden");
 
-    // タブのアクティブ状態を同期する
+    // タブのアクティブ状態・tabindex を同期する
+    const activeTabId = `progressDetailTab-${this.progressDetailViewMode}`;
     document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((t) => {
       const active = t.dataset.progressDetailPanel === this.progressDetailViewMode;
       t.classList.toggle("active", active);
       t.setAttribute("aria-selected", String(active));
+      t.setAttribute("tabindex", active ? "0" : "-1");
     });
+    // tabpanel の aria-labelledby を更新する
+    document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", activeTabId);
 
     this.renderProgressDetailContent();
   }
@@ -1852,8 +1859,8 @@ export class QuizApp {
 
       let masteredCount = 0;
       for (const [catId] of catEntries) {
-        const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
-        if (mastered > 0) masteredCount++;
+        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
+        if (total > 0 && mastered === total) masteredCount++;
       }
 
       const group = this.buildProgressBlockGroup(grade, masteredCount, catEntries.length, subject, catEntries);
@@ -1866,8 +1873,8 @@ export class QuizApp {
     if (uncatEntries.length > 0) {
       let masteredCount = 0;
       for (const [catId] of uncatEntries) {
-        const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
-        if (mastered > 0) masteredCount++;
+        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
+        if (total > 0 && mastered === total) masteredCount++;
       }
       const group = this.buildProgressBlockGroup("学年未設定", masteredCount, uncatEntries.length, subject, uncatEntries);
       container.appendChild(group);
@@ -1896,7 +1903,7 @@ export class QuizApp {
     const standaloneCats: [string, string][] = [];
 
     for (const [catId, catName] of catEntries) {
-      const parentInfo = this.useCase.getParentCategoryInfo(subject, catId);
+      const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId) ?? null;
       if (parentInfo) {
         if (!parentMap.has(parentInfo.id)) {
           parentMap.set(parentInfo.id, { name: parentInfo.name, categories: [] });
@@ -1911,8 +1918,8 @@ export class QuizApp {
     for (const [, { name, categories }] of parentMap) {
       let masteredCount = 0;
       for (const [catId] of categories) {
-        const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
-        if (mastered > 0) masteredCount++;
+        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
+        if (total > 0 && mastered === total) masteredCount++;
       }
       const group = this.buildProgressBlockGroup(name, masteredCount, categories.length, subject, categories);
       container.appendChild(group);
@@ -1924,8 +1931,8 @@ export class QuizApp {
       const groupName = parentMap.size > 0 ? "その他" : "すべての単元";
       let masteredCount = 0;
       for (const [catId] of standaloneCats) {
-        const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
-        if (mastered > 0) masteredCount++;
+        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
+        if (total > 0 && mastered === total) masteredCount++;
       }
       const group = this.buildProgressBlockGroup(groupName, masteredCount, standaloneCats.length, subject, standaloneCats);
       container.appendChild(group);
@@ -2519,7 +2526,7 @@ export class QuizApp {
     historyContent?.classList.toggle("hidden", tab !== "history");
     questionListContent?.classList.toggle("hidden", tab !== "questions");
 
-    document.querySelectorAll<HTMLElement>(".panel-tab").forEach((t) => {
+    document.querySelectorAll<HTMLElement>(".panel-tab[data-panel]").forEach((t) => {
       const isActive = t.dataset.panel === tab;
       t.classList.toggle("active", isActive);
       t.setAttribute("aria-selected", String(isActive));

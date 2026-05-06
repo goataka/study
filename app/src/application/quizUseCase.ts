@@ -665,14 +665,6 @@ export class QuizUseCase {
     return this.questionsById.get(questionId);
   }
 
-  /**
-   * 指定した教科・カテゴリの親カテゴリ情報を返す。
-   * 親カテゴリが未設定の場合は null を返す。
-   */
-  getParentCategoryInfo(subject: string, categoryId: string): { id: string; name: string } | null {
-    return this.categoryParentMap.get(`${subject}::${categoryId}`) ?? null;
-  }
-
   /** すべての学習データを削除し、メモリキャッシュもリセットする。 */
   async clearAllData(): Promise<void> {
     await this.progressRepo.clearAllData();
