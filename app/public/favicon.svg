@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <!-- シンプルな鉛筆アイコン: 青系・透明背景・右上向き45度斜め -->
-  <g transform="translate(50,50) rotate(-45) translate(-50,-50)">
+  <g transform="translate(50,50) rotate(45) translate(-50,-50)">
     <!-- 消しゴム部 -->
     <rect x="36" y="6" width="28" height="14" rx="4" fill="#7ab8e0"/>
     <!-- 金属帯 -->

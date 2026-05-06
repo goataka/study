@@ -18,10 +18,10 @@ import type { DrawingState } from "./notesCanvas";
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
   { id: "all", name: "おすすめ", icon: "✨" },
-  { id: "progress", name: "進度", icon: "📈" },
   { id: "english", name: "英語", icon: "📚" },
   { id: "math", name: "数学", icon: "🔢" },
   { id: "japanese", name: "国語", icon: "📖" },
+  { id: "progress", name: "進度", icon: "📈" },
   { id: "admin", name: "管理", icon: "⚙️" },
 ] as const;
 
@@ -54,6 +54,8 @@ export class QuizApp {
   private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
   private userAvatarDataUrl: string | null = null;
+  /** アバター画像の切り抜き位置（"top" | "center" | "bottom"） */
+  private userAvatarCropPosition: "top" | "center" | "bottom" = "center";
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
@@ -72,7 +74,7 @@ export class QuizApp {
   /** 学年フィルター（"小学", "中学", "高校" のいずれか、または null ですべて表示） */
   private selectedGradeFilter: string | null = null;
   /** 単元一覧の表示モード（"category"=カテゴリ別, "grade"=学年別） */
-  private categoryViewMode: "category" | "grade" = "category";
+  private categoryViewMode: "category" | "grade" = "grade";
   /** 折りたたまれている学年グループID のセット（学年別ビュー用） */
   private collapsedGradeGroups: Set<string> = new Set();
   /** 現在選択中のトップカテゴリID（トップカテゴリ選択時のみ設定、単元選択時は null） */
@@ -91,8 +93,10 @@ export class QuizApp {
   private activeOverallPanel: "learned" | "share" = "learned";
   /** 進度タブで選択中の教科ID */
   private progressSubjectId: string = SUBJECTS.find((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress")?.id ?? "english";
-  /** 進度タブ詳細パネルの表示モード（"grade"=学年別, "category"=カテゴリ別） */
-  private progressDetailViewMode: "grade" | "category" = "grade";
+  /** 進度タブ詳細パネルの表示モード（"grade"=学年別, "category"=カテゴリ別, "matrix"=マトリクス） */
+  private progressDetailViewMode: "grade" | "category" | "matrix" = "grade";
+  /** マトリクス表示の縦横向き（false=学年が行、true=学年が列） */
+  private progressMatrixTransposed: boolean = false;
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
   private questionListFilter: "all" | "learned" | "unlearned" = "all";
@@ -228,6 +232,13 @@ export class QuizApp {
     const stored = this.progressRepo.loadUserAvatar();
     // data:image/ スキームのみ許可（外部URLや壊れたデータを除外）
     this.userAvatarDataUrl = stored && stored.startsWith("data:image/") ? stored : null;
+    // 切り抜き位置を読み込む
+    try {
+      const pos = localStorage.getItem("avatarCropPosition");
+      if (pos === "top" || pos === "center" || pos === "bottom") {
+        this.userAvatarCropPosition = pos;
+      }
+    } catch { /* noop */ }
   }
 
   private loadFontSize(): void {
@@ -480,7 +491,7 @@ export class QuizApp {
   private setupProgressDetailTabs(): void {
     document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((tab) => {
       tab.addEventListener("click", () => {
-        const mode = tab.dataset.progressDetailPanel as "grade" | "category";
+        const mode = tab.dataset.progressDetailPanel as "grade" | "category" | "matrix";
         this.progressDetailViewMode = mode;
         // タブのアクティブ状態・tabindex を更新
         document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((t) => {
@@ -491,6 +502,11 @@ export class QuizApp {
         });
         // tabpanel の aria-labelledby を更新する
         document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", `progressDetailTab-${mode}`);
+        // マトリクスモード時は縦横切り替えボタンを表示する
+        const transposeBtn = document.getElementById("progressMatrixTransposeBtn");
+        if (transposeBtn) {
+          transposeBtn.classList.toggle("hidden", mode !== "matrix");
+        }
         // 詳細コンテンツを再描画
         this.renderProgressDetailContent();
       });
@@ -547,7 +563,7 @@ export class QuizApp {
       const controlsEl = document.getElementById("categoryControls");
       if (controlsEl) controlsEl.innerHTML = "";
       const titleEl = document.getElementById("categoryListTitle");
-      if (titleEl) titleEl.textContent = "📈 進度";
+      if (titleEl) titleEl.textContent = "📚 教科";
       this.renderProgressView();
       return;
     }
@@ -1816,7 +1832,7 @@ export class QuizApp {
 
   /**
    * 進度タブ詳細パネル（右パネル）を描画する。
-   * 学年別またはカテゴリ別でグループ化した ■□ブロック列を表示する。
+   * 学年別またはカテゴリ別でグループ化した単元名ブロック列を表示する。
    */
   private renderProgressDetailPanel(): void {
     const panel = document.getElementById("progressDetailPanel");
@@ -1834,12 +1850,18 @@ export class QuizApp {
     // tabpanel の aria-labelledby を更新する
     document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", activeTabId);
 
+    // マトリクスモード時は縦横切り替えボタンを表示する
+    const transposeBtn = document.getElementById("progressMatrixTransposeBtn");
+    if (transposeBtn) {
+      transposeBtn.classList.toggle("hidden", this.progressDetailViewMode !== "matrix");
+    }
+
     this.renderProgressDetailContent();
   }
 
   /**
    * 進度タブ詳細パネルのコンテンツ部分を描画する。
-   * progressDetailViewMode に応じて学年別またはカテゴリ別を描画する。
+   * progressDetailViewMode に応じて学年別・カテゴリ別・マトリクスを描画する。
    */
   private renderProgressDetailContent(): void {
     const content = document.getElementById("progressDetailContent");
@@ -1848,6 +1870,8 @@ export class QuizApp {
 
     if (this.progressDetailViewMode === "grade") {
       this.renderProgressDetailByGrade(content);
+    } else if (this.progressDetailViewMode === "matrix") {
+      this.renderProgressDetailMatrix(content);
     } else {
       this.renderProgressDetailByCategory(content);
     }
@@ -1892,7 +1916,7 @@ export class QuizApp {
 
   /**
    * 進度詳細のカテゴリ別ビューを描画する。
-   * 親カテゴリまたはトップカテゴリ単位で ■□ブロック列を表示する。
+   * トップカテゴリ > 親カテゴリ単位で単元名ブロック列を表示する。
    */
   private renderProgressDetailByCategory(container: HTMLElement): void {
     const subject = this.progressSubjectId;
@@ -1907,24 +1931,58 @@ export class QuizApp {
       return;
     }
 
-    // parentCategory 付きのカテゴリを収集する
-    const parentMap = new Map<string, { name: string; categories: [string, string][] }>();
+    // トップカテゴリ → 親カテゴリ → 単元のツリー構造を構築する
+    const topMap = new Map<string, { name: string; parentMap: Map<string, { name: string; categories: [string, string][] }> }>();
+    const noTopParentMap = new Map<string, { name: string; categories: [string, string][] }>();
     const standaloneCats: [string, string][] = [];
 
     for (const [catId, catName] of catEntries) {
+      const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
       const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
-      if (parentInfo) {
-        if (!parentMap.has(parentInfo.id)) {
-          parentMap.set(parentInfo.id, { name: parentInfo.name, categories: [] });
+
+      if (topInfo) {
+        if (!topMap.has(topInfo.id)) {
+          topMap.set(topInfo.id, { name: topInfo.name, parentMap: new Map() });
         }
-        parentMap.get(parentInfo.id)!.categories.push([catId, catName]);
+        const topEntry = topMap.get(topInfo.id)!;
+        const parentKey = parentInfo?.id ?? "__none__";
+        const parentName = parentInfo?.name ?? topInfo.name;
+        if (!topEntry.parentMap.has(parentKey)) {
+          topEntry.parentMap.set(parentKey, { name: parentName, categories: [] });
+        }
+        topEntry.parentMap.get(parentKey)!.categories.push([catId, catName]);
+      } else if (parentInfo) {
+        if (!noTopParentMap.has(parentInfo.id)) {
+          noTopParentMap.set(parentInfo.id, { name: parentInfo.name, categories: [] });
+        }
+        noTopParentMap.get(parentInfo.id)!.categories.push([catId, catName]);
       } else {
         standaloneCats.push([catId, catName]);
       }
     }
 
-    // 親カテゴリグループを描画する
-    for (const [, { name, categories }] of parentMap) {
+    // トップカテゴリグループを描画する
+    for (const [, { name: topName, parentMap }] of topMap) {
+      // トップカテゴリのヘッダー
+      const topHeader = document.createElement("div");
+      topHeader.className = "progress-top-category-header";
+      topHeader.textContent = topName;
+      container.appendChild(topHeader);
+
+      // トップカテゴリ内の親カテゴリグループを描画する
+      for (const [, { name: parentName, categories }] of parentMap) {
+        let masteredCount = 0;
+        for (const [catId] of categories) {
+          const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
+          if (total > 0 && mastered === total) masteredCount++;
+        }
+        const group = this.buildProgressBlockGroup(parentName, masteredCount, categories.length, subject, categories);
+        container.appendChild(group);
+      }
+    }
+
+    // トップカテゴリのない親カテゴリグループを描画する
+    for (const [, { name, categories }] of noTopParentMap) {
       let masteredCount = 0;
       for (const [catId] of categories) {
         const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
@@ -1937,7 +1995,7 @@ export class QuizApp {
     // 親カテゴリのないスタンドアロン単元をまとめて表示する
     if (standaloneCats.length > 0) {
       // 親カテゴリグループがある場合は「その他」としてまとめる
-      const groupName = parentMap.size > 0 ? "その他" : "すべての単元";
+      const groupName = (topMap.size + noTopParentMap.size) > 0 ? "その他" : "すべての単元";
       let masteredCount = 0;
       for (const [catId] of standaloneCats) {
         const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
@@ -1992,15 +2050,12 @@ export class QuizApp {
       block.className = "progress-block";
       block.setAttribute("title", catName);
       block.setAttribute("aria-label", catName);
+      block.textContent = catName;
 
       if (catMastered > 0 && catMastered === catTotal) {
         block.classList.add("mastered");
-        block.textContent = "■";
       } else if (inProgress > 0 || catMastered > 0) {
         block.classList.add("in-progress");
-        block.textContent = "▪";
-      } else {
-        block.textContent = "□";
       }
 
       blockSeq.appendChild(block);
@@ -2008,6 +2063,145 @@ export class QuizApp {
 
     group.appendChild(blockSeq);
     return group;
+  }
+
+  /**
+   * 進度詳細のマトリクスビューを描画する。
+   * 学年（行）× 単元（列）のテーブル形式で進度を表示する。縦横切り替えに対応。
+   */
+  private renderProgressDetailMatrix(container: HTMLElement): void {
+    const subject = this.progressSubjectId;
+    const grades = this.useCase.getUniqueGradesForSubject(subject);
+
+    // 全カテゴリを列として収集する
+    const allCatIds: string[] = [];
+    const allCatNames: string[] = [];
+    const gradeCatMap = new Map<string, string[]>(); // grade → catIds
+
+    for (const grade of grades) {
+      const cats = this.useCase.getCategoriesForGrade(subject, grade);
+      const ids = Object.keys(cats);
+      gradeCatMap.set(grade, ids);
+      for (const [catId, catName] of Object.entries(cats)) {
+        if (!allCatIds.includes(catId)) {
+          allCatIds.push(catId);
+          allCatNames.push(catName);
+        }
+      }
+    }
+
+    if (grades.length === 0 || allCatIds.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "progress-block-group";
+      empty.textContent = "単元がありません";
+      container.appendChild(empty);
+      return;
+    }
+
+    // スクロール可能なラッパー
+    const wrapper = document.createElement("div");
+    wrapper.style.overflowX = "auto";
+    wrapper.style.overflowY = "auto";
+    wrapper.style.flex = "1";
+    wrapper.style.minHeight = "0";
+
+    const table = document.createElement("table");
+    table.className = "progress-matrix-table";
+
+    const getStatus = (grade: string, catId: string): "mastered" | "in-progress" | "empty" => {
+      const catIds = gradeCatMap.get(grade) ?? [];
+      if (!catIds.includes(catId)) return "empty";
+      const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
+      const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
+      if (mastered > 0 && mastered === total) return "mastered";
+      if (inProgress > 0 || mastered > 0) return "in-progress";
+      return "empty";
+    };
+
+    if (!this.progressMatrixTransposed) {
+      // 行: 学年、列: 単元
+      const thead = document.createElement("thead");
+      const headerRow = document.createElement("tr");
+      const cornerTh = document.createElement("th");
+      cornerTh.textContent = "学年 \\ 単元";
+      headerRow.appendChild(cornerTh);
+      for (const catName of allCatNames) {
+        const th = document.createElement("th");
+        th.textContent = catName;
+        headerRow.appendChild(th);
+      }
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      for (const grade of grades) {
+        const tr = document.createElement("tr");
+        const th = document.createElement("td");
+        th.textContent = grade;
+        tr.appendChild(th);
+        for (const catId of allCatIds) {
+          const td = document.createElement("td");
+          const status = getStatus(grade, catId);
+          if (status === "mastered") {
+            td.className = "progress-matrix-cell-mastered";
+            td.textContent = "✓";
+          } else if (status === "in-progress") {
+            td.className = "progress-matrix-cell-in-progress";
+            td.textContent = "◐";
+          } else {
+            td.className = "progress-matrix-cell-empty";
+            td.textContent = "—";
+          }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+    } else {
+      // 縦横反転: 行: 単元、列: 学年
+      const thead = document.createElement("thead");
+      const headerRow = document.createElement("tr");
+      const cornerTh = document.createElement("th");
+      cornerTh.textContent = "単元 \\ 学年";
+      headerRow.appendChild(cornerTh);
+      for (const grade of grades) {
+        const th = document.createElement("th");
+        th.textContent = grade;
+        headerRow.appendChild(th);
+      }
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      for (let i = 0; i < allCatIds.length; i++) {
+        const catId = allCatIds[i] ?? "";
+        const catName = allCatNames[i] ?? "";
+        const tr = document.createElement("tr");
+        const th = document.createElement("td");
+        th.textContent = catName;
+        tr.appendChild(th);
+        for (const grade of grades) {
+          const td = document.createElement("td");
+          const status = getStatus(grade, catId);
+          if (status === "mastered") {
+            td.className = "progress-matrix-cell-mastered";
+            td.textContent = "✓";
+          } else if (status === "in-progress") {
+            td.className = "progress-matrix-cell-in-progress";
+            td.textContent = "◐";
+          } else {
+            td.className = "progress-matrix-cell-empty";
+            td.textContent = "—";
+          }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+    }
+
+    wrapper.appendChild(table);
+    container.appendChild(wrapper);
   }
 
   /**
@@ -3379,6 +3573,23 @@ export class QuizApp {
         e.preventDefault();
         headerUserAvatarInput?.click();
       }
+    });
+
+    // アバター切り抜き位置ボタン
+    document.querySelectorAll<HTMLButtonElement>(".avatar-crop-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const position = btn.dataset.position as "top" | "center" | "bottom" | undefined;
+        if (!position) return;
+        this.userAvatarCropPosition = position;
+        try { localStorage.setItem("avatarCropPosition", position); } catch { /* noop */ }
+        this.updateUserAvatarDisplay();
+      });
+    });
+
+    // マトリクス表示の縦横切り替えボタン
+    this.on("progressMatrixTransposeBtn", "click", () => {
+      this.progressMatrixTransposed = !this.progressMatrixTransposed;
+      this.renderProgressDetailContent();
     });
 
     // 入力フィールド：Enterで保存、Escapeでキャンセル
@@ -4794,6 +5005,12 @@ export class QuizApp {
     const idMap = { start: "startScreen", quiz: "quizScreen", result: "resultScreen" };
     document.getElementById(idMap[screenName])?.classList.remove("hidden");
 
+    // 教科タブ（#startScreen の外にある）はスタート画面のみ表示する
+    const subjectTabs = document.querySelector<HTMLElement>(".subject-tabs");
+    if (subjectTabs) {
+      subjectTabs.classList.toggle("hidden", screenName !== "start");
+    }
+
     if (screenName === "start") {
       this.updateSubjectStats();
       this.selectFirstUnlearnedCategory();
@@ -4853,10 +5070,24 @@ export class QuizApp {
       img.src = this.userAvatarDataUrl;
       img.classList.add("visible");
       placeholder.classList.add("hidden");
+      // 切り抜き位置を適用する
+      const posMap = { top: "center top", center: "center center", bottom: "center bottom" };
+      img.style.objectPosition = posMap[this.userAvatarCropPosition] ?? "center center";
+      // 切り抜き位置コントロールを表示する
+      const cropControls = document.getElementById("avatarCropControls");
+      cropControls?.classList.remove("hidden");
+      // アクティブボタンを更新する
+      document.querySelectorAll<HTMLButtonElement>(".avatar-crop-btn").forEach((btn) => {
+        const active = btn.dataset.position === this.userAvatarCropPosition;
+        btn.classList.toggle("active", active);
+        btn.setAttribute("aria-pressed", String(active));
+      });
     } else {
       img.removeAttribute("src");
       img.classList.remove("visible");
       placeholder.classList.remove("hidden");
+      // 画像なしの場合は切り抜き位置コントロールを非表示にする
+      document.getElementById("avatarCropControls")?.classList.add("hidden");
     }
   }
 
