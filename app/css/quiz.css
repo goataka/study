@@ -1576,7 +1576,6 @@ header h1 {
     min-width: 240px;
     max-width: 320px;
     /* スクリーン中央に配置 */
-    margin: auto;
     position: fixed;
     top: 50%;
     left: 50%;

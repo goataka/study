@@ -58,6 +58,8 @@ export class QuizApp {
   private userAvatarCropPosition: number = 50;
   /** ダイアログで選択中の切り抜き位置（確定前） */
   private pendingAvatarCropY: number = 50;
+  /** アバタークロップダイアログのドラッグイベントAbortController */
+  private cropDragAbortController: AbortController | null = null;
   /** ダイアログで選択中の画像（確定前） */
   private pendingAvatarDataUrl: string | null = null;
   private questionCount: number = 10;
@@ -5215,10 +5217,12 @@ export class QuizApp {
       preview.classList.add("visible");
       placeholder.classList.add("hidden");
       preview.style.objectPosition = `center ${this.pendingAvatarCropY}%`;
-      // ハンドルを表示し位置を更新する
+      // ハンドルを表示し位置とARIA属性を更新する
       if (handle) {
         handle.classList.add("visible");
         handle.style.top = `${this.pendingAvatarCropY}%`;
+        handle.setAttribute("aria-valuenow", String(Math.round(this.pendingAvatarCropY)));
+        handle.setAttribute("tabindex", "0");
       }
     } else {
       preview.removeAttribute("src");
@@ -5226,6 +5230,7 @@ export class QuizApp {
       placeholder.classList.remove("hidden");
       if (handle) {
         handle.classList.remove("visible");
+        handle.setAttribute("tabindex", "-1");
       }
     }
   }
@@ -5259,69 +5264,82 @@ export class QuizApp {
 
   /**
    * アバタープレビュー上のドラッグハンドルを初期化する。
+   * AbortController でクリーンアップを管理し、ダイアログを複数回開いても
+   * イベントリスナーが重複しないようにする。
    * マウス・タッチ両方に対応し、Y方向のドラッグで切り抜き位置を変更する。
    */
   private setupAvatarCropDrag(): void {
+    // 前回のリスナーをクリーンアップ
+    this.cropDragAbortController?.abort();
+    this.cropDragAbortController = new AbortController();
+    const { signal } = this.cropDragAbortController;
+
     const wrap = document.getElementById("avatarCropPreviewWrap");
     const handle = document.getElementById("avatarCropHandle");
     if (!wrap || !handle) return;
 
-    // 既存のイベントリスナーを削除するためにcloneで置き換え
-    const newWrap = wrap.cloneNode(true) as HTMLElement;
-    wrap.parentNode?.replaceChild(newWrap, wrap);
-    const newHandle = newWrap.querySelector<HTMLElement>("#avatarCropHandle");
-    if (!newHandle) return;
-
     let dragging = false;
 
     const getYPct = (clientY: number): number => {
-      const rect = newWrap.getBoundingClientRect();
+      const rect = wrap.getBoundingClientRect();
       const y = clientY - rect.top;
       return Math.max(0, Math.min(100, (y / rect.height) * 100));
     };
 
-    const updatePosition = (clientY: number): void => {
-      const pct = getYPct(clientY);
+    const updatePosition = (pct: number): void => {
       this.pendingAvatarCropY = pct;
-      newHandle.style.top = `${pct}%`;
-      const preview = newWrap.querySelector<HTMLImageElement>("#avatarCropPreview");
+      handle.style.top = `${pct}%`;
+      handle.setAttribute("aria-valuenow", String(Math.round(pct)));
+      const preview = wrap.querySelector<HTMLImageElement>("#avatarCropPreview");
       if (preview) preview.style.objectPosition = `center ${pct}%`;
     };
 
     // マウスイベント
-    const onMouseMove = (e: MouseEvent): void => {
+    wrap.addEventListener("mousedown", (e: MouseEvent) => {
+      dragging = true;
+      updatePosition(getYPct(e.clientY));
+    }, { signal });
+
+    document.addEventListener("mousemove", (e: MouseEvent) => {
       if (!dragging) return;
       e.preventDefault();
-      updatePosition(e.clientY);
-    };
-    const onMouseUp = (): void => { dragging = false; };
+      updatePosition(getYPct(e.clientY));
+    }, { signal } as AddEventListenerOptions);
 
-    newWrap.addEventListener("mousedown", (e: MouseEvent) => {
-      dragging = true;
-      updatePosition(e.clientY);
-    });
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mouseup", () => { dragging = false; }, { signal } as AddEventListenerOptions);
 
     // タッチイベント
-    newWrap.addEventListener("touchstart", (e: TouchEvent) => {
+    wrap.addEventListener("touchstart", (e: TouchEvent) => {
       dragging = true;
       const touch = e.touches[0];
-      if (touch) updatePosition(touch.clientY);
-    }, { passive: true });
-    newWrap.addEventListener("touchmove", (e: TouchEvent) => {
+      if (touch) updatePosition(getYPct(touch.clientY));
+    }, { passive: true, signal } as AddEventListenerOptions);
+
+    wrap.addEventListener("touchmove", (e: TouchEvent) => {
       if (!dragging) return;
       const touch = e.touches[0];
-      if (touch) updatePosition(touch.clientY);
-    }, { passive: true });
-    newWrap.addEventListener("touchend", () => { dragging = false; });
+      if (touch) updatePosition(getYPct(touch.clientY));
+    }, { passive: true, signal } as AddEventListenerOptions);
 
-    // ダイアログが閉じたときにイベントリスナーをクリーンアップ
-    const dialog = newWrap.closest("dialog");
+    wrap.addEventListener("touchend", () => { dragging = false; }, { signal } as AddEventListenerOptions);
+
+    // キーボード操作（↑↓で微調整）
+    handle.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        updatePosition(Math.max(0, this.pendingAvatarCropY - 5));
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        updatePosition(Math.min(100, this.pendingAvatarCropY + 5));
+      }
+    }, { signal } as AddEventListenerOptions);
+
+    // ダイアログが閉じたときにクリーンアップ
+    const dialog = wrap.closest("dialog");
     if (dialog) {
       dialog.addEventListener("close", () => {
-        document.removeEventListener("mousemove", onMouseMove);
-        document.removeEventListener("mouseup", onMouseUp);
+        this.cropDragAbortController?.abort();
+        this.cropDragAbortController = null;
       }, { once: true });
     }
   }
