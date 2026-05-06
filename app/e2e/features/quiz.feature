@@ -187,8 +187,8 @@ Feature: 学習アプリ
     And I click the view mode toggle button
     Then grade groups should be visible in the category list
 
-  Scenario: サポートボタン（?）がフッターに表示される
-    Then the support button should be visible in the footer
+  Scenario: サポートボタン（?）がヘッダーに表示される
+    Then the support button should be visible in the header
 
   Scenario: サポートボタン（?）をクリックすると別タブでサポートページが開く
     Then the support button should open support page in a new tab
