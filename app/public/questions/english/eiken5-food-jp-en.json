@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「サラダ」は英語で salad です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/food/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "salad は「サラダ」です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/food/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

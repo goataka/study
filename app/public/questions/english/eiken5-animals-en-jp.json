@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "sheep は「ひつじ」です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/animals/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

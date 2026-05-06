@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「まど」は英語で window です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/school/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

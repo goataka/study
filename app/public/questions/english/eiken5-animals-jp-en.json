@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「ひつじ」は英語で sheep です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/animals/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

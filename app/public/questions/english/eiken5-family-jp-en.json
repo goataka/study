@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「あかちゃん」は英語で baby です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/family/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

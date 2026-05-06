@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "play は「あそぶ・プレイ」です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/daily/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

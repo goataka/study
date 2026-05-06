@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「サラダ」は salad です。I eat salad for lunch. でひるごはんにサラダを食べるという意味になります"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/food/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

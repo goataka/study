@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「ひつじ」は sheep です。The sheep is white and soft. でそのひつじは白くふわふわという意味になります"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/animals/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

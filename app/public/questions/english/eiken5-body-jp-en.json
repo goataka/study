@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「かた」は英語で shoulder です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/body/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

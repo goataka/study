@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「まど」は window です。Look out the window. でまどの外を見てくださいという意味になります"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/school/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }
