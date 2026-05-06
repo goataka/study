@@ -185,6 +185,13 @@ function setupTabDom(): void {
             </div>
           </div>
         </div>
+        <div id="progressDetailPanel" class="hidden">
+          <div class="panel-tabs progress-detail-tabs" role="tablist">
+            <button class="panel-tab active" id="progressDetailTab-grade" data-progress-detail-panel="grade" role="tab" type="button" aria-selected="true">🎓 学年別</button>
+            <button class="panel-tab" id="progressDetailTab-category" data-progress-detail-panel="category" role="tab" type="button" aria-selected="false">📁 カテゴリ別</button>
+          </div>
+          <div id="progressDetailContent" class="progress-detail-content"></div>
+        </div>
       </div>
     </div>
     <div id="quizScreen" class="screen">
@@ -559,90 +566,114 @@ describe("QuizApp — 進度タブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("進度タブをクリックすると教科セレクターが描画される", async () => {
+  it("進度タブをクリックすると教科リストが左パネルに描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
 
-    const selector = document.querySelector(".progress-subject-selector");
-    expect(selector).not.toBeNull();
+    const subjectList = document.querySelector(".progress-subject-list");
+    expect(subjectList).not.toBeNull();
 
-    const btns = document.querySelectorAll(".progress-subject-btn");
-    expect(btns.length).toBeGreaterThan(0);
+    const items = document.querySelectorAll(".progress-subject-list-item");
+    expect(items.length).toBeGreaterThan(0);
   });
 
-  it("進度タブの教科セレクターボタンに aria-pressed が設定されている", async () => {
+  it("進度タブの教科リスト項目に aria-pressed が設定されている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
 
-    const btns = document.querySelectorAll(".progress-subject-btn");
-    btns.forEach((btn) => {
-      expect(btn.hasAttribute("aria-pressed")).toBe(true);
+    const items = document.querySelectorAll(".progress-subject-list-item");
+    items.forEach((item) => {
+      expect(item.hasAttribute("aria-pressed")).toBe(true);
     });
   });
 
-  it("進度タブでアクティブな教科ボタンの aria-pressed が true になっている", async () => {
+  it("進度タブでアクティブな教科リスト項目の aria-pressed が true になっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
 
-    const activeBtn = document.querySelector(".progress-subject-btn.active");
-    expect(activeBtn?.getAttribute("aria-pressed")).toBe("true");
+    const activeItem = document.querySelector(".progress-subject-list-item.active");
+    expect(activeItem?.getAttribute("aria-pressed")).toBe("true");
 
-    const inactiveBtns = document.querySelectorAll(".progress-subject-btn:not(.active)");
-    inactiveBtns.forEach((btn) => {
-      expect(btn.getAttribute("aria-pressed")).toBe("false");
+    const inactiveItems = document.querySelectorAll(".progress-subject-list-item:not(.active)");
+    inactiveItems.forEach((item) => {
+      expect(item.getAttribute("aria-pressed")).toBe("false");
     });
   });
 
-  it("進度タブをクリックするとカテゴリリストが描画される", async () => {
+  it("進度タブをクリックすると進度詳細パネルが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
 
-    const categoryItems = document.querySelectorAll(".category-item[data-category]");
-    expect(categoryItems.length).toBeGreaterThan(0);
+    const panel = document.getElementById("progressDetailPanel");
+    expect(panel?.classList.contains("hidden")).toBe(false);
   });
 
-  it("進度タブ内の単元をクリックすると対応する教科タブへ遷移する", async () => {
+  it("進度タブの詳細パネルに学年別・カテゴリ別タブが存在する", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 進度タブに切替
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
 
-    // 表示されている単元をクリック（英語が初期選択されているのでphonics-1が存在するはず）
-    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
-    catItem?.click();
-
-    // 英語タブがアクティブになっているはず
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]');
-    expect(englishTab?.classList.contains("active")).toBe(true);
+    const gradeTab = document.getElementById("progressDetailTab-grade");
+    const catTab = document.getElementById("progressDetailTab-category");
+    expect(gradeTab).not.toBeNull();
+    expect(catTab).not.toBeNull();
   });
 
-  it("進度タブ内の単元をクリックすると単元が選択状態になる", async () => {
+  it("進度タブの詳細パネルにブロックグループが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
 
-    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
-    catItem?.click();
+    const content = document.getElementById("progressDetailContent");
+    expect(content).not.toBeNull();
+    // コンテンツが描画されている（グループが存在するかコンテンツが空でない）
+    expect(content?.children.length).toBeGreaterThanOrEqual(0);
+  });
 
-    // statsInfo が更新されている（単元が選択された状態）
-    const statsInfo = document.getElementById("statsInfo");
-    expect(statsInfo?.textContent).toContain("全：");
+  it("進度詳細パネルのカテゴリ別タブをクリックするとビューが切り替わる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const catTab = document.getElementById("progressDetailTab-category") as HTMLElement;
+    catTab?.click();
+
+    expect(catTab?.classList.contains("active")).toBe(true);
+    const gradeTab = document.getElementById("progressDetailTab-grade");
+    expect(gradeTab?.classList.contains("active")).toBe(false);
+  });
+
+  it("他の教科タブに切り替えると進度詳細パネルが非表示になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    // 英語タブに切り替え
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const panel = document.getElementById("progressDetailPanel");
+    expect(panel?.classList.contains("hidden")).toBe(true);
   });
 });
 

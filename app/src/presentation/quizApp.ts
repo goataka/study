@@ -90,6 +90,8 @@ export class QuizApp {
   private activeOverallPanel: "learned" | "share" = "learned";
   /** 進度タブで選択中の教科ID */
   private progressSubjectId: string = SUBJECTS.find((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress")?.id ?? "english";
+  /** 進度タブ詳細パネルの表示モード（"grade"=学年別, "category"=カテゴリ別） */
+  private progressDetailViewMode: "grade" | "category" = "grade";
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
   private questionListFilter: "all" | "learned" | "unlearned" = "all";
@@ -138,6 +140,7 @@ export class QuizApp {
     this.buildSubjectTabs();
     this.buildPanelTabs();
     this.setupOverallPanelTabs();
+    this.setupProgressDetailTabs();
     this.updateSubjectStats();
     this.selectFirstUnlearnedCategory();
     const initRecords = this.useCase.getHistory();
@@ -458,6 +461,26 @@ export class QuizApp {
         const panel = tab.dataset.overallPanel as "learned" | "share";
         this.activeOverallPanel = panel;
         this.showOverallPanel(panel);
+      });
+    });
+  }
+
+  /**
+   * 進度タブ専用の詳細パネルタブ（学年別 / カテゴリ別）を初期化する。
+   */
+  private setupProgressDetailTabs(): void {
+    document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const mode = tab.dataset.progressDetailPanel as "grade" | "category";
+        this.progressDetailViewMode = mode;
+        // タブのアクティブ状態を更新
+        document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((t) => {
+          const active = t.dataset.progressDetailPanel === mode;
+          t.classList.toggle("active", active);
+          t.setAttribute("aria-selected", String(active));
+        });
+        // 詳細コンテンツを再描画
+        this.renderProgressDetailContent();
       });
     });
   }
@@ -1712,56 +1735,264 @@ export class QuizApp {
 
   /**
    * 進度タブ用のビューを描画する。
-   * 教科セレクターとカテゴリ別・学年別の進捗リストを表示する。
+   * 左パネルに教科リストを表示し、右パネルに選択教科の進度詳細を表示する。
    */
   private renderProgressView(): void {
     const categoryList = document.getElementById("categoryList");
     const controlsEl = document.getElementById("categoryControls");
     if (!categoryList) return;
     categoryList.innerHTML = "";
+    if (controlsEl) controlsEl.innerHTML = "";
 
-    // ── カテゴリリスト（教科フィルターを一時的に切り替えて既存レンダラーを使用） ──
-    const savedSubject = this.filter.subject;
-    this.filter.subject = this.progressSubjectId;
+    // ── 左パネル: 教科リスト ──
+    const subjectList = document.createElement("div");
+    subjectList.className = "progress-subject-list";
 
-    // ビューモード切替コントロールを #categoryControls に描画する（内部で innerHTML = "" される）
-    this.renderCategoryViewControls();
+    const contentSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
+    for (const subj of contentSubjects) {
+      const item = document.createElement("button");
+      item.type = "button";
+      item.className = "progress-subject-list-item";
+      const isActive = subj.id === this.progressSubjectId;
+      if (isActive) item.classList.add("active");
+      item.setAttribute("aria-pressed", String(isActive));
+      item.setAttribute("data-subject", subj.id);
 
-    // 教科セレクターを #categoryControls の先頭に挿入（ビューモード切替より上に表示）
-    if (controlsEl) {
-      const selectorDiv = document.createElement("div");
-      selectorDiv.className = "progress-subject-selector";
+      const iconSpan = document.createElement("span");
+      iconSpan.className = "progress-subject-list-icon";
+      iconSpan.setAttribute("aria-hidden", "true");
+      iconSpan.textContent = subj.icon;
+      item.appendChild(iconSpan);
 
-      const contentSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
-      for (const subj of contentSubjects) {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "progress-subject-btn";
-        btn.textContent = `${subj.icon} ${subj.name}`;
-        const isActive = subj.id === this.progressSubjectId;
-        if (isActive) btn.classList.add("active");
-        btn.setAttribute("aria-pressed", String(isActive));
-        const capturedId = subj.id;
-        btn.addEventListener("click", () => {
-          this.progressSubjectId = capturedId;
-          this.renderCategoryList();
-        });
-        selectorDiv.appendChild(btn);
+      const nameArea = document.createElement("div");
+      nameArea.className = "progress-subject-list-name-area";
+
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "progress-subject-list-name";
+      nameSpan.textContent = subj.name;
+      nameArea.appendChild(nameSpan);
+
+      // 教科全体の学習済み単元数 / 総単元数
+      const allCats = this.useCase.getCategoriesForSubject(subj.id);
+      const catIds = Object.keys(allCats);
+      let totalMastered = 0;
+      let totalCount = catIds.length;
+      for (const catId of catIds) {
+        const { mastered } = this.useCase.getMasteredCountForCategory(subj.id, catId);
+        if (mastered > 0) totalMastered++;
       }
-      controlsEl.prepend(selectorDiv);
+      const statsSpan = document.createElement("span");
+      statsSpan.className = "progress-subject-list-stats";
+      statsSpan.textContent = `${totalMastered} / ${totalCount} 単元`;
+      nameArea.appendChild(statsSpan);
+
+      item.appendChild(nameArea);
+
+      const capturedId = subj.id;
+      item.addEventListener("click", () => {
+        this.progressSubjectId = capturedId;
+        this.renderCategoryList();
+      });
+      subjectList.appendChild(item);
     }
+    categoryList.appendChild(subjectList);
 
-    if (this.categoryViewMode === "grade") {
-      this.renderCategoryListByGrade();
-    } else {
-      this.renderCategoryListByCategory();
-    }
+    // ── 右パネル: 進度詳細 ──
+    this.renderProgressDetailPanel();
 
-    this.filter.subject = savedSubject;
-
-    // アクティブ状態を更新（フィルターを戻した後に実行する）
-    this.updateCategoryListActive();
     this.updateSubjectStats();
+  }
+
+  /**
+   * 進度タブ詳細パネル（右パネル）を描画する。
+   * 学年別またはカテゴリ別でグループ化した ■□ブロック列を表示する。
+   */
+  private renderProgressDetailPanel(): void {
+    const panel = document.getElementById("progressDetailPanel");
+    if (!panel) return;
+    panel.classList.remove("hidden");
+
+    // タブのアクティブ状態を同期する
+    document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((t) => {
+      const active = t.dataset.progressDetailPanel === this.progressDetailViewMode;
+      t.classList.toggle("active", active);
+      t.setAttribute("aria-selected", String(active));
+    });
+
+    this.renderProgressDetailContent();
+  }
+
+  /**
+   * 進度タブ詳細パネルのコンテンツ部分を描画する。
+   * progressDetailViewMode に応じて学年別またはカテゴリ別を描画する。
+   */
+  private renderProgressDetailContent(): void {
+    const content = document.getElementById("progressDetailContent");
+    if (!content) return;
+    content.innerHTML = "";
+
+    if (this.progressDetailViewMode === "grade") {
+      this.renderProgressDetailByGrade(content);
+    } else {
+      this.renderProgressDetailByCategory(content);
+    }
+  }
+
+  /**
+   * 進度詳細の学年別ビューを描画する。
+   * 学年グループ（小学1年, 中学1年 等）ごとに ■□ブロック列を表示する。
+   */
+  private renderProgressDetailByGrade(container: HTMLElement): void {
+    const subject = this.progressSubjectId;
+    const grades = this.useCase.getUniqueGradesForSubject(subject);
+
+    for (const grade of grades) {
+      const cats = this.useCase.getCategoriesForGrade(subject, grade);
+      const catEntries = Object.entries(cats);
+      if (catEntries.length === 0) continue;
+
+      let masteredCount = 0;
+      for (const [catId] of catEntries) {
+        const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
+        if (mastered > 0) masteredCount++;
+      }
+
+      const group = this.buildProgressBlockGroup(grade, masteredCount, catEntries.length, subject, catEntries);
+      container.appendChild(group);
+    }
+
+    // 学年未設定カテゴリ
+    const uncategorized = this.useCase.getCategoriesWithoutGrade(subject);
+    const uncatEntries = Object.entries(uncategorized);
+    if (uncatEntries.length > 0) {
+      let masteredCount = 0;
+      for (const [catId] of uncatEntries) {
+        const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
+        if (mastered > 0) masteredCount++;
+      }
+      const group = this.buildProgressBlockGroup("学年未設定", masteredCount, uncatEntries.length, subject, uncatEntries);
+      container.appendChild(group);
+    }
+  }
+
+  /**
+   * 進度詳細のカテゴリ別ビューを描画する。
+   * 親カテゴリまたはトップカテゴリ単位で ■□ブロック列を表示する。
+   */
+  private renderProgressDetailByCategory(container: HTMLElement): void {
+    const subject = this.progressSubjectId;
+    const allCats = this.useCase.getCategoriesForSubject(subject);
+    const catEntries = Object.entries(allCats);
+
+    if (catEntries.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "progress-block-group";
+      empty.textContent = "単元がありません";
+      container.appendChild(empty);
+      return;
+    }
+
+    // parentCategory 付きのカテゴリを収集する
+    const parentMap = new Map<string, { name: string; cats: [string, string][] }>();
+    const standaloneCats: [string, string][] = [];
+
+    for (const [catId, catName] of catEntries) {
+      const parentInfo = this.useCase.getParentCategoryInfo(subject, catId);
+      if (parentInfo) {
+        if (!parentMap.has(parentInfo.id)) {
+          parentMap.set(parentInfo.id, { name: parentInfo.name, cats: [] });
+        }
+        parentMap.get(parentInfo.id)!.cats.push([catId, catName]);
+      } else {
+        standaloneCats.push([catId, catName]);
+      }
+    }
+
+    // 親カテゴリグループを描画する
+    for (const [, { name, cats }] of parentMap) {
+      let masteredCount = 0;
+      for (const [catId] of cats) {
+        const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
+        if (mastered > 0) masteredCount++;
+      }
+      const group = this.buildProgressBlockGroup(name, masteredCount, cats.length, subject, cats);
+      container.appendChild(group);
+    }
+
+    // 親カテゴリのないスタンドアロン単元をまとめて表示する
+    if (standaloneCats.length > 0) {
+      // 親カテゴリグループがある場合は「その他」としてまとめる
+      const groupName = parentMap.size > 0 ? "その他" : "すべての単元";
+      let masteredCount = 0;
+      for (const [catId] of standaloneCats) {
+        const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
+        if (mastered > 0) masteredCount++;
+      }
+      const group = this.buildProgressBlockGroup(groupName, masteredCount, standaloneCats.length, subject, standaloneCats);
+      container.appendChild(group);
+    }
+  }
+
+  /**
+   * ■□ブロック列のグループ要素を生成して返す。
+   * @param groupName グループ名（学年名・親カテゴリ名など）
+   * @param mastered  習得済み単元数
+   * @param total     全単元数
+   * @param subject   教科ID
+   * @param catEntries [catId, catName] の配列
+   */
+  private buildProgressBlockGroup(
+    groupName: string,
+    mastered: number,
+    total: number,
+    subject: string,
+    catEntries: [string, string][]
+  ): HTMLElement {
+    const group = document.createElement("div");
+    group.className = "progress-block-group";
+
+    const header = document.createElement("div");
+    header.className = "progress-block-group-header";
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "progress-block-group-name";
+    nameSpan.textContent = groupName;
+    header.appendChild(nameSpan);
+
+    const statsSpan = document.createElement("span");
+    statsSpan.className = "progress-block-group-stats";
+    statsSpan.textContent = `(${mastered}/${total})`;
+    header.appendChild(statsSpan);
+
+    group.appendChild(header);
+
+    const blockSeq = document.createElement("div");
+    blockSeq.className = "progress-block-sequence";
+
+    for (const [catId, catName] of catEntries) {
+      const { mastered: catMastered, total: catTotal } = this.useCase.getMasteredCountForCategory(subject, catId);
+      const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
+
+      const block = document.createElement("span");
+      block.className = "progress-block";
+      block.setAttribute("title", catName);
+      block.setAttribute("aria-label", catName);
+
+      if (catMastered > 0 && catMastered === catTotal) {
+        block.classList.add("mastered");
+        block.textContent = "■";
+      } else if (inProgress > 0 || catMastered > 0) {
+        block.classList.add("in-progress");
+        block.textContent = "▪";
+      } else {
+        block.textContent = "□";
+      }
+
+      blockSeq.appendChild(block);
+    }
+
+    group.appendChild(blockSeq);
+    return group;
   }
 
   /**
@@ -3668,7 +3899,7 @@ export class QuizApp {
     }
 
     if (this.filter.subject === "progress") {
-      subjectContent.classList.add("category-only");
+      subjectContent.classList.remove("category-only");
       subjectContent.classList.remove("all-subject-layout");
       subjectContent.classList.remove("all-subject-unit-selected");
       // 進度タブでは学習状態フィルターを非表示にする
@@ -3679,7 +3910,7 @@ export class QuizApp {
       // 進度タブでは「おすすめ単元」タイトルを非表示、「進度」タイトルを表示
       document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
       document.getElementById("categoryListTitle")?.classList.remove("hidden");
-      // 進度タブではすべてのパネルタブとコンテンツを非表示にする
+      // 進度タブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、進度詳細パネルを表示する
       ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
         document.getElementById(id)?.classList.add("hidden");
       });
@@ -3687,6 +3918,8 @@ export class QuizApp {
         document.getElementById(id)?.classList.add("hidden");
       });
       document.getElementById("overallSummaryPanel")?.classList.add("hidden");
+      document.getElementById("selectedUnitInfo")?.classList.add("hidden");
+      // 進度詳細パネルは renderProgressDetailPanel() で表示する（ここでは非表示にしない）
       return;
     }
 
@@ -3724,6 +3957,7 @@ export class QuizApp {
       if (hasOverallUnit) {
         // 総合タブから単元選択時: 教科の画面と同じレイアウトで表示
         document.getElementById("overallSummaryPanel")?.classList.add("hidden");
+        document.getElementById("progressDetailPanel")?.classList.add("hidden");
         this.showPanelTab(this.activePanelTab);
       } else {
         // 通常のコンテンツパネルを非表示にして総合サマリパネルを表示
@@ -3731,10 +3965,12 @@ export class QuizApp {
           document.getElementById(id)?.classList.add("hidden");
         });
         document.getElementById("overallSummaryPanel")?.classList.remove("hidden");
+        document.getElementById("progressDetailPanel")?.classList.add("hidden");
       }
     } else {
-      // 総合サマリパネルを非表示にして通常のパネルを表示
+      // 総合サマリパネル・進度詳細パネルを非表示にして通常のパネルを表示
       document.getElementById("overallSummaryPanel")?.classList.add("hidden");
+      document.getElementById("progressDetailPanel")?.classList.add("hidden");
       // 「総合」以外では現在アクティブなパネルを表示する（総合から戻った場合も含む）
       this.showPanelTab(this.activePanelTab);
     }
