@@ -3373,7 +3373,7 @@ export class QuizApp {
     // アバターラベルのキーボード操作（Enterで画像選択ダイアログを開く）
     const headerUserAvatar = document.getElementById("headerUserAvatar");
     headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
+      if (e.key === "Enter") {
         e.preventDefault();
         headerUserAvatarInput?.click();
       }
@@ -4860,15 +4860,21 @@ export class QuizApp {
 
   /**
    * アバター画像ファイルを読み込んで保存・表示する。
+   * 最大5MBまで対応。
    */
   private handleAvatarUpload(file: File): void {
     if (!file.type.startsWith("image/")) return;
+    const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+    if (file.size > MAX_SIZE) {
+      alert("画像ファイルサイズは5MB以下にしてください。");
+      return;
+    }
     const reader = new FileReader();
     reader.onload = (e) => {
-      const dataUrl = e.target?.result as string;
-      if (!dataUrl) return;
-      this.userAvatarDataUrl = dataUrl;
-      this.progressRepo.saveUserAvatar(dataUrl);
+      const result = e.target?.result;
+      if (typeof result !== "string") return;
+      this.userAvatarDataUrl = result;
+      this.progressRepo.saveUserAvatar(result);
       this.updateUserAvatarDisplay();
     };
     reader.readAsDataURL(file);
