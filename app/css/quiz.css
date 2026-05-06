@@ -39,21 +39,21 @@ body {
 }
 
 header {
-    /* ノート紙風：不透明白地 + 薄い青の罫線 */
+    /* ノート紙風：不透明白地 + 薄い青の罫線（ノートの上部） */
     background-color: white;
     background-image: repeating-linear-gradient(
         transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px
     );
     padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    /* 上のみ角丸（付箋タブの直下・ノート上部として接続） */
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 0;
+    border-bottom: 2px solid #c8d8e8;
+    box-shadow: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    flex-shrink: 0;
 }
 
 /* ヘッダーのタイトルエリア（アイコン + タイトル + 小中高ラベル） */
@@ -120,21 +120,29 @@ header h1 {
     text-decoration: underline;
 }
 
-/* フッター */
+/* フッター（ノートの下部：白地＋罫線＋左の赤マージン線） */
 .app-footer {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 4px 12px 2px;
-    color: rgba(255, 255, 255, 0.85);
+    padding: 6px 12px 8px;
+    /* ノート紙風：白地 + 薄い青の罫線 */
+    background-color: white;
+    background-image: repeating-linear-gradient(
+        transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px
+    );
+    border-top: 2px solid #c8d8e8;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
+    color: #586069;
 }
 
 .app-footer-copyright {
     letter-spacing: 0.05em;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.85);
+    color: #586069;
 }
 
 
@@ -161,13 +169,14 @@ header h1 {
     display: none !important;
 }
 
-/* スタート画面 */
-/* タブエリアは机の背景を見せる（白ではなく透明）、ノートエリアは白背景で左右幅いっぱい */
+/* スタート画面（= ノート全体：ヘッダー + コンテンツ + フッターを統合したノートデザイン） */
 #startScreen {
+    /* ノート外観はヘッダー・コンテンツ・フッターに分割して描画するため透明背景 */
     background: transparent;
-    box-shadow: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
     padding: 0;
-    border-radius: 0;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 #startScreen h2 {
@@ -198,7 +207,7 @@ header h1 {
     padding: 6px 18px 8px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-bottom: none;
-    border-radius: 6px 6px 0 0;
+    border-radius: 0;
     margin-bottom: 0;
     background: #f0e8c8;
     cursor: pointer;
@@ -251,10 +260,10 @@ header h1 {
     align-items: stretch;
     flex: 1;
     min-height: 0;
-    /* ノートエリア：白背景の左右幅いっぱい */
+    /* ノートエリア：白背景の左右幅いっぱい（上部はヘッダーと接続、下部のみ角丸） */
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    box-shadow: none;
     overflow: hidden;
 }
 
@@ -1232,6 +1241,16 @@ header h1 {
     background: white;
 }
 
+/* トップカテゴリヘッダー（カテゴリ別ビューの区切り） */
+.progress-top-category-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0366d6;
+    padding: 6px 12px 2px;
+    border-bottom: 2px solid #c8d8e8;
+    margin-top: 6px;
+}
+
 .progress-block-group-header {
     display: flex;
     flex-direction: row;
@@ -1265,15 +1284,21 @@ header h1 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 22px;
-    height: 22px;
+    min-width: 80px;
+    max-width: 160px;
+    height: auto;
+    padding: 3px 6px;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 11px;
     cursor: default;
     border: 1px solid #d1d5da;
     background: #f6f8fa;
     color: #b0b8c1;
     transition: background 0.1s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.3;
 }
 
 .progress-block.mastered {
@@ -1291,6 +1316,123 @@ header h1 {
 .progress-block:hover {
     filter: brightness(1.1);
     z-index: 1;
+}
+
+/* マトリクス表示（縦横切り替えボタン） */
+.progress-matrix-transpose-btn {
+    padding: 4px 10px;
+    border: 1px solid #c8d8e8;
+    border-radius: 6px;
+    background: #f0f7ff;
+    color: #0366d6;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.progress-matrix-transpose-btn:hover {
+    background: #e0efff;
+    border-color: #0366d6;
+}
+
+/* マトリクス表示テーブル */
+.progress-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    table-layout: auto;
+}
+
+.progress-matrix-table th,
+.progress-matrix-table td {
+    border: 1px solid #d1d5da;
+    padding: 4px 6px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.progress-matrix-table th {
+    background: #f0f7ff;
+    color: #586069;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.progress-matrix-table th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: #e0efff;
+}
+
+.progress-matrix-table td:first-child {
+    background: #f6f8fa;
+    font-weight: 600;
+    color: #586069;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    text-align: left;
+}
+
+.progress-matrix-cell-mastered {
+    background: #28a745;
+    color: white;
+    border-radius: 2px;
+}
+
+.progress-matrix-cell-in-progress {
+    background: #f9d952;
+    color: #6a5500;
+    border-radius: 2px;
+}
+
+.progress-matrix-cell-empty {
+    color: #b0b8c1;
+}
+
+/* アバター切り抜き位置コントロール */
+.avatar-crop-controls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.avatar-crop-btn {
+    width: 22px;
+    height: 22px;
+    border: 1px solid #d0d8e0;
+    border-radius: 4px;
+    background: #f0f4f8;
+    color: #586069;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    padding: 0;
+    line-height: 1;
+}
+
+.avatar-crop-btn:hover {
+    background: #e0efff;
+    border-color: #0366d6;
+    color: #0366d6;
+}
+
+.avatar-crop-btn.active,
+.avatar-crop-btn[aria-pressed="true"] {
+    background: #0366d6;
+    border-color: #0366d6;
+    color: white;
 }
 
 /* 日付ナビゲーション（左パネル上部・総合タブ専用） */
@@ -2602,7 +2744,7 @@ button:disabled {
 .font-size-icon {
     font-size: 18px;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.85);
+    color: #586069;
     margin-right: 2px;
     user-select: none;
     line-height: 1;
@@ -2610,10 +2752,10 @@ button:disabled {
 
 .font-size-btn {
     padding: 4px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid #c8d8e8;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.9);
+    background: #f0f7ff;
+    color: #586069;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
@@ -2634,9 +2776,9 @@ button:disabled {
 }
 
 .font-size-btn:hover {
-    border-color: rgba(255, 255, 255, 0.8);
-    color: white;
-    background: rgba(255, 255, 255, 0.35);
+    border-color: #0366d6;
+    color: #0366d6;
+    background: #e0efff;
 }
 
 .font-size-btn.active {
@@ -2813,7 +2955,7 @@ button:disabled {
     border: none;
     border-radius: 6px;
     background: transparent;
-    color: rgba(255, 255, 255, 0.85);
+    color: #586069;
     font-size: 18px;
     font-weight: 700;
     text-decoration: none;
@@ -2823,20 +2965,20 @@ button:disabled {
 }
 
 .support-btn:hover {
-    color: white;
-    background: rgba(255, 255, 255, 0.25);
+    color: #0366d6;
+    background: #f0f7ff;
 }
 
 .support-btn:focus-visible {
-    color: white;
-    background: rgba(255, 255, 255, 0.25);
-    outline: 2px solid rgba(255, 255, 255, 0.7);
+    color: #0366d6;
+    background: #f0f7ff;
+    outline: 2px solid rgba(3, 102, 214, 0.4);
     outline-offset: 2px;
 }
 
 /* GitHubリンクボタン */
 .github-btn {
-    color: rgba(255, 255, 255, 0.85);
+    color: #586069;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -2851,14 +2993,14 @@ button:disabled {
 
 .github-btn:hover,
 .github-btn:focus:not(:focus-visible) {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.25);
+    color: #0366d6;
+    background-color: #f0f7ff;
     outline: none;
 }
 
 .github-btn:focus-visible {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.25);
+    color: #0366d6;
+    background-color: #f0f7ff;
     outline: 2px solid rgba(255, 255, 255, 0.8);
     outline-offset: 2px;
 }
@@ -5605,7 +5747,9 @@ body.font-size-large .admin-data-close-btn {
         left: 0;
         right: 0;
         z-index: 102;
-        background: rgba(90, 60, 30, 0.92);
+        background: white;
+        border-top: 1px solid #c8d8e8;
+        border-radius: 0;
         padding: 6px 12px;
     }
 }
