@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken3-feelings-fill",
+  "categoryName": "😊 感情・気持ち（穴埋め）",
+  "topCategory": "eiken-3",
+  "topCategoryName": "英検3級",
+  "parentCategory": "eiken3-feelings",
+  "parentCategoryName": "感情・気持ち",
+  "referenceGrade": "中学2年",
+  "description": "感情・気持ちの単語を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "4d16550d-6087-5eeb-a040-8f39de684c73",
+      "question": "I feel ___ before my speech. (スピーチの前に緊張します)",
+      "choices": [
+        "nervous",
+        "jealous",
+        "frustrated",
+        "lonely"
+      ],
+      "correct": 0,
+      "explanation": "空欄には nervous（緊張している）が入ります"
+    },
+    {
+      "id": "80adaa2f-b4e5-5fbd-8338-9d7854b8ba5b",
+      "question": "She feels ___ of her friend's success. (友達の成功をうらやましく思っています)",
+      "choices": [
+        "jealous",
+        "embarrassed",
+        "disappointed",
+        "cheerful"
+      ],
+      "correct": 0,
+      "explanation": "空欄には jealous（ヤキモチ焼きの）が入ります"
+    },
+    {
+      "id": "e8bb0e35-3c36-539e-82bb-fd357b5119a3",
+      "question": "I was ___ when I made a mistake. (ミスをして恥ずかしかったです)",
+      "choices": [
+        "embarrassed",
+        "frustrated",
+        "grateful",
+        "anxious"
+      ],
+      "correct": 0,
+      "explanation": "空欄には embarrassed（恥ずかしい）が入ります"
+    },
+    {
+      "id": "02e552a4-49cb-58a3-ad9f-3b6091fa9921",
+      "question": "He was ___ because he lost the game. (試合に負けてイライラしました)",
+      "choices": [
+        "frustrated",
+        "disappointed",
+        "confident",
+        "hopeful"
+      ],
+      "correct": 0,
+      "explanation": "空欄には frustrated（イライラした）が入ります"
+    },
+    {
+      "id": "b193256a-2c98-5c0f-aecf-7e1501d7f5a4",
+      "question": "I was ___ when the trip was canceled. (旅行がキャンセルになってがっかりしました)",
+      "choices": [
+        "disappointed",
+        "grateful",
+        "lonely",
+        "worried"
+      ],
+      "correct": 0,
+      "explanation": "空欄には disappointed（がっかりした）が入ります"
+    },
+    {
+      "id": "b8858a8a-7c3c-53dd-8a70-84d93ccf68d4",
+      "question": "I am ___ for your help. (助けてくれてとても感謝しています)",
+      "choices": [
+        "grateful",
+        "confident",
+        "cheerful",
+        "curious"
+      ],
+      "correct": 0,
+      "explanation": "空欄には grateful（感謝している）が入ります"
+    },
+    {
+      "id": "d1f7dbe0-79cb-513b-8386-ebfbe9294216",
+      "question": "She felt ___ before the test. (テストの前に自信がありました)",
+      "choices": [
+        "confident",
+        "lonely",
+        "anxious",
+        "proud"
+      ],
+      "correct": 0,
+      "explanation": "空欄には confident（自信がある）が入ります"
+    },
+    {
+      "id": "b7184728-a602-5e67-b5af-92e7be3b65f1",
+      "question": "He felt ___ without his friends. (友達がいなくて孤独を感じました)",
+      "choices": [
+        "lonely",
+        "cheerful",
+        "hopeful",
+        "ashamed"
+      ],
+      "correct": 0,
+      "explanation": "空欄には lonely（孤独な）が入ります"
+    },
+    {
+      "id": "8489168b-a0db-590f-b1ac-e3a60c1a953e",
+      "question": "She is always ___ and smiling. (いつも陽気で笑顔です)",
+      "choices": [
+        "cheerful",
+        "anxious",
+        "worried",
+        "nervous"
+      ],
+      "correct": 0,
+      "explanation": "空欄には cheerful（陽気な）が入ります"
+    },
+    {
+      "id": "e7251c0d-33a3-5045-a4f6-9290c77edb6c",
+      "question": "I feel ___ about the exam. (試験について不安を感じます)",
+      "choices": [
+        "anxious",
+        "hopeful",
+        "curious",
+        "jealous"
+      ],
+      "correct": 0,
+      "explanation": "空欄には anxious（不安な）が入ります"
+    },
+    {
+      "id": "d2ce56e5-4d2a-52f4-b20f-6b20334b938c",
+      "question": "I am ___ that things will get better. (状況が良くなると希望を持っています)",
+      "choices": [
+        "hopeful",
+        "worried",
+        "proud",
+        "embarrassed"
+      ],
+      "correct": 0,
+      "explanation": "空欄には hopeful（希望に満ちた）が入ります"
+    },
+    {
+      "id": "4887a466-25c2-5927-b5a4-8b4e189cb570",
+      "question": "My parents are ___ about my health. (両親は私の健康を心配しています)",
+      "choices": [
+        "worried",
+        "curious",
+        "ashamed",
+        "frustrated"
+      ],
+      "correct": 0,
+      "explanation": "空欄には worried（心配している）が入ります"
+    },
+    {
+      "id": "8d43f7bb-59f1-5235-9852-f5ef42cdb3fe",
+      "question": "Children are ___ about everything. (子供はすべてに好奇心があります)",
+      "choices": [
+        "curious",
+        "proud",
+        "nervous",
+        "disappointed"
+      ],
+      "correct": 0,
+      "explanation": "空欄には curious（好奇心の強い）が入ります"
+    },
+    {
+      "id": "626fc339-83d1-58dc-8e9b-84e355a5989a",
+      "question": "I am ___ of my daughter. (娘のことを誇りに思います)",
+      "choices": [
+        "proud",
+        "ashamed",
+        "jealous",
+        "grateful"
+      ],
+      "correct": 0,
+      "explanation": "空欄には proud（誇らしい）が入ります"
+    },
+    {
+      "id": "486bd2b6-6525-56d6-8e42-00d81f300d9f",
+      "question": "He was ___ of his behavior. (自分の行動を恥じていました)",
+      "choices": [
+        "ashamed",
+        "nervous",
+        "embarrassed",
+        "confident"
+      ],
+      "correct": 0,
+      "explanation": "空欄には ashamed（恥じている）が入ります"
+    }
+  ]
+}

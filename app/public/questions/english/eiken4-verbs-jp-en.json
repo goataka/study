@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken4-verbs-jp-en",
+  "categoryName": "🏃 動作動詞（日→英）",
+  "topCategory": "eiken-4",
+  "topCategoryName": "英検4級",
+  "parentCategory": "eiken4-verbs",
+  "parentCategoryName": "動作動詞",
+  "referenceGrade": "中学1年",
+  "description": "動作を表す動詞を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "2dc46059-f4bb-557b-b80e-2dbfb5c92ce8",
+      "question": "「料理する」を英語で書くと？",
+      "choices": [
+        "cook",
+        "swim",
+        "jump",
+        "climb"
+      ],
+      "correct": 0,
+      "explanation": "「料理する」は英語で cook です"
+    },
+    {
+      "id": "af015db7-4c0b-51af-9864-bfdf8c1a079a",
+      "question": "「泳ぐ」を英語で書くと？",
+      "choices": [
+        "swim",
+        "draw",
+        "dance",
+        "carry"
+      ],
+      "correct": 0,
+      "explanation": "「泳ぐ」は英語で swim です"
+    },
+    {
+      "id": "5e4f2426-2580-55c3-b07f-09c9012096a1",
+      "question": "「描く」を英語で書くと？",
+      "choices": [
+        "draw",
+        "jump",
+        "sing",
+        "push"
+      ],
+      "correct": 0,
+      "explanation": "「描く」は英語で draw です"
+    },
+    {
+      "id": "a3e009a3-c7ff-5fd2-8e19-67cb4ece687b",
+      "question": "「跳ぶ」を英語で書くと？",
+      "choices": [
+        "jump",
+        "dance",
+        "ride",
+        "pull"
+      ],
+      "correct": 0,
+      "explanation": "「跳ぶ」は英語で jump です"
+    },
+    {
+      "id": "e735c8f2-2826-5d22-b468-d53088832018",
+      "question": "「踊る」を英語で書くと？",
+      "choices": [
+        "dance",
+        "sing",
+        "climb",
+        "throw"
+      ],
+      "correct": 0,
+      "explanation": "「踊る」は英語で dance です"
+    },
+    {
+      "id": "ce5e1d58-81a9-5311-b07e-66d34c99db24",
+      "question": "「歌う」を英語で書くと？",
+      "choices": [
+        "sing",
+        "ride",
+        "carry",
+        "catch"
+      ],
+      "correct": 0,
+      "explanation": "「歌う」は英語で sing です"
+    },
+    {
+      "id": "79d8cf1a-6a0a-55b2-86cb-5204c251d1ca",
+      "question": "「乗る」を英語で書くと？",
+      "choices": [
+        "ride",
+        "climb",
+        "push",
+        "kick"
+      ],
+      "correct": 0,
+      "explanation": "「乗る」は英語で ride です"
+    },
+    {
+      "id": "cbd4bf2a-b3f2-53ab-8dd5-34b85f830706",
+      "question": "「登る」を英語で書くと？",
+      "choices": [
+        "climb",
+        "carry",
+        "pull",
+        "wash"
+      ],
+      "correct": 0,
+      "explanation": "「登る」は英語で climb です"
+    },
+    {
+      "id": "978a6b66-c338-5d58-8ec9-2b43f73fbe00",
+      "question": "「運ぶ」を英語で書くと？",
+      "choices": [
+        "carry",
+        "push",
+        "throw",
+        "cook"
+      ],
+      "correct": 0,
+      "explanation": "「運ぶ」は英語で carry です"
+    },
+    {
+      "id": "b26eb2dd-5d58-53ad-8f7f-655acd1b3eab",
+      "question": "「押す」を英語で書くと？",
+      "choices": [
+        "push",
+        "pull",
+        "catch",
+        "swim"
+      ],
+      "correct": 0,
+      "explanation": "「押す」は英語で push です"
+    },
+    {
+      "id": "0514391e-00d5-5813-bc34-f6d6b19948b3",
+      "question": "「引く」を英語で書くと？",
+      "choices": [
+        "pull",
+        "throw",
+        "kick",
+        "draw"
+      ],
+      "correct": 0,
+      "explanation": "「引く」は英語で pull です"
+    },
+    {
+      "id": "b3b73487-b88e-5442-a728-0e2e7922a07d",
+      "question": "「投げる」を英語で書くと？",
+      "choices": [
+        "throw",
+        "catch",
+        "wash",
+        "jump"
+      ],
+      "correct": 0,
+      "explanation": "「投げる」は英語で throw です"
+    },
+    {
+      "id": "a6d4fb3e-43d7-51fc-b6ec-f369a8b15b4e",
+      "question": "「捕まえる」を英語で書くと？",
+      "choices": [
+        "catch",
+        "kick",
+        "cook",
+        "dance"
+      ],
+      "correct": 0,
+      "explanation": "「捕まえる」は英語で catch です"
+    },
+    {
+      "id": "8ffbfa4b-8d9b-5525-a8cb-324f3e6e0f51",
+      "question": "「蹴る」を英語で書くと？",
+      "choices": [
+        "kick",
+        "wash",
+        "swim",
+        "sing"
+      ],
+      "correct": 0,
+      "explanation": "「蹴る」は英語で kick です"
+    },
+    {
+      "id": "deec4193-30dc-5862-bfb6-1f9d70051098",
+      "question": "「洗う」を英語で書くと？",
+      "choices": [
+        "wash",
+        "cook",
+        "draw",
+        "ride"
+      ],
+      "correct": 0,
+      "explanation": "「洗う」は英語で wash です"
+    }
+  ]
+}

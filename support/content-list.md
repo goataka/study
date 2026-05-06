@@ -126,6 +126,26 @@ permalink: /support/content-list/
 | 07 | 場所 | 小学4年 | [解説](../../english/vocabulary/eiken-5/places/guide) | [確認](../../?subject=english&category=eiken5-places-jp-en) | [確認](../../?subject=english&category=eiken5-places-en-jp) | [確認](../../?subject=english&category=eiken5-places-fill) |
 | 08 | 日常生活 | 小学4年 | [解説](../../english/vocabulary/eiken-5/daily/guide) | [確認](../../?subject=english&category=eiken5-daily-jp-en) | [確認](../../?subject=english&category=eiken5-daily-en-jp) | [確認](../../?subject=english&category=eiken5-daily-fill) |
 
+#### 英検4級
+
+| # | 内容 | 参考学年 | 解説 | 日→英 | 英→日 | 文章 |
+|---|------|----------|------|--------|--------|------|
+| 01 | 🏃 動作動詞 | 中学1年 | [解説](../../english/vocabulary/eiken-4/verbs/guide) | [確認](../../?subject=english&category=eiken4-verbs-jp-en) | [確認](../../?subject=english&category=eiken4-verbs-en-jp) | [確認](../../?subject=english&category=eiken4-verbs-fill) |
+| 02 | 💬 形容詞 | 中学1年 | [解説](../../english/vocabulary/eiken-4/adjectives/guide) | [確認](../../?subject=english&category=eiken4-adjectives-jp-en) | [確認](../../?subject=english&category=eiken4-adjectives-en-jp) | [確認](../../?subject=english&category=eiken4-adjectives-fill) |
+| 03 | 🕐 時間・日付 | 中学1年 | [解説](../../english/vocabulary/eiken-4/time/guide) | [確認](../../?subject=english&category=eiken4-time-jp-en) | [確認](../../?subject=english&category=eiken4-time-en-jp) | [確認](../../?subject=english&category=eiken4-time-fill) |
+| 04 | 🏙️ 街・場所 | 中学1年 | [解説](../../english/vocabulary/eiken-4/places/guide) | [確認](../../?subject=english&category=eiken4-places-jp-en) | [確認](../../?subject=english&category=eiken4-places-en-jp) | [確認](../../?subject=english&category=eiken4-places-fill) |
+| 05 | ⚽ スポーツ・趣味 | 中学1年 | [解説](../../english/vocabulary/eiken-4/hobbies/guide) | [確認](../../?subject=english&category=eiken4-hobbies-jp-en) | [確認](../../?subject=english&category=eiken4-hobbies-en-jp) | [確認](../../?subject=english&category=eiken4-hobbies-fill) |
+
+#### 英検3級
+
+| # | 内容 | 参考学年 | 解説 | 日→英 | 英→日 | 文章 |
+|---|------|----------|------|--------|--------|------|
+| 01 | 👔 職業 | 中学2年 | [解説](../../english/vocabulary/eiken-3/jobs/guide) | [確認](../../?subject=english&category=eiken3-jobs-jp-en) | [確認](../../?subject=english&category=eiken3-jobs-en-jp) | [確認](../../?subject=english&category=eiken3-jobs-fill) |
+| 02 | 🌿 自然・環境 | 中学2年 | [解説](../../english/vocabulary/eiken-3/nature/guide) | [確認](../../?subject=english&category=eiken3-nature-jp-en) | [確認](../../?subject=english&category=eiken3-nature-en-jp) | [確認](../../?subject=english&category=eiken3-nature-fill) |
+| 03 | 😊 感情・気持ち | 中学2年 | [解説](../../english/vocabulary/eiken-3/feelings/guide) | [確認](../../?subject=english&category=eiken3-feelings-jp-en) | [確認](../../?subject=english&category=eiken3-feelings-en-jp) | [確認](../../?subject=english&category=eiken3-feelings-fill) |
+| 04 | 🛒 買い物・お金 | 中学2年 | [解説](../../english/vocabulary/eiken-3/shopping/guide) | [確認](../../?subject=english&category=eiken3-shopping-jp-en) | [確認](../../?subject=english&category=eiken3-shopping-en-jp) | [確認](../../?subject=english&category=eiken3-shopping-fill) |
+| 05 | ✈️ 旅行・交通 | 中学2年 | [解説](../../english/vocabulary/eiken-3/travel/guide) | [確認](../../?subject=english&category=eiken3-travel-jp-en) | [確認](../../?subject=english&category=eiken3-travel-en-jp) | [確認](../../?subject=english&category=eiken3-travel-fill) |
+
 ## 数学
 
 ### 📊 算数・基本計算

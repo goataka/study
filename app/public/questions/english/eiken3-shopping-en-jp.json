@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken3-shopping-en-jp",
+  "categoryName": "🛒 買い物・お金（英→日）",
+  "topCategory": "eiken-3",
+  "topCategoryName": "英検3級",
+  "parentCategory": "eiken3-shopping",
+  "parentCategoryName": "買い物・お金",
+  "referenceGrade": "中学2年",
+  "description": "買い物やお金に関する単語を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "1c7464ff-c49b-52d6-af0e-1d9d4e94694c",
+      "question": "「price」の意味は？",
+      "choices": [
+        "値段",
+        "割引",
+        "財布",
+        "セール"
+      ],
+      "correct": 0,
+      "explanation": "price は「値段」です"
+    },
+    {
+      "id": "62a293cd-ab0f-5f8c-8947-b2395c946948",
+      "question": "「discount」の意味は？",
+      "choices": [
+        "割引",
+        "領収書",
+        "商品",
+        "お店"
+      ],
+      "correct": 0,
+      "explanation": "discount は「割引」です"
+    },
+    {
+      "id": "16a282ed-47ac-5ef8-a6fd-53f3346bc166",
+      "question": "「receipt」の意味は？",
+      "choices": [
+        "領収書",
+        "財布",
+        "高価な",
+        "お客さん"
+      ],
+      "correct": 0,
+      "explanation": "receipt は「領収書」です"
+    },
+    {
+      "id": "769e1160-9f3c-55a4-8b99-3f9703ebb5ef",
+      "question": "「wallet」の意味は？",
+      "choices": [
+        "財布",
+        "商品",
+        "安い",
+        "税金"
+      ],
+      "correct": 0,
+      "explanation": "wallet は「財布」です"
+    },
+    {
+      "id": "7dc964f3-15d0-5a43-9c0c-4e659a2e230c",
+      "question": "「product」の意味は？",
+      "choices": [
+        "商品",
+        "高価な",
+        "セール",
+        "お釣り"
+      ],
+      "correct": 0,
+      "explanation": "product は「商品」です"
+    },
+    {
+      "id": "24303291-fe50-5163-9564-530bf426e229",
+      "question": "「expensive」の意味は？",
+      "choices": [
+        "高価な",
+        "安い",
+        "お店",
+        "広告"
+      ],
+      "correct": 0,
+      "explanation": "expensive は「高価な」です"
+    },
+    {
+      "id": "8db4d683-aa4f-5ffe-b3e3-c5cc6432ab78",
+      "question": "「cheap」の意味は？",
+      "choices": [
+        "安い",
+        "セール",
+        "お客さん",
+        "購入"
+      ],
+      "correct": 0,
+      "explanation": "cheap は「安い」です"
+    },
+    {
+      "id": "490635e2-bc25-56b5-9f4d-a5dc8ed1c9db",
+      "question": "「sale」の意味は？",
+      "choices": [
+        "セール",
+        "お店",
+        "税金",
+        "返金"
+      ],
+      "correct": 0,
+      "explanation": "sale は「セール」です"
+    },
+    {
+      "id": "d0e689dc-d315-5107-ae90-7daecf4da361",
+      "question": "「store」の意味は？",
+      "choices": [
+        "お店",
+        "お客さん",
+        "お釣り",
+        "値段"
+      ],
+      "correct": 0,
+      "explanation": "store は「お店」です"
+    },
+    {
+      "id": "d5158649-3fc6-5b44-940a-b52c45c734cd",
+      "question": "「customer」の意味は？",
+      "choices": [
+        "お客さん",
+        "税金",
+        "広告",
+        "割引"
+      ],
+      "correct": 0,
+      "explanation": "customer は「お客さん」です"
+    },
+    {
+      "id": "59d8fd3b-7474-5cd3-a473-0b870f506139",
+      "question": "「tax」の意味は？",
+      "choices": [
+        "税金",
+        "お釣り",
+        "購入",
+        "領収書"
+      ],
+      "correct": 0,
+      "explanation": "tax は「税金」です"
+    },
+    {
+      "id": "e5fb6a35-de84-5562-a390-54e55496daec",
+      "question": "「change」の意味は？",
+      "choices": [
+        "お釣り",
+        "広告",
+        "返金",
+        "財布"
+      ],
+      "correct": 0,
+      "explanation": "change は「お釣り」です"
+    },
+    {
+      "id": "4656b565-2319-5d2c-bdec-8d02862d12c6",
+      "question": "「advertisement」の意味は？",
+      "choices": [
+        "広告",
+        "購入",
+        "値段",
+        "商品"
+      ],
+      "correct": 0,
+      "explanation": "advertisement は「広告」です"
+    },
+    {
+      "id": "1fcf6a6e-41e4-5ba6-a09f-9bfbe7319d32",
+      "question": "「purchase」の意味は？",
+      "choices": [
+        "購入",
+        "返金",
+        "割引",
+        "高価な"
+      ],
+      "correct": 0,
+      "explanation": "purchase は「購入」です"
+    },
+    {
+      "id": "46375e92-cd49-5bd6-9c52-f6b5706b5dac",
+      "question": "「refund」の意味は？",
+      "choices": [
+        "返金",
+        "値段",
+        "領収書",
+        "安い"
+      ],
+      "correct": 0,
+      "explanation": "refund は「返金」です"
+    }
+  ]
+}

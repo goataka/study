@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken3-feelings-jp-en",
+  "categoryName": "😊 感情・気持ち（日→英）",
+  "topCategory": "eiken-3",
+  "topCategoryName": "英検3級",
+  "parentCategory": "eiken3-feelings",
+  "parentCategoryName": "感情・気持ち",
+  "referenceGrade": "中学2年",
+  "description": "感情や気持ちを表す単語を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "429b1bd9-1a7e-5276-9d22-9481900c5444",
+      "question": "「緊張している」を英語で書くと？",
+      "choices": [
+        "nervous",
+        "jealous",
+        "frustrated",
+        "lonely"
+      ],
+      "correct": 0,
+      "explanation": "「緊張している」は英語で nervous です"
+    },
+    {
+      "id": "2cdc63a8-4b9c-5818-89f1-dc0d0d6bfac6",
+      "question": "「ヤキモチ焼きの」を英語で書くと？",
+      "choices": [
+        "jealous",
+        "embarrassed",
+        "disappointed",
+        "cheerful"
+      ],
+      "correct": 0,
+      "explanation": "「ヤキモチ焼きの」は英語で jealous です"
+    },
+    {
+      "id": "a52ead66-42c7-52ae-b240-d0ddd5276051",
+      "question": "「恥ずかしい」を英語で書くと？",
+      "choices": [
+        "embarrassed",
+        "frustrated",
+        "grateful",
+        "anxious"
+      ],
+      "correct": 0,
+      "explanation": "「恥ずかしい」は英語で embarrassed です"
+    },
+    {
+      "id": "f5d3fdbe-acfa-5765-9632-7aaeb31ec14e",
+      "question": "「イライラした」を英語で書くと？",
+      "choices": [
+        "frustrated",
+        "disappointed",
+        "confident",
+        "hopeful"
+      ],
+      "correct": 0,
+      "explanation": "「イライラした」は英語で frustrated です"
+    },
+    {
+      "id": "07ad9b25-5fd6-5c9f-a7d9-31aa10d7ef68",
+      "question": "「がっかりした」を英語で書くと？",
+      "choices": [
+        "disappointed",
+        "grateful",
+        "lonely",
+        "worried"
+      ],
+      "correct": 0,
+      "explanation": "「がっかりした」は英語で disappointed です"
+    },
+    {
+      "id": "06c7f023-aba3-5229-a81b-fcd65028c96d",
+      "question": "「感謝している」を英語で書くと？",
+      "choices": [
+        "grateful",
+        "confident",
+        "cheerful",
+        "curious"
+      ],
+      "correct": 0,
+      "explanation": "「感謝している」は英語で grateful です"
+    },
+    {
+      "id": "36843f41-b045-567b-9cd8-bd6fa8169507",
+      "question": "「自信がある」を英語で書くと？",
+      "choices": [
+        "confident",
+        "lonely",
+        "anxious",
+        "proud"
+      ],
+      "correct": 0,
+      "explanation": "「自信がある」は英語で confident です"
+    },
+    {
+      "id": "b92164ed-52e3-5cd1-9bec-43abc5ee765f",
+      "question": "「孤独な」を英語で書くと？",
+      "choices": [
+        "lonely",
+        "cheerful",
+        "hopeful",
+        "ashamed"
+      ],
+      "correct": 0,
+      "explanation": "「孤独な」は英語で lonely です"
+    },
+    {
+      "id": "e76e62d7-406d-5910-b7d1-2126bd682684",
+      "question": "「陽気な」を英語で書くと？",
+      "choices": [
+        "cheerful",
+        "anxious",
+        "worried",
+        "nervous"
+      ],
+      "correct": 0,
+      "explanation": "「陽気な」は英語で cheerful です"
+    },
+    {
+      "id": "70878a71-d674-5fc1-a847-4e35c667317d",
+      "question": "「不安な」を英語で書くと？",
+      "choices": [
+        "anxious",
+        "hopeful",
+        "curious",
+        "jealous"
+      ],
+      "correct": 0,
+      "explanation": "「不安な」は英語で anxious です"
+    },
+    {
+      "id": "056da92a-3c9b-517a-8651-f6977e3c320c",
+      "question": "「希望に満ちた」を英語で書くと？",
+      "choices": [
+        "hopeful",
+        "worried",
+        "proud",
+        "embarrassed"
+      ],
+      "correct": 0,
+      "explanation": "「希望に満ちた」は英語で hopeful です"
+    },
+    {
+      "id": "70e07c98-b9e3-568c-9f67-58fe718707ef",
+      "question": "「心配している」を英語で書くと？",
+      "choices": [
+        "worried",
+        "curious",
+        "ashamed",
+        "frustrated"
+      ],
+      "correct": 0,
+      "explanation": "「心配している」は英語で worried です"
+    },
+    {
+      "id": "10af0ab8-ab53-5190-a099-e9feec6fa1e5",
+      "question": "「好奇心の強い」を英語で書くと？",
+      "choices": [
+        "curious",
+        "proud",
+        "nervous",
+        "disappointed"
+      ],
+      "correct": 0,
+      "explanation": "「好奇心の強い」は英語で curious です"
+    },
+    {
+      "id": "71d6c2d6-8c57-5be8-b469-83023742c19a",
+      "question": "「誇らしい」を英語で書くと？",
+      "choices": [
+        "proud",
+        "ashamed",
+        "jealous",
+        "grateful"
+      ],
+      "correct": 0,
+      "explanation": "「誇らしい」は英語で proud です"
+    },
+    {
+      "id": "6ee2fdda-4e26-5518-9e84-67f00f018cec",
+      "question": "「恥じている」を英語で書くと？",
+      "choices": [
+        "ashamed",
+        "nervous",
+        "embarrassed",
+        "confident"
+      ],
+      "correct": 0,
+      "explanation": "「恥じている」は英語で ashamed です"
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken4-verbs-en-jp",
+  "categoryName": "🏃 動作動詞（英→日）",
+  "topCategory": "eiken-4",
+  "topCategoryName": "英検4級",
+  "parentCategory": "eiken4-verbs",
+  "parentCategoryName": "動作動詞",
+  "referenceGrade": "中学1年",
+  "description": "動作を表す動詞を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "206e8366-372a-5f27-8df0-e93ec3ec35ad",
+      "question": "「cook」の意味は？",
+      "choices": [
+        "料理する",
+        "泳ぐ",
+        "跳ぶ",
+        "登る"
+      ],
+      "correct": 0,
+      "explanation": "cook は「料理する」です"
+    },
+    {
+      "id": "2ac6e3de-6539-5680-9a0c-8d21f718d1f5",
+      "question": "「swim」の意味は？",
+      "choices": [
+        "泳ぐ",
+        "描く",
+        "踊る",
+        "運ぶ"
+      ],
+      "correct": 0,
+      "explanation": "swim は「泳ぐ」です"
+    },
+    {
+      "id": "eee3d6c7-8d45-50b2-bd12-80c5db36bc35",
+      "question": "「draw」の意味は？",
+      "choices": [
+        "描く",
+        "跳ぶ",
+        "歌う",
+        "押す"
+      ],
+      "correct": 0,
+      "explanation": "draw は「描く」です"
+    },
+    {
+      "id": "7c57491a-cc78-5dc2-a596-b45ef68ac71d",
+      "question": "「jump」の意味は？",
+      "choices": [
+        "跳ぶ",
+        "踊る",
+        "乗る",
+        "引く"
+      ],
+      "correct": 0,
+      "explanation": "jump は「跳ぶ」です"
+    },
+    {
+      "id": "b88fa2ad-1bcc-5997-a747-931818fd8427",
+      "question": "「dance」の意味は？",
+      "choices": [
+        "踊る",
+        "歌う",
+        "登る",
+        "投げる"
+      ],
+      "correct": 0,
+      "explanation": "dance は「踊る」です"
+    },
+    {
+      "id": "596df164-19b2-573c-b004-d8c03438ca53",
+      "question": "「sing」の意味は？",
+      "choices": [
+        "歌う",
+        "乗る",
+        "運ぶ",
+        "捕まえる"
+      ],
+      "correct": 0,
+      "explanation": "sing は「歌う」です"
+    },
+    {
+      "id": "b5da4cc5-4768-563e-862f-1d87b40b094b",
+      "question": "「ride」の意味は？",
+      "choices": [
+        "乗る",
+        "登る",
+        "押す",
+        "蹴る"
+      ],
+      "correct": 0,
+      "explanation": "ride は「乗る」です"
+    },
+    {
+      "id": "a9e292ee-84c5-578c-9583-b2098d5bef3e",
+      "question": "「climb」の意味は？",
+      "choices": [
+        "登る",
+        "運ぶ",
+        "引く",
+        "洗う"
+      ],
+      "correct": 0,
+      "explanation": "climb は「登る」です"
+    },
+    {
+      "id": "0491ac42-a314-5c58-bba1-0434027a1f51",
+      "question": "「carry」の意味は？",
+      "choices": [
+        "運ぶ",
+        "押す",
+        "投げる",
+        "料理する"
+      ],
+      "correct": 0,
+      "explanation": "carry は「運ぶ」です"
+    },
+    {
+      "id": "fa0c492a-9e7b-5a5c-95c7-698b55b5bb4c",
+      "question": "「push」の意味は？",
+      "choices": [
+        "押す",
+        "引く",
+        "捕まえる",
+        "泳ぐ"
+      ],
+      "correct": 0,
+      "explanation": "push は「押す」です"
+    },
+    {
+      "id": "3a3111fd-7eed-517c-beaf-b38afbdb8fe5",
+      "question": "「pull」の意味は？",
+      "choices": [
+        "引く",
+        "投げる",
+        "蹴る",
+        "描く"
+      ],
+      "correct": 0,
+      "explanation": "pull は「引く」です"
+    },
+    {
+      "id": "b7975554-0956-52b1-9d8b-cd256f334323",
+      "question": "「throw」の意味は？",
+      "choices": [
+        "投げる",
+        "捕まえる",
+        "洗う",
+        "跳ぶ"
+      ],
+      "correct": 0,
+      "explanation": "throw は「投げる」です"
+    },
+    {
+      "id": "12644633-5476-57d0-bb44-f4f0cbeae360",
+      "question": "「catch」の意味は？",
+      "choices": [
+        "捕まえる",
+        "蹴る",
+        "料理する",
+        "踊る"
+      ],
+      "correct": 0,
+      "explanation": "catch は「捕まえる」です"
+    },
+    {
+      "id": "f5e54420-18d5-51a3-89eb-59ad0547167b",
+      "question": "「kick」の意味は？",
+      "choices": [
+        "蹴る",
+        "洗う",
+        "泳ぐ",
+        "歌う"
+      ],
+      "correct": 0,
+      "explanation": "kick は「蹴る」です"
+    },
+    {
+      "id": "59872996-9c0b-5ae5-a0d8-7e683b1fa0b4",
+      "question": "「wash」の意味は？",
+      "choices": [
+        "洗う",
+        "料理する",
+        "描く",
+        "乗る"
+      ],
+      "correct": 0,
+      "explanation": "wash は「洗う」です"
+    }
+  ]
+}

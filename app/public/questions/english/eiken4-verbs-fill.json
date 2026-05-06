@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken4-verbs-fill",
+  "categoryName": "🏃 動作動詞（穴埋め）",
+  "topCategory": "eiken-4",
+  "topCategoryName": "英検4級",
+  "parentCategory": "eiken4-verbs",
+  "parentCategoryName": "動作動詞",
+  "referenceGrade": "中学1年",
+  "description": "動作動詞を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "0bf7883a-8d07-50c8-b7c8-3df1e9e94b19",
+      "question": "I like to ___ food. (料理するのが好きです)",
+      "choices": [
+        "cook",
+        "swim",
+        "jump",
+        "climb"
+      ],
+      "correct": 0,
+      "explanation": "空欄には cook（料理する）が入ります"
+    },
+    {
+      "id": "a6ad79e4-954e-5755-b879-e30c0dbeab6c",
+      "question": "I can ___ fast. (速く泳げます)",
+      "choices": [
+        "swim",
+        "draw",
+        "dance",
+        "carry"
+      ],
+      "correct": 0,
+      "explanation": "空欄には swim（泳ぐ）が入ります"
+    },
+    {
+      "id": "c2931b63-9306-59d9-b719-22840160df33",
+      "question": "I like to ___ pictures. (絵を描くのが好きです)",
+      "choices": [
+        "draw",
+        "jump",
+        "sing",
+        "push"
+      ],
+      "correct": 0,
+      "explanation": "空欄には draw（描く）が入ります"
+    },
+    {
+      "id": "cf733e49-3862-57c9-a1f7-bb14bd5b0d5d",
+      "question": "I can ___ very high. (高く跳べます)",
+      "choices": [
+        "jump",
+        "dance",
+        "ride",
+        "pull"
+      ],
+      "correct": 0,
+      "explanation": "空欄には jump（跳ぶ）が入ります"
+    },
+    {
+      "id": "14d060aa-50f7-5d1b-82df-68a93cb1db21",
+      "question": "She likes to ___. (踊るのが好きです)",
+      "choices": [
+        "dance",
+        "sing",
+        "climb",
+        "throw"
+      ],
+      "correct": 0,
+      "explanation": "空欄には dance（踊る）が入ります"
+    },
+    {
+      "id": "b15c34b2-3e2b-5d01-801e-3d00589eb617",
+      "question": "He can ___ a song. (歌を歌えます)",
+      "choices": [
+        "sing",
+        "ride",
+        "carry",
+        "catch"
+      ],
+      "correct": 0,
+      "explanation": "空欄には sing（歌う）が入ります"
+    },
+    {
+      "id": "3ca01d80-891e-507a-a588-44c3df13b7a4",
+      "question": "I can ___ a bike. (自転車に乗れます)",
+      "choices": [
+        "ride",
+        "climb",
+        "push",
+        "kick"
+      ],
+      "correct": 0,
+      "explanation": "空欄には ride（乗る）が入ります"
+    },
+    {
+      "id": "bca8bd6f-6d8f-5518-868a-965e472a3b37",
+      "question": "Let's ___ the mountain. (山を登りましょう)",
+      "choices": [
+        "climb",
+        "carry",
+        "pull",
+        "wash"
+      ],
+      "correct": 0,
+      "explanation": "空欄には climb（登る）が入ります"
+    },
+    {
+      "id": "5688ae11-6b03-5b86-aa99-9ce605a58e8e",
+      "question": "Can you ___ this box? (この箱を運べますか？)",
+      "choices": [
+        "carry",
+        "push",
+        "throw",
+        "cook"
+      ],
+      "correct": 0,
+      "explanation": "空欄には carry（運ぶ）が入ります"
+    },
+    {
+      "id": "03a02c12-cf83-5393-a64c-665f7fd9106f",
+      "question": "Please ___ the door. (ドアを押してください)",
+      "choices": [
+        "push",
+        "pull",
+        "catch",
+        "swim"
+      ],
+      "correct": 0,
+      "explanation": "空欄には push（押す）が入ります"
+    },
+    {
+      "id": "8c6ab7d1-9dcc-5523-81f7-c2586557e9a1",
+      "question": "Please ___ the rope. (ロープを引いてください)",
+      "choices": [
+        "pull",
+        "throw",
+        "kick",
+        "draw"
+      ],
+      "correct": 0,
+      "explanation": "空欄には pull（引く）が入ります"
+    },
+    {
+      "id": "776840f7-5291-5025-818c-bbf41108c710",
+      "question": "I can ___ the ball. (ボールを投げられます)",
+      "choices": [
+        "throw",
+        "catch",
+        "wash",
+        "jump"
+      ],
+      "correct": 0,
+      "explanation": "空欄には throw（投げる）が入ります"
+    },
+    {
+      "id": "6afde0d3-2618-5135-823b-2ba75ed8d9c5",
+      "question": "She can ___ the ball. (ボールを捕まえられます)",
+      "choices": [
+        "catch",
+        "kick",
+        "cook",
+        "dance"
+      ],
+      "correct": 0,
+      "explanation": "空欄には catch（捕まえる）が入ります"
+    },
+    {
+      "id": "1b7acddf-5f19-5259-9ce5-1b2a7958d817",
+      "question": "He can ___ the ball hard. (強くボールを蹴れます)",
+      "choices": [
+        "kick",
+        "wash",
+        "swim",
+        "sing"
+      ],
+      "correct": 0,
+      "explanation": "空欄には kick（蹴る）が入ります"
+    },
+    {
+      "id": "f3750e7f-635b-5b28-81ab-4e2245032700",
+      "question": "I need to ___ my hands. (手を洗う必要があります)",
+      "choices": [
+        "wash",
+        "cook",
+        "draw",
+        "ride"
+      ],
+      "correct": 0,
+      "explanation": "空欄には wash（洗う）が入ります"
+    }
+  ]
+}

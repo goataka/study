@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken3-nature-jp-en",
+  "categoryName": "🌿 自然・環境（日→英）",
+  "topCategory": "eiken-3",
+  "topCategoryName": "英検3級",
+  "parentCategory": "eiken3-nature",
+  "parentCategoryName": "自然・環境",
+  "referenceGrade": "中学2年",
+  "description": "自然や環境に関する単語を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "434fcb6e-cf02-5549-ad2b-86013d4a2122",
+      "question": "「山」を英語で書くと？",
+      "choices": [
+        "mountain",
+        "river",
+        "forest",
+        "volcano"
+      ],
+      "correct": 0,
+      "explanation": "「山」は英語で mountain です"
+    },
+    {
+      "id": "f1328359-98ee-5af9-876d-bbb97d154e89",
+      "question": "「川」を英語で書くと？",
+      "choices": [
+        "river",
+        "ocean",
+        "valley",
+        "earthquake"
+      ],
+      "correct": 0,
+      "explanation": "「川」は英語で river です"
+    },
+    {
+      "id": "95b73fba-3391-5b59-bb3b-555a01fa8c81",
+      "question": "「海」を英語で書くと？",
+      "choices": [
+        "ocean",
+        "forest",
+        "desert",
+        "pollution"
+      ],
+      "correct": 0,
+      "explanation": "「海」は英語で ocean です"
+    },
+    {
+      "id": "fc07dce9-44c4-54f1-85fc-9786a733ddf6",
+      "question": "「森」を英語で書くと？",
+      "choices": [
+        "forest",
+        "valley",
+        "island",
+        "environment"
+      ],
+      "correct": 0,
+      "explanation": "「森」は英語で forest です"
+    },
+    {
+      "id": "c8f01e8f-fbd5-565d-b4c9-f41480993d95",
+      "question": "「谷」を英語で書くと？",
+      "choices": [
+        "valley",
+        "desert",
+        "volcano",
+        "climate"
+      ],
+      "correct": 0,
+      "explanation": "「谷」は英語で valley です"
+    },
+    {
+      "id": "b19f1dfd-c3c5-50e5-b13f-60773d97e9eb",
+      "question": "「砂漠」を英語で書くと？",
+      "choices": [
+        "desert",
+        "island",
+        "earthquake",
+        "wildlife"
+      ],
+      "correct": 0,
+      "explanation": "「砂漠」は英語で desert です"
+    },
+    {
+      "id": "c8a40078-d232-5a8e-a8a8-1671a3bcde9d",
+      "question": "「島」を英語で書くと？",
+      "choices": [
+        "island",
+        "volcano",
+        "pollution",
+        "plant"
+      ],
+      "correct": 0,
+      "explanation": "「島」は英語で island です"
+    },
+    {
+      "id": "4cc0cd7e-91f3-5459-bfe2-54367d109185",
+      "question": "「火山」を英語で書くと？",
+      "choices": [
+        "volcano",
+        "earthquake",
+        "environment",
+        "soil"
+      ],
+      "correct": 0,
+      "explanation": "「火山」は英語で volcano です"
+    },
+    {
+      "id": "9d5dd383-afea-56b6-a40d-e5ac87985538",
+      "question": "「地震」を英語で書くと？",
+      "choices": [
+        "earthquake",
+        "pollution",
+        "climate",
+        "mountain"
+      ],
+      "correct": 0,
+      "explanation": "「地震」は英語で earthquake です"
+    },
+    {
+      "id": "0bdf0bed-b6cd-5cc1-b0ef-4c9f90e3ae2d",
+      "question": "「汚染」を英語で書くと？",
+      "choices": [
+        "pollution",
+        "environment",
+        "wildlife",
+        "river"
+      ],
+      "correct": 0,
+      "explanation": "「汚染」は英語で pollution です"
+    },
+    {
+      "id": "02cbbf05-fae6-5a22-9c64-857115a8ad92",
+      "question": "「環境」を英語で書くと？",
+      "choices": [
+        "environment",
+        "climate",
+        "plant",
+        "ocean"
+      ],
+      "correct": 0,
+      "explanation": "「環境」は英語で environment です"
+    },
+    {
+      "id": "02e34aa5-7aa4-5760-bb3b-dcd2cb8bc3d1",
+      "question": "「気候」を英語で書くと？",
+      "choices": [
+        "climate",
+        "wildlife",
+        "soil",
+        "forest"
+      ],
+      "correct": 0,
+      "explanation": "「気候」は英語で climate です"
+    },
+    {
+      "id": "ffd05ea7-61f6-5dbd-aa4d-74cabb351ec7",
+      "question": "「野生動物」を英語で書くと？",
+      "choices": [
+        "wildlife",
+        "plant",
+        "mountain",
+        "valley"
+      ],
+      "correct": 0,
+      "explanation": "「野生動物」は英語で wildlife です"
+    },
+    {
+      "id": "19d278bd-a705-524a-8695-eb14dec79500",
+      "question": "「植物」を英語で書くと？",
+      "choices": [
+        "plant",
+        "soil",
+        "river",
+        "desert"
+      ],
+      "correct": 0,
+      "explanation": "「植物」は英語で plant です"
+    },
+    {
+      "id": "94fdbafc-aa17-52b1-bcbb-80b6630490b1",
+      "question": "「土」を英語で書くと？",
+      "choices": [
+        "soil",
+        "mountain",
+        "ocean",
+        "island"
+      ],
+      "correct": 0,
+      "explanation": "「土」は英語で soil です"
+    }
+  ]
+}
