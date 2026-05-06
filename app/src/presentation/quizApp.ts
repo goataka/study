@@ -3857,6 +3857,7 @@ export class QuizApp {
   /**
    * 読み上げボタンの表示を更新する。英語の問題のみボタンを表示し、
    * Web Speech API（SpeechSynthesis）でアメリカ英語（en-US）で読み上げる。
+   * SpeechSynthesis がサポートされていないブラウザでは読み上げをスキップする。
    */
   private updateSpeakButton(question: Question): void {
     const btn = document.getElementById("speakBtn");
@@ -3865,10 +3866,15 @@ export class QuizApp {
     if (question.subject === "english") {
       btn.classList.remove("hidden");
       btn.onclick = () => {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(question.question);
-        utterance.lang = "en-US";
-        window.speechSynthesis.speak(utterance);
+        if (!window.speechSynthesis) return;
+        try {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(question.question);
+          utterance.lang = "en-US";
+          window.speechSynthesis.speak(utterance);
+        } catch {
+          // 読み上げがサポートされていない環境ではスキップする
+        }
       };
     } else {
       btn.classList.add("hidden");

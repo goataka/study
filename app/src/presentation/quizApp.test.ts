@@ -795,13 +795,15 @@ describe("QuizApp — 読み上げボタン仕様", () => {
       configurable: true,
     });
     // jsdom には SpeechSynthesisUtterance が存在しないためモックを設定する
-    if (!("SpeechSynthesisUtterance" in window)) {
-      (globalThis as unknown as Record<string, unknown>).SpeechSynthesisUtterance = class {
-        lang = "";
-        text = "";
-        constructor(text: string) { this.text = text; }
-      };
-    }
+    (globalThis as unknown as Record<string, unknown>).SpeechSynthesisUtterance = class SpeechSynthesisUtterance {
+      text: string;
+      lang: string = "";
+      volume: number = 1;
+      rate: number = 1;
+      pitch: number = 1;
+      voice: SpeechSynthesisVoice | null = null;
+      constructor(text: string) { this.text = text; }
+    };
   });
 
   afterEach(() => {
