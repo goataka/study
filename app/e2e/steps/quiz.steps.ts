@@ -395,8 +395,8 @@ Then("the share summary text should contain {string}", async ({ page }, text: st
   await expect(page.locator("#shareSummaryText")).toContainText(text);
 });
 
-Then("the support button should be visible in the header", async ({ page }) => {
-  // サポートボタン（?）がヘッダーに表示されていること
+Then("the support button should be visible in the footer", async ({ page }) => {
+  // サポートボタン（?）がフッターに表示されていること
   await expect(page.locator("#supportBtn")).toBeVisible();
 });
 
