@@ -155,16 +155,16 @@
       "explanation": "「かみのけ」は hair です。She has long hair. でかのじょはかみのけが長いという意味になります"
     },
     {
-      "id": "3d2f5396-73fa-5974-b3b8-4655717c0f61",
-      "question": "Brush your ___h. (は（歯）をみがいてください)",
+      "id": "942f4292-ed20-5478-b28e-66c5ada5c1f3",
+      "question": "Brush your ___. (は（歯）をみがいてください)",
       "choices": [
-        "tooth",
+        "teeth",
         "mouth",
         "nose",
         "face"
       ],
       "correct": 0,
-      "explanation": "「は（歯）」は tooth です。Brush your teeth. では（歯）をみがいてくださいという意味になります"
+      "explanation": "「は（歯）をみがいてください」は Brush your teeth. です。tooth の複数形は teeth です"
     },
     {
       "id": "594c253f-615e-5a82-be22-173bbdfbaef0",

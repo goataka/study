@@ -27,7 +27,7 @@
 ## 例文
 
 - My `head` hurts. (あたまがいたいです。)
-- Wash your `hand`s. (手をあらいなさい。)
+- Wash your `hands`. (手をあらいなさい。)
 - She has long `hair`. (かのじょはかみのけが長いです。)
 - Brush your `teeth`. (は（歯）をみがいてください。)
 
