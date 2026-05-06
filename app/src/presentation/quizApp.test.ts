@@ -62,6 +62,7 @@ function setupMinimalDom(): void {
       <div id="topicName"></div>
       <div id="progressFill" style="width:0%"></div>
       <div id="questionText"></div>
+      <button id="speakBtn" class="speak-btn hidden" type="button">🔊</button>
       <div id="choicesContainer"></div>
       <div id="answerFeedback" class="answer-feedback hidden">
         <div id="feedbackResult" class="feedback-result"></div>
@@ -180,6 +181,7 @@ function setupTabDom(): void {
       <div id="topicName"></div>
       <div id="progressFill" style="width:0%"></div>
       <div id="questionText"></div>
+      <button id="speakBtn" class="speak-btn hidden" type="button">🔊</button>
       <div id="choicesContainer"></div>
       <button id="prevBtn" disabled>前へ</button>
       <button id="nextBtn">次へ</button>
@@ -769,6 +771,69 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     expect(resultDiv?.textContent).toContain(xssPayload);
     // img 要素が DOM に生成されていないことを確認
     expect(resultDiv?.querySelector("img")).toBeNull();
+  });
+});
+
+describe("QuizApp — 読み上げボタン仕様", () => {
+  let speechSynthesisMock: {
+    cancel: ReturnType<typeof vi.fn>;
+    speak: ReturnType<typeof vi.fn>;
+  };
+
+  beforeEach(() => {
+    setupMinimalDom();
+    setupFetchMock();
+    localStorage.clear();
+
+    speechSynthesisMock = {
+      cancel: vi.fn(),
+      speak: vi.fn(),
+    };
+    Object.defineProperty(window, "speechSynthesis", {
+      value: speechSynthesisMock,
+      writable: true,
+      configurable: true,
+    });
+    // jsdom には SpeechSynthesisUtterance が存在しないためモックを設定する
+    if (!("SpeechSynthesisUtterance" in window)) {
+      (globalThis as unknown as Record<string, unknown>).SpeechSynthesisUtterance = class {
+        lang = "";
+        text = "";
+        constructor(text: string) { this.text = text; }
+      };
+    }
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  async function startQuiz(): Promise<void> {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+  }
+
+  it("英語の問題では読み上げボタンが表示される", async () => {
+    await startQuiz();
+    const btn = document.getElementById("speakBtn");
+    expect(btn?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("読み上げボタンをクリックすると speechSynthesis.speak が呼ばれる", async () => {
+    await startQuiz();
+    const btn = document.getElementById("speakBtn") as HTMLButtonElement;
+    btn.click();
+    expect(speechSynthesisMock.speak).toHaveBeenCalledTimes(1);
+    const utterance = speechSynthesisMock.speak.mock.calls[0]?.[0] as SpeechSynthesisUtterance;
+    expect(utterance.lang).toBe("en-US");
+  });
+
+  it("読み上げボタンをクリックすると前の発話をキャンセルしてから読み上げる", async () => {
+    await startQuiz();
+    const btn = document.getElementById("speakBtn") as HTMLButtonElement;
+    btn.click();
+    expect(speechSynthesisMock.cancel).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -2436,6 +2501,7 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
         <div id="topicName"></div>
         <div id="progressFill" style="width:0%"></div>
         <div id="questionText"></div>
+        <button id="speakBtn" class="speak-btn hidden" type="button">🔊</button>
         <div id="choicesContainer"></div>
         <div id="answerFeedback" class="answer-feedback hidden">
           <div id="feedbackResult" class="feedback-result"></div>
@@ -3100,6 +3166,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
         <div id="topicName"></div>
         <div id="progressFill" style="width:0%"></div>
         <div id="questionText"></div>
+        <button id="speakBtn" class="speak-btn hidden" type="button">🔊</button>
         <div id="choicesContainer"></div>
         <div id="answerFeedback" class="hidden"></div>
         <button id="prevBtn" disabled>前へ</button>
@@ -3408,6 +3475,7 @@ function setupTextInputDom(): void {
       <div id="topicName"></div>
       <div id="progressFill" style="width:0%"></div>
       <div id="questionText"></div>
+      <button id="speakBtn" class="speak-btn hidden" type="button">🔊</button>
       <div id="choicesContainer"></div>
       <div id="answerFeedback" class="answer-feedback hidden">
         <div id="feedbackResult" class="feedback-result"></div>
@@ -4592,6 +4660,7 @@ describe("QuizApp — 確認ダイアログ仕様", () => {
         <div id="topicName"></div>
         <div id="progressFill" style="width:0%"></div>
         <div id="questionText"></div>
+        <button id="speakBtn" class="speak-btn hidden" type="button">🔊</button>
         <div id="choicesContainer"></div>
         <div id="answerFeedback" class="answer-feedback hidden">
           <div id="feedbackResult"></div>

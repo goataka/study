@@ -3825,6 +3825,7 @@ export class QuizApp {
     (document.getElementById("progressFill") as HTMLElement).style.width = `${progress}%`;
 
     this.setText("questionText", question.question);
+    this.updateSpeakButton(question);
     this.renderChoices(question, session);
 
     // メモエリアをタッチペン入力モード用に更新
@@ -3850,6 +3851,28 @@ export class QuizApp {
       this.renderTextInput(question, session);
     } else {
       this.renderMultipleChoice(question, session);
+    }
+  }
+
+  /**
+   * 読み上げボタンの表示を更新する。英語の問題のみボタンを表示し、
+   * Web Speech API（SpeechSynthesis）でアメリカ英語（en-US）で読み上げる。
+   */
+  private updateSpeakButton(question: Question): void {
+    const btn = document.getElementById("speakBtn");
+    if (!btn) return;
+
+    if (question.subject === "english") {
+      btn.classList.remove("hidden");
+      btn.onclick = () => {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(question.question);
+        utterance.lang = "en-US";
+        window.speechSynthesis.speak(utterance);
+      };
+    } else {
+      btn.classList.add("hidden");
+      btn.onclick = null;
     }
   }
 
