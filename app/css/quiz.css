@@ -1721,6 +1721,11 @@ button:disabled {
     background-color: #f0f7ff;
 }
 
+/* 読み上げボタンが非表示のとき、問題テキストと選択肢の間隔を維持する */
+.speak-btn.hidden + .choices-container {
+    margin-top: 18px;
+}
+
 .choices-container {
     display: flex;
     flex-direction: column;

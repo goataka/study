@@ -20,6 +20,17 @@ const kanjiCanvasMock = {
 };
 (globalThis as unknown as Record<string, unknown>).KanjiCanvas = kanjiCanvasMock;
 
+// SpeechSynthesisUtterance のモック（jsdom 環境では Web Speech API が存在しないため）
+(globalThis as unknown as Record<string, unknown>).SpeechSynthesisUtterance = class SpeechSynthesisUtterance {
+  text: string;
+  lang: string = "";
+  volume: number = 1;
+  rate: number = 1;
+  pitch: number = 1;
+  voice: SpeechSynthesisVoice | null = null;
+  constructor(text: string) { this.text = text; }
+};
+
 /**
  * 非同期処理の完了を条件ベースで待機するユーティリティ。
  * setTimeout(10ms) のような時間依存待機の代替として使用する。
@@ -794,16 +805,6 @@ describe("QuizApp — 読み上げボタン仕様", () => {
       writable: true,
       configurable: true,
     });
-    // jsdom には SpeechSynthesisUtterance が存在しないためモックを設定する
-    (globalThis as unknown as Record<string, unknown>).SpeechSynthesisUtterance = class SpeechSynthesisUtterance {
-      text: string;
-      lang: string = "";
-      volume: number = 1;
-      rate: number = 1;
-      pitch: number = 1;
-      voice: SpeechSynthesisVoice | null = null;
-      constructor(text: string) { this.text = text; }
-    };
   });
 
   afterEach(() => {
