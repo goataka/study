@@ -17,7 +17,8 @@ import type { DrawingState } from "./notesCanvas";
 
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
-  { id: "all", name: "総合", icon: "🌐" },
+  { id: "all", name: "おすすめ", icon: "✨" },
+  { id: "progress", name: "進度", icon: "📈" },
   { id: "english", name: "英語", icon: "📚" },
   { id: "math", name: "数学", icon: "🔢" },
   { id: "japanese", name: "国語", icon: "📖" },
@@ -87,6 +88,8 @@ export class QuizApp {
   private subjectRecommendedCounts: Map<string, number> = new Map();
   /** 総合タブの現在アクティブなサマリパネル */
   private activeOverallPanel: "learned" | "share" = "learned";
+  /** 進度タブで選択中の教科ID */
+  private progressSubjectId: string = "english";
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
   private questionListFilter: "all" | "learned" | "unlearned" = "all";
@@ -501,6 +504,16 @@ export class QuizApp {
       const titleEl = document.getElementById("categoryListTitle");
       if (titleEl) titleEl.textContent = "⚙️ 管理";
       this.renderAdminContent(categoryList);
+      return;
+    }
+
+    if (subject === "progress") {
+      // 進度タブ: コントロールをクリアし、タイトルを設定して進度ビューを描画する
+      const controlsEl = document.getElementById("categoryControls");
+      if (controlsEl) controlsEl.innerHTML = "";
+      const titleEl = document.getElementById("categoryListTitle");
+      if (titleEl) titleEl.textContent = "📈 進度";
+      this.renderProgressView();
       return;
     }
 
@@ -1252,8 +1265,8 @@ export class QuizApp {
     controlsEl.innerHTML = "";
 
     const subject = this.filter.subject;
-    if (subject === "all") {
-      // 総合タブ: 表示数コントロールは各教科ごとに renderAllSubjectList 内で描画するため不要
+    if (subject === "all" || subject === "progress") {
+      // 総合タブ・進度タブ: コントロールは renderAllSubjectList/renderProgressView 内で描画するため不要
       return;
     }
 
@@ -1462,7 +1475,7 @@ export class QuizApp {
     if (!categoryList) return;
     categoryList.innerHTML = "";
 
-    const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin");
+    const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
 
     for (const subject of nonAllSubjects) {
       const count = this.subjectRecommendedCounts.get(subject.id) ?? 1;
@@ -1696,6 +1709,55 @@ export class QuizApp {
   }
 
   // ─── 総合タブ専用サマリパネル ───────────────────────────────────────────────
+
+  /**
+   * 進度タブ用のビューを描画する。
+   * 教科セレクターとカテゴリ別・学年別の進捗リストを表示する。
+   */
+  private renderProgressView(): void {
+    const categoryList = document.getElementById("categoryList");
+    if (!categoryList) return;
+    categoryList.innerHTML = "";
+
+    // ── 教科セレクター ──────────────────────────────────────
+    const selectorDiv = document.createElement("div");
+    selectorDiv.className = "progress-subject-selector";
+
+    const contentSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
+    for (const subj of contentSubjects) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "progress-subject-btn";
+      btn.textContent = `${subj.icon} ${subj.name}`;
+      if (subj.id === this.progressSubjectId) btn.classList.add("active");
+      const capturedId = subj.id;
+      btn.addEventListener("click", () => {
+        this.progressSubjectId = capturedId;
+        this.renderCategoryList();
+      });
+      selectorDiv.appendChild(btn);
+    }
+    categoryList.appendChild(selectorDiv);
+
+    // ── カテゴリリスト（教科フィルターを一時的に切り替えて既存レンダラーを使用） ──
+    const savedSubject = this.filter.subject;
+    this.filter.subject = this.progressSubjectId;
+
+    // ビューモード切替コントロールを描画する
+    this.renderCategoryViewControls();
+
+    if (this.categoryViewMode === "grade") {
+      this.renderCategoryListByGrade();
+    } else {
+      this.renderCategoryListByCategory();
+    }
+
+    this.filter.subject = savedSubject;
+
+    // アクティブ状態を更新（フィルターを戻した後に実行する）
+    this.updateCategoryListActive();
+    this.updateSubjectStats();
+  }
 
   /**
    * 活動日付でフィルタリングしたクイズ記録を返す。
@@ -2103,10 +2165,16 @@ export class QuizApp {
         this.deselectAndRefresh();
         return;
       }
+      const wasProgressTab = this.filter.subject === "progress";
       this.filter.subject = subject;
       this.filter.category = categoryId;
       this.filter.parentCategory = parentCatId;
       this.selectedTopCategoryId = null;
+      if (wasProgressTab) {
+        // 進度タブから単元を選択した場合: 対応する教科タブをアクティブにして再描画する
+        this.selectTabByFilter();
+        this.renderCategoryList();
+      }
       this.updateCategoryListActive();
       const categoryRecords = this.useCase.getHistory();
       // 単元を切り替えても前回のパネルタブを引き継ぐ（解説タブへの自動切換えを抑制）
@@ -3591,6 +3659,29 @@ export class QuizApp {
       // 管理タブでは「おすすめ単元」タイトルを非表示、「管理」タイトルを表示
       document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
       document.getElementById("categoryListTitle")?.classList.remove("hidden");
+      return;
+    }
+
+    if (this.filter.subject === "progress") {
+      subjectContent.classList.add("category-only");
+      subjectContent.classList.remove("all-subject-layout");
+      subjectContent.classList.remove("all-subject-unit-selected");
+      // 進度タブでは学習状態フィルターを非表示にする
+      const progressStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
+      if (progressStatusFilter) progressStatusFilter.classList.add("hidden");
+      // 進度タブでは日付ナビを非表示にする
+      document.getElementById("overallDateNav")?.classList.add("hidden");
+      // 進度タブでは「おすすめ単元」タイトルを非表示、「進度」タイトルを表示
+      document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
+      document.getElementById("categoryListTitle")?.classList.remove("hidden");
+      // 進度タブではすべてのパネルタブとコンテンツを非表示にする
+      ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
+        document.getElementById(id)?.classList.add("hidden");
+      });
+      ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
+        document.getElementById(id)?.classList.add("hidden");
+      });
+      document.getElementById("overallSummaryPanel")?.classList.add("hidden");
       return;
     }
 

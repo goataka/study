@@ -427,12 +427,12 @@ describe("QuizApp — 教科タブ仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("問題ロード後にタブに教科（総合・英語・数学・国語）が4件描画される", async () => {
+  it("問題ロード後にタブに教科（おすすめ・進度・英語・数学・国語・管理）が6件描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const tabs = document.querySelectorAll(".subject-tab[data-subject]");
-    expect(tabs.length).toBe(5);
+    expect(tabs.length).toBe(6);
   });
 
   it("問題ロード後に英語タブに role=tab が設定されている", async () => {
@@ -445,7 +445,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     });
   });
 
-  it("初期状態では「総合」タブがアクティブになっている", async () => {
+  it("初期状態では「おすすめ」タブがアクティブになっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 

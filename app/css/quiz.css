@@ -1035,6 +1035,38 @@ header h1 {
     flex-shrink: 0;
 }
 
+/* 進度タブ: 教科セレクターボタン群 */
+.progress-subject-selector {
+    display: flex;
+    gap: 6px;
+    padding: 4px 0 8px;
+    flex-shrink: 0;
+}
+
+.progress-subject-btn {
+    padding: 5px 12px;
+    border: 1px solid #d1d5da;
+    border-radius: 20px;
+    background: #f6f8fa;
+    color: #586069;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.progress-subject-btn:hover {
+    background: #e8f0fe;
+    border-color: #0366d6;
+    color: #0366d6;
+}
+
+.progress-subject-btn.active {
+    background: #0366d6;
+    border-color: #0366d6;
+    color: white;
+}
+
 /* 日付ナビゲーション（左パネル上部・総合タブ専用） */
 .activity-date-nav {
     display: flex;
@@ -2287,6 +2319,7 @@ button:disabled {
     display: flex;
     align-items: center;
     gap: 4px;
+    margin-left: auto;
 }
 
 /* フォントサイズボタン前のアイコン（文字サイズコントロールであることを示す） */
