@@ -142,6 +142,45 @@ describe("IndexedDBProgressRepository — ユーザー名永続化仕様", () =>
   });
 });
 
+describe("IndexedDBProgressRepository — ユーザーアバター永続化仕様", () => {
+  beforeEach(() => {
+    resetIndexedDB();
+  });
+
+  it("初回ロード時はnullを返す", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    expect(repo.loadUserAvatar()).toBeNull();
+  });
+
+  it("保存したアバターを正しく読み込める", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    repo.saveUserAvatar("data:image/png;base64,abc123");
+    expect(repo.loadUserAvatar()).toBe("data:image/png;base64,abc123");
+  });
+
+  it("上書き保存が正しく機能する", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    repo.saveUserAvatar("data:image/png;base64,old");
+    repo.saveUserAvatar("data:image/jpeg;base64,new");
+    expect(repo.loadUserAvatar()).toBe("data:image/jpeg;base64,new");
+  });
+
+  it("別のインスタンスからも同じデータを読み込める（永続化確認）", async () => {
+    const repo1 = new IndexedDBProgressRepository();
+    await repo1.initialize();
+    repo1.saveUserAvatar("data:image/png;base64,persistent");
+
+    await repo1.flush();
+
+    const repo2 = new IndexedDBProgressRepository();
+    await repo2.initialize();
+    expect(repo2.loadUserAvatar()).toBe("data:image/png;base64,persistent");
+  });
+});
+
 describe("IndexedDBProgressRepository — 回答履歴永続化仕様", () => {
   beforeEach(() => {
     resetIndexedDB();
@@ -486,6 +525,7 @@ describe("IndexedDBProgressRepository — clearAllData 仕様", () => {
     repo.saveCorrectStreaks({ q1: 3 });
     repo.saveMasteredIds(["q3"]);
     repo.saveUserName("太郎");
+    repo.saveUserAvatar("data:image/png;base64,abc");
     repo.saveFontSizeLevel("large");
     repo.saveCategoryViewMode("grade");
     repo.saveHistory([makeRecord("r1")]);
@@ -496,6 +536,7 @@ describe("IndexedDBProgressRepository — clearAllData 仕様", () => {
     expect(repo.loadCorrectStreaks()).toEqual({});
     expect(repo.loadMasteredIds()).toEqual([]);
     expect(repo.loadUserName()).toBeNull();
+    expect(repo.loadUserAvatar()).toBeNull();
     expect(repo.loadFontSizeLevel()).toBeNull();
     expect(repo.loadCategoryViewMode()).toBe("category");
     expect(repo.loadHistory()).toEqual([]);

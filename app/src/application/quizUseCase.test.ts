@@ -124,6 +124,8 @@ class StubProgressRepository implements IProgressRepository {
   }
   loadShareUrl(): string { return ""; }
   saveShareUrl(_url: string): void {}
+  loadUserAvatar(): string | null { return null; }
+  saveUserAvatar(_dataUrl: string): void {}
   loadQuizSettings(): import("./ports").QuizSettings {
     return { questionCount: 10, quizOrder: "random", includeMastered: false };
   }

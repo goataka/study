@@ -90,7 +90,7 @@ header h1 {
 }
 
 .header-today-date {
-    font-size: 20px;
+    font-size: 30px;
     color: #586069;
     font-weight: 600;
     white-space: nowrap;
@@ -162,6 +162,14 @@ header h1 {
 }
 
 /* スタート画面 */
+/* タブエリアは机の背景を見せる（白ではなく透明）、ノートエリアは白背景で左右幅いっぱい */
+#startScreen {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+}
+
 #startScreen h2 {
     color: #333;
     text-align: center;
@@ -174,10 +182,10 @@ header h1 {
     display: flex;
     gap: 4px;
     border-bottom: none;
-    margin-bottom: 16px;
+    margin-bottom: 0;
     overflow-x: auto;
     scrollbar-width: none; /* Firefox */
-    padding: 0 4px;
+    padding: 8px 4px 0;
     align-items: flex-end;
 }
 
@@ -243,6 +251,11 @@ header h1 {
     align-items: stretch;
     flex: 1;
     min-height: 0;
+    /* ノートエリア：白背景の左右幅いっぱい */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 /* ノートの折り目（パネル間の背骨） */
@@ -266,9 +279,9 @@ header h1 {
     background-color: white;
     background-image:
         repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
-    border: 1px solid #c8c8c8;
+    border: none;
     border-right: none;
-    border-radius: 8px 0 0 8px;
+    border-radius: 0;
     padding: 12px;
     min-height: 200px;
     display: flex;
@@ -430,13 +443,13 @@ header h1 {
 }
 
 .grade-filter-label {
-    font-size: 14px;
+    font-size: 12px;
     color: #586069;
     margin-left: 4px;
 }
 
 .grade-filter-btn {
-    font-size: 14px;
+    font-size: 12px;
     padding: 2px 8px;
     border: 1px solid #d1d5da;
     border-radius: 10px;
@@ -1493,9 +1506,9 @@ header h1 {
     /* ノート紙風：不透明白地 + 薄青の罫線 */
     background-color: white;
     background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
-    border: 1px solid #c8c8c8;
+    border: none;
     border-left: none;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -2459,15 +2472,16 @@ button:disabled {
     }
 
     .category-panel {
-        border-right: 1px solid #c8c8c8;
-        border-radius: 8px;
+        border: none;
+        border-bottom: 1px solid #e0e0e0;
+        border-radius: 0;
         box-shadow: none;
-        margin-bottom: 12px;
+        margin-bottom: 0;
     }
 
     .quiz-panel {
-        border-left: 1px solid #c8c8c8;
-        border-radius: 8px;
+        border: none;
+        border-radius: 0;
         box-shadow: none;
     }
 
@@ -2636,6 +2650,53 @@ button:disabled {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+/* ユーザーアバター（丸型アイコン） */
+.header-user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #d0d8e0;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f4f8;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    position: relative;
+    user-select: none;
+}
+
+.header-user-avatar:hover,
+.header-user-avatar:focus {
+    border-color: #0366d6;
+    box-shadow: 0 0 0 2px rgba(3, 102, 214, 0.3);
+    outline: none;
+}
+
+.header-user-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
+}
+
+.header-user-avatar-img.visible {
+    display: block;
+}
+
+.header-user-avatar-placeholder {
+    font-size: 24px;
+    line-height: 1;
+    color: #8a9ab0;
+}
+
+.header-user-avatar-placeholder.hidden {
+    display: none;
 }
 
 .header-user-name {
@@ -4006,11 +4067,11 @@ body.font-size-medium .header-today-date {
 }
 
 body.font-size-medium .grade-filter-btn {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 body.font-size-medium .grade-filter-label {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 body.font-size-medium .category-list-title {
@@ -4326,15 +4387,15 @@ body.font-size-large #startScreen .guide-content h3 { font-size: 1.8em; }
 
 
 body.font-size-large .header-today-date {
-    font-size: 26px;
+    font-size: 40px;
 }
 
 body.font-size-large .grade-filter-btn {
-    font-size: 19px;
+    font-size: 17px;
 }
 
 body.font-size-large .grade-filter-label {
-    font-size: 19px;
+    font-size: 17px;
 }
 
 body.font-size-large .category-list-title {
@@ -4603,6 +4664,11 @@ body.font-size-medium .header-logo {
     height: 34px;
 }
 
+body.font-size-medium .header-user-avatar {
+    width: 54px;
+    height: 54px;
+}
+
 body.font-size-medium .header-user-name {
     font-size: 34px;
 }
@@ -4695,6 +4761,11 @@ body.font-size-medium .admin-import-apply-btn {
 body.font-size-large .header-logo {
     width: 40px;
     height: 40px;
+}
+
+body.font-size-large .header-user-avatar {
+    width: 60px;
+    height: 60px;
 }
 
 body.font-size-large .header-user-name {
@@ -5226,13 +5297,19 @@ body.font-size-large .admin-data-close-btn {
     .header-grade-label {
         font-size: 11px;
     }
-    /* ユーザー名はセンタリング */
+    /* スマホ: ユーザーエリアを日付の前に（位置を入れ替え） */
     .header-center-area {
-        order: 3;
+        order: 2;
         width: 100%;
         justify-content: center;
         gap: 6px 12px;
         flex-wrap: wrap;
+    }
+    .header-right-area {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
     }
     .header-user-name {
         white-space: nowrap;
@@ -5242,11 +5319,8 @@ body.font-size-large .admin-data-close-btn {
         font-size: 16px;
     }
     .header-today-date {
-        font-size: 14px;
+        font-size: 16px;
         white-space: nowrap;
-    }
-    .header-right-area {
-        gap: 4px;
     }
     /* 管理タブをモバイルで表示（管理メニューはタブで操作する） */
     .subject-tab[data-subject="admin"] {
@@ -5523,5 +5597,15 @@ body.font-size-large .admin-data-close-btn {
     }
     .text-answer-wrapper {
         order: 10;
+    }
+    /* 単元選択時（単元詳細パネルが全画面表示中）はフッターを最前面に固定表示 */
+    body:has(.quiz-panel:has(#selectedUnitInfo:not(.hidden))) .app-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 102;
+        background: rgba(90, 60, 30, 0.92);
+        padding: 6px 12px;
     }
 }

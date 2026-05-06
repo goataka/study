@@ -53,6 +53,7 @@ export class QuizApp {
   private currentMode: QuizMode = "random";
   private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
+  private userAvatarDataUrl: string | null = null;
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
@@ -129,6 +130,7 @@ export class QuizApp {
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
     this.loadUserName();
+    this.loadUserAvatar();
     this.loadFontSize();
     this.loadShareUrl();
     this.loadQuizSettings();
@@ -149,6 +151,7 @@ export class QuizApp {
     // 学習状態フィルターの初期状態を画面に適用する
     this.applyCategoryStatusFilter();
     this.updateUserNameDisplay("headerUserName");
+    this.updateUserAvatarDisplay();
     // 共有URL表示ボタンの初期値を設定する
     this.updateShareUrlOpenBtn();
     // ヘッダーに今日の日付を表示する
@@ -219,6 +222,12 @@ export class QuizApp {
     if (savedName) {
       this.userName = savedName;
     }
+  }
+
+  private loadUserAvatar(): void {
+    const stored = this.progressRepo.loadUserAvatar();
+    // data:image/ スキームのみ許可（外部URLや壊れたデータを除外）
+    this.userAvatarDataUrl = stored && stored.startsWith("data:image/") ? stored : null;
   }
 
   private loadFontSize(): void {
@@ -3354,6 +3363,24 @@ export class QuizApp {
     const headerUserNameSaveBtn = document.getElementById("headerUserNameSaveBtn");
     headerUserNameSaveBtn?.addEventListener("click", () => this.saveHeaderUserName());
 
+    // アバター画像ファイル選択
+    const headerUserAvatarInput = document.getElementById("headerUserAvatarInput") as HTMLInputElement | null;
+    headerUserAvatarInput?.addEventListener("change", (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) this.handleAvatarUpload(file);
+      // ファイル選択後にリセットして同じファイルを再選択可能に
+      headerUserAvatarInput.value = "";
+    });
+
+    // アバターラベルのキーボード操作（Enter/Spaceで画像選択ダイアログを開く）
+    const headerUserAvatar = document.getElementById("headerUserAvatar");
+    headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        headerUserAvatarInput?.click();
+      }
+    });
+
     // 入力フィールド：Enterで保存、Escapeでキャンセル
     const headerUserNameInput = document.getElementById("headerUserNameInput");
     headerUserNameInput?.addEventListener("keydown", (e: KeyboardEvent) => {
@@ -4810,8 +4837,55 @@ export class QuizApp {
   private updateUserNameDisplay(elementId: string): void {
     const el = document.getElementById(elementId);
     if (el) {
-      el.textContent = `👤 ${this.userName}`;
+      el.textContent = this.userName;
     }
+  }
+
+  /**
+   * ヘッダーのユーザーアバター画像を更新する。
+   */
+  private updateUserAvatarDisplay(): void {
+    const img = document.getElementById("headerUserAvatarImg") as HTMLImageElement | null;
+    const placeholder = document.getElementById("headerUserAvatarPlaceholder");
+    if (!img || !placeholder) return;
+
+    if (this.userAvatarDataUrl) {
+      img.src = this.userAvatarDataUrl;
+      img.classList.add("visible");
+      placeholder.classList.add("hidden");
+    } else {
+      img.removeAttribute("src");
+      img.classList.remove("visible");
+      placeholder.classList.remove("hidden");
+    }
+  }
+
+  /**
+   * アバター画像ファイルを読み込んで保存・表示する。
+   * 最大5MBまで対応。
+   */
+  private handleAvatarUpload(file: File): void {
+    if (!file.type.startsWith("image/")) return;
+    const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+    if (file.size > MAX_SIZE) {
+      alert("画像ファイルサイズは5MB以下にしてください。");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result;
+      if (typeof result !== "string") {
+        console.error("アバター画像の読み込みに失敗しました");
+        return;
+      }
+      this.userAvatarDataUrl = result;
+      this.progressRepo.saveUserAvatar(result);
+      this.updateUserAvatarDisplay();
+    };
+    reader.onerror = () => {
+      console.error("アバター画像の読み込みに失敗しました");
+    };
+    reader.readAsDataURL(file);
   }
 
   /**

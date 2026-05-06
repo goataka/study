@@ -65,6 +65,8 @@ export interface IProgressRepository {
   saveQuestionStats(stats: Record<string, { total: number; correct: number }>): void;
   loadUserName(): string | null;
   saveUserName(name: string): void;
+  loadUserAvatar(): string | null;
+  saveUserAvatar(dataUrl: string): void;
   loadHistory(): QuizRecord[];
   saveHistory(records: QuizRecord[]): void;
   loadCategoryViewMode(): "category" | "grade";
