@@ -15,7 +15,11 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-    background: #ffffff;
+    /* 机の木目：横方向の木目写真（右下マーク除去済み） */
+    background-color: #7a4e28;
+    background-image: url("../public/wood-bg.png");
+    background-repeat: repeat;
+    background-size: 1424px 747px;
     /* 1920×1080 を基準キャンバスとして固定し、zoom によって画面全体にフィットさせる */
     width: 1920px;
     height: 1080px;
@@ -35,11 +39,15 @@ body {
 }
 
 header {
-    background: white;
+    /* ノート紙風：不透明白地 + 薄い青の罫線 */
+    background-color: white;
+    background-image: repeating-linear-gradient(
+        transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px
+    );
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -82,14 +90,15 @@ header h1 {
 }
 
 .header-today-date {
-    font-size: 30px;
+    font-size: 20px;
     color: #586069;
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
     flex-shrink: 0;
+    letter-spacing: 0.03em;
 }
 
-/* ヘッダー中央エリア（ユーザー名 + 日付 + 更新ボタン） */
+/* ヘッダー中央エリア（ユーザー名 + 更新ボタン） */
 .header-center-area {
     display: flex;
     align-items: center;
@@ -97,11 +106,6 @@ header h1 {
     flex: 1;
     justify-content: center;
     padding-right: 0;
-}
-
-/* モバイル用ヘッダー改行スペーサー（デスクトップでは非表示） */
-.header-center-break {
-    display: none;
 }
 
 .title-btn {
@@ -118,24 +122,29 @@ header h1 {
 
 /* フッター */
 .app-footer {
-    text-align: center;
-    padding: 4px 0 2px;
-    color: #959da5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 4px 12px 2px;
+    color: rgba(255, 255, 255, 0.85);
     flex-shrink: 0;
 }
 
 .app-footer-copyright {
     letter-spacing: 0.05em;
     font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 
 /* 画面表示制御 */
 .screen {
+    /* ノート：机の上に置いた1冊のノート（不透明白地、強い影） */
     background: white;
     padding: 16px 40px 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -163,66 +172,109 @@ header h1 {
 /* 教科タブ */
 .subject-tabs {
     display: flex;
-    gap: 0;
-    border-bottom: 2px solid #e1e4e8;
-    margin-bottom: 20px;
+    gap: 4px;
+    border-bottom: none;
+    margin-bottom: 16px;
     overflow-x: auto;
     scrollbar-width: none; /* Firefox */
+    padding: 0 4px;
+    align-items: flex-end;
 }
 
 .subject-tabs::-webkit-scrollbar {
     display: none; /* Chrome / Safari */
 }
 
+/* 付箋タブ: 各教科タブを付箋スタイルに */
 .subject-tab {
-    padding: 10px 20px;
-    border: none;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -2px;
-    background: none;
+    padding: 6px 18px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    margin-bottom: 0;
+    background: #f0e8c8;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
-    color: #586069;
+    color: #5a4a28;
     font-family: inherit;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     white-space: nowrap;
-    transition: color 0.2s, border-color 0.2s;
+    transition: background 0.15s, color 0.15s, transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
+    position: relative;
+    transform: translateY(2px);
 }
 
+/* 各タブに付箋らしい色 */
+.subject-tab:nth-child(1) { background: #ffe9a0; }
+.subject-tab:nth-child(2) { background: #ffd0a0; }
+.subject-tab:nth-child(3) { background: #c8e8b8; }
+.subject-tab:nth-child(4) { background: #b8d8f0; }
+.subject-tab:nth-child(5) { background: #e8c8f0; }
+.subject-tab:nth-child(6) { background: #f0d8b8; }
+.subject-tab:nth-child(7) { background: #c8f0e0; }
+.subject-tab:nth-child(n+8) { background: #f0e8c8; }
+
 .subject-tab:hover {
-    color: #0366d6;
-    background: #f6f8fa;
+    filter: brightness(1.05);
+    transform: translateY(0px);
+    box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.12);
+    color: #333;
 }
 
 .subject-tab.active {
-    color: #0366d6;
-    border-bottom-color: #0366d6;
+    color: #1a1a1a;
+    transform: translateY(0);
+    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    font-weight: 700;
+    filter: brightness(1.08);
 }
 
 
 /* スタートコンテンツレイアウト */
 .start-content-layout {
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
+    grid-template-columns: 1fr 12px 2fr;
+    gap: 0;
     align-items: stretch;
     flex: 1;
     min-height: 0;
 }
 
+/* ノートの折り目（パネル間の背骨） */
+.notebook-spine {
+    /* 薄いグレーのタブ区切り */
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.04) 0%,
+        #d8d8d8 20%,
+        #ebebeb 50%,
+        #d8d8d8 80%,
+        rgba(0, 0, 0, 0.04) 100%
+    );
+    flex-shrink: 0;
+    width: 12px;
+}
+
 /* カテゴリパネル */
 .category-panel {
-    background: #f6f8fa;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
+    /* ノート紙風：白地 + 薄青の罫線 + 左端の赤マージン線 */
+    background-color: white;
+    background-image:
+        repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+    border: 1px solid #c8c8c8;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
     padding: 12px;
     min-height: 200px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.08);
 }
 
 .category-panel-header {
@@ -1261,24 +1313,32 @@ header h1 {
 
 /* 総合タブ時のレイアウト: おすすめ単元（左）と活動サマリ（右）を通常レイアウトと同じ比率で表示 */
 .start-content-layout.all-subject-layout {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 12px 2fr;
 }
 
 .start-content-layout.all-subject-layout .category-panel {
     order: 1;
 }
 
-.start-content-layout.all-subject-layout .quiz-panel {
+.start-content-layout.all-subject-layout .notebook-spine {
     order: 2;
 }
 
+.start-content-layout.all-subject-layout .quiz-panel {
+    order: 3;
+}
+
 .quiz-panel {
-    background: white;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
+    /* ノート紙風：不透明白地 + 薄青の罫線 */
+    background-color: white;
+    background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+    border: 1px solid #c8c8c8;
+    border-left: none;
+    border-radius: 0 8px 8px 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-shadow: inset 3px 0 6px rgba(0, 0, 0, 0.08);
 }
 
 /* 選択中の単元情報パネル */
@@ -2208,6 +2268,24 @@ button:disabled {
         grid-template-columns: 1fr;
     }
 
+    /* スマホでは折り目を非表示にし、category-panel を通常スタイルに戻す */
+    .notebook-spine {
+        display: none;
+    }
+
+    .category-panel {
+        border-right: 1px solid #c8c8c8;
+        border-radius: 8px;
+        box-shadow: none;
+        margin-bottom: 12px;
+    }
+
+    .quiz-panel {
+        border-left: 1px solid #c8c8c8;
+        border-radius: 8px;
+        box-shadow: none;
+    }
+
     /* クイズを縦積みに。flex: none にして viewport 高さに縛られずコンテンツ高さにする */
     .quiz-landscape-layout {
         grid-template-columns: 1fr;
@@ -2319,14 +2397,13 @@ button:disabled {
     display: flex;
     align-items: center;
     gap: 4px;
-    margin-left: auto;
 }
 
 /* フォントサイズボタン前のアイコン（文字サイズコントロールであることを示す） */
 .font-size-icon {
     font-size: 18px;
     font-weight: 700;
-    color: #586069;
+    color: rgba(255, 255, 255, 0.85);
     margin-right: 2px;
     user-select: none;
     line-height: 1;
@@ -2334,10 +2411,10 @@ button:disabled {
 
 .font-size-btn {
     padding: 4px 10px;
-    border: 1px solid #d1d5da;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 6px;
-    background: #f6f8fa;
-    color: #586069;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
@@ -2358,9 +2435,9 @@ button:disabled {
 }
 
 .font-size-btn:hover {
-    border-color: #0366d6;
-    color: #0366d6;
-    background: #f0f7ff;
+    border-color: rgba(255, 255, 255, 0.8);
+    color: white;
+    background: rgba(255, 255, 255, 0.35);
 }
 
 .font-size-btn.active {
@@ -2490,7 +2567,7 @@ button:disabled {
     border: none;
     border-radius: 6px;
     background: transparent;
-    color: #586069;
+    color: rgba(255, 255, 255, 0.85);
     font-size: 18px;
     font-weight: 700;
     text-decoration: none;
@@ -2500,20 +2577,20 @@ button:disabled {
 }
 
 .support-btn:hover {
-    color: #0366d6;
-    background: #f0f7ff;
+    color: white;
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .support-btn:focus-visible {
-    color: #0366d6;
-    background: #f0f7ff;
-    outline: 2px solid #0366d6;
+    color: white;
+    background: rgba(255, 255, 255, 0.25);
+    outline: 2px solid rgba(255, 255, 255, 0.7);
     outline-offset: 2px;
 }
 
 /* GitHubリンクボタン */
 .github-btn {
-    color: #586069;
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -2527,10 +2604,17 @@ button:disabled {
 }
 
 .github-btn:hover,
-.github-btn:focus {
-    color: #0366d6;
-    background-color: #f0f0f0;
+.github-btn:focus:not(:focus-visible) {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.25);
     outline: none;
+}
+
+.github-btn:focus-visible {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.25);
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
 }
 
 /* ユーザー情報表示 */
@@ -2681,21 +2765,26 @@ button:disabled {
     width: 100%;
     margin-bottom: 0.8em;
     font-size: 1em;
+    /* 背景を明示的に白にして罫線の上に重ねて読みやすくする */
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .guide-content table th,
 .guide-content table td {
     padding: 5px 12px;
-    border: 1px solid #dfe2e5;
+    border: 1px solid #c8b890;
+    background: rgba(255, 255, 255, 0.85);
+    color: #24292e;
 }
 
 .guide-content table th {
-    background-color: #f6f8fa;
+    background-color: rgba(240, 225, 190, 0.9);
     font-weight: 600;
+    color: #24292e;
 }
 
-.guide-content table tr:nth-child(even) {
-    background-color: #f6f8fa;
+.guide-content table tr:nth-child(even) td {
+    background-color: rgba(255, 250, 230, 0.9);
 }
 
 /* 引用 */
@@ -2838,8 +2927,16 @@ button:disabled {
     grid-template-columns: 1fr;
 }
 
-.start-content-layout.category-only .quiz-panel {
+.start-content-layout.category-only .quiz-panel,
+.start-content-layout.category-only .notebook-spine {
     display: none;
+}
+
+/* category-only のとき category-panel を通常のノート紙スタイルに戻す */
+.start-content-layout.category-only .category-panel {
+    border-right: 1px solid #c8c8c8;
+    border-radius: 8px;
+    box-shadow: none;
 }
 
 /* メモエリア */
@@ -4044,7 +4141,7 @@ body.font-size-large #startScreen .guide-content h3 { font-size: 1.8em; }
 
 
 body.font-size-large .header-today-date {
-    font-size: 40px;
+    font-size: 26px;
 }
 
 body.font-size-large .grade-filter-btn {
@@ -4944,7 +5041,7 @@ body.font-size-large .admin-data-close-btn {
     .header-grade-label {
         font-size: 11px;
     }
-    /* ユーザー名と日付はセンタリング、フォントサイズボタンは下の行に */
+    /* ユーザー名はセンタリング */
     .header-center-area {
         order: 3;
         width: 100%;
@@ -4965,12 +5062,6 @@ body.font-size-large .admin-data-close-btn {
     }
     .header-right-area {
         gap: 4px;
-    }
-    /* モバイル用ヘッダー改行スペーサー：モバイルでは表示してフォントサイズボタンを改行 */
-    .header-center-break {
-        display: block;
-        flex-basis: 100%;
-        height: 0;
     }
     /* 管理タブをモバイルで表示（管理メニューはタブで操作する） */
     .subject-tab[data-subject="admin"] {
@@ -5008,12 +5099,12 @@ body.font-size-large .admin-data-close-btn {
     .quiz-panel {
         min-height: 0;
     }
-    /* ユーザ名・日付・更新ボタンは1行に（header-center-break より前の要素） */
+    /* ユーザ名・更新ボタンは1行に */
     .header-user-area {
         justify-content: center;
         flex-shrink: 0;
     }
-    /* フォントサイズボタン・サポート・GitHubアイコンは次の行に（header-center-break より後） */
+    /* フォントサイズボタンはフッターに表示 */
     .font-size-btns {
         gap: 2px;
         justify-content: center;
