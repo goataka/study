@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-food-en-jp",
+  "categoryName": "🍎 食べ物・飲み物（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-food",
+  "parentCategoryName": "食べ物・飲み物",
+  "referenceGrade": "小学3年",
+  "description": "食べ物・飲み物の名前を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-food-en-jp-0001",
+      "question": "「apple」の意味は？",
+      "choices": ["りんご", "オレンジ", "バナナ", "ケーキ"],
+      "correct": 0,
+      "explanation": "apple は「りんご」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0002",
+      "question": "「orange」の意味は？",
+      "choices": ["オレンジ", "りんご", "バナナ", "ジュース"],
+      "correct": 0,
+      "explanation": "orange は「オレンジ」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0003",
+      "question": "「banana」の意味は？",
+      "choices": ["バナナ", "りんご", "オレンジ", "サラダ"],
+      "correct": 0,
+      "explanation": "banana は「バナナ」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0004",
+      "question": "「bread」の意味は？",
+      "choices": ["パン", "ごはん", "ケーキ", "たまご"],
+      "correct": 0,
+      "explanation": "bread は「パン」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0005",
+      "question": "「rice」の意味は？",
+      "choices": ["ごはん", "パン", "にく", "サラダ"],
+      "correct": 0,
+      "explanation": "rice は「ごはん」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0006",
+      "question": "「milk」の意味は？",
+      "choices": ["ぎゅうにゅう", "みず", "ジュース", "おちゃ"],
+      "correct": 0,
+      "explanation": "milk は「ぎゅうにゅう」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0007",
+      "question": "「water」の意味は？",
+      "choices": ["みず", "ぎゅうにゅう", "ジュース", "コーヒー"],
+      "correct": 0,
+      "explanation": "water は「みず」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0008",
+      "question": "「juice」の意味は？",
+      "choices": ["ジュース", "みず", "ぎゅうにゅう", "おちゃ"],
+      "correct": 0,
+      "explanation": "juice は「ジュース」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0009",
+      "question": "「tea」の意味は？",
+      "choices": ["おちゃ", "コーヒー", "ジュース", "ぎゅうにゅう"],
+      "correct": 0,
+      "explanation": "tea は「おちゃ」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0010",
+      "question": "「coffee」の意味は？",
+      "choices": ["コーヒー", "おちゃ", "みず", "ジュース"],
+      "correct": 0,
+      "explanation": "coffee は「コーヒー」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0011",
+      "question": "「egg」の意味は？",
+      "choices": ["たまご", "パン", "ごはん", "にく"],
+      "correct": 0,
+      "explanation": "egg は「たまご」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0012",
+      "question": "「cake」の意味は？",
+      "choices": ["ケーキ", "パン", "たまご", "サラダ"],
+      "correct": 0,
+      "explanation": "cake は「ケーキ」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0013",
+      "question": "「fish」の意味は？",
+      "choices": ["さかな", "にく", "たまご", "ごはん"],
+      "correct": 0,
+      "explanation": "fish は「さかな」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0014",
+      "question": "「meat」の意味は？",
+      "choices": ["にく", "さかな", "たまご", "パン"],
+      "correct": 0,
+      "explanation": "meat は「にく」です"
+    },
+    {
+      "id": "eiken5-food-en-jp-0015",
+      "question": "「salad」の意味は？",
+      "choices": ["サラダ", "にく", "ごはん", "ケーキ"],
+      "correct": 0,
+      "explanation": "salad は「サラダ」です"
+    }
+  ]
+}

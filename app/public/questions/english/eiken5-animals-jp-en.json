@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-animals-jp-en",
+  "categoryName": "🐾 動物（日→英）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-animals",
+  "parentCategoryName": "動物",
+  "referenceGrade": "小学3年",
+  "description": "動物の名前を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-animals-jp-en-0001",
+      "question": "「ねこ」を英語で書くと？",
+      "choices": ["cat", "dog", "bird", "fish"],
+      "correct": 0,
+      "explanation": "「ねこ」は英語で cat です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0002",
+      "question": "「いぬ」を英語で書くと？",
+      "choices": ["dog", "cat", "rabbit", "horse"],
+      "correct": 0,
+      "explanation": "「いぬ」は英語で dog です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0003",
+      "question": "「とり」を英語で書くと？",
+      "choices": ["bird", "fish", "mouse", "sheep"],
+      "correct": 0,
+      "explanation": "「とり」は英語で bird です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0004",
+      "question": "「さかな」を英語で書くと？",
+      "choices": ["fish", "bird", "cat", "pig"],
+      "correct": 0,
+      "explanation": "「さかな」は英語で fish です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0005",
+      "question": "「うさぎ」を英語で書くと？",
+      "choices": ["rabbit", "horse", "cow", "mouse"],
+      "correct": 0,
+      "explanation": "「うさぎ」は英語で rabbit です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0006",
+      "question": "「うま」を英語で書くと？",
+      "choices": ["horse", "rabbit", "cow", "bear"],
+      "correct": 0,
+      "explanation": "「うま」は英語で horse です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0007",
+      "question": "「うし」を英語で書くと？",
+      "choices": ["cow", "pig", "horse", "sheep"],
+      "correct": 0,
+      "explanation": "「うし」は英語で cow です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0008",
+      "question": "「ぶた」を英語で書くと？",
+      "choices": ["pig", "cow", "bear", "monkey"],
+      "correct": 0,
+      "explanation": "「ぶた」は英語で pig です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0009",
+      "question": "「くま」を英語で書くと？",
+      "choices": ["bear", "pig", "lion", "tiger"],
+      "correct": 0,
+      "explanation": "「くま」は英語で bear です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0010",
+      "question": "「さる」を英語で書くと？",
+      "choices": ["monkey", "bear", "elephant", "lion"],
+      "correct": 0,
+      "explanation": "「さる」は英語で monkey です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0011",
+      "question": "「ぞう」を英語で書くと？",
+      "choices": ["elephant", "monkey", "lion", "tiger"],
+      "correct": 0,
+      "explanation": "「ぞう」は英語で elephant です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0012",
+      "question": "「らいおん」を英語で書くと？",
+      "choices": ["lion", "elephant", "tiger", "bear"],
+      "correct": 0,
+      "explanation": "「らいおん」は英語で lion です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0013",
+      "question": "「とら」を英語で書くと？",
+      "choices": ["tiger", "lion", "monkey", "horse"],
+      "correct": 0,
+      "explanation": "「とら」は英語で tiger です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0014",
+      "question": "「ねずみ」を英語で書くと？",
+      "choices": ["mouse", "cat", "rabbit", "bird"],
+      "correct": 0,
+      "explanation": "「ねずみ」は英語で mouse です"
+    },
+    {
+      "id": "eiken5-animals-jp-en-0015",
+      "question": "「ひつじ」を英語で書くと？",
+      "choices": ["sheep", "cow", "pig", "horse"],
+      "correct": 0,
+      "explanation": "「ひつじ」は英語で sheep です"
+    }
+  ]
+}

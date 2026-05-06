@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-body-en-jp",
+  "categoryName": "🧍 身体（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-body",
+  "parentCategoryName": "身体",
+  "referenceGrade": "小学3年",
+  "description": "身体の部位を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-body-en-jp-0001",
+      "question": "「head」の意味は？",
+      "choices": ["あたま", "かお", "かみのけ", "かた"],
+      "correct": 0,
+      "explanation": "head は「あたま」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0002",
+      "question": "「eye」の意味は？",
+      "choices": ["め", "みみ", "はな", "くち"],
+      "correct": 0,
+      "explanation": "eye は「め」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0003",
+      "question": "「ear」の意味は？",
+      "choices": ["みみ", "め", "はな", "くち"],
+      "correct": 0,
+      "explanation": "ear は「みみ」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0004",
+      "question": "「nose」の意味は？",
+      "choices": ["はな", "くち", "め", "みみ"],
+      "correct": 0,
+      "explanation": "nose は「はな」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0005",
+      "question": "「mouth」の意味は？",
+      "choices": ["くち", "はな", "かお", "は（歯）"],
+      "correct": 0,
+      "explanation": "mouth は「くち」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0006",
+      "question": "「hand」の意味は？",
+      "choices": ["て", "うで", "ゆび", "あし（脚）"],
+      "correct": 0,
+      "explanation": "hand は「て」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0007",
+      "question": "「foot」の意味は？",
+      "choices": ["あし（足）", "あし（脚）", "て", "せなか"],
+      "correct": 0,
+      "explanation": "foot は「あし（足）」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0008",
+      "question": "「arm」の意味は？",
+      "choices": ["うで", "て", "あし（脚）", "かた"],
+      "correct": 0,
+      "explanation": "arm は「うで」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0009",
+      "question": "「leg」の意味は？",
+      "choices": ["あし（脚）", "あし（足）", "うで", "せなか"],
+      "correct": 0,
+      "explanation": "leg は「あし（脚）」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0010",
+      "question": "「face」の意味は？",
+      "choices": ["かお", "あたま", "かみのけ", "は（歯）"],
+      "correct": 0,
+      "explanation": "face は「かお」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0011",
+      "question": "「finger」の意味は？",
+      "choices": ["ゆび", "て", "うで", "あし（脚）"],
+      "correct": 0,
+      "explanation": "finger は「ゆび」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0012",
+      "question": "「hair」の意味は？",
+      "choices": ["かみのけ", "あたま", "かお", "せなか"],
+      "correct": 0,
+      "explanation": "hair は「かみのけ」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0013",
+      "question": "「tooth」の意味は？",
+      "choices": ["は（歯）", "くち", "はな", "かお"],
+      "correct": 0,
+      "explanation": "tooth は「は（歯）」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0014",
+      "question": "「back」の意味は？",
+      "choices": ["せなか", "かた", "うで", "あし（脚）"],
+      "correct": 0,
+      "explanation": "back は「せなか」です"
+    },
+    {
+      "id": "eiken5-body-en-jp-0015",
+      "question": "「shoulder」の意味は？",
+      "choices": ["かた", "せなか", "うで", "あたま"],
+      "correct": 0,
+      "explanation": "shoulder は「かた」です"
+    }
+  ]
+}

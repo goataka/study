@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-colors-jp-en",
+  "categoryName": "🎨 色・数（日→英）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-colors",
+  "parentCategoryName": "色・数",
+  "referenceGrade": "小学3年",
+  "description": "色・数の言葉を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-colors-jp-en-0001",
+      "question": "「あか」を英語で書くと？",
+      "choices": ["red", "blue", "green", "yellow"],
+      "correct": 0,
+      "explanation": "「あか」は英語で red です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0002",
+      "question": "「あお」を英語で書くと？",
+      "choices": ["blue", "red", "green", "purple"],
+      "correct": 0,
+      "explanation": "「あお」は英語で blue です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0003",
+      "question": "「みどり」を英語で書くと？",
+      "choices": ["green", "blue", "yellow", "brown"],
+      "correct": 0,
+      "explanation": "「みどり」は英語で green です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0004",
+      "question": "「きいろ」を英語で書くと？",
+      "choices": ["yellow", "green", "orange", "white"],
+      "correct": 0,
+      "explanation": "「きいろ」は英語で yellow です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0005",
+      "question": "「しろ」を英語で書くと？",
+      "choices": ["white", "black", "yellow", "pink"],
+      "correct": 0,
+      "explanation": "「しろ」は英語で white です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0006",
+      "question": "「くろ」を英語で書くと？",
+      "choices": ["black", "white", "brown", "purple"],
+      "correct": 0,
+      "explanation": "「くろ」は英語で black です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0007",
+      "question": "「ピンク」を英語で書くと？",
+      "choices": ["pink", "red", "purple", "orange"],
+      "correct": 0,
+      "explanation": "「ピンク」は英語で pink です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0008",
+      "question": "「むらさき」を英語で書くと？",
+      "choices": ["purple", "pink", "blue", "black"],
+      "correct": 0,
+      "explanation": "「むらさき」は英語で purple です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0009",
+      "question": "「オレンジ（色）」を英語で書くと？",
+      "choices": ["orange", "yellow", "red", "pink"],
+      "correct": 0,
+      "explanation": "「オレンジ（色）」は英語で orange です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0010",
+      "question": "「ちゃいろ」を英語で書くと？",
+      "choices": ["brown", "black", "green", "orange"],
+      "correct": 0,
+      "explanation": "「ちゃいろ」は英語で brown です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0011",
+      "question": "「1（いち）」を英語で書くと？",
+      "choices": ["one", "two", "three", "four"],
+      "correct": 0,
+      "explanation": "「1」は英語で one です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0012",
+      "question": "「2（に）」を英語で書くと？",
+      "choices": ["two", "one", "three", "four"],
+      "correct": 0,
+      "explanation": "「2」は英語で two です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0013",
+      "question": "「3（さん）」を英語で書くと？",
+      "choices": ["three", "two", "four", "five"],
+      "correct": 0,
+      "explanation": "「3」は英語で three です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0014",
+      "question": "「4（し・よん）」を英語で書くと？",
+      "choices": ["four", "three", "five", "two"],
+      "correct": 0,
+      "explanation": "「4」は英語で four です"
+    },
+    {
+      "id": "eiken5-colors-jp-en-0015",
+      "question": "「5（ご）」を英語で書くと？",
+      "choices": ["five", "four", "three", "two"],
+      "correct": 0,
+      "explanation": "「5」は英語で five です"
+    }
+  ]
+}

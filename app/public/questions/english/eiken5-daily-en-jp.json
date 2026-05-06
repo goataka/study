@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-daily-en-jp",
+  "categoryName": "🌞 日常生活（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-daily",
+  "parentCategoryName": "日常生活",
+  "referenceGrade": "小学4年",
+  "description": "日常生活に関する言葉を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-daily-en-jp-0001",
+      "question": "「morning」の意味は？",
+      "choices": ["あさ", "ひる・午後", "ゆうがた", "よる"],
+      "correct": 0,
+      "explanation": "morning は「あさ」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0002",
+      "question": "「afternoon」の意味は？",
+      "choices": ["ひる・午後", "あさ", "ゆうがた", "ひ・日"],
+      "correct": 0,
+      "explanation": "afternoon は「ひる・午後」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0003",
+      "question": "「evening」の意味は？",
+      "choices": ["ゆうがた", "ひる・午後", "よる", "あさ"],
+      "correct": 0,
+      "explanation": "evening は「ゆうがた」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0004",
+      "question": "「night」の意味は？",
+      "choices": ["よる", "ゆうがた", "あさ", "ひ・日"],
+      "correct": 0,
+      "explanation": "night は「よる」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0005",
+      "question": "「day」の意味は？",
+      "choices": ["ひ・日", "しゅう", "つき・月", "とし・年"],
+      "correct": 0,
+      "explanation": "day は「ひ・日」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0006",
+      "question": "「week」の意味は？",
+      "choices": ["しゅう", "ひ・日", "つき・月", "とし・年"],
+      "correct": 0,
+      "explanation": "week は「しゅう」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0007",
+      "question": "「month」の意味は？",
+      "choices": ["つき・月", "しゅう", "とし・年", "ひ・日"],
+      "correct": 0,
+      "explanation": "month は「つき・月」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0008",
+      "question": "「year」の意味は？",
+      "choices": ["とし・年", "つき・月", "しゅう", "じかん"],
+      "correct": 0,
+      "explanation": "year は「とし・年」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0009",
+      "question": "「time」の意味は？",
+      "choices": ["じかん", "とし・年", "ひ・日", "あさ"],
+      "correct": 0,
+      "explanation": "time は「じかん」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0010",
+      "question": "「breakfast」の意味は？",
+      "choices": ["あさごはん", "ひるごはん", "ゆうごはん", "じかん"],
+      "correct": 0,
+      "explanation": "breakfast は「あさごはん」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0011",
+      "question": "「lunch」の意味は？",
+      "choices": ["ひるごはん", "あさごはん", "ゆうごはん", "あさ"],
+      "correct": 0,
+      "explanation": "lunch は「ひるごはん」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0012",
+      "question": "「dinner」の意味は？",
+      "choices": ["ゆうごはん", "ひるごはん", "あさごはん", "ゆうがた"],
+      "correct": 0,
+      "explanation": "dinner は「ゆうごはん」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0013",
+      "question": "「sleep」の意味は？",
+      "choices": ["ねる", "はたらく", "あそぶ", "じかん"],
+      "correct": 0,
+      "explanation": "sleep は「ねる」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0014",
+      "question": "「work」の意味は？",
+      "choices": ["しごと・はたらく", "ねる", "あそぶ", "ひ・日"],
+      "correct": 0,
+      "explanation": "work は「しごと・はたらく」です"
+    },
+    {
+      "id": "eiken5-daily-en-jp-0015",
+      "question": "「play」の意味は？",
+      "choices": ["あそぶ・プレイ", "はたらく", "ねる", "あさ"],
+      "correct": 0,
+      "explanation": "play は「あそぶ・プレイ」です"
+    }
+  ]
+}

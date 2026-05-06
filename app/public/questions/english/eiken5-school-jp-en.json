@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-school-jp-en",
+  "categoryName": "🏫 学校・文具（日→英）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-school",
+  "parentCategoryName": "学校・文具",
+  "referenceGrade": "小学4年",
+  "description": "学校・文具に関する言葉を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-school-jp-en-0001",
+      "question": "「がっこう」を英語で書くと？",
+      "choices": ["school", "classroom", "library", "room"],
+      "correct": 0,
+      "explanation": "「がっこう」は英語で school です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0002",
+      "question": "「きょうしつ」を英語で書くと？",
+      "choices": ["classroom", "school", "library", "door"],
+      "correct": 0,
+      "explanation": "「きょうしつ」は英語で classroom です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0003",
+      "question": "「つくえ」を英語で書くと？",
+      "choices": ["desk", "chair", "bag", "book"],
+      "correct": 0,
+      "explanation": "「つくえ」は英語で desk です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0004",
+      "question": "「いす」を英語で書くと？",
+      "choices": ["chair", "desk", "door", "window"],
+      "correct": 0,
+      "explanation": "「いす」は英語で chair です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0005",
+      "question": "「ほん」を英語で書くと？",
+      "choices": ["book", "pencil", "notebook", "bag"],
+      "correct": 0,
+      "explanation": "「ほん」は英語で book です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0006",
+      "question": "「えんぴつ」を英語で書くと？",
+      "choices": ["pencil", "pen", "eraser", "book"],
+      "correct": 0,
+      "explanation": "「えんぴつ」は英語で pencil です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0007",
+      "question": "「ペン」を英語で書くと？",
+      "choices": ["pen", "pencil", "eraser", "notebook"],
+      "correct": 0,
+      "explanation": "「ペン」は英語で pen です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0008",
+      "question": "「けしゴム」を英語で書くと？",
+      "choices": ["eraser", "pencil", "pen", "bag"],
+      "correct": 0,
+      "explanation": "「けしゴム」は英語で eraser です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0009",
+      "question": "「かばん」を英語で書くと？",
+      "choices": ["bag", "book", "notebook", "eraser"],
+      "correct": 0,
+      "explanation": "「かばん」は英語で bag です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0010",
+      "question": "「ノート」を英語で書くと？",
+      "choices": ["notebook", "book", "bag", "pen"],
+      "correct": 0,
+      "explanation": "「ノート」は英語で notebook です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0011",
+      "question": "「せんせい」を英語で書くと？",
+      "choices": ["teacher", "student", "doctor", "friend"],
+      "correct": 0,
+      "explanation": "「せんせい」は英語で teacher です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0012",
+      "question": "「せいと」を英語で書くと？",
+      "choices": ["student", "teacher", "child", "boy"],
+      "correct": 0,
+      "explanation": "「せいと」は英語で student です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0013",
+      "question": "「としょかん」を英語で書くと？",
+      "choices": ["library", "school", "classroom", "room"],
+      "correct": 0,
+      "explanation": "「としょかん」は英語で library です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0014",
+      "question": "「ドア」を英語で書くと？",
+      "choices": ["door", "window", "desk", "chair"],
+      "correct": 0,
+      "explanation": "「ドア」は英語で door です"
+    },
+    {
+      "id": "eiken5-school-jp-en-0015",
+      "question": "「まど」を英語で書くと？",
+      "choices": ["window", "door", "desk", "classroom"],
+      "correct": 0,
+      "explanation": "「まど」は英語で window です"
+    }
+  ]
+}

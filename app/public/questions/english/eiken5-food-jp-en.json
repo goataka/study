@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-food-jp-en",
+  "categoryName": "🍎 食べ物・飲み物（日→英）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-food",
+  "parentCategoryName": "食べ物・飲み物",
+  "referenceGrade": "小学3年",
+  "description": "食べ物・飲み物の名前を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-food-jp-en-0001",
+      "question": "「りんご」を英語で書くと？",
+      "choices": ["apple", "orange", "banana", "cake"],
+      "correct": 0,
+      "explanation": "「りんご」は英語で apple です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0002",
+      "question": "「オレンジ」を英語で書くと？",
+      "choices": ["orange", "apple", "banana", "juice"],
+      "correct": 0,
+      "explanation": "「オレンジ」は英語で orange です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0003",
+      "question": "「バナナ」を英語で書くと？",
+      "choices": ["banana", "apple", "orange", "salad"],
+      "correct": 0,
+      "explanation": "「バナナ」は英語で banana です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0004",
+      "question": "「パン」を英語で書くと？",
+      "choices": ["bread", "rice", "cake", "egg"],
+      "correct": 0,
+      "explanation": "「パン」は英語で bread です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0005",
+      "question": "「ごはん」を英語で書くと？",
+      "choices": ["rice", "bread", "meat", "salad"],
+      "correct": 0,
+      "explanation": "「ごはん」は英語で rice です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0006",
+      "question": "「ぎゅうにゅう」を英語で書くと？",
+      "choices": ["milk", "water", "juice", "tea"],
+      "correct": 0,
+      "explanation": "「ぎゅうにゅう」は英語で milk です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0007",
+      "question": "「みず」を英語で書くと？",
+      "choices": ["water", "milk", "juice", "coffee"],
+      "correct": 0,
+      "explanation": "「みず」は英語で water です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0008",
+      "question": "「ジュース」を英語で書くと？",
+      "choices": ["juice", "water", "milk", "tea"],
+      "correct": 0,
+      "explanation": "「ジュース」は英語で juice です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0009",
+      "question": "「おちゃ」を英語で書くと？",
+      "choices": ["tea", "coffee", "juice", "milk"],
+      "correct": 0,
+      "explanation": "「おちゃ」は英語で tea です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0010",
+      "question": "「コーヒー」を英語で書くと？",
+      "choices": ["coffee", "tea", "water", "juice"],
+      "correct": 0,
+      "explanation": "「コーヒー」は英語で coffee です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0011",
+      "question": "「たまご」を英語で書くと？",
+      "choices": ["egg", "bread", "rice", "meat"],
+      "correct": 0,
+      "explanation": "「たまご」は英語で egg です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0012",
+      "question": "「ケーキ」を英語で書くと？",
+      "choices": ["cake", "bread", "egg", "salad"],
+      "correct": 0,
+      "explanation": "「ケーキ」は英語で cake です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0013",
+      "question": "「さかな」を英語で書くと？",
+      "choices": ["fish", "meat", "egg", "rice"],
+      "correct": 0,
+      "explanation": "「さかな」は英語で fish です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0014",
+      "question": "「にく」を英語で書くと？",
+      "choices": ["meat", "fish", "egg", "bread"],
+      "correct": 0,
+      "explanation": "「にく」は英語で meat です"
+    },
+    {
+      "id": "eiken5-food-jp-en-0015",
+      "question": "「サラダ」を英語で書くと？",
+      "choices": ["salad", "meat", "rice", "cake"],
+      "correct": 0,
+      "explanation": "「サラダ」は英語で salad です"
+    }
+  ]
+}

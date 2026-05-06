@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-places-fill",
+  "categoryName": "🏠 場所（穴埋め）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-places",
+  "parentCategoryName": "場所",
+  "referenceGrade": "小学4年",
+  "description": "場所に関する言葉を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "eiken5-places-fill-0001",
+      "question": "I live in a ___. (わたしはいえに住んでいます)",
+      "choices": ["house", "park", "school", "hospital"],
+      "correct": 0,
+      "explanation": "「いえ」は house です。I live in a house. でわたしはいえに住んでいるという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0002",
+      "question": "Children play in the ___. (こどもたちはこうえんで遊びます)",
+      "choices": ["park", "house", "garden", "beach"],
+      "correct": 0,
+      "explanation": "「こうえん」は park です。Children play in the park. でこどもたちはこうえんで遊ぶという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0003",
+      "question": "I go to ___ every day. (まいにちがっこうへ行きます)",
+      "choices": ["school", "library", "house", "store"],
+      "correct": 0,
+      "explanation": "「がっこう」は school です。I go to school every day. でまいにちがっこうへ行くという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0004",
+      "question": "She is in the ___. (かのじょはびょういんにいます)",
+      "choices": ["hospital", "school", "store", "station"],
+      "correct": 0,
+      "explanation": "「びょういん」は hospital です。She is in the hospital. でかのじょはびょういんにいるという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0005",
+      "question": "We buy food at the ___. (わたしたちはみせで食べ物を買います)",
+      "choices": ["store", "hospital", "library", "city"],
+      "correct": 0,
+      "explanation": "「みせ」は store です。We buy food at the store. でわたしたちはみせで食べ物を買うという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0006",
+      "question": "I read books at the ___. (わたしはとしょかんで本を読みます)",
+      "choices": ["library", "school", "store", "room"],
+      "correct": 0,
+      "explanation": "「としょかん」は library です。I read books at the library. でわたしはとしょかんで本を読むという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0007",
+      "question": "The train stops at the ___. (でんしゃはえきに止まります)",
+      "choices": ["station", "city", "street", "country"],
+      "correct": 0,
+      "explanation": "「えき」は station です。The train stops at the station. ででんしゃはえきに止まるという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0008",
+      "question": "I like this ___. (わたしはこのまちが好きです)",
+      "choices": ["city", "country", "station", "street"],
+      "correct": 0,
+      "explanation": "「まち」は city です。I like this city. でわたしはこのまちが好きという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0009",
+      "question": "She lives in the ___. (かのじょはいなかに住んでいます)",
+      "choices": ["country", "city", "street", "mountain"],
+      "correct": 0,
+      "explanation": "「いなか」は country です。She lives in the country. でかのじょはいなかに住んでいるという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0010",
+      "question": "Walk down this ___. (このとおりを歩いてください)",
+      "choices": ["street", "city", "country", "river"],
+      "correct": 0,
+      "explanation": "「とおり」は street です。Walk down this street. でこのとおりを歩いてくださいという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0011",
+      "question": "I clean my ___. (わたしはへやをそうじします)",
+      "choices": ["room", "house", "garden", "library"],
+      "correct": 0,
+      "explanation": "「へや」は room です。I clean my room. でわたしはへやをそうじするという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0012",
+      "question": "We play in the ___. (わたしたちはにわで遊びます)",
+      "choices": ["garden", "park", "room", "beach"],
+      "correct": 0,
+      "explanation": "「にわ」は garden です。We play in the garden. でわたしたちはにわで遊ぶという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0013",
+      "question": "I swim at the ___. (わたしはかいがんで泳ぎます)",
+      "choices": ["beach", "mountain", "river", "park"],
+      "correct": 0,
+      "explanation": "「かいがん」は beach です。I swim at the beach. でわたしはかいがんで泳ぐという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0014",
+      "question": "The ___ is very high. (そのやまはとても高いです)",
+      "choices": ["mountain", "beach", "river", "country"],
+      "correct": 0,
+      "explanation": "「やま」は mountain です。The mountain is very high. でそのやまはとても高いという意味になります"
+    },
+    {
+      "id": "eiken5-places-fill-0015",
+      "question": "Fish live in the ___. (さかなはかわに住んでいます)",
+      "choices": ["river", "mountain", "beach", "street"],
+      "correct": 0,
+      "explanation": "「かわ」は river です。Fish live in the river. でさかなはかわに住んでいるという意味になります"
+    }
+  ]
+}

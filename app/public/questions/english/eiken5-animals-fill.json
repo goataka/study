@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-animals-fill",
+  "categoryName": "🐾 動物（穴埋め）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-animals",
+  "parentCategoryName": "動物",
+  "referenceGrade": "小学3年",
+  "description": "動物の名前を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "eiken5-animals-fill-0001",
+      "question": "I have a ___. (ねこを飼っています)",
+      "choices": ["cat", "dog", "bird", "fish"],
+      "correct": 0,
+      "explanation": "「ねこ」は cat です。I have a cat. でねこを飼っているという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0002",
+      "question": "The ___ is big. (そのいぬは大きいです)",
+      "choices": ["dog", "cat", "rabbit", "mouse"],
+      "correct": 0,
+      "explanation": "「いぬ」は dog です。The dog is big. でそのいぬは大きいという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0003",
+      "question": "A ___ can fly. (とりは空を飛べます)",
+      "choices": ["bird", "fish", "cat", "dog"],
+      "correct": 0,
+      "explanation": "「とり」は bird です。A bird can fly. でとりは飛べるという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0004",
+      "question": "We can eat ___. (さかなを食べられます)",
+      "choices": ["fish", "bird", "cat", "pig"],
+      "correct": 0,
+      "explanation": "「さかな」は fish です。We can eat fish. でさかなを食べられるという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0005",
+      "question": "My ___ is white. (私のうさぎは白です)",
+      "choices": ["rabbit", "horse", "cow", "sheep"],
+      "correct": 0,
+      "explanation": "「うさぎ」は rabbit です。My rabbit is white. で私のうさぎは白いという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0006",
+      "question": "The ___ runs fast. (そのうまは速く走ります)",
+      "choices": ["horse", "rabbit", "cow", "dog"],
+      "correct": 0,
+      "explanation": "「うま」は horse です。The horse runs fast. でそのうまは速く走るという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0007",
+      "question": "A ___ gives milk. (うしはミルクをくれます)",
+      "choices": ["cow", "pig", "horse", "sheep"],
+      "correct": 0,
+      "explanation": "「うし」は cow です。A cow gives milk. でうしはミルクをくれるという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0008",
+      "question": "The ___ is pink. (そのぶたはピンクです)",
+      "choices": ["pig", "cow", "bear", "monkey"],
+      "correct": 0,
+      "explanation": "「ぶた」は pig です。The pig is pink. でそのぶたはピンクという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0009",
+      "question": "A ___ lives in the forest. (くまは森に住んでいます)",
+      "choices": ["bear", "pig", "lion", "tiger"],
+      "correct": 0,
+      "explanation": "「くま」は bear です。A bear lives in the forest. でくまは森に住んでいるという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0010",
+      "question": "The ___ eats bananas. (そのさるはバナナを食べます)",
+      "choices": ["monkey", "bear", "elephant", "lion"],
+      "correct": 0,
+      "explanation": "「さる」は monkey です。The monkey eats bananas. でそのさるはバナナを食べるという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0011",
+      "question": "An ___ has a long nose. (ぞうは長い鼻を持っています)",
+      "choices": ["elephant", "monkey", "lion", "tiger"],
+      "correct": 0,
+      "explanation": "「ぞう」は elephant です。An elephant has a long nose. でぞうは長い鼻を持っているという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0012",
+      "question": "A ___ is strong. (らいおんは強いです)",
+      "choices": ["lion", "elephant", "tiger", "bear"],
+      "correct": 0,
+      "explanation": "「らいおん」は lion です。A lion is strong. でらいおんは強いという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0013",
+      "question": "The ___ has stripes. (そのとらはしまもようがあります)",
+      "choices": ["tiger", "lion", "monkey", "horse"],
+      "correct": 0,
+      "explanation": "「とら」は tiger です。The tiger has stripes. でそのとらはしまもようがあるという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0014",
+      "question": "A ___ is small. (ねずみは小さいです)",
+      "choices": ["mouse", "cat", "rabbit", "bird"],
+      "correct": 0,
+      "explanation": "「ねずみ」は mouse です。A mouse is small. でねずみは小さいという意味になります"
+    },
+    {
+      "id": "eiken5-animals-fill-0015",
+      "question": "The ___ is white and soft. (そのひつじは白くふわふわです)",
+      "choices": ["sheep", "cow", "pig", "rabbit"],
+      "correct": 0,
+      "explanation": "「ひつじ」は sheep です。The sheep is white and soft. でそのひつじは白くふわふわという意味になります"
+    }
+  ]
+}

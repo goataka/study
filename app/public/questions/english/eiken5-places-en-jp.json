@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-places-en-jp",
+  "categoryName": "🏠 場所（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-places",
+  "parentCategoryName": "場所",
+  "referenceGrade": "小学4年",
+  "description": "場所に関する言葉を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-places-en-jp-0001",
+      "question": "「house」の意味は？",
+      "choices": ["いえ", "こうえん", "がっこう", "びょういん"],
+      "correct": 0,
+      "explanation": "house は「いえ」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0002",
+      "question": "「park」の意味は？",
+      "choices": ["こうえん", "いえ", "にわ", "かいがん"],
+      "correct": 0,
+      "explanation": "park は「こうえん」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0003",
+      "question": "「school」の意味は？",
+      "choices": ["がっこう", "としょかん", "いえ", "みせ"],
+      "correct": 0,
+      "explanation": "school は「がっこう」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0004",
+      "question": "「hospital」の意味は？",
+      "choices": ["びょういん", "がっこう", "みせ", "えき"],
+      "correct": 0,
+      "explanation": "hospital は「びょういん」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0005",
+      "question": "「store」の意味は？",
+      "choices": ["みせ", "びょういん", "としょかん", "まち"],
+      "correct": 0,
+      "explanation": "store は「みせ」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0006",
+      "question": "「library」の意味は？",
+      "choices": ["としょかん", "がっこう", "みせ", "へや"],
+      "correct": 0,
+      "explanation": "library は「としょかん」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0007",
+      "question": "「station」の意味は？",
+      "choices": ["えき", "まち", "とおり", "くに"],
+      "correct": 0,
+      "explanation": "station は「えき」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0008",
+      "question": "「city」の意味は？",
+      "choices": ["まち・都市", "くに・いなか", "えき", "とおり"],
+      "correct": 0,
+      "explanation": "city は「まち・都市」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0009",
+      "question": "「country」の意味は？",
+      "choices": ["くに・いなか", "まち・都市", "とおり", "やま"],
+      "correct": 0,
+      "explanation": "country は「くに・いなか」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0010",
+      "question": "「street」の意味は？",
+      "choices": ["とおり", "まち", "くに", "かわ"],
+      "correct": 0,
+      "explanation": "street は「とおり」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0011",
+      "question": "「room」の意味は？",
+      "choices": ["へや", "いえ", "にわ", "としょかん"],
+      "correct": 0,
+      "explanation": "room は「へや」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0012",
+      "question": "「garden」の意味は？",
+      "choices": ["にわ", "こうえん", "へや", "かいがん"],
+      "correct": 0,
+      "explanation": "garden は「にわ」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0013",
+      "question": "「beach」の意味は？",
+      "choices": ["かいがん", "やま", "かわ", "こうえん"],
+      "correct": 0,
+      "explanation": "beach は「かいがん」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0014",
+      "question": "「mountain」の意味は？",
+      "choices": ["やま", "かいがん", "かわ", "くに"],
+      "correct": 0,
+      "explanation": "mountain は「やま」です"
+    },
+    {
+      "id": "eiken5-places-en-jp-0015",
+      "question": "「river」の意味は？",
+      "choices": ["かわ", "やま", "かいがん", "とおり"],
+      "correct": 0,
+      "explanation": "river は「かわ」です"
+    }
+  ]
+}

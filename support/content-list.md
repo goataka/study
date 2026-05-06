@@ -111,6 +111,21 @@ permalink: /support/content-list/
 | 60 | 命令文の間接話法 | [解説](../../english/grammar/reported-imperative/guide) | [確認](../../?subject=english&category=reported-imperative) | He told me `to play` games. |
 | 61 | 指示語の変化 | [解説](../../english/grammar/reported-expressions/guide) | [確認](../../?subject=english&category=reported-expressions) | `this` game→`that` game |
 
+### 📖 単語
+
+#### 英検5級
+
+| # | テーマ | 参考学年 | 解説 | 日→英 | 英→日 | 穴埋め |
+|---|--------|----------|------|-------|-------|--------|
+| 01 | 動物 | 小学3年 | [解説](../../english/vocabulary/eiken-5/animals/guide) | [日→英](../../?subject=english&category=eiken5-animals-jp-en) | [英→日](../../?subject=english&category=eiken5-animals-en-jp) | [穴埋め](../../?subject=english&category=eiken5-animals-fill) |
+| 02 | 食べ物・飲み物 | 小学3年 | [解説](../../english/vocabulary/eiken-5/food/guide) | [日→英](../../?subject=english&category=eiken5-food-jp-en) | [英→日](../../?subject=english&category=eiken5-food-en-jp) | [穴埋め](../../?subject=english&category=eiken5-food-fill) |
+| 03 | 色・数 | 小学3年 | [解説](../../english/vocabulary/eiken-5/colors/guide) | [日→英](../../?subject=english&category=eiken5-colors-jp-en) | [英→日](../../?subject=english&category=eiken5-colors-en-jp) | [穴埋め](../../?subject=english&category=eiken5-colors-fill) |
+| 04 | 家族・人 | 小学3年 | [解説](../../english/vocabulary/eiken-5/family/guide) | [日→英](../../?subject=english&category=eiken5-family-jp-en) | [英→日](../../?subject=english&category=eiken5-family-en-jp) | [穴埋め](../../?subject=english&category=eiken5-family-fill) |
+| 05 | 学校・文具 | 小学4年 | [解説](../../english/vocabulary/eiken-5/school/guide) | [日→英](../../?subject=english&category=eiken5-school-jp-en) | [英→日](../../?subject=english&category=eiken5-school-en-jp) | [穴埋め](../../?subject=english&category=eiken5-school-fill) |
+| 06 | 身体 | 小学3年 | [解説](../../english/vocabulary/eiken-5/body/guide) | [日→英](../../?subject=english&category=eiken5-body-jp-en) | [英→日](../../?subject=english&category=eiken5-body-en-jp) | [穴埋め](../../?subject=english&category=eiken5-body-fill) |
+| 07 | 場所 | 小学4年 | [解説](../../english/vocabulary/eiken-5/places/guide) | [日→英](../../?subject=english&category=eiken5-places-jp-en) | [英→日](../../?subject=english&category=eiken5-places-en-jp) | [穴埋め](../../?subject=english&category=eiken5-places-fill) |
+| 08 | 日常生活 | 小学4年 | [解説](../../english/vocabulary/eiken-5/daily/guide) | [日→英](../../?subject=english&category=eiken5-daily-jp-en) | [英→日](../../?subject=english&category=eiken5-daily-en-jp) | [穴埋め](../../?subject=english&category=eiken5-daily-fill) |
+
 ## 数学
 
 ### 📊 算数・基本計算

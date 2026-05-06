@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-animals-en-jp",
+  "categoryName": "🐾 動物（英→日）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-animals",
+  "parentCategoryName": "動物",
+  "referenceGrade": "小学3年",
+  "description": "動物の名前を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "eiken5-animals-en-jp-0001",
+      "question": "「cat」の意味は？",
+      "choices": ["ねこ", "いぬ", "とり", "さかな"],
+      "correct": 0,
+      "explanation": "cat は「ねこ」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0002",
+      "question": "「dog」の意味は？",
+      "choices": ["いぬ", "ねこ", "うさぎ", "うま"],
+      "correct": 0,
+      "explanation": "dog は「いぬ」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0003",
+      "question": "「bird」の意味は？",
+      "choices": ["とり", "さかな", "ねずみ", "ひつじ"],
+      "correct": 0,
+      "explanation": "bird は「とり」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0004",
+      "question": "「fish」の意味は？",
+      "choices": ["さかな", "とり", "ねこ", "ぶた"],
+      "correct": 0,
+      "explanation": "fish は「さかな」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0005",
+      "question": "「rabbit」の意味は？",
+      "choices": ["うさぎ", "うま", "うし", "ねずみ"],
+      "correct": 0,
+      "explanation": "rabbit は「うさぎ」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0006",
+      "question": "「horse」の意味は？",
+      "choices": ["うま", "うさぎ", "うし", "くま"],
+      "correct": 0,
+      "explanation": "horse は「うま」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0007",
+      "question": "「cow」の意味は？",
+      "choices": ["うし", "ぶた", "うま", "ひつじ"],
+      "correct": 0,
+      "explanation": "cow は「うし」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0008",
+      "question": "「pig」の意味は？",
+      "choices": ["ぶた", "うし", "くま", "さる"],
+      "correct": 0,
+      "explanation": "pig は「ぶた」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0009",
+      "question": "「bear」の意味は？",
+      "choices": ["くま", "ぶた", "らいおん", "とら"],
+      "correct": 0,
+      "explanation": "bear は「くま」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0010",
+      "question": "「monkey」の意味は？",
+      "choices": ["さる", "くま", "ぞう", "らいおん"],
+      "correct": 0,
+      "explanation": "monkey は「さる」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0011",
+      "question": "「elephant」の意味は？",
+      "choices": ["ぞう", "さる", "らいおん", "とら"],
+      "correct": 0,
+      "explanation": "elephant は「ぞう」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0012",
+      "question": "「lion」の意味は？",
+      "choices": ["らいおん", "ぞう", "とら", "くま"],
+      "correct": 0,
+      "explanation": "lion は「らいおん」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0013",
+      "question": "「tiger」の意味は？",
+      "choices": ["とら", "らいおん", "さる", "うま"],
+      "correct": 0,
+      "explanation": "tiger は「とら」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0014",
+      "question": "「mouse」の意味は？",
+      "choices": ["ねずみ", "ねこ", "うさぎ", "とり"],
+      "correct": 0,
+      "explanation": "mouse は「ねずみ」です"
+    },
+    {
+      "id": "eiken5-animals-en-jp-0015",
+      "question": "「sheep」の意味は？",
+      "choices": ["ひつじ", "うし", "ぶた", "うま"],
+      "correct": 0,
+      "explanation": "sheep は「ひつじ」です"
+    }
+  ]
+}

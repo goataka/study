@@ -1,0 +1,119 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken5-colors-fill",
+  "categoryName": "🎨 色・数（穴埋め）",
+  "topCategory": "eiken-5",
+  "topCategoryName": "英検5級",
+  "parentCategory": "eiken5-colors",
+  "parentCategoryName": "色・数",
+  "referenceGrade": "小学3年",
+  "description": "色・数の言葉を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "eiken5-colors-fill-0001",
+      "question": "The apple is ___. (りんごはあかです)",
+      "choices": ["red", "blue", "green", "yellow"],
+      "correct": 0,
+      "explanation": "「あか」は red です。The apple is red. でりんごはあかという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0002",
+      "question": "The sky is ___. (そらはあおです)",
+      "choices": ["blue", "red", "green", "purple"],
+      "correct": 0,
+      "explanation": "「あお」は blue です。The sky is blue. でそらはあおという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0003",
+      "question": "The grass is ___. (くさはみどりです)",
+      "choices": ["green", "blue", "yellow", "brown"],
+      "correct": 0,
+      "explanation": "「みどり」は green です。The grass is green. でくさはみどりという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0004",
+      "question": "The banana is ___. (バナナはきいろです)",
+      "choices": ["yellow", "green", "orange", "white"],
+      "correct": 0,
+      "explanation": "「きいろ」は yellow です。The banana is yellow. でバナナはきいろという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0005",
+      "question": "Snow is ___. (ゆきはしろです)",
+      "choices": ["white", "black", "yellow", "pink"],
+      "correct": 0,
+      "explanation": "「しろ」は white です。Snow is white. でゆきはしろという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0006",
+      "question": "The night is ___. (よるはくろです)",
+      "choices": ["black", "white", "brown", "purple"],
+      "correct": 0,
+      "explanation": "「くろ」は black です。The night is black. でよるはくろという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0007",
+      "question": "The flower is ___. (はなはピンクです)",
+      "choices": ["pink", "red", "purple", "orange"],
+      "correct": 0,
+      "explanation": "「ピンク」は pink です。The flower is pink. ではなはピンクという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0008",
+      "question": "The grapes are ___. (ぶどうはむらさきです)",
+      "choices": ["purple", "pink", "blue", "black"],
+      "correct": 0,
+      "explanation": "「むらさき」は purple です。The grapes are purple. でぶどうはむらさきという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0009",
+      "question": "The pumpkin is ___. (かぼちゃはオレンジ色です)",
+      "choices": ["orange", "yellow", "red", "pink"],
+      "correct": 0,
+      "explanation": "「オレンジ（色）」は orange です。The pumpkin is orange. でかぼちゃはオレンジ色という意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0010",
+      "question": "The tree is ___. (その木はちゃいろです)",
+      "choices": ["brown", "black", "green", "orange"],
+      "correct": 0,
+      "explanation": "「ちゃいろ」は brown です。The tree is brown. でその木はちゃいろという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0011",
+      "question": "I have ___ cat. (ねこを1ぴき飼っています)",
+      "choices": ["one", "two", "three", "four"],
+      "correct": 0,
+      "explanation": "「1」は one です。I have one cat. でねこを1ぴき飼っているという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0012",
+      "question": "She has ___ dogs. (かのじょはいぬを2ひき飼っています)",
+      "choices": ["two", "one", "three", "four"],
+      "correct": 0,
+      "explanation": "「2」は two です。She has two dogs. でかのじょはいぬを2ひき飼っているという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0013",
+      "question": "There are ___ birds. (とりが3わいます)",
+      "choices": ["three", "two", "four", "five"],
+      "correct": 0,
+      "explanation": "「3」は three です。There are three birds. でとりが3わいるという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0014",
+      "question": "I see ___ stars. (ほしが4つ見えます)",
+      "choices": ["four", "three", "five", "two"],
+      "correct": 0,
+      "explanation": "「4」は four です。I see four stars. でほしが4つ見えるという意味になります"
+    },
+    {
+      "id": "eiken5-colors-fill-0015",
+      "question": "There are ___ apples. (りんごが5つあります)",
+      "choices": ["five", "four", "three", "two"],
+      "correct": 0,
+      "explanation": "「5」は five です。There are five apples. でりんごが5つあるという意味になります"
+    }
+  ]
+}
