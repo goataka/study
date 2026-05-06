@@ -188,7 +188,7 @@ Feature: 学習アプリ
     Then grade groups should be visible in the category list
 
   Scenario: サポートボタン（?）がヘッダーに表示される
-    Then the support button should be visible in the footer
+    Then the support button should be visible in the header
 
   Scenario: サポートボタン（?）をクリックすると別タブでサポートページが開く
     Then the support button should open support page in a new tab
