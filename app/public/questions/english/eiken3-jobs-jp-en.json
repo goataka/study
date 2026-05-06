@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken3-jobs-jp-en",
+  "categoryName": "👔 職業（日→英）",
+  "topCategory": "eiken-3",
+  "topCategoryName": "英検3級",
+  "parentCategory": "eiken3-jobs",
+  "parentCategoryName": "職業",
+  "referenceGrade": "中学2年",
+  "description": "職業を表す単語を日本語から英語に訳す問題です。",
+  "questions": [
+    {
+      "id": "b4e4887a-02a6-5c7d-ad05-ce5934de9972",
+      "question": "「医者」を英語で書くと？",
+      "choices": [
+        "doctor",
+        "nurse",
+        "engineer",
+        "journalist"
+      ],
+      "correct": 0,
+      "explanation": "「医者」は英語で doctor です"
+    },
+    {
+      "id": "b531071d-fa1b-537f-bb69-2bc1880d2ee7",
+      "question": "「看護師」を英語で書くと？",
+      "choices": [
+        "nurse",
+        "teacher",
+        "lawyer",
+        "scientist"
+      ],
+      "correct": 0,
+      "explanation": "「看護師」は英語で nurse です"
+    },
+    {
+      "id": "73a5e2cd-fd92-53dd-a093-8c4d368879fd",
+      "question": "「先生」を英語で書くと？",
+      "choices": [
+        "teacher",
+        "engineer",
+        "pilot",
+        "firefighter"
+      ],
+      "correct": 0,
+      "explanation": "「先生」は英語で teacher です"
+    },
+    {
+      "id": "97c8277f-2806-5850-8c0c-9a0557fdb8ed",
+      "question": "「エンジニア」を英語で書くと？",
+      "choices": [
+        "engineer",
+        "lawyer",
+        "chef",
+        "farmer"
+      ],
+      "correct": 0,
+      "explanation": "「エンジニア」は英語で engineer です"
+    },
+    {
+      "id": "bd8affd4-95ac-56ef-8281-9d073d29f25e",
+      "question": "「弁護士」を英語で書くと？",
+      "choices": [
+        "lawyer",
+        "pilot",
+        "journalist",
+        "artist"
+      ],
+      "correct": 0,
+      "explanation": "「弁護士」は英語で lawyer です"
+    },
+    {
+      "id": "4bf53813-79b2-555f-a2ce-de3e22a7b018",
+      "question": "「パイロット」を英語で書くと？",
+      "choices": [
+        "pilot",
+        "chef",
+        "scientist",
+        "musician"
+      ],
+      "correct": 0,
+      "explanation": "「パイロット」は英語で pilot です"
+    },
+    {
+      "id": "ea9d1ba9-ea3b-5470-aa61-dd6509adf579",
+      "question": "「シェフ」を英語で書くと？",
+      "choices": [
+        "chef",
+        "journalist",
+        "firefighter",
+        "accountant"
+      ],
+      "correct": 0,
+      "explanation": "「シェフ」は英語で chef です"
+    },
+    {
+      "id": "df56fbd2-813b-5844-84a4-f66df5608ca6",
+      "question": "「ジャーナリスト」を英語で書くと？",
+      "choices": [
+        "journalist",
+        "scientist",
+        "farmer",
+        "architect"
+      ],
+      "correct": 0,
+      "explanation": "「ジャーナリスト」は英語で journalist です"
+    },
+    {
+      "id": "56af880d-61e9-5069-b38f-1f92f28337a1",
+      "question": "「科学者」を英語で書くと？",
+      "choices": [
+        "scientist",
+        "firefighter",
+        "artist",
+        "doctor"
+      ],
+      "correct": 0,
+      "explanation": "「科学者」は英語で scientist です"
+    },
+    {
+      "id": "16271881-81dc-5fe5-a967-3a5a5c5fa7d4",
+      "question": "「消防士」を英語で書くと？",
+      "choices": [
+        "firefighter",
+        "farmer",
+        "musician",
+        "nurse"
+      ],
+      "correct": 0,
+      "explanation": "「消防士」は英語で firefighter です"
+    },
+    {
+      "id": "e7132635-e8a0-5c18-9561-288281ae8e97",
+      "question": "「農家」を英語で書くと？",
+      "choices": [
+        "farmer",
+        "artist",
+        "accountant",
+        "teacher"
+      ],
+      "correct": 0,
+      "explanation": "「農家」は英語で farmer です"
+    },
+    {
+      "id": "131e17b8-811f-56f4-b069-ae0968e08095",
+      "question": "「芸術家」を英語で書くと？",
+      "choices": [
+        "artist",
+        "musician",
+        "architect",
+        "engineer"
+      ],
+      "correct": 0,
+      "explanation": "「芸術家」は英語で artist です"
+    },
+    {
+      "id": "a2849747-da27-5aa9-9778-ae79e589e527",
+      "question": "「音楽家」を英語で書くと？",
+      "choices": [
+        "musician",
+        "accountant",
+        "doctor",
+        "lawyer"
+      ],
+      "correct": 0,
+      "explanation": "「音楽家」は英語で musician です"
+    },
+    {
+      "id": "cfb16736-83d4-597f-bea4-39aa5c847eed",
+      "question": "「会計士」を英語で書くと？",
+      "choices": [
+        "accountant",
+        "architect",
+        "nurse",
+        "pilot"
+      ],
+      "correct": 0,
+      "explanation": "「会計士」は英語で accountant です"
+    },
+    {
+      "id": "dcd11b46-1d46-5258-8bf6-d91eea52f3f1",
+      "question": "「建築家」を英語で書くと？",
+      "choices": [
+        "architect",
+        "doctor",
+        "teacher",
+        "chef"
+      ],
+      "correct": 0,
+      "explanation": "「建築家」は英語で architect です"
+    }
+  ]
+}

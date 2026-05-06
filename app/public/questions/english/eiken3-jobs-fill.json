@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken3-jobs-fill",
+  "categoryName": "👔 職業（穴埋め）",
+  "topCategory": "eiken-3",
+  "topCategoryName": "英検3級",
+  "parentCategory": "eiken3-jobs",
+  "parentCategoryName": "職業",
+  "referenceGrade": "中学2年",
+  "description": "職業を表す単語を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "b1994f38-b246-5cdc-865b-f43e04a5a6b7",
+      "question": "My father is a ___ at the hospital. (病院で医者をしています)",
+      "choices": [
+        "doctor",
+        "nurse",
+        "engineer",
+        "journalist"
+      ],
+      "correct": 0,
+      "explanation": "空欄には doctor（医者）が入ります"
+    },
+    {
+      "id": "3b6ad690-d31b-5c5c-a1f9-c487e86f204a",
+      "question": "The ___ took care of the patient. (看護師が患者の世話をしました)",
+      "choices": [
+        "nurse",
+        "teacher",
+        "lawyer",
+        "scientist"
+      ],
+      "correct": 0,
+      "explanation": "空欄には nurse（看護師）が入ります"
+    },
+    {
+      "id": "4e758970-2366-5c24-b8f7-19b18023f63d",
+      "question": "My ___ is very kind. (先生はとても親切です)",
+      "choices": [
+        "teacher",
+        "engineer",
+        "pilot",
+        "firefighter"
+      ],
+      "correct": 0,
+      "explanation": "空欄には teacher（先生）が入ります"
+    },
+    {
+      "id": "e2e2f49d-e9c1-5746-aa4d-3cc1c79877ed",
+      "question": "She works as a software ___ . (ソフトウェアエンジニアとして働いています)",
+      "choices": [
+        "engineer",
+        "lawyer",
+        "chef",
+        "farmer"
+      ],
+      "correct": 0,
+      "explanation": "空欄には engineer（エンジニア）が入ります"
+    },
+    {
+      "id": "9fd00263-ffa0-50c7-86d5-a4525419c3fe",
+      "question": "He is a ___ who helps people. (人を助ける弁護士です)",
+      "choices": [
+        "lawyer",
+        "pilot",
+        "journalist",
+        "artist"
+      ],
+      "correct": 0,
+      "explanation": "空欄には lawyer（弁護士）が入ります"
+    },
+    {
+      "id": "215dc4e0-8d2b-5a54-9c90-24d92275089a",
+      "question": "She became a ___ and flies planes. (パイロットになり飛行機を飛ばします)",
+      "choices": [
+        "pilot",
+        "chef",
+        "scientist",
+        "musician"
+      ],
+      "correct": 0,
+      "explanation": "空欄には pilot（パイロット）が入ります"
+    },
+    {
+      "id": "3b7cb81c-d918-588a-afc2-5b7dec5f17e3",
+      "question": "The ___ cooked a delicious meal. (シェフが美味しい料理を作りました)",
+      "choices": [
+        "chef",
+        "journalist",
+        "firefighter",
+        "accountant"
+      ],
+      "correct": 0,
+      "explanation": "空欄には chef（シェフ）が入ります"
+    },
+    {
+      "id": "0eb519df-55fb-51cf-b820-cb672373444d",
+      "question": "The ___ wrote the news story. (ジャーナリストがニュース記事を書きました)",
+      "choices": [
+        "journalist",
+        "scientist",
+        "farmer",
+        "architect"
+      ],
+      "correct": 0,
+      "explanation": "空欄には journalist（ジャーナリスト）が入ります"
+    },
+    {
+      "id": "fc89812a-e0f1-5abf-9bb4-43102fbce14d",
+      "question": "She is a ___ who studies climate. (気候を研究する科学者です)",
+      "choices": [
+        "scientist",
+        "firefighter",
+        "artist",
+        "doctor"
+      ],
+      "correct": 0,
+      "explanation": "空欄には scientist（科学者）が入ります"
+    },
+    {
+      "id": "88b97483-d916-58a9-a961-97e44077f292",
+      "question": "The ___ put out the fire. (消防士が火を消しました)",
+      "choices": [
+        "firefighter",
+        "farmer",
+        "musician",
+        "nurse"
+      ],
+      "correct": 0,
+      "explanation": "空欄には firefighter（消防士）が入ります"
+    },
+    {
+      "id": "7faf8de0-7e2b-5a50-b7bd-1d3ed04d6927",
+      "question": "The ___ grows vegetables. (農家が野菜を育てています)",
+      "choices": [
+        "farmer",
+        "artist",
+        "accountant",
+        "teacher"
+      ],
+      "correct": 0,
+      "explanation": "空欄には farmer（農家）が入ります"
+    },
+    {
+      "id": "9e0badcd-e1b4-5143-aa6f-b83ec4d388e6",
+      "question": "She is an ___ who paints pictures. (絵を描く芸術家です)",
+      "choices": [
+        "artist",
+        "musician",
+        "architect",
+        "engineer"
+      ],
+      "correct": 0,
+      "explanation": "空欄には artist（芸術家）が入ります"
+    },
+    {
+      "id": "d9d32c9b-4990-528b-aff2-571e2e31e54d",
+      "question": "He is a ___ who plays guitar. (ギターを弾く音楽家です)",
+      "choices": [
+        "musician",
+        "accountant",
+        "doctor",
+        "lawyer"
+      ],
+      "correct": 0,
+      "explanation": "空欄には musician（音楽家）が入ります"
+    },
+    {
+      "id": "dd408b19-e5ef-5543-b7eb-7ef87da63a79",
+      "question": "The ___ checks the company accounts. (会計士が会社の帳簿を確認します)",
+      "choices": [
+        "accountant",
+        "architect",
+        "nurse",
+        "pilot"
+      ],
+      "correct": 0,
+      "explanation": "空欄には accountant（会計士）が入ります"
+    },
+    {
+      "id": "733ecf0e-394b-5c74-9d73-f7432e868f91",
+      "question": "The ___ designed a new building. (建築家が新しい建物を設計しました)",
+      "choices": [
+        "architect",
+        "doctor",
+        "teacher",
+        "chef"
+      ],
+      "correct": 0,
+      "explanation": "空欄には architect（建築家）が入ります"
+    }
+  ]
+}

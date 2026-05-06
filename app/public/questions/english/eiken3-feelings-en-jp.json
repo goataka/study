@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken3-feelings-en-jp",
+  "categoryName": "😊 感情・気持ち（英→日）",
+  "topCategory": "eiken-3",
+  "topCategoryName": "英検3級",
+  "parentCategory": "eiken3-feelings",
+  "parentCategoryName": "感情・気持ち",
+  "referenceGrade": "中学2年",
+  "description": "感情や気持ちを表す単語を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "9844f5db-eeed-5887-9af6-83cc2381147a",
+      "question": "「nervous」の意味は？",
+      "choices": [
+        "緊張している",
+        "ヤキモチ焼きの",
+        "イライラした",
+        "孤独な"
+      ],
+      "correct": 0,
+      "explanation": "nervous は「緊張している」です"
+    },
+    {
+      "id": "325ecc10-cb0d-52cd-aaf8-d660bea7412a",
+      "question": "「jealous」の意味は？",
+      "choices": [
+        "ヤキモチ焼きの",
+        "恥ずかしい",
+        "がっかりした",
+        "陽気な"
+      ],
+      "correct": 0,
+      "explanation": "jealous は「ヤキモチ焼きの」です"
+    },
+    {
+      "id": "d0289997-7b54-524e-b4b9-3d57e610279a",
+      "question": "「embarrassed」の意味は？",
+      "choices": [
+        "恥ずかしい",
+        "イライラした",
+        "感謝している",
+        "不安な"
+      ],
+      "correct": 0,
+      "explanation": "embarrassed は「恥ずかしい」です"
+    },
+    {
+      "id": "10371192-7a9b-5732-8eb3-e76e10dae34e",
+      "question": "「frustrated」の意味は？",
+      "choices": [
+        "イライラした",
+        "がっかりした",
+        "自信がある",
+        "希望に満ちた"
+      ],
+      "correct": 0,
+      "explanation": "frustrated は「イライラした」です"
+    },
+    {
+      "id": "ce8d310e-9a59-537e-9e5d-92a07fb1d75a",
+      "question": "「disappointed」の意味は？",
+      "choices": [
+        "がっかりした",
+        "感謝している",
+        "孤独な",
+        "心配している"
+      ],
+      "correct": 0,
+      "explanation": "disappointed は「がっかりした」です"
+    },
+    {
+      "id": "07788fbb-3ffb-5f78-94e8-1d0191a25b67",
+      "question": "「grateful」の意味は？",
+      "choices": [
+        "感謝している",
+        "自信がある",
+        "陽気な",
+        "好奇心の強い"
+      ],
+      "correct": 0,
+      "explanation": "grateful は「感謝している」です"
+    },
+    {
+      "id": "fc4aefd3-8fa3-5c77-a7cc-0506ca56e6d0",
+      "question": "「confident」の意味は？",
+      "choices": [
+        "自信がある",
+        "孤独な",
+        "不安な",
+        "誇らしい"
+      ],
+      "correct": 0,
+      "explanation": "confident は「自信がある」です"
+    },
+    {
+      "id": "060e2008-94ea-5c3e-91d2-6d6cf60f4a88",
+      "question": "「lonely」の意味は？",
+      "choices": [
+        "孤独な",
+        "陽気な",
+        "希望に満ちた",
+        "恥じている"
+      ],
+      "correct": 0,
+      "explanation": "lonely は「孤独な」です"
+    },
+    {
+      "id": "1f736483-63bb-5eb3-8a31-f0b78c3a6f8e",
+      "question": "「cheerful」の意味は？",
+      "choices": [
+        "陽気な",
+        "不安な",
+        "心配している",
+        "緊張している"
+      ],
+      "correct": 0,
+      "explanation": "cheerful は「陽気な」です"
+    },
+    {
+      "id": "22dc2685-4fd9-5b7e-aca7-152a8f3694c1",
+      "question": "「anxious」の意味は？",
+      "choices": [
+        "不安な",
+        "希望に満ちた",
+        "好奇心の強い",
+        "ヤキモチ焼きの"
+      ],
+      "correct": 0,
+      "explanation": "anxious は「不安な」です"
+    },
+    {
+      "id": "5cae996f-0601-55d7-a0a9-3e4c841681d8",
+      "question": "「hopeful」の意味は？",
+      "choices": [
+        "希望に満ちた",
+        "心配している",
+        "誇らしい",
+        "恥ずかしい"
+      ],
+      "correct": 0,
+      "explanation": "hopeful は「希望に満ちた」です"
+    },
+    {
+      "id": "e7a18d08-6b33-5cd1-a806-c53edf0a034f",
+      "question": "「worried」の意味は？",
+      "choices": [
+        "心配している",
+        "好奇心の強い",
+        "恥じている",
+        "イライラした"
+      ],
+      "correct": 0,
+      "explanation": "worried は「心配している」です"
+    },
+    {
+      "id": "1611638f-3340-5772-a05c-7c17979ed46d",
+      "question": "「curious」の意味は？",
+      "choices": [
+        "好奇心の強い",
+        "誇らしい",
+        "緊張している",
+        "がっかりした"
+      ],
+      "correct": 0,
+      "explanation": "curious は「好奇心の強い」です"
+    },
+    {
+      "id": "6bd7451b-e3c9-55cc-a8e0-fce27d9c8fb1",
+      "question": "「proud」の意味は？",
+      "choices": [
+        "誇らしい",
+        "恥じている",
+        "ヤキモチ焼きの",
+        "感謝している"
+      ],
+      "correct": 0,
+      "explanation": "proud は「誇らしい」です"
+    },
+    {
+      "id": "4e2adb99-8605-5a89-955b-0cccd618cda1",
+      "question": "「ashamed」の意味は？",
+      "choices": [
+        "恥じている",
+        "緊張している",
+        "恥ずかしい",
+        "自信がある"
+      ],
+      "correct": 0,
+      "explanation": "ashamed は「恥じている」です"
+    }
+  ]
+}

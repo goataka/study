@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken4-adjectives-fill",
+  "categoryName": "💬 形容詞（穴埋め）",
+  "topCategory": "eiken-4",
+  "topCategoryName": "英検4級",
+  "parentCategory": "eiken4-adjectives",
+  "parentCategoryName": "形容詞",
+  "referenceGrade": "中学1年",
+  "description": "形容詞を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "2fc8ed1a-98b5-5dfe-998f-80bef60e589d",
+      "question": "I am ___ . I need food. (空腹です)",
+      "choices": [
+        "hungry",
+        "tired",
+        "sad",
+        "busy"
+      ],
+      "correct": 0,
+      "explanation": "空欄には hungry（空腹な）が入ります"
+    },
+    {
+      "id": "512d3b73-9430-523e-8154-a3a8c3afbcf7",
+      "question": "I am ___ after school. (学校の後で疲れました)",
+      "choices": [
+        "tired",
+        "angry",
+        "excited",
+        "quiet"
+      ],
+      "correct": 0,
+      "explanation": "空欄には tired（疲れた）が入ります"
+    },
+    {
+      "id": "d52c7cf0-6171-5ae2-96bb-f207d8c572f3",
+      "question": "He is ___ at the noise. (騒音に怒っています)",
+      "choices": [
+        "angry",
+        "sad",
+        "scared",
+        "loud"
+      ],
+      "correct": 0,
+      "explanation": "空欄には angry（怒った）が入ります"
+    },
+    {
+      "id": "1109cda4-0d74-5082-aa9d-c83c09802940",
+      "question": "She is ___ because her dog is sick. (犬が病気で悲しいです)",
+      "choices": [
+        "sad",
+        "excited",
+        "bored",
+        "soft"
+      ],
+      "correct": 0,
+      "explanation": "空欄には sad（悲しい）が入ります"
+    },
+    {
+      "id": "5c7121f5-23fb-5bc3-8985-034c57b8b216",
+      "question": "I am ___ about the trip. (旅行について興奮しています)",
+      "choices": [
+        "excited",
+        "scared",
+        "busy",
+        "hard"
+      ],
+      "correct": 0,
+      "explanation": "空欄には excited（興奮した）が入ります"
+    },
+    {
+      "id": "88f8abe0-49e5-5cba-912c-f03e8179b981",
+      "question": "The child is ___ of the dark. (暗闇が怖いです)",
+      "choices": [
+        "scared",
+        "bored",
+        "quiet",
+        "clean"
+      ],
+      "correct": 0,
+      "explanation": "空欄には scared（怖がっている）が入ります"
+    },
+    {
+      "id": "b620d9ac-2540-5795-8ec3-bb84904b284b",
+      "question": "I am ___ on rainy days. (雨の日は退屈します)",
+      "choices": [
+        "bored",
+        "busy",
+        "loud",
+        "dirty"
+      ],
+      "correct": 0,
+      "explanation": "空欄には bored（退屈した）が入ります"
+    },
+    {
+      "id": "fe355470-b152-58c2-8428-330d4f3df67a",
+      "question": "She is very ___ today. (今日はとても忙しいです)",
+      "choices": [
+        "busy",
+        "quiet",
+        "soft",
+        "fresh"
+      ],
+      "correct": 0,
+      "explanation": "空欄には busy（忙しい）が入ります"
+    },
+    {
+      "id": "ca72f00c-745a-59b0-a927-59b3db8e4cee",
+      "question": "Please be ___ in the library. (図書館では静かにしてください)",
+      "choices": [
+        "quiet",
+        "loud",
+        "hard",
+        "hungry"
+      ],
+      "correct": 0,
+      "explanation": "空欄には quiet（静かな）が入ります"
+    },
+    {
+      "id": "32a74fa5-cd1c-5831-89d6-f6078c5cfad6",
+      "question": "The music is too ___ . (音楽が騒がしすぎます)",
+      "choices": [
+        "loud",
+        "soft",
+        "clean",
+        "tired"
+      ],
+      "correct": 0,
+      "explanation": "空欄には loud（騒がしい）が入ります"
+    },
+    {
+      "id": "3faf1b2e-3b24-597c-a5f8-afcbf9c2ef2c",
+      "question": "The pillow is very ___ . (枕はとても柔らかいです)",
+      "choices": [
+        "soft",
+        "hard",
+        "dirty",
+        "angry"
+      ],
+      "correct": 0,
+      "explanation": "空欄には soft（柔らかい）が入ります"
+    },
+    {
+      "id": "72896fb8-15b8-5d9b-a21c-9bde1c94bf4e",
+      "question": "The rock is very ___ . (岩はとても硬いです)",
+      "choices": [
+        "hard",
+        "clean",
+        "fresh",
+        "sad"
+      ],
+      "correct": 0,
+      "explanation": "空欄には hard（硬い）が入ります"
+    },
+    {
+      "id": "06e9b9be-26c2-5c29-a1b9-da136a9b1f2b",
+      "question": "Keep your room ___ . (部屋をきれいに保ちましょう)",
+      "choices": [
+        "clean",
+        "dirty",
+        "hungry",
+        "excited"
+      ],
+      "correct": 0,
+      "explanation": "空欄には clean（きれいな）が入ります"
+    },
+    {
+      "id": "03a8acf6-eae7-5b73-8c1b-2b7aed2ed001",
+      "question": "My hands are ___ . (手が汚いです)",
+      "choices": [
+        "dirty",
+        "fresh",
+        "tired",
+        "scared"
+      ],
+      "correct": 0,
+      "explanation": "空欄には dirty（汚い）が入ります"
+    },
+    {
+      "id": "9722d39f-34ef-5022-8ed1-129ddd71265a",
+      "question": "I want ___ vegetables. (新鮮な野菜が食べたいです)",
+      "choices": [
+        "fresh",
+        "hungry",
+        "angry",
+        "bored"
+      ],
+      "correct": 0,
+      "explanation": "空欄には fresh（新鮮な）が入ります"
+    }
+  ]
+}

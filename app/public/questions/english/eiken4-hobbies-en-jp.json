@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken4-hobbies-en-jp",
+  "categoryName": "⚽ スポーツ・趣味（英→日）",
+  "topCategory": "eiken-4",
+  "topCategoryName": "英検4級",
+  "parentCategory": "eiken4-hobbies",
+  "parentCategoryName": "スポーツ・趣味",
+  "referenceGrade": "中学1年",
+  "description": "スポーツや趣味を表す単語を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "f66f58f9-91b3-5b65-aafc-fa0b194c19f1",
+      "question": "「soccer」の意味は？",
+      "choices": [
+        "サッカー",
+        "テニス",
+        "水泳",
+        "釣り"
+      ],
+      "correct": 0,
+      "explanation": "soccer は「サッカー」です"
+    },
+    {
+      "id": "02468b2f-4391-55b8-bc8b-e05707013cdd",
+      "question": "「tennis」の意味は？",
+      "choices": [
+        "テニス",
+        "バスケットボール",
+        "スキー",
+        "絵を描くこと"
+      ],
+      "correct": 0,
+      "explanation": "tennis は「テニス」です"
+    },
+    {
+      "id": "297880ab-473e-5dad-b913-f54fc4967304",
+      "question": "「basketball」の意味は？",
+      "choices": [
+        "バスケットボール",
+        "水泳",
+        "サイクリング",
+        "料理"
+      ],
+      "correct": 0,
+      "explanation": "basketball は「バスケットボール」です"
+    },
+    {
+      "id": "e5d533b9-a69a-5ce8-b48f-45faa564a650",
+      "question": "「swimming」の意味は？",
+      "choices": [
+        "水泳",
+        "スキー",
+        "ハイキング",
+        "読書"
+      ],
+      "correct": 0,
+      "explanation": "swimming は「水泳」です"
+    },
+    {
+      "id": "f0d23e44-8694-5db2-b764-aa323b568bba",
+      "question": "「skiing」の意味は？",
+      "choices": [
+        "スキー",
+        "サイクリング",
+        "釣り",
+        "買い物"
+      ],
+      "correct": 0,
+      "explanation": "skiing は「スキー」です"
+    },
+    {
+      "id": "1cbec579-b2fe-5c48-a122-ff7c89a3243e",
+      "question": "「cycling」の意味は？",
+      "choices": [
+        "サイクリング",
+        "ハイキング",
+        "絵を描くこと",
+        "踊ること"
+      ],
+      "correct": 0,
+      "explanation": "cycling は「サイクリング」です"
+    },
+    {
+      "id": "91a90172-ef91-5532-a641-9bbeb011a4b8",
+      "question": "「hiking」の意味は？",
+      "choices": [
+        "ハイキング",
+        "釣り",
+        "料理",
+        "ガーデニング"
+      ],
+      "correct": 0,
+      "explanation": "hiking は「ハイキング」です"
+    },
+    {
+      "id": "23a6d279-99a9-5d96-be70-1d0be47a48c2",
+      "question": "「fishing」の意味は？",
+      "choices": [
+        "釣り",
+        "絵を描くこと",
+        "読書",
+        "写真撮影"
+      ],
+      "correct": 0,
+      "explanation": "fishing は「釣り」です"
+    },
+    {
+      "id": "4b6b6dd2-35ea-55ee-9c7f-b8fadac6a185",
+      "question": "「painting」の意味は？",
+      "choices": [
+        "絵を描くこと",
+        "料理",
+        "買い物",
+        "サッカー"
+      ],
+      "correct": 0,
+      "explanation": "painting は「絵を描くこと」です"
+    },
+    {
+      "id": "2ed6b418-b7c2-5d79-8d89-74442ba8fb03",
+      "question": "「cooking」の意味は？",
+      "choices": [
+        "料理",
+        "読書",
+        "踊ること",
+        "テニス"
+      ],
+      "correct": 0,
+      "explanation": "cooking は「料理」です"
+    },
+    {
+      "id": "28aed394-39fd-54e3-bd7e-4e0c3b4078a2",
+      "question": "「reading」の意味は？",
+      "choices": [
+        "読書",
+        "買い物",
+        "ガーデニング",
+        "バスケットボール"
+      ],
+      "correct": 0,
+      "explanation": "reading は「読書」です"
+    },
+    {
+      "id": "82ae3ab9-ee78-5e53-83a8-d09fcd71e6c2",
+      "question": "「shopping」の意味は？",
+      "choices": [
+        "買い物",
+        "踊ること",
+        "写真撮影",
+        "水泳"
+      ],
+      "correct": 0,
+      "explanation": "shopping は「買い物」です"
+    },
+    {
+      "id": "cd74b908-7159-52bf-950d-7481598ff4f4",
+      "question": "「dancing」の意味は？",
+      "choices": [
+        "踊ること",
+        "ガーデニング",
+        "サッカー",
+        "スキー"
+      ],
+      "correct": 0,
+      "explanation": "dancing は「踊ること」です"
+    },
+    {
+      "id": "9429a1bc-8c78-5d6d-b0fe-6d5ed76daa46",
+      "question": "「gardening」の意味は？",
+      "choices": [
+        "ガーデニング",
+        "写真撮影",
+        "テニス",
+        "サイクリング"
+      ],
+      "correct": 0,
+      "explanation": "gardening は「ガーデニング」です"
+    },
+    {
+      "id": "58fa2d71-a4ff-5949-b9f5-764686020100",
+      "question": "「photography」の意味は？",
+      "choices": [
+        "写真撮影",
+        "サッカー",
+        "バスケットボール",
+        "ハイキング"
+      ],
+      "correct": 0,
+      "explanation": "photography は「写真撮影」です"
+    }
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken3-nature-fill",
+  "categoryName": "🌿 自然・環境（穴埋め）",
+  "topCategory": "eiken-3",
+  "topCategoryName": "英検3級",
+  "parentCategory": "eiken3-nature",
+  "parentCategoryName": "自然・環境",
+  "referenceGrade": "中学2年",
+  "description": "自然・環境の単語を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "e8f023e0-b531-5cdf-93b1-6594b8bbec2d",
+      "question": "We climbed the ___ last summer. (去年の夏、山に登りました)",
+      "choices": [
+        "mountain",
+        "river",
+        "forest",
+        "volcano"
+      ],
+      "correct": 0,
+      "explanation": "空欄には mountain（山）が入ります"
+    },
+    {
+      "id": "a0714105-63cc-507d-9833-1fb995779a3d",
+      "question": "The ___ flows to the sea. (川は海に流れます)",
+      "choices": [
+        "river",
+        "ocean",
+        "valley",
+        "earthquake"
+      ],
+      "correct": 0,
+      "explanation": "空欄には river（川）が入ります"
+    },
+    {
+      "id": "f626b8b3-fe18-502b-985e-e94879405f1e",
+      "question": "The ___ is very deep here. (ここの海はとても深いです)",
+      "choices": [
+        "ocean",
+        "forest",
+        "desert",
+        "pollution"
+      ],
+      "correct": 0,
+      "explanation": "空欄には ocean（海）が入ります"
+    },
+    {
+      "id": "c0639c0b-3e71-5f57-b760-12a612ddec71",
+      "question": "Many animals live in the ___ . (森には多くの動物が住んでいます)",
+      "choices": [
+        "forest",
+        "valley",
+        "island",
+        "environment"
+      ],
+      "correct": 0,
+      "explanation": "空欄には forest（森）が入ります"
+    },
+    {
+      "id": "21fb6026-136e-58ad-8eab-1be05aff0132",
+      "question": "The ___ between the mountains is beautiful. (山間の谷は美しいです)",
+      "choices": [
+        "valley",
+        "desert",
+        "volcano",
+        "climate"
+      ],
+      "correct": 0,
+      "explanation": "空欄には valley（谷）が入ります"
+    },
+    {
+      "id": "04b4dd26-105b-5f08-8d62-0ddf5384a5cf",
+      "question": "The ___ is very hot and dry. (砂漠はとても暑く乾燥しています)",
+      "choices": [
+        "desert",
+        "island",
+        "earthquake",
+        "wildlife"
+      ],
+      "correct": 0,
+      "explanation": "空欄には desert（砂漠）が入ります"
+    },
+    {
+      "id": "10b0ce14-d161-5701-afb7-c67dc0e0be27",
+      "question": "She lives on a small ___ . (小さな島に住んでいます)",
+      "choices": [
+        "island",
+        "volcano",
+        "pollution",
+        "plant"
+      ],
+      "correct": 0,
+      "explanation": "空欄には island（島）が入ります"
+    },
+    {
+      "id": "b3248c5a-c6e4-5645-9096-ee6b110c22d0",
+      "question": "The ___ erupted last year. (去年、火山が噴火しました)",
+      "choices": [
+        "volcano",
+        "earthquake",
+        "environment",
+        "soil"
+      ],
+      "correct": 0,
+      "explanation": "空欄には volcano（火山）が入ります"
+    },
+    {
+      "id": "1aa6c444-880a-5086-86bd-591489cdcd39",
+      "question": "The ___ shook the city. (地震が都市を揺らしました)",
+      "choices": [
+        "earthquake",
+        "pollution",
+        "climate",
+        "mountain"
+      ],
+      "correct": 0,
+      "explanation": "空欄には earthquake（地震）が入ります"
+    },
+    {
+      "id": "ce30f21d-f241-583f-a217-f92eb53c4cea",
+      "question": "Air ___ is a serious problem. (大気汚染は深刻な問題です)",
+      "choices": [
+        "pollution",
+        "environment",
+        "wildlife",
+        "river"
+      ],
+      "correct": 0,
+      "explanation": "空欄には pollution（汚染）が入ります"
+    },
+    {
+      "id": "2c5a85b2-c165-55a0-81b1-5be3a7123660",
+      "question": "We must protect the ___ . (環境を守らなければなりません)",
+      "choices": [
+        "environment",
+        "climate",
+        "plant",
+        "ocean"
+      ],
+      "correct": 0,
+      "explanation": "空欄には environment（環境）が入ります"
+    },
+    {
+      "id": "03f3bc34-5746-505b-bad6-13d8ae6156cf",
+      "question": "___ change is affecting us all. (気候変動はみんなに影響しています)",
+      "choices": [
+        "climate",
+        "wildlife",
+        "soil",
+        "forest"
+      ],
+      "correct": 0,
+      "explanation": "空欄には climate（気候）が入ります"
+    },
+    {
+      "id": "e6701dfd-be6f-5a72-be92-e4a3eb64bfed",
+      "question": "We should protect ___ . (野生動物を守るべきです)",
+      "choices": [
+        "wildlife",
+        "plant",
+        "mountain",
+        "valley"
+      ],
+      "correct": 0,
+      "explanation": "空欄には wildlife（野生動物）が入ります"
+    },
+    {
+      "id": "7debecf1-1227-5dd0-880d-2466eaed0b62",
+      "question": "The ___ needs water to grow. (植物が育つには水が必要です)",
+      "choices": [
+        "plant",
+        "soil",
+        "river",
+        "desert"
+      ],
+      "correct": 0,
+      "explanation": "空欄には plant（植物）が入ります"
+    },
+    {
+      "id": "d3c70340-d753-5a78-a584-07364a82bc3e",
+      "question": "The ___ is rich in nutrients. (その土は栄養豊富です)",
+      "choices": [
+        "soil",
+        "mountain",
+        "ocean",
+        "island"
+      ],
+      "correct": 0,
+      "explanation": "空欄には soil（土）が入ります"
+    }
+  ]
+}

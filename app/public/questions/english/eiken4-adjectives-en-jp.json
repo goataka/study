@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken4-adjectives-en-jp",
+  "categoryName": "💬 形容詞（英→日）",
+  "topCategory": "eiken-4",
+  "topCategoryName": "英検4級",
+  "parentCategory": "eiken4-adjectives",
+  "parentCategoryName": "形容詞",
+  "referenceGrade": "中学1年",
+  "description": "気持ちや状態を表す形容詞を英語から日本語に訳す問題です。",
+  "questions": [
+    {
+      "id": "c1f07baf-e749-52b1-a831-b6cd8fbf68bd",
+      "question": "「hungry」の意味は？",
+      "choices": [
+        "空腹な",
+        "疲れた",
+        "悲しい",
+        "忙しい"
+      ],
+      "correct": 0,
+      "explanation": "hungry は「空腹な」です"
+    },
+    {
+      "id": "ca74f8ca-1c1f-5661-ad17-1817fede12e2",
+      "question": "「tired」の意味は？",
+      "choices": [
+        "疲れた",
+        "怒った",
+        "興奮した",
+        "静かな"
+      ],
+      "correct": 0,
+      "explanation": "tired は「疲れた」です"
+    },
+    {
+      "id": "a3cedec2-a193-559b-b15e-22d25f11225b",
+      "question": "「angry」の意味は？",
+      "choices": [
+        "怒った",
+        "悲しい",
+        "怖がっている",
+        "騒がしい"
+      ],
+      "correct": 0,
+      "explanation": "angry は「怒った」です"
+    },
+    {
+      "id": "1e8898e3-a123-52e4-9d66-44e9f7b45931",
+      "question": "「sad」の意味は？",
+      "choices": [
+        "悲しい",
+        "興奮した",
+        "退屈した",
+        "柔らかい"
+      ],
+      "correct": 0,
+      "explanation": "sad は「悲しい」です"
+    },
+    {
+      "id": "6b07cab0-81a7-52ba-8f9b-208a6168a363",
+      "question": "「excited」の意味は？",
+      "choices": [
+        "興奮した",
+        "怖がっている",
+        "忙しい",
+        "硬い"
+      ],
+      "correct": 0,
+      "explanation": "excited は「興奮した」です"
+    },
+    {
+      "id": "5ed2b477-089f-538a-a22c-25e68845ff62",
+      "question": "「scared」の意味は？",
+      "choices": [
+        "怖がっている",
+        "退屈した",
+        "静かな",
+        "きれいな"
+      ],
+      "correct": 0,
+      "explanation": "scared は「怖がっている」です"
+    },
+    {
+      "id": "9904e223-374e-565d-aa69-41724f332ae7",
+      "question": "「bored」の意味は？",
+      "choices": [
+        "退屈した",
+        "忙しい",
+        "騒がしい",
+        "汚い"
+      ],
+      "correct": 0,
+      "explanation": "bored は「退屈した」です"
+    },
+    {
+      "id": "3c20d48c-4f4e-59ac-86a1-17f987d9fbab",
+      "question": "「busy」の意味は？",
+      "choices": [
+        "忙しい",
+        "静かな",
+        "柔らかい",
+        "新鮮な"
+      ],
+      "correct": 0,
+      "explanation": "busy は「忙しい」です"
+    },
+    {
+      "id": "879231c5-c7d4-5e8d-af6e-1be98dcfde8f",
+      "question": "「quiet」の意味は？",
+      "choices": [
+        "静かな",
+        "騒がしい",
+        "硬い",
+        "空腹な"
+      ],
+      "correct": 0,
+      "explanation": "quiet は「静かな」です"
+    },
+    {
+      "id": "0df216d3-7da4-5cde-ac50-47b2f0ac5102",
+      "question": "「loud」の意味は？",
+      "choices": [
+        "騒がしい",
+        "柔らかい",
+        "きれいな",
+        "疲れた"
+      ],
+      "correct": 0,
+      "explanation": "loud は「騒がしい」です"
+    },
+    {
+      "id": "13950f1d-383a-5ff3-89a0-bbe2c50f23e5",
+      "question": "「soft」の意味は？",
+      "choices": [
+        "柔らかい",
+        "硬い",
+        "汚い",
+        "怒った"
+      ],
+      "correct": 0,
+      "explanation": "soft は「柔らかい」です"
+    },
+    {
+      "id": "68d4da21-de8c-55dc-987f-f8c1a1740800",
+      "question": "「hard」の意味は？",
+      "choices": [
+        "硬い",
+        "きれいな",
+        "新鮮な",
+        "悲しい"
+      ],
+      "correct": 0,
+      "explanation": "hard は「硬い」です"
+    },
+    {
+      "id": "cbda71f1-4387-5de6-a02b-1304cc509ecb",
+      "question": "「clean」の意味は？",
+      "choices": [
+        "きれいな",
+        "汚い",
+        "空腹な",
+        "興奮した"
+      ],
+      "correct": 0,
+      "explanation": "clean は「きれいな」です"
+    },
+    {
+      "id": "ed67dd25-ca3c-56f0-9292-a82e6492cd86",
+      "question": "「dirty」の意味は？",
+      "choices": [
+        "汚い",
+        "新鮮な",
+        "疲れた",
+        "怖がっている"
+      ],
+      "correct": 0,
+      "explanation": "dirty は「汚い」です"
+    },
+    {
+      "id": "487a3726-409a-5a81-852d-74be1f3e9b76",
+      "question": "「fresh」の意味は？",
+      "choices": [
+        "新鮮な",
+        "空腹な",
+        "怒った",
+        "退屈した"
+      ],
+      "correct": 0,
+      "explanation": "fresh は「新鮮な」です"
+    }
+  ]
+}

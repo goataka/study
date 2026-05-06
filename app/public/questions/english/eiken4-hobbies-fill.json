@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken4-hobbies-fill",
+  "categoryName": "⚽ スポーツ・趣味（穴埋め）",
+  "topCategory": "eiken-4",
+  "topCategoryName": "英検4級",
+  "parentCategory": "eiken4-hobbies",
+  "parentCategoryName": "スポーツ・趣味",
+  "referenceGrade": "中学1年",
+  "description": "スポーツ・趣味の単語を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "82bf5f15-4fc4-506b-b2df-e2aa2ca185ad",
+      "question": "I play ___ every weekend. (毎週末サッカーをします)",
+      "choices": [
+        "soccer",
+        "tennis",
+        "swimming",
+        "fishing"
+      ],
+      "correct": 0,
+      "explanation": "空欄には soccer（サッカー）が入ります"
+    },
+    {
+      "id": "59ecfeed-b23b-5976-8d43-2ed8bd38c567",
+      "question": "She plays ___ at the club. (クラブでテニスをします)",
+      "choices": [
+        "tennis",
+        "basketball",
+        "skiing",
+        "painting"
+      ],
+      "correct": 0,
+      "explanation": "空欄には tennis（テニス）が入ります"
+    },
+    {
+      "id": "64927a0a-f7f1-55d7-82a1-6c293a58ca1e",
+      "question": "He loves playing ___ . (バスケットボールが大好きです)",
+      "choices": [
+        "basketball",
+        "swimming",
+        "cycling",
+        "cooking"
+      ],
+      "correct": 0,
+      "explanation": "空欄には basketball（バスケットボール）が入ります"
+    },
+    {
+      "id": "fa3877a9-1838-5ff4-9a99-1632be6f7885",
+      "question": "I enjoy ___ in the pool. (プールで水泳を楽しみます)",
+      "choices": [
+        "swimming",
+        "skiing",
+        "hiking",
+        "reading"
+      ],
+      "correct": 0,
+      "explanation": "空欄には swimming（水泳）が入ります"
+    },
+    {
+      "id": "9e44d0d8-9933-581a-b741-91a83e74c80a",
+      "question": "We go ___ in winter. (冬にスキーに行きます)",
+      "choices": [
+        "skiing",
+        "cycling",
+        "fishing",
+        "shopping"
+      ],
+      "correct": 0,
+      "explanation": "空欄には skiing（スキー）が入ります"
+    },
+    {
+      "id": "5e940e4c-69ea-5a9e-b170-b631b62f02a9",
+      "question": "I love ___ in the park. (公園でサイクリングするのが好きです)",
+      "choices": [
+        "cycling",
+        "hiking",
+        "painting",
+        "dancing"
+      ],
+      "correct": 0,
+      "explanation": "空欄には cycling（サイクリング）が入ります"
+    },
+    {
+      "id": "f6d4bb6a-61dc-51c4-8baa-dfacad2ff69b",
+      "question": "Let's go ___ on Saturday. (土曜日にハイキングに行きましょう)",
+      "choices": [
+        "hiking",
+        "fishing",
+        "cooking",
+        "gardening"
+      ],
+      "correct": 0,
+      "explanation": "空欄には hiking（ハイキング）が入ります"
+    },
+    {
+      "id": "a6cac7dd-96a4-57f8-addc-4c1b34414671",
+      "question": "My dad enjoys ___ by the lake. (父は湖で釣りをするのが好きです)",
+      "choices": [
+        "fishing",
+        "painting",
+        "reading",
+        "photography"
+      ],
+      "correct": 0,
+      "explanation": "空欄には fishing（釣り）が入ります"
+    },
+    {
+      "id": "12c5dfba-b796-57dc-beec-18b11ede1736",
+      "question": "She enjoys ___ landscapes. (風景画を描くのが好きです)",
+      "choices": [
+        "painting",
+        "cooking",
+        "shopping",
+        "soccer"
+      ],
+      "correct": 0,
+      "explanation": "空欄には painting（絵を描くこと）が入ります"
+    },
+    {
+      "id": "ada1237f-6c91-5b09-8680-f6e025ee3cce",
+      "question": "I enjoy ___ with my mom. (お母さんと料理するのが好きです)",
+      "choices": [
+        "cooking",
+        "reading",
+        "dancing",
+        "tennis"
+      ],
+      "correct": 0,
+      "explanation": "空欄には cooking（料理）が入ります"
+    },
+    {
+      "id": "30b97ad2-2bfe-5cf0-a3eb-3fe9cdc65767",
+      "question": "She loves ___ novels. (小説を読むのが大好きです)",
+      "choices": [
+        "reading",
+        "shopping",
+        "gardening",
+        "basketball"
+      ],
+      "correct": 0,
+      "explanation": "空欄には reading（読書）が入ります"
+    },
+    {
+      "id": "feb1914a-049d-5503-9cae-7a919aced30c",
+      "question": "We go ___ at the mall. (ショッピングモールで買い物をします)",
+      "choices": [
+        "shopping",
+        "dancing",
+        "photography",
+        "swimming"
+      ],
+      "correct": 0,
+      "explanation": "空欄には shopping（買い物）が入ります"
+    },
+    {
+      "id": "942bc3ab-76b7-571f-b882-dd1ff7a9bd36",
+      "question": "She is good at ___ . (踊ることが得意です)",
+      "choices": [
+        "dancing",
+        "gardening",
+        "soccer",
+        "skiing"
+      ],
+      "correct": 0,
+      "explanation": "空欄には dancing（踊ること）が入ります"
+    },
+    {
+      "id": "7166699d-e30c-5f35-bda6-94f69f938d1f",
+      "question": "My grandmother enjoys ___ . (祖母はガーデニングが好きです)",
+      "choices": [
+        "gardening",
+        "photography",
+        "tennis",
+        "cycling"
+      ],
+      "correct": 0,
+      "explanation": "空欄には gardening（ガーデニング）が入ります"
+    },
+    {
+      "id": "1119724b-b057-52a1-80d1-d9320a726c33",
+      "question": "He is interested in ___ . (写真撮影に興味があります)",
+      "choices": [
+        "photography",
+        "soccer",
+        "basketball",
+        "hiking"
+      ],
+      "correct": 0,
+      "explanation": "空欄には photography（写真撮影）が入ります"
+    }
+  ]
+}

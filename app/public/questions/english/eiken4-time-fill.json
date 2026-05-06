@@ -1,0 +1,194 @@
+{
+  "subject": "english",
+  "subjectName": "英語",
+  "category": "eiken4-time-fill",
+  "categoryName": "🕐 時間・日付（穴埋め）",
+  "topCategory": "eiken-4",
+  "topCategoryName": "英検4級",
+  "parentCategory": "eiken4-time",
+  "parentCategoryName": "時間・日付",
+  "referenceGrade": "中学1年",
+  "description": "時間・日付の単語を使った文章の穴埋め問題です。",
+  "questions": [
+    {
+      "id": "1cb46b0c-6119-5b87-b64d-07b21d9951c8",
+      "question": "I go to school on ___ . (月曜日に学校に行きます)",
+      "choices": [
+        "Monday",
+        "Tuesday",
+        "Thursday",
+        "morning"
+      ],
+      "correct": 0,
+      "explanation": "空欄には Monday（月曜日）が入ります"
+    },
+    {
+      "id": "4249d108-c01b-5a6f-98b2-3073396b9d95",
+      "question": "I have art class on ___ . (火曜日に図工があります)",
+      "choices": [
+        "Tuesday",
+        "Wednesday",
+        "Friday",
+        "afternoon"
+      ],
+      "correct": 0,
+      "explanation": "空欄には Tuesday（火曜日）が入ります"
+    },
+    {
+      "id": "1d36c218-a6d6-5196-975c-7a0487533751",
+      "question": "I have English on ___ . (水曜日に英語があります)",
+      "choices": [
+        "Wednesday",
+        "Thursday",
+        "Saturday",
+        "evening"
+      ],
+      "correct": 0,
+      "explanation": "空欄には Wednesday（水曜日）が入ります"
+    },
+    {
+      "id": "fc9d9abb-21e4-58be-ab43-8f52f4802f32",
+      "question": "I play soccer on ___ . (木曜日にサッカーをします)",
+      "choices": [
+        "Thursday",
+        "Friday",
+        "Sunday",
+        "midnight"
+      ],
+      "correct": 0,
+      "explanation": "空欄には Thursday（木曜日）が入ります"
+    },
+    {
+      "id": "98cc6580-feec-5d52-9eb4-791ab8957f93",
+      "question": "I am happy on ___ . (金曜日はうれしいです)",
+      "choices": [
+        "Friday",
+        "Saturday",
+        "morning",
+        "yesterday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には Friday（金曜日）が入ります"
+    },
+    {
+      "id": "17f3cccd-ee0c-57e5-9a3b-1d8301c7d8e4",
+      "question": "I sleep late on ___ . (土曜日は遅くまで寝ます)",
+      "choices": [
+        "Saturday",
+        "Sunday",
+        "afternoon",
+        "tomorrow"
+      ],
+      "correct": 0,
+      "explanation": "空欄には Saturday（土曜日）が入ります"
+    },
+    {
+      "id": "1b124960-bb9b-5c0c-9fed-83288783c6bb",
+      "question": "I go to church on ___ . (日曜日に教会に行きます)",
+      "choices": [
+        "Sunday",
+        "morning",
+        "evening",
+        "birthday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には Sunday（日曜日）が入ります"
+    },
+    {
+      "id": "6f8d9b6e-44a7-5641-96d8-24d7dce2ad55",
+      "question": "I eat breakfast in the ___ . (朝に朝食を食べます)",
+      "choices": [
+        "morning",
+        "afternoon",
+        "midnight",
+        "holiday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には morning（朝）が入ります"
+    },
+    {
+      "id": "a106df11-6770-5ce8-9678-241aefce8e46",
+      "question": "I take a nap in the ___ . (午後にお昼寝をします)",
+      "choices": [
+        "afternoon",
+        "evening",
+        "yesterday",
+        "Monday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には afternoon（午後）が入ります"
+    },
+    {
+      "id": "e792d8d7-8f7e-5666-b303-28a4b306d4cb",
+      "question": "I watch TV in the ___ . (夕方にテレビを見ます)",
+      "choices": [
+        "evening",
+        "midnight",
+        "tomorrow",
+        "Tuesday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には evening（夕方）が入ります"
+    },
+    {
+      "id": "24d20929-6519-54c8-816b-57377ec2a36d",
+      "question": "The party starts at ___ . (パーティーは真夜中に始まります)",
+      "choices": [
+        "midnight",
+        "yesterday",
+        "birthday",
+        "Wednesday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には midnight（真夜中）が入ります"
+    },
+    {
+      "id": "2153186e-146f-576c-a2ab-dc0bb6b76329",
+      "question": "I saw her ___ . (昨日彼女に会いました)",
+      "choices": [
+        "yesterday",
+        "tomorrow",
+        "holiday",
+        "Thursday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には yesterday（昨日）が入ります"
+    },
+    {
+      "id": "e688f6eb-21ea-511c-b78a-3c2a4e2c80f3",
+      "question": "We will go to the park ___ . (明日公園に行きます)",
+      "choices": [
+        "tomorrow",
+        "birthday",
+        "Monday",
+        "Friday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には tomorrow（明日）が入ります"
+    },
+    {
+      "id": "600cbc3e-dc64-5ac8-87e6-335d0dfcf2e0",
+      "question": "My ___ is next week. (私の誕生日は来週です)",
+      "choices": [
+        "birthday",
+        "holiday",
+        "Tuesday",
+        "Saturday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には birthday（誕生日）が入ります"
+    },
+    {
+      "id": "43528176-7f18-563f-8dd7-e2ae9b12cc87",
+      "question": "We have a ___ on Monday. (月曜日は休日です)",
+      "choices": [
+        "holiday",
+        "Monday",
+        "Wednesday",
+        "Sunday"
+      ],
+      "correct": 0,
+      "explanation": "空欄には holiday（休日）が入ります"
+    }
+  ]
+}
