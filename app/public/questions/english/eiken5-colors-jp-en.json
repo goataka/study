@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「5」は英語で five です"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/colors/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

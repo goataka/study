@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「かわ」は river です。Fish live in the river. でさかなはかわに住んでいるという意味になります"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/places/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

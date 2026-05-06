@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「あかちゃん」は baby です。The baby is sleeping. であかちゃんはねているという意味になります"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/family/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }

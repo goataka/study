@@ -1,1 +1,4 @@
 node_modules/
+app/src/**/*.js
+app/*.js
+app/tsconfig.build.tsbuildinfo

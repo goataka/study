@@ -190,5 +190,7 @@
       "correct": 0,
       "explanation": "「5」は five です。There are five apples. でりんごが5つあるという意味になります"
     }
-  ]
+  ],
+  "guideUrl": "./english/vocabulary/eiken-5/colors/guide",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-5/guide"
 }
