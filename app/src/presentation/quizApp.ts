@@ -1716,35 +1716,38 @@ export class QuizApp {
    */
   private renderProgressView(): void {
     const categoryList = document.getElementById("categoryList");
+    const controlsEl = document.getElementById("categoryControls");
     if (!categoryList) return;
     categoryList.innerHTML = "";
-
-    // ── 教科セレクター ──────────────────────────────────────
-    const selectorDiv = document.createElement("div");
-    selectorDiv.className = "progress-subject-selector";
-
-    const contentSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
-    for (const subj of contentSubjects) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "progress-subject-btn";
-      btn.textContent = `${subj.icon} ${subj.name}`;
-      if (subj.id === this.progressSubjectId) btn.classList.add("active");
-      const capturedId = subj.id;
-      btn.addEventListener("click", () => {
-        this.progressSubjectId = capturedId;
-        this.renderCategoryList();
-      });
-      selectorDiv.appendChild(btn);
-    }
-    categoryList.appendChild(selectorDiv);
 
     // ── カテゴリリスト（教科フィルターを一時的に切り替えて既存レンダラーを使用） ──
     const savedSubject = this.filter.subject;
     this.filter.subject = this.progressSubjectId;
 
-    // ビューモード切替コントロールを描画する
+    // ビューモード切替コントロールを #categoryControls に描画する（内部で innerHTML = "" される）
     this.renderCategoryViewControls();
+
+    // 教科セレクターを #categoryControls の先頭に挿入（ビューモード切替より上に表示）
+    if (controlsEl) {
+      const selectorDiv = document.createElement("div");
+      selectorDiv.className = "progress-subject-selector";
+
+      const contentSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
+      for (const subj of contentSubjects) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "progress-subject-btn";
+        btn.textContent = `${subj.icon} ${subj.name}`;
+        if (subj.id === this.progressSubjectId) btn.classList.add("active");
+        const capturedId = subj.id;
+        btn.addEventListener("click", () => {
+          this.progressSubjectId = capturedId;
+          this.renderCategoryList();
+        });
+        selectorDiv.appendChild(btn);
+      }
+      controlsEl.prepend(selectorDiv);
+    }
 
     if (this.categoryViewMode === "grade") {
       this.renderCategoryListByGrade();
