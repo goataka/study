@@ -12,7 +12,7 @@
   "questions": [
     {
       "id": "2fc8ed1a-98b5-5dfe-998f-80bef60e589d",
-      "question": "I am ___ . I need food. (空腹です)",
+      "question": "I am ___. I need food. (空腹です)",
       "choices": [
         "hungry",
         "tired",
@@ -120,7 +120,7 @@
     },
     {
       "id": "32a74fa5-cd1c-5831-89d6-f6078c5cfad6",
-      "question": "The music is too ___ . (音楽が騒がしすぎます)",
+      "question": "The music is too ___. (音楽が騒がしすぎます)",
       "choices": [
         "loud",
         "soft",
@@ -132,7 +132,7 @@
     },
     {
       "id": "3faf1b2e-3b24-597c-a5f8-afcbf9c2ef2c",
-      "question": "The pillow is very ___ . (枕はとても柔らかいです)",
+      "question": "The pillow is very ___. (枕はとても柔らかいです)",
       "choices": [
         "soft",
         "hard",
@@ -144,7 +144,7 @@
     },
     {
       "id": "72896fb8-15b8-5d9b-a21c-9bde1c94bf4e",
-      "question": "The rock is very ___ . (岩はとても硬いです)",
+      "question": "The rock is very ___. (岩はとても硬いです)",
       "choices": [
         "hard",
         "clean",
@@ -156,7 +156,7 @@
     },
     {
       "id": "06e9b9be-26c2-5c29-a1b9-da136a9b1f2b",
-      "question": "Keep your room ___ . (部屋をきれいに保ちましょう)",
+      "question": "Keep your room ___. (部屋をきれいに保ちましょう)",
       "choices": [
         "clean",
         "dirty",
@@ -168,7 +168,7 @@
     },
     {
       "id": "03a8acf6-eae7-5b73-8c1b-2b7aed2ed001",
-      "question": "My hands are ___ . (手が汚いです)",
+      "question": "My hands are ___. (手が汚いです)",
       "choices": [
         "dirty",
         "fresh",

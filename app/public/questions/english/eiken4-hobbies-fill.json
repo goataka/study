@@ -36,7 +36,7 @@
     },
     {
       "id": "64927a0a-f7f1-55d7-82a1-6c293a58ca1e",
-      "question": "He loves playing ___ . (バスケットボールが大好きです)",
+      "question": "He loves playing ___. (バスケットボールが大好きです)",
       "choices": [
         "basketball",
         "swimming",
@@ -156,7 +156,7 @@
     },
     {
       "id": "942bc3ab-76b7-571f-b882-dd1ff7a9bd36",
-      "question": "She is good at ___ . (踊ることが得意です)",
+      "question": "She is good at ___. (踊ることが得意です)",
       "choices": [
         "dancing",
         "gardening",
@@ -168,7 +168,7 @@
     },
     {
       "id": "7166699d-e30c-5f35-bda6-94f69f938d1f",
-      "question": "My grandmother enjoys ___ . (祖母はガーデニングが好きです)",
+      "question": "My grandmother enjoys ___. (祖母はガーデニングが好きです)",
       "choices": [
         "gardening",
         "photography",
@@ -180,7 +180,7 @@
     },
     {
       "id": "1119724b-b057-52a1-80d1-d9320a726c33",
-      "question": "He is interested in ___ . (写真撮影に興味があります)",
+      "question": "He is interested in ___. (写真撮影に興味があります)",
       "choices": [
         "photography",
         "soccer",

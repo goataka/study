@@ -36,7 +36,7 @@
     },
     {
       "id": "411a2fad-c937-5939-88b3-260f203d7496",
-      "question": "Please give me a ___ . (領収書をください)",
+      "question": "Please give me a ___. (領収書をください)",
       "choices": [
         "receipt",
         "wallet",
@@ -96,7 +96,7 @@
     },
     {
       "id": "fc4b3fd3-1750-50d9-94ab-c5577ba7770a",
-      "question": "Everything is 50% off in the ___ . (セールで全品50%オフです)",
+      "question": "Everything is 50% off in the ___. (セールで全品50%オフです)",
       "choices": [
         "sale",
         "store",
@@ -144,7 +144,7 @@
     },
     {
       "id": "50446ebd-dc05-5e71-a9b0-9474f8b90170",
-      "question": "The cashier gave me the wrong ___ . (レジの人が間違ったお釣りを渡しました)",
+      "question": "The cashier gave me the wrong ___. (レジの人が間違ったお釣りを渡しました)",
       "choices": [
         "change",
         "advertisement",

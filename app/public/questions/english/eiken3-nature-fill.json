@@ -48,7 +48,7 @@
     },
     {
       "id": "c0639c0b-3e71-5f57-b760-12a612ddec71",
-      "question": "Many animals live in the ___ . (森には多くの動物が住んでいます)",
+      "question": "Many animals live in the ___. (森には多くの動物が住んでいます)",
       "choices": [
         "forest",
         "valley",
@@ -84,7 +84,7 @@
     },
     {
       "id": "10b0ce14-d161-5701-afb7-c67dc0e0be27",
-      "question": "She lives on a small ___ . (小さな島に住んでいます)",
+      "question": "She lives on a small ___. (小さな島に住んでいます)",
       "choices": [
         "island",
         "volcano",
@@ -132,7 +132,7 @@
     },
     {
       "id": "2c5a85b2-c165-55a0-81b1-5be3a7123660",
-      "question": "We must protect the ___ . (環境を守らなければなりません)",
+      "question": "We must protect the ___. (環境を守らなければなりません)",
       "choices": [
         "environment",
         "climate",
@@ -144,7 +144,7 @@
     },
     {
       "id": "03f3bc34-5746-505b-bad6-13d8ae6156cf",
-      "question": "___ change is affecting us all. (気候変動はみんなに影響しています)",
+      "question": "The ___ change is affecting us all. (気候変動はみんなに影響しています)",
       "choices": [
         "climate",
         "wildlife",
@@ -156,7 +156,7 @@
     },
     {
       "id": "e6701dfd-be6f-5a72-be92-e4a3eb64bfed",
-      "question": "We should protect ___ . (野生動物を守るべきです)",
+      "question": "We should protect ___. (野生動物を守るべきです)",
       "choices": [
         "wildlife",
         "plant",

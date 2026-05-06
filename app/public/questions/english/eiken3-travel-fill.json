@@ -96,7 +96,7 @@
     },
     {
       "id": "fbb3c658-bd8d-5d67-a561-92624c7684cd",
-      "question": "Many ___ visit the temple. (多くの観光客がお寺を訪れます)",
+      "question": "A ___ visits the temple. (観光客がお寺を訪れます)",
       "choices": [
         "tourist",
         "transportation",
@@ -108,7 +108,7 @@
     },
     {
       "id": "dce8eb34-b25d-533c-a08e-03b2b2991634",
-      "question": "___ in this city is excellent. (この街の交通機関は優れています)",
+      "question": "The ___ in this city is excellent. (この街の交通機関は優れています)",
       "choices": [
         "transportation",
         "subway",
