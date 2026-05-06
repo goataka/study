@@ -19,6 +19,7 @@ const KEY_CORRECT_STREAKS = "correctStreaks";
 const KEY_MASTERED_IDS = "masteredIds";
 const KEY_QUESTION_STATS = "questionStats";
 const KEY_USER_NAME = "userName";
+const KEY_USER_AVATAR = "userAvatar";
 const KEY_QUIZ_HISTORY = "quizHistory";
 const KEY_CATEGORY_VIEW_MODE = "categoryViewMode";
 const KEY_FONT_SIZE_LEVEL = "fontSizeLevel";
@@ -36,6 +37,7 @@ interface ProgressCache {
   masteredIds: string[];
   questionStats: Record<string, { total: number; correct: number }>;
   userName: string | null;
+  userAvatar: string | null;
   quizHistory: QuizRecord[];
   categoryViewMode: "category" | "grade";
   fontSizeLevel: "small" | "medium" | "large" | null;
@@ -62,6 +64,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       masteredIds: [],
       questionStats: {},
       userName: null,
+      userAvatar: null,
       quizHistory: [],
       categoryViewMode: "category",
       fontSizeLevel: null,
@@ -143,6 +146,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       masteredIds,
       questionStats,
       userName,
+      userAvatar,
       quizHistory,
       categoryViewMode,
       fontSizeLevel,
@@ -155,6 +159,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       getValue(KEY_MASTERED_IDS),
       getValue(KEY_QUESTION_STATS),
       getValue(KEY_USER_NAME),
+      getValue(KEY_USER_AVATAR),
       getValue(KEY_QUIZ_HISTORY),
       getValue(KEY_CATEGORY_VIEW_MODE),
       getValue(KEY_FONT_SIZE_LEVEL),
@@ -179,6 +184,9 @@ export class IndexedDBProgressRepository implements IProgressRepository {
     }
     if (typeof userName === "string") {
       cache.userName = userName;
+    }
+    if (typeof userAvatar === "string") {
+      cache.userAvatar = userAvatar;
     }
     if (Array.isArray(quizHistory)) {
       cache.quizHistory = quizHistory as QuizRecord[];
@@ -300,6 +308,15 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   saveUserName(name: string): void {
     this.cache.userName = name;
     this.persistKey(KEY_USER_NAME, name);
+  }
+
+  loadUserAvatar(): string | null {
+    return this.cache.userAvatar;
+  }
+
+  saveUserAvatar(dataUrl: string): void {
+    this.cache.userAvatar = dataUrl;
+    this.persistKey(KEY_USER_AVATAR, dataUrl);
   }
 
   loadHistory(): QuizRecord[] {

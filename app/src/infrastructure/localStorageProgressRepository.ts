@@ -10,6 +10,7 @@ const CORRECT_STREAKS_KEY = "correctStreaks";
 const MASTERED_IDS_KEY = "masteredIds";
 const QUESTION_STATS_KEY = "questionStats";
 const USER_NAME_KEY = "userName";
+const USER_AVATAR_KEY = "userAvatar";
 const HISTORY_KEY = "quizHistory";
 const CATEGORY_VIEW_MODE_KEY = "categoryViewMode";
 const FONT_SIZE_KEY = "fontSizeLevel";
@@ -115,6 +116,22 @@ export class LocalStorageProgressRepository implements IProgressRepository {
       localStorage.setItem(USER_NAME_KEY, name);
     } catch (error) {
       console.error("ユーザー名の保存に失敗しました:", error);
+    }
+  }
+
+  loadUserAvatar(): string | null {
+    try {
+      return localStorage.getItem(USER_AVATAR_KEY);
+    } catch {
+      return null;
+    }
+  }
+
+  saveUserAvatar(dataUrl: string): void {
+    try {
+      localStorage.setItem(USER_AVATAR_KEY, dataUrl);
+    } catch (error) {
+      console.error("ユーザーアバターの保存に失敗しました:", error);
     }
   }
 
