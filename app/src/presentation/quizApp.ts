@@ -1775,22 +1775,21 @@ export class QuizApp {
       // 教科全体の学習済み単元数 / 総単元数
       const allCats = this.useCase.getCategoriesForSubject(subj.id);
       const catIds = Object.keys(allCats);
-      let totalMastered = 0;
-      let totalCount = catIds.length;
+      let masteredUnitCount = 0;
+      const totalUnitCount = catIds.length;
       for (const catId of catIds) {
         const { mastered } = this.useCase.getMasteredCountForCategory(subj.id, catId);
-        if (mastered > 0) totalMastered++;
+        if (mastered > 0) masteredUnitCount++;
       }
       const statsSpan = document.createElement("span");
       statsSpan.className = "progress-subject-list-stats";
-      statsSpan.textContent = `${totalMastered} / ${totalCount} 単元`;
+      statsSpan.textContent = `${masteredUnitCount} / ${totalUnitCount} 単元`;
       nameArea.appendChild(statsSpan);
 
       item.appendChild(nameArea);
 
-      const capturedId = subj.id;
       item.addEventListener("click", () => {
-        this.progressSubjectId = capturedId;
+        this.progressSubjectId = subj.id;
         this.renderCategoryList();
       });
       subjectList.appendChild(item);
@@ -1893,29 +1892,29 @@ export class QuizApp {
     }
 
     // parentCategory 付きのカテゴリを収集する
-    const parentMap = new Map<string, { name: string; cats: [string, string][] }>();
+    const parentMap = new Map<string, { name: string; categories: [string, string][] }>();
     const standaloneCats: [string, string][] = [];
 
     for (const [catId, catName] of catEntries) {
       const parentInfo = this.useCase.getParentCategoryInfo(subject, catId);
       if (parentInfo) {
         if (!parentMap.has(parentInfo.id)) {
-          parentMap.set(parentInfo.id, { name: parentInfo.name, cats: [] });
+          parentMap.set(parentInfo.id, { name: parentInfo.name, categories: [] });
         }
-        parentMap.get(parentInfo.id)!.cats.push([catId, catName]);
+        parentMap.get(parentInfo.id)!.categories.push([catId, catName]);
       } else {
         standaloneCats.push([catId, catName]);
       }
     }
 
     // 親カテゴリグループを描画する
-    for (const [, { name, cats }] of parentMap) {
+    for (const [, { name, categories }] of parentMap) {
       let masteredCount = 0;
-      for (const [catId] of cats) {
+      for (const [catId] of categories) {
         const { mastered } = this.useCase.getMasteredCountForCategory(subject, catId);
         if (mastered > 0) masteredCount++;
       }
-      const group = this.buildProgressBlockGroup(name, masteredCount, cats.length, subject, cats);
+      const group = this.buildProgressBlockGroup(name, masteredCount, categories.length, subject, categories);
       container.appendChild(group);
     }
 

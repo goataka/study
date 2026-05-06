@@ -642,8 +642,8 @@ describe("QuizApp — 進度タブ仕様", () => {
 
     const content = document.getElementById("progressDetailContent");
     expect(content).not.toBeNull();
-    // コンテンツが描画されている（グループが存在するかコンテンツが空でない）
-    expect(content?.children.length).toBeGreaterThanOrEqual(0);
+    // モックデータで単元が存在するため、少なくとも1つのグループが描画されること
+    expect(content?.children.length).toBeGreaterThan(0);
   });
 
   it("進度詳細パネルのカテゴリ別タブをクリックするとビューが切り替わる", async () => {
