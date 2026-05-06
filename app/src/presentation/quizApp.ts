@@ -1903,7 +1903,7 @@ export class QuizApp {
     const standaloneCats: [string, string][] = [];
 
     for (const [catId, catName] of catEntries) {
-      const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId) ?? null;
+      const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
       if (parentInfo) {
         if (!parentMap.has(parentInfo.id)) {
           parentMap.set(parentInfo.id, { name: parentInfo.name, categories: [] });
