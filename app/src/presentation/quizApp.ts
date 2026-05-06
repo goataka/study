@@ -2061,12 +2061,11 @@ export class QuizApp {
       const { mastered: catMastered, total: catTotal } = this.useCase.getMasteredCountForCategory(subject, catId);
       const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
 
-      const block = document.createElement("span");
+      const block = document.createElement("button");
+      block.type = "button";
       block.className = "progress-block";
       block.setAttribute("title", catName);
       block.setAttribute("aria-label", catName);
-      block.setAttribute("role", "button");
-      block.setAttribute("tabindex", "0");
       block.textContent = catName;
 
       if (catMastered > 0 && catMastered === catTotal) {
@@ -2076,15 +2075,8 @@ export class QuizApp {
       }
 
       // クリックで単元詳細を表示（確認タブを選択状態で）
-      const activateUnit = (): void => {
+      block.addEventListener("click", () => {
         this.navigateToUnit(subject, catId);
-      };
-      block.addEventListener("click", activateUnit);
-      block.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          activateUnit();
-        }
       });
 
       blockSeq.appendChild(block);
@@ -2242,12 +2234,11 @@ export class QuizApp {
           const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
           const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
 
-          const block = document.createElement("span");
+          const block = document.createElement("button");
+          block.type = "button";
           block.className = "progress-block progress-block-sm";
           block.textContent = catName;
           block.title = catName;
-          block.setAttribute("role", "button");
-          block.setAttribute("tabindex", "0");
           if (mastered > 0 && mastered === total) {
             block.classList.add("mastered");
           } else if (inProgress > 0 || mastered > 0) {
@@ -2255,15 +2246,8 @@ export class QuizApp {
           }
 
           // クリックで単元詳細を表示（確認タブを選択状態で）
-          const activateUnit = (): void => {
+          block.addEventListener("click", () => {
             this.navigateToUnit(subject, catId);
-          };
-          block.addEventListener("click", activateUnit);
-          block.addEventListener("keydown", (e: KeyboardEvent) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              activateUnit();
-            }
           });
 
           inner.appendChild(block);
@@ -5304,24 +5288,24 @@ export class QuizApp {
       if (!dragging) return;
       e.preventDefault();
       updatePosition(getYPct(e.clientY));
-    }, { signal } as AddEventListenerOptions);
+    }, { signal });
 
-    document.addEventListener("mouseup", () => { dragging = false; }, { signal } as AddEventListenerOptions);
+    document.addEventListener("mouseup", () => { dragging = false; }, { signal });
 
     // タッチイベント
     wrap.addEventListener("touchstart", (e: TouchEvent) => {
       dragging = true;
       const touch = e.touches[0];
       if (touch) updatePosition(getYPct(touch.clientY));
-    }, { passive: true, signal } as AddEventListenerOptions);
+    }, { passive: true, signal });
 
     wrap.addEventListener("touchmove", (e: TouchEvent) => {
       if (!dragging) return;
       const touch = e.touches[0];
       if (touch) updatePosition(getYPct(touch.clientY));
-    }, { passive: true, signal } as AddEventListenerOptions);
+    }, { passive: true, signal });
 
-    wrap.addEventListener("touchend", () => { dragging = false; }, { signal } as AddEventListenerOptions);
+    wrap.addEventListener("touchend", () => { dragging = false; }, { signal });
 
     // キーボード操作（↑↓で微調整）
     handle.addEventListener("keydown", (e: KeyboardEvent) => {
@@ -5332,7 +5316,7 @@ export class QuizApp {
         e.preventDefault();
         updatePosition(Math.min(100, this.pendingAvatarCropY + 5));
       }
-    }, { signal } as AddEventListenerOptions);
+    }, { signal });
 
     // ダイアログが閉じたときにクリーンアップ
     const dialog = wrap.closest("dialog");

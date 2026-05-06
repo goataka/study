@@ -1415,6 +1415,8 @@ header h1 {
     white-space: nowrap;
     line-height: 1.3;
     word-break: keep-all;
+    font-family: inherit;
+    text-align: left;
 }
 
 .progress-block.mastered {
@@ -1546,6 +1548,7 @@ header h1 {
     word-break: keep-all;
     text-align: left;
     justify-content: flex-start;
+    font-family: inherit;
 }
 
 /* マトリクスの親カテゴリ行ヘッダー */
@@ -1623,7 +1626,7 @@ header h1 {
     display: none;
 }
 
-/* プレビューラップ：overflow visible でハンドルがはみ出せるように */
+/* プレビューラップ：overflow: hidden で円形にクリッピングし、ハンドルは円内に表示する */
 .avatar-crop-preview-wrap {
     width: 120px;
     height: 120px;
