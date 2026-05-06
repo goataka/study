@@ -176,7 +176,7 @@ permalink: /support/content-list/
 
 | # | 内容 | 参考学年 | 解説 | 確認 | 例 |
 |---|------|----------|------|--------|-----|
-| 30 | �� 二次関数 | 高校1年 | [解説](../../math/calculus/quadratic-func/guide) | <a href="../../?subject=math&category=quadratic-func" target="_blank" rel="noopener noreferrer">確認</a> | y = x² - 4x + 3 |
+| 30 | 📈 二次関数 | 高校1年 | [解説](../../math/calculus/quadratic-func/guide) | <a href="../../?subject=math&category=quadratic-func" target="_blank" rel="noopener noreferrer">確認</a> | y = x² - 4x + 3 |
 | 31 | ⚖️ 不等式 | 高校1年 | [解説](../../math/calculus/inequalities/guide) | <a href="../../?subject=math&category=inequalities" target="_blank" rel="noopener noreferrer">確認</a> | 2x - 3 > 5 → x > 4 |
 | 32 | 📐 三角関数 | 高校2年 | [解説](../../math/calculus/trigonometry/guide) | <a href="../../?subject=math&category=trigonometry" target="_blank" rel="noopener noreferrer">確認</a> | sin30° = 1/2 |
 | 33 | 📊 指数・対数 | 高校2年 | [解説](../../math/calculus/exponents-logarithms/guide) | <a href="../../?subject=math&category=exponents-logarithms" target="_blank" rel="noopener noreferrer">確認</a> | log₂8 = 3 |

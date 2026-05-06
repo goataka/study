@@ -1738,7 +1738,9 @@ export class QuizApp {
         btn.type = "button";
         btn.className = "progress-subject-btn";
         btn.textContent = `${subj.icon} ${subj.name}`;
-        if (subj.id === this.progressSubjectId) btn.classList.add("active");
+        const isActive = subj.id === this.progressSubjectId;
+        if (isActive) btn.classList.add("active");
+        btn.setAttribute("aria-pressed", String(isActive));
         const capturedId = subj.id;
         btn.addEventListener("click", () => {
           this.progressSubjectId = capturedId;
