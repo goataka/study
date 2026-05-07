@@ -61,7 +61,7 @@ header {
     align-items: center;
     gap: 8px;
     flex-shrink: 0;
-    border-bottom: 2px solid #586069;
+    border-bottom: 2px solid #c8d8e8;
     padding-bottom: 2px;
 }
 
@@ -247,10 +247,10 @@ header h1 {
 /* タブ行右端のユーザーエリア */
 .tabs-user-area {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 6px;
     flex-shrink: 0;
-    padding: 4px 4px 0;
+    padding: 1px 4px 0;
     position: relative;
 }
 
@@ -273,13 +273,18 @@ header h1 {
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-bottom: none;
     border-radius: 0;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 600;
     text-decoration: none;
     white-space: nowrap;
     transform: translateY(2px);
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
     transition: filter 0.15s, transform 0.1s;
+}
+
+.tabs-link-note svg {
+    width: 1em;
+    height: 1em;
 }
 
 .tabs-link-note:hover {
@@ -308,6 +313,7 @@ header h1 {
     padding: 8px 4px 0;
     align-items: flex-end;
     flex: 1;
+    justify-content: flex-end;
 }
 
 .subject-tabs::-webkit-scrollbar {
@@ -1312,7 +1318,7 @@ header h1 {
 }
 
 .progress-subject-list-name {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     color: #24292e;
     white-space: normal;
@@ -1377,7 +1383,7 @@ header h1 {
 }
 
 .progress-block-group-name {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     color: #24292e;
     flex-shrink: 1;
@@ -1805,7 +1811,7 @@ header h1 {
 }
 
 .overall-subject-status-row {
-    font-size: 13px;
+    font-size: 15px;
     color: #24292e;
 }
 
@@ -1817,7 +1823,7 @@ header h1 {
 
 .today-activity-empty {
     color: #586069;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .overall-today-list {
@@ -3138,6 +3144,7 @@ button:disabled {
     position: relative;
     user-select: none;
     padding: 0;
+    transform: translateY(-3px);
 }
 
 .header-user-avatar:hover,
@@ -3183,6 +3190,7 @@ button:disabled {
     padding: 2px 6px;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
+    transform: translateY(-3px);
 }
 
 .header-user-name:hover,
@@ -4295,7 +4303,7 @@ body.font-size-medium .progress-block {
 }
 
 body.font-size-medium .progress-block-group-name {
-    font-size: 15px;
+    font-size: 18px;
 }
 
 body.font-size-medium .progress-matrix-table {
@@ -4303,7 +4311,13 @@ body.font-size-medium .progress-matrix-table {
 }
 
 body.font-size-medium .progress-subject-list-name {
-    font-size: 22px;
+    font-size: 18px;
+}
+
+body.font-size-medium .tabs-link-note,
+body.font-size-medium .overall-subject-status-row,
+body.font-size-medium .today-activity-empty {
+    font-size: 18px;
 }
 
 body.font-size-medium .progress-subject-list-stats {
@@ -4642,7 +4656,7 @@ body.font-size-large .progress-block {
 }
 
 body.font-size-large .progress-block-group-name {
-    font-size: 17px;
+    font-size: 22px;
 }
 
 body.font-size-large .progress-matrix-table {
@@ -4650,7 +4664,13 @@ body.font-size-large .progress-matrix-table {
 }
 
 body.font-size-large .progress-subject-list-name {
-    font-size: 26px;
+    font-size: 22px;
+}
+
+body.font-size-large .tabs-link-note,
+body.font-size-large .overall-subject-status-row,
+body.font-size-large .today-activity-empty {
+    font-size: 22px;
 }
 
 body.font-size-large .progress-subject-list-stats {
@@ -5817,7 +5837,7 @@ body.font-size-large .admin-data-close-btn {
     .tabs-user-area {
         order: -1;
         width: 100%;
-        justify-content: flex-start;
+        justify-content: center;
         padding: 4px;
     }
     .subject-tabs {
@@ -5857,6 +5877,9 @@ body.font-size-large .admin-data-close-btn {
     }
     .start-content-layout {
         flex-direction: column;
+    }
+    #startScreen::before {
+        display: none;
     }
     .admin-panel {
         grid-template-columns: 1fr 2fr;
@@ -6004,6 +6027,15 @@ body.font-size-large .admin-data-close-btn {
         z-index: 101;
         overflow-y: auto;
         border-radius: 0;
+    }
+    /* 進度詳細パネルもオーバーラップ表示 */
+    #progressDetailPanel:not(.hidden) {
+        position: fixed;
+        inset: 0;
+        z-index: 101;
+        overflow-y: auto;
+        border-radius: 0;
+        background: white;
     }
     /* 単元詳細表示時はカテゴリパネルを操作不可に */
     .start-content-layout:has(#selectedUnitInfo:not(.hidden)) .category-panel {

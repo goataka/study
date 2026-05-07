@@ -322,6 +322,8 @@ export class QuizUseCase {
         isCorrect: r.isCorrect,
         userAnswerIndex: r.userAnswerIndex,
         userAnswerText: r.userAnswerText,
+        userAnswerChoiceText: r.userAnswerIndex >= 0 ? (r.question.choices[r.userAnswerIndex] ?? "") : "未回答",
+        correctAnswerText: r.question.choices[r.question.correct] ?? "",
       })),
     });
   }
