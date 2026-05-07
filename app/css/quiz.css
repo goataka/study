@@ -4961,12 +4961,12 @@ body.font-size-large .subject-overview-cat-header {
 
 /* ─── 管理タブパネル ──────────────────────────────────────────────────────── */
 .admin-panel {
-    padding: 16px 20px;
+    padding: 12px;
     flex: 1;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 12px;
     align-items: stretch;
     min-height: 0;
 }
