@@ -161,13 +161,14 @@ function setupTabDom(): void {
         </div>
         <div id="overallSummaryPanel" class="hidden">
           <div class="overall-panel-tabs" role="tablist">
-            <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習済み</button>
+            <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習状況</button>
             <button class="panel-tab" id="overallTab-share" data-overall-panel="share" role="tab" type="button" aria-selected="false">📤 シェア</button>
           </div>
           <div id="overallLearnedPanel" class="overall-activity-panel">
             <div class="overall-activity-date-row">
               <span id="overallActivityDateLabel" class="overall-activity-date"></span>
             </div>
+            <div id="overallSubjectStatusSummary" class="overall-subject-status-summary"></div>
             <div id="todayActivityContent"></div>
           </div>
           <div id="overallSharePanel" class="overall-activity-panel hidden">

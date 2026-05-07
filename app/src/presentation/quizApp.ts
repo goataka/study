@@ -18,10 +18,10 @@ import type { DrawingState } from "./notesCanvas";
 /** 教科一覧（タブ表示用） */
 const SUBJECTS = [
   { id: "all", name: "おすすめ", icon: "✨" },
+  { id: "progress", name: "進度", icon: "📈" },
   { id: "english", name: "英語", icon: "📚" },
   { id: "math", name: "数学", icon: "🔢" },
   { id: "japanese", name: "国語", icon: "📖" },
-  { id: "progress", name: "進度", icon: "📈" },
   { id: "admin", name: "管理", icon: "⚙️" },
 ] as const;
 
@@ -54,10 +54,15 @@ export class QuizApp {
   private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
   private userAvatarDataUrl: string | null = null;
-  /** アバター画像の切り抜き位置（0=上端〜100=下端のY方向パーセント） */
-  private userAvatarCropPosition: number = 50;
-  /** ダイアログで選択中の切り抜き位置（確定前） */
+  /** アバター画像の表示位置（X/Y ともに 0〜100 のパーセント） */
+  private userAvatarCropX: number = 50;
+  private userAvatarCropY: number = 50;
+  /** アバター画像の拡大率 */
+  private userAvatarZoom: number = 1;
+  /** ダイアログで選択中の表示位置・拡大率（確定前） */
+  private pendingAvatarCropX: number = 50;
   private pendingAvatarCropY: number = 50;
+  private pendingAvatarZoom: number = 1;
   /** アバタークロップダイアログのドラッグイベントAbortController */
   private cropDragAbortController: AbortController | null = null;
   /** ダイアログで選択中の画像（確定前） */
@@ -238,21 +243,25 @@ export class QuizApp {
     const stored = this.progressRepo.loadUserAvatar();
     // data:image/ スキームのみ許可（外部URLや壊れたデータを除外）
     this.userAvatarDataUrl = stored && stored.startsWith("data:image/") ? stored : null;
-    // 切り抜き位置を読み込む（旧フォーマット "top/center/bottom" も変換して対応）
+    // 表示位置・拡大率を読み込む（旧フォーマット "top/center/bottom" も変換して対応）
     try {
-      const pos = localStorage.getItem("avatarCropPosition");
-      if (pos !== null) {
-        const num = parseFloat(pos);
-        if (!isNaN(num) && num >= 0 && num <= 100) {
-          this.userAvatarCropPosition = num;
-        } else if (pos === "top") {
-          this.userAvatarCropPosition = 0;
-        } else if (pos === "center") {
-          this.userAvatarCropPosition = 50;
-        } else if (pos === "bottom") {
-          this.userAvatarCropPosition = 100;
+      const xPos = parseFloat(localStorage.getItem("avatarCropPositionX") ?? "50");
+      const yPos = localStorage.getItem("avatarCropPosition");
+      const zoom = parseFloat(localStorage.getItem("avatarCropZoom") ?? "1");
+      if (!isNaN(xPos) && xPos >= 0 && xPos <= 100) this.userAvatarCropX = xPos;
+      if (yPos !== null) {
+        const yNum = parseFloat(yPos);
+        if (!isNaN(yNum) && yNum >= 0 && yNum <= 100) {
+          this.userAvatarCropY = yNum;
+        } else if (yPos === "top") {
+          this.userAvatarCropY = 0;
+        } else if (yPos === "center") {
+          this.userAvatarCropY = 50;
+        } else if (yPos === "bottom") {
+          this.userAvatarCropY = 100;
         }
       }
+      if (!isNaN(zoom) && zoom >= 1 && zoom <= 3) this.userAvatarZoom = zoom;
     } catch { /* noop */ }
   }
 
@@ -517,11 +526,6 @@ export class QuizApp {
         });
         // tabpanel の aria-labelledby を更新する
         document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", `progressDetailTab-${mode}`);
-        // マトリクスモード時は縦横切り替えボタンを表示する
-        const transposeBtn = document.getElementById("progressMatrixTransposeBtn");
-        if (transposeBtn) {
-          transposeBtn.classList.toggle("hidden", mode !== "matrix");
-        }
         // 詳細コンテンツを再描画
         this.renderProgressDetailContent();
       });
@@ -1568,7 +1572,7 @@ export class QuizApp {
       countControls.className = "subject-rec-count-controls";
       const countLabel = document.createElement("span");
       countLabel.className = "subject-rec-count-label";
-      countLabel.textContent = "表示数:";
+      countLabel.textContent = "目標数:";
       countControls.appendChild(countLabel);
       for (const n of [1, 3, 5]) {
         const btn = document.createElement("button");
@@ -1865,12 +1869,6 @@ export class QuizApp {
     // tabpanel の aria-labelledby を更新する
     document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", activeTabId);
 
-    // マトリクスモード時は縦横切り替えボタンを表示する
-    const transposeBtn = document.getElementById("progressMatrixTransposeBtn");
-    if (transposeBtn) {
-      transposeBtn.classList.toggle("hidden", this.progressDetailViewMode !== "matrix");
-    }
-
     this.renderProgressDetailContent();
   }
 
@@ -2159,104 +2157,147 @@ export class QuizApp {
     const table = document.createElement("table");
     table.className = "progress-matrix-table progress-matrix-table-units";
 
-    // ヘッダー: 2行 — 1行目=トップカテゴリ（colspan）、2行目=親カテゴリ
+    // ヘッダー
     const thead = document.createElement("thead");
 
-    // 1行目: 学年コーナー + トップカテゴリ（colspan）
     const topHeaderRow = document.createElement("tr");
     const cornerTh = document.createElement("th");
-    cornerTh.textContent = "学年 \\ カテゴリ";
-    cornerTh.rowSpan = 2;
-    topHeaderRow.appendChild(cornerTh);
-
-    // トップカテゴリのグループを計算してcolspanで結合
-    const topGroups: { topId: string; topName: string; count: number }[] = [];
-    for (const col of colDefs) {
-      const last = topGroups[topGroups.length - 1];
-      if (last && last.topId === col.topId) {
-        last.count++;
-      } else {
-        topGroups.push({ topId: col.topId, topName: col.topName, count: 1 });
+    cornerTh.textContent = "学年 ⇄ カテゴリ";
+    cornerTh.className = "progress-matrix-corner-toggle";
+    cornerTh.setAttribute("role", "button");
+    cornerTh.setAttribute("tabindex", "0");
+    const toggleTranspose = (): void => {
+      this.progressMatrixTransposed = !this.progressMatrixTransposed;
+      this.renderProgressDetailContent();
+    };
+    cornerTh.addEventListener("click", toggleTranspose);
+    cornerTh.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleTranspose();
       }
-    }
-    for (const grp of topGroups) {
-      const th = document.createElement("th");
-      th.textContent = grp.topName;
-      th.colSpan = grp.count;
-      th.className = "progress-matrix-top-header";
-      topHeaderRow.appendChild(th);
-    }
-    thead.appendChild(topHeaderRow);
+    });
+    if (!this.progressMatrixTransposed) {
+      cornerTh.rowSpan = 2;
+      topHeaderRow.appendChild(cornerTh);
+      const topGroups: { topId: string; topName: string; count: number }[] = [];
+      for (const col of colDefs) {
+        const last = topGroups[topGroups.length - 1];
+        if (last && last.topId === col.topId) {
+          last.count++;
+        } else {
+          topGroups.push({ topId: col.topId, topName: col.topName, count: 1 });
+        }
+      }
+      for (const grp of topGroups) {
+        const th = document.createElement("th");
+        th.textContent = grp.topName;
+        th.colSpan = grp.count;
+        th.className = "progress-matrix-top-header";
+        topHeaderRow.appendChild(th);
+      }
+      thead.appendChild(topHeaderRow);
 
-    // 2行目: 親カテゴリ名
-    const parentHeaderRow = document.createElement("tr");
-    for (const col of colDefs) {
-      const th = document.createElement("th");
-      th.textContent = col.parentName;
-      th.className = "progress-matrix-parent-header";
-      parentHeaderRow.appendChild(th);
+      const parentHeaderRow = document.createElement("tr");
+      for (const col of colDefs) {
+        const th = document.createElement("th");
+        th.textContent = col.parentName;
+        th.className = "progress-matrix-parent-header";
+        parentHeaderRow.appendChild(th);
+      }
+      thead.appendChild(parentHeaderRow);
+    } else {
+      topHeaderRow.appendChild(cornerTh);
+      for (const grade of grades) {
+        const th = document.createElement("th");
+        th.textContent = grade;
+        th.className = "progress-matrix-parent-header";
+        topHeaderRow.appendChild(th);
+      }
+      thead.appendChild(topHeaderRow);
     }
-    thead.appendChild(parentHeaderRow);
     table.appendChild(thead);
 
     const tbody = document.createElement("tbody");
-    for (const grade of grades) {
-      const tr = document.createElement("tr");
-      const gradeCell = document.createElement("td");
-      gradeCell.textContent = grade;
-      tr.appendChild(gradeCell);
-
-      for (const col of colDefs) {
-        const td = document.createElement("td");
-        td.className = "progress-matrix-cell-units";
-
-        // この学年・この列（親カテゴリ）に属する単元を収集する
-        const gradeCats = this.useCase.getCategoriesForGrade(subject, grade);
-
-        // 縦配置用ラッパー
-        const inner = document.createElement("div");
-        inner.className = "progress-matrix-cell-units-inner";
-
-        for (const [catId, catName] of Object.entries(gradeCats)) {
-          const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
-          const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
-
-          let belongs = false;
-          if (col.parentId === "__other__") {
-            belongs = !topInfo;
-          } else if (col.parentId.startsWith("__top_direct_")) {
-            belongs = topInfo?.id === col.topId && !parentInfo;
-          } else {
-            belongs = parentInfo?.id === col.parentId;
-          }
-          if (!belongs) continue;
-
-          const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
-          const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
-
-          const block = document.createElement("button");
-          block.type = "button";
-          block.className = "progress-block progress-block-sm";
-          block.textContent = catName;
-          block.title = catName;
-          if (mastered > 0 && mastered === total) {
-            block.classList.add("mastered");
-          } else if (inProgress > 0 || mastered > 0) {
-            block.classList.add("in-progress");
-          }
-
-          // クリックで単元詳細を表示（確認タブを選択状態で）
-          block.addEventListener("click", () => {
-            this.navigateToUnit(subject, catId);
-          });
-
-          inner.appendChild(block);
-        }
-
-        td.appendChild(inner);
-        tr.appendChild(td);
+    const appendUnitBlock = (inner: HTMLElement, catId: string, catName: string): void => {
+      const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
+      const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
+      const block = document.createElement("button");
+      block.type = "button";
+      block.className = "progress-block progress-block-sm";
+      block.textContent = catName;
+      block.title = catName;
+      if (mastered > 0 && mastered === total) {
+        block.classList.add("mastered");
+      } else if (inProgress > 0 || mastered > 0) {
+        block.classList.add("in-progress");
       }
-      tbody.appendChild(tr);
+      block.addEventListener("click", () => {
+        this.navigateToUnit(subject, catId);
+      });
+      inner.appendChild(block);
+    };
+
+    if (!this.progressMatrixTransposed) {
+      for (const grade of grades) {
+        const tr = document.createElement("tr");
+        const gradeCell = document.createElement("td");
+        gradeCell.textContent = grade;
+        tr.appendChild(gradeCell);
+        for (const col of colDefs) {
+          const td = document.createElement("td");
+          td.className = "progress-matrix-cell-units";
+          const gradeCats = this.useCase.getCategoriesForGrade(subject, grade);
+          const inner = document.createElement("div");
+          inner.className = "progress-matrix-cell-units-inner";
+          for (const [catId, catName] of Object.entries(gradeCats)) {
+            const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
+            const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
+            let belongs = false;
+            if (col.parentId === "__other__") {
+              belongs = !topInfo;
+            } else if (col.parentId.startsWith("__top_direct_")) {
+              belongs = topInfo?.id === col.topId && !parentInfo;
+            } else {
+              belongs = parentInfo?.id === col.parentId;
+            }
+            if (belongs) appendUnitBlock(inner, catId, catName);
+          }
+          td.appendChild(inner);
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+    } else {
+      for (const col of colDefs) {
+        const tr = document.createElement("tr");
+        const parentCell = document.createElement("td");
+        parentCell.textContent = col.parentName;
+        tr.appendChild(parentCell);
+        for (const grade of grades) {
+          const td = document.createElement("td");
+          td.className = "progress-matrix-cell-units";
+          const gradeCats = this.useCase.getCategoriesForGrade(subject, grade);
+          const inner = document.createElement("div");
+          inner.className = "progress-matrix-cell-units-inner";
+          for (const [catId, catName] of Object.entries(gradeCats)) {
+            const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
+            const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
+            let belongs = false;
+            if (col.parentId === "__other__") {
+              belongs = !topInfo;
+            } else if (col.parentId.startsWith("__top_direct_")) {
+              belongs = topInfo?.id === col.topId && !parentInfo;
+            } else {
+              belongs = parentInfo?.id === col.parentId;
+            }
+            if (belongs) appendUnitBlock(inner, catId, catName);
+          }
+          td.appendChild(inner);
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
     }
     table.appendChild(tbody);
 
@@ -2269,12 +2310,14 @@ export class QuizApp {
    */
   private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
     const dateToCheck = this.parseActivityDate().toDateString();
-    return records.filter((r) =>
+    const filtered = records.filter((r) =>
       new Date(r.date).toDateString() === dateToCheck &&
       r.mode !== "manual" &&
       // 教科全体（category="all"）の履歴は総合タブの学習済み一覧に表示しない
       r.category !== "all"
     );
+    if (filtered.length > 0) return filtered;
+    return records.filter((r) => r.mode !== "manual" && r.category !== "all");
   }
 
   /**
@@ -2286,9 +2329,40 @@ export class QuizApp {
 
     const records = allRecords ?? this.useCase.getHistory();
     this.updateActivityDateDisplay();
+    this.renderOverallSubjectStatus();
     this.renderTodayActivity(records);
     this.updateShareSummaryText(records);
     this.showOverallPanel(this.activeOverallPanel);
+  }
+
+  /**
+   * 総合タブの「学習状況」用に、教科ごとの目標数に対する学習数とメッセージを表示する。
+   */
+  private renderOverallSubjectStatus(): void {
+    const container = document.getElementById("overallSubjectStatusSummary");
+    if (!container) return;
+    container.innerHTML = "";
+    const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
+    for (const subject of subjects) {
+      const categories = this.useCase.getCategoriesForSubject(subject.id);
+      const totalUnits = Object.keys(categories).length;
+      let learnedUnits = 0;
+      for (const catId of Object.keys(categories)) {
+        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject.id, catId);
+        if (total > 0 && mastered === total) learnedUnits++;
+      }
+      const target = Math.max(1, Math.min(this.subjectRecommendedCounts.get(subject.id) ?? 1, totalUnits || 1));
+      const ratio = Math.min(1, learnedUnits / target);
+      const message = ratio >= 1
+        ? "🎉 目標達成！この調子！"
+        : ratio >= 0.5
+          ? "👍 いい感じで進んでいるよ！"
+          : "🌱 まずは1単元ずつ進めよう！";
+      const row = document.createElement("div");
+      row.className = "overall-subject-status-row";
+      row.textContent = `${subject.icon} ${subject.name}: ${Math.min(learnedUnits, target)}/${target}単元 ${message}`;
+      container.appendChild(row);
+    }
   }
 
   /**
@@ -3680,12 +3754,6 @@ export class QuizApp {
       }
     });
 
-    // マトリクス表示の縦横切り替えボタン
-    this.on("progressMatrixTransposeBtn", "click", () => {
-      this.progressMatrixTransposed = !this.progressMatrixTransposed;
-      this.renderProgressDetailContent();
-    });
-
     // 入力フィールド：Enterで保存、Escapeでキャンセル
     const headerUserNameInput = document.getElementById("headerUserNameInput");
     headerUserNameInput?.addEventListener("keydown", (e: KeyboardEvent) => {
@@ -4859,6 +4927,9 @@ export class QuizApp {
     if (!session) return;
     const results = this.useCase.submitSession(session);
     this.useCase.addHistoryRecord(results, this.filter, this.currentMode);
+    // 結果画面へ遷移する前に、スタート画面側の一覧・進捗表示を最新化しておく
+    this.renderCategoryList();
+    this.updateStartScreen(this.useCase.getHistory());
     this.showResultScreen(results);
   }
 
@@ -5164,12 +5235,13 @@ export class QuizApp {
       img.src = this.userAvatarDataUrl;
       img.classList.add("visible");
       placeholder.classList.add("hidden");
-      // 切り抜き位置を適用する（0-100のY方向パーセント）
-      img.style.objectPosition = `center ${this.userAvatarCropPosition}%`;
+      img.style.objectPosition = `${this.userAvatarCropX}% ${this.userAvatarCropY}%`;
+      img.style.transform = `scale(${this.userAvatarZoom})`;
     } else {
       img.removeAttribute("src");
       img.classList.remove("visible");
       placeholder.classList.remove("hidden");
+      img.style.transform = "";
     }
   }
 
@@ -5179,8 +5251,9 @@ export class QuizApp {
   private openAvatarCropDialog(): void {
     const dialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
     if (!dialog) return;
-    // ダイアログ内のドラッグハンドルに現在の切り抜き位置を反映する
-    this.pendingAvatarCropY = this.userAvatarCropPosition;
+    this.pendingAvatarCropX = this.userAvatarCropX;
+    this.pendingAvatarCropY = this.userAvatarCropY;
+    this.pendingAvatarZoom = this.userAvatarZoom;
     // プレビューを現在の画像で初期化する
     this.pendingAvatarDataUrl = this.userAvatarDataUrl;
     this.updateDialogPreview(this.userAvatarDataUrl);
@@ -5194,36 +5267,28 @@ export class QuizApp {
   private updateDialogPreview(dataUrl: string | null): void {
     const preview = document.getElementById("avatarCropPreview") as HTMLImageElement | null;
     const placeholder = document.getElementById("avatarCropPreviewPlaceholder");
-    const handle = document.getElementById("avatarCropHandle");
+    const zoomInput = document.getElementById("avatarCropZoom") as HTMLInputElement | null;
     if (!preview || !placeholder) return;
+    if (zoomInput) zoomInput.value = String(this.pendingAvatarZoom);
     if (dataUrl) {
       preview.src = dataUrl;
       preview.classList.add("visible");
       placeholder.classList.add("hidden");
-      preview.style.objectPosition = `center ${this.pendingAvatarCropY}%`;
-      // ハンドルを表示し位置とARIA属性を更新する
-      if (handle) {
-        handle.classList.add("visible");
-        handle.style.top = `${this.pendingAvatarCropY}%`;
-        handle.setAttribute("aria-valuenow", String(Math.round(this.pendingAvatarCropY)));
-        handle.setAttribute("tabindex", "0");
-      }
+      preview.style.objectPosition = `${this.pendingAvatarCropX}% ${this.pendingAvatarCropY}%`;
+      preview.style.transform = `scale(${this.pendingAvatarZoom})`;
     } else {
       preview.removeAttribute("src");
       preview.classList.remove("visible");
       placeholder.classList.remove("hidden");
-      if (handle) {
-        handle.classList.remove("visible");
-        handle.setAttribute("tabindex", "-1");
-      }
+      preview.style.transform = "";
     }
   }
 
   /**
    * ダイアログで選択中の切り抜き位置（Y方向パーセント 0-100）を返す。
    */
-  private getDialogCropPositionY(): number {
-    return this.pendingAvatarCropY;
+  private getDialogCropPosition(): { x: number; y: number; zoom: number } {
+    return { x: this.pendingAvatarCropX, y: this.pendingAvatarCropY, zoom: this.pendingAvatarZoom };
   }
 
   /**
@@ -5259,62 +5324,81 @@ export class QuizApp {
     const { signal } = this.cropDragAbortController;
 
     const wrap = document.getElementById("avatarCropPreviewWrap");
-    const handle = document.getElementById("avatarCropHandle");
-    if (!wrap || !handle) return;
+    const zoomInput = document.getElementById("avatarCropZoom") as HTMLInputElement | null;
+    const preview = document.getElementById("avatarCropPreview") as HTMLImageElement | null;
+    if (!wrap || !preview) return;
 
     let dragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startCropX = 50;
+    let startCropY = 50;
 
-    const getYPct = (clientY: number): number => {
+    const getPctDelta = (dx: number, dy: number): { x: number; y: number } => {
       const rect = wrap.getBoundingClientRect();
-      const y = clientY - rect.top;
-      return Math.max(0, Math.min(100, (y / rect.height) * 100));
+      const zoom = Math.max(this.pendingAvatarZoom, 1);
+      const x = (dx / rect.width) * (100 / zoom);
+      const y = (dy / rect.height) * (100 / zoom);
+      return { x, y };
     };
 
-    const updatePosition = (pct: number): void => {
-      this.pendingAvatarCropY = pct;
-      handle.style.top = `${pct}%`;
-      handle.setAttribute("aria-valuenow", String(Math.round(pct)));
-      const preview = wrap.querySelector<HTMLImageElement>("#avatarCropPreview");
-      if (preview) preview.style.objectPosition = `center ${pct}%`;
+    const updatePreview = (): void => {
+      preview.style.objectPosition = `${this.pendingAvatarCropX}% ${this.pendingAvatarCropY}%`;
+      preview.style.transform = `scale(${this.pendingAvatarZoom})`;
     };
 
-    // マウスイベント
-    wrap.addEventListener("mousedown", (e: MouseEvent) => {
+    const startDrag = (clientX: number, clientY: number): void => {
+      if (!this.pendingAvatarDataUrl) return;
       dragging = true;
-      updatePosition(getYPct(e.clientY));
+      wrap.classList.add("dragging");
+      startX = clientX;
+      startY = clientY;
+      startCropX = this.pendingAvatarCropX;
+      startCropY = this.pendingAvatarCropY;
+    };
+
+    const moveDrag = (clientX: number, clientY: number): void => {
+      if (!dragging) return;
+      const { x, y } = getPctDelta(clientX - startX, clientY - startY);
+      this.pendingAvatarCropX = Math.max(0, Math.min(100, startCropX - x));
+      this.pendingAvatarCropY = Math.max(0, Math.min(100, startCropY - y));
+      updatePreview();
+    };
+
+    const endDrag = (): void => {
+      dragging = false;
+      wrap.classList.remove("dragging");
+    };
+
+    wrap.addEventListener("mousedown", (e: MouseEvent) => {
+      startDrag(e.clientX, e.clientY);
     }, { signal });
 
     document.addEventListener("mousemove", (e: MouseEvent) => {
       if (!dragging) return;
       e.preventDefault();
-      updatePosition(getYPct(e.clientY));
+      moveDrag(e.clientX, e.clientY);
     }, { signal });
 
-    document.addEventListener("mouseup", () => { dragging = false; }, { signal });
+    document.addEventListener("mouseup", endDrag, { signal });
 
-    // タッチイベント
     wrap.addEventListener("touchstart", (e: TouchEvent) => {
-      dragging = true;
       const touch = e.touches[0];
-      if (touch) updatePosition(getYPct(touch.clientY));
+      if (touch) startDrag(touch.clientX, touch.clientY);
     }, { passive: true, signal });
 
     wrap.addEventListener("touchmove", (e: TouchEvent) => {
-      if (!dragging) return;
       const touch = e.touches[0];
-      if (touch) updatePosition(getYPct(touch.clientY));
+      if (touch) moveDrag(touch.clientX, touch.clientY);
     }, { passive: true, signal });
 
-    wrap.addEventListener("touchend", () => { dragging = false; }, { signal });
+    wrap.addEventListener("touchend", endDrag, { signal });
 
-    // キーボード操作（↑↓で微調整）
-    handle.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        updatePosition(Math.max(0, this.pendingAvatarCropY - 5));
-      } else if (e.key === "ArrowDown") {
-        e.preventDefault();
-        updatePosition(Math.min(100, this.pendingAvatarCropY + 5));
+    zoomInput?.addEventListener("input", () => {
+      const zoom = parseFloat(zoomInput.value);
+      if (!isNaN(zoom)) {
+        this.pendingAvatarZoom = Math.max(1, Math.min(3, zoom));
+        updatePreview();
       }
     }, { signal });
 
@@ -5331,9 +5415,15 @@ export class QuizApp {
 
   private confirmAvatarCrop(): void {
     const dialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
-    const posY = this.getDialogCropPositionY();
-    this.userAvatarCropPosition = posY;
-    try { localStorage.setItem("avatarCropPosition", String(posY)); } catch { /* noop */ }
+    const { x, y, zoom } = this.getDialogCropPosition();
+    this.userAvatarCropX = x;
+    this.userAvatarCropY = y;
+    this.userAvatarZoom = zoom;
+    try {
+      localStorage.setItem("avatarCropPositionX", String(x));
+      localStorage.setItem("avatarCropPosition", String(y));
+      localStorage.setItem("avatarCropZoom", String(zoom));
+    } catch { /* noop */ }
     if (this.pendingAvatarDataUrl !== null) {
       this.userAvatarDataUrl = this.pendingAvatarDataUrl;
       this.progressRepo.saveUserAvatar(this.pendingAvatarDataUrl);
