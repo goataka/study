@@ -3,7 +3,7 @@
  * ビジネスロジックはすべて QuizUseCase に委譲する。
  */
 
-import { QuizUseCase, ERROR_ALL_MASTERED } from "../application/quizUseCase";
+import { QuizUseCase, ERROR_ALL_MASTERED, NO_ANSWER_TEXT } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
 import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
@@ -3523,7 +3523,7 @@ export class QuizApp {
           questionP.textContent = question.question;
           const userAnswer = entry.userAnswerText
             ?? entry.userAnswerChoiceText
-            ?? (shuffled.choices[entry.userAnswerIndex] ?? "未回答");
+            ?? (shuffled.choices[entry.userAnswerIndex] ?? NO_ANSWER_TEXT);
           const correctAnswer = entry.correctAnswerText ?? (shuffled.choices[shuffled.correct] ?? "");
           if (entry.isCorrect) {
             answerP.textContent = `正解: ${correctAnswer}`;
@@ -5386,7 +5386,11 @@ export class QuizApp {
       if (e.pointerType === "mouse" && e.button !== 0) return;
       activePointerId = e.pointerId;
       startDrag(e.clientX, e.clientY);
-      wrap.setPointerCapture(e.pointerId);
+      try {
+        wrap.setPointerCapture(e.pointerId);
+      } catch {
+        // ブラウザ実装差異で失敗する場合があるため継続する
+      }
     }, { signal });
 
     document.addEventListener("pointermove", (e: PointerEvent) => {
