@@ -101,6 +101,7 @@ jobs:
       - name: ビジュアルリグレッションテスト実行
         id: vr-test
         run: npm run test:e2e:vr
+        continue-on-error: true
 
       - name: スナップショットの自動更新とコミット（差分あり時）
         if: steps.vr-test.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
@@ -115,8 +116,23 @@ jobs:
           fi
 
       - name: ビジュアルリグレッションテスト（スナップショット更新後の再確認）
+        id: vr-recheck
         if: steps.vr-test.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: npm run test:e2e:vr
+        continue-on-error: true
+
+      - name: ビジュアルリグレッションテスト結果の最終判定
+        if: steps.vr-test.outcome == 'failure'
+        run: |
+          if [ "${{ github.event_name }}" != "pull_request" ] || [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "VRテストが失敗しました。自動更新できない実行コンテキストのため失敗として終了します。"
+            exit 1
+          fi
+
+          if [ "${{ steps.vr-recheck.outcome }}" != "success" ]; then
+            echo "スナップショット更新後の再確認でもVRテストが失敗しました。"
+            exit 1
+          fi
 
       - name: VRレポートのアップロード（失敗時）
         if: failure()
