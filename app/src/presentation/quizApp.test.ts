@@ -4444,6 +4444,9 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     const container = document.getElementById("todayActivityContent");
     // フォールバックは廃止: 選択日付の記録がない場合は空メッセージを表示する
     expect(container?.textContent).toContain("この日はまだ問題を解いていません");
+    // overallActivityDateLabel も過去レコードにフォールバックしない（学習数：空）
+    const label = document.getElementById("overallActivityDateLabel");
+    expect(label?.textContent).toBe("学習数：");
   });
 
   it("今日の学習記録がある場合、todayActivityContent にスコアが表示される", async () => {

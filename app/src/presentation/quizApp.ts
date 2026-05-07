@@ -2302,19 +2302,13 @@ export class QuizApp {
   }
 
   /**
-   * 活動日付でフィルタリングしたクイズ記録を返す。
-   * fallbackToAll が true のとき、指定日の記録が0件なら全期間にフォールバックする。
+   * 選択日付でフィルタリングしたクイズ記録を返す。
+   * 対象日の記録が0件の場合は空配列を返す。
    */
-  private filterRecordsBySelectedDate(records: QuizRecord[], fallbackToAll = false): QuizRecord[] {
+  private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
     const dateToCheck = this.parseActivityDate().toDateString();
     const isOverallActivityRecord = (r: QuizRecord): boolean => r.mode !== "manual" && r.category !== "all";
-    const filtered = records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
-    if (filtered.length > 0) return filtered;
-    if (fallbackToAll) {
-      // 指定日の学習履歴が0件の場合は、空表示を避けるため全期間の学習履歴を表示する
-      return records.filter(isOverallActivityRecord);
-    }
-    return filtered;
+    return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
   }
 
   /**
@@ -2376,10 +2370,9 @@ export class QuizApp {
     const el = document.getElementById("overallActivityDateLabel");
     if (!el) return;
     const records = this.useCase.getHistory();
-    // フォールバックなし: 選択日付の実績のみカウントする
-    const todayRecords = this.filterRecordsBySelectedDate(records);
-    // 本日やった単元数をユニークカウント（unit ごとに集計）
-    const unitKeys = new Set(todayRecords.map((r) => `${r.subject}::${r.category}`));
+    const selectedDateRecords = this.filterRecordsBySelectedDate(records);
+    // 選択日付にやった単元数をユニークカウント（unit ごとに集計）
+    const unitKeys = new Set(selectedDateRecords.map((r) => `${r.subject}::${r.category}`));
     let masteredCount = 0;
     let studiedCount = 0;
     for (const key of unitKeys) {
