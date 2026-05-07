@@ -247,11 +247,12 @@ header h1 {
 /* タブ行右端のユーザーエリア */
 .tabs-user-area {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 6px;
     flex-shrink: 0;
     padding: 1px 4px 0;
     position: relative;
+    margin-left: auto;
 }
 
 /* サポート・GitHubリンク（付箋スタイル：管理タブの右） */
@@ -312,8 +313,7 @@ header h1 {
     scrollbar-width: none; /* Firefox */
     padding: 8px 4px 0;
     align-items: flex-end;
-    flex: 1;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .subject-tabs::-webkit-scrollbar {
@@ -4971,6 +4971,16 @@ body.font-size-large .subject-overview-cat-header {
     min-height: 0;
 }
 
+/* 管理タブ専用: 右パネルのコンテンツエリア */
+.admin-content-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    padding: 0;
+}
+
 .admin-section {
     margin-bottom: 24px;
 }
@@ -5523,9 +5533,6 @@ body.font-size-large .admin-data-close-btn {
 
 /* 管理画面: メニューバー（縦並び） */
 .admin-menu-bar {
-    background: #f6f8fa;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -5561,12 +5568,12 @@ body.font-size-large .admin-data-close-btn {
 
 .admin-menu-content {
     background: white;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     min-width: 0;
+    flex: 1;
+    min-height: 0;
 }
 
 /* 管理画面: データ参照サブメニュー */
@@ -5842,6 +5849,8 @@ body.font-size-large .admin-data-close-btn {
     }
     .subject-tabs {
         order: 1;
+        /* モバイルでは残りのスペースを埋めてスクロール可能にするため flex: 1 を復元する */
+        flex: 1;
     }
     .tabs-links-area {
         order: 2;
@@ -6068,6 +6077,10 @@ body.font-size-large .admin-data-close-btn {
     }
     /* 管理コンテンツエリアはデフォルト非表示 */
     .admin-menu-content {
+        display: none;
+    }
+    /* 管理タブの右パネル: モバイルではコンテンツ未開時は非表示 */
+    .admin-content-panel:not(:has(.admin-manage-open)):not(:has(.admin-data-open)) {
         display: none;
     }
     /* 管理コンテンツ（データ管理タブ）: フルスクリーンオーバーレイとして表示 */

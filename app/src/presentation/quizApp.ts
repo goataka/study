@@ -565,8 +565,6 @@ export class QuizApp {
     }
 
     if (subject === "admin") {
-      const subjectContent = document.getElementById("subjectContent");
-      subjectContent?.classList.add("category-only");
       // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
       const controlsEl = document.getElementById("categoryControls");
       if (controlsEl) controlsEl.innerHTML = "";
@@ -616,9 +614,6 @@ export class QuizApp {
       if (arr.length <= maxItems) return arr;
       return [...arr.slice(0, maxItems), `... (${arr.length - maxItems}件省略、合計${arr.length}件)`];
     };
-
-    const container = document.createElement("div");
-    container.className = "admin-panel";
 
     /** ファイルダウンロード用の英字キー */
     type SectionKey = "settings" | "history" | "mastered" | "streaks";
@@ -1049,12 +1044,15 @@ export class QuizApp {
     });
     menuBar.appendChild(viewBtn);
 
-    container.appendChild(menuBar);
-    container.appendChild(contentArea);
+    // 管理メニューを左パネル (categoryList) に配置し、コンテンツを右パネル (adminContent) に配置する
+    categoryList.appendChild(menuBar);
+    const adminContentEl = document.getElementById("adminContent");
+    if (adminContentEl) {
+      adminContentEl.innerHTML = "";
+      adminContentEl.appendChild(contentArea);
+    }
 
     // 初期表示: メニューのみ（コンテンツ未選択）
-
-    categoryList.appendChild(container);
   }
 
   /**
@@ -2304,19 +2302,13 @@ export class QuizApp {
   }
 
   /**
-   * 活動日付でフィルタリングしたクイズ記録を返す。
-   * fallbackToAll が true のとき、指定日の記録が0件なら全期間にフォールバックする。
+   * 選択日付でフィルタリングしたクイズ記録を返す。
+   * 対象日の記録が0件の場合は空配列を返す。
    */
-  private filterRecordsBySelectedDate(records: QuizRecord[], fallbackToAll = false): QuizRecord[] {
+  private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
     const dateToCheck = this.parseActivityDate().toDateString();
     const isOverallActivityRecord = (r: QuizRecord): boolean => r.mode !== "manual" && r.category !== "all";
-    const filtered = records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
-    if (filtered.length > 0) return filtered;
-    if (fallbackToAll) {
-      // 指定日の学習履歴が0件の場合は、空表示を避けるため全期間の学習履歴を表示する
-      return records.filter(isOverallActivityRecord);
-    }
-    return filtered;
+    return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
   }
 
   /**
@@ -2378,9 +2370,9 @@ export class QuizApp {
     const el = document.getElementById("overallActivityDateLabel");
     if (!el) return;
     const records = this.useCase.getHistory();
-    const todayRecords = this.filterRecordsBySelectedDate(records, true);
-    // 本日やった単元数をユニークカウント（unit ごとに集計）
-    const unitKeys = new Set(todayRecords.map((r) => `${r.subject}::${r.category}`));
+    const selectedDateRecords = this.filterRecordsBySelectedDate(records);
+    // 選択日付にやった単元数をユニークカウント（unit ごとに集計）
+    const unitKeys = new Set(selectedDateRecords.map((r) => `${r.subject}::${r.category}`));
     let masteredCount = 0;
     let studiedCount = 0;
     for (const key of unitKeys) {
@@ -2422,7 +2414,8 @@ export class QuizApp {
     const container = document.getElementById("todayActivityContent");
     if (!container) return;
 
-    const todayRecords = this.filterRecordsBySelectedDate(records, true);
+    // フォールバックなし: 選択日付のレコードのみ表示する（他の日付のレコードを混在させない）
+    const todayRecords = this.filterRecordsBySelectedDate(records);
 
     container.innerHTML = "";
 
@@ -4298,7 +4291,7 @@ export class QuizApp {
     if (!subjectContent) return;
 
     if (this.filter.subject === "admin") {
-      subjectContent.classList.add("category-only");
+      subjectContent.classList.remove("category-only");
       subjectContent.classList.remove("all-subject-layout");
       subjectContent.classList.remove("all-subject-unit-selected");
       // 管理タブでは学習状態フィルターを非表示にする
@@ -4309,6 +4302,15 @@ export class QuizApp {
       // 管理タブでは「おすすめ単元」タイトルを非表示、「管理」タイトルを表示
       document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
       document.getElementById("categoryListTitle")?.classList.remove("hidden");
+      // 管理タブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、管理コンテンツを表示する
+      ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
+        document.getElementById(id)?.classList.add("hidden");
+      });
+      ["quizModePanel", "guideContent", "historyContent", "questionListContent", "overallSummaryPanel", "progressDetailPanel"].forEach((id) => {
+        document.getElementById(id)?.classList.add("hidden");
+      });
+      document.getElementById("selectedUnitInfo")?.classList.add("hidden");
+      document.getElementById("adminContent")?.classList.remove("hidden");
       return;
     }
 
@@ -4333,6 +4335,7 @@ export class QuizApp {
       });
       document.getElementById("overallSummaryPanel")?.classList.add("hidden");
       document.getElementById("selectedUnitInfo")?.classList.add("hidden");
+      document.getElementById("adminContent")?.classList.add("hidden");
       // 進度詳細パネルは renderProgressDetailPanel() で表示する（ここでは非表示にしない）
       return;
     }
@@ -4350,6 +4353,8 @@ export class QuizApp {
     // 何も選択されていない場合（総合タブを除く）は右パネルを非表示にしてカテゴリリストを全幅表示する
     // 総合タブは総合サマリパネルを右に表示するため category-only にしない
     subjectContent.classList.toggle("category-only", noCategory);
+    // 管理コンテンツパネルを非表示にする（管理タブ以外）
+    document.getElementById("adminContent")?.classList.add("hidden");
 
     // 総合タブでは単元未選択時のみパネルタブを非表示（単元選択時は教科画面と同じ表示）
     ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {

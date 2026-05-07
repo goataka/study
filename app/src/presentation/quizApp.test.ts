@@ -194,6 +194,7 @@ function setupTabDom(): void {
           </div>
           <div id="progressDetailContent" class="progress-detail-content" role="tabpanel" aria-labelledby="progressDetailTab-matrix"></div>
         </div>
+        <div id="adminContent" class="hidden admin-content-panel" role="region" aria-label="管理"></div>
       </div>
     </div>
     <div id="quizScreen" class="screen">
@@ -4417,7 +4418,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(container?.textContent).toContain("この日はまだ問題を解いていません");
   });
 
-  it("今日の学習記録がないが過去に記録がある場合、todayActivityContent にはフォールバックで履歴が表示される", async () => {
+  it("今日の学習記録がないが過去に記録がある場合、todayActivityContent には空メッセージが表示される", async () => {
     const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
     localStorage.setItem(
       "quizHistory",
@@ -4441,7 +4442,11 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const container = document.getElementById("todayActivityContent");
-    expect(container?.textContent).toContain("8/10 (80%)");
+    // フォールバックは廃止: 選択日付の記録がない場合は空メッセージを表示する
+    expect(container?.textContent).toContain("この日はまだ問題を解いていません");
+    // overallActivityDateLabel も過去レコードにフォールバックしない（学習数：空）
+    const label = document.getElementById("overallActivityDateLabel");
+    expect(label?.textContent).toBe("学習数：");
   });
 
   it("今日の学習記録がある場合、todayActivityContent にスコアが表示される", async () => {
@@ -6053,8 +6058,10 @@ describe("QuizApp — スマホ用単元一覧戻るボタン仕様", () => {
     const adminTab = document.querySelector<HTMLButtonElement>('.subject-tab[data-subject="admin"]');
     expect(adminTab?.classList.contains("active")).toBe(true);
 
-    // category-only クラスが付いてクイズパネルが非表示になる
+    // 管理コンテンツパネルが表示される（category-only は不使用、右パネルに管理コンテンツを表示）
     const subjectContent = document.getElementById("subjectContent");
-    expect(subjectContent?.classList.contains("category-only")).toBe(true);
+    expect(subjectContent?.classList.contains("category-only")).toBe(false);
+    const adminContent = document.getElementById("adminContent");
+    expect(adminContent?.classList.contains("hidden")).toBe(false);
   });
 });
