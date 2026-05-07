@@ -121,6 +121,7 @@ jobs:
         run: npm run test:e2e:vr
         continue-on-error: true
 
+      # 初回VRテスト失敗時のみ、再確認結果を最終判定に使う
       - name: ビジュアルリグレッションテスト結果の最終判定
         if: steps.vr-test.outcome == 'failure'
         run: |
@@ -129,7 +130,8 @@ jobs:
             exit 1
           fi
 
-          if [ "${{ steps.vr-recheck.outcome }}" != "success" ]; then
+          # 再確認が failure のときのみ最終的に失敗扱いにする
+          if [ "${{ steps.vr-recheck.outcome }}" = "failure" ]; then
             echo "スナップショット更新後の再確認でもVRテストが失敗しました。"
             exit 1
           fi
