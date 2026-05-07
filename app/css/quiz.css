@@ -1445,8 +1445,28 @@ header h1 {
 
 /* マトリクス表示（縦横切り替えボタン） */
 .progress-matrix-corner-toggle {
-    cursor: pointer;
     user-select: none;
+}
+
+.progress-matrix-corner-toggle-btn {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+}
+
+.progress-matrix-corner-toggle-btn:hover {
+    text-decoration: underline;
+}
+
+.progress-matrix-corner-toggle-btn:focus-visible {
+    outline: 3px solid #f6a400;
+    outline-offset: 1px;
+    background: rgba(246, 164, 0, 0.12);
 }
 
 /* マトリクス表示テーブル */
@@ -1473,6 +1493,10 @@ header h1 {
     position: sticky;
     top: 0;
     z-index: 2;
+}
+
+.progress-matrix-table thead tr:first-child th.progress-matrix-top-header {
+    color: #24292e;
 }
 
 /* 2行目のヘッダー（親カテゴリ）を1行目の高さ分下にずらして固定。

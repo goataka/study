@@ -2162,21 +2162,19 @@ export class QuizApp {
 
     const topHeaderRow = document.createElement("tr");
     const cornerTh = document.createElement("th");
-    cornerTh.textContent = "学年 ⇄ カテゴリ";
     cornerTh.className = "progress-matrix-corner-toggle";
-    cornerTh.setAttribute("role", "button");
-    cornerTh.setAttribute("tabindex", "0");
+    const cornerBtn = document.createElement("button");
+    cornerBtn.type = "button";
+    cornerBtn.className = "progress-matrix-corner-toggle-btn";
+    cornerBtn.textContent = "学年 ⇄ カテゴリ";
+    cornerBtn.setAttribute("aria-label", "学年とカテゴリの縦横を切り替える");
+    cornerBtn.setAttribute("aria-pressed", String(this.progressMatrixTransposed));
     const toggleTranspose = (): void => {
       this.progressMatrixTransposed = !this.progressMatrixTransposed;
       this.renderProgressDetailContent();
     };
-    cornerTh.addEventListener("click", toggleTranspose);
-    cornerTh.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleTranspose();
-      }
-    });
+    cornerBtn.addEventListener("click", toggleTranspose);
+    cornerTh.appendChild(cornerBtn);
     if (!this.progressMatrixTransposed) {
       cornerTh.rowSpan = 2;
       topHeaderRow.appendChild(cornerTh);
@@ -2307,15 +2305,18 @@ export class QuizApp {
 
   /**
    * 活動日付でフィルタリングしたクイズ記録を返す。
-   * 指定日の記録が0件の場合のみ、空表示を避けるため全期間の記録にフォールバックする。
+   * fallbackToAll が true のとき、指定日の記録が0件なら全期間にフォールバックする。
    */
-  private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
+  private filterRecordsBySelectedDate(records: QuizRecord[], fallbackToAll = false): QuizRecord[] {
     const dateToCheck = this.parseActivityDate().toDateString();
     const isOverallActivityRecord = (r: QuizRecord): boolean => r.mode !== "manual" && r.category !== "all";
     const filtered = records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
     if (filtered.length > 0) return filtered;
-    // 指定日の学習履歴が0件の場合は、空表示を避けるため全期間の学習履歴を表示する
-    return records.filter(isOverallActivityRecord);
+    if (fallbackToAll) {
+      // 指定日の学習履歴が0件の場合は、空表示を避けるため全期間の学習履歴を表示する
+      return records.filter(isOverallActivityRecord);
+    }
+    return filtered;
   }
 
   /**
@@ -2377,7 +2378,7 @@ export class QuizApp {
     const el = document.getElementById("overallActivityDateLabel");
     if (!el) return;
     const records = this.useCase.getHistory();
-    const todayRecords = this.filterRecordsBySelectedDate(records);
+    const todayRecords = this.filterRecordsBySelectedDate(records, true);
     // 本日やった単元数をユニークカウント（unit ごとに集計）
     const unitKeys = new Set(todayRecords.map((r) => `${r.subject}::${r.category}`));
     let masteredCount = 0;
@@ -2421,7 +2422,7 @@ export class QuizApp {
     const container = document.getElementById("todayActivityContent");
     if (!container) return;
 
-    const todayRecords = this.filterRecordsBySelectedDate(records);
+    const todayRecords = this.filterRecordsBySelectedDate(records, true);
 
     container.innerHTML = "";
 
@@ -5290,7 +5291,7 @@ export class QuizApp {
   }
 
   /**
-   * ダイアログで選択中の切り抜き位置（Y方向パーセント 0-100）を返す。
+   * ダイアログで選択中の表示位置（X/Y）と拡大率を返す。
    */
   private getDialogCropPosition(): { x: number; y: number; zoom: number } {
     return { x: this.pendingAvatarCropX, y: this.pendingAvatarCropY, zoom: this.pendingAvatarZoom };
