@@ -161,13 +161,14 @@ function setupTabDom(): void {
         </div>
         <div id="overallSummaryPanel" class="hidden">
           <div class="overall-panel-tabs" role="tablist">
-            <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習済み</button>
+            <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習状況</button>
             <button class="panel-tab" id="overallTab-share" data-overall-panel="share" role="tab" type="button" aria-selected="false">📤 シェア</button>
           </div>
           <div id="overallLearnedPanel" class="overall-activity-panel">
             <div class="overall-activity-date-row">
               <span id="overallActivityDateLabel" class="overall-activity-date"></span>
             </div>
+            <div id="overallSubjectStatusSummary" class="overall-subject-status-summary"></div>
             <div id="todayActivityContent"></div>
           </div>
           <div id="overallSharePanel" class="overall-activity-panel hidden">
@@ -187,10 +188,11 @@ function setupTabDom(): void {
         </div>
         <div id="progressDetailPanel" class="hidden">
           <div class="panel-tabs progress-detail-tabs" role="tablist">
-            <button class="panel-tab active" id="progressDetailTab-grade" data-progress-detail-panel="grade" role="tab" type="button" aria-selected="true" aria-controls="progressDetailContent" tabindex="0">🎓 学年別</button>
+            <button class="panel-tab active" id="progressDetailTab-matrix" data-progress-detail-panel="matrix" role="tab" type="button" aria-selected="true" aria-controls="progressDetailContent" tabindex="0">📊 マトリクス</button>
+            <button class="panel-tab" id="progressDetailTab-grade" data-progress-detail-panel="grade" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">🎓 学年別</button>
             <button class="panel-tab" id="progressDetailTab-category" data-progress-detail-panel="category" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">📁 カテゴリ別</button>
           </div>
-          <div id="progressDetailContent" class="progress-detail-content" role="tabpanel" aria-labelledby="progressDetailTab-grade"></div>
+          <div id="progressDetailContent" class="progress-detail-content" role="tabpanel" aria-labelledby="progressDetailTab-matrix"></div>
         </div>
       </div>
     </div>
@@ -631,6 +633,48 @@ describe("QuizApp — 進度タブ仕様", () => {
     const catTab = document.getElementById("progressDetailTab-category");
     expect(gradeTab).not.toBeNull();
     expect(catTab).not.toBeNull();
+  });
+
+  it("進度マトリクス左上の切り替えボタンに aria-pressed が付き、押下で状態が切り替わる", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({
+            version: "2.0.0",
+            subjects: { english: { name: "英語" } },
+            questionFiles: ["english/matrix.json"],
+          }),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({
+          subject: "english",
+          subjectName: "英語",
+          category: "matrix-cat",
+          categoryName: "マトリクス単元",
+          referenceGrade: "小学1年",
+          questions: [
+            { id: "m1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" },
+          ],
+        }),
+      } as Response);
+    });
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const toggleBtn = document.querySelector(".progress-matrix-corner-toggle-btn") as HTMLButtonElement | null;
+    expect(toggleBtn).not.toBeNull();
+    expect(toggleBtn?.getAttribute("aria-pressed")).toBe("false");
+
+    toggleBtn?.click();
+    const toggledBtn = document.querySelector(".progress-matrix-corner-toggle-btn") as HTMLButtonElement | null;
+    expect(toggledBtn?.getAttribute("aria-pressed")).toBe("true");
   });
 
   it("進度タブの詳細パネルにブロックグループが描画される", async () => {
@@ -4347,6 +4391,33 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(container?.textContent).toContain("この日はまだ問題を解いていません");
   });
 
+  it("今日の学習記録がないが過去に記録がある場合、todayActivityContent にはフォールバックで履歴が表示される", async () => {
+    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: yesterday,
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 8,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const container = document.getElementById("todayActivityContent");
+    expect(container?.textContent).toContain("8/10 (80%)");
+  });
+
   it("今日の学習記録がある場合、todayActivityContent にスコアが表示される", async () => {
     const today = new Date().toISOString();
     localStorage.setItem(
@@ -4383,6 +4454,41 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     const year = String(today.getFullYear());
     expect(summaryEl?.textContent).toContain(year);
     expect(summaryEl?.textContent).not.toContain("学習サマリ");
+  });
+
+  it("今日の学習記録がなく過去記録のみの場合、共有テキストは指定日基準で未実施表示になる", async () => {
+    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: yesterday,
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 8,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const summaryEl = document.getElementById("shareSummaryText");
+    expect(summaryEl?.textContent).toContain("まだクイズをしていません。");
+  });
+
+  it("総合タブの学習状況サマリに教科ごとの進捗が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const status = document.getElementById("overallSubjectStatusSummary");
+    expect(status?.textContent).toContain("英語:");
   });
 
   it("シェアテキストに教科・トップカテゴリ・親カテゴリ・単元名がパス形式で含まれる", async () => {

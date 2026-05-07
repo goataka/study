@@ -52,10 +52,9 @@
       <div class="subject-tabs" role="tablist" aria-label="教科を選択"></div>
       <!-- サポート・GitHubリンク（管理タブの右に付箋として配置） -->
       <div class="tabs-links-area">
-        <a id="supportBtn" class="tabs-link-note tabs-link-note-support" href="./support/" target="_blank" rel="noopener noreferrer" title="サポートページを開く" aria-label="サポートページを開く">❔ サポート</a>
+        <a id="supportBtn" class="tabs-link-note tabs-link-note-support" href="./support/" target="_blank" rel="noopener noreferrer" title="サポートページを開く" aria-label="サポートページを開く">❔</a>
         <a id="githubBtn" class="tabs-link-note tabs-link-note-github" href="https://github.com/goataka/study" target="_blank" rel="noopener noreferrer" title="GitHubリポジトリを開く" aria-label="GitHubリポジトリを開く">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
         </a>
       </div>
       <div class="tabs-user-area">
@@ -77,13 +76,13 @@
               <span>画像を選択</span>
               <input id="headerUserAvatarInput" type="file" accept="image/*" tabindex="-1" aria-hidden="true">
             </label>
-            <!-- 画像プレビュー（ドラッグして切り抜き位置を指定） -->
+            <!-- 画像プレビュー（画像をドラッグして表示位置を指定） -->
             <div class="avatar-crop-preview-wrap" id="avatarCropPreviewWrap">
               <img id="avatarCropPreview" class="avatar-crop-preview" src="" alt="" aria-hidden="true">
               <span id="avatarCropPreviewPlaceholder" class="avatar-crop-preview-placeholder">👤</span>
-              <div id="avatarCropHandle" class="avatar-crop-handle" role="slider" aria-label="切り抜き位置" aria-orientation="vertical" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" tabindex="-1" title="ドラッグして位置を調整"></div>
             </div>
-            <p class="avatar-crop-hint">○をドラッグして切り抜き位置を指定</p>
+            <label for="avatarCropZoom" class="avatar-crop-zoom-label">拡大縮小</label>
+            <input id="avatarCropZoom" class="avatar-crop-zoom" type="range" min="1" max="3" step="0.05" value="1" aria-label="拡大縮小">
             <div class="avatar-crop-dialog-btns">
               <button id="avatarCropConfirmBtn" type="button" class="avatar-crop-confirm-btn">確定</button>
               <button id="avatarCropCancelBtn" type="button" class="avatar-crop-cancel-btn">キャンセル</button>
@@ -210,7 +209,6 @@
               <button class="panel-tab active" id="progressDetailTab-matrix" data-progress-detail-panel="matrix" role="tab" type="button" aria-selected="true" aria-controls="progressDetailContent" tabindex="0">📊 マトリクス</button>
               <button class="panel-tab" id="progressDetailTab-grade" data-progress-detail-panel="grade" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">🎓 学年別</button>
               <button class="panel-tab" id="progressDetailTab-category" data-progress-detail-panel="category" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">📁 カテゴリ別</button>
-              <button id="progressMatrixTransposeBtn" class="progress-matrix-transpose-btn" type="button" title="縦横を切り替える" aria-label="縦横を切り替える">⇄ 縦横</button>
             </div>
             <!-- 進度詳細コンテンツ -->
             <div id="progressDetailContent" class="progress-detail-content" role="tabpanel" aria-labelledby="progressDetailTab-matrix"></div>
@@ -220,7 +218,7 @@
           <div id="overallSummaryPanel" class="hidden overall-summary-panel" role="region" aria-label="活動サマリ">
             <!-- タブバー（総合タブ専用） -->
             <div class="panel-tabs overall-panel-tabs" role="tablist" aria-label="概要パネル切り替え">
-              <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習済</button>
+              <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習状況</button>
               <button class="panel-tab" id="overallTab-share" data-overall-panel="share" role="tab" type="button" aria-selected="false">📤 シェア</button>
             </div>
             <!-- 学習済み活動パネル -->
@@ -229,6 +227,7 @@
               <div class="overall-activity-date-row">
                 <span id="overallActivityDateLabel" class="overall-activity-date"></span>
               </div>
+              <div id="overallSubjectStatusSummary" class="overall-subject-status-summary"></div>
               <!-- 活動一覧（履歴形式） -->
               <div id="todayActivityContent" class="history-list overall-today-list"></div>
             </div>
