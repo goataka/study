@@ -324,7 +324,9 @@ export class QuizUseCase {
         isCorrect: r.isCorrect,
         userAnswerIndex: r.userAnswerIndex,
         userAnswerText: r.userAnswerText,
-        userAnswerChoiceText: r.userAnswerIndex >= 0 ? (r.question.choices[r.userAnswerIndex] ?? "") : NO_ANSWER_TEXT,
+        userAnswerChoiceText: (r.userAnswerIndex >= 0 && r.userAnswerIndex < r.question.choices.length)
+          ? r.question.choices[r.userAnswerIndex]
+          : NO_ANSWER_TEXT,
         correctAnswerText: r.question.choices[r.question.correct] ?? "",
       })),
     });
