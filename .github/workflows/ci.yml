@@ -101,7 +101,6 @@ jobs:
       - name: ビジュアルリグレッションテスト実行
         id: vr-test
         run: npm run test:e2e:vr
-        continue-on-error: true
 
       - name: スナップショットの自動更新とコミット（差分あり時）
         if: steps.vr-test.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
