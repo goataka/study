@@ -6108,6 +6108,3 @@ body.font-size-large .admin-data-close-btn {
         padding: 6px 12px;
     }
 }
-    #startScreen::before {
-        display: none;
-    }

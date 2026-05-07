@@ -2307,17 +2307,15 @@ export class QuizApp {
 
   /**
    * 活動日付でフィルタリングしたクイズ記録を返す。
+   * 指定日の記録が0件の場合のみ、空表示を避けるため全期間の記録にフォールバックする。
    */
   private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
     const dateToCheck = this.parseActivityDate().toDateString();
-    const filtered = records.filter((r) =>
-      new Date(r.date).toDateString() === dateToCheck &&
-      r.mode !== "manual" &&
-      // 教科全体（category="all"）の履歴は総合タブの学習済み一覧に表示しない
-      r.category !== "all"
-    );
+    const isOverallActivityRecord = (r: QuizRecord): boolean => r.mode !== "manual" && r.category !== "all";
+    const filtered = records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
     if (filtered.length > 0) return filtered;
-    return records.filter((r) => r.mode !== "manual" && r.category !== "all");
+    // 指定日の学習履歴が0件の場合は、空表示を避けるため全期間の学習履歴を表示する
+    return records.filter(isOverallActivityRecord);
   }
 
   /**
@@ -2351,7 +2349,14 @@ export class QuizApp {
         const { mastered, total } = this.useCase.getMasteredCountForCategory(subject.id, catId);
         if (total > 0 && mastered === total) learnedUnits++;
       }
-      const target = Math.max(1, Math.min(this.subjectRecommendedCounts.get(subject.id) ?? 1, totalUnits || 1));
+      if (totalUnits === 0) {
+        const row = document.createElement("div");
+        row.className = "overall-subject-status-row";
+        row.textContent = `${subject.icon} ${subject.name}: 0/0単元 🌱 まずは単元を追加しよう！`;
+        container.appendChild(row);
+        continue;
+      }
+      const target = Math.max(1, Math.min(this.subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
       const ratio = Math.min(1, learnedUnits / target);
       const message = ratio >= 1
         ? "🎉 目標達成！この調子！"
@@ -5336,6 +5341,8 @@ export class QuizApp {
 
     const getPctDelta = (dx: number, dy: number): { x: number; y: number } => {
       const rect = wrap.getBoundingClientRect();
+      // 拡大率が高いほど、同じピクセル移動での見た目の変化量が大きくなるためデルタを縮小する
+      // 例: zoom=2 のときは (100/zoom)=50 となり、同じドラッグ距離でも移動量を半分にする
       const zoom = Math.max(this.pendingAvatarZoom, 1);
       const x = (dx / rect.width) * (100 / zoom);
       const y = (dy / rect.height) * (100 / zoom);
@@ -5360,6 +5367,7 @@ export class QuizApp {
     const moveDrag = (clientX: number, clientY: number): void => {
       if (!dragging) return;
       const { x, y } = getPctDelta(clientX - startX, clientY - startY);
+      // 画像を右/下にドラッグした時は表示位置を逆方向へ動かす（例: 右ドラッグ時は -x で左側を見せる）
       this.pendingAvatarCropX = Math.max(0, Math.min(100, startCropX - x));
       this.pendingAvatarCropY = Math.max(0, Math.min(100, startCropY - y));
       updatePreview();
