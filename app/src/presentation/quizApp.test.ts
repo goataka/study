@@ -194,7 +194,7 @@ function setupTabDom(): void {
           </div>
           <div id="progressDetailContent" class="progress-detail-content" role="tabpanel" aria-labelledby="progressDetailTab-matrix"></div>
         </div>
-        <div id="adminContent" class="hidden admin-content-panel"></div>
+        <div id="adminContent" class="hidden admin-content-panel" role="region" aria-label="管理"></div>
       </div>
     </div>
     <div id="quizScreen" class="screen">

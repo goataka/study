@@ -5849,6 +5849,7 @@ body.font-size-large .admin-data-close-btn {
     }
     .subject-tabs {
         order: 1;
+        /* モバイルでは残りのスペースを埋めてスクロール可能にするため flex: 1 を復元する */
         flex: 1;
     }
     .tabs-links-area {
