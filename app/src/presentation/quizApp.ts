@@ -5388,9 +5388,8 @@ export class QuizApp {
       startDrag(e.clientX, e.clientY);
       try {
         wrap.setPointerCapture(e.pointerId);
-      } catch (err) {
+      } catch {
         // ブラウザ実装差異で失敗する場合があるため継続する
-        console.debug("pointer capture に失敗しました", err);
       }
     }, { signal });
 

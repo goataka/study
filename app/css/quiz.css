@@ -6044,6 +6044,7 @@ body.font-size-large .admin-data-close-btn {
     /* 全画面バックドロップ（管理データ参照に適用） */
     #startScreen:has(.admin-menu-content.admin-data-open)::before {
         content: '';
+        display: block;
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.35);
@@ -6082,6 +6083,7 @@ body.font-size-large .admin-data-close-btn {
     /* 管理コンテンツオーバーレイのバックドロップ */
     #startScreen:has(.admin-menu-content.admin-manage-open)::before {
         content: '';
+        display: block;
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, 0.35);
