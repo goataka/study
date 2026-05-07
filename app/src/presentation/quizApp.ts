@@ -3,7 +3,7 @@
  * ビジネスロジックはすべて QuizUseCase に委譲する。
  */
 
-import { QuizUseCase, ERROR_ALL_MASTERED } from "../application/quizUseCase";
+import { QuizUseCase, ERROR_ALL_MASTERED, NO_ANSWER_TEXT } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
 import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
@@ -3521,8 +3521,10 @@ export class QuizApp {
         if (question) {
           const shuffled = shuffleChoices(question);
           questionP.textContent = question.question;
-          const userAnswer = entry.userAnswerText ?? (shuffled.choices[entry.userAnswerIndex] ?? "未回答");
-          const correctAnswer = shuffled.choices[shuffled.correct] ?? "";
+          const userAnswer = entry.userAnswerText
+            ?? entry.userAnswerChoiceText
+            ?? (shuffled.choices[entry.userAnswerIndex] ?? NO_ANSWER_TEXT);
+          const correctAnswer = entry.correctAnswerText ?? (shuffled.choices[shuffled.correct] ?? "");
           if (entry.isCorrect) {
             answerP.textContent = `正解: ${correctAnswer}`;
           } else {
@@ -5379,29 +5381,32 @@ export class QuizApp {
       wrap.classList.remove("dragging");
     };
 
-    wrap.addEventListener("mousedown", (e: MouseEvent) => {
+    let activePointerId: number | null = null;
+    wrap.addEventListener("pointerdown", (e: PointerEvent) => {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      activePointerId = e.pointerId;
       startDrag(e.clientX, e.clientY);
+      try {
+        wrap.setPointerCapture(e.pointerId);
+      } catch {
+        // ブラウザ実装差異で失敗する場合があるため継続する
+      }
     }, { signal });
 
-    document.addEventListener("mousemove", (e: MouseEvent) => {
-      if (!dragging) return;
+    document.addEventListener("pointermove", (e: PointerEvent) => {
+      if (!dragging || activePointerId !== e.pointerId) return;
       e.preventDefault();
       moveDrag(e.clientX, e.clientY);
-    }, { signal });
+    }, { signal, passive: false });
 
-    document.addEventListener("mouseup", endDrag, { signal });
+    const onPointerUp = (e: PointerEvent): void => {
+      if (activePointerId !== null && activePointerId !== e.pointerId) return;
+      activePointerId = null;
+      endDrag();
+    };
 
-    wrap.addEventListener("touchstart", (e: TouchEvent) => {
-      const touch = e.touches[0];
-      if (touch) startDrag(touch.clientX, touch.clientY);
-    }, { passive: true, signal });
-
-    wrap.addEventListener("touchmove", (e: TouchEvent) => {
-      const touch = e.touches[0];
-      if (touch) moveDrag(touch.clientX, touch.clientY);
-    }, { passive: true, signal });
-
-    wrap.addEventListener("touchend", endDrag, { signal });
+    document.addEventListener("pointerup", onPointerUp, { signal });
+    document.addEventListener("pointercancel", onPointerUp, { signal });
 
     zoomInput?.addEventListener("input", () => {
       const zoom = parseFloat(zoomInput.value);

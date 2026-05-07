@@ -17,6 +17,10 @@ export interface QuizRecordEntry {
   userAnswerIndex: number;
   /** text-input 問題でユーザーが実際に入力したテキスト */
   userAnswerText?: string;
+  /** 回答時点の選択肢テキスト（multiple-choice 用） */
+  userAnswerChoiceText?: string;
+  /** 回答時点の正解テキスト */
+  correctAnswerText?: string;
 }
 
 /** 1回のクイズセッションの回答記録 */

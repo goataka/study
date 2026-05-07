@@ -1818,7 +1818,13 @@ describe("QuizApp — 履歴モード表示仕様", () => {
 
 describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様", () => {
   // mockQuestionFile の問題 q1 のchoices は ["ア", "イ", "ウ", "エ"]、correct: 0
-  const buildRecordWithEntries = (entries: Array<{ questionId: string; isCorrect: boolean; userAnswerIndex: number }>) => ({
+  const buildRecordWithEntries = (entries: Array<{
+    questionId: string;
+    isCorrect: boolean;
+    userAnswerIndex: number;
+    userAnswerChoiceText?: string;
+    correctAnswerText?: string;
+  }>) => ({
     id: "r1",
     date: new Date().toISOString(),
     subject: "english",
@@ -1869,6 +1875,26 @@ describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様"
     const answerP = document.querySelector(".history-entry-answer");
     expect(answerP?.textContent).toContain("あなたの回答:");
     expect(answerP?.textContent).toContain("→ 正解:");
+  });
+
+  it("履歴に保存された回答テキストがあればそれを優先して表示する", async () => {
+    const record = buildRecordWithEntries([{
+      questionId: "q1",
+      isCorrect: false,
+      userAnswerIndex: -1,
+      userAnswerChoiceText: "旧データの回答",
+      correctAnswerText: "旧データの正解",
+    }]);
+    localStorage.setItem("quizHistory", JSON.stringify([record]));
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const header = document.querySelector<HTMLElement>(".history-item-header");
+    header?.click();
+
+    const answerP = document.querySelector(".history-entry-answer");
+    expect(answerP?.textContent).toContain("旧データの回答");
+    expect(answerP?.textContent).toContain("旧データの正解");
   });
 
   it("questionId が存在しない場合はフォールバック表示になる", async () => {

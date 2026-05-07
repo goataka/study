@@ -12,6 +12,8 @@ export type { QuizMode, QuizFilter, AnswerResult, QuizRecord, UserDataExport };
 
 /** 全問習得済み時にスローするエラーメッセージ定数 */
 export const ERROR_ALL_MASTERED = "ALL_MASTERED";
+/** 未回答時の表示テキスト */
+export const NO_ANSWER_TEXT = "未回答";
 
 export class QuizUseCase {
   private allQuestions: Question[] = [];
@@ -322,6 +324,10 @@ export class QuizUseCase {
         isCorrect: r.isCorrect,
         userAnswerIndex: r.userAnswerIndex,
         userAnswerText: r.userAnswerText,
+        userAnswerChoiceText: (r.userAnswerIndex >= 0 && r.userAnswerIndex < (r.question.choices?.length ?? 0))
+          ? r.question.choices?.[r.userAnswerIndex]
+          : NO_ANSWER_TEXT,
+        correctAnswerText: r.question.choices?.[r.question.correct] ?? "",
       })),
     });
   }
