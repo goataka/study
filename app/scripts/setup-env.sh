@@ -5,6 +5,12 @@
 
 set -e
 
+# Debian/Ubuntu 系 Linux 以外はスキップ（macOS・Windows・sudo不可環境への影響を防ぐ）
+if ! command -v apt-get >/dev/null 2>&1 || ! command -v sudo >/dev/null 2>&1; then
+  echo "apt-get / sudo が利用できない環境のため、環境セットアップをスキップします。"
+  exit 0
+fi
+
 # 日本語フォントのインストール（未インストールの場合のみ）
 if ! fc-list | grep -q "Noto Sans CJK"; then
   echo "日本語フォント（fonts-noto-cjk）をインストールしています..."
