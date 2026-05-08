@@ -64,6 +64,13 @@ import {
   renderQuestionList as renderQuestionListView,
   type QuestionListFilter,
 } from "./quizApp/questionListView";
+import { getURLParams, parseURLState, syncURLFragment } from "./quizApp/urlStateService";
+import { showAnswerFeedback, hideAnswerFeedback } from "./quizApp/answerFeedback";
+import { updateNavigationButtons } from "./quizApp/navigationButtons";
+import { updateSpeakButton } from "./quizApp/speakButton";
+import { renderMultipleChoice, renderTextInput } from "./quizApp/choicesRenderer";
+import { renderResultScreenContent } from "./quizApp/resultScreenView";
+import { updateNotesAreaForQuestion } from "./quizApp/notesAreaUpdater";
 
 const PANEL_TABS = ["quiz", "guide", "history", "questions"] as const;
 type PanelTab = (typeof PANEL_TABS)[number];
@@ -225,13 +232,7 @@ export class QuizApp {
    * クエリパラメータが優先され、フラグメント側は補完として使用する。
    */
   private getURLParams(): URLSearchParams {
-    const params = new URLSearchParams(window.location.search);
-    const hashParams = new URLSearchParams(window.location.hash.slice(1));
-    // フラグメントの値はクエリパラメータに存在しない場合のみ補完する
-    hashParams.forEach((value, key) => {
-      if (!params.has(key)) params.set(key, value);
-    });
-    return params;
+    return getURLParams();
   }
 
   /**
@@ -244,64 +245,20 @@ export class QuizApp {
    * （`screen=start` は初期表示と一致するため特別な処理は不要）。
    */
   private loadFilterFromURL(): void {
-    const params = this.getURLParams();
-    const subject = params.get("subject");
-    const category = params.get("category");
-    const panel = params.get("panel");
-    const overallPanel = params.get("overallPanel");
-    const progressSubject = params.get("progressSubject");
-    const progressView = params.get("progressView");
-    const progressHideLearned = params.get("progressHideLearned");
-    const categoryView = params.get("categoryView");
-    const questionFilter = params.get("questionFilter");
-    const unitSubject = params.get("unitSubject");
-    const unitCategory = params.get("unitCategory");
-
-    if (subject) {
-      this.filter.subject = subject;
-    }
-    if (category && category !== "all") {
-      this.filter.category = category;
-    } else if (subject) {
-      // subjectが指定されているがcategoryがない場合は"all"
-      this.filter.category = "all";
-    }
-    if (panel && QuizApp.PANEL_TABS.includes(panel as PanelTab)) {
-      this.activePanelTab = panel as PanelTab;
+    const parsed = parseURLState(this.useCase);
+    if (parsed.subject !== undefined) this.filter.subject = parsed.subject;
+    if (parsed.category !== undefined) this.filter.category = parsed.category;
+    if (parsed.panel !== undefined) {
+      this.activePanelTab = parsed.panel;
       this.isPanelTabUserSelected = true;
     }
-    if (overallPanel === "learned" || overallPanel === "share") {
-      this.activeOverallPanel = overallPanel;
-    }
-    if (
-      progressSubject &&
-      SUBJECTS.some((s) => s.id === progressSubject && s.id !== "all" && s.id !== "admin" && s.id !== "progress")
-    ) {
-      this.progressSubjectId = progressSubject;
-    }
-    if (progressView === "grade" || progressView === "category" || progressView === "matrix") {
-      this.progressDetailViewMode = progressView;
-    }
-    if (progressHideLearned === "1" || progressHideLearned === "true") {
-      this.hideLearnedProgressUnits = true;
-    }
-    if (categoryView === "grade" || categoryView === "category") {
-      this.categoryViewMode = categoryView;
-    }
-    if (questionFilter === "all" || questionFilter === "learned" || questionFilter === "unlearned") {
-      this.questionListFilter = questionFilter;
-    }
-    if (unitSubject && unitCategory) {
-      const categories = this.useCase.getCategoriesForSubject(unitSubject);
-      const categoryName = categories[unitCategory];
-      if (categoryName) {
-        this.selectedUnitContext = {
-          subject: unitSubject,
-          categoryId: unitCategory,
-          categoryName,
-        };
-      }
-    }
+    if (parsed.overallPanel !== undefined) this.activeOverallPanel = parsed.overallPanel;
+    if (parsed.progressSubject !== undefined) this.progressSubjectId = parsed.progressSubject;
+    if (parsed.progressView !== undefined) this.progressDetailViewMode = parsed.progressView;
+    if (parsed.hideLearnedProgressUnits) this.hideLearnedProgressUnits = true;
+    if (parsed.categoryView !== undefined) this.categoryViewMode = parsed.categoryView;
+    if (parsed.questionFilter !== undefined) this.questionListFilter = parsed.questionFilter;
+    if (parsed.selectedUnitContext !== undefined) this.selectedUnitContext = parsed.selectedUnitContext;
   }
 
   /**
@@ -311,75 +268,20 @@ export class QuizApp {
    * `screen=start` は初期状態と一致するためフラグメントに含めない。
    */
   private syncURLFragment(screenName?: "start" | "quiz" | "result"): void {
-    const hashParams = new URLSearchParams();
-    const screen =
-      screenName ??
-      (document.getElementById("quizScreen")?.classList.contains("hidden") === false
-        ? "quiz"
-        : document.getElementById("resultScreen")?.classList.contains("hidden") === false
-          ? "result"
-          : "start");
-    if (screen !== "start") {
-      hashParams.set("screen", screen);
-    }
-    if (this.filter.subject) {
-      hashParams.set("subject", this.filter.subject);
-    }
-    if (this.filter.category && this.filter.category !== "all") {
-      hashParams.set("category", this.filter.category);
-    }
-    if (this.activePanelTab) {
-      hashParams.set("panel", this.activePanelTab);
-    }
-    if (
-      this.filter.subject !== "all" &&
-      this.filter.subject !== "progress" &&
-      this.filter.subject !== "admin" &&
-      this.categoryViewMode
-    ) {
-      hashParams.set("categoryView", this.categoryViewMode);
-    }
-    if (this.filter.subject === "all") {
-      hashParams.set("overallPanel", this.activeOverallPanel);
-    }
-    if (this.filter.subject === "progress") {
-      hashParams.set("progressSubject", this.progressSubjectId);
-      hashParams.set("progressView", this.progressDetailViewMode);
-      if (this.hideLearnedProgressUnits) {
-        hashParams.set("progressHideLearned", "1");
-      }
-    }
-    if (this.activePanelTab === "questions" && this.questionListFilter !== "all") {
-      hashParams.set("questionFilter", this.questionListFilter);
-    }
-    if (this.selectedUnitContext !== null) {
-      hashParams.set("unitSubject", this.selectedUnitContext.subject);
-      hashParams.set("unitCategory", this.selectedUnitContext.categoryId);
-    }
-    const params = hashParams.toString();
-    const newHash = params ? `#${params}` : "";
-
-    // クエリパラメータに unitSubject/unitCategory が残っている場合はクリアする
-    // （単元詳細を閉じた後にリロードすると再表示される問題の修正）
-    const searchParams = new URLSearchParams(window.location.search);
-    let searchChanged = false;
-    if (this.selectedUnitContext === null) {
-      for (const key of ["unitSubject", "unitCategory"]) {
-        if (searchParams.has(key)) {
-          searchParams.delete(key);
-          searchChanged = true;
-        }
-      }
-    }
-    const newSearch = searchChanged
-      ? searchParams.toString()
-        ? `?${searchParams.toString()}`
-        : ""
-      : window.location.search;
-
-    if (window.location.hash === newHash && !searchChanged) return;
-    const newUrl = `${window.location.pathname}${newSearch}${newHash}`;
-    window.history.replaceState(window.history.state, document.title, newUrl);
+    syncURLFragment(
+      {
+        filter: this.filter,
+        activePanelTab: this.activePanelTab,
+        activeOverallPanel: this.activeOverallPanel,
+        progressSubjectId: this.progressSubjectId,
+        progressDetailViewMode: this.progressDetailViewMode,
+        hideLearnedProgressUnits: this.hideLearnedProgressUnits,
+        categoryViewMode: this.categoryViewMode,
+        questionListFilter: this.questionListFilter,
+        selectedUnitContext: this.selectedUnitContext,
+      },
+      screenName,
+    );
   }
 
   private loadUserName(): void {
@@ -2994,10 +2896,20 @@ export class QuizApp {
   }
 
   private renderChoices(question: Question, session: QuizSession): void {
+    const callbacks = {
+      onAnswered: (q: Question, idx: number, text?: string) => {
+        this.showAnswerFeedback(q, idx, text);
+        this.updateNavigationButtons(session);
+      },
+      onTextAnswered: (q: Question) => {
+        // 確認後は確定ボタンも非表示にする（キーボード入力で回答済みになったため）
+        this.updateNotesAreaForQuestion(q, true);
+      },
+    };
     if (question.questionType === "text-input") {
-      this.renderTextInput(question, session);
+      renderTextInput(question, session, callbacks);
     } else {
-      this.renderMultipleChoice(question, session);
+      renderMultipleChoice(question, session, callbacks);
     }
   }
 
@@ -3006,132 +2918,28 @@ export class QuizApp {
    * ボタンを表示し、クリック時にアメリカ英語（en-US）で読み上げる。
    */
   private updateSpeakButton(question: Question): void {
-    const btn = document.getElementById("speakBtn");
-    if (!btn) return;
-
-    const isSpeechAvailable =
-      typeof window.speechSynthesis !== "undefined" && typeof SpeechSynthesisUtterance !== "undefined";
-
-    if (question.subject === "english" && isSpeechAvailable) {
-      btn.classList.remove("hidden");
-      btn.onclick = () => {
-        try {
-          window.speechSynthesis.cancel();
-          const utterance = new SpeechSynthesisUtterance(question.question);
-          utterance.lang = "en-US";
-          window.speechSynthesis.speak(utterance);
-        } catch {
-          // 読み上げがサポートされていない環境ではスキップする
-        }
-      };
-    } else {
-      btn.classList.add("hidden");
-      btn.onclick = null;
-    }
+    updateSpeakButton(question);
   }
 
   private renderMultipleChoice(question: Question, session: QuizSession): void {
-    const container = document.getElementById("choicesContainer");
-    if (!container) return;
-    container.innerHTML = "";
-
-    const existingAnswer = session.getAnswer(session.currentIndex);
-
-    question.choices.forEach((choice, index) => {
-      const label = document.createElement("label");
-      label.className = "choice-label";
-
-      const input = document.createElement("input");
-      input.type = "radio";
-      input.name = "answer";
-      input.value = String(index);
-      input.checked = existingAnswer === index;
-      input.disabled = existingAnswer !== undefined;
-      input.addEventListener("change", () => {
-        session.selectAnswer(session.currentIndex, index);
-        this.showAnswerFeedback(question, index);
+    renderMultipleChoice(question, session, {
+      onAnswered: (q, idx, text) => {
+        this.showAnswerFeedback(q, idx, text);
         this.updateNavigationButtons(session);
-        // 回答後は全選択肢を無効化して変更不可に
-        container.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((r) => {
-          r.disabled = true;
-        });
-      });
-
-      const span = document.createElement("span");
-      span.className = "choice-text";
-      span.textContent = choice;
-
-      label.appendChild(input);
-      label.appendChild(span);
-      container.appendChild(label);
+      },
     });
   }
 
   private renderTextInput(question: Question, session: QuizSession): void {
-    const container = document.getElementById("choicesContainer");
-    if (!container) return;
-    container.innerHTML = "";
-
-    const existingAnswerIndex = session.getAnswer(session.currentIndex);
-    const isAnswered = existingAnswerIndex !== undefined;
-
-    const wrapper = document.createElement("div");
-    wrapper.className = "text-answer-wrapper";
-
-    const input = document.createElement("input");
-    input.type = "text";
-    input.className = "text-answer-input";
-    input.placeholder = "答えを入力してください";
-    input.setAttribute("aria-label", "解答を入力");
-    input.disabled = isAnswered;
-
-    if (isAnswered) {
-      // 既回答の場合、入力テキストを復元して表示
-      const storedText = session.getTextAnswer(session.currentIndex);
-      if (storedText !== undefined) {
-        input.value = storedText;
-      } else {
-        // 後方互換: 正解インデックスと一致する場合は正解テキストを表示
-        if (existingAnswerIndex === question.correct) {
-          input.value = question.choices[question.correct] ?? "";
-        }
-      }
-    }
-
-    const submitBtn = document.createElement("button");
-    submitBtn.type = "button";
-    submitBtn.className = "text-answer-submit-btn";
-    submitBtn.textContent = "確認する";
-    submitBtn.disabled = isAnswered;
-
-    const handleSubmit = (): void => {
-      const text = input.value.trim();
-      if (!text) return;
-      session.selectTextAnswer(session.currentIndex, text);
-      input.disabled = true;
-      submitBtn.disabled = true;
-      const answerIndex = session.getAnswer(session.currentIndex)!;
-      this.showAnswerFeedback(question, answerIndex, text);
-      this.updateNavigationButtons(session);
-      // 確認後は確定ボタンも非表示にする（キーボード入力で回答済みになったため）
-      this.updateNotesAreaForQuestion(question, true);
-    };
-
-    submitBtn.addEventListener("click", handleSubmit);
-    input.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key !== "Enter") return;
-      if (e.isComposing || e.keyCode === 229) return;
-      e.preventDefault();
-      handleSubmit();
+    renderTextInput(question, session, {
+      onAnswered: (q, idx, text) => {
+        this.showAnswerFeedback(q, idx, text);
+        this.updateNavigationButtons(session);
+      },
+      onTextAnswered: (q) => {
+        this.updateNotesAreaForQuestion(q, true);
+      },
     });
-
-    wrapper.appendChild(input);
-    wrapper.appendChild(submitBtn);
-    container.appendChild(wrapper);
-
-    if (!isAnswered) {
-      input.focus();
-    }
   }
 
   /**
@@ -3141,41 +2949,7 @@ export class QuizApp {
    * 問題遷移のたびに呼ばれる。
    */
   private updateNotesAreaForQuestion(question: Question | null, isAnswered: boolean): void {
-    const notesTitle = document.getElementById("notesTitle");
-    const kanjiInputArea = document.getElementById("kanjiInputArea");
-    const notesCanvas = document.getElementById("notesCanvas");
-    const notesControls = document.querySelector<HTMLElement>(".notes-controls");
-
-    const isTextInput = question?.questionType === "text-input";
-    // KanjiCanvas が読み込まれていない場合はフォールバックとして通常ノートキャンバスを表示する
-    const showKanji = isTextInput && !isAnswered && this.kanjiCanvasController.isAvailable();
-
-    if (notesTitle) {
-      notesTitle.textContent = showKanji ? "✏️ 1文字ずつ書いて漢字を入力できます" : "タッチペンで書けます";
-    }
-    if (kanjiInputArea) {
-      kanjiInputArea.classList.toggle("hidden", !showKanji);
-    }
-    // KanjiCanvas表示時はトグルボタンを展開状態にリセットする
-    if (showKanji) {
-      const kanjiInputBody = document.getElementById("kanjiInputBody");
-      const kanjiToggleBtn = document.getElementById("kanjiToggleBtn");
-      if (kanjiInputBody) kanjiInputBody.classList.remove("hidden");
-      if (kanjiToggleBtn) this.kanjiCanvasController.applyToggleBtnState(kanjiToggleBtn, true);
-    }
-    // KanjiCanvas使用時はノートキャンバスと通常コントロールを非表示
-    if (notesCanvas) {
-      notesCanvas.classList.toggle("hidden", showKanji);
-    }
-    if (notesControls) {
-      notesControls.classList.toggle("hidden", showKanji);
-    }
-
-    if (showKanji) {
-      this.kanjiCanvasController.initialize();
-      this.kanjiCanvasController.erase();
-      // 初期化時はストロークがないため候補は表示しない
-    }
+    updateNotesAreaForQuestion(question, isAnswered, this.kanjiCanvasController);
   }
 
   private navigate(direction: 1 | -1): void {
@@ -3193,61 +2967,15 @@ export class QuizApp {
   }
 
   private showAnswerFeedback(question: Question, userAnswerIndex: number, userAnswerText?: string): void {
-    const feedbackDiv = document.getElementById("answerFeedback");
-    if (!feedbackDiv) return;
-
-    const isCorrect = question.correct === userAnswerIndex;
-    const resultDiv = document.getElementById("feedbackResult");
-    const explanationDiv = document.getElementById("feedbackExplanation");
-
-    if (resultDiv) {
-      if (isCorrect) {
-        resultDiv.textContent = "✅ 正解です！";
-      } else if (question.questionType === "text-input") {
-        const correctAnswer = question.choices[question.correct] ?? "";
-        const typed = userAnswerText ?? "";
-        resultDiv.textContent = typed
-          ? `❌ 不正解です。あなたの解答「${typed}」→ 正解は「${correctAnswer}」`
-          : `❌ 不正解です。正解は「${correctAnswer}」`;
-      } else {
-        const correctAnswer = question.choices[question.correct];
-        resultDiv.textContent = `❌ 不正解です。正解は「${correctAnswer}」です。`;
-      }
-    }
-
-    if (explanationDiv) {
-      explanationDiv.textContent = question.explanation;
-    }
-
-    feedbackDiv.classList.remove("hidden");
-    feedbackDiv.classList.toggle("correct", isCorrect);
-    feedbackDiv.classList.toggle("incorrect", !isCorrect);
+    showAnswerFeedback(question, userAnswerIndex, userAnswerText);
   }
 
   private hideAnswerFeedback(): void {
-    const feedbackDiv = document.getElementById("answerFeedback");
-    if (feedbackDiv) {
-      feedbackDiv.classList.add("hidden");
-    }
+    hideAnswerFeedback();
   }
 
   private updateNavigationButtons(session: QuizSession): void {
-    const prevBtn = document.getElementById("prevBtn") as HTMLButtonElement;
-    const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement;
-    const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
-    const isLast = session.currentIndex === session.totalCount - 1;
-
-    prevBtn.disabled = session.currentIndex === 0;
-
-    if (isLast) {
-      nextBtn.classList.add("hidden");
-      submitBtn.classList.remove("hidden");
-      submitBtn.disabled = !session.canSubmit();
-    } else {
-      nextBtn.classList.remove("hidden");
-      submitBtn.classList.add("hidden");
-      nextBtn.disabled = session.getAnswer(session.currentIndex) === undefined;
-    }
+    updateNavigationButtons(session);
   }
 
   // ─── 採点 ──────────────────────────────────────────────────────────────────
@@ -3266,72 +2994,8 @@ export class QuizApp {
   // ─── 結果画面 ──────────────────────────────────────────────────────────────
 
   private showResultScreen(results: AnswerResult[]): void {
-    const correctCount = results.filter((r) => r.isCorrect).length;
-    const total = results.length;
-    const percentage = Math.round((correctCount / total) * 100);
-
-    // 単元名・カテゴリ・教科を表示する（クイズ結果画面の上部）
-    const resultUnitName = document.getElementById("resultUnitName");
-    if (resultUnitName) {
-      const firstResult = results[0];
-      if (firstResult) {
-        const q = firstResult.question;
-        const parts: string[] = [];
-        if (q.subjectName) parts.push(q.subjectName);
-        if (q.topCategoryName) parts.push(q.topCategoryName);
-        if (q.parentCategoryName) parts.push(q.parentCategoryName);
-        if (q.categoryName) parts.push(q.categoryName);
-        if (parts.length > 0) {
-          resultUnitName.textContent = parts.join(" › ");
-          resultUnitName.classList.remove("hidden");
-        } else {
-          resultUnitName.textContent = "";
-          resultUnitName.classList.add("hidden");
-        }
-      } else {
-        resultUnitName.textContent = "";
-        resultUnitName.classList.add("hidden");
-      }
-    }
-
-    // 正答数に応じた前向きなメッセージ
-    const resultMessage = document.getElementById("resultMessage");
-    if (resultMessage) {
-      resultMessage.textContent =
-        percentage === 100
-          ? "🌟 満点！すごい！"
-          : percentage >= 80
-            ? "🎉 よくできました！"
-            : percentage >= 60
-              ? "😊 もう少し！次はきっとできる！"
-              : "💪 がんばれ！次は必ず正解できます！";
-    }
-
-    const scoreDisplay = document.getElementById("scoreDisplay");
-    if (scoreDisplay) {
-      const isPerfect = correctCount === total;
-      const circleClass = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
-      scoreDisplay.innerHTML = `
-        <div class="score-circle ${circleClass}">
-          ${isPerfect ? '<div class="score-perfect-icon">✅</div>' : ""}
-          <div class="score-percentage">${percentage}%</div>
-          <div class="score-text">${correctCount} / ${total} 正解</div>
-        </div>
-      `;
-    }
-
-    const resultDetails = document.getElementById("resultDetails");
-    if (resultDetails) {
-      resultDetails.innerHTML = "<h3>解答一覧</h3>";
-      results.forEach((r) => resultDetails.appendChild(this.buildResultItem(r)));
-    }
-
+    renderResultScreenContent(results);
     this.showScreen("result");
-
-    // 回答完了後にスクロール位置をトップに戻す
-    const resultScreen = document.getElementById("resultScreen");
-    if (resultScreen) resultScreen.scrollTop = 0;
-
     // 単元がすべて学習済みになったらポップアップメッセージ
     void this.checkAllMasteredAndCongratulate();
   }
