@@ -2,11 +2,11 @@
  * QuizApp テストで共有する DOM スタブ・モック・ユーティリティ。
  *
  * `quizApp.test.ts` から肥大化していたセットアップを切り出したもの。
- * Vitest の `globals: true` 設定により `vi` はグローバルから利用可能なので
- * import 不要。
  */
 
 // @vitest-environment jsdom
+
+import { vi } from "vitest";
 
 // KanjiCanvas グローバルのモック（jsdom環境では kanji-canvas.min.js がロードされないため）
 export const kanjiCanvasMock = {

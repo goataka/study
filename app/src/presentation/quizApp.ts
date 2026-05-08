@@ -19,12 +19,12 @@ import { AvatarController } from "./avatarController";
 import { renderProgressDetailMatrix } from "./progressMatrixView";
 import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./progressBlockView";
 import { buildHistoryItem } from "./historyItemView";
+import { buildShareSummaryText, filterRecordsBySelectedDate } from "./shareSummary";
 import {
   SUBJECTS,
   gradeColorClass,
   calcDualProgressPct,
   currentDateString,
-  parseDateString,
   sanitizeShareUrl,
   setText,
   on,
@@ -1375,16 +1375,6 @@ export class QuizApp {
   }
 
   /**
-   * 選択日付でフィルタリングしたクイズ記録を返す。
-   * 対象日の記録が0件の場合は空配列を返す。
-   */
-  private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
-    const dateToCheck = parseDateString(this.selectedActivityDate).toDateString();
-    const isOverallActivityRecord = (r: QuizRecord): boolean => r.mode !== "manual";
-    return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
-  }
-
-  /**
    * 総合タブ専用のサマリパネルを描画する。
    */
   private renderOverallSummaryPanel(allRecords?: QuizRecord[]): void {
@@ -1444,7 +1434,7 @@ export class QuizApp {
     const el = document.getElementById("overallActivityDateLabel");
     if (!el) return;
     const records = this.useCase.getHistory();
-    const selectedDateRecords = this.filterRecordsBySelectedDate(records);
+    const selectedDateRecords = filterRecordsBySelectedDate(records, this.selectedActivityDate);
     // 選択日付にやった単元数をユニークカウント（unit ごとに集計）
     const unitKeys = new Set(selectedDateRecords.map((r) => `${r.subject}::${r.category}`));
     let masteredCount = 0;
@@ -1487,7 +1477,7 @@ export class QuizApp {
     if (!container) return;
 
     // フォールバックなし: 選択日付のレコードのみ表示する（他の日付のレコードを混在させない）
-    const todayRecords = this.filterRecordsBySelectedDate(records);
+    const todayRecords = filterRecordsBySelectedDate(records, this.selectedActivityDate);
 
     container.innerHTML = "";
 
@@ -1512,74 +1502,8 @@ export class QuizApp {
   private updateShareSummaryText(records: QuizRecord[]): void {
     const el = document.getElementById("shareSummaryText");
     if (el) {
-      el.textContent = this.buildShareSummaryText(records);
+      el.textContent = buildShareSummaryText(records, this.selectedActivityDate, this.useCase);
     }
-  }
-
-  /**
-   * SNS 共有用の活動サマリテキストを構築して返す。
-   * selectedActivityDate の日付を基準とし、各単元の成績を含む。
-   * テキストに「学習サマリ」ヘッダーは含めず、単元数で合計を表示する。
-   */
-  private buildShareSummaryText(records: QuizRecord[]): string {
-    const [year, month, day] = this.selectedActivityDate.split("-");
-    const dateStr = `${year}/${month}/${day}`;
-    const dateRecords = this.filterRecordsBySelectedDate(records);
-
-    const lines: string[] = [`📅 ${dateStr}`];
-
-    if (dateRecords.length === 0) {
-      lines.push("まだクイズをしていません。");
-      return lines.join("\n");
-    }
-
-    const subjectIconMap = Object.fromEntries(
-      SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin").map((s) => [s.id, s.icon]),
-    );
-
-    // 教科＋単元ごとに集計
-    const byUnit = new Map<
-      string,
-      { subject: string; subjectName: string; categoryName: string; icon: string; total: number; correct: number }
-    >();
-    for (const r of dateRecords) {
-      const key = `${r.subject}::${r.category}`;
-      const u = byUnit.get(key) ?? {
-        subject: r.subject,
-        subjectName: r.subjectName,
-        categoryName: r.categoryName,
-        icon: subjectIconMap[r.subject] ?? "📝",
-        total: 0,
-        correct: 0,
-      };
-      u.total += r.totalCount;
-      u.correct += r.correctCount;
-      byUnit.set(key, u);
-    }
-
-    for (const [key, data] of byUnit.entries()) {
-      const pct = Math.round((data.correct / data.total) * 100);
-      const category = key.split("::")[1] ?? "";
-      const topCat = this.useCase.getTopCategoryForUnit(data.subject, category);
-      const parentCat = this.useCase.getParentCategoryForUnit(data.subject, category);
-
-      // パス: 教科 > トップカテゴリ > 親カテゴリ > 単元名（存在する階層のみ表示）
-      // トップカテゴリと親カテゴリが同名の場合は重複を避けてトップカテゴリを省略する
-      const pathParts: string[] = [data.subjectName];
-      const shouldIncludeTopCategory = topCat !== undefined && topCat.name !== parentCat?.name;
-      if (shouldIncludeTopCategory && topCat) pathParts.push(topCat.name);
-      if (parentCat) pathParts.push(parentCat.name);
-      pathParts.push(data.categoryName);
-
-      lines.push(`${data.icon} ${pathParts.join(" > ")}: ${data.correct}/${data.total}問正解 (${pct}%)`);
-    }
-
-    // 合計は単元数で表示する
-    const unitCount = byUnit.size;
-    lines.push("---");
-    lines.push(`合計: ${unitCount}単元`);
-
-    return lines.join("\n");
   }
 
   /**
