@@ -13,8 +13,8 @@ import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionReposi
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
 import { IndexedDBProgressRepository } from "../infrastructure/indexedDBProgressRepository";
 import { NotesCanvas } from "./notesCanvas";
-import type { DrawingState } from "./notesCanvas";
 import { KanjiCanvasController } from "./kanjiCanvasController";
+import { NotesController } from "./notesController";
 import {
   SUBJECTS,
   gradeColorClass,
@@ -54,8 +54,12 @@ export class QuizApp {
   /** ダイアログで選択中の画像（確定前） */
   private pendingAvatarDataUrl: string | null = null;
   private questionCount: number = 10;
-  private notesCanvas: NotesCanvas | null = null;
-  private notesStates: Map<number, DrawingState> = new Map();
+  /** 手書きメモエリアのコントローラー（コンストラクタで初期化）。 */
+  private notesController: NotesController = new NotesController();
+  /** 既存コードからの後方互換アクセサー（notesController.getCanvas() の薄いラッパー）。 */
+  private get notesCanvas(): NotesCanvas | null {
+    return this.notesController.getCanvas();
+  }
   /** 漢字認識キャンバスのコントローラー（コンストラクタで初期化）。 */
   private kanjiCanvasController!: KanjiCanvasController;
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
@@ -4530,7 +4534,7 @@ export class QuizApp {
     this.currentMode = effectiveMode;
 
     // メモ状態をリセット
-    this.notesStates.clear();
+    this.notesController.clearAllStates();
 
     this.showScreen("quiz");
     document.getElementById("quizScreen")?.classList.toggle("practice-mode", effectiveMode === "practice");
@@ -5455,56 +5459,23 @@ export class QuizApp {
   // ─── メモエリア管理 ────────────────────────────────────────────────────────
 
   private initializeNotesCanvas(): void {
-    if (!this.notesCanvas) {
-      this.notesCanvas = new NotesCanvas();
-      this.notesCanvas.initialize("notesCanvas");
-
-      // デフォルト設定を適用
-      const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
-      const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
-
-      if (penSizeSelect) {
-        this.notesCanvas.setPenSize(parseInt(penSizeSelect.value));
-      }
-      if (penColorSelect) {
-        this.notesCanvas.setPenColor(penColorSelect.value);
-      }
-    }
+    this.notesController.initialize();
   }
 
   private saveNotesState(questionIndex: number): void {
-    const state = this.notesCanvas?.save();
-    if (state) {
-      this.notesStates.set(questionIndex, state);
-    }
+    this.notesController.saveState(questionIndex);
   }
 
   private restoreNotesState(questionIndex: number): void {
-    const state = this.notesStates.get(questionIndex);
-    if (state) {
-      this.notesCanvas?.restore(state);
-    } else {
-      this.notesCanvas?.clear();
-    }
+    this.notesController.restoreState(questionIndex);
   }
 
   private clearNotes(): void {
-    if (this.currentSession) {
-      // 現在の問題のメモ状態を削除
-      this.notesStates.delete(this.currentSession.currentIndex);
-    }
-    this.notesCanvas?.clear();
+    this.notesController.clear(this.currentSession?.currentIndex);
   }
 
   private toggleEraserMode(): void {
-    if (!this.notesCanvas) return;
-    const isEraser = !this.notesCanvas.isEraserMode;
-    this.notesCanvas.setEraserMode(isEraser);
-    const eraserBtn = document.getElementById("eraserBtn");
-    if (eraserBtn) {
-      eraserBtn.classList.toggle("eraser-active", isEraser);
-      eraserBtn.title = isEraser ? "ペンに戻す" : "消しゴム";
-    }
+    this.notesController.toggleEraserMode();
   }
 }
 
