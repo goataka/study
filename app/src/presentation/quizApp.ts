@@ -19,13 +19,6 @@ import { AvatarController } from "./avatarController";
 import { renderProgressDetailMatrix } from "./progressMatrixView";
 import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./progressBlockView";
 import { buildShareSummaryText } from "./shareSummary";
-import {
-  groupRecommendedByCategory,
-  buildSubjectOverviewHeaderRow,
-  buildSubjectOverviewEmptyItem,
-  buildCategoryGroupHeader,
-  buildRecommendedUnitCard,
-} from "./allSubjectListView";
 import { SUBJECTS, currentDateString, sanitizeShareUrl } from "./uiHelpers";
 import { showConfirmDialog } from "./quizApp/confirmDialog";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
@@ -114,6 +107,11 @@ import {
   renderCategoryListByCategory as renderCategoryListByCategoryFn,
   renderCategoryListByGrade as renderCategoryListByGradeFn,
 } from "./quizApp/categoryListRenderer";
+import { renderAllSubjectList as renderAllSubjectListFn } from "./quizApp/allSubjectListRenderer";
+import {
+  updateStartScreen as updateStartScreenFn,
+  navigateToAdmin as navigateToAdminFn,
+} from "./quizApp/startScreenUpdater";
 
 const PANEL_TABS: readonly PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 
@@ -743,65 +741,18 @@ export class QuizApp {
    * 同一カテゴリの単元はまとめて表示し、トップカテゴリ・親カテゴリも合わせて表示する。
    */
   private renderAllSubjectList(): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
-    categoryList.innerHTML = "";
-
-    const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
-    const studiedKeys = this.useCase.getStudiedCategoryKeys();
-
-    for (const subject of nonAllSubjects) {
-      const count = this.subjectRecommendedCounts.get(subject.id) ?? 1;
-      const recommendedList = this.useCase.getRecommendedCategoriesForSubject(subject.id, count);
-
-      const wrapper = document.createElement("div");
-      wrapper.className = "subject-overview-wrapper";
-
-      // 教科名行: アイコン・名称と教科ごとの表示数コントロール
-      wrapper.appendChild(
-        buildSubjectOverviewHeaderRow(subject, count, (n) => {
-          this.subjectRecommendedCounts.set(subject.id, n);
-          this.saveRecommendedCounts();
-          this.renderCategoryList();
-        }),
-      );
-
-      if (recommendedList.length === 0) {
-        wrapper.appendChild(buildSubjectOverviewEmptyItem(subject.id));
-        categoryList.appendChild(wrapper);
-        continue;
-      }
-
-      // 同一親カテゴリでグループ化（未学習を含むグループ／単元が先頭）
-      const groups = groupRecommendedByCategory(subject.id, recommendedList, this.useCase);
-
-      // グループごとにヘッダーとカードを描画する
-      for (const group of groups) {
-        const catGroup = document.createElement("div");
-        catGroup.className = "subject-overview-cat-group";
-
-        const header = buildCategoryGroupHeader(group);
-        if (header) catGroup.appendChild(header);
-
-        for (const recommended of group.items) {
-          const { mastered, total } = this.useCase.getMasteredCountForCategory(subject.id, recommended.id);
-          const inProgressCount = this.useCase.getInProgressCount({ subject: subject.id, category: recommended.id });
-          const catKey = `${subject.id}::${recommended.id}`;
-          const isAllMastered = total > 0 && mastered === total;
-          const isStudying = !isAllMastered && (inProgressCount > 0 || studiedKeys.has(catKey));
-
-          catGroup.appendChild(
-            buildRecommendedUnitCard(subject.id, recommended, { mastered, total, inProgressCount, isStudying }, () =>
-              this.selectUnitContext(subject.id, recommended.id, recommended.name),
-            ),
-          );
-        }
-
-        wrapper.appendChild(catGroup);
-      }
-
-      categoryList.appendChild(wrapper);
-    }
+    renderAllSubjectListFn({
+      useCase: this.useCase,
+      subjectRecommendedCounts: this.subjectRecommendedCounts,
+      onRecommendedCountChange: (subjectId, count) => {
+        this.subjectRecommendedCounts.set(subjectId, count);
+        this.saveRecommendedCounts();
+        this.renderCategoryList();
+      },
+      onSelectUnit: (subjectId, categoryId, categoryName) => {
+        this.selectUnitContext(subjectId, categoryId, categoryName);
+      },
+    });
   }
 
   // ─── 総合タブ専用サマリパネル ───────────────────────────────────────────────
@@ -1409,70 +1360,30 @@ export class QuizApp {
    * 管理パネルに移動する。モバイルのメニューボタンから呼び出される。
    */
   private navigateToAdmin(): void {
-    const tabsContainer = document.querySelector(".subject-tabs");
-    if (!tabsContainer) return;
-
-    this.filter.subject = "admin";
-    this.filter.category = "all";
-    this.filter.parentCategory = undefined;
+    const ok = navigateToAdminFn(this.filter);
+    if (!ok) return;
     this.selectedTopCategoryId = null;
     this.selectedUnitContext = null;
-
-    tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
-      t.classList.remove("active");
-      (t as HTMLElement).setAttribute("aria-selected", "false");
-    });
-    // 管理タブを非表示にしている場合も含め、data-subject="admin" のタブをアクティブに
-    const adminTab = tabsContainer.querySelector('.subject-tab[data-subject="admin"]') as HTMLElement | null;
-    if (adminTab) {
-      adminTab.classList.add("active");
-      adminTab.setAttribute("aria-selected", "true");
-    }
-
     this.renderCategoryList();
     this.updateStartScreen();
   }
 
   private updateStartScreen(allRecords?: QuizRecord[]): void {
-    this.updateSubjectStats();
-    this.updateQuizPanelVisibility();
-    const statsInfo = document.getElementById("statsInfo");
-    const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement | null;
-    if (!statsInfo) return;
-
-    const effectiveFilter = this.getEffectiveFilter();
-    const filteredQuestions = this.useCase.getFilteredQuestions(effectiveFilter);
-    const filteredCount = filteredQuestions.length;
-    const masteredIdsSet = new Set(this.useCase.getMasteredIds());
-    const masteredInFilter = filteredQuestions.filter((q) => masteredIdsSet.has(q.id)).length;
-    // 学習中: 1回以上回答済みで未習得の問題（イシュー要件: 1回以上回答で学習済みになっていないもの）
-    const inProgressInFilter = filteredQuestions.filter((q) => {
-      return this.useCase.getQuestionStat(q.id).total > 0 && !masteredIdsSet.has(q.id);
-    }).length;
-
-    statsInfo.textContent = `全：${filteredCount}問 / 学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問`;
-
-    // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
-    if (markLearnedBtn) {
-      markLearnedBtn.disabled = effectiveFilter.category === "all";
-      markLearnedBtn.textContent = this.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 学習済みにする";
-    }
-
-    this.renderHistoryList(effectiveFilter, allRecords);
-    if (this.activePanelTab === "questions") {
-      this.renderQuestionList();
-    }
-    if (this.activePanelTab === "guide") {
-      this.updateGuidePanelContent();
-    }
-    if (this.filter.subject === "all") {
-      if (this.selectedUnitContext !== null) {
-        // 総合タブで単元選択中: 解説コンテンツを更新する
-        this.updateGuidePanelContent();
-      } else {
-        this.renderOverallSummaryPanel(allRecords);
-      }
-    }
+    updateStartScreenFn({
+      useCase: this.useCase,
+      filter: this.filter,
+      effectiveFilter: this.getEffectiveFilter(),
+      activePanelTab: this.activePanelTab,
+      hasSelectedUnit: this.selectedUnitContext !== null,
+      allRecords,
+      isCurrentCategoryLearned: () => this.isCurrentCategoryLearned(),
+      updateSubjectStats: () => this.updateSubjectStats(),
+      updateQuizPanelVisibility: () => this.updateQuizPanelVisibility(),
+      renderHistoryList: (filter, records) => this.renderHistoryList(filter, records),
+      renderQuestionList: () => this.renderQuestionList(),
+      updateGuidePanelContent: () => this.updateGuidePanelContent(),
+      renderOverallSummaryPanel: (records) => this.renderOverallSummaryPanel(records),
+    });
   }
 
   private updateSubjectStats(): void {
