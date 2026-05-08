@@ -17,6 +17,7 @@ import { KanjiCanvasController } from "./kanjiCanvasController";
 import { NotesController } from "./notesController";
 import { renderAdminContent } from "./adminPanel";
 import { AvatarController } from "./avatarController";
+import { renderProgressDetailMatrix } from "./progressMatrixView";
 import {
   SUBJECTS,
   gradeColorClass,
@@ -1351,7 +1352,16 @@ export class QuizApp {
     if (this.progressDetailViewMode === "grade") {
       this.renderProgressDetailByGrade(content);
     } else if (this.progressDetailViewMode === "matrix") {
-      this.renderProgressDetailMatrix(content);
+      renderProgressDetailMatrix(content, {
+        subject: this.progressSubjectId,
+        useCase: this.useCase,
+        transposed: this.progressMatrixTransposed,
+        onToggleTranspose: () => {
+          this.progressMatrixTransposed = !this.progressMatrixTransposed;
+          this.renderProgressDetailContent();
+        },
+        onSelectUnit: (subject, catId, catName) => this.selectUnitContext(subject, catId, catName),
+      });
     } else {
       this.renderProgressDetailByCategory(content);
     }
@@ -1564,228 +1574,6 @@ export class QuizApp {
 
     group.appendChild(blockSeq);
     return group;
-  }
-
-  /**
-   * 進度詳細のマトリクスビューを描画する。
-   * 横（列）= カテゴリ、縦（行）= 学年、セル内 = 単元名ブロック。
-   */
-  private renderProgressDetailMatrix(container: HTMLElement): void {
-    const subject = this.progressSubjectId;
-    const grades = this.useCase.getUniqueGradesForSubject(subject);
-
-    // 全カテゴリを収集し、トップ/親カテゴリ情報を付与する
-    const allCats = this.useCase.getCategoriesForSubject(subject);
-
-    // 列定義: 親カテゴリ単位で展開（トップカテゴリ情報も保持）
-    const parentCatsMap = this.useCase.getParentCategoriesForSubject(subject);
-
-    // 親カテゴリ列: { parentId, parentName, topId, topName }
-    type ColDef = { parentId: string; parentName: string; topId: string; topName: string };
-    const colDefs: ColDef[] = [];
-    const seenParents = new Set<string>();
-
-    // トップカテゴリの順序で親カテゴリを列挙
-    const topCatsMap = this.useCase.getTopCategoriesForSubject(subject);
-    for (const [topId, topName] of Object.entries(topCatsMap)) {
-      const parentCatsForTop = this.useCase.getParentCategoriesForTop(subject, topId);
-      for (const [parentId, parentName] of Object.entries(parentCatsForTop)) {
-        if (!seenParents.has(parentId)) {
-          seenParents.add(parentId);
-          colDefs.push({ parentId, parentName, topId, topName });
-        }
-      }
-      // 親カテゴリなしでこのトップに属する単元があれば、トップ直属列を追加
-      const hasDirect = Object.keys(allCats).some((catId) => {
-        const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
-        const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
-        return topInfo?.id === topId && !parentInfo;
-      });
-      if (hasDirect && !seenParents.has(`__top_direct_${topId}__`)) {
-        seenParents.add(`__top_direct_${topId}__`);
-        colDefs.push({ parentId: `__top_direct_${topId}__`, parentName: topName, topId, topName });
-      }
-    }
-
-    // トップカテゴリなしの単元を「その他」列として追加
-    const noTopCats = Object.keys(allCats).filter((catId) => !this.useCase.getTopCategoryForUnit(subject, catId));
-    if (noTopCats.length > 0) {
-      colDefs.push({ parentId: "__other__", parentName: "その他", topId: "__other__", topName: "その他" });
-    }
-
-    // 親カテゴリが設定されているが列定義に含まれていない場合、直接追加
-    for (const [parentId, parentName] of Object.entries(parentCatsMap)) {
-      if (!seenParents.has(parentId)) {
-        seenParents.add(parentId);
-        colDefs.push({ parentId, parentName, topId: "__other__", topName: "その他" });
-      }
-    }
-
-    if (grades.length === 0 || colDefs.length === 0) {
-      const empty = document.createElement("div");
-      empty.className = "progress-block-group";
-      empty.textContent = "単元がありません";
-      container.appendChild(empty);
-      return;
-    }
-
-    // スクロール可能なラッパー
-    const wrapper = document.createElement("div");
-    wrapper.style.overflowX = "auto";
-    wrapper.style.overflowY = "auto";
-    wrapper.style.flex = "1";
-    wrapper.style.minHeight = "0";
-
-    const table = document.createElement("table");
-    table.className = "progress-matrix-table progress-matrix-table-units";
-
-    const buildMatrixCategoryLabel = (col: ColDef): string => {
-      if (col.topId === "__other__" || col.topName === col.parentName) {
-        return col.parentName;
-      }
-      return `${col.topName} / ${col.parentName}`;
-    };
-
-    // ヘッダー
-    const thead = document.createElement("thead");
-
-    const topHeaderRow = document.createElement("tr");
-    const cornerTh = document.createElement("th");
-    cornerTh.className = "progress-matrix-corner-toggle";
-    const cornerBtn = document.createElement("button");
-    cornerBtn.type = "button";
-    cornerBtn.className = "progress-matrix-corner-toggle-btn";
-    cornerBtn.textContent = "学年 ⇄ カテゴリ";
-    cornerBtn.setAttribute("aria-label", "学年とカテゴリの縦横を切り替える");
-    cornerBtn.setAttribute("aria-pressed", String(this.progressMatrixTransposed));
-    const toggleTranspose = (): void => {
-      this.progressMatrixTransposed = !this.progressMatrixTransposed;
-      this.renderProgressDetailContent();
-    };
-    cornerBtn.addEventListener("click", toggleTranspose);
-    cornerTh.appendChild(cornerBtn);
-    if (!this.progressMatrixTransposed) {
-      cornerTh.rowSpan = 2;
-      topHeaderRow.appendChild(cornerTh);
-      const topGroups: { topId: string; topName: string; count: number }[] = [];
-      for (const col of colDefs) {
-        const last = topGroups[topGroups.length - 1];
-        if (last && last.topId === col.topId) {
-          last.count++;
-        } else {
-          topGroups.push({ topId: col.topId, topName: col.topName, count: 1 });
-        }
-      }
-      for (const grp of topGroups) {
-        const th = document.createElement("th");
-        th.textContent = grp.topName;
-        th.colSpan = grp.count;
-        th.className = "progress-matrix-top-header";
-        topHeaderRow.appendChild(th);
-      }
-      thead.appendChild(topHeaderRow);
-
-      const parentHeaderRow = document.createElement("tr");
-      for (const col of colDefs) {
-        const th = document.createElement("th");
-        th.textContent = buildMatrixCategoryLabel(col);
-        th.className = "progress-matrix-parent-header";
-        parentHeaderRow.appendChild(th);
-      }
-      thead.appendChild(parentHeaderRow);
-    } else {
-      topHeaderRow.appendChild(cornerTh);
-      for (const grade of grades) {
-        const th = document.createElement("th");
-        th.textContent = grade;
-        th.className = "progress-matrix-parent-header";
-        topHeaderRow.appendChild(th);
-      }
-      thead.appendChild(topHeaderRow);
-    }
-    table.appendChild(thead);
-
-    const tbody = document.createElement("tbody");
-    const appendUnitBlock = (inner: HTMLElement, catId: string, catName: string): void => {
-      const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
-      const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
-      const block = document.createElement("button");
-      block.type = "button";
-      block.className = "progress-block progress-block-sm";
-      block.textContent = catName;
-      block.title = catName;
-      if (mastered > 0 && mastered === total) {
-        block.classList.add("mastered");
-      } else if (inProgress > 0 || mastered > 0) {
-        block.classList.add("in-progress");
-      }
-      block.addEventListener("click", () => {
-        this.selectUnitContext(subject, catId, catName);
-      });
-      inner.appendChild(block);
-    };
-
-    if (!this.progressMatrixTransposed) {
-      for (const grade of grades) {
-        const tr = document.createElement("tr");
-        const gradeCell = document.createElement("td");
-        gradeCell.textContent = grade;
-        tr.appendChild(gradeCell);
-        for (const col of colDefs) {
-          const td = document.createElement("td");
-          td.className = "progress-matrix-cell-units";
-          const gradeCats = this.useCase.getCategoriesForGrade(subject, grade);
-          const inner = document.createElement("div");
-          inner.className = "progress-matrix-cell-units-inner";
-          for (const [catId, catName] of Object.entries(gradeCats)) {
-            const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
-            const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
-            const belongs =
-              col.parentId === "__other__"
-                ? !topInfo
-                : col.parentId.startsWith("__top_direct_")
-                  ? topInfo?.id === col.topId && !parentInfo
-                  : parentInfo?.id === col.parentId;
-            if (belongs) appendUnitBlock(inner, catId, catName);
-          }
-          td.appendChild(inner);
-          tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-      }
-    } else {
-      for (const col of colDefs) {
-        const tr = document.createElement("tr");
-        const parentCell = document.createElement("td");
-        parentCell.textContent = buildMatrixCategoryLabel(col);
-        tr.appendChild(parentCell);
-        for (const grade of grades) {
-          const td = document.createElement("td");
-          td.className = "progress-matrix-cell-units";
-          const gradeCats = this.useCase.getCategoriesForGrade(subject, grade);
-          const inner = document.createElement("div");
-          inner.className = "progress-matrix-cell-units-inner";
-          for (const [catId, catName] of Object.entries(gradeCats)) {
-            const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
-            const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
-            const belongs =
-              col.parentId === "__other__"
-                ? !topInfo
-                : col.parentId.startsWith("__top_direct_")
-                  ? topInfo?.id === col.topId && !parentInfo
-                  : parentInfo?.id === col.parentId;
-            if (belongs) appendUnitBlock(inner, catId, catName);
-          }
-          td.appendChild(inner);
-          tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-      }
-    }
-    table.appendChild(tbody);
-
-    wrapper.appendChild(table);
-    container.appendChild(wrapper);
   }
 
   /**
