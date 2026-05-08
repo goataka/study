@@ -96,8 +96,8 @@ export class QuizApp {
   private shareUrl: string = "";
   /** 活動サマリで表示する日付（YYYY-MM-DD 形式）: 常に今日の日付 */
   private selectedActivityDate: string = QuizApp.currentDateString();
-  /** 総合タブから単元を選択した場合の選択情報（null の場合は未選択） */
-  private overallUnitSelected: { subject: string; categoryId: string; categoryName: string } | null = null;
+  /** 総合タブ・進度タブから単元を選択した場合の選択情報（null の場合は未選択） */
+  private selectedUnitContext: { subject: string; categoryId: string; categoryName: string } | null = null;
   /** 総合タブで各教科ごとに表示するおすすめ単元数 */
   private subjectRecommendedCounts: Map<string, number> = new Map();
   /** 総合タブの現在アクティブなサマリパネル */
@@ -452,7 +452,7 @@ export class QuizApp {
         this.filter.category = "all";
         this.filter.parentCategory = undefined;
         this.selectedTopCategoryId = null;
-        this.overallUnitSelected = null;
+        this.selectedUnitContext = null;
 
         tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
           t.classList.remove("active");
@@ -1761,11 +1761,7 @@ export class QuizApp {
           const capturedRec = recommended;
           const capturedSubjectId = subject.id;
           const handleActivate = (): void => {
-            this.overallUnitSelected = { subject: capturedSubjectId, categoryId: capturedRec.id, categoryName: capturedRec.name };
-            this.isPanelTabUserSelected = false;
-            const overviewRecords = this.useCase.getHistory();
-            this.autoSelectPanelTab(overviewRecords);
-            this.updateStartScreen(overviewRecords);
+            this.selectUnitContext(capturedSubjectId, capturedRec.id, capturedRec.name);
           };
 
           item.addEventListener("click", handleActivate);
@@ -1845,7 +1841,7 @@ export class QuizApp {
 
       item.addEventListener("click", () => {
         this.progressSubjectId = subj.id;
-        this.overallUnitSelected = null;
+        this.selectedUnitContext = null;
         this.renderCategoryList();
         this.updateStartScreen();
       });
@@ -2084,11 +2080,7 @@ export class QuizApp {
 
       // クリックで単元詳細を表示（進度タブに留まったまま表示）
       block.addEventListener("click", () => {
-        this.overallUnitSelected = { subject, categoryId: catId, categoryName: catName };
-        this.isPanelTabUserSelected = false;
-        const records = this.useCase.getHistory();
-        this.autoSelectPanelTab(records);
-        this.updateStartScreen(records);
+        this.selectUnitContext(subject, catId, catName);
       });
 
       blockSeq.appendChild(block);
@@ -2252,7 +2244,7 @@ export class QuizApp {
         block.classList.add("in-progress");
       }
       block.addEventListener("click", () => {
-        this.navigateToUnit(subject, catId);
+        this.selectUnitContext(subject, catId, catName);
       });
       inner.appendChild(block);
     };
@@ -2910,11 +2902,11 @@ export class QuizApp {
       return;
     }
     // 総合タブから単元選択時: 履歴があれば確認タブ、なければ解説タブ
-    if (this.overallUnitSelected !== null) {
+    if (this.selectedUnitContext !== null) {
       const hasHistory = allRecords.some(
         (r) =>
-          r.subject === this.overallUnitSelected!.subject &&
-          r.category === this.overallUnitSelected!.categoryId
+          r.subject === this.selectedUnitContext!.subject &&
+          r.category === this.selectedUnitContext!.categoryId
       );
       this.activePanelTab = hasHistory ? "quiz" : "guide";
       this.showPanelTab(this.activePanelTab);
@@ -2954,24 +2946,13 @@ export class QuizApp {
   }
 
   /**
-   * 進度タブ等から単元をクリックした場合に対応する教科タブに遷移し、
-   * 単元を選択した状態で確認タブを表示する。
+   * 現在タブを維持したまま単元を選択し、詳細表示を更新する。
    */
-  private navigateToUnit(subject: string, categoryId: string): void {
-    const parentCatInfo = this.useCase.getParentCategoryForUnit(subject, categoryId);
-    this.filter.subject = subject;
-    this.filter.category = categoryId;
-    this.filter.parentCategory = parentCatInfo?.id;
-    this.selectedTopCategoryId = null;
-    // 対応する教科タブをアクティブにして再描画する
-    this.selectTabByFilter();
-    this.renderCategoryList();
-    this.updateCategoryListActive();
-    // 確認タブを選択状態にする
-    this.activePanelTab = "quiz";
-    this.isPanelTabUserSelected = true;
-    this.showPanelTab("quiz");
+  private selectUnitContext(subject: string, categoryId: string, categoryName: string): void {
+    this.selectedUnitContext = { subject, categoryId, categoryName };
+    this.isPanelTabUserSelected = false;
     const records = this.useCase.getHistory();
+    this.autoSelectPanelTab(records);
     this.updateStartScreen(records);
   }
 
@@ -2992,12 +2973,12 @@ export class QuizApp {
     const selLevel = this.getSelectionLevel();
 
     // 総合タブから単元が選択されている場合: 教科の画面と同じ形式で詳細を表示
-    if (this.overallUnitSelected !== null) {
+    if (this.selectedUnitContext !== null) {
       container.classList.remove("hidden");
       container.innerHTML = "";
 
-      const subject = this.overallUnitSelected.subject;
-      const categoryId = this.overallUnitSelected.categoryId;
+      const subject = this.selectedUnitContext.subject;
+      const categoryId = this.selectedUnitContext.categoryId;
 
       const body = document.createElement("div");
       body.className = "selected-unit-info-body";
@@ -3019,7 +3000,7 @@ export class QuizApp {
       headerLeft.className = "selected-unit-info-header-left";
       const nameSpan = document.createElement("span");
       nameSpan.className = "selected-unit-info-name";
-      nameSpan.textContent = this.overallUnitSelected.categoryName;
+      nameSpan.textContent = this.selectedUnitContext.categoryName;
       headerLeft.appendChild(nameSpan);
       headerRow.appendChild(headerLeft);
 
@@ -3244,10 +3225,10 @@ export class QuizApp {
   }
 
   /**
-   * 総合タブから選択した単元の解説表示を閉じ、総合タブの概要画面に戻る。
+   * 選択した単元の解説表示を閉じ、単元未選択の一覧画面に戻る。
    */
   private closeOverallUnitView(): void {
-    this.overallUnitSelected = null;
+    this.selectedUnitContext = null;
     const records = this.useCase.getHistory();
     this.updateStartScreen(records);
   }
@@ -3283,11 +3264,11 @@ export class QuizApp {
 
     let guideUrl: string | undefined;
 
-    if (this.overallUnitSelected !== null) {
-      // 総合タブから単元選択時: overallUnitSelected の教科・単元で解説 URL を取得
+    if (this.selectedUnitContext !== null) {
+      // 単元選択時: selectedUnitContext の教科・単元で解説 URL を取得
       guideUrl = this.useCase.getCategoryGuideUrl(
-        this.overallUnitSelected.subject,
-        this.overallUnitSelected.categoryId
+        this.selectedUnitContext.subject,
+        this.selectedUnitContext.categoryId
       );
     } else {
       const selLevel = this.getSelectionLevel();
@@ -3964,10 +3945,10 @@ export class QuizApp {
    * それ以外の場合は通常の this.filter をそのまま返す。
    */
   private getEffectiveFilter(): QuizFilter {
-    if (this.overallUnitSelected !== null) {
+    if (this.selectedUnitContext !== null) {
       return {
-        subject: this.overallUnitSelected.subject,
-        category: this.overallUnitSelected.categoryId,
+        subject: this.selectedUnitContext.subject,
+        category: this.selectedUnitContext.categoryId,
         parentCategory: undefined,
       };
     }
@@ -3981,7 +3962,7 @@ export class QuizApp {
   private navigateBackToList(): void {
     if (this.filter.subject === "all" || this.filter.subject === "progress") {
       // 総合タブ・進度タブの場合は単元選択を解除する
-      this.overallUnitSelected = null;
+      this.selectedUnitContext = null;
     } else {
       // 通常タブの場合は単元・カテゴリ選択を解除する
       this.filter.category = "all";
@@ -4004,7 +3985,7 @@ export class QuizApp {
     this.filter.category = "all";
     this.filter.parentCategory = undefined;
     this.selectedTopCategoryId = null;
-    this.overallUnitSelected = null;
+    this.selectedUnitContext = null;
 
     tabsContainer.querySelectorAll(".subject-tab").forEach((t) => {
       t.classList.remove("active");
@@ -4056,7 +4037,7 @@ export class QuizApp {
       this.updateGuidePanelContent();
     }
     if (this.filter.subject === "all") {
-      if (this.overallUnitSelected !== null) {
+      if (this.selectedUnitContext !== null) {
         // 総合タブで単元選択中: 解説コンテンツを更新する
         this.updateGuidePanelContent();
       } else {
@@ -4342,7 +4323,7 @@ export class QuizApp {
     }
 
     if (this.filter.subject === "progress") {
-      const hasProgressUnit = this.overallUnitSelected !== null;
+      const hasProgressUnit = this.selectedUnitContext !== null;
       subjectContent.classList.remove("category-only");
       subjectContent.classList.remove("all-subject-layout");
       subjectContent.classList.remove("all-subject-unit-selected");
@@ -4362,6 +4343,7 @@ export class QuizApp {
         document.getElementById("progressDetailPanel")?.classList.add("hidden");
         this.showPanelTab(this.activePanelTab);
       } else {
+        this.renderProgressDetailPanel();
         ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
           document.getElementById(id)?.classList.add("hidden");
         });
@@ -4377,7 +4359,7 @@ export class QuizApp {
     }
 
     const isAll = this.filter.subject === "all";
-    const hasOverallUnit = this.overallUnitSelected !== null;
+    const hasOverallUnit = this.selectedUnitContext !== null;
     const selLevel = this.getSelectionLevel();
     const noCategory = !isAll && selLevel === "none";
     const isCategoryLevel = !isAll && (selLevel === "topCategory" || selLevel === "parentCategory");

@@ -783,6 +783,56 @@ describe("QuizApp — 進度タブ仕様", () => {
     const panel = document.getElementById("progressDetailPanel");
     expect(panel?.classList.contains("hidden")).toBe(true);
   });
+
+  it("進度タブのマトリクス単元ブロックをクリックしても教科タブへ移動せず、単元詳細のみ表示される", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({
+            version: "2.0.0",
+            subjects: { english: { name: "英語" } },
+            questionFiles: ["english/matrix-click.json"],
+          }),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({
+          subject: "english",
+          subjectName: "英語",
+          category: "matrix-click-cat",
+          categoryName: "マトリクスクリック単元",
+          parentCategory: "intro",
+          parentCategoryName: "入門",
+          topCategory: "grammar",
+          topCategoryName: "文法",
+          referenceGrade: "小学1年",
+          questions: [
+            { id: "mc-1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" },
+          ],
+        }),
+      } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const block = document.querySelector(".progress-block-sm") as HTMLButtonElement | null;
+    expect(block).not.toBeNull();
+    block?.click();
+
+    const activeProgressTab = document.querySelector('.subject-tab[data-subject="progress"].active');
+    expect(activeProgressTab).not.toBeNull();
+    const selectedInfo = document.getElementById("selectedUnitInfo");
+    expect(selectedInfo?.classList.contains("hidden")).toBe(false);
+    const panel = document.getElementById("progressDetailPanel");
+    expect(panel?.classList.contains("hidden")).toBe(true);
+  });
 });
 
 describe("QuizApp — 回答フィードバック仕様", () => {
