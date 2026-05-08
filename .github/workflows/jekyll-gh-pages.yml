@@ -9,8 +9,6 @@ on:
 
 env:
   NODE_VERSION: "22"
-  # Playwright の Docker イメージタグ。CI ワークフローと揃えること。
-  PLAYWRIGHT_VERSION: "v1.59.1"
 
 permissions:
   contents: read
