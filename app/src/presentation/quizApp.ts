@@ -201,6 +201,10 @@ export class QuizApp {
    * URL パラメータまたは URL フラグメントからフィルターを読み込む
    * 例: ?subject=english&category=tenses-regular-present
    *     #subject=english&category=tenses-regular-present
+   *
+   * 注意: `screen` は `quiz`/`result` 状態を保持するためフラグメントに書き出されるが、
+   * これらの画面は実行中のクイズセッションを必要とするためリロード時に復元しない
+   * （`screen=start` は初期表示と一致するため特別な処理は不要）。
    */
   private loadFilterFromURL(): void {
     const params = this.getURLParams();
@@ -227,6 +231,7 @@ export class QuizApp {
    * 現在の画面・教科・単元・パネルタブの状態を URL フラグメントへ反映する。
    * クエリパラメータ (?subject=...) が既に指定されている場合はそちらを尊重し、フラグメント側のみ更新する。
    * 表示に影響しないため `replaceState` を用い、履歴スタックには追加しない。
+   * `screen=start` は初期状態と一致するためフラグメントに含めない。
    */
   private syncURLFragment(screenName?: "start" | "quiz" | "result"): void {
     const hashParams = new URLSearchParams();
@@ -237,7 +242,9 @@ export class QuizApp {
         : document.getElementById("resultScreen")?.classList.contains("hidden") === false
           ? "result"
           : "start");
-    hashParams.set("screen", screen);
+    if (screen !== "start") {
+      hashParams.set("screen", screen);
+    }
     if (this.filter.subject) {
       hashParams.set("subject", this.filter.subject);
     }
@@ -247,7 +254,8 @@ export class QuizApp {
     if (this.activePanelTab) {
       hashParams.set("panel", this.activePanelTab);
     }
-    const newHash = `#${hashParams.toString()}`;
+    const params = hashParams.toString();
+    const newHash = params ? `#${params}` : "";
     if (window.location.hash === newHash) return;
     const newUrl = `${window.location.pathname}${window.location.search}${newHash}`;
     window.history.replaceState(window.history.state, document.title, newUrl);
