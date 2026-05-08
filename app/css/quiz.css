@@ -143,7 +143,7 @@ header h1 {
 .app-footer {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 12px;
     padding: 4px 12px;
     background-color: white;
@@ -156,28 +156,23 @@ header h1 {
     min-height: 8px;
 }
 
-.footer-github-link {
+.outer-github-link {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    padding: 2px 8px;
-    border: 1px solid #d1d5da;
-    border-radius: 4px;
-    background: white;
-    color: #24292e;
-    font-size: 12px;
-    font-weight: 600;
+    justify-content: center;
+    color: #fff;
     text-decoration: none;
+    opacity: 0.9;
+    transition: opacity 0.15s;
 }
 
-.footer-github-link:hover {
-    background: #f6f8fa;
+.outer-github-link:hover {
+    opacity: 1;
 }
 
-.footer-github-link:focus-visible {
-    outline: 2px solid #0366d6;
+.outer-github-link:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
     outline-offset: 2px;
-    background: #f0f7ff;
 }
 
 /* ノート外の下部エリア（コピーライト + フォントサイズ） */
@@ -198,6 +193,14 @@ header h1 {
     letter-spacing: 0.05em;
     flex-shrink: 0;
     grid-column: 2;
+}
+
+.outer-bottom-actions {
+    grid-column: 3;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 
@@ -305,6 +308,8 @@ header h1 {
     transform: translateY(2px);
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
     transition: filter 0.15s, transform 0.1s;
+    min-height: 31px;
+    line-height: 1;
 }
 
 .tabs-link-note svg {
@@ -2071,9 +2076,9 @@ header h1 {
     white-space: nowrap;
 }
 
-/* 単元詳細内の学年バッジを13pxに */
+/* 単元詳細内の学年バッジを18pxに */
 .selected-unit-info .category-grade {
-    font-size: 13px;
+    font-size: 18px;
 }
 
 .selected-unit-info-desc {
@@ -3392,6 +3397,7 @@ button:disabled {
     background-image: repeating-linear-gradient(
         transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px
     );
+    background-position: 0 12px;
     overflow-y: auto;
     padding: 0 8px;
     box-sizing: border-box;
@@ -4291,6 +4297,10 @@ body.font-size-medium .subject-tab {
     font-size: 18px;
 }
 
+body.font-size-medium .tabs-link-note {
+    font-size: 18px;
+}
+
 body.font-size-medium .panel-tab {
     font-size: 18px;
 }
@@ -4453,7 +4463,7 @@ body.font-size-medium .selected-unit-info-category {
 }
 
 body.font-size-medium .selected-unit-info .category-grade {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 body.font-size-medium .selected-unit-info-desc,
@@ -4644,6 +4654,10 @@ body.font-size-large .subject-tab {
     font-size: 22px;
 }
 
+body.font-size-large .tabs-link-note {
+    font-size: 22px;
+}
+
 body.font-size-large .panel-tab {
     font-size: 22px;
 }
@@ -4806,7 +4820,7 @@ body.font-size-large .selected-unit-info-category {
 }
 
 body.font-size-large .selected-unit-info .category-grade {
-    font-size: 19px;
+    font-size: 18px;
 }
 
 body.font-size-large .selected-unit-info-desc,

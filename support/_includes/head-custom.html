@@ -22,6 +22,19 @@
   /* フォントサイズ：大（クイズアプリのフォントサイズ設定に連動） */
   html.embedded-mode.font-size-large { font-size: 1.5em; }
   html.embedded-mode.font-size-large body { font-size: 1em !important; }
+  body {
+    background-color: #7a4e28;
+    background-image: url("{{ '/app/public/wood-bg.png' | relative_url }}");
+    background-repeat: repeat;
+  }
+  .markdown-body {
+    background-color: #fff;
+    background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+    background-position: 0 12px;
+    border: 1px solid #d1d5da;
+    border-radius: 0;
+    padding: 16px;
+  }
 </style>
 <script>
   // ?embedded=1 が付与されているとき（クイズの解説 iframe として表示されるとき）、

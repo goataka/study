@@ -1845,7 +1845,9 @@ export class QuizApp {
 
       item.addEventListener("click", () => {
         this.progressSubjectId = subj.id;
+        this.overallUnitSelected = null;
         this.renderCategoryList();
+        this.updateStartScreen();
       });
       subjectList.appendChild(item);
     }
@@ -2080,9 +2082,13 @@ export class QuizApp {
         block.classList.add("in-progress");
       }
 
-      // クリックで単元詳細を表示（確認タブを選択状態で）
+      // クリックで単元詳細を表示（進度タブに留まったまま表示）
       block.addEventListener("click", () => {
-        this.navigateToUnit(subject, catId);
+        this.overallUnitSelected = { subject, categoryId: catId, categoryName: catName };
+        this.isPanelTabUserSelected = false;
+        const records = this.useCase.getHistory();
+        this.autoSelectPanelTab(records);
+        this.updateStartScreen(records);
       });
 
       blockSeq.appendChild(block);
@@ -2324,7 +2330,7 @@ export class QuizApp {
    */
   private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
     const dateToCheck = this.parseActivityDate().toDateString();
-    const isOverallActivityRecord = (r: QuizRecord): boolean => r.mode !== "manual" && r.category !== "all";
+    const isOverallActivityRecord = (r: QuizRecord): boolean => r.mode !== "manual";
     return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
   }
 
@@ -3973,8 +3979,8 @@ export class QuizApp {
    * 単元・カテゴリ選択を解除して単元一覧を表示する。
    */
   private navigateBackToList(): void {
-    if (this.filter.subject === "all") {
-      // 総合タブの場合は単元選択を解除する
+    if (this.filter.subject === "all" || this.filter.subject === "progress") {
+      // 総合タブ・進度タブの場合は単元選択を解除する
       this.overallUnitSelected = null;
     } else {
       // 通常タブの場合は単元・カテゴリ選択を解除する
@@ -4336,6 +4342,7 @@ export class QuizApp {
     }
 
     if (this.filter.subject === "progress") {
+      const hasProgressUnit = this.overallUnitSelected !== null;
       subjectContent.classList.remove("category-only");
       subjectContent.classList.remove("all-subject-layout");
       subjectContent.classList.remove("all-subject-unit-selected");
@@ -4347,17 +4354,25 @@ export class QuizApp {
       // 進度タブでは「おすすめ単元」タイトルを非表示、「進度」タイトルを表示
       document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
       document.getElementById("categoryListTitle")?.classList.remove("hidden");
-      // 進度タブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、進度詳細パネルを表示する
+      // 進度タブでは、単元未選択時は進度詳細のみ表示、単元選択時は単元詳細のみ表示する
       ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-        document.getElementById(id)?.classList.add("hidden");
+        document.getElementById(id)?.classList.toggle("hidden", !hasProgressUnit);
       });
-      ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
-        document.getElementById(id)?.classList.add("hidden");
-      });
+      if (hasProgressUnit) {
+        document.getElementById("progressDetailPanel")?.classList.add("hidden");
+        this.showPanelTab(this.activePanelTab);
+      } else {
+        ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
+          document.getElementById(id)?.classList.add("hidden");
+        });
+      }
       document.getElementById("overallSummaryPanel")?.classList.add("hidden");
-      document.getElementById("selectedUnitInfo")?.classList.add("hidden");
       document.getElementById("adminContent")?.classList.add("hidden");
-      // 進度詳細パネルは renderProgressDetailPanel() で表示する（ここでは非表示にしない）
+      if (hasProgressUnit) {
+        this.updateSelectedUnitInfo();
+      } else {
+        document.getElementById("selectedUnitInfo")?.classList.add("hidden");
+      }
       return;
     }
 
