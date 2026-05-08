@@ -19,6 +19,8 @@ export const SUBJECTS = [
   { id: "admin", name: "管理", icon: "⚙️" },
 ] as const;
 
+const KATAKANA_TO_HIRAGANA_OFFSET = 0x60;
+
 /** 参考学年文字列から CSS クラス名を返す（小学→grade-elementary, 中学→grade-middle, 高校→grade-high） */
 export function gradeColorClass(referenceGrade: string): string {
   if (referenceGrade.startsWith("小")) return "grade-elementary";
@@ -81,9 +83,30 @@ export function isHiraganaOnly(str: string): boolean {
   return /^[\u3041-\u309F]+$/.test(str);
 }
 
+/** カタカナをひらがなへ寄せた正規化文字列を返す。 */
+export function normalizeKanaText(str: string): string {
+  return str
+    .normalize("NFKC")
+    .replace(/[\u30A1-\u30F6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - KATAKANA_TO_HIRAGANA_OFFSET));
+}
+
 /** 文字列がラテン文字（ASCII 0x20–0x7E の印字可能文字）のみで構成されているかどうかを判定する。 */
 export function isLatinOnly(str: string): boolean {
   return /^[\x20-\x7E]+$/.test(str);
+}
+
+/** 問題や単元の学習状況。 */
+export type LearningProgressStatus = "unlearned" | "studying" | "learned";
+
+/** 習得数・学習中数から学習状況を返す。 */
+export function getLearningProgressStatus(progress: {
+  mastered: number;
+  total: number;
+  inProgress: number;
+}): LearningProgressStatus {
+  const isLearned = progress.total > 0 && progress.mastered === progress.total;
+  if (isLearned) return "learned";
+  return progress.inProgress > 0 || progress.mastered > 0 ? "studying" : "unlearned";
 }
 
 // ─── DOM ユーティリティ ─────────────────────────────────────────────────────

@@ -266,10 +266,19 @@ export function setupQuestionListFilterListeners(onSelect: (value: "all" | "unle
   });
 }
 
-/** 進度タブ: 学習済み単元の表示/非表示切替ボタンのイベント。 */
-export function setupProgressFilterListeners(onToggleHideLearned: (hide: boolean) => void): void {
-  document.getElementById("progressHideLearnedBtn")?.addEventListener("click", () => onToggleHideLearned(true));
-  document.getElementById("progressShowAllBtn")?.addEventListener("click", () => onToggleHideLearned(false));
+/** 進度タブ: 学習状況フィルター切替ボタンのイベント。 */
+export function setupProgressFilterListeners(
+  onSelect: (filter: "all" | "unlearned" | "studying" | "learned") => void,
+): void {
+  const filterButtons = [
+    { id: "progressStatusAllBtn", filter: "all" as const },
+    { id: "progressStatusUnlearnedBtn", filter: "unlearned" as const },
+    { id: "progressStatusStudyingBtn", filter: "studying" as const },
+    { id: "progressStatusLearnedBtn", filter: "learned" as const },
+  ];
+  filterButtons.forEach(({ id, filter }) => {
+    document.getElementById(id)?.addEventListener("click", () => onSelect(filter));
+  });
 }
 
 /** メモエリアのコントロール（クリア・消しゴム）のイベント。 */

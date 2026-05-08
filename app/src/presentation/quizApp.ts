@@ -39,7 +39,7 @@ import { copyShareSummary as copyShareSummaryAction } from "./quizApp/shareSumma
 import { loadGuideContent as loadGuideContentFn } from "./quizApp/guideLoader";
 import { renderHistoryList as renderHistoryListView } from "./quizApp/historyListView";
 import { renderQuestionList as renderQuestionListView, type QuestionListFilter } from "./quizApp/questionListView";
-import { getURLParams, parseURLState, syncURLFragment } from "./quizApp/urlStateService";
+import { getURLParams, parseURLState, syncURLFragment, type ProgressStatusFilter } from "./quizApp/urlStateService";
 import { showAnswerFeedback, hideAnswerFeedback } from "./quizApp/answerFeedback";
 import { updateNavigationButtons } from "./quizApp/navigationButtons";
 import { updateSpeakButton } from "./quizApp/speakButton";
@@ -172,8 +172,8 @@ export class QuizApp {
   private progressDetailViewMode: "grade" | "category" | "matrix" = "matrix";
   /** マトリクス表示の縦横向き（false=学年が行、true=学年が列） */
   private progressMatrixTransposed: boolean = false;
-  /** 進度タブで学習済み単元を非表示にするか */
-  private hideLearnedProgressUnits: boolean = false;
+  /** 進度タブの学習状況フィルター */
+  private progressStatusFilter: ProgressStatusFilter = "all";
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
   private questionListFilter: QuestionListFilter = "all";
@@ -197,7 +197,8 @@ export class QuizApp {
         const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
         if (textInput) {
           textInput.value += char;
-          textInput.focus();
+          // 候補ボタンをタップしたあとにモバイルキーボードが再表示されないよう入力欄のフォーカスを外す。
+          textInput.blur();
         }
       },
     });
@@ -295,7 +296,7 @@ export class QuizApp {
     if (parsed.overallPanel !== undefined) this.activeOverallPanel = parsed.overallPanel;
     if (parsed.progressSubject !== undefined) this.progressSubjectId = parsed.progressSubject;
     if (parsed.progressView !== undefined) this.progressDetailViewMode = parsed.progressView;
-    if (parsed.hideLearnedProgressUnits) this.hideLearnedProgressUnits = true;
+    if (parsed.progressStatusFilter !== undefined) this.progressStatusFilter = parsed.progressStatusFilter;
     if (parsed.categoryView !== undefined) this.categoryViewMode = parsed.categoryView;
     if (parsed.questionFilter !== undefined) this.questionListFilter = parsed.questionFilter;
     if (parsed.selectedUnitContext !== undefined) this.selectedUnitContext = parsed.selectedUnitContext;
@@ -315,7 +316,7 @@ export class QuizApp {
         activeOverallPanel: this.activeOverallPanel,
         progressSubjectId: this.progressSubjectId,
         progressDetailViewMode: this.progressDetailViewMode,
-        hideLearnedProgressUnits: this.hideLearnedProgressUnits,
+        progressStatusFilter: this.progressStatusFilter,
         categoryViewMode: this.categoryViewMode,
         questionListFilter: this.questionListFilter,
         selectedUnitContext: this.selectedUnitContext,
@@ -751,7 +752,7 @@ export class QuizApp {
    * 学年別またはカテゴリ別でグループ化した単元名ブロック列を表示する。
    */
   private renderProgressDetailPanel(): void {
-    syncProgressDetailControls(this.progressDetailViewMode, this.hideLearnedProgressUnits);
+    syncProgressDetailControls(this.progressDetailViewMode, this.progressStatusFilter);
     this.renderProgressDetailContent();
   }
 
@@ -767,7 +768,7 @@ export class QuizApp {
     const blockCtx = {
       subject: this.progressSubjectId,
       useCase: this.useCase,
-      hideLearned: this.hideLearnedProgressUnits,
+      statusFilter: this.progressStatusFilter,
       onSelectUnit: (subject: string, catId: string, catName: string) =>
         this.selectUnitContext(subject, catId, catName),
     };
@@ -778,7 +779,7 @@ export class QuizApp {
         subject: this.progressSubjectId,
         useCase: this.useCase,
         transposed: this.progressMatrixTransposed,
-        hideLearned: this.hideLearnedProgressUnits,
+        statusFilter: this.progressStatusFilter,
         onToggleTranspose: () => {
           this.progressMatrixTransposed = !this.progressMatrixTransposed;
           this.renderProgressDetailContent();
@@ -970,6 +971,7 @@ export class QuizApp {
         ? { subject: this.selectedUnitContext.subject, categoryId: this.selectedUnitContext.categoryId }
         : null,
       selectionLevel: this.getSelectionLevel(),
+      isGradeGroupSelected: this.selectedGradeGroup !== null,
       filter: this.filter,
     });
     this.showPanelTab(this.activePanelTab);
@@ -1074,6 +1076,7 @@ export class QuizApp {
         selectedUnitContext: this.selectedUnitContext,
         filter: this.filter,
         selectedTopCategoryId: this.selectedTopCategoryId,
+        selectedGradeGroup: this.selectedGradeGroup,
         selectionLevel: this.getSelectionLevel(),
       },
       {
@@ -1177,8 +1180,8 @@ export class QuizApp {
   }
 
   private setupProgressFilterListeners(): void {
-    setupProgressFilterListenersFn((hide) => {
-      this.hideLearnedProgressUnits = hide;
+    setupProgressFilterListenersFn((filter) => {
+      this.progressStatusFilter = filter;
       this.renderProgressDetailPanel();
       this.syncURLFragment();
     });
@@ -1729,7 +1732,10 @@ export class QuizApp {
    */
   private selectFirstUnlearnedCategory(): void {
     const params = this.getURLParams();
-    const result = findFirstUnlearnedCategory(params.has("category") || params.has("unitCategory"));
+    // 教科が明示指定されている場合は、その教科内で最初の単元へ自動移動しない。
+    const result = findFirstUnlearnedCategory(
+      params.has("subject") || params.has("category") || params.has("unitCategory"),
+    );
     if (!result) return;
     this.filter.subject = result.subject;
     this.filter.category = result.category;

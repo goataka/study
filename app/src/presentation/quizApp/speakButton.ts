@@ -7,6 +7,19 @@
 
 import type { Question } from "../../domain/question";
 
+const QUOTED_SPEECH_PATTERNS = [/「([^」]+)」/, /`([^`]+)`/] as const;
+const TRAILING_HINT_PATTERN = /\s*\([^)]*\)\s*$/;
+
+function extractSpeechText(questionText: string): string {
+  const trimmed = questionText.trim();
+  for (const pattern of QUOTED_SPEECH_PATTERNS) {
+    const match = trimmed.match(pattern);
+    if (match?.[1]) return match[1];
+  }
+
+  return trimmed.replace(TRAILING_HINT_PATTERN, "").trim();
+}
+
 /**
  * 現在の問題に応じて読み上げボタンの表示・クリックハンドラを更新する。
  */
@@ -22,7 +35,7 @@ export function updateSpeakButton(question: Question): void {
     btn.onclick = () => {
       try {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(question.question);
+        const utterance = new SpeechSynthesisUtterance(extractSpeechText(question.question));
         utterance.lang = "en-US";
         window.speechSynthesis.speak(utterance);
       } catch {

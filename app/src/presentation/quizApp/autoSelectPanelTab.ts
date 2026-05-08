@@ -17,6 +17,8 @@ export interface AutoSelectPanelTabParams {
   selectedUnitContext: { subject: string; categoryId: string } | null;
   /** 教科タブでの選択レベル。 */
   selectionLevel: "none" | "topCategory" | "parentCategory" | "unit";
+  /** 学年別ビューで学年グループが選択されているか。 */
+  isGradeGroupSelected: boolean;
   filter: QuizFilter;
 }
 
@@ -41,6 +43,9 @@ export function selectNextPanelTab(allRecords: QuizRecord[], params: AutoSelectP
   }
   if (params.selectionLevel === "topCategory" || params.selectionLevel === "parentCategory") {
     // カテゴリ/サブカテゴリ選択時は常に解説タブを表示
+    return "guide";
+  }
+  if (params.isGradeGroupSelected) {
     return "guide";
   }
   if (params.selectionLevel === "unit") {

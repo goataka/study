@@ -50,8 +50,8 @@ header {
   border-bottom: 2px solid #c8d8e8;
   box-shadow: none;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   flex-shrink: 0;
 }
 
@@ -1182,7 +1182,7 @@ header h1 {
 .subject-overview-item {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   padding: 8px 12px;
   border-radius: 8px;
@@ -1226,9 +1226,10 @@ header h1 {
 .subject-overview-title-row {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   gap: 6px;
   min-width: 0;
+  flex-wrap: wrap;
 }
 
 /* 学年バッジを右に配置 */
@@ -1242,6 +1243,7 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
 }
 
 .subject-overview-progress-bar {
@@ -1270,6 +1272,7 @@ header h1 {
 .subject-overview-rec-name {
   font-size: 16px;
   font-weight: 600;
+  min-width: 0;
 }
 
 .subject-overview-grade {
@@ -3904,10 +3907,7 @@ button:disabled {
   border: 2px solid #e1e4e8;
   border-radius: 8px;
   overflow-y: auto;
-  background-color: transparent;
-  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
-  background-size: 100% 32px;
-  background-position: 0 12px;
+  background: transparent;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -3972,10 +3972,7 @@ button:disabled {
   min-height: 400px;
   cursor: crosshair;
   touch-action: none; /* タッチイベントのデフォルト動作を無効化 */
-  background-color: #ffffff;
-  background-image: repeating-linear-gradient(to bottom, transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
-  background-size: 100% 32px;
-  background-position: 0 12px;
+  background: transparent;
 }
 
 .notes-btn.eraser-active {
@@ -4399,6 +4396,7 @@ button:disabled {
 .kanji-input-controls {
   display: flex;
   gap: 6px;
+  justify-content: flex-end;
 }
 
 .kanji-ctrl-btn {
@@ -4441,6 +4439,13 @@ button:disabled {
   gap: 4px;
   min-width: 50px;
   min-height: 40px;
+}
+
+.kanji-candidates-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
 }
 
 .kanji-candidate-btn {
@@ -5855,6 +5860,7 @@ body.font-size-large .admin-data-close-btn {
   --admin-menu-indent: 14px;
   margin-left: var(--admin-menu-indent);
   width: calc(100% - var(--admin-menu-indent));
+  background: transparent;
 }
 
 .admin-menu-btn:hover:not(.active) {

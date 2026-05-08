@@ -6,6 +6,10 @@
  */
 
 import type { QuizUseCase } from "../application/quizUseCase";
+import type { ProgressStatusFilter } from "./quizApp/urlStateService";
+import { getLearningProgressStatus } from "./uiHelpers";
+
+const EMPTY_PROGRESS = { mastered: 0, total: 0, inProgress: 0 } as const;
 
 export interface ProgressMatrixContext {
   /** 描画対象の教科 ID */
@@ -14,8 +18,8 @@ export interface ProgressMatrixContext {
   useCase: QuizUseCase;
   /** 縦横を入れ替え表示するか */
   transposed: boolean;
-  /** 学習済み単元を非表示にするか */
-  hideLearned: boolean;
+  /** 学習状況フィルター */
+  statusFilter: ProgressStatusFilter;
   /** 縦横切り替えボタン押下時のコールバック（state を反転して再描画する） */
   onToggleTranspose: () => void;
   /** 単元ブロック押下時のコールバック */
@@ -31,9 +35,15 @@ type ColDef = { parentId: string; parentName: string; topId: string; topName: st
 export function renderProgressDetailMatrix(container: HTMLElement, ctx: ProgressMatrixContext): void {
   const { subject, useCase } = ctx;
   const grades = useCase.getUniqueGradesForSubject(subject);
+  const categoryProgressMap = new Map<string, { mastered: number; total: number; inProgress: number }>();
 
   // 全カテゴリを収集し、トップ/親カテゴリ情報を付与する
   const allCats = useCase.getCategoriesForSubject(subject);
+  Object.keys(allCats).forEach((catId) => {
+    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+    const inProgress = useCase.getInProgressCount({ subject, category: catId });
+    categoryProgressMap.set(catId, { mastered, total, inProgress });
+  });
 
   // 列定義: 親カテゴリ単位で展開（トップカテゴリ情報も保持）
   const parentCatsMap = useCase.getParentCategoriesForSubject(subject);
@@ -102,14 +112,14 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
     return `${col.topName} / ${col.parentName}`;
   };
 
-  // isUnitVisible: hideLearned が true のとき完全習得済みの単元は非表示
+  // isUnitVisible: 現在の学習状況フィルターに一致する単元のみ表示する
   const isUnitVisible = (catId: string): boolean => {
-    if (!ctx.hideLearned) return true;
-    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
-    return !(total > 0 && mastered === total);
+    if (ctx.statusFilter === "all") return true;
+    const { mastered, total, inProgress } = categoryProgressMap.get(catId) ?? EMPTY_PROGRESS;
+    return getLearningProgressStatus({ mastered, total, inProgress }) === ctx.statusFilter;
   };
 
-  // hideLearned 時に表示すべき行・列を絞り込む
+  // フィルター適用時に表示すべき行・列を絞り込む
   const gradeCatsMap = new Map<string, Record<string, string>>();
   for (const grade of grades) {
     gradeCatsMap.set(grade, useCase.getCategoriesForGrade(subject, grade));
@@ -137,18 +147,20 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   };
 
   // 表示する学年・列のリストを計算（hideLearned 時は空の行・列を除外）
-  const visibleGrades = ctx.hideLearned
-    ? grades.filter((grade) => {
-        const gradeCats = gradeCatsMap.get(grade) ?? {};
-        return Object.keys(gradeCats).some((catId) => isUnitVisible(catId));
-      })
-    : grades;
+  const visibleGrades =
+    ctx.statusFilter !== "all"
+      ? grades.filter((grade) => {
+          const gradeCats = gradeCatsMap.get(grade) ?? {};
+          return Object.keys(gradeCats).some((catId) => isUnitVisible(catId));
+        })
+      : grades;
 
-  const visibleCols = ctx.hideLearned
-    ? colDefs.filter((col) => {
-        return Object.keys(allCats).some((catId) => isUnitInColumn(catId, col) && isUnitVisible(catId));
-      })
-    : colDefs;
+  const visibleCols =
+    ctx.statusFilter !== "all"
+      ? colDefs.filter((col) => {
+          return Object.keys(allCats).some((catId) => isUnitInColumn(catId, col) && isUnitVisible(catId));
+        })
+      : colDefs;
 
   if (visibleGrades.length === 0 || visibleCols.length === 0) {
     const empty = document.createElement("div");
@@ -217,8 +229,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   const tbody = document.createElement("tbody");
   const appendUnitBlock = (inner: HTMLElement, catId: string, catName: string): void => {
     if (!isUnitVisible(catId)) return;
-    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
-    const inProgress = useCase.getInProgressCount({ subject, category: catId });
+    const { mastered, total, inProgress } = categoryProgressMap.get(catId) ?? EMPTY_PROGRESS;
     const block = document.createElement("button");
     block.type = "button";
     block.className = "progress-block progress-block-sm";

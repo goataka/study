@@ -105,6 +105,19 @@ describe("KanjiCanvasController", () => {
       expect(texts).toEqual(["あ", "い"]);
     });
 
+    it("ひらがな問題ではカタカナ候補もひらがなに正規化して表示する", () => {
+      (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
+        recognize: () => "ガ ぎ キ",
+      };
+      const ctrl = new KanjiCanvasController({
+        getCorrectAnswer: () => "がぎ",
+        onSelectCandidate: () => {},
+      });
+      ctrl.updateCandidates();
+      const texts = Array.from(document.querySelectorAll(".kanji-candidate-btn")).map((b) => b.textContent);
+      expect(texts).toEqual(["が", "ぎ", "き"]);
+    });
+
     it("英語問題（ラテン文字）の場合はラテン文字以外を除外する", () => {
       const onSelectCandidate = vi.fn();
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {

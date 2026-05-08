@@ -117,7 +117,7 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     expect(window.location.hash).toContain("overallPanel=share");
   });
 
-  it("進度タブの教科・表示モード・学習済み非表示がフラグメントに反映される", async () => {
+  it("進度タブの教科・表示モード・学習状況フィルターがフラグメントに反映される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -125,12 +125,12 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     progressTab.click();
     (document.querySelector('.progress-subject-list-item[data-subject="english"]') as HTMLElement | null)?.click();
     document.getElementById("progressDetailTab-category")?.click();
-    document.getElementById("progressHideLearnedBtn")?.click();
+    document.getElementById("progressStatusLearnedBtn")?.click();
 
     expect(window.location.hash).toContain("subject=progress");
     expect(window.location.hash).toContain("progressSubject=english");
     expect(window.location.hash).toContain("progressView=category");
-    expect(window.location.hash).toContain("progressHideLearned=1");
+    expect(window.location.hash).toContain("progressStatus=learned");
   });
 
   it("問題一覧フィルターとカテゴリ表示モードをフラグメントから復元できる", async () => {
@@ -147,11 +147,11 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     expect(document.querySelector(".category-view-toggle")?.textContent).toContain("🎓");
   });
 
-  it("進度タブの教科・表示モード・学習済み非表示をフラグメントから復元できる", async () => {
+  it("進度タブの教科・表示モード・学習状況フィルターをフラグメントから復元できる", async () => {
     window.history.replaceState(
       {},
       "",
-      "/#subject=progress&progressSubject=english&progressView=grade&progressHideLearned=1",
+      "/#subject=progress&progressSubject=english&progressView=grade&progressStatus=learned",
     );
 
     new QuizApp();
@@ -159,7 +159,17 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
 
     expect(document.querySelector('.subject-tab[data-subject="progress"]')?.classList.contains("active")).toBe(true);
     expect(document.getElementById("progressDetailTab-grade")?.classList.contains("active")).toBe(true);
-    expect(document.getElementById("progressHideLearnedBtn")?.getAttribute("aria-pressed")).toBe("true");
+    expect(document.getElementById("progressStatusLearnedBtn")?.getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("subject だけが指定された場合は最初の単元を自動選択しない", async () => {
+    window.history.replaceState({}, "", "/#subject=english");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(document.querySelector('.subject-tab[data-subject="english"]')?.classList.contains("active")).toBe(true);
+    expect(document.querySelector(".category-item.active")).toBeNull();
   });
 
   it("総合タブで選択中の単元詳細表示をフラグメントから復元できる", async () => {
