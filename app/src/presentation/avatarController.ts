@@ -70,11 +70,13 @@ export class AvatarController {
       img.classList.add("visible");
       placeholder.classList.add("hidden");
       img.style.objectPosition = `${this.cropX}% ${this.cropY}%`;
+      img.style.transformOrigin = `${this.cropX}% ${this.cropY}%`;
       img.style.transform = `scale(${this.zoom})`;
     } else {
       img.removeAttribute("src");
       img.classList.remove("visible");
       placeholder.classList.remove("hidden");
+      img.style.transformOrigin = "";
       img.style.transform = "";
     }
   }
@@ -150,11 +152,13 @@ export class AvatarController {
       preview.classList.add("visible");
       placeholder.classList.add("hidden");
       preview.style.objectPosition = `${this.pendingCropX}% ${this.pendingCropY}%`;
+      preview.style.transformOrigin = `${this.pendingCropX}% ${this.pendingCropY}%`;
       preview.style.transform = `scale(${this.pendingZoom})`;
     } else {
       preview.removeAttribute("src");
       preview.classList.remove("visible");
       placeholder.classList.remove("hidden");
+      preview.style.transformOrigin = "";
       preview.style.transform = "";
     }
   }
@@ -190,6 +194,7 @@ export class AvatarController {
 
     const updatePreview = (): void => {
       preview.style.objectPosition = `${this.pendingCropX}% ${this.pendingCropY}%`;
+      preview.style.transformOrigin = `${this.pendingCropX}% ${this.pendingCropY}%`;
       preview.style.transform = `scale(${this.pendingZoom})`;
     };
 

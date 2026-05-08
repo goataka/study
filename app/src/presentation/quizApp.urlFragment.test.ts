@@ -183,4 +183,18 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     expect(window.location.hash).toContain("unitSubject=english");
     expect(window.location.hash).toContain("unitCategory=phonics-1");
   });
+
+  it("総合タブで単元詳細を閉じるとフラグメントから unitSubject/unitCategory が外れる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    (document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement | null)?.click();
+    (document.querySelector('.subject-overview-item[data-subject="english"]') as HTMLElement | null)?.click();
+    expect(window.location.hash).toContain("unitSubject=english");
+
+    (document.querySelector("#selectedUnitInfo .selected-unit-close-btn") as HTMLElement | null)?.click();
+
+    expect(window.location.hash).not.toContain("unitSubject=");
+    expect(window.location.hash).not.toContain("unitCategory=");
+  });
 });

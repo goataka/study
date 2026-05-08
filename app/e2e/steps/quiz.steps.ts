@@ -301,14 +301,14 @@ Then("non-hiragana candidates should not be visible in the candidate list", asyn
   await expect(candidateList.locator(".kanji-candidate-btn", { hasText: "川" })).toHaveCount(0);
 });
 
-When("I click the {string} category group header", async ({ page }, parentCatId: string) => {
-  // 指定した親カテゴリのグループヘッダーをクリックする
-  await page.locator(`.category-group-header[data-parent-category="${parentCatId}"]`).click();
+When("I click the {string} category group toggle button", async ({ page }, parentCatId: string) => {
+  // 指定した親カテゴリの三角ボタンをクリックして折りたたみを切り替える
+  await page.locator(`.category-group-header[data-parent-category="${parentCatId}"] .category-group-toggle`).click();
 });
 
-When("I click the {string} category group header again", async ({ page }, parentCatId: string) => {
-  // 指定した親カテゴリのグループヘッダーを再度クリックする
-  await page.locator(`.category-group-header[data-parent-category="${parentCatId}"]`).click();
+When("I click the {string} category group toggle button again", async ({ page }, parentCatId: string) => {
+  // 指定した親カテゴリの三角ボタンを再度クリックして折りたたみを戻す
+  await page.locator(`.category-group-header[data-parent-category="${parentCatId}"] .category-group-toggle`).click();
 });
 
 Then("the {string} category group should be collapsed", async ({ page }, parentCatId: string) => {
@@ -385,8 +385,8 @@ Then("grade groups should be visible in the category list", async ({ page }) => 
   await expect(page.locator(".category-grade-group").first()).toBeVisible();
 });
 
-When("I click the first grade group guide button", async ({ page }) => {
-  await page.locator(".category-grade-group-header .category-group-guide-btn").first().click();
+When("I click the first grade group header", async ({ page }) => {
+  await page.locator(".category-grade-group-header").first().click();
 });
 
 Then("the generated guide page should be visible", async ({ page }) => {

@@ -61,6 +61,7 @@ describe("AvatarController", () => {
       document.dispatchEvent(new MouseEvent("mouseup", { bubbles: true }));
 
       expect(preview.style.objectPosition).not.toBe("50% 50%");
+      expect(preview.style.transformOrigin).not.toBe("50% 50%");
     } finally {
       Object.defineProperty(window, "PointerEvent", {
         configurable: true,
