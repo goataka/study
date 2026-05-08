@@ -20,18 +20,12 @@ import { renderProgressDetailMatrix } from "./progressMatrixView";
 import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./progressBlockView";
 import { buildShareSummaryText } from "./shareSummary";
 import {
-  buildSelectedUnitInfoBody,
-  buildSelectedUnitInfoSimpleBody,
-  buildSelectedUnitCloseButton,
-} from "./selectedUnitInfoView";
-import {
   groupRecommendedByCategory,
   buildSubjectOverviewHeaderRow,
   buildSubjectOverviewEmptyItem,
   buildCategoryGroupHeader,
   buildRecommendedUnitCard,
 } from "./allSubjectListView";
-import { buildCategoryItem } from "./categoryItemView";
 import { SUBJECTS, currentDateString, sanitizeShareUrl } from "./uiHelpers";
 import { showConfirmDialog } from "./quizApp/confirmDialog";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
@@ -109,6 +103,17 @@ import { renderQuestion as renderQuestionFn } from "./quizApp/questionRenderer";
 import { showScreen as showScreenFn, type ScreenName } from "./quizApp/screenNavigator";
 import { findFirstUnlearnedCategory } from "./quizApp/firstUnlearnedFinder";
 import { updateSelectedUnitInfo as updateSelectedUnitInfoFn } from "./quizApp/selectedUnitInfoUpdater";
+import {
+  createCategoryItem as createCategoryItemFn,
+  buildParentCategoryGroup as buildParentCategoryGroupFn,
+  type CreateCategoryItemParams,
+  type CategorySelectionCallbacks,
+  type BuildParentCategoryGroupParams,
+} from "./quizApp/categoryItemBuilder";
+import {
+  renderCategoryListByCategory as renderCategoryListByCategoryFn,
+  renderCategoryListByGrade as renderCategoryListByGradeFn,
+} from "./quizApp/categoryListRenderer";
 
 const PANEL_TABS: readonly PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 
@@ -576,131 +581,37 @@ export class QuizApp {
    * gradeFilter が設定されている場合は学年でフィルタリングする。
    */
   private renderCategoryListByCategory(): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
+    renderCategoryListByCategoryFn({
+      useCase: this.useCase,
+      subject: this.filter.subject,
+      gradeFilterMatches: (s, c) => this.gradeFilterMatches(s, c),
+      collapsedTopCategories: this.collapsedTopCategories,
+      getSelectedTopCategoryId: () => this.selectedTopCategoryId,
+      itemCtx: this.getCategoryItemContext(),
+      parentGroupCtx: this.getParentGroupContext(),
+      onTopHeaderClick: (topCatId) => this.handleTopHeaderClick(topCatId),
+      onToggleTopCategory: (topCatId) => this.toggleTopCategory(topCatId),
+    });
+  }
 
-    const subject = this.filter.subject;
-
-    // 全親カテゴリとその配下のカテゴリを収集
-    const allParentCategories = this.useCase.getParentCategoriesForSubject(subject);
-    const categoriesByParent = new Map<string, Record<string, string>>();
-    for (const [parentCatId] of Object.entries(allParentCategories)) {
-      const cats = this.useCase.getCategoriesForParent(subject, parentCatId);
-      // 学年フィルターを適用
-      const filtered: Record<string, string> = {};
-      for (const [catId, catName] of Object.entries(cats)) {
-        if (this.gradeFilterMatches(subject, catId)) {
-          filtered[catId] = catName;
-        }
-      }
-      categoriesByParent.set(parentCatId, filtered);
+  /** トップカテゴリヘッダークリック時の選択／非選択トグル処理。 */
+  private handleTopHeaderClick(topCatId: string): void {
+    if (this.selectedTopCategoryId === topCatId) {
+      // 既に選択中 → 非選択に戻す
+      this.selectedTopCategoryId = null;
+    } else {
+      // 選択（単元選択・親カテゴリ選択を解除してトップカテゴリを選択）
+      this.selectedTopCategoryId = topCatId;
+      this.filter.category = "all";
+      this.filter.parentCategory = undefined;
+      this.selectedGradeGroup = null;
+      this.selectedUnitContext = null;
+      this.isPanelTabUserSelected = false;
     }
-
-    // トップカテゴリがある場合は3階層で描画
-    const topCategories = this.useCase.getTopCategoriesForSubject(subject);
-    const parentCatIdsInTopGroups = new Set<string>();
-
-    for (const [topCatId, topCatName] of Object.entries(topCategories)) {
-      const parentCatsForTop = this.useCase.getParentCategoriesForTop(subject, topCatId);
-
-      // このトップカテゴリに表示すべきカテゴリがあるか確認
-      let hasVisibleItems = false;
-      for (const [parentCatId] of Object.entries(parentCatsForTop)) {
-        parentCatIdsInTopGroups.add(parentCatId);
-        const cats = categoriesByParent.get(parentCatId) ?? {};
-        if (Object.keys(cats).length > 0) {
-          hasVisibleItems = true;
-        }
-      }
-      if (!hasVisibleItems) continue;
-
-      const topGroupDiv = document.createElement("div");
-      topGroupDiv.className = "category-top-group";
-      topGroupDiv.dataset.topCategory = topCatId;
-
-      const topGroupHeader = document.createElement("div");
-      topGroupHeader.className = "category-top-group-header";
-      topGroupHeader.setAttribute("role", "button");
-      topGroupHeader.setAttribute("tabindex", "0");
-      topGroupHeader.dataset.topCategory = topCatId;
-
-      const topToggleArrow = document.createElement("button");
-      topToggleArrow.type = "button";
-      topToggleArrow.className = "category-top-group-toggle";
-      topToggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
-      topToggleArrow.setAttribute("aria-expanded", this.collapsedTopCategories.has(topCatId) ? "false" : "true");
-      topGroupHeader.appendChild(topToggleArrow);
-
-      const topHeaderText = document.createElement("span");
-      topHeaderText.textContent = topCatName;
-      topGroupHeader.appendChild(topHeaderText);
-
-      topGroupDiv.appendChild(topGroupHeader);
-
-      for (const [parentCatId, parentCatName] of Object.entries(parentCatsForTop)) {
-        const cats = categoriesByParent.get(parentCatId) ?? {};
-        if (Object.keys(cats).length === 0) continue;
-        const groupDiv = this.buildParentCategoryGroup(subject, parentCatId, parentCatName, cats, topCatId);
-        topGroupDiv.appendChild(groupDiv);
-      }
-
-      if (this.collapsedTopCategories.has(topCatId)) {
-        topGroupDiv.classList.add("collapsed");
-      }
-
-      const handleTopHeaderClick = (e: Event): void => {
-        e.stopPropagation();
-        // トップカテゴリの選択/非選択トグル
-        if (this.selectedTopCategoryId === topCatId) {
-          // 既に選択中 → 非選択に戻す
-          this.selectedTopCategoryId = null;
-        } else {
-          // 選択（単元選択・親カテゴリ選択を解除してトップカテゴリを選択）
-          this.selectedTopCategoryId = topCatId;
-          this.filter.category = "all";
-          this.filter.parentCategory = undefined;
-          this.selectedGradeGroup = null;
-          this.selectedUnitContext = null;
-          this.isPanelTabUserSelected = false;
-        }
-        this.updateCategoryListActive();
-        const records = this.useCase.getHistory();
-        this.autoSelectPanelTab(records);
-        this.updateStartScreen(records);
-      };
-      topGroupHeader.addEventListener("click", handleTopHeaderClick);
-      topGroupHeader.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleTopHeaderClick(e);
-        }
-      });
-      topToggleArrow.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this.toggleTopCategory(topCatId);
-      });
-
-      categoryList.appendChild(topGroupDiv);
-    }
-
-    // トップカテゴリに属さない親カテゴリグループ（2階層の孤立グループ）
-    for (const [parentCatId, parentCatName] of Object.entries(allParentCategories)) {
-      if (parentCatIdsInTopGroups.has(parentCatId)) continue;
-      const cats = categoriesByParent.get(parentCatId) ?? {};
-      if (Object.keys(cats).length === 0) continue;
-      const groupDiv = this.buildParentCategoryGroup(subject, parentCatId, parentCatName, cats);
-      categoryList.appendChild(groupDiv);
-    }
-
-    // 親カテゴリに属さないスタンドアロンカテゴリ
-    const allCategories = this.useCase.getCategoriesForSubject(subject);
-    for (const [catId, catName] of Object.entries(allCategories)) {
-      const belongsToParent = Array.from(categoriesByParent.values()).some((cats) => catId in cats);
-      if (!belongsToParent && this.gradeFilterMatches(subject, catId)) {
-        const catItem = this.createCategoryItem(subject, catId, catName);
-        categoryList.appendChild(catItem);
-      }
-    }
+    this.updateCategoryListActive();
+    const records = this.useCase.getHistory();
+    this.autoSelectPanelTab(records);
+    this.updateStartScreen(records);
   }
 
   /**
@@ -708,171 +619,32 @@ export class QuizApp {
    * 学年グループ（小学1年, 中学1年 等）でまとめて表示する。
    */
   private renderCategoryListByGrade(): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
+    renderCategoryListByGradeFn({
+      useCase: this.useCase,
+      subject: this.filter.subject,
+      selectedGradeFilter: this.selectedGradeFilter,
+      collapsedGradeGroups: this.collapsedGradeGroups,
+      itemCtx: this.getCategoryItemContext(),
+      onGradeHeaderClick: (grade) => this.handleGradeHeaderClick(grade),
+    });
+  }
 
-    const subject = this.filter.subject;
-    const grades = this.useCase.getUniqueGradesForSubject(subject);
-
-    for (const grade of grades) {
-      // 学年フィルターで絞る
-      if (this.selectedGradeFilter && !grade.startsWith(this.selectedGradeFilter)) continue;
-
-      const cats = this.useCase.getCategoriesForGrade(subject, grade);
-      if (Object.keys(cats).length === 0) continue;
-
-      const groupDiv = document.createElement("div");
-      groupDiv.className = "category-grade-group";
-      groupDiv.dataset.grade = grade;
-
-      const groupHeader = document.createElement("div");
-      groupHeader.className = "category-grade-group-header";
-      groupHeader.setAttribute("role", "button");
-      groupHeader.setAttribute("tabindex", "0");
-      groupHeader.dataset.grade = grade;
-
-      const toggleArrow = document.createElement("button");
-      toggleArrow.type = "button";
-      toggleArrow.className = "category-grade-group-toggle";
-      toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
-      toggleArrow.setAttribute("aria-expanded", this.collapsedGradeGroups.has(grade) ? "false" : "true");
-      groupHeader.appendChild(toggleArrow);
-
-      const headerText = document.createElement("span");
-      headerText.textContent = grade;
-      groupHeader.appendChild(headerText);
-
-      groupDiv.appendChild(groupHeader);
-
-      for (const [catId, catName] of Object.entries(cats)) {
-        const catItem = this.createCategoryItem(subject, catId, catName);
-        groupDiv.appendChild(catItem);
-      }
-
-      if (this.collapsedGradeGroups.has(grade)) {
-        groupDiv.classList.add("collapsed");
-      }
-
-      const handleToggle = (e: Event): void => {
-        e.stopPropagation();
-        if (this.collapsedGradeGroups.has(grade)) {
-          this.collapsedGradeGroups.delete(grade);
-          groupDiv.classList.remove("collapsed");
-          toggleArrow.setAttribute("aria-expanded", "true");
-        } else {
-          this.collapsedGradeGroups.add(grade);
-          groupDiv.classList.add("collapsed");
-          toggleArrow.setAttribute("aria-expanded", "false");
-        }
-      };
-      const handleHeaderClick = (e: Event): void => {
-        e.stopPropagation();
-        if (this.selectedGradeGroup === grade) {
-          this.selectedGradeGroup = null;
-        } else {
-          this.selectedGradeGroup = grade;
-          this.selectedTopCategoryId = null;
-          this.filter.parentCategory = undefined;
-          this.filter.category = "all";
-          this.selectedUnitContext = null;
-          this.isPanelTabUserSelected = false;
-        }
-        this.updateCategoryListActive();
-        const records = this.useCase.getHistory();
-        this.autoSelectPanelTab(records);
-        this.updateStartScreen(records);
-      };
-      groupHeader.addEventListener("click", handleHeaderClick);
-      groupHeader.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleHeaderClick(e);
-        }
-      });
-      toggleArrow.addEventListener("click", handleToggle);
-
-      categoryList.appendChild(groupDiv);
+  /** 学年グループヘッダークリック時の選択／非選択トグル処理。 */
+  private handleGradeHeaderClick(grade: string): void {
+    if (this.selectedGradeGroup === grade) {
+      this.selectedGradeGroup = null;
+    } else {
+      this.selectedGradeGroup = grade;
+      this.selectedTopCategoryId = null;
+      this.filter.parentCategory = undefined;
+      this.filter.category = "all";
+      this.selectedUnitContext = null;
+      this.isPanelTabUserSelected = false;
     }
-
-    // 学年未設定のカテゴリ（フィルターなしの場合のみ表示）
-    if (!this.selectedGradeFilter) {
-      const uncategorized = this.useCase.getCategoriesWithoutGrade(subject);
-      if (Object.keys(uncategorized).length > 0) {
-        const groupDiv = document.createElement("div");
-        groupDiv.className = "category-grade-group";
-        groupDiv.dataset.grade = "none";
-
-        const groupHeader = document.createElement("div");
-        groupHeader.className = "category-grade-group-header";
-        groupHeader.setAttribute("role", "button");
-        groupHeader.setAttribute("tabindex", "0");
-        groupHeader.dataset.grade = "none";
-
-        const toggleArrow = document.createElement("button");
-        toggleArrow.type = "button";
-        toggleArrow.className = "category-grade-group-toggle";
-        toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
-        toggleArrow.setAttribute("aria-expanded", this.collapsedGradeGroups.has("none") ? "false" : "true");
-        groupHeader.appendChild(toggleArrow);
-
-        const headerText = document.createElement("span");
-        headerText.textContent = "学年未設定";
-        groupHeader.appendChild(headerText);
-
-        groupDiv.appendChild(groupHeader);
-
-        for (const [catId, catName] of Object.entries(uncategorized)) {
-          const catItem = this.createCategoryItem(subject, catId, catName);
-          groupDiv.appendChild(catItem);
-        }
-
-        if (this.collapsedGradeGroups.has("none")) {
-          groupDiv.classList.add("collapsed");
-        }
-
-        const handleToggleNone = (e: Event): void => {
-          e.stopPropagation();
-          const grade = groupDiv.dataset.grade ?? "none";
-          if (this.collapsedGradeGroups.has(grade)) {
-            this.collapsedGradeGroups.delete(grade);
-            groupDiv.classList.remove("collapsed");
-            toggleArrow.setAttribute("aria-expanded", "true");
-          } else {
-            this.collapsedGradeGroups.add(grade);
-            groupDiv.classList.add("collapsed");
-            toggleArrow.setAttribute("aria-expanded", "false");
-          }
-        };
-        const handleHeaderClickNone = (e: Event): void => {
-          e.stopPropagation();
-          const grade = groupDiv.dataset.grade ?? "none";
-          if (this.selectedGradeGroup === grade) {
-            this.selectedGradeGroup = null;
-          } else {
-            this.selectedGradeGroup = grade;
-            this.selectedTopCategoryId = null;
-            this.filter.parentCategory = undefined;
-            this.filter.category = "all";
-            this.selectedUnitContext = null;
-            this.isPanelTabUserSelected = false;
-          }
-          this.updateCategoryListActive();
-          const records = this.useCase.getHistory();
-          this.autoSelectPanelTab(records);
-          this.updateStartScreen(records);
-        };
-        groupHeader.addEventListener("click", handleHeaderClickNone);
-        groupHeader.addEventListener("keydown", (e: KeyboardEvent) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleHeaderClickNone(e);
-          }
-        });
-        toggleArrow.addEventListener("click", handleToggleNone);
-
-        categoryList.appendChild(groupDiv);
-      }
-    }
+    this.updateCategoryListActive();
+    const records = this.useCase.getHistory();
+    this.autoSelectPanelTab(records);
+    this.updateStartScreen(records);
   }
 
   /**
@@ -923,77 +695,46 @@ export class QuizApp {
     cats: Record<string, string>,
     topCatId?: string,
   ): HTMLElement {
-    const groupDiv = document.createElement("div");
-    groupDiv.className = "category-group";
-    groupDiv.dataset.parentCategory = parentCatId;
-    if (topCatId) groupDiv.dataset.topCategory = topCatId;
+    return buildParentCategoryGroupFn(
+      this.getParentGroupContext(),
+      subject,
+      parentCatId,
+      parentCatName,
+      cats,
+      topCatId,
+    );
+  }
 
-    const groupHeader = document.createElement("div");
-    groupHeader.className = "category-group-header";
-    groupHeader.setAttribute("role", "button");
-    groupHeader.setAttribute("tabindex", "0");
-    groupHeader.dataset.parentCategory = parentCatId;
-
-    const toggleArrow = document.createElement("button");
-    toggleArrow.type = "button";
-    toggleArrow.className = "category-group-toggle";
-    toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
-    toggleArrow.setAttribute("aria-expanded", this.collapsedParentCategories.has(parentCatId) ? "false" : "true");
-    groupHeader.appendChild(toggleArrow);
-
-    const headerText = document.createElement("span");
-    headerText.textContent = parentCatName;
-    groupHeader.appendChild(headerText);
-
-    const learnedBadge = document.createElement("span");
-    learnedBadge.className = "category-group-learned-badge";
-    learnedBadge.setAttribute("aria-hidden", "true");
-    groupHeader.appendChild(learnedBadge);
-
-    groupDiv.appendChild(groupHeader);
-
-    for (const [catId, catName] of Object.entries(cats)) {
-      const catItem = this.createCategoryItem(subject, catId, catName, parentCatId, topCatId);
-      groupDiv.appendChild(catItem);
-    }
-
-    if (this.collapsedParentCategories.has(parentCatId)) {
-      groupDiv.classList.add("collapsed");
-    }
-
-    const handleHeaderClick = (e: Event): void => {
-      e.stopPropagation();
-      // 親カテゴリの選択/非選択トグル
-      if (this.getSelectionLevel() === "parentCategory" && this.filter.parentCategory === parentCatId) {
-        // 既に選択中 → 非選択に戻す
-        this.filter.parentCategory = undefined;
-      } else {
-        // 選択（単元選択・トップカテゴリ選択を解除して親カテゴリを選択）
-        this.selectedTopCategoryId = null;
-        this.filter.category = "all";
-        this.filter.parentCategory = parentCatId;
-        this.selectedGradeGroup = null;
-        this.selectedUnitContext = null;
-        this.isPanelTabUserSelected = false;
-      }
-      this.updateCategoryListActive();
-      const records = this.useCase.getHistory();
-      this.autoSelectPanelTab(records);
-      this.updateStartScreen(records);
+  /** buildParentCategoryGroup に渡す共通コンテキストを生成する。 */
+  private getParentGroupContext(): BuildParentCategoryGroupParams {
+    return {
+      filter: this.filter,
+      collapsedParentCategories: this.collapsedParentCategories,
+      getSelectionLevel: () => this.getSelectionLevel(),
+      itemCtx: this.getCategoryItemContext(),
+      onParentHeaderClick: (pid) => this.handleParentHeaderClick(pid),
+      onToggleParentCategory: (pid) => this.toggleParentCategory(pid),
     };
-    groupHeader.addEventListener("click", handleHeaderClick);
-    groupHeader.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        handleHeaderClick(e);
-      }
-    });
-    toggleArrow.addEventListener("click", (e) => {
-      e.stopPropagation();
-      this.toggleParentCategory(parentCatId);
-    });
+  }
 
-    return groupDiv;
+  /** 親カテゴリヘッダークリック時の選択／非選択トグル処理。 */
+  private handleParentHeaderClick(parentCatId: string): void {
+    if (this.getSelectionLevel() === "parentCategory" && this.filter.parentCategory === parentCatId) {
+      // 既に選択中 → 非選択に戻す
+      this.filter.parentCategory = undefined;
+    } else {
+      // 選択（単元選択・トップカテゴリ選択を解除して親カテゴリを選択）
+      this.selectedTopCategoryId = null;
+      this.filter.category = "all";
+      this.filter.parentCategory = parentCatId;
+      this.selectedGradeGroup = null;
+      this.selectedUnitContext = null;
+      this.isPanelTabUserSelected = false;
+    }
+    this.updateCategoryListActive();
+    const records = this.useCase.getHistory();
+    this.autoSelectPanelTab(records);
+    this.updateStartScreen(records);
   }
 
   /**
@@ -1230,63 +971,55 @@ export class QuizApp {
     parentCatId?: string,
     topCatId?: string,
   ): HTMLElement {
-    // 学年別ビューでは親カテゴリ・トップカテゴリの名称を表示する
-    let hierarchy: { topName?: string; parentName?: string } | undefined;
-    if (this.categoryViewMode === "grade") {
-      const parentInfo = this.useCase.getParentCategoryForUnit(subject, categoryId);
-      const topInfo = this.useCase.getTopCategoryForUnit(subject, categoryId);
-      hierarchy = { topName: topInfo?.name, parentName: parentInfo?.name };
-    }
-
-    const item = buildCategoryItem({
+    return createCategoryItemFn(
+      this.getCategoryItemContext(),
       subject,
       categoryId,
       categoryName,
       parentCatId,
       topCatId,
-      hierarchy,
-      referenceGrade: this.useCase.getCategoryReferenceGrade(subject, categoryId),
-      showReferenceGrade: this.categoryViewMode !== "grade",
-      description: this.useCase.getCategoryDescription(subject, categoryId),
-      example: this.useCase.getCategoryExample(subject, categoryId),
-    });
+    );
+  }
 
-    const handleActivate = (e: Event): void => {
-      e.stopPropagation();
-      // 既に選択中の単元をクリックした場合は非選択に戻す（トグル）
-      if (this.filter.subject === subject && this.filter.category === categoryId) {
-        this.deselectAndRefresh();
-        return;
-      }
-      const wasProgressTab = this.filter.subject === "progress";
-      this.filter.subject = subject;
-      this.filter.category = categoryId;
-      this.filter.parentCategory = parentCatId;
-      this.selectedTopCategoryId = null;
-      this.selectedGradeGroup = null;
-      if (wasProgressTab) {
-        // 進度タブから単元を選択した場合: 対応する教科タブをアクティブにして再描画する
-        this.selectTabByFilter();
-        this.renderCategoryList();
-      }
-      this.updateCategoryListActive();
-      const categoryRecords = this.useCase.getHistory();
-      // 単元を切り替えても前回のパネルタブを引き継ぐ（解説タブへの自動切換えを抑制）
-      this.isPanelTabUserSelected = true;
-      this.autoSelectPanelTab(categoryRecords);
-      this.updateStartScreen(categoryRecords);
-      this.syncURLFragment();
+  /** createCategoryItem / buildParentCategoryGroup に共通で渡すコンテキストを生成する。 */
+  private getCategoryItemContext(): CreateCategoryItemParams {
+    return {
+      useCase: this.useCase,
+      filter: this.filter,
+      categoryViewMode: this.categoryViewMode,
+      setFilter: (subject, categoryId, parentCatId) => {
+        this.filter.subject = subject;
+        this.filter.category = categoryId;
+        this.filter.parentCategory = parentCatId;
+      },
+      resetSelectionOnUnit: () => {
+        this.selectedTopCategoryId = null;
+        this.selectedGradeGroup = null;
+      },
+      setPanelTabUserSelected: (value) => {
+        this.isPanelTabUserSelected = value;
+      },
+      callbacks: this.getCategorySelectionCallbacks(),
     };
+  }
 
-    item.addEventListener("click", handleActivate);
-    item.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        handleActivate(e);
-      }
-    });
-
-    return item;
+  /** カテゴリ選択時の共通コールバック群を生成する。 */
+  private getCategorySelectionCallbacks(): CategorySelectionCallbacks {
+    return {
+      onDeselect: () => this.deselectAndRefresh(),
+      onSelectTabByFilter: () => this.selectTabByFilter(),
+      onRenderCategoryList: () => this.renderCategoryList(),
+      onUpdateCategoryListActive: () => this.updateCategoryListActive(),
+      onAutoSelectPanelTab: () => {
+        const records = this.useCase.getHistory();
+        this.autoSelectPanelTab(records);
+      },
+      onUpdateStartScreen: () => {
+        const records = this.useCase.getHistory();
+        this.updateStartScreen(records);
+      },
+      onSyncURLFragment: () => this.syncURLFragment(),
+    };
   }
 
   /**
