@@ -5,8 +5,10 @@
   "categoryName": "🕐 時間・日付（日→英）",
   "topCategory": "eiken-4",
   "topCategoryName": "英検4級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-4/guide",
   "parentCategory": "eiken4-time",
   "parentCategoryName": "時間・日付",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/time/guide",
   "referenceGrade": "中学1年",
   "description": "時間・日付に関する単語を日本語から英語に訳す問題です。",
   "questions": [

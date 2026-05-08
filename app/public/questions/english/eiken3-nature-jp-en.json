@@ -5,8 +5,10 @@
   "categoryName": "🌿 自然・環境（日→英）",
   "topCategory": "eiken-3",
   "topCategoryName": "英検3級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-3/guide",
   "parentCategory": "eiken3-nature",
   "parentCategoryName": "自然・環境",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/nature/guide",
   "referenceGrade": "中学2年",
   "description": "自然や環境に関する単語を日本語から英語に訳す問題です。",
   "questions": [

@@ -242,6 +242,39 @@ header h1 {
   background: white;
 }
 
+/* クイズ画面: 折り目と罫線を外側白枠一杯まで広げる */
+#quizScreen {
+  position: relative;
+  /* 外側の白枠にも罫線を表示する */
+  background-color: white;
+  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-size: 100% 32px;
+  background-position: 0 12px;
+}
+
+/* クイズ画面の折り目（外側白枠を含む全高に広げる）
+   left = 40px左パディング + (コンテンツ幅 - 12px) / 3
+       = 40px + (100% - 80px - 12px) / 3
+       = (100% + 28px) / 3 */
+#quizScreen::before {
+  content: "";
+  position: absolute;
+  left: calc((100% + 28px) / 3);
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.025) 0%,
+    #e3e3e3 20%,
+    #f3f3f3 50%,
+    #e3e3e3 80%,
+    rgba(0, 0, 0, 0.025) 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
 .hidden {
   display: none !important;
 }
@@ -974,6 +1007,7 @@ header h1 {
   padding: 7px 10px 7px 8px;
   border-left: 1px solid rgba(0, 0, 0, 0.06);
   min-width: 0;
+  overflow: hidden;
 }
 
 .category-item.active .category-item-right {
@@ -2161,6 +2195,9 @@ header h1 {
   font-size: 16px;
   font-weight: 700;
   color: #0366d6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* カテゴリパスラベル（単元選択時に単元名の前に表示） */
@@ -2463,11 +2500,6 @@ button:disabled {
   min-width: 0;
   overflow-y: auto;
   min-height: 0;
-  /* ノート紙風：白地 + 薄青の罫線（32px間隔で均等に配置、他のパネルと統一） */
-  background-color: white;
-  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
-  background-size: 100% 32px;
-  background-position: 0 12px;
   padding: 12px;
 }
 
@@ -5206,10 +5238,8 @@ body.font-size-large .subject-overview-cat-header {
   overflow: hidden;
   min-height: 0;
   padding: 0;
-  background-color: white;
-  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
-  background-size: 100% 32px;
-  background-position: 0 12px;
+  background-color: transparent;
+  background-image: none;
 }
 
 .admin-section {
@@ -5679,6 +5709,8 @@ body.font-size-large .admin-data-close-btn {
 
 .selected-unit-info-header-left {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .selected-unit-info-header-right {
@@ -5688,6 +5720,9 @@ body.font-size-large .admin-data-close-btn {
   flex-shrink: 0;
   flex-wrap: wrap;
   justify-content: flex-end;
+  max-width: 55%;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .selected-unit-info-desc-row {

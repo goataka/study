@@ -5,6 +5,7 @@
   "categoryName": "➖ ３桁・くり下がりあり",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "subtraction",
   "parentCategoryName": "ひき算",
   "guideUrl": "./math/arithmetic/subtraction-3digit-borrow/guide",

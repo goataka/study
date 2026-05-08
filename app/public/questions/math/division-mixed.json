@@ -5,6 +5,7 @@
   "categoryName": "➗ まとめ",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "division",
   "parentCategoryName": "わり算",
   "guideUrl": "./math/arithmetic/division-mixed/guide",

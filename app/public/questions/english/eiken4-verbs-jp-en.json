@@ -5,8 +5,10 @@
   "categoryName": "🏃 動作動詞（日→英）",
   "topCategory": "eiken-4",
   "topCategoryName": "英検4級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-4/guide",
   "parentCategory": "eiken4-verbs",
   "parentCategoryName": "動作動詞",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/verbs/guide",
   "referenceGrade": "中学1年",
   "description": "動作を表す動詞を日本語から英語に訳す問題です。",
   "questions": [

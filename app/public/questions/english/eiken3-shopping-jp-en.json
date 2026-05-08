@@ -5,8 +5,10 @@
   "categoryName": "🛒 買い物・お金（日→英）",
   "topCategory": "eiken-3",
   "topCategoryName": "英検3級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-3/guide",
   "parentCategory": "eiken3-shopping",
   "parentCategoryName": "買い物・お金",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/shopping/guide",
   "referenceGrade": "中学2年",
   "description": "買い物やお金に関する単語を日本語から英語に訳す問題です。",
   "questions": [

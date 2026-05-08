@@ -5,6 +5,7 @@
   "categoryName": "🔡 小文字の読み",
   "topCategory": "pronunciation",
   "topCategoryName": "発音",
+  "topCategoryGuideUrl": "./english/pronunciation/guide",
   "parentCategory": "alphabet",
   "parentCategoryName": "アルファベット",
   "guideUrl": "./english/pronunciation/alphabet-lowercase/guide",

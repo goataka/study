@@ -5,8 +5,10 @@
   "categoryName": "✈️ 旅行・交通（穴埋め）",
   "topCategory": "eiken-3",
   "topCategoryName": "英検3級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-3/guide",
   "parentCategory": "eiken3-travel",
   "parentCategoryName": "旅行・交通",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/travel/guide",
   "referenceGrade": "中学2年",
   "description": "旅行・交通の単語を使った文章の穴埋め問題です。",
   "questions": [

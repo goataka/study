@@ -5,8 +5,10 @@
   "categoryName": "🏙️ 街・場所（穴埋め）",
   "topCategory": "eiken-4",
   "topCategoryName": "英検4級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-4/guide",
   "parentCategory": "eiken4-places",
   "parentCategoryName": "街・場所",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/places/guide",
   "referenceGrade": "中学1年",
   "description": "街・場所の単語を使った文章の穴埋め問題です。",
   "questions": [

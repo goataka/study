@@ -5,6 +5,7 @@
   "categoryName": "📖 文章問題（小学生）",
   "topCategory": "word-problems",
   "topCategoryName": "文章問題",
+  "topCategoryGuideUrl": "./math/word-problems/guide",
   "parentCategory": "word-problems",
   "parentCategoryName": "文章問題",
   "guideUrl": "./math/word-problems/elementary/guide",

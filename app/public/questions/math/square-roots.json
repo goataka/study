@@ -5,6 +5,7 @@
   "categoryName": "🔢 平方根",
   "topCategory": "algebra",
   "topCategoryName": "代数",
+  "topCategoryGuideUrl": "./math/algebra/guide",
   "parentCategory": "algebra-advanced",
   "parentCategoryName": "発展代数",
   "guideUrl": "./math/algebra/square-roots/guide",
