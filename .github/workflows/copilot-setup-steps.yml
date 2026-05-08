@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Dockerfile の検証用イメージをローカルでビルド
-        run: docker build -t study-app-ci:local -f .github/docker/app-ci/Dockerfile .
+        run: docker build -t study-app-ci:local .github/docker/app-ci
 
       - name: app 依存関係をイメージ上でインストール
         # copilot-setup-steps ジョブ実行時の依存関係インストール手順を、
