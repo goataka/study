@@ -183,15 +183,21 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   };
 
   if (!ctx.transposed) {
+    // 学年ごとのカテゴリ一覧は (grade, col) セルごとに使うため、ループ外で一度だけ取得する
+    const gradeCatsMap = new Map<string, Record<string, string>>();
+    for (const grade of grades) {
+      gradeCatsMap.set(grade, useCase.getCategoriesForGrade(subject, grade));
+    }
     for (const grade of grades) {
       const tr = document.createElement("tr");
-      const gradeCell = document.createElement("td");
+      const gradeCell = document.createElement("th");
+      gradeCell.scope = "row";
       gradeCell.textContent = grade;
       tr.appendChild(gradeCell);
+      const gradeCats = gradeCatsMap.get(grade) ?? {};
       for (const col of colDefs) {
         const td = document.createElement("td");
         td.className = "progress-matrix-cell-units";
-        const gradeCats = useCase.getCategoriesForGrade(subject, grade);
         const inner = document.createElement("div");
         inner.className = "progress-matrix-cell-units-inner";
         for (const [catId, catName] of Object.entries(gradeCats)) {
@@ -203,15 +209,21 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
       tbody.appendChild(tr);
     }
   } else {
+    // 転置時もループ外で学年→カテゴリ一覧を一度だけ取得する
+    const gradeCatsMap = new Map<string, Record<string, string>>();
+    for (const grade of grades) {
+      gradeCatsMap.set(grade, useCase.getCategoriesForGrade(subject, grade));
+    }
     for (const col of colDefs) {
       const tr = document.createElement("tr");
-      const parentCell = document.createElement("td");
+      const parentCell = document.createElement("th");
+      parentCell.scope = "row";
       parentCell.textContent = buildMatrixCategoryLabel(col);
       tr.appendChild(parentCell);
       for (const grade of grades) {
         const td = document.createElement("td");
         td.className = "progress-matrix-cell-units";
-        const gradeCats = useCase.getCategoriesForGrade(subject, grade);
+        const gradeCats = gradeCatsMap.get(grade) ?? {};
         const inner = document.createElement("div");
         inner.className = "progress-matrix-cell-units-inner";
         for (const [catId, catName] of Object.entries(gradeCats)) {

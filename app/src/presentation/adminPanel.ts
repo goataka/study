@@ -8,6 +8,7 @@
 
 import type { QuizUseCase } from "../application/quizUseCase";
 import type { IProgressRepository } from "../application/ports";
+import { fallbackCopy } from "./uiHelpers";
 
 /** AdminPanel が QuizApp 側に必要とする最小限の依存。 */
 export interface AdminPanelDeps {
@@ -217,8 +218,10 @@ export function renderAdminContent(categoryList: HTMLElement, deps: AdminPanelDe
                 previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
                 applyBtn.style.display = "none";
               } else {
-                applyBtn.textContent = "✅ データを更新する（種類不明）";
-                applyBtn.style.display = "block";
+                previewEl.textContent =
+                  "対応するデータ種類が判定できませんでした。ファイル名に history / mastered / streaks を含めてください。\n\n" +
+                  previewEl.textContent;
+                applyBtn.style.display = "none";
               }
             } catch {
               previewEl.textContent = "JSONの解析に失敗しました。ファイルを確認してください。";
@@ -433,12 +436,24 @@ export function renderAdminContent(categoryList: HTMLElement, deps: AdminPanelDe
       copyBtn.textContent = "📋 コピー";
       copyBtn.title = "クリップボードにコピー";
       copyBtn.addEventListener("click", () => {
-        void navigator.clipboard.writeText(fullJsonText).then(() => {
+        const markCopied = (): void => {
           copyBtn.textContent = "✓ コピー済";
           setTimeout(() => {
             copyBtn.textContent = "📋 コピー";
           }, 1500);
-        });
+        };
+        if (navigator.clipboard) {
+          void navigator.clipboard
+            .writeText(fullJsonText)
+            .then(markCopied)
+            .catch(() => {
+              fallbackCopy(fullJsonText);
+              markCopied();
+            });
+        } else {
+          fallbackCopy(fullJsonText);
+          markCopied();
+        }
       });
       btnBar.appendChild(copyBtn);
       tabContent.appendChild(btnBar);
