@@ -99,13 +99,16 @@ jobs:
           PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: |
           echo "Waiting for production site to be ready at ${PLAYWRIGHT_BASE_URL}"
+          BASE_URL="${PLAYWRIGHT_BASE_URL%/}/"
+          QUESTIONS_URL="${BASE_URL}questions/index.json"
           for i in $(seq 1 12); do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${PLAYWRIGHT_BASE_URL}questions/index.json")
-            if [ "$STATUS" = "200" ]; then
+            APP_STATUS=$(curl -s -o /tmp/pages-app.html -w "%{http_code}" "${BASE_URL}")
+            QUESTIONS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${QUESTIONS_URL}")
+            if [ "$APP_STATUS" = "200" ] && [ "$QUESTIONS_STATUS" = "200" ] && grep -q 'id="statsInfo"' /tmp/pages-app.html; then
               echo "Site is ready (attempt $i)"
               exit 0
             fi
-            echo "Not ready yet (attempt $i, HTTP $STATUS), retrying in 10s..."
+            echo "Not ready yet (attempt $i, app HTTP ${APP_STATUS}, questions HTTP ${QUESTIONS_STATUS}), retrying in 10s..."
             sleep 10
           done
           echo "Site did not become ready within 2 minutes"
@@ -115,4 +118,3 @@ jobs:
         env:
           PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: npm run test:e2e
-
