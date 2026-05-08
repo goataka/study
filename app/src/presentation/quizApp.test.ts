@@ -456,7 +456,6 @@ describe("QuizApp — URLフラグメント連動仕様", () => {
     const activePanel = document.querySelector(".panel-tab.active");
     expect(activePanel?.getAttribute("data-panel")).toBe("quiz");
   });
-
 });
 
 describe("QuizApp — 問題ロード後の仕様", () => {
