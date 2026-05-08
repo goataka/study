@@ -14,6 +14,8 @@ export interface ProgressMatrixContext {
   useCase: QuizUseCase;
   /** 縦横を入れ替え表示するか */
   transposed: boolean;
+  /** 学習済み単元を非表示にするか */
+  hideLearned: boolean;
   /** 縦横切り替えボタン押下時のコールバック（state を反転して再描画する） */
   onToggleTranspose: () => void;
   /** 単元ブロック押下時のコールバック */
@@ -157,6 +159,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   const tbody = document.createElement("tbody");
   const appendUnitBlock = (inner: HTMLElement, catId: string, catName: string): void => {
     const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+    if (ctx.hideLearned && total > 0 && mastered === total) return;
     const inProgress = useCase.getInProgressCount({ subject, category: catId });
     const block = document.createElement("button");
     block.type = "button";

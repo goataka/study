@@ -22,6 +22,7 @@ jobs:
     name: アプリCI用イメージのビルド
     runs-on: ubuntu-latest
     permissions:
+      actions: write
       contents: read
       packages: write
     steps:
@@ -51,7 +52,7 @@ jobs:
       - name: イメージのビルドとプッシュ
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: .github/docker/app-ci
           file: .github/docker/app-ci/Dockerfile
           build-args: |
             PLAYWRIGHT_VERSION=${{ env.PLAYWRIGHT_VERSION }}

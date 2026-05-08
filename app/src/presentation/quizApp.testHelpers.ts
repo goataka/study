@@ -194,6 +194,9 @@ export function setupTabDom(): void {
             <button class="panel-tab" id="progressDetailTab-grade" data-progress-detail-panel="grade" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">🎓 学年別</button>
             <button class="panel-tab" id="progressDetailTab-category" data-progress-detail-panel="category" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">📁 カテゴリ別</button>
           </div>
+          <div class="progress-detail-toolbar">
+            <button id="progressHideLearnedBtn" class="progress-detail-filter-btn" type="button" aria-pressed="false">✅ 学習済みを隠す</button>
+          </div>
           <div id="progressDetailContent" class="progress-detail-content" role="tabpanel" aria-labelledby="progressDetailTab-matrix"></div>
         </div>
         <div id="adminContent" class="hidden admin-content-panel" role="region" aria-label="管理"></div>

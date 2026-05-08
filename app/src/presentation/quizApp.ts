@@ -37,6 +37,7 @@ import {
   SUBJECTS,
   calcDualProgressPct,
   currentDateString,
+  renderBacktickText,
   sanitizeShareUrl,
   setText,
   on,
@@ -101,6 +102,8 @@ export class QuizApp {
   private progressDetailViewMode: "grade" | "category" | "matrix" = "matrix";
   /** マトリクス表示の縦横向き（false=学年が行、true=学年が列） */
   private progressMatrixTransposed: boolean = false;
+  /** 進度タブで学習済み単元を非表示にするか */
+  private hideLearnedProgressUnits: boolean = false;
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
   private questionListFilter: "all" | "learned" | "unlearned" = "all";
@@ -153,9 +156,9 @@ export class QuizApp {
     this.loadFontSize();
     this.loadShareUrl();
     this.loadQuizSettings();
+    this.categoryViewMode = this.progressRepo.loadCategoryViewMode();
     this.loadFilterFromURL();
     this.loadQuestionCountFromDOM();
-    this.categoryViewMode = this.progressRepo.loadCategoryViewMode();
     this.loadRecommendedCounts();
     this.setupEventListeners();
     this.buildSubjectTabs();
@@ -222,6 +225,12 @@ export class QuizApp {
     const subject = params.get("subject");
     const category = params.get("category");
     const panel = params.get("panel");
+    const overallPanel = params.get("overallPanel");
+    const progressSubject = params.get("progressSubject");
+    const progressView = params.get("progressView");
+    const progressHideLearned = params.get("progressHideLearned");
+    const categoryView = params.get("categoryView");
+    const questionFilter = params.get("questionFilter");
 
     if (subject) {
       this.filter.subject = subject;
@@ -235,6 +244,27 @@ export class QuizApp {
     if (panel && QuizApp.PANEL_TABS.includes(panel as PanelTab)) {
       this.activePanelTab = panel as PanelTab;
       this.isPanelTabUserSelected = true;
+    }
+    if (overallPanel === "learned" || overallPanel === "share") {
+      this.activeOverallPanel = overallPanel;
+    }
+    if (
+      progressSubject &&
+      SUBJECTS.some((s) => s.id === progressSubject && s.id !== "all" && s.id !== "admin" && s.id !== "progress")
+    ) {
+      this.progressSubjectId = progressSubject;
+    }
+    if (progressView === "grade" || progressView === "category" || progressView === "matrix") {
+      this.progressDetailViewMode = progressView;
+    }
+    if (progressHideLearned === "1" || progressHideLearned === "true") {
+      this.hideLearnedProgressUnits = true;
+    }
+    if (categoryView === "grade" || categoryView === "category") {
+      this.categoryViewMode = categoryView;
+    }
+    if (questionFilter === "all" || questionFilter === "learned" || questionFilter === "unlearned") {
+      this.questionListFilter = questionFilter;
     }
   }
 
@@ -264,6 +294,27 @@ export class QuizApp {
     }
     if (this.activePanelTab) {
       hashParams.set("panel", this.activePanelTab);
+    }
+    if (
+      this.filter.subject !== "all" &&
+      this.filter.subject !== "progress" &&
+      this.filter.subject !== "admin" &&
+      this.categoryViewMode
+    ) {
+      hashParams.set("categoryView", this.categoryViewMode);
+    }
+    if (this.filter.subject === "all") {
+      hashParams.set("overallPanel", this.activeOverallPanel);
+    }
+    if (this.filter.subject === "progress") {
+      hashParams.set("progressSubject", this.progressSubjectId);
+      hashParams.set("progressView", this.progressDetailViewMode);
+      if (this.hideLearnedProgressUnits) {
+        hashParams.set("progressHideLearned", "1");
+      }
+    }
+    if (this.activePanelTab === "questions" && this.questionListFilter !== "all") {
+      hashParams.set("questionFilter", this.questionListFilter);
     }
     const params = hashParams.toString();
     const newHash = params ? `#${params}` : "";
@@ -495,6 +546,7 @@ export class QuizApp {
         const panel = tab.dataset.overallPanel as "learned" | "share";
         this.activeOverallPanel = panel;
         this.showOverallPanel(panel);
+        this.syncURLFragment();
       });
     });
   }
@@ -518,6 +570,7 @@ export class QuizApp {
         document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", `progressDetailTab-${mode}`);
         // 詳細コンテンツを再描画
         this.renderProgressDetailContent();
+        this.syncURLFragment();
       });
     });
   }
@@ -664,6 +717,23 @@ export class QuizApp {
       topHeaderText.textContent = topCatName;
       topGroupHeader.appendChild(topHeaderText);
 
+      topGroupHeader.appendChild(
+        this.buildGroupGuideButton("カテゴリ解説を表示", () => {
+          this.showGeneratedGuidePage(
+            `📁 ${topCatName} の解説`,
+            `${topCatName} に含まれる単元の学習ポイントをまとめています。`,
+            Object.entries(parentCatsForTop).flatMap(([parentCatId]) => {
+              const cats = categoriesByParent.get(parentCatId) ?? {};
+              return Object.entries(cats).map(([catId, catName]) => ({
+                name: catName,
+                description: this.useCase.getCategoryDescription(subject, catId),
+                example: this.useCase.getCategoryExample(subject, catId),
+              }));
+            }),
+          );
+        }),
+      );
+
       topGroupDiv.appendChild(topGroupHeader);
 
       for (const [parentCatId, parentCatName] of Object.entries(parentCatsForTop)) {
@@ -766,6 +836,20 @@ export class QuizApp {
       headerText.textContent = grade;
       groupHeader.appendChild(headerText);
 
+      groupHeader.appendChild(
+        this.buildGroupGuideButton("学年解説を表示", () => {
+          this.showGeneratedGuidePage(
+            `🎓 ${grade} の解説`,
+            `${this.getSubjectLabel(subject)} の ${grade} 向け単元をまとめています。`,
+            Object.entries(cats).map(([catId, catName]) => ({
+              name: catName,
+              description: this.useCase.getCategoryDescription(subject, catId),
+              example: this.useCase.getCategoryExample(subject, catId),
+            })),
+          );
+        }),
+      );
+
       groupDiv.appendChild(groupHeader);
 
       for (const [catId, catName] of Object.entries(cats)) {
@@ -823,6 +907,20 @@ export class QuizApp {
         const headerText = document.createElement("span");
         headerText.textContent = "学年未設定";
         groupHeader.appendChild(headerText);
+
+        groupHeader.appendChild(
+          this.buildGroupGuideButton("学年未設定の解説を表示", () => {
+            this.showGeneratedGuidePage(
+              "🎓 学年未設定の解説",
+              `${this.getSubjectLabel(subject)} の学年未設定単元をまとめています。`,
+              Object.entries(uncategorized).map(([catId, catName]) => ({
+                name: catName,
+                description: this.useCase.getCategoryDescription(subject, catId),
+                example: this.useCase.getCategoryExample(subject, catId),
+              })),
+            );
+          }),
+        );
 
         groupDiv.appendChild(groupHeader);
 
@@ -886,6 +984,7 @@ export class QuizApp {
       this.categoryViewMode = this.categoryViewMode === "category" ? "grade" : "category";
       this.progressRepo.saveCategoryViewMode(this.categoryViewMode);
       this.renderCategoryList();
+      this.syncURLFragment();
     });
     controlsEl.appendChild(viewToggleBtn);
 
@@ -1003,6 +1102,25 @@ export class QuizApp {
     const headerText = document.createElement("span");
     headerText.textContent = parentCatName;
     groupHeader.appendChild(headerText);
+
+    const parentGuideUrl = this.useCase.getParentCategoryGuideUrl(subject, parentCatId);
+    groupHeader.appendChild(
+      this.buildGroupGuideButton("カテゴリ解説を表示", () => {
+        if (parentGuideUrl) {
+          this.showParentCategoryGuide(parentGuideUrl);
+          return;
+        }
+        this.showGeneratedGuidePage(
+          `📁 ${parentCatName} の解説`,
+          `${parentCatName} に含まれる単元の学習ポイントをまとめています。`,
+          Object.entries(cats).map(([catId, catName]) => ({
+            name: catName,
+            description: this.useCase.getCategoryDescription(subject, catId),
+            example: this.useCase.getCategoryExample(subject, catId),
+          })),
+        );
+      }),
+    );
 
     const learnedBadge = document.createElement("span");
     learnedBadge.className = "category-group-learned-badge";
@@ -1180,6 +1298,7 @@ export class QuizApp {
         this.selectedUnitContext = null;
         this.renderCategoryList();
         this.updateStartScreen();
+        this.syncURLFragment();
       });
       subjectList.appendChild(item);
     }
@@ -1210,6 +1329,11 @@ export class QuizApp {
     });
     // tabpanel の aria-labelledby を更新する
     document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", activeTabId);
+    const hideLearnedBtn = document.getElementById("progressHideLearnedBtn");
+    if (hideLearnedBtn) {
+      hideLearnedBtn.classList.toggle("active", this.hideLearnedProgressUnits);
+      hideLearnedBtn.setAttribute("aria-pressed", String(this.hideLearnedProgressUnits));
+    }
 
     this.renderProgressDetailContent();
   }
@@ -1226,6 +1350,7 @@ export class QuizApp {
     const blockCtx = {
       subject: this.progressSubjectId,
       useCase: this.useCase,
+      hideLearned: this.hideLearnedProgressUnits,
       onSelectUnit: (subject: string, catId: string, catName: string) =>
         this.selectUnitContext(subject, catId, catName),
     };
@@ -1236,9 +1361,11 @@ export class QuizApp {
         subject: this.progressSubjectId,
         useCase: this.useCase,
         transposed: this.progressMatrixTransposed,
+        hideLearned: this.hideLearnedProgressUnits,
         onToggleTranspose: () => {
           this.progressMatrixTransposed = !this.progressMatrixTransposed;
           this.renderProgressDetailContent();
+          this.syncURLFragment();
         },
         onSelectUnit: blockCtx.onSelectUnit,
       });
@@ -1816,6 +1943,87 @@ export class QuizApp {
     if (!guideFrame) return;
 
     void this.loadGuideContent(guideFrame, guideUrl, noContent ?? undefined);
+    this.syncURLFragment();
+  }
+
+  private buildGroupGuideButton(ariaLabel: string, onClick: () => void): HTMLButtonElement {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "category-group-guide-btn";
+    btn.textContent = "📖 解説";
+    btn.setAttribute("aria-label", ariaLabel);
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onClick();
+    });
+    return btn;
+  }
+
+  private getSubjectLabel(subjectId: string): string {
+    return SUBJECTS.find((subject) => subject.id === subjectId)?.name ?? subjectId;
+  }
+
+  private showGeneratedGuidePage(
+    title: string,
+    summary: string,
+    entries: Array<{ name: string; description?: string; example?: string }>,
+  ): void {
+    const guideFrame = document.getElementById("guidePanelFrame");
+    const noContent = document.getElementById("guideNoContent");
+    if (!guideFrame) return;
+
+    this.activePanelTab = "guide";
+    this.isPanelTabUserSelected = true;
+    this.showPanelTab("guide");
+    guideFrame.classList.remove("hidden");
+    noContent?.classList.add("hidden");
+    guideFrame.dataset.loadedUrl = `inline:${title}`;
+    guideFrame.innerHTML = "";
+
+    const article = document.createElement("article");
+    article.className = "generated-guide-page";
+
+    const heading = document.createElement("h2");
+    heading.className = "generated-guide-title";
+    heading.textContent = title;
+    article.appendChild(heading);
+
+    const summaryEl = document.createElement("p");
+    summaryEl.className = "generated-guide-summary";
+    summaryEl.textContent = summary;
+    article.appendChild(summaryEl);
+
+    const list = document.createElement("ul");
+    list.className = "generated-guide-list";
+    entries.forEach((entry) => {
+      const item = document.createElement("li");
+      item.className = "generated-guide-item";
+
+      const titleEl = document.createElement("strong");
+      titleEl.className = "generated-guide-item-title";
+      titleEl.textContent = entry.name;
+      item.appendChild(titleEl);
+
+      if (entry.description) {
+        const desc = document.createElement("div");
+        desc.className = "generated-guide-item-description";
+        desc.textContent = entry.description;
+        item.appendChild(desc);
+      }
+
+      if (entry.example) {
+        const example = document.createElement("div");
+        example.className = "generated-guide-item-example";
+        renderBacktickText(example, `例: ${entry.example}`);
+        item.appendChild(example);
+      }
+
+      list.appendChild(item);
+    });
+    article.appendChild(list);
+    guideFrame.appendChild(article);
+    this.syncURLFragment();
   }
 
   /**
@@ -2019,6 +2227,15 @@ export class QuizApp {
     const bodyEl = document.getElementById("questionListBody");
     if (!bodyEl) return;
 
+    const filterButtonMap = {
+      all: "questionListFilterAll",
+      unlearned: "questionListFilterUnlearned",
+      learned: "questionListFilterLearned",
+    } as const;
+    (Object.entries(filterButtonMap) as Array<[typeof this.questionListFilter, string]>).forEach(([key, id]) => {
+      document.getElementById(id)?.classList.toggle("active", key === this.questionListFilter);
+    });
+
     let questions = this.useCase.getFilteredQuestions(this.getEffectiveFilter());
 
     // 学習済みフィルターを適用
@@ -2124,6 +2341,7 @@ export class QuizApp {
   private setupEventListeners(): void {
     this.setupQuizFlowListeners();
     this.setupQuestionListFilterListeners();
+    this.setupProgressFilterListeners();
     this.setupHeaderListeners();
     this.setupAvatarListeners();
     this.setupQuizSettingsListeners();
@@ -2170,7 +2388,16 @@ export class QuizApp {
         });
         document.getElementById(id)?.classList.add("active");
         this.renderQuestionList();
+        this.syncURLFragment();
       });
+    });
+  }
+
+  private setupProgressFilterListeners(): void {
+    document.getElementById("progressHideLearnedBtn")?.addEventListener("click", () => {
+      this.hideLearnedProgressUnits = !this.hideLearnedProgressUnits;
+      this.renderProgressDetailPanel();
+      this.syncURLFragment();
     });
   }
 

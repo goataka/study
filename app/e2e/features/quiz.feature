@@ -187,6 +187,13 @@ Feature: 学習アプリ
     And I click the view mode toggle button
     Then grade groups should be visible in the category list
 
+  Scenario: 学年グループの解説ボタンから解説を表示できる
+    When I click the "数学" tab
+    And I click the view mode toggle button
+    And I click the first grade group guide button
+    Then the guide panel should be active
+    And the generated guide page should be visible
+
   Scenario: サポートボタン（?）がヘッダーに表示される
     Then the support button should be visible in the header
 

@@ -385,6 +385,15 @@ Then("grade groups should be visible in the category list", async ({ page }) => 
   await expect(page.locator(".category-grade-group").first()).toBeVisible();
 });
 
+When("I click the first grade group guide button", async ({ page }) => {
+  await page.locator(".category-grade-group-header .category-group-guide-btn").first().click();
+});
+
+Then("the generated guide page should be visible", async ({ page }) => {
+  await expect(page.locator("#guidePanelFrame")).toHaveAttribute("data-loaded-url", /inline:/);
+  await expect(page.locator("#guidePanelFrame")).toContainText("の解説");
+});
+
 Then("the overall summary panel should be visible", async ({ page }) => {
   // 総合タブの活動サマリパネルが表示されていること
   await expect(page.locator("#overallSummaryPanel")).toBeVisible();
