@@ -1,0 +1,44 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/copilot-setup-steps.yml"
+      - ".github/docker/app-ci/Dockerfile"
+  pull_request:
+    paths:
+      - ".github/workflows/copilot-setup-steps.yml"
+      - ".github/docker/app-ci/Dockerfile"
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v6
+
+      - name: Dockerfile の検証用イメージをローカルでビルド
+        run: docker build -t study-app-ci:local -f .github/docker/app-ci/Dockerfile .
+
+      - name: app 依存関係をイメージ上でインストール
+        # copilot-setup-steps ジョブ実行時の依存関係インストール手順を、
+        # push / PR 時にも同じ Docker イメージで検証する
+        run: |
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -v "${GITHUB_WORKSPACE}:/workspace" \
+            -w /workspace/app \
+            study-app-ci:local \
+            npm ci
+
+      - name: 共通イメージで app ビルドを確認
+        run: |
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -v "${GITHUB_WORKSPACE}:/workspace" \
+            -w /workspace/app \
+            study-app-ci:local \
+            npm run build

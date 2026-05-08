@@ -233,6 +233,11 @@ I `played` games.
 3. **本番デプロイ後に自動E2Eが実行される**
    - `jekyll-gh-pages.yml` の `e2e-production` ジョブがデプロイ後に本番URLに対してE2Eを実行する
 
+### GitHub Actions のイメージ指定ルール
+
+- `jobs.<job_id>.container.image` や `services.<service_id>.image` の指定では `env` コンテキストを使わない（理由: イメージ解決時に `env` が使えず、ワークフローが失敗するため）
+- イメージ名はリテラルで直接記述する（例: `image: mcr.microsoft.com/playwright:v1.59.1-noble`）
+
 ### コードの言語規則
 
 - **コードコメント・ファイルヘッダー**: 日本語で記述する
