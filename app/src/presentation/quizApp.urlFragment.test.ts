@@ -178,7 +178,7 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
 
     const allTab = document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement;
     allTab.click();
-    (document.querySelector(".subject-overview-item") as HTMLElement | null)?.click();
+    (document.querySelector('.subject-overview-item[data-subject="english"]') as HTMLElement | null)?.click();
 
     expect(window.location.hash).toContain("unitSubject=english");
     expect(window.location.hash).toContain("unitCategory=phonics-1");

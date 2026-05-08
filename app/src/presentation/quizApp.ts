@@ -1914,14 +1914,21 @@ export class QuizApp {
     );
     const exampleText = gradeList.length > 0 ? `対象学年: ${gradeList.join(" / ")}` : "対象学年: 学年未設定";
     const summaryText = `${uniqueEntries.length}単元の解説`;
+    const selectedCategorySet = new Set(uniqueEntries.map(([catId]) => catId));
+    const subjectQuestions = this.useCase.getFilteredQuestions({ subject: this.filter.subject, category: "all" });
+    const masteredSet = new Set(this.useCase.getMasteredIds());
+    const questionStats = this.useCase.getAllQuestionStats();
     let mastered = 0;
     let inProgressCount = 0;
     let total = 0;
-    for (const [catId] of uniqueEntries) {
-      const progress = this.useCase.getMasteredCountForCategory(this.filter.subject, catId);
-      mastered += progress.mastered;
-      total += progress.total;
-      inProgressCount += this.useCase.getInProgressCount({ subject: this.filter.subject, category: catId });
+    for (const q of subjectQuestions) {
+      if (!selectedCategorySet.has(q.category)) continue;
+      total++;
+      if (masteredSet.has(q.id)) {
+        mastered++;
+      } else if ((questionStats[q.id]?.total ?? 0) > 0) {
+        inProgressCount++;
+      }
     }
     container.appendChild(
       buildSelectedUnitInfoBody({
