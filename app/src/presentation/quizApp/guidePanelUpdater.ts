@@ -69,6 +69,7 @@ export async function updateGuidePanelContentByIds(
   if (!guideFrame) return;
 
   if (state.selectedGradeGroup && state.filter.subject !== "all" && state.filter.subject !== "progress") {
+    counterRef.nextToken();
     renderGradeGuideContent(guideFrame, useCase, state.filter.subject, state.selectedGradeGroup);
     guideFrame.classList.remove("hidden");
     noContent?.classList.add("hidden");
@@ -88,6 +89,7 @@ export async function updateGuidePanelContentByIds(
 }
 
 function renderGradeGuideContent(container: HTMLElement, useCase: QuizUseCase, subject: string, grade: string): void {
+  container.dataset.loadedUrl = "";
   const categories =
     grade === "none" ? useCase.getCategoriesWithoutGrade(subject) : useCase.getCategoriesForGrade(subject, grade);
   const entries = Object.entries(categories);
