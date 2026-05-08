@@ -40,8 +40,30 @@ import {
   sanitizeShareUrl,
   setText,
   on,
-  fallbackCopy,
 } from "./uiHelpers";
+import { showConfirmDialog } from "./quizApp/confirmDialog";
+import { updateHeaderTodayDate } from "./quizApp/headerDate";
+import { buildResultItem } from "./quizApp/resultItemView";
+import { applyFontSizeToDom, type FontSizeLevel } from "./quizApp/fontSizeManager";
+import {
+  openUserNameEdit as openUserNameEditUi,
+  closeUserNameEdit as closeUserNameEditUi,
+  readUserNameInput,
+  updateUserNameDisplay as updateUserNameDisplayUi,
+} from "./quizApp/userNameEditor";
+import {
+  updateShareUrlOpenBtn as updateShareUrlOpenBtnUi,
+  openShareUrlEdit as openShareUrlEditUi,
+  closeShareUrlEdit as closeShareUrlEditUi,
+  readShareUrlInput,
+} from "./quizApp/shareUrlEditor";
+import { copyShareSummary as copyShareSummaryAction } from "./quizApp/shareSummaryActions";
+import { loadGuideContent as loadGuideContentFn } from "./quizApp/guideLoader";
+import { renderHistoryList as renderHistoryListView } from "./quizApp/historyListView";
+import {
+  renderQuestionList as renderQuestionListView,
+  type QuestionListFilter,
+} from "./quizApp/questionListView";
 
 const PANEL_TABS = ["quiz", "guide", "history", "questions"] as const;
 type PanelTab = (typeof PANEL_TABS)[number];
@@ -85,7 +107,7 @@ export class QuizApp {
   /** 現在選択中のトップカテゴリID（トップカテゴリ選択時のみ設定、単元選択時は null） */
   private selectedTopCategoryId: string | null = null;
   /** フォントサイズレベル（small=デフォルト, medium, large） */
-  private fontSizeLevel: "small" | "medium" | "large" = "small";
+  private fontSizeLevel: FontSizeLevel = "small";
   /** 総合タブの活動サマリ共有 URL */
   private shareUrl: string = "";
   /** 活動サマリで表示する日付（YYYY-MM-DD 形式）: 常に今日の日付 */
@@ -107,7 +129,7 @@ export class QuizApp {
   private hideLearnedProgressUnits: boolean = false;
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   private guideLoadCounter: number = 0;
-  private questionListFilter: "all" | "learned" | "unlearned" = "all";
+  private questionListFilter: QuestionListFilter = "all";
   private quizOrder: "random" | "straight" = "random";
   private includeMastered: boolean = false;
 
@@ -423,24 +445,9 @@ export class QuizApp {
     this.progressRepo.saveShareUrl(sanitized);
   }
 
-  private applyFontSize(level: "small" | "medium" | "large", persist = true): void {
+  private applyFontSize(level: FontSizeLevel, persist = true): void {
     this.fontSizeLevel = level;
-    document.body.classList.remove("font-size-medium", "font-size-large");
-    if (level === "medium") {
-      document.body.classList.add("font-size-medium");
-    } else if (level === "large") {
-      document.body.classList.add("font-size-large");
-    }
-    // ボタンのアクティブ状態を更新
-    document.querySelectorAll<HTMLButtonElement>(".font-size-btn").forEach((btn) => {
-      const active = btn.dataset.size === level;
-      btn.classList.toggle("active", active);
-      btn.setAttribute("aria-pressed", String(active));
-    });
-    // 初期復元時は保存をスキップし、ユーザー操作時のみ保存する
-    if (persist) {
-      this.progressRepo.saveFontSizeLevel(level);
-    }
+    applyFontSizeToDom(level, persist, (l) => this.progressRepo.saveFontSizeLevel(l));
   }
 
   private loadQuestionCountFromDOM(): void {
@@ -471,33 +478,17 @@ export class QuizApp {
   }
 
   private openUserNameEdit(): void {
-    const nameBtn = document.getElementById("headerUserName");
-    const editArea = document.getElementById("headerUserEdit");
-    const input = document.getElementById("headerUserNameInput") as HTMLInputElement | null;
-    if (!nameBtn || !editArea || !input) return;
-
-    input.value = this.userName === "ゲスト" ? "" : this.userName;
-    nameBtn.classList.add("hidden");
-    editArea.classList.remove("hidden");
-    input.focus();
-    input.select();
+    openUserNameEditUi(this.userName);
   }
 
   private closeUserNameEdit(): void {
-    const nameBtn = document.getElementById("headerUserName");
-    const editArea = document.getElementById("headerUserEdit");
-    if (!nameBtn || !editArea) return;
-
-    editArea.classList.add("hidden");
-    nameBtn.classList.remove("hidden");
+    closeUserNameEditUi();
   }
 
   private saveHeaderUserName(): void {
-    const input = document.getElementById("headerUserNameInput") as HTMLInputElement | null;
-    if (!input) return;
-
-    const name = input.value.trim();
-    this.userName = name || "ゲスト";
+    const name = readUserNameInput();
+    if (name === null) return;
+    this.userName = name;
     this.progressRepo.saveUserName(this.userName);
     this.updateUserNameDisplay("headerUserName");
     this.closeUserNameEdit();
@@ -1538,95 +1529,25 @@ export class QuizApp {
    * 活動サマリテキストをクリップボードにコピーする。
    */
   private copyShareSummary(): void {
-    const el = document.getElementById("shareSummaryText");
-    const text = el?.textContent ?? "";
-    if (!text) return;
-
-    const btn = document.getElementById("copySummaryBtn") as HTMLButtonElement | null;
-    const originalText = btn?.textContent ?? "";
-    const markCopied = (): void => {
-      if (btn) {
-        btn.textContent = "✅ コピーしました";
-        setTimeout(() => {
-          btn.textContent = originalText;
-        }, 1500);
-      }
-    };
-
-    if (navigator.clipboard) {
-      void navigator.clipboard
-        .writeText(text)
-        .then(markCopied)
-        .catch(() => {
-          fallbackCopy(text);
-          markCopied();
-        });
-    } else {
-      fallbackCopy(text);
-      markCopied();
-    }
+    copyShareSummaryAction();
   }
 
-  /**
-   * 共有 URL の「共有」ボタンの状態と URL 表示ボタンのテキストを更新する。
-   * URL が設定されている場合は表示ボタンをグレー調に変更する。
-   */
   private updateShareUrlOpenBtn(): void {
-    const btn = document.getElementById("openShareUrlBtn") as HTMLButtonElement | null;
-    if (btn) {
-      if (this.shareUrl) {
-        btn.classList.remove("hidden");
-      } else {
-        btn.classList.add("hidden");
-      }
-    }
-    // URL 表示ボタンのテキストと色状態を更新
-    const displayBtn = document.getElementById("shareUrlDisplayBtn") as HTMLButtonElement | null;
-    if (displayBtn) {
-      displayBtn.textContent = this.shareUrl || "URLを設定";
-      displayBtn.classList.toggle("share-url-set", !!this.shareUrl);
-    }
+    updateShareUrlOpenBtnUi(this.shareUrl);
   }
 
-  /**
-   * 共有 URL のインライン編集エリアを開く（名称編集と同様のパターン）。
-   */
   private openShareUrlEdit(): void {
-    const displayBtn = document.getElementById("shareUrlDisplayBtn");
-    const editArea = document.getElementById("shareUrlEditArea");
-    const input = document.getElementById("shareUrlInput") as HTMLInputElement | null;
-    if (!displayBtn || !editArea || !input) return;
-
-    input.value = this.shareUrl;
-    displayBtn.classList.add("hidden");
-    displayBtn.setAttribute("aria-expanded", "true");
-    editArea.classList.remove("hidden");
-    input.focus();
-    input.select();
+    openShareUrlEditUi(this.shareUrl);
   }
 
-  /**
-   * 共有 URL のインライン編集エリアを閉じる。
-   * フォーカスを表示ボタンに戻す。
-   */
   private closeShareUrlEdit(): void {
-    const displayBtn = document.getElementById("shareUrlDisplayBtn");
-    const editArea = document.getElementById("shareUrlEditArea");
-    if (!displayBtn || !editArea) return;
-
-    editArea.classList.add("hidden");
-    displayBtn.classList.remove("hidden");
-    displayBtn.setAttribute("aria-expanded", "false");
-    displayBtn.focus();
+    closeShareUrlEditUi();
   }
 
-  /**
-   * 共有 URL を保存してインライン編集エリアを閉じる。
-   */
   private saveAndCloseShareUrl(): void {
-    const input = document.getElementById("shareUrlInput") as HTMLInputElement | null;
-    if (input) {
-      this.saveShareUrl(input.value.trim());
+    const value = readShareUrlInput();
+    if (value !== null) {
+      this.saveShareUrl(value);
       this.updateShareUrlOpenBtn();
     }
     this.closeShareUrlEdit();
@@ -2119,107 +2040,15 @@ export class QuizApp {
    * @param noContent - 解説なしメッセージ要素（任意）
    */
   private async loadGuideContent(container: HTMLElement, guideUrl: string, noContent?: HTMLElement): Promise<void> {
-    // 既に同じ URL を表示中なら再ロードしない
-    if (container.dataset.loadedUrl === guideUrl) return;
-
-    // リクエストごとにトークンを割り当て、最新リクエスト以外は結果を破棄する
-    const token = ++this.guideLoadCounter;
-
-    // 絶対 URL（外部オリジン）は CORS リスクがあるため fetch せず別タブで開くリンクを表示する
-    try {
-      const parsed = new URL(guideUrl, window.location.href);
-      if (parsed.origin !== window.location.origin) {
-        if (token !== this.guideLoadCounter) return;
-        container.dataset.loadedUrl = "";
-        container.querySelectorAll(".guide-error-msg").forEach((el) => el.remove());
-        const link = document.createElement("p");
-        link.className = "guide-error-msg guide-no-content";
-        const anchor = document.createElement("a");
-        anchor.href = guideUrl;
-        anchor.target = "_blank";
-        anchor.rel = "noopener noreferrer";
-        anchor.textContent = "解説を別タブで開く";
-        link.appendChild(anchor);
-        container.appendChild(link);
-        noContent?.classList.add("hidden");
-        container.classList.remove("hidden");
-        return;
-      }
-    } catch {
-      // URL パースに失敗した場合はそのまま fetch を試みる
-    }
-
-    try {
-      const response = await fetch(guideUrl);
-      if (token !== this.guideLoadCounter) return; // 古いリクエストは破棄
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const html = await response.text();
-
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-
-      // XSS 対策: script 要素・on* 属性・危険な要素を除去する
-      doc
-        .querySelectorAll("script, iframe, object, embed, link[rel='import'], meta[http-equiv='refresh']")
-        .forEach((el) => el.remove());
-      doc.querySelectorAll("*").forEach((el) => {
-        Array.from(el.attributes)
-          .filter((attr) => attr.name.startsWith("on"))
-          .forEach((attr) => el.removeAttribute(attr.name));
-      });
-
-      // 注入コンテンツ内のすべての id 属性を除去して主ページIDとの衝突を防ぐ
-      doc.querySelectorAll("[id]").forEach((el) => el.removeAttribute("id"));
-
-      // body のコンテンツを取得（site-header・site-footer・post-header・スタイル等を除く）
-      const bodyClone = doc.body.cloneNode(true) as HTMLBodyElement;
-      bodyClone
-        .querySelectorAll(
-          "header.site-header, footer.site-footer, footer, header.post-header, style, .site-nav, .site-title, a.site-title",
-        )
-        .forEach((el) => el.remove());
-      // 「This site is open source. Improve this page.」等の GitHub Pages 固有要素を除去
-      // Minima テーマの edit-link クラスや、特定の GitHub リポジトリリンクを含む要素を除去する
-      bodyClone
-        .querySelectorAll(".edit-link, .gh-edit-link, [class*='improve'], [class*='edit-page']")
-        .forEach((el) => el.remove());
-      // テキストに「This site is open source」または「Improve this page」を含む要素を除去する
-      // ただし h1〜h6・table・ul・ol 等のコンテンツ構造を持つ要素は除去しない（親コンテナの誤削除を防ぐ）
-      const contentStructureSelector = "h1, h2, h3, h4, h5, h6, table, ul, ol";
-      bodyClone.querySelectorAll("p, div, span, aside").forEach((el) => {
-        const text = el.textContent ?? "";
-        if (
-          (text.includes("This site is open source") || text.includes("Improve this page")) &&
-          !el.querySelector(contentStructureSelector)
-        ) {
-          el.remove();
-        }
-      });
-
-      // guide-content コンテナを作成（または既存を再利用）して直接挿入する
-      let guideContent = container.querySelector<HTMLElement>(".guide-content");
-      if (!guideContent) {
-        guideContent = document.createElement("div");
-        guideContent.className = "guide-content";
-        container.appendChild(guideContent);
-      }
-      guideContent.innerHTML = bodyClone.innerHTML;
-
-      container.dataset.loadedUrl = guideUrl;
-      container.classList.remove("hidden");
-      noContent?.classList.add("hidden");
-    } catch (err) {
-      if (token !== this.guideLoadCounter) return; // 古いリクエストは破棄
-      console.error("解説の読み込みに失敗しました:", err);
-      container.dataset.loadedUrl = "";
-      // innerHTML を上書きせず、エラーメッセージのみ追加する
-      container.querySelectorAll(".guide-error-msg").forEach((el) => el.remove());
-      const errorMsg = document.createElement("p");
-      errorMsg.className = "guide-error-msg guide-no-content";
-      errorMsg.textContent = "解説の読み込みに失敗しました。";
-      container.appendChild(errorMsg);
-      noContent?.classList.add("hidden");
-    }
+    await loadGuideContentFn(
+      container,
+      guideUrl,
+      {
+        nextToken: () => ++this.guideLoadCounter,
+        currentToken: () => this.guideLoadCounter,
+      },
+      noContent,
+    );
   }
 
   // ─── 回答記録 ──────────────────────────────────────────────────────────────
@@ -2230,29 +2059,7 @@ export class QuizApp {
    * @param allRecords - 呼び出し元で取得済みの履歴配列（省略時は内部でロードする）
    */
   private renderHistoryList(filter: QuizFilter, allRecords?: QuizRecord[]): void {
-    const historyList = document.getElementById("historyList");
-    if (!historyList) return;
-
-    const records = (allRecords ?? this.useCase.getHistory())
-      .filter(
-        (r) =>
-          (filter.subject === "all" || r.subject === filter.subject) &&
-          (filter.category === "all" || r.category === filter.category),
-      )
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    historyList.innerHTML = "";
-
-    if (records.length === 0) {
-      const empty = document.createElement("p");
-      empty.className = "history-empty";
-      empty.textContent = "まだ回答記録がありません。クイズを解いてみましょう！";
-      historyList.appendChild(empty);
-      return;
-    }
-
-    records.forEach((record) => {
-      historyList.appendChild(buildHistoryItem(record, this.useCase));
-    });
+    renderHistoryListView(filter, this.useCase, allRecords);
   }
 
   // ─── 問題一覧パネル ────────────────────────────────────────────────────────
@@ -2261,116 +2068,7 @@ export class QuizApp {
    * 現在のフィルターに基づいて問題一覧パネルを描画する
    */
   private renderQuestionList(): void {
-    const bodyEl = document.getElementById("questionListBody");
-    if (!bodyEl) return;
-
-    const filterButtonMap = {
-      all: "questionListFilterAll",
-      unlearned: "questionListFilterUnlearned",
-      learned: "questionListFilterLearned",
-    } as const;
-    (Object.entries(filterButtonMap) as Array<[typeof this.questionListFilter, string]>).forEach(([key, id]) => {
-      document.getElementById(id)?.classList.toggle("active", key === this.questionListFilter);
-    });
-
-    let questions = this.useCase.getFilteredQuestions(this.getEffectiveFilter());
-
-    // 学習済みフィルターを適用
-    if (this.questionListFilter === "learned") {
-      questions = questions.filter((q) => this.useCase.isMastered(q.id));
-    } else if (this.questionListFilter === "unlearned") {
-      questions = questions.filter((q) => !this.useCase.isMastered(q.id));
-    }
-
-    // フィルター済み問題数を表示
-    const countEl = document.getElementById("questionListFilterCount");
-    if (countEl) countEl.textContent = `${questions.length}問`;
-
-    bodyEl.innerHTML = "";
-    if (questions.length === 0) {
-      const empty = document.createElement("p");
-      empty.className = "history-empty";
-      empty.textContent = "この単元に問題はありません。";
-      bodyEl.appendChild(empty);
-    } else {
-      questions.forEach((q) => {
-        bodyEl.appendChild(this.buildQuestionListItem(q));
-      });
-    }
-  }
-
-  /**
-   * 問題一覧の1問分のHTML要素を構築する（問題・統計・ヒント（正解を含む）を表示）
-   */
-  private buildQuestionListItem(question: Question): HTMLElement {
-    const item = document.createElement("div");
-    item.className = "question-list-item";
-
-    const stat = this.useCase.getQuestionStat(question.id);
-    // 習得済みなら完了（🏆）
-    const isCompleted = this.useCase.isMastered(question.id);
-    const streak = this.useCase.getCorrectStreak(question.id);
-    if (isCompleted) {
-      item.classList.add("question-list-completed");
-    }
-
-    const rowDiv = document.createElement("div");
-    rowDiv.className = "question-list-row";
-
-    const textDiv = document.createElement("span");
-    textDiv.className = "question-list-text";
-    textDiv.textContent = question.question;
-    rowDiv.appendChild(textDiv);
-
-    // 回答統計バッジ（連続正答数を星で表示）
-    const statSpan = document.createElement("span");
-    statSpan.className = "question-list-stat";
-    if (stat.total > 0) {
-      const maxStreak = 3;
-      const filledStar = "⭐";
-      const emptyStar = "☆";
-      const starStr = isCompleted
-        ? "🏆"
-        : Array.from({ length: maxStreak }, (_, i) => (i < streak ? filledStar : emptyStar)).join("");
-      statSpan.textContent = `${starStr} 全${stat.total}回`;
-    } else {
-      statSpan.textContent = "-";
-    }
-    rowDiv.appendChild(statSpan);
-
-    const hintBtn = document.createElement("button");
-    hintBtn.className = "question-list-hint-btn";
-    hintBtn.textContent = "💡";
-    hintBtn.setAttribute("aria-label", "ヒントを表示");
-    hintBtn.setAttribute("aria-expanded", "false");
-    rowDiv.appendChild(hintBtn);
-
-    item.appendChild(rowDiv);
-
-    const hintDiv = document.createElement("div");
-    hintDiv.className = "question-list-hint hidden";
-
-    // 正解をヒントの中に表示
-    const correctDiv = document.createElement("span");
-    correctDiv.className = "question-list-correct";
-    correctDiv.textContent = `✓ ${question.choices[question.correct]}`;
-    hintDiv.appendChild(correctDiv);
-
-    if (question.explanation) {
-      const explanationDiv = document.createElement("div");
-      explanationDiv.className = "question-list-hint-explanation";
-      explanationDiv.textContent = question.explanation;
-      hintDiv.appendChild(explanationDiv);
-    }
-
-    item.appendChild(hintDiv);
-
-    hintBtn.addEventListener("click", () => {
-      const isHidden = hintDiv.classList.toggle("hidden");
-      hintBtn.setAttribute("aria-expanded", isHidden ? "false" : "true");
-    });
-
-    return item;
+    renderQuestionListView(this.getEffectiveFilter(), this.questionListFilter, this.useCase);
   }
 
   // ─── イベント登録 ──────────────────────────────────────────────────────────
@@ -3653,56 +3351,7 @@ export class QuizApp {
   }
 
   private buildResultItem(r: AnswerResult): HTMLElement {
-    const { question, userAnswerIndex, isCorrect } = r;
-    const div = document.createElement("div");
-    div.className = `result-item ${isCorrect ? "correct" : "incorrect"}`;
-
-    const header = document.createElement("div");
-    header.className = "result-header";
-
-    const icon = document.createElement("span");
-    icon.className = "result-icon";
-    icon.textContent = isCorrect ? "✓" : "✗";
-
-    const questionText = document.createElement("span");
-    questionText.className = "result-question";
-    questionText.textContent = question.question;
-
-    // あなたの解答を問題と同じ行の右側に表示する
-    const userAnswerInline = document.createElement("span");
-    userAnswerInline.className = "result-user-answer";
-    const userAnswerLabel = document.createTextNode("あなた: ");
-    const userAnswerValue = document.createElement("strong");
-    if (question.questionType === "text-input") {
-      userAnswerValue.textContent = r.userAnswerText ?? "（未入力）";
-    } else {
-      userAnswerValue.textContent = question.choices[userAnswerIndex] ?? "未回答";
-    }
-    userAnswerInline.appendChild(userAnswerLabel);
-    userAnswerInline.appendChild(userAnswerValue);
-
-    header.appendChild(icon);
-    header.appendChild(questionText);
-    header.appendChild(userAnswerInline);
-
-    const answer = document.createElement("div");
-    answer.className = "result-answer";
-
-    const correctDiv = document.createElement("div");
-    correctDiv.appendChild(document.createTextNode("正解: "));
-    const correctValue = document.createElement("strong");
-    correctValue.textContent = question.choices[question.correct] ?? "";
-    correctDiv.appendChild(correctValue);
-    answer.appendChild(correctDiv);
-
-    const explanation = document.createElement("div");
-    explanation.className = "explanation";
-    explanation.textContent = question.explanation;
-    answer.appendChild(explanation);
-
-    div.appendChild(header);
-    div.appendChild(answer);
-    return div;
+    return buildResultItem(r);
   }
 
   // ─── 画面切替・ナビゲーション ──────────────────────────────────────────────
@@ -3719,65 +3368,7 @@ export class QuizApp {
    * カスタム確認ダイアログを表示し、ユーザーの選択を Promise で返す。
    */
   private showConfirmDialog(message: string, alertOnly = false): Promise<boolean> {
-    return new Promise((resolve) => {
-      const overlay = document.getElementById("confirmDialog");
-      const msgEl = document.getElementById("confirmDialogMessage");
-      const okBtn = document.getElementById("confirmDialogOk") as HTMLButtonElement | null;
-      const cancelBtn = document.getElementById("confirmDialogCancel") as HTMLButtonElement | null;
-      if (!overlay || !msgEl || !okBtn || !cancelBtn) {
-        if (alertOnly) {
-          alert(message);
-          resolve(true);
-        } else {
-          resolve(window.confirm(message));
-        }
-        return;
-      }
-      msgEl.textContent = message;
-      overlay.classList.remove("hidden");
-      if (alertOnly) {
-        cancelBtn.classList.add("hidden");
-      } else {
-        cancelBtn.classList.remove("hidden");
-      }
-
-      const previousFocus = document.activeElement as HTMLElement | null;
-
-      const close = (result: boolean): void => {
-        overlay.classList.add("hidden");
-        cancelBtn.classList.remove("hidden");
-        okBtn.removeEventListener("click", onOk);
-        cancelBtn.removeEventListener("click", onCancel);
-        overlay.removeEventListener("keydown", onKeydown);
-        previousFocus?.focus();
-        resolve(result);
-      };
-      const onOk = (): void => close(true);
-      const onCancel = (): void => close(false);
-      const onKeydown = (e: KeyboardEvent): void => {
-        if (e.key === "Escape") {
-          e.preventDefault();
-          close(alertOnly ? true : false);
-        }
-        // フォーカストラップ: Tabキーをダイアログ内のボタンに限定する
-        if (e.key === "Tab") {
-          e.preventDefault();
-          if (alertOnly) {
-            // アラートモードではOKボタンのみ。Tabキーを押してもOKボタンにフォーカスを維持する
-            okBtn.focus();
-          } else if (document.activeElement === okBtn) {
-            cancelBtn.focus();
-          } else {
-            okBtn.focus();
-          }
-        }
-      };
-      okBtn.addEventListener("click", onOk);
-      cancelBtn.addEventListener("click", onCancel);
-      overlay.addEventListener("keydown", onKeydown);
-
-      okBtn.focus();
-    });
+    return showConfirmDialog(message, alertOnly);
   }
 
   /**
@@ -3861,22 +3452,14 @@ export class QuizApp {
   // ─── ユーティリティ ────────────────────────────────────────────────────────
 
   private updateUserNameDisplay(elementId: string): void {
-    const el = document.getElementById(elementId);
-    if (el) {
-      el.textContent = this.userName;
-    }
+    updateUserNameDisplayUi(elementId, this.userName);
   }
 
   /**
    * ヘッダーに今日の日付を表示する。
    */
   private updateHeaderTodayDate(): void {
-    const el = document.getElementById("headerTodayDate");
-    if (!el) return;
-    const now = new Date();
-    const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
-    const dateStr = `${now.getFullYear()}/${String(now.getMonth() + 1).padStart(2, "0")}/${String(now.getDate()).padStart(2, "0")}（${weekdays[now.getDay()]}）`;
-    el.textContent = dateStr;
+    updateHeaderTodayDate();
   }
 }
 
