@@ -286,4 +286,21 @@ describe("QuizApp — 進度タブ仕様", () => {
     const panel = document.getElementById("progressDetailPanel");
     expect(panel?.classList.contains("hidden")).toBe(true);
   });
+
+  it("進度タブで「学習済みを隠す」を選ぶと学習済み単元ブロックが非表示になる", async () => {
+    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const hideBtn = document.getElementById("progressHideLearnedBtn") as HTMLButtonElement | null;
+    expect(hideBtn).not.toBeNull();
+    hideBtn?.click();
+
+    expect(hideBtn?.getAttribute("aria-pressed")).toBe("true");
+    expect(document.querySelector(".progress-block, .progress-block-sm")).toBeNull();
+  });
 });

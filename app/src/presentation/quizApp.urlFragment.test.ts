@@ -106,4 +106,59 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     const guideContent = document.getElementById("guideContent");
     expect(guideContent?.classList.contains("hidden")).toBe(false);
   });
+
+  it("総合タブのサマリパネル切替がフラグメントに反映される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("overallTab-share")?.click();
+
+    expect(window.location.hash).toContain("subject=all");
+    expect(window.location.hash).toContain("overallPanel=share");
+  });
+
+  it("進度タブの教科・表示モード・学習済み非表示がフラグメントに反映される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab.click();
+    (document.querySelector('.progress-subject-list-item[data-subject="english"]') as HTMLElement | null)?.click();
+    document.getElementById("progressDetailTab-category")?.click();
+    document.getElementById("progressHideLearnedBtn")?.click();
+
+    expect(window.location.hash).toContain("subject=progress");
+    expect(window.location.hash).toContain("progressSubject=english");
+    expect(window.location.hash).toContain("progressView=category");
+    expect(window.location.hash).toContain("progressHideLearned=1");
+  });
+
+  it("問題一覧フィルターとカテゴリ表示モードをフラグメントから復元できる", async () => {
+    window.history.replaceState(
+      {},
+      "",
+      "/#subject=english&category=phonics-1&panel=questions&questionFilter=learned&categoryView=grade",
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(document.getElementById("questionListFilterLearned")?.classList.contains("active")).toBe(true);
+    expect(document.querySelector(".category-view-toggle")?.textContent).toContain("🎓");
+  });
+
+  it("進度タブの教科・表示モード・学習済み非表示をフラグメントから復元できる", async () => {
+    window.history.replaceState(
+      {},
+      "",
+      "/#subject=progress&progressSubject=english&progressView=grade&progressHideLearned=1",
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(document.querySelector('.subject-tab[data-subject="progress"]')?.classList.contains("active")).toBe(true);
+    expect(document.getElementById("progressDetailTab-grade")?.classList.contains("active")).toBe(true);
+    expect(document.getElementById("progressHideLearnedBtn")?.getAttribute("aria-pressed")).toBe("true");
+  });
 });

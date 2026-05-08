@@ -220,6 +220,8 @@ export class AvatarController {
     };
 
     let activePointerId: number | null = null;
+    let mouseDragging = false;
+    const getTouchPoint = (e: TouchEvent): Touch | null => e.touches[0] ?? e.changedTouches[0] ?? null;
     wrap.addEventListener(
       "pointerdown",
       (e: PointerEvent) => {
@@ -253,6 +255,72 @@ export class AvatarController {
 
     document.addEventListener("pointerup", onPointerUp, { signal });
     document.addEventListener("pointercancel", onPointerUp, { signal });
+
+    wrap.addEventListener(
+      "mousedown",
+      (e: MouseEvent) => {
+        if (e.button !== 0) return;
+        mouseDragging = true;
+        startDrag(e.clientX, e.clientY);
+      },
+      { signal },
+    );
+
+    document.addEventListener(
+      "mousemove",
+      (e: MouseEvent) => {
+        if (!mouseDragging) return;
+        e.preventDefault();
+        moveDrag(e.clientX, e.clientY);
+      },
+      { signal, passive: false },
+    );
+
+    document.addEventListener(
+      "mouseup",
+      () => {
+        mouseDragging = false;
+        endDrag();
+      },
+      { signal },
+    );
+
+    wrap.addEventListener(
+      "touchstart",
+      (e: TouchEvent) => {
+        const touch = getTouchPoint(e);
+        if (!touch) return;
+        startDrag(touch.clientX, touch.clientY);
+      },
+      { signal, passive: true },
+    );
+
+    document.addEventListener(
+      "touchmove",
+      (e: TouchEvent) => {
+        if (!dragging) return;
+        const touch = getTouchPoint(e);
+        if (!touch) return;
+        e.preventDefault();
+        moveDrag(touch.clientX, touch.clientY);
+      },
+      { signal, passive: false },
+    );
+
+    document.addEventListener(
+      "touchend",
+      () => {
+        endDrag();
+      },
+      { signal },
+    );
+    document.addEventListener(
+      "touchcancel",
+      () => {
+        endDrag();
+      },
+      { signal },
+    );
 
     zoomInput?.addEventListener(
       "input",

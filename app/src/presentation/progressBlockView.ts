@@ -12,6 +12,8 @@ export interface ProgressBlockContext {
   subject: string;
   /** ユースケース（カテゴリ・進捗の取得に利用する） */
   useCase: QuizUseCase;
+  /** 学習済み単元を非表示にするか */
+  hideLearned: boolean;
   /** 単元ブロック押下時のコールバック */
   onSelectUnit: (subject: string, categoryId: string, categoryName: string) => void;
 }
@@ -54,6 +56,7 @@ function buildProgressBlockGroup(
 
   for (const [catId, catName] of catEntries) {
     const { mastered: catMastered, total: catTotal } = useCase.getMasteredCountForCategory(subject, catId);
+    if (ctx.hideLearned && catTotal > 0 && catMastered === catTotal) continue;
     const inProgress = useCase.getInProgressCount({ subject, category: catId });
 
     const block = document.createElement("button");
@@ -100,7 +103,11 @@ export function renderProgressDetailByGrade(container: HTMLElement, ctx: Progres
 
   for (const grade of grades) {
     const cats = useCase.getCategoriesForGrade(subject, grade);
-    const catEntries = Object.entries(cats);
+    const catEntries = Object.entries(cats).filter(([catId]) => {
+      if (!ctx.hideLearned) return true;
+      const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+      return total === 0 || mastered !== total;
+    });
     if (catEntries.length === 0) continue;
 
     const masteredCount = countMastered(
@@ -113,7 +120,11 @@ export function renderProgressDetailByGrade(container: HTMLElement, ctx: Progres
 
   // 学年未設定カテゴリ
   const uncategorized = useCase.getCategoriesWithoutGrade(subject);
-  const uncatEntries = Object.entries(uncategorized);
+  const uncatEntries = Object.entries(uncategorized).filter(([catId]) => {
+    if (!ctx.hideLearned) return true;
+    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+    return total === 0 || mastered !== total;
+  });
   if (uncatEntries.length > 0) {
     const masteredCount = countMastered(
       useCase,
@@ -182,35 +193,54 @@ export function renderProgressDetailByCategory(container: HTMLElement, ctx: Prog
     container.appendChild(topHeader);
 
     for (const [, { name: parentName, categories }] of parentMap) {
+      const visibleCategories = categories.filter(([catId]) => {
+        if (!ctx.hideLearned) return true;
+        const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+        return total === 0 || mastered !== total;
+      });
+      if (visibleCategories.length === 0) continue;
       const masteredCount = countMastered(
         useCase,
         subject,
-        categories.map(([id]) => id),
+        visibleCategories.map(([id]) => id),
       );
-      container.appendChild(buildProgressBlockGroup(ctx, parentName, masteredCount, categories.length, categories));
+      container.appendChild(
+        buildProgressBlockGroup(ctx, parentName, masteredCount, visibleCategories.length, visibleCategories),
+      );
     }
   }
 
   // トップカテゴリのない親カテゴリグループを描画する
   for (const [, { name, categories }] of noTopParentMap) {
+    const visibleCategories = categories.filter(([catId]) => {
+      if (!ctx.hideLearned) return true;
+      const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+      return total === 0 || mastered !== total;
+    });
+    if (visibleCategories.length === 0) continue;
     const masteredCount = countMastered(
       useCase,
       subject,
-      categories.map(([id]) => id),
+      visibleCategories.map(([id]) => id),
     );
-    container.appendChild(buildProgressBlockGroup(ctx, name, masteredCount, categories.length, categories));
+    container.appendChild(buildProgressBlockGroup(ctx, name, masteredCount, visibleCategories.length, visibleCategories));
   }
 
   // 親カテゴリのないスタンドアロン単元をまとめて表示する
-  if (standaloneCats.length > 0) {
+  const visibleStandaloneCats = standaloneCats.filter(([catId]) => {
+    if (!ctx.hideLearned) return true;
+    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+    return total === 0 || mastered !== total;
+  });
+  if (visibleStandaloneCats.length > 0) {
     const groupName = topMap.size + noTopParentMap.size > 0 ? "その他" : "すべての単元";
     const masteredCount = countMastered(
       useCase,
       subject,
-      standaloneCats.map(([id]) => id),
+      visibleStandaloneCats.map(([id]) => id),
     );
     container.appendChild(
-      buildProgressBlockGroup(ctx, groupName, masteredCount, standaloneCats.length, standaloneCats),
+      buildProgressBlockGroup(ctx, groupName, masteredCount, visibleStandaloneCats.length, visibleStandaloneCats),
     );
   }
 }
