@@ -14,7 +14,6 @@ import { IndexedDBProgressRepository } from "../infrastructure/indexedDBProgress
 import { NotesCanvas } from "./notesCanvas";
 import { KanjiCanvasController } from "./kanjiCanvasController";
 import { NotesController } from "./notesController";
-import { renderAdminContent } from "./adminPanel";
 import { AvatarController } from "./avatarController";
 import { renderProgressDetailMatrix } from "./progressMatrixView";
 import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./progressBlockView";
@@ -112,6 +111,7 @@ import {
   updateStartScreen as updateStartScreenFn,
   navigateToAdmin as navigateToAdminFn,
 } from "./quizApp/startScreenUpdater";
+import { renderCategoryListRouter as renderCategoryListRouterFn } from "./quizApp/categoryListRouter";
 
 const PANEL_TABS: readonly PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 
@@ -514,64 +514,22 @@ export class QuizApp {
    * 現在の教科フィルターに応じてカテゴリリストを描画する
    */
   private renderCategoryList(): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
-
-    categoryList.innerHTML = "";
-
-    const subject = this.filter.subject;
-
-    if (subject === "all") {
-      this.renderAllSubjectList();
-      this.renderCategoryViewControls();
-      return;
-    }
-
-    if (subject === "admin") {
-      // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
-      const controlsEl = document.getElementById("categoryControls");
-      if (controlsEl) controlsEl.innerHTML = "";
-      // タイトルを「⚙️ メニュー」に変更
-      const titleEl = document.getElementById("categoryListTitle");
-      if (titleEl) titleEl.textContent = "⚙️ メニュー";
-      renderAdminContent(categoryList, {
-        useCase: this.useCase,
-        progressRepo: this.progressRepo,
-        shareUrl: this.shareUrl,
-        showConfirmDialog: (msg, alertOnly) => this.showConfirmDialog(msg, alertOnly),
-      });
-      return;
-    }
-
-    if (subject === "progress") {
-      // 進度タブ: コントロールをクリアし、タイトルを設定して進度ビューを描画する
-      const controlsEl = document.getElementById("categoryControls");
-      if (controlsEl) controlsEl.innerHTML = "";
-      const titleEl = document.getElementById("categoryListTitle");
-      if (titleEl) titleEl.textContent = "📚 教科";
-      this.renderProgressView();
-      return;
-    }
-
-    // コントロールを先に描画し、教科切替時の学年フィルターの妥当性チェックを行う
-    this.renderCategoryViewControls();
-
-    // タイトルを「📚 単元一覧」に戻す（管理タブから切り替えた場合）
-    const titleEl = document.getElementById("categoryListTitle");
-    if (titleEl) titleEl.textContent = "📚 単元一覧";
-
-    if (this.categoryViewMode === "grade") {
-      this.renderCategoryListByGrade();
-    } else {
-      this.renderCategoryListByCategory();
-    }
-
-    // アクティブ状態を更新
-    this.updateCategoryListActive();
-    // 学習状態フィルターを適用する
-    this.applyCategoryStatusFilter();
-    // 進捗バー・学習状態を更新する（ビューモード・フィルター切替後も正確に反映する）
-    this.updateSubjectStats();
+    renderCategoryListRouterFn({
+      useCase: this.useCase,
+      progressRepo: this.progressRepo,
+      subject: this.filter.subject,
+      categoryViewMode: this.categoryViewMode,
+      shareUrl: this.shareUrl,
+      renderAllSubjectList: () => this.renderAllSubjectList(),
+      renderCategoryViewControls: () => this.renderCategoryViewControls(),
+      renderProgressView: () => this.renderProgressView(),
+      renderCategoryListByGrade: () => this.renderCategoryListByGrade(),
+      renderCategoryListByCategory: () => this.renderCategoryListByCategory(),
+      updateCategoryListActive: () => this.updateCategoryListActive(),
+      applyCategoryStatusFilter: () => this.applyCategoryStatusFilter(),
+      updateSubjectStats: () => this.updateSubjectStats(),
+      showConfirmDialog: (msg, alertOnly) => this.showConfirmDialog(msg, alertOnly),
+    });
   }
 
   /**
