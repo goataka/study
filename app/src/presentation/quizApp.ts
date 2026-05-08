@@ -14,7 +14,23 @@ import { LocalStorageProgressRepository } from "../infrastructure/localStoragePr
 import { IndexedDBProgressRepository } from "../infrastructure/indexedDBProgressRepository";
 import { NotesCanvas } from "./notesCanvas";
 import type { DrawingState } from "./notesCanvas";
-import { SUBJECTS, gradeColorClass, calcDualProgressPct } from "./uiHelpers";
+import { KanjiCanvasController } from "./kanjiCanvasController";
+import {
+  SUBJECTS,
+  gradeColorClass,
+  calcDualProgressPct,
+  currentDateString,
+  formatDate,
+  parseDateString,
+  sanitizeShareUrl,
+  isHiraganaOnly,
+  isLatinOnly,
+  setText,
+  on,
+  renderBacktickText,
+  fallbackCopy,
+  loadScript,
+} from "./uiHelpers";
 
 export class QuizApp {
   private useCase!: QuizUseCase;
@@ -40,9 +56,8 @@ export class QuizApp {
   private questionCount: number = 10;
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
-  private kanjiCanvasInitialized: boolean = false;
-  /** ref-patterns.js の遅延ロードPromise（重複ロード防止用） */
-  private refPatternsLoadPromise: Promise<void> | null = null;
+  /** 漢字認識キャンバスのコントローラー（コンストラクタで初期化）。 */
+  private kanjiCanvasController!: KanjiCanvasController;
   private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
   /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
   private isPanelTabUserSelected: boolean = false;
@@ -92,6 +107,19 @@ export class QuizApp {
    */
   constructor(progressRepo?: IProgressRepository) {
     this.progressRepo = progressRepo ?? new LocalStorageProgressRepository();
+    this.kanjiCanvasController = new KanjiCanvasController({
+      getCorrectAnswer: () => {
+        const q = this.currentSession?.currentQuestion;
+        return q?.choices[q.correct];
+      },
+      onSelectCandidate: (char) => {
+        const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+        if (textInput) {
+          textInput.value += char;
+          textInput.focus();
+        }
+      },
+    });
     void this.init();
   }
 
@@ -294,16 +322,10 @@ export class QuizApp {
   /**
    * 共有 URL を検証し、http/https スキームの場合のみそのまま返す。
    * それ以外（javascript: 等）は空文字を返す。
+   * @deprecated 互換目的で残す。新規コードでは uiHelpers の sanitizeShareUrl を直接使用する。
    */
   private sanitizeShareUrl(url: string): string {
-    const trimmed = url.trim();
-    if (!trimmed) return "";
-    try {
-      const parsed = new URL(trimmed);
-      return parsed.protocol === "https:" || parsed.protocol === "http:" ? trimmed : "";
-    } catch {
-      return "";
-    }
+    return sanitizeShareUrl(url);
   }
 
   private applyFontSize(level: "small" | "medium" | "large", persist = true): void {
@@ -1519,25 +1541,19 @@ export class QuizApp {
     return groupDiv;
   }
 
-  /**
-   * selectedActivityDate を Date オブジェクトとして返す。
-   */
+  /** selectedActivityDate を Date オブジェクトとして返す。 */
   private parseActivityDate(): Date {
-    return new Date(this.selectedActivityDate + "T00:00:00");
+    return parseDateString(this.selectedActivityDate);
   }
 
-  /**
-   * 今日の日付を YYYY-MM-DD 形式で返す（static）。
-   */
+  /** 今日の日付を YYYY-MM-DD 形式で返す（後方互換のため static メソッドを残す）。 */
   private static currentDateString(): string {
-    return QuizApp.formatDate(new Date());
+    return currentDateString();
   }
 
-  /**
-   * Date オブジェクトを YYYY-MM-DD 形式の文字列に変換して返す（static）。
-   */
+  /** Date オブジェクトを YYYY-MM-DD 形式の文字列に変換して返す（後方互換のため static メソッドを残す）。 */
   private static formatDate(d: Date): string {
-    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    return formatDate(d);
   }
 
   /**
@@ -2579,15 +2595,12 @@ export class QuizApp {
    * navigator.clipboard が使用できない環境向けのコピーフォールバック。
    * document.execCommand('copy') は非推奨だが、navigator.clipboard 非対応環境用の代替として使用する。
    */
+  /**
+   * navigator.clipboard が使えない環境用のフォールバックコピー。
+   * @deprecated 互換目的で残す。新規コードでは uiHelpers の fallbackCopy を直接使用する。
+   */
   private fallbackCopy(text: string): void {
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
+    fallbackCopy(text);
   }
 
   /**
@@ -2814,18 +2827,12 @@ export class QuizApp {
    * バッククォートで囲まれたテキストを <code> タグに変換して要素に追加する。
    * 例: "I `play` games." → "I " + <code>play</code> + " games."
    */
+  /**
+   * バッククォートで囲まれたテキストを <code> タグに変換して要素に追加する。
+   * @deprecated 互換目的で残す。新規コードでは uiHelpers の renderBacktickText を直接使用する。
+   */
   private renderBacktickText(container: HTMLElement, text: string): void {
-    const parts = text.split(/`([^`]+)`/);
-    parts.forEach((part, i) => {
-      if (i % 2 === 1) {
-        const code = document.createElement("code");
-        code.className = "category-example-highlight";
-        code.textContent = part;
-        container.appendChild(code);
-      } else if (part) {
-        container.appendChild(document.createTextNode(part));
-      }
-    });
+    renderBacktickText(container, text);
   }
 
   /**
@@ -4759,177 +4766,60 @@ export class QuizApp {
   }
 
   /**
-   * KanjiCanvas グローバルが利用可能かどうかを確認する。
-   * kanji-canvas.min.js の読み込みに失敗した場合（ネットワークエラー・ブロック等）に false を返す。
+   * 漢字認識キャンバス関連のメソッドはすべて KanjiCanvasController に移譲する。
+   * 後方互換のため、既存の private API はラッパーとして残す。
    */
+
   private isKanjiCanvasAvailable(): boolean {
-    return typeof (globalThis as unknown as { KanjiCanvas?: unknown }).KanjiCanvas !== "undefined";
+    return this.kanjiCanvasController.isAvailable();
   }
 
-  /**
-   * KanjiCanvas 折りたたみボタンの表示状態を更新する。
-   * @param btn ボタン要素
-   * @param expanded 展開状態のとき true
-   */
   private applyKanjiToggleBtnState(btn: HTMLElement, expanded: boolean): void {
-    btn.setAttribute("aria-expanded", String(expanded));
-    btn.textContent = expanded ? "▲" : "▼";
-    const label = expanded ? "入力エリアを折りたたむ" : "入力エリアを展開する";
-    btn.title = label;
-    btn.setAttribute("aria-label", label);
+    this.kanjiCanvasController.applyToggleBtnState(btn, expanded);
   }
 
   /**
    * スクリプトファイルを動的にロードする汎用ヘルパー。
+   * @deprecated 互換目的で残す。新規コードでは uiHelpers の loadScript を直接使用する。
    */
   private loadScript(src: string): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.async = true;
-      script.onload = () => resolve();
-      script.onerror = (e) => reject(new Error(`${src} の読み込みに失敗しました: ${e instanceof Event ? e.type : e}`));
-      document.body.appendChild(script);
-    });
+    return loadScript(src);
   }
 
-  /**
-   * ref-patterns.js（漢字パターンデータ）と hiragana-patterns.js（ひらがなパターンデータ）を
-   * 動的に遅延ロードする。重複ロードを防ぐため Promise をキャッシュする。
-   * 読み込み失敗時はキャッシュをクリアし、次回呼び出しで再試行できるようにする。
-   */
   private loadRefPatterns(): Promise<void> {
-    if (this.refPatternsLoadPromise) return this.refPatternsLoadPromise;
-    this.refPatternsLoadPromise = this.loadScript("./vendor/ref-patterns.js")
-      .then(() => this.loadScript("./vendor/hiragana-patterns.js"))
-      .catch((error) => {
-        this.refPatternsLoadPromise = null;
-        throw error;
-      });
-    return this.refPatternsLoadPromise;
+    return this.kanjiCanvasController.loadRefPatterns();
   }
 
-  /**
-   * KanjiCanvasを初期化する。初回呼び出し時のみ初期化し、ストローク完了後に候補を自動更新する。
-   * KanjiCanvas グローバルが存在しない場合は警告を出して何もしない。
-   */
   private initializeKanjiCanvas(): void {
-    if (!this.isKanjiCanvasAvailable()) {
-      console.warn("KanjiCanvas が読み込まれていません。手書き入力機能は無効です。");
-      return;
-    }
-    if (this.kanjiCanvasInitialized) return;
-    // CSS zoom によるキャンバス座標ズレを防ぐため、canvasの属性サイズを表示サイズに合わせる
-    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement | null;
-    if (canvas) {
-      const rect = canvas.getBoundingClientRect();
-      if (rect.width > 0 && rect.height > 0) {
-        canvas.width = Math.round(rect.width);
-        canvas.height = Math.round(rect.height);
-      }
-    }
-    KanjiCanvas.init("kanjiCanvas");
-    // 書き順番号と線の色変化を無効化する（全ストロークをデフォルト色 #333 で統一）
-    KanjiCanvas.strokeColors = [];
-    if (canvas) {
-      canvas.addEventListener("mouseup", () => this.updateKanjiCandidates());
-      canvas.addEventListener("touchend", () => this.updateKanjiCandidates());
-    }
-    this.kanjiCanvasInitialized = true;
-    // ref-patterns.js（漢字）と hiragana-patterns.js（ひらがな）を遅延ロードする。
-    // ロード完了前のストロークでは候補が表示されないが、ロード後の次ストロークから表示される。
-    void this.loadRefPatterns().catch((e) => {
-      console.warn("パターンデータの読み込みに失敗しました:", e);
-    });
+    this.kanjiCanvasController.initialize();
   }
 
   /**
    * 文字列がひらがなのみで構成されているかどうかを判定する。
+   * @deprecated 互換目的で残す。新規コードでは uiHelpers の isHiraganaOnly を直接使用する。
    */
   private isHiraganaOnly(str: string): boolean {
-    return /^[\u3041-\u309F]+$/.test(str);
+    return isHiraganaOnly(str);
   }
 
   /**
    * 文字列がラテン文字（ASCII 0x20–0x7E の印字可能文字）のみで構成されているかどうかを判定する。
-   * @param str 判定対象の文字列
-   * @returns ラテン文字（ASCII 0x20–0x7E）のみで構成されている場合は true
+   * @deprecated 互換目的で残す。新規コードでは uiHelpers の isLatinOnly を直接使用する。
    */
   private isLatinOnly(str: string): boolean {
-    return /^[\x20-\x7E]+$/.test(str);
+    return isLatinOnly(str);
   }
 
-  /**
-   * KanjiCanvasで描かれたストロークを認識して候補ボタンを更新する。
-   * ひらがな問題（正解がひらがなのみ）の場合はひらがな以外の候補を除外する。
-   * 英語問題（正解がラテン文字のみ）の場合はラテン文字以外の候補を除外する。
-   * ストロークが描かれていない場合は候補を表示しない。
-   */
   private updateKanjiCandidates(): void {
-    const candidateList = document.getElementById("kanjiCandidateList");
-    if (!candidateList || !this.isKanjiCanvasAvailable()) return;
-
-    const result = KanjiCanvas.recognize("kanjiCanvas");
-    // ストロークがない場合（認識結果が空）は候補を表示しない
-    if (!result.trim()) {
-      candidateList.innerHTML = "";
-      return;
-    }
-    let candidates = result.trim().split(/\s+/).filter(Boolean);
-
-    const question = this.currentSession?.currentQuestion;
-    const correctAnswer = question?.choices[question.correct];
-    if (correctAnswer !== undefined && this.isHiraganaOnly(correctAnswer)) {
-      candidates = candidates.filter((char) => this.isHiraganaOnly(char));
-    } else if (correctAnswer !== undefined && this.isLatinOnly(correctAnswer)) {
-      candidates = candidates.filter((char) => this.isLatinOnly(char));
-    }
-
-    candidates = candidates.slice(0, 5);
-
-    candidateList.innerHTML = "";
-    candidates.forEach((char) => {
-      const btn = document.createElement("button");
-      btn.className = "kanji-candidate-btn";
-      btn.type = "button";
-      btn.textContent = char;
-      btn.addEventListener("click", () => this.selectKanjiCandidate(char));
-      candidateList.appendChild(btn);
-    });
+    this.kanjiCanvasController.updateCandidates();
   }
 
-  /**
-   * 候補漢字を選択して解答入力欄に追加し、KanjiCanvasをクリアする。
-   */
-  private selectKanjiCandidate(char: string): void {
-    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
-    if (textInput) {
-      textInput.value += char;
-      textInput.focus();
-    }
-    this.kanjiErase();
-  }
-
-  /**
-   * KanjiCanvasの最後の1画を取り消す。
-   */
   private kanjiDeleteLast(): void {
-    if (!this.kanjiCanvasInitialized || !this.isKanjiCanvasAvailable()) return;
-    KanjiCanvas.deleteLast("kanjiCanvas");
-    this.updateKanjiCandidates();
+    this.kanjiCanvasController.deleteLast();
   }
 
-  /**
-   * KanjiCanvasの全ストロークを消去する。
-   */
   private kanjiErase(): void {
-    if (this.kanjiCanvasInitialized && this.isKanjiCanvasAvailable()) {
-      KanjiCanvas.erase("kanjiCanvas");
-    }
-    const candidateList = document.getElementById("kanjiCandidateList");
-    if (candidateList) {
-      candidateList.innerHTML = "";
-    }
+    this.kanjiCanvasController.erase();
   }
 
   private navigate(direction: 1 | -1): void {
@@ -5555,12 +5445,11 @@ export class QuizApp {
   }
 
   private setText(id: string, text: string): void {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text;
+    setText(id, text);
   }
 
   private on(id: string, event: string, handler: () => void): void {
-    document.getElementById(id)?.addEventListener(event, handler);
+    on(id, event, handler);
   }
 
   // ─── メモエリア管理 ────────────────────────────────────────────────────────
