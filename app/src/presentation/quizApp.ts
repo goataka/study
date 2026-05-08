@@ -18,6 +18,7 @@ import { NotesController } from "./notesController";
 import { renderAdminContent } from "./adminPanel";
 import { AvatarController } from "./avatarController";
 import { renderProgressDetailMatrix } from "./progressMatrixView";
+import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./progressBlockView";
 import {
   SUBJECTS,
   gradeColorClass,
@@ -1349,8 +1350,14 @@ export class QuizApp {
     if (!content) return;
     content.innerHTML = "";
 
+    const blockCtx = {
+      subject: this.progressSubjectId,
+      useCase: this.useCase,
+      onSelectUnit: (subject: string, catId: string, catName: string) =>
+        this.selectUnitContext(subject, catId, catName),
+    };
     if (this.progressDetailViewMode === "grade") {
-      this.renderProgressDetailByGrade(content);
+      renderProgressDetailByGrade(content, blockCtx);
     } else if (this.progressDetailViewMode === "matrix") {
       renderProgressDetailMatrix(content, {
         subject: this.progressSubjectId,
@@ -1360,220 +1367,11 @@ export class QuizApp {
           this.progressMatrixTransposed = !this.progressMatrixTransposed;
           this.renderProgressDetailContent();
         },
-        onSelectUnit: (subject, catId, catName) => this.selectUnitContext(subject, catId, catName),
+        onSelectUnit: blockCtx.onSelectUnit,
       });
     } else {
-      this.renderProgressDetailByCategory(content);
+      renderProgressDetailByCategory(content, blockCtx);
     }
-  }
-
-  /**
-   * 進度詳細の学年別ビューを描画する。
-   * 学年グループ（小学1年, 中学1年 等）ごとに ■□ブロック列を表示する。
-   */
-  private renderProgressDetailByGrade(container: HTMLElement): void {
-    const subject = this.progressSubjectId;
-    const grades = this.useCase.getUniqueGradesForSubject(subject);
-
-    for (const grade of grades) {
-      const cats = this.useCase.getCategoriesForGrade(subject, grade);
-      const catEntries = Object.entries(cats);
-      if (catEntries.length === 0) continue;
-
-      let masteredCount = 0;
-      for (const [catId] of catEntries) {
-        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
-        if (total > 0 && mastered === total) masteredCount++;
-      }
-
-      const group = this.buildProgressBlockGroup(grade, masteredCount, catEntries.length, subject, catEntries);
-      container.appendChild(group);
-    }
-
-    // 学年未設定カテゴリ
-    const uncategorized = this.useCase.getCategoriesWithoutGrade(subject);
-    const uncatEntries = Object.entries(uncategorized);
-    if (uncatEntries.length > 0) {
-      let masteredCount = 0;
-      for (const [catId] of uncatEntries) {
-        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
-        if (total > 0 && mastered === total) masteredCount++;
-      }
-      const group = this.buildProgressBlockGroup(
-        "学年未設定",
-        masteredCount,
-        uncatEntries.length,
-        subject,
-        uncatEntries,
-      );
-      container.appendChild(group);
-    }
-  }
-
-  /**
-   * 進度詳細のカテゴリ別ビューを描画する。
-   * トップカテゴリ > 親カテゴリ単位で単元名ブロック列を表示する。
-   */
-  private renderProgressDetailByCategory(container: HTMLElement): void {
-    const subject = this.progressSubjectId;
-    const allCats = this.useCase.getCategoriesForSubject(subject);
-    const catEntries = Object.entries(allCats);
-
-    if (catEntries.length === 0) {
-      const empty = document.createElement("div");
-      empty.className = "progress-block-group";
-      empty.textContent = "単元がありません";
-      container.appendChild(empty);
-      return;
-    }
-
-    // トップカテゴリ → 親カテゴリ → 単元のツリー構造を構築する
-    const topMap = new Map<
-      string,
-      { name: string; parentMap: Map<string, { name: string; categories: [string, string][] }> }
-    >();
-    const noTopParentMap = new Map<string, { name: string; categories: [string, string][] }>();
-    const standaloneCats: [string, string][] = [];
-
-    for (const [catId, catName] of catEntries) {
-      const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
-      const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
-
-      if (topInfo) {
-        if (!topMap.has(topInfo.id)) {
-          topMap.set(topInfo.id, { name: topInfo.name, parentMap: new Map() });
-        }
-        const topEntry = topMap.get(topInfo.id)!;
-        const parentKey = parentInfo?.id ?? "__none__";
-        const parentName = parentInfo?.name ?? topInfo.name;
-        if (!topEntry.parentMap.has(parentKey)) {
-          topEntry.parentMap.set(parentKey, { name: parentName, categories: [] });
-        }
-        topEntry.parentMap.get(parentKey)!.categories.push([catId, catName]);
-      } else if (parentInfo) {
-        if (!noTopParentMap.has(parentInfo.id)) {
-          noTopParentMap.set(parentInfo.id, { name: parentInfo.name, categories: [] });
-        }
-        noTopParentMap.get(parentInfo.id)!.categories.push([catId, catName]);
-      } else {
-        standaloneCats.push([catId, catName]);
-      }
-    }
-
-    // トップカテゴリグループを描画する
-    for (const [, { name: topName, parentMap }] of topMap) {
-      // トップカテゴリのヘッダー
-      const topHeader = document.createElement("div");
-      topHeader.className = "progress-top-category-header";
-      topHeader.textContent = topName;
-      container.appendChild(topHeader);
-
-      // トップカテゴリ内の親カテゴリグループを描画する
-      for (const [, { name: parentName, categories }] of parentMap) {
-        let masteredCount = 0;
-        for (const [catId] of categories) {
-          const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
-          if (total > 0 && mastered === total) masteredCount++;
-        }
-        const group = this.buildProgressBlockGroup(parentName, masteredCount, categories.length, subject, categories);
-        container.appendChild(group);
-      }
-    }
-
-    // トップカテゴリのない親カテゴリグループを描画する
-    for (const [, { name, categories }] of noTopParentMap) {
-      let masteredCount = 0;
-      for (const [catId] of categories) {
-        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
-        if (total > 0 && mastered === total) masteredCount++;
-      }
-      const group = this.buildProgressBlockGroup(name, masteredCount, categories.length, subject, categories);
-      container.appendChild(group);
-    }
-
-    // 親カテゴリのないスタンドアロン単元をまとめて表示する
-    if (standaloneCats.length > 0) {
-      // 親カテゴリグループがある場合は「その他」としてまとめる
-      const groupName = topMap.size + noTopParentMap.size > 0 ? "その他" : "すべての単元";
-      let masteredCount = 0;
-      for (const [catId] of standaloneCats) {
-        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, catId);
-        if (total > 0 && mastered === total) masteredCount++;
-      }
-      const group = this.buildProgressBlockGroup(
-        groupName,
-        masteredCount,
-        standaloneCats.length,
-        subject,
-        standaloneCats,
-      );
-      container.appendChild(group);
-    }
-  }
-
-  /**
-   * ■□ブロック列のグループ要素を生成して返す。
-   * @param groupName グループ名（学年名・親カテゴリ名など）
-   * @param mastered  習得済み単元数
-   * @param total     全単元数
-   * @param subject   教科ID
-   * @param catEntries [catId, catName] の配列
-   */
-  private buildProgressBlockGroup(
-    groupName: string,
-    mastered: number,
-    total: number,
-    subject: string,
-    catEntries: [string, string][],
-  ): HTMLElement {
-    const group = document.createElement("div");
-    group.className = "progress-block-group";
-
-    const header = document.createElement("div");
-    header.className = "progress-block-group-header";
-
-    const nameSpan = document.createElement("span");
-    nameSpan.className = "progress-block-group-name";
-    nameSpan.textContent = groupName;
-    header.appendChild(nameSpan);
-
-    const statsSpan = document.createElement("span");
-    statsSpan.className = "progress-block-group-stats";
-    statsSpan.textContent = `(${mastered}/${total})`;
-    header.appendChild(statsSpan);
-
-    group.appendChild(header);
-
-    const blockSeq = document.createElement("div");
-    blockSeq.className = "progress-block-sequence";
-
-    for (const [catId, catName] of catEntries) {
-      const { mastered: catMastered, total: catTotal } = this.useCase.getMasteredCountForCategory(subject, catId);
-      const inProgress = this.useCase.getInProgressCount({ subject, category: catId });
-
-      const block = document.createElement("button");
-      block.type = "button";
-      block.className = "progress-block";
-      block.setAttribute("title", catName);
-      block.setAttribute("aria-label", catName);
-      block.textContent = catName;
-
-      if (catMastered > 0 && catMastered === catTotal) {
-        block.classList.add("mastered");
-      } else if (inProgress > 0 || catMastered > 0) {
-        block.classList.add("in-progress");
-      }
-
-      // クリックで単元詳細を表示（進度タブに留まったまま表示）
-      block.addEventListener("click", () => {
-        this.selectUnitContext(subject, catId, catName);
-      });
-
-      blockSeq.appendChild(block);
-    }
-
-    group.appendChild(blockSeq);
-    return group;
   }
 
   /**
