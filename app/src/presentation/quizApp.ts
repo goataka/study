@@ -94,6 +94,14 @@ import {
   setupHistoryNavigationListeners as setupHistoryNavigationListenersFn,
 } from "./quizApp/eventListeners";
 import { updateQuizPanelVisibility as updateQuizPanelVisibilityFn } from "./quizApp/quizPanelVisibility";
+import {
+  updateCategoryListActive as updateCategoryListActiveFn,
+  showPanelTab as showPanelTabFn,
+} from "./quizApp/categoryListActive";
+import { selectNextPanelTab } from "./quizApp/autoSelectPanelTab";
+import { renderQuestion as renderQuestionFn } from "./quizApp/questionRenderer";
+import { showScreen as showScreenFn, type ScreenName } from "./quizApp/screenNavigator";
+import { findFirstUnlearnedCategory } from "./quizApp/firstUnlearnedFinder";
 
 const PANEL_TABS: readonly PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 
@@ -289,7 +297,7 @@ export class QuizApp {
    * 表示に影響しないため `replaceState` を用い、履歴スタックには追加しない。
    * `screen=start` は初期状態と一致するためフラグメントに含めない。
    */
-  private syncURLFragment(screenName?: "start" | "quiz" | "result"): void {
+  private syncURLFragment(screenName?: ScreenName): void {
     syncURLFragment(
       {
         filter: this.filter,
@@ -1279,56 +1287,14 @@ export class QuizApp {
    * アクティブなカテゴリが折りたたまれているグループに属する場合は自動展開する。
    */
   private updateCategoryListActive(): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
-
-    const selLevel = this.getSelectionLevel();
-
-    categoryList.querySelectorAll(".category-item").forEach((item) => {
-      const el = item as HTMLElement;
-      const isActive =
-        selLevel === "unit" &&
-        el.dataset.subject === this.filter.subject &&
-        el.dataset.category === this.filter.category;
-      el.classList.toggle("active", isActive);
-
-      if (isActive) {
-        // 親カテゴリグループを自動展開する
-        if (el.dataset.parentCategory) {
-          this.expandParentCategory(el.dataset.parentCategory);
-        }
-        // トップカテゴリグループも自動展開する
-        if (el.dataset.topCategory) {
-          this.expandTopCategory(el.dataset.topCategory);
-        }
-        // 学年グループを自動展開する（学年別ビュー用）
-        const gradeGroup = el.closest<HTMLElement>(".category-grade-group");
-        if (gradeGroup) {
-          const grade = gradeGroup.dataset.grade;
-          if (grade && this.collapsedGradeGroups.has(grade)) {
-            this.collapsedGradeGroups.delete(grade);
-            gradeGroup.classList.remove("collapsed");
-            const header = gradeGroup.querySelector<HTMLElement>(".category-grade-group-header");
-            header?.setAttribute("aria-expanded", "true");
-          }
-        }
-      }
-    });
-
-    // 親カテゴリヘッダーのアクティブ状態を更新
-    categoryList.querySelectorAll<HTMLElement>(".category-group-header[data-parent-category]").forEach((header) => {
-      const isActive = selLevel === "parentCategory" && header.dataset.parentCategory === this.filter.parentCategory;
-      header.classList.toggle("active", isActive);
-    });
-
-    // トップカテゴリヘッダーのアクティブ状態を更新
-    categoryList.querySelectorAll<HTMLElement>(".category-top-group-header[data-top-category]").forEach((header) => {
-      const isActive = selLevel === "topCategory" && header.dataset.topCategory === this.selectedTopCategoryId;
-      header.classList.toggle("active", isActive);
-    });
-    categoryList.querySelectorAll<HTMLElement>(".category-grade-group-header[data-grade]").forEach((header) => {
-      const isActive = this.selectedGradeGroup !== null && header.dataset.grade === this.selectedGradeGroup;
-      header.classList.toggle("active", isActive);
+    updateCategoryListActiveFn({
+      filter: this.filter,
+      selectionLevel: this.getSelectionLevel(),
+      selectedTopCategoryId: this.selectedTopCategoryId,
+      selectedGradeGroup: this.selectedGradeGroup,
+      collapsedGradeGroups: this.collapsedGradeGroups,
+      expandParentCategory: (parentCatId) => this.expandParentCategory(parentCatId),
+      expandTopCategory: (topCatId) => this.expandTopCategory(topCatId),
     });
   }
 
@@ -1336,22 +1302,7 @@ export class QuizApp {
    * インナーパネルタブのコンテンツ表示を切り替える
    */
   private showPanelTab(tab: PanelTab): void {
-    const quizModePanel = document.getElementById("quizModePanel");
-    const guideContent = document.getElementById("guideContent");
-    const historyContent = document.getElementById("historyContent");
-    const questionListContent = document.getElementById("questionListContent");
-
-    quizModePanel?.classList.toggle("hidden", tab !== "quiz");
-    guideContent?.classList.toggle("hidden", tab !== "guide");
-    historyContent?.classList.toggle("hidden", tab !== "history");
-    questionListContent?.classList.toggle("hidden", tab !== "questions");
-
-    document.querySelectorAll<HTMLElement>(".panel-tab[data-panel]").forEach((t) => {
-      const isActive = t.dataset.panel === tab;
-      t.classList.toggle("active", isActive);
-      t.setAttribute("aria-selected", String(isActive));
-      t.setAttribute("tabindex", isActive ? "0" : "-1");
-    });
+    showPanelTabFn(tab);
   }
 
   /**
@@ -1363,32 +1314,15 @@ export class QuizApp {
    * @param allRecords - 呼び出し元で取得済みの履歴配列（二重ロードを避けるために渡す）
    */
   private autoSelectPanelTab(allRecords: QuizRecord[]): void {
-    if (this.isPanelTabUserSelected) {
-      // ユーザーが明示的にタブを選択している場合は自動選択しない
-      this.showPanelTab(this.activePanelTab);
-      return;
-    }
-    // 総合タブから単元選択時: 履歴があれば確認タブ、なければ解説タブ
-    if (this.selectedUnitContext !== null) {
-      const hasHistory = allRecords.some(
-        (r) => r.subject === this.selectedUnitContext!.subject && r.category === this.selectedUnitContext!.categoryId,
-      );
-      this.activePanelTab = hasHistory ? "quiz" : "guide";
-      this.showPanelTab(this.activePanelTab);
-      return;
-    }
-    const selLevel = this.getSelectionLevel();
-    if (selLevel === "topCategory" || selLevel === "parentCategory") {
-      // カテゴリ/サブカテゴリ選択時は常に解説タブを表示
-      this.activePanelTab = "guide";
-    } else if (selLevel === "unit") {
-      const hasHistory = allRecords.some(
-        (r) => r.subject === this.filter.subject && r.category === this.filter.category,
-      );
-      this.activePanelTab = hasHistory ? "quiz" : "guide";
-    } else {
-      this.activePanelTab = "quiz";
-    }
+    this.activePanelTab = selectNextPanelTab(allRecords, {
+      isPanelTabUserSelected: this.isPanelTabUserSelected,
+      activePanelTab: this.activePanelTab,
+      selectedUnitContext: this.selectedUnitContext
+        ? { subject: this.selectedUnitContext.subject, categoryId: this.selectedUnitContext.categoryId }
+        : null,
+      selectionLevel: this.getSelectionLevel(),
+      filter: this.filter,
+    });
     this.showPanelTab(this.activePanelTab);
   }
 
@@ -2164,40 +2098,16 @@ export class QuizApp {
   private renderQuestion(): void {
     const session = this.currentSession;
     if (!session) return;
-
-    const question = session.currentQuestion;
-    const total = session.totalCount;
-    const idx = session.currentIndex;
-
-    setText("questionNumber", `問題 ${idx + 1} / ${total}`);
-    const topicParts: string[] = [];
-    if (question.topCategoryName) topicParts.push(question.topCategoryName);
-    if (question.parentCategoryName) topicParts.push(question.parentCategoryName);
-    topicParts.push(question.categoryName ?? question.category);
-    setText("topicName", topicParts.join(" › "));
-
-    const progress = ((idx + 1) / total) * 100;
-    (document.getElementById("progressFill") as HTMLElement).style.width = `${progress}%`;
-
-    setText("questionText", question.question);
-    this.updateSpeakButton(question);
-    this.renderChoices(question, session);
-
-    // メモエリアをタッチペン入力モード用に更新
-    const isAnswered = session.getAnswer(session.currentIndex) !== undefined;
-    this.updateNotesAreaForQuestion(question, isAnswered);
-
-    // 既に回答済みの場合はフィードバックを表示、未回答の場合は非表示
-    const userAnswer = session.getAnswer(session.currentIndex);
-    if (userAnswer !== undefined) {
-      const userAnswerText =
-        question.questionType === "text-input" ? session.getTextAnswer(session.currentIndex) : undefined;
-      this.showAnswerFeedback(question, userAnswer, userAnswerText);
-    } else {
-      this.hideAnswerFeedback();
-    }
-
-    this.updateNavigationButtons(session);
+    renderQuestionFn(session, this.kanjiCanvasController, {
+      onAnswered: (q, idx, text) => {
+        this.showAnswerFeedback(q, idx, text);
+        this.updateNavigationButtons(session);
+      },
+      onTextAnswered: (q) => {
+        // 確認後は確定ボタンも非表示にする（キーボード入力で回答済みになったため）
+        this.updateNotesAreaForQuestion(q, true);
+      },
+    });
   }
 
   private renderChoices(question: Question, session: QuizSession): void {
@@ -2207,7 +2117,6 @@ export class QuizApp {
         this.updateNavigationButtons(session);
       },
       onTextAnswered: (q: Question) => {
-        // 確認後は確定ボタンも非表示にする（キーボード入力で回答済みになったため）
         this.updateNotesAreaForQuestion(q, true);
       },
     };
@@ -2353,28 +2262,8 @@ export class QuizApp {
     this.showScreen("start");
   }
 
-  private showScreen(screenName: "start" | "quiz" | "result"): void {
-    // ブラウザ履歴を管理する:
-    // - クイズ/結果画面への遷移時は pushState で新しいエントリを追加（戻るボタンで戻れる）
-    // - スタート画面への遷移時は replaceState で現在のエントリを置き換え（スタック上に中間状態を残さない）
-    if (screenName === "quiz" || screenName === "result") {
-      window.history.pushState({ screen: screenName }, document.title);
-    } else {
-      window.history.replaceState({ screen: "start" }, document.title);
-    }
-    document.querySelectorAll(".screen").forEach((s) => s.classList.add("hidden"));
-    const idMap = { start: "startScreen", quiz: "quizScreen", result: "resultScreen" };
-    document.getElementById(idMap[screenName])?.classList.remove("hidden");
-
-    // 教科タブ（#startScreen の外にある）はスタート画面のみ表示する
-    const subjectTabs = document.querySelector<HTMLElement>(".subject-tabs");
-    if (subjectTabs) {
-      subjectTabs.classList.toggle("hidden", screenName !== "start");
-    }
-    const tabsLinksArea = document.querySelector<HTMLElement>(".tabs-links-area");
-    if (tabsLinksArea) {
-      tabsLinksArea.classList.toggle("hidden", screenName !== "start");
-    }
+  private showScreen(screenName: ScreenName): void {
+    showScreenFn(screenName);
 
     if (screenName === "start") {
       this.updateSubjectStats();
@@ -2394,28 +2283,15 @@ export class QuizApp {
    * URLパラメータでカテゴリが明示指定されている場合はスキップする。
    */
   private selectFirstUnlearnedCategory(): void {
-    // URLパラメータまたはフラグメントで特定カテゴリが指定されている場合はディープリンク挙動を維持する
     const params = this.getURLParams();
-    if (params.has("category") || params.has("unitCategory")) return;
-
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
-
-    const firstUnlearned = categoryList.querySelector<HTMLElement>(".category-item:not(.learned)");
-    if (!firstUnlearned) return;
-
-    const subject = firstUnlearned.dataset.subject;
-    const category = firstUnlearned.dataset.category;
-    const parentCategory = firstUnlearned.dataset.parentCategory;
-
-    if (subject && category) {
-      this.filter.subject = subject;
-      this.filter.category = category;
-      this.filter.parentCategory = parentCategory;
-      this.selectedTopCategoryId = null;
-      this.updateCategoryListActive();
-      // updateStartScreen() は呼び出し元が担う（二重実行を避けるため）
-    }
+    const result = findFirstUnlearnedCategory(params.has("category") || params.has("unitCategory"));
+    if (!result) return;
+    this.filter.subject = result.subject;
+    this.filter.category = result.category;
+    this.filter.parentCategory = result.parentCategory;
+    this.selectedTopCategoryId = null;
+    this.updateCategoryListActive();
+    // updateStartScreen() は呼び出し元が担う（二重実行を避けるため）
   }
 
   // ─── ユーティリティ ────────────────────────────────────────────────────────
