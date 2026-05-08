@@ -321,6 +321,12 @@ cd app && npm run test:e2e:ui  # UI モードで実行
 
 - CI の `markdownlint` ジョブが自動的に Markdown の問題を修正してコミットする
 - 修正できない問題は `reviewdog` がPRにコメントを投稿するので、対応すること
+
+### CIコンテナイメージ指定ルール
+
+- CI の `container.image` には GHCR にプッシュ済みのイメージ（例: `ghcr.io/goataka/study-app-ci:latest`）を使うこと
+- GitHub Actions の制約により、`container.image` の指定で `env`（`${{ env.* }}`）を使わないこと
+
 ## 数学ドリル固有ルール
 
 ### ファイル構成

@@ -43,12 +43,14 @@ jobs:
     name: E2Eテスト（app）
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.59.1-noble
+      # GHA の container.image では env を参照せず、GHCR イメージを直接指定する
+      image: ghcr.io/goataka/study-app-ci:latest
     defaults:
       run:
         working-directory: app
     permissions:
       contents: read
+      packages: read
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
