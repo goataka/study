@@ -45,7 +45,7 @@ class StubProgressRepository implements IProgressRepository {
     initialHistory: import("./ports").QuizRecord[] = [],
     initialStreaks: Record<string, number> = {},
     initialStats: Record<string, { total: number; correct: number }> = {},
-    initialMasteredIds: string[] = []
+    initialMasteredIds: string[] = [],
   ) {
     this.ids = [...initialIds];
     this.history = [...initialHistory];
@@ -122,9 +122,13 @@ class StubProgressRepository implements IProgressRepository {
       fontSizeLevel: null,
     };
   }
-  loadShareUrl(): string { return ""; }
+  loadShareUrl(): string {
+    return "";
+  }
   saveShareUrl(_url: string): void {}
-  loadUserAvatar(): string | null { return null; }
+  loadUserAvatar(): string | null {
+    return null;
+  }
   saveUserAvatar(_dataUrl: string): void {}
   loadQuizSettings(): import("./ports").QuizSettings {
     return { questionCount: 10, quizOrder: "random", includeMastered: false };
@@ -144,10 +148,7 @@ class StubProgressRepository implements IProgressRepository {
 describe("QuizUseCase — 初期化仕様", () => {
   it("initialize() で全問題をロードする", async () => {
     const questions = [makeQuestion("q1"), makeQuestion("q2")];
-    const useCase = new QuizUseCase(
-      new StubQuestionRepository(questions),
-      new StubProgressRepository()
-    );
+    const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
     await useCase.initialize();
     expect(useCase.getFilteredQuestions({ subject: "all", category: "all" })).toHaveLength(2);
   });
@@ -186,7 +187,7 @@ describe("QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent
     category: string,
     categoryName: string,
     parentCategory?: string,
-    parentCategoryName?: string
+    parentCategoryName?: string,
   ): Question => ({
     id,
     question: `Q ${id}`,
@@ -223,9 +224,7 @@ describe("QuizUseCase — getParentCategoriesForSubject / getCategoriesForParent
   });
 
   it("getParentCategoriesForSubject で parentCategoryName がない場合は ID をフォールバックとして使う", () => {
-    const noNameQuestions: Question[] = [
-      { ...questions[0]!, parentCategoryName: undefined },
-    ];
+    const noNameQuestions: Question[] = [{ ...questions[0]!, parentCategoryName: undefined }];
     const uc = new QuizUseCase(new StubQuestionRepository(noNameQuestions), new StubProgressRepository());
     return uc.initialize().then(() => {
       const parentCats = uc.getParentCategoriesForSubject("english");
@@ -272,7 +271,7 @@ describe("QuizUseCase — getTopCategoriesForSubject / getParentCategoriesForTop
     parentCategory?: string,
     parentCategoryName?: string,
     topCategory?: string,
-    topCategoryName?: string
+    topCategoryName?: string,
   ): Question => ({
     id,
     question: `Q ${id}`,
@@ -292,8 +291,26 @@ describe("QuizUseCase — getTopCategoriesForSubject / getParentCategoriesForTop
   const questions = [
     makeQuestionWith3Levels("q1", "english", "tenses-past", "過去形", "verb", "動詞", "grammar", "文法"),
     makeQuestionWith3Levels("q2", "english", "tenses-future", "未来形", "verb", "動詞", "grammar", "文法"),
-    makeQuestionWith3Levels("q3", "english", "phonics-1", "フォニックス1", "phonics", "フォニックス", "pronunciation", "発音"),
-    makeQuestionWith3Levels("q4", "english", "assimilation", "アシミレーション", "sound-changes", "音声変化", "pronunciation", "発音"),
+    makeQuestionWith3Levels(
+      "q3",
+      "english",
+      "phonics-1",
+      "フォニックス1",
+      "phonics",
+      "フォニックス",
+      "pronunciation",
+      "発音",
+    ),
+    makeQuestionWith3Levels(
+      "q4",
+      "english",
+      "assimilation",
+      "アシミレーション",
+      "sound-changes",
+      "音声変化",
+      "pronunciation",
+      "発音",
+    ),
     makeQuestionWith3Levels("q5", "english", "kotowaza", "ことわざ", "vocabulary", "語彙", undefined, undefined),
   ];
 
@@ -367,9 +384,9 @@ describe("QuizUseCase — セッション開始仕様", () => {
   });
 
   it("retryモードで間違えた問題がなければエラー", () => {
-    expect(() =>
-      useCase.startSession("retry", { subject: "all", category: "all" })
-    ).toThrow("間違えた問題がありません");
+    expect(() => useCase.startSession("retry", { subject: "all", category: "all" })).toThrow(
+      "間違えた問題がありません",
+    );
   });
 
   it("retryモードで間違えた問題のみが出題される", () => {
@@ -575,9 +592,7 @@ describe("QuizUseCase — masteredIds（習得済み）仕様", () => {
     const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
     await useCase.initialize();
 
-    expect(() =>
-      useCase.startSession("random", { subject: "all", category: "all" })
-    ).toThrow("ALL_MASTERED");
+    expect(() => useCase.startSession("random", { subject: "all", category: "all" })).toThrow("ALL_MASTERED");
   });
 
   it("全問習得済み時に startSession('practice') は ERROR_ALL_MASTERED をスロー", async () => {
@@ -586,9 +601,7 @@ describe("QuizUseCase — masteredIds（習得済み）仕様", () => {
     const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
     await useCase.initialize();
 
-    expect(() =>
-      useCase.startSession("practice", { subject: "all", category: "all" })
-    ).toThrow("ALL_MASTERED");
+    expect(() => useCase.startSession("practice", { subject: "all", category: "all" })).toThrow("ALL_MASTERED");
   });
 
   it("全問習得済み時に startSessionWithAllQuestions は習得済み問題も含めて開始できる", async () => {
@@ -732,10 +745,7 @@ describe("QuizUseCase — getStudiedCategoryKeys 仕様", () => {
   });
 
   it("履歴がない場合は空の Set を返す", async () => {
-    const useCase = new QuizUseCase(
-      new StubQuestionRepository([makeQuestion("q1")]),
-      new StubProgressRepository()
-    );
+    const useCase = new QuizUseCase(new StubQuestionRepository([makeQuestion("q1")]), new StubProgressRepository());
     await useCase.initialize();
     expect(useCase.getStudiedCategoryKeys().size).toBe(0);
   });
@@ -744,7 +754,7 @@ describe("QuizUseCase — getStudiedCategoryKeys 仕様", () => {
     const history = [makeRecord("english", "phonics-1"), makeRecord("english", "tenses-past")];
     const useCase = new QuizUseCase(
       new StubQuestionRepository([makeQuestion("q1")]),
-      new StubProgressRepository([], history)
+      new StubProgressRepository([], history),
     );
     await useCase.initialize();
     const keys = useCase.getStudiedCategoryKeys();
@@ -756,7 +766,7 @@ describe("QuizUseCase — getStudiedCategoryKeys 仕様", () => {
     const history = [makeRecord("english", "phonics-1")];
     const useCase = new QuizUseCase(
       new StubQuestionRepository([makeQuestion("q1")]),
-      new StubProgressRepository([], history)
+      new StubProgressRepository([], history),
     );
     await useCase.initialize();
     const keys = useCase.getStudiedCategoryKeys();
@@ -936,9 +946,7 @@ describe("QuizUseCase — unmarkCategoryAsLearned 仕様", () => {
 
 describe("QuizUseCase — getCategoryGuideUrl 仕様", () => {
   it("guideUrl を持つ問題のカテゴリでは URL が返る", async () => {
-    const questions = [
-      makeQuestionWithGuide("q1", "english", "phonics", "../english/pronunciation/01/guide"),
-    ];
+    const questions = [makeQuestionWithGuide("q1", "english", "phonics", "../english/pronunciation/01/guide")];
     const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
     await useCase.initialize();
 
@@ -979,7 +987,7 @@ describe("QuizUseCase — getParentCategoryGuideUrl 仕様", () => {
     subject: string,
     category: string,
     parentCategory: string,
-    parentCategoryGuideUrl: string
+    parentCategoryGuideUrl: string,
   ): Question => ({
     ...makeQuestion(id, subject, category),
     parentCategory,
@@ -1034,9 +1042,7 @@ describe("QuizUseCase — getCategoryExample 仕様", () => {
   });
 
   it("example を持つ問題のカテゴリでは例文が返る", async () => {
-    const questions = [
-      makeQuestionWithExample("q1", "english", "tenses-regular-present", "I `play` games."),
-    ];
+    const questions = [makeQuestionWithExample("q1", "english", "tenses-regular-present", "I `play` games.")];
     const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
     await useCase.initialize();
 
@@ -1073,10 +1079,7 @@ describe("QuizUseCase — getCategoryExample 仕様", () => {
 
 describe("QuizUseCase — getRecommendedCategoryForSubject 仕様", () => {
   it("未学習カテゴリがある場合は最初の未学習カテゴリを返す", async () => {
-    const questions = [
-      makeQuestion("q1", "english", "phonics-1"),
-      makeQuestion("q2", "english", "phonics-2"),
-    ];
+    const questions = [makeQuestion("q1", "english", "phonics-1"), makeQuestion("q2", "english", "phonics-2")];
     const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository());
     await useCase.initialize();
 
@@ -1086,20 +1089,31 @@ describe("QuizUseCase — getRecommendedCategoryForSubject 仕様", () => {
   });
 
   it("すべてのカテゴリが学習済みの場合は最初のカテゴリを返す", async () => {
-    const questions = [
-      makeQuestion("q1", "english", "phonics-1"),
-      makeQuestion("q2", "english", "phonics-2"),
-    ];
+    const questions = [makeQuestion("q1", "english", "phonics-1"), makeQuestion("q2", "english", "phonics-2")];
     const history: import("./ports").QuizRecord[] = [
       {
-        id: "r1", date: new Date().toISOString(), subject: "english", subjectName: "英語",
-        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
-        totalCount: 1, correctCount: 1, entries: [],
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス1",
+        mode: "random",
+        totalCount: 1,
+        correctCount: 1,
+        entries: [],
       },
       {
-        id: "r2", date: new Date().toISOString(), subject: "english", subjectName: "英語",
-        category: "phonics-2", categoryName: "フォニックス2", mode: "random",
-        totalCount: 1, correctCount: 1, entries: [],
+        id: "r2",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-2",
+        categoryName: "フォニックス2",
+        mode: "random",
+        totalCount: 1,
+        correctCount: 1,
+        entries: [],
       },
     ];
     const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository([], history));
@@ -1124,10 +1138,7 @@ describe("QuizUseCase — getRecommendedCategoryForSubject 仕様", () => {
       ...makeQuestion("q1", "english", "phonics-1"),
       referenceGrade: "小1",
     };
-    const useCase = new QuizUseCase(
-      new StubQuestionRepository([questionWithGrade]),
-      new StubProgressRepository()
-    );
+    const useCase = new QuizUseCase(new StubQuestionRepository([questionWithGrade]), new StubProgressRepository());
     await useCase.initialize();
 
     const rec = useCase.getRecommendedCategoryForSubject("english");
@@ -1175,14 +1186,28 @@ describe("QuizUseCase — getRecommendedCategoriesForSubject 仕様", () => {
     ];
     const history: import("./ports").QuizRecord[] = [
       {
-        id: "r1", date: new Date().toISOString(), subject: "english", subjectName: "英語",
-        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
-        totalCount: 1, correctCount: 1, entries: [],
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス1",
+        mode: "random",
+        totalCount: 1,
+        correctCount: 1,
+        entries: [],
       },
       {
-        id: "r2", date: new Date().toISOString(), subject: "english", subjectName: "英語",
-        category: "phonics-2", categoryName: "フォニックス2", mode: "random",
-        totalCount: 1, correctCount: 1, entries: [],
+        id: "r2",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-2",
+        categoryName: "フォニックス2",
+        mode: "random",
+        totalCount: 1,
+        correctCount: 1,
+        entries: [],
       },
     ];
     const useCase = new QuizUseCase(new StubQuestionRepository(questions), new StubProgressRepository([], history));
@@ -1223,21 +1248,25 @@ describe("QuizUseCase — getCategoryProgressPct 仕様", () => {
   });
 
   it("全問正解の学習済みカテゴリでは 100 を返す", async () => {
-    const questions = [
-      makeQuestion("q1", "english", "phonics-1"),
-      makeQuestion("q2", "english", "phonics-1"),
-    ];
+    const questions = [makeQuestion("q1", "english", "phonics-1"), makeQuestion("q2", "english", "phonics-1")];
     const history: import("./ports").QuizRecord[] = [
       {
-        id: "r1", date: new Date().toISOString(), subject: "english", subjectName: "英語",
-        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
-        totalCount: 2, correctCount: 2, entries: [],
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス1",
+        mode: "random",
+        totalCount: 2,
+        correctCount: 2,
+        entries: [],
       },
     ];
     // 進捗率は mastered / total で算出するため全問題を masteredIds に設定する
     const useCase = new QuizUseCase(
       new StubQuestionRepository(questions),
-      new StubProgressRepository([], history, {}, {}, ["q1", "q2"])
+      new StubProgressRepository([], history, {}, {}, ["q1", "q2"]),
     );
     await useCase.initialize();
 
@@ -1254,7 +1283,7 @@ describe("QuizUseCase — getCategoryProgressPct 仕様", () => {
     // q2〜q4 が習得済み（q1 は間違い）
     const useCase = new QuizUseCase(
       new StubQuestionRepository(questions),
-      new StubProgressRepository(["q1"], [], {}, {}, ["q2", "q3", "q4"])
+      new StubProgressRepository(["q1"], [], {}, {}, ["q2", "q3", "q4"]),
     );
     await useCase.initialize();
 
@@ -1275,14 +1304,28 @@ describe("QuizUseCase — getLastStudyDateForSubject 仕様", () => {
     const latestDate = "2025-04-15T10:00:00.000Z";
     const history: import("./ports").QuizRecord[] = [
       {
-        id: "r1", date: latestDate, subject: "english", subjectName: "英語",
-        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
-        totalCount: 5, correctCount: 5, entries: [],
+        id: "r1",
+        date: latestDate,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス1",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
       },
       {
-        id: "r2", date: "2025-03-01T10:00:00.000Z", subject: "english", subjectName: "英語",
-        category: "phonics-1", categoryName: "フォニックス1", mode: "random",
-        totalCount: 5, correctCount: 5, entries: [],
+        id: "r2",
+        date: "2025-03-01T10:00:00.000Z",
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス1",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
       },
     ];
     const useCase = new QuizUseCase(new StubQuestionRepository([]), new StubProgressRepository([], history));
@@ -1294,9 +1337,16 @@ describe("QuizUseCase — getLastStudyDateForSubject 仕様", () => {
   it("他の教科の履歴は含まれない", async () => {
     const history: import("./ports").QuizRecord[] = [
       {
-        id: "r1", date: "2025-04-15T10:00:00.000Z", subject: "math", subjectName: "数学",
-        category: "addition", categoryName: "たし算", mode: "random",
-        totalCount: 5, correctCount: 5, entries: [],
+        id: "r1",
+        date: "2025-04-15T10:00:00.000Z",
+        subject: "math",
+        subjectName: "数学",
+        category: "addition",
+        categoryName: "たし算",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
       },
     ];
     const useCase = new QuizUseCase(new StubQuestionRepository([]), new StubProgressRepository([], history));
@@ -1312,7 +1362,7 @@ describe("QuizUseCase — getUniqueGradesForSubject / getCategoriesForGrade / ge
     subject: string,
     category: string,
     categoryName: string,
-    referenceGrade?: string
+    referenceGrade?: string,
   ): Question => ({
     id,
     question: `Q ${id}`,
@@ -1380,9 +1430,7 @@ describe("QuizUseCase — getUniqueGradesForSubject / getCategoriesForGrade / ge
   });
 
   it("getCategoriesWithoutGrade で全カテゴリに学年が設定されている場合は空オブジェクトを返す", () => {
-    const gradeQuestions = [
-      makeQuestionWithGrade("q1", "english", "grammar", "文法", "中学1年"),
-    ];
+    const gradeQuestions = [makeQuestionWithGrade("q1", "english", "grammar", "文法", "中学1年")];
     const uc = new QuizUseCase(new StubQuestionRepository(gradeQuestions), new StubProgressRepository());
     return uc.initialize().then(() => {
       const cats = uc.getCategoriesWithoutGrade("english");
@@ -1395,7 +1443,7 @@ describe("QuizUseCase — getMasteredCountForCategory 仕様", () => {
   it("カテゴリ内に問題がない場合は { mastered: 0, total: 0 } を返す", async () => {
     const useCase = new QuizUseCase(
       new StubQuestionRepository([makeQuestion("q1", "english", "phonics")]),
-      new StubProgressRepository()
+      new StubProgressRepository(),
     );
     await useCase.initialize();
     expect(useCase.getMasteredCountForCategory("english", "linking")).toEqual({ mastered: 0, total: 0 });
@@ -1403,11 +1451,8 @@ describe("QuizUseCase — getMasteredCountForCategory 仕様", () => {
 
   it("未習得問題のみの場合は mastered: 0 を返す", async () => {
     const useCase = new QuizUseCase(
-      new StubQuestionRepository([
-        makeQuestion("q1", "english", "phonics"),
-        makeQuestion("q2", "english", "phonics"),
-      ]),
-      new StubProgressRepository()
+      new StubQuestionRepository([makeQuestion("q1", "english", "phonics"), makeQuestion("q2", "english", "phonics")]),
+      new StubProgressRepository(),
     );
     await useCase.initialize();
     expect(useCase.getMasteredCountForCategory("english", "phonics")).toEqual({ mastered: 0, total: 2 });
@@ -1420,7 +1465,7 @@ describe("QuizUseCase — getMasteredCountForCategory 仕様", () => {
         makeQuestion("q2", "english", "phonics"),
         makeQuestion("q3", "english", "phonics"),
       ]),
-      new StubProgressRepository([], [], {}, {}, ["q1"])
+      new StubProgressRepository([], [], {}, {}, ["q1"]),
     );
     await useCase.initialize();
     expect(useCase.getMasteredCountForCategory("english", "phonics")).toEqual({ mastered: 1, total: 3 });
@@ -1428,11 +1473,8 @@ describe("QuizUseCase — getMasteredCountForCategory 仕様", () => {
 
   it("全問習得済みの場合は mastered === total を返す", async () => {
     const useCase = new QuizUseCase(
-      new StubQuestionRepository([
-        makeQuestion("q1", "english", "phonics"),
-        makeQuestion("q2", "english", "phonics"),
-      ]),
-      new StubProgressRepository([], [], {}, {}, ["q1", "q2"])
+      new StubQuestionRepository([makeQuestion("q1", "english", "phonics"), makeQuestion("q2", "english", "phonics")]),
+      new StubProgressRepository([], [], {}, {}, ["q1", "q2"]),
     );
     await useCase.initialize();
     expect(useCase.getMasteredCountForCategory("english", "phonics")).toEqual({ mastered: 2, total: 2 });
@@ -1440,11 +1482,8 @@ describe("QuizUseCase — getMasteredCountForCategory 仕様", () => {
 
   it("別教科のカテゴリ同名問題を混同しない", async () => {
     const useCase = new QuizUseCase(
-      new StubQuestionRepository([
-        makeQuestion("q1", "english", "phonics"),
-        makeQuestion("q2", "math", "phonics"),
-      ]),
-      new StubProgressRepository([], [], {}, {}, ["q1", "q2"])
+      new StubQuestionRepository([makeQuestion("q1", "english", "phonics"), makeQuestion("q2", "math", "phonics")]),
+      new StubProgressRepository([], [], {}, {}, ["q1", "q2"]),
     );
     await useCase.initialize();
     expect(useCase.getMasteredCountForCategory("english", "phonics")).toEqual({ mastered: 1, total: 1 });

@@ -61,9 +61,7 @@ function loadManifest(): QuestionsManifest {
 }
 
 function loadAllQuestionFiles(manifest: QuestionsManifest): QuestionFile[] {
-  return manifest.questionFiles.map((file) =>
-    loadJson<QuestionFile>(path.join(QUESTIONS_DIR, file))
-  );
+  return manifest.questionFiles.map((file) => loadJson<QuestionFile>(path.join(QUESTIONS_DIR, file)));
 }
 
 // ─── テストスイート ──────────────────────────────────────────────────────────
@@ -241,16 +239,12 @@ describe("データ統計 — 問題数チェック", () => {
   });
 
   it("英語の問題が 1 件以上ある", () => {
-    const englishQuestions = questionFiles
-      .filter((qf) => qf.subject === "english")
-      .flatMap((qf) => qf.questions);
+    const englishQuestions = questionFiles.filter((qf) => qf.subject === "english").flatMap((qf) => qf.questions);
     expect(englishQuestions.length).toBeGreaterThan(0);
   });
 
   it("数学の問題が 1 件以上ある", () => {
-    const mathQuestions = questionFiles
-      .filter((qf) => qf.subject === "math")
-      .flatMap((qf) => qf.questions);
+    const mathQuestions = questionFiles.filter((qf) => qf.subject === "math").flatMap((qf) => qf.questions);
     expect(mathQuestions.length).toBeGreaterThan(0);
   });
 

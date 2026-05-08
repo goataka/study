@@ -13,180 +13,105 @@
     {
       "id": "6c8925c4-4bb9-5a89-b7de-554a764772ae",
       "question": "「hospital」の意味は？",
-      "choices": [
-        "病院",
-        "図書館",
-        "博物館",
-        "レストラン"
-      ],
+      "choices": ["病院", "図書館", "博物館", "レストラン"],
       "correct": 0,
       "explanation": "hospital は「病院」です"
     },
     {
       "id": "1cca29df-54cf-5469-9ca5-760896f9d3b0",
       "question": "「library」の意味は？",
-      "choices": [
-        "図書館",
-        "駅",
-        "銀行",
-        "スーパーマーケット"
-      ],
+      "choices": ["図書館", "駅", "銀行", "スーパーマーケット"],
       "correct": 0,
       "explanation": "library は「図書館」です"
     },
     {
       "id": "921c3956-377d-5174-89d1-c71c323ef8f3",
       "question": "「station」の意味は？",
-      "choices": [
-        "駅",
-        "博物館",
-        "教会",
-        "ホテル"
-      ],
+      "choices": ["駅", "博物館", "教会", "ホテル"],
       "correct": 0,
       "explanation": "station は「駅」です"
     },
     {
       "id": "7e3b65f6-030a-5739-a143-4f79a88f3698",
       "question": "「museum」の意味は？",
-      "choices": [
-        "博物館",
-        "銀行",
-        "スタジアム",
-        "公園"
-      ],
+      "choices": ["博物館", "銀行", "スタジアム", "公園"],
       "correct": 0,
       "explanation": "museum は「博物館」です"
     },
     {
       "id": "92c6700d-8aa3-5e15-aabd-6b9923b761d5",
       "question": "「bank」の意味は？",
-      "choices": [
-        "銀行",
-        "教会",
-        "レストラン",
-        "動物園"
-      ],
+      "choices": ["銀行", "教会", "レストラン", "動物園"],
       "correct": 0,
       "explanation": "bank は「銀行」です"
     },
     {
       "id": "9b00e33a-eaf7-5804-ab13-07325e725ec7",
       "question": "「church」の意味は？",
-      "choices": [
-        "教会",
-        "スタジアム",
-        "スーパーマーケット",
-        "工場"
-      ],
+      "choices": ["教会", "スタジアム", "スーパーマーケット", "工場"],
       "correct": 0,
       "explanation": "church は「教会」です"
     },
     {
       "id": "ff6a1763-7cf0-5482-975c-5b246951470f",
       "question": "「stadium」の意味は？",
-      "choices": [
-        "スタジアム",
-        "レストラン",
-        "ホテル",
-        "劇場"
-      ],
+      "choices": ["スタジアム", "レストラン", "ホテル", "劇場"],
       "correct": 0,
       "explanation": "stadium は「スタジアム」です"
     },
     {
       "id": "b3a2a083-fc01-5356-9ab1-38b9ae1b3de6",
       "question": "「restaurant」の意味は？",
-      "choices": [
-        "レストラン",
-        "スーパーマーケット",
-        "公園",
-        "パン屋"
-      ],
+      "choices": ["レストラン", "スーパーマーケット", "公園", "パン屋"],
       "correct": 0,
       "explanation": "restaurant は「レストラン」です"
     },
     {
       "id": "e4921871-a7f8-5a60-93de-b3e21625bd65",
       "question": "「supermarket」の意味は？",
-      "choices": [
-        "スーパーマーケット",
-        "ホテル",
-        "動物園",
-        "病院"
-      ],
+      "choices": ["スーパーマーケット", "ホテル", "動物園", "病院"],
       "correct": 0,
       "explanation": "supermarket は「スーパーマーケット」です"
     },
     {
       "id": "2a741c00-70fd-5864-8003-6ddb30952482",
       "question": "「hotel」の意味は？",
-      "choices": [
-        "ホテル",
-        "公園",
-        "工場",
-        "図書館"
-      ],
+      "choices": ["ホテル", "公園", "工場", "図書館"],
       "correct": 0,
       "explanation": "hotel は「ホテル」です"
     },
     {
       "id": "b49cf89c-7da6-5360-86a0-62b09801f632",
       "question": "「park」の意味は？",
-      "choices": [
-        "公園",
-        "動物園",
-        "劇場",
-        "駅"
-      ],
+      "choices": ["公園", "動物園", "劇場", "駅"],
       "correct": 0,
       "explanation": "park は「公園」です"
     },
     {
       "id": "11288bb0-45df-55ae-a530-c9a00d4136ac",
       "question": "「zoo」の意味は？",
-      "choices": [
-        "動物園",
-        "工場",
-        "パン屋",
-        "博物館"
-      ],
+      "choices": ["動物園", "工場", "パン屋", "博物館"],
       "correct": 0,
       "explanation": "zoo は「動物園」です"
     },
     {
       "id": "f8bf640a-13e2-5783-b096-4ab414d61025",
       "question": "「factory」の意味は？",
-      "choices": [
-        "工場",
-        "劇場",
-        "病院",
-        "銀行"
-      ],
+      "choices": ["工場", "劇場", "病院", "銀行"],
       "correct": 0,
       "explanation": "factory は「工場」です"
     },
     {
       "id": "b34603a3-10e7-5ea8-aa03-b2358f912618",
       "question": "「theater」の意味は？",
-      "choices": [
-        "劇場",
-        "パン屋",
-        "図書館",
-        "教会"
-      ],
+      "choices": ["劇場", "パン屋", "図書館", "教会"],
       "correct": 0,
       "explanation": "theater は「劇場」です"
     },
     {
       "id": "9af72a4c-0dc2-552e-81be-3036b9a7e514",
       "question": "「bakery」の意味は？",
-      "choices": [
-        "パン屋",
-        "病院",
-        "駅",
-        "スタジアム"
-      ],
+      "choices": ["パン屋", "病院", "駅", "スタジアム"],
       "correct": 0,
       "explanation": "bakery は「パン屋」です"
     }

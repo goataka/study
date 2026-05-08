@@ -13,180 +13,105 @@
     {
       "id": "e73c5da4-5011-5b52-a0ce-ed8c97583b6c",
       "question": "My mother works at a ___. (病院で働いています)",
-      "choices": [
-        "hospital",
-        "library",
-        "museum",
-        "restaurant"
-      ],
+      "choices": ["hospital", "library", "museum", "restaurant"],
       "correct": 0,
       "explanation": "空欄には hospital（病院）が入ります"
     },
     {
       "id": "8874df98-b463-519b-b0e4-84a09dc29c75",
       "question": "I borrow books from the ___. (図書館から本を借ります)",
-      "choices": [
-        "library",
-        "station",
-        "bank",
-        "supermarket"
-      ],
+      "choices": ["library", "station", "bank", "supermarket"],
       "correct": 0,
       "explanation": "空欄には library（図書館）が入ります"
     },
     {
       "id": "7f1b0ac8-17a1-5783-a1cb-ef38cedd14bf",
       "question": "Let's meet at the ___. (駅で待ち合わせましょう)",
-      "choices": [
-        "station",
-        "museum",
-        "church",
-        "hotel"
-      ],
+      "choices": ["station", "museum", "church", "hotel"],
       "correct": 0,
       "explanation": "空欄には station（駅）が入ります"
     },
     {
       "id": "87fcbcb7-beb2-55a2-9330-b91b9912bd37",
       "question": "We visited the art ___. (美術博物館を訪れました)",
-      "choices": [
-        "museum",
-        "bank",
-        "stadium",
-        "park"
-      ],
+      "choices": ["museum", "bank", "stadium", "park"],
       "correct": 0,
       "explanation": "空欄には museum（博物館）が入ります"
     },
     {
       "id": "e711bbaa-cf81-5d1e-96b1-bc0f18bc9d2e",
       "question": "My father works at a ___. (銀行で働いています)",
-      "choices": [
-        "bank",
-        "church",
-        "restaurant",
-        "zoo"
-      ],
+      "choices": ["bank", "church", "restaurant", "zoo"],
       "correct": 0,
       "explanation": "空欄には bank（銀行）が入ります"
     },
     {
       "id": "cd622a73-2485-5dec-989b-ea27aa7d4940",
       "question": "We go to ___ on Sunday. (日曜日に教会に行きます)",
-      "choices": [
-        "church",
-        "stadium",
-        "supermarket",
-        "factory"
-      ],
+      "choices": ["church", "stadium", "supermarket", "factory"],
       "correct": 0,
       "explanation": "空欄には church（教会）が入ります"
     },
     {
       "id": "edd96711-340f-5e37-93c5-e08dbb2138ed",
       "question": "The game is at the ___. (試合はスタジアムで行われます)",
-      "choices": [
-        "stadium",
-        "restaurant",
-        "hotel",
-        "theater"
-      ],
+      "choices": ["stadium", "restaurant", "hotel", "theater"],
       "correct": 0,
       "explanation": "空欄には stadium（スタジアム）が入ります"
     },
     {
       "id": "1492efe2-2dda-521f-9c46-3c560bbe38c7",
       "question": "Let's eat at a ___. (レストランで食べましょう)",
-      "choices": [
-        "restaurant",
-        "supermarket",
-        "park",
-        "bakery"
-      ],
+      "choices": ["restaurant", "supermarket", "park", "bakery"],
       "correct": 0,
       "explanation": "空欄には restaurant（レストラン）が入ります"
     },
     {
       "id": "36d023a4-43d0-5806-b09e-eeb5fffb7173",
       "question": "Mom went to the ___. (お母さんはスーパーに行きました)",
-      "choices": [
-        "supermarket",
-        "hotel",
-        "zoo",
-        "hospital"
-      ],
+      "choices": ["supermarket", "hotel", "zoo", "hospital"],
       "correct": 0,
       "explanation": "空欄には supermarket（スーパーマーケット）が入ります"
     },
     {
       "id": "09d4b75a-c781-50cc-a6f8-abcc877260c4",
       "question": "We stayed at a ___. (ホテルに泊まりました)",
-      "choices": [
-        "hotel",
-        "park",
-        "factory",
-        "library"
-      ],
+      "choices": ["hotel", "park", "factory", "library"],
       "correct": 0,
       "explanation": "空欄には hotel（ホテル）が入ります"
     },
     {
       "id": "5815c569-b152-55af-995f-c6a71bae7eaf",
       "question": "I play in the ___. (公園で遊びます)",
-      "choices": [
-        "park",
-        "zoo",
-        "theater",
-        "station"
-      ],
+      "choices": ["park", "zoo", "theater", "station"],
       "correct": 0,
       "explanation": "空欄には park（公園）が入ります"
     },
     {
       "id": "30e97e5f-a559-56eb-88d2-6545d8e7c893",
       "question": "We saw lions at the ___. (動物園でライオンを見ました)",
-      "choices": [
-        "zoo",
-        "factory",
-        "bakery",
-        "museum"
-      ],
+      "choices": ["zoo", "factory", "bakery", "museum"],
       "correct": 0,
       "explanation": "空欄には zoo（動物園）が入ります"
     },
     {
       "id": "1e0ee0ae-4f7c-57aa-a38e-756e0194163a",
       "question": "He works at a car ___. (自動車工場で働いています)",
-      "choices": [
-        "factory",
-        "theater",
-        "hospital",
-        "bank"
-      ],
+      "choices": ["factory", "theater", "hospital", "bank"],
       "correct": 0,
       "explanation": "空欄には factory（工場）が入ります"
     },
     {
       "id": "63f1da19-b030-5a1c-9919-6f98256be7c8",
       "question": "We watched a movie at the ___. (劇場で映画を観ました)",
-      "choices": [
-        "theater",
-        "bakery",
-        "library",
-        "church"
-      ],
+      "choices": ["theater", "bakery", "library", "church"],
       "correct": 0,
       "explanation": "空欄には theater（劇場）が入ります"
     },
     {
       "id": "38ee06ed-8fd3-5709-9ce4-cd50fd69bb94",
       "question": "I bought bread at the ___. (パン屋でパンを買いました)",
-      "choices": [
-        "bakery",
-        "hospital",
-        "station",
-        "stadium"
-      ],
+      "choices": ["bakery", "hospital", "station", "stadium"],
       "correct": 0,
       "explanation": "空欄には bakery（パン屋）が入ります"
     }

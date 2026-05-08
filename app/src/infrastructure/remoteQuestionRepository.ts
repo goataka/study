@@ -19,8 +19,8 @@ export class RemoteQuestionRepository implements IQuestionRepository {
         this.fetchJson<QuestionFile>(`${this.baseUrl}/${file}`).then((qf) => {
           validateQuestionFile(qf);
           return expandQuestions(qf);
-        })
-      )
+        }),
+      ),
     );
 
     return results.flat();

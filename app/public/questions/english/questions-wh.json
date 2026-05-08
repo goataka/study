@@ -16,120 +16,70 @@
     {
       "id": "7a885482-403a-57b8-ac71-1c2281210e60",
       "question": "___ do you play? (何を？)",
-      "choices": [
-        "What",
-        "Where",
-        "When",
-        "Why"
-      ],
+      "choices": ["What", "Where", "When", "Why"],
       "correct": 0,
       "explanation": "「何を？」は What を使います"
     },
     {
       "id": "4e7e17bd-bba2-50d3-8798-88a81eb6ae42",
       "question": "___ do you play games? (どこで？)",
-      "choices": [
-        "Where",
-        "What",
-        "When",
-        "Why"
-      ],
+      "choices": ["Where", "What", "When", "Why"],
       "correct": 0,
       "explanation": "「どこで？」は Where を使います"
     },
     {
       "id": "c90b66bf-3cd2-50ce-aa80-3975e90cc12f",
       "question": "___ do you play games? (いつ？)",
-      "choices": [
-        "When",
-        "What",
-        "Where",
-        "Why"
-      ],
+      "choices": ["When", "What", "Where", "Why"],
       "correct": 0,
       "explanation": "「いつ？」は When を使います"
     },
     {
       "id": "268fa6b2-7dc0-5cca-8e9e-818e82d463dd",
       "question": "___ do you play games? (なぜ？)",
-      "choices": [
-        "Why",
-        "What",
-        "Where",
-        "When"
-      ],
+      "choices": ["Why", "What", "Where", "When"],
       "correct": 0,
       "explanation": "「なぜ？」は Why を使います"
     },
     {
       "id": "43dc84e7-8e43-5c6c-93f9-5527f2e5722a",
       "question": "___ do you play games? (どのように？)",
-      "choices": [
-        "How",
-        "What",
-        "Where",
-        "When"
-      ],
+      "choices": ["How", "What", "Where", "When"],
       "correct": 0,
       "explanation": "「どのように？」は How を使います"
     },
     {
       "id": "feb62ad4-afea-5a75-854e-6c340cf530e8",
       "question": "___ is your name? (誰？)",
-      "choices": [
-        "What",
-        "Who",
-        "Where",
-        "When"
-      ],
+      "choices": ["What", "Who", "Where", "When"],
       "correct": 0,
       "explanation": "「名前は何？」は What を使います"
     },
     {
       "id": "ff31d0a0-4e5e-56af-abfe-fd1487611fbd",
       "question": "___ is that boy? (誰？)",
-      "choices": [
-        "Who",
-        "What",
-        "Where",
-        "When"
-      ],
+      "choices": ["Who", "What", "Where", "When"],
       "correct": 0,
       "explanation": "「誰？」は Who を使います"
     },
     {
       "id": "8e2a1dba-4337-5d7b-9481-92ddf62800d0",
       "question": "___ book is this? (誰の？)",
-      "choices": [
-        "Whose",
-        "Who",
-        "What",
-        "Which"
-      ],
+      "choices": ["Whose", "Who", "What", "Which"],
       "correct": 0,
       "explanation": "「誰の？」は Whose を使います"
     },
     {
       "id": "bf1fb8cc-4f56-5ba4-bc58-01fa503f874d",
       "question": "___ did you go yesterday? (どこへ？)",
-      "choices": [
-        "Where",
-        "When",
-        "Why",
-        "Who"
-      ],
+      "choices": ["Where", "When", "Why", "Who"],
       "correct": 0,
       "explanation": "where は場所を尋ねる疑問詞です"
     },
     {
       "id": "5f90b576-5fb7-520c-aae5-020c87267359",
       "question": "___ many students are there? (いくつ？)",
-      "choices": [
-        "How",
-        "What",
-        "Which",
-        "Whose"
-      ],
+      "choices": ["How", "What", "Which", "Whose"],
       "correct": 0,
       "explanation": "how many は数を尋ねる表現です"
     }

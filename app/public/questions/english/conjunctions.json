@@ -16,120 +16,70 @@
     {
       "id": "c4969821-d5e5-5dd7-8ed9-24bdaa9979ab",
       "question": "I play games ___ study English. (選択)",
-      "choices": [
-        "or",
-        "and",
-        "but",
-        "because"
-      ],
+      "choices": ["or", "and", "but", "because"],
       "correct": 0,
       "explanation": "選択を表すには or を使います"
     },
     {
       "id": "13cfdbda-763a-58cb-a7e0-941333f86300",
       "question": "I play games ___ they are fun. (理由)",
-      "choices": [
-        "because",
-        "but",
-        "and",
-        "or"
-      ],
+      "choices": ["because", "but", "and", "or"],
       "correct": 0,
       "explanation": "理由を表すには because を使います"
     },
     {
       "id": "4768f28a-8cb1-5f35-939e-224c322e505c",
       "question": "I play games, ___ I don't play every day. (逆接)",
-      "choices": [
-        "but",
-        "and",
-        "or",
-        "because"
-      ],
+      "choices": ["but", "and", "or", "because"],
       "correct": 0,
       "explanation": "逆接を表すには but を使います"
     },
     {
       "id": "48dfe905-2832-5bbd-aeb3-0862175d08fe",
       "question": "I play games ___ I finish homework. (時)",
-      "choices": [
-        "after",
-        "before",
-        "when",
-        "if"
-      ],
+      "choices": ["after", "before", "when", "if"],
       "correct": 0,
       "explanation": "後にする場合は after を使います"
     },
     {
       "id": "83574cb6-2b2f-5ffc-b5f8-a35e1a6550af",
       "question": "I play games ___ I have time. (条件)",
-      "choices": [
-        "if",
-        "when",
-        "because",
-        "but"
-      ],
+      "choices": ["if", "when", "because", "but"],
       "correct": 0,
       "explanation": "条件を表すには if を使います"
     },
     {
       "id": "b92bae61-6105-5338-97e9-0e07272b566d",
       "question": "I like games ___ anime. (並列)",
-      "choices": [
-        "and",
-        "or",
-        "but",
-        "because"
-      ],
+      "choices": ["and", "or", "but", "because"],
       "correct": 0,
       "explanation": "並列を表すには and を使います"
     },
     {
       "id": "77038ef6-fdb4-57c1-a870-8bf67cf3b519",
       "question": "I was tired, ___ I played a short game. (理由)",
-      "choices": [
-        "so",
-        "but",
-        "and",
-        "or"
-      ],
+      "choices": ["so", "but", "and", "or"],
       "correct": 0,
       "explanation": "結果を表すには so を使います"
     },
     {
       "id": "422604e3-66ca-55f8-97da-72e301d3cf8a",
       "question": "___ I was tired, I played games. (逆接)",
-      "choices": [
-        "Although",
-        "Because",
-        "When",
-        "If"
-      ],
+      "choices": ["Although", "Because", "When", "If"],
       "correct": 0,
       "explanation": "逆接を表すには Although を使います"
     },
     {
       "id": "451d4adb-e3b1-5e17-bba9-7d3f34d1bad0",
       "question": "I was hungry, ___ I ate lunch. (結果)",
-      "choices": [
-        "so",
-        "but",
-        "or",
-        "because"
-      ],
+      "choices": ["so", "but", "or", "because"],
       "correct": 0,
       "explanation": "so は「だから・その結果」という意味の接続詞です"
     },
     {
       "id": "d532f55d-56c0-5ee1-b603-9bd69087e31f",
       "question": "___ I finish this, I will take a break. (時)",
-      "choices": [
-        "When",
-        "But",
-        "Or",
-        "So"
-      ],
+      "choices": ["When", "But", "Or", "So"],
       "correct": 0,
       "explanation": "when は「～するとき」という意味の接続詞です"
     }

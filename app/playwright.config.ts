@@ -21,19 +21,14 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   timeout: 60_000,
   // JSONレポーター: エビデンス生成スクリプトが読み込む
-  reporter: [
-    ["list"],
-    ["json", { outputFile: "e2e-results.json" }],
-  ],
+  reporter: [["list"], ["json", { outputFile: "e2e-results.json" }]],
   use: {
     baseURL,
     headless: true,
     // サービスワーカーをブロックしてpage.routeのスタブが確実に適用されるようにする
     serviceWorkers: "block",
   },
-  projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 1920, height: 1080 } } },
-  ],
+  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 1920, height: 1080 } } }],
   // 外部URLの場合はローカルサーバーを起動しない
   webServer: isExternalUrl
     ? undefined

@@ -16,120 +16,70 @@
     {
       "id": "3283e22b-dfbb-51c9-8114-1dc747984067",
       "question": "He ___ games. (play)",
-      "choices": [
-        "plays",
-        "play",
-        "played",
-        "playing"
-      ],
+      "choices": ["plays", "play", "played", "playing"],
       "correct": 0,
       "explanation": "三人称単数現在形には -s をつけます"
     },
     {
       "id": "49376e54-128e-5e7f-bb62-eb8d81bf02fb",
       "question": "She ___ English. (study)",
-      "choices": [
-        "studies",
-        "study",
-        "studys",
-        "studied"
-      ],
+      "choices": ["studies", "study", "studys", "studied"],
       "correct": 0,
       "explanation": "子音+yで終わる語は、yをiに変えて -es をつけます"
     },
     {
       "id": "5b6df56c-bd98-55b9-b8f5-50124f5ed460",
       "question": "He ___ TV. (watch)",
-      "choices": [
-        "watches",
-        "watch",
-        "watchs",
-        "watched"
-      ],
+      "choices": ["watches", "watch", "watchs", "watched"],
       "correct": 0,
       "explanation": "ch で終わる語には -es をつけます"
     },
     {
       "id": "ebf1f860-c61b-5dae-8531-f502de1c0a28",
       "question": "She ___ music. (like)",
-      "choices": [
-        "likes",
-        "like",
-        "liking",
-        "liked"
-      ],
+      "choices": ["likes", "like", "liking", "liked"],
       "correct": 0,
       "explanation": "三人称単数現在形には -s をつけます"
     },
     {
       "id": "968ada74-8f00-553c-af66-9759e61da43b",
       "question": "He ___ to school. (walk)",
-      "choices": [
-        "walks",
-        "walk",
-        "walking",
-        "walked"
-      ],
+      "choices": ["walks", "walk", "walking", "walked"],
       "correct": 0,
       "explanation": "三人称単数現在形には -s をつけます"
     },
     {
       "id": "a9d69a5c-ac16-5e96-a082-207e5380515c",
       "question": "I ___ games. (play)",
-      "choices": [
-        "play",
-        "plays",
-        "played",
-        "playing"
-      ],
+      "choices": ["play", "plays", "played", "playing"],
       "correct": 0,
       "explanation": "Iには原形を使います"
     },
     {
       "id": "5b4ad2a1-3adf-563b-9641-bbd5aaeb3d66",
       "question": "They ___ English. (study)",
-      "choices": [
-        "study",
-        "studies",
-        "studys",
-        "studied"
-      ],
+      "choices": ["study", "studies", "studys", "studied"],
       "correct": 0,
       "explanation": "複数形には原形を使います"
     },
     {
       "id": "f2699012-a7d2-5b88-a683-bac29abc42e5",
       "question": "She ___ tennis. (play)",
-      "choices": [
-        "plays",
-        "play",
-        "played",
-        "playing"
-      ],
+      "choices": ["plays", "play", "played", "playing"],
       "correct": 0,
       "explanation": "三人称単数現在形には -s をつけます"
     },
     {
       "id": "b2c15b5e-41ac-56bd-81ec-b87b3253d520",
       "question": "He ___ the news every morning. (watch)",
-      "choices": [
-        "watches",
-        "watch",
-        "watched",
-        "watching"
-      ],
+      "choices": ["watches", "watch", "watched", "watching"],
       "correct": 0,
       "explanation": "三人称単数現在形には -es をつけます（ch で終わる語）"
     },
     {
       "id": "485fad90-17ee-5341-9471-65a2de8033c2",
       "question": "She ___ to school by bike. (go)",
-      "choices": [
-        "goes",
-        "go",
-        "going",
-        "went"
-      ],
+      "choices": ["goes", "go", "going", "went"],
       "correct": 0,
       "explanation": "三人称単数現在形で go は goes になります"
     }

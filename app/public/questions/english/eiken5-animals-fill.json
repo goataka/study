@@ -13,180 +13,105 @@
     {
       "id": "054b6081-7dda-5088-8b17-06fc72c5a789",
       "question": "I have a ___. (ねこを飼っています)",
-      "choices": [
-        "cat",
-        "dog",
-        "bird",
-        "fish"
-      ],
+      "choices": ["cat", "dog", "bird", "fish"],
       "correct": 0,
       "explanation": "「ねこ」は cat です。I have a cat. でねこを飼っているという意味になります"
     },
     {
       "id": "1207e4d1-e4a4-5b99-bf7a-1bf6cdb62155",
       "question": "The ___ is big. (そのいぬは大きいです)",
-      "choices": [
-        "dog",
-        "cat",
-        "rabbit",
-        "mouse"
-      ],
+      "choices": ["dog", "cat", "rabbit", "mouse"],
       "correct": 0,
       "explanation": "「いぬ」は dog です。The dog is big. でそのいぬは大きいという意味になります"
     },
     {
       "id": "86266ef9-165a-5af7-93ef-bd3dd7245049",
       "question": "A ___ can fly. (とりは空を飛べます)",
-      "choices": [
-        "bird",
-        "fish",
-        "cat",
-        "dog"
-      ],
+      "choices": ["bird", "fish", "cat", "dog"],
       "correct": 0,
       "explanation": "「とり」は bird です。A bird can fly. でとりは飛べるという意味になります"
     },
     {
       "id": "9375b76e-4e95-5240-a105-41d9353841ec",
       "question": "We can eat ___. (さかなを食べられます)",
-      "choices": [
-        "fish",
-        "bird",
-        "cat",
-        "pig"
-      ],
+      "choices": ["fish", "bird", "cat", "pig"],
       "correct": 0,
       "explanation": "「さかな」は fish です。We can eat fish. でさかなを食べられるという意味になります"
     },
     {
       "id": "ab6aa516-938d-5966-8b0f-dfb177fa0714",
       "question": "My ___ is white. (私のうさぎは白です)",
-      "choices": [
-        "rabbit",
-        "horse",
-        "cow",
-        "sheep"
-      ],
+      "choices": ["rabbit", "horse", "cow", "sheep"],
       "correct": 0,
       "explanation": "「うさぎ」は rabbit です。My rabbit is white. で私のうさぎは白いという意味になります"
     },
     {
       "id": "91044b3e-50e1-54d2-bc1c-2ac97db4ed2d",
       "question": "The ___ runs fast. (そのうまは速く走ります)",
-      "choices": [
-        "horse",
-        "rabbit",
-        "cow",
-        "dog"
-      ],
+      "choices": ["horse", "rabbit", "cow", "dog"],
       "correct": 0,
       "explanation": "「うま」は horse です。The horse runs fast. でそのうまは速く走るという意味になります"
     },
     {
       "id": "1191b2ad-13e9-54fe-a086-3dc870ca5bab",
       "question": "A ___ gives milk. (うしはミルクをくれます)",
-      "choices": [
-        "cow",
-        "pig",
-        "horse",
-        "sheep"
-      ],
+      "choices": ["cow", "pig", "horse", "sheep"],
       "correct": 0,
       "explanation": "「うし」は cow です。A cow gives milk. でうしはミルクをくれるという意味になります"
     },
     {
       "id": "02f06d61-72c8-59f9-b21e-3408dcdfad64",
       "question": "The ___ is pink. (そのぶたはピンクです)",
-      "choices": [
-        "pig",
-        "cow",
-        "bear",
-        "monkey"
-      ],
+      "choices": ["pig", "cow", "bear", "monkey"],
       "correct": 0,
       "explanation": "「ぶた」は pig です。The pig is pink. でそのぶたはピンクという意味になります"
     },
     {
       "id": "20845c64-fefb-5fc1-96ad-7d1482313a84",
       "question": "A ___ lives in the forest. (くまは森に住んでいます)",
-      "choices": [
-        "bear",
-        "pig",
-        "lion",
-        "tiger"
-      ],
+      "choices": ["bear", "pig", "lion", "tiger"],
       "correct": 0,
       "explanation": "「くま」は bear です。A bear lives in the forest. でくまは森に住んでいるという意味になります"
     },
     {
       "id": "feec230f-b621-572b-9085-698047ad2581",
       "question": "The ___ eats bananas. (そのさるはバナナを食べます)",
-      "choices": [
-        "monkey",
-        "bear",
-        "elephant",
-        "lion"
-      ],
+      "choices": ["monkey", "bear", "elephant", "lion"],
       "correct": 0,
       "explanation": "「さる」は monkey です。The monkey eats bananas. でそのさるはバナナを食べるという意味になります"
     },
     {
       "id": "b0b016b5-dd28-5e2e-9993-46ce5339aec3",
       "question": "An ___ has a long nose. (ぞうは長い鼻を持っています)",
-      "choices": [
-        "elephant",
-        "monkey",
-        "lion",
-        "tiger"
-      ],
+      "choices": ["elephant", "monkey", "lion", "tiger"],
       "correct": 0,
       "explanation": "「ぞう」は elephant です。An elephant has a long nose. でぞうは長い鼻を持っているという意味になります"
     },
     {
       "id": "2bbd53fd-53ee-52f6-857d-e477fb2b4436",
       "question": "A ___ is strong. (らいおんは強いです)",
-      "choices": [
-        "lion",
-        "elephant",
-        "tiger",
-        "bear"
-      ],
+      "choices": ["lion", "elephant", "tiger", "bear"],
       "correct": 0,
       "explanation": "「らいおん」は lion です。A lion is strong. でらいおんは強いという意味になります"
     },
     {
       "id": "2c5339d2-e8a8-5905-8061-6c134099b130",
       "question": "The ___ has stripes. (そのとらはしまもようがあります)",
-      "choices": [
-        "tiger",
-        "lion",
-        "monkey",
-        "horse"
-      ],
+      "choices": ["tiger", "lion", "monkey", "horse"],
       "correct": 0,
       "explanation": "「とら」は tiger です。The tiger has stripes. でそのとらはしまもようがあるという意味になります"
     },
     {
       "id": "66c44834-faff-54b4-b71f-3311a77ae9ae",
       "question": "A ___ is small. (ねずみは小さいです)",
-      "choices": [
-        "mouse",
-        "cat",
-        "rabbit",
-        "bird"
-      ],
+      "choices": ["mouse", "cat", "rabbit", "bird"],
       "correct": 0,
       "explanation": "「ねずみ」は mouse です。A mouse is small. でねずみは小さいという意味になります"
     },
     {
       "id": "26c7bd90-9dc9-5f1b-b127-ae5bf82a1a1f",
       "question": "The ___ is white and soft. (そのひつじは白くふわふわです)",
-      "choices": [
-        "sheep",
-        "cow",
-        "pig",
-        "rabbit"
-      ],
+      "choices": ["sheep", "cow", "pig", "rabbit"],
       "correct": 0,
       "explanation": "「ひつじ」は sheep です。The sheep is white and soft. でそのひつじは白くふわふわという意味になります"
     }

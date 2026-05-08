@@ -16,120 +16,70 @@
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000001",
       "question": "The game is ___. (fun)",
-      "choices": [
-        "fun",
-        "funny",
-        "funnily",
-        "funnier"
-      ],
+      "choices": ["fun", "funny", "funnily", "funnier"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000002",
       "question": "The stage is ___. (interesting)",
-      "choices": [
-        "interesting",
-        "interest",
-        "interested",
-        "interestingly"
-      ],
+      "choices": ["interesting", "interest", "interested", "interestingly"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000003",
       "question": "The graphics are ___. (beautiful)",
-      "choices": [
-        "beautiful",
-        "beauty",
-        "beautifully",
-        "beautify"
-      ],
+      "choices": ["beautiful", "beauty", "beautifully", "beautify"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000004",
       "question": "The weather is ___. (cold)",
-      "choices": [
-        "cold",
-        "coldly",
-        "colder",
-        "coldness"
-      ],
+      "choices": ["cold", "coldly", "colder", "coldness"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000005",
       "question": "I am ___. (tired)",
-      "choices": [
-        "tired",
-        "tiredly",
-        "tiresome",
-        "tiring"
-      ],
+      "choices": ["tired", "tiredly", "tiresome", "tiring"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000006",
       "question": "She is ___. (happy)",
-      "choices": [
-        "happy",
-        "happily",
-        "happiness",
-        "happier"
-      ],
+      "choices": ["happy", "happily", "happiness", "happier"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000007",
       "question": "The game is ___. (exciting)",
-      "choices": [
-        "exciting",
-        "excite",
-        "excited",
-        "excitedly"
-      ],
+      "choices": ["exciting", "excite", "excited", "excitedly"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000008",
       "question": "He is ___. (angry)",
-      "choices": [
-        "angry",
-        "angrily",
-        "anger",
-        "angrier"
-      ],
+      "choices": ["angry", "angrily", "anger", "angrier"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000009",
       "question": "The music is ___. (loud)",
-      "choices": [
-        "loud",
-        "loudly",
-        "loudness",
-        "louder"
-      ],
+      "choices": ["loud", "loudly", "loudness", "louder"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "a1b2c3d4-0006-5006-8006-000000000010",
       "question": "The story is ___. (long)",
-      "choices": [
-        "long",
-        "length",
-        "longer",
-        "longest"
-      ],
+      "choices": ["long", "length", "longer", "longest"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     }

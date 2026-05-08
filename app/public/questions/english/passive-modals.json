@@ -16,120 +16,70 @@
     {
       "id": "79a7bde4-a9e4-5eb6-93f8-5d7a1ea3533b",
       "question": "The work ___ finished tomorrow. (can + 受動態)",
-      "choices": [
-        "can be",
-        "can",
-        "is",
-        "will"
-      ],
+      "choices": ["can be", "can", "is", "will"],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
       "id": "6ff15f08-5c64-5757-8ce5-32e491d6f409",
       "question": "The problem ___ solved easily. (must + 受動態)",
-      "choices": [
-        "must be",
-        "must",
-        "is",
-        "was"
-      ],
+      "choices": ["must be", "must", "is", "was"],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
       "id": "486135fd-461d-5b89-b648-10877ce41604",
       "question": "The letter ___ sent tomorrow. (should + 受動態)",
-      "choices": [
-        "should be",
-        "should",
-        "is",
-        "will"
-      ],
+      "choices": ["should be", "should", "is", "will"],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
       "id": "76439a06-189f-5a77-b75f-6ec366115309",
       "question": "The book ___ read by everyone. (may + 受動態)",
-      "choices": [
-        "may be",
-        "may",
-        "is",
-        "was"
-      ],
+      "choices": ["may be", "may", "is", "was"],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
       "id": "6de334ad-d1e6-545a-bc0b-e3cc6b9f4004",
       "question": "The work ___ done by next week. (will + 受動態)",
-      "choices": [
-        "will be",
-        "will",
-        "is",
-        "was"
-      ],
+      "choices": ["will be", "will", "is", "was"],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
       "id": "b46550e5-e8f4-51a6-b3bc-70ef63380a8b",
       "question": "The rule ___ followed. (must + 受動態)",
-      "choices": [
-        "must be",
-        "must",
-        "is",
-        "was"
-      ],
+      "choices": ["must be", "must", "is", "was"],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
       "id": "4f77162a-e632-5f29-819c-4506324c7e5e",
       "question": "The cake ___ eaten by tomorrow. (should + 受動態)",
-      "choices": [
-        "should be",
-        "should",
-        "is",
-        "was"
-      ],
+      "choices": ["should be", "should", "is", "was"],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
       "id": "8b765649-09a8-5e33-bb15-960fc613f782",
       "question": "The door ___ opened with this key. (can + 受動態)",
-      "choices": [
-        "can be",
-        "can",
-        "is",
-        "was"
-      ],
+      "choices": ["can be", "can", "is", "was"],
       "correct": 0,
       "explanation": "助動詞の受動態は 助動詞 + be + 過去分詞です"
     },
     {
       "id": "9534d763-013b-5cf3-a09f-f8f1c0690714",
       "question": "The event ___ postponed. (may + 受動態)",
-      "choices": [
-        "may be",
-        "may being",
-        "may been",
-        "maybe"
-      ],
+      "choices": ["may be", "may being", "may been", "maybe"],
       "correct": 0,
       "explanation": "may + be + 過去分詞で助動詞の受動態になります"
     },
     {
       "id": "d91505be-a86e-5b33-8e95-e70532ccf374",
       "question": "The homework ___ done by tomorrow. (must + 受動態)",
-      "choices": [
-        "must be",
-        "must being",
-        "must been",
-        "must have"
-      ],
+      "choices": ["must be", "must being", "must been", "must have"],
       "correct": 0,
       "explanation": "must + be + 過去分詞で助動詞の受動態になります"
     }

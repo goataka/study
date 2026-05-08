@@ -16,120 +16,70 @@
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000001",
       "question": "I play ___ game.",
-      "choices": [
-        "a",
-        "an",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["a", "an", "the", "（なし）"],
       "correct": 0,
       "explanation": "子音で始まる単語の前には a を使います"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000002",
       "question": "I play ___ exciting game.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音（e）で始まる単語の前には an を使います"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000003",
       "question": "She is ___ teacher.",
-      "choices": [
-        "a",
-        "an",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["a", "an", "the", "（なし）"],
       "correct": 0,
       "explanation": "子音で始まる単数名詞の前には a を使います"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000004",
       "question": "He is ___ honest person.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "honest は h が無音で発音が母音で始まるため an を使います"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000005",
       "question": "She plays ___ game.",
-      "choices": [
-        "a",
-        "an",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["a", "an", "the", "（なし）"],
       "correct": 0,
       "explanation": "不特定の単数名詞には a を使います"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000006",
       "question": "He plays ___ old game.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音（o）で始まる単語の前には an を使います"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000007",
       "question": "I play ___ online game.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音（o）で始まる単語の前には an を使います"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000008",
       "question": "I have ___ apple.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音（a）で始まる語の前には an を使います"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000009",
       "question": "I saw ___ cat in the park.",
-      "choices": [
-        "a",
-        "an",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["a", "an", "the", "（なし）"],
       "correct": 0,
       "explanation": "初めて話題に出るものには a を使います（子音 c で始まる）"
     },
     {
       "id": "a1b2c3d4-0003-5003-8003-000000000010",
       "question": "She is ___ engineer.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音（e）で始まる単語の前には an を使います"
     }

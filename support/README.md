@@ -32,10 +32,10 @@ permalink: /support/
 
 ## 📝 コンテンツ一覧
 
-全教科・単元の一覧は[コンテンツ一覧](content-list)を参照してください。
+全教科・単元の一覧は[コンテンツ一覧](content-list)を参照してください（教科別ページに分割しています）。
 
 | 教科 | 解説 | 問題 |
 |------|------|------|
-| 英語 | [解説](content-list#英語) | [問題](../?subject=english) |
-| 数学 | [解説](content-list#数学) | [問題](../?subject=math) |
-| 国語 | [解説](content-list#国語) | [問題](../?subject=japanese) |
+| 英語 | [解説](content-list/english/) | [問題](../?subject=english) |
+| 数学 | [解説](content-list/math/) | [問題](../?subject=math) |
+| 国語 | [解説](content-list/japanese/) | [問題](../?subject=japanese) |

@@ -16,120 +16,70 @@
     {
       "id": "8661792e-4a3c-5447-952e-ed9186e98730",
       "question": "I ___ played games. (過去完了)",
-      "choices": [
-        "had",
-        "have",
-        "will have",
-        "has"
-      ],
+      "choices": ["had", "have", "will have", "has"],
       "correct": 0,
       "explanation": "過去完了は had + 過去分詞です"
     },
     {
       "id": "51d3bf0b-2726-52d9-9c07-fb88024c7de1",
       "question": "I ___ played games by next week. (未来完了)",
-      "choices": [
-        "will have",
-        "have",
-        "had",
-        "will"
-      ],
+      "choices": ["will have", "have", "had", "will"],
       "correct": 0,
       "explanation": "未来完了は will have + 過去分詞です"
     },
     {
       "id": "3f320251-b02f-5400-85c7-b24042766633",
       "question": "I ___ lived here for three years. (現在完了)",
-      "choices": [
-        "have",
-        "had",
-        "will have",
-        "has"
-      ],
+      "choices": ["have", "had", "will have", "has"],
       "correct": 0,
       "explanation": "現在完了は have/has + 過去分詞です"
     },
     {
       "id": "3454cf21-f39c-5a41-8b55-6ae8f6e434f4",
       "question": "She ___ lived here for three years. (現在完了)",
-      "choices": [
-        "has",
-        "have",
-        "had",
-        "will have"
-      ],
+      "choices": ["has", "have", "had", "will have"],
       "correct": 0,
       "explanation": "三人称単数の現在完了は has + 過去分詞です"
     },
     {
       "id": "aaa97509-a9dd-5d31-a847-86158465c1c2",
       "question": "I ___ studied English before I came here. (過去完了)",
-      "choices": [
-        "had",
-        "have",
-        "will have",
-        "has"
-      ],
+      "choices": ["had", "have", "will have", "has"],
       "correct": 0,
       "explanation": "過去完了は had + 過去分詞です"
     },
     {
       "id": "3f7f6e8a-6f3c-57fe-b612-e862049fe944",
       "question": "They ___ finished the work by tomorrow. (未来完了)",
-      "choices": [
-        "will have",
-        "have",
-        "had",
-        "has"
-      ],
+      "choices": ["will have", "have", "had", "has"],
       "correct": 0,
       "explanation": "未来完了は will have + 過去分詞です"
     },
     {
       "id": "94257893-0a3b-5305-a2fd-ca1d56a54852",
       "question": "He ___ just finished homework. (現在完了)",
-      "choices": [
-        "has",
-        "have",
-        "had",
-        "will have"
-      ],
+      "choices": ["has", "have", "had", "will have"],
       "correct": 0,
       "explanation": "三人称単数の現在完了は has + 過去分詞です"
     },
     {
       "id": "6949b94b-ee83-52a3-acd5-db667905e7d8",
       "question": "We ___ been friends for ten years. (現在完了)",
-      "choices": [
-        "have",
-        "has",
-        "had",
-        "will have"
-      ],
+      "choices": ["have", "has", "had", "will have"],
       "correct": 0,
       "explanation": "複数形の現在完了は have + 過去分詞です"
     },
     {
       "id": "fb706492-0804-5042-8143-050e8892142d",
       "question": "She ___ never been to London. (現在完了)",
-      "choices": [
-        "has",
-        "have",
-        "had",
-        "will have"
-      ],
+      "choices": ["has", "have", "had", "will have"],
       "correct": 0,
       "explanation": "三人称単数の現在完了は has + 過去分詞です"
     },
     {
       "id": "eac0a6e6-aee3-547e-9a0c-bd473b5afac6",
       "question": "They ___ finished the project by last Friday. (過去完了)",
-      "choices": [
-        "had",
-        "have",
-        "has",
-        "will have"
-      ],
+      "choices": ["had", "have", "has", "will have"],
       "correct": 0,
       "explanation": "過去完了は had + 過去分詞です"
     }

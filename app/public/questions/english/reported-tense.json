@@ -16,120 +16,70 @@
     {
       "id": "24f8826b-e812-5362-9aaf-b4dd374dc40c",
       "question": "He said, \"I play games.\" → He said that he ___ games.",
-      "choices": [
-        "played",
-        "play",
-        "plays",
-        "had played"
-      ],
+      "choices": ["played", "play", "plays", "had played"],
       "correct": 0,
       "explanation": "現在形は過去形に変わります"
     },
     {
       "id": "eaffd7f9-5380-5dcc-b4e1-f0d6201402c8",
       "question": "He said, \"I am playing games.\" → He said that he ___ games.",
-      "choices": [
-        "was playing",
-        "is playing",
-        "played",
-        "had played"
-      ],
+      "choices": ["was playing", "is playing", "played", "had played"],
       "correct": 0,
       "explanation": "現在進行形は過去進行形に変わります"
     },
     {
       "id": "4c87ced5-740d-532e-a20f-bd069cd39010",
       "question": "He said, \"I played games.\" → He said that he ___ games.",
-      "choices": [
-        "had played",
-        "played",
-        "plays",
-        "was playing"
-      ],
+      "choices": ["had played", "played", "plays", "was playing"],
       "correct": 0,
       "explanation": "過去形は過去完了形に変わります"
     },
     {
       "id": "5f2f5954-3b6b-5e0a-8787-0723fcf5a9aa",
       "question": "He said, \"I will play games.\" → He said that he ___ games.",
-      "choices": [
-        "would play",
-        "will play",
-        "played",
-        "had played"
-      ],
+      "choices": ["would play", "will play", "played", "had played"],
       "correct": 0,
       "explanation": "willはwouldに変わります"
     },
     {
       "id": "e94d9530-11fc-5a31-bcdc-c4d8848e9350",
       "question": "He said, \"I can play games.\" → He said that he ___ games.",
-      "choices": [
-        "could play",
-        "can play",
-        "played",
-        "had played"
-      ],
+      "choices": ["could play", "can play", "played", "had played"],
       "correct": 0,
       "explanation": "canはcouldに変わります"
     },
     {
       "id": "a45b7ad5-5cc6-5da9-bae7-d04bf47d0566",
       "question": "She said, \"I am happy.\" → She said that she ___ happy.",
-      "choices": [
-        "was",
-        "is",
-        "were",
-        "had been"
-      ],
+      "choices": ["was", "is", "were", "had been"],
       "correct": 0,
       "explanation": "現在形のbe動詞は過去形に変わります"
     },
     {
       "id": "505d8288-a12f-5f66-be25-5c030a8308b9",
       "question": "He said, \"I have finished.\" → He said that he ___.",
-      "choices": [
-        "had finished",
-        "has finished",
-        "finished",
-        "would finish"
-      ],
+      "choices": ["had finished", "has finished", "finished", "would finish"],
       "correct": 0,
       "explanation": "現在完了形は過去完了形に変わります"
     },
     {
       "id": "9e4ac5b8-6f70-5aba-97e3-fb2ee7ea8a25",
       "question": "She said, \"I may go.\" → She said that she ___ go.",
-      "choices": [
-        "might",
-        "may",
-        "would",
-        "could"
-      ],
+      "choices": ["might", "may", "would", "could"],
       "correct": 0,
       "explanation": "mayはmightに変わります"
     },
     {
       "id": "7bf7a2dc-332f-5226-bf8e-41ab415434e4",
       "question": "He said, \"I must go.\" → He said that he ___ go.",
-      "choices": [
-        "had to",
-        "must",
-        "would",
-        "should"
-      ],
+      "choices": ["had to", "must", "would", "should"],
       "correct": 0,
       "explanation": "must は間接話法で had to に変わります"
     },
     {
       "id": "bd23ad99-27af-5b6e-8d31-336213afb5dc",
       "question": "She said, \"I was sleeping.\" → She said that she ___ sleeping.",
-      "choices": [
-        "had been",
-        "was",
-        "is",
-        "were"
-      ],
+      "choices": ["had been", "was", "is", "were"],
       "correct": 0,
       "explanation": "過去進行形は間接話法で過去完了進行形 had been -ing に変わります"
     }

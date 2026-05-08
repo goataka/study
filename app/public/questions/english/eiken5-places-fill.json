@@ -13,180 +13,105 @@
     {
       "id": "257b6ebe-914a-57bb-89f7-64ba225d359d",
       "question": "I live in a ___. (わたしはいえに住んでいます)",
-      "choices": [
-        "house",
-        "park",
-        "school",
-        "hospital"
-      ],
+      "choices": ["house", "park", "school", "hospital"],
       "correct": 0,
       "explanation": "「いえ」は house です。I live in a house. でわたしはいえに住んでいるという意味になります"
     },
     {
       "id": "7620064c-27b9-5df6-bf3d-7e951ffaa627",
       "question": "Children play in the ___. (こどもたちはこうえんで遊びます)",
-      "choices": [
-        "park",
-        "house",
-        "garden",
-        "beach"
-      ],
+      "choices": ["park", "house", "garden", "beach"],
       "correct": 0,
       "explanation": "「こうえん」は park です。Children play in the park. でこどもたちはこうえんで遊ぶという意味になります"
     },
     {
       "id": "defe3b1d-735f-54d4-9424-c8af8ff25342",
       "question": "I go to ___ every day. (まいにちがっこうへ行きます)",
-      "choices": [
-        "school",
-        "library",
-        "house",
-        "store"
-      ],
+      "choices": ["school", "library", "house", "store"],
       "correct": 0,
       "explanation": "「がっこう」は school です。I go to school every day. でまいにちがっこうへ行くという意味になります"
     },
     {
       "id": "4b603d53-8abe-5215-ba65-d805ae565066",
       "question": "She is in the ___. (かのじょはびょういんにいます)",
-      "choices": [
-        "hospital",
-        "school",
-        "store",
-        "station"
-      ],
+      "choices": ["hospital", "school", "store", "station"],
       "correct": 0,
       "explanation": "「びょういん」は hospital です。She is in the hospital. でかのじょはびょういんにいるという意味になります"
     },
     {
       "id": "776e3049-c6c5-5745-b774-10053ba68c7f",
       "question": "We buy food at the ___. (わたしたちはみせで食べ物を買います)",
-      "choices": [
-        "store",
-        "hospital",
-        "library",
-        "city"
-      ],
+      "choices": ["store", "hospital", "library", "city"],
       "correct": 0,
       "explanation": "「みせ」は store です。We buy food at the store. でわたしたちはみせで食べ物を買うという意味になります"
     },
     {
       "id": "4e24f988-ea07-52fa-b996-443bd3ef561f",
       "question": "I read books at the ___. (わたしはとしょかんで本を読みます)",
-      "choices": [
-        "library",
-        "school",
-        "store",
-        "room"
-      ],
+      "choices": ["library", "school", "store", "room"],
       "correct": 0,
       "explanation": "「としょかん」は library です。I read books at the library. でわたしはとしょかんで本を読むという意味になります"
     },
     {
       "id": "12c95c6e-e185-5e39-9123-725790b99075",
       "question": "The train stops at the ___. (でんしゃはえきに止まります)",
-      "choices": [
-        "station",
-        "city",
-        "street",
-        "country"
-      ],
+      "choices": ["station", "city", "street", "country"],
       "correct": 0,
       "explanation": "「えき」は station です。The train stops at the station. ででんしゃはえきに止まるという意味になります"
     },
     {
       "id": "7c37f0ba-b67c-5973-99cf-eb4601d8f343",
       "question": "I like this ___. (わたしはこのまちが好きです)",
-      "choices": [
-        "city",
-        "country",
-        "station",
-        "street"
-      ],
+      "choices": ["city", "country", "station", "street"],
       "correct": 0,
       "explanation": "「まち」は city です。I like this city. でわたしはこのまちが好きという意味になります"
     },
     {
       "id": "9092652c-14af-563b-a4ea-a9075e292cdc",
       "question": "She lives in the ___. (かのじょはいなかに住んでいます)",
-      "choices": [
-        "country",
-        "city",
-        "street",
-        "mountain"
-      ],
+      "choices": ["country", "city", "street", "mountain"],
       "correct": 0,
       "explanation": "「いなか」は country です。She lives in the country. でかのじょはいなかに住んでいるという意味になります"
     },
     {
       "id": "21fe3b8e-4634-5182-b24b-d1503803564d",
       "question": "Walk down this ___. (このとおりを歩いてください)",
-      "choices": [
-        "street",
-        "city",
-        "country",
-        "river"
-      ],
+      "choices": ["street", "city", "country", "river"],
       "correct": 0,
       "explanation": "「とおり」は street です。Walk down this street. でこのとおりを歩いてくださいという意味になります"
     },
     {
       "id": "02615c87-d4af-5fe9-aa0b-3340ccdbd47c",
       "question": "I clean my ___. (わたしはへやをそうじします)",
-      "choices": [
-        "room",
-        "house",
-        "garden",
-        "library"
-      ],
+      "choices": ["room", "house", "garden", "library"],
       "correct": 0,
       "explanation": "「へや」は room です。I clean my room. でわたしはへやをそうじするという意味になります"
     },
     {
       "id": "a0020c34-c931-5af8-a194-78f64d8a57ab",
       "question": "We play in the ___. (わたしたちはにわで遊びます)",
-      "choices": [
-        "garden",
-        "park",
-        "room",
-        "beach"
-      ],
+      "choices": ["garden", "park", "room", "beach"],
       "correct": 0,
       "explanation": "「にわ」は garden です。We play in the garden. でわたしたちはにわで遊ぶという意味になります"
     },
     {
       "id": "f9e02082-306a-550e-b893-895682e58aa9",
       "question": "I swim at the ___. (わたしはかいがんで泳ぎます)",
-      "choices": [
-        "beach",
-        "mountain",
-        "river",
-        "park"
-      ],
+      "choices": ["beach", "mountain", "river", "park"],
       "correct": 0,
       "explanation": "「かいがん」は beach です。I swim at the beach. でわたしはかいがんで泳ぐという意味になります"
     },
     {
       "id": "adb453b5-9c82-5515-b6f6-3ce54d7fcf61",
       "question": "The ___ is very high. (そのやまはとても高いです)",
-      "choices": [
-        "mountain",
-        "beach",
-        "river",
-        "country"
-      ],
+      "choices": ["mountain", "beach", "river", "country"],
       "correct": 0,
       "explanation": "「やま」は mountain です。The mountain is very high. でそのやまはとても高いという意味になります"
     },
     {
       "id": "c215ab69-f5e6-5322-a768-f3f721275cd6",
       "question": "Fish live in the ___. (さかなはかわに住んでいます)",
-      "choices": [
-        "river",
-        "mountain",
-        "beach",
-        "street"
-      ],
+      "choices": ["river", "mountain", "beach", "street"],
       "correct": 0,
       "explanation": "「かわ」は river です。Fish live in the river. でさかなはかわに住んでいるという意味になります"
     }

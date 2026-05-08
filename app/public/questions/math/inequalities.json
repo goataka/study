@@ -16,120 +16,70 @@
     {
       "id": "7710351b-ea44-5ff3-8ee8-e77cdb5d6b04",
       "question": "2x + 3 > 7 を解くと？",
-      "choices": [
-        "x > 2",
-        "x > 4",
-        "x < 2",
-        "x > 10"
-      ],
+      "choices": ["x > 2", "x > 4", "x < 2", "x > 10"],
       "correct": 0,
       "explanation": "2x > 4。両辺を2で割って x > 2"
     },
     {
       "id": "19a09d19-1904-55fb-8815-2a3f74670518",
       "question": "3x - 1 ≤ 8 を解くと？",
-      "choices": [
-        "x ≤ 3",
-        "x ≤ 9",
-        "x ≥ 3",
-        "x < 3"
-      ],
+      "choices": ["x ≤ 3", "x ≤ 9", "x ≥ 3", "x < 3"],
       "correct": 0,
       "explanation": "3x ≤ 9。両辺を3で割って x ≤ 3"
     },
     {
       "id": "40126eb9-8712-53f5-acb7-ee45ce374917",
       "question": "-2x + 4 > 0 を解くと？",
-      "choices": [
-        "x < 2",
-        "x > 2",
-        "x < -2",
-        "x > -2"
-      ],
+      "choices": ["x < 2", "x > 2", "x < -2", "x > -2"],
       "correct": 0,
       "explanation": "-2x > -4。両辺を-2で割ると不等号の向きが逆転。x < 2"
     },
     {
       "id": "69315479-be1a-5365-97fe-9945e6e02c93",
       "question": "5x + 2 ≥ 3x + 10 を解くと？",
-      "choices": [
-        "x ≥ 4",
-        "x ≥ 2",
-        "x ≤ 4",
-        "x > 4"
-      ],
+      "choices": ["x ≥ 4", "x ≥ 2", "x ≤ 4", "x > 4"],
       "correct": 0,
       "explanation": "5x - 3x ≥ 10 - 2。2x ≥ 8。x ≥ 4"
     },
     {
       "id": "e2918c13-56e2-5d52-a2ab-1be8373cfd88",
       "question": "4(x - 1) < 2x + 6 を解くと？",
-      "choices": [
-        "x < 5",
-        "x > 5",
-        "x ≤ 5",
-        "x < 2"
-      ],
+      "choices": ["x < 5", "x > 5", "x ≤ 5", "x < 2"],
       "correct": 0,
       "explanation": "4x - 4 < 2x + 6。4x - 2x < 6 + 4。2x < 10。x < 5"
     },
     {
       "id": "ea612973-7b7b-5128-825f-970e16d7661d",
       "question": "-3x + 9 ≤ 0 を解くと？",
-      "choices": [
-        "x ≥ 3",
-        "x ≤ 3",
-        "x > 3",
-        "x < 3"
-      ],
+      "choices": ["x ≥ 3", "x ≤ 3", "x > 3", "x < 3"],
       "correct": 0,
       "explanation": "-3x ≤ -9。両辺を-3で割ると不等号の向きが逆転。x ≥ 3"
     },
     {
       "id": "c3c224f5-c1aa-5976-8577-34ed92cbcaa3",
       "question": "1 < 2x + 3 ≤ 9 を解くと？",
-      "choices": [
-        "-1 < x ≤ 3",
-        "1 < x ≤ 3",
-        "-1 ≤ x < 3",
-        "0 < x ≤ 4"
-      ],
+      "choices": ["-1 < x ≤ 3", "1 < x ≤ 3", "-1 ≤ x < 3", "0 < x ≤ 4"],
       "correct": 0,
       "explanation": "各辺から3を引くと -2 < 2x ≤ 6。各辺を2で割って -1 < x ≤ 3"
     },
     {
       "id": "4a594b11-b269-5f8a-8107-f317a5c610fa",
       "question": "x/2 + 1 > 3 を解くと？",
-      "choices": [
-        "x > 4",
-        "x > 2",
-        "x > 6",
-        "x < 4"
-      ],
+      "choices": ["x > 4", "x > 2", "x > 6", "x < 4"],
       "correct": 0,
       "explanation": "x/2 > 2。両辺を2倍して x > 4"
     },
     {
       "id": "7ef0a170-1655-5237-90c8-6391c4d1fb11",
       "question": "3(x + 2) > 15 を解くと？",
-      "choices": [
-        "x > 3",
-        "x > 5",
-        "x < 3",
-        "x > 2"
-      ],
+      "choices": ["x > 3", "x > 5", "x < 3", "x > 2"],
       "correct": 0,
       "explanation": "3x + 6 > 15 → 3x > 9 → x > 3"
     },
     {
       "id": "8d19a9d5-c1ff-5377-86cc-3d8bec95f9d9",
       "question": "-4x + 8 ≥ 0 を解くと？",
-      "choices": [
-        "x ≤ 2",
-        "x ≥ 2",
-        "x ≤ -2",
-        "x ≥ -2"
-      ],
+      "choices": ["x ≤ 2", "x ≥ 2", "x ≤ -2", "x ≥ -2"],
       "correct": 0,
       "explanation": "-4x ≥ -8 → x ≤ 2（不等号の向きが変わる）"
     }

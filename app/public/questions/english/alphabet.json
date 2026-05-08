@@ -16,312 +16,182 @@
     {
       "id": "fd31a226-8dc3-576f-9e55-b481c5b4c00b",
       "question": "「A」の読み方は？",
-      "choices": [
-        "えい",
-        "おー",
-        "あい",
-        "いー"
-      ],
+      "choices": ["えい", "おー", "あい", "いー"],
       "correct": 0,
       "explanation": "Aは「えい」と読みます"
     },
     {
       "id": "230e67d7-0305-53d6-af9e-55af89e9624e",
       "question": "「B」の読み方は？",
-      "choices": [
-        "びー",
-        "ぶー",
-        "べー",
-        "ぼー"
-      ],
+      "choices": ["びー", "ぶー", "べー", "ぼー"],
       "correct": 0,
       "explanation": "Bは「びー」と読みます"
     },
     {
       "id": "1c2dfd03-5c27-52a9-b149-d08898126542",
       "question": "「C」の読み方は？",
-      "choices": [
-        "しー",
-        "けー",
-        "せー",
-        "くー"
-      ],
+      "choices": ["しー", "けー", "せー", "くー"],
       "correct": 0,
       "explanation": "Cは「しー」と読みます"
     },
     {
       "id": "d129a54f-8905-5d28-ad80-d225a0112055",
       "question": "「D」の読み方は？",
-      "choices": [
-        "でぃー",
-        "だー",
-        "どぅー",
-        "てぃー"
-      ],
+      "choices": ["でぃー", "だー", "どぅー", "てぃー"],
       "correct": 0,
       "explanation": "Dは「でぃー」と読みます"
     },
     {
       "id": "824179c7-9fa8-5388-9051-9c5d6bd6a16e",
       "question": "「E」の読み方は？",
-      "choices": [
-        "いー",
-        "えい",
-        "えー",
-        "あい"
-      ],
+      "choices": ["いー", "えい", "えー", "あい"],
       "correct": 0,
       "explanation": "Eは「いー」と読みます"
     },
     {
       "id": "71b8d452-b746-5502-b726-c408d67ce8af",
       "question": "「F」の読み方は？",
-      "choices": [
-        "えふ",
-        "えす",
-        "えぬ",
-        "えむ"
-      ],
+      "choices": ["えふ", "えす", "えぬ", "えむ"],
       "correct": 0,
       "explanation": "Fは「えふ」と読みます"
     },
     {
       "id": "0e8153a9-892f-597a-a64d-e3b81f59e86e",
       "question": "「G」の読み方は？",
-      "choices": [
-        "じー",
-        "げー",
-        "ぐー",
-        "ぎー"
-      ],
+      "choices": ["じー", "げー", "ぐー", "ぎー"],
       "correct": 0,
       "explanation": "Gは「じー」と読みます"
     },
     {
       "id": "ed59e67f-9c7c-5b39-924f-857703f41cd5",
       "question": "「H」の読み方は？",
-      "choices": [
-        "えいち",
-        "へー",
-        "はー",
-        "ほー"
-      ],
+      "choices": ["えいち", "へー", "はー", "ほー"],
       "correct": 0,
       "explanation": "Hは「えいち」と読みます"
     },
     {
       "id": "9dfada89-0e49-5ae2-a086-bc26f87fd9be",
       "question": "「I」の読み方は？",
-      "choices": [
-        "あい",
-        "いー",
-        "あー",
-        "えー"
-      ],
+      "choices": ["あい", "いー", "あー", "えー"],
       "correct": 0,
       "explanation": "Iは「あい」と読みます"
     },
     {
       "id": "532ebf68-6adb-590d-818a-7bf08f49be1c",
       "question": "「J」の読み方は？",
-      "choices": [
-        "じぇい",
-        "じー",
-        "ぜっと",
-        "じゃ"
-      ],
+      "choices": ["じぇい", "じー", "ぜっと", "じゃ"],
       "correct": 0,
       "explanation": "Jは「じぇい」と読みます"
     },
     {
       "id": "70ecff88-a2eb-5879-ae9d-5091845c317b",
       "question": "「K」の読み方は？",
-      "choices": [
-        "けー",
-        "こー",
-        "きー",
-        "かー"
-      ],
+      "choices": ["けー", "こー", "きー", "かー"],
       "correct": 0,
       "explanation": "Kは「けー」と読みます"
     },
     {
       "id": "5d1cfa78-5a2e-55e3-8e2f-13647376993d",
       "question": "「L」の読み方は？",
-      "choices": [
-        "える",
-        "えむ",
-        "えぬ",
-        "えす"
-      ],
+      "choices": ["える", "えむ", "えぬ", "えす"],
       "correct": 0,
       "explanation": "Lは「える」と読みます"
     },
     {
       "id": "b8c8cf13-4e91-55dc-8a32-1a21f3e5a233",
       "question": "「M」の読み方は？",
-      "choices": [
-        "えむ",
-        "えぬ",
-        "えふ",
-        "える"
-      ],
+      "choices": ["えむ", "えぬ", "えふ", "える"],
       "correct": 0,
       "explanation": "Mは「えむ」と読みます"
     },
     {
       "id": "0ea5ebad-9ccb-597e-98f1-58a090ff287e",
       "question": "「N」の読み方は？",
-      "choices": [
-        "えぬ",
-        "えむ",
-        "えふ",
-        "えん"
-      ],
+      "choices": ["えぬ", "えむ", "えふ", "えん"],
       "correct": 0,
       "explanation": "Nは「えぬ」と読みます"
     },
     {
       "id": "011a052b-1b93-5a98-b9af-1702b9b12393",
       "question": "「O」の読み方は？",
-      "choices": [
-        "おー",
-        "おい",
-        "うー",
-        "おう"
-      ],
+      "choices": ["おー", "おい", "うー", "おう"],
       "correct": 0,
       "explanation": "Oは「おー」と読みます"
     },
     {
       "id": "b89f9bd4-3861-58c5-b811-2f8dec9254cd",
       "question": "「P」の読み方は？",
-      "choices": [
-        "ぴー",
-        "ぺー",
-        "ぷー",
-        "ぱー"
-      ],
+      "choices": ["ぴー", "ぺー", "ぷー", "ぱー"],
       "correct": 0,
       "explanation": "Pは「ぴー」と読みます"
     },
     {
       "id": "d34e53f8-9507-5892-bd8a-866ad6b9cacc",
       "question": "「Q」の読み方は？",
-      "choices": [
-        "きゅー",
-        "くー",
-        "けー",
-        "こー"
-      ],
+      "choices": ["きゅー", "くー", "けー", "こー"],
       "correct": 0,
       "explanation": "Qは「きゅー」と読みます"
     },
     {
       "id": "9e186049-76bb-5edc-a844-e3e283c5a8ee",
       "question": "「R」の読み方は？",
-      "choices": [
-        "あーる",
-        "あー",
-        "える",
-        "おーる"
-      ],
+      "choices": ["あーる", "あー", "える", "おーる"],
       "correct": 0,
       "explanation": "Rは「あーる」と読みます"
     },
     {
       "id": "b460eee3-87fe-547b-b6a8-c3c4c4c84438",
       "question": "「S」の読み方は？",
-      "choices": [
-        "えす",
-        "えふ",
-        "えぬ",
-        "えむ"
-      ],
+      "choices": ["えす", "えふ", "えぬ", "えむ"],
       "correct": 0,
       "explanation": "Sは「えす」と読みます"
     },
     {
       "id": "dc08d3c4-8a22-52b8-adee-815436e83390",
       "question": "「T」の読み方は？",
-      "choices": [
-        "てぃー",
-        "てー",
-        "たー",
-        "とー"
-      ],
+      "choices": ["てぃー", "てー", "たー", "とー"],
       "correct": 0,
       "explanation": "Tは「てぃー」と読みます"
     },
     {
       "id": "305deae7-a1d9-5ed5-8e94-d1d942de989f",
       "question": "「U」の読み方は？",
-      "choices": [
-        "ゆー",
-        "うー",
-        "よー",
-        "やー"
-      ],
+      "choices": ["ゆー", "うー", "よー", "やー"],
       "correct": 0,
       "explanation": "Uは「ゆー」と読みます"
     },
     {
       "id": "9435c89e-52c9-5dfe-a3a5-3fb528ac3dba",
       "question": "「V」の読み方は？",
-      "choices": [
-        "ぶい",
-        "びー",
-        "ぺー",
-        "べい"
-      ],
+      "choices": ["ぶい", "びー", "ぺー", "べい"],
       "correct": 0,
       "explanation": "Vは「ぶい」と読みます"
     },
     {
       "id": "351e7997-4691-5324-b679-bcf471addf04",
       "question": "「W」の読み方は？",
-      "choices": [
-        "だぶりゅー",
-        "わー",
-        "うー",
-        "ゆー"
-      ],
+      "choices": ["だぶりゅー", "わー", "うー", "ゆー"],
       "correct": 0,
       "explanation": "Wは「だぶりゅー」と読みます"
     },
     {
       "id": "6198ec5a-c81a-51eb-a315-785d9b059a32",
       "question": "「X」の読み方は？",
-      "choices": [
-        "えっくす",
-        "えす",
-        "えふ",
-        "えくす"
-      ],
+      "choices": ["えっくす", "えす", "えふ", "えくす"],
       "correct": 0,
       "explanation": "Xは「えっくす」と読みます"
     },
     {
       "id": "f9d1e3a4-8a4c-5ad3-a451-a939b1a32c55",
       "question": "「Y」の読み方は？",
-      "choices": [
-        "わい",
-        "やー",
-        "ゆー",
-        "よー"
-      ],
+      "choices": ["わい", "やー", "ゆー", "よー"],
       "correct": 0,
       "explanation": "Yは「わい」と読みます"
     },
     {
       "id": "90ab0589-e983-5891-ac93-7e80d5c7f350",
       "question": "「Z」の読み方は？",
-      "choices": [
-        "ぜっと",
-        "ぜー",
-        "ずー",
-        "じー"
-      ],
+      "choices": ["ぜっと", "ぜー", "ずー", "じー"],
       "correct": 0,
       "explanation": "Zは「ぜっと」と読みます"
     }

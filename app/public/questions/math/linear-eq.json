@@ -16,120 +16,70 @@
     {
       "id": "dbc6a428-2adc-50e2-aedb-29634dba31af",
       "question": "x + 3 = 7 を解くと x = ?",
-      "choices": [
-        "4",
-        "10",
-        "3",
-        "-4"
-      ],
+      "choices": ["4", "10", "3", "-4"],
       "correct": 0,
       "explanation": "両辺から3を引きます。x = 7 - 3 = 4"
     },
     {
       "id": "9f07adf5-e861-524f-b101-3ec34b390cff",
       "question": "x - 5 = 2 を解くと x = ?",
-      "choices": [
-        "7",
-        "-3",
-        "3",
-        "5"
-      ],
+      "choices": ["7", "-3", "3", "5"],
       "correct": 0,
       "explanation": "両辺に5を足します。x = 2 + 5 = 7"
     },
     {
       "id": "95a45555-eba9-531c-a528-befb4d24c960",
       "question": "2x = 10 を解くと x = ?",
-      "choices": [
-        "5",
-        "20",
-        "8",
-        "12"
-      ],
+      "choices": ["5", "20", "8", "12"],
       "correct": 0,
       "explanation": "両辺を2で割ります。x = 10 ÷ 2 = 5"
     },
     {
       "id": "2f4a36b2-913a-50fd-afad-e69d9b10b5fe",
       "question": "3x + 4 = 13 を解くと x = ?",
-      "choices": [
-        "3",
-        "4",
-        "5",
-        "9"
-      ],
+      "choices": ["3", "4", "5", "9"],
       "correct": 0,
       "explanation": "両辺から4を引いて3x = 9。両辺を3で割って x = 3"
     },
     {
       "id": "cc5cfef3-a90d-50b3-b768-8d0e3edf7792",
       "question": "5x - 3 = 12 を解くと x = ?",
-      "choices": [
-        "3",
-        "5",
-        "2",
-        "4"
-      ],
+      "choices": ["3", "5", "2", "4"],
       "correct": 0,
       "explanation": "両辺に3を足して5x = 15。両辺を5で割って x = 3"
     },
     {
       "id": "573abb20-5746-5bfc-a2ca-2b1f17ad2004",
       "question": "2x + 1 = x + 5 を解くと x = ?",
-      "choices": [
-        "4",
-        "6",
-        "3",
-        "2"
-      ],
+      "choices": ["4", "6", "3", "2"],
       "correct": 0,
       "explanation": "xの項を左辺に、数字を右辺に移項。2x - x = 5 - 1。x = 4"
     },
     {
       "id": "0b6fe204-838b-53e5-ba90-4b341860ab7c",
       "question": "4x - 7 = 2x + 3 を解くと x = ?",
-      "choices": [
-        "5",
-        "4",
-        "3",
-        "6"
-      ],
+      "choices": ["5", "4", "3", "6"],
       "correct": 0,
       "explanation": "移項して整理。4x - 2x = 3 + 7。2x = 10、x = 5"
     },
     {
       "id": "4ad90009-4f68-5dfd-b42f-56641a34e59b",
       "question": "3(x + 2) = 15 を解くと x = ?",
-      "choices": [
-        "3",
-        "5",
-        "4",
-        "7"
-      ],
+      "choices": ["3", "5", "4", "7"],
       "correct": 0,
       "explanation": "両辺を3で割って x + 2 = 5。x = 5 - 2 = 3"
     },
     {
       "id": "9470bed8-3dc7-5c01-8a76-65d3f2f5e912",
       "question": "5(x - 2) = 3x + 4 を解くと x = ?",
-      "choices": [
-        "7",
-        "5",
-        "9",
-        "3"
-      ],
+      "choices": ["7", "5", "9", "3"],
       "correct": 0,
       "explanation": "5x - 10 = 3x + 4 → 2x = 14 → x = 7"
     },
     {
       "id": "90cb4502-5f49-5580-8bee-1db384813edc",
       "question": "x/3 + 2 = 5 を解くと x = ?",
-      "choices": [
-        "9",
-        "3",
-        "6",
-        "12"
-      ],
+      "choices": ["9", "3", "6", "12"],
       "correct": 0,
       "explanation": "x/3 = 3 → x = 9"
     }

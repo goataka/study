@@ -8,6 +8,9 @@ on:
 
 env:
   NODE_VERSION: "22"
+  # Playwright の Docker イメージタグ。
+  # @playwright/test の package.json バージョンと揃えること（mismatch するとブラウザがロードできない）。
+  PLAYWRIGHT_VERSION: "v1.59.1"
 
 jobs:
   test-and-build:
@@ -21,13 +24,17 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.COPILOT_CLASSIC }}
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
         with:
           node-version: ${{ env.NODE_VERSION }}
+
+      - name: Lint 実行
+        run: npm run lint
+
+      - name: フォーマット確認（Prettier）
+        run: npm run format:check
 
       - name: 単体テスト実行
         run: npm run test
@@ -39,7 +46,8 @@ jobs:
     name: E2Eテスト（app）
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.59.1-noble
+      # PLAYWRIGHT_VERSION は env で一元管理（ファイル先頭参照）
+      image: mcr.microsoft.com/playwright:${{ env.PLAYWRIGHT_VERSION }}-noble
     defaults:
       run:
         working-directory: app
@@ -48,8 +56,6 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.COPILOT_CLASSIC }}
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
         run: git config --global --add safe.directory /__w/study/study

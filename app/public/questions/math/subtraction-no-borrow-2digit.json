@@ -16,180 +16,105 @@
     {
       "id": "68a4e45f-9b77-574e-9e7f-bca747f17fb7",
       "question": "57 - 23 = ?",
-      "choices": [
-        "34",
-        "33",
-        "35",
-        "32"
-      ],
+      "choices": ["34", "33", "35", "32"],
       "correct": 0,
       "explanation": "57 - 23 = 34"
     },
     {
       "id": "6ee3ed1e-0c26-53c2-9906-4a80dba30bb0",
       "question": "79 - 46 = ?",
-      "choices": [
-        "33",
-        "32",
-        "34",
-        "31"
-      ],
+      "choices": ["33", "32", "34", "31"],
       "correct": 0,
       "explanation": "79 - 46 = 33"
     },
     {
       "id": "126dab1a-c5fe-5059-9caf-e07814c0248e",
       "question": "68 - 45 = ?",
-      "choices": [
-        "23",
-        "22",
-        "24",
-        "21"
-      ],
+      "choices": ["23", "22", "24", "21"],
       "correct": 0,
       "explanation": "68 - 45 = 23"
     },
     {
       "id": "7a05d2bd-1f0e-5a70-afde-f449cf40bc5f",
       "question": "97 - 62 = ?",
-      "choices": [
-        "35",
-        "34",
-        "36",
-        "33"
-      ],
+      "choices": ["35", "34", "36", "33"],
       "correct": 0,
       "explanation": "97 - 62 = 35"
     },
     {
       "id": "0345a15d-1f19-5168-b1f4-10f1dc6ab337",
       "question": "58 - 23 = ?",
-      "choices": [
-        "35",
-        "34",
-        "36",
-        "33"
-      ],
+      "choices": ["35", "34", "36", "33"],
       "correct": 0,
       "explanation": "58 - 23 = 35"
     },
     {
       "id": "623eb0b9-cd7e-531e-ac03-7bf6b5a50e15",
       "question": "89 - 54 = ?",
-      "choices": [
-        "35",
-        "34",
-        "36",
-        "33"
-      ],
+      "choices": ["35", "34", "36", "33"],
       "correct": 0,
       "explanation": "89 - 54 = 35"
     },
     {
       "id": "56d90f02-0e38-52bf-acdf-050516435c19",
       "question": "76 - 43 = ?",
-      "choices": [
-        "33",
-        "32",
-        "34",
-        "31"
-      ],
+      "choices": ["33", "32", "34", "31"],
       "correct": 0,
       "explanation": "76 - 43 = 33"
     },
     {
       "id": "a137f6ba-2beb-5d20-a3c1-0de40bead555",
       "question": "85 - 32 = ?",
-      "choices": [
-        "53",
-        "52",
-        "54",
-        "51"
-      ],
+      "choices": ["53", "52", "54", "51"],
       "correct": 0,
       "explanation": "85 - 32 = 53"
     },
     {
       "id": "f8cc7797-a9ce-51d3-90c1-dc3e53d78b88",
       "question": "96 - 71 = ?",
-      "choices": [
-        "25",
-        "24",
-        "26",
-        "23"
-      ],
+      "choices": ["25", "24", "26", "23"],
       "correct": 0,
       "explanation": "96 - 71 = 25"
     },
     {
       "id": "3581c318-d3fb-5dc2-a9aa-9d499da34635",
       "question": "67 - 34 = ?",
-      "choices": [
-        "33",
-        "32",
-        "34",
-        "31"
-      ],
+      "choices": ["33", "32", "34", "31"],
       "correct": 0,
       "explanation": "67 - 34 = 33"
     },
     {
       "id": "583c67af-906c-5dc4-9aa2-0c45a77fbfa2",
       "question": "74 - 51 = ?",
-      "choices": [
-        "23",
-        "22",
-        "24",
-        "21"
-      ],
+      "choices": ["23", "22", "24", "21"],
       "correct": 0,
       "explanation": "74 - 51 = 23"
     },
     {
       "id": "fc3cbe21-5e95-51b3-9140-a186034ae60c",
       "question": "98 - 63 = ?",
-      "choices": [
-        "35",
-        "34",
-        "36",
-        "33"
-      ],
+      "choices": ["35", "34", "36", "33"],
       "correct": 0,
       "explanation": "98 - 63 = 35"
     },
     {
       "id": "a75c1160-ba86-5e83-8520-a77a97d275de",
       "question": "75 - 42 = ?",
-      "choices": [
-        "33",
-        "32",
-        "34",
-        "31"
-      ],
+      "choices": ["33", "32", "34", "31"],
       "correct": 0,
       "explanation": "75 - 42 = 33"
     },
     {
       "id": "7d8e2394-f95c-5151-b400-38b9ef657af6",
       "question": "88 - 65 = ?",
-      "choices": [
-        "23",
-        "22",
-        "24",
-        "21"
-      ],
+      "choices": ["23", "22", "24", "21"],
       "correct": 0,
       "explanation": "88 - 65 = 23"
     },
     {
       "id": "69616da7-390c-51db-bed4-941941386ba7",
       "question": "59 - 37 = ?",
-      "choices": [
-        "22",
-        "21",
-        "23",
-        "20"
-      ],
+      "choices": ["22", "21", "23", "20"],
       "correct": 0,
       "explanation": "59 - 37 = 22"
     }

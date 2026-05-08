@@ -2,8 +2,14 @@ pre-commit:
   commands:
     unstage-unchanged-png:
       run: bash app/scripts/unstage-unchanged-png.sh
+    lint-and-format:
+      # ESLint・Prettier で自動チェック（高速）
+      run: npm run lint && npm run format:check
+      root: app/
     build-and-test:
-      run: npm run build && npm run test && npm run test:e2e
+      # E2E は時間がかかるため pre-push に移動した。
+      # pre-commit では高速なビルドと単体テストのみ実行する。
+      run: npm run build && npm run test
       root: app/
     markdownlint:
       run: npx --yes markdownlint-cli --fix "**/*.md" --ignore node_modules --ignore app/node_modules 2>/dev/null; npx --yes markdownlint-cli "**/*.md" --ignore node_modules --ignore app/node_modules

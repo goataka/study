@@ -13,180 +13,105 @@
     {
       "id": "c73fa9a4-b923-5dff-933c-56ac26ad7b8c",
       "question": "「mountain」の意味は？",
-      "choices": [
-        "山",
-        "川",
-        "森",
-        "火山"
-      ],
+      "choices": ["山", "川", "森", "火山"],
       "correct": 0,
       "explanation": "mountain は「山」です"
     },
     {
       "id": "9505c90c-9656-570a-a884-f7cd0123f4ca",
       "question": "「river」の意味は？",
-      "choices": [
-        "川",
-        "海",
-        "谷",
-        "地震"
-      ],
+      "choices": ["川", "海", "谷", "地震"],
       "correct": 0,
       "explanation": "river は「川」です"
     },
     {
       "id": "2d98ec9a-efe8-572d-a3b3-d6091cda6bef",
       "question": "「ocean」の意味は？",
-      "choices": [
-        "海",
-        "森",
-        "砂漠",
-        "汚染"
-      ],
+      "choices": ["海", "森", "砂漠", "汚染"],
       "correct": 0,
       "explanation": "ocean は「海」です"
     },
     {
       "id": "3531c1ab-b1a7-5ea3-a215-9195aec25d0e",
       "question": "「forest」の意味は？",
-      "choices": [
-        "森",
-        "谷",
-        "島",
-        "環境"
-      ],
+      "choices": ["森", "谷", "島", "環境"],
       "correct": 0,
       "explanation": "forest は「森」です"
     },
     {
       "id": "bf884718-9d6f-5ba6-ab54-0ec3aae8121f",
       "question": "「valley」の意味は？",
-      "choices": [
-        "谷",
-        "砂漠",
-        "火山",
-        "気候"
-      ],
+      "choices": ["谷", "砂漠", "火山", "気候"],
       "correct": 0,
       "explanation": "valley は「谷」です"
     },
     {
       "id": "656938f3-95dc-545d-a7c8-d84c01643b24",
       "question": "「desert」の意味は？",
-      "choices": [
-        "砂漠",
-        "島",
-        "地震",
-        "野生動物"
-      ],
+      "choices": ["砂漠", "島", "地震", "野生動物"],
       "correct": 0,
       "explanation": "desert は「砂漠」です"
     },
     {
       "id": "f3760644-7e79-5d11-8047-8fa6a72b549d",
       "question": "「island」の意味は？",
-      "choices": [
-        "島",
-        "火山",
-        "汚染",
-        "植物"
-      ],
+      "choices": ["島", "火山", "汚染", "植物"],
       "correct": 0,
       "explanation": "island は「島」です"
     },
     {
       "id": "aaad64e1-e9c7-5442-bff9-0d1163131eb2",
       "question": "「volcano」の意味は？",
-      "choices": [
-        "火山",
-        "地震",
-        "環境",
-        "土"
-      ],
+      "choices": ["火山", "地震", "環境", "土"],
       "correct": 0,
       "explanation": "volcano は「火山」です"
     },
     {
       "id": "2f595961-4848-58da-ad63-e87a9e359bb3",
       "question": "「earthquake」の意味は？",
-      "choices": [
-        "地震",
-        "汚染",
-        "気候",
-        "山"
-      ],
+      "choices": ["地震", "汚染", "気候", "山"],
       "correct": 0,
       "explanation": "earthquake は「地震」です"
     },
     {
       "id": "d2063cea-cdeb-5b7d-8bcf-4beaeabc387b",
       "question": "「pollution」の意味は？",
-      "choices": [
-        "汚染",
-        "環境",
-        "野生動物",
-        "川"
-      ],
+      "choices": ["汚染", "環境", "野生動物", "川"],
       "correct": 0,
       "explanation": "pollution は「汚染」です"
     },
     {
       "id": "40f5a255-988e-5e32-8efe-71462f54a82c",
       "question": "「environment」の意味は？",
-      "choices": [
-        "環境",
-        "気候",
-        "植物",
-        "海"
-      ],
+      "choices": ["環境", "気候", "植物", "海"],
       "correct": 0,
       "explanation": "environment は「環境」です"
     },
     {
       "id": "e6a8bd02-6dfc-5363-8f2a-c01eb7db4e67",
       "question": "「climate」の意味は？",
-      "choices": [
-        "気候",
-        "野生動物",
-        "土",
-        "森"
-      ],
+      "choices": ["気候", "野生動物", "土", "森"],
       "correct": 0,
       "explanation": "climate は「気候」です"
     },
     {
       "id": "9c114c6b-a828-5ff8-bf65-e06e7e3c3a8e",
       "question": "「wildlife」の意味は？",
-      "choices": [
-        "野生動物",
-        "植物",
-        "山",
-        "谷"
-      ],
+      "choices": ["野生動物", "植物", "山", "谷"],
       "correct": 0,
       "explanation": "wildlife は「野生動物」です"
     },
     {
       "id": "fe5b1bd0-0126-5815-8cd4-788475618f69",
       "question": "「plant」の意味は？",
-      "choices": [
-        "植物",
-        "土",
-        "川",
-        "砂漠"
-      ],
+      "choices": ["植物", "土", "川", "砂漠"],
       "correct": 0,
       "explanation": "plant は「植物」です"
     },
     {
       "id": "3fa70685-8eec-51e8-8983-3230f4948b4a",
       "question": "「soil」の意味は？",
-      "choices": [
-        "土",
-        "山",
-        "海",
-        "島"
-      ],
+      "choices": ["土", "山", "海", "島"],
       "correct": 0,
       "explanation": "soil は「土」です"
     }

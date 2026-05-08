@@ -13,180 +13,105 @@
     {
       "id": "db47725e-5a96-5def-8803-a279a5ecab75",
       "question": "「doctor」の意味は？",
-      "choices": [
-        "医者",
-        "看護師",
-        "エンジニア",
-        "ジャーナリスト"
-      ],
+      "choices": ["医者", "看護師", "エンジニア", "ジャーナリスト"],
       "correct": 0,
       "explanation": "doctor は「医者」です"
     },
     {
       "id": "3e1f78e3-1db9-59e2-b892-3f70e45e5a3c",
       "question": "「nurse」の意味は？",
-      "choices": [
-        "看護師",
-        "先生",
-        "弁護士",
-        "科学者"
-      ],
+      "choices": ["看護師", "先生", "弁護士", "科学者"],
       "correct": 0,
       "explanation": "nurse は「看護師」です"
     },
     {
       "id": "86346456-ba51-5cdd-8869-4d9d554b1a77",
       "question": "「teacher」の意味は？",
-      "choices": [
-        "先生",
-        "エンジニア",
-        "パイロット",
-        "消防士"
-      ],
+      "choices": ["先生", "エンジニア", "パイロット", "消防士"],
       "correct": 0,
       "explanation": "teacher は「先生」です"
     },
     {
       "id": "8421babf-d7a1-5996-8d62-d927b0298121",
       "question": "「engineer」の意味は？",
-      "choices": [
-        "エンジニア",
-        "弁護士",
-        "シェフ",
-        "農家"
-      ],
+      "choices": ["エンジニア", "弁護士", "シェフ", "農家"],
       "correct": 0,
       "explanation": "engineer は「エンジニア」です"
     },
     {
       "id": "09845dfc-a67b-5ee8-b943-e0a17b0f2a5b",
       "question": "「lawyer」の意味は？",
-      "choices": [
-        "弁護士",
-        "パイロット",
-        "ジャーナリスト",
-        "芸術家"
-      ],
+      "choices": ["弁護士", "パイロット", "ジャーナリスト", "芸術家"],
       "correct": 0,
       "explanation": "lawyer は「弁護士」です"
     },
     {
       "id": "cec0e1ed-8677-5b91-b82a-508e1cd96e7e",
       "question": "「pilot」の意味は？",
-      "choices": [
-        "パイロット",
-        "シェフ",
-        "科学者",
-        "音楽家"
-      ],
+      "choices": ["パイロット", "シェフ", "科学者", "音楽家"],
       "correct": 0,
       "explanation": "pilot は「パイロット」です"
     },
     {
       "id": "0c208964-2be9-5696-90f7-3ba8d95f0cfc",
       "question": "「chef」の意味は？",
-      "choices": [
-        "シェフ",
-        "ジャーナリスト",
-        "消防士",
-        "会計士"
-      ],
+      "choices": ["シェフ", "ジャーナリスト", "消防士", "会計士"],
       "correct": 0,
       "explanation": "chef は「シェフ」です"
     },
     {
       "id": "46c35b91-f10b-52b5-bf1b-6e508586c2db",
       "question": "「journalist」の意味は？",
-      "choices": [
-        "ジャーナリスト",
-        "科学者",
-        "農家",
-        "建築家"
-      ],
+      "choices": ["ジャーナリスト", "科学者", "農家", "建築家"],
       "correct": 0,
       "explanation": "journalist は「ジャーナリスト」です"
     },
     {
       "id": "ef0406f9-aff9-5b8e-9548-ec73c59f3c6f",
       "question": "「scientist」の意味は？",
-      "choices": [
-        "科学者",
-        "消防士",
-        "芸術家",
-        "医者"
-      ],
+      "choices": ["科学者", "消防士", "芸術家", "医者"],
       "correct": 0,
       "explanation": "scientist は「科学者」です"
     },
     {
       "id": "593e751f-61c8-59d1-b04c-80fe5f7d6e9e",
       "question": "「firefighter」の意味は？",
-      "choices": [
-        "消防士",
-        "農家",
-        "音楽家",
-        "看護師"
-      ],
+      "choices": ["消防士", "農家", "音楽家", "看護師"],
       "correct": 0,
       "explanation": "firefighter は「消防士」です"
     },
     {
       "id": "c0467f38-f78e-507e-8f2e-36d11bf38ae0",
       "question": "「farmer」の意味は？",
-      "choices": [
-        "農家",
-        "芸術家",
-        "会計士",
-        "先生"
-      ],
+      "choices": ["農家", "芸術家", "会計士", "先生"],
       "correct": 0,
       "explanation": "farmer は「農家」です"
     },
     {
       "id": "d0fb79f9-5196-5b5a-b8d4-33f61ccdc5c0",
       "question": "「artist」の意味は？",
-      "choices": [
-        "芸術家",
-        "音楽家",
-        "建築家",
-        "エンジニア"
-      ],
+      "choices": ["芸術家", "音楽家", "建築家", "エンジニア"],
       "correct": 0,
       "explanation": "artist は「芸術家」です"
     },
     {
       "id": "75c3c02b-b3a7-5566-882e-9f100cc130dd",
       "question": "「musician」の意味は？",
-      "choices": [
-        "音楽家",
-        "会計士",
-        "医者",
-        "弁護士"
-      ],
+      "choices": ["音楽家", "会計士", "医者", "弁護士"],
       "correct": 0,
       "explanation": "musician は「音楽家」です"
     },
     {
       "id": "493411a4-cf5c-548e-ba21-7503c1ee5d05",
       "question": "「accountant」の意味は？",
-      "choices": [
-        "会計士",
-        "建築家",
-        "看護師",
-        "パイロット"
-      ],
+      "choices": ["会計士", "建築家", "看護師", "パイロット"],
       "correct": 0,
       "explanation": "accountant は「会計士」です"
     },
     {
       "id": "68f5b612-ccdd-5569-9e4f-820fa3513cc8",
       "question": "「architect」の意味は？",
-      "choices": [
-        "建築家",
-        "医者",
-        "先生",
-        "シェフ"
-      ],
+      "choices": ["建築家", "医者", "先生", "シェフ"],
       "correct": 0,
       "explanation": "architect は「建築家」です"
     }

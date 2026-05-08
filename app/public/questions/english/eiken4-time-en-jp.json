@@ -13,180 +13,105 @@
     {
       "id": "17afc782-5baa-566b-9905-f1f6f641cc60",
       "question": "「Monday」の意味は？",
-      "choices": [
-        "月曜日",
-        "火曜日",
-        "木曜日",
-        "朝"
-      ],
+      "choices": ["月曜日", "火曜日", "木曜日", "朝"],
       "correct": 0,
       "explanation": "Monday は「月曜日」です"
     },
     {
       "id": "d3a7abfc-516e-5d01-b542-8ed846c22c5e",
       "question": "「Tuesday」の意味は？",
-      "choices": [
-        "火曜日",
-        "水曜日",
-        "金曜日",
-        "午後"
-      ],
+      "choices": ["火曜日", "水曜日", "金曜日", "午後"],
       "correct": 0,
       "explanation": "Tuesday は「火曜日」です"
     },
     {
       "id": "6c53be82-5010-5b37-a369-a1e778cf5b0e",
       "question": "「Wednesday」の意味は？",
-      "choices": [
-        "水曜日",
-        "木曜日",
-        "土曜日",
-        "夕方"
-      ],
+      "choices": ["水曜日", "木曜日", "土曜日", "夕方"],
       "correct": 0,
       "explanation": "Wednesday は「水曜日」です"
     },
     {
       "id": "74fa1c35-0778-5160-bbca-52c8af105bba",
       "question": "「Thursday」の意味は？",
-      "choices": [
-        "木曜日",
-        "金曜日",
-        "日曜日",
-        "真夜中"
-      ],
+      "choices": ["木曜日", "金曜日", "日曜日", "真夜中"],
       "correct": 0,
       "explanation": "Thursday は「木曜日」です"
     },
     {
       "id": "0a689202-fcd2-597c-bfb8-e41f379d696e",
       "question": "「Friday」の意味は？",
-      "choices": [
-        "金曜日",
-        "土曜日",
-        "朝",
-        "昨日"
-      ],
+      "choices": ["金曜日", "土曜日", "朝", "昨日"],
       "correct": 0,
       "explanation": "Friday は「金曜日」です"
     },
     {
       "id": "9f4ccfaa-c149-5655-875b-c062819646df",
       "question": "「Saturday」の意味は？",
-      "choices": [
-        "土曜日",
-        "日曜日",
-        "午後",
-        "明日"
-      ],
+      "choices": ["土曜日", "日曜日", "午後", "明日"],
       "correct": 0,
       "explanation": "Saturday は「土曜日」です"
     },
     {
       "id": "20f0b6a3-faf4-5447-9700-9a5b4cbd6a28",
       "question": "「Sunday」の意味は？",
-      "choices": [
-        "日曜日",
-        "朝",
-        "夕方",
-        "誕生日"
-      ],
+      "choices": ["日曜日", "朝", "夕方", "誕生日"],
       "correct": 0,
       "explanation": "Sunday は「日曜日」です"
     },
     {
       "id": "65df1c79-5532-5da7-80f7-b1a4b0ee723e",
       "question": "「morning」の意味は？",
-      "choices": [
-        "朝",
-        "午後",
-        "真夜中",
-        "休日"
-      ],
+      "choices": ["朝", "午後", "真夜中", "休日"],
       "correct": 0,
       "explanation": "morning は「朝」です"
     },
     {
       "id": "0a79162c-eb9e-5219-8cc2-60ee189c1eac",
       "question": "「afternoon」の意味は？",
-      "choices": [
-        "午後",
-        "夕方",
-        "昨日",
-        "月曜日"
-      ],
+      "choices": ["午後", "夕方", "昨日", "月曜日"],
       "correct": 0,
       "explanation": "afternoon は「午後」です"
     },
     {
       "id": "555d1194-14da-551c-9065-08d5ed39b300",
       "question": "「evening」の意味は？",
-      "choices": [
-        "夕方",
-        "真夜中",
-        "明日",
-        "火曜日"
-      ],
+      "choices": ["夕方", "真夜中", "明日", "火曜日"],
       "correct": 0,
       "explanation": "evening は「夕方」です"
     },
     {
       "id": "ac94df89-c1d7-5184-a161-67af24616fb4",
       "question": "「midnight」の意味は？",
-      "choices": [
-        "真夜中",
-        "昨日",
-        "誕生日",
-        "水曜日"
-      ],
+      "choices": ["真夜中", "昨日", "誕生日", "水曜日"],
       "correct": 0,
       "explanation": "midnight は「真夜中」です"
     },
     {
       "id": "f8a4304d-c823-5199-a879-d353ab865bd8",
       "question": "「yesterday」の意味は？",
-      "choices": [
-        "昨日",
-        "明日",
-        "休日",
-        "木曜日"
-      ],
+      "choices": ["昨日", "明日", "休日", "木曜日"],
       "correct": 0,
       "explanation": "yesterday は「昨日」です"
     },
     {
       "id": "9aa45e5a-9250-5409-9bed-f78c2905f9ad",
       "question": "「tomorrow」の意味は？",
-      "choices": [
-        "明日",
-        "誕生日",
-        "月曜日",
-        "金曜日"
-      ],
+      "choices": ["明日", "誕生日", "月曜日", "金曜日"],
       "correct": 0,
       "explanation": "tomorrow は「明日」です"
     },
     {
       "id": "ce83f375-6837-540a-8fed-02d365c3a15f",
       "question": "「birthday」の意味は？",
-      "choices": [
-        "誕生日",
-        "休日",
-        "火曜日",
-        "土曜日"
-      ],
+      "choices": ["誕生日", "休日", "火曜日", "土曜日"],
       "correct": 0,
       "explanation": "birthday は「誕生日」です"
     },
     {
       "id": "a35a4dbd-ad51-50ae-8668-5fafec136e5d",
       "question": "「holiday」の意味は？",
-      "choices": [
-        "休日",
-        "月曜日",
-        "水曜日",
-        "日曜日"
-      ],
+      "choices": ["休日", "月曜日", "水曜日", "日曜日"],
       "correct": 0,
       "explanation": "holiday は「休日」です"
     }

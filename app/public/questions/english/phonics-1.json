@@ -16,312 +16,182 @@
     {
       "id": "a8efa473-3d81-52a6-8d06-fb0edb668451",
       "question": "「apple」の「a」の音は？",
-      "choices": [
-        "ア",
-        "エ",
-        "イ",
-        "オ"
-      ],
+      "choices": ["ア", "エ", "イ", "オ"],
       "correct": 0,
       "explanation": "apple = ア プル"
     },
     {
       "id": "5d337a12-64a7-5ef1-9bf0-c11175b1df2a",
       "question": "「ball」の「b」の音は？",
-      "choices": [
-        "ブ",
-        "プ",
-        "ム",
-        "ドゥ"
-      ],
+      "choices": ["ブ", "プ", "ム", "ドゥ"],
       "correct": 0,
       "explanation": "ball = ブ オール"
     },
     {
       "id": "a4207992-2b95-5aa9-99c4-d9a0de967854",
       "question": "「cat」の「c」の音は？",
-      "choices": [
-        "ク",
-        "ス",
-        "チ",
-        "シュ"
-      ],
+      "choices": ["ク", "ス", "チ", "シュ"],
       "correct": 0,
       "explanation": "cat = ク ア ト"
     },
     {
       "id": "83652fc2-81fa-5819-b075-d601e4c1c0d2",
       "question": "「dog」の「d」の音は？",
-      "choices": [
-        "ドゥ",
-        "トゥ",
-        "ブ",
-        "グ"
-      ],
+      "choices": ["ドゥ", "トゥ", "ブ", "グ"],
       "correct": 0,
       "explanation": "dog = ドゥ オ グ"
     },
     {
       "id": "871ff525-7f2f-5478-84a8-3ecbb8b2b732",
       "question": "「egg」の「e」の音は？",
-      "choices": [
-        "エ",
-        "ア",
-        "イ",
-        "オ"
-      ],
+      "choices": ["エ", "ア", "イ", "オ"],
       "correct": 0,
       "explanation": "egg = エ グ"
     },
     {
       "id": "0458f353-4efc-5180-bcb4-1cfa03f48e74",
       "question": "「fish」の「f」の音は？",
-      "choices": [
-        "フ",
-        "ス",
-        "シュ",
-        "ヴ"
-      ],
+      "choices": ["フ", "ス", "シュ", "ヴ"],
       "correct": 0,
       "explanation": "fish = フ イ シュ"
     },
     {
       "id": "17d9635e-0cd2-5f79-a96e-e3985257bc6b",
       "question": "「girl」の「g」の音は？",
-      "choices": [
-        "グ",
-        "ク",
-        "ジュ",
-        "ガ"
-      ],
+      "choices": ["グ", "ク", "ジュ", "ガ"],
       "correct": 0,
       "explanation": "girl = グ アール"
     },
     {
       "id": "50eed4db-470a-5e87-b81b-332420cd5675",
       "question": "「hat」の「h」の音は？",
-      "choices": [
-        "ハ",
-        "ア",
-        "フ",
-        "ヘ"
-      ],
+      "choices": ["ハ", "ア", "フ", "ヘ"],
       "correct": 0,
       "explanation": "hat = ハ ア ト"
     },
     {
       "id": "506cf592-5783-5a33-ab3a-3ab52e8345c0",
       "question": "「ink」の「i」の音は？",
-      "choices": [
-        "イ",
-        "ア",
-        "エ",
-        "アイ"
-      ],
+      "choices": ["イ", "ア", "エ", "アイ"],
       "correct": 0,
       "explanation": "ink = イ ン ク"
     },
     {
       "id": "a0e564b6-5af2-5a15-8243-441691700412",
       "question": "「jam」の「j」の音は？",
-      "choices": [
-        "ジュ",
-        "ジ",
-        "チュ",
-        "ヤ"
-      ],
+      "choices": ["ジュ", "ジ", "チュ", "ヤ"],
       "correct": 0,
       "explanation": "jam = ジュ ア ム"
     },
     {
       "id": "a1dc6be7-a205-55ea-a58f-71adc680fb89",
       "question": "「kite」の「k」の音は？",
-      "choices": [
-        "ク",
-        "キ",
-        "ケ",
-        "カ"
-      ],
+      "choices": ["ク", "キ", "ケ", "カ"],
       "correct": 0,
       "explanation": "kite = ク アイ ト"
     },
     {
       "id": "feaf911a-6050-5c82-bda8-223e06c30c6a",
       "question": "「lion」の「l」の音は？",
-      "choices": [
-        "ル",
-        "リ",
-        "ラ",
-        "レ"
-      ],
+      "choices": ["ル", "リ", "ラ", "レ"],
       "correct": 0,
       "explanation": "lion = ル アイ オン"
     },
     {
       "id": "3f42fdb3-f420-5973-a358-357c74e8fb14",
       "question": "「map」の「m」の音は？",
-      "choices": [
-        "ム",
-        "マ",
-        "ミ",
-        "メ"
-      ],
+      "choices": ["ム", "マ", "ミ", "メ"],
       "correct": 0,
       "explanation": "map = ム ア プ"
     },
     {
       "id": "2d7a3419-14e6-5324-8914-d52e35729ab9",
       "question": "「net」の「n」の音は？",
-      "choices": [
-        "ヌ",
-        "ナ",
-        "ニ",
-        "ネ"
-      ],
+      "choices": ["ヌ", "ナ", "ニ", "ネ"],
       "correct": 0,
       "explanation": "net = ヌ エ ト"
     },
     {
       "id": "05afaba5-5cf7-52c2-bd90-1a57b90d8927",
       "question": "「orange」の「o」の音は？",
-      "choices": [
-        "ア",
-        "オ",
-        "ウ",
-        "エ"
-      ],
+      "choices": ["ア", "オ", "ウ", "エ"],
       "correct": 0,
       "explanation": "orange = ア リン ジュ"
     },
     {
       "id": "6009b5bc-c096-5dcc-8dd2-7267774b1b5f",
       "question": "「pen」の「p」の音は？",
-      "choices": [
-        "プ",
-        "ブ",
-        "ペ",
-        "パ"
-      ],
+      "choices": ["プ", "ブ", "ペ", "パ"],
       "correct": 0,
       "explanation": "pen = プ エ ヌ"
     },
     {
       "id": "10c24774-1073-5080-abe1-54a9574092ce",
       "question": "「queen」の「qu」の音は？",
-      "choices": [
-        "クウ",
-        "ク",
-        "グウ",
-        "コ"
-      ],
+      "choices": ["クウ", "ク", "グウ", "コ"],
       "correct": 0,
       "explanation": "queen = クウ イー ヌ"
     },
     {
       "id": "5e79f707-c561-5b8d-a628-2a3423efbbf5",
       "question": "「red」の「r」の音は？",
-      "choices": [
-        "ル",
-        "ラ",
-        "リ",
-        "レ"
-      ],
+      "choices": ["ル", "ラ", "リ", "レ"],
       "correct": 0,
       "explanation": "red = ル エ ドゥ"
     },
     {
       "id": "c03d0400-bb5a-5fda-87cc-f9491e040a94",
       "question": "「sun」の「s」の音は？",
-      "choices": [
-        "ス",
-        "シュ",
-        "ズ",
-        "サ"
-      ],
+      "choices": ["ス", "シュ", "ズ", "サ"],
       "correct": 0,
       "explanation": "sun = ス ア ヌ"
     },
     {
       "id": "59dc2d53-0594-581a-b747-d8ea6cdc15a1",
       "question": "「tiger」の「t」の音は？",
-      "choices": [
-        "トゥ",
-        "タ",
-        "チ",
-        "ドゥ"
-      ],
+      "choices": ["トゥ", "タ", "チ", "ドゥ"],
       "correct": 0,
       "explanation": "tiger = トゥ アイ ガー"
     },
     {
       "id": "32cb9930-82ca-51fc-85d2-a0b797ccdaf7",
       "question": "「up」の「u」の音は？",
-      "choices": [
-        "ア",
-        "ウ",
-        "オ",
-        "ユ"
-      ],
+      "choices": ["ア", "ウ", "オ", "ユ"],
       "correct": 0,
       "explanation": "up = ア プ"
     },
     {
       "id": "b39490fe-8768-5745-8666-26643a58baa1",
       "question": "「van」の「v」の音は？",
-      "choices": [
-        "ヴ",
-        "フ",
-        "ブ",
-        "ム"
-      ],
+      "choices": ["ヴ", "フ", "ブ", "ム"],
       "correct": 0,
       "explanation": "van = ヴ ア ヌ"
     },
     {
       "id": "2c9e5ff1-c0ba-5d14-969f-c83bbe4d6cec",
       "question": "「water」の「w」の音は？",
-      "choices": [
-        "ウ",
-        "ヴ",
-        "ユ",
-        "オ"
-      ],
+      "choices": ["ウ", "ヴ", "ユ", "オ"],
       "correct": 0,
       "explanation": "water = ウ オー ラー"
     },
     {
       "id": "264382c6-cd14-5ab1-b55e-82d24499a3a4",
       "question": "「box」の「x」の音は？",
-      "choices": [
-        "クス",
-        "ス",
-        "ク",
-        "ズ"
-      ],
+      "choices": ["クス", "ス", "ク", "ズ"],
       "correct": 0,
       "explanation": "box = ブ ア クス"
     },
     {
       "id": "3343465e-4d24-534a-89dd-1aac885693b0",
       "question": "「yes」の「y」の音は？",
-      "choices": [
-        "イ",
-        "ユ",
-        "エ",
-        "ア"
-      ],
+      "choices": ["イ", "ユ", "エ", "ア"],
       "correct": 0,
       "explanation": "yes = イ エ ス"
     },
     {
       "id": "7e7e96c4-38ad-5ca9-b833-a03973e32ef4",
       "question": "「zoo」の「z」の音は？",
-      "choices": [
-        "ズ",
-        "ス",
-        "ジュ",
-        "シュ"
-      ],
+      "choices": ["ズ", "ス", "ジュ", "シュ"],
       "correct": 0,
       "explanation": "zoo = ズ ウー"
     }

@@ -16,120 +16,70 @@
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000001",
       "question": "I play games ___ the park.",
-      "choices": [
-        "in",
-        "on",
-        "at",
-        "to"
-      ],
+      "choices": ["in", "on", "at", "to"],
       "correct": 0,
       "explanation": "広い場所には in を使います"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000002",
       "question": "I play games ___ home.",
-      "choices": [
-        "at",
-        "in",
-        "on",
-        "to"
-      ],
+      "choices": ["at", "in", "on", "to"],
       "correct": 0,
       "explanation": "at home（家で）は決まった表現です"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000003",
       "question": "The book is ___ the desk.",
-      "choices": [
-        "on",
-        "in",
-        "at",
-        "under"
-      ],
+      "choices": ["on", "in", "at", "under"],
       "correct": 0,
       "explanation": "面の上に接触しているときは on を使います"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000004",
       "question": "The cat is ___ the table.",
-      "choices": [
-        "under",
-        "on",
-        "in",
-        "at"
-      ],
+      "choices": ["under", "on", "in", "at"],
       "correct": 0,
       "explanation": "〜の下には under を使います"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000005",
       "question": "She lives ___ Japan.",
-      "choices": [
-        "in",
-        "at",
-        "on",
-        "to"
-      ],
+      "choices": ["in", "at", "on", "to"],
       "correct": 0,
       "explanation": "国・都市など広い場所には in を使います"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000006",
       "question": "I study ___ school.",
-      "choices": [
-        "at",
-        "in",
-        "on",
-        "near"
-      ],
+      "choices": ["at", "in", "on", "near"],
       "correct": 0,
       "explanation": "at school（学校で）は地点・施設を示す at です"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000007",
       "question": "A picture is ___ the wall.",
-      "choices": [
-        "on",
-        "in",
-        "at",
-        "under"
-      ],
+      "choices": ["on", "in", "at", "under"],
       "correct": 0,
       "explanation": "壁のような面に接触しているときは on を使います"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000008",
       "question": "She lives ___ the school.",
-      "choices": [
-        "near",
-        "in",
-        "on",
-        "at"
-      ],
+      "choices": ["near", "in", "on", "at"],
       "correct": 0,
       "explanation": "〜の近くには near を使います"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000009",
       "question": "I am ___ the station.",
-      "choices": [
-        "at",
-        "in",
-        "on",
-        "under"
-      ],
+      "choices": ["at", "in", "on", "under"],
       "correct": 0,
       "explanation": "駅・空港などの地点には at を使います"
     },
     {
       "id": "a1b2c3d4-0009-5009-8009-000000000010",
       "question": "The keys are ___ the box.",
-      "choices": [
-        "in",
-        "on",
-        "at",
-        "under"
-      ],
+      "choices": ["in", "on", "at", "under"],
       "correct": 0,
       "explanation": "箱の中・容器の内側には in を使います"
     }

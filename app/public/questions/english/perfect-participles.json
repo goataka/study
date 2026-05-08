@@ -16,120 +16,70 @@
     {
       "id": "9893fb6d-3e58-5706-9a55-2a4da8e03467",
       "question": "go の過去分詞は？",
-      "choices": [
-        "gone",
-        "went",
-        "go",
-        "goed"
-      ],
+      "choices": ["gone", "went", "go", "goed"],
       "correct": 0,
       "explanation": "goの過去分詞は gone です"
     },
     {
       "id": "0dbbc9cd-c8e5-51ed-8a36-3f3068c93275",
       "question": "eat の過去分詞は？",
-      "choices": [
-        "eaten",
-        "ate",
-        "eat",
-        "eated"
-      ],
+      "choices": ["eaten", "ate", "eat", "eated"],
       "correct": 0,
       "explanation": "eatの過去分詞は eaten です"
     },
     {
       "id": "af1bae8c-b2cb-564e-8780-a6678218826b",
       "question": "write の過去分詞は？",
-      "choices": [
-        "written",
-        "wrote",
-        "write",
-        "writed"
-      ],
+      "choices": ["written", "wrote", "write", "writed"],
       "correct": 0,
       "explanation": "writeの過去分詞は written です"
     },
     {
       "id": "4bc1b428-d751-5396-8e41-8de7b56ab539",
       "question": "see の過去分詞は？",
-      "choices": [
-        "seen",
-        "saw",
-        "see",
-        "seed"
-      ],
+      "choices": ["seen", "saw", "see", "seed"],
       "correct": 0,
       "explanation": "seeの過去分詞は seen です"
     },
     {
       "id": "101b3bdc-2997-5ecc-8607-6efb8b662138",
       "question": "read の過去分詞は？",
-      "choices": [
-        "read",
-        "red",
-        "readed",
-        "reads"
-      ],
+      "choices": ["read", "red", "readed", "reads"],
       "correct": 0,
       "explanation": "readの過去分詞は read（発音は「レッド」）です"
     },
     {
       "id": "f50a7b7a-96aa-5e03-8c81-4e35792e970f",
       "question": "take の過去分詞は？",
-      "choices": [
-        "taken",
-        "took",
-        "take",
-        "taked"
-      ],
+      "choices": ["taken", "took", "take", "taked"],
       "correct": 0,
       "explanation": "takeの過去分詞は taken です"
     },
     {
       "id": "337be8a1-5536-52ab-9e91-761e71e7edfe",
       "question": "make の過去分詞は？",
-      "choices": [
-        "made",
-        "make",
-        "maked",
-        "makes"
-      ],
+      "choices": ["made", "make", "maked", "makes"],
       "correct": 0,
       "explanation": "makeの過去分詞は made です"
     },
     {
       "id": "86b56507-e166-512d-bdd9-b0b4587662c3",
       "question": "speak の過去分詞は？",
-      "choices": [
-        "spoken",
-        "spoke",
-        "speak",
-        "speaked"
-      ],
+      "choices": ["spoken", "spoke", "speak", "speaked"],
       "correct": 0,
       "explanation": "speakの過去分詞は spoken です"
     },
     {
       "id": "3be8e9ed-ec82-5dcf-9777-095587dd02eb",
       "question": "buy の過去分詞は？",
-      "choices": [
-        "bought",
-        "buyed",
-        "buy",
-        "buying"
-      ],
+      "choices": ["bought", "buyed", "buy", "buying"],
       "correct": 0,
       "explanation": "buy は不規則変化し、過去分詞は bought です"
     },
     {
       "id": "585de038-1ca3-5c10-98d7-085031ae6061",
       "question": "know の過去分詞は？",
-      "choices": [
-        "known",
-        "knew",
-        "knowed",
-        "knowing"
-      ],
+      "choices": ["known", "knew", "knowed", "knowing"],
       "correct": 0,
       "explanation": "know は不規則変化し、過去分詞は known です"
     }

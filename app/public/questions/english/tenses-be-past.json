@@ -16,120 +16,70 @@
     {
       "id": "ade5a14e-d37b-560c-a632-2aeae2fcf297",
       "question": "I ___ happy yesterday.",
-      "choices": [
-        "was",
-        "am",
-        "were",
-        "is"
-      ],
+      "choices": ["was", "am", "were", "is"],
       "correct": 0,
       "explanation": "Iの過去形には was を使います"
     },
     {
       "id": "43295a0f-a7c7-5877-ad23-802c7c19a881",
       "question": "I ___ a student last year.",
-      "choices": [
-        "was",
-        "am",
-        "were",
-        "is"
-      ],
+      "choices": ["was", "am", "were", "is"],
       "correct": 0,
       "explanation": "Iの過去形には was を使います"
     },
     {
       "id": "5c6d2c7a-d3e2-5e5c-a4f9-e81d39b98f3f",
       "question": "I ___ tired yesterday.",
-      "choices": [
-        "was",
-        "am",
-        "were",
-        "is"
-      ],
+      "choices": ["was", "am", "were", "is"],
       "correct": 0,
       "explanation": "Iの過去形には was を使います"
     },
     {
       "id": "8457925f-0a99-5522-90b5-6aacc56e4b8d",
       "question": "They ___ at home yesterday.",
-      "choices": [
-        "were",
-        "was",
-        "are",
-        "is"
-      ],
+      "choices": ["were", "was", "are", "is"],
       "correct": 0,
       "explanation": "複数形の過去形には were を使います"
     },
     {
       "id": "aa5a3ea8-6bb0-5d7a-9e5e-7f402795605e",
       "question": "He ___ hungry this morning.",
-      "choices": [
-        "was",
-        "were",
-        "is",
-        "am"
-      ],
+      "choices": ["was", "were", "is", "am"],
       "correct": 0,
       "explanation": "三人称単数の過去形には was を使います"
     },
     {
       "id": "b8a3ef22-9f30-5e22-823f-1fca0bb76585",
       "question": "She ___ happy yesterday.",
-      "choices": [
-        "was",
-        "were",
-        "is",
-        "am"
-      ],
+      "choices": ["was", "were", "is", "am"],
       "correct": 0,
       "explanation": "三人称単数の過去形には was を使います"
     },
     {
       "id": "429c6f11-22c4-5325-b35a-cad84e37d7c6",
       "question": "We ___ students last year.",
-      "choices": [
-        "were",
-        "was",
-        "are",
-        "is"
-      ],
+      "choices": ["were", "was", "are", "is"],
       "correct": 0,
       "explanation": "複数形の過去形には were を使います"
     },
     {
       "id": "52ec5f4a-81ee-5800-aa9b-e0caf9fdf8ad",
       "question": "You ___ tired yesterday.",
-      "choices": [
-        "were",
-        "was",
-        "are",
-        "is"
-      ],
+      "choices": ["were", "was", "are", "is"],
       "correct": 0,
       "explanation": "Youの過去形には were を使います"
     },
     {
       "id": "6ef801ed-a06e-5daa-8e18-a320afbf78e5",
       "question": "The children ___ noisy yesterday. (be動詞・過去)",
-      "choices": [
-        "were",
-        "are",
-        "will be",
-        "have been"
-      ],
+      "choices": ["were", "are", "will be", "have been"],
       "correct": 0,
       "explanation": "複数の主語には were を使います"
     },
     {
       "id": "436306b0-1811-50dc-bac2-e4f4928b921f",
       "question": "She ___ at the library yesterday. (be動詞・過去)",
-      "choices": [
-        "was",
-        "were",
-        "is",
-        "has been"
-      ],
+      "choices": ["was", "were", "is", "has been"],
       "correct": 0,
       "explanation": "三人称単数の過去は was を使います"
     }

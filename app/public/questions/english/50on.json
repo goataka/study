@@ -16,552 +16,322 @@
     {
       "id": "3478adbb-1eeb-5867-a7be-a13ad30e71eb",
       "question": "「あ」のローマ字は？",
-      "choices": [
-        "a",
-        "i",
-        "u",
-        "e"
-      ],
+      "choices": ["a", "i", "u", "e"],
       "correct": 0,
       "explanation": "「あ」は a と書きます"
     },
     {
       "id": "990ae89a-35e1-5f77-a02a-32193af281d4",
       "question": "「い」のローマ字は？",
-      "choices": [
-        "i",
-        "a",
-        "u",
-        "e"
-      ],
+      "choices": ["i", "a", "u", "e"],
       "correct": 0,
       "explanation": "「い」は i と書きます"
     },
     {
       "id": "d02f4780-b25f-5262-8f71-0f03d1d572e9",
       "question": "「う」のローマ字は？",
-      "choices": [
-        "u",
-        "a",
-        "i",
-        "o"
-      ],
+      "choices": ["u", "a", "i", "o"],
       "correct": 0,
       "explanation": "「う」は u と書きます"
     },
     {
       "id": "fae074f0-5a9b-57b2-aae6-f833acd83f14",
       "question": "「え」のローマ字は？",
-      "choices": [
-        "e",
-        "a",
-        "i",
-        "o"
-      ],
+      "choices": ["e", "a", "i", "o"],
       "correct": 0,
       "explanation": "「え」は e と書きます"
     },
     {
       "id": "d6e9c70e-0ee5-5ace-afe3-ef0bac6d75dc",
       "question": "「お」のローマ字は？",
-      "choices": [
-        "o",
-        "u",
-        "a",
-        "i"
-      ],
+      "choices": ["o", "u", "a", "i"],
       "correct": 0,
       "explanation": "「お」は o と書きます"
     },
     {
       "id": "af8464c3-a0d1-5208-b70c-2da8a318a761",
       "question": "「か」のローマ字は？",
-      "choices": [
-        "ka",
-        "ga",
-        "ca",
-        "qa"
-      ],
+      "choices": ["ka", "ga", "ca", "qa"],
       "correct": 0,
       "explanation": "「か」は ka と書きます"
     },
     {
       "id": "977c6926-7536-5edd-bc62-e20b5527dd0c",
       "question": "「き」のローマ字は？",
-      "choices": [
-        "ki",
-        "gi",
-        "qi",
-        "chi"
-      ],
+      "choices": ["ki", "gi", "qi", "chi"],
       "correct": 0,
       "explanation": "「き」は ki と書きます"
     },
     {
       "id": "0f8051e0-772b-5f62-b11e-7d91692d4832",
       "question": "「く」のローマ字は？",
-      "choices": [
-        "ku",
-        "gu",
-        "qu",
-        "wu"
-      ],
+      "choices": ["ku", "gu", "qu", "wu"],
       "correct": 0,
       "explanation": "「く」は ku と書きます"
     },
     {
       "id": "fc329f0d-8155-5170-88ec-fd926fe77242",
       "question": "「け」のローマ字は？",
-      "choices": [
-        "ke",
-        "ge",
-        "he",
-        "se"
-      ],
+      "choices": ["ke", "ge", "he", "se"],
       "correct": 0,
       "explanation": "「け」は ke と書きます"
     },
     {
       "id": "282a8517-3a29-56b0-afa9-8bb3e29ffbe5",
       "question": "「こ」のローマ字は？",
-      "choices": [
-        "ko",
-        "go",
-        "ho",
-        "wo"
-      ],
+      "choices": ["ko", "go", "ho", "wo"],
       "correct": 0,
       "explanation": "「こ」は ko と書きます"
     },
     {
       "id": "ae05a6b0-0ad0-5110-9981-2107ead8770c",
       "question": "「さ」のローマ字は？",
-      "choices": [
-        "sa",
-        "za",
-        "sha",
-        "ta"
-      ],
+      "choices": ["sa", "za", "sha", "ta"],
       "correct": 0,
       "explanation": "「さ」は sa と書きます"
     },
     {
       "id": "5cc250c3-b4b9-5d7f-b8b7-4ff6601c7f22",
       "question": "「し」のローマ字は？",
-      "choices": [
-        "shi",
-        "si",
-        "ci",
-        "chi"
-      ],
+      "choices": ["shi", "si", "ci", "chi"],
       "correct": 0,
       "explanation": "「し」は shi と書きます"
     },
     {
       "id": "62ed71e3-c605-5e53-98c0-d66c8c016fa7",
       "question": "「す」のローマ字は？",
-      "choices": [
-        "su",
-        "zu",
-        "tsu",
-        "shu"
-      ],
+      "choices": ["su", "zu", "tsu", "shu"],
       "correct": 0,
       "explanation": "「す」は su と書きます"
     },
     {
       "id": "a887d621-13f3-5c1b-96b1-24a81ecbc700",
       "question": "「せ」のローマ字は？",
-      "choices": [
-        "se",
-        "ze",
-        "she",
-        "te"
-      ],
+      "choices": ["se", "ze", "she", "te"],
       "correct": 0,
       "explanation": "「せ」は se と書きます"
     },
     {
       "id": "0c2222b3-b78d-52af-a41c-dd27607e111a",
       "question": "「そ」のローマ字は？",
-      "choices": [
-        "so",
-        "zo",
-        "tso",
-        "sho"
-      ],
+      "choices": ["so", "zo", "tso", "sho"],
       "correct": 0,
       "explanation": "「そ」は so と書きます"
     },
     {
       "id": "59188e0e-4801-59d2-9054-b36056d1f852",
       "question": "「た」のローマ字は？",
-      "choices": [
-        "ta",
-        "da",
-        "sa",
-        "na"
-      ],
+      "choices": ["ta", "da", "sa", "na"],
       "correct": 0,
       "explanation": "「た」は ta と書きます"
     },
     {
       "id": "e4a0978a-51ca-5a5e-8b94-281e3af8ad2c",
       "question": "「ち」のローマ字は？",
-      "choices": [
-        "chi",
-        "ti",
-        "ci",
-        "shi"
-      ],
+      "choices": ["chi", "ti", "ci", "shi"],
       "correct": 0,
       "explanation": "「ち」は chi と書きます"
     },
     {
       "id": "7d90a8c7-8500-5182-b32e-fd6de1ced574",
       "question": "「つ」のローマ字は？",
-      "choices": [
-        "tsu",
-        "tu",
-        "su",
-        "zu"
-      ],
+      "choices": ["tsu", "tu", "su", "zu"],
       "correct": 0,
       "explanation": "「つ」は tsu と書きます"
     },
     {
       "id": "c82a1518-6ad9-5d1f-8fd4-e35282df88d8",
       "question": "「て」のローマ字は？",
-      "choices": [
-        "te",
-        "de",
-        "se",
-        "ne"
-      ],
+      "choices": ["te", "de", "se", "ne"],
       "correct": 0,
       "explanation": "「て」は te と書きます"
     },
     {
       "id": "e4b7e585-ae10-5956-9a23-e347d1c747dc",
       "question": "「と」のローマ字は？",
-      "choices": [
-        "to",
-        "do",
-        "so",
-        "no"
-      ],
+      "choices": ["to", "do", "so", "no"],
       "correct": 0,
       "explanation": "「と」は to と書きます"
     },
     {
       "id": "4b77d276-b569-54cd-b477-aa2677a01f4a",
       "question": "「な」のローマ字は？",
-      "choices": [
-        "na",
-        "ma",
-        "ra",
-        "wa"
-      ],
+      "choices": ["na", "ma", "ra", "wa"],
       "correct": 0,
       "explanation": "「な」は na と書きます"
     },
     {
       "id": "9f4f3b18-7a26-58a5-bdd0-807a32f3e372",
       "question": "「に」のローマ字は？",
-      "choices": [
-        "ni",
-        "mi",
-        "ri",
-        "wi"
-      ],
+      "choices": ["ni", "mi", "ri", "wi"],
       "correct": 0,
       "explanation": "「に」は ni と書きます"
     },
     {
       "id": "cce52d46-48cb-59cf-adad-aeaa6a92dc67",
       "question": "「ぬ」のローマ字は？",
-      "choices": [
-        "nu",
-        "mu",
-        "ru",
-        "fu"
-      ],
+      "choices": ["nu", "mu", "ru", "fu"],
       "correct": 0,
       "explanation": "「ぬ」は nu と書きます"
     },
     {
       "id": "c09dac3c-8190-54a7-830e-9cdd0774940b",
       "question": "「ね」のローマ字は？",
-      "choices": [
-        "ne",
-        "me",
-        "re",
-        "he"
-      ],
+      "choices": ["ne", "me", "re", "he"],
       "correct": 0,
       "explanation": "「ね」は ne と書きます"
     },
     {
       "id": "11a16636-0b6f-59f0-a2e8-38e089f402fb",
       "question": "「の」のローマ字は？",
-      "choices": [
-        "no",
-        "mo",
-        "ro",
-        "ho"
-      ],
+      "choices": ["no", "mo", "ro", "ho"],
       "correct": 0,
       "explanation": "「の」は no と書きます"
     },
     {
       "id": "4c1707bb-28c1-50f6-ab17-57b31327004a",
       "question": "「は」のローマ字は？",
-      "choices": [
-        "ha",
-        "wa",
-        "fa",
-        "ba"
-      ],
+      "choices": ["ha", "wa", "fa", "ba"],
       "correct": 0,
       "explanation": "「は」は ha と書きます"
     },
     {
       "id": "68f8069f-2a00-5550-8ebc-9162d2639c89",
       "question": "「ひ」のローマ字は？",
-      "choices": [
-        "hi",
-        "wi",
-        "fi",
-        "bi"
-      ],
+      "choices": ["hi", "wi", "fi", "bi"],
       "correct": 0,
       "explanation": "「ひ」は hi と書きます"
     },
     {
       "id": "d11f1672-95d7-5036-ac9f-d44fbd011991",
       "question": "「ふ」のローマ字は？",
-      "choices": [
-        "fu",
-        "hu",
-        "pu",
-        "bu"
-      ],
+      "choices": ["fu", "hu", "pu", "bu"],
       "correct": 0,
       "explanation": "「ふ」は fu と書きます"
     },
     {
       "id": "f6f97b3f-e6a9-5e1c-bf5b-d0ce443804ae",
       "question": "「へ」のローマ字は？",
-      "choices": [
-        "he",
-        "we",
-        "fe",
-        "be"
-      ],
+      "choices": ["he", "we", "fe", "be"],
       "correct": 0,
       "explanation": "「へ」は he と書きます"
     },
     {
       "id": "b71c31db-0772-5507-90da-31b21f5234de",
       "question": "「ほ」のローマ字は？",
-      "choices": [
-        "ho",
-        "wo",
-        "fo",
-        "bo"
-      ],
+      "choices": ["ho", "wo", "fo", "bo"],
       "correct": 0,
       "explanation": "「ほ」は ho と書きます"
     },
     {
       "id": "b566f3e3-3b86-50b4-804e-916b06f570f1",
       "question": "「ま」のローマ字は？",
-      "choices": [
-        "ma",
-        "ba",
-        "na",
-        "ra"
-      ],
+      "choices": ["ma", "ba", "na", "ra"],
       "correct": 0,
       "explanation": "「ま」は ma と書きます"
     },
     {
       "id": "b9c0d251-23dc-5226-8a9c-84123204228f",
       "question": "「み」のローマ字は？",
-      "choices": [
-        "mi",
-        "bi",
-        "ni",
-        "ri"
-      ],
+      "choices": ["mi", "bi", "ni", "ri"],
       "correct": 0,
       "explanation": "「み」は mi と書きます"
     },
     {
       "id": "2d5b89cb-5c0f-5f5b-81bf-2bfa21135e35",
       "question": "「む」のローマ字は？",
-      "choices": [
-        "mu",
-        "bu",
-        "nu",
-        "ru"
-      ],
+      "choices": ["mu", "bu", "nu", "ru"],
       "correct": 0,
       "explanation": "「む」は mu と書きます"
     },
     {
       "id": "3c90f150-c4df-5c05-bd6e-a3f7a1e7dae1",
       "question": "「め」のローマ字は？",
-      "choices": [
-        "me",
-        "be",
-        "ne",
-        "re"
-      ],
+      "choices": ["me", "be", "ne", "re"],
       "correct": 0,
       "explanation": "「め」は me と書きます"
     },
     {
       "id": "f26de559-db2e-5533-a20c-e270c090b9ee",
       "question": "「も」のローマ字は？",
-      "choices": [
-        "mo",
-        "bo",
-        "no",
-        "ro"
-      ],
+      "choices": ["mo", "bo", "no", "ro"],
       "correct": 0,
       "explanation": "「も」は mo と書きます"
     },
     {
       "id": "a0d2c193-c5e0-5566-a819-4dc2c1aa418b",
       "question": "「や」のローマ字は？",
-      "choices": [
-        "ya",
-        "ba",
-        "da",
-        "wa"
-      ],
+      "choices": ["ya", "ba", "da", "wa"],
       "correct": 0,
       "explanation": "「や」は ya と書きます"
     },
     {
       "id": "d340b072-6f7e-5099-b4a9-b459870b2f2b",
       "question": "「ゆ」のローマ字は？",
-      "choices": [
-        "yu",
-        "bu",
-        "du",
-        "wu"
-      ],
+      "choices": ["yu", "bu", "du", "wu"],
       "correct": 0,
       "explanation": "「ゆ」は yu と書きます"
     },
     {
       "id": "9dcaaed3-d262-57ab-86cb-9158cff68546",
       "question": "「よ」のローマ字は？",
-      "choices": [
-        "yo",
-        "bo",
-        "do",
-        "wo"
-      ],
+      "choices": ["yo", "bo", "do", "wo"],
       "correct": 0,
       "explanation": "「よ」は yo と書きます"
     },
     {
       "id": "048c5cb9-0d86-51bb-a7e5-25badc411d24",
       "question": "「ら」のローマ字は？",
-      "choices": [
-        "ra",
-        "la",
-        "wa",
-        "na"
-      ],
+      "choices": ["ra", "la", "wa", "na"],
       "correct": 0,
       "explanation": "「ら」は ra と書きます"
     },
     {
       "id": "21fd30d1-40c9-5ca5-b513-32b27d5b1e39",
       "question": "「り」のローマ字は？",
-      "choices": [
-        "ri",
-        "li",
-        "wi",
-        "ni"
-      ],
+      "choices": ["ri", "li", "wi", "ni"],
       "correct": 0,
       "explanation": "「り」は ri と書きます"
     },
     {
       "id": "796dc767-7963-53b3-95ae-164a4d82a15d",
       "question": "「る」のローマ字は？",
-      "choices": [
-        "ru",
-        "lu",
-        "wu",
-        "nu"
-      ],
+      "choices": ["ru", "lu", "wu", "nu"],
       "correct": 0,
       "explanation": "「る」は ru と書きます"
     },
     {
       "id": "7598dc95-87e9-5243-83ed-ab7f0fada548",
       "question": "「れ」のローマ字は？",
-      "choices": [
-        "re",
-        "le",
-        "we",
-        "ne"
-      ],
+      "choices": ["re", "le", "we", "ne"],
       "correct": 0,
       "explanation": "「れ」は re と書きます"
     },
     {
       "id": "a81619be-e4f9-5dc0-b3c4-45d61b5ac427",
       "question": "「ろ」のローマ字は？",
-      "choices": [
-        "ro",
-        "lo",
-        "wo",
-        "no"
-      ],
+      "choices": ["ro", "lo", "wo", "no"],
       "correct": 0,
       "explanation": "「ろ」は ro と書きます"
     },
     {
       "id": "4cf02bab-9427-5c6b-a7a4-678ddf5cd927",
       "question": "「わ」のローマ字は？",
-      "choices": [
-        "wa",
-        "va",
-        "ba",
-        "na"
-      ],
+      "choices": ["wa", "va", "ba", "na"],
       "correct": 0,
       "explanation": "「わ」は wa と書きます"
     },
     {
       "id": "8bc7da12-2763-5127-9f80-05167a48bbad",
       "question": "「を」のローマ字は？",
-      "choices": [
-        "wo",
-        "o",
-        "woo",
-        "uo"
-      ],
+      "choices": ["wo", "o", "woo", "uo"],
       "correct": 0,
       "explanation": "「を」は wo と書きます"
     },
     {
       "id": "8917dc8e-7c74-5584-9307-b5b6e1e43e61",
       "question": "「ん」のローマ字は？",
-      "choices": [
-        "n",
-        "nn",
-        "m",
-        "ng"
-      ],
+      "choices": ["n", "nn", "m", "ng"],
       "correct": 0,
       "explanation": "「ん」は n と書きます"
     }

@@ -13,180 +13,105 @@
     {
       "id": "fd2f1b24-f5c9-5a1d-a9f7-a828097cca47",
       "question": "「空腹な」を英語で書くと？",
-      "choices": [
-        "hungry",
-        "tired",
-        "sad",
-        "busy"
-      ],
+      "choices": ["hungry", "tired", "sad", "busy"],
       "correct": 0,
       "explanation": "「空腹な」は英語で hungry です"
     },
     {
       "id": "b89f6bf2-5707-5f18-aa56-8555862213ca",
       "question": "「疲れた」を英語で書くと？",
-      "choices": [
-        "tired",
-        "angry",
-        "excited",
-        "quiet"
-      ],
+      "choices": ["tired", "angry", "excited", "quiet"],
       "correct": 0,
       "explanation": "「疲れた」は英語で tired です"
     },
     {
       "id": "a4f20113-4377-5146-8d26-81c61f195092",
       "question": "「怒った」を英語で書くと？",
-      "choices": [
-        "angry",
-        "sad",
-        "scared",
-        "loud"
-      ],
+      "choices": ["angry", "sad", "scared", "loud"],
       "correct": 0,
       "explanation": "「怒った」は英語で angry です"
     },
     {
       "id": "7137d0ba-02b4-53d3-ad1f-d23a7caeb76e",
       "question": "「悲しい」を英語で書くと？",
-      "choices": [
-        "sad",
-        "excited",
-        "bored",
-        "soft"
-      ],
+      "choices": ["sad", "excited", "bored", "soft"],
       "correct": 0,
       "explanation": "「悲しい」は英語で sad です"
     },
     {
       "id": "3cfe278d-a1e6-5937-9ca2-25849da35050",
       "question": "「興奮した」を英語で書くと？",
-      "choices": [
-        "excited",
-        "scared",
-        "busy",
-        "hard"
-      ],
+      "choices": ["excited", "scared", "busy", "hard"],
       "correct": 0,
       "explanation": "「興奮した」は英語で excited です"
     },
     {
       "id": "1927a783-1c4f-5307-a58b-e0f3a10c59ac",
       "question": "「怖がっている」を英語で書くと？",
-      "choices": [
-        "scared",
-        "bored",
-        "quiet",
-        "clean"
-      ],
+      "choices": ["scared", "bored", "quiet", "clean"],
       "correct": 0,
       "explanation": "「怖がっている」は英語で scared です"
     },
     {
       "id": "ea7fa513-014a-5449-aecf-1c8e7c56f8ed",
       "question": "「退屈した」を英語で書くと？",
-      "choices": [
-        "bored",
-        "busy",
-        "loud",
-        "dirty"
-      ],
+      "choices": ["bored", "busy", "loud", "dirty"],
       "correct": 0,
       "explanation": "「退屈した」は英語で bored です"
     },
     {
       "id": "86478b7a-dc01-51cb-b3ce-677b2f2731ff",
       "question": "「忙しい」を英語で書くと？",
-      "choices": [
-        "busy",
-        "quiet",
-        "soft",
-        "fresh"
-      ],
+      "choices": ["busy", "quiet", "soft", "fresh"],
       "correct": 0,
       "explanation": "「忙しい」は英語で busy です"
     },
     {
       "id": "4aa094dd-e2ea-51eb-8f4b-8a1ea80e5930",
       "question": "「静かな」を英語で書くと？",
-      "choices": [
-        "quiet",
-        "loud",
-        "hard",
-        "hungry"
-      ],
+      "choices": ["quiet", "loud", "hard", "hungry"],
       "correct": 0,
       "explanation": "「静かな」は英語で quiet です"
     },
     {
       "id": "51a2b349-409f-5765-b015-7c1ca08f9515",
       "question": "「騒がしい」を英語で書くと？",
-      "choices": [
-        "loud",
-        "soft",
-        "clean",
-        "tired"
-      ],
+      "choices": ["loud", "soft", "clean", "tired"],
       "correct": 0,
       "explanation": "「騒がしい」は英語で loud です"
     },
     {
       "id": "f3778e35-14a9-5ae5-a9c2-4b6500685504",
       "question": "「柔らかい」を英語で書くと？",
-      "choices": [
-        "soft",
-        "hard",
-        "dirty",
-        "angry"
-      ],
+      "choices": ["soft", "hard", "dirty", "angry"],
       "correct": 0,
       "explanation": "「柔らかい」は英語で soft です"
     },
     {
       "id": "4987fc50-80e5-540e-994c-a99d0d40217b",
       "question": "「硬い」を英語で書くと？",
-      "choices": [
-        "hard",
-        "clean",
-        "fresh",
-        "sad"
-      ],
+      "choices": ["hard", "clean", "fresh", "sad"],
       "correct": 0,
       "explanation": "「硬い」は英語で hard です"
     },
     {
       "id": "df028910-18e0-563f-819d-f9b75ef00bea",
       "question": "「きれいな」を英語で書くと？",
-      "choices": [
-        "clean",
-        "dirty",
-        "hungry",
-        "excited"
-      ],
+      "choices": ["clean", "dirty", "hungry", "excited"],
       "correct": 0,
       "explanation": "「きれいな」は英語で clean です"
     },
     {
       "id": "4dc886a9-4c22-5346-a36d-1df076df6830",
       "question": "「汚い」を英語で書くと？",
-      "choices": [
-        "dirty",
-        "fresh",
-        "tired",
-        "scared"
-      ],
+      "choices": ["dirty", "fresh", "tired", "scared"],
       "correct": 0,
       "explanation": "「汚い」は英語で dirty です"
     },
     {
       "id": "6f08b8ff-6dac-543f-9f08-03532ec3e075",
       "question": "「新鮮な」を英語で書くと？",
-      "choices": [
-        "fresh",
-        "hungry",
-        "angry",
-        "bored"
-      ],
+      "choices": ["fresh", "hungry", "angry", "bored"],
       "correct": 0,
       "explanation": "「新鮮な」は英語で fresh です"
     }

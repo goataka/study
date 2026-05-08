@@ -16,120 +16,70 @@
     {
       "id": "d95a92df-d07e-5bd3-a48d-e5865395b61a",
       "question": "I will go ___ it rains. (～しない限り)",
-      "choices": [
-        "unless",
-        "if",
-        "when",
-        "because"
-      ],
+      "choices": ["unless", "if", "when", "because"],
       "correct": 0,
       "explanation": "「～しない限り」は unless を使います"
     },
     {
       "id": "f3110fb1-dc1a-5f4d-8cf5-c3891a000e31",
       "question": "___ you study hard, you will fail. (～しない限り)",
-      "choices": [
-        "Unless",
-        "If",
-        "When",
-        "Because"
-      ],
+      "choices": ["Unless", "If", "When", "Because"],
       "correct": 0,
       "explanation": "「～しない限り」は unless を使います"
     },
     {
       "id": "dc8d8722-9ff6-5fa8-ab05-b580c005857e",
       "question": "I won't go unless you ___ with me. (come)",
-      "choices": [
-        "come",
-        "comes",
-        "came",
-        "will come"
-      ],
+      "choices": ["come", "comes", "came", "will come"],
       "correct": 0,
       "explanation": "unless節では現在形を使います"
     },
     {
       "id": "f335ad49-cae0-5721-8b9f-cf0eedd9e553",
       "question": "Unless you hurry, you ___ be late.",
-      "choices": [
-        "will",
-        "would",
-        "can",
-        "must"
-      ],
+      "choices": ["will", "would", "can", "must"],
       "correct": 0,
       "explanation": "未来のことでも主節は will を使います"
     },
     {
       "id": "ae77ec86-5621-51cb-812c-5f1b6dcdf10f",
       "question": "I won't help you ___ you ask me nicely.",
-      "choices": [
-        "unless",
-        "if",
-        "when",
-        "because"
-      ],
+      "choices": ["unless", "if", "when", "because"],
       "correct": 0,
       "explanation": "「～しない限り」は unless を使います"
     },
     {
       "id": "8df1dcca-1db3-5e13-8c03-28626c565a6d",
       "question": "___ it stops raining, we can't go out.",
-      "choices": [
-        "Unless",
-        "If",
-        "When",
-        "Because"
-      ],
+      "choices": ["Unless", "If", "When", "Because"],
       "correct": 0,
       "explanation": "「～しない限り」は unless を使います"
     },
     {
       "id": "8cf1cfa0-0860-52ad-a0a8-ab7133e633e2",
       "question": "Unless = if ___",
-      "choices": [
-        "not",
-        "only",
-        "when",
-        "then"
-      ],
+      "choices": ["not", "only", "when", "then"],
       "correct": 0,
       "explanation": "unless は if not と同じ意味です"
     },
     {
       "id": "9a83eb8b-3915-5fa8-81f2-fdc9cd449a1b",
       "question": "I will stay home unless the weather ___ good. (be)",
-      "choices": [
-        "is",
-        "will be",
-        "was",
-        "were"
-      ],
+      "choices": ["is", "will be", "was", "were"],
       "correct": 0,
       "explanation": "unless節では現在形を使います"
     },
     {
       "id": "94e7217b-25bf-5427-8a14-6f6775c2ab59",
       "question": "Unless you ___ quiet, I will leave. (be)",
-      "choices": [
-        "are",
-        "were",
-        "be",
-        "will be"
-      ],
+      "choices": ["are", "were", "be", "will be"],
       "correct": 0,
       "explanation": "unless は if not と同じ意味で、現在形を使います"
     },
     {
       "id": "9f1fd250-4e9b-5b0d-8f0a-b45332319eb3",
       "question": "She won't come ___ you invite her.",
-      "choices": [
-        "unless",
-        "if",
-        "when",
-        "because"
-      ],
+      "choices": ["unless", "if", "when", "because"],
       "correct": 0,
       "explanation": "unless は「～しない限り」という意味の接続詞です"
     }

@@ -13,180 +13,105 @@
     {
       "id": "c1e4ace0-e53c-56fa-adcb-84585cd8b448",
       "question": "「りんご」を英語で書くと？",
-      "choices": [
-        "apple",
-        "orange",
-        "banana",
-        "cake"
-      ],
+      "choices": ["apple", "orange", "banana", "cake"],
       "correct": 0,
       "explanation": "「りんご」は英語で apple です"
     },
     {
       "id": "31e34618-cb6c-5b2a-a653-bd56a4cc7792",
       "question": "「オレンジ」を英語で書くと？",
-      "choices": [
-        "orange",
-        "apple",
-        "banana",
-        "juice"
-      ],
+      "choices": ["orange", "apple", "banana", "juice"],
       "correct": 0,
       "explanation": "「オレンジ」は英語で orange です"
     },
     {
       "id": "22aecb11-8351-534f-b8b8-511919ae29ac",
       "question": "「バナナ」を英語で書くと？",
-      "choices": [
-        "banana",
-        "apple",
-        "orange",
-        "salad"
-      ],
+      "choices": ["banana", "apple", "orange", "salad"],
       "correct": 0,
       "explanation": "「バナナ」は英語で banana です"
     },
     {
       "id": "3bfa3763-ac9e-577f-96ff-5b50115e5ddc",
       "question": "「パン」を英語で書くと？",
-      "choices": [
-        "bread",
-        "rice",
-        "cake",
-        "egg"
-      ],
+      "choices": ["bread", "rice", "cake", "egg"],
       "correct": 0,
       "explanation": "「パン」は英語で bread です"
     },
     {
       "id": "dcacf2fc-d0e5-53f9-8184-debe3e959888",
       "question": "「ごはん」を英語で書くと？",
-      "choices": [
-        "rice",
-        "bread",
-        "meat",
-        "salad"
-      ],
+      "choices": ["rice", "bread", "meat", "salad"],
       "correct": 0,
       "explanation": "「ごはん」は英語で rice です"
     },
     {
       "id": "1e3845f1-fdd8-572c-9102-62995dae8312",
       "question": "「ぎゅうにゅう」を英語で書くと？",
-      "choices": [
-        "milk",
-        "water",
-        "juice",
-        "tea"
-      ],
+      "choices": ["milk", "water", "juice", "tea"],
       "correct": 0,
       "explanation": "「ぎゅうにゅう」は英語で milk です"
     },
     {
       "id": "f654fed3-7d0f-5529-85c9-79705a9bc585",
       "question": "「みず」を英語で書くと？",
-      "choices": [
-        "water",
-        "milk",
-        "juice",
-        "coffee"
-      ],
+      "choices": ["water", "milk", "juice", "coffee"],
       "correct": 0,
       "explanation": "「みず」は英語で water です"
     },
     {
       "id": "2e1bff80-125d-5a01-9788-6ffb2f2322d5",
       "question": "「ジュース」を英語で書くと？",
-      "choices": [
-        "juice",
-        "water",
-        "milk",
-        "tea"
-      ],
+      "choices": ["juice", "water", "milk", "tea"],
       "correct": 0,
       "explanation": "「ジュース」は英語で juice です"
     },
     {
       "id": "717ea598-9486-5918-b08b-5bc6697f8555",
       "question": "「おちゃ」を英語で書くと？",
-      "choices": [
-        "tea",
-        "coffee",
-        "juice",
-        "milk"
-      ],
+      "choices": ["tea", "coffee", "juice", "milk"],
       "correct": 0,
       "explanation": "「おちゃ」は英語で tea です"
     },
     {
       "id": "c35c2dba-cb06-5113-b79b-fe8f8343e165",
       "question": "「コーヒー」を英語で書くと？",
-      "choices": [
-        "coffee",
-        "tea",
-        "water",
-        "juice"
-      ],
+      "choices": ["coffee", "tea", "water", "juice"],
       "correct": 0,
       "explanation": "「コーヒー」は英語で coffee です"
     },
     {
       "id": "79761efb-ee21-5e2d-9ab7-2c47374fcec7",
       "question": "「たまご」を英語で書くと？",
-      "choices": [
-        "egg",
-        "bread",
-        "rice",
-        "meat"
-      ],
+      "choices": ["egg", "bread", "rice", "meat"],
       "correct": 0,
       "explanation": "「たまご」は英語で egg です"
     },
     {
       "id": "fa9f483f-e3ab-5124-a6a9-948170517c96",
       "question": "「ケーキ」を英語で書くと？",
-      "choices": [
-        "cake",
-        "bread",
-        "egg",
-        "salad"
-      ],
+      "choices": ["cake", "bread", "egg", "salad"],
       "correct": 0,
       "explanation": "「ケーキ」は英語で cake です"
     },
     {
       "id": "8342ed4f-28a0-564a-aad0-3a40b8b89f6f",
       "question": "「さかな」を英語で書くと？",
-      "choices": [
-        "fish",
-        "meat",
-        "egg",
-        "rice"
-      ],
+      "choices": ["fish", "meat", "egg", "rice"],
       "correct": 0,
       "explanation": "「さかな」は英語で fish です"
     },
     {
       "id": "058362f9-2a86-5b08-a93e-4fc70adffdb9",
       "question": "「にく」を英語で書くと？",
-      "choices": [
-        "meat",
-        "fish",
-        "egg",
-        "bread"
-      ],
+      "choices": ["meat", "fish", "egg", "bread"],
       "correct": 0,
       "explanation": "「にく」は英語で meat です"
     },
     {
       "id": "310a03d1-58e8-509d-a809-4501c61f2492",
       "question": "「サラダ」を英語で書くと？",
-      "choices": [
-        "salad",
-        "meat",
-        "rice",
-        "cake"
-      ],
+      "choices": ["salad", "meat", "rice", "cake"],
       "correct": 0,
       "explanation": "「サラダ」は英語で salad です"
     }

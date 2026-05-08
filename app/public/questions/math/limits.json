@@ -16,120 +16,70 @@
     {
       "id": "db4c8fb8-d64d-5f4d-9ac5-6cf958f6e987",
       "question": "lim(n→∞) 1/n = ?",
-      "choices": [
-        "0",
-        "1",
-        "∞",
-        "1/2"
-      ],
+      "choices": ["0", "1", "∞", "1/2"],
       "correct": 0,
       "explanation": "nが無限大に近づくと、1/nは0に近づきます"
     },
     {
       "id": "ebe0ee2c-0c1e-5347-9a61-fb4778ce35e1",
       "question": "lim(n→∞) (2n+1)/n = ?",
-      "choices": [
-        "2",
-        "1",
-        "0",
-        "∞"
-      ],
+      "choices": ["2", "1", "0", "∞"],
       "correct": 0,
       "explanation": "分子分母をnで割ると、(2+1/n)/1。n→∞のとき1/n→0なので、極限は2"
     },
     {
       "id": "eb0e9b31-5937-57f2-b826-d9f92ff6bc84",
       "question": "lim(n→∞) (3n²+1)/(n²+2) = ?",
-      "choices": [
-        "3",
-        "1",
-        "2",
-        "0"
-      ],
+      "choices": ["3", "1", "2", "0"],
       "correct": 0,
       "explanation": "分子分母をn²で割ると、(3+1/n²)/(1+2/n²)。n→∞で極限は3/1 = 3"
     },
     {
       "id": "75876fef-d55b-545f-b167-058c7f560432",
       "question": "lim(n→∞) n/(n²+1) = ?",
-      "choices": [
-        "0",
-        "1",
-        "∞",
-        "1/2"
-      ],
+      "choices": ["0", "1", "∞", "1/2"],
       "correct": 0,
       "explanation": "分子分母をn²で割ると、(1/n)/(1+1/n²)。n→∞で極限は0/1 = 0"
     },
     {
       "id": "b1466021-a171-53bb-b384-fed2c5652efb",
       "question": "lim(x→2) (x²-4)/(x-2) = ?",
-      "choices": [
-        "4",
-        "2",
-        "0",
-        "∞"
-      ],
+      "choices": ["4", "2", "0", "∞"],
       "correct": 0,
       "explanation": "因数分解: (x²-4)/(x-2) = (x+2)(x-2)/(x-2) = x+2。x→2で極限は4"
     },
     {
       "id": "4991fe9c-34e0-5c39-af25-25385bfb19a5",
       "question": "lim(x→0) sin(x)/x = ?",
-      "choices": [
-        "1",
-        "0",
-        "∞",
-        "sin(0)"
-      ],
+      "choices": ["1", "0", "∞", "sin(0)"],
       "correct": 0,
       "explanation": "これは重要な極限の公式。lim(x→0) sin(x)/x = 1"
     },
     {
       "id": "47a000cf-03cd-580f-b3db-adbaa4f68c35",
       "question": "lim(x→1) (x²-1)/(x-1) = ?",
-      "choices": [
-        "2",
-        "1",
-        "0",
-        "∞"
-      ],
+      "choices": ["2", "1", "0", "∞"],
       "correct": 0,
       "explanation": "因数分解: (x²-1)/(x-1) = (x+1)(x-1)/(x-1) = x+1。x→1で極限は2"
     },
     {
       "id": "192709c5-88fb-507c-bcba-97a283b27b9e",
       "question": "lim(x→∞) (2x+1)/(3x-1) = ?",
-      "choices": [
-        "2/3",
-        "1",
-        "3/2",
-        "0"
-      ],
+      "choices": ["2/3", "1", "3/2", "0"],
       "correct": 0,
       "explanation": "分子分母をxで割ると、(2+1/x)/(3-1/x)。x→∞で極限は2/3"
     },
     {
       "id": "15d7b9ee-3514-5c1d-bfb3-1ca784b0f45b",
       "question": "lim(x→0) (1-cos x)/x = ?",
-      "choices": [
-        "0",
-        "1",
-        "∞",
-        "1/2"
-      ],
+      "choices": ["0", "1", "∞", "1/2"],
       "correct": 0,
       "explanation": "lim(x→0) (1-cos x)/x = 0（ロピタルの定理: sin(0)/1 = 0）"
     },
     {
       "id": "370fc937-2f74-5751-96f4-af71bb38d0df",
       "question": "lim(n→∞) (n+1)/n = ?",
-      "choices": [
-        "1",
-        "2",
-        "0",
-        "∞"
-      ],
+      "choices": ["1", "2", "0", "∞"],
       "correct": 0,
       "explanation": "(n+1)/n = 1 + 1/n → 1 + 0 = 1"
     }

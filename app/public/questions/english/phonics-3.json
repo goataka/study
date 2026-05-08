@@ -16,216 +16,126 @@
     {
       "id": "b8bcc60e-d5f2-5b12-8497-1bb3343d9179",
       "question": "「kitchen」の「tch」の音は？",
-      "choices": [
-        "チ",
-        "ク",
-        "チュ",
-        "ツ"
-      ],
+      "choices": ["チ", "ク", "チュ", "ツ"],
       "correct": 0,
       "explanation": "kitchen = ク イ チ エ ヌ"
     },
     {
       "id": "b1b00cf1-aa6a-5dbd-9845-851bc1b0e5d0",
       "question": "「edge」の「dge」の音は？",
-      "choices": [
-        "ジ",
-        "ジュ",
-        "グ",
-        "ドゥ"
-      ],
+      "choices": ["ジ", "ジュ", "グ", "ドゥ"],
       "correct": 0,
       "explanation": "edge = エ ジ"
     },
     {
       "id": "5f4b301d-9953-517c-aa83-5bb15f21571a",
       "question": "「night」の「igh」の音は？",
-      "choices": [
-        "アイ",
-        "イ",
-        "エイ",
-        "イー"
-      ],
+      "choices": ["アイ", "イ", "エイ", "イー"],
       "correct": 0,
       "explanation": "night = ヌ アイ ト"
     },
     {
       "id": "05d44ba4-06b8-5bcd-a1fb-01fdc53f5486",
       "question": "「three」の「thr」の音は？",
-      "choices": [
-        "スル",
-        "ス",
-        "トゥル",
-        "サ"
-      ],
+      "choices": ["スル", "ス", "トゥル", "サ"],
       "correct": 0,
       "explanation": "three = スル イー"
     },
     {
       "id": "bec87ecc-c81f-5a03-921b-959972223a0a",
       "question": "「street」の「str」の音は？",
-      "choices": [
-        "ストゥル",
-        "スル",
-        "ス",
-        "ストゥ"
-      ],
+      "choices": ["ストゥル", "スル", "ス", "ストゥ"],
       "correct": 0,
       "explanation": "street = ストゥル イー ト"
     },
     {
       "id": "63761c6d-6df0-5844-aa43-8a120f1fe7bf",
       "question": "「match」の「tch」の音は？",
-      "choices": [
-        "チ",
-        "ク",
-        "チュ",
-        "ツ"
-      ],
+      "choices": ["チ", "ク", "チュ", "ツ"],
       "correct": 0,
       "explanation": "match = ム ア チ"
     },
     {
       "id": "efb7ba8d-877f-56fc-b30c-e7572af0cfbf",
       "question": "「catch」の「tch」の音は？",
-      "choices": [
-        "チ",
-        "ク",
-        "シュ",
-        "ジ"
-      ],
+      "choices": ["チ", "ク", "シュ", "ジ"],
       "correct": 0,
       "explanation": "catch = ク ア チ"
     },
     {
       "id": "ed5be48b-f4da-5d32-913a-7f50d980fe7f",
       "question": "「bridge」の「dge」の音は？",
-      "choices": [
-        "ジ",
-        "ジュ",
-        "グ",
-        "ドゥ"
-      ],
+      "choices": ["ジ", "ジュ", "グ", "ドゥ"],
       "correct": 0,
       "explanation": "bridge = ブ ル イ ジ"
     },
     {
       "id": "bc9b768d-b8bd-557d-9877-66c9665316f2",
       "question": "「judge」の「dge」の音は？",
-      "choices": [
-        "ジ",
-        "ジュ",
-        "グ",
-        "ドゥ"
-      ],
+      "choices": ["ジ", "ジュ", "グ", "ドゥ"],
       "correct": 0,
       "explanation": "judge = ジュ ア ジ"
     },
     {
       "id": "860173bc-16be-5601-82bd-3cb6598d5fde",
       "question": "「fight」の「igh」の音は？",
-      "choices": [
-        "アイ",
-        "イ",
-        "エイ",
-        "イー"
-      ],
+      "choices": ["アイ", "イ", "エイ", "イー"],
       "correct": 0,
       "explanation": "fight = フ アイ ト"
     },
     {
       "id": "9651fd6b-5bb8-5f8b-9f39-a543e55b3b9e",
       "question": "「light」の「igh」の音は？",
-      "choices": [
-        "アイ",
-        "イ",
-        "エイ",
-        "イー"
-      ],
+      "choices": ["アイ", "イ", "エイ", "イー"],
       "correct": 0,
       "explanation": "light = ル アイ ト"
     },
     {
       "id": "0a0c3a18-f0a7-56d3-a007-1d8ba6cd28eb",
       "question": "「school」の「sch」の音は？",
-      "choices": [
-        "スク",
-        "スル",
-        "シュ",
-        "ス"
-      ],
+      "choices": ["スク", "スル", "シュ", "ス"],
       "correct": 0,
       "explanation": "school = スク ウー ル"
     },
     {
       "id": "062d3d91-2507-55c4-9c5d-cd1841127456",
       "question": "「throw」の「thr」の音は？",
-      "choices": [
-        "スル",
-        "ス",
-        "トゥル",
-        "サ"
-      ],
+      "choices": ["スル", "ス", "トゥル", "サ"],
       "correct": 0,
       "explanation": "throw = スル オウ"
     },
     {
       "id": "08918aa1-c265-5519-843b-23ae756ce375",
       "question": "「shrimp」の「shr」の音は？",
-      "choices": [
-        "シュル",
-        "シュ",
-        "スル",
-        "ス"
-      ],
+      "choices": ["シュル", "シュ", "スル", "ス"],
       "correct": 0,
       "explanation": "shrimp = シュル イ ム プ"
     },
     {
       "id": "d800ece4-cc59-53e5-9aa6-99b9e31742a9",
       "question": "「spring」の「spr」の音は？",
-      "choices": [
-        "スプル",
-        "スプ",
-        "ストゥル",
-        "ス"
-      ],
+      "choices": ["スプル", "スプ", "ストゥル", "ス"],
       "correct": 0,
       "explanation": "spring = スプル イ ン グ"
     },
     {
       "id": "2ea3b241-16a6-539c-a4a5-f99fdd35b379",
       "question": "「splash」の「spl」の音は？",
-      "choices": [
-        "スプル",
-        "スプ",
-        "スル",
-        "ス"
-      ],
+      "choices": ["スプル", "スプ", "スル", "ス"],
       "correct": 0,
       "explanation": "splash = スプル ア シュ"
     },
     {
       "id": "4dbbf6bf-404d-5494-a8f4-af5ad6297fe9",
       "question": "「screen」の「scr」の音は？",
-      "choices": [
-        "スクル",
-        "スク",
-        "スル",
-        "ス"
-      ],
+      "choices": ["スクル", "スク", "スル", "ス"],
       "correct": 0,
       "explanation": "screen = スクル イー ヌ"
     },
     {
       "id": "333100b5-be61-5b63-925c-fd43d44809ce",
       "question": "「strong」の「str」の音は？",
-      "choices": [
-        "ストゥル",
-        "スル",
-        "ストゥ",
-        "ス"
-      ],
+      "choices": ["ストゥル", "スル", "ストゥ", "ス"],
       "correct": 0,
       "explanation": "strong = ストゥル オ ン グ"
     }

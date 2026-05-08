@@ -13,180 +13,105 @@
     {
       "id": "2562c7a6-d257-5e04-807b-7fa7e5e81339",
       "question": "「月曜日」を英語で書くと？",
-      "choices": [
-        "Monday",
-        "Tuesday",
-        "Thursday",
-        "morning"
-      ],
+      "choices": ["Monday", "Tuesday", "Thursday", "morning"],
       "correct": 0,
       "explanation": "「月曜日」は英語で Monday です"
     },
     {
       "id": "f3db9058-d599-555e-8d1c-0639b5386300",
       "question": "「火曜日」を英語で書くと？",
-      "choices": [
-        "Tuesday",
-        "Wednesday",
-        "Friday",
-        "afternoon"
-      ],
+      "choices": ["Tuesday", "Wednesday", "Friday", "afternoon"],
       "correct": 0,
       "explanation": "「火曜日」は英語で Tuesday です"
     },
     {
       "id": "93ae7537-2970-5823-96b2-5b71efc1bcb0",
       "question": "「水曜日」を英語で書くと？",
-      "choices": [
-        "Wednesday",
-        "Thursday",
-        "Saturday",
-        "evening"
-      ],
+      "choices": ["Wednesday", "Thursday", "Saturday", "evening"],
       "correct": 0,
       "explanation": "「水曜日」は英語で Wednesday です"
     },
     {
       "id": "87a1b2df-3784-5216-bdce-e86a77b51ca5",
       "question": "「木曜日」を英語で書くと？",
-      "choices": [
-        "Thursday",
-        "Friday",
-        "Sunday",
-        "midnight"
-      ],
+      "choices": ["Thursday", "Friday", "Sunday", "midnight"],
       "correct": 0,
       "explanation": "「木曜日」は英語で Thursday です"
     },
     {
       "id": "ad39ee04-e5e0-5eb9-9cbd-e1fc52228d16",
       "question": "「金曜日」を英語で書くと？",
-      "choices": [
-        "Friday",
-        "Saturday",
-        "morning",
-        "yesterday"
-      ],
+      "choices": ["Friday", "Saturday", "morning", "yesterday"],
       "correct": 0,
       "explanation": "「金曜日」は英語で Friday です"
     },
     {
       "id": "486a9b16-9621-5b53-aa2d-19657b259616",
       "question": "「土曜日」を英語で書くと？",
-      "choices": [
-        "Saturday",
-        "Sunday",
-        "afternoon",
-        "tomorrow"
-      ],
+      "choices": ["Saturday", "Sunday", "afternoon", "tomorrow"],
       "correct": 0,
       "explanation": "「土曜日」は英語で Saturday です"
     },
     {
       "id": "e8706d34-e587-50ad-aedc-558ea510c9e6",
       "question": "「日曜日」を英語で書くと？",
-      "choices": [
-        "Sunday",
-        "morning",
-        "evening",
-        "birthday"
-      ],
+      "choices": ["Sunday", "morning", "evening", "birthday"],
       "correct": 0,
       "explanation": "「日曜日」は英語で Sunday です"
     },
     {
       "id": "ab8c36ff-03e7-5ee4-b3b9-f500b59cce27",
       "question": "「朝」を英語で書くと？",
-      "choices": [
-        "morning",
-        "afternoon",
-        "midnight",
-        "holiday"
-      ],
+      "choices": ["morning", "afternoon", "midnight", "holiday"],
       "correct": 0,
       "explanation": "「朝」は英語で morning です"
     },
     {
       "id": "62aa071b-38dc-5fae-b72d-2d64e3dabd55",
       "question": "「午後」を英語で書くと？",
-      "choices": [
-        "afternoon",
-        "evening",
-        "yesterday",
-        "Monday"
-      ],
+      "choices": ["afternoon", "evening", "yesterday", "Monday"],
       "correct": 0,
       "explanation": "「午後」は英語で afternoon です"
     },
     {
       "id": "fd27826e-78b7-5c9b-b185-28da4a5c76d1",
       "question": "「夕方」を英語で書くと？",
-      "choices": [
-        "evening",
-        "midnight",
-        "tomorrow",
-        "Tuesday"
-      ],
+      "choices": ["evening", "midnight", "tomorrow", "Tuesday"],
       "correct": 0,
       "explanation": "「夕方」は英語で evening です"
     },
     {
       "id": "24fd7585-ebf0-539d-a08e-f16613f7b0a0",
       "question": "「真夜中」を英語で書くと？",
-      "choices": [
-        "midnight",
-        "yesterday",
-        "birthday",
-        "Wednesday"
-      ],
+      "choices": ["midnight", "yesterday", "birthday", "Wednesday"],
       "correct": 0,
       "explanation": "「真夜中」は英語で midnight です"
     },
     {
       "id": "723d15f6-4b8b-54e0-9f02-dbac77015003",
       "question": "「昨日」を英語で書くと？",
-      "choices": [
-        "yesterday",
-        "tomorrow",
-        "holiday",
-        "Thursday"
-      ],
+      "choices": ["yesterday", "tomorrow", "holiday", "Thursday"],
       "correct": 0,
       "explanation": "「昨日」は英語で yesterday です"
     },
     {
       "id": "cbcab527-68d1-58c7-82c2-095bff04e730",
       "question": "「明日」を英語で書くと？",
-      "choices": [
-        "tomorrow",
-        "birthday",
-        "Monday",
-        "Friday"
-      ],
+      "choices": ["tomorrow", "birthday", "Monday", "Friday"],
       "correct": 0,
       "explanation": "「明日」は英語で tomorrow です"
     },
     {
       "id": "a1b9b1d2-4166-568f-8257-f179f9ed2bcf",
       "question": "「誕生日」を英語で書くと？",
-      "choices": [
-        "birthday",
-        "holiday",
-        "Tuesday",
-        "Saturday"
-      ],
+      "choices": ["birthday", "holiday", "Tuesday", "Saturday"],
       "correct": 0,
       "explanation": "「誕生日」は英語で birthday です"
     },
     {
       "id": "43e2c832-362e-5ded-a8f6-a726db2f8efc",
       "question": "「休日」を英語で書くと？",
-      "choices": [
-        "holiday",
-        "Monday",
-        "Wednesday",
-        "Sunday"
-      ],
+      "choices": ["holiday", "Monday", "Wednesday", "Sunday"],
       "correct": 0,
       "explanation": "「休日」は英語で holiday です"
     }

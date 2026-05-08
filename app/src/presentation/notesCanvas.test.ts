@@ -176,10 +176,18 @@ describe("NotesCanvas", () => {
       const el = document.createElement("canvas");
       el.id = "normalCanvas";
       const ctxStub = {
-        lineCap: "", lineJoin: "", strokeStyle: "", lineWidth: 0,
+        lineCap: "",
+        lineJoin: "",
+        strokeStyle: "",
+        lineWidth: 0,
         globalCompositeOperation: "source-over",
-        scale: vi.fn(), beginPath: vi.fn(), moveTo: vi.fn(), lineTo: vi.fn(),
-        stroke: vi.fn(), clearRect: vi.fn(), drawImage: vi.fn(),
+        scale: vi.fn(),
+        beginPath: vi.fn(),
+        moveTo: vi.fn(),
+        lineTo: vi.fn(),
+        stroke: vi.fn(),
+        clearRect: vi.fn(),
+        drawImage: vi.fn(),
       };
       el.getContext = vi.fn().mockReturnValue(ctxStub) as unknown as typeof el.getContext;
       Object.defineProperty(el, "offsetWidth", { get: () => 300 });
@@ -214,6 +222,4 @@ describe("NotesCanvas", () => {
       expect(() => canvasEl.dispatchEvent(mouseEvent)).not.toThrow();
     });
   });
-
-
 });

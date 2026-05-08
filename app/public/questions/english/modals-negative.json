@@ -16,120 +16,70 @@
     {
       "id": "792e1389-ee5d-5ff6-a272-71174166e95b",
       "question": "I ___ play the piano. (～できない)",
-      "choices": [
-        "cannot",
-        "may not",
-        "must not",
-        "will not"
-      ],
+      "choices": ["cannot", "may not", "must not", "will not"],
       "correct": 0,
       "explanation": "「できない」は cannot を使います"
     },
     {
       "id": "439a639d-2237-5f4f-9bc4-73b94b2201a4",
       "question": "You ___ smoke here. (～してはいけない)",
-      "choices": [
-        "must not",
-        "cannot",
-        "may not",
-        "will not"
-      ],
+      "choices": ["must not", "cannot", "may not", "will not"],
       "correct": 0,
       "explanation": "「してはいけない」は must not を使います"
     },
     {
       "id": "f99c7403-30f1-5e55-b41f-338f7b794dec",
       "question": "I ___ go. (～するつもりはない)",
-      "choices": [
-        "will not",
-        "cannot",
-        "must not",
-        "may not"
-      ],
+      "choices": ["will not", "cannot", "must not", "may not"],
       "correct": 0,
       "explanation": "「するつもりはない」は will not を使います"
     },
     {
       "id": "d61d3742-fcea-5463-bf25-21cb4f7db462",
       "question": "You ___ worry. (～する必要はない)",
-      "choices": [
-        "need not",
-        "cannot",
-        "must not",
-        "will not"
-      ],
+      "choices": ["need not", "cannot", "must not", "will not"],
       "correct": 0,
       "explanation": "「する必要はない」は need not を使います"
     },
     {
       "id": "a489740b-33f6-53f0-b596-cae65ca3e05d",
       "question": "She ___ come. (～しないかもしれない)",
-      "choices": [
-        "may not",
-        "cannot",
-        "must not",
-        "will not"
-      ],
+      "choices": ["may not", "cannot", "must not", "will not"],
       "correct": 0,
       "explanation": "「しないかもしれない」は may not を使います"
     },
     {
       "id": "04633382-6668-5947-9fdd-5dcca799d09b",
       "question": "You ___ be late. (～すべきでない)",
-      "choices": [
-        "should not",
-        "cannot",
-        "must not",
-        "will not"
-      ],
+      "choices": ["should not", "cannot", "must not", "will not"],
       "correct": 0,
       "explanation": "「すべきでない」は should not を使います"
     },
     {
       "id": "c5ac9307-d3f5-5f40-84aa-857e4e569b98",
       "question": "I ___ swim. (～できない)",
-      "choices": [
-        "cannot",
-        "may not",
-        "must not",
-        "will not"
-      ],
+      "choices": ["cannot", "may not", "must not", "will not"],
       "correct": 0,
       "explanation": "「できない」は cannot を使います"
     },
     {
       "id": "303e5e74-da83-521d-a420-edb908304099",
       "question": "You ___ touch that. (～してはいけない)",
-      "choices": [
-        "must not",
-        "cannot",
-        "may not",
-        "will not"
-      ],
+      "choices": ["must not", "cannot", "may not", "will not"],
       "correct": 0,
       "explanation": "禁止を表すには must not を使います"
     },
     {
       "id": "3c13858c-b908-59f9-a6e2-87ffad3df081",
       "question": "You ___ park here. (～してはいけない)",
-      "choices": [
-        "must not",
-        "should not",
-        "cannot",
-        "may not"
-      ],
+      "choices": ["must not", "should not", "cannot", "may not"],
       "correct": 0,
       "explanation": "must not は「～してはいけない（禁止）」を表します"
     },
     {
       "id": "5bbe3528-2e54-5434-a0fd-6e0afc52407c",
       "question": "I ___ find my keys. (～できない)",
-      "choices": [
-        "cannot",
-        "must not",
-        "will not",
-        "may not"
-      ],
+      "choices": ["cannot", "must not", "will not", "may not"],
       "correct": 0,
       "explanation": "cannot は「～できない」という否定の能力を表します"
     }

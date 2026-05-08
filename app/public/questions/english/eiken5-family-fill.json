@@ -13,180 +13,105 @@
     {
       "id": "b5e8214f-fa88-52dc-b98a-62f7af05e07a",
       "question": "My ___ is a doctor. (わたしのおとうさんはいしゃです)",
-      "choices": [
-        "father",
-        "mother",
-        "brother",
-        "grandfather"
-      ],
+      "choices": ["father", "mother", "brother", "grandfather"],
       "correct": 0,
       "explanation": "「おとうさん」は father です。My father is a doctor. でわたしのおとうさんはいしゃという意味になります"
     },
     {
       "id": "110f8998-67cd-591d-af68-8da337433743",
       "question": "My ___ cooks dinner. (わたしのおかあさんは夕食を作ります)",
-      "choices": [
-        "mother",
-        "father",
-        "sister",
-        "grandmother"
-      ],
+      "choices": ["mother", "father", "sister", "grandmother"],
       "correct": 0,
       "explanation": "「おかあさん」は mother です。My mother cooks dinner. でわたしのおかあさんは夕食を作るという意味になります"
     },
     {
       "id": "c56babc4-a5bd-55bb-b8f7-3efca39bce81",
       "question": "My ___ plays soccer. (わたしのおにいさんはサッカーをします)",
-      "choices": [
-        "brother",
-        "sister",
-        "father",
-        "friend"
-      ],
+      "choices": ["brother", "sister", "father", "friend"],
       "correct": 0,
       "explanation": "「おにいさん」は brother です。My brother plays soccer. でわたしのおにいさんはサッカーをするという意味になります"
     },
     {
       "id": "5c7a0ca9-07ce-5b68-b419-5cd20f67f0d5",
       "question": "My ___ likes music. (わたしのおねえさんは音楽が好きです)",
-      "choices": [
-        "sister",
-        "brother",
-        "mother",
-        "girl"
-      ],
+      "choices": ["sister", "brother", "mother", "girl"],
       "correct": 0,
       "explanation": "「おねえさん」は sister です。My sister likes music. でわたしのおねえさんは音楽が好きという意味になります"
     },
     {
       "id": "473c3b54-88d5-5fef-ad78-52597dc57655",
       "question": "My ___ is very old. (わたしのおじいさんはとても年をとっています)",
-      "choices": [
-        "grandfather",
-        "grandmother",
-        "father",
-        "man"
-      ],
+      "choices": ["grandfather", "grandmother", "father", "man"],
       "correct": 0,
       "explanation": "「おじいさん」は grandfather です。My grandfather is very old. でわたしのおじいさんはとても年をとっているという意味になります"
     },
     {
       "id": "073d4730-c85e-562c-ab37-1da4ddc93113",
       "question": "My ___ makes cookies. (わたしのおばあさんはクッキーを作ります)",
-      "choices": [
-        "grandmother",
-        "grandfather",
-        "mother",
-        "woman"
-      ],
+      "choices": ["grandmother", "grandfather", "mother", "woman"],
       "correct": 0,
       "explanation": "「おばあさん」は grandmother です。My grandmother makes cookies. でわたしのおばあさんはクッキーを作るという意味になります"
     },
     {
       "id": "dcba56d6-681b-50fd-9dc8-c15ca5a73176",
       "question": "She is my best ___. (かのじょはわたしの親友です)",
-      "choices": [
-        "friend",
-        "teacher",
-        "doctor",
-        "child"
-      ],
+      "choices": ["friend", "teacher", "doctor", "child"],
       "correct": 0,
       "explanation": "「ともだち」は friend です。She is my best friend. でかのじょはわたしの親友という意味になります"
     },
     {
       "id": "62368a91-d3d1-51c5-b3aa-c5c150aff239",
       "question": "The ___ teaches English. (そのせんせいは英語をおしえます)",
-      "choices": [
-        "teacher",
-        "doctor",
-        "friend",
-        "man"
-      ],
+      "choices": ["teacher", "doctor", "friend", "man"],
       "correct": 0,
       "explanation": "「せんせい」は teacher です。The teacher teaches English. でそのせんせいは英語をおしえるという意味になります"
     },
     {
       "id": "085f7110-74ff-5733-b29d-ff9affed4f4e",
       "question": "The ___ is at the hospital. (そのいしゃはびょういんにいます)",
-      "choices": [
-        "doctor",
-        "teacher",
-        "friend",
-        "woman"
-      ],
+      "choices": ["doctor", "teacher", "friend", "woman"],
       "correct": 0,
       "explanation": "「いしゃ」は doctor です。The doctor is at the hospital. でそのいしゃはびょういんにいるという意味になります"
     },
     {
       "id": "47fb6586-b03d-5b33-9752-c31ae8ed0e2d",
       "question": "The ___ is happy. (そのこどもはうれしいです)",
-      "choices": [
-        "child",
-        "baby",
-        "boy",
-        "girl"
-      ],
+      "choices": ["child", "baby", "boy", "girl"],
       "correct": 0,
       "explanation": "「こども」は child です。The child is happy. でそのこどもはうれしいという意味になります"
     },
     {
       "id": "953c83ee-0a79-5098-b4ee-aaf2e11f23c3",
       "question": "The ___ plays in the park. (そのおとこのこはこうえんで遊びます)",
-      "choices": [
-        "boy",
-        "girl",
-        "child",
-        "man"
-      ],
+      "choices": ["boy", "girl", "child", "man"],
       "correct": 0,
       "explanation": "「おとこのこ」は boy です。The boy plays in the park. でそのおとこのこはこうえんで遊ぶという意味になります"
     },
     {
       "id": "b1e24fb3-f64e-5536-a448-40c7136ea2d9",
       "question": "The ___ has a doll. (そのおんなのこはにんぎょうを持っています)",
-      "choices": [
-        "girl",
-        "boy",
-        "child",
-        "woman"
-      ],
+      "choices": ["girl", "boy", "child", "woman"],
       "correct": 0,
       "explanation": "「おんなのこ」は girl です。The girl has a doll. でそのおんなのこはにんぎょうを持っているという意味になります"
     },
     {
       "id": "12986119-a5b5-529e-a8c2-725b8ff9808e",
       "question": "The ___ is tall. (そのおとこのひとは背が高いです)",
-      "choices": [
-        "man",
-        "woman",
-        "boy",
-        "father"
-      ],
+      "choices": ["man", "woman", "boy", "father"],
       "correct": 0,
       "explanation": "「おとこのひと」は man です。The man is tall. でそのおとこのひとは背が高いという意味になります"
     },
     {
       "id": "a7bd9f76-966b-5898-96fa-eae837fc837b",
       "question": "The ___ is kind. (そのおんなのひとはやさしいです)",
-      "choices": [
-        "woman",
-        "man",
-        "girl",
-        "mother"
-      ],
+      "choices": ["woman", "man", "girl", "mother"],
       "correct": 0,
       "explanation": "「おんなのひと」は woman です。The woman is kind. でそのおんなのひとはやさしいという意味になります"
     },
     {
       "id": "2e145807-4849-5539-8a02-5ee1878de880",
       "question": "The ___ is sleeping. (あかちゃんはねています)",
-      "choices": [
-        "baby",
-        "child",
-        "boy",
-        "girl"
-      ],
+      "choices": ["baby", "child", "boy", "girl"],
       "correct": 0,
       "explanation": "「あかちゃん」は baby です。The baby is sleeping. であかちゃんはねているという意味になります"
     }

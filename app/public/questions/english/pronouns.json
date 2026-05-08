@@ -16,120 +16,70 @@
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000001",
       "question": "___ play games. (私は)",
-      "choices": [
-        "I",
-        "Me",
-        "My",
-        "Mine"
-      ],
+      "choices": ["I", "Me", "My", "Mine"],
       "correct": 0,
       "explanation": "主語として使う代名詞は主格：I（私は）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000002",
       "question": "___ plays soccer. (彼は)",
-      "choices": [
-        "He",
-        "Him",
-        "His",
-        "They"
-      ],
+      "choices": ["He", "Him", "His", "They"],
       "correct": 0,
       "explanation": "主語として使う代名詞は主格：He（彼は）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000003",
       "question": "___ reads books. (彼女は)",
-      "choices": [
-        "She",
-        "Her",
-        "Hers",
-        "They"
-      ],
+      "choices": ["She", "Her", "Hers", "They"],
       "correct": 0,
       "explanation": "主語として使う代名詞は主格：She（彼女は）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000004",
       "question": "___ like music. (私たちは)",
-      "choices": [
-        "We",
-        "Us",
-        "Our",
-        "Ours"
-      ],
+      "choices": ["We", "Us", "Our", "Ours"],
       "correct": 0,
       "explanation": "主語として使う代名詞は主格：We（私たちは）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000005",
       "question": "___ study English. (彼らは)",
-      "choices": [
-        "They",
-        "Them",
-        "Their",
-        "Theirs"
-      ],
+      "choices": ["They", "Them", "Their", "Theirs"],
       "correct": 0,
       "explanation": "主語として使う代名詞は主格：They（彼らは）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000006",
       "question": "I like ___. (彼を)",
-      "choices": [
-        "him",
-        "he",
-        "his",
-        "himself"
-      ],
+      "choices": ["him", "he", "his", "himself"],
       "correct": 0,
       "explanation": "動詞の後（目的語）には目的格を使います：him（彼を）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000007",
       "question": "She plays games with ___. (私たちと)",
-      "choices": [
-        "us",
-        "we",
-        "our",
-        "ours"
-      ],
+      "choices": ["us", "we", "our", "ours"],
       "correct": 0,
       "explanation": "前置詞の後には目的格を使います：us（私たちを/に）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000008",
       "question": "___ game is fun. (私の)",
-      "choices": [
-        "My",
-        "I",
-        "Me",
-        "Mine"
-      ],
+      "choices": ["My", "I", "Me", "Mine"],
       "correct": 0,
       "explanation": "名詞の前には所有格を使います：my（私の）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000009",
       "question": "___ book is new. (彼女の)",
-      "choices": [
-        "Her",
-        "She",
-        "Hers",
-        "Herself"
-      ],
+      "choices": ["Her", "She", "Hers", "Herself"],
       "correct": 0,
       "explanation": "名詞の前には所有格を使います：her（彼女の）"
     },
     {
       "id": "a1b2c3d4-0002-5002-8002-000000000010",
       "question": "I play games with ___. (彼女と)",
-      "choices": [
-        "her",
-        "she",
-        "hers",
-        "herself"
-      ],
+      "choices": ["her", "she", "hers", "herself"],
       "correct": 0,
       "explanation": "前置詞の後には目的格を使います：her（彼女を/に）"
     }

@@ -28,7 +28,9 @@ const kanjiCanvasMock = {
   rate: number = 1;
   pitch: number = 1;
   voice: SpeechSynthesisVoice | null = null;
-  constructor(text: string) { this.text = text; }
+  constructor(text: string) {
+    this.text = text;
+  }
 };
 
 /**
@@ -37,7 +39,7 @@ const kanjiCanvasMock = {
  */
 async function waitForCondition(
   condition: () => boolean,
-  { timeout = 500, interval = 5 }: { timeout?: number; interval?: number } = {}
+  { timeout = 500, interval = 5 }: { timeout?: number; interval?: number } = {},
 ): Promise<void> {
   const deadline = Date.now() + timeout;
   while (!condition()) {
@@ -524,9 +526,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const catItem = document.querySelector(
-      '.category-item[data-category="phonics-1"]'
-    ) as HTMLElement;
+    const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement;
     catItem?.click();
 
     const statsInfo = document.getElementById("statsInfo");
@@ -642,25 +642,25 @@ describe("QuizApp — 進度タブ仕様", () => {
       if (urlStr.includes("index.json")) {
         return Promise.resolve({
           ok: true,
-          json: () => Promise.resolve({
-            version: "2.0.0",
-            subjects: { english: { name: "英語" } },
-            questionFiles: ["english/matrix.json"],
-          }),
+          json: () =>
+            Promise.resolve({
+              version: "2.0.0",
+              subjects: { english: { name: "英語" } },
+              questionFiles: ["english/matrix.json"],
+            }),
         } as Response);
       }
       return Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({
-          subject: "english",
-          subjectName: "英語",
-          category: "matrix-cat",
-          categoryName: "マトリクス単元",
-          referenceGrade: "小学1年",
-          questions: [
-            { id: "m1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" },
-          ],
-        }),
+        json: () =>
+          Promise.resolve({
+            subject: "english",
+            subjectName: "英語",
+            category: "matrix-cat",
+            categoryName: "マトリクス単元",
+            referenceGrade: "小学1年",
+            questions: [{ id: "m1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" }],
+          }),
       } as Response);
     });
     new QuizApp();
@@ -684,29 +684,29 @@ describe("QuizApp — 進度タブ仕様", () => {
       if (urlStr.includes("index.json")) {
         return Promise.resolve({
           ok: true,
-          json: () => Promise.resolve({
-            version: "2.0.0",
-            subjects: { english: { name: "英語" } },
-            questionFiles: ["english/matrix-top-parent.json"],
-          }),
+          json: () =>
+            Promise.resolve({
+              version: "2.0.0",
+              subjects: { english: { name: "英語" } },
+              questionFiles: ["english/matrix-top-parent.json"],
+            }),
         } as Response);
       }
       return Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({
-          subject: "english",
-          subjectName: "英語",
-          category: "matrix-top-parent-cat",
-          categoryName: "比較単元",
-          parentCategory: "intro",
-          parentCategoryName: "入門",
-          topCategory: "grammar",
-          topCategoryName: "文法",
-          referenceGrade: "小学1年",
-          questions: [
-            { id: "mtp-1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" },
-          ],
-        }),
+        json: () =>
+          Promise.resolve({
+            subject: "english",
+            subjectName: "英語",
+            category: "matrix-top-parent-cat",
+            categoryName: "比較単元",
+            parentCategory: "intro",
+            parentCategoryName: "入門",
+            topCategory: "grammar",
+            topCategoryName: "文法",
+            referenceGrade: "小学1年",
+            questions: [{ id: "mtp-1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" }],
+          }),
       } as Response);
     });
     new QuizApp();
@@ -715,7 +715,9 @@ describe("QuizApp — 進度タブ仕様", () => {
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
 
-    const headers = Array.from(document.querySelectorAll(".progress-matrix-parent-header")).map((el) => el.textContent ?? "");
+    const headers = Array.from(document.querySelectorAll(".progress-matrix-parent-header")).map(
+      (el) => el.textContent ?? "",
+    );
     expect(headers.some((text) => text.includes("文法 / 入門"))).toBe(true);
   });
 
@@ -790,29 +792,29 @@ describe("QuizApp — 進度タブ仕様", () => {
       if (urlStr.includes("index.json")) {
         return Promise.resolve({
           ok: true,
-          json: () => Promise.resolve({
-            version: "2.0.0",
-            subjects: { english: { name: "英語" } },
-            questionFiles: ["english/matrix-click.json"],
-          }),
+          json: () =>
+            Promise.resolve({
+              version: "2.0.0",
+              subjects: { english: { name: "英語" } },
+              questionFiles: ["english/matrix-click.json"],
+            }),
         } as Response);
       }
       return Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({
-          subject: "english",
-          subjectName: "英語",
-          category: "matrix-click-cat",
-          categoryName: "マトリクスクリック単元",
-          parentCategory: "intro",
-          parentCategoryName: "入門",
-          topCategory: "grammar",
-          topCategoryName: "文法",
-          referenceGrade: "小学1年",
-          questions: [
-            { id: "mc-1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" },
-          ],
-        }),
+        json: () =>
+          Promise.resolve({
+            subject: "english",
+            subjectName: "英語",
+            category: "matrix-click-cat",
+            categoryName: "マトリクスクリック単元",
+            parentCategory: "intro",
+            parentCategoryName: "入門",
+            topCategory: "grammar",
+            topCategoryName: "文法",
+            referenceGrade: "小学1年",
+            questions: [{ id: "mc-1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" }],
+          }),
       } as Response);
     });
 
@@ -874,9 +876,7 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     // 正解の選択肢テキスト「ア」を持つラベル内のラジオボタンをクリックする
     // （選択肢はシャッフルされるため、テキストで特定する）
     const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-    const correctLabel = Array.from(labels).find(
-      (l) => l.querySelector(".choice-text")?.textContent === "ア"
-    );
+    const correctLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent === "ア");
     correctLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
 
     const feedback = document.getElementById("answerFeedback");
@@ -888,9 +888,7 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     await startQuiz();
     // 不正解の選択肢テキスト（「ア」以外）を持つラベル内のラジオボタンをクリックする
     const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-    const wrongLabel = Array.from(labels).find(
-      (l) => l.querySelector(".choice-text")?.textContent !== "ア"
-    );
+    const wrongLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent !== "ア");
     wrongLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
 
     const feedback = document.getElementById("answerFeedback");
@@ -932,7 +930,7 @@ describe("QuizApp — 回答フィードバック仕様", () => {
 
   it("フィードバックのテキストはtextContentで設定されXSSリスクがない", async () => {
     // HTMLタグを含む選択肢が正解の場合でも安全に描画されることを確認する
-    const xssPayload = '<img src=x onerror=alert(1)>';
+    const xssPayload = "<img src=x onerror=alert(1)>";
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
       if (urlStr.includes("index.json")) {
@@ -961,9 +959,7 @@ describe("QuizApp — 回答フィードバック仕様", () => {
 
     // xssPayload 以外のラジオボタンをクリックして不正解フィードバックを表示させる
     const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-    const wrongLabel = Array.from(labels).find(
-      (l) => l.querySelector(".choice-text")?.textContent !== xssPayload
-    );
+    const wrongLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent !== xssPayload);
     wrongLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
 
     const resultDiv = document.getElementById("feedbackResult");
@@ -1086,9 +1082,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const grammarCatItem = document.querySelector(
-      '.category-item[data-category="tenses-past"]'
-    ) as HTMLElement;
+    const grammarCatItem = document.querySelector('.category-item[data-category="tenses-past"]') as HTMLElement;
     grammarCatItem?.click();
 
     const statsInfo = document.getElementById("statsInfo");
@@ -1420,7 +1414,8 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
         // コンテンツ構造を持つ div の中に "This site is open source" が存在するケース
         return Promise.resolve({
           ok: true,
-          text: () => Promise.resolve(`<html><head></head><body>
+          text: () =>
+            Promise.resolve(`<html><head></head><body>
             <div class="content-wrapper">
               <h2>解説タイトル</h2>
               <p>メイン解説テキスト This site is open source Improve this page</p>
@@ -1444,9 +1439,10 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     // コンテンツ構造（h2）を含む div は除去されないこと
     expect(guideFrame?.innerHTML).toContain("解説タイトル");
     // コンテンツ構造を持たない p タグは除去されること
-    expect(guideFrame?.querySelector(".guide-content")?.innerHTML ?? "").not.toContain("This site is open source. Improve this page.");
+    expect(guideFrame?.querySelector(".guide-content")?.innerHTML ?? "").not.toContain(
+      "This site is open source. Improve this page.",
+    );
   });
-
 
   it("クイズ画面に #guideLink が存在しない", async () => {
     setupMinimalDom();
@@ -1793,7 +1789,7 @@ describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様"
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 初期タブを確認する（履歴なし・単元未選択のため quiz タブが有効なはず）
-    const initialActiveTab = document.querySelector('.panel-tab.active');
+    const initialActiveTab = document.querySelector(".panel-tab.active");
     const initialTabName = initialActiveTab?.getAttribute("data-panel") ?? "";
 
     // phonics-1 をクリック（履歴なし、総合タブからの自動復帰なし）
@@ -1801,7 +1797,7 @@ describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様"
     categoryItem?.click();
 
     // 前回のタブが引き継がれること（解説タブに戻さない）
-    const activeTab = document.querySelector('.panel-tab.active');
+    const activeTab = document.querySelector(".panel-tab.active");
     expect(activeTab?.getAttribute("data-panel")).toBe(initialTabName);
   });
 
@@ -1821,7 +1817,7 @@ describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様"
           correctCount: 3,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
@@ -1971,13 +1967,15 @@ describe("QuizApp — 履歴モード表示仕様", () => {
 
 describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様", () => {
   // mockQuestionFile の問題 q1 のchoices は ["ア", "イ", "ウ", "エ"]、correct: 0
-  const buildRecordWithEntries = (entries: Array<{
-    questionId: string;
-    isCorrect: boolean;
-    userAnswerIndex: number;
-    userAnswerChoiceText?: string;
-    correctAnswerText?: string;
-  }>) => ({
+  const buildRecordWithEntries = (
+    entries: Array<{
+      questionId: string;
+      isCorrect: boolean;
+      userAnswerIndex: number;
+      userAnswerChoiceText?: string;
+      correctAnswerText?: string;
+    }>,
+  ) => ({
     id: "r1",
     date: new Date().toISOString(),
     subject: "english",
@@ -2031,13 +2029,15 @@ describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様"
   });
 
   it("履歴に保存された回答テキストがあればそれを優先して表示する", async () => {
-    const record = buildRecordWithEntries([{
-      questionId: "q1",
-      isCorrect: false,
-      userAnswerIndex: -1,
-      userAnswerChoiceText: "旧データの回答",
-      correctAnswerText: "旧データの正解",
-    }]);
+    const record = buildRecordWithEntries([
+      {
+        questionId: "q1",
+        isCorrect: false,
+        userAnswerIndex: -1,
+        userAnswerChoiceText: "旧データの回答",
+        correctAnswerText: "旧データの正解",
+      },
+    ]);
     localStorage.setItem("quizHistory", JSON.stringify([record]));
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -2105,7 +2105,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
           correctCount: 5,
           entries: [],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
     // ✅ が表示されるには全問題が masteredIds に含まれる必要がある
@@ -2204,7 +2204,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
           correctCount: 5,
           entries: [],
         },
-      ])
+      ]),
     );
     // 間違いなし・全問題習得済み
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
@@ -2236,7 +2236,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
           correctCount: 3,
           entries: [],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
 
@@ -2266,7 +2266,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
           correctCount: 5,
           entries: [],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
     // ✅（learned）には全問題が masteredIds に含まれる必要がある
@@ -2328,7 +2328,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
           correctCount: 4,
           entries: [],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
 
@@ -2364,7 +2364,7 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
           correctCount: 4,
           entries: [],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
 
@@ -2423,7 +2423,7 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
           correctCount: 5,
           entries: [],
         },
-      ])
+      ]),
     );
     // 間違いなし・全問題習得済み
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
@@ -2457,7 +2457,7 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
           correctCount: 3,
           entries: [],
         },
-      ])
+      ]),
     );
     // 間違いあり（phonics-1 の問題IDを登録）
     localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
@@ -2812,9 +2812,7 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
     for (let i = 0; i < 5; i++) {
       // 正解の選択肢「ア」を持つラベルをクリック
       const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-      const correctLabel = Array.from(labels).find(
-        (l) => l.querySelector(".choice-text")?.textContent === "ア"
-      );
+      const correctLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent === "ア");
       correctLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
 
       const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
@@ -2837,9 +2835,7 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
     for (let i = 0; i < 5; i++) {
       // 不正解の選択肢（「ア」以外）をクリック
       const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-      const wrongLabel = Array.from(labels).find(
-        (l) => l.querySelector(".choice-text")?.textContent !== "ア"
-      );
+      const wrongLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent !== "ア");
       wrongLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
 
       const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
@@ -2910,9 +2906,7 @@ describe("QuizApp — 確認結果画面の単元名表示仕様", () => {
     document.getElementById("startRandomBtn")?.click();
     for (let i = 0; i < 5; i++) {
       const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-      const correctLabel = Array.from(labels).find(
-        (l) => l.querySelector(".choice-text")?.textContent === "ア"
-      );
+      const correctLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent === "ア");
       correctLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
 
       const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
@@ -2941,9 +2935,7 @@ describe("QuizApp — 確認結果画面の単元名表示仕様", () => {
     document.getElementById("startRandomBtn")?.click();
     for (let i = 0; i < 5; i++) {
       const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-      const correctLabel = Array.from(labels).find(
-        (l) => l.querySelector(".choice-text")?.textContent === "ア"
-      );
+      const correctLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent === "ア");
       correctLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
 
       const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement;
@@ -3020,7 +3012,7 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
             { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
           ],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
     // 進捗バーは mastered / total を使うため全問題を mastered に設定する
@@ -3083,7 +3075,7 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
             { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
           ],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
     // 進捗バーは mastered / total を使うため全問題を mastered に設定する
@@ -3123,7 +3115,7 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
             { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
           ],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
     // 進捗バーは mastered / total を使うため q2–q5 の4問を mastered に設定する（4/5 = 80%）
@@ -3165,7 +3157,7 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
           correctCount: 5,
           entries: [],
         },
-      ])
+      ]),
     );
     localStorage.setItem("wrongQuestions", JSON.stringify([]));
     // markCategoryAsLearned は masteredIds にも追加するため、テストでも masteredIds を設定する
@@ -3687,9 +3679,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     const guideTab = document.getElementById("panelTab-guide") as HTMLElement | null;
     expect(guideTab).not.toBeNull();
     guideTab!.click();
-    expect(
-      guideTab!.classList.contains("active") || guideTab!.getAttribute("aria-selected") === "true",
-    ).toBe(true);
+    expect(guideTab!.classList.contains("active") || guideTab!.getAttribute("aria-selected") === "true").toBe(true);
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]') as HTMLElement | null;
     expect(catItem).not.toBeNull();
@@ -4076,7 +4066,13 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
       categoryName: "英語書き取り",
       questionType: "text-input",
       questions: [
-        { id: "ew1", question: "「play」の過去形を書いてください", choices: ["played"], correct: 0, explanation: "played" },
+        {
+          id: "ew1",
+          question: "「play」の過去形を書いてください",
+          choices: ["played"],
+          correct: 0,
+          explanation: "played",
+        },
       ],
     };
     global.fetch = vi.fn((url: string) => {
@@ -4278,7 +4274,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
           correctCount: 5,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
@@ -4306,7 +4302,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     const wrappers = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
     const englishWrapper = wrappers.find((w) => w.querySelector('[data-subject="english"]'));
     const btn3 = Array.from(englishWrapper?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
-      (b) => b.textContent === "3"
+      (b) => b.textContent === "3",
     ) as HTMLElement | undefined;
     btn3?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -4324,7 +4320,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     const wrappers = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
     const englishWrapper = wrappers.find((w) => w.querySelector('[data-subject="english"]'));
     const btn3 = Array.from(englishWrapper?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
-      (b) => b.textContent === "3"
+      (b) => b.textContent === "3",
     ) as HTMLElement | undefined;
     btn3?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -4336,14 +4332,13 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(parsed["english"]).toBe(3);
 
     // 再初期化して復元されることを確認
-    document.body.innerHTML = document.body.innerHTML; // DOM リセットは不要（同じ DOM 使いまわし）
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const wrappers2 = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
     const englishWrapper2 = wrappers2.find((w) => w.querySelector('[data-subject="english"]'));
     const activeBtn = Array.from(englishWrapper2?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
-      (b) => b.textContent === "3"
+      (b) => b.textContent === "3",
     ) as HTMLElement | undefined;
     expect(activeBtn?.classList.contains("active")).toBe(true);
   });
@@ -4365,7 +4360,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
           correctCount: 5,
           entries: [],
         },
-      ])
+      ]),
     );
     // getCategoryProgressPct は mastered / total で算出するため全問題を masteredIds に設定する
     localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
@@ -4383,9 +4378,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishItem = document.querySelector<HTMLElement>(
-      '.subject-overview-item[data-subject="english"]'
-    );
+    const englishItem = document.querySelector<HTMLElement>('.subject-overview-item[data-subject="english"]');
     englishItem?.click();
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]');
@@ -4399,9 +4392,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishItem = document.querySelector<HTMLElement>(
-      '.subject-overview-item[data-subject="english"]'
-    );
+    const englishItem = document.querySelector<HTMLElement>('.subject-overview-item[data-subject="english"]');
     englishItem?.click();
 
     const guideContent = document.getElementById("guideContent");
@@ -4434,9 +4425,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishItem = document.querySelector<HTMLElement>(
-      '.subject-overview-item[data-subject="english"]'
-    );
+    const englishItem = document.querySelector<HTMLElement>('.subject-overview-item[data-subject="english"]');
     englishItem?.click();
 
     // 解説タブが表示され、overallSummaryPanel が非表示になる
@@ -4467,15 +4456,13 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
           correctCount: 3,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishItem = document.querySelector<HTMLElement>(
-      '.subject-overview-item[data-subject="english"]'
-    );
+    const englishItem = document.querySelector<HTMLElement>('.subject-overview-item[data-subject="english"]');
     englishItem?.click();
 
     // 確認タブがアクティブ（quizModePanel が表示される）
@@ -4492,9 +4479,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishItem = document.querySelector<HTMLElement>(
-      '.subject-overview-item[data-subject="english"]'
-    );
+    const englishItem = document.querySelector<HTMLElement>('.subject-overview-item[data-subject="english"]');
     englishItem?.click();
 
     const nameEl = document.querySelector(".selected-unit-info-name");
@@ -4505,9 +4490,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const englishItem = document.querySelector<HTMLElement>(
-      '.subject-overview-item[data-subject="english"]'
-    );
+    const englishItem = document.querySelector<HTMLElement>('.subject-overview-item[data-subject="english"]');
     englishItem?.click();
 
     // フィルタが有効になると statsInfo には問題数が表示される（0問ではない）
@@ -4587,7 +4570,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
           correctCount: 8,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
@@ -4618,7 +4601,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
           correctCount: 8,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
@@ -4645,7 +4628,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
           correctCount: 9,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
@@ -4684,7 +4667,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
           correctCount: 8,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
@@ -4718,7 +4701,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
           correctCount: 4,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
@@ -4747,7 +4730,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
           correctCount: 7,
           entries: [],
         },
-      ])
+      ]),
     );
 
     new QuizApp();
@@ -5113,7 +5096,6 @@ describe("QuizApp — 確認ダイアログ仕様", () => {
   });
 });
 
-
 describe("QuizApp — 3階層カテゴリ仕様", () => {
   beforeEach(() => {
     setupTabDom();
@@ -5168,7 +5150,9 @@ describe("QuizApp — 3階層カテゴリ仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const grammarHeader = document.querySelector<HTMLElement>('.category-top-group-header[data-top-category="grammar"]');
+    const grammarHeader = document.querySelector<HTMLElement>(
+      '.category-top-group-header[data-top-category="grammar"]',
+    );
     grammarHeader?.click();
 
     const grammarTopGroup = document.querySelector('.category-top-group[data-top-category="grammar"]');
@@ -5182,7 +5166,9 @@ describe("QuizApp — 3階層カテゴリ仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const grammarHeader = document.querySelector<HTMLElement>('.category-top-group-header[data-top-category="grammar"]');
+    const grammarHeader = document.querySelector<HTMLElement>(
+      '.category-top-group-header[data-top-category="grammar"]',
+    );
     grammarHeader?.click(); // 折りたたむ
     grammarHeader?.click(); // 展開する
 
@@ -5198,16 +5184,22 @@ describe("QuizApp — 3階層カテゴリ仕様", () => {
     englishTab?.click();
 
     // grammarトップグループを折りたたむ
-    const grammarHeader = document.querySelector<HTMLElement>('.category-top-group-header[data-top-category="grammar"]');
+    const grammarHeader = document.querySelector<HTMLElement>(
+      '.category-top-group-header[data-top-category="grammar"]',
+    );
     grammarHeader?.click();
-    expect(document.querySelector('.category-top-group[data-top-category="grammar"]')?.classList.contains("collapsed")).toBe(true);
+    expect(
+      document.querySelector('.category-top-group[data-top-category="grammar"]')?.classList.contains("collapsed"),
+    ).toBe(true);
 
     // カテゴリアイテムをプログラム的にクリック
     const catItem = document.querySelector<HTMLElement>('.category-item[data-category="tenses-past"]');
     catItem?.click();
 
     // トップグループが自動展開されること
-    expect(document.querySelector('.category-top-group[data-top-category="grammar"]')?.classList.contains("collapsed")).toBe(false);
+    expect(
+      document.querySelector('.category-top-group[data-top-category="grammar"]')?.classList.contains("collapsed"),
+    ).toBe(false);
   });
 });
 
@@ -5359,8 +5351,10 @@ describe("QuizApp — 学年フィルター仕様 (#494)", () => {
     };
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      if (u.includes("elem.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("elem.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(middleFile) } as Response);
     });
 
@@ -5398,8 +5392,10 @@ describe("QuizApp — 学年フィルター仕様 (#494)", () => {
     };
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      if (u.includes("elem.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("elem.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(middleFile) } as Response);
     });
 
@@ -5411,7 +5407,7 @@ describe("QuizApp — 学年フィルター仕様 (#494)", () => {
 
     // 「小学」フィルターボタンをクリック
     const filterBtns = document.querySelectorAll<HTMLElement>(".grade-filter-btn");
-    const elemBtn = Array.from(filterBtns).find(b => b.textContent === "小学");
+    const elemBtn = Array.from(filterBtns).find((b) => b.textContent === "小学");
     elemBtn?.click();
 
     // 小学カテゴリは表示される
@@ -5447,8 +5443,10 @@ describe("QuizApp — 学年フィルター仕様 (#494)", () => {
     };
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      if (u.includes("elem.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("elem.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(middleFile) } as Response);
     });
 
@@ -5460,11 +5458,13 @@ describe("QuizApp — 学年フィルター仕様 (#494)", () => {
 
     // 「小学」を選んでからリセット
     const filterBtns = document.querySelectorAll<HTMLElement>(".grade-filter-btn");
-    const elemBtn = Array.from(filterBtns).find(b => b.textContent === "小学");
+    const elemBtn = Array.from(filterBtns).find((b) => b.textContent === "小学");
     elemBtn?.click();
 
     // 「すべて」ボタンをクリック
-    const allBtn = Array.from(document.querySelectorAll<HTMLElement>(".grade-filter-btn")).find(b => b.textContent === "すべて");
+    const allBtn = Array.from(document.querySelectorAll<HTMLElement>(".grade-filter-btn")).find(
+      (b) => b.textContent === "すべて",
+    );
     allBtn?.click();
 
     // 両方のカテゴリが表示される
@@ -5498,7 +5498,8 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
       questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
     };
     global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (String(url).includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
     });
 
@@ -5536,8 +5537,10 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
     };
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      if (u.includes("elem.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("elem.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(middleFile) } as Response);
     });
 
@@ -5576,7 +5579,8 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
       questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
     };
     global.fetch = vi.fn((url: string) => {
-      if (String(url).includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (String(url).includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
     });
 
@@ -5606,25 +5610,37 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
       questionFiles: ["math/elem.json", "math/middle.json", "english/basic.json"],
     };
     const elemFile = {
-      subject: "math", subjectName: "数学", category: "addition", categoryName: "たし算",
+      subject: "math",
+      subjectName: "数学",
+      category: "addition",
+      categoryName: "たし算",
       referenceGrade: "小学1年",
       questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
     };
     const middleFile = {
-      subject: "math", subjectName: "数学", category: "algebra", categoryName: "代数",
+      subject: "math",
+      subjectName: "数学",
+      category: "algebra",
+      categoryName: "代数",
       referenceGrade: "中学1年",
       questions: [{ id: "m1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
     };
     const englishBasicFile = {
-      subject: "english", subjectName: "英語", category: "basic", categoryName: "基礎",
+      subject: "english",
+      subjectName: "英語",
+      category: "basic",
+      categoryName: "基礎",
       // referenceGrade なし
       questions: [{ id: "b1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
     };
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      if (u.includes("elem.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
-      if (u.includes("middle.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(middleFile) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("elem.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+      if (u.includes("middle.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(middleFile) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(englishBasicFile) } as Response);
     });
 
@@ -5634,7 +5650,9 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
     // 数学タブで「小学」フィルターを適用
     const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
     mathTab?.click();
-    const elemBtn = Array.from(document.querySelectorAll<HTMLElement>(".grade-filter-btn")).find(b => b.textContent === "小学");
+    const elemBtn = Array.from(document.querySelectorAll<HTMLElement>(".grade-filter-btn")).find(
+      (b) => b.textContent === "小学",
+    );
     elemBtn?.click();
 
     // 中学カテゴリが非表示になっていること
@@ -5686,8 +5704,10 @@ describe("QuizApp — カテゴリ/サブカテゴリ選択と表示制御仕様
     };
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
-      if (u.includes("grammar.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("grammar.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(phonicsFile) } as Response);
     });
 
@@ -5728,7 +5748,8 @@ describe("QuizApp — カテゴリ/サブカテゴリ選択と表示制御仕様
     };
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
     });
 
@@ -5769,7 +5790,8 @@ describe("QuizApp — カテゴリ/サブカテゴリ選択と表示制御仕様
     };
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(grammarFile) } as Response);
     });
 
@@ -6141,7 +6163,10 @@ describe("QuizApp — クイズ設定永続化仕様", () => {
   });
 
   it("保存済みクイズ設定（問題数）が初期化時に DOM に反映される", async () => {
-    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 20, quizOrder: "random", includeMastered: false }));
+    localStorage.setItem(
+      "quizSettings",
+      JSON.stringify({ questionCount: 20, quizOrder: "random", includeMastered: false }),
+    );
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -6152,7 +6177,10 @@ describe("QuizApp — クイズ設定永続化仕様", () => {
   });
 
   it("保存済みクイズ設定（並び順）が初期化時に DOM に反映される", async () => {
-    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 10, quizOrder: "straight", includeMastered: false }));
+    localStorage.setItem(
+      "quizSettings",
+      JSON.stringify({ questionCount: 10, quizOrder: "straight", includeMastered: false }),
+    );
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -6161,7 +6189,10 @@ describe("QuizApp — クイズ設定永続化仕様", () => {
   });
 
   it("保存済みクイズ設定（学習済み含む）が初期化時に DOM に反映される", async () => {
-    localStorage.setItem("quizSettings", JSON.stringify({ questionCount: 10, quizOrder: "random", includeMastered: true }));
+    localStorage.setItem(
+      "quizSettings",
+      JSON.stringify({ questionCount: 10, quizOrder: "random", includeMastered: true }),
+    );
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -6200,10 +6231,13 @@ describe("QuizApp — スマホ用単元一覧戻るボタン仕様", () => {
   beforeEach(() => {
     setupTabDom();
     // スマホ用ボタンを DOM に追加
-    document.body.insertAdjacentHTML("beforeend", `
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      `
       <button id="mobileBackBtn" class="mobile-back-btn">← 単元一覧</button>
       <button id="adminMenuBtn" class="admin-menu-header-btn">⚙️</button>
-    `);
+    `,
+    );
     localStorage.clear();
   });
 
@@ -6214,7 +6248,8 @@ describe("QuizApp — スマホ用単元一覧戻るボタン仕様", () => {
   it("通常タブで単元選択後に戻るボタンを押すと category-only クラスが付く", async () => {
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifest) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifest) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFile) } as Response);
     });
 
@@ -6248,7 +6283,8 @@ describe("QuizApp — スマホ用単元一覧戻るボタン仕様", () => {
   it("メニューボタンをクリックすると管理タブが選択される", async () => {
     global.fetch = vi.fn((url: string) => {
       const u = String(url);
-      if (u.includes("index.json")) return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifest) } as Response);
+      if (u.includes("index.json"))
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifest) } as Response);
       return Promise.resolve({ ok: true, json: () => Promise.resolve(mockQuestionFile) } as Response);
     });
 

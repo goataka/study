@@ -13,180 +13,105 @@
     {
       "id": "41cfd0fa-810b-5e58-ad04-29298db7fb21",
       "question": "「サッカー」を英語で書くと？",
-      "choices": [
-        "soccer",
-        "tennis",
-        "swimming",
-        "fishing"
-      ],
+      "choices": ["soccer", "tennis", "swimming", "fishing"],
       "correct": 0,
       "explanation": "「サッカー」は英語で soccer です"
     },
     {
       "id": "5ddf464a-e46c-5059-95b0-82885799f698",
       "question": "「テニス」を英語で書くと？",
-      "choices": [
-        "tennis",
-        "basketball",
-        "skiing",
-        "painting"
-      ],
+      "choices": ["tennis", "basketball", "skiing", "painting"],
       "correct": 0,
       "explanation": "「テニス」は英語で tennis です"
     },
     {
       "id": "fcc81740-4d9d-5679-acc5-a86eac95bbfd",
       "question": "「バスケットボール」を英語で書くと？",
-      "choices": [
-        "basketball",
-        "swimming",
-        "cycling",
-        "cooking"
-      ],
+      "choices": ["basketball", "swimming", "cycling", "cooking"],
       "correct": 0,
       "explanation": "「バスケットボール」は英語で basketball です"
     },
     {
       "id": "fc94b67f-bcf9-54bf-b388-0b8bbaa77cc2",
       "question": "「水泳」を英語で書くと？",
-      "choices": [
-        "swimming",
-        "skiing",
-        "hiking",
-        "reading"
-      ],
+      "choices": ["swimming", "skiing", "hiking", "reading"],
       "correct": 0,
       "explanation": "「水泳」は英語で swimming です"
     },
     {
       "id": "eee336f4-9cf9-5f29-93f4-4e739aa27d7b",
       "question": "「スキー」を英語で書くと？",
-      "choices": [
-        "skiing",
-        "cycling",
-        "fishing",
-        "shopping"
-      ],
+      "choices": ["skiing", "cycling", "fishing", "shopping"],
       "correct": 0,
       "explanation": "「スキー」は英語で skiing です"
     },
     {
       "id": "7ca5ba51-aa11-51bf-aaf5-dfdae21216f4",
       "question": "「サイクリング」を英語で書くと？",
-      "choices": [
-        "cycling",
-        "hiking",
-        "painting",
-        "dancing"
-      ],
+      "choices": ["cycling", "hiking", "painting", "dancing"],
       "correct": 0,
       "explanation": "「サイクリング」は英語で cycling です"
     },
     {
       "id": "4fbec8d0-bbbf-5011-8b55-fbf06132064a",
       "question": "「ハイキング」を英語で書くと？",
-      "choices": [
-        "hiking",
-        "fishing",
-        "cooking",
-        "gardening"
-      ],
+      "choices": ["hiking", "fishing", "cooking", "gardening"],
       "correct": 0,
       "explanation": "「ハイキング」は英語で hiking です"
     },
     {
       "id": "5159d880-df54-59c2-b758-af3a76166a2e",
       "question": "「釣り」を英語で書くと？",
-      "choices": [
-        "fishing",
-        "painting",
-        "reading",
-        "photography"
-      ],
+      "choices": ["fishing", "painting", "reading", "photography"],
       "correct": 0,
       "explanation": "「釣り」は英語で fishing です"
     },
     {
       "id": "f871c424-7935-597c-b3e0-ed4876a108d2",
       "question": "「絵を描くこと」を英語で書くと？",
-      "choices": [
-        "painting",
-        "cooking",
-        "shopping",
-        "soccer"
-      ],
+      "choices": ["painting", "cooking", "shopping", "soccer"],
       "correct": 0,
       "explanation": "「絵を描くこと」は英語で painting です"
     },
     {
       "id": "48aedaee-bfcd-53a6-81a5-17f6b1566408",
       "question": "「料理」を英語で書くと？",
-      "choices": [
-        "cooking",
-        "reading",
-        "dancing",
-        "tennis"
-      ],
+      "choices": ["cooking", "reading", "dancing", "tennis"],
       "correct": 0,
       "explanation": "「料理」は英語で cooking です"
     },
     {
       "id": "a9f517ed-67a4-5347-9404-c56e58469690",
       "question": "「読書」を英語で書くと？",
-      "choices": [
-        "reading",
-        "shopping",
-        "gardening",
-        "basketball"
-      ],
+      "choices": ["reading", "shopping", "gardening", "basketball"],
       "correct": 0,
       "explanation": "「読書」は英語で reading です"
     },
     {
       "id": "65181d8f-3975-52cf-a953-35e71e25d8bf",
       "question": "「買い物」を英語で書くと？",
-      "choices": [
-        "shopping",
-        "dancing",
-        "photography",
-        "swimming"
-      ],
+      "choices": ["shopping", "dancing", "photography", "swimming"],
       "correct": 0,
       "explanation": "「買い物」は英語で shopping です"
     },
     {
       "id": "4fb74c35-909c-5ab3-910b-139f04f443cd",
       "question": "「踊ること」を英語で書くと？",
-      "choices": [
-        "dancing",
-        "gardening",
-        "soccer",
-        "skiing"
-      ],
+      "choices": ["dancing", "gardening", "soccer", "skiing"],
       "correct": 0,
       "explanation": "「踊ること」は英語で dancing です"
     },
     {
       "id": "848b169f-5600-5ba4-926e-d2da0eb7d47a",
       "question": "「ガーデニング」を英語で書くと？",
-      "choices": [
-        "gardening",
-        "photography",
-        "tennis",
-        "cycling"
-      ],
+      "choices": ["gardening", "photography", "tennis", "cycling"],
       "correct": 0,
       "explanation": "「ガーデニング」は英語で gardening です"
     },
     {
       "id": "92366d4c-82b7-5c62-bb00-5266bad14c15",
       "question": "「写真撮影」を英語で書くと？",
-      "choices": [
-        "photography",
-        "soccer",
-        "basketball",
-        "hiking"
-      ],
+      "choices": ["photography", "soccer", "basketball", "hiking"],
       "correct": 0,
       "explanation": "「写真撮影」は英語で photography です"
     }

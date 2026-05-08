@@ -13,180 +13,105 @@
     {
       "id": "42f5f09a-a330-54a6-990c-943418f60447",
       "question": "「morning」の意味は？",
-      "choices": [
-        "あさ",
-        "ひる・午後",
-        "ゆうがた",
-        "よる"
-      ],
+      "choices": ["あさ", "ひる・午後", "ゆうがた", "よる"],
       "correct": 0,
       "explanation": "morning は「あさ」です"
     },
     {
       "id": "a298c854-f34f-5a9b-a1a1-a53455c90c1b",
       "question": "「afternoon」の意味は？",
-      "choices": [
-        "ひる・午後",
-        "あさ",
-        "ゆうがた",
-        "ひ・日"
-      ],
+      "choices": ["ひる・午後", "あさ", "ゆうがた", "ひ・日"],
       "correct": 0,
       "explanation": "afternoon は「ひる・午後」です"
     },
     {
       "id": "8a390af9-0c36-5d7b-8e78-f1b017ce5915",
       "question": "「evening」の意味は？",
-      "choices": [
-        "ゆうがた",
-        "ひる・午後",
-        "よる",
-        "あさ"
-      ],
+      "choices": ["ゆうがた", "ひる・午後", "よる", "あさ"],
       "correct": 0,
       "explanation": "evening は「ゆうがた」です"
     },
     {
       "id": "35e6d41c-73d7-5174-9110-2422e7dd8396",
       "question": "「night」の意味は？",
-      "choices": [
-        "よる",
-        "ゆうがた",
-        "あさ",
-        "ひ・日"
-      ],
+      "choices": ["よる", "ゆうがた", "あさ", "ひ・日"],
       "correct": 0,
       "explanation": "night は「よる」です"
     },
     {
       "id": "7f5fb364-32cd-518f-b2e8-636af69fa12f",
       "question": "「day」の意味は？",
-      "choices": [
-        "ひ・日",
-        "しゅう",
-        "つき・月",
-        "とし・年"
-      ],
+      "choices": ["ひ・日", "しゅう", "つき・月", "とし・年"],
       "correct": 0,
       "explanation": "day は「ひ・日」です"
     },
     {
       "id": "538987bc-0849-5ef4-aa0a-2aec9c96d618",
       "question": "「week」の意味は？",
-      "choices": [
-        "しゅう",
-        "ひ・日",
-        "つき・月",
-        "とし・年"
-      ],
+      "choices": ["しゅう", "ひ・日", "つき・月", "とし・年"],
       "correct": 0,
       "explanation": "week は「しゅう」です"
     },
     {
       "id": "ee0b3415-1c3e-5ccf-9efd-9cb178284562",
       "question": "「month」の意味は？",
-      "choices": [
-        "つき・月",
-        "しゅう",
-        "とし・年",
-        "ひ・日"
-      ],
+      "choices": ["つき・月", "しゅう", "とし・年", "ひ・日"],
       "correct": 0,
       "explanation": "month は「つき・月」です"
     },
     {
       "id": "35ac2bc2-714c-59af-b91c-be27ccd68db9",
       "question": "「year」の意味は？",
-      "choices": [
-        "とし・年",
-        "つき・月",
-        "しゅう",
-        "じかん"
-      ],
+      "choices": ["とし・年", "つき・月", "しゅう", "じかん"],
       "correct": 0,
       "explanation": "year は「とし・年」です"
     },
     {
       "id": "7c4285bd-a311-59ba-b58e-4779ae0757db",
       "question": "「time」の意味は？",
-      "choices": [
-        "じかん",
-        "とし・年",
-        "ひ・日",
-        "あさ"
-      ],
+      "choices": ["じかん", "とし・年", "ひ・日", "あさ"],
       "correct": 0,
       "explanation": "time は「じかん」です"
     },
     {
       "id": "b402f2ad-44ba-5ada-925e-7b6caeada1e2",
       "question": "「breakfast」の意味は？",
-      "choices": [
-        "あさごはん",
-        "ひるごはん",
-        "ゆうごはん",
-        "じかん"
-      ],
+      "choices": ["あさごはん", "ひるごはん", "ゆうごはん", "じかん"],
       "correct": 0,
       "explanation": "breakfast は「あさごはん」です"
     },
     {
       "id": "a95009e0-a40b-568d-bcf9-85b9149f880e",
       "question": "「lunch」の意味は？",
-      "choices": [
-        "ひるごはん",
-        "あさごはん",
-        "ゆうごはん",
-        "あさ"
-      ],
+      "choices": ["ひるごはん", "あさごはん", "ゆうごはん", "あさ"],
       "correct": 0,
       "explanation": "lunch は「ひるごはん」です"
     },
     {
       "id": "f7a1a37f-ff9b-55f0-bd0c-e4bb404b1e21",
       "question": "「dinner」の意味は？",
-      "choices": [
-        "ゆうごはん",
-        "ひるごはん",
-        "あさごはん",
-        "ゆうがた"
-      ],
+      "choices": ["ゆうごはん", "ひるごはん", "あさごはん", "ゆうがた"],
       "correct": 0,
       "explanation": "dinner は「ゆうごはん」です"
     },
     {
       "id": "4a098dc7-0ac0-5e03-a882-1baebe71b836",
       "question": "「sleep」の意味は？",
-      "choices": [
-        "ねる",
-        "はたらく",
-        "あそぶ",
-        "じかん"
-      ],
+      "choices": ["ねる", "はたらく", "あそぶ", "じかん"],
       "correct": 0,
       "explanation": "sleep は「ねる」です"
     },
     {
       "id": "03b8123d-c1b2-550d-83f6-4fc97cfcd7c3",
       "question": "「work」の意味は？",
-      "choices": [
-        "しごと・はたらく",
-        "ねる",
-        "あそぶ",
-        "ひ・日"
-      ],
+      "choices": ["しごと・はたらく", "ねる", "あそぶ", "ひ・日"],
       "correct": 0,
       "explanation": "work は「しごと・はたらく」です"
     },
     {
       "id": "63e4df5f-4948-5bd7-b8ae-6e370b61032d",
       "question": "「play」の意味は？",
-      "choices": [
-        "あそぶ・プレイ",
-        "はたらく",
-        "ねる",
-        "あさ"
-      ],
+      "choices": ["あそぶ・プレイ", "はたらく", "ねる", "あさ"],
       "correct": 0,
       "explanation": "play は「あそぶ・プレイ」です"
     }

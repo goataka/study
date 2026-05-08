@@ -16,120 +16,70 @@
     {
       "id": "b38df5ab-1795-5672-b9eb-cfbccbe71f0d",
       "question": "Games ___ played by me yesterday. (過去形の受動態)",
-      "choices": [
-        "were",
-        "are",
-        "will be",
-        "have been"
-      ],
+      "choices": ["were", "are", "will be", "have been"],
       "correct": 0,
       "explanation": "過去形の受動態は were/was + 過去分詞です"
     },
     {
       "id": "f9c7f645-4054-5330-b363-f464317f5f48",
       "question": "Games ___ played by me tomorrow. (未来形の受動態)",
-      "choices": [
-        "will be",
-        "are",
-        "were",
-        "have been"
-      ],
+      "choices": ["will be", "are", "were", "have been"],
       "correct": 0,
       "explanation": "未来形の受動態は will be + 過去分詞です"
     },
     {
       "id": "b22b789b-2cf3-51e2-a06c-1a9430ffc85a",
       "question": "Games ___ played by me. (現在完了の受動態)",
-      "choices": [
-        "have been",
-        "are",
-        "were",
-        "will be"
-      ],
+      "choices": ["have been", "are", "were", "will be"],
       "correct": 0,
       "explanation": "現在完了の受動態は have/has been + 過去分詞です"
     },
     {
       "id": "83f5346b-3742-5276-a742-31651ed644f0",
       "question": "A letter ___ written by me. (過去形の受動態)",
-      "choices": [
-        "was",
-        "is",
-        "will be",
-        "has been"
-      ],
+      "choices": ["was", "is", "will be", "has been"],
       "correct": 0,
       "explanation": "過去形の受動態は was/were + 過去分詞です"
     },
     {
       "id": "9213062f-8cfe-54a4-9515-9704cc20f60f",
       "question": "A cake ___ made by me tomorrow. (未来形の受動態)",
-      "choices": [
-        "will be",
-        "is",
-        "was",
-        "has been"
-      ],
+      "choices": ["will be", "is", "was", "has been"],
       "correct": 0,
       "explanation": "未来形の受動態は will be + 過去分詞です"
     },
     {
       "id": "fef2ad3e-3f24-5163-b0bc-5fa09a64e65e",
       "question": "The book ___ read by me. (現在完了の受動態)",
-      "choices": [
-        "has been",
-        "is",
-        "was",
-        "will be"
-      ],
+      "choices": ["has been", "is", "was", "will be"],
       "correct": 0,
       "explanation": "現在完了の受動態は has/have been + 過去分詞です"
     },
     {
       "id": "762fa0ba-df9f-5355-b86f-c0356fbe37bb",
       "question": "English ___ spoken in many countries. (現在形の受動態)",
-      "choices": [
-        "is",
-        "was",
-        "will be",
-        "has been"
-      ],
+      "choices": ["is", "was", "will be", "has been"],
       "correct": 0,
       "explanation": "現在形の受動態は is/are + 過去分詞です"
     },
     {
       "id": "cfc5b528-f7eb-5be3-99bf-390d7bec5ed8",
       "question": "The window ___ broken yesterday. (過去形の受動態)",
-      "choices": [
-        "was",
-        "is",
-        "will be",
-        "has been"
-      ],
+      "choices": ["was", "is", "will be", "has been"],
       "correct": 0,
       "explanation": "過去形の受動態は was/were + 過去分詞です"
     },
     {
       "id": "6be840b9-a3cb-5d23-8406-40c976ecad12",
       "question": "The letter ___ written by Tom. (現在形の受動態)",
-      "choices": [
-        "is",
-        "was",
-        "will be",
-        "has been"
-      ],
+      "choices": ["is", "was", "will be", "has been"],
       "correct": 0,
       "explanation": "現在形の受動態は is/am/are + 過去分詞です"
     },
     {
       "id": "e4c9e3aa-7b85-5b43-8e9b-87e096a8f9ab",
       "question": "The car ___ repaired tomorrow. (未来形の受動態)",
-      "choices": [
-        "will be",
-        "is",
-        "was",
-        "has been"
-      ],
+      "choices": ["will be", "is", "was", "has been"],
       "correct": 0,
       "explanation": "未来形の受動態は will be + 過去分詞です"
     }

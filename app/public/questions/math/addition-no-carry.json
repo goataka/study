@@ -16,192 +16,112 @@
     {
       "id": "3e864bde-8c89-5ff8-af7b-0892d8c39906",
       "question": "1 + 2 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "1"
-      ],
+      "choices": ["3", "2", "4", "1"],
       "correct": 0,
       "explanation": "1 + 2 = 3"
     },
     {
       "id": "35159b54-2765-5e37-b734-86016cace846",
       "question": "3 + 4 = ?",
-      "choices": [
-        "7",
-        "6",
-        "8",
-        "5"
-      ],
+      "choices": ["7", "6", "8", "5"],
       "correct": 0,
       "explanation": "3 + 4 = 7"
     },
     {
       "id": "97a2d93c-9f36-5581-9fdc-8f697e336e3a",
       "question": "5 + 1 = ?",
-      "choices": [
-        "6",
-        "5",
-        "7",
-        "4"
-      ],
+      "choices": ["6", "5", "7", "4"],
       "correct": 0,
       "explanation": "5 + 1 = 6"
     },
     {
       "id": "3e0e6e5a-5492-5db1-87e6-a714f269c516",
       "question": "2 + 6 = ?",
-      "choices": [
-        "8",
-        "7",
-        "9",
-        "6"
-      ],
+      "choices": ["8", "7", "9", "6"],
       "correct": 0,
       "explanation": "2 + 6 = 8"
     },
     {
       "id": "08afd57f-5fa0-5c2a-bb7c-07ef5ccc4c6d",
       "question": "4 + 3 = ?",
-      "choices": [
-        "7",
-        "6",
-        "8",
-        "5"
-      ],
+      "choices": ["7", "6", "8", "5"],
       "correct": 0,
       "explanation": "4 + 3 = 7"
     },
     {
       "id": "2e105629-c91a-53a3-a398-3d7fb549055f",
       "question": "7 + 2 = ?",
-      "choices": [
-        "9",
-        "8",
-        "10",
-        "7"
-      ],
+      "choices": ["9", "8", "10", "7"],
       "correct": 0,
       "explanation": "7 + 2 = 9"
     },
     {
       "id": "f1d35157-8721-57ad-acae-b81577a67472",
       "question": "3 + 5 = ?",
-      "choices": [
-        "8",
-        "7",
-        "9",
-        "6"
-      ],
+      "choices": ["8", "7", "9", "6"],
       "correct": 0,
       "explanation": "3 + 5 = 8"
     },
     {
       "id": "300ab3bb-5e05-5878-b03b-113f6a5fee05",
       "question": "6 + 3 = ?",
-      "choices": [
-        "9",
-        "8",
-        "10",
-        "7"
-      ],
+      "choices": ["9", "8", "10", "7"],
       "correct": 0,
       "explanation": "6 + 3 = 9"
     },
     {
       "id": "40dff68f-64d9-55fb-8af1-00ce77f658ab",
       "question": "12 + 35 = ?",
-      "choices": [
-        "46",
-        "47",
-        "48",
-        "45"
-      ],
+      "choices": ["46", "47", "48", "45"],
       "correct": 1,
       "explanation": "12 + 35 = 47"
     },
     {
       "id": "8808725d-cd85-5ab2-b575-81752f0eb996",
       "question": "23 + 46 = ?",
-      "choices": [
-        "68",
-        "70",
-        "67",
-        "69"
-      ],
+      "choices": ["68", "70", "67", "69"],
       "correct": 3,
       "explanation": "23 + 46 = 69"
     },
     {
       "id": "07095c6c-882e-5240-bc97-4dcceb4907f8",
       "question": "41 + 53 = ?",
-      "choices": [
-        "95",
-        "93",
-        "96",
-        "94"
-      ],
+      "choices": ["95", "93", "96", "94"],
       "correct": 3,
       "explanation": "41 + 53 = 94"
     },
     {
       "id": "ab1ae971-8491-55f1-a18b-1f58f10f249a",
       "question": "30 + 47 = ?",
-      "choices": [
-        "77",
-        "78",
-        "76",
-        "75"
-      ],
+      "choices": ["77", "78", "76", "75"],
       "correct": 0,
       "explanation": "30 + 47 = 77"
     },
     {
       "id": "19892671-e4e0-5a81-9458-341c4188a121",
       "question": "21 + 63 = ?",
-      "choices": [
-        "83",
-        "85",
-        "84",
-        "86"
-      ],
+      "choices": ["83", "85", "84", "86"],
       "correct": 2,
       "explanation": "21 + 63 = 84"
     },
     {
       "id": "7f92e5e5-f007-5385-8950-5dadd090c61f",
       "question": "123 + 456 = ?",
-      "choices": [
-        "580",
-        "578",
-        "579",
-        "577"
-      ],
+      "choices": ["580", "578", "579", "577"],
       "correct": 2,
       "explanation": "123 + 456 = 579"
     },
     {
       "id": "4e922290-d305-5954-82fb-a6a0ea2ad5ab",
       "question": "231 + 548 = ?",
-      "choices": [
-        "778",
-        "780",
-        "781",
-        "779"
-      ],
+      "choices": ["778", "780", "781", "779"],
       "correct": 3,
       "explanation": "231 + 548 = 779"
     },
     {
       "id": "af47bba8-898c-5cfe-81d5-e8b39d1ea009",
       "question": "304 + 295 = ?",
-      "choices": [
-        "599",
-        "598",
-        "601",
-        "600"
-      ],
+      "choices": ["599", "598", "601", "600"],
       "correct": 0,
       "explanation": "304 + 295 = 599"
     }

@@ -16,120 +16,70 @@
     {
       "id": "0bc5ba71-f132-5484-96db-a76055174f76",
       "question": "I play ___ game.",
-      "choices": [
-        "a",
-        "an",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["a", "an", "the", "（なし）"],
       "correct": 0,
       "explanation": "子音で始まる単語の前には a を使います"
     },
     {
       "id": "e5efab40-8f69-5688-9b2d-5ebc93aaaa0b",
       "question": "I play ___ exciting game.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音で始まる単語の前には an を使います"
     },
     {
       "id": "29ac46ee-fb20-5410-bb54-78b9dcdef528",
       "question": "I play ___ game every day.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "特定のゲームには the を使います"
     },
     {
       "id": "93cab97d-2bb6-5eaf-87f8-cb7891ba34be",
       "question": "She plays ___ game.",
-      "choices": [
-        "a",
-        "an",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["a", "an", "the", "（なし）"],
       "correct": 0,
       "explanation": "不特定の単数名詞には a を使います"
     },
     {
       "id": "078c8940-9a98-5b1c-a26d-860b9f8d7065",
       "question": "He plays ___ old game.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音で始まる単語の前には an を使います"
     },
     {
       "id": "091017a2-df3c-5f62-817b-fcdb7f1649f7",
       "question": "___ game is fun.",
-      "choices": [
-        "The",
-        "A",
-        "An",
-        "（なし）"
-      ],
+      "choices": ["The", "A", "An", "（なし）"],
       "correct": 0,
       "explanation": "特定のゲームには the を使います"
     },
     {
       "id": "10f731b7-d8a7-5e33-a4a2-731b858efed2",
       "question": "I play ___ online game.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音で始まる単語の前には an を使います"
     },
     {
       "id": "9cb80d70-1739-5020-8def-b8d6f78c0af6",
       "question": "I play ___ games.",
-      "choices": [
-        "（なし）",
-        "a",
-        "an",
-        "the"
-      ],
+      "choices": ["（なし）", "a", "an", "the"],
       "correct": 0,
       "explanation": "複数形の一般的な名詞には冠詞は不要です"
     },
     {
       "id": "c343421a-2c85-5704-b98c-c9aeb19c74d0",
       "question": "I have ___ apple.",
-      "choices": [
-        "an",
-        "a",
-        "the",
-        "（なし）"
-      ],
+      "choices": ["an", "a", "the", "（なし）"],
       "correct": 0,
       "explanation": "母音で始まる語の前には an を使います"
     },
     {
       "id": "a18efb67-6378-5d6e-b466-790f026d4733",
       "question": "I went to ___ park near my house.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "お互いに分かっている特定のものには the を使います"
     }

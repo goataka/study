@@ -13,180 +13,105 @@
     {
       "id": "f347b18b-1883-5b6f-93c3-68da3de22e84",
       "question": "「病院」を英語で書くと？",
-      "choices": [
-        "hospital",
-        "library",
-        "museum",
-        "restaurant"
-      ],
+      "choices": ["hospital", "library", "museum", "restaurant"],
       "correct": 0,
       "explanation": "「病院」は英語で hospital です"
     },
     {
       "id": "0e910389-21f2-54c8-aad4-d409e899145f",
       "question": "「図書館」を英語で書くと？",
-      "choices": [
-        "library",
-        "station",
-        "bank",
-        "supermarket"
-      ],
+      "choices": ["library", "station", "bank", "supermarket"],
       "correct": 0,
       "explanation": "「図書館」は英語で library です"
     },
     {
       "id": "d0fcd190-ee32-5c20-bfcc-c632b1719a9e",
       "question": "「駅」を英語で書くと？",
-      "choices": [
-        "station",
-        "museum",
-        "church",
-        "hotel"
-      ],
+      "choices": ["station", "museum", "church", "hotel"],
       "correct": 0,
       "explanation": "「駅」は英語で station です"
     },
     {
       "id": "f9c7b4f5-a2a4-541a-9822-dd30218bdee3",
       "question": "「博物館」を英語で書くと？",
-      "choices": [
-        "museum",
-        "bank",
-        "stadium",
-        "park"
-      ],
+      "choices": ["museum", "bank", "stadium", "park"],
       "correct": 0,
       "explanation": "「博物館」は英語で museum です"
     },
     {
       "id": "834c5835-3ff8-5328-bf1a-a16057356830",
       "question": "「銀行」を英語で書くと？",
-      "choices": [
-        "bank",
-        "church",
-        "restaurant",
-        "zoo"
-      ],
+      "choices": ["bank", "church", "restaurant", "zoo"],
       "correct": 0,
       "explanation": "「銀行」は英語で bank です"
     },
     {
       "id": "94fdce5d-d519-5f52-bc65-069dd558addf",
       "question": "「教会」を英語で書くと？",
-      "choices": [
-        "church",
-        "stadium",
-        "supermarket",
-        "factory"
-      ],
+      "choices": ["church", "stadium", "supermarket", "factory"],
       "correct": 0,
       "explanation": "「教会」は英語で church です"
     },
     {
       "id": "12b8b54b-1249-5b23-9c6b-68a056d83fa6",
       "question": "「スタジアム」を英語で書くと？",
-      "choices": [
-        "stadium",
-        "restaurant",
-        "hotel",
-        "theater"
-      ],
+      "choices": ["stadium", "restaurant", "hotel", "theater"],
       "correct": 0,
       "explanation": "「スタジアム」は英語で stadium です"
     },
     {
       "id": "5b11a00b-d248-50f2-be6d-f1c20c4ad5de",
       "question": "「レストラン」を英語で書くと？",
-      "choices": [
-        "restaurant",
-        "supermarket",
-        "park",
-        "bakery"
-      ],
+      "choices": ["restaurant", "supermarket", "park", "bakery"],
       "correct": 0,
       "explanation": "「レストラン」は英語で restaurant です"
     },
     {
       "id": "2d6294ef-bd76-54cb-bbdf-72dd2de2795c",
       "question": "「スーパーマーケット」を英語で書くと？",
-      "choices": [
-        "supermarket",
-        "hotel",
-        "zoo",
-        "hospital"
-      ],
+      "choices": ["supermarket", "hotel", "zoo", "hospital"],
       "correct": 0,
       "explanation": "「スーパーマーケット」は英語で supermarket です"
     },
     {
       "id": "bb33cd8c-4ab3-519a-93a5-d04d1e2a82fd",
       "question": "「ホテル」を英語で書くと？",
-      "choices": [
-        "hotel",
-        "park",
-        "factory",
-        "library"
-      ],
+      "choices": ["hotel", "park", "factory", "library"],
       "correct": 0,
       "explanation": "「ホテル」は英語で hotel です"
     },
     {
       "id": "1f743a58-c550-5918-a36f-03eb15152e0d",
       "question": "「公園」を英語で書くと？",
-      "choices": [
-        "park",
-        "zoo",
-        "theater",
-        "station"
-      ],
+      "choices": ["park", "zoo", "theater", "station"],
       "correct": 0,
       "explanation": "「公園」は英語で park です"
     },
     {
       "id": "bbe1afcf-545f-545c-a17b-373ee85b38f8",
       "question": "「動物園」を英語で書くと？",
-      "choices": [
-        "zoo",
-        "factory",
-        "bakery",
-        "museum"
-      ],
+      "choices": ["zoo", "factory", "bakery", "museum"],
       "correct": 0,
       "explanation": "「動物園」は英語で zoo です"
     },
     {
       "id": "e0ce7d58-999e-5ed5-be66-b2a33fa24933",
       "question": "「工場」を英語で書くと？",
-      "choices": [
-        "factory",
-        "theater",
-        "hospital",
-        "bank"
-      ],
+      "choices": ["factory", "theater", "hospital", "bank"],
       "correct": 0,
       "explanation": "「工場」は英語で factory です"
     },
     {
       "id": "a293febc-3baa-54c9-a542-491a0e1c2c8e",
       "question": "「劇場」を英語で書くと？",
-      "choices": [
-        "theater",
-        "bakery",
-        "library",
-        "church"
-      ],
+      "choices": ["theater", "bakery", "library", "church"],
       "correct": 0,
       "explanation": "「劇場」は英語で theater です"
     },
     {
       "id": "33a110af-359c-5807-bae4-2d524f8f4571",
       "question": "「パン屋」を英語で書くと？",
-      "choices": [
-        "bakery",
-        "hospital",
-        "station",
-        "stadium"
-      ],
+      "choices": ["bakery", "hospital", "station", "stadium"],
       "correct": 0,
       "explanation": "「パン屋」は英語で bakery です"
     }

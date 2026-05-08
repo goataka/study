@@ -13,180 +13,105 @@
     {
       "id": "72b8a70b-39c6-5083-a113-e79aedcb0f10",
       "question": "「red」の意味は？",
-      "choices": [
-        "あか",
-        "あお",
-        "みどり",
-        "きいろ"
-      ],
+      "choices": ["あか", "あお", "みどり", "きいろ"],
       "correct": 0,
       "explanation": "red は「あか」です"
     },
     {
       "id": "62aa6269-5bce-5be0-924d-a9e5f338012e",
       "question": "「blue」の意味は？",
-      "choices": [
-        "あお",
-        "あか",
-        "みどり",
-        "むらさき"
-      ],
+      "choices": ["あお", "あか", "みどり", "むらさき"],
       "correct": 0,
       "explanation": "blue は「あお」です"
     },
     {
       "id": "0373850d-17cd-5d36-9004-734491a3bd24",
       "question": "「green」の意味は？",
-      "choices": [
-        "みどり",
-        "あお",
-        "きいろ",
-        "ちゃいろ"
-      ],
+      "choices": ["みどり", "あお", "きいろ", "ちゃいろ"],
       "correct": 0,
       "explanation": "green は「みどり」です"
     },
     {
       "id": "cd771c61-3f8c-5a9b-9896-5c82f139b211",
       "question": "「yellow」の意味は？",
-      "choices": [
-        "きいろ",
-        "みどり",
-        "オレンジ",
-        "しろ"
-      ],
+      "choices": ["きいろ", "みどり", "オレンジ", "しろ"],
       "correct": 0,
       "explanation": "yellow は「きいろ」です"
     },
     {
       "id": "c31f3204-43a1-5e04-8920-880850da7346",
       "question": "「white」の意味は？",
-      "choices": [
-        "しろ",
-        "くろ",
-        "きいろ",
-        "ピンク"
-      ],
+      "choices": ["しろ", "くろ", "きいろ", "ピンク"],
       "correct": 0,
       "explanation": "white は「しろ」です"
     },
     {
       "id": "f13027c1-a3c0-50da-a8fc-24ed519ad446",
       "question": "「black」の意味は？",
-      "choices": [
-        "くろ",
-        "しろ",
-        "ちゃいろ",
-        "むらさき"
-      ],
+      "choices": ["くろ", "しろ", "ちゃいろ", "むらさき"],
       "correct": 0,
       "explanation": "black は「くろ」です"
     },
     {
       "id": "20317593-0950-5f1a-a334-6051c0594887",
       "question": "「pink」の意味は？",
-      "choices": [
-        "ピンク",
-        "あか",
-        "むらさき",
-        "オレンジ"
-      ],
+      "choices": ["ピンク", "あか", "むらさき", "オレンジ"],
       "correct": 0,
       "explanation": "pink は「ピンク」です"
     },
     {
       "id": "ad4733e1-de5b-562f-ac26-c69adcd582fd",
       "question": "「purple」の意味は？",
-      "choices": [
-        "むらさき",
-        "ピンク",
-        "あお",
-        "くろ"
-      ],
+      "choices": ["むらさき", "ピンク", "あお", "くろ"],
       "correct": 0,
       "explanation": "purple は「むらさき」です"
     },
     {
       "id": "08cf9e33-51f3-5534-8cac-4fc5379aea3d",
       "question": "「orange」の意味は？",
-      "choices": [
-        "オレンジ（色）",
-        "きいろ",
-        "あか",
-        "ピンク"
-      ],
+      "choices": ["オレンジ（色）", "きいろ", "あか", "ピンク"],
       "correct": 0,
       "explanation": "orange は「オレンジ（色）」です"
     },
     {
       "id": "00a52595-f14e-53df-ae38-de4aa2dd616d",
       "question": "「brown」の意味は？",
-      "choices": [
-        "ちゃいろ",
-        "くろ",
-        "みどり",
-        "オレンジ"
-      ],
+      "choices": ["ちゃいろ", "くろ", "みどり", "オレンジ"],
       "correct": 0,
       "explanation": "brown は「ちゃいろ」です"
     },
     {
       "id": "7e031a47-2622-5cdb-9cd6-2d8bfc138a05",
       "question": "「one」の意味は？",
-      "choices": [
-        "1（いち）",
-        "2（に）",
-        "3（さん）",
-        "4（し）"
-      ],
+      "choices": ["1（いち）", "2（に）", "3（さん）", "4（し）"],
       "correct": 0,
       "explanation": "one は「1（いち）」です"
     },
     {
       "id": "bc6fb640-b72c-5c41-a1c8-095f5b02c478",
       "question": "「two」の意味は？",
-      "choices": [
-        "2（に）",
-        "1（いち）",
-        "3（さん）",
-        "4（し）"
-      ],
+      "choices": ["2（に）", "1（いち）", "3（さん）", "4（し）"],
       "correct": 0,
       "explanation": "two は「2（に）」です"
     },
     {
       "id": "43f08db1-cfe8-5223-9761-41d06369997d",
       "question": "「three」の意味は？",
-      "choices": [
-        "3（さん）",
-        "2（に）",
-        "4（し）",
-        "5（ご）"
-      ],
+      "choices": ["3（さん）", "2（に）", "4（し）", "5（ご）"],
       "correct": 0,
       "explanation": "three は「3（さん）」です"
     },
     {
       "id": "0509fa79-f695-5580-8620-a8bfa2d1b4bd",
       "question": "「four」の意味は？",
-      "choices": [
-        "4（し・よん）",
-        "3（さん）",
-        "5（ご）",
-        "2（に）"
-      ],
+      "choices": ["4（し・よん）", "3（さん）", "5（ご）", "2（に）"],
       "correct": 0,
       "explanation": "four は「4（し・よん）」です"
     },
     {
       "id": "6a5ec87f-40db-5e2b-a160-d2f0af254bde",
       "question": "「five」の意味は？",
-      "choices": [
-        "5（ご）",
-        "4（し）",
-        "3（さん）",
-        "2（に）"
-      ],
+      "choices": ["5（ご）", "4（し）", "3（さん）", "2（に）"],
       "correct": 0,
       "explanation": "five は「5（ご）」です"
     }

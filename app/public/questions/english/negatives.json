@@ -16,120 +16,70 @@
     {
       "id": "11905517-eb59-5e16-8673-77acbd965c59",
       "question": "I ___ play games. (一般動詞・現在・否定)",
-      "choices": [
-        "do not",
-        "does not",
-        "did not",
-        "am not"
-      ],
+      "choices": ["do not", "does not", "did not", "am not"],
       "correct": 0,
       "explanation": "一般動詞の否定文は do not/does not + 動詞の原形です"
     },
     {
       "id": "45092d4d-1414-5260-889f-ba0d7ef89e96",
       "question": "I ___ play games yesterday. (一般動詞・過去・否定)",
-      "choices": [
-        "did not",
-        "do not",
-        "does not",
-        "was not"
-      ],
+      "choices": ["did not", "do not", "does not", "was not"],
       "correct": 0,
       "explanation": "一般動詞の過去形の否定文は did not + 動詞の原形です"
     },
     {
       "id": "6d08d8ae-7c45-5ecb-84d4-6916e75d18fd",
       "question": "I ___ play games tomorrow. (一般動詞・未来・否定)",
-      "choices": [
-        "will not",
-        "do not",
-        "did not",
-        "am not"
-      ],
+      "choices": ["will not", "do not", "did not", "am not"],
       "correct": 0,
       "explanation": "未来形の否定文は will not + 動詞の原形です"
     },
     {
       "id": "4dc8ee46-e68e-5942-8000-609c52451004",
       "question": "I ___ happy. (be動詞・現在・否定)",
-      "choices": [
-        "am not",
-        "do not",
-        "is not",
-        "was not"
-      ],
+      "choices": ["am not", "do not", "is not", "was not"],
       "correct": 0,
       "explanation": "be動詞の否定文は be動詞 + not です"
     },
     {
       "id": "4cf752ae-7ec8-53a2-931b-59f955d336fd",
       "question": "I ___ happy yesterday. (be動詞・過去・否定)",
-      "choices": [
-        "was not",
-        "am not",
-        "were not",
-        "did not"
-      ],
+      "choices": ["was not", "am not", "were not", "did not"],
       "correct": 0,
       "explanation": "be動詞の否定文は be動詞 + not です"
     },
     {
       "id": "cba64951-1c8e-58dc-89fa-3d8965f89c3f",
       "question": "She ___ play games. (三人称・現在・否定)",
-      "choices": [
-        "does not",
-        "do not",
-        "did not",
-        "is not"
-      ],
+      "choices": ["does not", "do not", "did not", "is not"],
       "correct": 0,
       "explanation": "三人称単数の否定文は does not + 動詞の原形です"
     },
     {
       "id": "53659dfe-14a3-58d1-83d8-17b6b06d6c4f",
       "question": "I ___ playing games now. (進行形・否定)",
-      "choices": [
-        "am not",
-        "do not",
-        "is not",
-        "was not"
-      ],
+      "choices": ["am not", "do not", "is not", "was not"],
       "correct": 0,
       "explanation": "進行形の否定文は be動詞 + not + -ing です"
     },
     {
       "id": "33dff92b-17e8-576a-9f92-9e37eec489e2",
       "question": "They ___ students. (be動詞・現在・否定)",
-      "choices": [
-        "are not",
-        "is not",
-        "do not",
-        "were not"
-      ],
+      "choices": ["are not", "is not", "do not", "were not"],
       "correct": 0,
       "explanation": "複数形のbe動詞の否定文は are not です"
     },
     {
       "id": "cba7bae1-a55f-5371-a7b8-d2290f789c84",
       "question": "He ___ soccer. (三人称・現在・否定)",
-      "choices": [
-        "doesn't play",
-        "don't play",
-        "didn't play",
-        "isn't play"
-      ],
+      "choices": ["doesn't play", "don't play", "didn't play", "isn't play"],
       "correct": 0,
       "explanation": "三人称単数現在の否定には doesn't + 動詞の原形を使います"
     },
     {
       "id": "867e7377-2291-5d3e-9c0f-da06759ef7c9",
       "question": "We ___ late. (be動詞・過去・否定)",
-      "choices": [
-        "weren't",
-        "wasn't",
-        "aren't",
-        "isn't"
-      ],
+      "choices": ["weren't", "wasn't", "aren't", "isn't"],
       "correct": 0,
       "explanation": "we の過去の否定には weren't を使います"
     }
