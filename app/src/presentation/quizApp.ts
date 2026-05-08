@@ -21,14 +21,25 @@ import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./p
 import { buildHistoryItem } from "./historyItemView";
 import { buildShareSummaryText, filterRecordsBySelectedDate } from "./shareSummary";
 import {
+  buildSelectedUnitInfoBody,
+  buildSelectedUnitInfoSimpleBody,
+  buildSelectedUnitCloseButton,
+} from "./selectedUnitInfoView";
+import {
+  groupRecommendedByCategory,
+  buildSubjectOverviewHeaderRow,
+  buildSubjectOverviewEmptyItem,
+  buildCategoryGroupHeader,
+  buildRecommendedUnitCard,
+} from "./allSubjectListView";
+import { buildCategoryItem } from "./categoryItemView";
+import {
   SUBJECTS,
-  gradeColorClass,
   calcDualProgressPct,
   currentDateString,
   sanitizeShareUrl,
   setText,
   on,
-  renderBacktickText,
   fallbackCopy,
 } from "./uiHelpers";
 
@@ -1051,231 +1062,53 @@ export class QuizApp {
     categoryList.innerHTML = "";
 
     const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
+    const studiedKeys = this.useCase.getStudiedCategoryKeys();
 
     for (const subject of nonAllSubjects) {
       const count = this.subjectRecommendedCounts.get(subject.id) ?? 1;
       const recommendedList = this.useCase.getRecommendedCategoriesForSubject(subject.id, count);
 
-      // ラッパー
       const wrapper = document.createElement("div");
       wrapper.className = "subject-overview-wrapper";
 
       // 教科名行: アイコン・名称と教科ごとの表示数コントロール
-      const subjectRow = document.createElement("div");
-      subjectRow.className = "subject-overview-subject-row";
-      const iconSpan = document.createElement("span");
-      iconSpan.className = "subject-overview-icon";
-      iconSpan.textContent = subject.icon;
-      const nameSpan = document.createElement("span");
-      nameSpan.className = "subject-overview-name";
-      nameSpan.textContent = subject.name;
-      subjectRow.appendChild(iconSpan);
-      subjectRow.appendChild(nameSpan);
-
-      // 教科ごとの表示数コントロール（1 / 3 / 5）
-      const countControls = document.createElement("div");
-      countControls.className = "subject-rec-count-controls";
-      const countLabel = document.createElement("span");
-      countLabel.className = "subject-rec-count-label";
-      countLabel.textContent = "目標数:";
-      countControls.appendChild(countLabel);
-      for (const n of [1, 3, 5]) {
-        const btn = document.createElement("button");
-        btn.className = "overall-rec-count-btn";
-        btn.type = "button";
-        btn.textContent = String(n);
-        btn.setAttribute("aria-pressed", String(count === n));
-        if (count === n) btn.classList.add("active");
-        const capturedSubjectId = subject.id;
-        btn.addEventListener("click", () => {
-          this.subjectRecommendedCounts.set(capturedSubjectId, n);
+      wrapper.appendChild(
+        buildSubjectOverviewHeaderRow(subject, count, (n) => {
+          this.subjectRecommendedCounts.set(subject.id, n);
           this.saveRecommendedCounts();
           this.renderCategoryList();
-        });
-        countControls.appendChild(btn);
-      }
-      subjectRow.appendChild(countControls);
-      wrapper.appendChild(subjectRow);
+        }),
+      );
 
       if (recommendedList.length === 0) {
-        // 単元なしの場合はシンプルなカードを表示
-        const item = document.createElement("div");
-        item.className = "subject-overview-item";
-        item.dataset.subject = subject.id;
-        item.textContent = "単元なし";
-        wrapper.appendChild(item);
+        wrapper.appendChild(buildSubjectOverviewEmptyItem(subject.id));
         categoryList.appendChild(wrapper);
         continue;
       }
 
-      // 同一親カテゴリでグループ化する
-      // key: "topCatId::parentCatId" （どちらかが空の場合は空文字）
-      type CatGroupKey = string;
-      const groupOrder: CatGroupKey[] = [];
-      const groupMap = new Map<
-        CatGroupKey,
-        {
-          topCatId: string;
-          topCatName: string;
-          parentCatId: string;
-          parentCatName: string;
-          items: typeof recommendedList;
-        }
-      >();
-
-      for (const recommended of recommendedList) {
-        const parentCat = this.useCase.getParentCategoryForUnit(subject.id, recommended.id);
-        const topCat = this.useCase.getTopCategoryForUnit(subject.id, recommended.id);
-        const topCatId = topCat?.id ?? "";
-        const topCatName = topCat?.name ?? "";
-        const parentCatId = parentCat?.id ?? "";
-        const parentCatName = parentCat?.name ?? "";
-        const key: CatGroupKey = `${topCatId}::${parentCatId}`;
-        if (!groupMap.has(key)) {
-          groupMap.set(key, { topCatId, topCatName, parentCatId, parentCatName, items: [] });
-          groupOrder.push(key);
-        }
-        groupMap.get(key)!.items.push(recommended);
-      }
-
-      // 未学習単元を含むグループを先頭に（未学習を上から表示するため）
-      groupOrder.sort((a, b) => {
-        const aHasUnlearned = groupMap.get(a)!.items.some((i) => !i.isLearned);
-        const bHasUnlearned = groupMap.get(b)!.items.some((i) => !i.isLearned);
-        if (aHasUnlearned && !bHasUnlearned) return -1;
-        if (!aHasUnlearned && bHasUnlearned) return 1;
-        return 0;
-      });
-      // 各グループ内でも未学習単元を先頭に
-      for (const key of groupOrder) {
-        const group = groupMap.get(key)!;
-        group.items.sort((a, b) => {
-          if (!a.isLearned && b.isLearned) return -1;
-          if (a.isLearned && !b.isLearned) return 1;
-          return 0;
-        });
-      }
+      // 同一親カテゴリでグループ化（未学習を含むグループ／単元が先頭）
+      const groups = groupRecommendedByCategory(subject.id, recommendedList, this.useCase);
 
       // グループごとにヘッダーとカードを描画する
-      const studiedKeys = this.useCase.getStudiedCategoryKeys();
-      for (const key of groupOrder) {
-        const group = groupMap.get(key)!;
+      for (const group of groups) {
         const catGroup = document.createElement("div");
         catGroup.className = "subject-overview-cat-group";
 
-        // カテゴリヘッダー（topCat › parentCat, もしくは parentCat のみ）
-        if (group.parentCatId) {
-          const catHeader = document.createElement("div");
-          catHeader.className = "subject-overview-cat-header";
-          if (group.topCatId && group.topCatId !== group.parentCatId) {
-            const topSpan = document.createElement("span");
-            topSpan.className = "subject-overview-outer-cat";
-            topSpan.textContent = group.topCatName;
-            catHeader.appendChild(topSpan);
-            const arrow = document.createElement("span");
-            arrow.className = "subject-overview-cat-header-arrow";
-            arrow.textContent = " › ";
-            catHeader.appendChild(arrow);
-          }
-          const parentSpan = document.createElement("span");
-          parentSpan.className = "subject-overview-outer-cat";
-          parentSpan.textContent = group.parentCatName;
-          catHeader.appendChild(parentSpan);
-          catGroup.appendChild(catHeader);
-        }
+        const header = buildCategoryGroupHeader(group);
+        if (header) catGroup.appendChild(header);
 
-        // グループ内の各単元カード
         for (const recommended of group.items) {
-          const item = document.createElement("div");
-          item.className = "subject-overview-item";
-          item.setAttribute("role", "button");
-          item.setAttribute("tabindex", "0");
-          item.dataset.subject = subject.id;
-
-          // 単元一覧と同じレイアウト: ステータスアイコン + 名前エリア
-          const statusSpan = document.createElement("span");
-          statusSpan.className = "subject-overview-status";
-          statusSpan.setAttribute("aria-hidden", "true");
-
           const { mastered, total } = this.useCase.getMasteredCountForCategory(subject.id, recommended.id);
           const inProgressCount = this.useCase.getInProgressCount({ subject: subject.id, category: recommended.id });
           const catKey = `${subject.id}::${recommended.id}`;
           const isAllMastered = total > 0 && mastered === total;
           const isStudying = !isAllMastered && (inProgressCount > 0 || studiedKeys.has(catKey));
-          if (isAllMastered) {
-            statusSpan.textContent = "✅";
-          } else if (isStudying) {
-            statusSpan.textContent = "🔄";
-          } else {
-            statusSpan.textContent = "⬜";
-          }
 
-          const nameArea = document.createElement("div");
-          nameArea.className = "subject-overview-name-area";
-
-          // タイトル行: 名前（左）+ 学年バッジ（右）
-          const titleRow = document.createElement("div");
-          titleRow.className = "subject-overview-title-row";
-          const recName = document.createElement("span");
-          recName.className = "subject-overview-rec-name";
-          recName.textContent = recommended.name;
-          titleRow.appendChild(recName);
-
-          if (recommended.referenceGrade) {
-            const gradeSpan = document.createElement("span");
-            gradeSpan.className = "subject-overview-grade";
-            const gradeClassName = gradeColorClass(recommended.referenceGrade);
-            if (gradeClassName) {
-              gradeSpan.classList.add(gradeClassName);
-            }
-            gradeSpan.textContent = recommended.referenceGrade;
-            titleRow.appendChild(gradeSpan);
-          }
-          nameArea.appendChild(titleRow);
-
-          // 進捗行: 進捗バー（緑+黄）+ 進捗数値
-          const progressRow = document.createElement("div");
-          progressRow.className = "subject-overview-progress-row";
-          const progressBar = document.createElement("div");
-          progressBar.className = "subject-overview-progress-bar";
-          const progressFill = document.createElement("div");
-          progressFill.className = "subject-overview-progress-fill";
-          const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCount, total);
-          progressFill.style.width = `${masteredPct}%`;
-          progressBar.appendChild(progressFill);
-          const progressFillInProgress = document.createElement("div");
-          progressFillInProgress.className = "subject-overview-progress-fill-inprogress";
-          progressFillInProgress.style.width = `${inProgressPct}%`;
-          progressBar.appendChild(progressFillInProgress);
-          progressRow.appendChild(progressBar);
-
-          if (total > 0) {
-            const pctSpan = document.createElement("span");
-            pctSpan.className = "subject-overview-pct";
-            pctSpan.textContent =
-              inProgressCount > 0 ? `${mastered}(${inProgressCount})/${total}` : `${mastered}/${total}`;
-            progressRow.appendChild(pctSpan);
-          }
-          nameArea.appendChild(progressRow);
-
-          item.appendChild(statusSpan);
-          item.appendChild(nameArea);
-
-          const capturedRec = recommended;
-          const capturedSubjectId = subject.id;
-          const handleActivate = (): void => {
-            this.selectUnitContext(capturedSubjectId, capturedRec.id, capturedRec.name);
-          };
-
-          item.addEventListener("click", handleActivate);
-          item.addEventListener("keydown", (e: KeyboardEvent) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleActivate();
-            }
-          });
-
-          catGroup.appendChild(item);
+          catGroup.appendChild(
+            buildRecommendedUnitCard(subject.id, recommended, { mastered, total, inProgressCount, isStudying }, () =>
+              this.selectUnitContext(subject.id, recommended.id, recommended.name),
+            ),
+          );
         }
 
         wrapper.appendChild(catGroup);
@@ -1651,117 +1484,26 @@ export class QuizApp {
     parentCatId?: string,
     topCatId?: string,
   ): HTMLElement {
-    const item = document.createElement("div");
-    item.className = "category-item";
-    item.dataset.subject = subject;
-    item.dataset.category = categoryId;
-    if (parentCatId) {
-      item.dataset.parentCategory = parentCatId;
-    }
-    if (topCatId) {
-      item.dataset.topCategory = topCatId;
-    }
-    item.setAttribute("role", "button");
-    item.setAttribute("tabindex", "0");
-
-    const statusSpan = document.createElement("span");
-    statusSpan.className = "category-status";
-    statusSpan.setAttribute("aria-hidden", "true");
-    statusSpan.textContent = "⬜";
-
-    // カテゴリ名 + 例文 + 進捗バーのエリア
-    const nameArea = document.createElement("div");
-    nameArea.className = "category-name-area";
-
-    // タイトルと例文・説明文を横並びにするラッパー
-    const titleRow = document.createElement("div");
-    titleRow.className = "category-title-row";
-
-    const nameSpan = document.createElement("span");
-    nameSpan.className = "category-name";
-    nameSpan.textContent = categoryName;
-    titleRow.appendChild(nameSpan);
-
     // 学年別ビューでは親カテゴリ・トップカテゴリの名称を表示する
+    let hierarchy: { topName?: string; parentName?: string } | undefined;
     if (this.categoryViewMode === "grade") {
       const parentInfo = this.useCase.getParentCategoryForUnit(subject, categoryId);
       const topInfo = this.useCase.getTopCategoryForUnit(subject, categoryId);
-      const nameParts: string[] = [];
-      if (topInfo) nameParts.push(topInfo.name);
-      if (parentInfo) nameParts.push(parentInfo.name);
-      if (nameParts.length > 0) {
-        const hierarchySpan = document.createElement("span");
-        hierarchySpan.className = "category-hierarchy";
-        hierarchySpan.textContent = nameParts.join(" › ");
-        titleRow.appendChild(hierarchySpan);
-      }
+      hierarchy = { topName: topInfo?.name, parentName: parentInfo?.name };
     }
 
-    nameArea.appendChild(titleRow);
-
-    // 進捗バーと進捗数値を横並びにするラッパー
-    const progressRow = document.createElement("div");
-    progressRow.className = "category-progress-row";
-
-    const progressBar = document.createElement("div");
-    progressBar.className = "category-progress-bar";
-    const progressFill = document.createElement("div");
-    progressFill.className = "category-progress-fill";
-    progressBar.appendChild(progressFill);
-    const progressFillInProgress = document.createElement("div");
-    progressFillInProgress.className = "category-progress-fill-inprogress";
-    progressBar.appendChild(progressFillInProgress);
-
-    const statsSpan = document.createElement("span");
-    statsSpan.className = "category-stats";
-
-    progressRow.appendChild(progressBar);
-    progressRow.appendChild(statsSpan);
-
-    nameArea.appendChild(progressRow);
-
-    // 参考学年バッジ（referenceGrade が設定されている場合のみ表示、学年別ビューでは非表示）
-    const referenceGrade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
-    const gradeSpan = document.createElement("span");
-    gradeSpan.className = "category-grade";
-    if (referenceGrade && this.categoryViewMode !== "grade") {
-      gradeSpan.textContent = referenceGrade;
-      const gradeClass = gradeColorClass(referenceGrade);
-      if (gradeClass) {
-        gradeSpan.classList.add(gradeClass);
-      }
-      titleRow.appendChild(gradeSpan);
-    }
-
-    // 左列に statusSpan・nameArea をまとめる（gradeSpan・statsSpanは nameArea 内に配置済み）
-    const leftCol = document.createElement("div");
-    leftCol.className = "category-item-left";
-    leftCol.appendChild(statusSpan);
-    leftCol.appendChild(nameArea);
-    item.appendChild(leftCol);
-
-    // 説明・例文は右列に常時表示
-    const description = this.useCase.getCategoryDescription(subject, categoryId);
-    const example = this.useCase.getCategoryExample(subject, categoryId);
-
-    if (description !== undefined || example !== undefined) {
-      item.classList.add("category-item-has-info");
-      const rightCol = document.createElement("div");
-      rightCol.className = "category-item-right";
-      if (description) {
-        const descSpan = document.createElement("span");
-        descSpan.className = "category-item-description";
-        descSpan.textContent = description;
-        rightCol.appendChild(descSpan);
-      }
-      if (example !== undefined) {
-        const exampleSpan = document.createElement("span");
-        exampleSpan.className = "category-example";
-        renderBacktickText(exampleSpan, example);
-        rightCol.appendChild(exampleSpan);
-      }
-      item.appendChild(rightCol);
-    }
+    const item = buildCategoryItem({
+      subject,
+      categoryId,
+      categoryName,
+      parentCatId,
+      topCatId,
+      hierarchy,
+      referenceGrade: this.useCase.getCategoryReferenceGrade(subject, categoryId),
+      showReferenceGrade: this.categoryViewMode !== "grade",
+      description: this.useCase.getCategoryDescription(subject, categoryId),
+      example: this.useCase.getCategoryExample(subject, categoryId),
+    });
 
     const handleActivate = (e: Event): void => {
       e.stopPropagation();
@@ -1960,116 +1702,10 @@ export class QuizApp {
 
     // 総合タブから単元が選択されている場合: 教科の画面と同じ形式で詳細を表示
     if (this.selectedUnitContext !== null) {
-      container.classList.remove("hidden");
-      container.innerHTML = "";
-
-      const subject = this.selectedUnitContext.subject;
-      const categoryId = this.selectedUnitContext.categoryId;
-
-      const body = document.createElement("div");
-      body.className = "selected-unit-info-body";
-
-      const topInfo = this.useCase.getTopCategoryForUnit(subject, categoryId);
-      const parentInfo = this.useCase.getParentCategoryForUnit(subject, categoryId);
-      const catParts: string[] = [];
-      if (topInfo) catParts.push(topInfo.name);
-      if (parentInfo) catParts.push(parentInfo.name);
-      const grade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
-      const example = this.useCase.getCategoryExample(subject, categoryId);
-      const description = this.useCase.getCategoryDescription(subject, categoryId);
-
-      // 行1: タイトル（左） / 説明（右）
-      const headerRow = document.createElement("div");
-      headerRow.className = "selected-unit-info-header-row";
-
-      const headerLeft = document.createElement("div");
-      headerLeft.className = "selected-unit-info-header-left";
-      const nameSpan = document.createElement("span");
-      nameSpan.className = "selected-unit-info-name";
-      nameSpan.textContent = this.selectedUnitContext.categoryName;
-      headerLeft.appendChild(nameSpan);
-      headerRow.appendChild(headerLeft);
-
-      if (description !== undefined) {
-        const headerRight = document.createElement("div");
-        headerRight.className = "selected-unit-info-header-right";
-        const descDiv = document.createElement("div");
-        descDiv.className = "selected-unit-info-desc-right selected-unit-info-desc";
-        descDiv.textContent = description;
-        headerRight.appendChild(descDiv);
-        headerRow.appendChild(headerRight);
-      }
-      body.appendChild(headerRow);
-
-      // 行2: カテゴリ+学年（左） / 例文（右）
-      const hasCatOrGrade = catParts.length > 0 || !!grade;
-      if (hasCatOrGrade || example !== undefined) {
-        const descRow = document.createElement("div");
-        descRow.className = "selected-unit-info-desc-row";
-
-        const descLeft = document.createElement("div");
-        descLeft.className = "selected-unit-info-desc-left";
-        if (catParts.length > 0) {
-          const catLabel = document.createElement("span");
-          catLabel.className = "selected-unit-info-category";
-          catLabel.textContent = catParts.join(" › ");
-          descLeft.appendChild(catLabel);
-        }
-        if (grade) {
-          const gradeSpan = document.createElement("span");
-          gradeSpan.className = "category-grade";
-          const gradeClass = gradeColorClass(grade);
-          if (gradeClass) gradeSpan.classList.add(gradeClass);
-          gradeSpan.textContent = grade;
-          descLeft.appendChild(gradeSpan);
-        }
-        descRow.appendChild(descLeft);
-
-        if (example !== undefined) {
-          const descRight = document.createElement("div");
-          descRight.className = "selected-unit-info-desc-right selected-unit-info-example";
-          renderBacktickText(descRight, example);
-          descRow.appendChild(descRight);
-        }
-        body.appendChild(descRow);
-      }
-
-      // 行3: ステータスバー（全幅）
-      const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, categoryId);
-      const inProgressCount = this.useCase.getInProgressCount({ subject, category: categoryId });
-      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCount, total);
-      const progressRow = document.createElement("div");
-      progressRow.className = "selected-unit-progress-row";
-      const progressBar = document.createElement("div");
-      progressBar.className = "selected-unit-progress-bar";
-      const progressFill = document.createElement("div");
-      progressFill.className = "selected-unit-progress-fill";
-      progressFill.style.width = `${masteredPct}%`;
-      progressBar.appendChild(progressFill);
-      const progressFillInProgress = document.createElement("div");
-      progressFillInProgress.className = "selected-unit-progress-fill-inprogress";
-      progressFillInProgress.style.width = `${inProgressPct}%`;
-      progressBar.appendChild(progressFillInProgress);
-      const progressLabel = document.createElement("span");
-      progressLabel.className = "selected-unit-progress-label";
-      progressLabel.textContent =
-        inProgressCount > 0 ? `${mastered}(${inProgressCount})/${total}` : `${mastered}/${total}`;
-      progressRow.appendChild(progressBar);
-      progressRow.appendChild(progressLabel);
-      body.appendChild(progressRow);
-
-      container.appendChild(body);
-
-      const closeBtn = document.createElement("button");
-      closeBtn.className = "selected-unit-close-btn";
-      closeBtn.type = "button";
-      closeBtn.textContent = "✕";
-      closeBtn.title = "閉じる";
-      closeBtn.setAttribute("aria-label", "単元の解説を閉じる");
-      closeBtn.addEventListener("click", () => this.closeOverallUnitView());
-      container.appendChild(closeBtn);
-
-      document.getElementById("categoryList")?.classList.add("detail-active");
+      const { subject, categoryId, categoryName } = this.selectedUnitContext;
+      this.renderSelectedUnitInfo(container, subject, categoryId, categoryName, "単元の解説を閉じる", () =>
+        this.closeOverallUnitView(),
+      );
       return;
     }
 
@@ -2082,132 +1718,74 @@ export class QuizApp {
     container.classList.remove("hidden");
     container.innerHTML = "";
 
-    const body = document.createElement("div");
-    body.className = "selected-unit-info-body";
-
-    const nameSpan = document.createElement("span");
-    nameSpan.className = "selected-unit-info-name";
-
     if (selLevel === "unit") {
       const cats = this.useCase.getCategoriesForSubject(this.filter.subject);
-      nameSpan.textContent = cats[this.filter.category] ?? this.filter.category;
-    } else if (selLevel === "parentCategory" && this.filter.parentCategory) {
+      const name = cats[this.filter.category] ?? this.filter.category;
+      this.renderSelectedUnitInfo(
+        container,
+        this.filter.subject,
+        this.filter.category,
+        name,
+        "選択を解除して閉じる",
+        () => this.deselectAndRefresh(),
+      );
+      return;
+    }
+
+    // カテゴリ・トップカテゴリ選択時: タイトルのみ
+    let name: string;
+    if (selLevel === "parentCategory" && this.filter.parentCategory) {
       const parentCats = this.useCase.getParentCategoriesForSubject(this.filter.subject);
-      nameSpan.textContent = parentCats[this.filter.parentCategory] ?? this.filter.parentCategory;
+      name = parentCats[this.filter.parentCategory] ?? this.filter.parentCategory;
     } else if (selLevel === "topCategory" && this.selectedTopCategoryId) {
       const topCats = this.useCase.getTopCategoriesForSubject(this.filter.subject);
-      nameSpan.textContent = topCats[this.selectedTopCategoryId] ?? this.selectedTopCategoryId;
-    }
-
-    // 詳細行（単元選択時のみ）: 新レイアウト
-    if (selLevel === "unit") {
-      const topInfo = this.useCase.getTopCategoryForUnit(this.filter.subject, this.filter.category);
-      const parentInfo = this.useCase.getParentCategoryForUnit(this.filter.subject, this.filter.category);
-      const catParts: string[] = [];
-      if (topInfo) catParts.push(topInfo.name);
-      if (parentInfo) catParts.push(parentInfo.name);
-      const grade = this.useCase.getCategoryReferenceGrade(this.filter.subject, this.filter.category);
-      const example = this.useCase.getCategoryExample(this.filter.subject, this.filter.category);
-      const description = this.useCase.getCategoryDescription(this.filter.subject, this.filter.category);
-
-      // 行1: タイトル（左） / 説明（右）
-      const headerRow = document.createElement("div");
-      headerRow.className = "selected-unit-info-header-row";
-
-      const headerLeft = document.createElement("div");
-      headerLeft.className = "selected-unit-info-header-left";
-      headerLeft.appendChild(nameSpan);
-      headerRow.appendChild(headerLeft);
-
-      if (description !== undefined) {
-        const headerRight = document.createElement("div");
-        headerRight.className = "selected-unit-info-header-right";
-        const descDiv = document.createElement("div");
-        descDiv.className = "selected-unit-info-desc-right selected-unit-info-desc";
-        descDiv.textContent = description;
-        headerRight.appendChild(descDiv);
-        headerRow.appendChild(headerRight);
-      }
-      body.appendChild(headerRow);
-
-      // 行2: カテゴリ+学年（左） / 例文（右）
-      const hasCatOrGrade = catParts.length > 0 || !!grade;
-      if (hasCatOrGrade || example !== undefined) {
-        const descRow = document.createElement("div");
-        descRow.className = "selected-unit-info-desc-row";
-
-        const descLeft = document.createElement("div");
-        descLeft.className = "selected-unit-info-desc-left";
-        if (catParts.length > 0) {
-          const catLabel = document.createElement("span");
-          catLabel.className = "selected-unit-info-category";
-          catLabel.textContent = catParts.join(" › ");
-          descLeft.appendChild(catLabel);
-        }
-        if (grade) {
-          const gradeSpan = document.createElement("span");
-          gradeSpan.className = "category-grade";
-          const gradeClass = gradeColorClass(grade);
-          if (gradeClass) gradeSpan.classList.add(gradeClass);
-          gradeSpan.textContent = grade;
-          descLeft.appendChild(gradeSpan);
-        }
-        descRow.appendChild(descLeft);
-
-        if (example !== undefined) {
-          const descRight = document.createElement("div");
-          descRight.className = "selected-unit-info-desc-right selected-unit-info-example";
-          renderBacktickText(descRight, example);
-          descRow.appendChild(descRight);
-        }
-        body.appendChild(descRow);
-      }
-
-      // 行3: ステータスバー（全幅）
-      const { mastered, total } = this.useCase.getMasteredCountForCategory(this.filter.subject, this.filter.category);
-      const inProgressCountSidebar = this.useCase.getInProgressCount({
-        subject: this.filter.subject,
-        category: this.filter.category,
-      });
-      const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCountSidebar, total);
-      const progressRow = document.createElement("div");
-      progressRow.className = "selected-unit-progress-row";
-      const progressBar = document.createElement("div");
-      progressBar.className = "selected-unit-progress-bar";
-      const progressFill = document.createElement("div");
-      progressFill.className = "selected-unit-progress-fill";
-      progressFill.style.width = `${masteredPct}%`;
-      progressBar.appendChild(progressFill);
-      const progressFillInProgress = document.createElement("div");
-      progressFillInProgress.className = "selected-unit-progress-fill-inprogress";
-      progressFillInProgress.style.width = `${inProgressPct}%`;
-      progressBar.appendChild(progressFillInProgress);
-      const progressLabel = document.createElement("span");
-      progressLabel.className = "selected-unit-progress-label";
-      progressLabel.textContent =
-        inProgressCountSidebar > 0 ? `${mastered}(${inProgressCountSidebar})/${total}` : `${mastered}/${total}`;
-      progressRow.appendChild(progressBar);
-      progressRow.appendChild(progressLabel);
-      body.appendChild(progressRow);
+      name = topCats[this.selectedTopCategoryId] ?? this.selectedTopCategoryId;
     } else {
-      // カテゴリ・トップカテゴリ選択時: タイトルのみ
-      body.appendChild(nameSpan);
+      name = "";
     }
 
-    container.appendChild(body);
+    container.appendChild(buildSelectedUnitInfoSimpleBody(name));
+    container.appendChild(buildSelectedUnitCloseButton("選択を解除して閉じる", () => this.deselectAndRefresh()));
+    document.getElementById("categoryList")?.classList.add("detail-active");
+  }
 
-    // 閉じるボタン（選択を解除して右パネルを閉じる）
-    const closeBtn = document.createElement("button");
-    closeBtn.className = "selected-unit-close-btn";
-    closeBtn.type = "button";
-    closeBtn.textContent = "✕";
-    closeBtn.title = "閉じる";
-    closeBtn.setAttribute("aria-label", "選択を解除して閉じる");
-    closeBtn.addEventListener("click", () => {
-      this.deselectAndRefresh();
-    });
-    container.appendChild(closeBtn);
+  /**
+   * 単元 1 件分の詳細パネル（タイトル・カテゴリ・例文・進捗バー＋閉じるボタン）を
+   * #selectedUnitInfo コンテナに描画する。
+   */
+  private renderSelectedUnitInfo(
+    container: HTMLElement,
+    subject: string,
+    categoryId: string,
+    categoryName: string,
+    closeAriaLabel: string,
+    onClose: () => void,
+  ): void {
+    container.classList.remove("hidden");
+    container.innerHTML = "";
 
+    const topInfo = this.useCase.getTopCategoryForUnit(subject, categoryId);
+    const parentInfo = this.useCase.getParentCategoryForUnit(subject, categoryId);
+    const grade = this.useCase.getCategoryReferenceGrade(subject, categoryId);
+    const example = this.useCase.getCategoryExample(subject, categoryId);
+    const description = this.useCase.getCategoryDescription(subject, categoryId);
+    const { mastered, total } = this.useCase.getMasteredCountForCategory(subject, categoryId);
+    const inProgressCount = this.useCase.getInProgressCount({ subject, category: categoryId });
+
+    container.appendChild(
+      buildSelectedUnitInfoBody({
+        name: categoryName,
+        topCatName: topInfo?.name,
+        parentCatName: parentInfo?.name,
+        grade,
+        example,
+        description,
+        mastered,
+        inProgressCount,
+        total,
+      }),
+    );
+    container.appendChild(buildSelectedUnitCloseButton(closeAriaLabel, onClose));
     document.getElementById("categoryList")?.classList.add("detail-active");
   }
 
@@ -2544,6 +2122,22 @@ export class QuizApp {
   // ─── イベント登録 ──────────────────────────────────────────────────────────
 
   private setupEventListeners(): void {
+    this.setupQuizFlowListeners();
+    this.setupQuestionListFilterListeners();
+    this.setupHeaderListeners();
+    this.setupAvatarListeners();
+    this.setupQuizSettingsListeners();
+    this.setupNotesListeners();
+    this.setupKanjiCanvasListeners();
+    this.setupCategoryStatusFilterListeners();
+    this.setupNotesPenSelectListeners();
+    this.setupFontSizeListeners();
+    this.setupShareSummaryListeners();
+    this.setupHistoryNavigationListeners();
+  }
+
+  /** クイズ進行ボタン（開始・前後・採点・キャンセルなど）のリスナー登録 */
+  private setupQuizFlowListeners(): void {
     on("startRandomBtn", "click", () => {
       this.startQuiz("random").catch(console.error);
     });
@@ -2558,8 +2152,11 @@ export class QuizApp {
     on("cancelQuizBtn", "click", () => {
       void this.navigateToStart();
     });
+    on("reloadBtn", "click", () => location.reload());
+  }
 
-    // 問題一覧フィルターボタン
+  /** 問題一覧の学習状態フィルターボタンのリスナー登録 */
+  private setupQuestionListFilterListeners(): void {
     const filterBtns = [
       { id: "questionListFilterAll", value: "all" as const },
       { id: "questionListFilterUnlearned", value: "unlearned" as const },
@@ -2575,7 +2172,10 @@ export class QuizApp {
         this.renderQuestionList();
       });
     });
+  }
 
+  /** ヘッダー部分（タイトル・ユーザー名編集）のリスナー登録 */
+  private setupHeaderListeners(): void {
     // タイトルクリックでスタート画面へ
     const titleBtn = document.getElementById("titleBtn");
     if (titleBtn) {
@@ -2591,13 +2191,36 @@ export class QuizApp {
     }
 
     // ヘッダーのユーザー名をクリックして編集を開く
-    const headerUserNameBtn = document.getElementById("headerUserName");
-    headerUserNameBtn?.addEventListener("click", () => this.openUserNameEdit());
+    document.getElementById("headerUserName")?.addEventListener("click", () => this.openUserNameEdit());
     // 保存ボタン
-    const headerUserNameSaveBtn = document.getElementById("headerUserNameSaveBtn");
-    headerUserNameSaveBtn?.addEventListener("click", () => this.saveHeaderUserName());
+    document.getElementById("headerUserNameSaveBtn")?.addEventListener("click", () => this.saveHeaderUserName());
 
-    // アバターボタンクリック → ダイアログを開く
+    // 入力フィールド：Enterで保存、Escapeでキャンセル
+    const headerUserNameInput = document.getElementById("headerUserNameInput");
+    headerUserNameInput?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        this.saveHeaderUserName();
+      } else if (e.key === "Escape") {
+        this.closeUserNameEdit();
+      }
+    });
+    headerUserNameInput?.addEventListener("blur", (e: FocusEvent) => {
+      // 保存ボタンへのフォーカス移動はスキップ（保存ボタンのclickが先に発火するため）
+      const relatedTarget = e.relatedTarget as HTMLElement | null;
+      if (relatedTarget?.id !== "headerUserNameSaveBtn") {
+        this.saveHeaderUserName();
+      }
+    });
+
+    // ヘッダーのメニューボタン（管理パネルへのナビゲーション）
+    document.getElementById("adminMenuBtn")?.addEventListener("click", () => {
+      this.navigateToAdmin();
+    });
+  }
+
+  /** アバター画像（ヘッダーのアイコン＋クロップダイアログ）のリスナー登録 */
+  private setupAvatarListeners(): void {
     const headerUserAvatar = document.getElementById("headerUserAvatar");
     const avatarCropDialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
     headerUserAvatar?.addEventListener("click", () => {
@@ -2637,28 +2260,12 @@ export class QuizApp {
         this.avatarController.cancelCrop();
       }
     });
+  }
 
-    // 入力フィールド：Enterで保存、Escapeでキャンセル
-    const headerUserNameInput = document.getElementById("headerUserNameInput");
-    headerUserNameInput?.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        this.saveHeaderUserName();
-      } else if (e.key === "Escape") {
-        this.closeUserNameEdit();
-      }
-    });
-    headerUserNameInput?.addEventListener("blur", (e: FocusEvent) => {
-      // 保存ボタンへのフォーカス移動はスキップ（保存ボタンのclickが先に発火するため）
-      const relatedTarget = e.relatedTarget as HTMLElement | null;
-      if (relatedTarget?.id !== "headerUserNameSaveBtn") {
-        this.saveHeaderUserName();
-      }
-    });
-
-    // 問題数選択の変更を監視
-    const countInputs = document.querySelectorAll<HTMLInputElement>('input[name="questionCount"]');
-    countInputs.forEach((input) => {
+  /** クイズ設定（問題数・並び順・学習済み含む）ラジオボタンのリスナー登録 */
+  private setupQuizSettingsListeners(): void {
+    // 問題数選択
+    document.querySelectorAll<HTMLInputElement>('input[name="questionCount"]').forEach((input) => {
       input.addEventListener("change", (e) => {
         const target = e.target as HTMLInputElement;
         if (target.checked) {
@@ -2668,9 +2275,8 @@ export class QuizApp {
       });
     });
 
-    // 並び順選択の変更を監視
-    const orderInputs = document.querySelectorAll<HTMLInputElement>('input[name="quizOrder"]');
-    orderInputs.forEach((input) => {
+    // 並び順選択
+    document.querySelectorAll<HTMLInputElement>('input[name="quizOrder"]').forEach((input) => {
       input.addEventListener("change", (e) => {
         const target = e.target as HTMLInputElement;
         if (target.checked) {
@@ -2680,9 +2286,8 @@ export class QuizApp {
       });
     });
 
-    // 学習済み含む/含まない選択の変更を監視
-    const learnedInputs = document.querySelectorAll<HTMLInputElement>('input[name="quizLearned"]');
-    learnedInputs.forEach((input) => {
+    // 学習済み含む/含まない選択
+    document.querySelectorAll<HTMLInputElement>('input[name="quizLearned"]').forEach((input) => {
       input.addEventListener("change", (e) => {
         const target = e.target as HTMLInputElement;
         if (target.checked) {
@@ -2691,12 +2296,16 @@ export class QuizApp {
         }
       });
     });
+  }
 
-    // メモエリアのコントロール
+  /** メモエリアのコントロール（クリア・消しゴム）のリスナー登録 */
+  private setupNotesListeners(): void {
     on("clearNotesBtn", "click", () => this.notesController.clear(this.currentSession?.currentIndex));
     on("eraserBtn", "click", () => this.notesController.toggleEraserMode());
+  }
 
-    // KanjiCanvas操作ボタン（text-input問題のメモタブで使用）
+  /** 漢字認識キャンバス（KanjiCanvas）のリスナー登録 */
+  private setupKanjiCanvasListeners(): void {
     on("kanjiDeleteLastBtn", "click", () => this.kanjiCanvasController.deleteLast());
     on("kanjiEraseBtn", "click", () => this.kanjiCanvasController.erase());
 
@@ -2709,8 +2318,10 @@ export class QuizApp {
       body.classList.toggle("hidden", isExpanded);
       this.kanjiCanvasController.applyToggleBtnState(btn, !isExpanded);
     });
+  }
 
-    // カテゴリ学習状態フィルターボタン
+  /** カテゴリ一覧の学習状態フィルターボタンのリスナー登録 */
+  private setupCategoryStatusFilterListeners(): void {
     const statusFilterBtns: Array<{ id: string; filter: "all" | "unlearned" | "studying" | "learned" }> = [
       { id: "filterStatusAll", filter: "all" },
       { id: "filterStatusUnlearned", filter: "unlearned" },
@@ -2722,10 +2333,10 @@ export class QuizApp {
         this.setCategoryStatusFilter(filter);
       });
     });
+  }
 
-    // ページ更新ボタン
-    on("reloadBtn", "click", () => location.reload());
-
+  /** メモエリアのペンサイズ・ペン色セレクトのリスナー登録 */
+  private setupNotesPenSelectListeners(): void {
     const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
     penSizeSelect?.addEventListener("change", (e) => {
       const size = parseInt((e.target as HTMLSelectElement).value);
@@ -2737,8 +2348,10 @@ export class QuizApp {
       const color = (e.target as HTMLSelectElement).value;
       this.notesCanvas?.setPenColor(color);
     });
+  }
 
-    // フォントサイズ切替ボタン
+  /** フォントサイズ切替ボタンのリスナー登録 */
+  private setupFontSizeListeners(): void {
     document.querySelectorAll<HTMLButtonElement>(".font-size-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const size = btn.dataset.size as "small" | "medium" | "large" | undefined;
@@ -2747,26 +2360,27 @@ export class QuizApp {
         }
       });
     });
+  }
 
-    // 総合タブ: 活動サマリコピーボタン
+  /** 総合タブ: 活動サマリのコピーと共有 URL 関連のリスナー登録 */
+  private setupShareSummaryListeners(): void {
     on("copySummaryBtn", "click", () => this.copyShareSummary());
 
-    // 総合タブ: 共有ボタン（URLを新しいタブで開く）
+    // 共有ボタン（URLを新しいタブで開く）
     on("openShareUrlBtn", "click", () => {
       if (this.shareUrl) {
         window.open(this.shareUrl, "_blank", "noopener,noreferrer");
       }
     });
 
-    // 総合タブ: URL表示ボタン（クリックで編集モードへ）
+    // URL表示ボタン（クリックで編集モードへ）
     on("shareUrlDisplayBtn", "click", () => this.openShareUrlEdit());
 
-    // 総合タブ: 共有URL保存ボタン
+    // 共有URL保存ボタン
     on("saveShareUrlBtn", "click", () => this.saveAndCloseShareUrl());
 
-    // 総合タブ: 共有URL入力でEnterキー押下時に保存
-    const shareUrlInput = document.getElementById("shareUrlInput") as HTMLInputElement | null;
-    shareUrlInput?.addEventListener("keydown", (e: KeyboardEvent) => {
+    // 共有URL入力でEnterキー押下時に保存
+    document.getElementById("shareUrlInput")?.addEventListener("keydown", (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         e.preventDefault();
         this.saveAndCloseShareUrl();
@@ -2775,7 +2389,7 @@ export class QuizApp {
       }
     });
 
-    // 総合タブ: URL編集中に編集エリア外をクリックしたらキャンセル
+    // URL編集中に編集エリア外をクリックしたらキャンセル
     document.addEventListener("mousedown", (e: MouseEvent) => {
       const editArea = document.getElementById("shareUrlEditArea");
       if (!editArea || editArea.classList.contains("hidden")) return;
@@ -2784,7 +2398,10 @@ export class QuizApp {
         this.closeShareUrlEdit();
       }
     });
+  }
 
+  /** ブラウザ履歴・モバイル戻るボタンのナビゲーション系リスナー登録 */
+  private setupHistoryNavigationListeners(): void {
     // ブラウザの戻るボタンでスタート画面に戻る（setupEventListeners はコンストラクタから1度だけ呼ばれる）
     // クイズ進行中の場合は確認ダイアログを表示し、キャンセルされたら履歴に再プッシュして戻る操作を打ち消す
     window.addEventListener("popstate", () => {
@@ -2804,11 +2421,6 @@ export class QuizApp {
     // スマホ用：単元一覧に戻るボタン
     document.getElementById("mobileBackBtn")?.addEventListener("click", () => {
       this.navigateBackToList();
-    });
-
-    // ヘッダーのメニューボタン（管理パネルへのナビゲーション）
-    document.getElementById("adminMenuBtn")?.addEventListener("click", () => {
-      this.navigateToAdmin();
     });
   }
 
