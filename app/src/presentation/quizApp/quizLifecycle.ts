@@ -127,6 +127,27 @@ export async function checkAllMasteredAndCongratulate(deps: {
 }
 
 /**
+ * 学習済み状態をトグルする。確認ダイアログで承諾された場合のみ更新を行う。
+ */
+export async function toggleLearnedStatus(deps: {
+  useCase: QuizUseCase;
+  effectiveFilter: QuizFilter;
+  showConfirmDialog: (message: string) => Promise<boolean>;
+  onAfterToggle: () => void;
+}): Promise<void> {
+  const isCurrentlyLearned = isCurrentCategoryLearned(deps.useCase, deps.effectiveFilter);
+  const message = isCurrentlyLearned ? "この単元を未学習に戻しますか？" : "この単元を学習済みにしますか？";
+  const confirmed = await deps.showConfirmDialog(message);
+  if (!confirmed) return;
+  if (isCurrentlyLearned) {
+    deps.useCase.unmarkCategoryAsLearned(deps.effectiveFilter);
+  } else {
+    deps.useCase.markCategoryAsLearned(deps.effectiveFilter);
+  }
+  deps.onAfterToggle();
+}
+
+/**
  * 現在選択中のカテゴリが学習済み（全問題が masteredIds に含まれる）かどうかを返す。
  * 単元未選択（filter.category === "all"）の場合は false。
  */

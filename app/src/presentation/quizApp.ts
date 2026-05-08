@@ -59,6 +59,7 @@ import {
   renderResultScreen as renderResultScreenFn,
   checkAllMasteredAndCongratulate as checkAllMasteredAndCongratulateFn,
   isCurrentCategoryLearned as isCurrentCategoryLearnedFn,
+  toggleLearnedStatus as toggleLearnedStatusFn,
 } from "./quizApp/quizLifecycle";
 import { updateNotesAreaForQuestion } from "./quizApp/notesAreaUpdater";
 import { showOverallPanel } from "./quizApp/overallSummaryPanel";
@@ -1328,20 +1329,12 @@ export class QuizApp {
    * 学習済みなら未学習に戻し、そうでなければ学習済みにする。
    */
   private toggleLearnedStatus(): void {
-    const effectiveFilter = this.getEffectiveFilter();
-    const isCurrentlyLearned = this.isCurrentCategoryLearned();
-    const message = isCurrentlyLearned ? "この単元を未学習に戻しますか？" : "この単元を学習済みにしますか？";
-    void this.showConfirmDialog(message)
-      .then((confirmed) => {
-        if (!confirmed) return;
-        if (isCurrentlyLearned) {
-          this.useCase.unmarkCategoryAsLearned(effectiveFilter);
-        } else {
-          this.useCase.markCategoryAsLearned(effectiveFilter);
-        }
-        this.updateStartScreen();
-      })
-      .catch(console.error);
+    void toggleLearnedStatusFn({
+      useCase: this.useCase,
+      effectiveFilter: this.getEffectiveFilter(),
+      showConfirmDialog: (msg) => this.showConfirmDialog(msg),
+      onAfterToggle: () => this.updateStartScreen(),
+    }).catch(console.error);
   } /**
    * クイズパネルの表示/非表示を更新する。
    * 教科タブでカテゴリが未選択（category === "all"）の場合はクイズパネルを非表示にし、
