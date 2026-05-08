@@ -11,28 +11,17 @@ on:
       - ".github/workflows/copilot-setup-steps.yml"
       - ".github/docker/app-ci/Dockerfile"
 
-env:
-  APP_CI_IMAGE: ghcr.io/${{ github.repository_owner }}/study-app-ci:latest
-
 jobs:
   copilot-setup-steps:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: read
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
-      - name: GHCR にログイン
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 共通CIイメージを取得
-        run: docker pull "${APP_CI_IMAGE}"
+      - name: 共通CIイメージをローカルでビルド
+        run: docker build -t study-app-ci:local -f .github/docker/app-ci/Dockerfile .
 
       - name: app 依存関係をイメージ上でインストール
         # copilot-setup-steps ジョブ実行時の依存関係インストール手順を、
@@ -42,7 +31,7 @@ jobs:
             --user "$(id -u):$(id -g)" \
             -v "${GITHUB_WORKSPACE}:/workspace" \
             -w /workspace/app \
-            "${APP_CI_IMAGE}" \
+            study-app-ci:local \
             npm ci
 
       - name: 共通イメージで app ビルドを確認
@@ -51,5 +40,5 @@ jobs:
             --user "$(id -u):$(id -g)" \
             -v "${GITHUB_WORKSPACE}:/workspace" \
             -w /workspace/app \
-            "${APP_CI_IMAGE}" \
+            study-app-ci:local \
             npm run build
