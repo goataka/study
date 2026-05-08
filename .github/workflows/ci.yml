@@ -8,9 +8,6 @@ on:
 
 env:
   NODE_VERSION: "22"
-  # Playwright の Docker イメージタグ。
-  # @playwright/test の package.json バージョンと揃えること（mismatch するとブラウザがロードできない）。
-  PLAYWRIGHT_VERSION: "v1.59.1"
 
 jobs:
   test-and-build:
@@ -46,8 +43,7 @@ jobs:
     name: E2Eテスト（app）
     runs-on: ubuntu-latest
     container:
-      # PLAYWRIGHT_VERSION は env で一元管理（ファイル先頭参照）
-      image: mcr.microsoft.com/playwright:${{ env.PLAYWRIGHT_VERSION }}-noble
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
     defaults:
       run:
         working-directory: app
