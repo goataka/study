@@ -16,6 +16,7 @@ import { NotesCanvas } from "./notesCanvas";
 import { KanjiCanvasController } from "./kanjiCanvasController";
 import { NotesController } from "./notesController";
 import { renderAdminContent } from "./adminPanel";
+import { AvatarController } from "./avatarController";
 import {
   SUBJECTS,
   gradeColorClass,
@@ -40,20 +41,8 @@ export class QuizApp {
   private currentMode: QuizMode = "random";
   private filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
   private userName: string = "ゲスト";
-  private userAvatarDataUrl: string | null = null;
-  /** アバター画像の表示位置（X/Y ともに 0〜100 のパーセント） */
-  private userAvatarCropX: number = 50;
-  private userAvatarCropY: number = 50;
-  /** アバター画像の拡大率 */
-  private userAvatarZoom: number = 1;
-  /** ダイアログで選択中の表示位置・拡大率（確定前） */
-  private pendingAvatarCropX: number = 50;
-  private pendingAvatarCropY: number = 50;
-  private pendingAvatarZoom: number = 1;
-  /** アバタークロップダイアログのドラッグイベントAbortController */
-  private cropDragAbortController: AbortController | null = null;
-  /** ダイアログで選択中の画像（確定前） */
-  private pendingAvatarDataUrl: string | null = null;
+  /** ヘッダーのアバター画像表示・編集ダイアログを担当するコントローラー（コンストラクタで初期化）。 */
+  private avatarController!: AvatarController;
   private questionCount: number = 10;
   /** 手書きメモエリアのコントローラー（コンストラクタで初期化）。 */
   private notesController: NotesController = new NotesController();
@@ -112,6 +101,7 @@ export class QuizApp {
    */
   constructor(progressRepo?: IProgressRepository) {
     this.progressRepo = progressRepo ?? new LocalStorageProgressRepository();
+    this.avatarController = new AvatarController(this.progressRepo);
     this.kanjiCanvasController = new KanjiCanvasController({
       getCorrectAnswer: () => {
         const q = this.currentSession?.currentQuestion;
@@ -146,7 +136,7 @@ export class QuizApp {
       alert("問題の読み込みに失敗しました。ページを再読み込みしてください。");
     }
     this.loadUserName();
-    this.loadUserAvatar();
+    this.avatarController.loadFromStorage();
     this.loadFontSize();
     this.loadShareUrl();
     this.loadQuizSettings();
@@ -167,7 +157,7 @@ export class QuizApp {
     // 学習状態フィルターの初期状態を画面に適用する
     this.applyCategoryStatusFilter();
     this.updateUserNameDisplay("headerUserName");
-    this.updateUserAvatarDisplay();
+    this.avatarController.updateDisplay();
     // 共有URL表示ボタンの初期値を設定する
     this.updateShareUrlOpenBtn();
     // ヘッダーに今日の日付を表示する
@@ -235,34 +225,6 @@ export class QuizApp {
     const savedName = this.progressRepo.loadUserName();
     if (savedName) {
       this.userName = savedName;
-    }
-  }
-
-  private loadUserAvatar(): void {
-    const stored = this.progressRepo.loadUserAvatar();
-    // data:image/ スキームのみ許可（外部URLや壊れたデータを除外）
-    this.userAvatarDataUrl = stored && stored.startsWith("data:image/") ? stored : null;
-    // 表示位置・拡大率を読み込む（旧フォーマット "top/center/bottom" も変換して対応）
-    try {
-      const xPos = parseFloat(localStorage.getItem("avatarCropPositionX") ?? "50");
-      const yPos = localStorage.getItem("avatarCropPosition");
-      const zoom = parseFloat(localStorage.getItem("avatarCropZoom") ?? "1");
-      if (!isNaN(xPos) && xPos >= 0 && xPos <= 100) this.userAvatarCropX = xPos;
-      if (yPos !== null) {
-        const yNum = parseFloat(yPos);
-        if (!isNaN(yNum) && yNum >= 0 && yNum <= 100) {
-          this.userAvatarCropY = yNum;
-        } else if (yPos === "top") {
-          this.userAvatarCropY = 0;
-        } else if (yPos === "center") {
-          this.userAvatarCropY = 50;
-        } else if (yPos === "bottom") {
-          this.userAvatarCropY = 100;
-        }
-      }
-      if (!isNaN(zoom) && zoom >= 1 && zoom <= 3) this.userAvatarZoom = zoom;
-    } catch {
-      /* noop */
     }
   }
 
@@ -3222,12 +3184,12 @@ export class QuizApp {
     const headerUserAvatar = document.getElementById("headerUserAvatar");
     const avatarCropDialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
     headerUserAvatar?.addEventListener("click", () => {
-      this.openAvatarCropDialog();
+      this.avatarController.openCropDialog();
     });
     headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        this.openAvatarCropDialog();
+        this.avatarController.openCropDialog();
       }
     });
 
@@ -3235,27 +3197,27 @@ export class QuizApp {
     const headerUserAvatarInput = document.getElementById("headerUserAvatarInput") as HTMLInputElement | null;
     headerUserAvatarInput?.addEventListener("change", (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
-      if (file) this.previewAvatarInDialog(file);
+      if (file) this.avatarController.previewInDialog(file);
       // ファイル選択後にリセットして同じファイルを再選択可能に
       headerUserAvatarInput.value = "";
     });
 
     // ダイアログ確定ボタン
     document.getElementById("avatarCropConfirmBtn")?.addEventListener("click", () => {
-      this.confirmAvatarCrop();
+      this.avatarController.confirmCrop();
     });
 
     // ダイアログキャンセルボタン
     document.getElementById("avatarCropCancelBtn")?.addEventListener("click", () => {
       avatarCropDialog?.close();
-      this.pendingAvatarDataUrl = null;
+      this.avatarController.cancelCrop();
     });
 
     // ダイアログ外クリックで閉じる
     avatarCropDialog?.addEventListener("click", (e) => {
       if (e.target === avatarCropDialog) {
         avatarCropDialog.close();
-        this.pendingAvatarDataUrl = null;
+        this.avatarController.cancelCrop();
       }
     });
 
@@ -4598,239 +4560,6 @@ export class QuizApp {
     if (el) {
       el.textContent = this.userName;
     }
-  }
-
-  /**
-   * ヘッダーのユーザーアバター画像を更新する。
-   */
-  private updateUserAvatarDisplay(): void {
-    const img = document.getElementById("headerUserAvatarImg") as HTMLImageElement | null;
-    const placeholder = document.getElementById("headerUserAvatarPlaceholder");
-    if (!img || !placeholder) return;
-
-    if (this.userAvatarDataUrl) {
-      img.src = this.userAvatarDataUrl;
-      img.classList.add("visible");
-      placeholder.classList.add("hidden");
-      img.style.objectPosition = `${this.userAvatarCropX}% ${this.userAvatarCropY}%`;
-      img.style.transform = `scale(${this.userAvatarZoom})`;
-    } else {
-      img.removeAttribute("src");
-      img.classList.remove("visible");
-      placeholder.classList.remove("hidden");
-      img.style.transform = "";
-    }
-  }
-
-  /**
-   * アバター画像選択・切り抜きダイアログを開く。
-   */
-  private openAvatarCropDialog(): void {
-    const dialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
-    if (!dialog) return;
-    this.pendingAvatarCropX = this.userAvatarCropX;
-    this.pendingAvatarCropY = this.userAvatarCropY;
-    this.pendingAvatarZoom = this.userAvatarZoom;
-    // プレビューを現在の画像で初期化する
-    this.pendingAvatarDataUrl = this.userAvatarDataUrl;
-    this.updateDialogPreview(this.userAvatarDataUrl);
-    this.setupAvatarCropDrag();
-    dialog.showModal();
-  }
-
-  /**
-   * ダイアログのプレビュー画像を更新する。
-   */
-  private updateDialogPreview(dataUrl: string | null): void {
-    const preview = document.getElementById("avatarCropPreview") as HTMLImageElement | null;
-    const placeholder = document.getElementById("avatarCropPreviewPlaceholder");
-    const zoomInput = document.getElementById("avatarCropZoom") as HTMLInputElement | null;
-    if (!preview || !placeholder) return;
-    if (zoomInput) zoomInput.value = String(this.pendingAvatarZoom);
-    if (dataUrl) {
-      preview.src = dataUrl;
-      preview.classList.add("visible");
-      placeholder.classList.add("hidden");
-      preview.style.objectPosition = `${this.pendingAvatarCropX}% ${this.pendingAvatarCropY}%`;
-      preview.style.transform = `scale(${this.pendingAvatarZoom})`;
-    } else {
-      preview.removeAttribute("src");
-      preview.classList.remove("visible");
-      placeholder.classList.remove("hidden");
-      preview.style.transform = "";
-    }
-  }
-
-  /**
-   * ダイアログで選択中の表示位置（X/Y）と拡大率を返す。
-   */
-  private getDialogCropPosition(): { x: number; y: number; zoom: number } {
-    return { x: this.pendingAvatarCropX, y: this.pendingAvatarCropY, zoom: this.pendingAvatarZoom };
-  }
-
-  /**
-   * ダイアログで画像ファイルを選択したときのプレビュー処理。
-   */
-  private previewAvatarInDialog(file: File): void {
-    if (!file.type.startsWith("image/")) return;
-    const MAX_SIZE = 5 * 1024 * 1024;
-    if (file.size > MAX_SIZE) {
-      alert("画像ファイルサイズは5MB以下にしてください。");
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result;
-      if (typeof result !== "string") return;
-      this.pendingAvatarDataUrl = result;
-      this.updateDialogPreview(result);
-    };
-    reader.readAsDataURL(file);
-  }
-
-  /**
-   * アバタープレビュー上のドラッグハンドルを初期化する。
-   * AbortController でクリーンアップを管理し、ダイアログを複数回開いても
-   * イベントリスナーが重複しないようにする。
-   * マウス・タッチ両方に対応し、Y方向のドラッグで切り抜き位置を変更する。
-   */
-  private setupAvatarCropDrag(): void {
-    // 前回のリスナーをクリーンアップ
-    this.cropDragAbortController?.abort();
-    this.cropDragAbortController = new AbortController();
-    const { signal } = this.cropDragAbortController;
-
-    const wrap = document.getElementById("avatarCropPreviewWrap");
-    const zoomInput = document.getElementById("avatarCropZoom") as HTMLInputElement | null;
-    const preview = document.getElementById("avatarCropPreview") as HTMLImageElement | null;
-    if (!wrap || !preview) return;
-
-    let dragging = false;
-    let startX = 0;
-    let startY = 0;
-    let startCropX = 50;
-    let startCropY = 50;
-
-    const getPctDelta = (dx: number, dy: number): { x: number; y: number } => {
-      const rect = wrap.getBoundingClientRect();
-      // 拡大率が高いほど、同じピクセル移動での見た目の変化量が大きくなるためデルタを縮小する
-      // 例: zoom=2 のときは (100/zoom)=50 となり、同じドラッグ距離でも移動量を半分にする
-      const zoom = Math.max(this.pendingAvatarZoom, 1);
-      const x = (dx / rect.width) * (100 / zoom);
-      const y = (dy / rect.height) * (100 / zoom);
-      return { x, y };
-    };
-
-    const updatePreview = (): void => {
-      preview.style.objectPosition = `${this.pendingAvatarCropX}% ${this.pendingAvatarCropY}%`;
-      preview.style.transform = `scale(${this.pendingAvatarZoom})`;
-    };
-
-    const startDrag = (clientX: number, clientY: number): void => {
-      if (!this.pendingAvatarDataUrl) return;
-      dragging = true;
-      wrap.classList.add("dragging");
-      startX = clientX;
-      startY = clientY;
-      startCropX = this.pendingAvatarCropX;
-      startCropY = this.pendingAvatarCropY;
-    };
-
-    const moveDrag = (clientX: number, clientY: number): void => {
-      if (!dragging) return;
-      const { x, y } = getPctDelta(clientX - startX, clientY - startY);
-      // 画像を右/下にドラッグした時は表示位置を逆方向へ動かす（例: 右ドラッグ時は -x で左側を見せる）
-      this.pendingAvatarCropX = Math.max(0, Math.min(100, startCropX - x));
-      this.pendingAvatarCropY = Math.max(0, Math.min(100, startCropY - y));
-      updatePreview();
-    };
-
-    const endDrag = (): void => {
-      dragging = false;
-      wrap.classList.remove("dragging");
-    };
-
-    let activePointerId: number | null = null;
-    wrap.addEventListener(
-      "pointerdown",
-      (e: PointerEvent) => {
-        if (e.pointerType === "mouse" && e.button !== 0) return;
-        activePointerId = e.pointerId;
-        startDrag(e.clientX, e.clientY);
-        try {
-          wrap.setPointerCapture(e.pointerId);
-        } catch {
-          // ブラウザ実装差異で失敗する場合があるため継続する
-        }
-      },
-      { signal },
-    );
-
-    document.addEventListener(
-      "pointermove",
-      (e: PointerEvent) => {
-        if (!dragging || activePointerId !== e.pointerId) return;
-        e.preventDefault();
-        moveDrag(e.clientX, e.clientY);
-      },
-      { signal, passive: false },
-    );
-
-    const onPointerUp = (e: PointerEvent): void => {
-      if (activePointerId !== null && activePointerId !== e.pointerId) return;
-      activePointerId = null;
-      endDrag();
-    };
-
-    document.addEventListener("pointerup", onPointerUp, { signal });
-    document.addEventListener("pointercancel", onPointerUp, { signal });
-
-    zoomInput?.addEventListener(
-      "input",
-      () => {
-        const zoom = parseFloat(zoomInput.value);
-        if (!isNaN(zoom)) {
-          this.pendingAvatarZoom = Math.max(1, Math.min(3, zoom));
-          updatePreview();
-        }
-      },
-      { signal },
-    );
-
-    // ダイアログが閉じたときにクリーンアップ
-    const dialog = wrap.closest("dialog");
-    if (dialog) {
-      dialog.addEventListener(
-        "close",
-        () => {
-          this.cropDragAbortController?.abort();
-          this.cropDragAbortController = null;
-        },
-        { once: true },
-      );
-    }
-  }
-
-  private confirmAvatarCrop(): void {
-    const dialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
-    const { x, y, zoom } = this.getDialogCropPosition();
-    this.userAvatarCropX = x;
-    this.userAvatarCropY = y;
-    this.userAvatarZoom = zoom;
-    try {
-      localStorage.setItem("avatarCropPositionX", String(x));
-      localStorage.setItem("avatarCropPosition", String(y));
-      localStorage.setItem("avatarCropZoom", String(zoom));
-    } catch {
-      /* noop */
-    }
-    if (this.pendingAvatarDataUrl !== null) {
-      this.userAvatarDataUrl = this.pendingAvatarDataUrl;
-      this.progressRepo.saveUserAvatar(this.pendingAvatarDataUrl);
-      this.pendingAvatarDataUrl = null;
-    }
-    this.updateUserAvatarDisplay();
-    dialog?.close();
   }
 
   /**
