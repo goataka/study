@@ -568,9 +568,9 @@ export class QuizApp {
       // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
       const controlsEl = document.getElementById("categoryControls");
       if (controlsEl) controlsEl.innerHTML = "";
-      // タイトルを「⚙️ 管理」に変更
+      // タイトルを「⚙️ メニュー」に変更
       const titleEl = document.getElementById("categoryListTitle");
-      if (titleEl) titleEl.textContent = "⚙️ 管理";
+      if (titleEl) titleEl.textContent = "⚙️ メニュー";
       this.renderAdminContent(categoryList);
       return;
     }
@@ -1004,10 +1004,19 @@ export class QuizApp {
     };
 
     // メニューボタン
+    const dataParentBtn = document.createElement("button");
+    dataParentBtn.className = "admin-menu-btn admin-menu-parent";
+    dataParentBtn.type = "button";
+    dataParentBtn.textContent = "🛢️ データ";
+    dataParentBtn.disabled = true;
+    dataParentBtn.setAttribute("aria-disabled", "true");
+    menuBar.appendChild(dataParentBtn);
+
     const manageBtn = document.createElement("button");
     manageBtn.className = "admin-menu-btn";
     manageBtn.type = "button";
-    manageBtn.textContent = "🛢️ データ管理";
+    manageBtn.classList.add("admin-menu-child");
+    manageBtn.textContent = "管理";
     manageBtn.addEventListener("click", () => {
       if (activeMenu === "manage") {
         // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
@@ -1027,7 +1036,8 @@ export class QuizApp {
     const viewBtn = document.createElement("button");
     viewBtn.className = "admin-menu-btn";
     viewBtn.type = "button";
-    viewBtn.textContent = "📊 データ参照";
+    viewBtn.classList.add("admin-menu-child");
+    viewBtn.textContent = "参照";
     viewBtn.addEventListener("click", () => {
       if (activeMenu === "view") {
         // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
@@ -2155,6 +2165,13 @@ export class QuizApp {
     const table = document.createElement("table");
     table.className = "progress-matrix-table progress-matrix-table-units";
 
+    const buildMatrixCategoryLabel = (col: ColDef): string => {
+      if (col.topId === "__other__" || col.topName === col.parentName) {
+        return col.parentName;
+      }
+      return `${col.topName} / ${col.parentName}`;
+    };
+
     // ヘッダー
     const thead = document.createElement("thead");
 
@@ -2197,7 +2214,7 @@ export class QuizApp {
       const parentHeaderRow = document.createElement("tr");
       for (const col of colDefs) {
         const th = document.createElement("th");
-        th.textContent = col.parentName;
+        th.textContent = buildMatrixCategoryLabel(col);
         th.className = "progress-matrix-parent-header";
         parentHeaderRow.appendChild(th);
       }
@@ -2268,7 +2285,7 @@ export class QuizApp {
       for (const col of colDefs) {
         const tr = document.createElement("tr");
         const parentCell = document.createElement("td");
-        parentCell.textContent = col.parentName;
+        parentCell.textContent = buildMatrixCategoryLabel(col);
         tr.appendChild(parentCell);
         for (const grade of grades) {
           const td = document.createElement("td");
@@ -2333,15 +2350,17 @@ export class QuizApp {
     const container = document.getElementById("overallSubjectStatusSummary");
     if (!container) return;
     container.innerHTML = "";
+    const records = this.useCase.getHistory();
     const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
     for (const subject of subjects) {
       const categories = this.useCase.getCategoriesForSubject(subject.id);
       const totalUnits = Object.keys(categories).length;
-      let learnedUnits = 0;
-      for (const catId of Object.keys(categories)) {
-        const { mastered, total } = this.useCase.getMasteredCountForCategory(subject.id, catId);
-        if (total > 0 && mastered === total) learnedUnits++;
-      }
+      const categoryIds = new Set(Object.keys(categories));
+      const studiedUnitCount = new Set(
+        records
+          .filter((r) => r.subject === subject.id && categoryIds.has(r.category))
+          .map((r) => r.category)
+      ).size;
       if (totalUnits === 0) {
         const row = document.createElement("div");
         row.className = "overall-subject-status-row";
@@ -2350,7 +2369,7 @@ export class QuizApp {
         continue;
       }
       const target = Math.max(1, Math.min(this.subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
-      const ratio = Math.min(1, learnedUnits / target);
+      const ratio = Math.min(1, studiedUnitCount / target);
       const message = ratio >= 1
         ? "🎉 目標達成！この調子！"
         : ratio >= 0.5
@@ -2358,7 +2377,7 @@ export class QuizApp {
           : "🌱 まずは1単元ずつ進めよう！";
       const row = document.createElement("div");
       row.className = "overall-subject-status-row";
-      row.textContent = `${subject.icon} ${subject.name}: ${Math.min(learnedUnits, target)}/${target}単元 ${message}`;
+      row.textContent = `${subject.icon} ${subject.name}: ${Math.min(studiedUnitCount, target)}/${target}単元 ${message}`;
       container.appendChild(row);
     }
   }
@@ -3405,11 +3424,13 @@ export class QuizApp {
     const historyList = document.getElementById("historyList");
     if (!historyList) return;
 
-    const records = (allRecords ?? this.useCase.getHistory()).filter(
-      (r) =>
-        (filter.subject === "all" || r.subject === filter.subject) &&
-        (filter.category === "all" || r.category === filter.category)
-    );
+    const records = (allRecords ?? this.useCase.getHistory())
+      .filter(
+        (r) =>
+          (filter.subject === "all" || r.subject === filter.subject) &&
+          (filter.category === "all" || r.category === filter.category)
+      )
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     historyList.innerHTML = "";
 
     if (records.length === 0) {

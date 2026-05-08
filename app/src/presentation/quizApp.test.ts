@@ -678,6 +678,47 @@ describe("QuizApp — 進度タブ仕様", () => {
     expect(toggledBtn?.getAttribute("aria-pressed")).toBe("true");
   });
 
+  it("進度マトリクスのカテゴリ見出しにトップカテゴリ名が含まれる", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({
+            version: "2.0.0",
+            subjects: { english: { name: "英語" } },
+            questionFiles: ["english/matrix-top-parent.json"],
+          }),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({
+          subject: "english",
+          subjectName: "英語",
+          category: "matrix-top-parent-cat",
+          categoryName: "比較単元",
+          parentCategory: "intro",
+          parentCategoryName: "入門",
+          topCategory: "grammar",
+          topCategoryName: "文法",
+          referenceGrade: "小学1年",
+          questions: [
+            { id: "mtp-1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" },
+          ],
+        }),
+      } as Response);
+    });
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const headers = Array.from(document.querySelectorAll(".progress-matrix-parent-header")).map((el) => el.textContent ?? "");
+    expect(headers.some((text) => text.includes("文法 / 入門"))).toBe(true);
+  });
+
   it("進度タブの詳細パネルにブロックグループが描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -1413,6 +1454,45 @@ describe("QuizApp — パネルインナータブ仕様", () => {
 
     const historyList = document.getElementById("historyList");
     expect(historyList?.querySelector(".history-empty")).not.toBeNull();
+  });
+
+  it("履歴は新しい実施日時の順に表示される", async () => {
+    const records = [
+      {
+        id: "old",
+        date: "2026-01-01T00:00:00.000Z",
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "古い単元",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+      {
+        id: "new",
+        date: "2026-01-02T00:00:00.000Z",
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-2",
+        categoryName: "新しい単元",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 4,
+        entries: [],
+      },
+    ];
+    localStorage.setItem("quizHistory", JSON.stringify(records));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
+    historyTab?.click();
+
+    const subjects = document.querySelectorAll(".history-subject");
+    expect(subjects[0]?.textContent).toContain("新しい単元");
   });
 
   it("「確認」インナータブをクリックするとquizModePanelが再び表示される", async () => {
@@ -4520,6 +4600,32 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     const status = document.getElementById("overallSubjectStatusSummary");
     expect(status?.textContent).toContain("英語:");
+  });
+
+  it("総合タブの学習状況サマリは単元を実施すると反映される", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 4,
+          entries: [],
+        },
+      ])
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const status = document.getElementById("overallSubjectStatusSummary");
+    expect(status?.textContent).toContain("英語: 1/1単元");
   });
 
   it("シェアテキストに教科・トップカテゴリ・親カテゴリ・単元名がパス形式で含まれる", async () => {

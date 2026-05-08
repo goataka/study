@@ -446,8 +446,8 @@ Then("learned category items should be visible in the category list", async ({ p
 });
 
 When("I click the admin manage menu button", async ({ page }) => {
-  // 管理メニューの「🛢️ データ管理」ボタンをクリックしてデータ管理セクションを開く
-  await page.locator(".admin-menu-btn").filter({ hasText: "データ管理" }).click();
+  // 管理メニューの「管理」ボタンをクリックしてデータ管理セクションを開く
+  await page.locator(".admin-menu-btn").filter({ hasText: "管理" }).click();
 });
 
 Then("the admin reset panel should be visible", async ({ page }) => {

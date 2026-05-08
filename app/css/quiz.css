@@ -83,7 +83,7 @@ header h1 {
 }
 
 .header-grade-label {
-    font-size: 13px;
+    font-size: 14px;
     color: #586069;
     font-weight: 500;
     letter-spacing: 0.05em;
@@ -143,7 +143,7 @@ header h1 {
 .app-footer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 12px;
     padding: 4px 12px;
     background-color: white;
@@ -154,6 +154,30 @@ header h1 {
     flex-shrink: 0;
     color: #586069;
     min-height: 8px;
+}
+
+.footer-github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+    background: white;
+    color: #24292e;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.footer-github-link:hover {
+    background: #f6f8fa;
+}
+
+.footer-github-link:focus-visible {
+    outline: 2px solid #0366d6;
+    outline-offset: 2px;
+    background: #f0f7ff;
 }
 
 /* ノート外の下部エリア（コピーライト + フォントサイズ） */
@@ -269,7 +293,7 @@ header h1 {
     align-items: center;
     gap: 4px;
     justify-content: center;
-    padding: 4px 6px 6px;
+    padding: 6px 10px 8px;
     min-width: 28px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-bottom: none;
@@ -1979,6 +2003,7 @@ header h1 {
     /* ノート紙風：不透明白地 + 薄青の罫線 */
     background-color: white;
     background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+    background-position: 0 12px;
     border: none;
     border-left: none;
     border-radius: 0;
@@ -4979,6 +5004,9 @@ body.font-size-large .subject-overview-cat-header {
     overflow: hidden;
     min-height: 0;
     padding: 0;
+    background-color: white;
+    background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+    background-position: 0 12px;
 }
 
 .admin-section {
@@ -5239,7 +5267,7 @@ body.font-size-medium .github-btn svg {
 }
 
 body.font-size-medium .header-grade-label {
-    font-size: 15px;
+    font-size: 17px;
 }
 
 body.font-size-medium .reload-btn {
@@ -5285,7 +5313,7 @@ body.font-size-medium .admin-reset-btn {
 }
 
 body.font-size-medium .admin-menu-btn {
-    font-size: 17px;
+    font-size: 18px;
 }
 
 body.font-size-medium .admin-import-label {
@@ -5338,7 +5366,7 @@ body.font-size-large .github-btn svg {
 }
 
 body.font-size-large .header-grade-label {
-    font-size: 18px;
+    font-size: 19px;
 }
 
 body.font-size-large .reload-btn {
@@ -5384,7 +5412,7 @@ body.font-size-large .admin-reset-btn {
 }
 
 body.font-size-large .admin-menu-btn {
-    font-size: 20px;
+    font-size: 19px;
 }
 
 body.font-size-large .admin-import-label {
@@ -5547,9 +5575,9 @@ body.font-size-large .admin-data-close-btn {
     border-radius: 6px;
     background: transparent;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
-    color: #586069;
+    color: #24292e;
     font-family: inherit;
     transition: background 0.15s, color 0.15s;
     text-align: left;
@@ -5560,6 +5588,22 @@ body.font-size-large .admin-data-close-btn {
     background: #e8f0fe;
     color: #0366d6;
     border-color: #d0e1fb;
+}
+
+.admin-menu-btn.admin-menu-parent {
+    cursor: default;
+    border-color: #d1d5da;
+    background: #f6f8fa;
+}
+
+.admin-menu-btn.admin-menu-parent:hover {
+    background: #f6f8fa;
+}
+
+.admin-menu-btn.admin-menu-child {
+    --admin-menu-indent: 14px;
+    margin-left: var(--admin-menu-indent);
+    width: calc(100% - var(--admin-menu-indent));
 }
 
 .admin-menu-btn:hover:not(.active) {
