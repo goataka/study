@@ -174,6 +174,12 @@ header h1 {
     background: #f6f8fa;
 }
 
+.footer-github-link:focus-visible {
+    outline: 2px solid #0366d6;
+    outline-offset: 2px;
+    background: #f0f7ff;
+}
+
 /* ノート外の下部エリア（コピーライト + フォントサイズ） */
 .outer-bottom-row {
     display: grid;

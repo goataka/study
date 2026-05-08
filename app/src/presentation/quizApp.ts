@@ -1008,6 +1008,7 @@ export class QuizApp {
     dataParentBtn.className = "admin-menu-btn admin-menu-parent";
     dataParentBtn.type = "button";
     dataParentBtn.textContent = "🛢️ データ";
+    dataParentBtn.disabled = true;
     dataParentBtn.setAttribute("aria-disabled", "true");
     menuBar.appendChild(dataParentBtn);
 
@@ -2354,9 +2355,10 @@ export class QuizApp {
     for (const subject of subjects) {
       const categories = this.useCase.getCategoriesForSubject(subject.id);
       const totalUnits = Object.keys(categories).length;
+      const categoryIds = new Set(Object.keys(categories));
       const studiedUnitCount = new Set(
         records
-          .filter((r) => r.subject === subject.id && r.category !== "all")
+          .filter((r) => r.subject === subject.id && categoryIds.has(r.category))
           .map((r) => r.category)
       ).size;
       if (totalUnits === 0) {
