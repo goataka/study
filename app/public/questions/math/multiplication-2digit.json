@@ -5,6 +5,7 @@
   "categoryName": "✖️ ２桁",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "multiplication",
   "parentCategoryName": "かけ算",
   "guideUrl": "./math/arithmetic/multiplication-2digit/guide",

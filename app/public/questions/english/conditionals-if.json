@@ -5,6 +5,7 @@
   "categoryName": "🔀 条件文",
   "topCategory": "grammar",
   "topCategoryName": "文法",
+  "topCategoryGuideUrl": "./english/grammar/guide",
   "parentCategory": "conditionals",
   "parentCategoryName": "仮定法",
   "guideUrl": "./english/grammar/conditionals-if/guide",

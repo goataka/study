@@ -5,6 +5,7 @@
   "categoryName": "📊 割合",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "ratio-percentage",
   "parentCategoryName": "比・割合",
   "guideUrl": "./math/arithmetic/percentage/guide",

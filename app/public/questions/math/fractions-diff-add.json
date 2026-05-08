@@ -5,6 +5,7 @@
   "categoryName": "➕ たし算 - 通分あり",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "fractions",
   "parentCategoryName": "分数",
   "guideUrl": "./math/arithmetic/fractions-diff-add/guide",

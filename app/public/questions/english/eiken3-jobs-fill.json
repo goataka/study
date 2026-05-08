@@ -5,8 +5,10 @@
   "categoryName": "👔 職業（穴埋め）",
   "topCategory": "eiken-3",
   "topCategoryName": "英検3級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-3/guide",
   "parentCategory": "eiken3-jobs",
   "parentCategoryName": "職業",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/jobs/guide",
   "referenceGrade": "中学2年",
   "description": "職業を表す単語を使った文章の穴埋め問題です。",
   "questions": [

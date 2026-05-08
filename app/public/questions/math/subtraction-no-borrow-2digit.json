@@ -5,6 +5,7 @@
   "categoryName": "➖ ２桁・くり下がりなし",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "subtraction",
   "parentCategoryName": "ひき算",
   "guideUrl": "./math/arithmetic/subtraction-2digit-no-borrow/guide",

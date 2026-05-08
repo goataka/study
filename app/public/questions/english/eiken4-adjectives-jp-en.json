@@ -5,8 +5,10 @@
   "categoryName": "💬 形容詞（日→英）",
   "topCategory": "eiken-4",
   "topCategoryName": "英検4級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-4/guide",
   "parentCategory": "eiken4-adjectives",
   "parentCategoryName": "形容詞",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/adjectives/guide",
   "referenceGrade": "中学1年",
   "description": "気持ちや状態を表す形容詞を日本語から英語に訳す問題です。",
   "questions": [

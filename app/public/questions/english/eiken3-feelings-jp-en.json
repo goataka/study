@@ -5,8 +5,10 @@
   "categoryName": "😊 感情・気持ち（日→英）",
   "topCategory": "eiken-3",
   "topCategoryName": "英検3級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-3/guide",
   "parentCategory": "eiken3-feelings",
   "parentCategoryName": "感情・気持ち",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/feelings/guide",
   "referenceGrade": "中学2年",
   "description": "感情や気持ちを表す単語を日本語から英語に訳す問題です。",
   "questions": [

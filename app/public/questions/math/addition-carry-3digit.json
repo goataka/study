@@ -5,6 +5,7 @@
   "categoryName": "➕ ３桁・くり上がりあり",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "addition",
   "parentCategoryName": "たし算",
   "guideUrl": "./math/arithmetic/addition-3digit-carry/guide",

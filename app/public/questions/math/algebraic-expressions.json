@@ -5,6 +5,7 @@
   "categoryName": "📝 文字式",
   "topCategory": "algebra",
   "topCategoryName": "代数",
+  "topCategoryGuideUrl": "./math/algebra/guide",
   "parentCategory": "algebra-basics",
   "parentCategoryName": "基本代数",
   "guideUrl": "./math/algebra/algebraic-expressions/guide",

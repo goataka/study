@@ -5,8 +5,10 @@
   "categoryName": "🕐 時間・日付（穴埋め）",
   "topCategory": "eiken-4",
   "topCategoryName": "英検4級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-4/guide",
   "parentCategory": "eiken4-time",
   "parentCategoryName": "時間・日付",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/time/guide",
   "referenceGrade": "中学1年",
   "description": "時間・日付の単語を使った文章の穴埋め問題です。",
   "questions": [

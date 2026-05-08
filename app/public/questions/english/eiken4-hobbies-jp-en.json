@@ -5,8 +5,10 @@
   "categoryName": "⚽ スポーツ・趣味（日→英）",
   "topCategory": "eiken-4",
   "topCategoryName": "英検4級",
+  "topCategoryGuideUrl": "./english/vocabulary/eiken-4/guide",
   "parentCategory": "eiken4-hobbies",
   "parentCategoryName": "スポーツ・趣味",
+  "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/hobbies/guide",
   "referenceGrade": "中学1年",
   "description": "スポーツや趣味を表す単語を日本語から英語に訳す問題です。",
   "questions": [

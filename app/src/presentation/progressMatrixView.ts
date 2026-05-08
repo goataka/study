@@ -79,6 +79,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   if (grades.length === 0 || colDefs.length === 0) {
     const empty = document.createElement("div");
     empty.className = "progress-block-group";
+    empty.setAttribute("role", "status");
     empty.textContent = "単元がありません";
     container.appendChild(empty);
     return;
@@ -114,12 +115,25 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
     gradeCatsMap.set(grade, useCase.getCategoriesForGrade(subject, grade));
   }
 
-  const isUnitInColumn = (catId: string, col: ColDef): boolean => {
+  // カテゴリ×列の所属をキャッシュ（大量の useCase 呼び出しを防ぐ）
+  const unitColumnCache = new Map<string, string>();
+  for (const catId of Object.keys(allCats)) {
     const topInfo = useCase.getTopCategoryForUnit(subject, catId);
     const parentInfo = useCase.getParentCategoryForUnit(subject, catId);
-    if (col.parentId === "__other__") return !topInfo;
-    if (col.parentId.startsWith("__top_direct_")) return topInfo?.id === col.topId && !parentInfo;
-    return parentInfo?.id === col.parentId;
+    if (!topInfo) {
+      unitColumnCache.set(catId, "__other__");
+    } else if (!parentInfo) {
+      unitColumnCache.set(catId, `__top_direct_${topInfo.id}__`);
+    } else {
+      unitColumnCache.set(catId, parentInfo.id);
+    }
+  }
+
+  const isUnitInColumn = (catId: string, col: ColDef): boolean => {
+    const colKey = unitColumnCache.get(catId);
+    if (col.parentId === "__other__") return colKey === "__other__";
+    if (col.parentId.startsWith("__top_direct_")) return colKey === col.parentId;
+    return colKey === col.parentId;
   };
 
   // 表示する学年・列のリストを計算（hideLearned 時は空の行・列を除外）
@@ -139,6 +153,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   if (visibleGrades.length === 0 || visibleCols.length === 0) {
     const empty = document.createElement("div");
     empty.className = "progress-block-group";
+    empty.setAttribute("role", "status");
     empty.textContent = "表示する単元がありません";
     container.appendChild(empty);
     return;

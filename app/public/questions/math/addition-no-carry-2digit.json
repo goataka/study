@@ -5,6 +5,7 @@
   "categoryName": "➕ ２桁・くり上がりなし",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "addition",
   "parentCategoryName": "たし算",
   "guideUrl": "./math/arithmetic/addition-2digit-no-carry/guide",

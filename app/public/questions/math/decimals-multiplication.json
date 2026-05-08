@@ -5,6 +5,7 @@
   "categoryName": "✖️ かけ算",
   "topCategory": "arithmetic",
   "topCategoryName": "算数・基本計算",
+  "topCategoryGuideUrl": "./math/arithmetic/guide",
   "parentCategory": "decimals",
   "parentCategoryName": "小数",
   "guideUrl": "./math/arithmetic/decimals-multiplication/guide",

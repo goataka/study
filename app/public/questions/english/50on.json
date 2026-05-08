@@ -5,6 +5,7 @@
   "categoryName": "🎌 五十音",
   "topCategory": "pronunciation",
   "topCategoryName": "発音",
+  "topCategoryGuideUrl": "./english/pronunciation/guide",
   "parentCategory": "romaji",
   "parentCategoryName": "ローマ字",
   "guideUrl": "./english/pronunciation/50on/guide",

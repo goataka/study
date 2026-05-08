@@ -342,13 +342,11 @@ export class QuizApp {
     const searchParams = new URLSearchParams(window.location.search);
     let searchChanged = false;
     if (this.selectedUnitContext === null) {
-      if (searchParams.has("unitSubject")) {
-        searchParams.delete("unitSubject");
-        searchChanged = true;
-      }
-      if (searchParams.has("unitCategory")) {
-        searchParams.delete("unitCategory");
-        searchChanged = true;
+      for (const key of ["unitSubject", "unitCategory"]) {
+        if (searchParams.has(key)) {
+          searchParams.delete(key);
+          searchChanged = true;
+        }
       }
     }
     const newSearch = searchChanged
