@@ -513,10 +513,11 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
     expect(gradeGroup).not.toBeNull();
 
     const gradeHeader = gradeGroup?.querySelector<HTMLElement>(".category-grade-group-header");
-    gradeHeader?.querySelector<HTMLElement>(".category-grade-group-toggle")?.click();
+    const gradeToggle = gradeHeader?.querySelector<HTMLElement>(".category-grade-group-toggle");
+    gradeToggle?.click();
 
     expect(gradeGroup?.classList.contains("collapsed")).toBe(true);
-    expect(gradeHeader?.getAttribute("aria-expanded")).toBe("false");
+    expect(gradeToggle?.getAttribute("aria-expanded")).toBe("false");
   });
 
   it("学年別ビューで学年グループヘッダーをクリックすると学年詳細が表示される", async () => {

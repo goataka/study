@@ -301,12 +301,12 @@ Then("non-hiragana candidates should not be visible in the candidate list", asyn
   await expect(candidateList.locator(".kanji-candidate-btn", { hasText: "川" })).toHaveCount(0);
 });
 
-When("I click the {string} category group header", async ({ page }, parentCatId: string) => {
+When("I click the {string} category group toggle button", async ({ page }, parentCatId: string) => {
   // 指定した親カテゴリの三角ボタンをクリックして折りたたみを切り替える
   await page.locator(`.category-group-header[data-parent-category="${parentCatId}"] .category-group-toggle`).click();
 });
 
-When("I click the {string} category group header again", async ({ page }, parentCatId: string) => {
+When("I click the {string} category group toggle button again", async ({ page }, parentCatId: string) => {
   // 指定した親カテゴリの三角ボタンを再度クリックして折りたたみを戻す
   await page.locator(`.category-group-header[data-parent-category="${parentCatId}"] .category-group-toggle`).click();
 });

@@ -116,9 +116,9 @@ Feature: 学習アプリ
 
   Scenario: 親カテゴリグループを折りたたみ・展開できる
     When I click the "英語" tab
-    And I click the "verb" category group header
+    And I click the "verb" category group toggle button
     Then the "verb" category group should be collapsed
-    When I click the "verb" category group header again
+    When I click the "verb" category group toggle button again
     Then the "verb" category group should be expanded
 
   Scenario: 折りたたみ状態で「学習済み」フィルターを適用すると学習済みアイテムが表示される
@@ -128,7 +128,7 @@ Feature: 学習アプリ
     Then the quiz mode panel should be visible
     When I click the "✅ 学習済みにする" button
     And I confirm the dialog
-    And I click the "verb" category group header
+    And I click the "verb" category group toggle button
     Then the "verb" category group should be collapsed
     When I apply the "learned" status filter
     Then learned category items should be visible in the category list

@@ -508,18 +508,20 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
   });
 
-  it("グループヘッダーに aria-expanded 属性が設定される", async () => {
+  it("グループ折りたたみボタンに aria-expanded 属性が設定される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
-    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("true");
+    const toggleBtn = document.querySelector<HTMLElement>(
+      '.category-group-header[data-parent-category="grammar"] .category-group-toggle',
+    );
+    expect(toggleBtn?.getAttribute("aria-expanded")).toBe("true");
 
-    grammarHeader?.querySelector<HTMLElement>(".category-group-toggle")?.click();
-    expect(grammarHeader?.getAttribute("aria-expanded")).toBe("false");
+    toggleBtn?.click();
+    expect(toggleBtn?.getAttribute("aria-expanded")).toBe("false");
   });
 
   it("折りたたまれたグループに属するカテゴリを選択するとグループが自動展開される", async () => {

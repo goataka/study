@@ -724,13 +724,13 @@ export class QuizApp {
       topGroupHeader.className = "category-top-group-header";
       topGroupHeader.setAttribute("role", "button");
       topGroupHeader.setAttribute("tabindex", "0");
-      topGroupHeader.setAttribute("aria-expanded", this.collapsedTopCategories.has(topCatId) ? "false" : "true");
       topGroupHeader.dataset.topCategory = topCatId;
 
       const topToggleArrow = document.createElement("button");
       topToggleArrow.type = "button";
       topToggleArrow.className = "category-top-group-toggle";
       topToggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
+      topToggleArrow.setAttribute("aria-expanded", this.collapsedTopCategories.has(topCatId) ? "false" : "true");
       topGroupHeader.appendChild(topToggleArrow);
 
       const topHeaderText = document.createElement("span");
@@ -831,13 +831,13 @@ export class QuizApp {
       groupHeader.className = "category-grade-group-header";
       groupHeader.setAttribute("role", "button");
       groupHeader.setAttribute("tabindex", "0");
-      groupHeader.setAttribute("aria-expanded", this.collapsedGradeGroups.has(grade) ? "false" : "true");
       groupHeader.dataset.grade = grade;
 
       const toggleArrow = document.createElement("button");
       toggleArrow.type = "button";
       toggleArrow.className = "category-grade-group-toggle";
       toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
+      toggleArrow.setAttribute("aria-expanded", this.collapsedGradeGroups.has(grade) ? "false" : "true");
       groupHeader.appendChild(toggleArrow);
 
       const headerText = document.createElement("span");
@@ -860,11 +860,11 @@ export class QuizApp {
         if (this.collapsedGradeGroups.has(grade)) {
           this.collapsedGradeGroups.delete(grade);
           groupDiv.classList.remove("collapsed");
-          groupHeader.setAttribute("aria-expanded", "true");
+          toggleArrow.setAttribute("aria-expanded", "true");
         } else {
           this.collapsedGradeGroups.add(grade);
           groupDiv.classList.add("collapsed");
-          groupHeader.setAttribute("aria-expanded", "false");
+          toggleArrow.setAttribute("aria-expanded", "false");
         }
       };
       const handleHeaderClick = (e: Event): void => {
@@ -908,13 +908,13 @@ export class QuizApp {
         groupHeader.className = "category-grade-group-header";
         groupHeader.setAttribute("role", "button");
         groupHeader.setAttribute("tabindex", "0");
-        groupHeader.setAttribute("aria-expanded", this.collapsedGradeGroups.has("none") ? "false" : "true");
         groupHeader.dataset.grade = "none";
 
         const toggleArrow = document.createElement("button");
         toggleArrow.type = "button";
         toggleArrow.className = "category-grade-group-toggle";
         toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
+        toggleArrow.setAttribute("aria-expanded", this.collapsedGradeGroups.has("none") ? "false" : "true");
         groupHeader.appendChild(toggleArrow);
 
         const headerText = document.createElement("span");
@@ -938,11 +938,11 @@ export class QuizApp {
           if (this.collapsedGradeGroups.has(grade)) {
             this.collapsedGradeGroups.delete(grade);
             groupDiv.classList.remove("collapsed");
-            groupHeader.setAttribute("aria-expanded", "true");
+            toggleArrow.setAttribute("aria-expanded", "true");
           } else {
             this.collapsedGradeGroups.add(grade);
             groupDiv.classList.add("collapsed");
-            groupHeader.setAttribute("aria-expanded", "false");
+            toggleArrow.setAttribute("aria-expanded", "false");
           }
         };
         const handleHeaderClickNone = (e: Event): void => {
@@ -1109,13 +1109,13 @@ export class QuizApp {
     groupHeader.className = "category-group-header";
     groupHeader.setAttribute("role", "button");
     groupHeader.setAttribute("tabindex", "0");
-    groupHeader.setAttribute("aria-expanded", this.collapsedParentCategories.has(parentCatId) ? "false" : "true");
     groupHeader.dataset.parentCategory = parentCatId;
 
     const toggleArrow = document.createElement("button");
     toggleArrow.type = "button";
     toggleArrow.className = "category-group-toggle";
     toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
+    toggleArrow.setAttribute("aria-expanded", this.collapsedParentCategories.has(parentCatId) ? "false" : "true");
     groupHeader.appendChild(toggleArrow);
 
     const headerText = document.createElement("span");
@@ -2931,8 +2931,8 @@ export class QuizApp {
     const groupDiv = categoryList.querySelector<HTMLElement>(`.category-group[data-parent-category="${parentCatId}"]`);
     if (groupDiv) {
       groupDiv.classList.toggle("collapsed", isCollapsed);
-      const groupHeader = groupDiv.querySelector<HTMLElement>(".category-group-header");
-      groupHeader?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
+      const toggleButton = groupDiv.querySelector<HTMLElement>(".category-group-toggle");
+      toggleButton?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
     }
   }
 
@@ -2968,8 +2968,8 @@ export class QuizApp {
     const topGroupDiv = categoryList.querySelector<HTMLElement>(`.category-top-group[data-top-category="${topCatId}"]`);
     if (topGroupDiv) {
       topGroupDiv.classList.toggle("collapsed", isCollapsed);
-      const topGroupHeader = topGroupDiv.querySelector<HTMLElement>(".category-top-group-header");
-      topGroupHeader?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
+      const toggleButton = topGroupDiv.querySelector<HTMLElement>(".category-top-group-toggle");
+      toggleButton?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
     }
   }
 
