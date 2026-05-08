@@ -20,7 +20,7 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
-      - name: 共通CIイメージをローカルでビルド
+      - name: Dockerfile の検証用イメージをローカルでビルド
         run: docker build -t study-app-ci:local -f .github/docker/app-ci/Dockerfile .
 
       - name: app 依存関係をイメージ上でインストール
