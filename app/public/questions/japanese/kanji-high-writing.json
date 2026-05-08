@@ -14,270 +14,210 @@
     {
       "id": "1ff67300-59d5-5c99-849f-28c2a76b6d35",
       "question": "「いつだつ」を漢字で書いてください",
-      "choices": [
-        "逸脱"
-      ],
+      "choices": ["逸脱"],
       "correct": 0,
       "explanation": "「いつだつ」は「逸脱」と書く。本来の道や範囲から外れること"
     },
     {
       "id": "b07f5276-4e6f-522a-be39-11dd287616c7",
       "question": "「けねん」を漢字で書いてください",
-      "choices": [
-        "懸念"
-      ],
+      "choices": ["懸念"],
       "correct": 0,
       "explanation": "「けねん」は「懸念」と書く。心配・気がかりなこと"
     },
     {
       "id": "e2472890-b832-5b14-9884-7e8db350ef82",
       "question": "「ゆうりょ」を漢字で書いてください",
-      "choices": [
-        "憂慮"
-      ],
+      "choices": ["憂慮"],
       "correct": 0,
       "explanation": "「ゆうりょ」は「憂慮」と書く。心配して思い悩むこと"
     },
     {
       "id": "7b3673a9-538e-5d2f-8cd2-16fb11cb07ec",
       "question": "「かんしょう」を漢字で書いてください",
-      "choices": [
-        "鑑賞"
-      ],
+      "choices": ["鑑賞"],
       "correct": 0,
       "explanation": "「かんしょう」は「鑑賞」と書く。芸術などを味わって楽しむこと"
     },
     {
       "id": "e11891eb-0bf0-596d-bdad-0f01b8c8eec5",
       "question": "「せんれん」を漢字で書いてください",
-      "choices": [
-        "洗練"
-      ],
+      "choices": ["洗練"],
       "correct": 0,
       "explanation": "「せんれん」は「洗練」と書く。垢抜けて上品になること"
     },
     {
       "id": "7823999a-7c41-5cc7-83d6-8dbeecfb5e34",
       "question": "「しゅんじゅん」を漢字で書いてください",
-      "choices": [
-        "逡巡"
-      ],
+      "choices": ["逡巡"],
       "correct": 0,
       "explanation": "「しゅんじゅん」は「逡巡」と書く。ためらって行動できないこと"
     },
     {
       "id": "0ed10a81-a6d6-5cbb-b0ac-dac8801eb55d",
       "question": "「あざむく」の「あざむ」を漢字で書いてください",
-      "choices": [
-        "欺"
-      ],
+      "choices": ["欺"],
       "correct": 0,
       "explanation": "「あざむく」の「あざむ」は「欺」と書く。だますこと。「ぎ」（音読み）とも読む"
     },
     {
       "id": "d72a11a1-b6b0-5905-a42a-1f0a901c668d",
       "question": "「しい」を漢字で書いてください",
-      "choices": [
-        "恣意"
-      ],
+      "choices": ["恣意"],
       "correct": 0,
       "explanation": "「しい」は「恣意」と書く。自分勝手な考え方・思いのままに行動すること"
     },
     {
       "id": "e437b16b-aa9b-58a1-8f4c-146228c1ced0",
       "question": "「へいがい」を漢字で書いてください",
-      "choices": [
-        "弊害"
-      ],
+      "choices": ["弊害"],
       "correct": 0,
       "explanation": "「へいがい」は「弊害」と書く。悪い影響・障害となること"
     },
     {
       "id": "3e51f7de-04a6-55af-bbea-e5970be3de2e",
       "question": "「じょうちょう」を漢字で書いてください",
-      "choices": [
-        "冗長"
-      ],
+      "choices": ["冗長"],
       "correct": 0,
       "explanation": "「じょうちょう」は「冗長」と書く。必要以上に長くてくどいこと"
     },
     {
       "id": "2826dd22-b594-569a-ba09-6b13cfe71d86",
       "question": "「ぜんじ」を漢字で書いてください",
-      "choices": [
-        "漸次"
-      ],
+      "choices": ["漸次"],
       "correct": 0,
       "explanation": "「ぜんじ」は「漸次」と書く。しだいに・少しずつ"
     },
     {
       "id": "3ad2361e-9224-5f6d-9d46-f63349f8ffa0",
       "question": "「けんちょ」を漢字で書いてください",
-      "choices": [
-        "顕著"
-      ],
+      "choices": ["顕著"],
       "correct": 0,
       "explanation": "「けんちょ」は「顕著」と書く。はっきりと目立つこと"
     },
     {
       "id": "e2875939-14f8-554e-9416-e0777cac7a0f",
       "question": "「あいまい」を漢字で書いてください",
-      "choices": [
-        "曖昧"
-      ],
+      "choices": ["曖昧"],
       "correct": 0,
       "explanation": "「あいまい」は「曖昧」と書く。はっきりしないこと・はっきり判断できないこと"
     },
     {
       "id": "89a87c7f-7314-59e6-a3aa-cac5f55703ab",
       "question": "「しんしゃく」を漢字で書いてください",
-      "choices": [
-        "斟酌"
-      ],
+      "choices": ["斟酌"],
       "correct": 0,
       "explanation": "「しんしゃく」は「斟酌」と書く。相手の事情をくみ取って配慮すること"
     },
     {
       "id": "c337ef78-621e-5a2d-9a41-18149e11f735",
       "question": "「じくじ」を漢字で書いてください",
-      "choices": [
-        "忸怩"
-      ],
+      "choices": ["忸怩"],
       "correct": 0,
       "explanation": "「じくじ」は「忸怩」と書く。恥ずかしくて心苦しいこと（忸怩たる思い）"
     },
     {
       "id": "2679930a-a54b-55ec-8845-ae65d3804b53",
       "question": "「おうのう」を漢字で書いてください",
-      "choices": [
-        "懊悩"
-      ],
+      "choices": ["懊悩"],
       "correct": 0,
       "explanation": "「おうのう」は「懊悩」と書く。思い悩んで苦しむこと・深く煩悶すること"
     },
     {
       "id": "b0a58ea0-483d-5ee3-80f4-5c32845b421f",
       "question": "「しょうすい」を漢字で書いてください",
-      "choices": [
-        "憔悴"
-      ],
+      "choices": ["憔悴"],
       "correct": 0,
       "explanation": "「しょうすい」は「憔悴」と書く。心身ともに疲れ果て、やつれること"
     },
     {
       "id": "376430f7-81f2-506a-bb79-b6ed0ad7bdca",
       "question": "「さてつ」を漢字で書いてください",
-      "choices": [
-        "蹉跌"
-      ],
+      "choices": ["蹉跌"],
       "correct": 0,
       "explanation": "「さてつ」は「蹉跌」と書く。物事が失敗・挫折すること"
     },
     {
       "id": "db8cec2d-bbce-5a24-9121-fe17431c5ec8",
       "question": "「きょうじ」を漢字で書いてください",
-      "choices": [
-        "矜持"
-      ],
+      "choices": ["矜持"],
       "correct": 0,
       "explanation": "「きょうじ」は「矜持」と書く。自分の能力への自信・誇り・プライド"
     },
     {
       "id": "838f9ace-08c4-5218-8faa-6ba58faaf6f0",
       "question": "「せんえつ」を漢字で書いてください",
-      "choices": [
-        "僭越"
-      ],
+      "choices": ["僭越"],
       "correct": 0,
       "explanation": "「せんえつ」は「僭越」と書く。自分の立場を越えた言動をすること（「僭越ながら」）"
     },
     {
       "id": "bf508d6a-1a4e-584d-8936-de24f942de0d",
       "question": "「うごめく」の「うごめ」を漢字で書いてください",
-      "choices": [
-        "蠢"
-      ],
+      "choices": ["蠢"],
       "correct": 0,
       "explanation": "「うごめく」の「うごめ」は「蠢」と書く。小さく不気味にもぞもぞと動くこと"
     },
     {
       "id": "49e99491-a354-5db5-a7f8-5b9188a1cc80",
       "question": "「ばっこ」を漢字で書いてください",
-      "choices": [
-        "跋扈"
-      ],
+      "choices": ["跋扈"],
       "correct": 0,
       "explanation": "「ばっこ」は「跋扈」と書く。悪者などが勢いを増してはびこること"
     },
     {
       "id": "98aedc65-e34a-5386-ba25-53e3e10305e8",
       "question": "「ほうはい」を漢字で書いてください",
-      "choices": [
-        "澎湃"
-      ],
+      "choices": ["澎湃"],
       "correct": 0,
       "explanation": "「ほうはい」は「澎湃」と書く。水が激しくわき起こるさま・勢いが盛んなさま"
     },
     {
       "id": "386c6be3-5c84-5350-b95c-b3911e91b8ad",
       "question": "「ふえん」を漢字で書いてください",
-      "choices": [
-        "敷衍"
-      ],
+      "choices": ["敷衍"],
       "correct": 0,
       "explanation": "「ふえん」は「敷衍」と書く。意味を分かりやすく広げて詳しく説明すること"
     },
     {
       "id": "00193430-2304-5a0f-969a-1ee9d5e3df60",
       "question": "「ねつぞう」を漢字で書いてください",
-      "choices": [
-        "捏造"
-      ],
+      "choices": ["捏造"],
       "correct": 0,
       "explanation": "「ねつぞう」は「捏造」と書く。事実でないことを事実のように作り上げること"
     },
     {
       "id": "2a9078e9-a4d2-5a6b-a3e6-c6ebd38a4e59",
       "question": "「そんたく」を漢字で書いてください",
-      "choices": [
-        "忖度"
-      ],
+      "choices": ["忖度"],
       "correct": 0,
       "explanation": "「そんたく」は「忖度」と書く。相手の気持ちや意図を推し量ること"
     },
     {
       "id": "ddc3f243-e572-54aa-9a21-9c377ab4dfba",
       "question": "「どうもく」を漢字で書いてください",
-      "choices": [
-        "瞠目"
-      ],
+      "choices": ["瞠目"],
       "correct": 0,
       "explanation": "「どうもく」は「瞠目」と書く。目を見張るほど驚くこと（「瞠目すべき成果」）"
     },
     {
       "id": "4380c0ab-fbb8-58f7-a0cb-f7a461f017e7",
       "question": "「かいり」を漢字で書いてください",
-      "choices": [
-        "乖離"
-      ],
+      "choices": ["乖離"],
       "correct": 0,
       "explanation": "「かいり」は「乖離」と書く。本来つながるべきものがかけ離れること"
     },
     {
       "id": "afee64a3-7700-5b74-aeab-02fe0aab64ae",
       "question": "「こうし」を漢字で書いてください",
-      "choices": [
-        "嚆矢"
-      ],
+      "choices": ["嚆矢"],
       "correct": 0,
       "explanation": "「こうし」は「嚆矢」と書く。物事のはじまり・最初の例（「〜を嚆矢とする」）"
     },
     {
       "id": "edc7c227-a492-52f7-a610-0fbd9839c5a6",
       "question": "「がいぜん」を漢字で書いてください",
-      "choices": [
-        "蓋然"
-      ],
+      "choices": ["蓋然"],
       "correct": 0,
       "explanation": "「がいぜん」は「蓋然」と書く。ある事柄が起こる可能性・確からしさ（「蓋然性が高い」）"
     }

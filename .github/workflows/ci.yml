@@ -21,13 +21,17 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.COPILOT_CLASSIC }}
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
         with:
           node-version: ${{ env.NODE_VERSION }}
+
+      - name: Lint 実行
+        run: npm run lint
+
+      - name: フォーマット確認（Prettier）
+        run: npm run format:check
 
       - name: 単体テスト実行
         run: npm run test
@@ -48,8 +52,6 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.COPILOT_CLASSIC }}
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
         run: git config --global --add safe.directory /__w/study/study

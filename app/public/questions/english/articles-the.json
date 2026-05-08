@@ -16,120 +16,70 @@
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000001",
       "question": "I play ___ game every day.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "特定のゲームには the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000002",
       "question": "___ game is fun.",
-      "choices": [
-        "The",
-        "A",
-        "An",
-        "（なし）"
-      ],
+      "choices": ["The", "A", "An", "（なし）"],
       "correct": 0,
       "explanation": "特定のゲームには the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000003",
       "question": "I went to ___ park near my house.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "お互いに分かっている特定のものには the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000004",
       "question": "I see ___ moon.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "世界に1つしかないものには the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000005",
       "question": "She won ___ first prize.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "序数の前には the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000006",
       "question": "It is ___ best game I've played.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "最上級の前には the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000007",
       "question": "I saw a cat. ___ cat was cute.",
-      "choices": [
-        "The",
-        "A",
-        "An",
-        "（なし）"
-      ],
+      "choices": ["The", "A", "An", "（なし）"],
       "correct": 0,
       "explanation": "2回目に出てくるもの（すでに話題に出たもの）には the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000008",
       "question": "___ sun rises in the east.",
-      "choices": [
-        "The",
-        "A",
-        "An",
-        "（なし）"
-      ],
+      "choices": ["The", "A", "An", "（なし）"],
       "correct": 0,
       "explanation": "世界に1つしかない太陽には the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000009",
       "question": "I play games in ___ morning.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "in the morning（朝に）は決まった表現で the を使います"
     },
     {
       "id": "a1b2c3d4-0004-5004-8004-000000000010",
       "question": "Open ___ window, please.",
-      "choices": [
-        "the",
-        "a",
-        "an",
-        "（なし）"
-      ],
+      "choices": ["the", "a", "an", "（なし）"],
       "correct": 0,
       "explanation": "お互いにどの窓か分かる特定のものには the を使います"
     }

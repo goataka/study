@@ -13,180 +13,105 @@
     {
       "id": "9f5ec7cf-a827-5e82-bc93-c033a7c50372",
       "question": "「いえ」を英語で書くと？",
-      "choices": [
-        "house",
-        "park",
-        "school",
-        "hospital"
-      ],
+      "choices": ["house", "park", "school", "hospital"],
       "correct": 0,
       "explanation": "「いえ」は英語で house です"
     },
     {
       "id": "28ba3373-248e-56f8-8acb-e75dda9eb80d",
       "question": "「こうえん」を英語で書くと？",
-      "choices": [
-        "park",
-        "house",
-        "garden",
-        "beach"
-      ],
+      "choices": ["park", "house", "garden", "beach"],
       "correct": 0,
       "explanation": "「こうえん」は英語で park です"
     },
     {
       "id": "5b45d7e8-e307-5db6-9742-cd0ce48f45bd",
       "question": "「がっこう」を英語で書くと？",
-      "choices": [
-        "school",
-        "library",
-        "house",
-        "store"
-      ],
+      "choices": ["school", "library", "house", "store"],
       "correct": 0,
       "explanation": "「がっこう」は英語で school です"
     },
     {
       "id": "a575abcb-2a7b-5242-83ec-a0738d9d1507",
       "question": "「びょういん」を英語で書くと？",
-      "choices": [
-        "hospital",
-        "school",
-        "store",
-        "station"
-      ],
+      "choices": ["hospital", "school", "store", "station"],
       "correct": 0,
       "explanation": "「びょういん」は英語で hospital です"
     },
     {
       "id": "5b03c901-eddf-5974-87d2-a0f8066d2841",
       "question": "「みせ」を英語で書くと？",
-      "choices": [
-        "store",
-        "hospital",
-        "library",
-        "city"
-      ],
+      "choices": ["store", "hospital", "library", "city"],
       "correct": 0,
       "explanation": "「みせ」は英語で store です"
     },
     {
       "id": "7ba84d1a-efdc-58eb-b565-91aed0d10daa",
       "question": "「としょかん」を英語で書くと？",
-      "choices": [
-        "library",
-        "school",
-        "store",
-        "room"
-      ],
+      "choices": ["library", "school", "store", "room"],
       "correct": 0,
       "explanation": "「としょかん」は英語で library です"
     },
     {
       "id": "557db8f9-4089-5417-80e4-71702288f15a",
       "question": "「えき」を英語で書くと？",
-      "choices": [
-        "station",
-        "city",
-        "street",
-        "country"
-      ],
+      "choices": ["station", "city", "street", "country"],
       "correct": 0,
       "explanation": "「えき」は英語で station です"
     },
     {
       "id": "00514027-e98a-5670-ab2d-a5d2fcc08b26",
       "question": "「まち・都市」を英語で書くと？",
-      "choices": [
-        "city",
-        "country",
-        "station",
-        "street"
-      ],
+      "choices": ["city", "country", "station", "street"],
       "correct": 0,
       "explanation": "「まち・都市」は英語で city です"
     },
     {
       "id": "5000dd1a-25aa-5095-b5c8-08d085364376",
       "question": "「くに・いなか」を英語で書くと？",
-      "choices": [
-        "country",
-        "city",
-        "street",
-        "mountain"
-      ],
+      "choices": ["country", "city", "street", "mountain"],
       "correct": 0,
       "explanation": "「くに・いなか」は英語で country です"
     },
     {
       "id": "b6f1cefc-bdc6-5461-8bdc-77a2d2c8d636",
       "question": "「とおり」を英語で書くと？",
-      "choices": [
-        "street",
-        "city",
-        "country",
-        "river"
-      ],
+      "choices": ["street", "city", "country", "river"],
       "correct": 0,
       "explanation": "「とおり」は英語で street です"
     },
     {
       "id": "00fa6367-26e6-5f5b-a843-faacb47fc5c3",
       "question": "「へや」を英語で書くと？",
-      "choices": [
-        "room",
-        "house",
-        "garden",
-        "library"
-      ],
+      "choices": ["room", "house", "garden", "library"],
       "correct": 0,
       "explanation": "「へや」は英語で room です"
     },
     {
       "id": "dfa21300-f648-50f4-8394-843c171b7370",
       "question": "「にわ」を英語で書くと？",
-      "choices": [
-        "garden",
-        "park",
-        "room",
-        "beach"
-      ],
+      "choices": ["garden", "park", "room", "beach"],
       "correct": 0,
       "explanation": "「にわ」は英語で garden です"
     },
     {
       "id": "cc4725c7-1ae0-517b-bf90-0f1debc8e2f9",
       "question": "「かいがん」を英語で書くと？",
-      "choices": [
-        "beach",
-        "mountain",
-        "river",
-        "park"
-      ],
+      "choices": ["beach", "mountain", "river", "park"],
       "correct": 0,
       "explanation": "「かいがん」は英語で beach です"
     },
     {
       "id": "a4f3e6c7-6814-52f1-b08f-90a7bef1a36c",
       "question": "「やま」を英語で書くと？",
-      "choices": [
-        "mountain",
-        "beach",
-        "river",
-        "country"
-      ],
+      "choices": ["mountain", "beach", "river", "country"],
       "correct": 0,
       "explanation": "「やま」は英語で mountain です"
     },
     {
       "id": "e2d7feb7-a036-5f83-afbb-a7427f73d6e2",
       "question": "「かわ」を英語で書くと？",
-      "choices": [
-        "river",
-        "mountain",
-        "beach",
-        "street"
-      ],
+      "choices": ["river", "mountain", "beach", "street"],
       "correct": 0,
       "explanation": "「かわ」は英語で river です"
     }

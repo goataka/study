@@ -16,120 +16,70 @@
     {
       "id": "067c1b8a-3cca-533f-8a3f-6b4cbb84ef4f",
       "question": "He asked, \"Do you play games?\" → He asked ___ I played games.",
-      "choices": [
-        "if",
-        "that",
-        "what",
-        "how"
-      ],
+      "choices": ["if", "that", "what", "how"],
       "correct": 0,
       "explanation": "Yes/No疑問文は if/whether を使います"
     },
     {
       "id": "5425343d-46f7-55f6-b7ed-c9d2bf55ddb7",
       "question": "He asked, \"What do you play?\" → He asked ___ I played.",
-      "choices": [
-        "what",
-        "if",
-        "that",
-        "how"
-      ],
+      "choices": ["what", "if", "that", "how"],
       "correct": 0,
       "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
     },
     {
       "id": "9023bdbf-70c3-5fc0-8843-050d1d2462f4",
       "question": "He asked, \"Where do you play?\" → He asked ___ I played.",
-      "choices": [
-        "where",
-        "if",
-        "that",
-        "what"
-      ],
+      "choices": ["where", "if", "that", "what"],
       "correct": 0,
       "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
     },
     {
       "id": "4af175a9-1957-5b40-9a76-7e80e6f484a6",
       "question": "She asked, \"Are you happy?\" → She asked ___ I was happy.",
-      "choices": [
-        "if",
-        "that",
-        "what",
-        "how"
-      ],
+      "choices": ["if", "that", "what", "how"],
       "correct": 0,
       "explanation": "Yes/No疑問文は if/whether を使います"
     },
     {
       "id": "17ffc9e1-3c37-5884-951c-31607f182c1f",
       "question": "He asked, \"When will you come?\" → He asked ___ I would come.",
-      "choices": [
-        "when",
-        "if",
-        "that",
-        "what"
-      ],
+      "choices": ["when", "if", "that", "what"],
       "correct": 0,
       "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
     },
     {
       "id": "7d03bb8d-b83e-5986-ac48-432190674a00",
       "question": "She asked, \"Why are you late?\" → She asked ___ I was late.",
-      "choices": [
-        "why",
-        "if",
-        "that",
-        "what"
-      ],
+      "choices": ["why", "if", "that", "what"],
       "correct": 0,
       "explanation": "疑問詞のある疑問文はそのまま疑問詞を使います"
     },
     {
       "id": "e5481241-17d9-59d4-8094-48f2390f8617",
       "question": "He asked, \"Can you help me?\" → He asked ___ I could help him.",
-      "choices": [
-        "if",
-        "that",
-        "what",
-        "how"
-      ],
+      "choices": ["if", "that", "what", "how"],
       "correct": 0,
       "explanation": "Yes/No疑問文は if/whether を使います"
     },
     {
       "id": "eb891374-35b2-55ad-b318-7fdbb0f29db7",
       "question": "間接疑問文の語順は？",
-      "choices": [
-        "主語 + 動詞",
-        "動詞 + 主語",
-        "疑問詞 + 動詞",
-        "助動詞 + 主語"
-      ],
+      "choices": ["主語 + 動詞", "動詞 + 主語", "疑問詞 + 動詞", "助動詞 + 主語"],
       "correct": 0,
       "explanation": "間接疑問文では平叙文の語順（主語+動詞）になります"
     },
     {
       "id": "4b327ca8-40da-5eaf-ab74-634523a94af0",
       "question": "She asked, \"How old are you?\" → She asked ___ I was.",
-      "choices": [
-        "how old",
-        "how",
-        "what old",
-        "how age"
-      ],
+      "choices": ["how old", "how", "what old", "how age"],
       "correct": 0,
       "explanation": "how old は間接疑問文でもそのまま使います"
     },
     {
       "id": "3ba3504e-2c6e-5dc2-8855-de556864b381",
       "question": "He asked, \"Did you sleep?\" → He asked ___ I had slept.",
-      "choices": [
-        "if",
-        "that",
-        "what",
-        "when"
-      ],
+      "choices": ["if", "that", "what", "when"],
       "correct": 0,
       "explanation": "yes/no 疑問文の間接疑問文には if または whether を使います"
     }

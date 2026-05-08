@@ -16,120 +16,70 @@
     {
       "id": "574d2169-0b7d-5496-a792-c0b155009735",
       "question": "He ___ happy.",
-      "choices": [
-        "is",
-        "am",
-        "are",
-        "was"
-      ],
+      "choices": ["is", "am", "are", "was"],
       "correct": 0,
       "explanation": "三人称単数には is を使います"
     },
     {
       "id": "d1ad7b7b-3bab-5196-bd1d-951dd1ad976f",
       "question": "She ___ a student.",
-      "choices": [
-        "is",
-        "am",
-        "are",
-        "was"
-      ],
+      "choices": ["is", "am", "are", "was"],
       "correct": 0,
       "explanation": "三人称単数には is を使います"
     },
     {
       "id": "1f74f348-9fcd-5757-9a54-d4cef43eca08",
       "question": "They ___ friends.",
-      "choices": [
-        "are",
-        "is",
-        "am",
-        "was"
-      ],
+      "choices": ["are", "is", "am", "was"],
       "correct": 0,
       "explanation": "複数形には are を使います"
     },
     {
       "id": "13a8b5da-d9f5-5724-a9e6-c3d07f14b012",
       "question": "We ___ tired.",
-      "choices": [
-        "are",
-        "is",
-        "am",
-        "was"
-      ],
+      "choices": ["are", "is", "am", "was"],
       "correct": 0,
       "explanation": "複数形には are を使います"
     },
     {
       "id": "b657d248-f17c-573c-8eac-5820204ede1e",
       "question": "It ___ cold.",
-      "choices": [
-        "is",
-        "am",
-        "are",
-        "was"
-      ],
+      "choices": ["is", "am", "are", "was"],
       "correct": 0,
       "explanation": "三人称単数には is を使います"
     },
     {
       "id": "f2ae202e-d916-5f7a-9972-8822a11a52f7",
       "question": "I ___ happy.",
-      "choices": [
-        "am",
-        "is",
-        "are",
-        "was"
-      ],
+      "choices": ["am", "is", "are", "was"],
       "correct": 0,
       "explanation": "Iには am を使います"
     },
     {
       "id": "d8d69d2a-182f-5465-b51c-a9a1545b26da",
       "question": "You ___ a student.",
-      "choices": [
-        "are",
-        "is",
-        "am",
-        "was"
-      ],
+      "choices": ["are", "is", "am", "was"],
       "correct": 0,
       "explanation": "Youには are を使います"
     },
     {
       "id": "89d335b6-4f71-572f-94b5-6214ffa4e414",
       "question": "The book ___ interesting.",
-      "choices": [
-        "is",
-        "am",
-        "are",
-        "was"
-      ],
+      "choices": ["is", "am", "are", "was"],
       "correct": 0,
       "explanation": "三人称単数には is を使います"
     },
     {
       "id": "0a8ffcab-60d1-5b4d-8202-c89daa890bc2",
       "question": "The cats ___ cute. (be動詞・現在)",
-      "choices": [
-        "are",
-        "is",
-        "was",
-        "were"
-      ],
+      "choices": ["are", "is", "was", "were"],
       "correct": 0,
       "explanation": "複数の主語には are を使います"
     },
     {
       "id": "696dad5b-0e4d-5c25-8dab-01c914be9ee9",
       "question": "My brother ___ a doctor. (be動詞・現在)",
-      "choices": [
-        "is",
-        "are",
-        "was",
-        "am"
-      ],
+      "choices": ["is", "are", "was", "am"],
       "correct": 0,
       "explanation": "三人称単数には is を使います"
     }

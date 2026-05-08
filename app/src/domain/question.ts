@@ -124,13 +124,13 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
   // topCategory と topCategoryName はオプション（両方あるか両方ないか）
   if (qf.topCategory !== undefined || qf.topCategoryName !== undefined) {
     if (typeof qf.topCategory !== "string" || typeof qf.topCategoryName !== "string") {
-      throw new Error('If topCategory or topCategoryName is present, both must be strings');
+      throw new Error("If topCategory or topCategoryName is present, both must be strings");
     }
   }
   // parentCategory と parentCategoryName はオプション（両方あるか両方ないか）
   if (qf.parentCategory !== undefined || qf.parentCategoryName !== undefined) {
     if (typeof qf.parentCategory !== "string" || typeof qf.parentCategoryName !== "string") {
-      throw new Error('If parentCategory or parentCategoryName is present, both must be strings');
+      throw new Error("If parentCategory or parentCategoryName is present, both must be strings");
     }
   }
   // guideUrl はオプションの文字列フィールド
@@ -177,7 +177,9 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
     const isRelative = isCurrentRelative || isParentRelative;
     const isAbsolute = /^https?:\/\//i.test(qf.parentCategoryGuideUrl);
     if (!isRelative && !isAbsolute) {
-      throw new Error('"parentCategoryGuideUrl" must be a relative path starting with "./" or "../" or an http/https URL');
+      throw new Error(
+        '"parentCategoryGuideUrl" must be a relative path starting with "./" or "../" or an http/https URL',
+      );
     }
     if (isRelative) {
       let decoded = qf.parentCategoryGuideUrl;
@@ -267,7 +269,11 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       }
     }
     // questionType（問題レベル）はオプション（ファイルレベルを継承）
-    if (qObj.questionType !== undefined && qObj.questionType !== "multiple-choice" && qObj.questionType !== "text-input") {
+    if (
+      qObj.questionType !== undefined &&
+      qObj.questionType !== "multiple-choice" &&
+      qObj.questionType !== "text-input"
+    ) {
       throw new Error(`Question[${i}].questionType must be "multiple-choice" or "text-input"`);
     }
     const qType: QuestionType = (qObj.questionType as QuestionType | undefined) ?? fileQuestionType;
@@ -285,12 +291,7 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
       if ((qObj.choices as unknown[]).length !== 4) {
         throw new Error(`Question[${i}].choices must be an array of exactly 4 elements`);
       }
-      if (
-        typeof qObj.correct !== "number" ||
-        !Number.isInteger(qObj.correct) ||
-        qObj.correct < 0 ||
-        qObj.correct > 3
-      ) {
+      if (typeof qObj.correct !== "number" || !Number.isInteger(qObj.correct) || qObj.correct < 0 || qObj.correct > 3) {
         throw new Error(`Question[${i}].correct must be an integer between 0 and 3`);
       }
     } else {
@@ -360,7 +361,7 @@ export function shuffleChoices(question: Question): Question {
   }
 
   // シャッフルされた選択肢を作成
-  const shuffledChoices = indices.map(i => question.choices[i]!);
+  const shuffledChoices = indices.map((i) => question.choices[i]!);
 
   // 正解の新しいインデックスを見つける
   const newCorrectIndex = indices.indexOf(question.correct);
@@ -379,7 +380,7 @@ function generateSeed(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
+    hash = (hash << 5) - hash + char;
     hash = hash & hash; // 32bit整数に変換
   }
   return Math.abs(hash);

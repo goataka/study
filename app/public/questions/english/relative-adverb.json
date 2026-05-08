@@ -16,120 +16,70 @@
     {
       "id": "15ed24d2-48e5-55bd-831e-4f094690218a",
       "question": "This is the place ___ I was born. (場所)",
-      "choices": [
-        "where",
-        "when",
-        "why",
-        "which"
-      ],
+      "choices": ["where", "when", "why", "which"],
       "correct": 0,
       "explanation": "場所を表す関係副詞は where です"
     },
     {
       "id": "8f977446-0d69-5221-8a66-f3c9f609c46e",
       "question": "I remember the day ___ I met you. (時)",
-      "choices": [
-        "when",
-        "where",
-        "why",
-        "which"
-      ],
+      "choices": ["when", "where", "why", "which"],
       "correct": 0,
       "explanation": "時を表す関係副詞は when です"
     },
     {
       "id": "d54be94f-b710-5c66-b170-1a1acf68a056",
       "question": "Tell me the reason ___ you were late. (理由)",
-      "choices": [
-        "why",
-        "where",
-        "when",
-        "which"
-      ],
+      "choices": ["why", "where", "when", "which"],
       "correct": 0,
       "explanation": "理由を表す関係副詞は why です"
     },
     {
       "id": "3f60b343-92f5-545f-b49e-5f5033d9b7b4",
       "question": "This is the house ___ I lived. (場所)",
-      "choices": [
-        "where",
-        "when",
-        "why",
-        "whose"
-      ],
+      "choices": ["where", "when", "why", "whose"],
       "correct": 0,
       "explanation": "場所を表す関係副詞は where です"
     },
     {
       "id": "20865426-6b3a-5a2b-bcf1-8f001ce798ff",
       "question": "Do you know the time ___ he arrived? (時)",
-      "choices": [
-        "when",
-        "where",
-        "why",
-        "whose"
-      ],
+      "choices": ["when", "where", "why", "whose"],
       "correct": 0,
       "explanation": "時を表す関係副詞は when です"
     },
     {
       "id": "247d6b47-2511-506e-8c59-ff236b7cb222",
       "question": "I don't know the reason ___ she is angry. (理由)",
-      "choices": [
-        "why",
-        "where",
-        "when",
-        "whose"
-      ],
+      "choices": ["why", "where", "when", "whose"],
       "correct": 0,
       "explanation": "理由を表す関係副詞は why です"
     },
     {
       "id": "47801d6e-89d0-5daa-84ac-aa7f98b18595",
       "question": "This is the park ___ we often play. (場所)",
-      "choices": [
-        "where",
-        "when",
-        "why",
-        "whose"
-      ],
+      "choices": ["where", "when", "why", "whose"],
       "correct": 0,
       "explanation": "場所を表す関係副詞は where です"
     },
     {
       "id": "8efc2bdb-4e51-50dd-b4fd-5699b61a1746",
       "question": "I'll never forget the summer ___ I went to America. (時)",
-      "choices": [
-        "when",
-        "where",
-        "why",
-        "whose"
-      ],
+      "choices": ["when", "where", "why", "whose"],
       "correct": 0,
       "explanation": "時を表す関係副詞は when です"
     },
     {
       "id": "1b5725d7-9c3f-5e03-9189-748e049a66e1",
       "question": "That is the museum ___ we visited. (場所)",
-      "choices": [
-        "where",
-        "when",
-        "why",
-        "which"
-      ],
+      "choices": ["where", "when", "why", "which"],
       "correct": 0,
       "explanation": "場所を表す関係副詞は where です"
     },
     {
       "id": "a94563ff-572b-5988-8de9-6bbb13daf4f7",
       "question": "I know the reason ___ he quit. (理由)",
-      "choices": [
-        "why",
-        "where",
-        "when",
-        "how"
-      ],
+      "choices": ["why", "where", "when", "how"],
       "correct": 0,
       "explanation": "理由を表す関係副詞は why です"
     }

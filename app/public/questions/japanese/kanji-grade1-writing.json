@@ -14,720 +14,560 @@
     {
       "id": "d6da4587-8789-5406-80a8-7dec56660440",
       "question": "「やま」を漢字で書いてください",
-      "choices": [
-        "山"
-      ],
+      "choices": ["山"],
       "correct": 0,
       "explanation": "「やま」は「山」と書く。地面から高くそびえる地形のこと"
     },
     {
       "id": "00c3ffce-3038-5f2b-809d-8d53086e67f7",
       "question": "「かわ」を漢字で書いてください",
-      "choices": [
-        "川"
-      ],
+      "choices": ["川"],
       "correct": 0,
       "explanation": "「かわ」は「川」と書く。水が流れる地形のこと"
     },
     {
       "id": "adbe20ca-19dc-5ada-9be9-d7b0ec5fd801",
       "question": "「ひ」を漢字で書いてください（太陽のこと）",
-      "choices": [
-        "日"
-      ],
+      "choices": ["日"],
       "correct": 0,
       "explanation": "「ひ」は「日」と書く。太陽のこと。「にち」（音読み）とも読む"
     },
     {
       "id": "cca167c4-1d51-5519-91a5-e1369d5ac8ef",
       "question": "「つき」を漢字で書いてください",
-      "choices": [
-        "月"
-      ],
+      "choices": ["月"],
       "correct": 0,
       "explanation": "「つき」は「月」と書く。夜空に輝く天体のこと。「げつ」（音読み）とも読む"
     },
     {
       "id": "2c1d2a3a-f65b-5579-9034-aaa444f3aec7",
       "question": "「ひ」を漢字で書いてください（燃えるもの）",
-      "choices": [
-        "火"
-      ],
+      "choices": ["火"],
       "correct": 0,
       "explanation": "「ひ」は「火」と書く。燃えるもの。「か」（音読み）とも読む"
     },
     {
       "id": "da2a876d-896e-5d7e-bd59-77ad750bfba9",
       "question": "「みず」を漢字で書いてください",
-      "choices": [
-        "水"
-      ],
+      "choices": ["水"],
       "correct": 0,
       "explanation": "「みず」は「水」と書く。液体の水のこと。「すい」（音読み）とも読む"
     },
     {
       "id": "1edc68fe-c932-5ef9-b831-eb7829297adb",
       "question": "「き」を漢字で書いてください（樹木のこと）",
-      "choices": [
-        "木"
-      ],
+      "choices": ["木"],
       "correct": 0,
       "explanation": "「き」は「木」と書く。樹木のこと。「もく」（音読み）とも読む"
     },
     {
       "id": "ad504411-ac08-5e27-823f-ebedd644d5c9",
       "question": "「つち」を漢字で書いてください",
-      "choices": [
-        "土"
-      ],
+      "choices": ["土"],
       "correct": 0,
       "explanation": "「つち」は「土」と書く。大地・地面のこと。「ど」（音読み）とも読む"
     },
     {
       "id": "20e81410-222a-5a81-bde9-756519ebdda1",
       "question": "「かね」を漢字で書いてください",
-      "choices": [
-        "金"
-      ],
+      "choices": ["金"],
       "correct": 0,
       "explanation": "「かね」は「金」と書く。お金・貴金属のこと。「きん」（音読み）とも読む"
     },
     {
       "id": "437ac7ed-f400-51f3-9f3a-13dddbb4da87",
       "question": "「そら」を漢字で書いてください",
-      "choices": [
-        "空"
-      ],
+      "choices": ["空"],
       "correct": 0,
       "explanation": "「そら」は「空」と書く。大空のこと。「くう」（音読み）とも読む"
     },
     {
       "id": "35416641-82cc-5f24-9484-04889dfc5a38",
       "question": "「はな」を漢字で書いてください",
-      "choices": [
-        "花"
-      ],
+      "choices": ["花"],
       "correct": 0,
       "explanation": "「はな」は「花」と書く。植物が咲かせるもの。「か」（音読み）とも読む"
     },
     {
       "id": "9217a6cc-195e-59b3-a628-8071d2a8ad78",
       "question": "「くさ」を漢字で書いてください",
-      "choices": [
-        "草"
-      ],
+      "choices": ["草"],
       "correct": 0,
       "explanation": "「くさ」は「草」と書く。地面に生える植物のこと"
     },
     {
       "id": "e5cfe2df-e532-5efc-9c9b-4764f43eac60",
       "question": "「もり」を漢字で書いてください",
-      "choices": [
-        "森"
-      ],
+      "choices": ["森"],
       "correct": 0,
       "explanation": "「もり」は「森」と書く。木がたくさん生えている場所のこと"
     },
     {
       "id": "420d9a4b-1c34-55a0-a2ea-5e9c197acfb4",
       "question": "「いし」を漢字で書いてください",
-      "choices": [
-        "石"
-      ],
+      "choices": ["石"],
       "correct": 0,
       "explanation": "「いし」は「石」と書く。岩の小さなもの。「せき」（音読み）とも読む"
     },
     {
       "id": "9afcfa5c-f25c-52d0-a37e-ea4696924b4f",
       "question": "「め」を漢字で書いてください",
-      "choices": [
-        "目"
-      ],
+      "choices": ["目"],
       "correct": 0,
       "explanation": "「め」は「目」と書く。見るための器官。「もく」（音読み）とも読む"
     },
     {
       "id": "c03e96aa-e819-56e9-9b16-c6e8aab5ee85",
       "question": "「くち」を漢字で書いてください",
-      "choices": [
-        "口"
-      ],
+      "choices": ["口"],
       "correct": 0,
       "explanation": "「くち」は「口」と書く。食べたり話したりする器官。「こう」（音読み）とも読む"
     },
     {
       "id": "6f781b9a-715e-5f53-b633-b62cbfa1c5c7",
       "question": "「て」を漢字で書いてください",
-      "choices": [
-        "手"
-      ],
+      "choices": ["手"],
       "correct": 0,
       "explanation": "「て」は「手」と書く。物をつかむ体の部分。「しゅ」（音読み）とも読む"
     },
     {
       "id": "5632e6c1-b8a8-5c06-8c48-cc06a8c41c80",
       "question": "「あし」を漢字で書いてください",
-      "choices": [
-        "足"
-      ],
+      "choices": ["足"],
       "correct": 0,
       "explanation": "「あし」は「足」と書く。歩くための体の部分。「そく」（音読み）とも読む"
     },
     {
       "id": "648674e0-6239-583d-b243-90a8c8affcf7",
       "question": "「がっこう」を漢字で書いてください",
-      "choices": [
-        "学校"
-      ],
+      "choices": ["学校"],
       "correct": 0,
       "explanation": "「がっこう」は「学校」と書く。勉強をする場所のこと"
     },
     {
       "id": "06a47ba8-8ee5-56a0-8c85-0597833b73a8",
       "question": "「せんせい」を漢字で書いてください",
-      "choices": [
-        "先生"
-      ],
+      "choices": ["先生"],
       "correct": 0,
       "explanation": "「せんせい」は「先生」と書く。教えてくれる人のこと"
     },
     {
       "id": "6e0e072c-513f-532b-acd0-b1f6c907e89f",
       "question": "「おおきい」の「おお」を漢字で書いてください",
-      "choices": [
-        "大"
-      ],
+      "choices": ["大"],
       "correct": 0,
       "explanation": "「おおきい」の「おお」は「大」と書く。大きいことを表す。「だい」（音読み）とも読む"
     },
     {
       "id": "bd24fa78-b3b9-57b3-b9eb-ce2f18d311d3",
       "question": "「ちいさい」の「ちい」を漢字で書いてください",
-      "choices": [
-        "小"
-      ],
+      "choices": ["小"],
       "correct": 0,
       "explanation": "「ちいさい」の「ちい」は「小」と書く。小さいことを表す。「しょう」（音読み）とも読む"
     },
     {
       "id": "8838d76a-39df-5694-bd2f-f1dd52209b8e",
       "question": "「うえ」を漢字で書いてください",
-      "choices": [
-        "上"
-      ],
+      "choices": ["上"],
       "correct": 0,
       "explanation": "「うえ」は「上」と書く。高い方向のこと。「じょう」（音読み）とも読む"
     },
     {
       "id": "577cf1a4-c3d0-5acd-b697-b0492764b8a0",
       "question": "「した」を漢字で書いてください",
-      "choices": [
-        "下"
-      ],
+      "choices": ["下"],
       "correct": 0,
       "explanation": "「した」は「下」と書く。低い方向のこと。「か」（音読み）とも読む"
     },
     {
       "id": "a7b9504a-bfb5-5159-b466-d8c138783abe",
       "question": "「みぎ」を漢字で書いてください",
-      "choices": [
-        "右"
-      ],
+      "choices": ["右"],
       "correct": 0,
       "explanation": "「みぎ」は「右」と書く。右側の方向のこと。「う」（音読み）とも読む"
     },
     {
       "id": "993305bf-c32c-5a73-a45a-c6172034d6bd",
       "question": "「ひだり」を漢字で書いてください",
-      "choices": [
-        "左"
-      ],
+      "choices": ["左"],
       "correct": 0,
       "explanation": "「ひだり」は「左」と書く。左側の方向のこと。「さ」（音読み）とも読む"
     },
     {
       "id": "2b7971df-ca4f-5131-958c-a3fd7248a8da",
       "question": "「とし」を漢字で書いてください",
-      "choices": [
-        "年"
-      ],
+      "choices": ["年"],
       "correct": 0,
       "explanation": "「とし」は「年」と書く。一年のこと。「ねん」（音読み）とも読む"
     },
     {
       "id": "fde36626-ab20-54a1-b390-bfd7509c6156",
       "question": "「しろ」を漢字で書いてください",
-      "choices": [
-        "白"
-      ],
+      "choices": ["白"],
       "correct": 0,
       "explanation": "「しろ」は「白」と書く。白い色のこと。「はく」（音読み）とも読む"
     },
     {
       "id": "12200a97-8536-5698-bb47-7ae36bdca14e",
       "question": "「あか」を漢字で書いてください",
-      "choices": [
-        "赤"
-      ],
+      "choices": ["赤"],
       "correct": 0,
       "explanation": "「あか」は「赤」と書く。赤い色のこと。「せき」（音読み）とも読む"
     },
     {
       "id": "1df7becd-0d57-5a81-981b-84f6bf451b69",
       "question": "「あお」を漢字で書いてください",
-      "choices": [
-        "青"
-      ],
+      "choices": ["青"],
       "correct": 0,
       "explanation": "「あお」は「青」と書く。青い色のこと。「せい」（音読み）とも読む"
     },
     {
       "id": "bae2c3ae-42a0-5601-9025-418582f15312",
       "question": "「ひとつ」の「ひと」を漢字で書いてください（数の1のこと）",
-      "choices": [
-        "一"
-      ],
+      "choices": ["一"],
       "correct": 0,
       "explanation": "「ひとつ」の「ひと」は「一」と書く。数の1のこと。「いち」（音読み）とも読む"
     },
     {
       "id": "f36ea150-3cdd-5fdb-9e5c-820b999e4215",
       "question": "「あめ」を漢字で書いてください",
-      "choices": [
-        "雨"
-      ],
+      "choices": ["雨"],
       "correct": 0,
       "explanation": "「あめ」は「雨」と書く。空から水が降ってくること。「う」（音読み）とも読む"
     },
     {
       "id": "a341d7f3-761b-5df3-89f8-63457c21fec6",
       "question": "「えん」を漢字で書いてください",
-      "choices": [
-        "円"
-      ],
+      "choices": ["円"],
       "correct": 0,
       "explanation": "「えん」は「円」と書く。日本のお金の単位。まるい形のこと"
     },
     {
       "id": "99f4b7d6-f160-5fd9-b1b6-9adcf65916fa",
       "question": "「おう」を漢字で書いてください",
-      "choices": [
-        "王"
-      ],
+      "choices": ["王"],
       "correct": 0,
       "explanation": "「おう」は「王」と書く。国を治める人のこと"
     },
     {
       "id": "c56cedd3-1790-5af2-92d3-1ebda2c8112a",
       "question": "「おと」を漢字で書いてください",
-      "choices": [
-        "音"
-      ],
+      "choices": ["音"],
       "correct": 0,
       "explanation": "「おと」は「音」と書く。聞こえるもののこと。「おん」（音読み）とも読む"
     },
     {
       "id": "b2c22907-9c04-5413-8ebd-9eb021738f42",
       "question": "「かい」を漢字で書いてください",
-      "choices": [
-        "貝"
-      ],
+      "choices": ["貝"],
       "correct": 0,
       "explanation": "「かい」は「貝」と書く。海や川に住む、かたい殻を持つ生き物のこと"
     },
     {
       "id": "5dbbd7a6-5a0c-5427-a380-32491aa8a395",
       "question": "「き」を漢字で書いてください（空気や気持ちを表す）",
-      "choices": [
-        "気"
-      ],
+      "choices": ["気"],
       "correct": 0,
       "explanation": "「き」は「気」と書く。空気や気持ちを表す。「元気」「天気」などに使う"
     },
     {
       "id": "d239e524-61a4-5530-8803-cb81670b9c59",
       "question": "「ここのつ」の「ここの」を漢字で書いてください",
-      "choices": [
-        "九"
-      ],
+      "choices": ["九"],
       "correct": 0,
       "explanation": "「ここのつ」の「ここの」は「九」と書く。数の9のこと。「く」「きゅう」（音読み）とも読む"
     },
     {
       "id": "878af576-967e-5ce4-84c3-362219fb53fb",
       "question": "「やすむ」の「やす」を漢字で書いてください",
-      "choices": [
-        "休"
-      ],
+      "choices": ["休"],
       "correct": 0,
       "explanation": "「やすむ」の「やす」は「休」と書く。仕事や勉強をやめてゆっくりすること。「きゅう」（音読み）とも読む"
     },
     {
       "id": "f293bd88-b2ea-587d-be62-07b8bd2d9a52",
       "question": "「たま」を漢字で書いてください",
-      "choices": [
-        "玉"
-      ],
+      "choices": ["玉"],
       "correct": 0,
       "explanation": "「たま」は「玉」と書く。丸い形のもの。宝石のこと。「ぎょく」（音読み）とも読む"
     },
     {
       "id": "e3001f2c-4f94-5b00-bf44-0b80b4a6e15a",
       "question": "「いぬ」を漢字で書いてください",
-      "choices": [
-        "犬"
-      ],
+      "choices": ["犬"],
       "correct": 0,
       "explanation": "「いぬ」は「犬」と書く。人と仲良く暮らす動物のこと。「けん」（音読み）とも読む"
     },
     {
       "id": "8945f01e-651a-55cb-ba6f-60c3cb68301e",
       "question": "「みる」の「み」を漢字で書いてください",
-      "choices": [
-        "見"
-      ],
+      "choices": ["見"],
       "correct": 0,
       "explanation": "「みる」の「み」は「見」と書く。目で確かめること。「けん」（音読み）とも読む"
     },
     {
       "id": "9c4719e8-1860-5bd1-800d-a74a84cea3ce",
       "question": "「いつつ」の「いつ」を漢字で書いてください",
-      "choices": [
-        "五"
-      ],
+      "choices": ["五"],
       "correct": 0,
       "explanation": "「いつつ」の「いつ」は「五」と書く。数の5のこと。「ご」（音読み）とも読む"
     },
     {
       "id": "cdd808af-2317-5885-a0ae-050031d5115e",
       "question": "「みっつ」の「みっ」を漢字で書いてください",
-      "choices": [
-        "三"
-      ],
+      "choices": ["三"],
       "correct": 0,
       "explanation": "「みっつ」の「みっ」は「三」と書く。数の3のこと。「さん」（音読み）とも読む"
     },
     {
       "id": "eb40d4f9-9904-5c26-9868-8d2a0f55e302",
       "question": "「こ」を漢字で書いてください",
-      "choices": [
-        "子"
-      ],
+      "choices": ["子"],
       "correct": 0,
       "explanation": "「こ」は「子」と書く。子どものこと。「し」「す」（音読み）とも読む"
     },
     {
       "id": "69447624-a434-591d-a354-68cd7132f39b",
       "question": "「よっつ」の「よっ」を漢字で書いてください",
-      "choices": [
-        "四"
-      ],
+      "choices": ["四"],
       "correct": 0,
       "explanation": "「よっつ」の「よっ」は「四」と書く。数の4のこと。「し」（音読み）とも読む"
     },
     {
       "id": "b01cebb7-529e-55bd-a916-89a6ae51d225",
       "question": "「いと」を漢字で書いてください",
-      "choices": [
-        "糸"
-      ],
+      "choices": ["糸"],
       "correct": 0,
       "explanation": "「いと」は「糸」と書く。布や縫い物に使う細いもの。「し」（音読み）とも読む"
     },
     {
       "id": "123a2a03-7303-5169-8b44-9ff20c0034c4",
       "question": "「じ」を漢字で書いてください",
-      "choices": [
-        "字"
-      ],
+      "choices": ["字"],
       "correct": 0,
       "explanation": "「じ」は「字」と書く。文字のこと。「もじ」「かんじ」などに使う"
     },
     {
       "id": "223c560e-687f-5f6e-9cb6-e4e9159784b4",
       "question": "「みみ」を漢字で書いてください",
-      "choices": [
-        "耳"
-      ],
+      "choices": ["耳"],
       "correct": 0,
       "explanation": "「みみ」は「耳」と書く。音を聞く体の部分。「じ」（音読み）とも読む"
     },
     {
       "id": "ba3e768b-2d5d-5b85-b20d-185158908bff",
       "question": "「ななつ」の「なな」を漢字で書いてください",
-      "choices": [
-        "七"
-      ],
+      "choices": ["七"],
       "correct": 0,
       "explanation": "「ななつ」の「なな」は「七」と書く。数の7のこと。「しち」（音読み）とも読む"
     },
     {
       "id": "c33e5995-d60c-5005-b7d5-f376c9e2cc1a",
       "question": "「くるま」を漢字で書いてください",
-      "choices": [
-        "車"
-      ],
+      "choices": ["車"],
       "correct": 0,
       "explanation": "「くるま」は「車」と書く。乗り物のこと。「しゃ」（音読み）とも読む"
     },
     {
       "id": "d4d8a7b1-bf7c-5fe9-b2bd-a6c1fb24c221",
       "question": "「とお」を漢字で書いてください",
-      "choices": [
-        "十"
-      ],
+      "choices": ["十"],
       "correct": 0,
       "explanation": "「とお」は「十」と書く。数の10のこと。「じゅう」（音読み）とも読む"
     },
     {
       "id": "1ef12f73-4e91-5200-b694-bf86ef7888ce",
       "question": "「でる」の「で」を漢字で書いてください",
-      "choices": [
-        "出"
-      ],
+      "choices": ["出"],
       "correct": 0,
       "explanation": "「でる」の「で」は「出」と書く。中から外へ行くこと。「しゅつ」（音読み）とも読む"
     },
     {
       "id": "8761ab9c-154d-546c-9a95-ef5debb0df36",
       "question": "「おんな」を漢字で書いてください",
-      "choices": [
-        "女"
-      ],
+      "choices": ["女"],
       "correct": 0,
       "explanation": "「おんな」は「女」と書く。女性のこと。「じょ」「にょ」（音読み）とも読む"
     },
     {
       "id": "134a0e6f-d6ff-56b2-a8fd-3bdf96fc4bbe",
       "question": "「ひと」を漢字で書いてください（人間のこと）",
-      "choices": [
-        "人"
-      ],
+      "choices": ["人"],
       "correct": 0,
       "explanation": "「ひと」は「人」と書く。人間のこと。「じん」「にん」（音読み）とも読む"
     },
     {
       "id": "0f573cd2-f04d-513f-9037-b2e79ba8f76c",
       "question": "「ただしい」の「ただ」を漢字で書いてください",
-      "choices": [
-        "正"
-      ],
+      "choices": ["正"],
       "correct": 0,
       "explanation": "「ただしい」の「ただ」は「正」と書く。間違いがないこと。「せい」「しょう」（音読み）とも読む"
     },
     {
       "id": "56444737-9966-525c-a298-8659bfa28d0e",
       "question": "「ゆう」を漢字で書いてください",
-      "choices": [
-        "夕"
-      ],
+      "choices": ["夕"],
       "correct": 0,
       "explanation": "「ゆう」は「夕」と書く。日が沈む頃の時間のこと。「夕方」「七夕」などに使う"
     },
     {
       "id": "2e405838-139e-5e40-abfa-ee81ab497644",
       "question": "「せん」を漢字で書いてください",
-      "choices": [
-        "千"
-      ],
+      "choices": ["千"],
       "correct": 0,
       "explanation": "「せん」は「千」と書く。数の1000のこと。「ち」（訓読み）とも読む"
     },
     {
       "id": "f1cad0c7-ae16-536a-864a-990f82d81104",
       "question": "「はやい」の「はや」を漢字で書いてください",
-      "choices": [
-        "早"
-      ],
+      "choices": ["早"],
       "correct": 0,
       "explanation": "「はやい」の「はや」は「早」と書く。時間がかからないこと、時刻が前であること。「そう」（音読み）とも読む"
     },
     {
       "id": "5b8d0fda-a943-5089-989e-544731873236",
       "question": "「むら」を漢字で書いてください",
-      "choices": [
-        "村"
-      ],
+      "choices": ["村"],
       "correct": 0,
       "explanation": "「むら」は「村」と書く。小さな集落のこと。「そん」（音読み）とも読む"
     },
     {
       "id": "d57e28be-bb55-52ef-b9d1-617d6da8373e",
       "question": "「おとこ」を漢字で書いてください",
-      "choices": [
-        "男"
-      ],
+      "choices": ["男"],
       "correct": 0,
       "explanation": "「おとこ」は「男」と書く。男性のこと。「だん」「なん」（音読み）とも読む"
     },
     {
       "id": "09d745fa-a2ec-56cf-ae6f-8fa00b37162c",
       "question": "「たけ」を漢字で書いてください",
-      "choices": [
-        "竹"
-      ],
+      "choices": ["竹"],
       "correct": 0,
       "explanation": "「たけ」は「竹」と書く。まっすぐ伸びる植物のこと。「ちく」（音読み）とも読む"
     },
     {
       "id": "8c2381e1-b37a-5502-83a2-c1f534872e2d",
       "question": "「なか」を漢字で書いてください",
-      "choices": [
-        "中"
-      ],
+      "choices": ["中"],
       "correct": 0,
       "explanation": "「なか」は「中」と書く。内側・まんなかのこと。「ちゅう」（音読み）とも読む"
     },
     {
       "id": "ae211d60-dedd-5ada-85c4-fccdcedfb46a",
       "question": "「むし」を漢字で書いてください",
-      "choices": [
-        "虫"
-      ],
+      "choices": ["虫"],
       "correct": 0,
       "explanation": "「むし」は「虫」と書く。小さな生き物のこと。「ちゅう」（音読み）とも読む"
     },
     {
       "id": "a3ec8e68-fb3a-594c-996b-12b46833a0ce",
       "question": "「まち」を漢字で書いてください",
-      "choices": [
-        "町"
-      ],
+      "choices": ["町"],
       "correct": 0,
       "explanation": "「まち」は「町」と書く。人が集まって住んでいる場所のこと。「ちょう」（音読み）とも読む"
     },
     {
       "id": "05924f76-35af-5283-a65e-b71d55e3f8dc",
       "question": "「てん」を漢字で書いてください",
-      "choices": [
-        "天"
-      ],
+      "choices": ["天"],
       "correct": 0,
       "explanation": "「てん」は「天」と書く。空・天上のこと。「あめ」「あま」（訓読み）とも読む"
     },
     {
       "id": "f25365f1-e059-5890-985b-cb71b21f76f0",
       "question": "「た」を漢字で書いてください（稲を育てる水を張った土地のこと）",
-      "choices": [
-        "田"
-      ],
+      "choices": ["田"],
       "correct": 0,
       "explanation": "「た」は「田」と書く。稲を育てる水を張った土地のこと。「でん」（音読み）とも読む"
     },
     {
       "id": "ef0a2bf5-590b-5980-b9e9-73750edf173d",
       "question": "「ふたつ」の「ふた」を漢字で書いてください",
-      "choices": [
-        "二"
-      ],
+      "choices": ["二"],
       "correct": 0,
       "explanation": "「ふたつ」の「ふた」は「二」と書く。数の2のこと。「に」（音読み）とも読む"
     },
     {
       "id": "c84da07e-d345-587d-8e27-c2a0206a0d56",
       "question": "「はいる」の「はい」を漢字で書いてください",
-      "choices": [
-        "入"
-      ],
+      "choices": ["入"],
       "correct": 0,
       "explanation": "「はいる」の「はい」は「入」と書く。外から中へ行くこと。「にゅう」（音読み）とも読む"
     },
     {
       "id": "01a06bb4-5db4-54fe-9167-1d35768f6fba",
       "question": "「やっつ」の「やっ」を漢字で書いてください",
-      "choices": [
-        "八"
-      ],
+      "choices": ["八"],
       "correct": 0,
       "explanation": "「やっつ」の「やっ」は「八」と書く。数の8のこと。「はち」（音読み）とも読む"
     },
     {
       "id": "788959b6-4398-5fc3-9e3c-dadc9cbba7b6",
       "question": "「ひゃく」を漢字で書いてください",
-      "choices": [
-        "百"
-      ],
+      "choices": ["百"],
       "correct": 0,
       "explanation": "「ひゃく」は「百」と書く。数の100のこと。「もも」（訓読み）とも読む"
     },
     {
       "id": "b009f1d9-2572-57dc-92d4-c2156cab6778",
       "question": "「もじ」を漢字で書いてください",
-      "choices": [
-        "文"
-      ],
+      "choices": ["文"],
       "correct": 0,
       "explanation": "「もじ」は「文」と書く。書き記したもの。「ふみ」とも読む。「もん」「ぶん」（音読み）とも読む"
     },
     {
       "id": "92f61002-f555-5c85-bd43-39b498d78ce5",
       "question": "「ほん」を漢字で書いてください",
-      "choices": [
-        "本"
-      ],
+      "choices": ["本"],
       "correct": 0,
       "explanation": "「ほん」は「本」と書く。読み物のこと。「もと」（訓読み）とも読む"
     },
     {
       "id": "41febdbc-c64d-5015-ac3f-15978682bc0b",
       "question": "「な」を漢字で書いてください",
-      "choices": [
-        "名"
-      ],
+      "choices": ["名"],
       "correct": 0,
       "explanation": "「な」は「名」と書く。人や物の呼び方のこと。「めい」（音読み）とも読む"
     },
     {
       "id": "a8a778fc-6c15-5784-ab69-1ef2170f4dca",
       "question": "「たつ」の「た」を漢字で書いてください（地面に足をついて上に伸びること）",
-      "choices": [
-        "立"
-      ],
+      "choices": ["立"],
       "correct": 0,
       "explanation": "「たつ」の「た」は「立」と書く。地面に足をついて上に伸びること。「りつ」「りゅう」（音読み）とも読む"
     },
     {
       "id": "fc5ab1fa-5943-555a-9f52-9a638be4a128",
       "question": "「ちから」を漢字で書いてください",
-      "choices": [
-        "力"
-      ],
+      "choices": ["力"],
       "correct": 0,
       "explanation": "「ちから」は「力」と書く。強さのこと。「りょく」「りき」（音読み）とも読む"
     },
     {
       "id": "e946f529-3385-562b-879c-56357d1c0c2d",
       "question": "「はやし」を漢字で書いてください",
-      "choices": [
-        "林"
-      ],
+      "choices": ["林"],
       "correct": 0,
       "explanation": "「はやし」は「林」と書く。木がたくさん生えている場所（森より小さい）。「りん」（音読み）とも読む"
     },
     {
       "id": "de2cd793-198e-58aa-9085-998a9e93c623",
       "question": "「むっつ」の「むっ」を漢字で書いてください",
-      "choices": [
-        "六"
-      ],
+      "choices": ["六"],
       "correct": 0,
       "explanation": "「むっつ」の「むっ」は「六」と書く。数の6のこと。「ろく」（音読み）とも読む"
     },
     {
       "id": "15cf49e3-4fde-5847-ac5b-ed5ca2893147",
       "question": "「まなぶ」の「まな」を漢字で書いてください",
-      "choices": [
-        "学"
-      ],
+      "choices": ["学"],
       "correct": 0,
       "explanation": "「まなぶ」の「まな」は「学」と書く。知識を身につけること。「がく」（音読み）とも読む。「学校」（がっこう）にも使う"
     },
     {
       "id": "5daa0d10-1e1e-58d9-88d1-e7a0d87a8715",
       "question": "「いきる」の「い」を漢字で書いてください",
-      "choices": [
-        "生"
-      ],
+      "choices": ["生"],
       "correct": 0,
       "explanation": "「いきる」の「い」は「生」と書く。命があること。「うまれる」とも読む。「せい」「しょう」（音読み）とも読む。「先生」（せんせい）にも使う"
     }

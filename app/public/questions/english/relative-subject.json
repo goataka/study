@@ -16,120 +16,70 @@
     {
       "id": "9865070d-f406-5cf7-9d38-2308a73108be",
       "question": "I have a friend ___ speaks English. (人・主格)",
-      "choices": [
-        "who",
-        "whom",
-        "which",
-        "whose"
-      ],
+      "choices": ["who", "whom", "which", "whose"],
       "correct": 0,
       "explanation": "人が主語の場合は who を使います"
     },
     {
       "id": "46bedd09-acec-594c-a5cd-f5e244d1bd14",
       "question": "I have a book ___ is very interesting. (物・主格)",
-      "choices": [
-        "which",
-        "who",
-        "whom",
-        "whose"
-      ],
+      "choices": ["which", "who", "whom", "whose"],
       "correct": 0,
       "explanation": "物が主語の場合は which を使います"
     },
     {
       "id": "fd61b55b-3fc9-5238-9a56-5df451b77eb0",
       "question": "I have a friend ___ lives in Tokyo. (人・主格)",
-      "choices": [
-        "that",
-        "whose",
-        "where",
-        "when"
-      ],
+      "choices": ["that", "whose", "where", "when"],
       "correct": 0,
       "explanation": "人・物どちらでも that を使えます"
     },
     {
       "id": "8e540225-6bef-5ad1-b6c9-8a28b5e8090e",
       "question": "I have a cat ___ is very cute. (物・主格)",
-      "choices": [
-        "which",
-        "who",
-        "whom",
-        "whose"
-      ],
+      "choices": ["which", "who", "whom", "whose"],
       "correct": 0,
       "explanation": "物が主語の場合は which を使います"
     },
     {
       "id": "a8bece07-115f-5989-b52b-b88b08b82541",
       "question": "The boy ___ is playing there is my brother. (人・主格)",
-      "choices": [
-        "who",
-        "whom",
-        "which",
-        "whose"
-      ],
+      "choices": ["who", "whom", "which", "whose"],
       "correct": 0,
       "explanation": "人が主語の場合は who を使います"
     },
     {
       "id": "5af9b447-d80e-5295-aecf-19aa6bc58af9",
       "question": "The car ___ is parked there is mine. (物・主格)",
-      "choices": [
-        "which",
-        "who",
-        "whom",
-        "whose"
-      ],
+      "choices": ["which", "who", "whom", "whose"],
       "correct": 0,
       "explanation": "物が主語の場合は which を使います"
     },
     {
       "id": "256e40f3-0de1-503d-a406-b69579e0e421",
       "question": "I know a teacher ___ teaches English. (人・主格)",
-      "choices": [
-        "who",
-        "whom",
-        "which",
-        "whose"
-      ],
+      "choices": ["who", "whom", "which", "whose"],
       "correct": 0,
       "explanation": "人が主語の場合は who を使います"
     },
     {
       "id": "d20a0c08-7ef3-5344-a59c-526c09e8a0b1",
       "question": "This is a dog ___ can swim. (物・主格)",
-      "choices": [
-        "that",
-        "whom",
-        "whose",
-        "where"
-      ],
+      "choices": ["that", "whom", "whose", "where"],
       "correct": 0,
       "explanation": "物が主語の場合は that を使えます"
     },
     {
       "id": "e216f4e0-826c-5cd5-b169-975398bc92ea",
       "question": "I know a girl ___ can dance well. (人・主格)",
-      "choices": [
-        "who",
-        "which",
-        "whom",
-        "whose"
-      ],
+      "choices": ["who", "which", "whom", "whose"],
       "correct": 0,
       "explanation": "人の主格の関係代名詞は who または that を使います"
     },
     {
       "id": "a486089f-2a2d-59c1-a895-895f8db536ba",
       "question": "The train ___ arrives at 9 is fast. (物・主格)",
-      "choices": [
-        "which",
-        "who",
-        "whom",
-        "whose"
-      ],
+      "choices": ["which", "who", "whom", "whose"],
       "correct": 0,
       "explanation": "物の主格の関係代名詞は which または that を使います"
     }

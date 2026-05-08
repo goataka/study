@@ -16,120 +16,70 @@
     {
       "id": "e41c0daf-30e9-53ba-aa70-c73b74d3df10",
       "question": "I ___ play the piano when I was young. (～できた)",
-      "choices": [
-        "could",
-        "can",
-        "would",
-        "should"
-      ],
+      "choices": ["could", "can", "would", "should"],
       "correct": 0,
       "explanation": "canの過去形は could です"
     },
     {
       "id": "6e74b0b9-3aca-5f07-9ced-7022b78a8664",
       "question": "I ___ visit my grandmother every Sunday. (よく～した)",
-      "choices": [
-        "would",
-        "could",
-        "might",
-        "should"
-      ],
+      "choices": ["would", "could", "might", "should"],
       "correct": 0,
       "explanation": "過去の習慣は would を使います"
     },
     {
       "id": "2eda657a-dc28-5fa5-8933-679e4fed5128",
       "question": "She ___ be a teacher. (～だったかもしれない)",
-      "choices": [
-        "might have been",
-        "might be",
-        "could be",
-        "would be"
-      ],
+      "choices": ["might have been", "might be", "could be", "would be"],
       "correct": 0,
       "explanation": "過去の推量は might have been を使います"
     },
     {
       "id": "d476bc40-916e-5058-8cc7-443eaa6bfb16",
       "question": "You ___ studied harder. (～すべきだった)",
-      "choices": [
-        "should have",
-        "should",
-        "could",
-        "would"
-      ],
+      "choices": ["should have", "should", "could", "would"],
       "correct": 0,
       "explanation": "過去の後悔は should have + 過去分詞です"
     },
     {
       "id": "7773772c-3380-5b44-bef7-bd889043647c",
       "question": "I ___ finish my homework yesterday. (～できなかった)",
-      "choices": [
-        "could not",
-        "cannot",
-        "would not",
-        "should not"
-      ],
+      "choices": ["could not", "cannot", "would not", "should not"],
       "correct": 0,
       "explanation": "過去の能力がないは could not を使います"
     },
     {
       "id": "fbbd6b48-fe01-5483-8933-2a1f319cb94a",
       "question": "He ___ done his homework. (～したかもしれない)",
-      "choices": [
-        "may have",
-        "may",
-        "can have",
-        "will have"
-      ],
+      "choices": ["may have", "may", "can have", "will have"],
       "correct": 0,
       "explanation": "過去の推量は may have + 過去分詞です"
     },
     {
       "id": "15f0da33-777e-5ee3-afea-999c02e35753",
       "question": "I ___ swim when I was a child. (～できた)",
-      "choices": [
-        "could",
-        "can",
-        "would",
-        "might"
-      ],
+      "choices": ["could", "can", "would", "might"],
       "correct": 0,
       "explanation": "過去の能力は could を使います"
     },
     {
       "id": "92b07646-d11f-5127-8693-83ece8a1b2a7",
       "question": "You ___ told me earlier. (～すべきだった)",
-      "choices": [
-        "should have",
-        "should",
-        "could",
-        "would"
-      ],
+      "choices": ["should have", "should", "could", "would"],
       "correct": 0,
       "explanation": "過去の後悔は should have + 過去分詞です"
     },
     {
       "id": "0ffb153c-9df1-523e-9997-84f233ee0317",
       "question": "She ___ be a great singer in her youth. (～だったかもしれない)",
-      "choices": [
-        "might have been",
-        "must have been",
-        "should have been",
-        "could have been"
-      ],
+      "choices": ["might have been", "must have been", "should have been", "could have been"],
       "correct": 0,
       "explanation": "might have been は過去への弱い推量を表します"
     },
     {
       "id": "91bcdc25-459e-506d-a130-572edc6946f7",
       "question": "I ___ run faster when I was younger. (～できた)",
-      "choices": [
-        "could",
-        "would",
-        "should",
-        "might"
-      ],
+      "choices": ["could", "would", "should", "might"],
       "correct": 0,
       "explanation": "could は過去の能力（～できた）を表します"
     }

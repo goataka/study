@@ -128,8 +128,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       new Promise((resolve, reject) => {
         const req = store.get(key);
         req.onsuccess = () => resolve(req.result);
-        req.onerror = () =>
-          reject(req.error ?? new Error(`IndexedDB から ${key} の取得に失敗しました`));
+        req.onerror = () => reject(req.error ?? new Error(`IndexedDB から ${key} の取得に失敗しました`));
       });
 
     const transactionDone = new Promise<void>((resolve, reject) => {
@@ -220,22 +219,14 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   }
 
   /** 壊れたデータや旧形式を検証して正規化する */
-  private normalizeStats(
-    raw: Record<string, unknown>
-  ): Record<string, { total: number; correct: number }> {
+  private normalizeStats(raw: Record<string, unknown>): Record<string, { total: number; correct: number }> {
     const normalized: Record<string, { total: number; correct: number }> = {};
     for (const [id, val] of Object.entries(raw)) {
       if (val !== null && typeof val === "object") {
         const { total, correct } = val as Record<string, unknown>;
         normalized[id] = {
-          total:
-            Number.isFinite(total) && (total as number) >= 0
-              ? Math.trunc(total as number)
-              : 0,
-          correct:
-            Number.isFinite(correct) && (correct as number) >= 0
-              ? Math.trunc(correct as number)
-              : 0,
+          total: Number.isFinite(total) && (total as number) >= 0 ? Math.trunc(total as number) : 0,
+          correct: Number.isFinite(correct) && (correct as number) >= 0 ? Math.trunc(correct as number) : 0,
         };
       }
     }

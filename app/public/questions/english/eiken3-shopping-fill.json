@@ -13,180 +13,105 @@
     {
       "id": "49964be9-0107-5488-a4df-141331c69a29",
       "question": "What is the ___ of this bag? (このバッグの値段はいくらですか？)",
-      "choices": [
-        "price",
-        "discount",
-        "wallet",
-        "sale"
-      ],
+      "choices": ["price", "discount", "wallet", "sale"],
       "correct": 0,
       "explanation": "空欄には price（値段）が入ります"
     },
     {
       "id": "aa62e511-c2ec-5313-8224-cf9962a86751",
       "question": "I got a 20% ___ on this item. (この商品は20%割引になりました)",
-      "choices": [
-        "discount",
-        "receipt",
-        "product",
-        "store"
-      ],
+      "choices": ["discount", "receipt", "product", "store"],
       "correct": 0,
       "explanation": "空欄には discount（割引）が入ります"
     },
     {
       "id": "411a2fad-c937-5939-88b3-260f203d7496",
       "question": "Please give me a ___. (領収書をください)",
-      "choices": [
-        "receipt",
-        "wallet",
-        "expensive",
-        "customer"
-      ],
+      "choices": ["receipt", "wallet", "expensive", "customer"],
       "correct": 0,
       "explanation": "空欄には receipt（領収書）が入ります"
     },
     {
       "id": "4257e973-a074-5c8b-a6e9-d39cd979f761",
       "question": "I left my ___ at home. (財布を家に忘れました)",
-      "choices": [
-        "wallet",
-        "product",
-        "cheap",
-        "tax"
-      ],
+      "choices": ["wallet", "product", "cheap", "tax"],
       "correct": 0,
       "explanation": "空欄には wallet（財布）が入ります"
     },
     {
       "id": "bff8c604-4b4c-500a-9346-fe35b8088c0b",
       "question": "This ___ is made in Japan. (この商品は日本製です)",
-      "choices": [
-        "product",
-        "expensive",
-        "sale",
-        "change"
-      ],
+      "choices": ["product", "expensive", "sale", "change"],
       "correct": 0,
       "explanation": "空欄には product（商品）が入ります"
     },
     {
       "id": "99ee4dfc-ce18-5e0e-9cd8-b67e5dacf5a8",
       "question": "This bag is too ___ for me. (このバッグは私には高すぎます)",
-      "choices": [
-        "expensive",
-        "cheap",
-        "store",
-        "advertisement"
-      ],
+      "choices": ["expensive", "cheap", "store", "advertisement"],
       "correct": 0,
       "explanation": "空欄には expensive（高価な）が入ります"
     },
     {
       "id": "03323931-f96a-59f9-9395-c0569f1f53d5",
       "question": "I found a ___ jacket at the store. (店で安いジャケットを見つけました)",
-      "choices": [
-        "cheap",
-        "sale",
-        "customer",
-        "purchase"
-      ],
+      "choices": ["cheap", "sale", "customer", "purchase"],
       "correct": 0,
       "explanation": "空欄には cheap（安い）が入ります"
     },
     {
       "id": "fc4b3fd3-1750-50d9-94ab-c5577ba7770a",
       "question": "Everything is 50% off in the ___. (セールで全品50%オフです)",
-      "choices": [
-        "sale",
-        "store",
-        "tax",
-        "refund"
-      ],
+      "choices": ["sale", "store", "tax", "refund"],
       "correct": 0,
       "explanation": "空欄には sale（セール）が入ります"
     },
     {
       "id": "ab3c7b3a-e192-5880-a392-c3ba82467f08",
       "question": "I went to the ___ after school. (放課後にお店に行きました)",
-      "choices": [
-        "store",
-        "customer",
-        "change",
-        "price"
-      ],
+      "choices": ["store", "customer", "change", "price"],
       "correct": 0,
       "explanation": "空欄には store（お店）が入ります"
     },
     {
       "id": "c80eab2e-5b8d-5a9b-ad4e-8f1a7824ff06",
       "question": "The ___ asked for help. (お客さんが助けを求めました)",
-      "choices": [
-        "customer",
-        "tax",
-        "advertisement",
-        "discount"
-      ],
+      "choices": ["customer", "tax", "advertisement", "discount"],
       "correct": 0,
       "explanation": "空欄には customer（お客さん）が入ります"
     },
     {
       "id": "808ef262-39c2-5b25-a7e1-e37108ab790b",
       "question": "The ___ on this is 10%. (これの税率は10%です)",
-      "choices": [
-        "tax",
-        "change",
-        "purchase",
-        "receipt"
-      ],
+      "choices": ["tax", "change", "purchase", "receipt"],
       "correct": 0,
       "explanation": "空欄には tax（税金）が入ります"
     },
     {
       "id": "50446ebd-dc05-5e71-a9b0-9474f8b90170",
       "question": "The cashier gave me the wrong ___. (レジの人が間違ったお釣りを渡しました)",
-      "choices": [
-        "change",
-        "advertisement",
-        "refund",
-        "wallet"
-      ],
+      "choices": ["change", "advertisement", "refund", "wallet"],
       "correct": 0,
       "explanation": "空欄には change（お釣り）が入ります"
     },
     {
       "id": "e133d427-965e-5864-a94f-9ddf986eee03",
       "question": "I saw the ___ on TV. (テレビでその広告を見ました)",
-      "choices": [
-        "advertisement",
-        "purchase",
-        "price",
-        "product"
-      ],
+      "choices": ["advertisement", "purchase", "price", "product"],
       "correct": 0,
       "explanation": "空欄には advertisement（広告）が入ります"
     },
     {
       "id": "8e66b0f7-6510-58a7-9451-c32acfc7fd44",
       "question": "She made a big ___ today. (今日大きな購入をしました)",
-      "choices": [
-        "purchase",
-        "refund",
-        "discount",
-        "expensive"
-      ],
+      "choices": ["purchase", "refund", "discount", "expensive"],
       "correct": 0,
       "explanation": "空欄には purchase（購入）が入ります"
     },
     {
       "id": "f03c5716-311c-5b4a-8dd5-a45d6b78712d",
       "question": "I want a ___ for this broken item. (この壊れた商品の返金を求めたいです)",
-      "choices": [
-        "refund",
-        "price",
-        "receipt",
-        "cheap"
-      ],
+      "choices": ["refund", "price", "receipt", "cheap"],
       "correct": 0,
       "explanation": "空欄には refund（返金）が入ります"
     }

@@ -13,180 +13,105 @@
     {
       "id": "cc4ceb5e-0f66-5105-81b4-64b15fe466c5",
       "question": "Don't forget your ___ when you travel abroad. (海外旅行ではパスポートを忘れずに)",
-      "choices": [
-        "passport",
-        "luggage",
-        "departure",
-        "tourist"
-      ],
+      "choices": ["passport", "luggage", "departure", "tourist"],
       "correct": 0,
       "explanation": "空欄には passport（パスポート）が入ります"
     },
     {
       "id": "94ef4d71-f233-5043-b626-6bad043ac130",
       "question": "Please put your ___ in the overhead bin. (荷物を頭上の棚に入れてください)",
-      "choices": [
-        "luggage",
-        "destination",
-        "arrival",
-        "transportation"
-      ],
+      "choices": ["luggage", "destination", "arrival", "transportation"],
       "correct": 0,
       "explanation": "空欄には luggage（荷物）が入ります"
     },
     {
       "id": "af422bf5-353d-5003-8fcc-86a442182374",
       "question": "Our ___ is Paris. (目的地はパリです)",
-      "choices": [
-        "destination",
-        "departure",
-        "schedule",
-        "subway"
-      ],
+      "choices": ["destination", "departure", "schedule", "subway"],
       "correct": 0,
       "explanation": "空欄には destination（目的地）が入ります"
     },
     {
       "id": "d23ce6a0-ef24-521f-82d5-f4dc61690bcd",
       "question": "The ___ time is 9 AM. (出発時間は午前9時です)",
-      "choices": [
-        "departure",
-        "arrival",
-        "reservation",
-        "highway"
-      ],
+      "choices": ["departure", "arrival", "reservation", "highway"],
       "correct": 0,
       "explanation": "空欄には departure（出発）が入ります"
     },
     {
       "id": "ff363b47-49d6-5c0e-b7aa-b19e2e1d19b5",
       "question": "We checked the ___ board for our flight. (フライトの到着ボードを確認しました)",
-      "choices": [
-        "arrival",
-        "schedule",
-        "tourist",
-        "ferry"
-      ],
+      "choices": ["arrival", "schedule", "tourist", "ferry"],
       "correct": 0,
       "explanation": "空欄には arrival（到着）が入ります"
     },
     {
       "id": "6a1eaa3e-c6c2-50db-9cc4-1810d3952931",
       "question": "Let me check my ___ for tomorrow. (明日のスケジュールを確認します)",
-      "choices": [
-        "schedule",
-        "reservation",
-        "transportation",
-        "suitcase"
-      ],
+      "choices": ["schedule", "reservation", "transportation", "suitcase"],
       "correct": 0,
       "explanation": "空欄には schedule（スケジュール）が入ります"
     },
     {
       "id": "d61473ba-2ea2-5c74-8f44-09f059171cce",
       "question": "I made a ___ at the hotel. (ホテルの予約をしました)",
-      "choices": [
-        "reservation",
-        "tourist",
-        "subway",
-        "guidebook"
-      ],
+      "choices": ["reservation", "tourist", "subway", "guidebook"],
       "correct": 0,
       "explanation": "空欄には reservation（予約）が入ります"
     },
     {
       "id": "fbb3c658-bd8d-5d67-a561-92624c7684cd",
       "question": "A ___ visits the temple. (観光客がお寺を訪れます)",
-      "choices": [
-        "tourist",
-        "transportation",
-        "highway",
-        "airport"
-      ],
+      "choices": ["tourist", "transportation", "highway", "airport"],
       "correct": 0,
       "explanation": "空欄には tourist（観光客）が入ります"
     },
     {
       "id": "dce8eb34-b25d-533c-a08e-03b2b2991634",
       "question": "The ___ in this city is excellent. (この街の交通機関は優れています)",
-      "choices": [
-        "transportation",
-        "subway",
-        "ferry",
-        "passport"
-      ],
+      "choices": ["transportation", "subway", "ferry", "passport"],
       "correct": 0,
       "explanation": "空欄には transportation（交通機関）が入ります"
     },
     {
       "id": "da164fbc-1431-5145-a782-6782fc4eccdd",
       "question": "Take the ___ to get downtown. (地下鉄に乗って繁華街に行きましょう)",
-      "choices": [
-        "subway",
-        "highway",
-        "suitcase",
-        "luggage"
-      ],
+      "choices": ["subway", "highway", "suitcase", "luggage"],
       "correct": 0,
       "explanation": "空欄には subway（地下鉄）が入ります"
     },
     {
       "id": "c400a2ad-3f76-52f7-a75c-43d19ccb9d9b",
       "question": "We drove on the ___ to the city. (高速道路を通って街まで行きました)",
-      "choices": [
-        "highway",
-        "ferry",
-        "guidebook",
-        "destination"
-      ],
+      "choices": ["highway", "ferry", "guidebook", "destination"],
       "correct": 0,
       "explanation": "空欄には highway（高速道路）が入ります"
     },
     {
       "id": "2671c2bd-06ec-527f-bfc0-77bf518cc647",
       "question": "We took a ___ to the island. (島へフェリーで行きました)",
-      "choices": [
-        "ferry",
-        "suitcase",
-        "airport",
-        "departure"
-      ],
+      "choices": ["ferry", "suitcase", "airport", "departure"],
       "correct": 0,
       "explanation": "空欄には ferry（フェリー）が入ります"
     },
     {
       "id": "ce1b2200-7f1f-5a88-bd4b-2972573dfc10",
       "question": "My ___ was too heavy. (スーツケースが重すぎました)",
-      "choices": [
-        "suitcase",
-        "guidebook",
-        "passport",
-        "arrival"
-      ],
+      "choices": ["suitcase", "guidebook", "passport", "arrival"],
       "correct": 0,
       "explanation": "空欄には suitcase（スーツケース）が入ります"
     },
     {
       "id": "623ba2fe-bc77-5148-8b76-c3b6795bb40c",
       "question": "I bought a ___ at the bookstore. (書店でガイドブックを買いました)",
-      "choices": [
-        "guidebook",
-        "airport",
-        "luggage",
-        "schedule"
-      ],
+      "choices": ["guidebook", "airport", "luggage", "schedule"],
       "correct": 0,
       "explanation": "空欄には guidebook（ガイドブック）が入ります"
     },
     {
       "id": "80a0871b-4a74-52a4-b17e-195796b24350",
       "question": "We arrived at the ___ early. (早めに空港に着きました)",
-      "choices": [
-        "airport",
-        "passport",
-        "destination",
-        "reservation"
-      ],
+      "choices": ["airport", "passport", "destination", "reservation"],
       "correct": 0,
       "explanation": "空欄には airport（空港）が入ります"
     }

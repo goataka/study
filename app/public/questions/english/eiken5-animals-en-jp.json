@@ -13,180 +13,105 @@
     {
       "id": "748b92a6-22ac-5fd1-a7a9-90c11ef7669b",
       "question": "「cat」の意味は？",
-      "choices": [
-        "ねこ",
-        "いぬ",
-        "とり",
-        "さかな"
-      ],
+      "choices": ["ねこ", "いぬ", "とり", "さかな"],
       "correct": 0,
       "explanation": "cat は「ねこ」です"
     },
     {
       "id": "85d72eaf-8aa9-5ec2-b957-c42072595f54",
       "question": "「dog」の意味は？",
-      "choices": [
-        "いぬ",
-        "ねこ",
-        "うさぎ",
-        "うま"
-      ],
+      "choices": ["いぬ", "ねこ", "うさぎ", "うま"],
       "correct": 0,
       "explanation": "dog は「いぬ」です"
     },
     {
       "id": "72dc7e77-edda-57aa-9a26-4f00cdb6b667",
       "question": "「bird」の意味は？",
-      "choices": [
-        "とり",
-        "さかな",
-        "ねずみ",
-        "ひつじ"
-      ],
+      "choices": ["とり", "さかな", "ねずみ", "ひつじ"],
       "correct": 0,
       "explanation": "bird は「とり」です"
     },
     {
       "id": "420a1199-4f3b-56c3-88ff-0e9517af5d97",
       "question": "「fish」の意味は？",
-      "choices": [
-        "さかな",
-        "とり",
-        "ねこ",
-        "ぶた"
-      ],
+      "choices": ["さかな", "とり", "ねこ", "ぶた"],
       "correct": 0,
       "explanation": "fish は「さかな」です"
     },
     {
       "id": "08d04694-0024-59e7-abdd-67d62fc483bf",
       "question": "「rabbit」の意味は？",
-      "choices": [
-        "うさぎ",
-        "うま",
-        "うし",
-        "ねずみ"
-      ],
+      "choices": ["うさぎ", "うま", "うし", "ねずみ"],
       "correct": 0,
       "explanation": "rabbit は「うさぎ」です"
     },
     {
       "id": "9749fe5f-5a0b-58f3-acd1-6ffc3e23361e",
       "question": "「horse」の意味は？",
-      "choices": [
-        "うま",
-        "うさぎ",
-        "うし",
-        "くま"
-      ],
+      "choices": ["うま", "うさぎ", "うし", "くま"],
       "correct": 0,
       "explanation": "horse は「うま」です"
     },
     {
       "id": "6d4a2a92-0dd8-50fc-b81f-f8c31163d352",
       "question": "「cow」の意味は？",
-      "choices": [
-        "うし",
-        "ぶた",
-        "うま",
-        "ひつじ"
-      ],
+      "choices": ["うし", "ぶた", "うま", "ひつじ"],
       "correct": 0,
       "explanation": "cow は「うし」です"
     },
     {
       "id": "4097c03b-8065-5a5f-a36c-c63f6dc8daeb",
       "question": "「pig」の意味は？",
-      "choices": [
-        "ぶた",
-        "うし",
-        "くま",
-        "さる"
-      ],
+      "choices": ["ぶた", "うし", "くま", "さる"],
       "correct": 0,
       "explanation": "pig は「ぶた」です"
     },
     {
       "id": "a0ad92af-4475-5b23-8267-a4fd4c78242a",
       "question": "「bear」の意味は？",
-      "choices": [
-        "くま",
-        "ぶた",
-        "らいおん",
-        "とら"
-      ],
+      "choices": ["くま", "ぶた", "らいおん", "とら"],
       "correct": 0,
       "explanation": "bear は「くま」です"
     },
     {
       "id": "c08c9bb5-019f-5576-aa6b-3524a9bb24f2",
       "question": "「monkey」の意味は？",
-      "choices": [
-        "さる",
-        "くま",
-        "ぞう",
-        "らいおん"
-      ],
+      "choices": ["さる", "くま", "ぞう", "らいおん"],
       "correct": 0,
       "explanation": "monkey は「さる」です"
     },
     {
       "id": "5e7a346c-d1a2-50dd-84e8-3b303c3839d2",
       "question": "「elephant」の意味は？",
-      "choices": [
-        "ぞう",
-        "さる",
-        "らいおん",
-        "とら"
-      ],
+      "choices": ["ぞう", "さる", "らいおん", "とら"],
       "correct": 0,
       "explanation": "elephant は「ぞう」です"
     },
     {
       "id": "b85fe69b-2731-5689-98f6-f6b178f7c206",
       "question": "「lion」の意味は？",
-      "choices": [
-        "らいおん",
-        "ぞう",
-        "とら",
-        "くま"
-      ],
+      "choices": ["らいおん", "ぞう", "とら", "くま"],
       "correct": 0,
       "explanation": "lion は「らいおん」です"
     },
     {
       "id": "00bab97d-3870-5ae3-a1af-db7675bbed92",
       "question": "「tiger」の意味は？",
-      "choices": [
-        "とら",
-        "らいおん",
-        "さる",
-        "うま"
-      ],
+      "choices": ["とら", "らいおん", "さる", "うま"],
       "correct": 0,
       "explanation": "tiger は「とら」です"
     },
     {
       "id": "afada690-b9f3-5845-8811-070b1e0586be",
       "question": "「mouse」の意味は？",
-      "choices": [
-        "ねずみ",
-        "ねこ",
-        "うさぎ",
-        "とり"
-      ],
+      "choices": ["ねずみ", "ねこ", "うさぎ", "とり"],
       "correct": 0,
       "explanation": "mouse は「ねずみ」です"
     },
     {
       "id": "05e226c2-8f97-521f-8011-a3caecb68a20",
       "question": "「sheep」の意味は？",
-      "choices": [
-        "ひつじ",
-        "うし",
-        "ぶた",
-        "うま"
-      ],
+      "choices": ["ひつじ", "うし", "ぶた", "うま"],
       "correct": 0,
       "explanation": "sheep は「ひつじ」です"
     }

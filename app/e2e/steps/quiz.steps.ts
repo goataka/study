@@ -406,10 +406,7 @@ Then("the support button should open support page in a new tab", async ({ page }
   await expect(supportBtn).toHaveAttribute("target", "_blank");
   await expect(supportBtn).toHaveAttribute("href", "./support/");
 
-  const [supportPage] = await Promise.all([
-    page.waitForEvent("popup"),
-    supportBtn.click(),
-  ]);
+  const [supportPage] = await Promise.all([page.waitForEvent("popup"), supportBtn.click()]);
 
   await supportPage.waitForLoadState();
   expect(supportPage.url()).toContain("support");
@@ -483,9 +480,6 @@ Then("an admin JSON file download should be triggered", async ({ page }) => {
   await page.locator(".admin-manage-tab").filter({ hasText: "エクスポート" }).click();
   const exportBtn = page.locator(".admin-import-apply-btn");
   await expect(exportBtn).toBeVisible();
-  const [download] = await Promise.all([
-    page.waitForEvent("download"),
-    exportBtn.click(),
-  ]);
+  const [download] = await Promise.all([page.waitForEvent("download"), exportBtn.click()]);
   expect(download.suggestedFilename()).toMatch(/^study-data-\d{4}-\d{2}-\d{2}\.json$/);
 });

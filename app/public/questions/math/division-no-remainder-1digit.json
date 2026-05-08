@@ -16,180 +16,105 @@
     {
       "id": "4b9bc2ee-12e0-51c1-835a-29b916521e9f",
       "question": "6 ÷ 2 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "1"
-      ],
+      "choices": ["3", "2", "4", "1"],
       "correct": 0,
       "explanation": "2 × 3 = 6なので、6 ÷ 2 = 3"
     },
     {
       "id": "1ecea923-346c-5dfe-aaed-b41273e85831",
       "question": "8 ÷ 4 = ?",
-      "choices": [
-        "2",
-        "1",
-        "3",
-        "0"
-      ],
+      "choices": ["2", "1", "3", "0"],
       "correct": 0,
       "explanation": "4 × 2 = 8なので、8 ÷ 4 = 2"
     },
     {
       "id": "56659030-d827-59cd-93c0-ce0bd86684f0",
       "question": "15 ÷ 3 = ?",
-      "choices": [
-        "5",
-        "4",
-        "6",
-        "3"
-      ],
+      "choices": ["5", "4", "6", "3"],
       "correct": 0,
       "explanation": "3 × 5 = 15なので、15 ÷ 3 = 5"
     },
     {
       "id": "65b5716d-b99e-576b-9c03-ad2c46fd05c6",
       "question": "20 ÷ 5 = ?",
-      "choices": [
-        "4",
-        "3",
-        "5",
-        "2"
-      ],
+      "choices": ["4", "3", "5", "2"],
       "correct": 0,
       "explanation": "5 × 4 = 20なので、20 ÷ 5 = 4"
     },
     {
       "id": "1ca29b13-ace1-522a-bd39-aff9d726c4aa",
       "question": "18 ÷ 6 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "1"
-      ],
+      "choices": ["3", "2", "4", "1"],
       "correct": 0,
       "explanation": "6 × 3 = 18なので、18 ÷ 6 = 3"
     },
     {
       "id": "92ea9973-a3e9-565f-b8de-73d7b9c3d579",
       "question": "21 ÷ 7 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "1"
-      ],
+      "choices": ["3", "2", "4", "1"],
       "correct": 0,
       "explanation": "7 × 3 = 21なので、21 ÷ 7 = 3"
     },
     {
       "id": "627bbf10-ef7a-5004-8c78-8b7d47c04921",
       "question": "24 ÷ 8 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "1"
-      ],
+      "choices": ["3", "2", "4", "1"],
       "correct": 0,
       "explanation": "8 × 3 = 24なので、24 ÷ 8 = 3"
     },
     {
       "id": "6571979a-5565-5090-acab-5e4a7fc9c4ac",
       "question": "27 ÷ 9 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "1"
-      ],
+      "choices": ["3", "2", "4", "1"],
       "correct": 0,
       "explanation": "9 × 3 = 27なので、27 ÷ 9 = 3"
     },
     {
       "id": "4b9e3ce6-60a6-5bbb-bea1-b52bc907828f",
       "question": "12 ÷ 4 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "1"
-      ],
+      "choices": ["3", "2", "4", "1"],
       "correct": 0,
       "explanation": "4 × 3 = 12なので、12 ÷ 4 = 3"
     },
     {
       "id": "4d869099-f826-5b43-a286-fb4fe6ae0099",
       "question": "14 ÷ 2 = ?",
-      "choices": [
-        "7",
-        "6",
-        "8",
-        "5"
-      ],
+      "choices": ["7", "6", "8", "5"],
       "correct": 0,
       "explanation": "2 × 7 = 14なので、14 ÷ 2 = 7"
     },
     {
       "id": "4d93d9c8-fd8c-5fa3-b751-c5b4f39aaf97",
       "question": "16 ÷ 4 = ?",
-      "choices": [
-        "4",
-        "3",
-        "5",
-        "2"
-      ],
+      "choices": ["4", "3", "5", "2"],
       "correct": 0,
       "explanation": "4 × 4 = 16なので、16 ÷ 4 = 4"
     },
     {
       "id": "ed8e177a-4445-5d83-8a81-6f03fac8777d",
       "question": "25 ÷ 5 = ?",
-      "choices": [
-        "5",
-        "4",
-        "6",
-        "3"
-      ],
+      "choices": ["5", "4", "6", "3"],
       "correct": 0,
       "explanation": "5 × 5 = 25なので、25 ÷ 5 = 5"
     },
     {
       "id": "c8a50349-edb4-5609-a338-dc0ef7326f4c",
       "question": "36 ÷ 6 = ?",
-      "choices": [
-        "6",
-        "5",
-        "7",
-        "4"
-      ],
+      "choices": ["6", "5", "7", "4"],
       "correct": 0,
       "explanation": "6 × 6 = 36なので、36 ÷ 6 = 6"
     },
     {
       "id": "39168eef-60f0-549b-bcf3-354efc77d471",
       "question": "49 ÷ 7 = ?",
-      "choices": [
-        "7",
-        "6",
-        "8",
-        "5"
-      ],
+      "choices": ["7", "6", "8", "5"],
       "correct": 0,
       "explanation": "7 × 7 = 49なので、49 ÷ 7 = 7"
     },
     {
       "id": "c0665d29-ab81-5024-8f71-b3427b2e6562",
       "question": "64 ÷ 8 = ?",
-      "choices": [
-        "8",
-        "7",
-        "9",
-        "6"
-      ],
+      "choices": ["8", "7", "9", "6"],
       "correct": 0,
       "explanation": "8 × 8 = 64なので、64 ÷ 8 = 8"
     }

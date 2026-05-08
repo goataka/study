@@ -16,120 +16,70 @@
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000001",
       "question": "I play games ___ they are fun. (理由)",
-      "choices": [
-        "because",
-        "but",
-        "and",
-        "or"
-      ],
+      "choices": ["because", "but", "and", "or"],
       "correct": 0,
       "explanation": "理由を表すには because を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000002",
       "question": "I play games ___ I finish homework. (時・〜した後)",
-      "choices": [
-        "after",
-        "before",
-        "when",
-        "if"
-      ],
+      "choices": ["after", "before", "when", "if"],
       "correct": 0,
       "explanation": "〜した後に、を表すには after を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000003",
       "question": "I play games ___ I have time. (条件)",
-      "choices": [
-        "if",
-        "because",
-        "when",
-        "though"
-      ],
+      "choices": ["if", "because", "when", "though"],
       "correct": 0,
       "explanation": "条件（もし〜なら）を表すには if を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000004",
       "question": "I study ___ I am at home. (時・〜のとき)",
-      "choices": [
-        "when",
-        "if",
-        "because",
-        "after"
-      ],
+      "choices": ["when", "if", "because", "after"],
       "correct": 0,
       "explanation": "〜のとき、を表すには when を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000005",
       "question": "I warm up ___ I exercise. (時・〜する前)",
-      "choices": [
-        "before",
-        "after",
-        "when",
-        "if"
-      ],
+      "choices": ["before", "after", "when", "if"],
       "correct": 0,
       "explanation": "〜する前に、を表すには before を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000006",
       "question": "___ I am busy, I play games. (譲歩)",
-      "choices": [
-        "Though",
-        "Because",
-        "If",
-        "When"
-      ],
+      "choices": ["Though", "Because", "If", "When"],
       "correct": 0,
       "explanation": "譲歩（〜だけれども）を表すには though / although を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000007",
       "question": "She was happy ___ she won the game. (理由)",
-      "choices": [
-        "because",
-        "but",
-        "although",
-        "while"
-      ],
+      "choices": ["because", "but", "although", "while"],
       "correct": 0,
       "explanation": "理由を表すには because を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000008",
       "question": "I will call you ___ I arrive. (時・〜したら)",
-      "choices": [
-        "when",
-        "before",
-        "because",
-        "though"
-      ],
+      "choices": ["when", "before", "because", "though"],
       "correct": 0,
       "explanation": "〜したら・〜のとき、を表すには when を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000009",
       "question": "I know ___ she likes music. (名詞節)",
-      "choices": [
-        "that",
-        "what",
-        "which",
-        "who"
-      ],
+      "choices": ["that", "what", "which", "who"],
       "correct": 0,
       "explanation": "〜ということ（名詞節）を表すには that を使います"
     },
     {
       "id": "a1b2c3d4-0012-5012-8012-000000000010",
       "question": "___ it rains, I stay home. (条件)",
-      "choices": [
-        "If",
-        "Though",
-        "Because",
-        "After"
-      ],
+      "choices": ["If", "Though", "Because", "After"],
       "correct": 0,
       "explanation": "条件（もし〜なら）を表すには if を使います"
     }

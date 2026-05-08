@@ -12,9 +12,7 @@ Given("the viewport is {int}x{int}", async ({ page }, width: number, height: num
 Then("the page content should fit within the viewport height", async ({ page }) => {
   const viewportHeight = page.viewportSize()!.height;
   // JavaScript zoom 適用後の body の視覚的な高さがビューポートを超えないことを確認
-  const bodyHeight = await page.evaluate(
-    () => document.body.getBoundingClientRect().height,
-  );
+  const bodyHeight = await page.evaluate(() => document.body.getBoundingClientRect().height);
   expect(bodyHeight).toBeLessThanOrEqual(viewportHeight);
 });
 
@@ -22,7 +20,8 @@ Then("the page content should fit within the viewport height", async ({ page }) 
 Then("the html zoom should be {float}", async ({ page }, expectedZoom: number) => {
   const zoom = await page.evaluate(() => {
     const raw = parseFloat(document.documentElement.style.zoom);
-    if (!Number.isFinite(raw)) throw new Error(`zoom が有効な数値ではありません: "${document.documentElement.style.zoom}"`);
+    if (!Number.isFinite(raw))
+      throw new Error(`zoom が有効な数値ではありません: "${document.documentElement.style.zoom}"`);
     return raw;
   });
   expect(zoom).toBeCloseTo(expectedZoom, 4);
@@ -32,7 +31,8 @@ Then("the html zoom should be {float}", async ({ page }, expectedZoom: number) =
 Then("the html zoom should be approximately {float}", async ({ page }, expectedZoom: number) => {
   const zoom = await page.evaluate(() => {
     const raw = parseFloat(document.documentElement.style.zoom);
-    if (!Number.isFinite(raw)) throw new Error(`zoom が有効な数値ではありません: "${document.documentElement.style.zoom}"`);
+    if (!Number.isFinite(raw))
+      throw new Error(`zoom が有効な数値ではありません: "${document.documentElement.style.zoom}"`);
     return raw;
   });
   expect(zoom).toBeCloseTo(expectedZoom, 2);
@@ -41,6 +41,5 @@ Then("the html zoom should be approximately {float}", async ({ page }, expectedZ
 // html 要素に zoom が適用されていないことを確認（モバイル対応の検証）
 Then("the html zoom should not be applied", async ({ page }) => {
   const zoomValue = await page.evaluate(() => document.documentElement.style.zoom);
-  expect(zoomValue).toBe('');
+  expect(zoomValue).toBe("");
 });
-

@@ -16,120 +16,70 @@
     {
       "id": "be2aacfe-2dd0-526b-b5f8-33b7aa26f89d",
       "question": "I ___ play the piano. (～できる)",
-      "choices": [
-        "can",
-        "may",
-        "must",
-        "should"
-      ],
+      "choices": ["can", "may", "must", "should"],
       "correct": 0,
       "explanation": "「できる」は can を使います"
     },
     {
       "id": "603053eb-bfe6-5ecb-bd9e-7e80a0a05b46",
       "question": "I ___ go now. (～してもよい)",
-      "choices": [
-        "may",
-        "can",
-        "must",
-        "will"
-      ],
+      "choices": ["may", "can", "must", "will"],
       "correct": 0,
       "explanation": "「してもよい」は may を使います"
     },
     {
       "id": "c68dfb5e-9960-5259-83b4-dfde7615ab22",
       "question": "I ___ study hard. (～しなければならない)",
-      "choices": [
-        "must",
-        "can",
-        "may",
-        "might"
-      ],
+      "choices": ["must", "can", "may", "might"],
       "correct": 0,
       "explanation": "「しなければならない」は must を使います"
     },
     {
       "id": "2db31b42-f1f8-5b8b-8d2f-5229d7c3914b",
       "question": "I ___ go to bed early. (～すべきだ)",
-      "choices": [
-        "should",
-        "can",
-        "may",
-        "will"
-      ],
+      "choices": ["should", "can", "may", "will"],
       "correct": 0,
       "explanation": "「すべきだ」は should を使います"
     },
     {
       "id": "69f04088-fbba-55a6-b120-7e4a35ec5979",
       "question": "I ___ help you. (～するでしょう)",
-      "choices": [
-        "will",
-        "can",
-        "may",
-        "must"
-      ],
+      "choices": ["will", "can", "may", "must"],
       "correct": 0,
       "explanation": "「するでしょう」は will を使います"
     },
     {
       "id": "86c9f5b9-e1b9-5f06-b248-017f8df4fa43",
       "question": "I ___ be late. (～かもしれない)",
-      "choices": [
-        "might",
-        "must",
-        "will",
-        "should"
-      ],
+      "choices": ["might", "must", "will", "should"],
       "correct": 0,
       "explanation": "「かもしれない」は might を使います"
     },
     {
       "id": "b3b7afa6-1d08-5e42-8bf5-0fab4e5ae479",
       "question": "You ___ not smoke here. (～してはいけない)",
-      "choices": [
-        "must",
-        "can",
-        "may",
-        "will"
-      ],
+      "choices": ["must", "can", "may", "will"],
       "correct": 0,
       "explanation": "「してはいけない」は must not を使います"
     },
     {
       "id": "cc1f3d1c-5a43-5306-878c-ddfd5df6cb59",
       "question": "___ you open the window? (～してくれませんか)",
-      "choices": [
-        "Could",
-        "Must",
-        "Should",
-        "Might"
-      ],
+      "choices": ["Could", "Must", "Should", "Might"],
       "correct": 0,
       "explanation": "丁寧な依頼には Could を使います"
     },
     {
       "id": "f8430b5f-4abb-50ad-bd8d-fd5935f0730e",
       "question": "You ___ exercise more. (～すべきだ)",
-      "choices": [
-        "should",
-        "can",
-        "will",
-        "may"
-      ],
+      "choices": ["should", "can", "will", "may"],
       "correct": 0,
       "explanation": "should は「～すべきだ」という意味の助動詞です"
     },
     {
       "id": "58918032-369d-5d4a-bf38-ceb2200e0cab",
       "question": "___ I use your phone? (～してもよいですか)",
-      "choices": [
-        "May",
-        "Must",
-        "Should",
-        "Would"
-      ],
+      "choices": ["May", "Must", "Should", "Would"],
       "correct": 0,
       "explanation": "May は「～してもよいですか」という許可を求める表現です"
     }

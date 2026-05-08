@@ -16,120 +16,70 @@
     {
       "id": "b54d70a5-08f8-57a5-81e3-33c1fe63ea53",
       "question": "I have a friend ___ I met yesterday. (人・目的格)",
-      "choices": [
-        "whom",
-        "whose",
-        "where",
-        "when"
-      ],
+      "choices": ["whom", "whose", "where", "when"],
       "correct": 0,
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
       "id": "bff80fa0-047e-52a6-927c-f057887be050",
       "question": "I have a book ___ I bought yesterday. (物・目的格)",
-      "choices": [
-        "which",
-        "who",
-        "whose",
-        "where"
-      ],
+      "choices": ["which", "who", "whose", "where"],
       "correct": 0,
       "explanation": "物が目的語の場合は which を使います"
     },
     {
       "id": "736708a9-fb92-5787-9d7b-c25c0c0e237b",
       "question": "I have a pen ___ I use every day. (物・目的格)",
-      "choices": [
-        "that",
-        "whose",
-        "where",
-        "when"
-      ],
+      "choices": ["that", "whose", "where", "when"],
       "correct": 0,
       "explanation": "物が目的語の場合は that を使えます"
     },
     {
       "id": "0582433b-e47a-5818-a480-a45e452a90c7",
       "question": "The girl ___ you saw yesterday is my sister. (人・目的格)",
-      "choices": [
-        "whom",
-        "whose",
-        "which",
-        "where"
-      ],
+      "choices": ["whom", "whose", "which", "where"],
       "correct": 0,
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
       "id": "3860ed3a-109e-571b-9b90-b045299df068",
       "question": "This is the book ___ I was looking for. (物・目的格)",
-      "choices": [
-        "which",
-        "who",
-        "whose",
-        "where"
-      ],
+      "choices": ["which", "who", "whose", "where"],
       "correct": 0,
       "explanation": "物が目的語の場合は which を使います"
     },
     {
       "id": "ab8b8adf-1247-566a-9e30-a74d78894e34",
       "question": "The teacher ___ I respect most is Mr. Smith. (人・目的格)",
-      "choices": [
-        "whom",
-        "whose",
-        "which",
-        "where"
-      ],
+      "choices": ["whom", "whose", "which", "where"],
       "correct": 0,
       "explanation": "人が目的語の場合は whom を使います"
     },
     {
       "id": "bcfd27c0-12ee-51de-9eba-02435af6708b",
       "question": "The movie ___ we watched was great. (物・目的格)",
-      "choices": [
-        "that",
-        "whose",
-        "who",
-        "where"
-      ],
+      "choices": ["that", "whose", "who", "where"],
       "correct": 0,
       "explanation": "物が目的語の場合は that を使えます"
     },
     {
       "id": "7415cb24-c3fe-5ad0-8459-042142c6727a",
       "question": "目的格の関係代名詞は省略できる？",
-      "choices": [
-        "はい",
-        "いいえ",
-        "人の場合だけ",
-        "物の場合だけ"
-      ],
+      "choices": ["はい", "いいえ", "人の場合だけ", "物の場合だけ"],
       "correct": 0,
       "explanation": "目的格の関係代名詞は省略可能です"
     },
     {
       "id": "e1da8b47-8748-5170-bb96-6a09ead8e5d0",
       "question": "The song ___ she sang was beautiful. (物・目的格)",
-      "choices": [
-        "which",
-        "whom",
-        "whose",
-        "who"
-      ],
+      "choices": ["which", "whom", "whose", "who"],
       "correct": 0,
       "explanation": "物の目的格の関係代名詞は which または that を使います"
     },
     {
       "id": "0f4d439c-41e5-5b83-b7c6-cb087064c728",
       "question": "The man ___ I talked to was kind. (人・目的格)",
-      "choices": [
-        "whom",
-        "which",
-        "whose",
-        "that"
-      ],
+      "choices": ["whom", "which", "whose", "that"],
       "correct": 0,
       "explanation": "人の目的格の関係代名詞は whom または that を使います"
     }

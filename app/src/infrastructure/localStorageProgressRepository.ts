@@ -84,8 +84,7 @@ export class LocalStorageProgressRepository implements IProgressRepository {
           const { total, correct } = val as Record<string, unknown>;
           normalized[id] = {
             total: Number.isFinite(total) && (total as number) >= 0 ? Math.trunc(total as number) : 0,
-            correct:
-              Number.isFinite(correct) && (correct as number) >= 0 ? Math.trunc(correct as number) : 0,
+            correct: Number.isFinite(correct) && (correct as number) >= 0 ? Math.trunc(correct as number) : 0,
           };
         }
       }

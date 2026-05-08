@@ -16,120 +16,70 @@
     {
       "id": "d0be8174-56cc-5f76-ac9d-6debce3c72a2",
       "question": "「water」の「t」はどう発音される？",
-      "choices": [
-        "ラ",
-        "ト",
-        "タ",
-        "ダ"
-      ],
+      "choices": ["ラ", "ト", "タ", "ダ"],
       "correct": 0,
       "explanation": "t → ラ となり、ワ ラー"
     },
     {
       "id": "a530f4e7-d2b5-520f-bf02-3c0471809d12",
       "question": "「better」の「tt」はどう発音される？",
-      "choices": [
-        "ラ",
-        "ト",
-        "タ",
-        "ッ"
-      ],
+      "choices": ["ラ", "ト", "タ", "ッ"],
       "correct": 0,
       "explanation": "tt → ラ となり、ベ ラー"
     },
     {
       "id": "bf60d15f-981a-57a0-959e-2c3fb0f10566",
       "question": "「little」の「tt」はどう発音される？",
-      "choices": [
-        "ロ",
-        "ト",
-        "ル",
-        "ッ"
-      ],
+      "choices": ["ロ", "ト", "ル", "ッ"],
       "correct": 0,
       "explanation": "tt → ロ となり、リ ロー"
     },
     {
       "id": "0614aad4-3309-5908-b7ba-26631e4d7d49",
       "question": "「city」の「t」はどう発音される？",
-      "choices": [
-        "リ",
-        "ト",
-        "チ",
-        "ティ"
-      ],
+      "choices": ["リ", "ト", "チ", "ティ"],
       "correct": 0,
       "explanation": "t → リ となり、シ リー"
     },
     {
       "id": "482db9b7-bd95-5ee2-82c8-f2550d8e93c8",
       "question": "「party」の「t」はどう発音される？",
-      "choices": [
-        "リ",
-        "ト",
-        "チ",
-        "ティ"
-      ],
+      "choices": ["リ", "ト", "チ", "ティ"],
       "correct": 0,
       "explanation": "t → リ となり、パー リー"
     },
     {
       "id": "b2c0473c-b08b-5d5c-8fba-2f9d72e4739c",
       "question": "「letter」の「tt」はどう発音される？",
-      "choices": [
-        "ラ",
-        "ト",
-        "ル",
-        "ッ"
-      ],
+      "choices": ["ラ", "ト", "ル", "ッ"],
       "correct": 0,
       "explanation": "tt → ラ となり、レ ラー"
     },
     {
       "id": "603ae117-7ba2-5a58-8813-20372a4e6ed5",
       "question": "「butter」の「tt」はどう発音される？",
-      "choices": [
-        "ラ",
-        "ト",
-        "タ",
-        "ッ"
-      ],
+      "choices": ["ラ", "ト", "タ", "ッ"],
       "correct": 0,
       "explanation": "tt → ラ となり、バ ラー"
     },
     {
       "id": "d24f5bc8-9aae-5563-986c-89c1074fe752",
       "question": "「bottle」の「tt」はどう発音される？",
-      "choices": [
-        "ロ",
-        "ト",
-        "ッ",
-        "ル"
-      ],
+      "choices": ["ロ", "ト", "ッ", "ル"],
       "correct": 0,
       "explanation": "tt → ロ となり、ボ ロー"
     },
     {
       "id": "a367e2b5-5071-5a87-8d84-e552d47edae4",
       "question": "「matter」の「tt」はどう発音される？",
-      "choices": [
-        "ラ",
-        "ト",
-        "タ",
-        "ッ"
-      ],
+      "choices": ["ラ", "ト", "タ", "ッ"],
       "correct": 0,
       "explanation": "tt → ラ となり、マ ラー"
     },
     {
       "id": "f3ef56fc-7508-591f-8ffb-e2273effabe8",
       "question": "「getting」の「tt」はどう発音される？",
-      "choices": [
-        "リ",
-        "ト",
-        "チ",
-        "ッ"
-      ],
+      "choices": ["リ", "ト", "チ", "ッ"],
       "correct": 0,
       "explanation": "tt → リ となり、ゲ リン"
     }

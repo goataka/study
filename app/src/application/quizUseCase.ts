@@ -44,7 +44,7 @@ export class QuizUseCase {
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
-    private readonly progressRepo: IProgressRepository
+    private readonly progressRepo: IProgressRepository,
   ) {
     this.wrongIds = this.progressRepo.loadWrongIds();
     this.correctStreaks = this.progressRepo.loadCorrectStreaks();
@@ -117,9 +117,7 @@ export class QuizUseCase {
    */
   getInProgressCount(filter: QuizFilter): number {
     const filtered = this.getFilteredQuestions(filter);
-    return filtered.filter((q) =>
-      (this.questionStats[q.id]?.total ?? 0) > 0 && !this.masteredSet.has(q.id)
-    ).length;
+    return filtered.filter((q) => (this.questionStats[q.id]?.total ?? 0) > 0 && !this.masteredSet.has(q.id)).length;
   }
 
   getCategoriesForSubject(subject: string): Record<string, string> {
@@ -165,7 +163,12 @@ export class QuizUseCase {
   getParentCategoriesForTop(subject: string, topCategory: string): Record<string, string> {
     const parentCategories: Record<string, string> = {};
     for (const q of this.allQuestions) {
-      if (q.subject === subject && q.topCategory === topCategory && q.parentCategory && !(q.parentCategory in parentCategories)) {
+      if (
+        q.subject === subject &&
+        q.topCategory === topCategory &&
+        q.parentCategory &&
+        !(q.parentCategory in parentCategories)
+      ) {
         parentCategories[q.parentCategory] = q.parentCategoryName ?? q.parentCategory;
       }
     }
@@ -324,9 +327,10 @@ export class QuizUseCase {
         isCorrect: r.isCorrect,
         userAnswerIndex: r.userAnswerIndex,
         userAnswerText: r.userAnswerText,
-        userAnswerChoiceText: (r.userAnswerIndex >= 0 && r.userAnswerIndex < (r.question.choices?.length ?? 0))
-          ? r.question.choices?.[r.userAnswerIndex]
-          : NO_ANSWER_TEXT,
+        userAnswerChoiceText:
+          r.userAnswerIndex >= 0 && r.userAnswerIndex < (r.question.choices?.length ?? 0)
+            ? r.question.choices?.[r.userAnswerIndex]
+            : NO_ANSWER_TEXT,
         correctAnswerText: r.question.choices?.[r.question.correct] ?? "",
       })),
     });
@@ -530,7 +534,10 @@ export class QuizUseCase {
    * すべて学習済みの場合は先頭からカテゴリを返す。
    * カテゴリが存在しない場合は空配列を返す。
    */
-  getRecommendedCategoriesForSubject(subject: string, count: number): { id: string; name: string; referenceGrade?: string; isLearned: boolean }[] {
+  getRecommendedCategoriesForSubject(
+    subject: string,
+    count: number,
+  ): { id: string; name: string; referenceGrade?: string; isLearned: boolean }[] {
     const studiedKeys = this.getStudiedCategoryKeys();
     const categories = this.getCategoriesForSubject(subject);
     const entries = Object.entries(categories);

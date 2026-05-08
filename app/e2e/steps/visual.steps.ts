@@ -46,9 +46,6 @@ Then("the quiz screen layout matches the snapshot", async ({ page }) => {
 Then("the result screen layout matches the snapshot", async ({ page }) => {
   await expect(page.locator("#resultScreen")).toBeVisible();
   await expect(page).toHaveScreenshot("result-screen.png", {
-    mask: [
-      page.locator("#scoreDisplay"),
-      page.locator("#resultDetails"),
-    ],
+    mask: [page.locator("#scoreDisplay"), page.locator("#resultDetails")],
   });
 });

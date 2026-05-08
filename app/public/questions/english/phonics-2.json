@@ -16,288 +16,168 @@
     {
       "id": "16897d4a-0507-5030-8590-beb1e24713b3",
       "question": "「shoe」の「sh」の音は？",
-      "choices": [
-        "シュ",
-        "ス",
-        "チ",
-        "ジュ"
-      ],
+      "choices": ["シュ", "ス", "チ", "ジュ"],
       "correct": 0,
       "explanation": "shoe = シュ ウー"
     },
     {
       "id": "64c85866-7308-56f1-91cb-2191dd7f2043",
       "question": "「fish」の「sh」の音は？",
-      "choices": [
-        "シュ",
-        "ス",
-        "チ",
-        "ジュ"
-      ],
+      "choices": ["シュ", "ス", "チ", "ジュ"],
       "correct": 0,
       "explanation": "fish = フ イ シュ"
     },
     {
       "id": "25d41515-454c-5712-bce7-c80c31db821c",
       "question": "「chair」の「ch」の音は？",
-      "choices": [
-        "チ",
-        "シュ",
-        "ク",
-        "ジュ"
-      ],
+      "choices": ["チ", "シュ", "ク", "ジュ"],
       "correct": 0,
       "explanation": "chair = チ エ アー"
     },
     {
       "id": "20a630b3-c20e-5608-9a40-01214c6b07c7",
       "question": "「much」の「ch」の音は？",
-      "choices": [
-        "チ",
-        "シュ",
-        "ク",
-        "ス"
-      ],
+      "choices": ["チ", "シュ", "ク", "ス"],
       "correct": 0,
       "explanation": "much = ム ア チ"
     },
     {
       "id": "f111165c-4ecf-581b-85f2-28dd483f1fd8",
       "question": "「that」の「th」の音は？",
-      "choices": [
-        "ザ",
-        "ス",
-        "ダ",
-        "ザッ"
-      ],
+      "choices": ["ザ", "ス", "ダ", "ザッ"],
       "correct": 0,
       "explanation": "that = ザ ア ト"
     },
     {
       "id": "37c480f2-13ee-5b17-8bb7-cd8671aafe5e",
       "question": "「bath」の「th」の音は？",
-      "choices": [
-        "ス",
-        "ザ",
-        "ト",
-        "サ"
-      ],
+      "choices": ["ス", "ザ", "ト", "サ"],
       "correct": 0,
       "explanation": "bath = ブ ア ス"
     },
     {
       "id": "673783e3-8f92-5b02-b831-75e39d3a4ec9",
       "question": "「phone」の「ph」の音は？",
-      "choices": [
-        "フ",
-        "プ",
-        "ブ",
-        "ヴ"
-      ],
+      "choices": ["フ", "プ", "ブ", "ヴ"],
       "correct": 0,
       "explanation": "phone = フ オウ ヌ"
     },
     {
       "id": "8f5f81d6-750e-570e-91c5-7cb0608d409d",
       "question": "「whale」の「wh」の音は？",
-      "choices": [
-        "ホウ",
-        "ウ",
-        "ハ",
-        "ワ"
-      ],
+      "choices": ["ホウ", "ウ", "ハ", "ワ"],
       "correct": 0,
       "explanation": "whale = ホウ エイ ル"
     },
     {
       "id": "3de05049-34ad-5bc1-a33b-afe789c4c8ae",
       "question": "「book」の「oo」の音は？",
-      "choices": [
-        "ウ",
-        "ウー",
-        "オ",
-        "オー"
-      ],
+      "choices": ["ウ", "ウー", "オ", "オー"],
       "correct": 0,
       "explanation": "book = ブ ウ ク"
     },
     {
       "id": "9c25d1d4-19a5-54b9-abeb-b8cc97a2ecda",
       "question": "「moon」の「oo」の音は？",
-      "choices": [
-        "ウー",
-        "ウ",
-        "オー",
-        "オ"
-      ],
+      "choices": ["ウー", "ウ", "オー", "オ"],
       "correct": 0,
       "explanation": "moon = ム ウー ヌ"
     },
     {
       "id": "b465f917-bb56-53b3-a5e0-46757a5fd1de",
       "question": "「good」の「oo」の音は？",
-      "choices": [
-        "ウ",
-        "ウー",
-        "オ",
-        "オー"
-      ],
+      "choices": ["ウ", "ウー", "オ", "オー"],
       "correct": 0,
       "explanation": "good = グ ウ ドゥ"
     },
     {
       "id": "a7d07951-f441-5acc-9bdb-02a9d2d5757b",
       "question": "「deep」の「ee」の音は？",
-      "choices": [
-        "イー",
-        "エ",
-        "エー",
-        "イ"
-      ],
+      "choices": ["イー", "エ", "エー", "イ"],
       "correct": 0,
       "explanation": "deep = ドゥ イー プ"
     },
     {
       "id": "c32653be-4c4b-56cd-8657-c40a944b83cb",
       "question": "「green」の「ee」の音は？",
-      "choices": [
-        "イー",
-        "エ",
-        "エー",
-        "イ"
-      ],
+      "choices": ["イー", "エ", "エー", "イ"],
       "correct": 0,
       "explanation": "green = グ ル イー ヌ"
     },
     {
       "id": "8167f294-7476-5c15-8c11-1b4ca7948c14",
       "question": "「rain」の「ai」の音は？",
-      "choices": [
-        "エイ",
-        "アイ",
-        "エ",
-        "ア"
-      ],
+      "choices": ["エイ", "アイ", "エ", "ア"],
       "correct": 0,
       "explanation": "rain = ル エイ ヌ"
     },
     {
       "id": "14c6210c-d245-5793-bd8c-53ba42f39c2b",
       "question": "「train」の「ai」の音は？",
-      "choices": [
-        "エイ",
-        "アイ",
-        "エ",
-        "ア"
-      ],
+      "choices": ["エイ", "アイ", "エ", "ア"],
       "correct": 0,
       "explanation": "train = トゥ ル エイ ヌ"
     },
     {
       "id": "339b2525-479d-50e0-b644-a82cb1848d0c",
       "question": "「boat」の「oa」の音は？",
-      "choices": [
-        "オウ",
-        "オ",
-        "オー",
-        "ア"
-      ],
+      "choices": ["オウ", "オ", "オー", "ア"],
       "correct": 0,
       "explanation": "boat = ブ オウ ト"
     },
     {
       "id": "0c947f95-b8bc-584c-a4d0-b3fd7e20de87",
       "question": "「coat」の「oa」の音は？",
-      "choices": [
-        "オウ",
-        "オ",
-        "オー",
-        "ア"
-      ],
+      "choices": ["オウ", "オ", "オー", "ア"],
       "correct": 0,
       "explanation": "coat = ク オウ ト"
     },
     {
       "id": "97f295d2-3faa-58c3-9643-6c9616a4404c",
       "question": "「cake」の「a」の音は？（マジックE）",
-      "choices": [
-        "エイ",
-        "ア",
-        "エ",
-        "アイ"
-      ],
+      "choices": ["エイ", "ア", "エ", "アイ"],
       "correct": 0,
       "explanation": "cake = ク エイ ク"
     },
     {
       "id": "9fa503c3-252a-5b5f-8d57-cfda83bdb7fd",
       "question": "「name」の「a」の音は？（マジックE）",
-      "choices": [
-        "エイ",
-        "ア",
-        "エ",
-        "アイ"
-      ],
+      "choices": ["エイ", "ア", "エ", "アイ"],
       "correct": 0,
       "explanation": "name = ヌ エイ ム"
     },
     {
       "id": "6d4ad5bd-db6e-5905-bfc4-007624ca83d3",
       "question": "「kite」の「i」の音は？（マジックE）",
-      "choices": [
-        "アイ",
-        "イ",
-        "エイ",
-        "エ"
-      ],
+      "choices": ["アイ", "イ", "エイ", "エ"],
       "correct": 0,
       "explanation": "kite = ク アイ ト"
     },
     {
       "id": "657cb8db-a3cd-5f92-bfde-eb26a1a0af19",
       "question": "「bike」の「i」の音は？（マジックE）",
-      "choices": [
-        "アイ",
-        "イ",
-        "エイ",
-        "エ"
-      ],
+      "choices": ["アイ", "イ", "エイ", "エ"],
       "correct": 0,
       "explanation": "bike = ブ アイ ク"
     },
     {
       "id": "c0b1eb9a-6a84-5901-bc85-44124eb57bcb",
       "question": "「note」の「o」の音は？（マジックE）",
-      "choices": [
-        "オウ",
-        "オ",
-        "ア",
-        "ウ"
-      ],
+      "choices": ["オウ", "オ", "ア", "ウ"],
       "correct": 0,
       "explanation": "note = ヌ オウ ト"
     },
     {
       "id": "cbe7bc18-da8e-5ba8-98b1-87a35376e2e3",
       "question": "「home」の「o」の音は？（マジックE）",
-      "choices": [
-        "オウ",
-        "オ",
-        "ア",
-        "ウ"
-      ],
+      "choices": ["オウ", "オ", "ア", "ウ"],
       "correct": 0,
       "explanation": "home = ホ オウ ム"
     },
     {
       "id": "057ef205-afe8-5219-bbe6-5cec5fe605d4",
       "question": "「cute」の「u」の音は？（マジックE）",
-      "choices": [
-        "ユー",
-        "ア",
-        "ウ",
-        "ウー"
-      ],
+      "choices": ["ユー", "ア", "ウ", "ウー"],
       "correct": 0,
       "explanation": "cute = ク ユー ト"
     }

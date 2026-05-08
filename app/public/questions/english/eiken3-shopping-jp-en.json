@@ -13,180 +13,105 @@
     {
       "id": "501b553b-0cf6-5ff0-be36-ee6872040b4a",
       "question": "「値段」を英語で書くと？",
-      "choices": [
-        "price",
-        "discount",
-        "wallet",
-        "sale"
-      ],
+      "choices": ["price", "discount", "wallet", "sale"],
       "correct": 0,
       "explanation": "「値段」は英語で price です"
     },
     {
       "id": "cbb3b643-273d-5e84-9fa5-684c6d6a456f",
       "question": "「割引」を英語で書くと？",
-      "choices": [
-        "discount",
-        "receipt",
-        "product",
-        "store"
-      ],
+      "choices": ["discount", "receipt", "product", "store"],
       "correct": 0,
       "explanation": "「割引」は英語で discount です"
     },
     {
       "id": "dd819283-91ac-52d9-b5c8-d6e694ed2d92",
       "question": "「領収書」を英語で書くと？",
-      "choices": [
-        "receipt",
-        "wallet",
-        "expensive",
-        "customer"
-      ],
+      "choices": ["receipt", "wallet", "expensive", "customer"],
       "correct": 0,
       "explanation": "「領収書」は英語で receipt です"
     },
     {
       "id": "62922cf1-03c1-5419-8ce3-fccf44bd5f0c",
       "question": "「財布」を英語で書くと？",
-      "choices": [
-        "wallet",
-        "product",
-        "cheap",
-        "tax"
-      ],
+      "choices": ["wallet", "product", "cheap", "tax"],
       "correct": 0,
       "explanation": "「財布」は英語で wallet です"
     },
     {
       "id": "37227568-92ef-55d1-9b43-accf5f2aeae3",
       "question": "「商品」を英語で書くと？",
-      "choices": [
-        "product",
-        "expensive",
-        "sale",
-        "change"
-      ],
+      "choices": ["product", "expensive", "sale", "change"],
       "correct": 0,
       "explanation": "「商品」は英語で product です"
     },
     {
       "id": "d095567d-c7c6-560c-8242-057bddee1e8a",
       "question": "「高価な」を英語で書くと？",
-      "choices": [
-        "expensive",
-        "cheap",
-        "store",
-        "advertisement"
-      ],
+      "choices": ["expensive", "cheap", "store", "advertisement"],
       "correct": 0,
       "explanation": "「高価な」は英語で expensive です"
     },
     {
       "id": "1a527dab-3007-59f9-8538-707f152eb1c6",
       "question": "「安い」を英語で書くと？",
-      "choices": [
-        "cheap",
-        "sale",
-        "customer",
-        "purchase"
-      ],
+      "choices": ["cheap", "sale", "customer", "purchase"],
       "correct": 0,
       "explanation": "「安い」は英語で cheap です"
     },
     {
       "id": "c8b31e07-0ece-59bf-8edb-0fea5e8a74f2",
       "question": "「セール」を英語で書くと？",
-      "choices": [
-        "sale",
-        "store",
-        "tax",
-        "refund"
-      ],
+      "choices": ["sale", "store", "tax", "refund"],
       "correct": 0,
       "explanation": "「セール」は英語で sale です"
     },
     {
       "id": "417759b2-530d-5077-9c10-40d4b4e716d1",
       "question": "「お店」を英語で書くと？",
-      "choices": [
-        "store",
-        "customer",
-        "change",
-        "price"
-      ],
+      "choices": ["store", "customer", "change", "price"],
       "correct": 0,
       "explanation": "「お店」は英語で store です"
     },
     {
       "id": "a1cf487e-5143-54fb-83f7-05b80af33e48",
       "question": "「お客さん」を英語で書くと？",
-      "choices": [
-        "customer",
-        "tax",
-        "advertisement",
-        "discount"
-      ],
+      "choices": ["customer", "tax", "advertisement", "discount"],
       "correct": 0,
       "explanation": "「お客さん」は英語で customer です"
     },
     {
       "id": "362d20e6-81bf-538c-8d8f-9c805df630c0",
       "question": "「税金」を英語で書くと？",
-      "choices": [
-        "tax",
-        "change",
-        "purchase",
-        "receipt"
-      ],
+      "choices": ["tax", "change", "purchase", "receipt"],
       "correct": 0,
       "explanation": "「税金」は英語で tax です"
     },
     {
       "id": "b0a79a5b-8c42-5eeb-b543-f0760700a71f",
       "question": "「お釣り」を英語で書くと？",
-      "choices": [
-        "change",
-        "advertisement",
-        "refund",
-        "wallet"
-      ],
+      "choices": ["change", "advertisement", "refund", "wallet"],
       "correct": 0,
       "explanation": "「お釣り」は英語で change です"
     },
     {
       "id": "db60eb78-ec30-5b8f-9efb-80b7a159d746",
       "question": "「広告」を英語で書くと？",
-      "choices": [
-        "advertisement",
-        "purchase",
-        "price",
-        "product"
-      ],
+      "choices": ["advertisement", "purchase", "price", "product"],
       "correct": 0,
       "explanation": "「広告」は英語で advertisement です"
     },
     {
       "id": "c28b467e-9967-5173-b7e9-e0b4e89e54f4",
       "question": "「購入」を英語で書くと？",
-      "choices": [
-        "purchase",
-        "refund",
-        "discount",
-        "expensive"
-      ],
+      "choices": ["purchase", "refund", "discount", "expensive"],
       "correct": 0,
       "explanation": "「購入」は英語で purchase です"
     },
     {
       "id": "e3547ef1-944d-5e91-aa73-299e364445ef",
       "question": "「返金」を英語で書くと？",
-      "choices": [
-        "refund",
-        "price",
-        "receipt",
-        "cheap"
-      ],
+      "choices": ["refund", "price", "receipt", "cheap"],
       "correct": 0,
       "explanation": "「返金」は英語で refund です"
     }

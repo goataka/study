@@ -275,8 +275,30 @@ app/src/
     localStorageProgressRepository.ts # IProgressRepository の実装（localStorage、テスト用）
     questionData.test.ts              # JSON データ整合性テスト
   presentation/     # UI コントローラー（DOM 操作）
-    quizApp.ts      # QuizUseCase を使う UI コントローラー
+    quizApp.ts      # QuizUseCase を使う UI コントローラー（薄いファサード）
+    uiHelpers.ts    # 純粋ヘルパー関数群（SUBJECTS/gradeColorClass 等）
+    notesCanvas.ts  # 手書きメモ用キャンバスコントローラー
+    ocrService.ts   # OCR（Tesseract.js）サービス
 ```
+
+### クリーンアーキテクチャの維持ルール
+
+リファクタリング時は以下を必ず守ること：
+
+- **依存方向は外→内のみ**: `presentation` → `application` → `domain`、および `infrastructure` → `application` → `domain`。逆方向の import は禁止。
+- **`domain/` は副作用ゼロ**: DOM・fetch・localStorage・IndexedDB・タイマー・乱数（テスト不能なもの）を直接触らない。
+- **`application/` は port インターフェース経由でのみ infrastructure を利用**: `application/ports.ts` を経由せずに具象クラス（`IndexedDBProgressRepository` 等）を import しない。
+- **`presentation/` を肥大化させない**:
+  - 1 ファイル 600 行を超えたら分割を検討する
+  - 1 クラスのメソッド数が 30 を超えたら、責務単位でサブコントローラー or ヘルパーモジュールに切り出す
+  - DOM 非依存の純粋ロジックは `presentation/uiHelpers.ts` か `domain/`（ドメインに該当する場合のみ）へ移す
+- **ドメイン設計は変更しない**: 既存の `domain/`（`Question`, `QuizSession`）の責務・公開 API を変えるリファクタリングは禁止。内部実装の改善のみ可。
+
+### Lint・フォーマットルール
+
+- TypeScript コードは ESLint + `typescript-eslint` でチェックする（`npm run lint`）
+- フォーマットは Prettier に統一する（`npm run format` / `npm run format:check`）
+- `pre-commit` フックと CI の `test-and-build` ジョブで `lint` と `format:check` を実行する
 
 ### テストの配置ルール（コロケーション）
 

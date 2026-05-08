@@ -16,120 +16,70 @@
     {
       "id": "cbd54ea2-21cb-5163-bf0b-71ef1759b409",
       "question": "\"I will come tomorrow.\" → He said he would come ___.",
-      "choices": [
-        "the next day",
-        "tomorrow",
-        "yesterday",
-        "today"
-      ],
+      "choices": ["the next day", "tomorrow", "yesterday", "today"],
       "correct": 0,
       "explanation": "tomorrowは the next day に変わります"
     },
     {
       "id": "32d468c8-2e11-5432-bbfe-976c22b59ed2",
       "question": "\"I came here yesterday.\" → He said he had come ___ the day before.",
-      "choices": [
-        "there",
-        "here",
-        "where",
-        "everywhere"
-      ],
+      "choices": ["there", "here", "where", "everywhere"],
       "correct": 0,
       "explanation": "hereは there に変わります"
     },
     {
       "id": "fca98de2-7fe6-5d5e-8838-825aa02e919e",
       "question": "\"I am busy now.\" → He said he was busy ___.",
-      "choices": [
-        "then",
-        "now",
-        "today",
-        "yesterday"
-      ],
+      "choices": ["then", "now", "today", "yesterday"],
       "correct": 0,
       "explanation": "nowは then に変わります"
     },
     {
       "id": "f53e3694-1090-5892-8afc-bc9bd4170463",
       "question": "\"I like this book.\" → He said he liked ___ book.",
-      "choices": [
-        "that",
-        "this",
-        "these",
-        "the"
-      ],
+      "choices": ["that", "this", "these", "the"],
       "correct": 0,
       "explanation": "thisは that に変わります"
     },
     {
       "id": "3ef26c5d-2f4c-5f1a-acf0-e58b96f06ed8",
       "question": "\"I will do it today.\" → He said he would do it ___.",
-      "choices": [
-        "that day",
-        "today",
-        "this day",
-        "the day"
-      ],
+      "choices": ["that day", "today", "this day", "the day"],
       "correct": 0,
       "explanation": "todayは that day に変わります"
     },
     {
       "id": "8d226d54-030c-55b1-b323-06edfc5586ae",
       "question": "yesterdayは間接話法で何に変わる？",
-      "choices": [
-        "the day before",
-        "the next day",
-        "that day",
-        "yesterday"
-      ],
+      "choices": ["the day before", "the next day", "that day", "yesterday"],
       "correct": 0,
       "explanation": "yesterdayは the day before に変わります"
     },
     {
       "id": "a7e354de-f316-52b9-be4a-8673c55821f4",
       "question": "\"I was here last week.\" → He said he had been ___ the week before.",
-      "choices": [
-        "there",
-        "here",
-        "where",
-        "everywhere"
-      ],
+      "choices": ["there", "here", "where", "everywhere"],
       "correct": 0,
       "explanation": "hereは there に変わります"
     },
     {
       "id": "e8c390ec-ad71-52ca-9f07-96bf5dfc54ef",
       "question": "\"I want these books.\" → He said he wanted ___ books.",
-      "choices": [
-        "those",
-        "these",
-        "this",
-        "the"
-      ],
+      "choices": ["those", "these", "this", "the"],
       "correct": 0,
       "explanation": "theseは those に変わります"
     },
     {
       "id": "d7ff7cfc-744c-5eb8-beee-106a40169b3d",
       "question": "\"I will visit tomorrow.\" → She said she would visit ___.",
-      "choices": [
-        "the next day",
-        "tomorrow",
-        "the day before",
-        "next day"
-      ],
+      "choices": ["the next day", "tomorrow", "the day before", "next day"],
       "correct": 0,
       "explanation": "間接話法では tomorrow は the next day に変わります"
     },
     {
       "id": "e0e049e5-b0eb-5df8-b3f0-257ab6aa351e",
       "question": "tomorrowは間接話法で何に変わる？",
-      "choices": [
-        "the next day",
-        "the day before",
-        "then",
-        "that day"
-      ],
+      "choices": ["the next day", "the day before", "then", "that day"],
       "correct": 0,
       "explanation": "tomorrow は間接話法で the next day に変わります"
     }

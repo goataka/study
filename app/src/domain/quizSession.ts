@@ -34,7 +34,7 @@ export class QuizSession {
       throw new Error("QuizSession requires at least one question");
     }
     // text-input 問題はシャッフルしない（shuffleChoices 内でも早期リターンするが明示的に区別）
-    this._questions = questions.map(q => shuffleChoices(q));
+    this._questions = questions.map((q) => shuffleChoices(q));
   }
 
   get questions(): Question[] {
@@ -144,7 +144,7 @@ export class QuizSession {
       (q) =>
         (filter.subject === "all" || q.subject === filter.subject) &&
         (filter.category === "all" || q.category === filter.category) &&
-        (!filter.parentCategory || filter.parentCategory === "all" || q.parentCategory === filter.parentCategory)
+        (!filter.parentCategory || filter.parentCategory === "all" || q.parentCategory === filter.parentCategory),
     );
   }
 }

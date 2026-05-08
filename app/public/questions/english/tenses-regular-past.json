@@ -16,120 +16,70 @@
     {
       "id": "a62ca927-0be1-51bf-8977-474aee8fb651",
       "question": "I ___ games yesterday. (play)",
-      "choices": [
-        "played",
-        "play",
-        "plays",
-        "playing"
-      ],
+      "choices": ["played", "play", "plays", "playing"],
       "correct": 0,
       "explanation": "過去形には -ed をつけます"
     },
     {
       "id": "9c70af54-c462-5729-bd7c-9dccc71f9d38",
       "question": "I ___ English last night. (study)",
-      "choices": [
-        "studied",
-        "study",
-        "studyed",
-        "studies"
-      ],
+      "choices": ["studied", "study", "studyed", "studies"],
       "correct": 0,
       "explanation": "子音+yで終わる語は、yをiに変えて -ed をつけます"
     },
     {
       "id": "1a150a1a-c060-52d6-b359-2206a142604f",
       "question": "I ___ TV this morning. (watch)",
-      "choices": [
-        "watched",
-        "watch",
-        "watches",
-        "watching"
-      ],
+      "choices": ["watched", "watch", "watches", "watching"],
       "correct": 0,
       "explanation": "過去形には -ed をつけます"
     },
     {
       "id": "7f2afb01-68db-5d71-89d3-7a2d4a290cd7",
       "question": "I ___ music yesterday. (like)",
-      "choices": [
-        "liked",
-        "like",
-        "likeed",
-        "likes"
-      ],
+      "choices": ["liked", "like", "likeed", "likes"],
       "correct": 0,
       "explanation": "eで終わる語には -d をつけます"
     },
     {
       "id": "4fe3d214-c722-5819-a06a-82301e7e59d3",
       "question": "I ___ to school yesterday. (walk)",
-      "choices": [
-        "walked",
-        "walk",
-        "walks",
-        "walking"
-      ],
+      "choices": ["walked", "walk", "walks", "walking"],
       "correct": 0,
       "explanation": "過去形には -ed をつけます"
     },
     {
       "id": "a6fcc356-b31f-5da0-a884-652bea87f7c9",
       "question": "She ___ tennis last week. (play)",
-      "choices": [
-        "played",
-        "play",
-        "plays",
-        "playing"
-      ],
+      "choices": ["played", "play", "plays", "playing"],
       "correct": 0,
       "explanation": "過去形には主語に関わらず -ed をつけます"
     },
     {
       "id": "99eedd39-b171-54a4-871c-134f40e1973d",
       "question": "They ___ the movie yesterday. (watch)",
-      "choices": [
-        "watched",
-        "watch",
-        "watches",
-        "watching"
-      ],
+      "choices": ["watched", "watch", "watches", "watching"],
       "correct": 0,
       "explanation": "過去形には -ed をつけます"
     },
     {
       "id": "0452e433-357b-52f0-969e-564c405fbab3",
       "question": "He ___ hard last month. (study)",
-      "choices": [
-        "studied",
-        "study",
-        "studyed",
-        "studies"
-      ],
+      "choices": ["studied", "study", "studyed", "studies"],
       "correct": 0,
       "explanation": "子音+yで終わる語は、yをiに変えて -ed をつけます"
     },
     {
       "id": "9ece70f9-575f-58b1-b55d-7cfd74bbe8d6",
       "question": "She ___ her homework last night. (finish)",
-      "choices": [
-        "finished",
-        "finishes",
-        "will finish",
-        "finishing"
-      ],
+      "choices": ["finished", "finishes", "will finish", "finishing"],
       "correct": 0,
       "explanation": "規則動詞の過去形は動詞 + ed です"
     },
     {
       "id": "ac202d15-517e-50a1-a4c2-d970838a045a",
       "question": "They ___ soccer yesterday. (play)",
-      "choices": [
-        "played",
-        "play",
-        "plays",
-        "playing"
-      ],
+      "choices": ["played", "play", "plays", "playing"],
       "correct": 0,
       "explanation": "規則動詞の過去形は動詞 + ed です"
     }

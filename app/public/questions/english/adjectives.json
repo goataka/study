@@ -16,120 +16,70 @@
     {
       "id": "37641781-388e-555a-852b-879685585dfa",
       "question": "I play a ___ game. (new)",
-      "choices": [
-        "new",
-        "newly",
-        "news",
-        "newer"
-      ],
+      "choices": ["new", "newly", "news", "newer"],
       "correct": 0,
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
       "id": "77588eb3-a9ce-5882-8600-477b0d425b83",
       "question": "The game is ___. (fun)",
-      "choices": [
-        "fun",
-        "funny",
-        "funnily",
-        "funnier"
-      ],
+      "choices": ["fun", "funny", "funnily", "funnier"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "e7701a14-8c83-538f-9eb2-c30f47914125",
       "question": "The game has ___ stages. (long)",
-      "choices": [
-        "long",
-        "length",
-        "longer",
-        "longest"
-      ],
+      "choices": ["long", "length", "longer", "longest"],
       "correct": 0,
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
       "id": "402818a0-05e8-5932-8829-390d7e0dfd5d",
       "question": "The stage is ___. (interesting)",
-      "choices": [
-        "interesting",
-        "interest",
-        "interested",
-        "interestingly"
-      ],
+      "choices": ["interesting", "interest", "interested", "interestingly"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "4b23419a-86f1-5648-b3ad-833f0d5a3100",
       "question": "He is a ___ player. (tall)",
-      "choices": [
-        "tall",
-        "taller",
-        "tallest",
-        "height"
-      ],
+      "choices": ["tall", "taller", "tallest", "height"],
       "correct": 0,
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
       "id": "db9f1232-fe7f-55f3-9e78-91f7310397c6",
       "question": "This is a ___ game. (fast)",
-      "choices": [
-        "fast",
-        "faster",
-        "fastest",
-        "speed"
-      ],
+      "choices": ["fast", "faster", "fastest", "speed"],
       "correct": 0,
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
       "id": "ee0c002f-beb6-5f97-95ae-791b7d60d506",
       "question": "The graphics are ___. (beautiful)",
-      "choices": [
-        "beautiful",
-        "beauty",
-        "beautifully",
-        "beautify"
-      ],
+      "choices": ["beautiful", "beauty", "beautifully", "beautify"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "31a01b80-d6df-53ee-8ec4-c0b09b549b98",
       "question": "She is a ___ player. (smart)",
-      "choices": [
-        "smart",
-        "smarter",
-        "smartest",
-        "smartly"
-      ],
+      "choices": ["smart", "smarter", "smartest", "smartly"],
       "correct": 0,
       "explanation": "名詞の前には形容詞を置きます"
     },
     {
       "id": "f5fd585e-210f-5338-b6a6-e4502870d076",
       "question": "The weather is ___. (cold)",
-      "choices": [
-        "cold",
-        "coldly",
-        "colder",
-        "coldness"
-      ],
+      "choices": ["cold", "coldly", "colder", "coldness"],
       "correct": 0,
       "explanation": "be動詞の後には形容詞を置きます"
     },
     {
       "id": "bf677931-06f4-5f4e-bff4-c766727a856e",
       "question": "This is a ___ book. (thick)",
-      "choices": [
-        "thick",
-        "thickly",
-        "thicker",
-        "thickness"
-      ],
+      "choices": ["thick", "thickly", "thicker", "thickness"],
       "correct": 0,
       "explanation": "名詞の前には形容詞を置きます"
     }

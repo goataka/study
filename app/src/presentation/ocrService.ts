@@ -3,7 +3,7 @@
  * キャンバスの手書き文字を認識するために使用する。
  */
 
-import { createWorker, PSM, OEM, type Worker } from "tesseract.js";
+import type { Worker } from "tesseract.js";
 
 export class OcrService {
   private worker: Worker | null = null;
@@ -13,9 +13,13 @@ export class OcrService {
   /**
    * OCR ワーカーを初期化する。初回呼び出し時のみ初期化を行う。
    * 日本語と英語の両方を認識対象とし、手書き入力向けの設定を適用する。
+   *
+   * tesseract.js は重いライブラリ（数MB）のため dynamic import で遅延読み込みし、
+   * 初期バンドルサイズを削減する。OCR を実際に使うタイミングまでロードを遅延させる。
    */
   async initialize(): Promise<void> {
     if (this.worker) return;
+    const { createWorker, PSM, OEM } = await import("tesseract.js");
     this.worker = await createWorker(["jpn", "eng"], OEM.LSTM_ONLY);
     // 1行のテキストとして認識する設定（手書き入力に最適）
     await this.worker.setParameters({

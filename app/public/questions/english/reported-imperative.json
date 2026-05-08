@@ -16,120 +16,70 @@
     {
       "id": "fce5d6b8-2604-5aa0-bd13-d7bc834ef218",
       "question": "He said, \"Play games.\" → He told me ___ games.",
-      "choices": [
-        "to play",
-        "play",
-        "playing",
-        "played"
-      ],
+      "choices": ["to play", "play", "playing", "played"],
       "correct": 0,
       "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
     },
     {
       "id": "fdfd437a-e512-5081-a4b2-cc2669627aa4",
       "question": "He said, \"Don't play games.\" → He told me ___ games.",
-      "choices": [
-        "not to play",
-        "don't play",
-        "not playing",
-        "didn't play"
-      ],
+      "choices": ["not to play", "don't play", "not playing", "didn't play"],
       "correct": 0,
       "explanation": "否定の命令文は not to + 動詞の原形です"
     },
     {
       "id": "3e54c021-320c-5b1a-8b57-c01d0074b01b",
       "question": "He said, \"Study hard.\" → He told me ___ hard.",
-      "choices": [
-        "to study",
-        "study",
-        "studying",
-        "studied"
-      ],
+      "choices": ["to study", "study", "studying", "studied"],
       "correct": 0,
       "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
     },
     {
       "id": "a506c923-61fa-5ee9-9cdd-971cb6df5682",
       "question": "He said, \"Don't be late.\" → He told me ___ late.",
-      "choices": [
-        "not to be",
-        "don't be",
-        "not being",
-        "wasn't"
-      ],
+      "choices": ["not to be", "don't be", "not being", "wasn't"],
       "correct": 0,
       "explanation": "否定の命令文は not to + 動詞の原形です"
     },
     {
       "id": "7ceeae6a-4e2b-57a5-bff8-974fcbb71fb4",
       "question": "She said, \"Be quiet.\" → She told me ___ quiet.",
-      "choices": [
-        "to be",
-        "be",
-        "being",
-        "was"
-      ],
+      "choices": ["to be", "be", "being", "was"],
       "correct": 0,
       "explanation": "命令文の間接話法は told + 人 + to + 動詞の原形です"
     },
     {
       "id": "eb629e90-ac14-510a-97bb-77cf758a257d",
       "question": "He said, \"Help me.\" → He asked me ___ him.",
-      "choices": [
-        "to help",
-        "help",
-        "helping",
-        "helped"
-      ],
+      "choices": ["to help", "help", "helping", "helped"],
       "correct": 0,
       "explanation": "依頼の命令文は asked + 人 + to + 動詞の原形です"
     },
     {
       "id": "672cf131-5d58-5f93-b5e4-a9cd7f59bed1",
       "question": "She said, \"Don't touch that.\" → She told me ___ that.",
-      "choices": [
-        "not to touch",
-        "don't touch",
-        "not touching",
-        "didn't touch"
-      ],
+      "choices": ["not to touch", "don't touch", "not touching", "didn't touch"],
       "correct": 0,
       "explanation": "否定の命令文は not to + 動詞の原形です"
     },
     {
       "id": "1243e281-ad10-5fa4-846b-2f1bee6db664",
       "question": "命令文の間接話法で使う動詞は？",
-      "choices": [
-        "told/asked",
-        "said",
-        "spoke",
-        "talked"
-      ],
+      "choices": ["told/asked", "said", "spoke", "talked"],
       "correct": 0,
       "explanation": "命令文の間接話法は told または asked を使います"
     },
     {
       "id": "27b213e3-ed39-5531-a97b-af41ca58f86d",
       "question": "She said, \"Come here.\" → She told me ___ there.",
-      "choices": [
-        "to come",
-        "not to come",
-        "coming",
-        "came"
-      ],
+      "choices": ["to come", "not to come", "coming", "came"],
       "correct": 0,
       "explanation": "肯定の命令文の間接話法は told/asked + 人 + to + 動詞原形です"
     },
     {
       "id": "826373e6-7b18-5463-a810-9dd0c359fb36",
       "question": "He said, \"Don't run.\" → He told me ___ run.",
-      "choices": [
-        "not to",
-        "to not",
-        "don't to",
-        "to don't"
-      ],
+      "choices": ["not to", "to not", "don't to", "to don't"],
       "correct": 0,
       "explanation": "否定の命令文の間接話法は told + 人 + not to + 動詞原形です"
     }

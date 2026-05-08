@@ -16,120 +16,70 @@
     {
       "id": "ff2d4298-2d38-5657-8c67-9d8fa3a8cda7",
       "question": "lim(n→∞) (5n - 2)/(2n + 1) = ?",
-      "choices": [
-        "5/2",
-        "2/5",
-        "5",
-        "0"
-      ],
+      "choices": ["5/2", "2/5", "5", "0"],
       "correct": 0,
       "explanation": "最高次で割ると (5 - 2/n)/(2 + 1/n) → 5/2"
     },
     {
       "id": "51e99d9f-09aa-5adc-a13e-b1fdf2221b2c",
       "question": "lim(x→3) (x² - 9)/(x - 3) = ?",
-      "choices": [
-        "6",
-        "3",
-        "9",
-        "0"
-      ],
+      "choices": ["6", "3", "9", "0"],
       "correct": 0,
       "explanation": "(x+3)(x-3)/(x-3) = x+3 → 3+3 = 6"
     },
     {
       "id": "df1689ca-16f8-5075-93ce-33f02e1c1660",
       "question": "lim(n→∞) 2ⁿ/n = ?",
-      "choices": [
-        "∞",
-        "0",
-        "1",
-        "2"
-      ],
+      "choices": ["∞", "0", "1", "2"],
       "correct": 0,
       "explanation": "指数関数は多項式より速く増大するので ∞"
     },
     {
       "id": "c40c5c90-cefc-510b-b8d5-5b3683f027a5",
       "question": "lim(x→∞) (x² + 1)/(2x² - 3) = ?",
-      "choices": [
-        "1/2",
-        "2",
-        "1",
-        "0"
-      ],
+      "choices": ["1/2", "2", "1", "0"],
       "correct": 0,
       "explanation": "最高次で割ると 1/2"
     },
     {
       "id": "b4fca14e-f815-5dea-a553-4c515ef951bb",
       "question": "lim(n→∞) (1/2)ⁿ = ?",
-      "choices": [
-        "0",
-        "1",
-        "∞",
-        "1/2"
-      ],
+      "choices": ["0", "1", "∞", "1/2"],
       "correct": 0,
       "explanation": "公比 1/2 < 1 の等比数列の極限は 0"
     },
     {
       "id": "b7f244c3-17f0-566d-b60d-daaa02bb9d49",
       "question": "lim(x→0) (eˣ - 1)/x = ?",
-      "choices": [
-        "1",
-        "0",
-        "∞",
-        "e"
-      ],
+      "choices": ["1", "0", "∞", "e"],
       "correct": 0,
       "explanation": "基本的な極限公式: lim(x→0) (eˣ-1)/x = 1"
     },
     {
       "id": "2a91114b-e98b-5466-9ba8-339d5f402f30",
       "question": "lim(n→∞) n/2ⁿ = ?",
-      "choices": [
-        "0",
-        "1",
-        "∞",
-        "1/2"
-      ],
+      "choices": ["0", "1", "∞", "1/2"],
       "correct": 0,
       "explanation": "指数関数が優勢なので 0"
     },
     {
       "id": "28015514-7875-5025-9d18-ca314a94523d",
       "question": "lim(x→2) (x³ - 8)/(x - 2) = ?",
-      "choices": [
-        "12",
-        "8",
-        "6",
-        "4"
-      ],
+      "choices": ["12", "8", "6", "4"],
       "correct": 0,
       "explanation": "x³-8 = (x-2)(x²+2x+4) → x=2代入: 4+4+4 = 12"
     },
     {
       "id": "204f9030-7bea-5984-af7f-29b637ea8a68",
       "question": "lim(x→∞) sin(x)/x = ?",
-      "choices": [
-        "0",
-        "1",
-        "∞",
-        "不定"
-      ],
+      "choices": ["0", "1", "∞", "不定"],
       "correct": 0,
       "explanation": "-1/x ≤ sin(x)/x ≤ 1/x → 0（はさみうちの原理）"
     },
     {
       "id": "69758b50-e71d-5d25-9d93-59754fa81aea",
       "question": "lim(n→∞) (2ⁿ + 3ⁿ)/3ⁿ = ?",
-      "choices": [
-        "1",
-        "2",
-        "0",
-        "∞"
-      ],
+      "choices": ["1", "2", "0", "∞"],
       "correct": 0,
       "explanation": "(2/3)ⁿ + 1 → 0 + 1 = 1"
     }

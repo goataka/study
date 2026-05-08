@@ -16,192 +16,112 @@
     {
       "id": "6bcaea17-5147-520d-af32-378bcb9d5d6b",
       "question": "5 - 2 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "1"
-      ],
+      "choices": ["3", "2", "4", "1"],
       "correct": 0,
       "explanation": "5 - 2 = 3"
     },
     {
       "id": "2061a4b0-d19f-52e3-8bb1-896c9cdcfaf6",
       "question": "8 - 3 = ?",
-      "choices": [
-        "5",
-        "4",
-        "6",
-        "3"
-      ],
+      "choices": ["5", "4", "6", "3"],
       "correct": 0,
       "explanation": "8 - 3 = 5"
     },
     {
       "id": "3e7e75c8-d10c-56b3-a8ff-fcf88895ff9b",
       "question": "7 - 4 = ?",
-      "choices": [
-        "3",
-        "2",
-        "4",
-        "5"
-      ],
+      "choices": ["3", "2", "4", "5"],
       "correct": 0,
       "explanation": "7 - 4 = 3"
     },
     {
       "id": "bf5bc56c-dc96-56b9-8106-10c5401c26b7",
       "question": "9 - 5 = ?",
-      "choices": [
-        "4",
-        "3",
-        "5",
-        "6"
-      ],
+      "choices": ["4", "3", "5", "6"],
       "correct": 0,
       "explanation": "9 - 5 = 4"
     },
     {
       "id": "ae87ee90-fd6b-579f-84a8-1ac435e381ce",
       "question": "6 - 1 = ?",
-      "choices": [
-        "5",
-        "4",
-        "6",
-        "7"
-      ],
+      "choices": ["5", "4", "6", "7"],
       "correct": 0,
       "explanation": "6 - 1 = 5"
     },
     {
       "id": "e466db72-b778-5322-bb14-9f7efe2a7084",
       "question": "10 - 6 = ?",
-      "choices": [
-        "4",
-        "3",
-        "5",
-        "6"
-      ],
+      "choices": ["4", "3", "5", "6"],
       "correct": 0,
       "explanation": "10 - 6 = 4"
     },
     {
       "id": "566b4af5-5c31-5f90-b918-1fcb7de620a3",
       "question": "8 - 7 = ?",
-      "choices": [
-        "1",
-        "2",
-        "0",
-        "3"
-      ],
+      "choices": ["1", "2", "0", "3"],
       "correct": 0,
       "explanation": "8 - 7 = 1"
     },
     {
       "id": "78902f65-516c-5d97-8cc2-2c5a6f4d1e11",
       "question": "9 - 3 = ?",
-      "choices": [
-        "6",
-        "5",
-        "7",
-        "4"
-      ],
+      "choices": ["6", "5", "7", "4"],
       "correct": 0,
       "explanation": "9 - 3 = 6"
     },
     {
       "id": "13373e5c-54c6-5f96-a6a2-be31ba5d053a",
       "question": "57 - 23 = ?",
-      "choices": [
-        "33",
-        "34",
-        "32",
-        "35"
-      ],
+      "choices": ["33", "34", "32", "35"],
       "correct": 1,
       "explanation": "57 - 23 = 34"
     },
     {
       "id": "efb8d422-080e-5160-bb9e-dec75c377b71",
       "question": "79 - 46 = ?",
-      "choices": [
-        "34",
-        "31",
-        "33",
-        "32"
-      ],
+      "choices": ["34", "31", "33", "32"],
       "correct": 2,
       "explanation": "79 - 46 = 33"
     },
     {
       "id": "e575139e-7ec2-5703-8f3f-7ec202550425",
       "question": "68 - 45 = ?",
-      "choices": [
-        "24",
-        "22",
-        "21",
-        "23"
-      ],
+      "choices": ["24", "22", "21", "23"],
       "correct": 3,
       "explanation": "68 - 45 = 23"
     },
     {
       "id": "4aecfac5-2b3c-53b1-93a6-8ab48bb480be",
       "question": "97 - 62 = ?",
-      "choices": [
-        "35",
-        "34",
-        "36",
-        "33"
-      ],
+      "choices": ["35", "34", "36", "33"],
       "correct": 0,
       "explanation": "97 - 62 = 35"
     },
     {
       "id": "c391dec7-c835-57ca-a3f4-a6a94a8209dd",
       "question": "456 - 123 = ?",
-      "choices": [
-        "334",
-        "332",
-        "333",
-        "331"
-      ],
+      "choices": ["334", "332", "333", "331"],
       "correct": 2,
       "explanation": "456 - 123 = 333"
     },
     {
       "id": "c7bf8afc-ab2a-5533-b58f-014872dc6c99",
       "question": "789 - 465 = ?",
-      "choices": [
-        "325",
-        "322",
-        "326",
-        "324"
-      ],
+      "choices": ["325", "322", "326", "324"],
       "correct": 3,
       "explanation": "789 - 465 = 324"
     },
     {
       "id": "1cb7606c-4945-5471-95e0-3fbbd329d691",
       "question": "968 - 435 = ?",
-      "choices": [
-        "534",
-        "531",
-        "532",
-        "533"
-      ],
+      "choices": ["534", "531", "532", "533"],
       "correct": 3,
       "explanation": "968 - 435 = 533"
     },
     {
       "id": "774d9a6c-0e15-5997-aec4-e47bb8ce8f52",
       "question": "847 - 624 = ?",
-      "choices": [
-        "223",
-        "224",
-        "221",
-        "222"
-      ],
+      "choices": ["223", "224", "221", "222"],
       "correct": 0,
       "explanation": "847 - 624 = 223"
     }

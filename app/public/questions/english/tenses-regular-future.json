@@ -16,120 +16,70 @@
     {
       "id": "8e9197a6-fa7b-5f82-918d-e857f28bc503",
       "question": "I ___ games tomorrow. (play)",
-      "choices": [
-        "will play",
-        "play",
-        "played",
-        "plays"
-      ],
+      "choices": ["will play", "play", "played", "plays"],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
       "id": "c4c0c4e4-a5d4-5bac-b3ce-bd9a0e5f56b9",
       "question": "I ___ English next week. (study)",
-      "choices": [
-        "will study",
-        "study",
-        "studied",
-        "studies"
-      ],
+      "choices": ["will study", "study", "studied", "studies"],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
       "id": "dc7635ad-eef0-55e8-9945-a3704d1882b5",
       "question": "I ___ TV tonight. (watch)",
-      "choices": [
-        "will watch",
-        "watch",
-        "watched",
-        "watches"
-      ],
+      "choices": ["will watch", "watch", "watched", "watches"],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
       "id": "1c837568-5f7c-5145-830d-5031da65d791",
       "question": "She ___ music tomorrow. (like)",
-      "choices": [
-        "will like",
-        "like",
-        "likes",
-        "liked"
-      ],
+      "choices": ["will like", "like", "likes", "liked"],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
       "id": "f5553b73-bc88-54c6-8f88-a050b782c73a",
       "question": "He ___ to school tomorrow. (walk)",
-      "choices": [
-        "will walk",
-        "walk",
-        "walks",
-        "walked"
-      ],
+      "choices": ["will walk", "walk", "walks", "walked"],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
       "id": "33f94708-a87c-58e3-857e-c51f454416f3",
       "question": "They ___ tennis next Sunday. (play)",
-      "choices": [
-        "will play",
-        "play",
-        "plays",
-        "played"
-      ],
+      "choices": ["will play", "play", "plays", "played"],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
       "id": "efdee961-daf3-5735-99a5-1b715dc908df",
       "question": "We ___ the movie next week. (watch)",
-      "choices": [
-        "will watch",
-        "watch",
-        "watches",
-        "watched"
-      ],
+      "choices": ["will watch", "watch", "watches", "watched"],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
       "id": "8a8a1aa1-7a1e-57cf-a844-9ede31bca95b",
       "question": "I ___ hard next month. (study)",
-      "choices": [
-        "will study",
-        "study",
-        "studies",
-        "studied"
-      ],
+      "choices": ["will study", "study", "studies", "studied"],
       "correct": 0,
       "explanation": "未来形には will + 動詞の原形を使います"
     },
     {
       "id": "a0a5b1dd-5b78-59bc-9ea7-4f0c0ec9c0d4",
       "question": "She ___ her friend tomorrow. (visit)",
-      "choices": [
-        "will visit",
-        "visits",
-        "visited",
-        "visiting"
-      ],
+      "choices": ["will visit", "visits", "visited", "visiting"],
       "correct": 0,
       "explanation": "未来形は will + 動詞の原形です"
     },
     {
       "id": "2f9c5c0b-cf6c-5ed5-9e53-80849ef74790",
       "question": "We ___ the test next week. (take)",
-      "choices": [
-        "will take",
-        "take",
-        "took",
-        "taking"
-      ],
+      "choices": ["will take", "take", "took", "taking"],
       "correct": 0,
       "explanation": "未来形は will + 動詞の原形です"
     }

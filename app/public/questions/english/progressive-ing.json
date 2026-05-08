@@ -16,120 +16,70 @@
     {
       "id": "e1c5fef9-7e81-5f34-93b4-d2fa5cdf641c",
       "question": "study の-ing形は？",
-      "choices": [
-        "studying",
-        "studyying",
-        "studing",
-        "stuying"
-      ],
+      "choices": ["studying", "studyying", "studing", "stuying"],
       "correct": 0,
       "explanation": "yで終わる語はそのまま -ing をつけます"
     },
     {
       "id": "5ccc2cba-e199-5736-8d53-8eafb559b8fe",
       "question": "run の-ing形は？",
-      "choices": [
-        "running",
-        "runing",
-        "runnning",
-        "run"
-      ],
+      "choices": ["running", "runing", "runnning", "run"],
       "correct": 0,
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
     },
     {
       "id": "a7d4908e-03ad-5b07-b07b-04998941a0a2",
       "question": "swim の-ing形は？",
-      "choices": [
-        "swimming",
-        "swiming",
-        "swimmming",
-        "swam"
-      ],
+      "choices": ["swimming", "swiming", "swimmming", "swam"],
       "correct": 0,
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
     },
     {
       "id": "74840300-cc94-5ebb-accc-dcec73484e6a",
       "question": "write の-ing形は？",
-      "choices": [
-        "writing",
-        "writeing",
-        "writting",
-        "wrote"
-      ],
+      "choices": ["writing", "writeing", "writting", "wrote"],
       "correct": 0,
       "explanation": "eで終わる語はeを取って -ing をつけます"
     },
     {
       "id": "9c196844-54c1-5cc1-a19b-9b6787b1ce80",
       "question": "make の-ing形は？",
-      "choices": [
-        "making",
-        "makeing",
-        "makking",
-        "made"
-      ],
+      "choices": ["making", "makeing", "makking", "made"],
       "correct": 0,
       "explanation": "eで終わる語はeを取って -ing をつけます"
     },
     {
       "id": "5d30f6a6-d71c-51e8-936f-0706ba90f655",
       "question": "sit の-ing形は？",
-      "choices": [
-        "sitting",
-        "siting",
-        "sittting",
-        "sat"
-      ],
+      "choices": ["sitting", "siting", "sittting", "sat"],
       "correct": 0,
       "explanation": "短母音+子音字で終わる語は子音字を重ねて -ing をつけます"
     },
     {
       "id": "fdc943db-fb72-55d1-b6df-d16c409a167b",
       "question": "dance の-ing形は？",
-      "choices": [
-        "dancing",
-        "danceing",
-        "danccing",
-        "danced"
-      ],
+      "choices": ["dancing", "danceing", "danccing", "danced"],
       "correct": 0,
       "explanation": "eで終わる語はeを取って -ing をつけます"
     },
     {
       "id": "544e139c-36b3-5fd5-8fb4-f94bd7f39f75",
       "question": "come の-ing形は？",
-      "choices": [
-        "coming",
-        "comeing",
-        "comming",
-        "came"
-      ],
+      "choices": ["coming", "comeing", "comming", "came"],
       "correct": 0,
       "explanation": "eで終わる語はeを取って -ing をつけます"
     },
     {
       "id": "088b5566-7e2f-53af-b849-f909db62900d",
       "question": "begin の-ing形は？",
-      "choices": [
-        "beginning",
-        "begining",
-        "beginng",
-        "beginings"
-      ],
+      "choices": ["beginning", "begining", "beginng", "beginings"],
       "correct": 0,
       "explanation": "短母音+子音で終わる語は子音を重ねて -ing をつけます"
     },
     {
       "id": "1023131e-c5ea-5807-8491-5f374146810b",
       "question": "have の-ing形は？",
-      "choices": [
-        "having",
-        "haveing",
-        "have-ing",
-        "haves"
-      ],
+      "choices": ["having", "haveing", "have-ing", "haves"],
       "correct": 0,
       "explanation": "e で終わる語は e を取って -ing をつけます"
     }

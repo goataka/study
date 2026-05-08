@@ -16,120 +16,70 @@
     {
       "id": "57ce7835-0335-528a-86de-4e9a059f1659",
       "question": "good の比較級は？",
-      "choices": [
-        "better",
-        "gooder",
-        "more good",
-        "best"
-      ],
+      "choices": ["better", "gooder", "more good", "best"],
       "correct": 0,
       "explanation": "goodの比較級は better です"
     },
     {
       "id": "55afcd95-52cc-5ec3-8c60-903e213b5777",
       "question": "good の最上級は？",
-      "choices": [
-        "best",
-        "goodest",
-        "most good",
-        "better"
-      ],
+      "choices": ["best", "goodest", "most good", "better"],
       "correct": 0,
       "explanation": "goodの最上級は best です"
     },
     {
       "id": "60d545f5-9d7d-5e4f-9cbf-a94ce872b168",
       "question": "bad の比較級は？",
-      "choices": [
-        "worse",
-        "badder",
-        "more bad",
-        "worst"
-      ],
+      "choices": ["worse", "badder", "more bad", "worst"],
       "correct": 0,
       "explanation": "badの比較級は worse です"
     },
     {
       "id": "e847fb43-c6d5-559e-83da-235957186610",
       "question": "bad の最上級は？",
-      "choices": [
-        "worst",
-        "baddest",
-        "most bad",
-        "worse"
-      ],
+      "choices": ["worst", "baddest", "most bad", "worse"],
       "correct": 0,
       "explanation": "badの最上級は worst です"
     },
     {
       "id": "90029dab-0a2d-5f99-ae72-53fcd891b961",
       "question": "many/much の比較級は？",
-      "choices": [
-        "more",
-        "manyer",
-        "mucher",
-        "most"
-      ],
+      "choices": ["more", "manyer", "mucher", "most"],
       "correct": 0,
       "explanation": "many/muchの比較級は more です"
     },
     {
       "id": "b15f3e47-062c-55da-8717-ac47c7f3d880",
       "question": "many/much の最上級は？",
-      "choices": [
-        "most",
-        "manyest",
-        "muchest",
-        "more"
-      ],
+      "choices": ["most", "manyest", "muchest", "more"],
       "correct": 0,
       "explanation": "many/muchの最上級は most です"
     },
     {
       "id": "1ea350ba-21c9-5e8d-993c-914d51698d94",
       "question": "This is ___ than that. (good)",
-      "choices": [
-        "better",
-        "gooder",
-        "more good",
-        "best"
-      ],
+      "choices": ["better", "gooder", "more good", "best"],
       "correct": 0,
       "explanation": "goodの比較級は better を使います"
     },
     {
       "id": "0704062c-7bac-5b5f-958c-5ffb632e6024",
       "question": "This is the ___ of all. (bad)",
-      "choices": [
-        "worst",
-        "baddest",
-        "most bad",
-        "worse"
-      ],
+      "choices": ["worst", "baddest", "most bad", "worse"],
       "correct": 0,
       "explanation": "badの最上級は worst を使います"
     },
     {
       "id": "9bbe7a3e-6d35-5cb8-8d91-b815533ed972",
       "question": "little の比較級は？",
-      "choices": [
-        "less",
-        "lesser",
-        "more little",
-        "least"
-      ],
+      "choices": ["less", "lesser", "more little", "least"],
       "correct": 0,
       "explanation": "little の比較級は less（不規則変化）"
     },
     {
       "id": "11d5178b-a227-53d7-a5fe-0554e62ce4e6",
       "question": "little の最上級は？",
-      "choices": [
-        "least",
-        "less",
-        "most little",
-        "littlest"
-      ],
+      "choices": ["least", "less", "most little", "littlest"],
       "correct": 0,
       "explanation": "little の最上級は least（不規則変化）"
     }

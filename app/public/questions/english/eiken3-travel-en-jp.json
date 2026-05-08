@@ -13,180 +13,105 @@
     {
       "id": "e51579fc-55b2-532c-9914-1fe0912d5dc1",
       "question": "「passport」の意味は？",
-      "choices": [
-        "パスポート",
-        "荷物",
-        "出発",
-        "観光客"
-      ],
+      "choices": ["パスポート", "荷物", "出発", "観光客"],
       "correct": 0,
       "explanation": "passport は「パスポート」です"
     },
     {
       "id": "a72c6110-5e1f-5950-bda0-9be965e1b249",
       "question": "「luggage」の意味は？",
-      "choices": [
-        "荷物",
-        "目的地",
-        "到着",
-        "交通機関"
-      ],
+      "choices": ["荷物", "目的地", "到着", "交通機関"],
       "correct": 0,
       "explanation": "luggage は「荷物」です"
     },
     {
       "id": "5270df09-5d87-5888-bfc5-634a48cf6e50",
       "question": "「destination」の意味は？",
-      "choices": [
-        "目的地",
-        "出発",
-        "スケジュール",
-        "地下鉄"
-      ],
+      "choices": ["目的地", "出発", "スケジュール", "地下鉄"],
       "correct": 0,
       "explanation": "destination は「目的地」です"
     },
     {
       "id": "f27c189b-ca76-5470-9568-7ddfa5cc0bfc",
       "question": "「departure」の意味は？",
-      "choices": [
-        "出発",
-        "到着",
-        "予約",
-        "高速道路"
-      ],
+      "choices": ["出発", "到着", "予約", "高速道路"],
       "correct": 0,
       "explanation": "departure は「出発」です"
     },
     {
       "id": "df0417f9-f63e-545c-b025-5d9f5bb07f30",
       "question": "「arrival」の意味は？",
-      "choices": [
-        "到着",
-        "スケジュール",
-        "観光客",
-        "フェリー"
-      ],
+      "choices": ["到着", "スケジュール", "観光客", "フェリー"],
       "correct": 0,
       "explanation": "arrival は「到着」です"
     },
     {
       "id": "91c696f1-d900-511d-a5cf-8174a1e8fc2b",
       "question": "「schedule」の意味は？",
-      "choices": [
-        "スケジュール",
-        "予約",
-        "交通機関",
-        "スーツケース"
-      ],
+      "choices": ["スケジュール", "予約", "交通機関", "スーツケース"],
       "correct": 0,
       "explanation": "schedule は「スケジュール」です"
     },
     {
       "id": "84237498-d25a-5465-9707-ac26e3011cdc",
       "question": "「reservation」の意味は？",
-      "choices": [
-        "予約",
-        "観光客",
-        "地下鉄",
-        "ガイドブック"
-      ],
+      "choices": ["予約", "観光客", "地下鉄", "ガイドブック"],
       "correct": 0,
       "explanation": "reservation は「予約」です"
     },
     {
       "id": "3ee5c703-949d-5438-87a6-88a24bb6efcc",
       "question": "「tourist」の意味は？",
-      "choices": [
-        "観光客",
-        "交通機関",
-        "高速道路",
-        "空港"
-      ],
+      "choices": ["観光客", "交通機関", "高速道路", "空港"],
       "correct": 0,
       "explanation": "tourist は「観光客」です"
     },
     {
       "id": "0a1060db-8f46-5b96-981b-caa0e549f85f",
       "question": "「transportation」の意味は？",
-      "choices": [
-        "交通機関",
-        "地下鉄",
-        "フェリー",
-        "パスポート"
-      ],
+      "choices": ["交通機関", "地下鉄", "フェリー", "パスポート"],
       "correct": 0,
       "explanation": "transportation は「交通機関」です"
     },
     {
       "id": "8410a6b7-a331-5422-b804-c19e40d46831",
       "question": "「subway」の意味は？",
-      "choices": [
-        "地下鉄",
-        "高速道路",
-        "スーツケース",
-        "荷物"
-      ],
+      "choices": ["地下鉄", "高速道路", "スーツケース", "荷物"],
       "correct": 0,
       "explanation": "subway は「地下鉄」です"
     },
     {
       "id": "5796120a-e242-58d5-a463-8720bdb74e9b",
       "question": "「highway」の意味は？",
-      "choices": [
-        "高速道路",
-        "フェリー",
-        "ガイドブック",
-        "目的地"
-      ],
+      "choices": ["高速道路", "フェリー", "ガイドブック", "目的地"],
       "correct": 0,
       "explanation": "highway は「高速道路」です"
     },
     {
       "id": "9f9cf7c8-63c1-5251-9e6b-148d5c54a6bf",
       "question": "「ferry」の意味は？",
-      "choices": [
-        "フェリー",
-        "スーツケース",
-        "空港",
-        "出発"
-      ],
+      "choices": ["フェリー", "スーツケース", "空港", "出発"],
       "correct": 0,
       "explanation": "ferry は「フェリー」です"
     },
     {
       "id": "6f5a7310-8e70-598d-a7c3-70741e67479b",
       "question": "「suitcase」の意味は？",
-      "choices": [
-        "スーツケース",
-        "ガイドブック",
-        "パスポート",
-        "到着"
-      ],
+      "choices": ["スーツケース", "ガイドブック", "パスポート", "到着"],
       "correct": 0,
       "explanation": "suitcase は「スーツケース」です"
     },
     {
       "id": "9af020d7-5de7-5fbc-9270-d552c2d84ce7",
       "question": "「guidebook」の意味は？",
-      "choices": [
-        "ガイドブック",
-        "空港",
-        "荷物",
-        "スケジュール"
-      ],
+      "choices": ["ガイドブック", "空港", "荷物", "スケジュール"],
       "correct": 0,
       "explanation": "guidebook は「ガイドブック」です"
     },
     {
       "id": "50e97d13-47e0-5725-820c-3d3ec27d2142",
       "question": "「airport」の意味は？",
-      "choices": [
-        "空港",
-        "パスポート",
-        "目的地",
-        "予約"
-      ],
+      "choices": ["空港", "パスポート", "目的地", "予約"],
       "correct": 0,
       "explanation": "airport は「空港」です"
     }

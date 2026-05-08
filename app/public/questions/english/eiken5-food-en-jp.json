@@ -13,180 +13,105 @@
     {
       "id": "a79f47dd-4a9d-531e-9677-4bbddf6cc92d",
       "question": "「apple」の意味は？",
-      "choices": [
-        "りんご",
-        "オレンジ",
-        "バナナ",
-        "ケーキ"
-      ],
+      "choices": ["りんご", "オレンジ", "バナナ", "ケーキ"],
       "correct": 0,
       "explanation": "apple は「りんご」です"
     },
     {
       "id": "71e9c3ab-6cf8-5980-90a2-e489831f1751",
       "question": "「orange」の意味は？",
-      "choices": [
-        "オレンジ",
-        "りんご",
-        "バナナ",
-        "ジュース"
-      ],
+      "choices": ["オレンジ", "りんご", "バナナ", "ジュース"],
       "correct": 0,
       "explanation": "orange は「オレンジ」です"
     },
     {
       "id": "e368d9b3-5f39-547f-811c-9073e61628ec",
       "question": "「banana」の意味は？",
-      "choices": [
-        "バナナ",
-        "りんご",
-        "オレンジ",
-        "サラダ"
-      ],
+      "choices": ["バナナ", "りんご", "オレンジ", "サラダ"],
       "correct": 0,
       "explanation": "banana は「バナナ」です"
     },
     {
       "id": "586c3233-2efe-5bc5-859b-6e468a3ccc4d",
       "question": "「bread」の意味は？",
-      "choices": [
-        "パン",
-        "ごはん",
-        "ケーキ",
-        "たまご"
-      ],
+      "choices": ["パン", "ごはん", "ケーキ", "たまご"],
       "correct": 0,
       "explanation": "bread は「パン」です"
     },
     {
       "id": "7a32ae69-b861-51d3-aadd-4873bf7954c5",
       "question": "「rice」の意味は？",
-      "choices": [
-        "ごはん",
-        "パン",
-        "にく",
-        "サラダ"
-      ],
+      "choices": ["ごはん", "パン", "にく", "サラダ"],
       "correct": 0,
       "explanation": "rice は「ごはん」です"
     },
     {
       "id": "f217434d-439e-5988-af7e-743bfc44fa92",
       "question": "「milk」の意味は？",
-      "choices": [
-        "ぎゅうにゅう",
-        "みず",
-        "ジュース",
-        "おちゃ"
-      ],
+      "choices": ["ぎゅうにゅう", "みず", "ジュース", "おちゃ"],
       "correct": 0,
       "explanation": "milk は「ぎゅうにゅう」です"
     },
     {
       "id": "a9653e01-cba5-5a2d-86bd-6cb100acb402",
       "question": "「water」の意味は？",
-      "choices": [
-        "みず",
-        "ぎゅうにゅう",
-        "ジュース",
-        "コーヒー"
-      ],
+      "choices": ["みず", "ぎゅうにゅう", "ジュース", "コーヒー"],
       "correct": 0,
       "explanation": "water は「みず」です"
     },
     {
       "id": "35b22992-9c3f-5b52-974e-a73f6ac14ede",
       "question": "「juice」の意味は？",
-      "choices": [
-        "ジュース",
-        "みず",
-        "ぎゅうにゅう",
-        "おちゃ"
-      ],
+      "choices": ["ジュース", "みず", "ぎゅうにゅう", "おちゃ"],
       "correct": 0,
       "explanation": "juice は「ジュース」です"
     },
     {
       "id": "cc33cbeb-59ba-5ca9-80db-ec5c98fbf4c5",
       "question": "「tea」の意味は？",
-      "choices": [
-        "おちゃ",
-        "コーヒー",
-        "ジュース",
-        "ぎゅうにゅう"
-      ],
+      "choices": ["おちゃ", "コーヒー", "ジュース", "ぎゅうにゅう"],
       "correct": 0,
       "explanation": "tea は「おちゃ」です"
     },
     {
       "id": "160b82cd-dc6f-5910-b27b-60c758b4507e",
       "question": "「coffee」の意味は？",
-      "choices": [
-        "コーヒー",
-        "おちゃ",
-        "みず",
-        "ジュース"
-      ],
+      "choices": ["コーヒー", "おちゃ", "みず", "ジュース"],
       "correct": 0,
       "explanation": "coffee は「コーヒー」です"
     },
     {
       "id": "7f8a5a9c-e2d3-5f7b-a413-72d9b1d5a69e",
       "question": "「egg」の意味は？",
-      "choices": [
-        "たまご",
-        "パン",
-        "ごはん",
-        "にく"
-      ],
+      "choices": ["たまご", "パン", "ごはん", "にく"],
       "correct": 0,
       "explanation": "egg は「たまご」です"
     },
     {
       "id": "8e5ce227-23ea-51fc-a509-9c3986e968d3",
       "question": "「cake」の意味は？",
-      "choices": [
-        "ケーキ",
-        "パン",
-        "たまご",
-        "サラダ"
-      ],
+      "choices": ["ケーキ", "パン", "たまご", "サラダ"],
       "correct": 0,
       "explanation": "cake は「ケーキ」です"
     },
     {
       "id": "07ed624e-2f9f-55cd-b108-a3c68782e56e",
       "question": "「fish」の意味は？",
-      "choices": [
-        "さかな",
-        "にく",
-        "たまご",
-        "ごはん"
-      ],
+      "choices": ["さかな", "にく", "たまご", "ごはん"],
       "correct": 0,
       "explanation": "fish は「さかな」です"
     },
     {
       "id": "08b718f6-0b66-5432-8af4-01e8732eb4c3",
       "question": "「meat」の意味は？",
-      "choices": [
-        "にく",
-        "さかな",
-        "たまご",
-        "パン"
-      ],
+      "choices": ["にく", "さかな", "たまご", "パン"],
       "correct": 0,
       "explanation": "meat は「にく」です"
     },
     {
       "id": "5926168f-3bde-5efd-a8e8-f8d2fadf028b",
       "question": "「salad」の意味は？",
-      "choices": [
-        "サラダ",
-        "にく",
-        "ごはん",
-        "ケーキ"
-      ],
+      "choices": ["サラダ", "にく", "ごはん", "ケーキ"],
       "correct": 0,
       "explanation": "salad は「サラダ」です"
     }

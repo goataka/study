@@ -129,13 +129,19 @@ describe("OcrService", () => {
       const fillRectCalls: Parameters<CanvasRenderingContext2D["fillRect"]>[] = [];
       const drawImageCalls: unknown[][] = [];
       const ctxStub = {
-        fillRect: vi.fn((...args: Parameters<CanvasRenderingContext2D["fillRect"]>) => { fillRectCalls.push(args); }),
-        drawImage: vi.fn((...args: unknown[]) => { drawImageCalls.push(args); }),
+        fillRect: vi.fn((...args: Parameters<CanvasRenderingContext2D["fillRect"]>) => {
+          fillRectCalls.push(args);
+        }),
+        drawImage: vi.fn((...args: unknown[]) => {
+          drawImageCalls.push(args);
+        }),
         fillStyle: "",
       } as unknown as CanvasRenderingContext2D;
 
       class TestableOcrService extends OcrService {
-        override getCanvasContext(_canvas: HTMLCanvasElement) { return ctxStub; }
+        override getCanvasContext(_canvas: HTMLCanvasElement) {
+          return ctxStub;
+        }
       }
 
       const service = new TestableOcrService();
@@ -144,7 +150,9 @@ describe("OcrService", () => {
       source.width = 400;
       source.height = 320;
 
-      const result = (service as unknown as { preprocessCanvas: (c: HTMLCanvasElement) => HTMLCanvasElement }).preprocessCanvas(source);
+      const result = (
+        service as unknown as { preprocessCanvas: (c: HTMLCanvasElement) => HTMLCanvasElement }
+      ).preprocessCanvas(source);
 
       // destWidth=max(400,300)=400, destHeight=max(320,300)=320, + padding*2
       expect(result.width).toBe(400 + padding * 2);
@@ -168,7 +176,9 @@ describe("OcrService", () => {
       } as unknown as CanvasRenderingContext2D;
 
       class TestableOcrService extends OcrService {
-        override getCanvasContext(_canvas: HTMLCanvasElement) { return ctxStub; }
+        override getCanvasContext(_canvas: HTMLCanvasElement) {
+          return ctxStub;
+        }
       }
 
       const service = new TestableOcrService();
@@ -176,7 +186,9 @@ describe("OcrService", () => {
       source.width = 100;
       source.height = 50;
 
-      const result = (service as unknown as { preprocessCanvas: (c: HTMLCanvasElement) => HTMLCanvasElement }).preprocessCanvas(source);
+      const result = (
+        service as unknown as { preprocessCanvas: (c: HTMLCanvasElement) => HTMLCanvasElement }
+      ).preprocessCanvas(source);
 
       // destWidth = max(100, 300) = 300, destHeight = max(50, 300) = 300
       expect(result.width).toBe(minSize + padding * 2);
@@ -189,7 +201,9 @@ describe("OcrService", () => {
 
     it("getContext が null を返す場合は元のキャンバスをそのまま返す", () => {
       class TestableOcrService extends OcrService {
-        override getCanvasContext(_canvas: HTMLCanvasElement) { return null; }
+        override getCanvasContext(_canvas: HTMLCanvasElement) {
+          return null;
+        }
       }
 
       const service = new TestableOcrService();
@@ -197,7 +211,9 @@ describe("OcrService", () => {
       source.width = 200;
       source.height = 100;
 
-      const result = (service as unknown as { preprocessCanvas: (c: HTMLCanvasElement) => HTMLCanvasElement }).preprocessCanvas(source);
+      const result = (
+        service as unknown as { preprocessCanvas: (c: HTMLCanvasElement) => HTMLCanvasElement }
+      ).preprocessCanvas(source);
 
       expect(result).toBe(source);
     });

@@ -16,120 +16,70 @@
     {
       "id": "18d58aab-4bf5-5d32-a686-0dc8981935c4",
       "question": "I ___ playing games yesterday at 3pm. (過去進行形)",
-      "choices": [
-        "was",
-        "am",
-        "will be",
-        "have been"
-      ],
+      "choices": ["was", "am", "will be", "have been"],
       "correct": 0,
       "explanation": "過去進行形は was/were + -ing です"
     },
     {
       "id": "a9b07cfe-691b-5531-b9f6-4a0c46298bd6",
       "question": "I ___ playing games tomorrow at 3pm. (未来進行形)",
-      "choices": [
-        "will be",
-        "am",
-        "was",
-        "have been"
-      ],
+      "choices": ["will be", "am", "was", "have been"],
       "correct": 0,
       "explanation": "未来進行形は will be + -ing です"
     },
     {
       "id": "8f04609d-ffc7-53f1-8e00-0c2200548cc4",
       "question": "I ___ studying English now. (現在進行形)",
-      "choices": [
-        "am",
-        "was",
-        "will be",
-        "have"
-      ],
+      "choices": ["am", "was", "will be", "have"],
       "correct": 0,
       "explanation": "現在進行形は am/is/are + -ing です"
     },
     {
       "id": "6360488f-cb13-5140-8a6d-f735602cd296",
       "question": "She ___ studying English yesterday. (過去進行形)",
-      "choices": [
-        "was",
-        "is",
-        "will be",
-        "has been"
-      ],
+      "choices": ["was", "is", "will be", "has been"],
       "correct": 0,
       "explanation": "過去進行形は was/were + -ing です"
     },
     {
       "id": "ef332fbf-fb7d-59e9-a42b-6004243c5f65",
       "question": "They ___ writing letters tomorrow. (未来進行形)",
-      "choices": [
-        "will be",
-        "are",
-        "were",
-        "have been"
-      ],
+      "choices": ["will be", "are", "were", "have been"],
       "correct": 0,
       "explanation": "未来進行形は will be + -ing です"
     },
     {
       "id": "25fe4415-514d-57d8-98ac-86b0e8694cd9",
       "question": "He ___ playing soccer now. (現在進行形)",
-      "choices": [
-        "is",
-        "was",
-        "will be",
-        "has"
-      ],
+      "choices": ["is", "was", "will be", "has"],
       "correct": 0,
       "explanation": "現在進行形は am/is/are + -ing です"
     },
     {
       "id": "81009151-0c74-5fe1-9a50-13e801f4f88a",
       "question": "We ___ watching TV yesterday evening. (過去進行形)",
-      "choices": [
-        "were",
-        "are",
-        "will be",
-        "have been"
-      ],
+      "choices": ["were", "are", "will be", "have been"],
       "correct": 0,
       "explanation": "過去進行形は was/were + -ing です"
     },
     {
       "id": "112b53c3-e930-5a9f-9354-e39f0f41238f",
       "question": "You ___ reading a book now. (現在進行形)",
-      "choices": [
-        "are",
-        "were",
-        "will be",
-        "have"
-      ],
+      "choices": ["are", "were", "will be", "have"],
       "correct": 0,
       "explanation": "現在進行形は am/is/are + -ing です"
     },
     {
       "id": "b6ae2915-76c7-5b2f-b5d5-8d67def8e0e7",
       "question": "They ___ eating dinner now. (現在進行形)",
-      "choices": [
-        "are",
-        "were",
-        "will be",
-        "have been"
-      ],
+      "choices": ["are", "were", "will be", "have been"],
       "correct": 0,
       "explanation": "現在進行形は am/is/are + -ing です"
     },
     {
       "id": "374798fa-0cc9-5a8e-8cdb-2c117f76409d",
       "question": "I ___ sleeping when you called. (過去進行形)",
-      "choices": [
-        "was",
-        "am",
-        "were",
-        "will be"
-      ],
+      "choices": ["was", "am", "were", "will be"],
       "correct": 0,
       "explanation": "I の過去進行形は was + -ing です"
     }

@@ -13,180 +13,105 @@
     {
       "id": "2b0bae3e-4b42-5294-a49a-040a51d11cec",
       "question": "「パスポート」を英語で書くと？",
-      "choices": [
-        "passport",
-        "luggage",
-        "departure",
-        "tourist"
-      ],
+      "choices": ["passport", "luggage", "departure", "tourist"],
       "correct": 0,
       "explanation": "「パスポート」は英語で passport です"
     },
     {
       "id": "c4675736-a474-5ee0-b8c7-c840b063da8c",
       "question": "「荷物」を英語で書くと？",
-      "choices": [
-        "luggage",
-        "destination",
-        "arrival",
-        "transportation"
-      ],
+      "choices": ["luggage", "destination", "arrival", "transportation"],
       "correct": 0,
       "explanation": "「荷物」は英語で luggage です"
     },
     {
       "id": "7d465cd4-61c9-5db5-8b0a-1e73ceab461f",
       "question": "「目的地」を英語で書くと？",
-      "choices": [
-        "destination",
-        "departure",
-        "schedule",
-        "subway"
-      ],
+      "choices": ["destination", "departure", "schedule", "subway"],
       "correct": 0,
       "explanation": "「目的地」は英語で destination です"
     },
     {
       "id": "42a8e38f-806f-5ca5-a6da-d9c636123db6",
       "question": "「出発」を英語で書くと？",
-      "choices": [
-        "departure",
-        "arrival",
-        "reservation",
-        "highway"
-      ],
+      "choices": ["departure", "arrival", "reservation", "highway"],
       "correct": 0,
       "explanation": "「出発」は英語で departure です"
     },
     {
       "id": "9e8c7cec-2faf-594d-b1f2-2a1760e1c397",
       "question": "「到着」を英語で書くと？",
-      "choices": [
-        "arrival",
-        "schedule",
-        "tourist",
-        "ferry"
-      ],
+      "choices": ["arrival", "schedule", "tourist", "ferry"],
       "correct": 0,
       "explanation": "「到着」は英語で arrival です"
     },
     {
       "id": "014e50a0-4706-5730-a26f-45657c7a0b1d",
       "question": "「スケジュール」を英語で書くと？",
-      "choices": [
-        "schedule",
-        "reservation",
-        "transportation",
-        "suitcase"
-      ],
+      "choices": ["schedule", "reservation", "transportation", "suitcase"],
       "correct": 0,
       "explanation": "「スケジュール」は英語で schedule です"
     },
     {
       "id": "dbc284f7-d742-5b08-9e0c-51540fa38a73",
       "question": "「予約」を英語で書くと？",
-      "choices": [
-        "reservation",
-        "tourist",
-        "subway",
-        "guidebook"
-      ],
+      "choices": ["reservation", "tourist", "subway", "guidebook"],
       "correct": 0,
       "explanation": "「予約」は英語で reservation です"
     },
     {
       "id": "f360fc53-7cda-572d-933a-7ff4bfe42812",
       "question": "「観光客」を英語で書くと？",
-      "choices": [
-        "tourist",
-        "transportation",
-        "highway",
-        "airport"
-      ],
+      "choices": ["tourist", "transportation", "highway", "airport"],
       "correct": 0,
       "explanation": "「観光客」は英語で tourist です"
     },
     {
       "id": "70c6f22b-1f7a-5353-acef-b590414e8f86",
       "question": "「交通機関」を英語で書くと？",
-      "choices": [
-        "transportation",
-        "subway",
-        "ferry",
-        "passport"
-      ],
+      "choices": ["transportation", "subway", "ferry", "passport"],
       "correct": 0,
       "explanation": "「交通機関」は英語で transportation です"
     },
     {
       "id": "1b635326-8260-5911-a64f-a2e580f453f1",
       "question": "「地下鉄」を英語で書くと？",
-      "choices": [
-        "subway",
-        "highway",
-        "suitcase",
-        "luggage"
-      ],
+      "choices": ["subway", "highway", "suitcase", "luggage"],
       "correct": 0,
       "explanation": "「地下鉄」は英語で subway です"
     },
     {
       "id": "9f666509-d5c6-5c15-816f-0d8cb701d70e",
       "question": "「高速道路」を英語で書くと？",
-      "choices": [
-        "highway",
-        "ferry",
-        "guidebook",
-        "destination"
-      ],
+      "choices": ["highway", "ferry", "guidebook", "destination"],
       "correct": 0,
       "explanation": "「高速道路」は英語で highway です"
     },
     {
       "id": "8cd6413e-e30f-5c60-889b-2efc478d6830",
       "question": "「フェリー」を英語で書くと？",
-      "choices": [
-        "ferry",
-        "suitcase",
-        "airport",
-        "departure"
-      ],
+      "choices": ["ferry", "suitcase", "airport", "departure"],
       "correct": 0,
       "explanation": "「フェリー」は英語で ferry です"
     },
     {
       "id": "0b8a3361-ec88-554b-b4b6-491a065be6ec",
       "question": "「スーツケース」を英語で書くと？",
-      "choices": [
-        "suitcase",
-        "guidebook",
-        "passport",
-        "arrival"
-      ],
+      "choices": ["suitcase", "guidebook", "passport", "arrival"],
       "correct": 0,
       "explanation": "「スーツケース」は英語で suitcase です"
     },
     {
       "id": "846ae07c-920b-5054-85bd-606879f08945",
       "question": "「ガイドブック」を英語で書くと？",
-      "choices": [
-        "guidebook",
-        "airport",
-        "luggage",
-        "schedule"
-      ],
+      "choices": ["guidebook", "airport", "luggage", "schedule"],
       "correct": 0,
       "explanation": "「ガイドブック」は英語で guidebook です"
     },
     {
       "id": "349b93c7-a50f-525b-83ef-3de59a951423",
       "question": "「空港」を英語で書くと？",
-      "choices": [
-        "airport",
-        "passport",
-        "destination",
-        "reservation"
-      ],
+      "choices": ["airport", "passport", "destination", "reservation"],
       "correct": 0,
       "explanation": "「空港」は英語で airport です"
     }

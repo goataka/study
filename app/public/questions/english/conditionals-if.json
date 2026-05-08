@@ -16,120 +16,70 @@
     {
       "id": "29a9cb59-c75c-5261-8f5a-312fc54fadaa",
       "question": "If I ___ time, I would play games. (第2条件文)",
-      "choices": [
-        "had",
-        "have",
-        "had had",
-        "will have"
-      ],
+      "choices": ["had", "have", "had had", "will have"],
       "correct": 0,
       "explanation": "第2条件文の条件節は過去形を使います"
     },
     {
       "id": "d3221292-a218-5282-a2ca-522763749d8a",
       "question": "If I ___ time, I would have played games. (第3条件文)",
-      "choices": [
-        "had had",
-        "had",
-        "have",
-        "will have"
-      ],
+      "choices": ["had had", "had", "have", "will have"],
       "correct": 0,
       "explanation": "第3条件文の条件節は過去完了形を使います"
     },
     {
       "id": "8ea51e6f-130c-5908-8870-3d65402a6a5b",
       "question": "If I had time, I ___ play games. (第2条件文)",
-      "choices": [
-        "would",
-        "will",
-        "would have",
-        "have"
-      ],
+      "choices": ["would", "will", "would have", "have"],
       "correct": 0,
       "explanation": "第2条件文の帰結節は would + 動詞の原形です"
     },
     {
       "id": "baee78dd-62e0-591c-a8cb-94b45123d003",
       "question": "If I had had time, I ___ played games. (第3条件文)",
-      "choices": [
-        "would have",
-        "would",
-        "will",
-        "have"
-      ],
+      "choices": ["would have", "would", "will", "have"],
       "correct": 0,
       "explanation": "第3条件文の帰結節は would have + 過去分詞です"
     },
     {
       "id": "c2cc2a49-23c6-5b9f-af88-2be2b2be6aeb",
       "question": "If I have time, I ___ play games. (第1条件文)",
-      "choices": [
-        "will",
-        "would",
-        "would have",
-        "had"
-      ],
+      "choices": ["will", "would", "would have", "had"],
       "correct": 0,
       "explanation": "第1条件文の帰結節は will + 動詞の原形です"
     },
     {
       "id": "b02c3ed3-950b-5717-b872-1ade84b8020c",
       "question": "If it rains tomorrow, I ___ stay home. (第1条件文)",
-      "choices": [
-        "will",
-        "would",
-        "would have",
-        "had"
-      ],
+      "choices": ["will", "would", "would have", "had"],
       "correct": 0,
       "explanation": "第1条件文の帰結節は will + 動詞の原形です"
     },
     {
       "id": "81aa7fb4-7593-5299-95a3-d1b5e879466e",
       "question": "If I ___ rich, I would buy a car. (第2条件文)",
-      "choices": [
-        "were",
-        "am",
-        "was",
-        "will be"
-      ],
+      "choices": ["were", "am", "was", "will be"],
       "correct": 0,
       "explanation": "第2条件文では be動詞は were を使います"
     },
     {
       "id": "5410c364-64b0-5f91-9067-af750dfefc66",
       "question": "If I had studied harder, I ___ passed the test. (第3条件文)",
-      "choices": [
-        "would have",
-        "would",
-        "will",
-        "have"
-      ],
+      "choices": ["would have", "would", "will", "have"],
       "correct": 0,
       "explanation": "第3条件文の帰結節は would have + 過去分詞です"
     },
     {
       "id": "25bf0217-1cb3-5664-95a8-53c32563c815",
       "question": "If she ___ harder, she would succeed. (第2条件文)",
-      "choices": [
-        "worked",
-        "works",
-        "would work",
-        "will work"
-      ],
+      "choices": ["worked", "works", "would work", "will work"],
       "correct": 0,
       "explanation": "第2条件文のif節では仮定法過去（動詞の過去形）を使います"
     },
     {
       "id": "d3fd449c-0f66-57c2-8c5f-6d46108031f5",
       "question": "If you ___ the map, you will find the place. (第1条件文)",
-      "choices": [
-        "follow",
-        "followed",
-        "would follow",
-        "had followed"
-      ],
+      "choices": ["follow", "followed", "would follow", "had followed"],
       "correct": 0,
       "explanation": "第1条件文のif節では現在形を使います"
     }

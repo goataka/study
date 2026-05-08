@@ -16,120 +16,70 @@
     {
       "id": "5a2b2d20-d868-57e9-a895-6b65c4a86e48",
       "question": "I ___ to school yesterday. (go)",
-      "choices": [
-        "went",
-        "go",
-        "goes",
-        "gone"
-      ],
+      "choices": ["went", "go", "goes", "gone"],
       "correct": 0,
       "explanation": "goの過去形は went です"
     },
     {
       "id": "a8e5e4e3-2e8d-5ef3-b080-1ea74ad71344",
       "question": "I ___ breakfast this morning. (eat)",
-      "choices": [
-        "ate",
-        "eat",
-        "eats",
-        "eaten"
-      ],
+      "choices": ["ate", "eat", "eats", "eaten"],
       "correct": 0,
       "explanation": "eatの過去形は ate です"
     },
     {
       "id": "08614acb-1c37-58c1-bf5b-7360558e9db3",
       "question": "I ___ a letter yesterday. (write)",
-      "choices": [
-        "wrote",
-        "write",
-        "writes",
-        "written"
-      ],
+      "choices": ["wrote", "write", "writes", "written"],
       "correct": 0,
       "explanation": "writeの過去形は wrote です"
     },
     {
       "id": "e5dceab0-a01f-5f04-aebd-1997fdbb7069",
       "question": "I ___ fast yesterday. (run)",
-      "choices": [
-        "ran",
-        "run",
-        "runs",
-        "runned"
-      ],
+      "choices": ["ran", "run", "runs", "runned"],
       "correct": 0,
       "explanation": "runの過去形は ran です"
     },
     {
       "id": "4752ba79-e287-54cb-bbcc-0dbc582105f1",
       "question": "I ___ a dog when I was young. (have)",
-      "choices": [
-        "had",
-        "have",
-        "has",
-        "haved"
-      ],
+      "choices": ["had", "have", "has", "haved"],
       "correct": 0,
       "explanation": "haveの過去形は had です"
     },
     {
       "id": "a3da95d9-beaf-5532-b5d4-07bc49c7ebcd",
       "question": "I ___ books yesterday. (read)",
-      "choices": [
-        "read",
-        "readed",
-        "reads",
-        "red"
-      ],
+      "choices": ["read", "readed", "reads", "red"],
       "correct": 0,
       "explanation": "readの過去形は read（発音は「レッド」）です"
     },
     {
       "id": "dc5a0864-0b17-59b8-8ec4-0e40958b9386",
       "question": "I ___ a bird this morning. (see)",
-      "choices": [
-        "saw",
-        "see",
-        "sees",
-        "seen"
-      ],
+      "choices": ["saw", "see", "sees", "seen"],
       "correct": 0,
       "explanation": "seeの過去形は saw です"
     },
     {
       "id": "d3258948-acd3-5492-bac4-4802670a179f",
       "question": "I ___ the bus yesterday. (take)",
-      "choices": [
-        "took",
-        "take",
-        "takes",
-        "taken"
-      ],
+      "choices": ["took", "take", "takes", "taken"],
       "correct": 0,
       "explanation": "takeの過去形は took です"
     },
     {
       "id": "a8035d45-1474-5fe7-8295-668e3ef491f0",
       "question": "I ___ home early yesterday. (come)",
-      "choices": [
-        "came",
-        "come",
-        "comes",
-        "comed"
-      ],
+      "choices": ["came", "come", "comes", "comed"],
       "correct": 0,
       "explanation": "comeの過去形は came です"
     },
     {
       "id": "4fc5e4a3-1c24-5b15-9adf-f9f9cc08a1b5",
       "question": "I ___ a cake last week. (make)",
-      "choices": [
-        "made",
-        "make",
-        "makes",
-        "maked"
-      ],
+      "choices": ["made", "make", "makes", "maked"],
       "correct": 0,
       "explanation": "makeの過去形は made です"
     }
