@@ -60,11 +60,21 @@ export function parseURLState(useCase: QuizUseCase): ParsedURLState {
 
   const subject = params.get("subject");
   const category = params.get("category");
-  if (subject) state.subject = subject;
-  if (category && category !== "all") {
-    state.category = category;
-  } else if (subject) {
-    state.category = "all";
+  // 不正な subject は無視する。SUBJECTS に存在する ID のみ受け付ける。
+  const isKnownSubject = !!subject && SUBJECTS.some((s) => s.id === subject);
+  if (isKnownSubject) {
+    state.subject = subject!;
+    if (category && category !== "all") {
+      // category も実在チェック。useCase.getCategoriesForSubject に存在する ID のみ採用する。
+      const categories = useCase.getCategoriesForSubject(subject!);
+      if (Object.prototype.hasOwnProperty.call(categories, category)) {
+        state.category = category;
+      } else {
+        state.category = "all";
+      }
+    } else {
+      state.category = "all";
+    }
   }
 
   const panel = params.get("panel");

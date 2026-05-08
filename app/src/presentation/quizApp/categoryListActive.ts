@@ -54,8 +54,10 @@ export function updateCategoryListActive(params: UpdateCategoryListActiveParams)
         if (grade && params.collapsedGradeGroups.has(grade)) {
           params.collapsedGradeGroups.delete(grade);
           gradeGroup.classList.remove("collapsed");
-          const header = gradeGroup.querySelector<HTMLElement>(".category-grade-group-header");
-          header?.setAttribute("aria-expanded", "true");
+          // 折りたたみ状態は category-grade-group-toggle ボタンの aria-expanded で管理されている。
+          // 自動展開時もトグルボタン側を更新しておかないと、支援技術向け状態と DOM 状態が不整合になる。
+          const toggle = gradeGroup.querySelector<HTMLElement>(".category-grade-group-toggle");
+          toggle?.setAttribute("aria-expanded", "true");
         }
       }
     }

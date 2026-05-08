@@ -59,6 +59,13 @@ export function showConfirmDialog(message: string, alertOnly = false): Promise<b
         if (alertOnly) {
           // アラートモードではOKボタンのみ。Tabキーを押してもOKボタンにフォーカスを維持する
           okBtn.focus();
+        } else if (e.shiftKey) {
+          // Shift+Tab: 逆方向にフォーカス移動
+          if (document.activeElement === cancelBtn) {
+            okBtn.focus();
+          } else {
+            cancelBtn.focus();
+          }
         } else if (document.activeElement === okBtn) {
           cancelBtn.focus();
         } else {

@@ -6,15 +6,16 @@
  */
 
 import type { QuizUseCase, QuizFilter, QuizRecord } from "../../application/quizUseCase";
+import type { PanelTab } from "./tabsBuilder";
 
-export type PanelTab = "history" | "questions" | "guide" | "settings";
+export type { PanelTab };
 
 /** updateStartScreen に渡すパラメータ。 */
 export interface UpdateStartScreenParams {
   useCase: QuizUseCase;
   filter: QuizFilter;
   effectiveFilter: QuizFilter;
-  activePanelTab: PanelTab | string;
+  activePanelTab: PanelTab;
   hasSelectedUnit: boolean;
   /** 全件履歴。省略時は呼び出し元で内部取得する想定（呼び元が責任を持つ）。 */
   allRecords?: QuizRecord[];

@@ -76,12 +76,52 @@ export async function loadGuideContent(
 
     // XSS 対策: script 要素・on* 属性・危険な要素を除去する
     doc
-      .querySelectorAll("script, iframe, object, embed, link[rel='import'], meta[http-equiv='refresh']")
+      .querySelectorAll(
+        "script, iframe, object, embed, link[rel='import'], meta[http-equiv='refresh'], form, button[type='submit'], input[type='submit']",
+      )
       .forEach((el) => el.remove());
+    // 安全な URL スキーム（http/https/相対パス・フラグメント）の許可リスト判定。
+    // mailto: 等はフィッシングに悪用される可能性があるため許可しない。
+    const isSafeUrl = (raw: string | null): boolean => {
+      const trimmed = raw?.trim() ?? "";
+      if (trimmed === "") return false;
+      // 相対パス・フラグメント・クエリは安全
+      if (
+        trimmed.startsWith("/") ||
+        trimmed.startsWith("#") ||
+        trimmed.startsWith("?") ||
+        trimmed.startsWith("./") ||
+        trimmed.startsWith("../")
+      ) {
+        return true;
+      }
+      try {
+        const parsed = new URL(trimmed, window.location.href);
+        return parsed.protocol === "http:" || parsed.protocol === "https:";
+      } catch {
+        return false;
+      }
+    };
     doc.querySelectorAll("*").forEach((el) => {
-      Array.from(el.attributes)
-        .filter((attr) => attr.name.startsWith("on"))
-        .forEach((attr) => el.removeAttribute(attr.name));
+      Array.from(el.attributes).forEach((attr) => {
+        const name = attr.name.toLowerCase();
+        // on* イベントハンドラ属性を除去
+        if (name.startsWith("on")) {
+          el.removeAttribute(attr.name);
+          return;
+        }
+        // style 属性を除去（CSS 経由の情報流出・クリックジャッキング対策）
+        if (name === "style") {
+          el.removeAttribute(attr.name);
+          return;
+        }
+        // href / src / xlink:href / formaction / action は安全な URL のみ許可
+        if (name === "href" || name === "src" || name === "xlink:href" || name === "formaction" || name === "action") {
+          if (!isSafeUrl(attr.value)) {
+            el.removeAttribute(attr.name);
+          }
+        }
+      });
     });
 
     // 注入コンテンツ内のすべての id 属性を除去して主ページIDとの衝突を防ぐ
