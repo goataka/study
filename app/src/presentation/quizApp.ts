@@ -15,21 +15,18 @@ import { IndexedDBProgressRepository } from "../infrastructure/indexedDBProgress
 import { NotesCanvas } from "./notesCanvas";
 import { KanjiCanvasController } from "./kanjiCanvasController";
 import { NotesController } from "./notesController";
+import { renderAdminContent } from "./adminPanel";
 import {
   SUBJECTS,
   gradeColorClass,
   calcDualProgressPct,
   currentDateString,
-  formatDate,
   parseDateString,
   sanitizeShareUrl,
-  isHiraganaOnly,
-  isLatinOnly,
   setText,
   on,
   renderBacktickText,
   fallbackCopy,
-  loadScript,
 } from "./uiHelpers";
 
 const PANEL_TABS = ["quiz", "guide", "history", "questions"] as const;
@@ -88,7 +85,7 @@ export class QuizApp {
   /** 総合タブの活動サマリ共有 URL */
   private shareUrl: string = "";
   /** 活動サマリで表示する日付（YYYY-MM-DD 形式）: 常に今日の日付 */
-  private selectedActivityDate: string = QuizApp.currentDateString();
+  private selectedActivityDate: string = currentDateString();
   /** 総合タブ・進度タブから単元を選択した場合の選択情報（null の場合は未選択） */
   private selectedUnitContext: { subject: string; categoryId: string; categoryName: string } | null = null;
   /** 総合タブで各教科ごとに表示するおすすめ単元数 */
@@ -155,7 +152,7 @@ export class QuizApp {
     this.loadQuizSettings();
     this.loadFilterFromURL();
     this.loadQuestionCountFromDOM();
-    this.loadCategoryViewModeFromStorage();
+    this.categoryViewMode = this.progressRepo.loadCategoryViewMode();
     this.loadRecommendedCounts();
     this.setupEventListeners();
     this.buildSubjectTabs();
@@ -175,13 +172,6 @@ export class QuizApp {
     this.updateShareUrlOpenBtn();
     // ヘッダーに今日の日付を表示する
     this.updateHeaderTodayDate();
-  }
-
-  /**
-   * 進捗リポジトリから学年別/カテゴリ別表示モードを読み込む。
-   */
-  private loadCategoryViewModeFromStorage(): void {
-    this.categoryViewMode = this.progressRepo.loadCategoryViewMode();
   }
 
   /** おすすめ単元の表示数をリポジトリから読み込む */
@@ -287,7 +277,7 @@ export class QuizApp {
   private loadShareUrl(): void {
     const stored = this.progressRepo.loadShareUrl();
     // ロード時にも http/https 検証を行い、不正なスキームを除外する
-    this.shareUrl = this.sanitizeShareUrl(stored);
+    this.shareUrl = sanitizeShareUrl(stored);
   }
 
   /**
@@ -327,18 +317,9 @@ export class QuizApp {
 
   private saveShareUrl(url: string): void {
     // http/https のみ許可し、それ以外のスキームは空扱いにする
-    const sanitized = this.sanitizeShareUrl(url);
+    const sanitized = sanitizeShareUrl(url);
     this.shareUrl = sanitized;
     this.progressRepo.saveShareUrl(sanitized);
-  }
-
-  /**
-   * 共有 URL を検証し、http/https スキームの場合のみそのまま返す。
-   * それ以外（javascript: 等）は空文字を返す。
-   * @deprecated 互換目的で残す。新規コードでは uiHelpers の sanitizeShareUrl を直接使用する。
-   */
-  private sanitizeShareUrl(url: string): string {
-    return sanitizeShareUrl(url);
   }
 
   private applyFontSize(level: "small" | "medium" | "large", persist = true): void {
@@ -419,23 +400,6 @@ export class QuizApp {
     this.progressRepo.saveUserName(this.userName);
     this.updateUserNameDisplay("headerUserName");
     this.closeUserNameEdit();
-  }
-
-  private downloadUserData(): void {
-    const data = this.useCase.exportAllData();
-    const json = JSON.stringify(data);
-    const blob = new Blob([json], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    const dateStr = new Date().toISOString().slice(0, 10);
-    a.download = `study-data-${dateStr}.json`;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }, 0);
   }
 
   private buildSubjectTabs(): void {
@@ -582,7 +546,12 @@ export class QuizApp {
       // タイトルを「⚙️ メニュー」に変更
       const titleEl = document.getElementById("categoryListTitle");
       if (titleEl) titleEl.textContent = "⚙️ メニュー";
-      this.renderAdminContent(categoryList);
+      renderAdminContent(categoryList, {
+        useCase: this.useCase,
+        progressRepo: this.progressRepo,
+        shareUrl: this.shareUrl,
+        showConfirmDialog: (msg, alertOnly) => this.showConfirmDialog(msg, alertOnly),
+      });
       return;
     }
 
@@ -615,493 +584,6 @@ export class QuizApp {
     this.applyCategoryStatusFilter();
     // 進捗バー・学習状態を更新する（ビューモード・フィルター切替後も正確に反映する）
     this.updateSubjectStats();
-  }
-
-  private renderAdminContent(categoryList: HTMLElement): void {
-    const data = this.useCase.exportAllData();
-
-    /** 配列を先頭 N 件に絞り、件数サマリを付けた表示用値を返す */
-    const truncateArray = (arr: unknown[], maxItems = 50): unknown => {
-      if (arr.length <= maxItems) return arr;
-      return [...arr.slice(0, maxItems), `... (${arr.length - maxItems}件省略、合計${arr.length}件)`];
-    };
-
-    /** ファイルダウンロード用の英字キー */
-    type SectionKey = "settings" | "history" | "mastered" | "streaks";
-    const sections: Array<{
-      title: string;
-      fileKey: SectionKey;
-      editable: boolean;
-      content: unknown;
-      fullContent?: unknown;
-    }> = [
-      {
-        title: "設定",
-        fileKey: "settings",
-        editable: false,
-        content: {
-          userName: data.userName ?? "ゲスト",
-          fontSizeLevel: data.fontSizeLevel ?? "small",
-          categoryViewMode: data.categoryViewMode,
-          quizSettings: this.progressRepo.loadQuizSettings(),
-          shareUrl: this.shareUrl || "(未設定)",
-        },
-      },
-      {
-        title: "履歴",
-        fileKey: "history",
-        editable: true,
-        content: truncateArray(data.history),
-        fullContent: data.history,
-      },
-      {
-        title: "学習済み問題",
-        fileKey: "mastered",
-        editable: true,
-        content: truncateArray(data.masteredIds),
-        fullContent: data.masteredIds,
-      },
-      { title: "連続正解", fileKey: "streaks", editable: true, content: data.correctStreaks },
-    ];
-
-    // ─── トップメニュー ───────────────────────────────────────────────
-    const menuBar = document.createElement("div");
-    menuBar.className = "admin-menu-bar";
-
-    const contentArea = document.createElement("div");
-    contentArea.className = "admin-menu-content";
-
-    let activeMenu: "manage" | "view" | null = null;
-
-    // ── 🛢️データ管理セクション ────────────────────────────────────
-    const showManageContent = (): void => {
-      contentArea.innerHTML = "";
-      contentArea.classList.remove("admin-data-open");
-      contentArea.classList.add("admin-manage-open");
-      // データ参照サブメニューを削除
-      menuBar.querySelectorAll(".admin-view-submenu").forEach((el) => el.remove());
-
-      // ── モバイル用：閉じるボタン行（デスクトップではCSSで非表示） ──────
-      const closeRow = document.createElement("div");
-      closeRow.className = "admin-manage-close-row";
-      const closeTitle = document.createElement("span");
-      closeTitle.className = "admin-data-header-title";
-      closeTitle.textContent = "🛢️ データ管理";
-      closeRow.appendChild(closeTitle);
-      const closeBtn = document.createElement("button");
-      closeBtn.className = "admin-data-close-btn";
-      closeBtn.type = "button";
-      closeBtn.textContent = "✕";
-      closeBtn.setAttribute("aria-label", "閉じる");
-      closeBtn.addEventListener("click", () => {
-        contentArea.classList.remove("admin-manage-open");
-        contentArea.innerHTML = "";
-        activeMenu = null;
-        manageBtn.classList.remove("active");
-        viewBtn.classList.remove("active");
-      });
-      closeRow.appendChild(closeBtn);
-      contentArea.appendChild(closeRow);
-
-      // ── タブバー ─────────────────────────────────────────────
-      const tabBar = document.createElement("div");
-      tabBar.className = "admin-manage-tabs";
-
-      const tabPanelArea = document.createElement("div");
-      tabPanelArea.className = "admin-manage-tab-panel";
-
-      type ManageTab = "import" | "export" | "reset";
-      const tabDefs: Array<{ id: ManageTab; label: string }> = [
-        { id: "import", label: "📥 インポート" },
-        { id: "export", label: "📤 エクスポート" },
-        { id: "reset", label: "🗑️ 初期化" },
-      ];
-
-      const showTabContent = (tabId: ManageTab): void => {
-        tabBar.querySelectorAll(".admin-manage-tab").forEach((t) => t.classList.remove("active"));
-        const activeTab = tabBar.querySelector<HTMLButtonElement>(`.admin-manage-tab[data-tab="${tabId}"]`);
-        if (activeTab) activeTab.classList.add("active");
-
-        tabPanelArea.innerHTML = "";
-
-        if (tabId === "import") {
-          // ── インポートコンテンツ ────────────────────────────────
-          const section = document.createElement("div");
-          section.className = "admin-reset-section";
-
-          const importDesc = document.createElement("p");
-          importDesc.className = "admin-reset-desc";
-          importDesc.textContent = "ダウンロードしたJSONファイルを選択して、学習データを更新します。";
-          section.appendChild(importDesc);
-
-          const fileLabel = document.createElement("label");
-          fileLabel.className = "admin-import-label";
-          fileLabel.textContent = "📂 JSONファイルを選択";
-
-          const fileInput = document.createElement("input");
-          fileInput.type = "file";
-          fileInput.accept = ".json,application/json";
-          fileInput.className = "admin-import-input";
-          fileInput.style.display = "none";
-
-          const fileNameSpan = document.createElement("span");
-          fileNameSpan.className = "admin-import-filename";
-          fileNameSpan.textContent = "（未選択）";
-
-          const previewEl = document.createElement("pre");
-          previewEl.className = "admin-data";
-          previewEl.style.marginTop = "8px";
-          previewEl.style.display = "none";
-
-          const applyBtn = document.createElement("button");
-          applyBtn.className = "admin-import-apply-btn";
-          applyBtn.type = "button";
-          applyBtn.textContent = "✅ データを更新する";
-          applyBtn.style.display = "none";
-
-          let parsedData: unknown = null;
-          let detectedFileKey: SectionKey | null = null;
-
-          fileInput.addEventListener("change", () => {
-            const file = fileInput.files?.[0];
-            if (!file) return;
-            fileNameSpan.textContent = file.name;
-            const reader = new FileReader();
-            reader.onload = (): void => {
-              try {
-                parsedData = JSON.parse(reader.result as string);
-                // ファイル名からセクションを推定（例: study-history-2024-01-01.json）
-                // settings はインポート対象外
-                detectedFileKey = null;
-                const importableSections = sections.filter((sec) => sec.fileKey !== "settings");
-                for (const sec of importableSections) {
-                  if (file.name.includes(sec.fileKey)) {
-                    detectedFileKey = sec.fileKey;
-                    break;
-                  }
-                }
-                const preview = JSON.stringify(parsedData, null, 2);
-                previewEl.textContent = preview.length > 2000 ? preview.slice(0, 2000) + "\n...(省略)" : preview;
-                previewEl.style.display = "block";
-                if (detectedFileKey) {
-                  applyBtn.textContent = `✅ ${sections.find((s) => s.fileKey === detectedFileKey)?.title ?? detectedFileKey} を更新する`;
-                  applyBtn.style.display = "block";
-                } else if (file.name.includes("settings")) {
-                  previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
-                  applyBtn.style.display = "none";
-                } else {
-                  applyBtn.textContent = "✅ データを更新する（種類不明）";
-                  applyBtn.style.display = "block";
-                }
-              } catch {
-                previewEl.textContent = "JSONの解析に失敗しました。ファイルを確認してください。";
-                previewEl.style.display = "block";
-                applyBtn.style.display = "none";
-                parsedData = null;
-              }
-            };
-            reader.readAsText(file);
-          });
-
-          applyBtn.addEventListener("click", () => {
-            if (!parsedData || !detectedFileKey) {
-              alert(
-                "対応するデータ種類が判定できませんでした。ファイル名に history / mastered / streaks を含めてください。",
-              );
-              return;
-            }
-            // 基本バリデーション
-            if ((detectedFileKey === "history" || detectedFileKey === "mastered") && !Array.isArray(parsedData)) {
-              const label = sections.find((s) => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
-              alert(`「${label}」データの形式が正しくありません（配列が必要です）。ファイルを確認してください。`);
-              return;
-            }
-            if (
-              detectedFileKey === "streaks" &&
-              (typeof parsedData !== "object" || Array.isArray(parsedData) || parsedData === null)
-            ) {
-              const label = sections.find((s) => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
-              alert(
-                `「${label}」データの形式が正しくありません（オブジェクトが必要です）。ファイルを確認してください。`,
-              );
-              return;
-            }
-            void this.showConfirmDialog(
-              `「${sections.find((s) => s.fileKey === detectedFileKey)?.title ?? detectedFileKey}」データを選択したファイルの内容で上書きします。よろしいですか？`,
-            )
-              .then((confirmed) => {
-                if (!confirmed) return;
-                try {
-                  if (detectedFileKey === "history") {
-                    this.progressRepo.saveHistory(parsedData as ReturnType<typeof this.progressRepo.loadHistory>);
-                  } else if (detectedFileKey === "mastered") {
-                    this.progressRepo.saveMasteredIds(parsedData as string[]);
-                  } else if (detectedFileKey === "streaks") {
-                    this.progressRepo.saveCorrectStreaks(parsedData as Record<string, number>);
-                  }
-                  void this.useCase
-                    .initialize()
-                    .then(() => {
-                      window.location.reload();
-                    })
-                    .catch((err: unknown) => {
-                      console.error("データ再読み込みに失敗しました", err);
-                      alert("データの更新後の再読み込みに失敗しました。問題データを確認してください。");
-                    });
-                } catch (err) {
-                  console.error("データ更新に失敗しました", err);
-                  alert("データの更新に失敗しました。ファイルの形式を確認してください。");
-                }
-              })
-              .catch((err: unknown) => {
-                console.error("確認ダイアログでエラーが発生しました", err);
-              });
-          });
-
-          fileLabel.appendChild(fileInput);
-          section.appendChild(fileLabel);
-          section.appendChild(fileNameSpan);
-          section.appendChild(previewEl);
-          section.appendChild(applyBtn);
-          tabPanelArea.appendChild(section);
-        } else if (tabId === "export") {
-          // ── エクスポートコンテンツ ──────────────────────────────
-          const section = document.createElement("div");
-          section.className = "admin-reset-section";
-
-          const exportDesc = document.createElement("p");
-          exportDesc.className = "admin-reset-desc";
-          exportDesc.textContent =
-            "すべての学習データをJSONファイルとしてダウンロードします。定期的なバックアップにご利用ください。";
-          section.appendChild(exportDesc);
-
-          const exportBtn = document.createElement("button");
-          exportBtn.className = "admin-import-apply-btn";
-          exportBtn.type = "button";
-          exportBtn.textContent = "⬇️ データをエクスポートする";
-          exportBtn.style.marginTop = "8px";
-          exportBtn.addEventListener("click", () => {
-            this.downloadUserData();
-          });
-          section.appendChild(exportBtn);
-          tabPanelArea.appendChild(section);
-        } else if (tabId === "reset") {
-          // ── 初期化コンテンツ ────────────────────────────────────
-          const section = document.createElement("div");
-          section.className = "admin-reset-section";
-
-          const resetDesc = document.createElement("p");
-          resetDesc.className = "admin-reset-desc";
-          resetDesc.textContent = "すべての学習データ（履歴・学習済み・進捗）を削除します。";
-          const resetBtn = document.createElement("button");
-          resetBtn.className = "admin-reset-btn";
-          resetBtn.type = "button";
-          resetBtn.textContent = "🗑️ 全データを初期化する";
-          resetBtn.addEventListener("click", () => {
-            void this.showConfirmDialog("すべての学習データを削除します。この操作は元に戻せません。続けますか？")
-              .then((confirmed) => {
-                if (confirmed) {
-                  void this.useCase
-                    .clearAllData()
-                    .then(() => {
-                      window.location.reload();
-                    })
-                    .catch((err: unknown) => {
-                      console.error("データ初期化に失敗しました", err);
-                      alert("データの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
-                    });
-                }
-              })
-              .catch((err: unknown) => {
-                console.error("確認ダイアログでエラーが発生しました", err);
-              });
-          });
-          section.appendChild(resetDesc);
-          section.appendChild(resetBtn);
-          tabPanelArea.appendChild(section);
-        }
-      };
-
-      tabDefs.forEach(({ id, label }) => {
-        const btn = document.createElement("button");
-        btn.className = "admin-manage-tab";
-        btn.type = "button";
-        btn.textContent = label;
-        btn.dataset.tab = id;
-        btn.addEventListener("click", () => showTabContent(id));
-        tabBar.appendChild(btn);
-      });
-
-      contentArea.appendChild(tabBar);
-      contentArea.appendChild(tabPanelArea);
-
-      // 最初のタブ（インポート）を表示
-      showTabContent("import");
-    };
-
-    // ── 📊データ参照セクション ────────────────────────────────────
-    const showViewContent = (): void => {
-      contentArea.classList.remove("admin-manage-open");
-      contentArea.innerHTML = "";
-
-      // 既存サブメニューを削除
-      menuBar.querySelectorAll(".admin-view-submenu").forEach((el) => el.remove());
-
-      /** セクションの完全な JSON テキストを返す（fullContent があればそちらを使う） */
-      const getFullJson = (index: number): string => {
-        const sec = sections[index]!;
-        return JSON.stringify(sec.fullContent ?? sec.content, null, 2);
-      };
-
-      // ── モバイル用：閉じるボタン行（デスクトップではCSSで非表示） ──────
-      const closeRow = document.createElement("div");
-      closeRow.className = "admin-manage-close-row";
-      const closeTitle = document.createElement("span");
-      closeTitle.className = "admin-data-header-title";
-      closeTitle.textContent = "📊 データ参照";
-      closeRow.appendChild(closeTitle);
-      const closeBtn = document.createElement("button");
-      closeBtn.className = "admin-data-close-btn";
-      closeBtn.type = "button";
-      closeBtn.textContent = "✕";
-      closeBtn.setAttribute("aria-label", "閉じる");
-      closeBtn.addEventListener("click", () => {
-        contentArea.classList.remove("admin-data-open");
-        contentArea.innerHTML = "";
-        activeMenu = null;
-        manageBtn.classList.remove("active");
-        viewBtn.classList.remove("active");
-      });
-      closeRow.appendChild(closeBtn);
-      contentArea.appendChild(closeRow);
-
-      // ── タブバー ─────────────────────────────────────────────
-      const tabBar = document.createElement("div");
-      tabBar.className = "admin-data-tabs";
-
-      // タブコンテンツエリア
-      const tabContent = document.createElement("div");
-      tabContent.className = "admin-data-tab-content";
-
-      const showDataTab = (index: number): void => {
-        tabBar.querySelectorAll(".admin-data-tab").forEach((t) => t.classList.remove("active"));
-        const activeTab = tabBar.querySelectorAll<HTMLButtonElement>(".admin-data-tab")[index];
-        if (activeTab) activeTab.classList.add("active");
-
-        tabContent.innerHTML = "";
-        contentArea.classList.add("admin-data-open");
-
-        const section = sections[index];
-        if (!section) return;
-
-        const { content } = section;
-        const jsonText = JSON.stringify(content, null, 2);
-        const fullJsonText = getFullJson(index);
-
-        // コピーボタンバー
-        const btnBar = document.createElement("div");
-        btnBar.className = "admin-data-btn-bar";
-
-        const copyBtn = document.createElement("button");
-        copyBtn.className = "admin-data-action-btn";
-        copyBtn.type = "button";
-        copyBtn.textContent = "📋 コピー";
-        copyBtn.title = "クリップボードにコピー";
-        copyBtn.addEventListener("click", () => {
-          void navigator.clipboard.writeText(fullJsonText).then(() => {
-            copyBtn.textContent = "✓ コピー済";
-            setTimeout(() => {
-              copyBtn.textContent = "📋 コピー";
-            }, 1500);
-          });
-        });
-        btnBar.appendChild(copyBtn);
-        tabContent.appendChild(btnBar);
-
-        const dataEl = document.createElement("pre");
-        dataEl.className = "admin-data";
-        dataEl.textContent = jsonText;
-        tabContent.appendChild(dataEl);
-      };
-
-      sections.forEach(({ title }, index) => {
-        const btn = document.createElement("button");
-        btn.className = "admin-data-tab";
-        btn.type = "button";
-        btn.textContent = title;
-        btn.addEventListener("click", () => {
-          showDataTab(index);
-        });
-        tabBar.appendChild(btn);
-      });
-
-      contentArea.appendChild(tabBar);
-      contentArea.appendChild(tabContent);
-
-      // 最初のタブを選択
-      showDataTab(0);
-    };
-
-    // メニューボタン
-    const dataParentBtn = document.createElement("button");
-    dataParentBtn.className = "admin-menu-btn admin-menu-parent";
-    dataParentBtn.type = "button";
-    dataParentBtn.textContent = "🛢️ データ";
-    dataParentBtn.disabled = true;
-    dataParentBtn.setAttribute("aria-disabled", "true");
-    menuBar.appendChild(dataParentBtn);
-
-    const manageBtn = document.createElement("button");
-    manageBtn.className = "admin-menu-btn";
-    manageBtn.type = "button";
-    manageBtn.classList.add("admin-menu-child");
-    manageBtn.textContent = "🛠️ 管理";
-    manageBtn.addEventListener("click", () => {
-      if (activeMenu === "manage") {
-        // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
-        activeMenu = null;
-        manageBtn.classList.remove("active");
-        contentArea.innerHTML = "";
-        contentArea.classList.remove("admin-manage-open", "admin-data-open");
-        return;
-      }
-      activeMenu = "manage";
-      manageBtn.classList.add("active");
-      viewBtn.classList.remove("active");
-      showManageContent();
-    });
-    menuBar.appendChild(manageBtn);
-
-    const viewBtn = document.createElement("button");
-    viewBtn.className = "admin-menu-btn";
-    viewBtn.type = "button";
-    viewBtn.classList.add("admin-menu-child");
-    viewBtn.textContent = "📖 参照";
-    viewBtn.addEventListener("click", () => {
-      if (activeMenu === "view") {
-        // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
-        activeMenu = null;
-        viewBtn.classList.remove("active");
-        contentArea.innerHTML = "";
-        contentArea.classList.remove("admin-manage-open", "admin-data-open");
-        return;
-      }
-      activeMenu = "view";
-      viewBtn.classList.add("active");
-      manageBtn.classList.remove("active");
-      showViewContent();
-    });
-    menuBar.appendChild(viewBtn);
-
-    // 管理メニューを左パネル (categoryList) に配置し、コンテンツを右パネル (adminContent) に配置する
-    categoryList.appendChild(menuBar);
-    const adminContentEl = document.getElementById("adminContent");
-    if (adminContentEl) {
-      adminContentEl.innerHTML = "";
-      adminContentEl.appendChild(contentArea);
-    }
-
-    // 初期表示: メニューのみ（コンテンツ未選択）
   }
 
   /**
@@ -1552,21 +1034,6 @@ export class QuizApp {
     });
 
     return groupDiv;
-  }
-
-  /** selectedActivityDate を Date オブジェクトとして返す。 */
-  private parseActivityDate(): Date {
-    return parseDateString(this.selectedActivityDate);
-  }
-
-  /** 今日の日付を YYYY-MM-DD 形式で返す（後方互換のため static メソッドを残す）。 */
-  private static currentDateString(): string {
-    return currentDateString();
-  }
-
-  /** Date オブジェクトを YYYY-MM-DD 形式の文字列に変換して返す（後方互換のため static メソッドを残す）。 */
-  private static formatDate(d: Date): string {
-    return formatDate(d);
   }
 
   /**
@@ -2364,7 +1831,7 @@ export class QuizApp {
    * 対象日の記録が0件の場合は空配列を返す。
    */
   private filterRecordsBySelectedDate(records: QuizRecord[]): QuizRecord[] {
-    const dateToCheck = this.parseActivityDate().toDateString();
+    const dateToCheck = parseDateString(this.selectedActivityDate).toDateString();
     const isOverallActivityRecord = (r: QuizRecord): boolean => r.mode !== "manual";
     return records.filter((r) => new Date(r.date).toDateString() === dateToCheck && isOverallActivityRecord(r));
   }
@@ -2591,25 +2058,13 @@ export class QuizApp {
         .writeText(text)
         .then(markCopied)
         .catch(() => {
-          this.fallbackCopy(text);
+          fallbackCopy(text);
           markCopied();
         });
     } else {
-      this.fallbackCopy(text);
+      fallbackCopy(text);
       markCopied();
     }
-  }
-
-  /**
-   * navigator.clipboard が使用できない環境向けのコピーフォールバック。
-   * document.execCommand('copy') は非推奨だが、navigator.clipboard 非対応環境用の代替として使用する。
-   */
-  /**
-   * navigator.clipboard が使えない環境用のフォールバックコピー。
-   * @deprecated 互換目的で残す。新規コードでは uiHelpers の fallbackCopy を直接使用する。
-   */
-  private fallbackCopy(text: string): void {
-    fallbackCopy(text);
   }
 
   /**
@@ -2790,7 +2245,7 @@ export class QuizApp {
       if (example !== undefined) {
         const exampleSpan = document.createElement("span");
         exampleSpan.className = "category-example";
-        this.renderBacktickText(exampleSpan, example);
+        renderBacktickText(exampleSpan, example);
         rightCol.appendChild(exampleSpan);
       }
       item.appendChild(rightCol);
@@ -2830,18 +2285,6 @@ export class QuizApp {
     });
 
     return item;
-  }
-
-  /**
-   * バッククォートで囲まれたテキストを <code> タグに変換して要素に追加する。
-   * 例: "I `play` games." → "I " + <code>play</code> + " games."
-   */
-  /**
-   * バッククォートで囲まれたテキストを <code> タグに変換して要素に追加する。
-   * @deprecated 互換目的で残す。新規コードでは uiHelpers の renderBacktickText を直接使用する。
-   */
-  private renderBacktickText(container: HTMLElement, text: string): void {
-    renderBacktickText(container, text);
   }
 
   /**
@@ -3072,7 +2515,7 @@ export class QuizApp {
         if (example !== undefined) {
           const descRight = document.createElement("div");
           descRight.className = "selected-unit-info-desc-right selected-unit-info-example";
-          this.renderBacktickText(descRight, example);
+          renderBacktickText(descRight, example);
           descRow.appendChild(descRight);
         }
         body.appendChild(descRow);
@@ -3201,7 +2644,7 @@ export class QuizApp {
         if (example !== undefined) {
           const descRight = document.createElement("div");
           descRight.className = "selected-unit-info-desc-right selected-unit-info-example";
-          this.renderBacktickText(descRight, example);
+          renderBacktickText(descRight, example);
           descRow.appendChild(descRight);
         }
         body.appendChild(descRow);
@@ -3722,18 +3165,18 @@ export class QuizApp {
   // ─── イベント登録 ──────────────────────────────────────────────────────────
 
   private setupEventListeners(): void {
-    this.on("startRandomBtn", "click", () => {
+    on("startRandomBtn", "click", () => {
       this.startQuiz("random").catch(console.error);
     });
-    this.on("markLearnedBtn", "click", () => this.toggleLearnedStatus());
-    this.on("prevBtn", "click", () => this.navigate(-1));
-    this.on("nextBtn", "click", () => this.navigate(1));
-    this.on("submitBtn", "click", () => this.submitQuiz());
-    this.on("retryAllBtn", "click", () => {
+    on("markLearnedBtn", "click", () => this.toggleLearnedStatus());
+    on("prevBtn", "click", () => this.navigate(-1));
+    on("nextBtn", "click", () => this.navigate(1));
+    on("submitBtn", "click", () => this.submitQuiz());
+    on("retryAllBtn", "click", () => {
       this.startQuiz("random").catch(console.error);
     });
-    this.on("backToStartBtn", "click", () => this.showScreen("start"));
-    this.on("cancelQuizBtn", "click", () => {
+    on("backToStartBtn", "click", () => this.showScreen("start"));
+    on("cancelQuizBtn", "click", () => {
       void this.navigateToStart();
     });
 
@@ -3871,12 +3314,12 @@ export class QuizApp {
     });
 
     // メモエリアのコントロール
-    this.on("clearNotesBtn", "click", () => this.clearNotes());
-    this.on("eraserBtn", "click", () => this.toggleEraserMode());
+    on("clearNotesBtn", "click", () => this.notesController.clear(this.currentSession?.currentIndex));
+    on("eraserBtn", "click", () => this.notesController.toggleEraserMode());
 
     // KanjiCanvas操作ボタン（text-input問題のメモタブで使用）
-    this.on("kanjiDeleteLastBtn", "click", () => this.kanjiDeleteLast());
-    this.on("kanjiEraseBtn", "click", () => this.kanjiErase());
+    on("kanjiDeleteLastBtn", "click", () => this.kanjiCanvasController.deleteLast());
+    on("kanjiEraseBtn", "click", () => this.kanjiCanvasController.erase());
 
     // KanjiCanvas折りたたみトグルボタン
     document.getElementById("kanjiToggleBtn")?.addEventListener("click", () => {
@@ -3885,7 +3328,7 @@ export class QuizApp {
       if (!body || !btn) return;
       const isExpanded = btn.getAttribute("aria-expanded") === "true";
       body.classList.toggle("hidden", isExpanded);
-      this.applyKanjiToggleBtnState(btn, !isExpanded);
+      this.kanjiCanvasController.applyToggleBtnState(btn, !isExpanded);
     });
 
     // カテゴリ学習状態フィルターボタン
@@ -3902,7 +3345,7 @@ export class QuizApp {
     });
 
     // ページ更新ボタン
-    this.on("reloadBtn", "click", () => location.reload());
+    on("reloadBtn", "click", () => location.reload());
 
     const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
     penSizeSelect?.addEventListener("change", (e) => {
@@ -3927,20 +3370,20 @@ export class QuizApp {
     });
 
     // 総合タブ: 活動サマリコピーボタン
-    this.on("copySummaryBtn", "click", () => this.copyShareSummary());
+    on("copySummaryBtn", "click", () => this.copyShareSummary());
 
     // 総合タブ: 共有ボタン（URLを新しいタブで開く）
-    this.on("openShareUrlBtn", "click", () => {
+    on("openShareUrlBtn", "click", () => {
       if (this.shareUrl) {
         window.open(this.shareUrl, "_blank", "noopener,noreferrer");
       }
     });
 
     // 総合タブ: URL表示ボタン（クリックで編集モードへ）
-    this.on("shareUrlDisplayBtn", "click", () => this.openShareUrlEdit());
+    on("shareUrlDisplayBtn", "click", () => this.openShareUrlEdit());
 
     // 総合タブ: 共有URL保存ボタン
-    this.on("saveShareUrlBtn", "click", () => this.saveAndCloseShareUrl());
+    on("saveShareUrlBtn", "click", () => this.saveAndCloseShareUrl());
 
     // 総合タブ: 共有URL入力でEnterキー押下時に保存
     const shareUrlInput = document.getElementById("shareUrlInput") as HTMLInputElement | null;
@@ -4543,7 +3986,7 @@ export class QuizApp {
 
     this.showScreen("quiz");
     document.getElementById("quizScreen")?.classList.toggle("practice-mode", effectiveMode === "practice");
-    this.initializeNotesCanvas();
+    this.notesController.initialize();
     this.notesCanvas?.clear();
     this.renderQuestion();
   }
@@ -4558,17 +4001,17 @@ export class QuizApp {
     const total = session.totalCount;
     const idx = session.currentIndex;
 
-    this.setText("questionNumber", `問題 ${idx + 1} / ${total}`);
+    setText("questionNumber", `問題 ${idx + 1} / ${total}`);
     const topicParts: string[] = [];
     if (question.topCategoryName) topicParts.push(question.topCategoryName);
     if (question.parentCategoryName) topicParts.push(question.parentCategoryName);
     topicParts.push(question.categoryName ?? question.category);
-    this.setText("topicName", topicParts.join(" › "));
+    setText("topicName", topicParts.join(" › "));
 
     const progress = ((idx + 1) / total) * 100;
     (document.getElementById("progressFill") as HTMLElement).style.width = `${progress}%`;
 
-    this.setText("questionText", question.question);
+    setText("questionText", question.question);
     this.updateSpeakButton(question);
     this.renderChoices(question, session);
 
@@ -4744,7 +4187,7 @@ export class QuizApp {
 
     const isTextInput = question?.questionType === "text-input";
     // KanjiCanvas が読み込まれていない場合はフォールバックとして通常ノートキャンバスを表示する
-    const showKanji = isTextInput && !isAnswered && this.isKanjiCanvasAvailable();
+    const showKanji = isTextInput && !isAnswered && this.kanjiCanvasController.isAvailable();
 
     if (notesTitle) {
       notesTitle.textContent = showKanji ? "✏️ 1文字ずつ書いて漢字を入力できます" : "タッチペンで書けます";
@@ -4757,7 +4200,7 @@ export class QuizApp {
       const kanjiInputBody = document.getElementById("kanjiInputBody");
       const kanjiToggleBtn = document.getElementById("kanjiToggleBtn");
       if (kanjiInputBody) kanjiInputBody.classList.remove("hidden");
-      if (kanjiToggleBtn) this.applyKanjiToggleBtnState(kanjiToggleBtn, true);
+      if (kanjiToggleBtn) this.kanjiCanvasController.applyToggleBtnState(kanjiToggleBtn, true);
     }
     // KanjiCanvas使用時はノートキャンバスと通常コントロールを非表示
     if (notesCanvas) {
@@ -4768,67 +4211,10 @@ export class QuizApp {
     }
 
     if (showKanji) {
-      this.initializeKanjiCanvas();
-      this.kanjiErase();
+      this.kanjiCanvasController.initialize();
+      this.kanjiCanvasController.erase();
       // 初期化時はストロークがないため候補は表示しない
     }
-  }
-
-  /**
-   * 漢字認識キャンバス関連のメソッドはすべて KanjiCanvasController に移譲する。
-   * 後方互換のため、既存の private API はラッパーとして残す。
-   */
-
-  private isKanjiCanvasAvailable(): boolean {
-    return this.kanjiCanvasController.isAvailable();
-  }
-
-  private applyKanjiToggleBtnState(btn: HTMLElement, expanded: boolean): void {
-    this.kanjiCanvasController.applyToggleBtnState(btn, expanded);
-  }
-
-  /**
-   * スクリプトファイルを動的にロードする汎用ヘルパー。
-   * @deprecated 互換目的で残す。新規コードでは uiHelpers の loadScript を直接使用する。
-   */
-  private loadScript(src: string): Promise<void> {
-    return loadScript(src);
-  }
-
-  private loadRefPatterns(): Promise<void> {
-    return this.kanjiCanvasController.loadRefPatterns();
-  }
-
-  private initializeKanjiCanvas(): void {
-    this.kanjiCanvasController.initialize();
-  }
-
-  /**
-   * 文字列がひらがなのみで構成されているかどうかを判定する。
-   * @deprecated 互換目的で残す。新規コードでは uiHelpers の isHiraganaOnly を直接使用する。
-   */
-  private isHiraganaOnly(str: string): boolean {
-    return isHiraganaOnly(str);
-  }
-
-  /**
-   * 文字列がラテン文字（ASCII 0x20–0x7E の印字可能文字）のみで構成されているかどうかを判定する。
-   * @deprecated 互換目的で残す。新規コードでは uiHelpers の isLatinOnly を直接使用する。
-   */
-  private isLatinOnly(str: string): boolean {
-    return isLatinOnly(str);
-  }
-
-  private updateKanjiCandidates(): void {
-    this.kanjiCanvasController.updateCandidates();
-  }
-
-  private kanjiDeleteLast(): void {
-    this.kanjiCanvasController.deleteLast();
-  }
-
-  private kanjiErase(): void {
-    this.kanjiCanvasController.erase();
   }
 
   private navigate(direction: 1 | -1): void {
@@ -4836,13 +4222,13 @@ export class QuizApp {
     if (!session) return;
 
     // 現在のメモ状態を保存
-    this.saveNotesState(session.currentIndex);
+    this.notesController.saveState(session.currentIndex);
 
     session.navigate(direction);
     this.renderQuestion();
 
     // 新しい問題のメモ状態を復元
-    this.restoreNotesState(session.currentIndex);
+    this.notesController.restoreState(session.currentIndex);
   }
 
   private showAnswerFeedback(question: Question, userAnswerIndex: number, userAnswerText?: string): void {
@@ -5457,36 +4843,6 @@ export class QuizApp {
     const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
     const dateStr = `${now.getFullYear()}/${String(now.getMonth() + 1).padStart(2, "0")}/${String(now.getDate()).padStart(2, "0")}（${weekdays[now.getDay()]}）`;
     el.textContent = dateStr;
-  }
-
-  private setText(id: string, text: string): void {
-    setText(id, text);
-  }
-
-  private on(id: string, event: string, handler: () => void): void {
-    on(id, event, handler);
-  }
-
-  // ─── メモエリア管理 ────────────────────────────────────────────────────────
-
-  private initializeNotesCanvas(): void {
-    this.notesController.initialize();
-  }
-
-  private saveNotesState(questionIndex: number): void {
-    this.notesController.saveState(questionIndex);
-  }
-
-  private restoreNotesState(questionIndex: number): void {
-    this.notesController.restoreState(questionIndex);
-  }
-
-  private clearNotes(): void {
-    this.notesController.clear(this.currentSession?.currentIndex);
-  }
-
-  private toggleEraserMode(): void {
-    this.notesController.toggleEraserMode();
   }
 }
 
