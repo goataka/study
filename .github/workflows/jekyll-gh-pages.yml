@@ -102,13 +102,49 @@ jobs:
           BASE_URL="${PLAYWRIGHT_BASE_URL%/}/"
           QUESTIONS_URL="${BASE_URL}questions/index.json"
           for i in $(seq 1 12); do
-            APP_STATUS=$(curl -s -o /tmp/pages-app.html -w "%{http_code}" "${BASE_URL}")
-            QUESTIONS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${QUESTIONS_URL}")
-            if [ "$APP_STATUS" = "200" ] && [ "$QUESTIONS_STATUS" = "200" ] && grep -q 'id="statsInfo"' /tmp/pages-app.html; then
+            APP_ERROR=""
+            QUESTIONS_ERROR=""
+            APP_HTML_FILE=$(mktemp)
+            APP_ERROR_LOG=$(mktemp)
+            QUESTIONS_ERROR_LOG=$(mktemp)
+            if ! APP_STATUS=$(curl -sS -L -o "${APP_HTML_FILE}" -w "%{http_code}" "${BASE_URL}" 2>"${APP_ERROR_LOG}"); then
+              APP_STATUS="CURL_ERROR"
+              if [ -s "${APP_ERROR_LOG}" ]; then
+                APP_ERROR="yes"
+              fi
+            fi
+            if ! QUESTIONS_STATUS=$(curl -sS -L -o /dev/null -w "%{http_code}" "${QUESTIONS_URL}" 2>"${QUESTIONS_ERROR_LOG}"); then
+              QUESTIONS_STATUS="CURL_ERROR"
+              if [ -s "${QUESTIONS_ERROR_LOG}" ]; then
+                QUESTIONS_ERROR="yes"
+              fi
+            fi
+            APP_HTML_READY="no"
+            STATS_INFO_READY="no"
+            if [ -s "${APP_HTML_FILE}" ]; then
+              APP_HTML_READY="yes"
+              if grep -q 'id="statsInfo"' "${APP_HTML_FILE}"; then
+                STATS_INFO_READY="yes"
+              fi
+            fi
+            if [ "$APP_STATUS" = "200" ] && [ "$QUESTIONS_STATUS" = "200" ] && [ "$APP_HTML_READY" = "yes" ] && [ "$STATS_INFO_READY" = "yes" ]; then
+              rm -f "${APP_HTML_FILE}" "${APP_ERROR_LOG}" "${QUESTIONS_ERROR_LOG}"
               echo "Site is ready (attempt $i)"
               exit 0
             fi
-            echo "Not ready yet (attempt $i, app HTTP ${APP_STATUS}, questions HTTP ${QUESTIONS_STATUS}), retrying in 10s..."
+            echo "Not ready yet (attempt $i)"
+            echo "  app: HTTP ${APP_STATUS}, html ${APP_HTML_READY}, statsInfo ${STATS_INFO_READY}"
+            echo "  questions: HTTP ${QUESTIONS_STATUS}"
+            if [ -n "${APP_ERROR}" ]; then
+              echo "  app curl error:"
+              cat "${APP_ERROR_LOG}"
+            fi
+            if [ -n "${QUESTIONS_ERROR}" ]; then
+              echo "  questions curl error:"
+              cat "${QUESTIONS_ERROR_LOG}"
+            fi
+            echo "  retrying in 10s..."
+            rm -f "${APP_HTML_FILE}" "${APP_ERROR_LOG}" "${QUESTIONS_ERROR_LOG}"
             sleep 10
           done
           echo "Site did not become ready within 2 minutes"
