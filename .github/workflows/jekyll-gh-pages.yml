@@ -107,13 +107,13 @@ jobs:
             APP_HTML_FILE=$(mktemp)
             APP_ERROR_LOG=$(mktemp)
             QUESTIONS_ERROR_LOG=$(mktemp)
-            if ! APP_STATUS=$(curl -sS -L -o "${APP_HTML_FILE}" -w "%{http_code}" "${BASE_URL}" 2>"${APP_ERROR_LOG}"); then
+            if ! APP_STATUS=$(curl --connect-timeout 5 --max-time 10 -sS -L -o "${APP_HTML_FILE}" -w "%{http_code}" "${BASE_URL}" 2>"${APP_ERROR_LOG}"); then
               APP_STATUS="CURL_ERROR"
               if [ -s "${APP_ERROR_LOG}" ]; then
                 APP_ERROR="yes"
               fi
             fi
-            if ! QUESTIONS_STATUS=$(curl -sS -L -o /dev/null -w "%{http_code}" "${QUESTIONS_URL}" 2>"${QUESTIONS_ERROR_LOG}"); then
+            if ! QUESTIONS_STATUS=$(curl --connect-timeout 5 --max-time 10 -sS -L -o /dev/null -w "%{http_code}" "${QUESTIONS_URL}" 2>"${QUESTIONS_ERROR_LOG}"); then
               QUESTIONS_STATUS="CURL_ERROR"
               if [ -s "${QUESTIONS_ERROR_LOG}" ]; then
                 QUESTIONS_ERROR="yes"
@@ -143,9 +143,13 @@ jobs:
               echo "  questions curl error:"
               cat "${QUESTIONS_ERROR_LOG}"
             fi
-            echo "  retrying in 10s..."
+            if [ "$i" -lt 12 ]; then
+              echo "  retrying in 10s..."
+            fi
             rm -f "${APP_HTML_FILE}" "${APP_ERROR_LOG}" "${QUESTIONS_ERROR_LOG}"
-            sleep 10
+            if [ "$i" -lt 12 ]; then
+              sleep 10
+            fi
           done
           echo "Site did not become ready within 2 minutes"
           exit 1
