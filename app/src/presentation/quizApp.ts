@@ -2308,14 +2308,12 @@ export class QuizApp {
           for (const [catId, catName] of Object.entries(gradeCats)) {
             const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
             const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
-            let belongs = false;
-            if (col.parentId === "__other__") {
-              belongs = !topInfo;
-            } else if (col.parentId.startsWith("__top_direct_")) {
-              belongs = topInfo?.id === col.topId && !parentInfo;
-            } else {
-              belongs = parentInfo?.id === col.parentId;
-            }
+            const belongs =
+              col.parentId === "__other__"
+                ? !topInfo
+                : col.parentId.startsWith("__top_direct_")
+                  ? topInfo?.id === col.topId && !parentInfo
+                  : parentInfo?.id === col.parentId;
             if (belongs) appendUnitBlock(inner, catId, catName);
           }
           td.appendChild(inner);
@@ -2338,14 +2336,12 @@ export class QuizApp {
           for (const [catId, catName] of Object.entries(gradeCats)) {
             const topInfo = this.useCase.getTopCategoryForUnit(subject, catId);
             const parentInfo = this.useCase.getParentCategoryForUnit(subject, catId);
-            let belongs = false;
-            if (col.parentId === "__other__") {
-              belongs = !topInfo;
-            } else if (col.parentId.startsWith("__top_direct_")) {
-              belongs = topInfo?.id === col.topId && !parentInfo;
-            } else {
-              belongs = parentInfo?.id === col.parentId;
-            }
+            const belongs =
+              col.parentId === "__other__"
+                ? !topInfo
+                : col.parentId.startsWith("__top_direct_")
+                  ? topInfo?.id === col.topId && !parentInfo
+                  : parentInfo?.id === col.parentId;
             if (belongs) appendUnitBlock(inner, catId, catName);
           }
           td.appendChild(inner);
@@ -4951,12 +4947,14 @@ export class QuizApp {
     // 正答数に応じた前向きなメッセージ
     const resultMessage = document.getElementById("resultMessage");
     if (resultMessage) {
-      let message = "";
-      if (percentage === 100) message = "🌟 満点！すごい！";
-      else if (percentage >= 80) message = "🎉 よくできました！";
-      else if (percentage >= 60) message = "😊 もう少し！次はきっとできる！";
-      else message = "💪 がんばれ！次は必ず正解できます！";
-      resultMessage.textContent = message;
+      resultMessage.textContent =
+        percentage === 100
+          ? "🌟 満点！すごい！"
+          : percentage >= 80
+            ? "🎉 よくできました！"
+            : percentage >= 60
+              ? "😊 もう少し！次はきっとできる！"
+              : "💪 がんばれ！次は必ず正解できます！";
     }
 
     const scoreDisplay = document.getElementById("scoreDisplay");

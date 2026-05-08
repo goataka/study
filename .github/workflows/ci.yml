@@ -20,7 +20,7 @@ jobs:
       contents: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -51,7 +51,7 @@ jobs:
       contents: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
         run: git config --global --add safe.directory /__w/study/study
@@ -77,10 +77,10 @@ jobs:
       contents: write
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
-          token: ${{ secrets.COPILOT_CLASSIC }}
+          token: ${{ secrets.COPILOT_CLASSIC || github.token }}
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -140,7 +140,7 @@ jobs:
 
       - name: VRレポートのアップロード（失敗時）
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: vr-report
           path: app/vr-report/
@@ -154,10 +154,10 @@ jobs:
       pull-requests: write
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
-          token: ${{ secrets.COPILOT_CLASSIC }}
+          token: ${{ secrets.COPILOT_CLASSIC || github.token }}
 
       - name: Markdownの自動修正
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
