@@ -108,6 +108,7 @@ import { selectNextPanelTab } from "./quizApp/autoSelectPanelTab";
 import { renderQuestion as renderQuestionFn } from "./quizApp/questionRenderer";
 import { showScreen as showScreenFn, type ScreenName } from "./quizApp/screenNavigator";
 import { findFirstUnlearnedCategory } from "./quizApp/firstUnlearnedFinder";
+import { updateSelectedUnitInfo as updateSelectedUnitInfoFn } from "./quizApp/selectedUnitInfoUpdater";
 
 const PANEL_TABS: readonly PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 
@@ -1374,155 +1375,17 @@ export class QuizApp {
    *   行3: [ステータスバー（全幅）]
    */
   private updateSelectedUnitInfo(): void {
-    const container = document.getElementById("selectedUnitInfo");
-    if (!container) return;
-
-    const selLevel = this.getSelectionLevel();
-
-    // 総合タブから単元が選択されている場合: 教科の画面と同じ形式で詳細を表示
-    if (this.selectedUnitContext !== null) {
-      const { subject, categoryId, categoryName } = this.selectedUnitContext;
-      this.renderSelectedUnitInfo(container, subject, categoryId, categoryName, "単元の解説を閉じる", () =>
-        this.closeOverallUnitView(),
-      );
-      return;
-    }
-
-    if (this.categoryViewMode === "grade" && this.selectedGradeGroup !== null && this.filter.subject !== "all") {
-      container.classList.remove("hidden");
-      container.innerHTML = "";
-      const grade = this.selectedGradeGroup;
-      const selectedCategoryEntries =
-        grade === "none"
-          ? Object.entries(this.useCase.getCategoriesWithoutGrade(this.filter.subject))
-          : Object.entries(this.useCase.getCategoriesForGrade(this.filter.subject, grade));
-      const selectedCategorySet = new Set(selectedCategoryEntries.map(([catId]) => catId));
-      const subjectQuestions = this.useCase.getFilteredQuestions({ subject: this.filter.subject, category: "all" });
-      const masteredSet = new Set(this.useCase.getMasteredIds());
-      const questionStats = this.useCase.getAllQuestionStats();
-      let mastered = 0;
-      let inProgressCount = 0;
-      let total = 0;
-      for (const q of subjectQuestions) {
-        if (!selectedCategorySet.has(q.category)) continue;
-        total++;
-        if (masteredSet.has(q.id)) {
-          mastered++;
-        } else if ((questionStats[q.id]?.total ?? 0) > 0) {
-          inProgressCount++;
-        }
-      }
-      const gradeLabel = grade === "none" ? "学年未設定" : grade;
-      const exampleText = grade === "none" ? "対象学年: 学年未設定" : `対象学年: ${grade}`;
-      container.appendChild(
-        buildSelectedUnitInfoBody({
-          name: gradeLabel,
-          description: `${selectedCategoryEntries.length}単元の解説`,
-          example: exampleText,
-          mastered,
-          inProgressCount,
-          total,
-        }),
-      );
-      container.appendChild(buildSelectedUnitCloseButton("選択を解除して閉じる", () => this.deselectAndRefresh()));
-      document.getElementById("categoryList")?.classList.add("detail-active");
-      return;
-    }
-
-    if (selLevel === "none" || this.filter.subject === "all") {
-      container.classList.add("hidden");
-      document.getElementById("categoryList")?.classList.remove("detail-active");
-      return;
-    }
-
-    container.classList.remove("hidden");
-    container.innerHTML = "";
-
-    if (selLevel === "unit") {
-      const cats = this.useCase.getCategoriesForSubject(this.filter.subject);
-      const name = cats[this.filter.category] ?? this.filter.category;
-      this.renderSelectedUnitInfo(
-        container,
-        this.filter.subject,
-        this.filter.category,
-        name,
-        "選択を解除して閉じる",
-        () => this.deselectAndRefresh(),
-      );
-      return;
-    }
-
-    // カテゴリ・トップカテゴリ選択時: 単元詳細と同様のレイアウトで要約を表示
-    let name: string;
-    let topCatName: string | undefined;
-    const selectedCategoryEntries: Array<[string, string]> = [];
-    if (selLevel === "parentCategory" && this.filter.parentCategory) {
-      const parentCats = this.useCase.getParentCategoriesForSubject(this.filter.subject);
-      name = parentCats[this.filter.parentCategory] ?? this.filter.parentCategory;
-      const cats = this.useCase.getCategoriesForParent(this.filter.subject, this.filter.parentCategory);
-      selectedCategoryEntries.push(...Object.entries(cats));
-      // 親カテゴリのトップカテゴリ名を取得（パンくずに使用）
-      const firstCatId = Object.keys(cats)[0];
-      if (firstCatId) {
-        topCatName = this.useCase.getTopCategoryForUnit(this.filter.subject, firstCatId)?.name;
-      }
-    } else if (selLevel === "topCategory" && this.selectedTopCategoryId) {
-      const topCats = this.useCase.getTopCategoriesForSubject(this.filter.subject);
-      name = topCats[this.selectedTopCategoryId] ?? this.selectedTopCategoryId;
-      const parentCats = this.useCase.getParentCategoriesForTop(this.filter.subject, this.selectedTopCategoryId);
-      for (const [parentCatId] of Object.entries(parentCats)) {
-        const cats = this.useCase.getCategoriesForParent(this.filter.subject, parentCatId);
-        selectedCategoryEntries.push(...Object.entries(cats));
-      }
-    } else {
-      name = "";
-    }
-
-    if (selectedCategoryEntries.length === 0) {
-      container.appendChild(buildSelectedUnitInfoSimpleBody(name));
-      container.appendChild(buildSelectedUnitCloseButton("選択を解除して閉じる", () => this.deselectAndRefresh()));
-      document.getElementById("categoryList")?.classList.add("detail-active");
-      return;
-    }
-    const uniqueEntries = Array.from(new Map(selectedCategoryEntries).entries());
-    const gradeList = Array.from(
-      new Set(
-        uniqueEntries
-          .map(([catId]) => this.useCase.getCategoryReferenceGrade(this.filter.subject, catId))
-          .filter((grade): grade is string => !!grade),
-      ),
-    );
-    const exampleText = gradeList.length > 0 ? `対象学年: ${gradeList.join(" / ")}` : "対象学年: 学年未設定";
-    const summaryText = `${uniqueEntries.length}単元の解説`;
-    const selectedCategorySet = new Set(uniqueEntries.map(([catId]) => catId));
-    const subjectQuestions = this.useCase.getFilteredQuestions({ subject: this.filter.subject, category: "all" });
-    const masteredSet = new Set(this.useCase.getMasteredIds());
-    const questionStats = this.useCase.getAllQuestionStats();
-    let mastered = 0;
-    let inProgressCount = 0;
-    let total = 0;
-    for (const q of subjectQuestions) {
-      if (!selectedCategorySet.has(q.category)) continue;
-      total++;
-      if (masteredSet.has(q.id)) {
-        mastered++;
-      } else if ((questionStats[q.id]?.total ?? 0) > 0) {
-        inProgressCount++;
-      }
-    }
-    container.appendChild(
-      buildSelectedUnitInfoBody({
-        name,
-        topCatName,
-        description: summaryText,
-        example: exampleText,
-        mastered,
-        inProgressCount,
-        total,
-      }),
-    );
-    container.appendChild(buildSelectedUnitCloseButton("選択を解除して閉じる", () => this.deselectAndRefresh()));
-    document.getElementById("categoryList")?.classList.add("detail-active");
+    updateSelectedUnitInfoFn({
+      useCase: this.useCase,
+      filter: this.filter,
+      selectionLevel: this.getSelectionLevel(),
+      selectedUnitContext: this.selectedUnitContext,
+      categoryViewMode: this.categoryViewMode,
+      selectedGradeGroup: this.selectedGradeGroup,
+      selectedTopCategoryId: this.selectedTopCategoryId,
+      onCloseOverallUnitView: () => this.closeOverallUnitView(),
+      onDeselect: () => this.deselectAndRefresh(),
+    });
   }
 
   /**
