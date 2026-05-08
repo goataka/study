@@ -730,7 +730,7 @@ export class QuizApp {
       const topToggleArrow = document.createElement("button");
       topToggleArrow.type = "button";
       topToggleArrow.className = "category-top-group-toggle";
-      topToggleArrow.setAttribute("aria-label", "折りたたみ");
+      topToggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
       topGroupHeader.appendChild(topToggleArrow);
 
       const topHeaderText = document.createElement("span");
@@ -837,7 +837,7 @@ export class QuizApp {
       const toggleArrow = document.createElement("button");
       toggleArrow.type = "button";
       toggleArrow.className = "category-grade-group-toggle";
-      toggleArrow.setAttribute("aria-label", "折りたたみ");
+      toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
       groupHeader.appendChild(toggleArrow);
 
       const headerText = document.createElement("span");
@@ -914,7 +914,7 @@ export class QuizApp {
         const toggleArrow = document.createElement("button");
         toggleArrow.type = "button";
         toggleArrow.className = "category-grade-group-toggle";
-        toggleArrow.setAttribute("aria-label", "折りたたみ");
+        toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
         groupHeader.appendChild(toggleArrow);
 
         const headerText = document.createElement("span");
@@ -1115,7 +1115,7 @@ export class QuizApp {
     const toggleArrow = document.createElement("button");
     toggleArrow.type = "button";
     toggleArrow.className = "category-group-toggle";
-    toggleArrow.setAttribute("aria-label", "折りたたみ");
+    toggleArrow.setAttribute("aria-label", "セクションの折りたたみを切り替える");
     groupHeader.appendChild(toggleArrow);
 
     const headerText = document.createElement("span");
