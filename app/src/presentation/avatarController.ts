@@ -222,105 +222,108 @@ export class AvatarController {
     let activePointerId: number | null = null;
     let mouseDragging = false;
     const getTouchPoint = (e: TouchEvent): Touch | null => e.touches[0] ?? e.changedTouches[0] ?? null;
-    wrap.addEventListener(
-      "pointerdown",
-      (e: PointerEvent) => {
-        if (e.pointerType === "mouse" && e.button !== 0) return;
-        activePointerId = e.pointerId;
-        startDrag(e.clientX, e.clientY);
-        try {
-          wrap.setPointerCapture(e.pointerId);
-        } catch {
-          // ブラウザ実装差異で失敗する場合があるため継続する
-        }
-      },
-      { signal },
-    );
+    const hasPointerEvent = typeof window !== "undefined" && "PointerEvent" in window;
+    if (hasPointerEvent) {
+      wrap.addEventListener(
+        "pointerdown",
+        (e: PointerEvent) => {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          activePointerId = e.pointerId;
+          startDrag(e.clientX, e.clientY);
+          try {
+            wrap.setPointerCapture(e.pointerId);
+          } catch {
+            // ブラウザ実装差異で失敗する場合があるため継続する
+          }
+        },
+        { signal },
+      );
 
-    document.addEventListener(
-      "pointermove",
-      (e: PointerEvent) => {
-        if (!dragging || activePointerId !== e.pointerId) return;
-        e.preventDefault();
-        moveDrag(e.clientX, e.clientY);
-      },
-      { signal, passive: false },
-    );
+      document.addEventListener(
+        "pointermove",
+        (e: PointerEvent) => {
+          if (!dragging || activePointerId !== e.pointerId) return;
+          e.preventDefault();
+          moveDrag(e.clientX, e.clientY);
+        },
+        { signal, passive: false },
+      );
 
-    const onPointerUp = (e: PointerEvent): void => {
-      if (activePointerId !== null && activePointerId !== e.pointerId) return;
-      activePointerId = null;
-      endDrag();
-    };
-
-    document.addEventListener("pointerup", onPointerUp, { signal });
-    document.addEventListener("pointercancel", onPointerUp, { signal });
-
-    wrap.addEventListener(
-      "mousedown",
-      (e: MouseEvent) => {
-        if (e.button !== 0) return;
-        mouseDragging = true;
-        startDrag(e.clientX, e.clientY);
-      },
-      { signal },
-    );
-
-    document.addEventListener(
-      "mousemove",
-      (e: MouseEvent) => {
-        if (!mouseDragging) return;
-        e.preventDefault();
-        moveDrag(e.clientX, e.clientY);
-      },
-      { signal, passive: false },
-    );
-
-    document.addEventListener(
-      "mouseup",
-      () => {
-        mouseDragging = false;
+      const onPointerUp = (e: PointerEvent): void => {
+        if (activePointerId !== null && activePointerId !== e.pointerId) return;
+        activePointerId = null;
         endDrag();
-      },
-      { signal },
-    );
+      };
 
-    wrap.addEventListener(
-      "touchstart",
-      (e: TouchEvent) => {
-        const touch = getTouchPoint(e);
-        if (!touch) return;
-        startDrag(touch.clientX, touch.clientY);
-      },
-      { signal, passive: true },
-    );
+      document.addEventListener("pointerup", onPointerUp, { signal });
+      document.addEventListener("pointercancel", onPointerUp, { signal });
+    } else {
+      wrap.addEventListener(
+        "mousedown",
+        (e: MouseEvent) => {
+          if (e.button !== 0) return;
+          mouseDragging = true;
+          startDrag(e.clientX, e.clientY);
+        },
+        { signal },
+      );
 
-    document.addEventListener(
-      "touchmove",
-      (e: TouchEvent) => {
-        if (!dragging) return;
-        const touch = getTouchPoint(e);
-        if (!touch) return;
-        e.preventDefault();
-        moveDrag(touch.clientX, touch.clientY);
-      },
-      { signal, passive: false },
-    );
+      document.addEventListener(
+        "mousemove",
+        (e: MouseEvent) => {
+          if (!mouseDragging) return;
+          e.preventDefault();
+          moveDrag(e.clientX, e.clientY);
+        },
+        { signal, passive: false },
+      );
 
-    document.addEventListener(
-      "touchend",
-      () => {
-        endDrag();
-      },
-      { signal },
-    );
-    document.addEventListener(
-      "touchcancel",
-      () => {
-        endDrag();
-      },
-      { signal },
-    );
+      document.addEventListener(
+        "mouseup",
+        () => {
+          mouseDragging = false;
+          endDrag();
+        },
+        { signal },
+      );
+
+      wrap.addEventListener(
+        "touchstart",
+        (e: TouchEvent) => {
+          const touch = getTouchPoint(e);
+          if (!touch) return;
+          startDrag(touch.clientX, touch.clientY);
+        },
+        { signal, passive: true },
+      );
+
+      document.addEventListener(
+        "touchmove",
+        (e: TouchEvent) => {
+          if (!dragging) return;
+          const touch = getTouchPoint(e);
+          if (!touch) return;
+          e.preventDefault();
+          moveDrag(touch.clientX, touch.clientY);
+        },
+        { signal, passive: false },
+      );
+
+      document.addEventListener(
+        "touchend",
+        () => {
+          endDrag();
+        },
+        { signal },
+      );
+      document.addEventListener(
+        "touchcancel",
+        () => {
+          endDrag();
+        },
+        { signal },
+      );
+    }
 
     zoomInput?.addEventListener(
       "input",

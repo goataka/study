@@ -37,21 +37,29 @@ describe("AvatarController", () => {
   });
 
   it("マウスドラッグでもプレビュー画像の表示位置を移動できる", () => {
-    const repo = {
-      loadUserAvatar: () => "data:image/png;base64,AAA",
-      saveUserAvatar: vi.fn(),
-    } as unknown as IProgressRepository;
-    const controller = new AvatarController(repo);
-    controller.loadFromStorage();
-    controller.openCropDialog();
+    const originalPointerEvent = window.PointerEvent;
+    // PointerEvent 非対応環境のフォールバックとして mouse 系イベントが動作することを検証する
+    // @ts-expect-error テストで一時的に未対応環境を再現する
+    delete window.PointerEvent;
+    try {
+      const repo = {
+        loadUserAvatar: () => "data:image/png;base64,AAA",
+        saveUserAvatar: vi.fn(),
+      } as unknown as IProgressRepository;
+      const controller = new AvatarController(repo);
+      controller.loadFromStorage();
+      controller.openCropDialog();
 
-    const wrap = document.getElementById("avatarCropPreviewWrap") as HTMLDivElement;
-    const preview = document.getElementById("avatarCropPreview") as HTMLImageElement;
+      const wrap = document.getElementById("avatarCropPreviewWrap") as HTMLDivElement;
+      const preview = document.getElementById("avatarCropPreview") as HTMLImageElement;
 
-    wrap.dispatchEvent(new MouseEvent("mousedown", { bubbles: true, clientX: 60, clientY: 60, button: 0 }));
-    document.dispatchEvent(new MouseEvent("mousemove", { bubbles: true, clientX: 84, clientY: 72 }));
-    document.dispatchEvent(new MouseEvent("mouseup", { bubbles: true }));
+      wrap.dispatchEvent(new MouseEvent("mousedown", { bubbles: true, clientX: 60, clientY: 60, button: 0 }));
+      document.dispatchEvent(new MouseEvent("mousemove", { bubbles: true, clientX: 84, clientY: 72 }));
+      document.dispatchEvent(new MouseEvent("mouseup", { bubbles: true }));
 
-    expect(preview.style.objectPosition).not.toBe("50% 50%");
+      expect(preview.style.objectPosition).not.toBe("50% 50%");
+    } finally {
+      window.PointerEvent = originalPointerEvent;
+    }
   });
 });
