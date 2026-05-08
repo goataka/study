@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -39,7 +39,7 @@ jobs:
         working-directory: app
 
       - name: GitHub Pages のセットアップ
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Jekyllサイトのビルド（support/）
         uses: actions/jekyll-build-pages@v1
@@ -53,7 +53,7 @@ jobs:
           sudo cp -r app/dist/. _site/
 
       - name: Pages アーティファクトのアップロード
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
 
   deploy:
     name: GitHub Pages へデプロイ
@@ -82,7 +82,7 @@ jobs:
       contents: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
