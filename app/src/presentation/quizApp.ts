@@ -223,6 +223,36 @@ export class QuizApp {
     }
   }
 
+  /**
+   * 現在の画面・教科・単元・パネルタブの状態を URL フラグメントへ反映する。
+   * クエリパラメータ (?subject=...) が既に指定されている場合はそちらを尊重し、フラグメント側のみ更新する。
+   * 表示に影響しないため `replaceState` を用い、履歴スタックには追加しない。
+   */
+  private syncURLFragment(screenName?: "start" | "quiz" | "result"): void {
+    const hashParams = new URLSearchParams();
+    const screen =
+      screenName ??
+      (document.getElementById("quizScreen")?.classList.contains("hidden") === false
+        ? "quiz"
+        : document.getElementById("resultScreen")?.classList.contains("hidden") === false
+          ? "result"
+          : "start");
+    hashParams.set("screen", screen);
+    if (this.filter.subject) {
+      hashParams.set("subject", this.filter.subject);
+    }
+    if (this.filter.category && this.filter.category !== "all") {
+      hashParams.set("category", this.filter.category);
+    }
+    if (this.activePanelTab) {
+      hashParams.set("panel", this.activePanelTab);
+    }
+    const newHash = `#${hashParams.toString()}`;
+    if (window.location.hash === newHash) return;
+    const newUrl = `${window.location.pathname}${window.location.search}${newHash}`;
+    window.history.replaceState(window.history.state, document.title, newUrl);
+  }
+
   private loadUserName(): void {
     const savedName = this.progressRepo.loadUserName();
     if (savedName) {
@@ -402,6 +432,7 @@ export class QuizApp {
 
         this.renderCategoryList();
         this.updateStartScreen();
+        this.syncURLFragment();
       });
 
       tabsContainer.appendChild(tab);
@@ -431,6 +462,7 @@ export class QuizApp {
         } else if (panel === "questions") {
           this.renderQuestionList();
         }
+        this.syncURLFragment();
       });
     });
   }
@@ -1746,6 +1778,7 @@ export class QuizApp {
       this.isPanelTabUserSelected = true;
       this.autoSelectPanelTab(categoryRecords);
       this.updateStartScreen(categoryRecords);
+      this.syncURLFragment();
     };
 
     item.addEventListener("click", handleActivate);
@@ -3898,6 +3931,9 @@ export class QuizApp {
       this.autoSelectPanelTab(screenRecords);
       this.updateStartScreen(screenRecords);
     }
+
+    // 画面切り替えを URL フラグメントへ反映する
+    this.syncURLFragment(screenName);
   }
 
   /**
