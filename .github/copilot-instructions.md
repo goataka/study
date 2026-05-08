@@ -236,7 +236,7 @@ I `played` games.
 ### GitHub Actions のイメージ指定ルール
 
 - `jobs.<job_id>.container.image` や `services.<service_id>.image` の指定では `env` コンテキストを使わない（理由: イメージ解決時に `env` が使えず、ワークフローが失敗するため）
-- イメージ名はリテラルで直接記述する（例: `image: mcr.microsoft.com/playwright:v1.59.1-noble`）
+- イメージ名はリテラルで直接記述する（例: `image: mcr.microsoft.com/playwright:v1.XX.X-noble`）
 
 ### コードの言語規則
 
