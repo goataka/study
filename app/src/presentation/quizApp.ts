@@ -33,6 +33,7 @@ import {
 } from "./uiHelpers";
 
 export class QuizApp {
+  private static readonly PANEL_TABS = ["quiz", "guide", "history", "questions"] as const;
   private useCase!: QuizUseCase;
   private progressRepo: IProgressRepository;
   private currentSession: QuizSession | null = null;
@@ -231,8 +232,8 @@ export class QuizApp {
       // subjectが指定されているがcategoryがない場合は"all"
       this.filter.category = "all";
     }
-    if (panel === "quiz" || panel === "guide" || panel === "history" || panel === "questions") {
-      this.activePanelTab = panel;
+    if (panel && QuizApp.PANEL_TABS.includes(panel as (typeof QuizApp.PANEL_TABS)[number])) {
+      this.activePanelTab = panel as (typeof QuizApp.PANEL_TABS)[number];
       this.isPanelTabUserSelected = true;
     }
   }

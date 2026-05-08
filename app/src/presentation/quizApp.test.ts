@@ -447,6 +447,16 @@ describe("QuizApp — URLフラグメント連動仕様", () => {
     expect(activeCategory).not.toBeNull();
     expect(activePanel).not.toBeNull();
   });
+
+  it("URLフラグメントのpanelが不正値でも既定の表示タブを維持する", async () => {
+    window.history.replaceState({}, "", "/#subject=english&category=all&panel=invalid");
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const activePanel = document.querySelector(".panel-tab.active");
+    expect(activePanel?.getAttribute("data-panel")).toBe("quiz");
+  });
+
 });
 
 describe("QuizApp — 問題ロード後の仕様", () => {
