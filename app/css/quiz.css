@@ -5595,8 +5595,9 @@ body.font-size-large .admin-data-close-btn {
 }
 
 .admin-menu-btn.admin-menu-child {
-    margin-left: 14px;
-    width: calc(100% - 14px);
+    --admin-menu-indent: 14px;
+    margin-left: var(--admin-menu-indent);
+    width: calc(100% - var(--admin-menu-indent));
 }
 
 .admin-menu-btn:hover:not(.active) {

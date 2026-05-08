@@ -2354,7 +2354,7 @@ export class QuizApp {
     for (const subject of subjects) {
       const categories = this.useCase.getCategoriesForSubject(subject.id);
       const totalUnits = Object.keys(categories).length;
-      const studiedUnits = new Set(
+      const studiedUnitCount = new Set(
         records
           .filter((r) => r.subject === subject.id && r.category !== "all")
           .map((r) => r.category)
@@ -2367,7 +2367,7 @@ export class QuizApp {
         continue;
       }
       const target = Math.max(1, Math.min(this.subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
-      const ratio = Math.min(1, studiedUnits / target);
+      const ratio = Math.min(1, studiedUnitCount / target);
       const message = ratio >= 1
         ? "🎉 目標達成！この調子！"
         : ratio >= 0.5
@@ -2375,7 +2375,7 @@ export class QuizApp {
           : "🌱 まずは1単元ずつ進めよう！";
       const row = document.createElement("div");
       row.className = "overall-subject-status-row";
-      row.textContent = `${subject.icon} ${subject.name}: ${Math.min(studiedUnits, target)}/${target}単元 ${message}`;
+      row.textContent = `${subject.icon} ${subject.name}: ${Math.min(studiedUnitCount, target)}/${target}単元 ${message}`;
       container.appendChild(row);
     }
   }
