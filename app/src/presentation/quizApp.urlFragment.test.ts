@@ -161,4 +161,26 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     expect(document.getElementById("progressDetailTab-grade")?.classList.contains("active")).toBe(true);
     expect(document.getElementById("progressHideLearnedBtn")?.getAttribute("aria-pressed")).toBe("true");
   });
+
+  it("総合タブで選択中の単元詳細表示をフラグメントから復元できる", async () => {
+    window.history.replaceState({}, "", "/#subject=all&unitSubject=english&unitCategory=phonics-1");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(document.getElementById("selectedUnitInfo")?.classList.contains("hidden")).toBe(false);
+    expect(document.querySelector(".selected-unit-info-name")?.textContent).toContain("フォニックス");
+  });
+
+  it("総合タブでおすすめ単元を選択するとフラグメントに unitSubject/unitCategory が反映される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const allTab = document.querySelector('.subject-tab[data-subject="all"]') as HTMLElement;
+    allTab.click();
+    (document.querySelector(".subject-overview-item") as HTMLElement | null)?.click();
+
+    expect(window.location.hash).toContain("unitSubject=english");
+    expect(window.location.hash).toContain("unitCategory=phonics-1");
+  });
 });

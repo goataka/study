@@ -69,4 +69,38 @@ describe("AvatarController", () => {
       });
     }
   });
+
+  it("拡大率が高い場合でもドラッグで表示位置を移動できる", () => {
+    localStorage.setItem("avatarCropZoom", "3");
+    const originalPointerEvent = window.PointerEvent;
+    Object.defineProperty(window, "PointerEvent", {
+      configurable: true,
+      writable: true,
+      value: undefined,
+    });
+    try {
+      const repo = {
+        loadUserAvatar: () => "data:image/png;base64,AAA",
+        saveUserAvatar: vi.fn(),
+      } as unknown as IProgressRepository;
+      const controller = new AvatarController(repo);
+      controller.loadFromStorage();
+      controller.openCropDialog();
+
+      const wrap = document.getElementById("avatarCropPreviewWrap") as HTMLDivElement;
+      const preview = document.getElementById("avatarCropPreview") as HTMLImageElement;
+
+      wrap.dispatchEvent(new MouseEvent("mousedown", { bubbles: true, clientX: 60, clientY: 60, button: 0 }));
+      document.dispatchEvent(new MouseEvent("mousemove", { bubbles: true, clientX: 84, clientY: 72 }));
+      document.dispatchEvent(new MouseEvent("mouseup", { bubbles: true }));
+
+      expect(preview.style.objectPosition).not.toBe("50% 50%");
+    } finally {
+      Object.defineProperty(window, "PointerEvent", {
+        configurable: true,
+        writable: true,
+        value: originalPointerEvent,
+      });
+    }
+  });
 });

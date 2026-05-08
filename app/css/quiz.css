@@ -162,6 +162,7 @@ header h1 {
 .outer-github-link {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   justify-content: flex-start;
   grid-column: 1;
   justify-self: start;
@@ -175,6 +176,12 @@ header h1 {
 .outer-github-link svg {
   width: 30px;
   height: 30px;
+}
+
+.outer-github-link-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .outer-github-link:hover {
@@ -193,6 +200,7 @@ header h1 {
   align-items: center;
   padding: 2px 4px 2px;
   flex-shrink: 0;
+  order: 2;
 }
 
 /* コピーライト（ノートの外・白字） */
@@ -2412,14 +2420,29 @@ button:disabled {
 /* クイズ画面 */
 .quiz-landscape-layout {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
+  grid-template-columns: 1fr 12px 2fr;
+  gap: 0;
   align-items: stretch;
   flex: 1;
   min-height: 0;
 }
 
+.quiz-landscape-layout::before {
+  content: "";
+  grid-column: 2;
+  grid-row: 1;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.025) 0%,
+    #e3e3e3 20%,
+    #f3f3f3 50%,
+    #e3e3e3 80%,
+    rgba(0, 0, 0, 0.025) 100%
+  );
+}
+
 .quiz-main-col {
+  grid-column: 1;
   min-width: 0;
   overflow-y: auto;
   min-height: 0;
@@ -2432,6 +2455,7 @@ button:disabled {
 }
 
 .quiz-notes-col {
+  grid-column: 3;
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -3102,6 +3126,10 @@ button:disabled {
     flex: none;
   }
 
+  .quiz-landscape-layout::before {
+    display: none;
+  }
+
   /* メモエリアはスクロールで到達できる高さに（縦積みの最下部に配置） */
   .quiz-notes-col {
     max-height: none;
@@ -3579,6 +3607,10 @@ button:disabled {
   font-size: 16px; /* panel-tab と同じフォントサイズ */
 }
 
+.guide-content h3 {
+  font-size: 16px;
+}
+
 /* すべての h1 を非表示 */
 .guide-content h1 {
   display: none;
@@ -3823,7 +3855,10 @@ button:disabled {
   border: 2px solid #e1e4e8;
   border-radius: 8px;
   overflow-y: auto;
-  background: white;
+  background-color: transparent;
+  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-size: 100% 32px;
+  background-position: 0 12px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -4732,7 +4767,7 @@ body.font-size-medium #startScreen .guide-content h2 {
 }
 body.font-size-medium .guide-frame .guide-content h3,
 body.font-size-medium #startScreen .guide-content h3 {
-  font-size: 1.44em;
+  font-size: 18px;
 }
 
 body.font-size-medium .header-today-date {
@@ -5091,7 +5126,7 @@ body.font-size-large #startScreen .guide-content h2 {
 }
 body.font-size-large .guide-frame .guide-content h3,
 body.font-size-large #startScreen .guide-content h3 {
-  font-size: 1.8em;
+  font-size: 22px;
 }
 
 body.font-size-large .header-today-date {
@@ -5729,7 +5764,7 @@ body.font-size-large .admin-data-close-btn {
   padding: 10px 16px;
   border: 1px solid transparent;
   border-radius: 6px;
-  background: transparent;
+  background: #ffffff;
   cursor: pointer;
   font-size: 18px;
   font-weight: 600;
@@ -6260,7 +6295,7 @@ body.font-size-large .admin-data-close-btn {
   .guide-frame .guide-content h4,
   .guide-frame .guide-content h5,
   .guide-frame .guide-content h6 {
-    font-size: 14px;
+    font-size: 16px;
   }
   /* h2 はパネルタブと同じフォントサイズ（基本: 16px） */
   .guide-frame .guide-content h2 {
@@ -6274,7 +6309,7 @@ body.font-size-large .admin-data-close-btn {
   body.font-size-medium .guide-frame .guide-content h4,
   body.font-size-medium .guide-frame .guide-content h5,
   body.font-size-medium .guide-frame .guide-content h6 {
-    font-size: 17px;
+    font-size: 18px;
   }
   /* h2 はパネルタブと同じフォントサイズ（フォントサイズ中: 18px） */
   body.font-size-medium .guide-frame .guide-content h2 {
@@ -6288,7 +6323,7 @@ body.font-size-large .admin-data-close-btn {
   body.font-size-large .guide-frame .guide-content h4,
   body.font-size-large .guide-frame .guide-content h5,
   body.font-size-large .guide-frame .guide-content h6 {
-    font-size: 21px;
+    font-size: 22px;
   }
   /* h2 はパネルタブと同じフォントサイズ（フォントサイズ大: 22px） */
   body.font-size-large .guide-frame .guide-content h2 {
