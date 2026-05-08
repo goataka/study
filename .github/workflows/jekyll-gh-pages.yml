@@ -33,11 +33,11 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
-      - name: app依存関係のセットアップ
+      - name: app 依存関係のインストール
         uses: ./.github/actions/setup-quiz
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
-        run: git config --global --add safe.directory /__w/study/study
+        run: git config --global --add safe.directory "${{ github.workspace }}"
 
       - name: Viteビルド
         run: npm run build
@@ -95,11 +95,11 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
-      - name: app依存関係のセットアップ
+      - name: app 依存関係のインストール
         uses: ./.github/actions/setup-quiz
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
-        run: git config --global --add safe.directory /__w/study/study
+        run: git config --global --add safe.directory "${{ github.workspace }}"
 
       - name: 本番サイトの準備完了を確認
         env:

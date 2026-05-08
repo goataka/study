@@ -14,6 +14,8 @@ on:
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/study-app-ci
+  PLAYWRIGHT_VERSION: "1.59.1"
+  PLAYWRIGHT_BDD_VERSION: "8.5.0"
 
 jobs:
   build-and-push:
@@ -42,8 +44,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.IMAGE_NAME }}
+          # main ブランチから配布する共通実行環境として、latest タグのみを公開する
           tags: |
-            type=sha,format=long
             type=raw,value=latest,enable={{is_default_branch}}
 
       - name: イメージのビルドとプッシュ
@@ -51,6 +53,9 @@ jobs:
         with:
           context: .
           file: .github/docker/app-ci/Dockerfile
+          build-args: |
+            PLAYWRIGHT_VERSION=${{ env.PLAYWRIGHT_VERSION }}
+            PLAYWRIGHT_BDD_VERSION=${{ env.PLAYWRIGHT_BDD_VERSION }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

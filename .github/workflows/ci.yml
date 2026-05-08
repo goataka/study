@@ -28,7 +28,7 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
-      - name: app依存関係のセットアップ
+      - name: app 依存関係のインストール
         uses: ./.github/actions/setup-quiz
 
       - name: Lint 実行
@@ -62,9 +62,9 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
-        run: git config --global --add safe.directory /__w/study/study
+        run: git config --global --add safe.directory "${{ github.workspace }}"
 
-      - name: app依存関係のセットアップ
+      - name: app 依存関係のインストール
         uses: ./.github/actions/setup-quiz
 
       - name: Viteビルド（E2E用）
@@ -94,11 +94,11 @@ jobs:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           token: ${{ secrets.COPILOT_CLASSIC || github.token }}
 
-      - name: app依存関係のセットアップ
+      - name: app 依存関係のインストール
         uses: ./.github/actions/setup-quiz
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
-        run: git config --global --add safe.directory /__w/study/study
+        run: git config --global --add safe.directory "${{ github.workspace }}"
 
       - name: Viteビルド（VR用）
         run: npm run build
