@@ -336,8 +336,29 @@ export class QuizApp {
     }
     const params = hashParams.toString();
     const newHash = params ? `#${params}` : "";
-    if (window.location.hash === newHash) return;
-    const newUrl = `${window.location.pathname}${window.location.search}${newHash}`;
+
+    // クエリパラメータに unitSubject/unitCategory が残っている場合はクリアする
+    // （単元詳細を閉じた後にリロードすると再表示される問題の修正）
+    const searchParams = new URLSearchParams(window.location.search);
+    let searchChanged = false;
+    if (this.selectedUnitContext === null) {
+      if (searchParams.has("unitSubject")) {
+        searchParams.delete("unitSubject");
+        searchChanged = true;
+      }
+      if (searchParams.has("unitCategory")) {
+        searchParams.delete("unitCategory");
+        searchChanged = true;
+      }
+    }
+    const newSearch = searchChanged
+      ? searchParams.toString()
+        ? `?${searchParams.toString()}`
+        : ""
+      : window.location.search;
+
+    if (window.location.hash === newHash && !searchChanged) return;
+    const newUrl = `${window.location.pathname}${newSearch}${newHash}`;
     window.history.replaceState(window.history.state, document.title, newUrl);
   }
 
@@ -1334,9 +1355,14 @@ export class QuizApp {
     // tabpanel の aria-labelledby を更新する
     document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", activeTabId);
     const hideLearnedBtn = document.getElementById("progressHideLearnedBtn");
+    const showAllBtn = document.getElementById("progressShowAllBtn");
     if (hideLearnedBtn) {
       hideLearnedBtn.classList.toggle("active", this.hideLearnedProgressUnits);
       hideLearnedBtn.setAttribute("aria-pressed", String(this.hideLearnedProgressUnits));
+    }
+    if (showAllBtn) {
+      showAllBtn.classList.toggle("active", !this.hideLearnedProgressUnits);
+      showAllBtn.setAttribute("aria-pressed", String(!this.hideLearnedProgressUnits));
     }
 
     this.renderProgressDetailContent();
@@ -1914,12 +1940,18 @@ export class QuizApp {
 
     // カテゴリ・トップカテゴリ選択時: 単元詳細と同様のレイアウトで要約を表示
     let name: string;
+    let topCatName: string | undefined;
     const selectedCategoryEntries: Array<[string, string]> = [];
     if (selLevel === "parentCategory" && this.filter.parentCategory) {
       const parentCats = this.useCase.getParentCategoriesForSubject(this.filter.subject);
       name = parentCats[this.filter.parentCategory] ?? this.filter.parentCategory;
       const cats = this.useCase.getCategoriesForParent(this.filter.subject, this.filter.parentCategory);
       selectedCategoryEntries.push(...Object.entries(cats));
+      // 親カテゴリのトップカテゴリ名を取得（パンくずに使用）
+      const firstCatId = Object.keys(cats)[0];
+      if (firstCatId) {
+        topCatName = this.useCase.getTopCategoryForUnit(this.filter.subject, firstCatId)?.name;
+      }
     } else if (selLevel === "topCategory" && this.selectedTopCategoryId) {
       const topCats = this.useCase.getTopCategoriesForSubject(this.filter.subject);
       name = topCats[this.selectedTopCategoryId] ?? this.selectedTopCategoryId;
@@ -1967,6 +1999,7 @@ export class QuizApp {
     container.appendChild(
       buildSelectedUnitInfoBody({
         name,
+        topCatName,
         description: summaryText,
         example: exampleText,
         mastered,
@@ -2401,7 +2434,12 @@ export class QuizApp {
 
   private setupProgressFilterListeners(): void {
     document.getElementById("progressHideLearnedBtn")?.addEventListener("click", () => {
-      this.hideLearnedProgressUnits = !this.hideLearnedProgressUnits;
+      this.hideLearnedProgressUnits = true;
+      this.renderProgressDetailPanel();
+      this.syncURLFragment();
+    });
+    document.getElementById("progressShowAllBtn")?.addEventListener("click", () => {
+      this.hideLearnedProgressUnits = false;
       this.renderProgressDetailPanel();
       this.syncURLFragment();
     });
@@ -3090,7 +3128,10 @@ export class QuizApp {
     const isAll = this.filter.subject === "all";
     const hasOverallUnit = this.selectedUnitContext !== null;
     const selLevel = this.getSelectionLevel();
-    const noCategory = !isAll && selLevel === "none";
+    // 学年グループが選択されている場合は右パネルを表示する（学年詳細を表示するため）
+    const isGradeGroupSelected =
+      this.categoryViewMode === "grade" && this.selectedGradeGroup !== null && !isAll;
+    const noCategory = !isAll && selLevel === "none" && !isGradeGroupSelected;
     const isCategoryLevel = !isAll && (selLevel === "topCategory" || selLevel === "parentCategory");
 
     // 総合タブ時は単元選択を左・活動パネルを右にするレイアウトを適用

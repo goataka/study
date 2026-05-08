@@ -363,14 +363,24 @@
                 </button>
               </div>
               <div class="progress-detail-toolbar">
-                <button
-                  id="progressHideLearnedBtn"
-                  class="progress-detail-filter-btn"
-                  type="button"
-                  aria-pressed="false"
-                >
-                  ✅ 学習済みを隠す
-                </button>
+                <div class="category-status-filter" role="group" aria-label="学習済み表示切り替え">
+                  <button
+                    id="progressShowAllBtn"
+                    class="category-status-filter-btn active"
+                    type="button"
+                    aria-pressed="true"
+                  >
+                    すべて
+                  </button>
+                  <button
+                    id="progressHideLearnedBtn"
+                    class="category-status-filter-btn"
+                    type="button"
+                    aria-pressed="false"
+                  >
+                    学習済を除く
+                  </button>
+                </div>
               </div>
               <!-- 進度詳細コンテンツ -->
               <div

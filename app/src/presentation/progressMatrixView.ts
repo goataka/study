@@ -101,6 +101,49 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
     return `${col.topName} / ${col.parentName}`;
   };
 
+  // isUnitVisible: hideLearned が true のとき完全習得済みの単元は非表示
+  const isUnitVisible = (catId: string): boolean => {
+    if (!ctx.hideLearned) return true;
+    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+    return !(total > 0 && mastered === total);
+  };
+
+  // hideLearned 時に表示すべき行・列を絞り込む
+  const gradeCatsMap = new Map<string, Record<string, string>>();
+  for (const grade of grades) {
+    gradeCatsMap.set(grade, useCase.getCategoriesForGrade(subject, grade));
+  }
+
+  const isUnitInColumn = (catId: string, col: ColDef): boolean => {
+    const topInfo = useCase.getTopCategoryForUnit(subject, catId);
+    const parentInfo = useCase.getParentCategoryForUnit(subject, catId);
+    if (col.parentId === "__other__") return !topInfo;
+    if (col.parentId.startsWith("__top_direct_")) return topInfo?.id === col.topId && !parentInfo;
+    return parentInfo?.id === col.parentId;
+  };
+
+  // 表示する学年・列のリストを計算（hideLearned 時は空の行・列を除外）
+  const visibleGrades = ctx.hideLearned
+    ? grades.filter((grade) => {
+        const gradeCats = gradeCatsMap.get(grade) ?? {};
+        return Object.keys(gradeCats).some((catId) => isUnitVisible(catId));
+      })
+    : grades;
+
+  const visibleCols = ctx.hideLearned
+    ? colDefs.filter((col) => {
+        return Object.keys(allCats).some((catId) => isUnitInColumn(catId, col) && isUnitVisible(catId));
+      })
+    : colDefs;
+
+  if (visibleGrades.length === 0 || visibleCols.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "progress-block-group";
+    empty.textContent = "表示する単元がありません";
+    container.appendChild(empty);
+    return;
+  }
+
   // ヘッダー
   const thead = document.createElement("thead");
 
@@ -119,7 +162,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
     cornerTh.rowSpan = 2;
     topHeaderRow.appendChild(cornerTh);
     const topGroups: { topId: string; topName: string; count: number }[] = [];
-    for (const col of colDefs) {
+    for (const col of visibleCols) {
       const last = topGroups[topGroups.length - 1];
       if (last && last.topId === col.topId) {
         last.count++;
@@ -137,7 +180,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
     thead.appendChild(topHeaderRow);
 
     const parentHeaderRow = document.createElement("tr");
-    for (const col of colDefs) {
+    for (const col of visibleCols) {
       const th = document.createElement("th");
       th.textContent = buildMatrixCategoryLabel(col);
       th.className = "progress-matrix-parent-header";
@@ -146,7 +189,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
     thead.appendChild(parentHeaderRow);
   } else {
     topHeaderRow.appendChild(cornerTh);
-    for (const grade of grades) {
+    for (const grade of visibleGrades) {
       const th = document.createElement("th");
       th.textContent = grade;
       th.className = "progress-matrix-parent-header";
@@ -158,8 +201,8 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
 
   const tbody = document.createElement("tbody");
   const appendUnitBlock = (inner: HTMLElement, catId: string, catName: string): void => {
+    if (!isUnitVisible(catId)) return;
     const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
-    if (ctx.hideLearned && total > 0 && mastered === total) return;
     const inProgress = useCase.getInProgressCount({ subject, category: catId });
     const block = document.createElement("button");
     block.type = "button";
@@ -177,28 +220,15 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
     inner.appendChild(block);
   };
 
-  const isUnitInColumn = (catId: string, col: ColDef): boolean => {
-    const topInfo = useCase.getTopCategoryForUnit(subject, catId);
-    const parentInfo = useCase.getParentCategoryForUnit(subject, catId);
-    if (col.parentId === "__other__") return !topInfo;
-    if (col.parentId.startsWith("__top_direct_")) return topInfo?.id === col.topId && !parentInfo;
-    return parentInfo?.id === col.parentId;
-  };
-
   if (!ctx.transposed) {
-    // 学年ごとのカテゴリ一覧は (grade, col) セルごとに使うため、ループ外で一度だけ取得する
-    const gradeCatsMap = new Map<string, Record<string, string>>();
-    for (const grade of grades) {
-      gradeCatsMap.set(grade, useCase.getCategoriesForGrade(subject, grade));
-    }
-    for (const grade of grades) {
+    for (const grade of visibleGrades) {
       const tr = document.createElement("tr");
       const gradeCell = document.createElement("th");
       gradeCell.scope = "row";
       gradeCell.textContent = grade;
       tr.appendChild(gradeCell);
       const gradeCats = gradeCatsMap.get(grade) ?? {};
-      for (const col of colDefs) {
+      for (const col of visibleCols) {
         const td = document.createElement("td");
         td.className = "progress-matrix-cell-units";
         const inner = document.createElement("div");
@@ -212,18 +242,13 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
       tbody.appendChild(tr);
     }
   } else {
-    // 転置時もループ外で学年→カテゴリ一覧を一度だけ取得する
-    const gradeCatsMap = new Map<string, Record<string, string>>();
-    for (const grade of grades) {
-      gradeCatsMap.set(grade, useCase.getCategoriesForGrade(subject, grade));
-    }
-    for (const col of colDefs) {
+    for (const col of visibleCols) {
       const tr = document.createElement("tr");
       const parentCell = document.createElement("th");
       parentCell.scope = "row";
       parentCell.textContent = buildMatrixCategoryLabel(col);
       tr.appendChild(parentCell);
-      for (const grade of grades) {
+      for (const grade of visibleGrades) {
         const td = document.createElement("td");
         td.className = "progress-matrix-cell-units";
         const gradeCats = gradeCatsMap.get(grade) ?? {};
