@@ -206,6 +206,15 @@ header h1 {
   gap: 10px;
 }
 
+.outer-github-link {
+  order: -1;
+}
+
+.outer-github-link svg {
+  width: 24px;
+  height: 24px;
+}
+
 .screen {
   /* ノート：机の上に置いた1冊のノート（不透明白地、強い影） */
   background: white;
@@ -302,7 +311,7 @@ header h1 {
   align-items: center;
   gap: 4px;
   justify-content: center;
-  padding: 6px 10px 8px;
+  padding: 6px 18px 8px;
   min-width: 28px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-bottom: none;
@@ -316,7 +325,7 @@ header h1 {
   transition:
     filter 0.15s,
     transform 0.1s;
-  min-height: 31px;
+  min-height: 33px;
   line-height: 1;
 }
 
@@ -1192,7 +1201,7 @@ header h1 {
 }
 
 .subject-overview-grade {
-  font-size: 12px;
+  font-size: 18px;
   padding: 1px 5px;
   border-radius: 10px;
   white-space: nowrap;
@@ -1632,11 +1641,11 @@ header h1 {
   vertical-align: top;
   text-align: left;
   white-space: normal;
-  max-width: 120px;
+  max-width: 200px;
 }
 
 .progress-matrix-table-units .progress-matrix-cell-units {
-  min-width: 80px;
+  min-width: 140px;
 }
 
 /* マトリクスセル内の単元ブロックを縦配置にする */
@@ -3841,7 +3850,9 @@ button:disabled {
   min-height: 400px;
   cursor: crosshair;
   touch-action: none; /* タッチイベントのデフォルト動作を無効化 */
-  background: #f6f8fa;
+  background-color: #ffffff;
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-size: 100% 32px;
 }
 
 .notes-btn.eraser-active {
@@ -4621,7 +4632,7 @@ body.font-size-medium .subject-overview-rec-name {
 }
 
 body.font-size-medium .subject-overview-grade {
-  font-size: 15px;
+  font-size: 18px;
 }
 
 body.font-size-medium .activity-date-display {
@@ -5692,9 +5703,9 @@ body.font-size-large .admin-data-close-btn {
 }
 
 .admin-menu-btn.active {
-  background: #e8f0fe;
-  color: #0366d6;
-  border-color: #d0e1fb;
+  background: #0366d6;
+  color: #ffffff;
+  border-color: #0366d6;
 }
 
 .admin-menu-btn.admin-menu-parent {
@@ -5714,7 +5725,7 @@ body.font-size-large .admin-data-close-btn {
 }
 
 .admin-menu-btn:hover:not(.active) {
-  background: #f0f0f0;
+  background: #e8f0fe;
 }
 
 .admin-menu-content {

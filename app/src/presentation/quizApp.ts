@@ -220,6 +220,7 @@ export class QuizApp {
     const params = this.getURLParams();
     const subject = params.get("subject");
     const category = params.get("category");
+    const panel = params.get("panel");
 
     if (subject) {
       this.filter.subject = subject;
@@ -229,6 +230,10 @@ export class QuizApp {
     } else if (subject) {
       // subjectが指定されているがcategoryがない場合は"all"
       this.filter.category = "all";
+    }
+    if (panel === "quiz" || panel === "guide" || panel === "history" || panel === "questions") {
+      this.activePanelTab = panel;
+      this.isPanelTabUserSelected = true;
     }
   }
 
@@ -1046,7 +1051,7 @@ export class QuizApp {
     manageBtn.className = "admin-menu-btn";
     manageBtn.type = "button";
     manageBtn.classList.add("admin-menu-child");
-    manageBtn.textContent = "管理";
+    manageBtn.textContent = "🛠️ 管理";
     manageBtn.addEventListener("click", () => {
       if (activeMenu === "manage") {
         // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
@@ -1067,7 +1072,7 @@ export class QuizApp {
     viewBtn.className = "admin-menu-btn";
     viewBtn.type = "button";
     viewBtn.classList.add("admin-menu-child");
-    viewBtn.textContent = "参照";
+    viewBtn.textContent = "📖 参照";
     viewBtn.addEventListener("click", () => {
       if (activeMenu === "view") {
         // 再クリックでトグルオフ（コンテンツを閉じてメニューのみ表示に戻る）
@@ -4904,7 +4909,7 @@ export class QuizApp {
     const session = this.currentSession;
     if (!session) return;
     const results = this.useCase.submitSession(session);
-    this.useCase.addHistoryRecord(results, this.filter, this.currentMode);
+    this.useCase.addHistoryRecord(results, this.getEffectiveFilter(), this.currentMode);
     // 結果画面へ遷移する前に、スタート画面側の一覧・進捗表示を最新化しておく
     this.renderCategoryList();
     this.updateStartScreen(this.useCase.getHistory());
@@ -5154,6 +5159,10 @@ export class QuizApp {
     const subjectTabs = document.querySelector<HTMLElement>(".subject-tabs");
     if (subjectTabs) {
       subjectTabs.classList.toggle("hidden", screenName !== "start");
+    }
+    const tabsLinksArea = document.querySelector<HTMLElement>(".tabs-links-area");
+    if (tabsLinksArea) {
+      tabsLinksArea.classList.toggle("hidden", screenName !== "start");
     }
 
     if (screenName === "start") {

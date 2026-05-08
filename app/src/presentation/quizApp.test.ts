@@ -52,6 +52,7 @@ async function waitForCondition(
 
 /** テストに必要な最小限のHTML要素を生成する */
 function setupMinimalDom(): void {
+  window.history.replaceState({}, "", "/");
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
@@ -106,6 +107,7 @@ function setupMinimalDom(): void {
 
 /** タブUIを含むフルレイアウトのDOM */
 function setupTabDom(): void {
+  window.history.replaceState({}, "", "/");
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
@@ -116,6 +118,7 @@ function setupTabDom(): void {
     <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
+      <div class="tabs-links-area"></div>
       <div id="subjectContent">
         <button id="filterStatusAll" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
         <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
@@ -417,6 +420,32 @@ describe("QuizApp — 初期化仕様", () => {
     expect(retryBtn).not.toBeNull();
     // 初期値は disabled（問題ロード前）
     expect(retryBtn.disabled).toBe(true);
+  });
+});
+
+describe("QuizApp — URLフラグメント連動仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+    window.history.pushState({}, "", "/");
+  });
+
+  it("URLフラグメントで単元と表示パネルを指定して初期表示できる", async () => {
+    window.history.replaceState({}, "", "/#subject=english&category=phonics-1&panel=guide");
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const activeSubject = document.querySelector('.subject-tab.active[data-subject="english"]');
+    const activeCategory = document.querySelector('.category-item.active[data-category="phonics-1"]');
+    const activePanel = document.querySelector('.panel-tab.active[data-panel="guide"]');
+    expect(activeSubject).not.toBeNull();
+    expect(activeCategory).not.toBeNull();
+    expect(activePanel).not.toBeNull();
   });
 });
 
