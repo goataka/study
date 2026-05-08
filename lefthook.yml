@@ -10,10 +10,14 @@ pre-commit:
 
 # pre-push は core.hooksPath が上書きされた環境（Copilot サンドボックス等）で
 # pre-commit フックが実行されない場合の安全網として機能する。
-# git push 前に再度ビルド・テスト・E2E を実行することで、CI が失敗するコードの
-# プッシュを防ぐ。
+# git push 前に再度ビルド・テスト・E2E・VRスナップショット確認を実行することで、
+# CI が失敗するコードのプッシュを防ぐ。
 pre-push:
+  piped: true
   commands:
     build-and-test:
       run: npm run build && npm run test && npm run test:e2e
+      root: app/
+    update-vr-snapshots:
+      run: bash scripts/pre-push-vr-check.sh
       root: app/
