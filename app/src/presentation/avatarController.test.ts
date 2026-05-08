@@ -39,8 +39,11 @@ describe("AvatarController", () => {
   it("マウスドラッグでもプレビュー画像の表示位置を移動できる", () => {
     const originalPointerEvent = window.PointerEvent;
     // PointerEvent 非対応環境のフォールバックとして mouse 系イベントが動作することを検証する
-    // @ts-expect-error テストで一時的に未対応環境を再現する
-    delete window.PointerEvent;
+    Object.defineProperty(window, "PointerEvent", {
+      configurable: true,
+      writable: true,
+      value: undefined,
+    });
     try {
       const repo = {
         loadUserAvatar: () => "data:image/png;base64,AAA",
@@ -59,7 +62,11 @@ describe("AvatarController", () => {
 
       expect(preview.style.objectPosition).not.toBe("50% 50%");
     } finally {
-      window.PointerEvent = originalPointerEvent;
+      Object.defineProperty(window, "PointerEvent", {
+        configurable: true,
+        writable: true,
+        value: originalPointerEvent,
+      });
     }
   });
 });

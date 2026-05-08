@@ -35,7 +35,7 @@ function buildCategoryProgressMap(useCase: QuizUseCase, subject: string): Map<st
 }
 
 function isVisibleCategory(ctx: ProgressBlockContext, progress: CategoryProgress | undefined): boolean {
-  if (!progress) return !ctx.hideLearned;
+  if (!progress) return false;
   return !ctx.hideLearned || progress.total === 0 || progress.mastered !== progress.total;
 }
 
@@ -78,8 +78,8 @@ function buildProgressBlockGroup(
 
   for (const [catId, catName] of catEntries) {
     const progress = categoryProgressMap.get(catId);
-    if (!progress || !isVisibleCategory(ctx, progress)) continue;
-    const { mastered: catMastered, total: catTotal, inProgress } = progress;
+    if (!isVisibleCategory(ctx, progress)) continue;
+    const { mastered: catMastered, total: catTotal, inProgress } = progress!;
 
     const block = document.createElement("button");
     block.type = "button";

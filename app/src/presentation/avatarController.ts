@@ -222,7 +222,7 @@ export class AvatarController {
     let activePointerId: number | null = null;
     let mouseDragging = false;
     const getTouchPoint = (e: TouchEvent): Touch | null => e.touches[0] ?? e.changedTouches[0] ?? null;
-    const hasPointerEvent = typeof window !== "undefined" && "PointerEvent" in window;
+    const hasPointerEvent = typeof window !== "undefined" && typeof window.PointerEvent === "function";
     if (hasPointerEvent) {
       wrap.addEventListener(
         "pointerdown",
