@@ -22,8 +22,8 @@ if ! npm run test:e2e:vr:update; then
   exit 1
 fi
 
-# スナップショットの変更を確認
-if ! git diff --quiet -- e2e/snapshots/; then
+# スナップショットの変更を確認（未追跡・削除・リネームも含めて検知）
+if [ -n "$(git status --porcelain -- e2e/snapshots/)" ]; then
   echo ""
   echo "❌ VRスナップショットが更新されました。コミットしてから再度プッシュしてください:"
   echo ""
