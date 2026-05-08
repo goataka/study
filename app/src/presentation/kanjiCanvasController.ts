@@ -14,7 +14,7 @@
  * 認識結果から候補をふるい分ける純粋ロジックは `uiHelpers` の文字種判定関数を利用する。
  */
 
-import { isHiraganaOnly, isLatinOnly, loadScript } from "./uiHelpers";
+import { isHiraganaOnly, isLatinOnly, loadScript, normalizeKanaText } from "./uiHelpers";
 
 export interface KanjiCanvasControllerOptions {
   /** 現在の問題の正解文字列を返す（候補フィルタ用）。null/undefined ならフィルタ無効。 */
@@ -121,16 +121,20 @@ export class KanjiCanvasController {
       candidateList.innerHTML = "";
       return;
     }
-    let candidates = result.trim().split(/\s+/).filter(Boolean);
+    let candidates = result
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((candidate) => candidate.normalize("NFKC"));
 
     const correctAnswer = this.options.getCorrectAnswer();
-    if (correctAnswer !== undefined && isHiraganaOnly(correctAnswer)) {
-      candidates = candidates.filter((char) => isHiraganaOnly(char));
-    } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer)) {
+    if (correctAnswer !== undefined && isHiraganaOnly(normalizeKanaText(correctAnswer))) {
+      candidates = candidates.map((char) => normalizeKanaText(char)).filter((char) => isHiraganaOnly(char));
+    } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer.normalize("NFKC"))) {
       candidates = candidates.filter((char) => isLatinOnly(char));
     }
 
-    candidates = candidates.slice(0, 5);
+    candidates = Array.from(new Set(candidates)).slice(0, 5);
 
     candidateList.innerHTML = "";
     candidates.forEach((char) => {

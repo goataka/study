@@ -6,6 +6,7 @@
 
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { SUBJECTS } from "../uiHelpers";
+import type { ProgressStatusFilter } from "./urlStateService";
 
 /** 進度タブ教科リストのコールバック群。 */
 export interface ProgressSubjectListCallbacks {
@@ -73,7 +74,7 @@ export function buildProgressSubjectList(useCase: QuizUseCase, callbacks: Progre
  */
 export function syncProgressDetailControls(
   progressDetailViewMode: "grade" | "category" | "matrix",
-  hideLearnedProgressUnits: boolean,
+  progressStatusFilter: ProgressStatusFilter,
 ): void {
   const panel = document.getElementById("progressDetailPanel");
   if (!panel) return;
@@ -88,14 +89,17 @@ export function syncProgressDetailControls(
   });
   document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", activeTabId);
 
-  const hideLearnedBtn = document.getElementById("progressHideLearnedBtn");
-  const showAllBtn = document.getElementById("progressShowAllBtn");
-  if (hideLearnedBtn) {
-    hideLearnedBtn.classList.toggle("active", hideLearnedProgressUnits);
-    hideLearnedBtn.setAttribute("aria-pressed", String(hideLearnedProgressUnits));
-  }
-  if (showAllBtn) {
-    showAllBtn.classList.toggle("active", !hideLearnedProgressUnits);
-    showAllBtn.setAttribute("aria-pressed", String(!hideLearnedProgressUnits));
-  }
+  const filterButtons: Array<{ id: string; filter: ProgressStatusFilter }> = [
+    { id: "progressStatusAllBtn", filter: "all" },
+    { id: "progressStatusUnlearnedBtn", filter: "unlearned" },
+    { id: "progressStatusStudyingBtn", filter: "studying" },
+    { id: "progressStatusLearnedBtn", filter: "learned" },
+  ];
+  filterButtons.forEach(({ id, filter }) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    const active = progressStatusFilter === filter;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-pressed", String(active));
+  });
 }

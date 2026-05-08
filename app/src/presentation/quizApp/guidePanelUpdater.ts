@@ -16,6 +16,8 @@ export interface GuideUrlResolverState {
   selectedUnitContext: { subject: string; categoryId: string } | null;
   filter: QuizFilter;
   selectedTopCategoryId: string | null;
+  /** 学年別ビューで選択中の学年グループ。 */
+  selectedGradeGroup?: string | null;
   /** 教科タブでの選択レベル。 */
   selectionLevel: SelectionLevel;
 }
@@ -66,6 +68,13 @@ export async function updateGuidePanelContentByIds(
   const noContent = document.getElementById(noContentId);
   if (!guideFrame) return;
 
+  if (state.selectedGradeGroup && state.filter.subject !== "all" && state.filter.subject !== "progress") {
+    renderGradeGuideContent(guideFrame, useCase, state.filter.subject, state.selectedGradeGroup);
+    guideFrame.classList.remove("hidden");
+    noContent?.classList.add("hidden");
+    return;
+  }
+
   const guideUrl = resolveGuideUrl(useCase, state);
 
   if (guideUrl) {
@@ -76,4 +85,33 @@ export async function updateGuidePanelContentByIds(
     guideFrame.classList.add("hidden");
     noContent?.classList.remove("hidden");
   }
+}
+
+function renderGradeGuideContent(container: HTMLElement, useCase: QuizUseCase, subject: string, grade: string): void {
+  const categories =
+    grade === "none" ? useCase.getCategoriesWithoutGrade(subject) : useCase.getCategoriesForGrade(subject, grade);
+  const entries = Object.entries(categories);
+  const title = grade === "none" ? "学年未設定" : grade;
+
+  container.innerHTML = "";
+  const content = document.createElement("div");
+  content.className = "guide-content";
+
+  const heading = document.createElement("h2");
+  heading.textContent = `🎓 ${title}`;
+  content.appendChild(heading);
+
+  const summary = document.createElement("p");
+  summary.textContent = `対象学年: ${title} / ${entries.length}単元`;
+  content.appendChild(summary);
+
+  const list = document.createElement("ul");
+  entries.forEach(([categoryId, categoryName]) => {
+    const item = document.createElement("li");
+    const description = useCase.getCategoryDescription(subject, categoryId);
+    item.textContent = description ? `${categoryName} — ${description}` : categoryName;
+    list.appendChild(item);
+  });
+  content.appendChild(list);
+  container.appendChild(content);
 }

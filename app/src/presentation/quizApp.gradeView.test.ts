@@ -549,6 +549,11 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
 
     expect(document.querySelector(".selected-unit-info-name")?.textContent).toContain("小学1年");
     expect(document.getElementById("selectedUnitInfo")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("panelTab-guide")?.classList.contains("active")).toBe(true);
+    expect(document.getElementById("panelTab-quiz")?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("panelTab-history")?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("panelTab-questions")?.classList.contains("hidden")).toBe(true);
+    expect(document.getElementById("guidePanelFrame")?.textContent).toContain("小学1年");
   });
 
   it("学年別ビューの学年グループヘッダーに解説ボタンは表示されない", async () => {

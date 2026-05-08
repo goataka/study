@@ -81,6 +81,11 @@ export function isHiraganaOnly(str: string): boolean {
   return /^[\u3041-\u309F]+$/.test(str);
 }
 
+/** カタカナをひらがなへ寄せた正規化文字列を返す。 */
+export function normalizeKanaText(str: string): string {
+  return str.normalize("NFKC").replace(/[\u30A1-\u30F6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60));
+}
+
 /** 文字列がラテン文字（ASCII 0x20–0x7E の印字可能文字）のみで構成されているかどうかを判定する。 */
 export function isLatinOnly(str: string): boolean {
   return /^[\x20-\x7E]+$/.test(str);

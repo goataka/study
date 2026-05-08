@@ -406,6 +406,43 @@ describe("QuizApp — 読み上げボタン仕様", () => {
     expect(utterance.lang).toBe("en-US");
   });
 
+  it("「〜の読み方は？」形式では引用された英字だけを読み上げる", async () => {
+    const manifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/alphabet.json"],
+    };
+    const alphabetFile = {
+      subject: "english",
+      subjectName: "英語",
+      category: "alphabet",
+      categoryName: "アルファベット",
+      questions: [
+        {
+          id: "a1",
+          question: "「A」の読み方は？",
+          choices: ["エー", "ビー", "シー", "ディー"],
+          correct: 0,
+          explanation: "A",
+        },
+      ],
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(alphabetFile) } as Response);
+    });
+
+    await startQuiz();
+    (document.getElementById("speakBtn") as HTMLButtonElement).click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(speechSynthesisMock.speak).toHaveBeenCalledTimes(1);
+    const utterance = speechSynthesisMock.speak.mock.calls[0]?.[0] as SpeechSynthesisUtterance;
+    expect(utterance.text).toBe("A");
+  });
+
   it("読み上げボタンをクリックすると cancel → speak の順で呼ばれる", async () => {
     const callOrder: string[] = [];
     speechSynthesisMock.cancel.mockImplementation(() => callOrder.push("cancel"));

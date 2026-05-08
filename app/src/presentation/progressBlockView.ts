@@ -6,14 +6,15 @@
  */
 
 import type { QuizUseCase } from "../application/quizUseCase";
+import type { ProgressStatusFilter } from "./quizApp/urlStateService";
 
 export interface ProgressBlockContext {
   /** 描画対象の教科 ID */
   subject: string;
   /** ユースケース（カテゴリ・進捗の取得に利用する） */
   useCase: QuizUseCase;
-  /** 学習済み単元を非表示にするか */
-  hideLearned: boolean;
+  /** 学習状況フィルター */
+  statusFilter: ProgressStatusFilter;
   /** 単元ブロック押下時のコールバック */
   onSelectUnit: (subject: string, categoryId: string, categoryName: string) => void;
 }
@@ -36,7 +37,19 @@ function buildCategoryProgressMap(useCase: QuizUseCase, subject: string): Map<st
 
 function isVisibleCategory(ctx: ProgressBlockContext, progress: CategoryProgress | undefined): boolean {
   if (!progress) return false;
-  return !ctx.hideLearned || progress.total === 0 || progress.mastered !== progress.total;
+  const isLearned = progress.total > 0 && progress.mastered === progress.total;
+  const isStudying = !isLearned && (progress.inProgress > 0 || progress.mastered > 0);
+  const isUnlearned = !isLearned && !isStudying;
+  switch (ctx.statusFilter) {
+    case "unlearned":
+      return isUnlearned;
+    case "studying":
+      return isStudying;
+    case "learned":
+      return isLearned;
+    default:
+      return true;
+  }
 }
 
 /**

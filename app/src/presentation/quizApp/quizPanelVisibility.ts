@@ -119,8 +119,11 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   const isAll = params.subject === "all";
   const hasOverallUnit = params.hasSelectedUnit;
   const noCategory = !isAll && params.selectionLevel === "none" && !params.isGradeGroupSelected;
-  const isCategoryLevel =
-    !isAll && (params.selectionLevel === "topCategory" || params.selectionLevel === "parentCategory");
+  const isGuideOnlySelection =
+    !isAll &&
+    (params.selectionLevel === "topCategory" ||
+      params.selectionLevel === "parentCategory" ||
+      params.isGradeGroupSelected);
 
   // 総合タブ時は単元選択を左・活動パネルを右にするレイアウトを適用
   subjectContent.classList.toggle("all-subject-layout", isAll);
@@ -141,7 +144,7 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   ["panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    if (!isAll && isCategoryLevel) {
+    if (!isAll && isGuideOnlySelection) {
       el.classList.add("hidden");
     } else if (!isAll) {
       el.classList.remove("hidden");

@@ -195,7 +195,13 @@ export function setupTabDom(): void {
             <button class="panel-tab" id="progressDetailTab-category" data-progress-detail-panel="category" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">📁 カテゴリ別</button>
           </div>
           <div class="progress-detail-toolbar">
-            <button id="progressHideLearnedBtn" class="progress-detail-filter-btn" type="button" aria-pressed="false">✅ 学習済みを隠す</button>
+            <div class="category-status-filter" role="group" aria-label="学習状況フィルター">
+              <span class="category-status-filter-label">学習状況：</span>
+              <button id="progressStatusAllBtn" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
+              <button id="progressStatusUnlearnedBtn" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
+              <button id="progressStatusStudyingBtn" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
+              <button id="progressStatusLearnedBtn" class="category-status-filter-btn" type="button" aria-pressed="false">学習済</button>
+            </div>
           </div>
           <div id="progressDetailContent" class="progress-detail-content" role="tabpanel" aria-labelledby="progressDetailTab-matrix"></div>
         </div>

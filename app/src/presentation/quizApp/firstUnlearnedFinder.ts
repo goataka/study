@@ -15,12 +15,12 @@ export interface FirstUnlearnedCategory {
 /**
  * カテゴリリストから「最初の未学習カテゴリ」を見つけて返す。
  *
- * @param hasExplicitCategoryParam  URL パラメータでカテゴリが明示指定されているか。
+ * @param hasExplicitSelectionParam URL パラメータで教科またはカテゴリが明示指定されているか。
  *                                  true の場合はディープリンク挙動を維持するため null を返す。
  * @returns 見つかった単元情報、または null
  */
-export function findFirstUnlearnedCategory(hasExplicitCategoryParam: boolean): FirstUnlearnedCategory | null {
-  if (hasExplicitCategoryParam) return null;
+export function findFirstUnlearnedCategory(hasExplicitSelectionParam: boolean): FirstUnlearnedCategory | null {
+  if (hasExplicitSelectionParam) return null;
 
   const categoryList = document.getElementById("categoryList");
   if (!categoryList) return null;

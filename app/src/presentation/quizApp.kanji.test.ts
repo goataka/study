@@ -179,6 +179,26 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     expect(textInput?.value).toBe("や");
   });
 
+  it("候補ボタンをタップしても入力欄へフォーカスを戻さない", async () => {
+    kanjiCanvasMock.recognize.mockReturnValue("や  ゆ  よ");
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+
+    const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
+    textInput?.focus();
+
+    const canvas = document.getElementById("kanjiCanvas") as HTMLCanvasElement;
+    canvas.dispatchEvent(new Event("mouseup"));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.querySelector<HTMLButtonElement>(".kanji-candidate-btn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(document.activeElement).not.toBe(textInput);
+  });
+
   it("候補ボタンをクリックするとKanjiCanvasがクリアされる", async () => {
     kanjiCanvasMock.recognize.mockReturnValue("や  き");
 

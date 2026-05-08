@@ -364,8 +364,9 @@
               </div>
               <div class="progress-detail-toolbar">
                 <div class="category-status-filter" role="group" aria-label="学習済み表示切り替え">
+                  <span class="category-status-filter-label">学習状況：</span>
                   <button
-                    id="progressShowAllBtn"
+                    id="progressStatusAllBtn"
                     class="category-status-filter-btn active"
                     type="button"
                     aria-pressed="true"
@@ -373,12 +374,28 @@
                     すべて
                   </button>
                   <button
-                    id="progressHideLearnedBtn"
+                    id="progressStatusUnlearnedBtn"
                     class="category-status-filter-btn"
                     type="button"
                     aria-pressed="false"
                   >
-                    学習済を除く
+                    未学習
+                  </button>
+                  <button
+                    id="progressStatusStudyingBtn"
+                    class="category-status-filter-btn"
+                    type="button"
+                    aria-pressed="false"
+                  >
+                    学習中
+                  </button>
+                  <button
+                    id="progressStatusLearnedBtn"
+                    class="category-status-filter-btn"
+                    type="button"
+                    aria-pressed="false"
+                  >
+                    学習済
                   </button>
                 </div>
               </div>
@@ -594,36 +611,6 @@
                 <div id="kanjiInputArea" class="hidden">
                   <div class="kanji-input-header">
                     <span class="kanji-input-label">1文字ずつ書いてください</span>
-                    <div class="kanji-input-controls">
-                      <button
-                        id="kanjiDeleteLastBtn"
-                        class="kanji-ctrl-btn"
-                        type="button"
-                        title="最後の1画を消す"
-                        aria-label="最後の1画を消す"
-                      >
-                        ↩
-                      </button>
-                      <button
-                        id="kanjiEraseBtn"
-                        class="kanji-ctrl-btn"
-                        type="button"
-                        title="全部消す"
-                        aria-label="全部消す"
-                      >
-                        🗑️
-                      </button>
-                      <button
-                        id="kanjiToggleBtn"
-                        class="kanji-ctrl-btn"
-                        type="button"
-                        title="入力エリアを折りたたむ"
-                        aria-label="入力エリアを折りたたむ"
-                        aria-expanded="true"
-                      >
-                        ▲
-                      </button>
-                    </div>
                   </div>
                   <div id="kanjiInputBody" class="kanji-input-body">
                     <div class="kanji-canvas-wrapper">
@@ -636,6 +623,36 @@
                       ></canvas>
                     </div>
                     <div class="kanji-candidates-area">
+                      <div class="kanji-input-controls">
+                        <button
+                          id="kanjiDeleteLastBtn"
+                          class="kanji-ctrl-btn"
+                          type="button"
+                          title="最後の1画を消す"
+                          aria-label="最後の1画を消す"
+                        >
+                          ↩
+                        </button>
+                        <button
+                          id="kanjiEraseBtn"
+                          class="kanji-ctrl-btn"
+                          type="button"
+                          title="全部消す"
+                          aria-label="全部消す"
+                        >
+                          🗑️
+                        </button>
+                        <button
+                          id="kanjiToggleBtn"
+                          class="kanji-ctrl-btn"
+                          type="button"
+                          title="入力エリアを折りたたむ"
+                          aria-label="入力エリアを折りたたむ"
+                          aria-expanded="true"
+                        >
+                          ▲
+                        </button>
+                      </div>
                       <div id="kanjiCandidateList" class="kanji-candidate-list"></div>
                     </div>
                   </div>

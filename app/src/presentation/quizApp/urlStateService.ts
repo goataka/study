@@ -12,6 +12,7 @@ import { SUBJECTS } from "../uiHelpers";
 export type PanelTab = "quiz" | "guide" | "history" | "questions";
 export type OverallPanel = "learned" | "share";
 export type ProgressDetailViewMode = "grade" | "category" | "matrix";
+export type ProgressStatusFilter = "all" | "unlearned" | "studying" | "learned";
 export type CategoryViewMode = "category" | "grade";
 export type QuestionListFilter = "all" | "learned" | "unlearned";
 
@@ -42,7 +43,7 @@ export interface ParsedURLState {
   overallPanel?: OverallPanel;
   progressSubject?: string;
   progressView?: ProgressDetailViewMode;
-  hideLearnedProgressUnits?: boolean;
+  progressStatusFilter?: ProgressStatusFilter;
   categoryView?: CategoryViewMode;
   questionFilter?: QuestionListFilter;
   selectedUnitContext?: SelectedUnitContext;
@@ -100,9 +101,14 @@ export function parseURLState(useCase: QuizUseCase): ParsedURLState {
     state.progressView = progressView;
   }
 
-  const progressHideLearned = params.get("progressHideLearned");
-  if (progressHideLearned === "1" || progressHideLearned === "true") {
-    state.hideLearnedProgressUnits = true;
+  const progressStatus = params.get("progressStatus");
+  if (
+    progressStatus === "all" ||
+    progressStatus === "unlearned" ||
+    progressStatus === "studying" ||
+    progressStatus === "learned"
+  ) {
+    state.progressStatusFilter = progressStatus;
   }
 
   const categoryView = params.get("categoryView");
@@ -139,7 +145,7 @@ export interface URLFragmentState {
   activeOverallPanel: OverallPanel;
   progressSubjectId: string;
   progressDetailViewMode: ProgressDetailViewMode;
-  hideLearnedProgressUnits: boolean;
+  progressStatusFilter: ProgressStatusFilter;
   categoryViewMode: CategoryViewMode;
   questionListFilter: QuestionListFilter;
   selectedUnitContext: SelectedUnitContext | null;
@@ -187,8 +193,8 @@ export function syncURLFragment(state: URLFragmentState, screenName?: "start" | 
   if (state.filter.subject === "progress") {
     hashParams.set("progressSubject", state.progressSubjectId);
     hashParams.set("progressView", state.progressDetailViewMode);
-    if (state.hideLearnedProgressUnits) {
-      hashParams.set("progressHideLearned", "1");
+    if (state.progressStatusFilter !== "all") {
+      hashParams.set("progressStatus", state.progressStatusFilter);
     }
   }
   if (state.activePanelTab === "questions" && state.questionListFilter !== "all") {

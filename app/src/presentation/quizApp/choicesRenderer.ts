@@ -123,7 +123,10 @@ export function renderTextInput(question: Question, session: QuizSession, callba
   wrapper.appendChild(submitBtn);
   container.appendChild(wrapper);
 
-  if (!isAnswered) {
+  if (!isAnswered && shouldAutoFocusTextInput()) {
     input.focus();
   }
+}
+function shouldAutoFocusTextInput(): boolean {
+  return window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? navigator.maxTouchPoints === 0;
 }

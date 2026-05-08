@@ -6,6 +6,7 @@
  */
 
 import type { QuizUseCase } from "../application/quizUseCase";
+import type { ProgressStatusFilter } from "./quizApp/urlStateService";
 
 export interface ProgressMatrixContext {
   /** 描画対象の教科 ID */
@@ -14,8 +15,8 @@ export interface ProgressMatrixContext {
   useCase: QuizUseCase;
   /** 縦横を入れ替え表示するか */
   transposed: boolean;
-  /** 学習済み単元を非表示にするか */
-  hideLearned: boolean;
+  /** 学習状況フィルター */
+  statusFilter: ProgressStatusFilter;
   /** 縦横切り替えボタン押下時のコールバック（state を反転して再描画する） */
   onToggleTranspose: () => void;
   /** 単元ブロック押下時のコールバック */
@@ -102,14 +103,26 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
     return `${col.topName} / ${col.parentName}`;
   };
 
-  // isUnitVisible: hideLearned が true のとき完全習得済みの単元は非表示
+  // isUnitVisible: 現在の学習状況フィルターに一致する単元のみ表示する
   const isUnitVisible = (catId: string): boolean => {
-    if (!ctx.hideLearned) return true;
     const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
-    return !(total > 0 && mastered === total);
+    const inProgress = useCase.getInProgressCount({ subject, category: catId });
+    const isLearned = total > 0 && mastered === total;
+    const isStudying = !isLearned && (inProgress > 0 || mastered > 0);
+    const isUnlearned = !isLearned && !isStudying;
+    switch (ctx.statusFilter) {
+      case "unlearned":
+        return isUnlearned;
+      case "studying":
+        return isStudying;
+      case "learned":
+        return isLearned;
+      default:
+        return true;
+    }
   };
 
-  // hideLearned 時に表示すべき行・列を絞り込む
+  // フィルター適用時に表示すべき行・列を絞り込む
   const gradeCatsMap = new Map<string, Record<string, string>>();
   for (const grade of grades) {
     gradeCatsMap.set(grade, useCase.getCategoriesForGrade(subject, grade));
@@ -137,18 +150,20 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   };
 
   // 表示する学年・列のリストを計算（hideLearned 時は空の行・列を除外）
-  const visibleGrades = ctx.hideLearned
-    ? grades.filter((grade) => {
-        const gradeCats = gradeCatsMap.get(grade) ?? {};
-        return Object.keys(gradeCats).some((catId) => isUnitVisible(catId));
-      })
-    : grades;
+  const visibleGrades =
+    ctx.statusFilter !== "all"
+      ? grades.filter((grade) => {
+          const gradeCats = gradeCatsMap.get(grade) ?? {};
+          return Object.keys(gradeCats).some((catId) => isUnitVisible(catId));
+        })
+      : grades;
 
-  const visibleCols = ctx.hideLearned
-    ? colDefs.filter((col) => {
-        return Object.keys(allCats).some((catId) => isUnitInColumn(catId, col) && isUnitVisible(catId));
-      })
-    : colDefs;
+  const visibleCols =
+    ctx.statusFilter !== "all"
+      ? colDefs.filter((col) => {
+          return Object.keys(allCats).some((catId) => isUnitInColumn(catId, col) && isUnitVisible(catId));
+        })
+      : colDefs;
 
   if (visibleGrades.length === 0 || visibleCols.length === 0) {
     const empty = document.createElement("div");
