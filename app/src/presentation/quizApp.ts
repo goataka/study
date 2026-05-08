@@ -3,11 +3,10 @@
  * ビジネスロジックはすべて QuizUseCase に委譲する。
  */
 
-import { QuizUseCase, ERROR_ALL_MASTERED, NO_ANSWER_TEXT } from "../application/quizUseCase";
+import { QuizUseCase, ERROR_ALL_MASTERED } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
 import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
-import { shuffleChoices } from "../domain/question";
 import type { IProgressRepository } from "../application/ports";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
@@ -19,6 +18,7 @@ import { renderAdminContent } from "./adminPanel";
 import { AvatarController } from "./avatarController";
 import { renderProgressDetailMatrix } from "./progressMatrixView";
 import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./progressBlockView";
+import { buildHistoryItem } from "./historyItemView";
 import {
   SUBJECTS,
   gradeColorClass,
@@ -1502,7 +1502,7 @@ export class QuizApp {
     // 最新順に並べて履歴形式で表示（総合タブなので教科名プレフィックスを付ける）
     const sorted = [...todayRecords].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     sorted.forEach((record) => {
-      container.appendChild(this.buildHistoryItem(record, true));
+      container.appendChild(buildHistoryItem(record, this.useCase, true));
     });
   }
 
@@ -2463,142 +2463,8 @@ export class QuizApp {
     }
 
     records.forEach((record) => {
-      historyList.appendChild(this.buildHistoryItem(record));
+      historyList.appendChild(buildHistoryItem(record, this.useCase));
     });
-  }
-
-  /**
-   * @param showSubjectPrefix true のとき「教科名 / 単元名」形式で表示する（総合タブ用）。
-   *                          false のとき単元名のみ表示する（教科別タブ用）。
-   */
-  private buildHistoryItem(record: QuizRecord, showSubjectPrefix = false): HTMLElement {
-    const item = document.createElement("div");
-    item.className = "history-item";
-
-    // ヘッダー行（日時・教科・スコア）
-    const header = document.createElement("div");
-    header.className = "history-item-header";
-    header.setAttribute("role", "button");
-    header.setAttribute("tabindex", "0");
-    header.setAttribute("aria-expanded", "false");
-
-    const date = new Date(record.date);
-    // 総合タブの実施済み単元リストでは時刻のみ表示する
-    const dateStr = showSubjectPrefix
-      ? `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`
-      : `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")} ${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
-
-    const isManual = record.mode === "manual";
-    const pct = Math.round((record.correctCount / record.totalCount) * 100);
-
-    const metaDiv = document.createElement("div");
-    metaDiv.className = "history-meta";
-
-    const dateSpan = document.createElement("span");
-    dateSpan.className = "history-date";
-    dateSpan.textContent = dateStr;
-
-    const subjectSpan = document.createElement("span");
-    subjectSpan.className = "history-subject";
-    subjectSpan.textContent = showSubjectPrefix
-      ? `${record.subjectName} / ${record.categoryName}`
-      : record.categoryName;
-
-    metaDiv.appendChild(dateSpan);
-    metaDiv.appendChild(subjectSpan);
-
-    const scoreSpan = document.createElement("span");
-    if (isManual) {
-      scoreSpan.className = "history-score";
-      scoreSpan.textContent = "-";
-    } else {
-      scoreSpan.className = `history-score ${pct >= 70 ? "pass" : "fail"}`;
-      scoreSpan.textContent = `${record.correctCount}/${record.totalCount} (${pct}%)`;
-    }
-
-    header.appendChild(metaDiv);
-    header.appendChild(scoreSpan);
-
-    // 詳細（折りたたみ）
-    const detail = document.createElement("div");
-    detail.className = "history-detail hidden";
-
-    if (isManual) {
-      // 手動確認済みの記録は詳細を展開できない
-      header.removeAttribute("role");
-      header.removeAttribute("tabindex");
-      header.removeAttribute("aria-expanded");
-    } else {
-      const toggleSpan = document.createElement("span");
-      toggleSpan.className = "history-toggle";
-      toggleSpan.textContent = "▶";
-      header.appendChild(toggleSpan);
-
-      record.entries.forEach((entry) => {
-        const entryDiv = document.createElement("div");
-        entryDiv.className = `history-entry ${entry.isCorrect ? "correct" : "incorrect"}`;
-
-        const iconSpan = document.createElement("span");
-        iconSpan.className = "history-entry-icon";
-        iconSpan.textContent = entry.isCorrect ? "✓" : "✗";
-
-        const contentDiv = document.createElement("div");
-        contentDiv.className = "history-entry-content";
-
-        const question = this.useCase.getQuestionById(entry.questionId);
-
-        const questionP = document.createElement("p");
-        questionP.className = "history-entry-question";
-
-        const answerP = document.createElement("p");
-        answerP.className = "history-entry-answer";
-
-        if (question) {
-          const shuffled = shuffleChoices(question);
-          questionP.textContent = question.question;
-          const userAnswer =
-            entry.userAnswerText ??
-            entry.userAnswerChoiceText ??
-            shuffled.choices[entry.userAnswerIndex] ??
-            NO_ANSWER_TEXT;
-          const correctAnswer = entry.correctAnswerText ?? shuffled.choices[shuffled.correct] ?? "";
-          if (entry.isCorrect) {
-            answerP.textContent = `正解: ${correctAnswer}`;
-          } else {
-            answerP.textContent = `あなたの回答: ${userAnswer} → 正解: ${correctAnswer}`;
-          }
-        } else {
-          questionP.textContent = `(問題ID: ${entry.questionId})`;
-          answerP.textContent = entry.isCorrect ? "正解" : "不正解";
-        }
-
-        contentDiv.appendChild(questionP);
-        contentDiv.appendChild(answerP);
-        entryDiv.appendChild(iconSpan);
-        entryDiv.appendChild(contentDiv);
-        detail.appendChild(entryDiv);
-      });
-
-      // 折りたたみ切り替え
-      const toggleDetail = (): void => {
-        const isExpanded = !detail.classList.contains("hidden");
-        detail.classList.toggle("hidden", isExpanded);
-        toggleSpan.textContent = isExpanded ? "▶" : "▼";
-        header.setAttribute("aria-expanded", String(!isExpanded));
-      };
-
-      header.addEventListener("click", toggleDetail);
-      header.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          toggleDetail();
-        }
-      });
-    }
-
-    item.appendChild(header);
-    item.appendChild(detail);
-    return item;
   }
 
   // ─── 問題一覧パネル ────────────────────────────────────────────────────────
