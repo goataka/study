@@ -1,0 +1,44 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/copilot-setup-steps.yml"
+      - ".github/docker/app-ci/Dockerfile"
+  pull_request:
+    paths:
+      - ".github/workflows/copilot-setup-steps.yml"
+      - ".github/docker/app-ci/Dockerfile"
+
+env:
+  APP_CI_IMAGE: ghcr.io/${{ github.repository_owner }}/study-app-ci:latest
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v6
+
+      - name: GHCR にログイン
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 共通CIイメージを取得
+        run: docker pull "${APP_CI_IMAGE}"
+
+      - name: app依存関係をイメージ上でインストール
+        run: |
+          docker run --rm \
+            --user "$(id -u):$(id -g)" \
+            -v "${GITHUB_WORKSPACE}:/workspace" \
+            -w /workspace/app \
+            "${APP_CI_IMAGE}" \
+            npm ci

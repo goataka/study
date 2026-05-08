@@ -1,24 +1,11 @@
-# app ディレクトリの Node.js 環境をセットアップするコンポジットアクション
-# 各ジョブで繰り返される「Node.js セットアップ + npm ci」の共通処理を集約する
-name: "Setup App"
-description: "Node.js のセットアップと app の依存関係をインストールする"
-
-inputs:
-  node-version:
-    description: "Node.js のバージョン"
-    required: false
-    default: "22"
+# app ディレクトリの依存関係をセットアップするコンポジットアクション
+# 各ジョブで繰り返される「npm ci」を共通化する
+name: "Setup App Dependencies"
+description: "app の依存関係をインストールする"
 
 runs:
   using: "composite"
   steps:
-    - name: Node.js のセットアップ
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ inputs.node-version }}
-        cache: "npm"
-        cache-dependency-path: app/package-lock.json
-
     - name: 依存関係のインストール
       shell: bash
       working-directory: ${{ github.workspace }}/app

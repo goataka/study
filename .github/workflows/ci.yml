@@ -7,25 +7,29 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: "22"
+  APP_CI_IMAGE: ghcr.io/${{ github.repository_owner }}/study-app-ci:latest
 
 jobs:
   test-and-build:
     name: 単体テスト・ビルド（app）
     runs-on: ubuntu-latest
+    container:
+      image: ${{ env.APP_CI_IMAGE }}
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     defaults:
       run:
         working-directory: app
     permissions:
       contents: read
+      packages: read
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
-      - name: Node.js 環境のセットアップ
+      - name: app依存関係のセットアップ
         uses: ./.github/actions/setup-quiz
-        with:
-          node-version: ${{ env.NODE_VERSION }}
 
       - name: Lint 実行
         run: npm run lint
@@ -43,12 +47,16 @@ jobs:
     name: E2Eテスト（app）
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.59.1-noble
+      image: ${{ env.APP_CI_IMAGE }}
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     defaults:
       run:
         working-directory: app
     permissions:
       contents: read
+      packages: read
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
@@ -56,10 +64,8 @@ jobs:
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
         run: git config --global --add safe.directory /__w/study/study
 
-      - name: Node.js 環境のセットアップ
+      - name: app依存関係のセットアップ
         uses: ./.github/actions/setup-quiz
-        with:
-          node-version: ${{ env.NODE_VERSION }}
 
       - name: Viteビルド（E2E用）
         run: npm run build
@@ -70,11 +76,17 @@ jobs:
   visual-regression:
     name: ビジュアルリグレッションテスト（app）
     runs-on: ubuntu-latest
+    container:
+      image: ${{ env.APP_CI_IMAGE }}
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     defaults:
       run:
         working-directory: app
     permissions:
       contents: write
+      packages: read
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
@@ -82,20 +94,11 @@ jobs:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           token: ${{ secrets.COPILOT_CLASSIC || github.token }}
 
-      - name: Node.js 環境のセットアップ
+      - name: app依存関係のセットアップ
         uses: ./.github/actions/setup-quiz
-        with:
-          node-version: ${{ env.NODE_VERSION }}
 
-      - name: 日本語フォントとロケールのインストール
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y fonts-noto-cjk locales
-          sudo locale-gen ja_JP.UTF-8
-          sudo update-locale LANG=ja_JP.UTF-8 LC_ALL=ja_JP.UTF-8
-
-      - name: Playwright ブラウザのインストール
-        run: npx playwright install --with-deps chromium
+      - name: Git safe directory の設定（コンテナ内UID不一致対応）
+        run: git config --global --add safe.directory /__w/study/study
 
       - name: Viteビルド（VR用）
         run: npm run build
