@@ -84,6 +84,16 @@ import {
   type PanelTab,
 } from "./quizApp/tabsBuilder";
 import { renderCategoryViewControls as renderCategoryViewControlsFn } from "./quizApp/categoryViewControls";
+import {
+  setupHeaderListeners as setupHeaderListenersFn,
+  setupAvatarListeners as setupAvatarListenersFn,
+  setupQuizSettingsListeners as setupQuizSettingsListenersFn,
+  setupCategoryStatusFilterListeners as setupCategoryStatusFilterListenersFn,
+  setupFontSizeListeners as setupFontSizeListenersFn,
+  setupShareSummaryListeners as setupShareSummaryListenersFn,
+  setupHistoryNavigationListeners as setupHistoryNavigationListenersFn,
+} from "./quizApp/eventListeners";
+import { updateQuizPanelVisibility as updateQuizPanelVisibilityFn } from "./quizApp/quizPanelVisibility";
 
 const PANEL_TABS: readonly PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 
@@ -1745,125 +1755,35 @@ export class QuizApp {
 
   /** ヘッダー部分（タイトル・ユーザー名編集）のリスナー登録 */
   private setupHeaderListeners(): void {
-    // タイトルクリックでスタート画面へ
-    const titleBtn = document.getElementById("titleBtn");
-    if (titleBtn) {
-      titleBtn.addEventListener("click", () => {
-        void this.navigateToStart();
-      });
-      titleBtn.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          void this.navigateToStart();
-        }
-      });
-    }
-
-    // ヘッダーのユーザー名をクリックして編集を開く
-    document.getElementById("headerUserName")?.addEventListener("click", () => this.openUserNameEdit());
-    // 保存ボタン
-    document.getElementById("headerUserNameSaveBtn")?.addEventListener("click", () => this.saveHeaderUserName());
-
-    // 入力フィールド：Enterで保存、Escapeでキャンセル
-    const headerUserNameInput = document.getElementById("headerUserNameInput");
-    headerUserNameInput?.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        this.saveHeaderUserName();
-      } else if (e.key === "Escape") {
-        this.closeUserNameEdit();
-      }
-    });
-    headerUserNameInput?.addEventListener("blur", (e: FocusEvent) => {
-      // 保存ボタンへのフォーカス移動はスキップ（保存ボタンのclickが先に発火するため）
-      const relatedTarget = e.relatedTarget as HTMLElement | null;
-      if (relatedTarget?.id !== "headerUserNameSaveBtn") {
-        this.saveHeaderUserName();
-      }
-    });
-
-    // ヘッダーのメニューボタン（管理パネルへのナビゲーション）
-    document.getElementById("adminMenuBtn")?.addEventListener("click", () => {
-      this.navigateToAdmin();
+    setupHeaderListenersFn({
+      onTitleClick: () => void this.navigateToStart(),
+      onOpenUserNameEdit: () => this.openUserNameEdit(),
+      onSaveUserName: () => this.saveHeaderUserName(),
+      onCancelUserName: () => this.closeUserNameEdit(),
+      onAdminMenuClick: () => this.navigateToAdmin(),
     });
   }
 
   /** アバター画像（ヘッダーのアイコン＋クロップダイアログ）のリスナー登録 */
   private setupAvatarListeners(): void {
-    const headerUserAvatar = document.getElementById("headerUserAvatar");
-    const avatarCropDialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
-    headerUserAvatar?.addEventListener("click", () => {
-      this.avatarController.openCropDialog();
-    });
-    headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        this.avatarController.openCropDialog();
-      }
-    });
-
-    // ダイアログ内のファイル選択
-    const headerUserAvatarInput = document.getElementById("headerUserAvatarInput") as HTMLInputElement | null;
-    headerUserAvatarInput?.addEventListener("change", (e) => {
-      const file = (e.target as HTMLInputElement).files?.[0];
-      if (file) this.avatarController.previewInDialog(file);
-      // ファイル選択後にリセットして同じファイルを再選択可能に
-      headerUserAvatarInput.value = "";
-    });
-
-    // ダイアログ確定ボタン
-    document.getElementById("avatarCropConfirmBtn")?.addEventListener("click", () => {
-      this.avatarController.confirmCrop();
-    });
-
-    // ダイアログキャンセルボタン
-    document.getElementById("avatarCropCancelBtn")?.addEventListener("click", () => {
-      avatarCropDialog?.close();
-      this.avatarController.cancelCrop();
-    });
-
-    // ダイアログ外クリックで閉じる
-    avatarCropDialog?.addEventListener("click", (e) => {
-      if (e.target === avatarCropDialog) {
-        avatarCropDialog.close();
-        this.avatarController.cancelCrop();
-      }
-    });
+    setupAvatarListenersFn(this.avatarController);
   }
 
   /** クイズ設定（問題数・並び順・学習済み含む）ラジオボタンのリスナー登録 */
   private setupQuizSettingsListeners(): void {
-    // 問題数選択
-    document.querySelectorAll<HTMLInputElement>('input[name="questionCount"]').forEach((input) => {
-      input.addEventListener("change", (e) => {
-        const target = e.target as HTMLInputElement;
-        if (target.checked) {
-          this.questionCount = parseInt(target.value);
-          this.saveQuizSettings();
-        }
-      });
-    });
-
-    // 並び順選択
-    document.querySelectorAll<HTMLInputElement>('input[name="quizOrder"]').forEach((input) => {
-      input.addEventListener("change", (e) => {
-        const target = e.target as HTMLInputElement;
-        if (target.checked) {
-          this.quizOrder = target.value as "random" | "straight";
-          this.saveQuizSettings();
-        }
-      });
-    });
-
-    // 学習済み含む/含まない選択
-    document.querySelectorAll<HTMLInputElement>('input[name="quizLearned"]').forEach((input) => {
-      input.addEventListener("change", (e) => {
-        const target = e.target as HTMLInputElement;
-        if (target.checked) {
-          this.includeMastered = target.value === "include";
-          this.saveQuizSettings();
-        }
-      });
+    setupQuizSettingsListenersFn({
+      onQuestionCountChange: (count) => {
+        this.questionCount = count;
+        this.saveQuizSettings();
+      },
+      onQuizOrderChange: (order) => {
+        this.quizOrder = order;
+        this.saveQuizSettings();
+      },
+      onIncludeMasteredChange: (include) => {
+        this.includeMastered = include;
+        this.saveQuizSettings();
+      },
     });
   }
 
@@ -1891,17 +1811,7 @@ export class QuizApp {
 
   /** カテゴリ一覧の学習状態フィルターボタンのリスナー登録 */
   private setupCategoryStatusFilterListeners(): void {
-    const statusFilterBtns: Array<{ id: string; filter: "all" | "unlearned" | "studying" | "learned" }> = [
-      { id: "filterStatusAll", filter: "all" },
-      { id: "filterStatusUnlearned", filter: "unlearned" },
-      { id: "filterStatusStudying", filter: "studying" },
-      { id: "filterStatusLearned", filter: "learned" },
-    ];
-    statusFilterBtns.forEach(({ id, filter }) => {
-      document.getElementById(id)?.addEventListener("click", () => {
-        this.setCategoryStatusFilter(filter);
-      });
-    });
+    setupCategoryStatusFilterListenersFn((filter) => this.setCategoryStatusFilter(filter));
   }
 
   /** メモエリアのペンサイズ・ペン色セレクトのリスナー登録 */
@@ -1921,75 +1831,29 @@ export class QuizApp {
 
   /** フォントサイズ切替ボタンのリスナー登録 */
   private setupFontSizeListeners(): void {
-    document.querySelectorAll<HTMLButtonElement>(".font-size-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const size = btn.dataset.size as "small" | "medium" | "large" | undefined;
-        if (size === "small" || size === "medium" || size === "large") {
-          this.applyFontSize(size);
-        }
-      });
-    });
+    setupFontSizeListenersFn((size) => this.applyFontSize(size));
   }
 
   /** 総合タブ: 活動サマリのコピーと共有 URL 関連のリスナー登録 */
   private setupShareSummaryListeners(): void {
-    on("copySummaryBtn", "click", () => this.copyShareSummary());
-
-    // 共有ボタン（URLを新しいタブで開く）
-    on("openShareUrlBtn", "click", () => {
-      if (this.shareUrl) {
-        window.open(this.shareUrl, "_blank", "noopener,noreferrer");
-      }
-    });
-
-    // URL表示ボタン（クリックで編集モードへ）
-    on("shareUrlDisplayBtn", "click", () => this.openShareUrlEdit());
-
-    // 共有URL保存ボタン
-    on("saveShareUrlBtn", "click", () => this.saveAndCloseShareUrl());
-
-    // 共有URL入力でEnterキー押下時に保存
-    document.getElementById("shareUrlInput")?.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        this.saveAndCloseShareUrl();
-      } else if (e.key === "Escape") {
-        this.closeShareUrlEdit();
-      }
-    });
-
-    // URL編集中に編集エリア外をクリックしたらキャンセル
-    document.addEventListener("mousedown", (e: MouseEvent) => {
-      const editArea = document.getElementById("shareUrlEditArea");
-      if (!editArea || editArea.classList.contains("hidden")) return;
-      const inline = document.querySelector(".share-url-inline");
-      if (inline && !inline.contains(e.target as Node)) {
-        this.closeShareUrlEdit();
-      }
+    setupShareSummaryListenersFn({
+      onCopySummary: () => this.copyShareSummary(),
+      onOpenShareUrl: () => {
+        if (this.shareUrl) {
+          window.open(this.shareUrl, "_blank", "noopener,noreferrer");
+        }
+      },
+      onShareUrlDisplayClick: () => this.openShareUrlEdit(),
+      onSaveAndCloseShareUrl: () => this.saveAndCloseShareUrl(),
+      onCloseShareUrlEdit: () => this.closeShareUrlEdit(),
     });
   }
 
   /** ブラウザ履歴・モバイル戻るボタンのナビゲーション系リスナー登録 */
   private setupHistoryNavigationListeners(): void {
-    // ブラウザの戻るボタンでスタート画面に戻る（setupEventListeners はコンストラクタから1度だけ呼ばれる）
-    // クイズ進行中の場合は確認ダイアログを表示し、キャンセルされたら履歴に再プッシュして戻る操作を打ち消す
-    window.addEventListener("popstate", () => {
-      const startScreen = document.getElementById("startScreen");
-      if (!startScreen?.classList.contains("hidden")) return;
-      void this.navigateToStart().then(() => {
-        // キャンセル時（スタート画面に遷移しなかった場合）は履歴エントリを再追加して「進む」操作を封じる
-        const stillOnStart = !document.getElementById("startScreen")?.classList.contains("hidden");
-        if (!stillOnStart) {
-          const activeScreen = document.querySelector(".screen:not(.hidden)");
-          const screenName = activeScreen?.id === "quizScreen" ? "quiz" : "result";
-          window.history.pushState({ screen: screenName }, document.title);
-        }
-      });
-    });
-
-    // スマホ用：単元一覧に戻るボタン
-    document.getElementById("mobileBackBtn")?.addEventListener("click", () => {
-      this.navigateBackToList();
+    setupHistoryNavigationListenersFn({
+      onPopState: () => this.navigateToStart(),
+      onMobileBack: () => this.navigateBackToList(),
     });
   }
 
@@ -2221,144 +2085,17 @@ export class QuizApp {
    * 「総合」タブ（subject === "all"）では通常のパネルタブを非表示にし、総合サマリパネルを表示する。
    */
   private updateQuizPanelVisibility(): void {
-    const subjectContent = document.getElementById("subjectContent");
-    if (!subjectContent) return;
-
-    if (this.filter.subject === "admin") {
-      subjectContent.classList.remove("category-only");
-      subjectContent.classList.remove("all-subject-layout");
-      subjectContent.classList.remove("all-subject-unit-selected");
-      // 管理タブでは学習状態フィルターを非表示にする
-      const adminStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
-      if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
-      // 管理タブでは日付ナビを非表示にする
-      document.getElementById("overallDateNav")?.classList.add("hidden");
-      // 管理タブでは「おすすめ単元」タイトルを非表示、「管理」タイトルを表示
-      document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
-      document.getElementById("categoryListTitle")?.classList.remove("hidden");
-      // 管理タブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、管理コンテンツを表示する
-      ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-        document.getElementById(id)?.classList.add("hidden");
-      });
-      [
-        "quizModePanel",
-        "guideContent",
-        "historyContent",
-        "questionListContent",
-        "overallSummaryPanel",
-        "progressDetailPanel",
-      ].forEach((id) => {
-        document.getElementById(id)?.classList.add("hidden");
-      });
-      document.getElementById("selectedUnitInfo")?.classList.add("hidden");
-      document.getElementById("adminContent")?.classList.remove("hidden");
-      return;
-    }
-
-    if (this.filter.subject === "progress") {
-      const hasProgressUnit = this.selectedUnitContext !== null;
-      subjectContent.classList.remove("category-only");
-      subjectContent.classList.remove("all-subject-layout");
-      subjectContent.classList.remove("all-subject-unit-selected");
-      // 進度タブでは学習状態フィルターを非表示にする
-      const progressStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
-      if (progressStatusFilter) progressStatusFilter.classList.add("hidden");
-      // 進度タブでは日付ナビを非表示にする
-      document.getElementById("overallDateNav")?.classList.add("hidden");
-      // 進度タブでは「おすすめ単元」タイトルを非表示、「進度」タイトルを表示
-      document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
-      document.getElementById("categoryListTitle")?.classList.remove("hidden");
-      // 進度タブでは、単元未選択時は進度詳細のみ表示、単元選択時は単元詳細のみ表示する
-      ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-        document.getElementById(id)?.classList.toggle("hidden", !hasProgressUnit);
-      });
-      if (hasProgressUnit) {
-        document.getElementById("progressDetailPanel")?.classList.add("hidden");
-        this.showPanelTab(this.activePanelTab);
-      } else {
-        this.renderProgressDetailPanel();
-        ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
-          document.getElementById(id)?.classList.add("hidden");
-        });
-      }
-      document.getElementById("overallSummaryPanel")?.classList.add("hidden");
-      document.getElementById("adminContent")?.classList.add("hidden");
-      if (hasProgressUnit) {
-        this.updateSelectedUnitInfo();
-      } else {
-        document.getElementById("selectedUnitInfo")?.classList.add("hidden");
-      }
-      return;
-    }
-
-    const isAll = this.filter.subject === "all";
-    const hasOverallUnit = this.selectedUnitContext !== null;
-    const selLevel = this.getSelectionLevel();
-    // 学年グループが選択されている場合は右パネルを表示する（学年詳細を表示するため）
-    const isGradeGroupSelected = this.categoryViewMode === "grade" && this.selectedGradeGroup !== null && !isAll;
-    const noCategory = !isAll && selLevel === "none" && !isGradeGroupSelected;
-    const isCategoryLevel = !isAll && (selLevel === "topCategory" || selLevel === "parentCategory");
-
-    // 総合タブ時は単元選択を左・活動パネルを右にするレイアウトを適用
-    subjectContent.classList.toggle("all-subject-layout", isAll);
-    // 総合タブで単元選択時は1:2比率のレイアウトを適用
-    subjectContent.classList.toggle("all-subject-unit-selected", isAll && hasOverallUnit);
-    // 何も選択されていない場合（総合タブを除く）は右パネルを非表示にしてカテゴリリストを全幅表示する
-    // 総合タブは総合サマリパネルを右に表示するため category-only にしない
-    subjectContent.classList.toggle("category-only", noCategory);
-    // 管理コンテンツパネルを非表示にする（管理タブ以外）
-    document.getElementById("adminContent")?.classList.add("hidden");
-
-    // 総合タブでは単元未選択時のみパネルタブを非表示（単元選択時は教科画面と同じ表示）
-    ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-      document.getElementById(id)?.classList.toggle("hidden", isAll && !hasOverallUnit);
+    updateQuizPanelVisibilityFn({
+      subject: this.filter.subject,
+      hasSelectedUnit: this.selectedUnitContext !== null,
+      selectionLevel: this.getSelectionLevel(),
+      isGradeGroupSelected:
+        this.categoryViewMode === "grade" && this.selectedGradeGroup !== null && this.filter.subject !== "all",
+      activePanelTab: this.activePanelTab,
+      onRenderProgressDetail: () => this.renderProgressDetailPanel(),
+      onShowPanelTab: (tab) => this.showPanelTab(tab),
+      onUpdateSelectedUnitInfo: () => this.updateSelectedUnitInfo(),
     });
-
-    // カテゴリ/サブカテゴリ選択時は確認・問題一覧・履歴タブを非表示
-    ["panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      if (!isAll && isCategoryLevel) {
-        el.classList.add("hidden");
-      } else if (!isAll) {
-        el.classList.remove("hidden");
-      }
-    });
-
-    if (isAll) {
-      if (hasOverallUnit) {
-        // 総合タブから単元選択時: 教科の画面と同じレイアウトで表示
-        document.getElementById("overallSummaryPanel")?.classList.add("hidden");
-        document.getElementById("progressDetailPanel")?.classList.add("hidden");
-        this.showPanelTab(this.activePanelTab);
-      } else {
-        // 通常のコンテンツパネルを非表示にして総合サマリパネルを表示
-        ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
-          document.getElementById(id)?.classList.add("hidden");
-        });
-        document.getElementById("overallSummaryPanel")?.classList.remove("hidden");
-        document.getElementById("progressDetailPanel")?.classList.add("hidden");
-      }
-    } else {
-      // 総合サマリパネル・進度詳細パネルを非表示にして通常のパネルを表示
-      document.getElementById("overallSummaryPanel")?.classList.add("hidden");
-      document.getElementById("progressDetailPanel")?.classList.add("hidden");
-      // 「総合」以外では現在アクティブなパネルを表示する（総合から戻った場合も含む）
-      this.showPanelTab(this.activePanelTab);
-    }
-
-    // 「おすすめ単元」タイトルは総合タブ時のみ表示
-    document.getElementById("allSubjectPanelTitle")?.classList.toggle("hidden", !isAll);
-    // 「単元一覧」タイトルは教科別タブ時のみ表示
-    document.getElementById("categoryListTitle")?.classList.toggle("hidden", isAll);
-    // 学習状態フィルターボタンは総合タブ・管理タブでは非表示
-    const statusFilterEl = document.querySelector(".category-status-filter") as HTMLElement | null;
-    if (statusFilterEl) statusFilterEl.classList.toggle("hidden", isAll || this.filter.subject === "admin");
-    // 日付ナビゲーションは総合タブかつ単元未選択時のみ表示
-    document.getElementById("overallDateNav")?.classList.toggle("hidden", !isAll || hasOverallUnit);
-
-    // 選択中の単元情報パネルを更新する
-    this.updateSelectedUnitInfo();
   }
 
   /**
