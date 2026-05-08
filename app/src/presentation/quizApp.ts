@@ -3,7 +3,7 @@
  * ビジネスロジックはすべて QuizUseCase に委譲する。
  */
 
-import { QuizUseCase, ERROR_ALL_MASTERED } from "../application/quizUseCase";
+import { QuizUseCase } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
 import { QuizSession } from "../domain/quizSession";
 import type { Question } from "../domain/question";
@@ -15,14 +15,23 @@ import { NotesCanvas } from "./notesCanvas";
 import { KanjiCanvasController } from "./kanjiCanvasController";
 import { NotesController } from "./notesController";
 import { AvatarController } from "./avatarController";
-import { renderProgressDetailMatrix } from "./progressMatrixView";
-import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./progressBlockView";
-import { buildShareSummaryText } from "./shareSummary";
-import { SUBJECTS, currentDateString, sanitizeShareUrl } from "./uiHelpers";
+
+import { SUBJECTS, currentDateString } from "./uiHelpers";
 import { showConfirmDialog } from "./quizApp/confirmDialog";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
-import { buildResultItem } from "./quizApp/resultItemView";
-import { applyFontSizeToDom, type FontSizeLevel } from "./quizApp/fontSizeManager";
+import { type FontSizeLevel } from "./quizApp/fontSizeManager";
+import {
+  loadUserName as loadUserNameSetting,
+  loadFontSize as loadFontSizeSetting,
+  applyFontSize as applyFontSizeSetting,
+  loadShareUrl as loadShareUrlSetting,
+  saveShareUrl as saveShareUrlSetting,
+  loadQuizSettings as loadQuizSettingsSetting,
+  saveQuizSettings as saveQuizSettingsSetting,
+  loadQuestionCountFromDom as loadQuestionCountFromDomSetting,
+  loadRecommendedCounts as loadRecommendedCountsSetting,
+  saveRecommendedCounts as saveRecommendedCountsSetting,
+} from "./quizApp/appSettingsService";
 import {
   openUserNameEdit as openUserNameEditUi,
   closeUserNameEdit as closeUserNameEditUi,
@@ -40,25 +49,34 @@ import { loadGuideContent as loadGuideContentFn } from "./quizApp/guideLoader";
 import { renderHistoryList as renderHistoryListView } from "./quizApp/historyListView";
 import { renderQuestionList as renderQuestionListView, type QuestionListFilter } from "./quizApp/questionListView";
 import { getURLParams, parseURLState, syncURLFragment, type ProgressStatusFilter } from "./quizApp/urlStateService";
-import { showAnswerFeedback, hideAnswerFeedback } from "./quizApp/answerFeedback";
+import { showAnswerFeedback } from "./quizApp/answerFeedback";
 import { updateNavigationButtons } from "./quizApp/navigationButtons";
-import { updateSpeakButton } from "./quizApp/speakButton";
-import { renderMultipleChoice, renderTextInput } from "./quizApp/choicesRenderer";
-import { renderResultScreenContent } from "./quizApp/resultScreenView";
+import {
+  resolveEffectiveMode,
+  tryStartQuizSession,
+  confirmAndStartWithAllQuestions,
+  submitQuizSession,
+  renderResultScreen as renderResultScreenFn,
+  checkAllMasteredAndCongratulate as checkAllMasteredAndCongratulateFn,
+  isCurrentCategoryLearned as isCurrentCategoryLearnedFn,
+  toggleLearnedStatus as toggleLearnedStatusFn,
+} from "./quizApp/quizLifecycle";
 import { updateNotesAreaForQuestion } from "./quizApp/notesAreaUpdater";
+import { showOverallPanel } from "./quizApp/overallSummaryPanel";
+import { renderOverallSummaryPanel as renderOverallSummaryPanelFn } from "./quizApp/overallSummaryRenderer";
 import {
-  renderOverallSubjectStatus,
-  updateActivityDateDisplay,
-  showOverallPanel,
-  renderTodayActivity,
-} from "./quizApp/overallSummaryPanel";
+  renderProgressView as renderProgressViewFn,
+  renderProgressDetailPanel as renderProgressDetailPanelFn,
+  renderProgressDetailContent as renderProgressDetailContentFn,
+} from "./quizApp/progressTabRenderer";
 import { updateSubjectStats } from "./quizApp/categoryStatsView";
+import { applyCategoryStatusFilter } from "./quizApp/categoryCollapseState";
 import {
-  applyParentCategoryCollapsedState,
-  applyTopCategoryCollapsedState,
-  applyCategoryStatusFilter,
-} from "./quizApp/categoryCollapseState";
-import { buildProgressSubjectList, syncProgressDetailControls } from "./quizApp/progressView";
+  toggleParentCategory as toggleParentCategoryFn,
+  expandParentCategory as expandParentCategoryFn,
+  toggleTopCategory as toggleTopCategoryFn,
+  expandTopCategory as expandTopCategoryFn,
+} from "./quizApp/categoryCollapseToggles";
 import { renderSelectedUnitInfo as renderSelectedUnitInfoFn } from "./quizApp/selectedUnitInfoRenderer";
 import { updateGuidePanelContentByIds as updateGuidePanelContentByIdsFn } from "./quizApp/guidePanelUpdater";
 import {
@@ -112,6 +130,17 @@ import {
   navigateToAdmin as navigateToAdminFn,
 } from "./quizApp/startScreenUpdater";
 import { renderCategoryListRouter as renderCategoryListRouterFn } from "./quizApp/categoryListRouter";
+import {
+  handleTopHeaderClick as handleTopHeaderClickFn,
+  handleParentHeaderClick as handleParentHeaderClickFn,
+  handleGradeHeaderClick as handleGradeHeaderClickFn,
+  deselectAndRefresh as deselectAndRefreshFn,
+  selectUnitContext as selectUnitContextFn,
+  closeOverallUnitView as closeOverallUnitViewFn,
+  navigateBackToList as navigateBackToListFn,
+  type SelectionStateAccess,
+  type SelectionLifecycleEffects,
+} from "./quizApp/selectionHandlers";
 
 const PANEL_TABS: readonly PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 
@@ -253,19 +282,12 @@ export class QuizApp {
 
   /** おすすめ単元の表示数をリポジトリから読み込む */
   private loadRecommendedCounts(): void {
-    const counts = this.progressRepo.loadRecommendedCounts();
-    for (const [subjectId, count] of Object.entries(counts)) {
-      this.subjectRecommendedCounts.set(subjectId, count);
-    }
+    this.subjectRecommendedCounts = loadRecommendedCountsSetting(this.progressRepo);
   }
 
   /** おすすめ単元の表示数をリポジトリに保存する */
   private saveRecommendedCounts(): void {
-    const obj: Record<string, number> = {};
-    this.subjectRecommendedCounts.forEach((count, subjectId) => {
-      obj[subjectId] = count;
-    });
-    this.progressRepo.saveRecommendedCounts(obj);
+    saveRecommendedCountsSetting(this.progressRepo, this.subjectRecommendedCounts);
   }
 
   /**
@@ -326,55 +348,32 @@ export class QuizApp {
   }
 
   private loadUserName(): void {
-    const savedName = this.progressRepo.loadUserName();
-    if (savedName) {
-      this.userName = savedName;
-    }
+    this.userName = loadUserNameSetting(this.progressRepo, this.userName);
   }
 
   private loadFontSize(): void {
-    const saved = this.progressRepo.loadFontSizeLevel();
-    if (saved !== null) {
-      this.fontSizeLevel = saved;
-    }
-    this.applyFontSize(this.fontSizeLevel, false);
+    this.fontSizeLevel = loadFontSizeSetting(this.progressRepo, this.fontSizeLevel);
   }
 
   private loadShareUrl(): void {
-    const stored = this.progressRepo.loadShareUrl();
-    // ロード時にも http/https 検証を行い、不正なスキームを除外する
-    this.shareUrl = sanitizeShareUrl(stored);
+    this.shareUrl = loadShareUrlSetting(this.progressRepo);
   }
 
   /**
    * 保存されたクイズ設定を読み込み、フィールドと DOM に反映する。
    */
   private loadQuizSettings(): void {
-    const settings = this.progressRepo.loadQuizSettings();
+    const settings = loadQuizSettingsSetting(this.progressRepo);
     this.questionCount = settings.questionCount;
     this.quizOrder = settings.quizOrder;
     this.includeMastered = settings.includeMastered;
-
-    // DOM への反映
-    const countInput = document.querySelector<HTMLInputElement>(
-      `input[name="questionCount"][value="${settings.questionCount}"]`,
-    );
-    if (countInput) countInput.checked = true;
-    const orderInput = document.querySelector<HTMLInputElement>(
-      `input[name="quizOrder"][value="${settings.quizOrder}"]`,
-    );
-    if (orderInput) orderInput.checked = true;
-    const learnedInput = document.querySelector<HTMLInputElement>(
-      `input[name="quizLearned"][value="${settings.includeMastered ? "include" : "exclude"}"]`,
-    );
-    if (learnedInput) learnedInput.checked = true;
   }
 
   /**
    * 現在のクイズ設定を保存する。
    */
   private saveQuizSettings(): void {
-    this.progressRepo.saveQuizSettings({
+    saveQuizSettingsSetting(this.progressRepo, {
       questionCount: this.questionCount,
       quizOrder: this.quizOrder,
       includeMastered: this.includeMastered,
@@ -382,22 +381,16 @@ export class QuizApp {
   }
 
   private saveShareUrl(url: string): void {
-    // http/https のみ許可し、それ以外のスキームは空扱いにする
-    const sanitized = sanitizeShareUrl(url);
-    this.shareUrl = sanitized;
-    this.progressRepo.saveShareUrl(sanitized);
+    this.shareUrl = saveShareUrlSetting(this.progressRepo, url);
   }
 
   private applyFontSize(level: FontSizeLevel, persist = true): void {
     this.fontSizeLevel = level;
-    applyFontSizeToDom(level, persist, (l) => this.progressRepo.saveFontSizeLevel(l));
+    applyFontSizeSetting(this.progressRepo, level, persist);
   }
 
   private loadQuestionCountFromDOM(): void {
-    const checked = document.querySelector<HTMLInputElement>('input[name="questionCount"]:checked');
-    if (checked) {
-      this.questionCount = parseInt(checked.value);
-    }
+    this.questionCount = loadQuestionCountFromDomSetting(this.questionCount);
   }
 
   /**
@@ -418,6 +411,38 @@ export class QuizApp {
     if (this.filter.category === "all" && this.filter.parentCategory !== undefined) return "parentCategory";
     if (this.filter.category !== "all") return "unit";
     return "none";
+  }
+
+  /** selectionHandlers モジュールに渡す状態アクセサーを生成する。 */
+  private getSelectionStateAccess(): SelectionStateAccess {
+    return {
+      filter: this.filter,
+      getSelectedTopCategoryId: () => this.selectedTopCategoryId,
+      setSelectedTopCategoryId: (v) => {
+        this.selectedTopCategoryId = v;
+      },
+      getSelectedGradeGroup: () => this.selectedGradeGroup,
+      setSelectedGradeGroup: (v) => {
+        this.selectedGradeGroup = v;
+      },
+      setSelectedUnitContext: (v) => {
+        this.selectedUnitContext = v;
+      },
+      setIsPanelTabUserSelected: (v) => {
+        this.isPanelTabUserSelected = v;
+      },
+    };
+  }
+
+  /** selectionHandlers モジュールに渡すライフサイクルコールバック群を生成する。 */
+  private getSelectionLifecycleEffects(): SelectionLifecycleEffects {
+    return {
+      updateCategoryListActive: () => this.updateCategoryListActive(),
+      getHistory: () => this.useCase.getHistory(),
+      autoSelectPanelTab: (records) => this.autoSelectPanelTab(records),
+      updateStartScreen: (records) => this.updateStartScreen(records),
+      syncURLFragment: () => this.syncURLFragment(),
+    };
   }
 
   private openUserNameEdit(): void {
@@ -553,22 +578,7 @@ export class QuizApp {
 
   /** トップカテゴリヘッダークリック時の選択／非選択トグル処理。 */
   private handleTopHeaderClick(topCatId: string): void {
-    if (this.selectedTopCategoryId === topCatId) {
-      // 既に選択中 → 非選択に戻す
-      this.selectedTopCategoryId = null;
-    } else {
-      // 選択（単元選択・親カテゴリ選択を解除してトップカテゴリを選択）
-      this.selectedTopCategoryId = topCatId;
-      this.filter.category = "all";
-      this.filter.parentCategory = undefined;
-      this.selectedGradeGroup = null;
-      this.selectedUnitContext = null;
-      this.isPanelTabUserSelected = false;
-    }
-    this.updateCategoryListActive();
-    const records = this.useCase.getHistory();
-    this.autoSelectPanelTab(records);
-    this.updateStartScreen(records);
+    handleTopHeaderClickFn(this.getSelectionStateAccess(), this.getSelectionLifecycleEffects(), topCatId);
   }
 
   /**
@@ -588,20 +598,7 @@ export class QuizApp {
 
   /** 学年グループヘッダークリック時の選択／非選択トグル処理。 */
   private handleGradeHeaderClick(grade: string): void {
-    if (this.selectedGradeGroup === grade) {
-      this.selectedGradeGroup = null;
-    } else {
-      this.selectedGradeGroup = grade;
-      this.selectedTopCategoryId = null;
-      this.filter.parentCategory = undefined;
-      this.filter.category = "all";
-      this.selectedUnitContext = null;
-      this.isPanelTabUserSelected = false;
-    }
-    this.updateCategoryListActive();
-    const records = this.useCase.getHistory();
-    this.autoSelectPanelTab(records);
-    this.updateStartScreen(records);
+    handleGradeHeaderClickFn(this.getSelectionStateAccess(), this.getSelectionLifecycleEffects(), grade);
   }
 
   /**
@@ -676,22 +673,12 @@ export class QuizApp {
 
   /** 親カテゴリヘッダークリック時の選択／非選択トグル処理。 */
   private handleParentHeaderClick(parentCatId: string): void {
-    if (this.getSelectionLevel() === "parentCategory" && this.filter.parentCategory === parentCatId) {
-      // 既に選択中 → 非選択に戻す
-      this.filter.parentCategory = undefined;
-    } else {
-      // 選択（単元選択・トップカテゴリ選択を解除して親カテゴリを選択）
-      this.selectedTopCategoryId = null;
-      this.filter.category = "all";
-      this.filter.parentCategory = parentCatId;
-      this.selectedGradeGroup = null;
-      this.selectedUnitContext = null;
-      this.isPanelTabUserSelected = false;
-    }
-    this.updateCategoryListActive();
-    const records = this.useCase.getHistory();
-    this.autoSelectPanelTab(records);
-    this.updateStartScreen(records);
+    handleParentHeaderClickFn(
+      this.getSelectionStateAccess(),
+      this.getSelectionLifecycleEffects(),
+      () => this.getSelectionLevel(),
+      parentCatId,
+    );
   }
 
   /**
@@ -721,30 +708,27 @@ export class QuizApp {
    * 左パネルに教科リストを表示し、右パネルに選択教科の進度詳細を表示する。
    */
   private renderProgressView(): void {
-    const categoryList = document.getElementById("categoryList");
-    const controlsEl = document.getElementById("categoryControls");
-    if (!categoryList) return;
-    categoryList.innerHTML = "";
-    if (controlsEl) controlsEl.innerHTML = "";
-
-    // ── 左パネル: 教科リスト ──
-    categoryList.appendChild(
-      buildProgressSubjectList(this.useCase, {
-        currentSubjectId: this.progressSubjectId,
-        onSelectSubject: (subjectId) => {
-          this.progressSubjectId = subjectId;
-          this.selectedUnitContext = null;
-          this.renderCategoryList();
-          this.updateStartScreen();
-          this.syncURLFragment();
-        },
-      }),
-    );
-
-    // ── 右パネル: 進度詳細 ──
-    this.renderProgressDetailPanel();
-
-    this.updateSubjectStats();
+    renderProgressViewFn({
+      useCase: this.useCase,
+      progressSubjectId: this.progressSubjectId,
+      progressDetailViewMode: this.progressDetailViewMode,
+      progressStatusFilter: this.progressStatusFilter,
+      progressMatrixTransposed: this.progressMatrixTransposed,
+      onSelectSubject: (subjectId) => {
+        this.progressSubjectId = subjectId;
+        this.selectedUnitContext = null;
+        this.renderCategoryList();
+        this.updateStartScreen();
+        this.syncURLFragment();
+      },
+      onSelectUnit: (subject, catId, catName) => this.selectUnitContext(subject, catId, catName),
+      onToggleMatrixTranspose: () => {
+        this.progressMatrixTransposed = !this.progressMatrixTransposed;
+        this.renderProgressDetailContent();
+        this.syncURLFragment();
+      },
+      onAfterRender: () => this.updateSubjectStats(),
+    });
   }
 
   /**
@@ -752,8 +736,19 @@ export class QuizApp {
    * 学年別またはカテゴリ別でグループ化した単元名ブロック列を表示する。
    */
   private renderProgressDetailPanel(): void {
-    syncProgressDetailControls(this.progressDetailViewMode, this.progressStatusFilter);
-    this.renderProgressDetailContent();
+    renderProgressDetailPanelFn({
+      useCase: this.useCase,
+      progressSubjectId: this.progressSubjectId,
+      progressDetailViewMode: this.progressDetailViewMode,
+      progressStatusFilter: this.progressStatusFilter,
+      progressMatrixTransposed: this.progressMatrixTransposed,
+      onSelectUnit: (subject, catId, catName) => this.selectUnitContext(subject, catId, catName),
+      onToggleMatrixTranspose: () => {
+        this.progressMatrixTransposed = !this.progressMatrixTransposed;
+        this.renderProgressDetailContent();
+        this.syncURLFragment();
+      },
+    });
   }
 
   /**
@@ -761,64 +756,32 @@ export class QuizApp {
    * progressDetailViewMode に応じて学年別・カテゴリ別・マトリクスを描画する。
    */
   private renderProgressDetailContent(): void {
-    const content = document.getElementById("progressDetailContent");
-    if (!content) return;
-    content.innerHTML = "";
-
-    const blockCtx = {
-      subject: this.progressSubjectId,
+    renderProgressDetailContentFn({
       useCase: this.useCase,
-      statusFilter: this.progressStatusFilter,
-      onSelectUnit: (subject: string, catId: string, catName: string) =>
-        this.selectUnitContext(subject, catId, catName),
-    };
-    if (this.progressDetailViewMode === "grade") {
-      renderProgressDetailByGrade(content, blockCtx);
-    } else if (this.progressDetailViewMode === "matrix") {
-      renderProgressDetailMatrix(content, {
-        subject: this.progressSubjectId,
-        useCase: this.useCase,
-        transposed: this.progressMatrixTransposed,
-        statusFilter: this.progressStatusFilter,
-        onToggleTranspose: () => {
-          this.progressMatrixTransposed = !this.progressMatrixTransposed;
-          this.renderProgressDetailContent();
-          this.syncURLFragment();
-        },
-        onSelectUnit: blockCtx.onSelectUnit,
-      });
-    } else {
-      renderProgressDetailByCategory(content, blockCtx);
-    }
+      progressSubjectId: this.progressSubjectId,
+      progressDetailViewMode: this.progressDetailViewMode,
+      progressStatusFilter: this.progressStatusFilter,
+      progressMatrixTransposed: this.progressMatrixTransposed,
+      onSelectUnit: (subject, catId, catName) => this.selectUnitContext(subject, catId, catName),
+      onToggleMatrixTranspose: () => {
+        this.progressMatrixTransposed = !this.progressMatrixTransposed;
+        this.renderProgressDetailContent();
+        this.syncURLFragment();
+      },
+    });
   }
 
   /**
    * 総合タブ専用のサマリパネルを描画する。
    */
   private renderOverallSummaryPanel(allRecords?: QuizRecord[]): void {
-    const panel = document.getElementById("overallSummaryPanel");
-    if (!panel) return;
-
-    const records = allRecords ?? this.useCase.getHistory();
-    this.updateActivityDateDisplay();
-    this.renderOverallSubjectStatus();
-    this.renderTodayActivity(records);
-    this.updateShareSummaryText(records);
-    this.showOverallPanel(this.activeOverallPanel);
-  }
-
-  /**
-   * 総合タブの「学習状況」用に、教科ごとの目標数に対する学習数とメッセージを表示する。
-   */
-  private renderOverallSubjectStatus(): void {
-    renderOverallSubjectStatus(this.useCase, this.subjectRecommendedCounts);
-  }
-
-  /**
-   * 活動ラベルを本日実施した単元数（⭐の数、完了単元は🏆）に更新する。
-   */
-  private updateActivityDateDisplay(): void {
-    updateActivityDateDisplay(this.useCase, this.selectedActivityDate);
+    renderOverallSummaryPanelFn({
+      useCase: this.useCase,
+      subjectRecommendedCounts: this.subjectRecommendedCounts,
+      selectedActivityDate: this.selectedActivityDate,
+      activeOverallPanel: this.activeOverallPanel,
+      allRecords,
+    });
   }
 
   /**
@@ -826,24 +789,6 @@ export class QuizApp {
    */
   private showOverallPanel(tab: "learned" | "share"): void {
     showOverallPanel(tab);
-  }
-
-  /**
-   * 今日の活動セクションを描画する。
-   * selectedActivityDate の日付と一致するクイズ記録を履歴と同じ形式で表示する。
-   */
-  private renderTodayActivity(records: QuizRecord[]): void {
-    renderTodayActivity(records, this.useCase, this.selectedActivityDate);
-  }
-
-  /**
-   * SNS 共有用の活動サマリテキストを構築して shareSummaryText 要素に反映する。
-   */
-  private updateShareSummaryText(records: QuizRecord[]): void {
-    const el = document.getElementById("shareSummaryText");
-    if (el) {
-      el.textContent = buildShareSummaryText(records, this.selectedActivityDate, this.useCase);
-    }
   }
 
   /**
@@ -984,28 +929,18 @@ export class QuizApp {
    * 閉じるボタンや単元アイテムのトグル（既選択クリック）から呼び出す。
    */
   private deselectAndRefresh(): void {
-    this.filter.category = "all";
-    this.filter.parentCategory = undefined;
-    this.selectedTopCategoryId = null;
-    this.selectedGradeGroup = null;
-    this.isPanelTabUserSelected = false;
-    this.updateCategoryListActive();
-    const records = this.useCase.getHistory();
-    this.autoSelectPanelTab(records);
-    this.updateStartScreen(records);
-    this.syncURLFragment();
+    deselectAndRefreshFn(this.getSelectionStateAccess(), this.getSelectionLifecycleEffects());
   }
 
   /**
    * 現在タブを維持したまま単元を選択し、詳細表示を更新する。
    */
   private selectUnitContext(subject: string, categoryId: string, categoryName: string): void {
-    this.selectedUnitContext = { subject, categoryId, categoryName };
-    this.isPanelTabUserSelected = false;
-    const records = this.useCase.getHistory();
-    this.autoSelectPanelTab(records);
-    this.updateStartScreen(records);
-    this.syncURLFragment();
+    selectUnitContextFn(this.getSelectionStateAccess(), this.getSelectionLifecycleEffects(), {
+      subject,
+      categoryId,
+      categoryName,
+    });
   }
 
   /**
@@ -1055,10 +990,7 @@ export class QuizApp {
    * 選択した単元の解説表示を閉じ、単元未選択の一覧画面に戻る。
    */
   private closeOverallUnitView(): void {
-    this.selectedUnitContext = null;
-    const records = this.useCase.getHistory();
-    this.updateStartScreen(records);
-    this.syncURLFragment();
+    closeOverallUnitViewFn(this.getSelectionStateAccess(), this.getSelectionLifecycleEffects());
   }
 
   /**
@@ -1302,19 +1234,7 @@ export class QuizApp {
    * 単元・カテゴリ選択を解除して単元一覧を表示する。
    */
   private navigateBackToList(): void {
-    if (this.filter.subject === "all" || this.filter.subject === "progress") {
-      // 総合タブ・進度タブの場合は単元選択を解除する
-      this.selectedUnitContext = null;
-    } else {
-      // 通常タブの場合は単元・カテゴリ選択を解除する
-      this.filter.category = "all";
-      this.filter.parentCategory = undefined;
-      this.selectedTopCategoryId = null;
-    }
-    this.isPanelTabUserSelected = false;
-    const records = this.useCase.getHistory();
-    this.updateStartScreen(records);
-    this.syncURLFragment();
+    navigateBackToListFn(this.getSelectionStateAccess(), this.getSelectionLifecycleEffects());
   }
 
   /**
@@ -1371,56 +1291,28 @@ export class QuizApp {
    * 折りたたまれていれば展開し、展開されていれば折りたたむ。
    */
   private toggleParentCategory(parentCatId: string): void {
-    if (this.collapsedParentCategories.has(parentCatId)) {
-      this.collapsedParentCategories.delete(parentCatId);
-    } else {
-      this.collapsedParentCategories.add(parentCatId);
-    }
-    this.applyParentCategoryCollapsedState(parentCatId);
+    toggleParentCategoryFn(this.collapsedParentCategories, parentCatId);
   }
 
   /**
    * 指定した親カテゴリを強制的に展開する（折りたたまれていれば展開する）。
    */
   private expandParentCategory(parentCatId: string): void {
-    if (!this.collapsedParentCategories.has(parentCatId)) return;
-    this.collapsedParentCategories.delete(parentCatId);
-    this.applyParentCategoryCollapsedState(parentCatId);
-  }
-
-  /**
-   * 指定した親カテゴリの折りたたみ状態を DOM に反映する。
-   */
-  private applyParentCategoryCollapsedState(parentCatId: string): void {
-    applyParentCategoryCollapsedState(parentCatId, this.collapsedParentCategories.has(parentCatId));
+    expandParentCategoryFn(this.collapsedParentCategories, parentCatId);
   }
 
   /**
    * 指定したトップカテゴリの折りたたみ状態をトグルする。
    */
   private toggleTopCategory(topCatId: string): void {
-    if (this.collapsedTopCategories.has(topCatId)) {
-      this.collapsedTopCategories.delete(topCatId);
-    } else {
-      this.collapsedTopCategories.add(topCatId);
-    }
-    this.applyTopCategoryCollapsedState(topCatId);
+    toggleTopCategoryFn(this.collapsedTopCategories, topCatId);
   }
 
   /**
    * 指定したトップカテゴリを強制的に展開する（折りたたまれていれば展開する）。
    */
   private expandTopCategory(topCatId: string): void {
-    if (!this.collapsedTopCategories.has(topCatId)) return;
-    this.collapsedTopCategories.delete(topCatId);
-    this.applyTopCategoryCollapsedState(topCatId);
-  }
-
-  /**
-   * 指定したトップカテゴリの折りたたみ状態を DOM に反映する。
-   */
-  private applyTopCategoryCollapsedState(topCatId: string): void {
-    applyTopCategoryCollapsedState(topCatId, this.collapsedTopCategories.has(topCatId));
+    expandTopCategoryFn(this.collapsedTopCategories, topCatId);
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
@@ -1429,14 +1321,7 @@ export class QuizApp {
    * 現在選択中のカテゴリが学習済み（🏆）かどうかを返す。
    */
   private isCurrentCategoryLearned(): boolean {
-    const effectiveFilter = this.getEffectiveFilter();
-    if (effectiveFilter.category === "all") return false;
-    const { mastered, total } = this.useCase.getMasteredCountForCategory(
-      effectiveFilter.subject,
-      effectiveFilter.category,
-    );
-    // 全問題が masteredIds にある場合のみ「学習済み」とみなす（updateSubjectStats と統一）
-    return total > 0 && mastered === total;
+    return isCurrentCategoryLearnedFn(this.useCase, this.getEffectiveFilter());
   }
 
   /**
@@ -1444,23 +1329,13 @@ export class QuizApp {
    * 学習済みなら未学習に戻し、そうでなければ学習済みにする。
    */
   private toggleLearnedStatus(): void {
-    const effectiveFilter = this.getEffectiveFilter();
-    const isCurrentlyLearned = this.isCurrentCategoryLearned();
-    const message = isCurrentlyLearned ? "この単元を未学習に戻しますか？" : "この単元を学習済みにしますか？";
-    void this.showConfirmDialog(message)
-      .then((confirmed) => {
-        if (!confirmed) return;
-        if (isCurrentlyLearned) {
-          this.useCase.unmarkCategoryAsLearned(effectiveFilter);
-        } else {
-          this.useCase.markCategoryAsLearned(effectiveFilter);
-        }
-        this.updateStartScreen();
-      })
-      .catch(console.error);
-  }
-
-  /**
+    void toggleLearnedStatusFn({
+      useCase: this.useCase,
+      effectiveFilter: this.getEffectiveFilter(),
+      showConfirmDialog: (msg) => this.showConfirmDialog(msg),
+      onAfterToggle: () => this.updateStartScreen(),
+    }).catch(console.error);
+  } /**
    * クイズパネルの表示/非表示を更新する。
    * 教科タブでカテゴリが未選択（category === "all"）の場合はクイズパネルを非表示にし、
    * カテゴリが選択されている場合は表示する。
@@ -1480,55 +1355,30 @@ export class QuizApp {
     });
   }
 
-  /**
-   * 現在選択中のカテゴリを学習済みとしてマークする。
-   * 解答なしでも単元を学習済みにできる。
-   */
-  private markCategoryAsLearned(): void {
-    this.useCase.markCategoryAsLearned(this.filter);
-    this.updateStartScreen();
-  }
-
   private async startQuiz(mode: QuizMode): Promise<void> {
-    // "random" モードでストレート順が選択されている場合は内部的に "practice"（順番通り）モードを使用する。
-    // ストレート＝問題を登録順に出題するため、QuizSession.pickInOrder を使う practice モードにマップする。
-    const effectiveMode: QuizMode = mode === "random" && this.quizOrder === "straight" ? "practice" : mode;
-    try {
-      if (this.includeMastered) {
-        this.currentSession = this.useCase.startSessionWithAllQuestions(
-          effectiveMode,
-          this.getEffectiveFilter(),
-          this.questionCount,
-        );
-      } else {
-        this.currentSession = this.useCase.startSession(effectiveMode, this.getEffectiveFilter(), this.questionCount);
-      }
-    } catch (error) {
-      if (error instanceof Error && error.message === ERROR_ALL_MASTERED) {
-        const confirmed = await this.showConfirmDialog(
-          "すべての問題が学習済みです。全問題からランダムに出題しますか？",
-        );
-        if (confirmed) {
-          try {
-            // 全問出題時は常にランダム順で開始する
-            this.currentSession = this.useCase.startSessionWithAllQuestions(
-              "random",
-              this.getEffectiveFilter(),
-              this.questionCount,
-            );
-          } catch (innerError) {
-            alert(innerError instanceof Error ? innerError.message : "エラーが発生しました");
-            return;
-          }
-        } else {
-          return;
-        }
-      } else {
-        alert(error instanceof Error ? error.message : "エラーが発生しました");
-        return;
-      }
+    const effectiveMode = resolveEffectiveMode(mode, this.quizOrder);
+    const deps = {
+      useCase: this.useCase,
+      effectiveFilter: this.getEffectiveFilter(),
+      questionCount: this.questionCount,
+      includeMastered: this.includeMastered,
+      quizOrder: this.quizOrder,
+      showConfirmDialog: (message: string, alertOnly?: boolean) => this.showConfirmDialog(message, alertOnly),
+      notifyError: (msg: string) => alert(msg),
+    };
+    const outcome = tryStartQuizSession(effectiveMode, deps);
+    let session;
+    if (outcome.kind === "success") {
+      session = outcome.session;
+    } else if (outcome.kind === "all-mastered") {
+      const fallback = await confirmAndStartWithAllQuestions(deps);
+      if (!fallback) return;
+      session = fallback;
+    } else {
+      alert(outcome.message);
+      return;
     }
-
+    this.currentSession = session;
     this.currentMode = effectiveMode;
 
     // メモ状態をリセット
@@ -1553,52 +1403,6 @@ export class QuizApp {
       },
       onTextAnswered: (q) => {
         // 確認後は確定ボタンも非表示にする（キーボード入力で回答済みになったため）
-        this.updateNotesAreaForQuestion(q, true);
-      },
-    });
-  }
-
-  private renderChoices(question: Question, session: QuizSession): void {
-    const callbacks = {
-      onAnswered: (q: Question, idx: number, text?: string) => {
-        this.showAnswerFeedback(q, idx, text);
-        this.updateNavigationButtons(session);
-      },
-      onTextAnswered: (q: Question) => {
-        this.updateNotesAreaForQuestion(q, true);
-      },
-    };
-    if (question.questionType === "text-input") {
-      renderTextInput(question, session, callbacks);
-    } else {
-      renderMultipleChoice(question, session, callbacks);
-    }
-  }
-
-  /**
-   * 読み上げボタンの表示を更新する。英語の問題かつ Web Speech API が利用可能な場合のみ
-   * ボタンを表示し、クリック時にアメリカ英語（en-US）で読み上げる。
-   */
-  private updateSpeakButton(question: Question): void {
-    updateSpeakButton(question);
-  }
-
-  private renderMultipleChoice(question: Question, session: QuizSession): void {
-    renderMultipleChoice(question, session, {
-      onAnswered: (q, idx, text) => {
-        this.showAnswerFeedback(q, idx, text);
-        this.updateNavigationButtons(session);
-      },
-    });
-  }
-
-  private renderTextInput(question: Question, session: QuizSession): void {
-    renderTextInput(question, session, {
-      onAnswered: (q, idx, text) => {
-        this.showAnswerFeedback(q, idx, text);
-        this.updateNavigationButtons(session);
-      },
-      onTextAnswered: (q) => {
         this.updateNotesAreaForQuestion(q, true);
       },
     });
@@ -1632,10 +1436,6 @@ export class QuizApp {
     showAnswerFeedback(question, userAnswerIndex, userAnswerText);
   }
 
-  private hideAnswerFeedback(): void {
-    hideAnswerFeedback();
-  }
-
   private updateNavigationButtons(session: QuizSession): void {
     updateNavigationButtons(session);
   }
@@ -1645,18 +1445,24 @@ export class QuizApp {
   private submitQuiz(): void {
     const session = this.currentSession;
     if (!session) return;
-    const results = this.useCase.submitSession(session);
-    this.useCase.addHistoryRecord(results, this.getEffectiveFilter(), this.currentMode);
-    // 結果画面へ遷移する前に、スタート画面側の一覧・進捗表示を最新化しておく
-    this.renderCategoryList();
-    this.updateStartScreen(this.useCase.getHistory());
+    const results = submitQuizSession({
+      useCase: this.useCase,
+      session,
+      effectiveFilter: this.getEffectiveFilter(),
+      currentMode: this.currentMode,
+      onAfterSubmit: () => {
+        // 結果画面へ遷移する前に、スタート画面側の一覧・進捗表示を最新化しておく
+        this.renderCategoryList();
+        this.updateStartScreen(this.useCase.getHistory());
+      },
+    });
     this.showResultScreen(results);
   }
 
   // ─── 結果画面 ──────────────────────────────────────────────────────────────
 
   private showResultScreen(results: AnswerResult[]): void {
-    renderResultScreenContent(results);
+    renderResultScreenFn(results);
     this.showScreen("result");
     // 単元がすべて学習済みになったらポップアップメッセージ
     void this.checkAllMasteredAndCongratulate();
@@ -1666,18 +1472,11 @@ export class QuizApp {
    * 現在のフィルター対象の問題がすべて学習済みかチェックし、達成時におめでとうメッセージを表示する。
    */
   private async checkAllMasteredAndCongratulate(): Promise<void> {
-    const effectiveFilter = this.getEffectiveFilter();
-    const filteredQuestions = this.useCase.getFilteredQuestions(effectiveFilter);
-    if (filteredQuestions.length === 0) return;
-    const masteredSet = new Set(this.useCase.getMasteredIds());
-    const allMastered = filteredQuestions.every((q) => masteredSet.has(q.id));
-    if (allMastered) {
-      await this.showConfirmDialog("🎉 おめでとうございます！\nこの単元のすべての問題を学習済みにしました！", true);
-    }
-  }
-
-  private buildResultItem(r: AnswerResult): HTMLElement {
-    return buildResultItem(r);
+    await checkAllMasteredAndCongratulateFn({
+      useCase: this.useCase,
+      effectiveFilter: this.getEffectiveFilter(),
+      showConfirmDialog: (msg, alertOnly) => this.showConfirmDialog(msg, alertOnly),
+    });
   }
 
   // ─── 画面切替・ナビゲーション ──────────────────────────────────────────────
