@@ -50,6 +50,7 @@ export interface ParsedURLState {
 }
 
 const PANEL_TABS: readonly PanelTab[] = ["quiz", "guide", "history", "questions"];
+const PROGRESS_STATUS_FILTERS: readonly ProgressStatusFilter[] = ["all", "unlearned", "studying", "learned"];
 
 /**
  * 現在の URL から `ParsedURLState` を作成する。
@@ -102,13 +103,8 @@ export function parseURLState(useCase: QuizUseCase): ParsedURLState {
   }
 
   const progressStatus = params.get("progressStatus");
-  if (
-    progressStatus === "all" ||
-    progressStatus === "unlearned" ||
-    progressStatus === "studying" ||
-    progressStatus === "learned"
-  ) {
-    state.progressStatusFilter = progressStatus;
+  if (progressStatus && PROGRESS_STATUS_FILTERS.includes(progressStatus as ProgressStatusFilter)) {
+    state.progressStatusFilter = progressStatus as ProgressStatusFilter;
   }
 
   const categoryView = params.get("categoryView");

@@ -126,11 +126,12 @@ export class KanjiCanvasController {
       .split(/\s+/)
       .filter(Boolean)
       .map((candidate) => candidate.normalize("NFKC"));
+    const kanaNormalizedCandidates = candidates.map((candidate) => normalizeKanaText(candidate));
 
     const correctAnswer = this.options.getCorrectAnswer();
     const normalizedCorrectAnswer = correctAnswer ? normalizeKanaText(correctAnswer) : undefined;
     if (normalizedCorrectAnswer !== undefined && isHiraganaOnly(normalizedCorrectAnswer)) {
-      candidates = candidates.map((char) => normalizeKanaText(char)).filter((char) => isHiraganaOnly(char));
+      candidates = kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char));
     } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer.normalize("NFKC"))) {
       candidates = candidates.filter((char) => isLatinOnly(char));
     }

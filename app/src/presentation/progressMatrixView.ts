@@ -33,9 +33,15 @@ type ColDef = { parentId: string; parentName: string; topId: string; topName: st
 export function renderProgressDetailMatrix(container: HTMLElement, ctx: ProgressMatrixContext): void {
   const { subject, useCase } = ctx;
   const grades = useCase.getUniqueGradesForSubject(subject);
+  const categoryProgressMap = new Map<string, { mastered: number; total: number; inProgress: number }>();
 
   // 全カテゴリを収集し、トップ/親カテゴリ情報を付与する
   const allCats = useCase.getCategoriesForSubject(subject);
+  Object.keys(allCats).forEach((catId) => {
+    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
+    const inProgress = useCase.getInProgressCount({ subject, category: catId });
+    categoryProgressMap.set(catId, { mastered, total, inProgress });
+  });
 
   // 列定義: 親カテゴリ単位で展開（トップカテゴリ情報も保持）
   const parentCatsMap = useCase.getParentCategoriesForSubject(subject);
@@ -107,8 +113,11 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   // isUnitVisible: 現在の学習状況フィルターに一致する単元のみ表示する
   const isUnitVisible = (catId: string): boolean => {
     if (ctx.statusFilter === "all") return true;
-    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
-    const inProgress = useCase.getInProgressCount({ subject, category: catId });
+    const { mastered, total, inProgress } = categoryProgressMap.get(catId) ?? {
+      mastered: 0,
+      total: 0,
+      inProgress: 0,
+    };
     return getLearningProgressStatus({ mastered, total, inProgress }) === ctx.statusFilter;
   };
 
@@ -222,8 +231,11 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   const tbody = document.createElement("tbody");
   const appendUnitBlock = (inner: HTMLElement, catId: string, catName: string): void => {
     if (!isUnitVisible(catId)) return;
-    const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
-    const inProgress = useCase.getInProgressCount({ subject, category: catId });
+    const { mastered, total, inProgress } = categoryProgressMap.get(catId) ?? {
+      mastered: 0,
+      total: 0,
+      inProgress: 0,
+    };
     const block = document.createElement("button");
     block.type = "button";
     block.className = "progress-block progress-block-sm";

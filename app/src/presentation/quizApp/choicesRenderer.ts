@@ -128,5 +128,7 @@ export function renderTextInput(question: Question, session: QuizSession, callba
   }
 }
 function shouldAutoFocusTextInput(): boolean {
-  return window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? navigator.maxTouchPoints === 0;
+  const hasFinePointer = window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? false;
+  const hasTouchPoints = navigator.maxTouchPoints > 0;
+  return hasFinePointer || !hasTouchPoints;
 }
