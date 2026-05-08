@@ -545,7 +545,7 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
   });
 
-  it("解説マーク（📖ボタン）はグループヘッダーに表示されない（ヘッダークリックで解説を表示）", async () => {
+  it("カテゴリグループヘッダーに解説ボタンが表示される", async () => {
     // grammar グループに parentCategoryGuideUrl を追加したモックデータ
     const grammarFileWithParentGuide = {
       ...mockGrammarFile,
@@ -568,28 +568,42 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 解説ボタン（📖）は表示されないこと（全単元に解説があるため不要）
     const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
     const guideBtn = grammarHeader?.querySelector(".category-group-guide-btn");
-    expect(guideBtn).toBeNull();
+    expect(guideBtn).not.toBeNull();
+    expect(guideBtn?.textContent).toContain("📖");
 
-    // phonics グループにも解説ボタンは表示されない
     const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
     const phonicsGuideBtn = phonicsHeader?.querySelector(".category-group-guide-btn");
-    expect(phonicsGuideBtn).toBeNull();
+    expect(phonicsGuideBtn).not.toBeNull();
   });
 
-  it("parentCategoryGuideUrl がないグループヘッダーにも解説ボタンは表示されない", async () => {
+  it("parentCategoryGuideUrl がないグループヘッダーにも要約解説ボタンが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
     englishTab?.click();
 
-    // 解説ボタンは設定有無に関わらず表示されない
     const grammarHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="grammar"]');
     const guideBtn = grammarHeader?.querySelector(".category-group-guide-btn");
-    expect(guideBtn).toBeNull();
+    expect(guideBtn).not.toBeNull();
+  });
+
+  it("カテゴリグループの解説ボタンを押すと折りたたまずに解説タブへ切り替わる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const grammarGroup = document.querySelector<HTMLElement>('.category-group[data-parent-category="grammar"]');
+    const guideBtn = grammarGroup?.querySelector<HTMLElement>(".category-group-guide-btn");
+    guideBtn?.click();
+
+    expect(grammarGroup?.classList.contains("collapsed")).toBe(false);
+    expect(document.querySelector('.panel-tab[data-panel="guide"]')?.classList.contains("active")).toBe(true);
+    expect(document.querySelector(".generated-guide-page")).not.toBeNull();
   });
 
   it("親カテゴリヘッダーをクリックすると解説パネルが表示される", async () => {

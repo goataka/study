@@ -516,6 +516,46 @@ describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
     expect(gradeHeader?.getAttribute("aria-expanded")).toBe("false");
   });
 
+  it("学年別ビューの学年グループヘッダーに解説ボタンが表示される", async () => {
+    const manifest = {
+      version: "2.0.0",
+      subjects: { math: { name: "数学" } },
+      questionFiles: ["math/elem.json"],
+    };
+    const elemFile = {
+      subject: "math",
+      subjectName: "数学",
+      category: "addition",
+      categoryName: "たし算",
+      referenceGrade: "小学1年",
+      description: "たし算の基礎",
+      example: "`1 + 1 = 2`",
+      questions: [{ id: "e1", question: "問題", choices: ["A", "B", "C", "D"], correct: 0, explanation: "解説" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      if (String(url).includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(manifest) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(elemFile) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const mathTab = document.querySelector('.subject-tab[data-subject="math"]') as HTMLElement;
+    mathTab?.click();
+    document.querySelector<HTMLElement>(".category-view-toggle")?.click();
+
+    const gradeHeader = document.querySelector<HTMLElement>('.category-grade-group-header[data-grade="小学1年"]');
+    const guideBtn = gradeHeader?.querySelector(".category-group-guide-btn");
+    expect(guideBtn).not.toBeNull();
+
+    guideBtn?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+
+    expect(document.querySelector('.panel-tab[data-panel="guide"]')?.classList.contains("active")).toBe(true);
+    expect(document.querySelector(".generated-guide-page")?.textContent).toContain("小学1年");
+  });
+
   it("教科を切り替えると学年フィルターが前の教科の値にリセットされる", async () => {
     const manifest = {
       version: "2.0.0",
