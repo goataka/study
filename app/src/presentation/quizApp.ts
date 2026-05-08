@@ -18,8 +18,7 @@ import { renderAdminContent } from "./adminPanel";
 import { AvatarController } from "./avatarController";
 import { renderProgressDetailMatrix } from "./progressMatrixView";
 import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "./progressBlockView";
-import { buildHistoryItem } from "./historyItemView";
-import { buildShareSummaryText, filterRecordsBySelectedDate } from "./shareSummary";
+import { buildShareSummaryText } from "./shareSummary";
 import {
   buildSelectedUnitInfoBody,
   buildSelectedUnitInfoSimpleBody,
@@ -33,14 +32,7 @@ import {
   buildRecommendedUnitCard,
 } from "./allSubjectListView";
 import { buildCategoryItem } from "./categoryItemView";
-import {
-  SUBJECTS,
-  calcDualProgressPct,
-  currentDateString,
-  sanitizeShareUrl,
-  setText,
-  on,
-} from "./uiHelpers";
+import { SUBJECTS, currentDateString, sanitizeShareUrl, setText, on } from "./uiHelpers";
 import { showConfirmDialog } from "./quizApp/confirmDialog";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
 import { buildResultItem } from "./quizApp/resultItemView";
@@ -60,10 +52,7 @@ import {
 import { copyShareSummary as copyShareSummaryAction } from "./quizApp/shareSummaryActions";
 import { loadGuideContent as loadGuideContentFn } from "./quizApp/guideLoader";
 import { renderHistoryList as renderHistoryListView } from "./quizApp/historyListView";
-import {
-  renderQuestionList as renderQuestionListView,
-  type QuestionListFilter,
-} from "./quizApp/questionListView";
+import { renderQuestionList as renderQuestionListView, type QuestionListFilter } from "./quizApp/questionListView";
 import { getURLParams, parseURLState, syncURLFragment } from "./quizApp/urlStateService";
 import { showAnswerFeedback, hideAnswerFeedback } from "./quizApp/answerFeedback";
 import { updateNavigationButtons } from "./quizApp/navigationButtons";
@@ -71,6 +60,18 @@ import { updateSpeakButton } from "./quizApp/speakButton";
 import { renderMultipleChoice, renderTextInput } from "./quizApp/choicesRenderer";
 import { renderResultScreenContent } from "./quizApp/resultScreenView";
 import { updateNotesAreaForQuestion } from "./quizApp/notesAreaUpdater";
+import {
+  renderOverallSubjectStatus,
+  updateActivityDateDisplay,
+  showOverallPanel,
+  renderTodayActivity,
+} from "./quizApp/overallSummaryPanel";
+import { updateSubjectStats } from "./quizApp/categoryStatsView";
+import {
+  applyParentCategoryCollapsedState,
+  applyTopCategoryCollapsedState,
+  applyCategoryStatusFilter,
+} from "./quizApp/categoryCollapseState";
 
 const PANEL_TABS = ["quiz", "guide", "history", "questions"] as const;
 type PanelTab = (typeof PANEL_TABS)[number];
@@ -1314,79 +1315,21 @@ export class QuizApp {
    * 総合タブの「学習状況」用に、教科ごとの目標数に対する学習数とメッセージを表示する。
    */
   private renderOverallSubjectStatus(): void {
-    const container = document.getElementById("overallSubjectStatusSummary");
-    if (!container) return;
-    container.innerHTML = "";
-    const records = this.useCase.getHistory();
-    const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
-    for (const subject of subjects) {
-      const categories = this.useCase.getCategoriesForSubject(subject.id);
-      const totalUnits = Object.keys(categories).length;
-      const categoryIds = new Set(Object.keys(categories));
-      const studiedUnitCount = new Set(
-        records.filter((r) => r.subject === subject.id && categoryIds.has(r.category)).map((r) => r.category),
-      ).size;
-      if (totalUnits === 0) {
-        const row = document.createElement("div");
-        row.className = "overall-subject-status-row";
-        row.textContent = `${subject.icon} ${subject.name}: 0/0単元 🌱 まずは単元を追加しよう！`;
-        container.appendChild(row);
-        continue;
-      }
-      const target = Math.max(1, Math.min(this.subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
-      const ratio = Math.min(1, studiedUnitCount / target);
-      const message =
-        ratio >= 1
-          ? "🎉 目標達成！この調子！"
-          : ratio >= 0.5
-            ? "👍 いい感じで進んでいるよ！"
-            : "🌱 まずは1単元ずつ進めよう！";
-      const row = document.createElement("div");
-      row.className = "overall-subject-status-row";
-      row.textContent = `${subject.icon} ${subject.name}: ${Math.min(studiedUnitCount, target)}/${target}単元 ${message}`;
-      container.appendChild(row);
-    }
+    renderOverallSubjectStatus(this.useCase, this.subjectRecommendedCounts);
   }
 
   /**
    * 活動ラベルを本日実施した単元数（⭐の数、完了単元は🏆）に更新する。
    */
   private updateActivityDateDisplay(): void {
-    const el = document.getElementById("overallActivityDateLabel");
-    if (!el) return;
-    const records = this.useCase.getHistory();
-    const selectedDateRecords = filterRecordsBySelectedDate(records, this.selectedActivityDate);
-    // 選択日付にやった単元数をユニークカウント（unit ごとに集計）
-    const unitKeys = new Set(selectedDateRecords.map((r) => `${r.subject}::${r.category}`));
-    let masteredCount = 0;
-    let studiedCount = 0;
-    for (const key of unitKeys) {
-      const sepIdx = key.indexOf("::");
-      const subj = key.slice(0, sepIdx);
-      const cat = key.slice(sepIdx + 2);
-      const { mastered, total } = this.useCase.getMasteredCountForCategory(subj, cat);
-      if (total > 0 && mastered === total) {
-        masteredCount++;
-      } else {
-        studiedCount++;
-      }
-    }
-    const symbols = "🏆".repeat(Math.min(masteredCount, 5)) + "⭐".repeat(Math.min(studiedCount, 5));
-    el.textContent = `学習数：${symbols}`;
+    updateActivityDateDisplay(this.useCase, this.selectedActivityDate);
   }
 
   /**
    * 総合タブのサマリパネルタブ（学習済み / シェア）を切り替える。
    */
   private showOverallPanel(tab: "learned" | "share"): void {
-    document.getElementById("overallLearnedPanel")?.classList.toggle("hidden", tab !== "learned");
-    document.getElementById("overallSharePanel")?.classList.toggle("hidden", tab !== "share");
-
-    document.querySelectorAll<HTMLElement>(".panel-tab[data-overall-panel]").forEach((t) => {
-      const isActive = t.dataset.overallPanel === tab;
-      t.classList.toggle("active", isActive);
-      t.setAttribute("aria-selected", String(isActive));
-    });
+    showOverallPanel(tab);
   }
 
   /**
@@ -1394,27 +1337,7 @@ export class QuizApp {
    * selectedActivityDate の日付と一致するクイズ記録を履歴と同じ形式で表示する。
    */
   private renderTodayActivity(records: QuizRecord[]): void {
-    const container = document.getElementById("todayActivityContent");
-    if (!container) return;
-
-    // フォールバックなし: 選択日付のレコードのみ表示する（他の日付のレコードを混在させない）
-    const todayRecords = filterRecordsBySelectedDate(records, this.selectedActivityDate);
-
-    container.innerHTML = "";
-
-    if (todayRecords.length === 0) {
-      const empty = document.createElement("p");
-      empty.className = "today-activity-empty";
-      empty.textContent = "この日はまだ問題を解いていません。";
-      container.appendChild(empty);
-      return;
-    }
-
-    // 最新順に並べて履歴形式で表示（総合タブなので教科名プレフィックスを付ける）
-    const sorted = [...todayRecords].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    sorted.forEach((record) => {
-      container.appendChild(buildHistoryItem(record, this.useCase, true));
-    });
+    renderTodayActivity(records, this.useCase, this.selectedActivityDate);
   }
 
   /**
@@ -2402,102 +2325,7 @@ export class QuizApp {
   }
 
   private updateSubjectStats(): void {
-    // 全問題を1回だけ走査して subject/category/parentCategory ごとの統計を集計する
-    const allQuestions = this.useCase.getFilteredQuestions({ subject: "all", category: "all" });
-    const masteredSet = new Set(this.useCase.getMasteredIds());
-    // questionStats をキャッシュして各問題のループ内で再利用する
-    const allQuestionStats = this.useCase.getAllQuestionStats();
-
-    const statsMap = new Map<string, { total: number; inProgress: number; mastered: number }>();
-    const addStat = (key: string, isInProgress: boolean, isMastered: boolean): void => {
-      const s = statsMap.get(key) ?? { total: 0, inProgress: 0, mastered: 0 };
-      s.total++;
-      if (isInProgress) s.inProgress++;
-      if (isMastered) s.mastered++;
-      statsMap.set(key, s);
-    };
-
-    for (const q of allQuestions) {
-      const qStat = allQuestionStats[q.id];
-      const isMastered = masteredSet.has(q.id);
-      // 1回以上回答済みで未習得の問題を「学習中」とカウント
-      const isInProgress = (qStat?.total ?? 0) > 0 && !isMastered;
-      addStat("all::all", isInProgress, isMastered);
-      addStat(`${q.subject}::all`, isInProgress, isMastered);
-      addStat(`${q.subject}::${q.category}`, isInProgress, isMastered);
-      if (q.parentCategory) {
-        addStat(`${q.subject}::parent::${q.parentCategory}`, isInProgress, isMastered);
-      }
-    }
-
-    const formatCategoryStats = (stat: { total: number; inProgress: number; mastered: number }): string => {
-      if (stat.total === 0) return "";
-      // 常に進捗数値を表示する
-      if (stat.inProgress > 0) {
-        return `${stat.mastered}(${stat.inProgress})/${stat.total}`;
-      }
-      return `${stat.mastered}/${stat.total}`;
-    };
-
-    // カテゴリアイテムの統計を更新
-    const studiedKeys = this.useCase.getStudiedCategoryKeys();
-    document.querySelectorAll(".category-item[data-subject]").forEach((item) => {
-      const el = item as HTMLElement;
-      const subject = el.dataset.subject || "";
-      const category = el.dataset.category || "all";
-
-      let key: string;
-      if (category !== "all") {
-        key = `${subject}::${category}`;
-      } else {
-        key = `${subject}::all`;
-      }
-
-      const stat = statsMap.get(key) ?? { total: 0, inProgress: 0, mastered: 0 };
-      const statsEl = el.querySelector(".category-stats");
-      if (statsEl) {
-        statsEl.textContent = formatCategoryStats(stat);
-      }
-
-      // 進捗バーと進捗数値を更新
-      const progressFill = el.querySelector(".category-progress-fill") as HTMLElement | null;
-      const progressFillInProgress = el.querySelector(".category-progress-fill-inprogress") as HTMLElement | null;
-      if (progressFill) {
-        if (stat.mastered > 0 || stat.inProgress > 0) {
-          const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.inProgress, stat.total);
-          progressFill.style.width = `${masteredPct}%`;
-          progressFill.classList.toggle("progress-fill-done", masteredPct === 100);
-          if (progressFillInProgress) {
-            progressFillInProgress.style.width = `${inProgressPct}%`;
-          }
-        } else {
-          progressFill.style.width = "0%";
-          progressFill.classList.remove("progress-fill-done");
-          if (progressFillInProgress) {
-            progressFillInProgress.style.width = "0%";
-          }
-        }
-      }
-
-      // 学習状態の絵文字を更新（⬜未学習 / 🔄学習中 / ✅学習済）
-      // ✅: 全問題が masteredIds にある（明示的に学習済みにした、またはクイズで習得）
-      // 🔄: 1回以上回答済みで未習得の問題あり、またはクイズ履歴あり
-      // ⬜: 未学習（一度も回答していない）
-      const isAllMastered = stat.total > 0 && stat.mastered === stat.total;
-      const isStudying = !isAllMastered && (stat.inProgress > 0 || studiedKeys.has(key));
-      el.classList.toggle("learned", isAllMastered);
-      el.classList.toggle("studying", isStudying);
-      const statusEl = el.querySelector(".category-status");
-      if (statusEl) {
-        if (isAllMastered) {
-          statusEl.textContent = "✅";
-        } else if (isStudying) {
-          statusEl.textContent = "🔄";
-        } else {
-          statusEl.textContent = "⬜";
-        }
-      }
-    });
+    updateSubjectStats(this.useCase);
   }
 
   /**
@@ -2512,26 +2340,7 @@ export class QuizApp {
    * 現在の categoryStatusFilter に応じて categoryList に CSS クラスを付与する
    */
   private applyCategoryStatusFilter(): void {
-    const categoryList = document.getElementById("categoryList");
-    if (categoryList) {
-      categoryList.classList.remove("filter-unlearned", "filter-studying", "filter-learned", "hide-learned");
-      if (this.categoryStatusFilter !== "all") {
-        categoryList.classList.add(`filter-${this.categoryStatusFilter}`);
-      }
-    }
-    // ボタンのアクティブ状態と aria-pressed を更新
-    const btnIds: Record<string, string> = {
-      all: "filterStatusAll",
-      unlearned: "filterStatusUnlearned",
-      studying: "filterStatusStudying",
-      learned: "filterStatusLearned",
-    };
-    for (const [state, id] of Object.entries(btnIds)) {
-      const btn = document.getElementById(id);
-      const isActive = state === this.categoryStatusFilter;
-      btn?.classList.toggle("active", isActive);
-      btn?.setAttribute("aria-pressed", isActive ? "true" : "false");
-    }
+    applyCategoryStatusFilter(this.categoryStatusFilter);
   }
 
   /**
@@ -2560,16 +2369,7 @@ export class QuizApp {
    * 指定した親カテゴリの折りたたみ状態を DOM に反映する。
    */
   private applyParentCategoryCollapsedState(parentCatId: string): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
-
-    const isCollapsed = this.collapsedParentCategories.has(parentCatId);
-    const groupDiv = categoryList.querySelector<HTMLElement>(`.category-group[data-parent-category="${parentCatId}"]`);
-    if (groupDiv) {
-      groupDiv.classList.toggle("collapsed", isCollapsed);
-      const toggleButton = groupDiv.querySelector<HTMLElement>(".category-group-toggle");
-      toggleButton?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
-    }
+    applyParentCategoryCollapsedState(parentCatId, this.collapsedParentCategories.has(parentCatId));
   }
 
   /**
@@ -2597,16 +2397,7 @@ export class QuizApp {
    * 指定したトップカテゴリの折りたたみ状態を DOM に反映する。
    */
   private applyTopCategoryCollapsedState(topCatId: string): void {
-    const categoryList = document.getElementById("categoryList");
-    if (!categoryList) return;
-
-    const isCollapsed = this.collapsedTopCategories.has(topCatId);
-    const topGroupDiv = categoryList.querySelector<HTMLElement>(`.category-top-group[data-top-category="${topCatId}"]`);
-    if (topGroupDiv) {
-      topGroupDiv.classList.toggle("collapsed", isCollapsed);
-      const toggleButton = topGroupDiv.querySelector<HTMLElement>(".category-top-group-toggle");
-      toggleButton?.setAttribute("aria-expanded", isCollapsed ? "false" : "true");
-    }
+    applyTopCategoryCollapsedState(topCatId, this.collapsedTopCategories.has(topCatId));
   }
 
   // ─── クイズ開始 ────────────────────────────────────────────────────────────
