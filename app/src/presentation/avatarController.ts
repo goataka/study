@@ -183,10 +183,8 @@ export class AvatarController {
 
     const getPctDelta = (dx: number, dy: number): { x: number; y: number } => {
       const rect = wrap.getBoundingClientRect();
-      // 拡大率が高いほど、同じピクセル移動での見た目の変化量が大きくなるためデルタを縮小する
-      const zoom = Math.max(this.pendingZoom, 1);
-      const x = (dx / rect.width) * (100 / zoom);
-      const y = (dy / rect.height) * (100 / zoom);
+      const x = (dx / rect.width) * 100;
+      const y = (dy / rect.height) * 100;
       return { x, y };
     };
 
