@@ -162,17 +162,19 @@ header h1 {
 .outer-github-link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  order: -1;
+  justify-content: flex-start;
+  grid-column: 1;
+  justify-self: start;
   color: #fff;
   text-decoration: none;
   opacity: 0.9;
   transition: opacity 0.15s;
+  padding: 4px 8px;
 }
 
 .outer-github-link svg {
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
 }
 
 .outer-github-link:hover {
@@ -469,6 +471,7 @@ header h1 {
   /* ノート紙風：白地 + 薄青の罫線（32px間隔で均等に配置） */
   background-color: white;
   background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-size: 100% 32px;
   /* padding分だけ背景をオフセットして罫線を均等に表示する */
   background-position: 0 12px;
   border: none;
@@ -2063,6 +2066,7 @@ header h1 {
   /* ノート紙風：不透明白地 + 薄青の罫線 */
   background-color: white;
   background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-size: 100% 32px;
   background-position: 0 12px;
   border: none;
   border-left: none;
@@ -2401,6 +2405,12 @@ button:disabled {
   min-width: 0;
   overflow-y: auto;
   min-height: 0;
+  /* ノート紙風：白地 + 薄青の罫線（32px間隔で均等に配置、他のパネルと統一） */
+  background-color: white;
+  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-size: 100% 32px;
+  background-position: 0 12px;
+  padding: 12px;
 }
 
 .quiz-notes-col {
@@ -2481,7 +2491,6 @@ button:disabled {
   transition:
     background-color 0.2s,
     color 0.2s;
-  margin-left: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3850,6 +3859,7 @@ button:disabled {
   background-color: #ffffff;
   background-image: repeating-linear-gradient(to bottom, transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
   background-size: 100% 32px;
+  background-position: 0 12px;
 }
 
 .notes-btn.eraser-active {
@@ -4601,7 +4611,7 @@ body.font-size-medium .category-stats {
 }
 
 body.font-size-medium .category-grade {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 body.font-size-medium .category-progress-pct {
@@ -4964,7 +4974,7 @@ body.font-size-large .category-stats {
 }
 
 body.font-size-large .category-grade {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 body.font-size-large .subject-overview-icon {
@@ -5114,6 +5124,7 @@ body.font-size-large .subject-overview-cat-header {
   padding: 0;
   background-color: white;
   background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-size: 100% 32px;
   background-position: 0 12px;
 }
 
@@ -5707,12 +5718,14 @@ body.font-size-large .admin-data-close-btn {
 
 .admin-menu-btn.admin-menu-parent {
   cursor: default;
-  border-color: #d1d5da;
-  background: #f6f8fa;
+  border-color: #0366d6;
+  background: #0366d6;
+  color: #ffffff;
 }
 
 .admin-menu-btn.admin-menu-parent:hover {
-  background: #f6f8fa;
+  background: #0366d6;
+  color: #ffffff;
 }
 
 .admin-menu-btn.admin-menu-child {
