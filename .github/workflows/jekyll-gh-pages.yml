@@ -8,13 +8,14 @@ on:
   workflow_dispatch:
 
 env:
-  APP_CI_IMAGE: ghcr.io/${{ github.repository_owner }}/study-app-ci:latest
+  NODE_VERSION: "22"
+  # Playwright の Docker イメージタグ。CI ワークフローと揃えること。
+  PLAYWRIGHT_VERSION: "v1.59.1"
 
 permissions:
   contents: read
   pages: write
   id-token: write
-  packages: read
 
 concurrency:
   group: "pages"
@@ -24,20 +25,14 @@ jobs:
   build:
     name: ビルド（Jekyll + Vite）
     runs-on: ubuntu-latest
-    container:
-      image: ${{ env.APP_CI_IMAGE }}
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
-      - name: app 依存関係のインストール
+      - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
-
-      - name: Git safe directory の設定（コンテナ内UID不一致対応）
-        run: git config --global --add safe.directory "${{ github.workspace }}"
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Viteビルド
         run: npm run build
@@ -55,7 +50,7 @@ jobs:
       - name: アプリビルドをサイトにコピー
         working-directory: ${{ github.workspace }}
         run: |
-          cp -r app/dist/. _site/
+          sudo cp -r app/dist/. _site/
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v5
@@ -79,27 +74,24 @@ jobs:
   e2e-production:
     name: 本番環境E2Eテスト
     runs-on: ubuntu-latest
-    container:
-      image: ${{ env.APP_CI_IMAGE }}
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
     needs: deploy
     defaults:
       run:
         working-directory: app
     permissions:
       contents: read
-      packages: read
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
-      - name: app 依存関係のインストール
+      - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
-      - name: Git safe directory の設定（コンテナ内UID不一致対応）
-        run: git config --global --add safe.directory "${{ github.workspace }}"
+      - name: Playwright ブラウザのインストール
+        # PLAYWRIGHT_VERSION は env で一元管理（ファイル先頭参照）
+        run: npx playwright install --with-deps chromium
 
       - name: 本番サイトの準備完了を確認
         env:
