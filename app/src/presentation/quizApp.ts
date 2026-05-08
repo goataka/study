@@ -3127,8 +3127,7 @@ export class QuizApp {
     const hasOverallUnit = this.selectedUnitContext !== null;
     const selLevel = this.getSelectionLevel();
     // 学年グループが選択されている場合は右パネルを表示する（学年詳細を表示するため）
-    const isGradeGroupSelected =
-      this.categoryViewMode === "grade" && this.selectedGradeGroup !== null && !isAll;
+    const isGradeGroupSelected = this.categoryViewMode === "grade" && this.selectedGradeGroup !== null && !isAll;
     const noCategory = !isAll && selLevel === "none" && !isGradeGroupSelected;
     const isCategoryLevel = !isAll && (selLevel === "topCategory" || selLevel === "parentCategory");
 
