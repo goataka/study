@@ -222,3 +222,103 @@ export function setupHistoryNavigationListeners(callbacks: HistoryNavigationCall
 
   document.getElementById("mobileBackBtn")?.addEventListener("click", callbacks.onMobileBack);
 }
+
+/** クイズ進行ボタン（開始・前後・採点・キャンセルなど）のイベント。 */
+export interface QuizFlowCallbacks {
+  onStartRandom: () => void;
+  onMarkLearnedToggle: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+  onSubmit: () => void;
+  onRetryAll: () => void;
+  onBackToStart: () => void;
+  onCancelQuiz: () => void;
+  onReload: () => void;
+}
+
+export function setupQuizFlowListeners(callbacks: QuizFlowCallbacks): void {
+  document.getElementById("startRandomBtn")?.addEventListener("click", callbacks.onStartRandom);
+  document.getElementById("markLearnedBtn")?.addEventListener("click", callbacks.onMarkLearnedToggle);
+  document.getElementById("prevBtn")?.addEventListener("click", callbacks.onPrev);
+  document.getElementById("nextBtn")?.addEventListener("click", callbacks.onNext);
+  document.getElementById("submitBtn")?.addEventListener("click", callbacks.onSubmit);
+  document.getElementById("retryAllBtn")?.addEventListener("click", callbacks.onRetryAll);
+  document.getElementById("backToStartBtn")?.addEventListener("click", callbacks.onBackToStart);
+  document.getElementById("cancelQuizBtn")?.addEventListener("click", callbacks.onCancelQuiz);
+  document.getElementById("reloadBtn")?.addEventListener("click", callbacks.onReload);
+}
+
+/** 問題一覧の学習状態フィルターボタンのイベント。 */
+export function setupQuestionListFilterListeners(onSelect: (value: "all" | "unlearned" | "learned") => void): void {
+  const filterBtns = [
+    { id: "questionListFilterAll", value: "all" as const },
+    { id: "questionListFilterUnlearned", value: "unlearned" as const },
+    { id: "questionListFilterLearned", value: "learned" as const },
+  ];
+  filterBtns.forEach(({ id, value }) => {
+    document.getElementById(id)?.addEventListener("click", () => {
+      filterBtns.forEach(({ id: btnId }) => {
+        document.getElementById(btnId)?.classList.remove("active");
+      });
+      document.getElementById(id)?.classList.add("active");
+      onSelect(value);
+    });
+  });
+}
+
+/** 進度タブ: 学習済み単元の表示/非表示切替ボタンのイベント。 */
+export function setupProgressFilterListeners(onToggleHideLearned: (hide: boolean) => void): void {
+  document.getElementById("progressHideLearnedBtn")?.addEventListener("click", () => onToggleHideLearned(true));
+  document.getElementById("progressShowAllBtn")?.addEventListener("click", () => onToggleHideLearned(false));
+}
+
+/** メモエリアのコントロール（クリア・消しゴム）のイベント。 */
+export interface NotesCallbacks {
+  onClear: () => void;
+  onToggleEraser: () => void;
+}
+
+export function setupNotesListeners(callbacks: NotesCallbacks): void {
+  document.getElementById("clearNotesBtn")?.addEventListener("click", callbacks.onClear);
+  document.getElementById("eraserBtn")?.addEventListener("click", callbacks.onToggleEraser);
+}
+
+/** メモエリアのペンサイズ・ペン色セレクトのイベント。 */
+export interface NotesPenSelectCallbacks {
+  onPenSizeChange: (size: number) => void;
+  onPenColorChange: (color: string) => void;
+}
+
+export function setupNotesPenSelectListeners(callbacks: NotesPenSelectCallbacks): void {
+  const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
+  penSizeSelect?.addEventListener("change", (e) => {
+    callbacks.onPenSizeChange(parseInt((e.target as HTMLSelectElement).value));
+  });
+
+  const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
+  penColorSelect?.addEventListener("change", (e) => {
+    callbacks.onPenColorChange((e.target as HTMLSelectElement).value);
+  });
+}
+
+/** 漢字認識キャンバス（KanjiCanvas）のイベント。 */
+export interface KanjiCanvasCallbacks {
+  onDeleteLast: () => void;
+  onErase: () => void;
+  onApplyToggleBtnState: (btn: HTMLElement, expanded: boolean) => void;
+}
+
+export function setupKanjiCanvasListeners(callbacks: KanjiCanvasCallbacks): void {
+  document.getElementById("kanjiDeleteLastBtn")?.addEventListener("click", callbacks.onDeleteLast);
+  document.getElementById("kanjiEraseBtn")?.addEventListener("click", callbacks.onErase);
+
+  // KanjiCanvas 折りたたみトグルボタン
+  document.getElementById("kanjiToggleBtn")?.addEventListener("click", () => {
+    const body = document.getElementById("kanjiInputBody");
+    const btn = document.getElementById("kanjiToggleBtn");
+    if (!body || !btn) return;
+    const isExpanded = btn.getAttribute("aria-expanded") === "true";
+    body.classList.toggle("hidden", isExpanded);
+    callbacks.onApplyToggleBtnState(btn, !isExpanded);
+  });
+}

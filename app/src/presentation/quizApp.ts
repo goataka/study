@@ -32,7 +32,7 @@ import {
   buildRecommendedUnitCard,
 } from "./allSubjectListView";
 import { buildCategoryItem } from "./categoryItemView";
-import { SUBJECTS, currentDateString, sanitizeShareUrl, setText, on } from "./uiHelpers";
+import { SUBJECTS, currentDateString, sanitizeShareUrl } from "./uiHelpers";
 import { showConfirmDialog } from "./quizApp/confirmDialog";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
 import { buildResultItem } from "./quizApp/resultItemView";
@@ -92,6 +92,12 @@ import {
   setupFontSizeListeners as setupFontSizeListenersFn,
   setupShareSummaryListeners as setupShareSummaryListenersFn,
   setupHistoryNavigationListeners as setupHistoryNavigationListenersFn,
+  setupQuizFlowListeners as setupQuizFlowListenersFn,
+  setupQuestionListFilterListeners as setupQuestionListFilterListenersFn,
+  setupProgressFilterListeners as setupProgressFilterListenersFn,
+  setupNotesListeners as setupNotesListenersFn,
+  setupNotesPenSelectListeners as setupNotesPenSelectListenersFn,
+  setupKanjiCanvasListeners as setupKanjiCanvasListenersFn,
 } from "./quizApp/eventListeners";
 import { updateQuizPanelVisibility as updateQuizPanelVisibilityFn } from "./quizApp/quizPanelVisibility";
 import {
@@ -1637,51 +1643,37 @@ export class QuizApp {
 
   /** クイズ進行ボタン（開始・前後・採点・キャンセルなど）のリスナー登録 */
   private setupQuizFlowListeners(): void {
-    on("startRandomBtn", "click", () => {
-      this.startQuiz("random").catch(console.error);
+    setupQuizFlowListenersFn({
+      onStartRandom: () => {
+        this.startQuiz("random").catch(console.error);
+      },
+      onMarkLearnedToggle: () => this.toggleLearnedStatus(),
+      onPrev: () => this.navigate(-1),
+      onNext: () => this.navigate(1),
+      onSubmit: () => this.submitQuiz(),
+      onRetryAll: () => {
+        this.startQuiz("random").catch(console.error);
+      },
+      onBackToStart: () => this.showScreen("start"),
+      onCancelQuiz: () => {
+        void this.navigateToStart();
+      },
+      onReload: () => location.reload(),
     });
-    on("markLearnedBtn", "click", () => this.toggleLearnedStatus());
-    on("prevBtn", "click", () => this.navigate(-1));
-    on("nextBtn", "click", () => this.navigate(1));
-    on("submitBtn", "click", () => this.submitQuiz());
-    on("retryAllBtn", "click", () => {
-      this.startQuiz("random").catch(console.error);
-    });
-    on("backToStartBtn", "click", () => this.showScreen("start"));
-    on("cancelQuizBtn", "click", () => {
-      void this.navigateToStart();
-    });
-    on("reloadBtn", "click", () => location.reload());
   }
 
   /** 問題一覧の学習状態フィルターボタンのリスナー登録 */
   private setupQuestionListFilterListeners(): void {
-    const filterBtns = [
-      { id: "questionListFilterAll", value: "all" as const },
-      { id: "questionListFilterUnlearned", value: "unlearned" as const },
-      { id: "questionListFilterLearned", value: "learned" as const },
-    ];
-    filterBtns.forEach(({ id, value }) => {
-      document.getElementById(id)?.addEventListener("click", () => {
-        this.questionListFilter = value;
-        filterBtns.forEach(({ id: btnId }) => {
-          document.getElementById(btnId)?.classList.remove("active");
-        });
-        document.getElementById(id)?.classList.add("active");
-        this.renderQuestionList();
-        this.syncURLFragment();
-      });
+    setupQuestionListFilterListenersFn((value) => {
+      this.questionListFilter = value;
+      this.renderQuestionList();
+      this.syncURLFragment();
     });
   }
 
   private setupProgressFilterListeners(): void {
-    document.getElementById("progressHideLearnedBtn")?.addEventListener("click", () => {
-      this.hideLearnedProgressUnits = true;
-      this.renderProgressDetailPanel();
-      this.syncURLFragment();
-    });
-    document.getElementById("progressShowAllBtn")?.addEventListener("click", () => {
-      this.hideLearnedProgressUnits = false;
+    setupProgressFilterListenersFn((hide) => {
+      this.hideLearnedProgressUnits = hide;
       this.renderProgressDetailPanel();
       this.syncURLFragment();
     });
@@ -1723,23 +1715,18 @@ export class QuizApp {
 
   /** メモエリアのコントロール（クリア・消しゴム）のリスナー登録 */
   private setupNotesListeners(): void {
-    on("clearNotesBtn", "click", () => this.notesController.clear(this.currentSession?.currentIndex));
-    on("eraserBtn", "click", () => this.notesController.toggleEraserMode());
+    setupNotesListenersFn({
+      onClear: () => this.notesController.clear(this.currentSession?.currentIndex),
+      onToggleEraser: () => this.notesController.toggleEraserMode(),
+    });
   }
 
   /** 漢字認識キャンバス（KanjiCanvas）のリスナー登録 */
   private setupKanjiCanvasListeners(): void {
-    on("kanjiDeleteLastBtn", "click", () => this.kanjiCanvasController.deleteLast());
-    on("kanjiEraseBtn", "click", () => this.kanjiCanvasController.erase());
-
-    // KanjiCanvas折りたたみトグルボタン
-    document.getElementById("kanjiToggleBtn")?.addEventListener("click", () => {
-      const body = document.getElementById("kanjiInputBody");
-      const btn = document.getElementById("kanjiToggleBtn");
-      if (!body || !btn) return;
-      const isExpanded = btn.getAttribute("aria-expanded") === "true";
-      body.classList.toggle("hidden", isExpanded);
-      this.kanjiCanvasController.applyToggleBtnState(btn, !isExpanded);
+    setupKanjiCanvasListenersFn({
+      onDeleteLast: () => this.kanjiCanvasController.deleteLast(),
+      onErase: () => this.kanjiCanvasController.erase(),
+      onApplyToggleBtnState: (btn, expanded) => this.kanjiCanvasController.applyToggleBtnState(btn, expanded),
     });
   }
 
@@ -1750,16 +1737,9 @@ export class QuizApp {
 
   /** メモエリアのペンサイズ・ペン色セレクトのリスナー登録 */
   private setupNotesPenSelectListeners(): void {
-    const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
-    penSizeSelect?.addEventListener("change", (e) => {
-      const size = parseInt((e.target as HTMLSelectElement).value);
-      this.notesCanvas?.setPenSize(size);
-    });
-
-    const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
-    penColorSelect?.addEventListener("change", (e) => {
-      const color = (e.target as HTMLSelectElement).value;
-      this.notesCanvas?.setPenColor(color);
+    setupNotesPenSelectListenersFn({
+      onPenSizeChange: (size) => this.notesCanvas?.setPenSize(size),
+      onPenColorChange: (color) => this.notesCanvas?.setPenColor(color),
     });
   }
 
