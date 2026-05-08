@@ -23,7 +23,17 @@ describe("AvatarController", () => {
     dialog.close = vi.fn();
     const wrap = document.getElementById("avatarCropPreviewWrap") as HTMLDivElement;
     wrap.getBoundingClientRect = () =>
-      ({ width: 120, height: 120, top: 0, left: 0, right: 120, bottom: 120, x: 0, y: 0, toJSON: () => ({}) }) as DOMRect;
+      ({
+        width: 120,
+        height: 120,
+        top: 0,
+        left: 0,
+        right: 120,
+        bottom: 120,
+        x: 0,
+        y: 0,
+        toJSON: () => ({}),
+      }) as DOMRect;
   });
 
   it("マウスドラッグでもプレビュー画像の表示位置を移動できる", () => {

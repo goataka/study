@@ -223,7 +223,9 @@ export function renderProgressDetailByCategory(container: HTMLElement, ctx: Prog
       subject,
       visibleCategories.map(([id]) => id),
     );
-    container.appendChild(buildProgressBlockGroup(ctx, name, masteredCount, visibleCategories.length, visibleCategories));
+    container.appendChild(
+      buildProgressBlockGroup(ctx, name, masteredCount, visibleCategories.length, visibleCategories),
+    );
   }
 
   // 親カテゴリのないスタンドアロン単元をまとめて表示する

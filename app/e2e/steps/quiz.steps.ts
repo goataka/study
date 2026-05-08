@@ -390,7 +390,8 @@ When("I click the first grade group guide button", async ({ page }) => {
 });
 
 Then("the generated guide page should be visible", async ({ page }) => {
-  await expect(page.locator(".generated-guide-page")).toBeVisible();
+  await expect(page.locator("#guidePanelFrame")).toHaveAttribute("data-loaded-url", /inline:/);
+  await expect(page.locator("#guidePanelFrame")).toContainText("の解説");
 });
 
 Then("the overall summary panel should be visible", async ({ page }) => {
