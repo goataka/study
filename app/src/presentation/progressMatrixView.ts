@@ -7,6 +7,7 @@
 
 import type { QuizUseCase } from "../application/quizUseCase";
 import type { ProgressStatusFilter } from "./quizApp/urlStateService";
+import { getLearningProgressStatus } from "./uiHelpers";
 
 export interface ProgressMatrixContext {
   /** 描画対象の教科 ID */
@@ -105,21 +106,10 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
 
   // isUnitVisible: 現在の学習状況フィルターに一致する単元のみ表示する
   const isUnitVisible = (catId: string): boolean => {
+    if (ctx.statusFilter === "all") return true;
     const { mastered, total } = useCase.getMasteredCountForCategory(subject, catId);
     const inProgress = useCase.getInProgressCount({ subject, category: catId });
-    const isLearned = total > 0 && mastered === total;
-    const isStudying = !isLearned && (inProgress > 0 || mastered > 0);
-    const isUnlearned = !isLearned && !isStudying;
-    switch (ctx.statusFilter) {
-      case "unlearned":
-        return isUnlearned;
-      case "studying":
-        return isStudying;
-      case "learned":
-        return isLearned;
-      default:
-        return true;
-    }
+    return getLearningProgressStatus({ mastered, total, inProgress }) === ctx.statusFilter;
   };
 
   // フィルター適用時に表示すべき行・列を絞り込む

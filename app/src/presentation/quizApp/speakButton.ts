@@ -7,6 +7,8 @@
 
 import type { Question } from "../../domain/question";
 
+const TRAILING_HINT_PATTERN = /\s*\([^)]*\)\s*$/;
+
 function extractSpeechText(questionText: string): string {
   const trimmed = questionText.trim();
   const quotedText = trimmed.match(/「([^」]+)」/);
@@ -15,7 +17,7 @@ function extractSpeechText(questionText: string): string {
   const backtickText = trimmed.match(/`([^`]+)`/);
   if (backtickText?.[1]) return backtickText[1];
 
-  return trimmed.replace(/\s*\([^)]*\)\s*$/, "").trim();
+  return trimmed.replace(TRAILING_HINT_PATTERN, "").trim();
 }
 
 /**

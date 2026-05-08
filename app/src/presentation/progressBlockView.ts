@@ -7,6 +7,7 @@
 
 import type { QuizUseCase } from "../application/quizUseCase";
 import type { ProgressStatusFilter } from "./quizApp/urlStateService";
+import { getLearningProgressStatus } from "./uiHelpers";
 
 export interface ProgressBlockContext {
   /** 描画対象の教科 ID */
@@ -37,19 +38,7 @@ function buildCategoryProgressMap(useCase: QuizUseCase, subject: string): Map<st
 
 function isVisibleCategory(ctx: ProgressBlockContext, progress: CategoryProgress | undefined): boolean {
   if (!progress) return false;
-  const isLearned = progress.total > 0 && progress.mastered === progress.total;
-  const isStudying = !isLearned && (progress.inProgress > 0 || progress.mastered > 0);
-  const isUnlearned = !isLearned && !isStudying;
-  switch (ctx.statusFilter) {
-    case "unlearned":
-      return isUnlearned;
-    case "studying":
-      return isStudying;
-    case "learned":
-      return isLearned;
-    default:
-      return true;
-  }
+  return ctx.statusFilter === "all" || getLearningProgressStatus(progress) === ctx.statusFilter;
 }
 
 /**
