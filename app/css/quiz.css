@@ -163,10 +163,16 @@ header h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  order: -1;
   color: #fff;
   text-decoration: none;
   opacity: 0.9;
   transition: opacity 0.15s;
+}
+
+.outer-github-link svg {
+  width: 24px;
+  height: 24px;
 }
 
 .outer-github-link:hover {
@@ -204,15 +210,6 @@ header h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.outer-github-link {
-  order: -1;
-}
-
-.outer-github-link svg {
-  width: 24px;
-  height: 24px;
 }
 
 .screen {

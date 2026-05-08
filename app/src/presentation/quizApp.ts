@@ -32,8 +32,11 @@ import {
   loadScript,
 } from "./uiHelpers";
 
+const PANEL_TABS = ["quiz", "guide", "history", "questions"] as const;
+type PanelTab = (typeof PANEL_TABS)[number];
+
 export class QuizApp {
-  private static readonly PANEL_TABS = ["quiz", "guide", "history", "questions"] as const;
+  private static readonly PANEL_TABS = PANEL_TABS;
   private useCase!: QuizUseCase;
   private progressRepo: IProgressRepository;
   private currentSession: QuizSession | null = null;
@@ -63,7 +66,7 @@ export class QuizApp {
   }
   /** 漢字認識キャンバスのコントローラー（コンストラクタで初期化）。 */
   private kanjiCanvasController!: KanjiCanvasController;
-  private activePanelTab: "quiz" | "guide" | "history" | "questions" = "quiz";
+  private activePanelTab: PanelTab = "quiz";
   /** ユーザーがパネルタブを明示的に選択した場合は true。自動選択の場合は false。 */
   private isPanelTabUserSelected: boolean = false;
   /** カテゴリ一覧の学習状態フィルター */
@@ -232,8 +235,8 @@ export class QuizApp {
       // subjectが指定されているがcategoryがない場合は"all"
       this.filter.category = "all";
     }
-    if (panel && QuizApp.PANEL_TABS.includes(panel as (typeof QuizApp.PANEL_TABS)[number])) {
-      this.activePanelTab = panel as (typeof QuizApp.PANEL_TABS)[number];
+    if (panel && QuizApp.PANEL_TABS.includes(panel as PanelTab)) {
+      this.activePanelTab = panel as PanelTab;
       this.isPanelTabUserSelected = true;
     }
   }
@@ -489,7 +492,7 @@ export class QuizApp {
   private buildPanelTabs(): void {
     document.querySelectorAll<HTMLElement>(".panel-tab[data-panel]").forEach((tab) => {
       tab.addEventListener("click", () => {
-        const panel = tab.dataset.panel as "quiz" | "guide" | "history" | "questions";
+        const panel = tab.dataset.panel as PanelTab;
         this.activePanelTab = panel;
         this.isPanelTabUserSelected = true; // ユーザーが明示的にタブを選択した
         this.showPanelTab(panel);
@@ -2898,7 +2901,7 @@ export class QuizApp {
   /**
    * インナーパネルタブのコンテンツ表示を切り替える
    */
-  private showPanelTab(tab: "quiz" | "guide" | "history" | "questions"): void {
+  private showPanelTab(tab: PanelTab): void {
     const quizModePanel = document.getElementById("quizModePanel");
     const guideContent = document.getElementById("guideContent");
     const historyContent = document.getElementById("historyContent");
