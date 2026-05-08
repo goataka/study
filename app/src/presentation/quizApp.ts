@@ -197,6 +197,7 @@ export class QuizApp {
         const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
         if (textInput) {
           textInput.value += char;
+          // 候補ボタンをタップしたあとにモバイルキーボードが再表示されないよう入力欄のフォーカスを外す。
           textInput.blur();
         }
       },
@@ -1731,6 +1732,7 @@ export class QuizApp {
    */
   private selectFirstUnlearnedCategory(): void {
     const params = this.getURLParams();
+    // 教科が明示指定されている場合は、その教科内で最初の単元へ自動移動しない。
     const result = findFirstUnlearnedCategory(
       params.has("subject") || params.has("category") || params.has("unitCategory"),
     );

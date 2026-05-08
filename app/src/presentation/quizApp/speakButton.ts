@@ -7,15 +7,15 @@
 
 import type { Question } from "../../domain/question";
 
+const QUOTED_SPEECH_PATTERNS = [/「([^」]+)」/, /`([^`]+)`/] as const;
 const TRAILING_HINT_PATTERN = /\s*\([^)]*\)\s*$/;
 
 function extractSpeechText(questionText: string): string {
   const trimmed = questionText.trim();
-  const quotedText = trimmed.match(/「([^」]+)」/);
-  if (quotedText?.[1]) return quotedText[1];
-
-  const backtickText = trimmed.match(/`([^`]+)`/);
-  if (backtickText?.[1]) return backtickText[1];
+  for (const pattern of QUOTED_SPEECH_PATTERNS) {
+    const match = trimmed.match(pattern);
+    if (match?.[1]) return match[1];
+  }
 
   return trimmed.replace(TRAILING_HINT_PATTERN, "").trim();
 }

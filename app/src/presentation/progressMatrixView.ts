@@ -9,6 +9,8 @@ import type { QuizUseCase } from "../application/quizUseCase";
 import type { ProgressStatusFilter } from "./quizApp/urlStateService";
 import { getLearningProgressStatus } from "./uiHelpers";
 
+const EMPTY_PROGRESS = { mastered: 0, total: 0, inProgress: 0 } as const;
+
 export interface ProgressMatrixContext {
   /** 描画対象の教科 ID */
   subject: string;
@@ -113,11 +115,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   // isUnitVisible: 現在の学習状況フィルターに一致する単元のみ表示する
   const isUnitVisible = (catId: string): boolean => {
     if (ctx.statusFilter === "all") return true;
-    const { mastered, total, inProgress } = categoryProgressMap.get(catId) ?? {
-      mastered: 0,
-      total: 0,
-      inProgress: 0,
-    };
+    const { mastered, total, inProgress } = categoryProgressMap.get(catId) ?? EMPTY_PROGRESS;
     return getLearningProgressStatus({ mastered, total, inProgress }) === ctx.statusFilter;
   };
 
@@ -231,11 +229,7 @@ export function renderProgressDetailMatrix(container: HTMLElement, ctx: Progress
   const tbody = document.createElement("tbody");
   const appendUnitBlock = (inner: HTMLElement, catId: string, catName: string): void => {
     if (!isUnitVisible(catId)) return;
-    const { mastered, total, inProgress } = categoryProgressMap.get(catId) ?? {
-      mastered: 0,
-      total: 0,
-      inProgress: 0,
-    };
+    const { mastered, total, inProgress } = categoryProgressMap.get(catId) ?? EMPTY_PROGRESS;
     const block = document.createElement("button");
     block.type = "button";
     block.className = "progress-block progress-block-sm";

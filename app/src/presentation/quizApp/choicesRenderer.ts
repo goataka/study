@@ -128,6 +128,7 @@ export function renderTextInput(question: Question, session: QuizSession, callba
   }
 }
 function shouldAutoFocusTextInput(): boolean {
+  // PC またはタッチ非対応デバイスでのみ自動フォーカスし、スマホではキーボードの不要な表示を避ける。
   const hasFinePointer = window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? false;
   const hasTouchPoints = navigator.maxTouchPoints > 0;
   return hasFinePointer || !hasTouchPoints;
