@@ -6,18 +6,12 @@
  * QuizApp からは状態 `Set` を引数で受け取り、`this` には依存しない。
  */
 
-import {
-  applyParentCategoryCollapsedState,
-  applyTopCategoryCollapsedState,
-} from "./categoryCollapseState";
+import { applyParentCategoryCollapsedState, applyTopCategoryCollapsedState } from "./categoryCollapseState";
 
 /**
  * 親カテゴリの折りたたみ状態をトグルし、DOM へ反映する。
  */
-export function toggleParentCategory(
-  collapsedParentCategories: Set<string>,
-  parentCatId: string,
-): void {
+export function toggleParentCategory(collapsedParentCategories: Set<string>, parentCatId: string): void {
   if (collapsedParentCategories.has(parentCatId)) {
     collapsedParentCategories.delete(parentCatId);
   } else {
@@ -29,10 +23,7 @@ export function toggleParentCategory(
 /**
  * 親カテゴリを強制的に展開する。既に展開されている場合は何もしない。
  */
-export function expandParentCategory(
-  collapsedParentCategories: Set<string>,
-  parentCatId: string,
-): void {
+export function expandParentCategory(collapsedParentCategories: Set<string>, parentCatId: string): void {
   if (!collapsedParentCategories.has(parentCatId)) return;
   collapsedParentCategories.delete(parentCatId);
   applyParentCategoryCollapsedState(parentCatId, false);

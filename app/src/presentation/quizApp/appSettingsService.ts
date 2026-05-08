@@ -70,9 +70,7 @@ export function loadQuizSettings(repo: IProgressRepository): QuizSettingsState {
     `input[name="questionCount"][value="${settings.questionCount}"]`,
   );
   if (countInput) countInput.checked = true;
-  const orderInput = document.querySelector<HTMLInputElement>(
-    `input[name="quizOrder"][value="${settings.quizOrder}"]`,
-  );
+  const orderInput = document.querySelector<HTMLInputElement>(`input[name="quizOrder"][value="${settings.quizOrder}"]`);
   if (orderInput) orderInput.checked = true;
   const learnedInput = document.querySelector<HTMLInputElement>(
     `input[name="quizLearned"][value="${settings.includeMastered ? "include" : "exclude"}"]`,

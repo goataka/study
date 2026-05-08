@@ -118,10 +118,7 @@ export function handleGradeHeaderClick(
  * 選択を完全に解除して UI を更新する共通処理。
  * 閉じるボタンや単元アイテムのトグル（既選択クリック）から呼び出す。
  */
-export function deselectAndRefresh(
-  state: SelectionStateAccess,
-  effects: SelectionLifecycleEffects,
-): void {
+export function deselectAndRefresh(state: SelectionStateAccess, effects: SelectionLifecycleEffects): void {
   state.filter.category = "all";
   state.filter.parentCategory = undefined;
   state.setSelectedTopCategoryId(null);
@@ -139,7 +136,10 @@ export function deselectAndRefresh(
  */
 export function selectUnitContext(
   state: SelectionStateAccess,
-  effects: Pick<SelectionLifecycleEffects, "getHistory" | "autoSelectPanelTab" | "updateStartScreen" | "syncURLFragment">,
+  effects: Pick<
+    SelectionLifecycleEffects,
+    "getHistory" | "autoSelectPanelTab" | "updateStartScreen" | "syncURLFragment"
+  >,
   unit: SelectedUnitContext,
 ): void {
   state.setSelectedUnitContext(unit);
