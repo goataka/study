@@ -126,11 +126,14 @@ export function renderProgressDetailByGrade(container: HTMLElement, ctx: Progres
   const grades = useCase.getUniqueGradesForSubject(subject);
   const categoryProgressMap = buildCategoryProgressMap(useCase, subject);
 
+  let hasVisibleContent = false;
+
   for (const grade of grades) {
     const cats = useCase.getCategoriesForGrade(subject, grade);
     const catEntries = Object.entries(cats).filter(([catId]) => isVisibleCategory(ctx, categoryProgressMap.get(catId)));
     if (catEntries.length === 0) continue;
 
+    hasVisibleContent = true;
     const masteredCount = countMastered(
       categoryProgressMap,
       catEntries.map(([id]) => id),
@@ -146,6 +149,7 @@ export function renderProgressDetailByGrade(container: HTMLElement, ctx: Progres
     isVisibleCategory(ctx, categoryProgressMap.get(catId)),
   );
   if (uncatEntries.length > 0) {
+    hasVisibleContent = true;
     const masteredCount = countMastered(
       categoryProgressMap,
       uncatEntries.map(([id]) => id),
@@ -153,6 +157,14 @@ export function renderProgressDetailByGrade(container: HTMLElement, ctx: Progres
     container.appendChild(
       buildProgressBlockGroup(ctx, categoryProgressMap, "学年未設定", masteredCount, uncatEntries.length, uncatEntries),
     );
+  }
+
+  if (!hasVisibleContent) {
+    const empty = document.createElement("div");
+    empty.className = "progress-block-group";
+    empty.setAttribute("role", "status");
+    empty.textContent = "表示する単元がありません";
+    container.appendChild(empty);
   }
 }
 
@@ -209,11 +221,8 @@ export function renderProgressDetailByCategory(container: HTMLElement, ctx: Prog
 
   // トップカテゴリグループを描画する
   for (const [, { name: topName, parentMap }] of topMap) {
-    const topHeader = document.createElement("div");
-    topHeader.className = "progress-top-category-header";
-    topHeader.textContent = topName;
-    container.appendChild(topHeader);
-
+    // フィルター後に表示すべき親カテゴリグループを先に収集する
+    const visibleGroups: HTMLElement[] = [];
     for (const [, { name: parentName, categories }] of parentMap) {
       const visibleCategories = categories.filter(([catId]) => isVisibleCategory(ctx, categoryProgressMap.get(catId)));
       if (visibleCategories.length === 0) continue;
@@ -221,7 +230,7 @@ export function renderProgressDetailByCategory(container: HTMLElement, ctx: Prog
         categoryProgressMap,
         visibleCategories.map(([id]) => id),
       );
-      container.appendChild(
+      visibleGroups.push(
         buildProgressBlockGroup(
           ctx,
           categoryProgressMap,
@@ -231,6 +240,16 @@ export function renderProgressDetailByCategory(container: HTMLElement, ctx: Prog
           visibleCategories,
         ),
       );
+    }
+    // 表示すべきグループがある場合のみトップカテゴリヘッダーを追加する
+    if (visibleGroups.length > 0) {
+      const topHeader = document.createElement("div");
+      topHeader.className = "progress-top-category-header";
+      topHeader.textContent = topName;
+      container.appendChild(topHeader);
+      for (const group of visibleGroups) {
+        container.appendChild(group);
+      }
     }
   }
 
@@ -274,5 +293,14 @@ export function renderProgressDetailByCategory(container: HTMLElement, ctx: Prog
         visibleStandaloneCats,
       ),
     );
+  }
+
+  // フィルター適用後に何も表示されない場合はメッセージを表示する
+  if (container.children.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "progress-block-group";
+    empty.setAttribute("role", "status");
+    empty.textContent = "表示する単元がありません";
+    container.appendChild(empty);
   }
 }

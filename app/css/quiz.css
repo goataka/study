@@ -3213,10 +3213,11 @@ button:disabled {
     border-top-color: rgba(255, 255, 255, 0.2);
   }
 
-  /* フィルターボタンをコンパクトに */
+  /* フィルターボタン: タップしやすいように最小高さを確保 */
   .category-status-filter-btn {
     font-size: 11px;
-    padding: 2px 5px;
+    padding: 5px 8px;
+    min-height: 32px;
   }
 
   /* 単元一覧の学習状況フィルターを折り返し可能にする */
@@ -6128,6 +6129,11 @@ body.font-size-large .admin-data-close-btn {
   padding: 0 12px 8px;
 }
 
+/* 進度詳細パネルのモバイル用閉じるボタン行（デスクトップでは非表示） */
+.progress-detail-close-row {
+  display: none;
+}
+
 .progress-detail-filter-btn {
   border: 1px solid #d1d5da;
   border-radius: 999px;
@@ -6223,7 +6229,7 @@ body.font-size-large .admin-data-close-btn {
     flex: 1;
   }
   .tabs-links-area {
-    order: 2;
+    display: none;
   }
   .header-date-area {
     flex-wrap: wrap;
@@ -6298,9 +6304,10 @@ body.font-size-large .admin-data-close-btn {
   .quiz-landscape-layout {
     flex-direction: column;
   }
-  /* 手書き入力パネルをモバイルでも表示 */
+  /* 手書き入力パネルをモバイルでも表示・グリッドカラムをリセットして縦積みに */
   .quiz-notes-col {
     display: flex;
+    grid-column: 1; /* 暗黙の第3列ではなく第1列に配置して縦積みにする */
   }
   /* 問題番号・単元名・中止ボタン行: スマホでは単元名を次の行に */
   .question-info {
@@ -6440,6 +6447,8 @@ body.font-size-large .admin-data-close-btn {
     border-radius: 0;
     box-shadow: none;
     height: auto;
+    background: white;
+    border: 1px solid #e1e4e8;
   }
   /* 管理パネル: メニューバーのみ表示（コンテンツはオーバーレイとして分離） */
   .admin-panel {
@@ -6461,7 +6470,8 @@ body.font-size-large .admin-data-close-btn {
     z-index: 101;
     overflow-y: auto;
     border-radius: 0;
-    border: none;
+    border: 1px solid #e1e4e8;
+    background: white;
   }
   /* 管理コンテンツオーバーレイのバックドロップ */
   #startScreen:has(.admin-menu-content.admin-manage-open)::before {
@@ -6482,6 +6492,21 @@ body.font-size-large .admin-data-close-btn {
     background: #f6f8fa;
     border-bottom: 1px solid #e1e4e8;
     flex-shrink: 0;
+  }
+  /* 進度詳細パネルの閉じるボタン行（モバイルのみ表示） */
+  .progress-detail-close-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+    flex-shrink: 0;
+  }
+  .progress-detail-close-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0366d6;
   }
   /* 履歴アイテム: タイトルは折り返さず、正答率は次の行に */
   .history-item-header {
@@ -6523,10 +6548,13 @@ body.font-size-large .admin-data-close-btn {
     flex-direction: row;
     flex-wrap: wrap;
     min-height: auto;
+    width: 100%; /* 幅を画面全体に広げて候補ボタンが見えるようにする */
+    align-items: flex-start;
   }
   .kanji-candidate-list {
     flex-direction: row;
     flex-wrap: wrap;
+    width: 100%;
   }
   /* テキスト入力が選択肢に被らないよう、text-answer-wrapper を選択肢より下に配置 */
   .choices-container {

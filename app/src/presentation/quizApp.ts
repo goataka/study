@@ -111,7 +111,7 @@ export class QuizApp {
   progressSubjectId: string =
     SUBJECTS.find((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress")?.id ?? "english";
   /** 進度タブ詳細パネルの表示モード（"grade"=学年別, "category"=カテゴリ別, "matrix"=マトリクス） */
-  progressDetailViewMode: "grade" | "category" | "matrix" = "grade";
+  progressDetailViewMode: "grade" | "category" | "matrix" = "matrix";
   /** マトリクス表示の縦横向き（false=学年が行、true=学年が列） */
   progressMatrixTransposed: boolean = false;
   /** 進度タブの学習状況フィルター */

@@ -221,6 +221,11 @@ export function setupHistoryNavigationListeners(callbacks: HistoryNavigationCall
   });
 
   document.getElementById("mobileBackBtn")?.addEventListener("click", callbacks.onMobileBack);
+
+  // 進度詳細パネルのモバイル用閉じるボタン
+  document.getElementById("progressDetailCloseBtn")?.addEventListener("click", () => {
+    document.getElementById("progressDetailPanel")?.classList.add("hidden");
+  });
 }
 
 /** クイズ進行ボタン（開始・前後・採点・キャンセルなど）のイベント。 */
