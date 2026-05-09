@@ -387,7 +387,7 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
 
     const candidateBtns = document.querySelectorAll<HTMLButtonElement>(".kanji-candidate-btn");
     const candidateTexts = Array.from(candidateBtns).map((btn) => btn.textContent);
-    expect(candidateTexts).toEqual(["や", "き"]);
+    expect(candidateTexts).toEqual(["や", "き", "ぎ"]);
   });
 
   it("英語問題（正解がラテン文字）では漢字・ひらがなの候補が除外される", async () => {

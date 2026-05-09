@@ -477,6 +477,10 @@ header h1 {
   outline-offset: -1px;
 }
 
+.subject-support-link {
+  text-decoration: none;
+}
+
 /* スタートコンテンツレイアウト */
 .start-content-layout {
   display: grid;
@@ -3863,14 +3867,6 @@ button:disabled {
   background: #28a745;
 }
 
-.category-item.active .category-progress-fill {
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.category-item.active .category-progress-fill-inprogress {
-  background: rgba(255, 255, 255, 0.5);
-}
-
 .category-progress-pct {
   font-size: 13px;
   color: #586069;
@@ -5468,9 +5464,11 @@ body.font-size-large .subject-overview-cat-header {
 .kanji-candidates-area {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 0 0 auto;
   min-height: 0;
   gap: 4px;
+  align-items: flex-end;
+  width: max-content;
 }
 
 /* ─── フォントサイズ：中 追加ターゲット ─────────────────────────────────── */

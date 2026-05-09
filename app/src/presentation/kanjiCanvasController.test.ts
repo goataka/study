@@ -118,6 +118,19 @@ describe("KanjiCanvasController", () => {
       expect(texts).toEqual(["が", "ぎ", "き"]);
     });
 
+    it("ひらがな問題では濁音・半濁音の候補も補完して表示する", () => {
+      (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
+        recognize: () => "か は",
+      };
+      const ctrl = new KanjiCanvasController({
+        getCorrectAnswer: () => "がぱ",
+        onSelectCandidate: () => {},
+      });
+      ctrl.updateCandidates();
+      const texts = Array.from(document.querySelectorAll(".kanji-candidate-btn")).map((b) => b.textContent);
+      expect(texts).toEqual(["か", "が", "は", "ば", "ぱ"]);
+    });
+
     it("英語問題（ラテン文字）の場合はラテン文字以外を除外する", () => {
       const onSelectCandidate = vi.fn();
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {

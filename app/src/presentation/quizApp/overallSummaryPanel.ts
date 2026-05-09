@@ -22,15 +22,15 @@ export function renderOverallSubjectStatus(useCase: QuizUseCase, subjectRecommen
   const container = document.getElementById("overallSubjectStatusSummary");
   if (!container) return;
   container.innerHTML = "";
-  const records = useCase.getHistory();
   const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
   for (const subject of subjects) {
     const categories = useCase.getCategoriesForSubject(subject.id);
     const totalUnits = Object.keys(categories).length;
-    const categoryIds = new Set(Object.keys(categories));
-    const studiedUnitCount = new Set(
-      records.filter((r) => r.subject === subject.id && categoryIds.has(r.category)).map((r) => r.category),
-    ).size;
+    const studiedOrInProgressUnitCount = Object.keys(categories).filter((categoryId) => {
+      const { mastered } = useCase.getMasteredCountForCategory(subject.id, categoryId);
+      const inProgress = useCase.getInProgressCount({ subject: subject.id, category: categoryId });
+      return mastered > 0 || inProgress > 0;
+    }).length;
     if (totalUnits === 0) {
       const row = document.createElement("div");
       row.className = "overall-subject-status-row";
@@ -39,7 +39,7 @@ export function renderOverallSubjectStatus(useCase: QuizUseCase, subjectRecommen
       continue;
     }
     const target = Math.max(1, Math.min(subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
-    const ratio = Math.min(1, studiedUnitCount / target);
+    const ratio = Math.min(1, studiedOrInProgressUnitCount / target);
     const message =
       ratio >= 1
         ? "🎉 目標達成！この調子！"
@@ -48,7 +48,7 @@ export function renderOverallSubjectStatus(useCase: QuizUseCase, subjectRecommen
           : "🌱 まずは1単元ずつ進めよう！";
     const row = document.createElement("div");
     row.className = "overall-subject-status-row";
-    row.textContent = `${subject.icon} ${subject.name}: ${Math.min(studiedUnitCount, target)}/${target}単元 ${message}`;
+    row.textContent = `${subject.icon} ${subject.name}: ${Math.min(studiedOrInProgressUnitCount, target)}/${target}単元 ${message}`;
     container.appendChild(row);
   }
 }

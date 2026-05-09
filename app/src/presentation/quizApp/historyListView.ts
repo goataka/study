@@ -21,11 +21,7 @@ export function renderHistoryList(filter: QuizFilter, useCase: QuizUseCase, allR
   if (!historyList) return;
 
   const records = (allRecords ?? useCase.getHistory())
-    .filter(
-      (r) =>
-        (filter.subject === "all" || r.subject === filter.subject) &&
-        (filter.category === "all" || r.category === filter.category),
-    )
+    .filter((r) => matchesRecordFilterIncludingAllCategory(r, filter, useCase))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   historyList.innerHTML = "";
 
@@ -40,4 +36,16 @@ export function renderHistoryList(filter: QuizFilter, useCase: QuizUseCase, allR
   records.forEach((record) => {
     historyList.appendChild(buildHistoryItem(record, useCase));
   });
+}
+
+function matchesRecordFilterIncludingAllCategory(
+  record: QuizRecord,
+  filter: QuizFilter,
+  useCase: QuizUseCase,
+): boolean {
+  if (filter.subject !== "all" && record.subject !== filter.subject) return false;
+  if (filter.category === "all") return true;
+  if (record.category === filter.category) return true;
+  if (record.category !== "all") return false;
+  return record.entries.some((entry) => useCase.getQuestionById(entry.questionId)?.category === filter.category);
 }

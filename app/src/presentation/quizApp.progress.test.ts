@@ -87,6 +87,19 @@ describe("QuizApp — 進度タブ仕様", () => {
     expect(catTab).not.toBeNull();
   });
 
+  it("進度タブ初期表示は学年別タブがアクティブで、並びは学年別→カテゴリ別→マトリクス", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const tabs = Array.from(document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]"));
+    expect(tabs.map((tab) => tab.dataset.progressDetailPanel)).toEqual(["grade", "category", "matrix"]);
+    const activeTab = document.querySelector<HTMLElement>(".panel-tab[data-progress-detail-panel].active");
+    expect(activeTab?.dataset.progressDetailPanel).toBe("grade");
+  });
+
   it("進度マトリクス左上の切り替えボタンに aria-pressed が付き、押下で状態が切り替わる", async () => {
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -119,6 +132,8 @@ describe("QuizApp — 進度タブ仕様", () => {
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
+    const matrixTab = document.getElementById("progressDetailTab-matrix") as HTMLButtonElement | null;
+    matrixTab?.click();
 
     const toggleBtn = document.querySelector(".progress-matrix-corner-toggle-btn") as HTMLButtonElement | null;
     expect(toggleBtn).not.toBeNull();
@@ -165,6 +180,8 @@ describe("QuizApp — 進度タブ仕様", () => {
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
+    const matrixTab = document.getElementById("progressDetailTab-matrix") as HTMLButtonElement | null;
+    matrixTab?.click();
 
     const headers = Array.from(document.querySelectorAll(".progress-matrix-parent-header")).map(
       (el) => el.textContent ?? "",
@@ -274,6 +291,8 @@ describe("QuizApp — 進度タブ仕様", () => {
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
+    const matrixTab = document.getElementById("progressDetailTab-matrix") as HTMLButtonElement | null;
+    matrixTab?.click();
 
     const block = document.querySelector(".progress-block-sm") as HTMLButtonElement | null;
     expect(block).not.toBeNull();
