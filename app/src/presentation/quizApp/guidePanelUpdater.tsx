@@ -5,8 +5,11 @@
  * `loadGuideContent` を呼び出して描画する。
  */
 
+import * as React from "react";
 import type { QuizFilter, QuizUseCase } from "../../application/quizUseCase";
 import { loadGuideContent as loadGuideContentFn } from "./guideLoader";
+import { GradeGuideContent, type GradeGuideEntry } from "../components/GradeGuideContent";
+import { renderReactInto, clearReactContainer, hasReactMount } from "./reactMount";
 
 export type SelectionLevel = "none" | "topCategory" | "parentCategory" | "unit";
 
@@ -79,41 +82,35 @@ export async function updateGuidePanelContentByIds(
   const guideUrl = resolveGuideUrl(useCase, state);
 
   if (guideUrl) {
+    // 直前まで GradeGuideContent (React) が描画されていた場合は React Root を解放してから
+    // loadGuideContent の命令的 DOM 操作を許可する。React マウントがない場合は
+    // `loadGuideContent` のキャッシュ判定 (dataset.loadedUrl) を維持するために
+    // コンテナを wipe しない。
+    if (hasReactMount(guideFrame)) {
+      clearReactContainer(guideFrame);
+    }
     guideFrame.classList.remove("hidden");
     noContent?.classList.add("hidden");
     await loadGuideContentFn(guideFrame, guideUrl, counterRef, noContent ?? undefined);
   } else {
+    if (hasReactMount(guideFrame)) {
+      clearReactContainer(guideFrame);
+    }
     guideFrame.classList.add("hidden");
     noContent?.classList.remove("hidden");
   }
 }
 
 function renderGradeGuideContent(container: HTMLElement, useCase: QuizUseCase, subject: string, grade: string): void {
+  // React で再レンダリングするため、従来の loadedUrl キャッシュは無効化する
   container.dataset.loadedUrl = "";
   const categories =
     grade === "none" ? useCase.getCategoriesWithoutGrade(subject) : useCase.getCategoriesForGrade(subject, grade);
-  const entries = Object.entries(categories);
   const title = grade === "none" ? "学年未設定" : grade;
-
-  container.innerHTML = "";
-  const content = document.createElement("div");
-  content.className = "guide-content";
-
-  const heading = document.createElement("h2");
-  heading.textContent = `🎓 ${title}`;
-  content.appendChild(heading);
-
-  const summary = document.createElement("p");
-  summary.textContent = `対象学年: ${title} / ${entries.length}単元`;
-  content.appendChild(summary);
-
-  const list = document.createElement("ul");
-  entries.forEach(([categoryId, categoryName]) => {
-    const item = document.createElement("li");
-    const description = useCase.getCategoryDescription(subject, categoryId);
-    item.textContent = description ? `${categoryName} — ${description}` : categoryName;
-    list.appendChild(item);
-  });
-  content.appendChild(list);
-  container.appendChild(content);
+  const entries: GradeGuideEntry[] = Object.entries(categories).map(([categoryId, categoryName]) => ({
+    id: categoryId,
+    name: categoryName,
+    description: useCase.getCategoryDescription(subject, categoryId),
+  }));
+  renderReactInto(container, <GradeGuideContent title={title} entries={entries} />);
 }

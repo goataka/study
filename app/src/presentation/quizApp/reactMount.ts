@@ -59,6 +59,15 @@ export function clearReactContainer(container: Element): void {
 }
 
 /**
+ * 指定コンテナに React がマウントされている（renderReactInto で render 済み）か判定する。
+ * 命令的レンダラーが React → 命令的の遷移時に React Root を解放するかどうかを
+ * 判断する用途に利用する。
+ */
+export function hasReactMount(container: Element): boolean {
+  return container.hasAttribute(REACT_MOUNTED_ATTR);
+}
+
+/**
  * テスト用: コンテナの React Root を破棄する。
  * 通常の本番フローでは呼ぶ必要はない（コンテナ自体が DOM から消える際に GC される）。
  */
