@@ -1,12 +1,14 @@
 /**
- * 履歴一覧パネルのレンダラー。
+ * 履歴一覧パネルのレンダラー（React 版）。
  *
- * `quizApp.ts` から切り出された純粋な DOM 操作関数。
- * QuizApp の状態には依存せず、フィルター・ユースケース・履歴配列を引数で受け取る。
+ * 旧版（`document.createElement` で構築する命令的版）から `HistoryList` React
+ * コンポーネント + `renderReactInto` のブリッジに置き換えた。
+ * 公開 API（関数名・引数）と生成される DOM 構造（class/id）は維持している。
  */
 
 import type { QuizFilter, QuizRecord, QuizUseCase } from "../../application/quizUseCase";
-import { buildHistoryItem } from "../historyItemView";
+import { HistoryList } from "./HistoryList";
+import { renderReactInto } from "./reactMount";
 
 /**
  * 履歴一覧（`#historyList`）を描画する。
@@ -23,19 +25,16 @@ export function renderHistoryList(filter: QuizFilter, useCase: QuizUseCase, allR
   const records = (allRecords ?? useCase.getHistory())
     .filter((r) => matchesRecordFilterIncludingAllCategory(r, filter, useCase))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  historyList.innerHTML = "";
 
-  if (records.length === 0) {
-    const empty = document.createElement("p");
-    empty.className = "history-empty";
-    empty.textContent = "まだ回答記録がありません。クイズを解いてみましょう！";
-    historyList.appendChild(empty);
-    return;
-  }
-
-  records.forEach((record) => {
-    historyList.appendChild(buildHistoryItem(record, useCase));
-  });
+  renderReactInto(
+    historyList,
+    <HistoryList
+      records={records}
+      useCase={useCase}
+      emptyMessage="まだ回答記録がありません。クイズを解いてみましょう！"
+      emptyClassName="history-empty"
+    />,
+  );
 }
 
 function matchesRecordFilterIncludingAllCategory(

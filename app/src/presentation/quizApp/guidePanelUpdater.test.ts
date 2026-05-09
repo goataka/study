@@ -107,4 +107,62 @@ describe("guidePanelUpdater", () => {
     expect(guideFrame.textContent).toContain("小学1年");
     expect(guideFrame.textContent).not.toContain("外部ガイド");
   });
+
+  it("学年ガイド表示後に URL ガイドへ遷移すると React マウントが解放されて URL ガイドが描画される", async () => {
+    document.body.innerHTML = `
+      <div id="guidePanelFrame"></div>
+      <div id="guideNoContent"></div>
+    `;
+    let currentToken = 0;
+    const tokenRef = {
+      nextToken: () => ++currentToken,
+      currentToken: () => currentToken,
+    };
+    const useCase = createUseCaseStub();
+    useCase.getCategoryGuideUrl.mockReturnValue("../math/00-add/guide");
+
+    // 1) 学年ガイドを React で描画する
+    await updateGuidePanelContentByIds(
+      useCase as never,
+      {
+        selectedUnitContext: null,
+        filter: { subject: "math", category: "all" },
+        selectedTopCategoryId: null,
+        selectedGradeGroup: "小学1年",
+        selectionLevel: "none",
+      },
+      tokenRef,
+      "guidePanelFrame",
+      "guideNoContent",
+    );
+
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLElement;
+    expect(guideFrame.hasAttribute("data-react-mounted")).toBe(true);
+    expect(guideFrame.textContent).toContain("小学1年");
+
+    // 2) URL ベースのガイドに遷移する（学年グループを解除して単元選択へ）
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      text: async () => "<html><body><main><h1>外部ガイド</h1></main></body></html>",
+    } as unknown as Response);
+
+    await updateGuidePanelContentByIds(
+      useCase as never,
+      {
+        selectedUnitContext: { subject: "math", categoryId: "00-add" },
+        filter: { subject: "math", category: "00-add" },
+        selectedTopCategoryId: null,
+        selectedGradeGroup: null,
+        selectionLevel: "unit",
+      },
+      tokenRef,
+      "guidePanelFrame",
+      "guideNoContent",
+    );
+
+    // React マウントは解放され、URL ガイドが描画される
+    expect(guideFrame.hasAttribute("data-react-mounted")).toBe(false);
+    expect(guideFrame.textContent).not.toContain("小学1年");
+    expect(guideFrame.textContent).toContain("外部ガイド");
+  });
 });

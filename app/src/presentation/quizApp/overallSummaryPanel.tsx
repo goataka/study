@@ -12,7 +12,8 @@
 import type { QuizRecord, QuizUseCase } from "../../application/quizUseCase";
 import { SUBJECTS } from "../uiHelpers";
 import { filterRecordsBySelectedDate } from "../shareSummary";
-import { buildHistoryItem } from "../historyItemView";
+import { HistoryList } from "./HistoryList";
+import { renderReactInto } from "./reactMount";
 
 /**
  * 総合タブの「学習状況」を描画する。
@@ -21,36 +22,58 @@ import { buildHistoryItem } from "../historyItemView";
 export function renderOverallSubjectStatus(useCase: QuizUseCase, subjectRecommendedCounts: Map<string, number>): void {
   const container = document.getElementById("overallSubjectStatusSummary");
   if (!container) return;
-  container.innerHTML = "";
   const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
-  for (const subject of subjects) {
-    const categories = useCase.getCategoriesForSubject(subject.id);
-    const totalUnits = Object.keys(categories).length;
-    const studiedOrInProgressUnitCount = Object.keys(categories).filter((categoryId) => {
-      const { mastered } = useCase.getMasteredCountForCategory(subject.id, categoryId);
-      const inProgress = useCase.getInProgressCount({ subject: subject.id, category: categoryId });
-      return mastered > 0 || inProgress > 0;
-    }).length;
-    if (totalUnits === 0) {
-      const row = document.createElement("div");
-      row.className = "overall-subject-status-row";
-      row.textContent = `${subject.icon} ${subject.name}: 0/0単元 🌱 まずは単元を追加しよう！`;
-      container.appendChild(row);
-      continue;
-    }
-    const target = Math.max(1, Math.min(subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
-    const ratio = Math.min(1, studiedOrInProgressUnitCount / target);
-    const message =
-      ratio >= 1
-        ? "🎉 目標達成！この調子！"
-        : ratio >= 0.5
-          ? "👍 いい感じで進んでいるよ！"
-          : "🌱 まずは1単元ずつ進めよう！";
-    const row = document.createElement("div");
-    row.className = "overall-subject-status-row";
-    row.textContent = `${subject.icon} ${subject.name}: ${Math.min(studiedOrInProgressUnitCount, target)}/${target}単元 ${message}`;
-    container.appendChild(row);
+  const rows = subjects.map((subject) => buildOverallStatusRow(useCase, subject, subjectRecommendedCounts));
+  renderReactInto(container, <OverallSubjectStatusSummary rows={rows} />);
+}
+
+interface OverallStatusRow {
+  key: string;
+  text: string;
+}
+
+function buildOverallStatusRow(
+  useCase: QuizUseCase,
+  subject: { id: string; name: string; icon: string },
+  subjectRecommendedCounts: Map<string, number>,
+): OverallStatusRow {
+  const categories = useCase.getCategoriesForSubject(subject.id);
+  const totalUnits = Object.keys(categories).length;
+  if (totalUnits === 0) {
+    return {
+      key: subject.id,
+      text: `${subject.icon} ${subject.name}: 0/0単元 🌱 まずは単元を追加しよう！`,
+    };
   }
+  const studiedOrInProgressUnitCount = Object.keys(categories).filter((categoryId) => {
+    const { mastered } = useCase.getMasteredCountForCategory(subject.id, categoryId);
+    const inProgress = useCase.getInProgressCount({ subject: subject.id, category: categoryId });
+    return mastered > 0 || inProgress > 0;
+  }).length;
+  const target = Math.max(1, Math.min(subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
+  const ratio = Math.min(1, studiedOrInProgressUnitCount / target);
+  const message =
+    ratio >= 1
+      ? "🎉 目標達成！この調子！"
+      : ratio >= 0.5
+        ? "👍 いい感じで進んでいるよ！"
+        : "🌱 まずは1単元ずつ進めよう！";
+  return {
+    key: subject.id,
+    text: `${subject.icon} ${subject.name}: ${Math.min(studiedOrInProgressUnitCount, target)}/${target}単元 ${message}`,
+  };
+}
+
+function OverallSubjectStatusSummary({ rows }: { rows: OverallStatusRow[] }): React.JSX.Element {
+  return (
+    <>
+      {rows.map((row) => (
+        <div key={row.key} className="overall-subject-status-row">
+          {row.text}
+        </div>
+      ))}
+    </>
+  );
 }
 
 /**
@@ -104,20 +127,17 @@ export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase,
   if (!container) return;
 
   const todayRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
-
-  container.innerHTML = "";
-
-  if (todayRecords.length === 0) {
-    const empty = document.createElement("p");
-    empty.className = "today-activity-empty";
-    empty.textContent = "この日はまだ問題を解いていません。";
-    container.appendChild(empty);
-    return;
-  }
-
   // 最新順に並べて履歴形式で表示（総合タブなので教科名プレフィックスを付ける）
   const sorted = [...todayRecords].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  sorted.forEach((record) => {
-    container.appendChild(buildHistoryItem(record, useCase, true));
-  });
+
+  renderReactInto(
+    container,
+    <HistoryList
+      records={sorted}
+      useCase={useCase}
+      showSubjectPrefix
+      emptyMessage="この日はまだ問題を解いていません。"
+      emptyClassName="today-activity-empty"
+    />,
+  );
 }

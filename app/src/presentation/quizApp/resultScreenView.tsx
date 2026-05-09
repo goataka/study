@@ -3,7 +3,8 @@
  */
 
 import type { AnswerResult } from "../../application/quizUseCase";
-import { buildResultItem } from "./resultItemView";
+import { ResultDetailsList } from "./ResultDetailsList";
+import { renderReactInto } from "./reactMount";
 
 /**
  * 結果画面の本文（単元名・メッセージ・スコア円・解答一覧）を描画する。
@@ -78,6 +79,5 @@ function renderScoreDisplay(correctCount: number, total: number, percentage: num
 function renderResultDetails(results: AnswerResult[]): void {
   const resultDetails = document.getElementById("resultDetails");
   if (!resultDetails) return;
-  resultDetails.innerHTML = "<h3>解答一覧</h3>";
-  results.forEach((r) => resultDetails.appendChild(buildResultItem(r)));
+  renderReactInto(resultDetails, <ResultDetailsList results={results} />);
 }

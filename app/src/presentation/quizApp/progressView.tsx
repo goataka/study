@@ -1,11 +1,12 @@
 /**
- * 進度タブの左パネル（教科リスト）を描画するヘルパー。
+ * 進度タブの左パネル（教科リスト）を描画するヘルパー（React 版）。
  *
  * 教科ごとの「学習済み単元数 / 総単元数」を表示し、クリックで教科切り替え。
  */
 
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { SUBJECTS } from "../uiHelpers";
+import { renderReactInto } from "./reactMount";
 import type { ProgressStatusFilter } from "./urlStateService";
 
 /** 進度タブ教科リストのコールバック群。 */
@@ -16,58 +17,88 @@ export interface ProgressSubjectListCallbacks {
   onSelectSubject: (subjectId: string) => void;
 }
 
+interface ProgressSubjectStats {
+  id: string;
+  name: string;
+  icon: string;
+  mastered: number;
+  total: number;
+}
+
 /**
- * 進度タブ左パネル用の教科リストを構築して返す。
+ * 教科ごとの「全問習得済みの単元数 / 総単元数」を集計する純粋関数。
  */
-export function buildProgressSubjectList(useCase: QuizUseCase, callbacks: ProgressSubjectListCallbacks): HTMLElement {
-  const subjectList = document.createElement("div");
-  subjectList.className = "progress-subject-list";
-
+export function buildProgressSubjectStats(useCase: QuizUseCase): ProgressSubjectStats[] {
   const contentSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
-  for (const subj of contentSubjects) {
-    const item = document.createElement("button");
-    item.type = "button";
-    item.className = "progress-subject-list-item";
-    const isActive = subj.id === callbacks.currentSubjectId;
-    if (isActive) item.classList.add("active");
-    item.setAttribute("aria-pressed", String(isActive));
-    item.setAttribute("data-subject", subj.id);
-
-    const iconSpan = document.createElement("span");
-    iconSpan.className = "progress-subject-list-icon";
-    iconSpan.setAttribute("aria-hidden", "true");
-    iconSpan.textContent = subj.icon;
-    item.appendChild(iconSpan);
-
-    const nameArea = document.createElement("div");
-    nameArea.className = "progress-subject-list-name-area";
-
-    const nameSpan = document.createElement("span");
-    nameSpan.className = "progress-subject-list-name";
-    nameSpan.textContent = subj.name;
-    nameArea.appendChild(nameSpan);
-
-    // 教科全体の学習済み単元数 / 総単元数（全問習得済みの単元のみカウント）
+  return contentSubjects.map((subj) => {
     const allCats = useCase.getCategoriesForSubject(subj.id);
     const catIds = Object.keys(allCats);
     let masteredUnitCount = 0;
-    const totalUnitCount = catIds.length;
     for (const catId of catIds) {
       const { mastered, total } = useCase.getMasteredCountForCategory(subj.id, catId);
       if (total > 0 && mastered === total) masteredUnitCount++;
     }
-    const statsSpan = document.createElement("span");
-    statsSpan.className = "progress-subject-list-stats";
-    statsSpan.textContent = `${masteredUnitCount} / ${totalUnitCount} 単元`;
-    nameArea.appendChild(statsSpan);
-
-    item.appendChild(nameArea);
-
-    item.addEventListener("click", () => callbacks.onSelectSubject(subj.id));
-    subjectList.appendChild(item);
-  }
-  return subjectList;
+    return { id: subj.id, name: subj.name, icon: subj.icon, mastered: masteredUnitCount, total: catIds.length };
+  });
 }
+
+/**
+ * 進度タブ左パネル用の教科リストを指定コンテナへ React で描画する。
+ */
+export function renderProgressSubjectList(
+  container: Element,
+  useCase: QuizUseCase,
+  callbacks: ProgressSubjectListCallbacks,
+): void {
+  const stats = buildProgressSubjectStats(useCase);
+  renderReactInto(container, <ProgressSubjectList stats={stats} callbacks={callbacks} />);
+}
+
+// ─── React コンポーネント ────────────────────────────────────────────────
+
+interface ProgressSubjectListProps {
+  stats: ProgressSubjectStats[];
+  callbacks: ProgressSubjectListCallbacks;
+}
+
+function ProgressSubjectList({ stats, callbacks }: ProgressSubjectListProps): React.JSX.Element {
+  return (
+    <div className="progress-subject-list">
+      {stats.map((s) => (
+        <ProgressSubjectListItem key={s.id} stat={s} callbacks={callbacks} />
+      ))}
+    </div>
+  );
+}
+
+function ProgressSubjectListItem({
+  stat,
+  callbacks,
+}: {
+  stat: ProgressSubjectStats;
+  callbacks: ProgressSubjectListCallbacks;
+}): React.JSX.Element {
+  const isActive = stat.id === callbacks.currentSubjectId;
+  return (
+    <button
+      type="button"
+      className={`progress-subject-list-item${isActive ? " active" : ""}`}
+      aria-pressed={isActive}
+      data-subject={stat.id}
+      onClick={() => callbacks.onSelectSubject(stat.id)}
+    >
+      <span className="progress-subject-list-icon" aria-hidden="true">
+        {stat.icon}
+      </span>
+      <div className="progress-subject-list-name-area">
+        <span className="progress-subject-list-name">{stat.name}</span>
+        <span className="progress-subject-list-stats">{`${stat.mastered} / ${stat.total} 単元`}</span>
+      </div>
+    </button>
+  );
+}
+
+// ─── 既存の syncProgressDetailControls はそのまま（DOM トグルのみで React 不要） ──
 
 /**
  * 進度詳細パネルのタブ・フィルターボタンの状態を反映する（コンテンツ本体は別関数で描画）。
