@@ -26,12 +26,6 @@ export interface StartQuizDeps {
   notifyError: (message: string) => void;
 }
 
-/** クイズ開始時の戻り値（成功）。 */
-export interface StartQuizResult {
-  session: QuizSession;
-  effectiveMode: QuizMode;
-}
-
 /**
  * `quizOrder === "straight"` でかつ `mode === "random"` の場合は内部的に
  * `"practice"` モード（登録順）にマップして返す。

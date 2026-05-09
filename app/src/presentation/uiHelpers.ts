@@ -117,11 +117,6 @@ export function setText(id: string, text: string): void {
   if (el) el.textContent = text;
 }
 
-/** 指定 ID の要素にイベントハンドラを登録する（要素が無ければ何もしない）。 */
-export function on(id: string, event: string, handler: (e: Event) => void): void {
-  document.getElementById(id)?.addEventListener(event, handler);
-}
-
 /**
  * バッククォート区切りテキストを部品列に分解する純粋関数。
  * 例: "I `play` games." → [{type:"text",text:"I "},{type:"code",text:"play"},{type:"text",text:" games."}]
