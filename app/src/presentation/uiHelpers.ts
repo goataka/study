@@ -123,21 +123,40 @@ export function on(id: string, event: string, handler: (e: Event) => void): void
 }
 
 /**
+ * バッククォート区切りテキストを部品列に分解する純粋関数。
+ * 例: "I `play` games." → [{type:"text",text:"I "},{type:"code",text:"play"},{type:"text",text:" games."}]
+ * 空の text 部分は除外する（隣接コードの場合や前後余白なしの場合）。
+ */
+export type BacktickPart = { type: "text"; text: string } | { type: "code"; text: string };
+export function parseBacktickText(text: string): BacktickPart[] {
+  const segments = text.split(/`([^`]+)`/);
+  const parts: BacktickPart[] = [];
+  segments.forEach((seg, i) => {
+    if (i % 2 === 1) {
+      parts.push({ type: "code", text: seg });
+    } else if (seg) {
+      parts.push({ type: "text", text: seg });
+    }
+  });
+  return parts;
+}
+
+/**
  * バッククォートで囲まれたテキストを <code> タグに変換して要素に追加する。
  * 例: "I `play` games." → "I " + <code>play</code> + " games."
  */
 export function renderBacktickText(container: HTMLElement, text: string): void {
-  const parts = text.split(/`([^`]+)`/);
-  parts.forEach((part, i) => {
-    if (i % 2 === 1) {
+  const parts = parseBacktickText(text);
+  for (const part of parts) {
+    if (part.type === "code") {
       const code = document.createElement("code");
       code.className = "category-example-highlight";
-      code.textContent = part;
+      code.textContent = part.text;
       container.appendChild(code);
-    } else if (part) {
-      container.appendChild(document.createTextNode(part));
+    } else {
+      container.appendChild(document.createTextNode(part.text));
     }
-  });
+  }
 }
 
 /**

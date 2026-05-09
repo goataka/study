@@ -6,7 +6,6 @@ import type { QuizApp } from "../../quizApp";
 import type { Question } from "../../../domain/question";
 import type { QuizSession } from "../../../domain/quizSession";
 import type { QuizMode, AnswerResult } from "../../../application/quizUseCase";
-import { renderSelectedUnitInfo as renderSelectedUnitInfoFn } from "../selectedUnitInfoRenderer";
 import { updateSelectedUnitInfo as updateSelectedUnitInfoFn } from "../selectedUnitInfoUpdater";
 import { updateGuidePanelContentByIds as updateGuidePanelContentByIdsFn } from "../guidePanelUpdater";
 import { loadGuideContent as loadGuideContentFn } from "../guideLoader";
@@ -95,18 +94,6 @@ export function updateSelectedUnitInfo(app: QuizApp): void {
     onCloseOverallUnitView: () => closeOverallUnitView(app),
     onDeselect: () => deselectAndRefresh(app),
   });
-}
-
-export function renderSelectedUnitInfo(
-  app: QuizApp,
-  container: HTMLElement,
-  subject: string,
-  categoryId: string,
-  categoryName: string,
-  closeAriaLabel: string,
-  onClose: () => void,
-): void {
-  renderSelectedUnitInfoFn(app.useCase, container, subject, categoryId, categoryName, closeAriaLabel, onClose);
 }
 
 export function updateGuidePanelContent(app: QuizApp): void {
