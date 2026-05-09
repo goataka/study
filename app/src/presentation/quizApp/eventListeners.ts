@@ -221,8 +221,10 @@ export function setupHistoryNavigationListeners(callbacks: HistoryNavigationCall
   });
 
   document.getElementById("mobileBackBtn")?.addEventListener("click", callbacks.onMobileBack);
+}
 
-  // 進度詳細パネルのモバイル用閉じるボタン
+/** 進度詳細パネルのモバイル用クローズボタンにハンドラーを登録する。 */
+export function setupProgressDetailPanelListeners(): void {
   document.getElementById("progressDetailCloseBtn")?.addEventListener("click", () => {
     document.getElementById("progressDetailPanel")?.classList.add("hidden");
   });

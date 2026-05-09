@@ -17,6 +17,7 @@ import {
   setupFontSizeListeners,
   setupShareSummaryListeners,
   setupHistoryNavigationListeners,
+  setupProgressDetailPanelListeners,
   setupQuizFlowListeners,
   setupQuestionListFilterListeners,
   setupProgressFilterListeners,
@@ -132,4 +133,5 @@ export function setupAllListeners(deps: AllListenersDeps): void {
     onPopState: deps.onPopState,
     onMobileBack: deps.onMobileBack,
   });
+  setupProgressDetailPanelListeners();
 }
