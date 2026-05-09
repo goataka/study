@@ -131,7 +131,9 @@ export class KanjiCanvasController {
     const correctAnswer = this.options.getCorrectAnswer();
     const normalizedCorrectAnswer = correctAnswer ? normalizeKanaText(correctAnswer) : undefined;
     if (normalizedCorrectAnswer !== undefined && isHiraganaOnly(normalizedCorrectAnswer)) {
-      candidates = expandHiraganaCandidates(kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)));
+      candidates = expandHiraganaCandidatesWithVoicedVariants(
+        kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)),
+      );
     } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer.normalize("NFKC"))) {
       candidates = candidates.filter((char) => isLatinOnly(char));
     }
@@ -173,7 +175,7 @@ export class KanjiCanvasController {
   }
 }
 
-const HIRAGANA_DAKUTEN_MAP: Readonly<Record<string, readonly string[]>> = {
+const HIRAGANA_VOICED_VARIANTS_BY_SEION: Readonly<Record<string, readonly string[]>> = {
   う: ["ゔ"],
   か: ["が"],
   き: ["ぎ"],
@@ -197,11 +199,11 @@ const HIRAGANA_DAKUTEN_MAP: Readonly<Record<string, readonly string[]>> = {
   ほ: ["ぼ", "ぽ"],
 } as const;
 
-function expandHiraganaCandidates(candidates: string[]): string[] {
+function expandHiraganaCandidatesWithVoicedVariants(candidates: string[]): string[] {
   const expanded: string[] = [];
   for (const candidate of candidates) {
     expanded.push(candidate);
-    const variants = HIRAGANA_DAKUTEN_MAP[candidate];
+    const variants = HIRAGANA_VOICED_VARIANTS_BY_SEION[candidate];
     if (variants) expanded.push(...variants);
   }
   return expanded;
