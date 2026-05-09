@@ -107,6 +107,15 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     expect(guideContent?.classList.contains("hidden")).toBe(false);
   });
 
+  it("URLフラグメントのpanelが不正値でも既定の表示タブを維持する", async () => {
+    window.history.replaceState({}, "", "/#subject=english&category=all&panel=invalid");
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const activePanel = document.querySelector(".panel-tab.active");
+    expect(activePanel?.getAttribute("data-panel")).toBe("quiz");
+  });
+
   it("総合タブのサマリパネル切替がフラグメントに反映される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
