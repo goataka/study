@@ -4,13 +4,13 @@
  * `<App />` は React 移行後のルートコンポーネントで、以下を担う：
  *
  * 1. 旧 index.html のボディマークアップ全体を JSX として描画する
- * 2. `useEffect` 内で `QuizApp` を 1 度だけ起動する
+ * 2. `useEffect` 内で props で受け取った `bootApp` コールバックを 1 度だけ呼ぶ
  *
  * 本テストは以下を検証する：
  *
  * - `<App />` がエラーなくレンダリングされる
- * - DOM 要素が揃った状態でマウントすると `QuizApp` が起動される
- * - StrictMode の二重マウントでも 1 度しか起動しない
+ * - DOM 要素が揃った状態でマウントすると `bootApp` が呼ばれる
+ * - StrictMode の二重マウントでも 1 度しか呼ばれない
  * - 既存コントローラ群（QuizApp 配下）が依存する主要 ID が描画される
  */
 
@@ -21,6 +21,7 @@ import { StrictMode } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { act } from "react";
 import { kanjiCanvasMock } from "./quizApp.testHelpers";
+import { App } from "./App";
 
 // React 19 + jsdom + createRoot で `act()` を使うために必要な環境フラグ。
 // 設定しないと "The current testing environment is not configured to support act(...)" が
@@ -28,41 +29,16 @@ import { kanjiCanvasMock } from "./quizApp.testHelpers";
 // 参考: https://react.dev/reference/react/act#error-the-current-testing-environment-is-not-configured-to-support-act
 (globalThis as unknown as { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
-// QuizApp と IndexedDBProgressRepository をモックして、
-// React 起動ライフサイクルだけを検証対象にする。
-const quizAppCtor = vi.fn();
-const indexedDbCtor = vi.fn();
-vi.mock("./quizApp", () => ({
-  QuizApp: class {
-    constructor(...args: unknown[]) {
-      quizAppCtor(...args);
-    }
-  },
-}));
-vi.mock("../infrastructure/indexedDBProgressRepository", () => ({
-  IndexedDBProgressRepository: class {
-    constructor() {
-      indexedDbCtor();
-    }
-  },
-}));
-
-// モック宣言が hoist されるため、import は mock 宣言の後に動的読み込みする。
-async function importApp(): Promise<typeof import("./App").App> {
-  const mod = await import("./App");
-  return mod.App;
-}
-
 describe("App コンポーネント", () => {
   let root: Root | null = null;
   let container: HTMLElement | null = null;
+  let bootApp: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     // App は完全なボディマークアップを描画するため、setupMinimalDom() は使わない。
     // 重複 ID が container 外に存在すると jsdom のスコープ querySelector が混乱する。
     document.body.innerHTML = "";
-    quizAppCtor.mockClear();
-    indexedDbCtor.mockClear();
+    bootApp = vi.fn();
     kanjiCanvasMock.init.mockClear();
     container = document.createElement("div");
     container.id = "react-test-root";
@@ -77,47 +53,42 @@ describe("App コンポーネント", () => {
     container?.remove();
   });
 
-  it("エラーなくレンダリングできる", async () => {
-    const App = await importApp();
+  it("エラーなくレンダリングできる", () => {
     expect(() => {
       act(() => {
         root = createRoot(container!);
-        root.render(<App />);
+        root.render(<App bootApp={bootApp} />);
       });
     }).not.toThrow();
   });
 
-  it("マウント時に QuizApp を起動する", async () => {
-    const App = await importApp();
+  it("マウント時に bootApp が呼ばれる", () => {
     act(() => {
       root = createRoot(container!);
-      root.render(<App />);
+      root.render(<App bootApp={bootApp} />);
     });
-    expect(quizAppCtor).toHaveBeenCalledTimes(1);
-    expect(indexedDbCtor).toHaveBeenCalledTimes(1);
+    expect(bootApp).toHaveBeenCalledTimes(1);
   });
 
-  it("StrictMode の二重マウントでも QuizApp は 1 度しか起動しない", async () => {
-    const App = await importApp();
+  it("StrictMode の二重マウントでも bootApp は 1 度しか呼ばれない", () => {
     act(() => {
       root = createRoot(container!);
       root.render(
         <StrictMode>
-          <App />
+          <App bootApp={bootApp} />
         </StrictMode>,
       );
     });
-    expect(quizAppCtor).toHaveBeenCalledTimes(1);
+    expect(bootApp).toHaveBeenCalledTimes(1);
   });
 
   // 既存コントローラ群（QuizApp 配下）が `getElementById` 経由で参照する
   // 主要 ID が必ず描画されていることを検証する。
   // ID が欠けると vanilla 実装が動作しないため、移行レグレッションを防ぐ。
-  it("既存コントローラが依存する主要 ID をすべて描画する", async () => {
-    const App = await importApp();
+  it("既存コントローラが依存する主要 ID をすべて描画する", () => {
     act(() => {
       root = createRoot(container!);
-      root.render(<App />);
+      root.render(<App bootApp={bootApp} />);
     });
     const requiredIds = [
       // ヘッダー / ユーザー / アバター
