@@ -5,7 +5,7 @@
  * パネルタブやコンテンツパネルの表示/非表示を切り替える DOM 操作専用ヘルパー。
  */
 
-import { setHiddenPanelTabs } from "../components/startScreen/panelTabsStore";
+import { getPanelTabsSnapshot, setHiddenPanelTabs } from "../components/startScreen/panelTabsStore";
 import type { PanelTab } from "./tabsBuilder";
 
 /** ID → PanelTab マッピング。 */
@@ -20,36 +20,32 @@ const ALL_PANEL_TAB_IDS = Object.keys(PANEL_TAB_BY_ID);
 const NON_GUIDE_PANEL_TAB_IDS = ["panelTab-quiz", "panelTab-history", "panelTab-questions"];
 
 /**
- * 現在 DOM 上で hidden クラスが付いている panel-tab を読み取り、
- * 指定された ID 群を hidden / 非 hidden に更新したうえでストアへ反映する。
+ * panel-tab の hidden 状態を更新する。
  *
- * 旧版は `document.getElementById(id).classList.toggle("hidden", ...)` を直接呼んで
- * いたが、React 化により panel-tab は `<QuizPanel>` 配下の React コンポーネントが
+ * 旧版は ID ごとに `document.getElementById(id).classList.toggle("hidden", ...)` を
+ * 直接呼んでいたが、React 化により panel-tab は `<QuizPanel>` 配下の React コンポーネントが
  * 所有するため、DOM 直接操作だと次回 React 再レンダリング時に上書きされる。
  * そこでストア (`hiddenPanelTabs`) 経由で React に反映する。
+ *
+ * 指定されなかった ID の hidden 状態は、ストアの現在値（`hiddenPanelTabs`）を
+ * そのまま維持する（DOM ではなくストアを参照することで純粋な状態遷移として扱う）。
+ *
+ * 後方互換: React 未マウントのテスト構成向けに命令的 DOM 更新も併用する。
+ * React マウント時は store 経由で同じ状態に収束するため二重書き込みは無害。
  */
 function updateHiddenPanelTabs(updates: Partial<Record<string, boolean>>): void {
+  const current = getPanelTabsSnapshot().hiddenPanelTabs;
   const next = new Set<PanelTab>();
   for (const id of ALL_PANEL_TAB_IDS) {
     const tab = PANEL_TAB_BY_ID[id];
     if (!tab) continue;
-    let isHidden: boolean;
-    if (id in updates) {
-      isHidden = !!updates[id];
-    } else {
-      // 既存の hidden 状態（DOM 経由）を尊重する
-      const el = document.getElementById(id);
-      isHidden = !!el?.classList.contains("hidden");
-    }
+    const isHidden = id in updates ? !!updates[id] : current.has(tab);
     if (isHidden) next.add(tab);
   }
   setHiddenPanelTabs(next);
 
-  // 後方互換: React 未マウントのテスト環境向けに命令的 DOM 更新も併用する。
-  // React マウント時は store 経由で同じ状態に更新されるため二重書き込みは無害。
   for (const id of Object.keys(updates)) {
-    const isHidden = !!updates[id];
-    document.getElementById(id)?.classList.toggle("hidden", isHidden);
+    document.getElementById(id)?.classList.toggle("hidden", !!updates[id]);
   }
 }
 

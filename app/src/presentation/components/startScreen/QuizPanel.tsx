@@ -33,9 +33,14 @@ function PanelTabButton({ tab, active, hidden, id, controls, label }: PanelTabBu
       aria-selected={isActive}
       aria-controls={controls}
       tabIndex={isActive ? 0 : -1}
-      // クリックハンドラは buildPanelTabs が addEventListener で登録する。
-      // React onClick を併用すると静的 HTML 互換の DOM 委譲と二重発火するため、
-      // ここでは onClick を付けない（React は active/hidden の宣言的反映のみを担う）。
+      // クリックハンドラは buildPanelTabs（quizApp/tabsBuilder.tsx）が
+      // addEventListener で登録する。React onClick を併用すると、静的 HTML を
+      // 利用する既存テスト群（quizApp.panels.test.ts 等）の DOM 委譲と
+      // 二重発火するため、ここでは onClick を付けない。React は active / hidden /
+      // aria 属性の宣言的反映のみを担う。
+      //
+      // 将来、すべての関連テストが React マウントを使う形に統一できたら
+      // DOM 委譲を撤去し、ここに onClick を移すことで dual-control を解消する。
     >
       {label}
     </button>
