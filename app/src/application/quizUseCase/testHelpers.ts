@@ -38,18 +38,21 @@ export class StubProgressRepository implements IProgressRepository {
   private streaks: Record<string, number>;
   private stats: Record<string, { total: number; correct: number }>;
   private masteredIds: string[];
+  private recommendedCounts: Record<string, number>;
   constructor(
     initialIds: string[] = [],
     initialHistory: QuizRecord[] = [],
     initialStreaks: Record<string, number> = {},
     initialStats: Record<string, { total: number; correct: number }> = {},
     initialMasteredIds: string[] = [],
+    initialRecommendedCounts: Record<string, number> = {},
   ) {
     this.ids = [...initialIds];
     this.history = [...initialHistory];
     this.streaks = { ...initialStreaks };
     this.stats = { ...initialStats };
     this.masteredIds = [...initialMasteredIds];
+    this.recommendedCounts = { ...initialRecommendedCounts };
   }
   loadWrongIds(): string[] {
     return [...this.ids];
@@ -132,11 +135,18 @@ export class StubProgressRepository implements IProgressRepository {
     return { questionCount: 10, quizOrder: "random", includeMastered: false };
   }
   saveQuizSettings(_settings: QuizSettings): void {}
+  loadRecommendedCounts(): Record<string, number> {
+    return { ...this.recommendedCounts };
+  }
+  saveRecommendedCounts(counts: Record<string, number>): void {
+    this.recommendedCounts = { ...counts };
+  }
   async clearAllData(): Promise<void> {
     this.ids = [];
     this.history = [];
     this.streaks = {};
     this.stats = {};
     this.masteredIds = [];
+    this.recommendedCounts = {};
   }
 }
