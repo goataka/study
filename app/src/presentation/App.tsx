@@ -1,32 +1,49 @@
 /**
  * React アプリケーションのルートコンポーネント。
  *
- * 段階的 React 移行の Phase 1 として、本コンポーネントは以下を担う：
+ * `index.html` に静的記述していたボディマークアップ全体を React コンポーネント
+ * として描画する。各セクションは `components/` 配下に分割しており、保守性のため
+ * 1 ファイル 600 行以下・1 フォルダ 20 ファイル以下に収めている。
  *
- * 1. 既存の vanilla TypeScript 実装である `QuizApp`（`presentation/quizApp.ts`）の
- *    起動（`useEffect` 内で `new QuizApp(...)` を 1 度だけ実行）。
- * 2. `IndexedDBProgressRepository` 等の依存注入。
+ * 既存の `QuizApp`（presentation/quizApp.ts）は本コンポーネントの `useEffect`
+ * から起動する。`QuizApp` は `getElementById` 経由で DOM を操作するため、
+ * React が同じ ID/クラスの DOM をレンダリングすれば挙動は完全に保存される。
  *
- * 既存の DOM マークアップは現時点では `index.html` 側に残しており、React は
- * 起動ライフサイクルのみを所有する薄いラッパーとして機能する。
- * Phase 2 以降で `index.html` の各セクション（startScreen / quizScreen /
- * resultScreen / 各種ダイアログ等）を React コンポーネントへ順次移行していく。
+ * 二重マウント耐性: `StrictMode` で `useEffect` が 2 回呼ばれても `useRef` で
+ * 1 度のみ起動する（テストで検証済み）。
  */
 
 import { useEffect, useRef } from "react";
 import { QuizApp } from "./quizApp";
 import { IndexedDBProgressRepository } from "../infrastructure/indexedDBProgressRepository";
+import { TabsUserRow } from "./components/TabsUserRow";
+import { StartScreen } from "./components/StartScreen";
+import { OuterBottomRow } from "./components/OuterBottomRow";
+import { QuizScreen } from "./components/QuizScreen";
+import { ResultScreen } from "./components/ResultScreen";
+import { ConfirmDialog } from "./components/ConfirmDialog";
 
-export function App(): null {
+export function App(): React.JSX.Element {
   // React.StrictMode による二重マウントで二重起動しないようガードする
   const bootedRef = useRef(false);
 
   useEffect(() => {
     if (bootedRef.current) return;
     bootedRef.current = true;
-    // 既存の vanilla 実装を起動。マークアップは index.html に存在する。
+    // React が DOM 要素を commit した後に既存コントローラを起動する。
     new QuizApp(new IndexedDBProgressRepository());
   }, []);
 
-  return null;
+  return (
+    <>
+      <div className="container">
+        <TabsUserRow />
+        <StartScreen />
+        <OuterBottomRow />
+        <QuizScreen />
+        <ResultScreen />
+      </div>
+      <ConfirmDialog />
+    </>
+  );
 }
