@@ -40,12 +40,16 @@ export interface CategoryLookup {
 
 /**
  * おすすめ単元を「同一親カテゴリ」でグループ化し、未学習を含むグループ／未学習単元が先頭になるように並べる。
+ *
+ * 戻り値の `items` は呼び出し元の具象型を保つため、`RecommendedGroup` ではなく
+ * ジェネリックな `T extends RecommendedItem` を使ったインライン構造体型にしている。
+ * 通常用途では `RecommendedGroup` 互換の構造を返す。
  */
 export function groupRecommendedByCategory<T extends RecommendedItem>(
   subjectId: string,
   recommendedList: T[],
   lookup: CategoryLookup,
-): { topCatId: string; topCatName: string; parentCatId: string; parentCatName: string; items: T[] }[] {
+): Array<Omit<RecommendedGroup, "items"> & { items: T[] }> {
   type GroupKey = string;
   const groupOrder: GroupKey[] = [];
   const groupMap = new Map<
