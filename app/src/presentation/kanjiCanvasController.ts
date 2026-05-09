@@ -131,7 +131,7 @@ export class KanjiCanvasController {
     const correctAnswer = this.options.getCorrectAnswer();
     const normalizedCorrectAnswer = correctAnswer ? normalizeKanaText(correctAnswer) : undefined;
     if (normalizedCorrectAnswer !== undefined && isHiraganaOnly(normalizedCorrectAnswer)) {
-      candidates = kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char));
+      candidates = expandHiraganaCandidates(kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)));
     } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer.normalize("NFKC"))) {
       candidates = candidates.filter((char) => isLatinOnly(char));
     }
@@ -171,4 +171,38 @@ export class KanjiCanvasController {
       candidateList.innerHTML = "";
     }
   }
+}
+
+const HIRAGANA_DAKUTEN_MAP: Readonly<Record<string, readonly string[]>> = {
+  う: ["ゔ"],
+  か: ["が"],
+  き: ["ぎ"],
+  く: ["ぐ"],
+  け: ["げ"],
+  こ: ["ご"],
+  さ: ["ざ"],
+  し: ["じ"],
+  す: ["ず"],
+  せ: ["ぜ"],
+  そ: ["ぞ"],
+  た: ["だ"],
+  ち: ["ぢ"],
+  つ: ["づ"],
+  て: ["で"],
+  と: ["ど"],
+  は: ["ば", "ぱ"],
+  ひ: ["び", "ぴ"],
+  ふ: ["ぶ", "ぷ"],
+  へ: ["べ", "ぺ"],
+  ほ: ["ぼ", "ぽ"],
+} as const;
+
+function expandHiraganaCandidates(candidates: string[]): string[] {
+  const expanded: string[] = [];
+  for (const candidate of candidates) {
+    expanded.push(candidate);
+    const variants = HIRAGANA_DAKUTEN_MAP[candidate];
+    if (variants) expanded.push(...variants);
+  }
+  return expanded;
 }

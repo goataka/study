@@ -494,7 +494,34 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(status?.textContent).toContain("英語:");
   });
 
-  it("総合タブの学習状況サマリは単元を実施すると反映される", async () => {
+  it("総合タブの学習状況サマリは履歴だけでなく進捗データで反映される", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 4,
+          entries: [],
+        },
+      ]),
+    );
+    localStorage.setItem("questionStats", JSON.stringify({ q1: { total: 1, correct: 1 } }));
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const status = document.getElementById("overallSubjectStatusSummary");
+    expect(status?.textContent).toContain("英語: 1/1単元");
+  });
+
+  it("進捗データがない履歴のみの単元は学習状況サマリで未学習として扱われる", async () => {
     localStorage.setItem(
       "quizHistory",
       JSON.stringify([
@@ -517,7 +544,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const status = document.getElementById("overallSubjectStatusSummary");
-    expect(status?.textContent).toContain("英語: 1/1単元");
+    expect(status?.textContent).toContain("英語: 0/1単元");
   });
 
   it("シェアテキストに教科・トップカテゴリ・親カテゴリ・単元名がパス形式で含まれる", async () => {

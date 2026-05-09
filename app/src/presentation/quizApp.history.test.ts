@@ -231,3 +231,48 @@ describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様"
     expect(answerP?.textContent).toBe("正解");
   });
 });
+
+describe("QuizApp — 単元選択時の履歴抽出仕様", () => {
+  beforeEach(() => {
+    setupTabDom();
+    setupFetchMock();
+    localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("教科全体（category=all）で解いた履歴でも、単元を選択すると該当問題の履歴が表示される", async () => {
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: new Date().toISOString(),
+          subject: "english",
+          subjectName: "英語",
+          category: "all",
+          categoryName: "英語 全体",
+          mode: "random",
+          totalCount: 1,
+          correctCount: 1,
+          entries: [{ questionId: "q1", isCorrect: true, userAnswerIndex: 0 }],
+        },
+      ]),
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector<HTMLElement>('.subject-tab[data-subject="english"]');
+    englishTab?.click();
+    const catItem = document.querySelector<HTMLElement>('.category-item[data-category="phonics-1"]');
+    catItem?.click();
+    const historyTab = document.getElementById("panelTab-history") as HTMLButtonElement | null;
+    historyTab?.click();
+
+    const historyItem = document.querySelector(".history-item");
+    expect(historyItem).not.toBeNull();
+  });
+});

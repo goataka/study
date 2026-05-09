@@ -22,15 +22,15 @@ export function renderOverallSubjectStatus(useCase: QuizUseCase, subjectRecommen
   const container = document.getElementById("overallSubjectStatusSummary");
   if (!container) return;
   container.innerHTML = "";
-  const records = useCase.getHistory();
   const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
   for (const subject of subjects) {
     const categories = useCase.getCategoriesForSubject(subject.id);
     const totalUnits = Object.keys(categories).length;
-    const categoryIds = new Set(Object.keys(categories));
-    const studiedUnitCount = new Set(
-      records.filter((r) => r.subject === subject.id && categoryIds.has(r.category)).map((r) => r.category),
-    ).size;
+    const studiedUnitCount = Object.keys(categories).filter((categoryId) => {
+      const { mastered } = useCase.getMasteredCountForCategory(subject.id, categoryId);
+      const inProgress = useCase.getInProgressCount({ subject: subject.id, category: categoryId });
+      return mastered > 0 || inProgress > 0;
+    }).length;
     if (totalUnits === 0) {
       const row = document.createElement("div");
       row.className = "overall-subject-status-row";

@@ -51,18 +51,6 @@
       <div class="tabs-user-row">
         <div class="subject-tabs" role="tablist" aria-label="教科を選択"></div>
         <!-- サポートリンク（管理タブの右に付箋として配置） -->
-        <div class="tabs-links-area">
-          <a
-            id="supportBtn"
-            class="tabs-link-note tabs-link-note-support"
-            href="./support/"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="サポートページを開く"
-            aria-label="サポートページを開く"
-            >❔</a
-          >
-        </div>
         <div class="tabs-user-area">
           <button
             id="headerUserName"
@@ -323,29 +311,17 @@
 
             <!-- 進度タブ専用詳細パネル -->
             <div id="progressDetailPanel" class="hidden progress-detail-panel" role="region" aria-label="進度詳細">
-              <!-- タブバー（進度タブ専用）：マトリクスを先頭に配置 -->
+              <!-- タブバー（進度タブ専用）：学年別→カテゴリ別→マトリクス -->
               <div class="panel-tabs progress-detail-tabs" role="tablist" aria-label="進度詳細タブ">
                 <button
                   class="panel-tab active"
-                  id="progressDetailTab-matrix"
-                  data-progress-detail-panel="matrix"
+                  id="progressDetailTab-grade"
+                  data-progress-detail-panel="grade"
                   role="tab"
                   type="button"
                   aria-selected="true"
                   aria-controls="progressDetailContent"
                   tabindex="0"
-                >
-                  📊 マトリクス
-                </button>
-                <button
-                  class="panel-tab"
-                  id="progressDetailTab-grade"
-                  data-progress-detail-panel="grade"
-                  role="tab"
-                  type="button"
-                  aria-selected="false"
-                  aria-controls="progressDetailContent"
-                  tabindex="-1"
                 >
                   🎓 学年別
                 </button>
@@ -360,6 +336,18 @@
                   tabindex="-1"
                 >
                   📁 カテゴリ別
+                </button>
+                <button
+                  class="panel-tab"
+                  id="progressDetailTab-matrix"
+                  data-progress-detail-panel="matrix"
+                  role="tab"
+                  type="button"
+                  aria-selected="false"
+                  aria-controls="progressDetailContent"
+                  tabindex="-1"
+                >
+                  📊 マトリクス
                 </button>
               </div>
               <div class="progress-detail-toolbar">
@@ -404,7 +392,7 @@
                 id="progressDetailContent"
                 class="progress-detail-content"
                 role="tabpanel"
-                aria-labelledby="progressDetailTab-matrix"
+                aria-labelledby="progressDetailTab-grade"
               ></div>
             </div>
 

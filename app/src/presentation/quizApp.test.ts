@@ -224,6 +224,15 @@ describe("QuizApp — 教科タブ仕様", () => {
       expect(tab.querySelector(".tab-stats")).toBeNull();
     });
   });
+
+  it("サポートリンクが教科タブ行の一部として表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const supportLink = document.querySelector(".subject-tabs .subject-support-link") as HTMLAnchorElement | null;
+    expect(supportLink).not.toBeNull();
+    expect(supportLink?.getAttribute("href")).toBe("./support/");
+  });
 });
 
 describe("QuizApp — 回答フィードバック仕様", () => {
