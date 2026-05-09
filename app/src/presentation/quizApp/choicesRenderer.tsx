@@ -42,7 +42,7 @@ function MultipleChoice({ question, session, callbacks }: MultipleChoiceProps): 
             name="answer"
             value={String(index)}
             checked={picked === index}
-            disabled={isLocked && picked !== index ? true : isLocked}
+            disabled={isLocked}
             onChange={() => {
               if (isLocked) return;
               session.selectAnswer(session.currentIndex, index);
@@ -77,6 +77,7 @@ function TextInput({ question, session, callbacks }: TextInputProps): React.JSX.
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   // 初回マウント時のみ、PC/タッチ非対応端末で自動フォーカス。
+  // `answered` を依存配列に含めない（マウント時の状態のみで判定すれば十分なため）。
   useEffect(() => {
     if (!answered && shouldAutoFocusTextInput()) {
       inputRef.current?.focus();

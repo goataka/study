@@ -66,6 +66,8 @@ function QuestionListItem({ question, useCase }: QuestionListItemProps): React.J
           className="question-list-hint-btn"
           aria-label="ヒントを表示"
           aria-expanded={hintOpen}
+          // flushSync は既存テスト互換のため一時的に使用（クリック直後に hidden 状態を assert する仕様）。
+          // 将来テストを async 対応に書き換えた段階で除去予定。
           onClick={() => flushSync(() => setHintOpen((v) => !v))}
         >
           💡
