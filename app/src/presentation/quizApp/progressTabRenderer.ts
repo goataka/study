@@ -90,7 +90,6 @@ export function renderProgressDetailContent(params: {
 }): void {
   const content = document.getElementById("progressDetailContent");
   if (!content) return;
-  content.innerHTML = "";
 
   const blockCtx = {
     subject: params.progressSubjectId,
