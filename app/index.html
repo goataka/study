@@ -323,17 +323,24 @@
 
             <!-- 進度タブ専用詳細パネル -->
             <div id="progressDetailPanel" class="hidden progress-detail-panel" role="region" aria-label="進度詳細">
+              <!-- モバイル用：閉じるボタン行（デスクトップでは非表示） -->
+              <div class="progress-detail-close-row">
+                <span class="progress-detail-close-title">📊 進度詳細</span>
+                <button id="progressDetailCloseBtn" class="admin-data-close-btn" type="button" aria-label="閉じる">
+                  ✕
+                </button>
+              </div>
               <!-- タブバー（進度タブ専用）：学年別→カテゴリ別→マトリクス -->
               <div class="panel-tabs progress-detail-tabs" role="tablist" aria-label="進度詳細タブ">
                 <button
-                  class="panel-tab active"
+                  class="panel-tab"
                   id="progressDetailTab-grade"
                   data-progress-detail-panel="grade"
                   role="tab"
                   type="button"
-                  aria-selected="true"
+                  aria-selected="false"
                   aria-controls="progressDetailContent"
-                  tabindex="0"
+                  tabindex="-1"
                 >
                   🎓 学年別
                 </button>
@@ -350,14 +357,14 @@
                   📁 カテゴリ別
                 </button>
                 <button
-                  class="panel-tab"
+                  class="panel-tab active"
                   id="progressDetailTab-matrix"
                   data-progress-detail-panel="matrix"
                   role="tab"
                   type="button"
-                  aria-selected="false"
+                  aria-selected="true"
                   aria-controls="progressDetailContent"
-                  tabindex="-1"
+                  tabindex="0"
                 >
                   📊 マトリクス
                 </button>
@@ -404,7 +411,7 @@
                 id="progressDetailContent"
                 class="progress-detail-content"
                 role="tabpanel"
-                aria-labelledby="progressDetailTab-grade"
+                aria-labelledby="progressDetailTab-matrix"
               ></div>
             </div>
 

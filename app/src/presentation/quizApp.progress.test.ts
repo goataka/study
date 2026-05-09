@@ -87,7 +87,7 @@ describe("QuizApp — 進度タブ仕様", () => {
     expect(catTab).not.toBeNull();
   });
 
-  it("進度タブ初期表示は学年別タブがアクティブで、並びは学年別→カテゴリ別→マトリクス", async () => {
+  it("進度タブ初期表示はマトリクスタブがアクティブで、並びは学年別→カテゴリ別→マトリクス", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -97,7 +97,7 @@ describe("QuizApp — 進度タブ仕様", () => {
     const tabs = Array.from(document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]"));
     expect(tabs.map((tab) => tab.dataset.progressDetailPanel)).toEqual(["grade", "category", "matrix"]);
     const activeTab = document.querySelector<HTMLElement>(".panel-tab[data-progress-detail-panel].active");
-    expect(activeTab?.dataset.progressDetailPanel).toBe("grade");
+    expect(activeTab?.dataset.progressDetailPanel).toBe("matrix");
   });
 
   it("進度マトリクス左上の切り替えボタンに aria-pressed が付き、押下で状態が切り替わる", async () => {
