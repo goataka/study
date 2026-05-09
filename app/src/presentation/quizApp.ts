@@ -11,7 +11,6 @@ import type { Question } from "../domain/question";
 import type { IProgressRepository } from "../application/ports";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
-import { IndexedDBProgressRepository } from "../infrastructure/indexedDBProgressRepository";
 import { NotesCanvas } from "./notesCanvas";
 import { KanjiCanvasController } from "./kanjiCanvasController";
 import { NotesController } from "./notesController";
@@ -424,7 +423,6 @@ export class QuizApp {
 // 型再エクスポート（後方互換）
 export type { Question, QuizFilter, QuizMode, AnswerResult, QuizRecord };
 
-// アプリケーション起動
-document.addEventListener("DOMContentLoaded", () => {
-  new QuizApp(new IndexedDBProgressRepository());
-});
+// アプリケーション起動は React 側（src/main.tsx → src/presentation/App.tsx）で
+// 行う。React の useEffect で適切な IProgressRepository 実装を依存注入し、
+// `new QuizApp(...)` が 1 度だけ実行される。

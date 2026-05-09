@@ -29,6 +29,18 @@ body {
   overflow: hidden;
 }
 
+/*
+ * React のマウント先 #root。本アプリは body 直下に `<div id="root">` を置き、
+ * その中に `.container` を配置する構成を採用しているため、DOM 階層は
+ * `body > #root > .container` となる。元の `.container { height: 100% }`
+ * は body の content height を継承していたので、間に挟まる `#root` にも
+ * 同じ高さ・幅を与えて旧構造（body > .container）と同じレイアウトを保つ。
+ */
+#root {
+  width: 100%;
+  height: 100%;
+}
+
 .container {
   /* 1920px（標準幅） - 左右のpadding（各20px × 2 = 40px） = 1880px */
   max-width: 1880px;
