@@ -8,7 +8,7 @@
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { renderProgressDetailMatrix } from "../progressMatrixView";
 import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "../progressBlockView";
-import { buildProgressSubjectList, syncProgressDetailControls } from "./progressView";
+import { renderProgressSubjectList, syncProgressDetailControls } from "./progressView";
 
 /** 進度タブ詳細パネルの表示モード。 */
 export type ProgressDetailViewMode = "grade" | "category" | "matrix";
@@ -36,13 +36,11 @@ export function renderProgressView(params: {
   categoryList.innerHTML = "";
   if (controlsEl) controlsEl.innerHTML = "";
 
-  // ── 左パネル: 教科リスト ──
-  categoryList.appendChild(
-    buildProgressSubjectList(params.useCase, {
-      currentSubjectId: params.progressSubjectId,
-      onSelectSubject: params.onSelectSubject,
-    }),
-  );
+  // ── 左パネル: 教科リスト（React 描画） ──
+  renderProgressSubjectList(categoryList, params.useCase, {
+    currentSubjectId: params.progressSubjectId,
+    onSelectSubject: params.onSelectSubject,
+  });
 
   // ── 右パネル: 進度詳細 ──
   renderProgressDetailPanel({
