@@ -51,5 +51,3 @@ describe("groupRecommendedByCategory", () => {
     expect(groups[0].items.map((i) => i.id)).toEqual(["a-2", "a-1"]);
   });
 });
-
-

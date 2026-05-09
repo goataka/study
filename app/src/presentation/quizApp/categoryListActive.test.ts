@@ -104,9 +104,7 @@ describe("updateCategoryListActive", () => {
       expandTopCategory: vi.fn(),
     });
 
-    const parentHeader = document.querySelector<HTMLElement>(
-      '.category-group-header[data-parent-category="parentA"]',
-    );
+    const parentHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="parentA"]');
     expect(parentHeader?.classList.contains("active")).toBe(true);
     document.querySelectorAll<HTMLElement>(".category-item").forEach((el) => {
       expect(el.classList.contains("active")).toBe(false);
@@ -124,9 +122,7 @@ describe("updateCategoryListActive", () => {
       expandTopCategory: vi.fn(),
     });
 
-    const topHeader = document.querySelector<HTMLElement>(
-      '.category-top-group-header[data-top-category="topA"]',
-    );
+    const topHeader = document.querySelector<HTMLElement>('.category-top-group-header[data-top-category="topA"]');
     expect(topHeader?.classList.contains("active")).toBe(true);
   });
 

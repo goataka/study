@@ -34,6 +34,13 @@ const REACT_MOUNTED_ATTR = "data-react-mounted";
 export function renderReactInto(container: Element, element: React.ReactNode): void {
   let root = rootCache.get(container);
   if (root && !container.hasAttribute(REACT_MOUNTED_ATTR)) {
+    // 外部 mutation でコンテナがクリアされ、孤児化した既存 root が残っている。
+    // この時点では root が管理していた DOM は既に消えており、root.unmount() を
+    // 呼ぶと React が「存在しない子ノードを取り外そう」として
+    // NotFoundError を非同期に投げてしまう（jsdom / 本番ともに発生）。
+    // そのため安全に解放する手段は cache から外して GC に委ねる方法のみ。
+    // 命令的に wipe する側は本ファイルの `clearReactContainer` を使うべきで、
+    // そちらは DOM が残っているうちに root.unmount() を呼んで適切に解放する。
     rootCache.delete(container);
     root = undefined;
   }
@@ -50,10 +57,13 @@ export function renderReactInto(container: Element, element: React.ReactNode): v
 
 /**
  * 命令的に共有コンテナを wipe するときに呼ぶ。
- * `innerHTML = ""` と同等の効果に加えて React 用マーカー属性も削除し、
- * 次回 `renderReactInto` が新規 root を作るようにする。
+ * 既存の React Root を `unmount()` してキャッシュから取り除き、
+ * `innerHTML = ""` で残った DOM をクリアし、React 用マーカー属性も削除する。
+ * これにより次回 `renderReactInto` は新規 root を作り、同一コンテナに
+ * 複数 root が共存する状態を防げる。
  */
 export function clearReactContainer(container: Element): void {
+  unmountReactFrom(container);
   container.innerHTML = "";
   container.removeAttribute(REACT_MOUNTED_ATTR);
 }

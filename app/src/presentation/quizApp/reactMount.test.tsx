@@ -2,12 +2,7 @@
 
 import { describe, it, expect, beforeEach } from "vitest";
 import * as React from "react";
-import {
-  renderReactInto,
-  clearReactContainer,
-  hasReactMount,
-  unmountReactFrom,
-} from "./reactMount";
+import { renderReactInto, clearReactContainer, hasReactMount, unmountReactFrom } from "./reactMount";
 
 describe("reactMount", () => {
   let container: HTMLElement;
@@ -43,18 +38,20 @@ describe("reactMount", () => {
     });
 
     it("外部から innerHTML 等で wipe されてマーカーが消失した場合、新しい Root を作り直す", () => {
+      // 注意: 通常パスは `clearReactContainer` を使うべき。本テストは
+      // それを使わずに外部 mutation だけが起きた異常系の回復動作を検証する。
+      // この経路では既存 root の DOM が既に消えており unmount 不可なので、
+      // React の「同一コンテナへの再 createRoot」警告が出るのが仕様。
+      const warnSpy = vi.spyOn(console, "error").mockImplementation(() => {});
       renderReactInto(container, <p>初回</p>);
-      // 並走している命令的コードがマーカーを残したままコンテナを書き換えたケース
-      // ではなく、clearReactContainer 等で確実にマーカーが除去された後を想定する。
-      // テストでは実際にコンテナを wipe する前に古い Root を unmount し、孤児 Root の
-      // React 警告を出さずにケースを再現する。
-      unmountReactFrom(container);
       container.innerHTML = "";
+      container.removeAttribute("data-react-mounted");
 
       // 再描画時に新しい root が生成される
       renderReactInto(container, <p>再生成</p>);
       expect(container.querySelector("p")?.textContent).toBe("再生成");
       expect(hasReactMount(container)).toBe(true);
+      warnSpy.mockRestore();
     });
   });
 
@@ -68,16 +65,19 @@ describe("reactMount", () => {
       expect(hasReactMount(container)).toBe(false);
     });
 
-    it("clearReactContainer 後の renderReactInto は新しい Root として動作する", () => {
+    it("clearReactContainer 後の renderReactInto は新しい Root として動作する（警告なし）", () => {
+      const warnSpy = vi.spyOn(console, "error").mockImplementation(() => {});
       renderReactInto(container, <p>初回</p>);
-      // clearReactContainer はマーカーを消すだけでキャッシュ root は破棄しないため、
-      // 警告なしで作り直すには事前に unmountReactFrom を呼んで明示的に破棄する。
-      unmountReactFrom(container);
+      // clearReactContainer が内部で root.unmount を呼ぶため、
+      // 後続の renderReactInto は警告なしで新規 root を生成できる。
       clearReactContainer(container);
       renderReactInto(container, <p>新規</p>);
 
       expect(container.querySelector("p")?.textContent).toBe("新規");
       expect(hasReactMount(container)).toBe(true);
+      // 警告が一切出ていないことを確認
+      expect(warnSpy).not.toHaveBeenCalled();
+      warnSpy.mockRestore();
     });
   });
 
