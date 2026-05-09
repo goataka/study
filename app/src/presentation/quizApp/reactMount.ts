@@ -8,9 +8,13 @@
  * `querySelector` で検証してもタイミング問題を起こさない。
  *
  * 段階移行中、まだ React 化されていない並走パスがコンテナを `innerHTML = ""`
- * で wipe したり別構造へ入れ替えたりするケースが残っているため、初回マウント時に
- * コンテナへ `data-react-mounted` マーカーを付与し、マーカーが消失していたら
- * 「外部 mutation でキャッシュ root が孤児化した」と判定して新しい root を作り直す。
+ * で wipe したり別構造へ入れ替えたりするケースが残っているため、孤児 root を
+ * 検出する仕組みを 2 段で持つ:
+ *   1. 初回マウント時にコンテナへ `data-react-mounted` マーカーを付与し、
+ *      マーカーが消失していたら「外部 mutation でキャッシュ root が孤児化した」と判定する。
+ *   2. 命令的に wipe する側は `clearReactContainer(container)` を呼んでマーカーを
+ *      明示的に削除することで、データなし状態の正常レンダリング（子 0 件）と
+ *      外部 wipe を確実に区別できるようにする。
  */
 
 import { createRoot, type Root } from "react-dom/client";
@@ -23,21 +27,17 @@ const REACT_MOUNTED_ATTR = "data-react-mounted";
  * 指定 DOM コンテナへ React 要素を同期描画する。
  * 同一コンテナへの 2 回目以降の呼び出しは React の再レンダリングとして処理される。
  *
- * 並走している命令的コードがコンテナを `innerHTML = ""` で空にしたり
- * `appendChild` で別構造に置換した場合は、マーカー消失を検出してキャッシュ root
- * を破棄してから新しい root を作り直す（孤児 root の防御）。
+ * 並走している命令的コードがコンテナを wipe した場合は、マーカー消失を検出して
+ * キャッシュ root を破棄してから新しい root を作り直す。wipe 側は
+ * `clearReactContainer` を使うことでこの検出を確実にトリガーできる。
  */
 export function renderReactInto(container: Element, element: React.ReactNode): void {
   let root = rootCache.get(container);
   if (root && !container.hasAttribute(REACT_MOUNTED_ATTR)) {
-    // 外部コードによりコンテナの中身が React の管理下から外された場合、
-    // キャッシュ済み root は内部 fiber tree が実 DOM と一致しなくなっているため
-    // 破棄して再作成する。
     rootCache.delete(container);
     root = undefined;
   }
   if (!root) {
-    // 既存内容（テストや前世代の innerHTML 設定）を一掃してから React を mount する
     container.innerHTML = "";
     root = createRoot(container);
     rootCache.set(container, root);
@@ -46,6 +46,16 @@ export function renderReactInto(container: Element, element: React.ReactNode): v
   flushSync(() => {
     root.render(element);
   });
+}
+
+/**
+ * 命令的に共有コンテナを wipe するときに呼ぶ。
+ * `innerHTML = ""` と同等の効果に加えて React 用マーカー属性も削除し、
+ * 次回 `renderReactInto` が新規 root を作るようにする。
+ */
+export function clearReactContainer(container: Element): void {
+  container.innerHTML = "";
+  container.removeAttribute(REACT_MOUNTED_ATTR);
 }
 
 /**

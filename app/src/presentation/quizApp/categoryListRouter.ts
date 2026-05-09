@@ -10,6 +10,7 @@
 import type { QuizUseCase } from "../../application/quizUseCase";
 import type { IProgressRepository } from "../../application/ports";
 import { renderAdminContent } from "../adminPanel";
+import { clearReactContainer } from "./reactMount";
 
 /** renderCategoryList ルーターのパラメータ。 */
 export interface RenderCategoryListRouterParams {
@@ -37,7 +38,9 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
   const categoryList = document.getElementById("categoryList");
   if (!categoryList) return;
 
-  categoryList.innerHTML = "";
+  // 共有コンテナ。React 化された renderAllSubjectList / renderProgressView 等が
+  // 描画する場合に備え、wipe 時はマーカーも明示的に削除する。
+  clearReactContainer(categoryList);
 
   const { subject } = params;
 
@@ -50,7 +53,7 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
   if (subject === "admin") {
     // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
     const controlsEl = document.getElementById("categoryControls");
-    if (controlsEl) controlsEl.innerHTML = "";
+    if (controlsEl) clearReactContainer(controlsEl);
     // タイトルを「⚙️ メニュー」に変更
     const titleEl = document.getElementById("categoryListTitle");
     if (titleEl) titleEl.textContent = "⚙️ メニュー";
@@ -66,7 +69,7 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
   if (subject === "progress") {
     // 進度タブ: コントロールをクリアし、タイトルを設定して進度ビューを描画する
     const controlsEl = document.getElementById("categoryControls");
-    if (controlsEl) controlsEl.innerHTML = "";
+    if (controlsEl) clearReactContainer(controlsEl);
     const titleEl = document.getElementById("categoryListTitle");
     if (titleEl) titleEl.textContent = "📚 教科";
     params.renderProgressView();

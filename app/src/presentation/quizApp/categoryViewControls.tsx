@@ -8,7 +8,7 @@
 
 import type { QuizUseCase } from "../../application/quizUseCase";
 import type { IProgressRepository } from "../../application/ports";
-import { renderReactInto } from "./reactMount";
+import { renderReactInto, clearReactContainer } from "./reactMount";
 
 /** カテゴリビューコントロールへ渡すコールバックと状態。 */
 export interface CategoryViewControlsParams {
@@ -36,8 +36,9 @@ export function renderCategoryViewControls(params: CategoryViewControlsParams): 
 
   if (params.subject === "all" || params.subject === "progress") {
     // 総合タブ・進度タブ: コントロールは renderAllSubjectList/renderProgressView 内で描画するため不要。
-    // 既存の中身を消すだけにする（並走パスが innerHTML を直接書き込んでいるケースに合わせる）。
-    controlsEl.innerHTML = "";
+    // 既存の中身を消しつつ、後続で renderReactInto が呼ばれた場合に新規 root を作るよう
+    // マーカーも削除する。
+    clearReactContainer(controlsEl);
     return;
   }
 
