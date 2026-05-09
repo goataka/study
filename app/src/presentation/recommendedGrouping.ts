@@ -1,5 +1,5 @@
 /**
- * 総合タブの各教科おすすめ単元一覧（renderAllSubjectList）用の純粋ロジック。
+ * 総合タブの「教科別おすすめ単元」を親カテゴリでグルーピングするための純粋ロジック。
  *
  * かつてはここに DOM 構築ヘルパー（`buildSubjectOverviewHeaderRow` 等）も
  * 置かれていたが、UI 描画は React コンポーネント `AllSubjectList`

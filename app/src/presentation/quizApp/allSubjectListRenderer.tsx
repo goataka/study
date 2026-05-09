@@ -9,7 +9,7 @@
  */
 
 import type { QuizUseCase } from "../../application/quizUseCase";
-import { groupRecommendedByCategory, type RecommendedItem } from "../allSubjectListView";
+import { groupRecommendedByCategory, type RecommendedItem } from "../recommendedGrouping";
 import { SUBJECTS, gradeColorClass, calcDualProgressPct } from "../uiHelpers";
 import { renderReactInto } from "./reactMount";
 

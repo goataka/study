@@ -1,11 +1,11 @@
 /**
- * allSubjectListView の仕様テスト
+ * recommendedGrouping の仕様テスト
  */
 
 // @vitest-environment jsdom
 
 import { describe, it, expect } from "vitest";
-import { groupRecommendedByCategory, type CategoryLookup, type RecommendedItem } from "./allSubjectListView";
+import { groupRecommendedByCategory, type CategoryLookup, type RecommendedItem } from "./recommendedGrouping";
 
 describe("groupRecommendedByCategory", () => {
   const lookup: CategoryLookup = {
