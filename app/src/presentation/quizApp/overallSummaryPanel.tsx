@@ -22,36 +22,58 @@ import { renderReactInto } from "./reactMount";
 export function renderOverallSubjectStatus(useCase: QuizUseCase, subjectRecommendedCounts: Map<string, number>): void {
   const container = document.getElementById("overallSubjectStatusSummary");
   if (!container) return;
-  container.innerHTML = "";
   const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
-  for (const subject of subjects) {
-    const categories = useCase.getCategoriesForSubject(subject.id);
-    const totalUnits = Object.keys(categories).length;
-    const studiedOrInProgressUnitCount = Object.keys(categories).filter((categoryId) => {
-      const { mastered } = useCase.getMasteredCountForCategory(subject.id, categoryId);
-      const inProgress = useCase.getInProgressCount({ subject: subject.id, category: categoryId });
-      return mastered > 0 || inProgress > 0;
-    }).length;
-    if (totalUnits === 0) {
-      const row = document.createElement("div");
-      row.className = "overall-subject-status-row";
-      row.textContent = `${subject.icon} ${subject.name}: 0/0単元 🌱 まずは単元を追加しよう！`;
-      container.appendChild(row);
-      continue;
-    }
-    const target = Math.max(1, Math.min(subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
-    const ratio = Math.min(1, studiedOrInProgressUnitCount / target);
-    const message =
-      ratio >= 1
-        ? "🎉 目標達成！この調子！"
-        : ratio >= 0.5
-          ? "👍 いい感じで進んでいるよ！"
-          : "🌱 まずは1単元ずつ進めよう！";
-    const row = document.createElement("div");
-    row.className = "overall-subject-status-row";
-    row.textContent = `${subject.icon} ${subject.name}: ${Math.min(studiedOrInProgressUnitCount, target)}/${target}単元 ${message}`;
-    container.appendChild(row);
+  const rows = subjects.map((subject) => buildOverallStatusRow(useCase, subject, subjectRecommendedCounts));
+  renderReactInto(container, <OverallSubjectStatusSummary rows={rows} />);
+}
+
+interface OverallStatusRow {
+  key: string;
+  text: string;
+}
+
+function buildOverallStatusRow(
+  useCase: QuizUseCase,
+  subject: { id: string; name: string; icon: string },
+  subjectRecommendedCounts: Map<string, number>,
+): OverallStatusRow {
+  const categories = useCase.getCategoriesForSubject(subject.id);
+  const totalUnits = Object.keys(categories).length;
+  if (totalUnits === 0) {
+    return {
+      key: subject.id,
+      text: `${subject.icon} ${subject.name}: 0/0単元 🌱 まずは単元を追加しよう！`,
+    };
   }
+  const studiedOrInProgressUnitCount = Object.keys(categories).filter((categoryId) => {
+    const { mastered } = useCase.getMasteredCountForCategory(subject.id, categoryId);
+    const inProgress = useCase.getInProgressCount({ subject: subject.id, category: categoryId });
+    return mastered > 0 || inProgress > 0;
+  }).length;
+  const target = Math.max(1, Math.min(subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
+  const ratio = Math.min(1, studiedOrInProgressUnitCount / target);
+  const message =
+    ratio >= 1
+      ? "🎉 目標達成！この調子！"
+      : ratio >= 0.5
+        ? "👍 いい感じで進んでいるよ！"
+        : "🌱 まずは1単元ずつ進めよう！";
+  return {
+    key: subject.id,
+    text: `${subject.icon} ${subject.name}: ${Math.min(studiedOrInProgressUnitCount, target)}/${target}単元 ${message}`,
+  };
+}
+
+function OverallSubjectStatusSummary({ rows }: { rows: OverallStatusRow[] }): React.JSX.Element {
+  return (
+    <>
+      {rows.map((row) => (
+        <div key={row.key} className="overall-subject-status-row">
+          {row.text}
+        </div>
+      ))}
+    </>
+  );
 }
 
 /**
