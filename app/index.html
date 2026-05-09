@@ -46,6 +46,10 @@
     </script>
   </head>
   <body>
+    <!-- React マウントポイント（src/main.tsx）。Phase 1 では既存マークアップは下段に残し、
+         React は起動ライフサイクルのみを所有する。Phase 2 以降で各セクションを段階的に
+         React コンポーネントへ移行する。 -->
+    <div id="root"></div>
     <div class="container">
       <!-- 教科タブ行（付箋：ノートの上に出っ張る） + リンク付箋 + ユーザーエリア（右端） -->
       <div class="tabs-user-row">
@@ -704,7 +708,7 @@
     <!-- KanjiCanvas: 手書き漢字認識ライブラリ（text-input問題で使用） -->
     <script src="./vendor/kanji-canvas.min.js"></script>
     <!-- ref-patterns.js（6MB）と hiragana-patterns.js（ひらがな）は初回 text-input 問題表示時に quizApp.ts が動的ロードする -->
-    <script type="module" src="./src/presentation/quizApp.ts"></script>
+    <script type="module" src="./src/main.tsx"></script>
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", function () {
