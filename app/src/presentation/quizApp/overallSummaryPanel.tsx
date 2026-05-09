@@ -12,7 +12,8 @@
 import type { QuizRecord, QuizUseCase } from "../../application/quizUseCase";
 import { SUBJECTS } from "../uiHelpers";
 import { filterRecordsBySelectedDate } from "../shareSummary";
-import { buildHistoryItem } from "../historyItemView";
+import { HistoryList } from "./HistoryList";
+import { renderReactInto } from "./reactMount";
 
 /**
  * 総合タブの「学習状況」を描画する。
@@ -104,20 +105,17 @@ export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase,
   if (!container) return;
 
   const todayRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
-
-  container.innerHTML = "";
-
-  if (todayRecords.length === 0) {
-    const empty = document.createElement("p");
-    empty.className = "today-activity-empty";
-    empty.textContent = "この日はまだ問題を解いていません。";
-    container.appendChild(empty);
-    return;
-  }
-
   // 最新順に並べて履歴形式で表示（総合タブなので教科名プレフィックスを付ける）
   const sorted = [...todayRecords].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  sorted.forEach((record) => {
-    container.appendChild(buildHistoryItem(record, useCase, true));
-  });
+
+  renderReactInto(
+    container,
+    <HistoryList
+      records={sorted}
+      useCase={useCase}
+      showSubjectPrefix
+      emptyMessage="この日はまだ問題を解いていません。"
+      emptyClassName="today-activity-empty"
+    />,
+  );
 }
