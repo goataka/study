@@ -6,6 +6,10 @@
  * 以降は同一 Root に対して `render()` を呼ぶことで React の再描画として動作させる。
  * `flushSync` で同期的にコミットするので、既存の単体テストが直後に DOM を
  * `querySelector` で検証してもタイミング問題を起こさない。
+ *
+ * 段階移行中、まだ React 化されていない並走パスがコンテナを `innerHTML = ""`
+ * で wipe するケースが残っているため、コンテナの childNodes が空になっていれば
+ * キャッシュ済み root は DOM と乖離した「孤児」とみなし、新しい root を作り直す。
  */
 
 import { createRoot, type Root } from "react-dom/client";
@@ -16,9 +20,18 @@ const rootCache = new WeakMap<Element, Root>();
 /**
  * 指定 DOM コンテナへ React 要素を同期描画する。
  * 同一コンテナへの 2 回目以降の呼び出しは React の再レンダリングとして処理される。
+ *
+ * 並走している命令的コードがコンテナを `innerHTML = ""` で空にした場合は、
+ * キャッシュ済み root を破棄してから新しい root を作り直す（孤児 root の防御）。
  */
 export function renderReactInto(container: Element, element: React.ReactNode): void {
   let root = rootCache.get(container);
+  if (root && container.childNodes.length === 0) {
+    // 外部コードによりコンテナが wipe された場合、キャッシュ済み root は
+    // 内部 fiber tree が実 DOM と一致しなくなっているため破棄して再作成する。
+    rootCache.delete(container);
+    root = undefined;
+  }
   if (!root) {
     // 既存内容（テストや前世代の innerHTML 設定）を一掃してから React を mount する
     container.innerHTML = "";
