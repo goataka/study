@@ -2,8 +2,6 @@
  * 進度タブの左パネル（教科リスト）を描画するヘルパー（React 版）。
  *
  * 教科ごとの「学習済み単元数 / 総単元数」を表示し、クリックで教科切り替え。
- * 公開 API は `renderProgressSubjectList(container, useCase, callbacks)` に統一し、
- * 旧 `buildProgressSubjectList` は薄い互換ラッパーとして残す。
  */
 
 import type { QuizUseCase } from "../../application/quizUseCase";
@@ -54,19 +52,6 @@ export function renderProgressSubjectList(
 ): void {
   const stats = buildProgressSubjectStats(useCase);
   renderReactInto(container, <ProgressSubjectList stats={stats} callbacks={callbacks} />);
-}
-
-/**
- * 旧 API 互換ラッパー: detached な div を返す。
- * 新規呼び出し元は `renderProgressSubjectList` を直接使うこと。
- *
- * @deprecated `renderProgressSubjectList` を使用してください。
- */
-export function buildProgressSubjectList(useCase: QuizUseCase, callbacks: ProgressSubjectListCallbacks): HTMLElement {
-  const container = document.createElement("div");
-  renderProgressSubjectList(container, useCase, callbacks);
-  // React がトップレベルにレンダリングしたラッパー要素を取り出して返す。
-  return (container.firstElementChild as HTMLElement) ?? container;
 }
 
 // ─── React コンポーネント ────────────────────────────────────────────────

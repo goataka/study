@@ -8,27 +8,31 @@
  * `querySelector` で検証してもタイミング問題を起こさない。
  *
  * 段階移行中、まだ React 化されていない並走パスがコンテナを `innerHTML = ""`
- * で wipe するケースが残っているため、コンテナの childNodes が空になっていれば
- * キャッシュ済み root は DOM と乖離した「孤児」とみなし、新しい root を作り直す。
+ * で wipe したり別構造へ入れ替えたりするケースが残っているため、初回マウント時に
+ * コンテナへ `data-react-mounted` マーカーを付与し、マーカーが消失していたら
+ * 「外部 mutation でキャッシュ root が孤児化した」と判定して新しい root を作り直す。
  */
 
 import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 
 const rootCache = new WeakMap<Element, Root>();
+const REACT_MOUNTED_ATTR = "data-react-mounted";
 
 /**
  * 指定 DOM コンテナへ React 要素を同期描画する。
  * 同一コンテナへの 2 回目以降の呼び出しは React の再レンダリングとして処理される。
  *
- * 並走している命令的コードがコンテナを `innerHTML = ""` で空にした場合は、
- * キャッシュ済み root を破棄してから新しい root を作り直す（孤児 root の防御）。
+ * 並走している命令的コードがコンテナを `innerHTML = ""` で空にしたり
+ * `appendChild` で別構造に置換した場合は、マーカー消失を検出してキャッシュ root
+ * を破棄してから新しい root を作り直す（孤児 root の防御）。
  */
 export function renderReactInto(container: Element, element: React.ReactNode): void {
   let root = rootCache.get(container);
-  if (root && container.childNodes.length === 0) {
-    // 外部コードによりコンテナが wipe された場合、キャッシュ済み root は
-    // 内部 fiber tree が実 DOM と一致しなくなっているため破棄して再作成する。
+  if (root && !container.hasAttribute(REACT_MOUNTED_ATTR)) {
+    // 外部コードによりコンテナの中身が React の管理下から外された場合、
+    // キャッシュ済み root は内部 fiber tree が実 DOM と一致しなくなっているため
+    // 破棄して再作成する。
     rootCache.delete(container);
     root = undefined;
   }
@@ -37,6 +41,7 @@ export function renderReactInto(container: Element, element: React.ReactNode): v
     container.innerHTML = "";
     root = createRoot(container);
     rootCache.set(container, root);
+    container.setAttribute(REACT_MOUNTED_ATTR, "1");
   }
   flushSync(() => {
     root.render(element);
@@ -52,5 +57,6 @@ export function unmountReactFrom(container: Element): void {
   if (root) {
     root.unmount();
     rootCache.delete(container);
+    container.removeAttribute(REACT_MOUNTED_ATTR);
   }
 }
