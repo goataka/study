@@ -1,7 +1,11 @@
 // @vitest-environment jsdom
 
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import React from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { updateCategoryListActive, showPanelTab } from "./categoryListActive";
+import { renderReactInto } from "./reactMount";
+import { QuizPanel } from "../components/startScreen/QuizPanel";
+import { __resetPanelTabsStoreForTests } from "../components/startScreen/panelTabsStore";
 
 function setupCategoryList(): void {
   document.body.innerHTML = `
@@ -160,16 +164,15 @@ describe("updateCategoryListActive", () => {
 
 describe("showPanelTab", () => {
   beforeEach(() => {
-    document.body.innerHTML = `
-      <div id="quizModePanel"></div>
-      <div id="guideContent"></div>
-      <div id="historyContent"></div>
-      <div id="questionListContent"></div>
-      <button class="panel-tab" data-panel="quiz" tabindex="-1" aria-selected="false"></button>
-      <button class="panel-tab" data-panel="guide" tabindex="-1" aria-selected="false"></button>
-      <button class="panel-tab" data-panel="history" tabindex="-1" aria-selected="false"></button>
-      <button class="panel-tab" data-panel="questions" tabindex="-1" aria-selected="false"></button>
-    `;
+    __resetPanelTabsStoreForTests();
+    document.body.innerHTML = `<div id="quizPanelMount"></div>`;
+    const mount = document.getElementById("quizPanelMount");
+    if (mount) renderReactInto(mount, React.createElement(QuizPanel));
+  });
+
+  afterEach(() => {
+    __resetPanelTabsStoreForTests();
+    document.body.innerHTML = "";
   });
 
   it("選択したタブのコンテンツだけが表示される", () => {
@@ -193,8 +196,8 @@ describe("showPanelTab", () => {
     });
   });
 
-  it("既に表示されているコンテンツ要素が無い場合でも安全に動作する", () => {
-    document.body.innerHTML = `<button class="panel-tab" data-panel="quiz"></button>`;
+  it("React マウントが無くても安全に動作する（store 更新のみ）", () => {
+    document.body.innerHTML = "";
     expect(() => showPanelTab("quiz")).not.toThrow();
   });
 });

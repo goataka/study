@@ -3,41 +3,56 @@
  *
  * 活動日付・教科別ステータス・活動一覧（履歴形式）と、共有用テキスト・URL 編集領域を含む。
  * テキストや URL は既存コントローラ（`shareSummary` 系・履歴ビュー等）が動的に更新する。
+ *
+ * タブの active 状態と各サブパネルの hidden 表示は `panelTabsStore` を購読して
+ * 宣言的に反映する。クリックは onClick で `setActiveOverallPanel` を直接呼ぶ。
  */
 
+import { type OverallPanelTab } from "./panelTabsStore";
+import { useActiveOverallPanel } from "./usePanelTabsStore";
+
+interface OverallPanelTabButtonProps {
+  panel: OverallPanelTab;
+  active: OverallPanelTab;
+  id: string;
+  label: string;
+}
+
+function OverallPanelTabButton({ panel, active, id, label }: OverallPanelTabButtonProps): React.JSX.Element {
+  const isActive = panel === active;
+  return (
+    <button
+      className={isActive ? "panel-tab active" : "panel-tab"}
+      id={id}
+      data-overall-panel={panel}
+      role="tab"
+      type="button"
+      aria-selected={isActive}
+      // クリックは setupOverallPanelTabs の DOM 委譲が処理する（React onClick との二重発火を避けるため）
+    >
+      {label}
+    </button>
+  );
+}
+
 export function OverallSummaryPanel(): React.JSX.Element {
+  const active = useActiveOverallPanel();
+  const learnedClass = active === "learned" ? "overall-activity-panel" : "overall-activity-panel hidden";
+  const shareClass = active === "share" ? "overall-activity-panel" : "overall-activity-panel hidden";
   return (
     <div id="overallSummaryPanel" className="hidden overall-summary-panel" role="region" aria-label="活動サマリ">
       <div className="panel-tabs overall-panel-tabs" role="tablist" aria-label="概要パネル切り替え">
-        <button
-          className="panel-tab active"
-          id="overallTab-learned"
-          data-overall-panel="learned"
-          role="tab"
-          type="button"
-          aria-selected="true"
-        >
-          🎓 学習状況
-        </button>
-        <button
-          className="panel-tab"
-          id="overallTab-share"
-          data-overall-panel="share"
-          role="tab"
-          type="button"
-          aria-selected="false"
-        >
-          📤 シェア
-        </button>
+        <OverallPanelTabButton panel="learned" active={active} id="overallTab-learned" label="🎓 学習状況" />
+        <OverallPanelTabButton panel="share" active={active} id="overallTab-share" label="📤 シェア" />
       </div>
-      <div id="overallLearnedPanel" className="overall-activity-panel">
+      <div id="overallLearnedPanel" className={learnedClass}>
         <div className="overall-activity-date-row">
           <span id="overallActivityDateLabel" className="overall-activity-date"></span>
         </div>
         <div id="overallSubjectStatusSummary" className="overall-subject-status-summary"></div>
         <div id="todayActivityContent" className="history-list overall-today-list"></div>
       </div>
-      <div id="overallSharePanel" className="overall-activity-panel hidden">
+      <div id="overallSharePanel" className={shareClass}>
         <div id="shareSummaryText" className="share-summary-text"></div>
         <div className="share-actions-row">
           <button id="copySummaryBtn" className="share-copy-btn" type="button">

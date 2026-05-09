@@ -2,64 +2,88 @@
  * スタート画面右カラムのインナータブ群（解説 / 確認 / 問題 / 履歴）と各タブのコンテンツ。
  *
  * クイズモードの設定（問題数 / 並び順 / 学習済の扱い）と「学習済みにする」ボタンを含む。
- * インナータブの切り替えやリストの動的描画は既存コントローラが担当する。
+ * インナータブの active 状態と各パネルの hidden 表示は `panelTabsStore` を購読して
+ * 宣言的に反映する。クリックは onClick で `setActivePanelTab` を直接呼び出す。
  */
 
+import { type PanelTab } from "./panelTabsStore";
+import { useActivePanelTab, useHiddenPanelTabs } from "./usePanelTabsStore";
+
+interface PanelTabButtonProps {
+  tab: PanelTab;
+  active: PanelTab;
+  hidden: boolean;
+  id: string;
+  controls: string;
+  label: string;
+}
+
+function PanelTabButton({ tab, active, hidden, id, controls, label }: PanelTabButtonProps): React.JSX.Element {
+  const isActive = tab === active;
+  const classes = ["panel-tab"];
+  if (isActive) classes.push("active");
+  if (hidden) classes.push("hidden");
+  return (
+    <button
+      className={classes.join(" ")}
+      id={id}
+      data-panel={tab}
+      role="tab"
+      type="button"
+      aria-selected={isActive}
+      aria-controls={controls}
+      tabIndex={isActive ? 0 : -1}
+      // クリックハンドラは buildPanelTabs が addEventListener で登録する。
+      // React onClick を併用すると静的 HTML 互換の DOM 委譲と二重発火するため、
+      // ここでは onClick を付けない（React は active/hidden の宣言的反映のみを担う）。
+    >
+      {label}
+    </button>
+  );
+}
+
 export function QuizPanel(): React.JSX.Element {
+  const active = useActivePanelTab();
+  const hiddenTabs = useHiddenPanelTabs();
+  const hiddenIfNot = (tab: PanelTab): string => (active === tab ? "" : "hidden");
   return (
     <>
       <div className="panel-tabs" role="tablist" aria-label="パネル切り替え">
-        <button
-          className="panel-tab"
+        <PanelTabButton
+          tab="guide"
+          active={active}
+          hidden={hiddenTabs.has("guide")}
           id="panelTab-guide"
-          data-panel="guide"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="guideContent"
-          tabIndex={-1}
-        >
-          📖 解説
-        </button>
-        <button
-          className="panel-tab active"
-          id="panelTab-quiz"
-          data-panel="quiz"
-          role="tab"
-          type="button"
-          aria-selected="true"
-          aria-controls="quizModePanel"
-          tabIndex={0}
-        >
-          ✅ 確認
-        </button>
-        <button
-          className="panel-tab"
+          controls="guideContent"
+          label="📖 解説"
+        />
+        <PanelTabButton
+          tab="questions"
+          active={active}
+          hidden={hiddenTabs.has("questions")}
           id="panelTab-questions"
-          data-panel="questions"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="questionListContent"
-          tabIndex={-1}
-        >
-          📋 問題
-        </button>
-        <button
-          className="panel-tab"
+          controls="questionListContent"
+          label="📋 問題"
+        />
+        <PanelTabButton
+          tab="quiz"
+          active={active}
+          hidden={hiddenTabs.has("quiz")}
+          id="panelTab-quiz"
+          controls="quizModePanel"
+          label="✅ 確認"
+        />
+        <PanelTabButton
+          tab="history"
+          active={active}
+          hidden={hiddenTabs.has("history")}
           id="panelTab-history"
-          data-panel="history"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="historyContent"
-          tabIndex={-1}
-        >
-          📊 履歴
-        </button>
+          controls="historyContent"
+          label="📊 履歴"
+        />
       </div>
 
-      <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
+      <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz" className={hiddenIfNot("quiz")}>
         <div id="statsInfo" className="stats-info">
           読み込み中...
         </div>
@@ -111,18 +135,23 @@ export function QuizPanel(): React.JSX.Element {
         </div>
       </div>
 
-      <div id="guideContent" className="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
+      <div id="guideContent" className={hiddenIfNot("guide")} role="tabpanel" aria-labelledby="panelTab-guide">
         <div id="guidePanelFrame" className="guide-frame"></div>
         <p id="guideNoContent" className="guide-no-content hidden">
           このカテゴリには解説がありません。
         </p>
       </div>
 
-      <div id="historyContent" className="hidden" role="tabpanel" aria-labelledby="panelTab-history">
+      <div id="historyContent" className={hiddenIfNot("history")} role="tabpanel" aria-labelledby="panelTab-history">
         <div id="historyList" className="history-list"></div>
       </div>
 
-      <div id="questionListContent" className="hidden" role="tabpanel" aria-labelledby="panelTab-questions">
+      <div
+        id="questionListContent"
+        className={hiddenIfNot("questions")}
+        role="tabpanel"
+        aria-labelledby="panelTab-questions"
+      >
         <div className="question-list-filter-bar">
           <button id="questionListFilterAll" className="question-list-filter-btn active" type="button">
             すべて

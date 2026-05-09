@@ -5,7 +5,53 @@
  * パネルタブやコンテンツパネルの表示/非表示を切り替える DOM 操作専用ヘルパー。
  */
 
+import { setHiddenPanelTabs } from "../components/startScreen/panelTabsStore";
 import type { PanelTab } from "./tabsBuilder";
+
+/** ID → PanelTab マッピング。 */
+const PANEL_TAB_BY_ID: Record<string, PanelTab> = {
+  "panelTab-guide": "guide",
+  "panelTab-quiz": "quiz",
+  "panelTab-history": "history",
+  "panelTab-questions": "questions",
+};
+
+const ALL_PANEL_TAB_IDS = Object.keys(PANEL_TAB_BY_ID);
+const NON_GUIDE_PANEL_TAB_IDS = ["panelTab-quiz", "panelTab-history", "panelTab-questions"];
+
+/**
+ * 現在 DOM 上で hidden クラスが付いている panel-tab を読み取り、
+ * 指定された ID 群を hidden / 非 hidden に更新したうえでストアへ反映する。
+ *
+ * 旧版は `document.getElementById(id).classList.toggle("hidden", ...)` を直接呼んで
+ * いたが、React 化により panel-tab は `<QuizPanel>` 配下の React コンポーネントが
+ * 所有するため、DOM 直接操作だと次回 React 再レンダリング時に上書きされる。
+ * そこでストア (`hiddenPanelTabs`) 経由で React に反映する。
+ */
+function updateHiddenPanelTabs(updates: Partial<Record<string, boolean>>): void {
+  const next = new Set<PanelTab>();
+  for (const id of ALL_PANEL_TAB_IDS) {
+    const tab = PANEL_TAB_BY_ID[id];
+    if (!tab) continue;
+    let isHidden: boolean;
+    if (id in updates) {
+      isHidden = !!updates[id];
+    } else {
+      // 既存の hidden 状態（DOM 経由）を尊重する
+      const el = document.getElementById(id);
+      isHidden = !!el?.classList.contains("hidden");
+    }
+    if (isHidden) next.add(tab);
+  }
+  setHiddenPanelTabs(next);
+
+  // 後方互換: React 未マウントのテスト環境向けに命令的 DOM 更新も併用する。
+  // React マウント時は store 経由で同じ状態に更新されるため二重書き込みは無害。
+  for (const id of Object.keys(updates)) {
+    const isHidden = !!updates[id];
+    document.getElementById(id)?.classList.toggle("hidden", isHidden);
+  }
+}
 
 /** クイズパネル表示制御に必要な状態とコールバック。 */
 export interface QuizPanelVisibilityParams {
@@ -63,8 +109,11 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
   document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
   document.getElementById("categoryListTitle")?.classList.remove("hidden");
   // 管理タブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、管理コンテンツを表示する
-  ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-    document.getElementById(id)?.classList.add("hidden");
+  updateHiddenPanelTabs({
+    "panelTab-guide": true,
+    "panelTab-quiz": true,
+    "panelTab-history": true,
+    "panelTab-questions": true,
   });
   [
     "quizModePanel",
@@ -94,8 +143,11 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
   document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
   document.getElementById("categoryListTitle")?.classList.remove("hidden");
   // 進度タブでは、単元未選択時は進度詳細のみ表示、単元選択時は単元詳細のみ表示する
-  ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-    document.getElementById(id)?.classList.toggle("hidden", !hasProgressUnit);
+  updateHiddenPanelTabs({
+    "panelTab-guide": !hasProgressUnit,
+    "panelTab-quiz": !hasProgressUnit,
+    "panelTab-history": !hasProgressUnit,
+    "panelTab-questions": !hasProgressUnit,
   });
   if (hasProgressUnit) {
     document.getElementById("progressDetailPanel")?.classList.add("hidden");
@@ -136,20 +188,19 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   document.getElementById("adminContent")?.classList.add("hidden");
 
   // 総合タブでは単元未選択時のみパネルタブを非表示（単元選択時は教科画面と同じ表示）
-  ["panelTab-guide", "panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-    document.getElementById(id)?.classList.toggle("hidden", isAll && !hasOverallUnit);
-  });
-
-  // カテゴリ/サブカテゴリ選択時は確認・問題一覧・履歴タブを非表示
-  ["panelTab-quiz", "panelTab-history", "panelTab-questions"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (!isAll && isGuideOnlySelection) {
-      el.classList.add("hidden");
-    } else if (!isAll) {
-      el.classList.remove("hidden");
+  // また、カテゴリ/サブカテゴリ選択時は確認・問題一覧・履歴タブを非表示にする。
+  // 旧版は ID ごとに classList.toggle を 2 段階で呼んでいたが、
+  // ストアに 1 度で反映するため 4 タブの最終状態をまとめて計算する。
+  const updates: Partial<Record<string, boolean>> = {};
+  for (const id of ALL_PANEL_TAB_IDS) {
+    let hidden = isAll && !hasOverallUnit;
+    if (NON_GUIDE_PANEL_TAB_IDS.includes(id)) {
+      if (!isAll && isGuideOnlySelection) hidden = true;
+      else if (!isAll) hidden = false;
     }
-  });
+    updates[id] = hidden;
+  }
+  updateHiddenPanelTabs(updates);
 
   if (isAll) {
     if (hasOverallUnit) {

@@ -12,6 +12,7 @@
 import type { QuizRecord, QuizUseCase } from "../../application/quizUseCase";
 import { SUBJECTS } from "../uiHelpers";
 import { filterRecordsBySelectedDate } from "../shareSummary";
+import { setActiveOverallPanel } from "../components/startScreen/panelTabsStore";
 import { HistoryList } from "./HistoryList";
 import { renderReactInto } from "./reactMount";
 
@@ -106,8 +107,14 @@ export function updateActivityDateDisplay(useCase: QuizUseCase, selectedActivity
 
 /**
  * 総合タブのサマリパネルタブ（学習済み / シェア）を切り替える。
+ *
+ * React 化に伴い、ストアを更新することで `<OverallSummaryPanel>` が再レンダリングし、
+ * active クラス・aria-selected・各サブパネルの hidden が宣言的に更新される。
+ * 後方互換のため、命令的な classList 操作も併用する（React 未マウントのテスト向け）。
  */
 export function showOverallPanel(tab: "learned" | "share"): void {
+  setActiveOverallPanel(tab);
+
   document.getElementById("overallLearnedPanel")?.classList.toggle("hidden", tab !== "learned");
   document.getElementById("overallSharePanel")?.classList.toggle("hidden", tab !== "share");
 
