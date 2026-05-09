@@ -160,20 +160,26 @@ export function getParentGroupContext(app: QuizApp): BuildParentCategoryGroupPar
 // ─── タブ初期化 ────────────────────────────────────────────────────────────
 
 export function buildSubjectTabs(app: QuizApp): void {
-  buildSubjectTabsFn({
-    onSelectSubject: (subjectId) => {
-      app.filter.subject = subjectId;
-      app.filter.category = "all";
-      app.filter.parentCategory = undefined;
-      app.selectedTopCategoryId = null;
-      app.selectedGradeGroup = null;
-      app.selectedUnitContext = null;
-      renderCategoryList(app);
-      updateStartScreen(app);
-      app.syncURLFragment();
+  buildSubjectTabsFn(
+    {
+      onSelectSubject: (subjectId) => {
+        app.filter.subject = subjectId;
+        app.filter.category = "all";
+        app.filter.parentCategory = undefined;
+        app.selectedTopCategoryId = null;
+        app.selectedGradeGroup = null;
+        app.selectedUnitContext = null;
+        // SubjectTabs は React で完全制御されており、active 状態の更新には
+        // 新しい currentSubject prop で再レンダリングが必要。selectTabByFilter
+        // が内部的に buildSubjectTabs を再呼び出しして React reconciliation を発火する。
+        selectTabByFilter(app);
+        renderCategoryList(app);
+        updateStartScreen(app);
+        app.syncURLFragment();
+      },
     },
-  });
-  selectTabByFilter(app);
+    app.filter.subject,
+  );
   renderCategoryList(app);
 }
 

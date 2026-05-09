@@ -1,9 +1,9 @@
 /**
  * 教科タブ・パネルタブ・進度タブの構築とアクティブ状態同期を行うヘルパー群。
  *
- * `buildSubjectTabs` のみ React 化済み。`selectTabByFilter` は同じ DOM を後から
- * class/aria 属性で書き換えるため、React の reconciliation を避ける目的で
- * `buildSubjectTabs` は初期化時の 1 度だけ呼び出されることを前提としている。
+ * 教科タブは React で完全制御化されており、`buildSubjectTabs` を再呼び出しすることで
+ * active 状態を切り替える（`renderReactInto` 経由でキャッシュ済み root に対して再レンダリング）。
+ * `selectTabByFilter` は後方互換のための薄いラッパーとして残している。
  */
 
 import { SUBJECTS } from "../uiHelpers";
@@ -20,66 +20,57 @@ export interface SubjectTabsCallbacks {
 
 /**
  * 教科タブ群を `.subject-tabs` 配下に React で構築する。
- * クリック時は内部で active クラス・aria-selected を即時に切り替えてからコールバックを呼び出す。
  *
- * このヘルパーは初期化時に 1 度だけ呼び出されることを前提とする。
- * その後の active 状態の変更は `selectTabByFilter` が DOM を直接書き換える。
+ * `currentSubject` を渡すことで active 状態を制御する。再呼び出し時は
+ * `renderReactInto` がキャッシュ済み root に対して props のみを更新し、
+ * React の reconciliation で active クラス・aria-selected を最小差分で更新する。
+ *
+ * `selectTabByFilter` から再レンダリングできるよう、最後に渡された callbacks を
+ * モジュール内にキャッシュする。
  */
-export function buildSubjectTabs(callbacks: SubjectTabsCallbacks): void {
+export function buildSubjectTabs(callbacks: SubjectTabsCallbacks, currentSubject: string): void {
+  cachedCallbacks = callbacks;
   const tabsContainer = document.querySelector(".subject-tabs");
   if (!tabsContainer) return;
-  renderReactInto(tabsContainer, <SubjectTabs callbacks={callbacks} />);
+  renderReactInto(tabsContainer, <SubjectTabs callbacks={callbacks} currentSubject={currentSubject} />);
 }
+
+let cachedCallbacks: SubjectTabsCallbacks | null = null;
 
 interface SubjectTabsProps {
   callbacks: SubjectTabsCallbacks;
+  currentSubject: string;
 }
 
-function SubjectTabs({ callbacks }: SubjectTabsProps): React.JSX.Element {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>, subjectId: string): void => {
-    const tab = e.currentTarget;
-    const tabsContainer = tab.parentElement;
-    // active 状態の更新は selectTabByFilter と同じく DOM 直書き換えで行う
-    // （React の制御外。このコンポーネント自体は初期化時の 1 度しかレンダリングされない想定）。
-    tabsContainer?.querySelectorAll(".subject-tab").forEach((t) => {
-      t.classList.remove("active");
-      t.setAttribute("aria-selected", "false");
-    });
-    tab.classList.add("active");
-    tab.setAttribute("aria-selected", "true");
-    callbacks.onSelectSubject(subjectId);
-  };
-
+function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX.Element {
   return (
     <>
-      {SUBJECTS.map((subject) => (
-        <button
-          key={subject.id}
-          type="button"
-          className="subject-tab"
-          data-subject={subject.id}
-          role="tab"
-          aria-selected="false"
-          onClick={(e) => handleClick(e, subject.id)}
-        >
-          <span className="tab-label">{`${subject.icon} ${subject.name}`}</span>
-        </button>
-      ))}
+      {SUBJECTS.map((subject) => {
+        const isActive = subject.id === currentSubject;
+        return (
+          <button
+            key={subject.id}
+            type="button"
+            className={`subject-tab${isActive ? " active" : ""}`}
+            data-subject={subject.id}
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => callbacks.onSelectSubject(subject.id)}
+          >
+            <span className="tab-label">{`${subject.icon} ${subject.name}`}</span>
+          </button>
+        );
+      })}
     </>
   );
 }
 
-/** 現在のフィルター設定に基づいて教科タブのアクティブ状態を同期する。 */
+/** 現在のフィルター設定に基づいて教科タブのアクティブ状態を同期する。
+ *  React 化に伴い、内部的にはキャッシュ済みの callbacks を使って再レンダリングを行う。
+ *  `buildSubjectTabs` が事前に呼び出されている必要がある。 */
 export function selectTabByFilter(currentSubject: string): void {
-  const tabsContainer = document.querySelector(".subject-tabs");
-  if (!tabsContainer) return;
-
-  tabsContainer.querySelectorAll(".subject-tab").forEach((tab) => {
-    const el = tab as HTMLElement;
-    const isActive = el.dataset.subject === currentSubject;
-    el.classList.toggle("active", isActive);
-    el.setAttribute("aria-selected", String(isActive));
-  });
+  if (!cachedCallbacks) return;
+  buildSubjectTabs(cachedCallbacks, currentSubject);
 }
 
 /** インナーパネルタブ（クイズ/解説/履歴/問題一覧）のクリックハンドラを登録する。 */
