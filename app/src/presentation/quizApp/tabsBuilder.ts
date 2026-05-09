@@ -49,17 +49,6 @@ export function buildSubjectTabs(callbacks: SubjectTabsCallbacks): void {
 
     tabsContainer.appendChild(tab);
   });
-
-  const supportLink = document.createElement("a");
-  supportLink.id = "supportBtn";
-  supportLink.className = "tabs-link-note tabs-link-note-support subject-support-link";
-  supportLink.href = "./support/";
-  supportLink.target = "_blank";
-  supportLink.rel = "noopener noreferrer";
-  supportLink.title = "サポートページを開く";
-  supportLink.setAttribute("aria-label", "サポートページを開く");
-  supportLink.textContent = "❔ サポート";
-  tabsContainer.appendChild(supportLink);
 }
 
 /** 現在のフィルター設定に基づいて教科タブのアクティブ状態を同期する。 */

@@ -229,7 +229,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const supportLink = document.querySelector(".subject-tabs .subject-support-link") as HTMLAnchorElement | null;
+    const supportLink = document.querySelector(".tabs-links-area #supportBtn") as HTMLAnchorElement | null;
     expect(supportLink).not.toBeNull();
     expect(supportLink?.getAttribute("href")).toBe("./support/");
   });

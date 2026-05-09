@@ -115,7 +115,18 @@ export function setupTabDom(): void {
     <span id="headerUserName"></span>
     <div id="startScreen" class="screen active">
       <div class="subject-tabs" role="tablist"></div>
-      <div class="tabs-links-area"></div>
+      <div class="tabs-links-area">
+        <a
+          id="supportBtn"
+          class="tabs-link-note tabs-link-note-support"
+          href="./support/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="サポートページを開く"
+          aria-label="サポートページを開く"
+          >❔</a
+        >
+      </div>
       <div id="subjectContent">
         <button id="filterStatusAll" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
         <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
