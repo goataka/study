@@ -41,6 +41,15 @@ function isVisibleCategory(ctx: ProgressBlockContext, progress: CategoryProgress
   return ctx.statusFilter === "all" || getLearningProgressStatus(progress) === ctx.statusFilter;
 }
 
+/** 「表示する単元がありません」メッセージ要素を生成して返す。 */
+function createEmptyStateMessage(): HTMLElement {
+  const empty = document.createElement("div");
+  empty.className = "progress-block-group";
+  empty.setAttribute("role", "status");
+  empty.textContent = "表示する単元がありません";
+  return empty;
+}
+
 /**
  * ■□ブロック列のグループ要素を生成して返す。
  * @param groupName グループ名（学年名・親カテゴリ名など）
@@ -160,11 +169,7 @@ export function renderProgressDetailByGrade(container: HTMLElement, ctx: Progres
   }
 
   if (!hasVisibleContent) {
-    const empty = document.createElement("div");
-    empty.className = "progress-block-group";
-    empty.setAttribute("role", "status");
-    empty.textContent = "表示する単元がありません";
-    container.appendChild(empty);
+    container.appendChild(createEmptyStateMessage());
   }
 }
 
@@ -297,10 +302,6 @@ export function renderProgressDetailByCategory(container: HTMLElement, ctx: Prog
 
   // フィルター適用後に何も表示されない場合はメッセージを表示する
   if (container.children.length === 0) {
-    const empty = document.createElement("div");
-    empty.className = "progress-block-group";
-    empty.setAttribute("role", "status");
-    empty.textContent = "表示する単元がありません";
-    container.appendChild(empty);
+    container.appendChild(createEmptyStateMessage());
   }
 }
