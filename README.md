@@ -4,10 +4,10 @@
 
 ## 学習アプリ
 
-- [アプリ](https://goataka.github.io/study/app/) - 4択・記述形式で学習できるクイズアプリ
-  - [英語](https://goataka.github.io/study/app/?subject=english) - フォニックス・文法・語彙
-  - [数学](https://goataka.github.io/study/app/?subject=math) - 算数・数学の計算・文章問題
-  - [国語](https://goataka.github.io/study/app/?subject=japanese) - 漢字・語彙
+- [アプリ](https://goataka.github.io/study) - 4択・記述形式で学習できるクイズアプリ
+  - [英語](https://goataka.github.io/study?subject=english) - フォニックス・文法・語彙
+  - [数学](https://goataka.github.io/study?subject=math) - 算数・数学の計算・文章問題
+  - [国語](https://goataka.github.io/study?subject=japanese) - 漢字・語彙
 - [サポート](support/README.md) - 利用の仕方やコンテンツ一覧
 
 ### 特徴
