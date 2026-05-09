@@ -7,6 +7,27 @@
 // @vitest-environment jsdom
 
 import { vi } from "vitest";
+import { renderReactInto } from "./quizApp/reactMount";
+import { ConfirmDialog } from "./components/ConfirmDialog";
+import { __resetConfirmDialogStoreForTests } from "./components/confirmDialogStore";
+
+/**
+ * テスト用 DOM に確認ダイアログを React マウントするヘルパー。
+ * `setupMinimalDom` / `setupTabDom` から呼ばれる。
+ *
+ * 旧版は `document.body.innerHTML` に静的 HTML として確認ダイアログを記述し、
+ * 命令的 `showConfirmDialog`（getElementById/addEventListener 経由）が
+ * その DOM を直接操作していたが、React 化に伴い `<ConfirmDialog>` が
+ * `useSyncExternalStore` 経由でストアを購読するようになったため、
+ * テストでも実際に React コンポーネントをマウントする必要がある。
+ */
+function mountConfirmDialog(): void {
+  __resetConfirmDialogStoreForTests();
+  const root = document.createElement("div");
+  root.id = "confirmDialogRoot";
+  document.body.appendChild(root);
+  renderReactInto(root, <ConfirmDialog />);
+}
 
 // KanjiCanvas グローバルのモック（jsdom環境では kanji-canvas.min.js がロードされないため）
 export const kanjiCanvasMock = {
@@ -91,16 +112,8 @@ export function setupMinimalDom(): void {
       <button id="retryWrongBtn">間違えた問題</button>
       <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
-    <div id="confirmDialog" class="confirm-dialog-overlay hidden">
-      <div class="confirm-dialog">
-        <p id="confirmDialogMessage"></p>
-        <div class="confirm-dialog-buttons">
-          <button id="confirmDialogOk">OK</button>
-          <button id="confirmDialogCancel">キャンセル</button>
-        </div>
-      </div>
-    </div>
   `;
+  mountConfirmDialog();
 }
 /** タブUIを含むフルレイアウトのDOM */
 export function setupTabDom(): void {
@@ -238,16 +251,8 @@ export function setupTabDom(): void {
       <button id="retryWrongBtn">間違えた問題</button>
       <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
-    <div id="confirmDialog" class="confirm-dialog-overlay hidden">
-      <div class="confirm-dialog">
-        <p id="confirmDialogMessage"></p>
-        <div class="confirm-dialog-buttons">
-          <button id="confirmDialogOk">OK</button>
-          <button id="confirmDialogCancel">キャンセル</button>
-        </div>
-      </div>
-    </div>
   `;
+  mountConfirmDialog();
 }
 
 // ─── fetch モック（問題JSONの読み込みを回避） ─────────────────────────────
