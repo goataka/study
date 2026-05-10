@@ -3,30 +3,53 @@
  *
  * `AvatarController` がダイアログ要素・プレビュー画像・ズーム入力を直接 DOM 操作する。
  * React は静的な初期マークアップのみを描画する。
+ *
+ * NOTE: 静的スタイルは Tailwind ユーティリティへ移行済み。
+ *       動的に付け外しされる `.visible`（プレビュー表示）/ `.dragging`
+ *       （ドラッグ中カーソル）と `::backdrop` セレクタは Tailwind で表現できないため、
+ *       `07-avatar-dialog.css` に最小限の規則として残している。
  */
 
 export function AvatarCropDialog(): React.JSX.Element {
   return (
-    <dialog id="avatarCropDialog" className="avatar-crop-dialog">
-      <div className="avatar-crop-dialog-inner">
-        <p className="avatar-crop-dialog-title">プロフィール画像</p>
-        <label className="avatar-crop-file-label">
+    <dialog
+      id="avatarCropDialog"
+      className="fixed top-1/2 left-1/2 min-w-[240px] max-w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-lg border border-[#c8d8e8] p-0 shadow-[0_8px_24px_rgba(0,0,0,0.25)] avatar-crop-dialog"
+    >
+      <div className="flex flex-col items-center gap-3 p-4">
+        <p className="m-0 text-[14px] font-bold text-[#24292e]">プロフィール画像</p>
+        <label className="inline-flex cursor-pointer items-center justify-center rounded-md bg-[#0366d6] px-3.5 py-1.5 text-[13px] font-semibold text-white transition-colors duration-150 hover:bg-[#0256b8]">
           <span>画像を選択</span>
-          <input id="headerUserAvatarInput" type="file" accept="image/*" tabIndex={-1} aria-hidden="true" />
+          <input
+            id="headerUserAvatarInput"
+            type="file"
+            accept="image/*"
+            tabIndex={-1}
+            aria-hidden="true"
+            className="hidden"
+          />
         </label>
-        <div className="avatar-crop-preview-wrap" id="avatarCropPreviewWrap">
+        <div
+          id="avatarCropPreviewWrap"
+          className="relative flex h-[120px] w-[120px] cursor-grab touch-none select-none items-center justify-center overflow-hidden rounded-full border-2 border-[#d0d8e0] bg-[#f0f4f8] [overscroll-behavior:contain] avatar-crop-preview-wrap"
+        >
           {/* src は AvatarController が動的に設定する。空文字属性は React の警告対象なので未設定にする。 */}
-          <img id="avatarCropPreview" className="avatar-crop-preview" alt="" aria-hidden="true" />
-          <span id="avatarCropPreviewPlaceholder" className="avatar-crop-preview-placeholder">
+          <img
+            id="avatarCropPreview"
+            className="pointer-events-none hidden h-full w-full object-cover avatar-crop-preview"
+            alt=""
+            aria-hidden="true"
+          />
+          <span id="avatarCropPreviewPlaceholder" className="pointer-events-none text-[48px] leading-none">
             👤
           </span>
         </div>
-        <label htmlFor="avatarCropZoom" className="avatar-crop-zoom-label">
+        <label htmlFor="avatarCropZoom" className="self-stretch text-[12px] text-[#586069]">
           拡大縮小
         </label>
         <input
           id="avatarCropZoom"
-          className="avatar-crop-zoom"
+          className="w-full"
           type="range"
           min="1"
           max="3"
@@ -34,11 +57,19 @@ export function AvatarCropDialog(): React.JSX.Element {
           defaultValue="1"
           aria-label="拡大縮小"
         />
-        <div className="avatar-crop-dialog-btns">
-          <button id="avatarCropConfirmBtn" type="button" className="avatar-crop-confirm-btn">
+        <div className="flex w-full gap-2">
+          <button
+            id="avatarCropConfirmBtn"
+            type="button"
+            className="flex-1 cursor-pointer rounded-md border border-[#28a745] bg-[#28a745] px-3 py-1.5 text-[13px] font-semibold text-white transition-colors duration-150 hover:bg-[#218838]"
+          >
             確定
           </button>
-          <button id="avatarCropCancelBtn" type="button" className="avatar-crop-cancel-btn">
+          <button
+            id="avatarCropCancelBtn"
+            type="button"
+            className="flex-1 cursor-pointer rounded-md border border-[#d1d5da] bg-white px-3 py-1.5 text-[13px] font-semibold text-[#586069] transition-colors duration-150 hover:bg-[#f6f8fa]"
+          >
             キャンセル
           </button>
         </div>
