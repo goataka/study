@@ -6,6 +6,7 @@
 
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { SUBJECTS } from "../uiHelpers";
+import { setActiveProgressDetailMode } from "../components/startScreen/panelTabsStore";
 import { renderReactInto } from "./reactMount";
 import type { ProgressStatusFilter } from "./urlStateService";
 
@@ -110,6 +111,10 @@ export function syncProgressDetailControls(
   const panel = document.getElementById("progressDetailPanel");
   if (!panel) return;
   panel.classList.remove("hidden");
+
+  // タブ active 状態は React コンポーネントが panelTabsStore を購読して反映する。
+  // 後方互換のため、React 未マウントのテスト環境向けに命令的 DOM 更新も併用する。
+  setActiveProgressDetailMode(progressDetailViewMode);
 
   const activeTabId = `progressDetailTab-${progressDetailViewMode}`;
   document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((t) => {

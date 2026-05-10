@@ -3,9 +3,44 @@
  *
  * モバイルでの閉じるボタン、タブバー、学習状況フィルターを含み、
  * `progressDetailContent` 内の描画は既存コントローラが行う。
+ *
+ * タブの active 状態と aria-labelledby は `panelTabsStore` を購読して
+ * 宣言的に反映する。クリックハンドラは React onClick ではなく
+ * `setupProgressDetailTabs` の DOM 委譲で処理する（既存の静的 HTML テストとの
+ * 二重発火を避けるため）。
  */
 
+import { type ProgressDetailMode } from "./panelTabsStore";
+import { useActiveProgressDetailMode } from "./usePanelTabsStore";
+
+interface ProgressDetailTabButtonProps {
+  mode: ProgressDetailMode;
+  active: ProgressDetailMode;
+  id: string;
+  label: string;
+}
+
+function ProgressDetailTabButton({ mode, active, id, label }: ProgressDetailTabButtonProps): React.JSX.Element {
+  const isActive = mode === active;
+  return (
+    <button
+      className={isActive ? "panel-tab active" : "panel-tab"}
+      id={id}
+      data-progress-detail-panel={mode}
+      role="tab"
+      type="button"
+      aria-selected={isActive}
+      aria-controls="progressDetailContent"
+      tabIndex={isActive ? 0 : -1}
+      // クリックは setupProgressDetailTabs の DOM 委譲が処理する
+    >
+      {label}
+    </button>
+  );
+}
+
 export function ProgressDetailPanel(): React.JSX.Element {
+  const active = useActiveProgressDetailMode();
   return (
     <div id="progressDetailPanel" className="hidden progress-detail-panel" role="region" aria-label="進度詳細">
       <div className="progress-detail-close-row">
@@ -15,42 +50,14 @@ export function ProgressDetailPanel(): React.JSX.Element {
         </button>
       </div>
       <div className="panel-tabs progress-detail-tabs" role="tablist" aria-label="進度詳細タブ">
-        <button
-          className="panel-tab"
-          id="progressDetailTab-grade"
-          data-progress-detail-panel="grade"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="progressDetailContent"
-          tabIndex={-1}
-        >
-          🎓 学年別
-        </button>
-        <button
-          className="panel-tab"
+        <ProgressDetailTabButton mode="grade" active={active} id="progressDetailTab-grade" label="🎓 学年別" />
+        <ProgressDetailTabButton
+          mode="category"
+          active={active}
           id="progressDetailTab-category"
-          data-progress-detail-panel="category"
-          role="tab"
-          type="button"
-          aria-selected="false"
-          aria-controls="progressDetailContent"
-          tabIndex={-1}
-        >
-          📁 カテゴリ別
-        </button>
-        <button
-          className="panel-tab active"
-          id="progressDetailTab-matrix"
-          data-progress-detail-panel="matrix"
-          role="tab"
-          type="button"
-          aria-selected="true"
-          aria-controls="progressDetailContent"
-          tabIndex={0}
-        >
-          📊 マトリクス
-        </button>
+          label="📁 カテゴリ別"
+        />
+        <ProgressDetailTabButton mode="matrix" active={active} id="progressDetailTab-matrix" label="📊 マトリクス" />
       </div>
       <div className="progress-detail-toolbar">
         <div className="category-status-filter" role="group" aria-label="学習状況フィルター">
@@ -93,7 +100,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
         id="progressDetailContent"
         className="progress-detail-content"
         role="tabpanel"
-        aria-labelledby="progressDetailTab-matrix"
+        aria-labelledby={`progressDetailTab-${active}`}
       ></div>
     </div>
   );

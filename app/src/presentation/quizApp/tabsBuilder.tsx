@@ -7,6 +7,7 @@
  */
 
 import { SUBJECTS } from "../uiHelpers";
+import { setActiveProgressDetailMode } from "../components/startScreen/panelTabsStore";
 import { renderReactInto } from "./reactMount";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
@@ -73,11 +74,18 @@ export function selectTabByFilter(currentSubject: string): void {
   buildSubjectTabs(cachedCallbacks, currentSubject);
 }
 
-/** インナーパネルタブ（クイズ/解説/履歴/問題一覧）のクリックハンドラを登録する。 */
+/** インナーパネルタブ（クイズ/解説/履歴/問題一覧）の選択時 callback。 */
 export interface PanelTabsCallbacks {
   onSelectPanelTab: (panel: PanelTab) => void;
 }
 
+/**
+ * インナーパネルタブのクリックハンドラを登録する。
+ *
+ * React 化に伴い `<QuizPanel>` がボタン要素を所有するが、React onClick と DOM 委譲の
+ * 二重発火を避けるため、ボタン側には onClick を付けず、本関数が DOM の click を購読する。
+ * これにより静的 HTML 互換のテスト構成と React マウント構成の両方で同じ経路を通る。
+ */
 export function buildPanelTabs(callbacks: PanelTabsCallbacks): void {
   document.querySelectorAll<HTMLElement>(".panel-tab[data-panel]").forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -102,15 +110,19 @@ export function setupProgressDetailTabs(onSelect: (mode: "grade" | "category" | 
   document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((tab) => {
     tab.addEventListener("click", () => {
       const mode = tab.dataset.progressDetailPanel as "grade" | "category" | "matrix";
-      // タブのアクティブ状態・tabindex を更新
+
+      // ストア更新（React 経由で active クラスを反映）
+      setActiveProgressDetailMode(mode);
+
+      // 後方互換: React 未マウント環境向けに命令的 DOM 更新も併用
       document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((t) => {
         const active = t.dataset.progressDetailPanel === mode;
         t.classList.toggle("active", active);
         t.setAttribute("aria-selected", String(active));
         t.setAttribute("tabindex", active ? "0" : "-1");
       });
-      // tabpanel の aria-labelledby を更新する
       document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", `progressDetailTab-${mode}`);
+
       onSelect(mode);
     });
   });

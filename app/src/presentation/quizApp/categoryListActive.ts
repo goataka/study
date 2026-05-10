@@ -3,6 +3,7 @@
  */
 
 import type { QuizFilter } from "../../application/quizUseCase";
+import { setActivePanelTab } from "../components/startScreen/panelTabsStore";
 import type { PanelTab } from "./tabsBuilder";
 
 /** カテゴリリストアクティブ状態反映に必要な状態とコールバック。 */
@@ -84,8 +85,20 @@ export function updateCategoryListActive(params: UpdateCategoryListActiveParams)
 
 /**
  * インナーパネルタブのコンテンツ表示を切り替える。
+ *
+ * React 化に伴い、ストア (`panelTabsStore`) を更新することで `<QuizPanel>` が
+ * `useSyncExternalStore` 経由で再レンダリングし、active クラス・aria-selected・
+ * tabindex・各サブパネルの hidden が宣言的に更新される。
+ *
+ * 後方互換のため、React コンポーネントがマウントされていないケース（一部テストの
+ * 静的 HTML 構成）でも DOM が更新されるよう、命令的な classList 操作も併用する。
+ * React がマウントされている場合は両方の更新が同じ結果になるため二重書き込みは
+ * 無害。
  */
 export function showPanelTab(tab: PanelTab): void {
+  setActivePanelTab(tab);
+
+  // 後方互換のための命令的 DOM 更新（React 未マウントのテスト環境向け）
   const quizModePanel = document.getElementById("quizModePanel");
   const guideContent = document.getElementById("guideContent");
   const historyContent = document.getElementById("historyContent");

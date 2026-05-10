@@ -8,6 +8,15 @@
  */
 
 import type { IProgressRepository } from "../application/ports";
+import {
+  clampZoom,
+  nextCropOnDrag,
+  parseAvatarTransform,
+  pctDelta,
+  transformToCss,
+  validateAvatarFile,
+  validateStoredAvatarDataUrl,
+} from "./avatarTransform";
 
 export class AvatarController {
   /** 保存済みアバター画像（data:URL）。未設定なら null。 */
@@ -34,26 +43,16 @@ export class AvatarController {
    */
   loadFromStorage(): void {
     const stored = this.progressRepo.loadUserAvatar();
-    // data:image/ スキームのみ許可（外部URLや壊れたデータを除外）
-    this.dataUrl = stored && stored.startsWith("data:image/") ? stored : null;
+    this.dataUrl = validateStoredAvatarDataUrl(stored);
     try {
-      const xPos = parseFloat(localStorage.getItem("avatarCropPositionX") ?? "50");
-      const yPos = localStorage.getItem("avatarCropPosition");
-      const zoom = parseFloat(localStorage.getItem("avatarCropZoom") ?? "1");
-      if (!isNaN(xPos) && xPos >= 0 && xPos <= 100) this.cropX = xPos;
-      if (yPos !== null) {
-        const yNum = parseFloat(yPos);
-        if (!isNaN(yNum) && yNum >= 0 && yNum <= 100) {
-          this.cropY = yNum;
-        } else if (yPos === "top") {
-          this.cropY = 0;
-        } else if (yPos === "center") {
-          this.cropY = 50;
-        } else if (yPos === "bottom") {
-          this.cropY = 100;
-        }
-      }
-      if (!isNaN(zoom) && zoom >= 1 && zoom <= 3) this.zoom = zoom;
+      const transform = parseAvatarTransform({
+        cropPositionX: localStorage.getItem("avatarCropPositionX"),
+        cropPositionY: localStorage.getItem("avatarCropPosition"),
+        cropZoom: localStorage.getItem("avatarCropZoom"),
+      });
+      this.cropX = transform.cropX;
+      this.cropY = transform.cropY;
+      this.zoom = transform.zoom;
     } catch {
       /* noop */
     }
@@ -69,9 +68,10 @@ export class AvatarController {
       img.src = this.dataUrl;
       img.classList.add("visible");
       placeholder.classList.add("hidden");
-      img.style.objectPosition = `${this.cropX}% ${this.cropY}%`;
-      img.style.transformOrigin = `${this.cropX}% ${this.cropY}%`;
-      img.style.transform = `scale(${this.zoom})`;
+      const css = transformToCss({ cropX: this.cropX, cropY: this.cropY, zoom: this.zoom });
+      img.style.objectPosition = css.objectPosition;
+      img.style.transformOrigin = css.transformOrigin;
+      img.style.transform = css.transform;
     } else {
       img.removeAttribute("src");
       img.classList.remove("visible");
@@ -97,10 +97,10 @@ export class AvatarController {
 
   /** ダイアログで画像ファイルを選択したときのプレビュー処理。 */
   previewInDialog(file: File): void {
-    if (!file.type.startsWith("image/")) return;
-    const MAX_SIZE = 5 * 1024 * 1024;
-    if (file.size > MAX_SIZE) {
-      alert("画像ファイルサイズは5MB以下にしてください。");
+    const error = validateAvatarFile(file);
+    if (error) {
+      // image/* 以外は無音で無視（既存の挙動）、サイズ超過は alert
+      if (file.type.startsWith("image/")) alert(error);
       return;
     }
     const reader = new FileReader();
@@ -151,9 +151,10 @@ export class AvatarController {
       preview.src = dataUrl;
       preview.classList.add("visible");
       placeholder.classList.add("hidden");
-      preview.style.objectPosition = `${this.pendingCropX}% ${this.pendingCropY}%`;
-      preview.style.transformOrigin = `${this.pendingCropX}% ${this.pendingCropY}%`;
-      preview.style.transform = `scale(${this.pendingZoom})`;
+      const css = transformToCss({ cropX: this.pendingCropX, cropY: this.pendingCropY, zoom: this.pendingZoom });
+      preview.style.objectPosition = css.objectPosition;
+      preview.style.transformOrigin = css.transformOrigin;
+      preview.style.transform = css.transform;
     } else {
       preview.removeAttribute("src");
       preview.classList.remove("visible");
@@ -187,15 +188,14 @@ export class AvatarController {
 
     const getPctDelta = (dx: number, dy: number): { x: number; y: number } => {
       const rect = wrap.getBoundingClientRect();
-      const x = (dx / rect.width) * 100;
-      const y = (dy / rect.height) * 100;
-      return { x, y };
+      return pctDelta(dx, dy, rect.width, rect.height);
     };
 
     const updatePreview = (): void => {
-      preview.style.objectPosition = `${this.pendingCropX}% ${this.pendingCropY}%`;
-      preview.style.transformOrigin = `${this.pendingCropX}% ${this.pendingCropY}%`;
-      preview.style.transform = `scale(${this.pendingZoom})`;
+      const css = transformToCss({ cropX: this.pendingCropX, cropY: this.pendingCropY, zoom: this.pendingZoom });
+      preview.style.objectPosition = css.objectPosition;
+      preview.style.transformOrigin = css.transformOrigin;
+      preview.style.transform = css.transform;
     };
 
     const startDrag = (clientX: number, clientY: number): void => {
@@ -212,8 +212,9 @@ export class AvatarController {
       if (!dragging) return;
       const { x, y } = getPctDelta(clientX - startX, clientY - startY);
       // 画像を右/下にドラッグした時は表示位置を逆方向へ動かす
-      this.pendingCropX = Math.max(0, Math.min(100, startCropX - x));
-      this.pendingCropY = Math.max(0, Math.min(100, startCropY - y));
+      const next = nextCropOnDrag(startCropX, startCropY, x, y);
+      this.pendingCropX = next.cropX;
+      this.pendingCropY = next.cropY;
       updatePreview();
     };
 
@@ -332,10 +333,9 @@ export class AvatarController {
       "input",
       () => {
         const zoom = parseFloat(zoomInput.value);
-        if (!isNaN(zoom)) {
-          this.pendingZoom = Math.max(1, Math.min(3, zoom));
-          updatePreview();
-        }
+        if (isNaN(zoom)) return; // 入力中の不正値は無視
+        this.pendingZoom = clampZoom(zoom);
+        updatePreview();
       },
       { signal },
     );

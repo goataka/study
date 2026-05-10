@@ -7,6 +7,52 @@
 // @vitest-environment jsdom
 
 import { vi } from "vitest";
+import { renderReactInto } from "./quizApp/reactMount";
+import { ConfirmDialog } from "./components/ConfirmDialog";
+import { __resetConfirmDialogStoreForTests } from "./components/confirmDialogStore";
+import { QuizPanel } from "./components/startScreen/QuizPanel";
+import { OverallSummaryPanel } from "./components/startScreen/OverallSummaryPanel";
+import { ProgressDetailPanel } from "./components/startScreen/ProgressDetailPanel";
+import { __resetPanelTabsStoreForTests } from "./components/startScreen/panelTabsStore";
+
+/**
+ * テスト用 DOM に確認ダイアログを React マウントするヘルパー。
+ * `setupMinimalDom` / `setupTabDom` から呼ばれる。
+ *
+ * 旧版は `document.body.innerHTML` に静的 HTML として確認ダイアログを記述し、
+ * 命令的 `showConfirmDialog`（getElementById/addEventListener 経由）が
+ * その DOM を直接操作していたが、React 化に伴い `<ConfirmDialog>` が
+ * `useSyncExternalStore` 経由でストアを購読するようになったため、
+ * テストでも実際に React コンポーネントをマウントする必要がある。
+ */
+function mountConfirmDialog(): void {
+  __resetConfirmDialogStoreForTests();
+  const root = document.createElement("div");
+  root.id = "confirmDialogRoot";
+  document.body.appendChild(root);
+  renderReactInto(root, <ConfirmDialog />);
+}
+
+/**
+ * テスト用 DOM にスタート画面の主要パネル群を React マウントするヘルパー。
+ *
+ * 旧版は `document.body.innerHTML` に静的 HTML として `panel-tabs` /
+ * `quizModePanel` / `guideContent` / `historyContent` / `questionListContent` /
+ * `overallSummaryPanel` / `progressDetailPanel` を記述し、命令的 `showPanelTab`
+ * （getElementById/classList 経由）が DOM を直接操作していたが、React 化に伴い
+ * `<QuizPanel>` / `<OverallSummaryPanel>` / `<ProgressDetailPanel>` が
+ * `panelTabsStore` を購読するようになったため、テストでも実際に React コンポーネントを
+ * マウントする必要がある。
+ */
+function mountStartScreenPanels(): void {
+  __resetPanelTabsStoreForTests();
+  const quizMount = document.getElementById("quizPanelMount");
+  if (quizMount) renderReactInto(quizMount, <QuizPanel />);
+  const overallMount = document.getElementById("overallSummaryPanelMount");
+  if (overallMount) renderReactInto(overallMount, <OverallSummaryPanel />);
+  const progressMount = document.getElementById("progressDetailPanelMount");
+  if (progressMount) renderReactInto(progressMount, <ProgressDetailPanel />);
+}
 
 // KanjiCanvas グローバルのモック（jsdom環境では kanji-canvas.min.js がロードされないため）
 export const kanjiCanvasMock = {
@@ -91,16 +137,8 @@ export function setupMinimalDom(): void {
       <button id="retryWrongBtn">間違えた問題</button>
       <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
-    <div id="confirmDialog" class="confirm-dialog-overlay hidden">
-      <div class="confirm-dialog">
-        <p id="confirmDialogMessage"></p>
-        <div class="confirm-dialog-buttons">
-          <button id="confirmDialogOk">OK</button>
-          <button id="confirmDialogCancel">キャンセル</button>
-        </div>
-      </div>
-    </div>
   `;
+  mountConfirmDialog();
 }
 /** タブUIを含むフルレイアウトのDOM */
 export function setupTabDom(): void {
@@ -139,83 +177,9 @@ export function setupTabDom(): void {
         <div id="categoryControls" class="category-controls"></div>
         <div id="categoryList" class="category-list"></div>
         <div id="selectedUnitInfo" class="selected-unit-info hidden"></div>
-        <div class="panel-tabs" role="tablist">
-          <button class="panel-tab" id="panelTab-guide" data-panel="guide" role="tab" type="button" aria-selected="false" aria-controls="guideContent" tabindex="-1">📖 解説</button>
-          <button class="panel-tab" id="panelTab-questions" data-panel="questions" role="tab" type="button" aria-selected="false" aria-controls="questionListContent" tabindex="-1">📋 問題</button>
-          <button class="panel-tab active" id="panelTab-quiz" data-panel="quiz" role="tab" type="button" aria-selected="true" aria-controls="quizModePanel" tabindex="0">✅ 確認</button>
-          <button class="panel-tab" id="panelTab-history" data-panel="history" role="tab" type="button" aria-selected="false" aria-controls="historyContent" tabindex="-1">📊 履歴</button>
-        </div>
-        <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz">
-          <div id="statsInfo"></div>
-          <input type="radio" name="questionCount" value="5">
-          <input type="radio" name="questionCount" value="10" checked>
-          <input type="radio" name="questionCount" value="20">
-          <button id="startRandomBtn">ランダム</button>
-          <button id="startRetryBtn" disabled>間違えた問題</button>
-          <button id="markLearnedBtn" disabled>学習済みにする</button>
-          <input type="radio" name="quizOrder" value="straight">
-          <input type="radio" name="quizOrder" value="random" checked>
-          <input type="radio" name="quizLearned" value="exclude" checked>
-          <input type="radio" name="quizLearned" value="include">
-        </div>
-        <div id="guideContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-guide">
-          <div id="guidePanelFrame" title="解説"></div>
-          <p id="guideNoContent" class="hidden">このカテゴリには解説がありません。</p>
-        </div>
-        <div id="historyContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-history">
-          <div id="historyList"></div>
-        </div>
-        <div id="questionListContent" class="hidden" role="tabpanel" aria-labelledby="panelTab-questions">
-          <button id="questionListFilterAll" class="question-list-filter-btn" type="button">すべて</button>
-          <button id="questionListFilterUnlearned" class="question-list-filter-btn active" type="button">未学習</button>
-          <button id="questionListFilterLearned" class="question-list-filter-btn" type="button">学習済み</button>
-          <span id="questionListFilterCount" class="question-list-filter-count"></span>
-          <div id="questionListBody"></div>
-        </div>
-        <div id="overallSummaryPanel" class="hidden">
-          <div class="overall-panel-tabs" role="tablist">
-            <button class="panel-tab active" id="overallTab-learned" data-overall-panel="learned" role="tab" type="button" aria-selected="true">🎓 学習状況</button>
-            <button class="panel-tab" id="overallTab-share" data-overall-panel="share" role="tab" type="button" aria-selected="false">📤 シェア</button>
-          </div>
-          <div id="overallLearnedPanel" class="overall-activity-panel">
-            <div class="overall-activity-date-row">
-              <span id="overallActivityDateLabel" class="overall-activity-date"></span>
-            </div>
-            <div id="overallSubjectStatusSummary" class="overall-subject-status-summary"></div>
-            <div id="todayActivityContent"></div>
-          </div>
-          <div id="overallSharePanel" class="overall-activity-panel hidden">
-            <div id="shareSummaryText"></div>
-            <div class="share-actions-row">
-              <button id="copySummaryBtn" type="button">📋 コピー</button>
-              <button id="openShareUrlBtn" class="hidden" type="button">📤 共有</button>
-              <div class="share-url-inline">
-                <button id="shareUrlDisplayBtn" type="button">URLを設定</button>
-                <div id="shareUrlEditArea" class="hidden">
-                  <input type="url" id="shareUrlInput">
-                  <button id="saveShareUrlBtn" type="button" aria-label="保存">✓</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="progressDetailPanel" class="hidden">
-          <div class="panel-tabs progress-detail-tabs" role="tablist">
-            <button class="panel-tab active" id="progressDetailTab-grade" data-progress-detail-panel="grade" role="tab" type="button" aria-selected="true" aria-controls="progressDetailContent" tabindex="0">🎓 学年別</button>
-            <button class="panel-tab" id="progressDetailTab-category" data-progress-detail-panel="category" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">📁 カテゴリ別</button>
-            <button class="panel-tab" id="progressDetailTab-matrix" data-progress-detail-panel="matrix" role="tab" type="button" aria-selected="false" aria-controls="progressDetailContent" tabindex="-1">📊 マトリクス</button>
-          </div>
-          <div class="progress-detail-toolbar">
-            <div class="category-status-filter" role="group" aria-label="学習状況フィルター">
-              <span class="category-status-filter-label">学習状況：</span>
-              <button id="progressStatusAllBtn" class="category-status-filter-btn active" type="button" aria-pressed="true">すべて</button>
-              <button id="progressStatusUnlearnedBtn" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
-              <button id="progressStatusStudyingBtn" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
-              <button id="progressStatusLearnedBtn" class="category-status-filter-btn" type="button" aria-pressed="false">学習済</button>
-            </div>
-          </div>
-          <div id="progressDetailContent" class="progress-detail-content" role="tabpanel" aria-labelledby="progressDetailTab-grade"></div>
-        </div>
+        <div id="quizPanelMount"></div>
+        <div id="overallSummaryPanelMount"></div>
+        <div id="progressDetailPanelMount"></div>
         <div id="adminContent" class="hidden admin-content-panel" role="region" aria-label="管理"></div>
       </div>
     </div>
@@ -238,19 +202,10 @@ export function setupTabDom(): void {
       <button id="retryWrongBtn">間違えた問題</button>
       <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
-    <div id="confirmDialog" class="confirm-dialog-overlay hidden">
-      <div class="confirm-dialog">
-        <p id="confirmDialogMessage"></p>
-        <div class="confirm-dialog-buttons">
-          <button id="confirmDialogOk">OK</button>
-          <button id="confirmDialogCancel">キャンセル</button>
-        </div>
-      </div>
-    </div>
   `;
+  mountConfirmDialog();
+  mountStartScreenPanels();
 }
-
-// ─── fetch モック（問題JSONの読み込みを回避） ─────────────────────────────
 
 export const mockManifest = {
   version: "2.0.0",

@@ -963,6 +963,22 @@ header h1 {
   background: #f0f4f8;
 }
 
+/* React 版 ParentCategoryGroup のタイトル選択ボタン: 透過の flex 子としてヘッダーいっぱいに広がる */
+.category-group-header-action {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 /* 親カテゴリヘッダー選択中のアクティブ状態 */
 .category-group-header.active {
   background: #e8f0f9;

@@ -8,6 +8,14 @@
 
 import type { QuizUseCase } from "../application/quizUseCase";
 import type { IProgressRepository } from "../application/ports";
+import {
+  detectFileKeyFromFilename,
+  formatExportFilename,
+  formatPreviewText,
+  truncateArray,
+  validateImportPayload,
+  type AdminSectionKey,
+} from "./adminPanelLogic";
 import { fallbackCopy } from "./uiHelpers";
 
 /** AdminPanel が QuizApp 側に必要とする最小限の依存。 */
@@ -31,8 +39,7 @@ export function downloadUserData(useCase: QuizUseCase): void {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  const dateStr = new Date().toISOString().slice(0, 10);
-  a.download = `study-data-${dateStr}.json`;
+  a.download = formatExportFilename();
   document.body.appendChild(a);
   a.click();
   setTimeout(() => {
@@ -48,14 +55,8 @@ export function renderAdminContent(categoryList: HTMLElement, deps: AdminPanelDe
   const { useCase, progressRepo, shareUrl, showConfirmDialog } = deps;
   const data = useCase.exportAllData();
 
-  /** 配列を先頭 N 件に絞り、件数サマリを付けた表示用値を返す */
-  const truncateArray = (arr: unknown[], maxItems = 50): unknown => {
-    if (arr.length <= maxItems) return arr;
-    return [...arr.slice(0, maxItems), `... (${arr.length - maxItems}件省略、合計${arr.length}件)`];
-  };
-
   /** ファイルダウンロード用の英字キー */
-  type SectionKey = "settings" | "history" | "mastered" | "streaks";
+  type SectionKey = "settings" | AdminSectionKey;
   const sections: Array<{
     title: string;
     fileKey: SectionKey;
@@ -188,7 +189,7 @@ export function renderAdminContent(categoryList: HTMLElement, deps: AdminPanelDe
         applyBtn.style.display = "none";
 
         let parsedData: unknown = null;
-        let detectedFileKey: SectionKey | null = null;
+        let detectedFileKey: AdminSectionKey | null = null;
 
         fileInput.addEventListener("change", () => {
           const file = fileInput.files?.[0];
@@ -200,21 +201,14 @@ export function renderAdminContent(categoryList: HTMLElement, deps: AdminPanelDe
               parsedData = JSON.parse(reader.result as string);
               // ファイル名からセクションを推定（例: study-history-2024-01-01.json）
               // settings はインポート対象外
-              detectedFileKey = null;
-              const importableSections = sections.filter((sec) => sec.fileKey !== "settings");
-              for (const sec of importableSections) {
-                if (file.name.includes(sec.fileKey)) {
-                  detectedFileKey = sec.fileKey;
-                  break;
-                }
-              }
-              const preview = JSON.stringify(parsedData, null, 2);
-              previewEl.textContent = preview.length > 2000 ? preview.slice(0, 2000) + "\n...(省略)" : preview;
+              const detected = detectFileKeyFromFilename(file.name);
+              detectedFileKey = detected !== null && detected !== "settings" ? detected : null;
+              previewEl.textContent = formatPreviewText(parsedData);
               previewEl.style.display = "block";
               if (detectedFileKey) {
                 applyBtn.textContent = `✅ ${sections.find((s) => s.fileKey === detectedFileKey)?.title ?? detectedFileKey} を更新する`;
                 applyBtn.style.display = "block";
-              } else if (file.name.includes("settings")) {
+              } else if (detected === "settings") {
                 previewEl.textContent = "設定ファイルのインポートは未対応です。\n\n" + previewEl.textContent;
                 applyBtn.style.display = "none";
               } else {
@@ -241,17 +235,10 @@ export function renderAdminContent(categoryList: HTMLElement, deps: AdminPanelDe
             return;
           }
           // 基本バリデーション
-          if ((detectedFileKey === "history" || detectedFileKey === "mastered") && !Array.isArray(parsedData)) {
-            const label = sections.find((s) => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
-            alert(`「${label}」データの形式が正しくありません（配列が必要です）。ファイルを確認してください。`);
-            return;
-          }
-          if (
-            detectedFileKey === "streaks" &&
-            (typeof parsedData !== "object" || Array.isArray(parsedData) || parsedData === null)
-          ) {
-            const label = sections.find((s) => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
-            alert(`「${label}」データの形式が正しくありません（オブジェクトが必要です）。ファイルを確認してください。`);
+          const sectionTitle = sections.find((s) => s.fileKey === detectedFileKey)?.title ?? detectedFileKey;
+          const validationError = validateImportPayload(detectedFileKey, parsedData, sectionTitle);
+          if (validationError) {
+            alert(validationError);
             return;
           }
           void showConfirmDialog(
