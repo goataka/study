@@ -1,0 +1,399 @@
+/*
+ * 08-summary-and-unit-info.css
+ *
+ * 総合タブの日付ナビ／活動サマリ／共有・URL欄、選択中の単元情報パネル
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* 大部分のスタイルは Tailwind ユーティリティへ移行済み。
+ * 以下の CSS セレクタを残置する。 */
+
+/* 日付ナビゲーション - Tailwind 化済み（CategoryPanel.tsx）。クラス名は残置。 */
+.activity-date-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 4px 8px;
+}
+
+.activity-date-display {
+  font-size: 13px;
+  color: #586069;
+  font-weight: 500;
+}
+
+/* 総合タブ専用サマリパネル - Tailwind 化済み（OverallSummaryPanel.tsx）。クラス名は残置。 */
+.overall-summary-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+  padding: 0;
+}
+
+.overall-panel-tabs {
+  display: flex;
+  border-bottom: 1px solid #e1e4e8;
+  background: #f6f8fa;
+  flex-shrink: 0;
+}
+
+.overall-activity-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  gap: 8px;
+  min-height: 0;
+}
+
+.overall-activity-date-row {
+  flex-shrink: 0;
+}
+
+.overall-subject-status-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.overall-subject-status-row {
+  font-size: 15px;
+  color: #24292e;
+}
+
+.overall-activity-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: #24292e;
+}
+
+.today-activity-empty {
+  color: #586069;
+  font-size: 15px;
+}
+
+.overall-today-list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* 活動サマリ（SNS共有用）- Tailwind 化済み（OverallSummaryPanel.tsx）。 */
+.share-summary-text {
+  font-size: 12px;
+  color: #444;
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 8px 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 48px;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+.share-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.share-copy-btn {
+  padding: 4px 12px;
+  font-size: 13px;
+  border: 1px solid #0366d6;
+  border-radius: 4px;
+  background: white;
+  color: #0366d6;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.share-copy-btn:hover {
+  background: #0366d6;
+  color: white;
+}
+
+.share-url-open-btn {
+  padding: 4px 12px;
+  font-size: 13px;
+  border: 1px solid #1a7f37;
+  border-radius: 4px;
+  background: white;
+  color: #1a7f37;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.share-url-open-btn:hover {
+  background: #1a7f37;
+  color: white;
+}
+
+.share-url-inline {
+  flex: 1;
+  min-width: 0;
+}
+
+/* `.share-url-display-btn` は Tailwind 化済み（OverallSummaryPanel.tsx）。
+ * `.share-url-set` 複合クラスは `[&.share-url-set]:` で Tailwind 化済み。 */
+.share-url-display-btn {
+  max-width: 100%;
+  padding: 4px 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #0366d6;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-align: left;
+  transition:
+    color 0.15s,
+    background 0.15s;
+}
+
+.share-url-display-btn:hover {
+  background: #e8f0fe;
+}
+
+.share-url-display-btn.share-url-set {
+  color: #999;
+}
+
+.share-url-display-btn.share-url-set:hover {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.share-url-edit-area {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.share-url-input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+  background: white;
+  color: #24292e;
+}
+
+.share-url-save-btn {
+  padding: 4px 10px;
+  font-size: 13px;
+  border: 1px solid #1a7f37;
+  border-radius: 4px;
+  background: white;
+  color: #1a7f37;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.share-url-save-btn:hover {
+  background: #1a7f37;
+  color: white;
+}
+
+/* 総合タブ時のレイアウト */
+.start-content-layout.all-subject-layout {
+  grid-template-columns: 1fr 12px 2fr;
+}
+
+.start-content-layout.all-subject-layout .category-panel {
+  order: 1;
+}
+
+.start-content-layout.all-subject-layout .notebook-spine {
+  order: 2;
+}
+
+.start-content-layout.all-subject-layout .quiz-panel {
+  order: 3;
+}
+
+/* `.quiz-panel` は Tailwind 化済み（StartScreen.tsx）。クラス名は JS で使用するため残置。 */
+.quiz-panel {
+  background-color: white;
+  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-size: 100% 32px;
+  background-position: 0 12px;
+  border: none;
+  border-left: none;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 3px 0 6px rgba(0, 0, 0, 0.08);
+}
+
+/* 選択中の単元情報パネル */
+.selected-unit-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #eef4ff;
+  border-bottom: 1px solid #c8d8f8;
+}
+
+/* `.selected-unit-info-body` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。
+ * `.selected-unit-close-btn` も Tailwind 化済み。 */
+.selected-unit-info-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* `.selected-unit-info-name` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
+.selected-unit-info-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0366d6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* `.selected-unit-info-category` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
+.selected-unit-info-category {
+  font-size: 13px;
+  color: #586069;
+  background: #f0f0f0;
+  padding: 1px 6px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.selected-unit-info .category-grade {
+  font-size: 18px;
+}
+
+/* `.selected-unit-info-desc` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
+.selected-unit-info-desc {
+  font-size: 13px;
+  color: #444d56;
+  margin-top: 3px;
+}
+
+/* `.selected-unit-progress-*` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
+.selected-unit-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  width: 100%;
+}
+
+.selected-unit-progress-bar {
+  flex: 1;
+  height: 6px;
+  background: #e1e4e8;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+}
+
+.selected-unit-progress-fill {
+  height: 100%;
+  background: #28a745;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+}
+
+.selected-unit-progress-fill-inprogress {
+  height: 100%;
+  background: #f0a800;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  flex-shrink: 0;
+}
+
+.selected-unit-progress-label {
+  font-size: 12px;
+  color: #586069;
+  white-space: nowrap;
+}
+
+.selected-unit-info-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+/* `.selected-unit-info-example` の ::before { content: "例）" } は Tailwind で表現不可のため残置。 */
+.selected-unit-info-example {
+  font-size: 13px;
+  color: #586069;
+  margin-left: auto;
+  text-align: right;
+}
+
+.selected-unit-info-example::before {
+  content: "例）";
+  font-style: normal;
+  margin-right: 2px;
+  opacity: 0.7;
+}
+
+/* `.selected-unit-close-btn` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
+.selected-unit-close-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid #c8d8f8;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  color: #586069;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.selected-unit-close-btn:hover {
+  background: #0366d6;
+  border-color: #0366d6;
+  color: white;
+}
+
+.selected-unit-close-btn:focus-visible {
+  background: #0366d6;
+  border-color: #0366d6;
+  color: white;
+  outline: 3px solid #9ecbff;
+  outline-offset: 2px;
+}

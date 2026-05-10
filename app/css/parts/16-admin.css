@@ -1,0 +1,1366 @@
+/*
+ * 16-admin.css
+ *
+ * 管理タブパネル：データ管理／データ参照、初期化、メニューバー、データ管理／参照タブ、モバイル用閉じるボタン、進度詳細パネルのモバイル閉じるボタン
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* ─── 管理タブパネル ──────────────────────────────────────────────────────── */
+.admin-panel {
+  padding: 12px;
+  flex: 1;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 12px;
+  align-items: stretch;
+  min-height: 0;
+}
+
+/* 管理タブ専用: 右パネルのコンテンツエリア */
+.admin-content-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+}
+
+.admin-section {
+  margin-bottom: 24px;
+}
+
+.admin-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0366d6;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #e1e4e8;
+}
+
+.admin-data {
+  font-size: 16px;
+  font-family: monospace;
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  flex: 1;
+  overflow-y: auto;
+  color: #24292e;
+}
+
+/* タブコンテンツ領域（flexコンテナ内で残り高さを占有） */
+.admin-tab-content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── 管理タブのタブ切り替え ────────────────────────────────────────────── */
+.admin-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e1e4e8;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.admin-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.admin-tab-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #586069;
+  font-family: inherit;
+  white-space: nowrap;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.admin-tab-btn:hover {
+  color: #0366d6;
+  background: #e8f0fe;
+}
+
+.admin-tab-btn.active {
+  color: #0366d6;
+  border-bottom-color: #0366d6;
+  background: white;
+}
+
+/* ─── 管理タブ データエリアのボタンバー ──────────────────────────────── */
+.admin-data-btn-bar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.admin-data-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid #d1d5da;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #586069;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.admin-data-action-btn:hover {
+  background: #f0f7ff;
+  color: #0366d6;
+}
+
+.admin-save-btn {
+  background: #28a745;
+  color: #fff;
+  border-color: #1e7e34;
+}
+
+.admin-save-btn:hover {
+  background: #218838;
+  color: #fff;
+}
+
+.admin-edit-area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.admin-edit-textarea {
+  width: 100%;
+  font-family: monospace;
+  font-size: 13px;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 8px 10px;
+  resize: vertical;
+  box-sizing: border-box;
+  color: #24292e;
+  background: #fff;
+}
+
+.admin-edit-save-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.admin-edit-error {
+  font-size: 13px;
+  color: #28a745;
+  flex: 1;
+}
+
+/* ─── 学習済みにするボタン（下寄せ、グレー） ────────────────────────────── */
+.mark-learned-section {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.mark-learned-btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border: 1px solid #d1d5da;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #586069;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  font-family: inherit;
+  font-weight: 600;
+  width: 100%;
+}
+
+.mark-learned-btn:hover:not(:disabled) {
+  background: #e8f0fe;
+  border-color: #0366d6;
+  color: #0366d6;
+}
+
+.mark-learned-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── 学習状況フィルターラベル ──────────────────────────────────────────── */
+.category-status-filter-label {
+  font-size: 12px;
+  color: #586069;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ─── 単元一覧フィルター行：学年フィルタを右寄せ ──────────────────────── */
+.category-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.category-controls-spacer {
+  flex: 1;
+}
+
+/* 学年フィルターグループ（右寄せ） */
+.grade-filter-group {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ─── 手書き漢字入力：候補エリアのラップ ──────────────────────────────── */
+.kanji-candidates-area {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  min-height: 0;
+  gap: 4px;
+  align-items: flex-end;
+  width: max-content;
+}
+
+/* ─── フォントサイズ：中 追加ターゲット ─────────────────────────────────── */
+body.font-size-medium .header-logo {
+  width: 20px;
+  height: 20px;
+}
+
+body.font-size-medium .header-user-avatar {
+  width: 36px;
+  height: 36px;
+}
+
+body.font-size-medium .header-user-name {
+  font-size: 18px;
+}
+
+body.font-size-medium .download-data-btn {
+  font-size: 17px;
+  width: 32px;
+  height: 32px;
+}
+
+body.font-size-medium .support-btn {
+  font-size: 17px;
+  width: 32px;
+  height: 32px;
+}
+
+body.font-size-medium .github-btn {
+  width: 32px;
+  height: 32px;
+}
+
+body.font-size-medium .github-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+body.font-size-medium .header-grade-label {
+  font-size: 17px;
+}
+
+body.font-size-medium .reload-btn {
+  font-size: 17px;
+  width: 32px;
+  height: 32px;
+}
+
+body.font-size-medium .overall-activity-date {
+  font-size: 19px;
+}
+
+body.font-size-medium .category-status-filter-btn {
+  font-size: 14px;
+}
+
+body.font-size-medium .category-status-filter-label {
+  font-size: 14px;
+}
+
+body.font-size-medium .mark-learned-btn {
+  font-size: 17px;
+}
+
+body.font-size-medium .admin-tab-btn {
+  font-size: 18px;
+}
+
+body.font-size-medium .admin-data {
+  font-size: 18px;
+}
+
+body.font-size-medium .admin-data-action-btn {
+  font-size: 16px;
+}
+
+body.font-size-medium .admin-reset-desc {
+  font-size: 17px;
+}
+
+body.font-size-medium .admin-reset-btn {
+  font-size: 17px;
+}
+
+body.font-size-medium .admin-menu-btn {
+  font-size: 18px;
+}
+
+body.font-size-medium .admin-import-label {
+  font-size: 17px;
+}
+
+body.font-size-medium .admin-import-filename {
+  font-size: 16px;
+}
+
+body.font-size-medium .admin-import-apply-btn {
+  font-size: 17px;
+}
+
+/* ─── フォントサイズ：大 追加ターゲット ─────────────────────────────────── */
+body.font-size-large .header-logo {
+  width: 22px;
+  height: 22px;
+}
+
+body.font-size-large .header-user-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+body.font-size-large .header-user-name {
+  font-size: 22px;
+}
+
+body.font-size-large .download-data-btn {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+}
+
+body.font-size-large .support-btn {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+}
+
+body.font-size-large .github-btn {
+  width: 36px;
+  height: 36px;
+}
+
+body.font-size-large .github-btn svg {
+  width: 28px;
+  height: 28px;
+}
+
+body.font-size-large .header-grade-label {
+  font-size: 19px;
+}
+
+body.font-size-large .reload-btn {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+}
+
+body.font-size-large .overall-activity-date {
+  font-size: 22px;
+}
+
+body.font-size-large .category-status-filter-btn {
+  font-size: 17px;
+}
+
+body.font-size-large .category-status-filter-label {
+  font-size: 17px;
+}
+
+body.font-size-large .mark-learned-btn {
+  font-size: 20px;
+}
+
+body.font-size-large .admin-tab-btn {
+  font-size: 22px;
+}
+
+body.font-size-large .admin-data {
+  font-size: 22px;
+}
+
+body.font-size-large .admin-data-action-btn {
+  font-size: 19px;
+}
+
+body.font-size-large .admin-reset-desc {
+  font-size: 20px;
+}
+
+body.font-size-large .admin-reset-btn {
+  font-size: 20px;
+}
+
+body.font-size-large .admin-menu-btn {
+  font-size: 19px;
+}
+
+body.font-size-large .admin-import-label {
+  font-size: 20px;
+}
+
+body.font-size-large .admin-import-filename {
+  font-size: 19px;
+}
+
+body.font-size-large .admin-import-apply-btn {
+  font-size: 20px;
+}
+
+/* 管理タブの内容（データ管理・データ参照）をフォントサイズ設定の対象に追加 */
+body.font-size-medium .admin-manage-tab,
+body.font-size-medium .admin-data-tab {
+  font-size: 15px;
+}
+
+body.font-size-medium .admin-manage-panel-title,
+body.font-size-medium .admin-data-header-title {
+  font-size: 17px;
+}
+
+body.font-size-medium .admin-data-close-btn {
+  font-size: 17px;
+  width: 30px;
+  height: 30px;
+}
+
+body.font-size-large .admin-manage-tab,
+body.font-size-large .admin-data-tab {
+  font-size: 18px;
+}
+
+body.font-size-large .admin-manage-panel-title,
+body.font-size-large .admin-data-header-title {
+  font-size: 20px;
+}
+
+body.font-size-large .admin-data-close-btn {
+  font-size: 20px;
+  width: 34px;
+  height: 34px;
+}
+
+/* ─── 単元詳細: 新レイアウト（タイトル/カテゴリ/説明/例文/ステータス） ── */
+.selected-unit-info-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.selected-unit-info-header-left {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.selected-unit-info-header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 55%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.selected-unit-info-desc-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+.selected-unit-info-desc-left {
+  font-size: 13px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.selected-unit-info-desc-right {
+  font-size: 13px;
+  color: #444;
+  text-align: right;
+}
+
+/* 管理画面: 初期化セクション */
+.admin-reset-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+}
+
+.admin-reset-desc {
+  color: #586069;
+  font-size: 14px;
+}
+
+.admin-reset-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.admin-reset-btn:hover {
+  background: #c82333;
+}
+
+/* 管理画面: 管理パネル（インポート・エクスポート・初期化の縦積みパネル） */
+.admin-manage-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.admin-manage-panel {
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  background: white;
+  overflow: hidden;
+}
+
+.admin-manage-panel-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0366d6;
+  padding: 8px 16px;
+  background: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+/* 管理画面: メニューバー（縦並び） */
+.admin-menu-bar {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.admin-menu-btn {
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  color: #24292e;
+  font-family: inherit;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  text-align: left;
+  width: 100%;
+}
+
+.admin-menu-btn.active {
+  background: #0366d6;
+  color: #ffffff;
+  border-color: #0366d6;
+}
+
+.admin-menu-btn.admin-menu-parent {
+  cursor: default;
+  border-color: #0366d6;
+  background: #0366d6;
+  color: #ffffff;
+}
+
+.admin-menu-btn.admin-menu-parent:hover {
+  background: #0366d6;
+  color: #ffffff;
+}
+
+.admin-menu-btn.admin-menu-parent:disabled {
+  opacity: 1;
+}
+
+.admin-menu-btn.admin-menu-child {
+  --admin-menu-indent: 14px;
+  margin-left: var(--admin-menu-indent);
+  width: calc(100% - var(--admin-menu-indent));
+  background: transparent;
+}
+
+.admin-menu-btn:hover:not(.active) {
+  background: #e8f0fe;
+}
+
+.admin-menu-content {
+  background: transparent;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  min-height: 0;
+}
+
+/* 管理画面: データ参照サブメニュー */
+.admin-view-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid #e1e4e8;
+}
+
+.admin-view-submenu .admin-view-item-btn {
+  padding-left: 24px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* 管理画面: データ参照コンテンツヘッダー */
+.admin-data-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+  flex-shrink: 0;
+}
+
+.admin-data-header-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0366d6;
+}
+
+.admin-data-close-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid #c8d8f8;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  color: #586069;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.admin-data-close-btn:hover {
+  background: #0366d6;
+  border-color: #0366d6;
+  color: white;
+}
+
+/* 管理画面: データ参照プレースホルダー */
+.admin-data-placeholder {
+  padding: 24px 16px;
+  color: #8b949e;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* 管理画面: インポートセクション */
+.admin-import-label {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #0366d6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.admin-import-label:hover {
+  background: #0256b9;
+}
+
+.admin-import-filename {
+  font-size: 13px;
+  color: #586069;
+  margin-left: 8px;
+}
+
+.admin-import-apply-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* ヘッダーのメニューボタン（管理パネルへのショートカット） */
+.admin-menu-header-btn {
+  display: none; /* デスクトップでは非表示 */
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #586069;
+  font-size: 18px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.admin-menu-header-btn:hover {
+  color: #0366d6;
+  background: #f0f7ff;
+}
+
+/* スマホ用：単元一覧に戻るボタン */
+.mobile-back-btn {
+  display: none; /* デスクトップでは非表示 */
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0366d6;
+  background: #eef4ff;
+  border: 1px solid #c8d8f8;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+  width: 100%;
+  text-align: left;
+}
+
+.mobile-back-btn:hover {
+  background: #ddeeff;
+}
+
+/* スマホ用：管理コンテンツの閉じるボタン行（デスクトップでは非表示） */
+.admin-manage-close-row {
+  display: none;
+}
+
+/* 管理画面: データ管理タブバー */
+.admin-manage-tabs {
+  display: flex;
+  border-bottom: 1px solid #e1e4e8;
+  background: #f6f8fa;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.admin-manage-tab {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #586069;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.admin-manage-tab:hover:not(.active) {
+  background: #e8f0fe;
+}
+
+.admin-manage-tab.active {
+  color: #0366d6;
+  border-bottom-color: #0366d6;
+  background: white;
+}
+
+/* 管理画面: データ管理タブパネル */
+.admin-manage-tab-panel {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+}
+
+/* 管理画面: データ参照タブバー */
+.admin-data-tabs {
+  display: flex;
+  border-bottom: 1px solid #e1e4e8;
+  background: #f6f8fa;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+
+.admin-data-tab {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #586069;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
+}
+
+.admin-data-tab:hover:not(.active) {
+  background: #e8f0fe;
+}
+
+.admin-data-tab.active {
+  color: #0366d6;
+  border-bottom-color: #0366d6;
+  background: white;
+}
+
+/* 管理画面: データ参照タブコンテンツ */
+.admin-data-tab-content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  background: transparent;
+}
+
+.progress-detail-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 12px 8px;
+}
+
+/* 進度詳細パネルのモバイル用閉じるボタン行（デスクトップでは非表示） */
+.progress-detail-close-row {
+  display: none;
+}
+
+.progress-detail-filter-btn {
+  border: 1px solid #d1d5da;
+  border-radius: 999px;
+  background: white;
+  color: #586069;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.progress-detail-filter-btn.active {
+  background: #0366d6;
+  border-color: #0366d6;
+  color: white;
+}
+
+.generated-guide-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.generated-guide-title {
+  margin: 0;
+  font-size: 24px;
+  color: #0366d6;
+}
+
+.generated-guide-summary {
+  margin: 0;
+  color: #444;
+}
+
+.generated-guide-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.generated-guide-item {
+  color: #24292e;
+}
+
+.generated-guide-item-description,
+.generated-guide-item-example {
+  margin-top: 4px;
+}
+
+.admin-import-apply-btn:hover {
+  background: #218838;
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+  body {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    padding: 8px;
+  }
+  .container {
+    max-width: 100%;
+    height: auto;
+  }
+  header {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+  }
+  header h1 {
+    font-size: 15px;
+  }
+  .header-grade-label {
+    font-size: 11px;
+  }
+  /* スマホ: タブ行をflex-wrapに */
+  .tabs-user-row {
+    flex-wrap: wrap;
+  }
+  .tabs-user-area {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+    padding: 4px;
+  }
+  .subject-tabs {
+    order: 1;
+    /* モバイルでは残りのスペースを埋めてスクロール可能にするため flex: 1 を復元する */
+    flex: 1;
+  }
+  .tabs-links-area {
+    display: none;
+  }
+  .header-date-area {
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    width: 100%;
+  }
+  .header-user-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: none;
+    font-size: 14px;
+  }
+  .header-today-date {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  /* 管理タブをモバイルで表示（管理メニューはタブで操作する） */
+  .subject-tab[data-subject="admin"] {
+    display: inline-flex;
+  }
+  /* 歯車メニューボタンはモバイルでは不要（タブで代替） */
+  .admin-menu-header-btn {
+    display: none;
+  }
+  .screen {
+    padding: 8px;
+    overflow-y: auto;
+  }
+  .start-content-layout {
+    flex-direction: column;
+  }
+  #startScreen::before {
+    display: none;
+  }
+  .admin-panel {
+    grid-template-columns: 1fr 2fr;
+    padding: 8px;
+    gap: 8px;
+  }
+  .admin-menu-bar {
+    overflow-y: auto;
+  }
+  /* カテゴリパネルと quiz-panel は常に両方表示（縦積み） */
+  .category-panel {
+    max-height: none;
+    flex: 1;
+    min-height: 0;
+  }
+  /* 単元一覧への戻るボタンは不要（縦積みで常に両パネル表示） */
+  .mobile-back-btn {
+    display: none;
+  }
+  .quiz-panel {
+    min-height: 0;
+  }
+  /* ユーザ名・更新ボタンは1行に */
+  .header-user-area {
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  /* フォントサイズボタンはフッターに表示 */
+  .font-size-btns {
+    gap: 2px;
+    justify-content: center;
+  }
+  .font-size-btn {
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+  .quiz-landscape-layout {
+    flex-direction: column;
+  }
+  /* 手書き入力パネルをモバイルでも表示・グリッドカラムをリセットして縦積みに */
+  .quiz-notes-col {
+    display: flex;
+    grid-column: 1; /* 暗黙の第3列ではなく第1列に配置して縦積みにする */
+  }
+  /* 問題番号・単元名・中止ボタン行: スマホでは単元名を次の行に */
+  .question-info {
+    flex-wrap: wrap;
+  }
+  .topic-badge {
+    position: static;
+    transform: none;
+    order: 3;
+    width: 100%;
+    text-align: center;
+    max-width: 100%;
+    margin-top: 4px;
+  }
+  /* パネルタブは横スクロールで折り返さない */
+  .panel-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+  }
+  .panel-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  /* 単元詳細タイトルは折り返さない */
+  .selected-unit-info-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* 単元詳細: 説明はタイトルの下に（縦並び） */
+  .selected-unit-info-header-row {
+    flex-direction: column;
+  }
+  .selected-unit-info-header-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  /* 単元詳細の説明が枠からはみ出ない */
+  .selected-unit-info-desc {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .selected-unit-info-desc-right {
+    text-align: left;
+  }
+  /* 解説コンテンツのフォントサイズをモバイルで縮小（デスクトップの 22px/26px/33px より小さく） */
+  .guide-frame .guide-content {
+    font-size: 13px;
+  }
+  /* 解説コンテンツの見出しもモバイルで縮小（h2 はパネルタブに合わせるため別途定義） */
+  .guide-frame .guide-content h3,
+  .guide-frame .guide-content h4,
+  .guide-frame .guide-content h5,
+  .guide-frame .guide-content h6 {
+    font-size: 16px;
+  }
+  /* h2 はパネルタブと同じフォントサイズ（基本: 16px） */
+  .guide-frame .guide-content h2 {
+    font-size: 16px;
+  }
+  body.font-size-medium .guide-frame .guide-content {
+    font-size: 16px;
+  }
+  /* h3〜h6 モバイル縮小（フォントサイズ中、h2 はパネルタブに合わせるため別途定義） */
+  body.font-size-medium .guide-frame .guide-content h3,
+  body.font-size-medium .guide-frame .guide-content h4,
+  body.font-size-medium .guide-frame .guide-content h5,
+  body.font-size-medium .guide-frame .guide-content h6 {
+    font-size: 18px;
+  }
+  /* h2 はパネルタブと同じフォントサイズ（フォントサイズ中: 18px） */
+  body.font-size-medium .guide-frame .guide-content h2 {
+    font-size: 18px;
+  }
+  body.font-size-large .guide-frame .guide-content {
+    font-size: 20px;
+  }
+  /* h3〜h6 モバイル縮小（フォントサイズ大、h2 はパネルタブに合わせるため別途定義） */
+  body.font-size-large .guide-frame .guide-content h3,
+  body.font-size-large .guide-frame .guide-content h4,
+  body.font-size-large .guide-frame .guide-content h5,
+  body.font-size-large .guide-frame .guide-content h6 {
+    font-size: 22px;
+  }
+  /* h2 はパネルタブと同じフォントサイズ（フォントサイズ大: 22px） */
+  body.font-size-large .guide-frame .guide-content h2 {
+    font-size: 22px;
+  }
+  /* ユーザ名と日付のフォントをモバイルでは教科タブと同じサイズに */
+  body.font-size-medium .header-user-name,
+  body.font-size-medium .header-today-date {
+    font-size: 18px;
+  }
+  body.font-size-large .header-user-name,
+  body.font-size-large .header-today-date {
+    font-size: 22px;
+  }
+  /* 単元詳細をフルスクリーンオーバーラップ表示（ヘッダー z-index:100 より前面に）
+       注: :has() は Chrome 105+, Safari 15.4+, Firefox 121+ で対応（2022〜2023年以降の主要ブラウザ）*/
+  .quiz-panel:has(#selectedUnitInfo:not(.hidden)) {
+    position: fixed;
+    inset: 0;
+    z-index: 101;
+    overflow-y: auto;
+    border-radius: 0;
+  }
+  /* 進度詳細パネルもオーバーラップ表示 */
+  #progressDetailPanel:not(.hidden) {
+    position: fixed;
+    inset: 0;
+    z-index: 101;
+    overflow-y: auto;
+    border-radius: 0;
+    background: white;
+  }
+  /* 単元詳細表示時はカテゴリパネルを操作不可に */
+  .start-content-layout:has(#selectedUnitInfo:not(.hidden)) .category-panel {
+    pointer-events: none;
+  }
+  /* 全画面バックドロップ（管理データ参照に適用） */
+  #startScreen:has(.admin-menu-content.admin-data-open)::before {
+    content: "";
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 98;
+    pointer-events: none;
+  }
+  /* 管理データ参照: コンテンツをフルスクリーンオーバーレイとして表示（単元詳細と同様） */
+  .admin-menu-content.admin-data-open {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 101;
+    overflow-y: auto;
+    border-radius: 0;
+    box-shadow: none;
+    height: auto;
+    background: white;
+    border: 1px solid #e1e4e8;
+  }
+  /* 管理パネル: メニューバーのみ表示（コンテンツはオーバーレイとして分離） */
+  .admin-panel {
+    grid-template-columns: 1fr;
+  }
+  /* 管理コンテンツエリアはデフォルト非表示 */
+  .admin-menu-content {
+    display: none;
+  }
+  /* 管理タブの右パネル: モバイルではコンテンツ未開時は非表示 */
+  .admin-content-panel:not(:has(.admin-manage-open)):not(:has(.admin-data-open)) {
+    display: none;
+  }
+  /* 管理コンテンツ（データ管理タブ）: フルスクリーンオーバーレイとして表示 */
+  .admin-menu-content.admin-manage-open {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 101;
+    overflow-y: auto;
+    border-radius: 0;
+    border: 1px solid #e1e4e8;
+    background: white;
+  }
+  /* 管理コンテンツオーバーレイのバックドロップ */
+  #startScreen:has(.admin-menu-content.admin-manage-open)::before {
+    content: "";
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 98;
+    pointer-events: none;
+  }
+  /* 管理コンテンツの閉じるボタン行（デスクトップでは非表示） */
+  .admin-manage-close-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+    flex-shrink: 0;
+  }
+  /* 進度詳細パネルの閉じるボタン行（モバイルのみ表示） */
+  .progress-detail-close-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f6f8fa;
+    border-bottom: 1px solid #e1e4e8;
+    flex-shrink: 0;
+  }
+  .progress-detail-close-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0366d6;
+  }
+  /* 履歴アイテム: タイトルは折り返さず、正答率は次の行に */
+  .history-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .history-meta {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+  .history-subject {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  /* 問題画面・結果画面をモバイルでフルスクリーンオーバーレイとして表示 */
+  #quizScreen:not(.hidden),
+  #resultScreen:not(.hidden) {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    border-radius: 0;
+    overflow-y: auto;
+    padding: 8px;
+  }
+  /* 手書き漢字入力: スマホではキャンバスを上、候補ボタンを下に縦積みで表示 */
+  .kanji-input-body {
+    flex-direction: column;
+  }
+  .kanji-canvas {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .kanji-candidates-area {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: auto;
+    width: 100%; /* 幅を画面全体に広げて候補ボタンが見えるようにする */
+    align-items: flex-start;
+  }
+  .kanji-candidate-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  /* テキスト入力が選択肢に被らないよう、text-answer-wrapper を選択肢より下に配置 */
+  .choices-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .text-answer-wrapper {
+    order: 10;
+  }
+  /* 単元選択時（単元詳細パネルが全画面表示中）はフッターを最前面に固定表示 */
+  body:has(.quiz-panel:has(#selectedUnitInfo:not(.hidden))) .app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 102;
+    background: white;
+    border-top: 1px solid #c8d8e8;
+    border-radius: 0;
+    padding: 6px 12px;
+  }
+}

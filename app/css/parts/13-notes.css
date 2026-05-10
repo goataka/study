@@ -1,0 +1,51 @@
+/*
+ * 13-notes.css
+ *
+ * メモエリア（手書きキャンバス）と、その他のクイズ前コントロール（問題数・並び順・学習済みフィルター）、
+ * および回答記録（履歴）。
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* メモエリア（`.notes-area` / `.notes-header` / `.notes-title` / `.notes-controls` /
+ * `.notes-btn` / `.notes-btn.eraser-active` / `.pen-size-select` / `.pen-color-select` /
+ * `.notes-canvas` / `#notesMemoContent`）は Tailwind ユーティリティへ移行済み。
+ * 実装は `src/presentation/components/QuizScreen.tsx` /
+ * `src/presentation/components/quizScreen/NotesPanel.tsx` を参照。
+ *
+ * モバイル対応の `@media (max-width: 767px)` / `@media (max-width: 600px)` も
+ * Tailwind の `max-md:` / `max-[600px]:` バリアントで NotesPanel.tsx に直接移行済み。
+ *
+ * `notes-controls` クラス名は `notesAreaUpdater.ts` の
+ * `querySelector(".notes-controls")` から参照されるため JSX 側に残置している。
+ */
+
+/* 問題数選択・並び順選択・学習済みフィルター（`.question-count-section` /
+ * `.question-count-label` / `.question-count-group` / `.count-label` /
+ * `.quiz-order-section` / `.quiz-order-label` / `.quiz-order-group` /
+ * `.order-label` / `.quiz-learned-section`）は Tailwind ユーティリティへ移行済み。
+ * 600px 以下の縦並びレイアウト切替も `max-[600px]:` バリアントで表現。
+ * 実装は `src/presentation/components/startScreen/QuizPanel.tsx` を参照。
+ *
+ * `count-label` / `order-label` / `question-count-label` / `quiz-order-label`
+ * クラス名は `15-font-size.css` から参照されるため JSX 側に残置している。
+ */
+
+/* ─── 回答記録 ─────────────────────────────────────────────────────────────── */
+
+/* 履歴一覧（`.history-list` / `.history-empty` / `.history-item` /
+ * `.history-item-header` / `.history-meta` / `.history-date` /
+ * `.history-subject` / `.history-score` / `.history-score.pass` /
+ * `.history-score.fail` / `.history-toggle` / `.history-detail` /
+ * `.history-entry` / `.history-entry.correct` / `.history-entry.incorrect` /
+ * `.history-entry-icon` / `.history-entry-question` / `.history-entry-answer`）は
+ * Tailwind ユーティリティへ移行済み。実装は
+ * `src/presentation/quizApp/HistoryList.tsx` を参照。
+ *
+ * 折りたたみ詳細は `.hidden`（`display:none !important`）で表現する既存仕様を維持。
+ * クラス名はテストセレクタ・font-size 切替（`15-font-size.css`）の参照キーとして残置。
+ *
+ * dead code として `.history-mode--random/practice/retry/manual` /
+ * `.history-section-title` / `.history-entry-content` を削除（HTML/JSX に出現しない）。
+ */

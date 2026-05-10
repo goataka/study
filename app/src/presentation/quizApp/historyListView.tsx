@@ -31,7 +31,7 @@ export function renderHistoryList(filter: QuizFilter, useCase: QuizUseCase, allR
       records={records}
       useCase={useCase}
       emptyMessage="まだ回答記録がありません。クイズを解いてみましょう！"
-      emptyClassName="history-empty"
+      emptyClassName="history-empty py-10 px-5 text-center text-[17px] text-[#586069]"
     />,
   );
 }

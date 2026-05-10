@@ -1,0 +1,33 @@
+/*
+ * 05-subject-overview.css
+ *
+ * 総合タブの教科概要カード、ステータスアイコン、学年バッジ、進捗バー、おすすめ単元グループ
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* 大部分のスタイルは Tailwind ユーティリティへ移行済み（allSubjectListRenderer.tsx）。
+ * 以下のセレクタのみ CSS に残置する。 */
+
+/* 隣接兄弟セレクタ（Tailwind では表現困難） */
+.subject-overview-wrapper + .subject-overview-wrapper {
+  margin-top: 10px;
+}
+
+/* `.subject-overview-title-row .subject-overview-grade` descendant セレクタ */
+.subject-overview-title-row .subject-overview-grade {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* `.subject-overview-pct.progress-fill-done` 複合クラス（JS が動的に付与） */
+.subject-overview-pct.progress-fill-done {
+  color: #1a7f37;
+}
+
+/* `all-subject-panel-title` は CategoryPanel.tsx で Tailwind 化済み。
+ * クラス名は JS で `.hidden` を付け外しするため残置。 */
+
+/* `subject-overview-grade` の grade-* 変種は allSubjectListRenderer.tsx で
+ * `[&.grade-*]:` variant 経由で Tailwind 化済み。 */

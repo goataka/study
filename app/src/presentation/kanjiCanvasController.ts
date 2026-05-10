@@ -143,7 +143,11 @@ export class KanjiCanvasController {
     candidateList.innerHTML = "";
     candidates.forEach((char) => {
       const btn = document.createElement("button");
-      btn.className = "kanji-candidate-btn";
+      // 旧 `.kanji-candidate-btn` の見た目を Tailwind ユーティリティで表現する。
+      // クラス名 `kanji-candidate-btn` は単体テスト（`kanji.test.ts` 等）の
+      // セレクタとして利用されているため**残置**している。
+      btn.className =
+        "kanji-candidate-btn w-full cursor-pointer rounded-md border-2 border-solid border-[#e1e4e8] bg-white px-3 py-1.5 text-2xl leading-none transition-colors duration-150 hover:border-[#0366d6] hover:bg-[#0366d6] hover:text-white";
       btn.type = "button";
       btn.textContent = char;
       btn.addEventListener("click", () => {

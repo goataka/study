@@ -64,7 +64,7 @@ interface ProgressSubjectListProps {
 
 function ProgressSubjectList({ stats, callbacks }: ProgressSubjectListProps): React.JSX.Element {
   return (
-    <div className="progress-subject-list">
+    <div className="progress-subject-list flex flex-col gap-1.5 p-0">
       {stats.map((s) => (
         <ProgressSubjectListItem key={s.id} stat={s} callbacks={callbacks} />
       ))}
@@ -83,17 +83,27 @@ function ProgressSubjectListItem({
   return (
     <button
       type="button"
-      className={`progress-subject-list-item${isActive ? " active" : ""}`}
+      className={[
+        "progress-subject-list-item",
+        "flex flex-row items-center gap-2 px-3 py-[10px] rounded-lg border border-[#e1e4e8] bg-white",
+        "cursor-pointer select-none transition-[background,border-color] duration-150 text-left w-full",
+        "hover:bg-[#e8f0fe] hover:border-[#0366d6]",
+        "focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2",
+        "[&.active]:bg-[#e8f0fe] [&.active]:border-[#0366d6] [&.active]:font-semibold",
+        isActive ? "active" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       aria-pressed={isActive}
       data-subject={stat.id}
       onClick={() => callbacks.onSelectSubject(stat.id)}
     >
-      <span className="progress-subject-list-icon" aria-hidden="true">
+      <span className="progress-subject-list-icon text-lg shrink-0 leading-none" aria-hidden="true">
         {stat.icon}
       </span>
-      <div className="progress-subject-list-name-area">
-        <span className="progress-subject-list-name">{stat.name}</span>
-        <span className="progress-subject-list-stats">{`${stat.mastered} / ${stat.total} 単元`}</span>
+      <div className="progress-subject-list-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
+        <span className="progress-subject-list-name text-[15px] font-semibold text-[#24292e] break-words">{stat.name}</span>
+        <span className="progress-subject-list-stats text-xs text-[#586069]">{`${stat.mastered} / ${stat.total} 単元`}</span>
       </div>
     </button>
   );

@@ -213,17 +213,29 @@ interface BlockGroupProps {
 
 function BlockGroup({ vm, onSelect }: BlockGroupProps): React.JSX.Element {
   return (
-    <div className="progress-block-group">
-      <div className="progress-block-group-header">
-        <span className="progress-block-group-name">{vm.groupName}</span>
-        <span className="progress-block-group-stats">{`(${vm.mastered}/${vm.total})`}</span>
+    <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white">
+      <div className="progress-block-group-header flex flex-row items-center gap-2 flex-wrap">
+        <span className="progress-block-group-name text-[15px] font-bold text-[#24292e] shrink min-w-0 break-words">{vm.groupName}</span>
+        <span className="progress-block-group-stats text-xs text-[#586069] shrink-0">{`(${vm.mastered}/${vm.total})`}</span>
       </div>
-      <div className="progress-block-sequence">
+      <div className="progress-block-sequence flex flex-row flex-wrap gap-[3px]">
         {vm.entries.map((e) => (
           <button
             key={e.catId}
             type="button"
-            className={`progress-block${e.isMastered ? " mastered" : ""}${e.isInProgress ? " in-progress" : ""}`}
+            className={[
+              "progress-block",
+              "inline-flex items-center justify-center min-w-[60px] max-w-[140px] px-1.5 py-[3px]",
+              "rounded-[3px] text-[11px] cursor-pointer border border-[#d1d5da] bg-[#f6f8fa] text-[#24292e]",
+              "transition-[background] duration-100 overflow-hidden leading-[1.3] break-words font-[inherit] text-left",
+              "hover:brightness-[0.92] hover:z-[1]",
+              "[&.mastered]:bg-[#28a745] [&.mastered]:border-[#28a745] [&.mastered]:text-white",
+              "[&.in-progress]:bg-[#f9d952] [&.in-progress]:border-[#e0b800] [&.in-progress]:text-[#6a5500]",
+              e.isMastered ? "mastered" : "",
+              e.isInProgress ? "in-progress" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
             title={e.catName}
             aria-label={e.catName}
             onClick={() => onSelect(e.catId, e.catName)}
@@ -238,7 +250,7 @@ function BlockGroup({ vm, onSelect }: BlockGroupProps): React.JSX.Element {
 
 function EmptyMessage(): React.JSX.Element {
   return (
-    <div className="progress-block-group" role="status">
+    <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white" role="status">
       表示する単元がありません
     </div>
   );
@@ -261,14 +273,14 @@ function ProgressDetailByCategoryView({ ctx }: { ctx: ProgressBlockContext }): R
   const vm = buildCategoryViewModel(ctx);
   const onSelect = (catId: string, catName: string): void => ctx.onSelectUnit(ctx.subject, catId, catName);
   if (vm.noUnits) {
-    return <div className="progress-block-group">単元がありません</div>;
+    return <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white">単元がありません</div>;
   }
   if (vm.empty) return <EmptyMessage />;
   return (
     <>
       {vm.topGroups.map((tg) => (
         <Fragment key={tg.topName}>
-          <div className="progress-top-category-header">{tg.topName}</div>
+          <div className="progress-top-category-header text-sm font-bold text-[#0366d6] px-3 pt-1.5 pb-0.5 border-b-2 border-[#c8d8e8] mt-1.5">{tg.topName}</div>
           {tg.groups.map((g) => (
             <BlockGroup key={g.groupName} vm={g} onSelect={onSelect} />
           ))}

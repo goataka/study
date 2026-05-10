@@ -20,6 +20,7 @@
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { getSnapshot, resolveConfirmDialog, subscribe, type ConfirmDialogState } from "./confirmDialogStore";
+import { button } from "../styles/buttonStyles";
 
 export function ConfirmDialog(): React.JSX.Element {
   const state: ConfirmDialogState = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
@@ -70,8 +71,12 @@ export function ConfirmDialog(): React.JSX.Element {
     }
   };
 
-  const overlayClass = state.open ? "confirm-dialog-overlay" : "confirm-dialog-overlay hidden";
-  const cancelClass = state.alertOnly ? "secondary-btn hidden" : "secondary-btn";
+  // Tailwind ユーティリティ + CVA の `button` レシピで構成。
+  // `hidden` クラスのみ既存 `.hidden` (display:none !important) を利用。
+  // 元 CSS の `.confirm-dialog-overlay` / `.confirm-dialog` / `.confirm-dialog-message` /
+  // `.confirm-dialog-buttons` 相当のスタイルをユーティリティで置き換えている。
+  const overlayBase = "fixed inset-0 z-[1000] flex items-center justify-center bg-black/50";
+  const overlayClass = state.open ? overlayBase : `${overlayBase} hidden`;
 
   return (
     <div
@@ -82,15 +87,29 @@ export function ConfirmDialog(): React.JSX.Element {
       aria-labelledby="confirmDialogMessage"
       onKeyDown={handleKeyDown}
     >
-      <div className="confirm-dialog">
-        <p id="confirmDialogMessage" className="confirm-dialog-message">
+      <div className="w-[90%] max-w-[400px] rounded-[10px] bg-white px-7 pt-8 pb-6 text-center shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+        <p id="confirmDialogMessage" className="mb-6 text-[18px] leading-[1.6] text-[#333]">
           {state.message}
         </p>
-        <div className="confirm-dialog-buttons">
-          <button ref={okRef} id="confirmDialogOk" className="primary-btn" type="button" onClick={handleOk}>
+        <div className="flex justify-center gap-3">
+          <button
+            ref={okRef}
+            id="confirmDialogOk"
+            className={button({ variant: "primary" })}
+            type="button"
+            onClick={handleOk}
+          >
             OK
           </button>
-          <button ref={cancelRef} id="confirmDialogCancel" className={cancelClass} type="button" onClick={handleCancel}>
+          <button
+            ref={cancelRef}
+            id="confirmDialogCancel"
+            className={button({ variant: "secondary", hidden: state.alertOnly })}
+            type="button"
+            // alertOnly の時はスクリーンリーダーからも除外する（display:none と整合）
+            aria-hidden={state.alertOnly}
+            onClick={handleCancel}
+          >
             キャンセル
           </button>
         </div>

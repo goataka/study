@@ -33,16 +33,30 @@ function MultipleChoice({ question, session, callbacks }: MultipleChoiceProps): 
 
   const isLocked = picked !== undefined;
 
+  // `choice-label` / `choice-text` のクラス名は答え合わせ用テスト
+  // （`querySelector(".choice-label" / ".choice-text")`）で参照されるため残置している。
+  // `:has(input:disabled)` 系の状態スタイルは Tailwind の `has-[…]` バリアントで表現し、
+  // `<input>:checked + .choice-text` の文字色変化は `peer-checked:` で表現する。
+  const labelClass =
+    "choice-label flex cursor-pointer items-center rounded-lg border-2 border-solid border-[#e0e0e0] px-5 py-[15px] transition-all duration-300" +
+    " hover:border-[#0366d6] hover:bg-[#f0f7ff]" +
+    " has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-60" +
+    " has-[input:disabled]:hover:border-[#e0e0e0] has-[input:disabled]:hover:bg-transparent" +
+    " has-[input:disabled:checked]:border-[#0366d6] has-[input:disabled:checked]:bg-[#f0f7ff] has-[input:disabled:checked]:opacity-100";
+  const inputClass = "peer mr-[15px] h-5 w-5 cursor-pointer disabled:cursor-not-allowed";
+  const textClass = "choice-text text-xl text-[#333] peer-checked:font-bold peer-checked:text-[#0366d6]";
+
   return (
     <>
       {question.choices.map((choice, index) => (
-        <label key={index} className="choice-label">
+        <label key={index} className={labelClass}>
           <input
             type="radio"
             name="answer"
             value={String(index)}
             checked={picked === index}
             disabled={isLocked}
+            className={inputClass}
             onChange={() => {
               if (isLocked) return;
               session.selectAnswer(session.currentIndex, index);
@@ -50,7 +64,7 @@ function MultipleChoice({ question, session, callbacks }: MultipleChoiceProps): 
               callbacks.onAnswered(question, index);
             }}
           />
-          <span className="choice-text">{choice}</span>
+          <span className={textClass}>{choice}</span>
         </label>
       ))}
     </>
@@ -100,11 +114,11 @@ function TextInput({ question, session, callbacks }: TextInputProps): React.JSX.
   };
 
   return (
-    <div className="text-answer-wrapper">
+    <div className="text-answer-wrapper flex flex-col gap-3 py-2.5">
       <input
         ref={inputRef}
         type="text"
-        className="text-answer-input"
+        className="text-answer-input box-border w-full rounded-lg border-2 border-solid border-[#e1e4e8] px-4 py-3.5 font-[inherit] text-2xl outline-none transition-colors duration-200 focus:border-[#0366d6] focus:shadow-[0_0_0_3px_rgba(3,102,214,0.2)] disabled:cursor-not-allowed disabled:bg-[#f6f8fa] disabled:text-[#586069]"
         placeholder="答えを入力してください"
         aria-label="解答を入力"
         disabled={answered}
@@ -117,7 +131,12 @@ function TextInput({ question, session, callbacks }: TextInputProps): React.JSX.
           handleSubmit();
         }}
       />
-      <button type="button" className="text-answer-submit-btn" disabled={answered} onClick={handleSubmit}>
+      <button
+        type="button"
+        className="text-answer-submit-btn cursor-pointer self-start rounded-md border-none bg-[#0366d6] px-6 py-2.5 text-lg font-semibold text-white transition-colors duration-200 hover:not-disabled:bg-[#0256b9] disabled:cursor-not-allowed disabled:bg-[#c8e1ff]"
+        disabled={answered}
+        onClick={handleSubmit}
+      >
         確認する
       </button>
     </div>

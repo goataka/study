@@ -5,6 +5,7 @@
 import type { AnswerResult } from "../../application/quizUseCase";
 import { ResultDetailsList } from "./ResultDetailsList";
 import { renderReactInto } from "./reactMount";
+import { scoreCircle } from "../styles/scoreCircleStyles";
 
 /**
  * 結果画面の本文（単元名・メッセージ・スコア円・解答一覧）を描画する。
@@ -66,12 +67,15 @@ function renderScoreDisplay(correctCount: number, total: number, percentage: num
   const scoreDisplay = document.getElementById("scoreDisplay");
   if (!scoreDisplay) return;
   const isPerfect = total > 0 && correctCount === total;
-  const circleClass = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
+  const result: "perfect" | "pass" | "fail" = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
+  const circleClass = scoreCircle({ result });
+  // `score-percentage` クラス名は `10-responsive-base.css` の
+  // `@media (max-width: 600px)` 内で font-size を上書きするため残置。
   scoreDisplay.innerHTML = `
-        <div class="score-circle ${circleClass}">
-          ${isPerfect ? '<div class="score-perfect-icon">✅</div>' : ""}
-          <div class="score-percentage">${percentage}%</div>
-          <div class="score-text">${correctCount} / ${total} 正解</div>
+        <div class="${circleClass}">
+          ${isPerfect ? '<div class="score-perfect-icon mb-1 text-[38px]">✅</div>' : ""}
+          <div class="score-percentage mb-2.5 text-[50px] font-bold">${percentage}%</div>
+          <div class="text-lg">${correctCount} / ${total} 正解</div>
         </div>
       `;
 }

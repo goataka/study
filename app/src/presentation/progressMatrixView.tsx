@@ -207,11 +207,28 @@ interface UnitBlockProps {
   onSelect: (catId: string, catName: string) => void;
 }
 function UnitBlock({ unit, onSelect }: UnitBlockProps): React.JSX.Element {
-  const cls = `progress-block progress-block-sm${unit.isMastered ? " mastered" : ""}${
-    unit.isInProgress ? " in-progress" : ""
-  }`;
   return (
-    <button type="button" className={cls} title={unit.catName} onClick={() => onSelect(unit.catId, unit.catName)}>
+    <button
+      type="button"
+      className={[
+        "progress-block progress-block-sm",
+        // progress-block ベーススタイル
+        "inline-flex items-center justify-start min-w-0 w-full px-1 py-0.5 m-0",
+        "rounded-[3px] text-[10px] cursor-pointer border border-[#d1d5da] bg-[#f6f8fa] text-[#24292e]",
+        "transition-[background] duration-100 leading-[1.3] break-all font-[inherit] text-left",
+        "hover:brightness-[0.92] hover:z-[1]",
+        // progress-block-sm 固有: 縦配置・幅いっぱい
+        "flex whitespace-normal",
+        "[&.mastered]:bg-[#28a745] [&.mastered]:border-[#28a745] [&.mastered]:text-white",
+        "[&.in-progress]:bg-[#f9d952] [&.in-progress]:border-[#e0b800] [&.in-progress]:text-[#6a5500]",
+        unit.isMastered ? "mastered" : "",
+        unit.isInProgress ? "in-progress" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      title={unit.catName}
+      onClick={() => onSelect(unit.catId, unit.catName)}
+    >
       {unit.catName}
     </button>
   );
@@ -239,14 +256,14 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
   const vm = buildMatrixViewModel(ctx);
   if (vm.empty === "no-units") {
     return (
-      <div className="progress-block-group" role="status">
+      <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white" role="status">
         単元がありません
       </div>
     );
   }
   if (vm.empty === "no-visible") {
     return (
-      <div className="progress-block-group" role="status">
+      <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white" role="status">
         表示する単元がありません
       </div>
     );

@@ -1,0 +1,38 @@
+/*
+ * 11-header-controls.css
+ *
+ * ヘッダー右側：フォントサイズ切替・ユーザーアバター・データダウンロード・更新・サポート・GitHub リンク
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* `.header-right-area` は利用箇所なし（dead code）のため削除済み。 */
+
+/* フォントサイズ切替ボタングループ / ボタン / アイコンの基本スタイルは
+ * Tailwind ユーティリティへ移行済み（OuterBottomRow.tsx）。
+ * `font-size-btns` / `font-size-btn` / `font-size-icon` クラス名は
+ * `16-admin.css` のレスポンシブ上書きが参照するため JSX 側に残置。 */
+
+/* ヘッダーのユーザー名・アバター・入力欄・保存ボタンの基本スタイルは
+ * Tailwind ユーティリティへ移行済み（TabsUserRow.tsx）。
+ * クラス名（`header-user-name` / `header-user-avatar` / `header-user-edit` /
+ * `header-user-name-input` / `header-user-save-btn`）は
+ * `16-admin.css` のフォントサイズ切替・レスポンシブ上書きが参照するため残置。 */
+
+/* アバター画像の表示切替。JS が `.visible` クラスで show/hide を制御するため
+ * `display: none` / `.visible { display: block }` はここに残置する。
+ * `header-user-avatar-placeholder.hidden` は .hidden { display: none !important } で制御。 */
+.header-user-avatar-img {
+  display: none;
+}
+
+.header-user-avatar-img.visible {
+  display: block;
+}
+
+/* `reload-btn` のスタイルは Tailwind 化済み（StartHeader.tsx）のため CSS ルールは削除済み。
+ * クラス名は `16-admin.css` のフォントサイズ切替が参照するため JSX 側に残置。 */
+
+/* `.download-data-btn` / `.support-btn` / `.github-btn` / `.header-user-area` / `.user-info` は
+ * 現在 JSX に存在しない（dead code）ため削除済み。 */

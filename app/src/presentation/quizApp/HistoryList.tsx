@@ -99,24 +99,40 @@ function HistoryItem({ record, useCase, showSubjectPrefix }: HistoryItemProps): 
   const detailHidden = isManual || !expanded;
 
   return (
-    <div className="history-item">
-      <div className="history-item-header" {...headerInteractiveProps}>
-        <div className="history-meta">
-          <span className="history-date">{dateStr}</span>
-          <span className="history-subject">
+    <div className="history-item overflow-hidden rounded-lg border border-solid border-[#e1e4e8]">
+      <div
+        className="history-item-header flex cursor-pointer items-center gap-3 bg-[#f6f8fa] px-4 py-3 transition-colors duration-150 select-none hover:bg-[#e8f0fe]"
+        {...headerInteractiveProps}
+      >
+        <div className="history-meta flex flex-1 flex-wrap items-center gap-2">
+          <span className="history-date text-[15px] text-[#586069]">{dateStr}</span>
+          <span className="history-subject text-base font-semibold text-[#24292e]">
             {showSubjectPrefix ? `${record.subjectName} / ${record.categoryName}` : record.categoryName}
           </span>
         </div>
         {isManual ? (
-          <span className="history-score">-</span>
+          <span className="history-score text-base font-bold whitespace-nowrap">-</span>
         ) : (
-          <span className={`history-score ${pct >= 70 ? "pass" : "fail"}`}>
+          <span
+            className={`history-score text-base font-bold whitespace-nowrap ${
+              pct >= 70 ? "pass text-[#28a745]" : "fail text-[#dc3545]"
+            }`}
+          >
             {`${record.correctCount}/${record.totalCount} (${pct}%)`}
           </span>
         )}
-        {!isManual && <span className="history-toggle">{expanded ? "▼" : "▶"}</span>}
+        {!isManual && (
+          <span className="history-toggle text-sm text-[#586069] transition-transform duration-200">
+            {expanded ? "▼" : "▶"}
+          </span>
+        )}
       </div>
-      <div className={detailHidden ? "history-detail hidden" : "history-detail"}>
+      <div
+        className={
+          "history-detail flex flex-col gap-1.5 border-t border-solid border-[#e1e4e8] bg-white px-4 py-2" +
+          (detailHidden ? " hidden" : "")
+        }
+      >
         {!isManual &&
           record.entries.map((entry, idx) => {
             const question = useCase.getQuestionById(entry.questionId);
@@ -141,12 +157,20 @@ function HistoryItem({ record, useCase, showSubjectPrefix }: HistoryItemProps): 
             return (
               <div
                 key={`${entry.questionId}-${idx}`}
-                className={`history-entry ${entry.isCorrect ? "correct" : "incorrect"}`}
+                className={`history-entry flex items-start gap-2.5 rounded-md p-2 text-[15px] ${
+                  entry.isCorrect ? "correct bg-[#f0fff4]" : "incorrect bg-[#fff0f0]"
+                }`}
               >
-                <span className="history-entry-icon">{entry.isCorrect ? "✓" : "✗"}</span>
-                <div className="history-entry-content">
-                  <p className="history-entry-question">{questionText}</p>
-                  <p className="history-entry-answer">{answerText}</p>
+                <span
+                  className={`history-entry-icon mt-px shrink-0 text-base font-bold ${
+                    entry.isCorrect ? "text-[#28a745]" : "text-[#dc3545]"
+                  }`}
+                >
+                  {entry.isCorrect ? "✓" : "✗"}
+                </span>
+                <div className="history-entry-content flex-1">
+                  <p className="history-entry-question mb-0.5 text-[#24292e]">{questionText}</p>
+                  <p className="history-entry-answer text-sm text-[#586069]">{answerText}</p>
                 </div>
               </div>
             );

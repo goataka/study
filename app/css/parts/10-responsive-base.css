@@ -1,0 +1,184 @@
+/*
+ * 10-responsive-base.css
+ *
+ * スマホ対応（767px 以下）と 768〜900px のレスポンシブ調整
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* ─── スマホ対応（767px 以下）: 固定キャンバスを解除してレスポンシブに ──── */
+@media (max-width: 767px) {
+  /* 固定 1920×1080 キャンバスを解除してレスポンシブレイアウトに切り替え */
+  body {
+    width: 100%;
+    height: auto;
+    min-height: 100svh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px;
+  }
+
+  .container {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .screen {
+    flex: none;
+    overflow-y: visible;
+  }
+
+  /* ヘッダーをコンパクトに（折り返し2行レイアウト） */
+  header {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding: 10px 12px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  .header-today-date {
+    font-size: 16px;
+  }
+
+  .header-center-area {
+    gap: 4px;
+    padding-right: 8px;
+  }
+
+  .header-right-area {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* スタートコンテンツを縦積みに（all-subject-layout 適用時も同様） */
+  .start-content-layout,
+  .start-content-layout.all-subject-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* スマホでは折り目を非表示にし、category-panel を通常スタイルに戻す */
+  .notebook-spine {
+    display: none;
+  }
+
+  .category-panel {
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .quiz-panel {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* クイズを縦積みに。flex: none にして viewport 高さに縛られずコンテンツ高さにする */
+  .quiz-landscape-layout {
+    grid-template-columns: 1fr;
+    flex: none;
+  }
+
+  .quiz-landscape-layout::before {
+    display: none;
+  }
+
+  /* メモエリアはスクロールで到達できる高さに（縦積みの最下部に配置） */
+  .quiz-notes-col {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  /* クイズメイン列は内部スクロールなし（外側の quizScreen がスクロール） */
+  .quiz-main-col {
+    overflow-y: visible;
+    min-height: auto;
+  }
+
+  /* スマホでは解説・例文を単元タイトルの下に折り返し */
+  .category-item.category-item-has-info {
+    grid-template-columns: 1fr;
+  }
+
+  .category-item-right {
+    border-left: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 5px;
+  }
+
+  .category-item.active .category-item-right {
+    border-top-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* フィルターボタン: タップしやすいように最小高さを確保 */
+  .category-status-filter-btn {
+    font-size: 11px;
+    padding: 5px 8px;
+    min-height: 32px;
+  }
+
+  /* 単元一覧の学習状況フィルターを折り返し可能にする */
+  .category-panel-header {
+    flex-wrap: wrap;
+  }
+  .category-status-filter {
+    flex-wrap: wrap;
+  }
+}
+
+/* レスポンシブ対応（768px〜900px: zoom 適用のデスクトップモード、クイズのみ縦積みに） */
+@media (max-width: 900px) {
+  /* クイズのランドスケープレイアウトをスタック表示に */
+  .quiz-landscape-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .screen {
+    padding: 20px;
+  }
+
+  /* スタートコンテンツレイアウトをスタック表示に */
+  .start-content-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .question-text {
+    font-size: 22px;
+  }
+
+  .choice-text {
+    font-size: 18px;
+  }
+
+  .score-circle {
+    width: 160px;
+    height: 160px;
+    padding: 30px;
+  }
+
+  .score-percentage {
+    font-size: 38px;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+  }
+}

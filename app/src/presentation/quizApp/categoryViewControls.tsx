@@ -10,6 +10,10 @@ import type { QuizUseCase } from "../../application/quizUseCase";
 import type { IProgressRepository } from "../../application/ports";
 import { renderReactInto, clearReactContainer } from "./reactMount";
 
+/** 学年フィルターボタンの共通 Tailwind クラス文字列。 */
+const GRADE_FILTER_BTN_CLASSES =
+  "grade-filter-btn text-xs px-2 py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white";
+
 /** カテゴリビューコントロールへ渡すコールバックと状態。 */
 export interface CategoryViewControlsParams {
   useCase: QuizUseCase;
@@ -110,7 +114,13 @@ function ViewToggleButton({ params }: { params: CategoryViewControlsParams }): R
   return (
     <button
       type="button"
-      className="category-view-toggle"
+      className={[
+        "category-view-toggle",
+        "text-sm px-2 py-[3px] border border-[#d1d5da] rounded cursor-pointer select-none",
+        "bg-white text-[#586069] transition-[background,color] duration-150",
+        "hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6]",
+        "[&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white",
+      ].join(" ")}
       aria-pressed={isGrade}
       title={isGrade ? "カテゴリ別表示に切り替える" : "学年別表示に切り替える"}
       onClick={handleClick}
@@ -128,11 +138,11 @@ function GradeFilterGroup({
   params: CategoryViewControlsParams;
 }): React.JSX.Element {
   return (
-    <div className="grade-filter-group">
-      <span className="grade-filter-label">学年:</span>
+    <div className="grade-filter-group flex items-center gap-[5px]">
+      <span className="grade-filter-label text-xs text-[#586069] ml-1">学年:</span>
       <button
         type="button"
-        className="grade-filter-btn"
+        className={GRADE_FILTER_BTN_CLASSES}
         aria-pressed={params.selectedGradeFilter === null}
         onClick={() => params.onGradeFilterChange(null)}
       >
@@ -142,7 +152,7 @@ function GradeFilterGroup({
         <button
           key={prefix}
           type="button"
-          className="grade-filter-btn"
+          className={GRADE_FILTER_BTN_CLASSES}
           aria-pressed={params.selectedGradeFilter === prefix}
           onClick={() => params.onGradeFilterChange(prefix)}
         >

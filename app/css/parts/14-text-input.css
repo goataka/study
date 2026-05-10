@@ -1,0 +1,31 @@
+/*
+ * 14-text-input.css
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ *
+ * 旧スタイルはすべて Tailwind ユーティリティへ移行済み:
+ * - `.text-answer-wrapper` / `.text-answer-input` / `.text-answer-submit-btn`
+ *   → `src/presentation/quizApp/choicesRenderer.tsx` の Tailwind ユーティリティで表現
+ * - `#kanjiInputArea` / `.kanji-input-header` / `.kanji-input-label` /
+ *   `.kanji-input-controls` / `.kanji-ctrl-btn` / `.kanji-canvas-wrapper` /
+ *   `.kanji-canvas` / `.kanji-input-body` / `.kanji-candidate-list` /
+ *   `.kanji-candidates-area`
+ *   → `src/presentation/components/quizScreen/KanjiInputArea.tsx` の Tailwind ユーティリティで表現
+ * - `.kanji-candidate-btn`
+ *   → `src/presentation/kanjiCanvasController.ts` で imperatively に
+ *     Tailwind ユーティリティ文字列を付与
+ *
+ * 旧 `#handwritingConfirmArea` / `.handwriting-text-input` /
+ * `.handwriting-confirm-btn` は参照元なし（dead code）のため削除済み。
+ *
+ * 旧 `.confirm-dialog-overlay` / `.confirm-dialog` / `.confirm-dialog-message` /
+ * `.confirm-dialog-buttons` も Tailwind ユーティリティへ移行済み（削除済み）。
+ * 実装は `src/presentation/components/ConfirmDialog.tsx` を参照。
+ *
+ * クラス名（`kanji-candidate-btn` / `text-answer-input` /
+ * `text-answer-submit-btn` / `text-answer-wrapper` / `kanji-input-body` /
+ * `kanji-canvas` / `kanji-candidates-area` / `kanji-candidate-list`）は
+ * 単体テスト（`kanji.test.ts` 等）のセレクタや `16-admin.css` の
+ * レスポンシブ上書きから参照されるため、JSX 側にクラス名としては残置している。
+ */

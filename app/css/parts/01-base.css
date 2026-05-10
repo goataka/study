@@ -1,0 +1,87 @@
+/*
+ * 01-base.css
+ *
+ * 基本リセット・html/body・#root・.container（1920×1080 基準のスケーリング基盤）と、ヘッダー／フッター／コピーライト・ノート背景まで
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* 基本スタイル */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 1920×1080 を基準とするスケーリング。
+   zoom は index.html のインラインスクリプトで clientWidth / 1920 と
+   clientHeight / 1080 の小さい方を動的に設定する（スクロールバー除外のため clientWidth を使用）。 */
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  /* 机の木目：横方向の木目写真（右下マーク除去済み） */
+  background-color: #7a4e28;
+  background-image: url("../../public/wood-bg.png");
+  background-repeat: repeat;
+  background-size: 1424px 747px;
+  /* 1920×1080 を基準キャンバスとして固定し、zoom によって画面全体にフィットさせる */
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/*
+ * React のマウント先 #root。本アプリは body 直下に `<div id="root">` を置き、
+ * その中に `.container` を配置する構成を採用しているため、DOM 階層は
+ * `body > #root > .container` となる。元の `.container { height: 100% }`
+ * は body の content height を継承していたので、間に挟まる `#root` にも
+ * 同じ高さ・幅を与えて旧構造（body > .container）と同じレイアウトを保つ。
+ */
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  /* 1920px（標準幅） - 左右のpadding（各20px × 2 = 40px） = 1880px */
+  max-width: 1880px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* `<header>` 要素のスタイルは Tailwind ユーティリティへ移行済み（StartHeader.tsx）。
+ * 要素セレクタ `header { ... }` は削除。
+ * `header-today-date` / `header-date-area` / `header-date-label` のクラス名は
+ * `10-responsive-base.css` の `@media` 上書きが参照するため JSX 側に残置。 */
+
+/* ヘッダーのタイトルエリア（アイコン + タイトル + 小中高ラベル）は
+ * Tailwind ユーティリティへ移行済み（StartHeader.tsx）。
+ * `header-title-area` / `title-btn` / `header-logo` / `header-grade-label` のセマンティッククラス名は
+ * テストセレクタや font-size 切替から参照する場合に備えて JSX 側に残置。 */
+
+/* `.app-footer` の基本スタイルは Tailwind ユーティリティへ移行済み（StartScreen.tsx）。
+   `app-footer` クラス自体は `16-admin.css` 内の `:has(...) .app-footer` セレクタのフックとして残している。 */
+
+/*
+ * 旧 `.outer-github-link*` / `.outer-bottom-row` / `.outer-copyright` /
+ * `.outer-bottom-actions` は Tailwind ユーティリティへ移行したため削除済み。
+ * 実装は `src/presentation/components/OuterBottomRow.tsx` を参照。
+ */
+
+/* `.screen` の基本スタイルは Tailwind ユーティリティへ移行済み
+ * （ResultScreen.tsx / StartScreen.tsx / QuizScreen.tsx）。
+ * `screen` クラス名は以下から参照されるため JSX 側に残置:
+ * - `02-notebook-and-tabs.css` の `.screen.practice-mode`
+ * - `10-responsive-base.css` の `@media` 上書き（flex, overflow-y, padding）
+ * - `16-admin.css` の `:has(...) .screen` セレクタ */
