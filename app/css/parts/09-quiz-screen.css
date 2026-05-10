@@ -202,6 +202,5 @@ button:disabled {
  * font-size 切替（`15-font-size.css`）から参照されるため JSX 側に残置している。
  *
  * `.question-list-item::before` の右上の折り目は実装が複雑なため、
- * 新しい partial（→ `09-quiz-screen.css`）には残さず、本コメントへ
- * インライン化された Tailwind の `before:` バリアントで表現している。
- */
+ * `QuestionList.tsx` 側に Tailwind の `before:` バリアント（`before:bg-[linear-gradient(...)]` /
+ * `before:[clip-path:polygon(...)]` 等）でインライン化している。 */
