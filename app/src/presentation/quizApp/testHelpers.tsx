@@ -1,7 +1,5 @@
 /**
- * QuizApp テストで共有する DOM スタブ・モック・ユーティリティ。
- *
- * `quizApp.test.ts` から肥大化していたセットアップを切り出したもの。
+ * QuizApp テストスイート全体で共有する DOM セットアップ・モック・ユーティリティ。
  */
 
 // @vitest-environment jsdom
@@ -47,7 +45,7 @@ function mountStartScreenPanels(): void {
   if (progressMount) renderReactInto(progressMount, <ProgressDetailPanel />);
 }
 
-// KanjiCanvas グローバルのモック（jsdom環境では kanji-canvas.min.js がロードされないため）
+// KanjiCanvas グローバルのモック（jsdom 環境では kanji-canvas.min.js がロードされないため）
 export const kanjiCanvasMock = {
   init: vi.fn(),
   erase: vi.fn(),
