@@ -5,6 +5,8 @@
  * カテゴリリスト本体（動的描画）を含む。
  */
 
+import { statusFilterButton } from "../../styles/categoryControlButtonStyles";
+
 export function CategoryPanel(): React.JSX.Element {
   return (
     <div
@@ -28,44 +30,36 @@ export function CategoryPanel(): React.JSX.Element {
           aria-label="学習状態フィルター"
         >
           <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
-          <button
-            id="filterStatusAll"
-            className={[
-              "category-status-filter-btn",
-              "active",
-              "text-xs px-[7px] py-0.5 border border-[#d1d5da] rounded-[10px]",
-              "bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap",
-              "transition-[background,color] duration-150",
-              "hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6]",
-              "[&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white",
-            ].join(" ")}
-            type="button"
-            aria-pressed="true"
-          >
+            <button
+              id="filterStatusAll"
+              className={`${statusFilterButton()} active`}
+              type="button"
+              aria-pressed="true"
+            >
             すべて
           </button>
-          <button
-            id="filterStatusUnlearned"
-            className="category-status-filter-btn text-xs px-[7px] py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white"
-            type="button"
-            aria-pressed="false"
-          >
+            <button
+              id="filterStatusUnlearned"
+              className={statusFilterButton()}
+              type="button"
+              aria-pressed="false"
+            >
             未学習
           </button>
-          <button
-            id="filterStatusStudying"
-            className="category-status-filter-btn text-xs px-[7px] py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white"
-            type="button"
-            aria-pressed="false"
-          >
+            <button
+              id="filterStatusStudying"
+              className={statusFilterButton()}
+              type="button"
+              aria-pressed="false"
+            >
             学習中
           </button>
-          <button
-            id="filterStatusLearned"
-            className="category-status-filter-btn text-xs px-[7px] py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white"
-            type="button"
-            aria-pressed="false"
-          >
+            <button
+              id="filterStatusLearned"
+              className={statusFilterButton()}
+              type="button"
+              aria-pressed="false"
+            >
             学習済
           </button>
         </div>
