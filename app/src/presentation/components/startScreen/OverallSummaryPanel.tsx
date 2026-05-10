@@ -5,12 +5,10 @@
  * テキストや URL は既存コントローラ（`shareSummary` 系・履歴ビュー等）が動的に更新する。
  *
  * タブの active 状態と各サブパネルの hidden 表示は `panelTabsStore` を購読して
- * 宣言的に反映する。クリックハンドラは React onClick ではなく
- * `setupOverallPanelTabs` の DOM 委譲で処理する（既存の静的 HTML テストとの
- * 二重発火を避けるため）。
+ * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
  */
 
-import { type OverallPanelTab } from "./panelTabsStore";
+import { setActiveOverallPanel, type OverallPanelTab } from "./panelTabsStore";
 import { useActiveOverallPanel } from "./usePanelTabsStore";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 import { shareButton } from "../../styles/shareButtonStyles";
@@ -32,7 +30,7 @@ function OverallPanelTabButton({ panel, active, id, label }: OverallPanelTabButt
       role="tab"
       type="button"
       aria-selected={isActive}
-      // クリックは setupOverallPanelTabs の DOM 委譲が処理する（React onClick との二重発火を避けるため）
+      onClick={() => setActiveOverallPanel(panel)}
     >
       {label}
     </button>
