@@ -153,6 +153,63 @@ jobs:
           echo "Site did not become ready within 2 minutes"
           exit 1
 
+      - name: 本番アプリの初期化完了を確認
+        env:
+          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
+        run: |
+          node <<'JS'
+          const { chromium } = require("playwright");
+
+          const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+          (async () => {
+            const baseUrl = process.env.PLAYWRIGHT_BASE_URL;
+            const deadline = Date.now() + 120_000;
+            let attempt = 0;
+            let lastStatsText = "";
+
+            while (Date.now() < deadline) {
+              attempt += 1;
+              const browser = await chromium.launch({ headless: true });
+              const context = await browser.newContext({ ignoreHTTPSErrors: true });
+              const page = await context.newPage();
+
+              try {
+                await page.goto(baseUrl, { waitUntil: "load", timeout: 30_000 });
+                const statsInfo = page.locator("#statsInfo");
+                await statsInfo.waitFor({ state: "visible", timeout: 10_000 });
+                await page.waitForFunction(
+                  () => /全：[1-9]\d*問/.test(document.querySelector("#statsInfo")?.textContent ?? ""),
+                  undefined,
+                  { timeout: 30_000 },
+                );
+                lastStatsText = (await statsInfo.textContent())?.trim() ?? "";
+                console.log(`Attempt ${attempt}: statsInfo="${lastStatsText}"`);
+                process.exit(0);
+              } catch (error) {
+                lastStatsText = (await page.locator("#statsInfo").textContent().catch(() => ""))?.trim() ?? "";
+                if (lastStatsText) {
+                  console.log(`Attempt ${attempt}: statsInfo="${lastStatsText}"`);
+                }
+                console.log(`Attempt ${attempt}: ${error instanceof Error ? error.message : String(error)}`);
+              } finally {
+                await browser.close();
+              }
+
+              if (Date.now() + 10_000 < deadline) {
+                console.log("Retrying in 10s...");
+                await sleep(10_000);
+              }
+            }
+
+            console.error(`Production app did not finish initializing within 2 minutes. Last statsInfo="${lastStatsText}"`);
+            process.exit(1);
+          })().catch((error) => {
+            console.error(error);
+            process.exit(1);
+          });
+          JS
+
       - name: 本番環境E2Eテスト実行
         env:
           PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
