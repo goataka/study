@@ -319,6 +319,7 @@ app/src/
 - ユーティリティの自動検出対象は `src/**/*.{ts,tsx}` および `index.html` などのテンプレート群。動的なクラス文字列は Tailwind が検出できないため、条件分岐ではフルクラス名を直接書く。
 - **バリエーションのある UI（ボタン・バッジ・タブ等）は [CVA (class-variance-authority)](https://cva.style/) のレシピで定義する**。レシピは `src/presentation/styles/` 配下に `<name>Styles.ts` として置き、コロケーションで `<name>Styles.test.ts` を作成する。例：`button({ variant: "primary", hidden: false })`。
 - CVA レシピを書くときは、フォントサイズ切替（`15-font-size.css`）など既存 CSS が依存する**セマンティッククラス名**（例：`primary-btn`）はレシピの出力に含めて維持する。これにより legacy CSS との互換性を保ちつつ見た目だけ Tailwind に移行できる。
+- セマンティッククラス名を CVA レシピから削除してよいのは、**そのクラス名を参照する手書き CSS が `app/css/parts/` 配下から完全に消えた時点**。それまでは互換性維持のため残す。
 
 ### テストの配置ルール（コロケーション）
 

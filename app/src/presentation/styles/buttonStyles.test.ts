@@ -12,11 +12,11 @@ import { button } from "./buttonStyles";
 describe("button (CVA)", () => {
   it("デフォルトは primary バリアントで primary-btn クラスを出力する", () => {
     const cls = button();
-    expect(cls).toContain("primary-btn");
-    expect(cls).not.toContain("secondary-btn");
-    expect(cls).not.toContain("tertiary-btn");
-    expect(cls).not.toContain(" hidden");
-    expect(cls).not.toMatch(/^hidden /);
+    const tokens = cls.split(/\s+/);
+    expect(tokens).toContain("primary-btn");
+    expect(tokens).not.toContain("secondary-btn");
+    expect(tokens).not.toContain("tertiary-btn");
+    expect(tokens).not.toContain("hidden");
   });
 
   it("variant='secondary' で secondary-btn クラスを出力する", () => {

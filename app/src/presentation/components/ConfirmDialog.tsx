@@ -106,6 +106,8 @@ export function ConfirmDialog(): React.JSX.Element {
             id="confirmDialogCancel"
             className={button({ variant: "secondary", hidden: state.alertOnly })}
             type="button"
+            // alertOnly の時はスクリーンリーダーからも除外する（display:none と整合）
+            aria-hidden={state.alertOnly}
             onClick={handleCancel}
           >
             キャンセル
