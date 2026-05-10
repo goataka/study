@@ -7,9 +7,9 @@
 
 import * as React from "react";
 import type { QuizFilter, QuizUseCase } from "../../application/quizUseCase";
-import { loadGuideContent as loadGuideContentFn } from "./guideLoader";
 import { GradeGuideContent, type GradeGuideEntry } from "../components/GradeGuideContent";
-import { renderReactInto, clearReactContainer, hasReactMount } from "./reactMount";
+import { GuideContent } from "../components/GuideContent";
+import { renderReactInto, clearReactContainer } from "./reactMount";
 
 export type SelectionLevel = "none" | "topCategory" | "parentCategory" | "unit";
 
@@ -82,20 +82,13 @@ export async function updateGuidePanelContentByIds(
   const guideUrl = resolveGuideUrl(useCase, state);
 
   if (guideUrl) {
-    // 直前まで GradeGuideContent (React) が描画されていた場合は React Root を解放してから
-    // loadGuideContent の命令的 DOM 操作を許可する。React マウントがない場合は
-    // `loadGuideContent` のキャッシュ判定 (dataset.loadedUrl) を維持するために
-    // コンテナを wipe しない。
-    if (hasReactMount(guideFrame)) {
-      clearReactContainer(guideFrame);
-    }
+    guideFrame.dataset.loadedUrl = "";
+    renderReactInto(guideFrame, <GuideContent guideUrl={guideUrl} />);
     guideFrame.classList.remove("hidden");
     noContent?.classList.add("hidden");
-    await loadGuideContentFn(guideFrame, guideUrl, counterRef, noContent ?? undefined);
   } else {
-    if (hasReactMount(guideFrame)) {
-      clearReactContainer(guideFrame);
-    }
+    clearReactContainer(guideFrame);
+    guideFrame.dataset.loadedUrl = "";
     guideFrame.classList.add("hidden");
     noContent?.classList.remove("hidden");
   }
