@@ -1,0 +1,221 @@
+/*
+ * 14-text-input.css
+ *
+ * テキスト入力問題、タッチペン入力確定エリア、KanjiCanvas 入力エリア
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* テキスト入力問題 */
+.text-answer-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.text-answer-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 24px;
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.text-answer-input:focus {
+  border-color: #0366d6;
+  box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.2);
+}
+
+.text-answer-input:disabled {
+  background: #f6f8fa;
+  color: #586069;
+  cursor: not-allowed;
+}
+
+.text-answer-submit-btn {
+  align-self: flex-start;
+  padding: 10px 24px;
+  background: #0366d6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.text-answer-submit-btn:hover:not(:disabled) {
+  background: #0256b9;
+}
+
+.text-answer-submit-btn:disabled {
+  background: #c8e1ff;
+  cursor: not-allowed;
+}
+
+/* タッチペン入力確定エリア（メモタブ内、text-input問題のみ表示） */
+#handwritingConfirmArea {
+  padding: 8px;
+  border-top: 1px solid #e1e4e8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.handwriting-text-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e1e4e8;
+  border-radius: 6px;
+  font-size: 18px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.handwriting-text-input:focus {
+  border-color: #0366d6;
+  box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.2);
+}
+
+.handwriting-confirm-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: #0366d6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.handwriting-confirm-btn:hover:not(:disabled) {
+  background: #0256b9;
+}
+
+.handwriting-confirm-btn:disabled {
+  background: #c8e1ff;
+  cursor: not-allowed;
+}
+
+/* KanjiCanvas入力エリア（text-input問題専用） */
+#kanjiInputArea {
+  padding: 8px;
+  border-top: 1px solid #e1e4e8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* canvasのborder: 2pxがgetBoundingClientRect()の座標にずれを生じさせるため、
+   borderをwrapperに移動し、canvas自体はborderなしにして正確な座標計算を確保する */
+.kanji-canvas-wrapper {
+  border: 2px solid #e1e4e8;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: inline-flex;
+}
+
+.kanji-input-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.kanji-input-label {
+  font-size: 15px;
+  color: #586069;
+}
+
+.kanji-input-controls {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.kanji-ctrl-btn {
+  padding: 4px 10px;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.15s;
+}
+
+.kanji-ctrl-btn:hover {
+  background: #f3f4f6;
+}
+
+.kanji-canvas {
+  display: block;
+  width: 400px;
+  flex-shrink: 0;
+  height: 400px;
+  cursor: crosshair;
+  background: white;
+  touch-action: none;
+}
+
+.kanji-input-body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.kanji-candidate-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 50px;
+  min-height: 40px;
+}
+
+.kanji-candidates-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.kanji-candidate-btn {
+  padding: 6px 12px;
+  border: 2px solid #e1e4e8;
+  border-radius: 6px;
+  background: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+  line-height: 1;
+  width: 100%;
+}
+
+.kanji-candidate-btn:hover {
+  background: #0366d6;
+  color: white;
+  border-color: #0366d6;
+}
+
+/*
+ * 旧 `.confirm-dialog-overlay` / `.confirm-dialog` / `.confirm-dialog-message` /
+ * `.confirm-dialog-buttons` は Tailwind ユーティリティへ移行したため削除済み。
+ * 実装は `src/presentation/components/ConfirmDialog.tsx` を参照。
+ */

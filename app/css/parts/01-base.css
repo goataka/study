@@ -1,0 +1,202 @@
+/*
+ * 01-base.css
+ *
+ * 基本リセット・html/body・#root・.container（1920×1080 基準のスケーリング基盤）と、ヘッダー／フッター／コピーライト・ノート背景まで
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* 基本スタイル */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 1920×1080 を基準とするスケーリング。
+   zoom は index.html のインラインスクリプトで clientWidth / 1920 と
+   clientHeight / 1080 の小さい方を動的に設定する（スクロールバー除外のため clientWidth を使用）。 */
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  /* 机の木目：横方向の木目写真（右下マーク除去済み） */
+  background-color: #7a4e28;
+  background-image: url("../../public/wood-bg.png");
+  background-repeat: repeat;
+  background-size: 1424px 747px;
+  /* 1920×1080 を基準キャンバスとして固定し、zoom によって画面全体にフィットさせる */
+  width: 1920px;
+  height: 1080px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/*
+ * React のマウント先 #root。本アプリは body 直下に `<div id="root">` を置き、
+ * その中に `.container` を配置する構成を採用しているため、DOM 階層は
+ * `body > #root > .container` となる。元の `.container { height: 100% }`
+ * は body の content height を継承していたので、間に挟まる `#root` にも
+ * 同じ高さ・幅を与えて旧構造（body > .container）と同じレイアウトを保つ。
+ */
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  /* 1920px（標準幅） - 左右のpadding（各20px × 2 = 40px） = 1880px */
+  max-width: 1880px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+header {
+  /* ヘッダー（罫線なし、白地） */
+  background-color: white;
+  background-image: none;
+  padding: 10px 20px;
+  /* 角丸なし（ノート全体のデザインに合わせる） */
+  border-radius: 0;
+  margin-bottom: 0;
+  border-bottom: 2px solid #c8d8e8;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+/* ヘッダーのタイトルエリア（アイコン + タイトル + 小中高ラベル） */
+.header-title-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-bottom: 2px solid #c8d8e8;
+  padding-bottom: 2px;
+}
+
+header h1 {
+  color: #0366d6;
+  font-size: 15px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* ヘッダーロゴ（ファビコンと同じデザイン） */
+.header-logo {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.header-grade-label {
+  font-size: 14px;
+  color: #586069;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.header-today-date {
+  font-size: 15px;
+  color: #586069;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid #c8d8e8;
+  padding-bottom: 1px;
+  min-width: 160px;
+  text-align: center;
+}
+
+/* ヘッダー日付エリア（Date: ラベル + 日付 + リロードボタン） */
+.header-date-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.header-date-label {
+  font-size: 15px;
+  color: #c8d8e8;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ヘッダー中央エリア（ユーザー名 + 更新ボタン） */
+.header-center-area {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+  justify-content: center;
+  padding-right: 0;
+}
+
+.title-btn {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.title-btn:hover,
+.title-btn:focus {
+  color: #0255b8;
+  outline: none;
+  text-decoration: underline;
+}
+
+/* フッター（ノートの下部：罫線なし、シンプルなボーダーのみ） */
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 4px 12px;
+  background-color: white;
+  background-image: none;
+  border-top: 2px solid #c8d8e8;
+  border-radius: 0;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  color: #586069;
+  min-height: 8px;
+}
+
+/*
+ * 旧 `.outer-github-link*` / `.outer-bottom-row` / `.outer-copyright` /
+ * `.outer-bottom-actions` は Tailwind ユーティリティへ移行したため削除済み。
+ * 実装は `src/presentation/components/OuterBottomRow.tsx` を参照。
+ */
+
+.screen {
+  /* ノート：机の上に置いた1冊のノート（不透明白地、強い影） */
+  background: white;
+  padding: 16px 40px 40px;
+  border-radius: 0;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 0;
+}

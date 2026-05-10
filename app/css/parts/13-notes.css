@@ -1,0 +1,367 @@
+/*
+ * 13-notes.css
+ *
+ * メモエリア（手書きキャンバス）と、その他のクイズ前コントロール（問題数・並び順・学習済みフィルター）
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* メモエリア */
+.notes-area {
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  overflow-y: auto;
+  background: transparent;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+  flex-shrink: 0;
+}
+
+.notes-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.notes-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.notes-btn {
+  padding: 4px 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 18px;
+}
+
+.notes-btn:hover {
+  background: #f0f0f0;
+  border-color: #b0b0b0;
+}
+
+.pen-size-select,
+.pen-color-select {
+  padding: 4px 8px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pen-color-select {
+  width: 60px;
+}
+
+.notes-canvas {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 400px;
+  cursor: crosshair;
+  touch-action: none; /* タッチイベントのデフォルト動作を無効化 */
+  background: transparent;
+}
+
+.notes-btn.eraser-active {
+  background: #ffe8b3;
+  border-color: #f0a800;
+}
+
+#notesMemoContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* モバイル対応 */
+@media (max-width: 767px) {
+  .notes-canvas {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .notes-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .notes-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* 問題数選択 */
+.question-count-section {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.question-count-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 18px;
+}
+
+.question-count-group {
+  display: flex;
+  gap: 16px;
+}
+
+.count-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 17px;
+  color: #333;
+  cursor: pointer;
+}
+
+.count-label input[type="radio"] {
+  cursor: pointer;
+  accent-color: #0366d6;
+}
+
+/* 並び順選択 */
+.quiz-order-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+.quiz-order-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.quiz-order-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.order-label {
+  font-size: 17px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.order-label input[type="radio"] {
+  cursor: pointer;
+  accent-color: #0366d6;
+}
+
+/* 学習済みフィルター */
+.quiz-learned-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+@media (max-width: 600px) {
+  .question-count-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-user-name {
+    max-width: 120px;
+  }
+}
+
+/* ─── 回答記録 ─────────────────────────────────────────────────────────────── */
+
+.history-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #24292e;
+  margin-bottom: 12px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-empty {
+  color: #586069;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 17px;
+}
+
+.history-item {
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.history-item-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  background: #f6f8fa;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.history-item-header:hover {
+  background: #e8f0fe;
+}
+
+.history-meta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.history-date {
+  font-size: 15px;
+  color: #586069;
+}
+
+.history-subject {
+  font-size: 16px;
+  font-weight: 600;
+  color: #24292e;
+}
+
+.history-mode {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.history-mode--random {
+  background: #0366d6;
+  color: white;
+}
+
+.history-mode--practice {
+  background: #5b9bd5;
+  color: #0f2a43;
+}
+
+.history-mode--retry {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.history-mode--manual {
+  background: white;
+  color: #0366d6;
+  border: 2px solid #0366d6;
+}
+
+.history-score {
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.history-score.pass {
+  color: #28a745;
+}
+
+.history-score.fail {
+  color: #dc3545;
+}
+
+.history-toggle {
+  font-size: 14px;
+  color: #586069;
+  transition: transform 0.2s;
+}
+
+.history-detail {
+  border-top: 1px solid #e1e4e8;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #fff;
+}
+
+.history-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.history-entry.correct {
+  background: #f0fff4;
+}
+
+.history-entry.incorrect {
+  background: #fff0f0;
+}
+
+.history-entry-icon {
+  font-size: 16px;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.history-entry.correct .history-entry-icon {
+  color: #28a745;
+}
+
+.history-entry.incorrect .history-entry-icon {
+  color: #dc3545;
+}
+
+.history-entry-content {
+  flex: 1;
+}
+
+.history-entry-question {
+  color: #24292e;
+  margin-bottom: 2px;
+}
+
+.history-entry-answer {
+  color: #586069;
+  font-size: 14px;
+}

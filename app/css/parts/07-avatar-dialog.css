@@ -1,0 +1,153 @@
+/*
+ * 07-avatar-dialog.css
+ *
+ * アバター画像選択・切り抜きダイアログ
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* アバター画像選択・切り抜きダイアログ */
+.avatar-crop-dialog {
+  border: 1px solid #c8d8e8;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  min-width: 240px;
+  max-width: 320px;
+  /* スクリーン中央に配置 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.avatar-crop-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.avatar-crop-dialog-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.avatar-crop-dialog-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #24292e;
+  margin: 0;
+}
+
+.avatar-crop-file-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  background: #0366d6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.avatar-crop-file-label:hover {
+  background: #0256b8;
+}
+
+.avatar-crop-file-label input[type="file"] {
+  display: none;
+}
+
+/* プレビューラップ：overflow: hidden で円形にクリッピングし、ハンドルは円内に表示する */
+.avatar-crop-preview-wrap {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #d0d8e0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f4f8;
+  position: relative;
+  cursor: grab;
+  user-select: none;
+  /* モバイルでのドラッグ時にページスクロールを防ぐ */
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+.avatar-crop-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  pointer-events: none;
+}
+
+.avatar-crop-preview.visible {
+  display: block;
+}
+
+.avatar-crop-preview-placeholder {
+  font-size: 48px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.avatar-crop-preview-wrap.dragging {
+  cursor: grabbing;
+}
+
+.avatar-crop-zoom-label {
+  font-size: 12px;
+  color: #586069;
+  align-self: stretch;
+}
+
+.avatar-crop-zoom {
+  width: 100%;
+}
+
+.avatar-crop-dialog-btns {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.avatar-crop-confirm-btn,
+.avatar-crop-cancel-btn {
+  flex: 1;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid;
+  transition: background 0.15s;
+}
+
+.avatar-crop-confirm-btn {
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+.avatar-crop-confirm-btn:hover {
+  background: #218838;
+}
+
+.avatar-crop-cancel-btn {
+  background: white;
+  color: #586069;
+  border-color: #d1d5da;
+}
+
+.avatar-crop-cancel-btn:hover {
+  background: #f6f8fa;
+}

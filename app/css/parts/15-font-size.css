@@ -1,0 +1,730 @@
+/*
+ * 15-font-size.css
+ *
+ * フォントサイズ切替：中・大の各ターゲット（追加分も含む）
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* ─── フォントサイズ：中 ──────────────────────────────────────────────────── */
+
+body.font-size-medium header h1 {
+  font-size: 18px;
+}
+
+body.font-size-medium .subject-tab {
+  font-size: 18px;
+}
+
+body.font-size-medium .tabs-link-note {
+  font-size: 18px;
+}
+
+body.font-size-medium .panel-tab {
+  font-size: 18px;
+}
+
+body.font-size-medium .stats-info {
+  font-size: 18px;
+}
+
+body.font-size-medium .question-count-label {
+  font-size: 21px;
+}
+
+body.font-size-medium .count-label {
+  font-size: 20px;
+}
+
+body.font-size-medium .quiz-order-label {
+  font-size: 21px;
+}
+
+body.font-size-medium .order-label {
+  font-size: 20px;
+}
+
+body.font-size-medium .category-group-learned-badge {
+  font-size: 22px;
+}
+
+body.font-size-medium .category-description {
+  font-size: 18px;
+}
+
+body.font-size-medium .progress-block {
+  font-size: 13px;
+}
+
+body.font-size-medium .progress-block-group-name {
+  font-size: 18px;
+}
+
+body.font-size-medium .progress-matrix-table {
+  font-size: 13px;
+}
+
+body.font-size-medium .progress-subject-list-name {
+  font-size: 18px;
+}
+
+body.font-size-medium .tabs-link-note,
+body.font-size-medium .overall-subject-status-row,
+body.font-size-medium .today-activity-empty {
+  font-size: 18px;
+}
+
+body.font-size-medium .progress-subject-list-stats {
+  font-size: 14px;
+}
+
+body.font-size-medium #questionNumber {
+  font-size: 21px;
+}
+
+body.font-size-medium .topic-badge {
+  font-size: 16px;
+}
+
+body.font-size-medium #resultScreen h2 {
+  font-size: 30px;
+}
+
+body.font-size-medium .result-details h3 {
+  font-size: 25px;
+}
+
+body.font-size-medium .result-question {
+  font-size: 21px;
+}
+
+body.font-size-medium .result-user-answer {
+  font-size: 18px;
+}
+
+body.font-size-medium .result-answer {
+  font-size: 18px;
+}
+
+body.font-size-medium .history-empty {
+  font-size: 19px;
+}
+
+body.font-size-medium .history-date {
+  font-size: 17px;
+}
+
+body.font-size-medium .history-subject {
+  font-size: 18px;
+}
+
+body.font-size-medium .history-score {
+  font-size: 18px;
+}
+
+body.font-size-medium .history-mode {
+  font-size: 16px;
+}
+
+body.font-size-medium .history-entry {
+  font-size: 17px;
+}
+
+body.font-size-medium .history-section-title {
+  font-size: 21px;
+}
+
+body.font-size-medium .question-list-text {
+  font-size: 19px;
+}
+
+body.font-size-medium .question-list-correct {
+  font-size: 17px;
+}
+
+body.font-size-medium .question-list-hint {
+  font-size: 17px;
+}
+
+body.font-size-medium .question-text {
+  font-size: 32px;
+}
+
+body.font-size-medium .choice-text {
+  font-size: 25px;
+}
+
+body.font-size-medium .feedback-result {
+  font-size: 25px;
+}
+
+body.font-size-medium .feedback-explanation {
+  font-size: 22px;
+}
+
+body.font-size-medium .primary-btn,
+body.font-size-medium .secondary-btn,
+body.font-size-medium .tertiary-btn {
+  font-size: 25px;
+}
+
+body.font-size-medium .nav-btn,
+body.font-size-medium .submit-btn {
+  font-size: 22px;
+}
+
+body.font-size-medium .selected-unit-info-name {
+  font-size: 20px;
+}
+
+body.font-size-medium .selected-unit-info-category {
+  font-size: 16px;
+}
+
+body.font-size-medium .selected-unit-info .category-grade {
+  font-size: 18px;
+}
+
+body.font-size-medium .selected-unit-info-desc,
+body.font-size-medium .selected-unit-info-example {
+  font-size: 16px;
+}
+
+body.font-size-medium .selected-unit-progress-label {
+  font-size: 16px;
+}
+
+body.font-size-medium .selected-unit-close-btn {
+  font-size: 17px;
+  width: 30px;
+  height: 30px;
+}
+
+body.font-size-medium .category-top-group-header {
+  font-size: 16px;
+}
+
+body.font-size-medium .category-group-header {
+  font-size: 20px;
+}
+
+body.font-size-medium .category-top-group .category-group-header {
+  font-size: 14px;
+}
+
+body.font-size-medium .category-grade-group-header {
+  font-size: 16px;
+}
+
+body.font-size-medium .category-name {
+  font-size: 20px;
+}
+
+body.font-size-medium .category-example {
+  font-size: 18px;
+}
+
+body.font-size-medium .category-item-description {
+  font-size: 17px;
+}
+
+body.font-size-medium .category-status {
+  font-size: 16px;
+}
+
+body.font-size-medium .category-stats {
+  font-size: 15px;
+}
+
+body.font-size-medium .category-grade {
+  font-size: 18px;
+}
+
+body.font-size-medium .category-progress-pct {
+  font-size: 16px;
+}
+
+body.font-size-medium .subject-overview-icon {
+  font-size: 22px;
+}
+
+body.font-size-medium .subject-overview-name {
+  font-size: 16px;
+}
+
+body.font-size-medium .subject-overview-outer-cat {
+  font-size: 15px;
+}
+
+body.font-size-medium .subject-overview-pct {
+  font-size: 14px;
+}
+
+body.font-size-medium .subject-overview-rec-name {
+  font-size: 18px;
+}
+
+body.font-size-medium .subject-overview-grade {
+  font-size: 18px;
+}
+
+body.font-size-medium .activity-date-display {
+  font-size: 16px;
+}
+
+body.font-size-medium .share-summary-text {
+  font-size: 15px;
+}
+
+body.font-size-medium .share-copy-btn,
+body.font-size-medium .share-url-open-btn {
+  font-size: 16px;
+}
+
+body.font-size-medium .share-url-display-btn,
+body.font-size-medium .share-url-input,
+body.font-size-medium .share-url-save-btn {
+  font-size: 15px;
+}
+
+body.font-size-medium .history-date {
+  font-size: 18px;
+}
+
+body.font-size-medium .history-subject {
+  font-size: 19px;
+}
+
+body.font-size-medium .history-mode {
+  font-size: 17px;
+}
+
+body.font-size-medium .history-score {
+  font-size: 19px;
+}
+
+body.font-size-medium .today-activity-empty {
+  font-size: 16px;
+}
+
+body.font-size-medium .guide-no-content {
+  font-size: 19px;
+}
+
+body.font-size-medium .guide-frame .guide-content {
+  font-size: 1.2em;
+}
+
+/* 中フォントサイズ時の見出し: 基本サイズ（h1=1.8em, h2=1.15em, h3=1.15em）× 1.2 */
+body.font-size-medium .guide-frame .guide-content h1,
+body.font-size-medium #startScreen .guide-content h1 {
+  font-size: 2.16em;
+}
+body.font-size-medium .guide-frame .guide-content h2,
+body.font-size-medium #startScreen .guide-content h2 {
+  font-size: 18px; /* panel-tab と同じフォントサイズ */
+}
+body.font-size-medium .guide-frame .guide-content h3,
+body.font-size-medium #startScreen .guide-content h3 {
+  font-size: 18px;
+}
+
+body.font-size-medium .header-today-date {
+  font-size: 18px;
+}
+
+body.font-size-medium .grade-filter-btn {
+  font-size: 14px;
+}
+
+body.font-size-medium .grade-filter-label {
+  font-size: 14px;
+}
+
+body.font-size-medium .category-list-title {
+  font-size: 16px;
+}
+
+body.font-size-medium .hide-learned-btn {
+  font-size: 16px;
+}
+
+body.font-size-medium .category-view-toggle {
+  font-size: 16px;
+}
+
+body.font-size-medium .all-subject-panel-title {
+  font-size: 16px;
+}
+
+body.font-size-medium .handwriting-text-input {
+  font-size: 22px;
+}
+
+body.font-size-medium .handwriting-confirm-btn {
+  font-size: 22px;
+}
+
+body.font-size-medium .subject-overview-cat-header {
+  font-size: 14px;
+}
+
+/* ─── フォントサイズ：大 ──────────────────────────────────────────────────── */
+
+body.font-size-large header h1 {
+  font-size: 22px;
+}
+
+body.font-size-large .subject-tab {
+  font-size: 22px;
+}
+
+body.font-size-large .tabs-link-note {
+  font-size: 22px;
+}
+
+body.font-size-large .panel-tab {
+  font-size: 22px;
+}
+
+body.font-size-large .stats-info {
+  font-size: 21px;
+}
+
+body.font-size-large .question-count-label {
+  font-size: 25px;
+}
+
+body.font-size-large .count-label {
+  font-size: 23px;
+}
+
+body.font-size-large .quiz-order-label {
+  font-size: 24px;
+}
+
+body.font-size-large .order-label {
+  font-size: 23px;
+}
+
+body.font-size-large .category-group-learned-badge {
+  font-size: 26px;
+}
+
+body.font-size-large .category-description {
+  font-size: 21px;
+}
+
+body.font-size-large .progress-block {
+  font-size: 15px;
+}
+
+body.font-size-large .progress-block-group-name {
+  font-size: 22px;
+}
+
+body.font-size-large .progress-matrix-table {
+  font-size: 15px;
+}
+
+body.font-size-large .progress-subject-list-name {
+  font-size: 22px;
+}
+
+body.font-size-large .tabs-link-note,
+body.font-size-large .overall-subject-status-row,
+body.font-size-large .today-activity-empty {
+  font-size: 22px;
+}
+
+body.font-size-large .progress-subject-list-stats {
+  font-size: 16px;
+}
+
+body.font-size-large #questionNumber {
+  font-size: 24px;
+}
+
+body.font-size-large .topic-badge {
+  font-size: 19px;
+}
+
+body.font-size-large #resultScreen h2 {
+  font-size: 36px;
+}
+
+body.font-size-large .result-details h3 {
+  font-size: 30px;
+}
+
+body.font-size-large .result-question {
+  font-size: 24px;
+}
+
+body.font-size-large .result-user-answer {
+  font-size: 21px;
+}
+
+body.font-size-large .result-answer {
+  font-size: 21px;
+}
+
+body.font-size-large .history-empty {
+  font-size: 22px;
+}
+
+body.font-size-large .history-date {
+  font-size: 20px;
+}
+
+body.font-size-large .history-subject {
+  font-size: 21px;
+}
+
+body.font-size-large .history-score {
+  font-size: 21px;
+}
+
+body.font-size-large .history-mode {
+  font-size: 19px;
+}
+
+body.font-size-large .history-entry {
+  font-size: 20px;
+}
+
+body.font-size-large .history-section-title {
+  font-size: 24px;
+}
+
+body.font-size-large .question-list-text {
+  font-size: 22px;
+}
+
+body.font-size-large .question-list-correct {
+  font-size: 20px;
+}
+
+body.font-size-large .question-list-hint {
+  font-size: 20px;
+}
+
+body.font-size-large .question-text {
+  font-size: 39px;
+}
+
+body.font-size-large .choice-text {
+  font-size: 30px;
+}
+
+body.font-size-large .feedback-result {
+  font-size: 30px;
+}
+
+body.font-size-large .feedback-explanation {
+  font-size: 27px;
+}
+
+body.font-size-large .primary-btn,
+body.font-size-large .secondary-btn,
+body.font-size-large .tertiary-btn {
+  font-size: 30px;
+}
+
+body.font-size-large .nav-btn,
+body.font-size-large .submit-btn {
+  font-size: 27px;
+}
+
+body.font-size-large .selected-unit-info-name {
+  font-size: 24px;
+}
+
+body.font-size-large .selected-unit-info-category {
+  font-size: 19px;
+}
+
+body.font-size-large .selected-unit-info .category-grade {
+  font-size: 18px;
+}
+
+body.font-size-large .selected-unit-info-desc,
+body.font-size-large .selected-unit-info-example {
+  font-size: 19px;
+}
+
+body.font-size-large .selected-unit-progress-label {
+  font-size: 19px;
+}
+
+body.font-size-large .selected-unit-close-btn {
+  font-size: 20px;
+  width: 34px;
+  height: 34px;
+}
+
+body.font-size-large .category-top-group-header {
+  font-size: 20px;
+}
+
+body.font-size-large .category-group-header {
+  font-size: 24px;
+}
+
+body.font-size-large .category-top-group .category-group-header {
+  font-size: 22px;
+}
+
+body.font-size-large .category-grade-group-header {
+  font-size: 20px;
+}
+
+body.font-size-large .category-name {
+  font-size: 24px;
+}
+
+body.font-size-large .category-example {
+  font-size: 22px;
+}
+
+body.font-size-large .category-item-description {
+  font-size: 21px;
+}
+
+body.font-size-large .category-status {
+  font-size: 19px;
+}
+
+body.font-size-large .category-stats {
+  font-size: 16px;
+}
+
+body.font-size-large .category-grade {
+  font-size: 18px;
+}
+
+body.font-size-large .subject-overview-icon {
+  font-size: 28px;
+}
+
+body.font-size-large .subject-overview-name {
+  font-size: 19px;
+}
+
+body.font-size-large .subject-overview-outer-cat {
+  font-size: 18px;
+}
+
+body.font-size-large .subject-overview-rec-name {
+  font-size: 22px;
+}
+
+body.font-size-large .subject-overview-grade {
+  font-size: 18px;
+}
+
+body.font-size-large .subject-overview-pct {
+  font-size: 17px;
+}
+
+body.font-size-large .activity-date-display {
+  font-size: 18px;
+}
+
+body.font-size-large .share-summary-text {
+  font-size: 18px;
+}
+
+body.font-size-large .share-copy-btn,
+body.font-size-large .share-url-open-btn {
+  font-size: 19px;
+}
+
+body.font-size-large .share-url-display-btn,
+body.font-size-large .share-url-input,
+body.font-size-large .share-url-save-btn {
+  font-size: 18px;
+}
+
+body.font-size-large .history-date {
+  font-size: 21px;
+}
+
+body.font-size-large .history-subject {
+  font-size: 23px;
+}
+
+body.font-size-large .history-mode {
+  font-size: 20px;
+}
+
+body.font-size-large .history-score {
+  font-size: 23px;
+}
+
+body.font-size-large .today-activity-empty {
+  font-size: 19px;
+}
+
+body.font-size-large .guide-no-content {
+  font-size: 22px;
+}
+
+body.font-size-large .guide-frame .guide-content {
+  font-size: 1.5em;
+}
+
+/* 大フォントサイズ時の見出し: 基本サイズ（h1=1.8em, h2=1.15em, h3=1.15em）× 1.5 */
+body.font-size-large .guide-frame .guide-content h1,
+body.font-size-large #startScreen .guide-content h1 {
+  font-size: 2.7em;
+}
+body.font-size-large .guide-frame .guide-content h2,
+body.font-size-large #startScreen .guide-content h2 {
+  font-size: 22px; /* panel-tab と同じフォントサイズ */
+}
+body.font-size-large .guide-frame .guide-content h3,
+body.font-size-large #startScreen .guide-content h3 {
+  font-size: 22px;
+}
+
+body.font-size-large .header-today-date {
+  font-size: 22px;
+}
+
+body.font-size-large .grade-filter-btn {
+  font-size: 17px;
+}
+
+body.font-size-large .grade-filter-label {
+  font-size: 17px;
+}
+
+body.font-size-large .category-list-title {
+  font-size: 19px;
+}
+
+body.font-size-large .hide-learned-btn {
+  font-size: 19px;
+}
+
+body.font-size-large .category-view-toggle {
+  font-size: 19px;
+}
+
+body.font-size-large .all-subject-panel-title {
+  font-size: 19px;
+}
+
+body.font-size-large .handwriting-text-input {
+  font-size: 26px;
+}
+
+body.font-size-large .handwriting-confirm-btn {
+  font-size: 26px;
+}
+
+body.font-size-large .subject-overview-cat-header {
+  font-size: 17px;
+}

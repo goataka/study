@@ -1,0 +1,313 @@
+/*
+ * 04-category-groups.css
+ *
+ * 3階層目のトップカテゴリ／親カテゴリグループ、解説・例文の 1:2 グリッドなどカテゴリ詳細表示
+ *
+ * NOTE: 元 `quiz.css` のカスケード順を保つため、
+ *       `quiz.css` 内での @import 順を変更しないこと。
+ */
+
+/* ── 3階層目：トップカテゴリグループ ── */
+.category-top-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.category-top-group.collapsed > .category-group,
+.category-top-group.collapsed > .category-item {
+  display: none;
+}
+
+.category-top-group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: #0366d6;
+  padding: 6px 10px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 6px;
+  transition: background 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.category-top-group-header:hover {
+  background: #0256b8;
+}
+
+/* トップカテゴリヘッダー選択中のアクティブ状態 */
+.category-top-group-header.active {
+  background: #024a9e;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+/* トップカテゴリ折りたたみ矢印 */
+.category-top-group-toggle::before {
+  content: "▼";
+  font-size: 10px;
+  display: inline-block;
+  transition: transform 0.2s;
+  opacity: 0.8;
+}
+
+.category-top-group.collapsed .category-top-group-toggle::before {
+  transform: rotate(-90deg);
+}
+
+/* トップカテゴリ内の中間グループをインデント */
+.category-top-group .category-group {
+  padding-left: 6px;
+  border-left: 2px solid #e1e4e8;
+  margin-left: 4px;
+}
+
+.category-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.category-group.collapsed .category-item {
+  display: none;
+}
+
+.category-group-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #586069;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 10px 4px;
+  margin-top: 4px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+/* トップカテゴリ内の中間グループヘッダーはやや小さく */
+.category-top-group .category-group-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444d56;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 2px;
+  padding: 5px 8px 3px;
+}
+
+.category-group-header:hover {
+  background: #f0f4f8;
+}
+
+/* React 版 ParentCategoryGroup のタイトル選択ボタン: 透過の flex 子としてヘッダーいっぱいに広がる */
+.category-group-header-action {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* 親カテゴリヘッダー選択中のアクティブ状態 */
+.category-group-header.active {
+  background: #e8f0f9;
+  color: #0366d6;
+}
+
+/* 折りたたみ矢印インジケーター */
+.category-group-toggle::before {
+  content: "▼";
+  font-size: 10px;
+  display: inline-block;
+  transition: transform 0.2s;
+  color: #8b949e;
+}
+
+.category-group.collapsed .category-group-toggle::before {
+  transform: rotate(-90deg);
+}
+
+.category-group-learned-badge {
+  font-size: 20px;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* カテゴリグループの解説ボタン（廃止：全解説はカテゴリ選択で表示） */
+
+.category-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+/* 解説・例文あり: 1:2 グリッドレイアウト */
+.category-item.category-item-has-info {
+  grid-template-columns: 1fr 2fr;
+}
+
+/* 左列: ステータス・単元名・進捗・学年・統計 */
+.category-item-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  min-width: 0;
+}
+
+/* 右列: 解説・例文（常に表示） */
+.category-item-right {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-content: center;
+  padding: 7px 10px 7px 8px;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.category-item.active .category-item-right {
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+.category-item:hover {
+  background: #e8f0fe;
+}
+
+.category-item.active {
+  background: #0366d6;
+  color: white;
+}
+
+.category-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #24292e;
+}
+
+.category-item.active .category-name {
+  color: white;
+}
+
+/* カテゴリ例文 */
+.category-example {
+  font-size: 16px;
+  color: #24292e;
+  align-self: flex-end;
+  text-align: right;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.category-example::before {
+  content: "例）";
+  font-style: normal;
+  margin-right: 2px;
+  opacity: 0.7;
+}
+
+.category-item.active .category-example {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.category-example-highlight {
+  font-style: normal;
+  background: rgba(3, 102, 214, 0.12);
+  color: #0366d6;
+  border-radius: 3px;
+  padding: 0 2px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.category-item.active .category-example-highlight {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+/* カテゴリ説明文（単元一覧内） */
+.category-item-description {
+  font-size: 15px;
+  color: #586069;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.category-item.active .category-item-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 説明・例文インラインコンテナ（category-item-right に置き換え済み - 後方互換のため保持） */
+.category-item-inline-info {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.category-status {
+  font-size: 14px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.category-stats {
+  font-size: 13px;
+  color: #586069;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.category-item.active .category-stats {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.category-grade {
+  font-size: 18px;
+  white-space: nowrap;
+  padding: 1px 5px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.category-grade.grade-elementary {
+  color: #c0392b;
+  background: #fde8e8;
+}
+
+.category-grade.grade-middle {
+  color: #0366d6;
+  background: #e8f0fe;
+}
+
+.category-grade.grade-high {
+  color: #1a7f37;
+  background: #e8f8f0;
+}
+
+.category-item.active .category-grade {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+}
