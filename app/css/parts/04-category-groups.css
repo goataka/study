@@ -1,13 +1,14 @@
 /*
  * 04-category-groups.css
  *
- * 3階層目のトップカテゴリ／親カテゴリグループ、解説・例文の 1:2 グリッドなどカテゴリ詳細表示
+ * 3階層目のトップカテゴリ／親カテゴリグループ、カテゴリアイテム詳細
  *
  * NOTE: 元 `quiz.css` のカスケード順を保つため、
  *       `quiz.css` 内での @import 順を変更しないこと。
  */
 
 /* ── 3階層目：トップカテゴリグループ ── */
+/* `.category-top-group` の基本スタイルは動的 DOM （categoryListRenderer.ts）で使用しているため残置。 */
 .category-top-group {
   display: flex;
   flex-direction: column;
@@ -40,7 +41,6 @@
   background: #0256b8;
 }
 
-/* トップカテゴリヘッダー選択中のアクティブ状態 */
 .category-top-group-header.active {
   background: #024a9e;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
@@ -66,6 +66,9 @@
   margin-left: 4px;
 }
 
+/* `.category-group` の基本スタイルは Tailwind 化済み（ParentCategoryGroup.tsx）。
+ * `.category-group.collapsed .category-item { display: none }` は複合セレクタのため CSS に残置。
+ * 動的 DOM（categoryItemBuilder.ts）も .category-group クラスを使うため残置。 */
 .category-group {
   display: flex;
   flex-direction: column;
@@ -76,6 +79,9 @@
   display: none;
 }
 
+/* `.category-group-header` 等の基本スタイルは Tailwind 化済み（ParentCategoryGroup.tsx）。
+ * `.category-top-group .category-group-header` は descendant セレクタのため CSS に残置。
+ * 動的 DOM でも .category-group-header を使うため残置。 */
 .category-group-header {
   display: flex;
   align-items: center;
@@ -108,7 +114,8 @@
   background: #f0f4f8;
 }
 
-/* React 版 ParentCategoryGroup のタイトル選択ボタン: 透過の flex 子としてヘッダーいっぱいに広がる */
+/* `.category-group-header-action` の基本スタイルは Tailwind 化済み（ParentCategoryGroup.tsx）。
+ * 動的 DOM は使わないが、クラス名を参照する可能性があるため残置。 */
 .category-group-header-action {
   flex: 1 1 auto;
   display: flex;
@@ -124,7 +131,6 @@
   cursor: pointer;
 }
 
-/* 親カテゴリヘッダー選択中のアクティブ状態 */
 .category-group-header.active {
   background: #e8f0f9;
   color: #0366d6;
@@ -143,6 +149,8 @@
   transform: rotate(-90deg);
 }
 
+/* `.category-group-learned-badge` は Tailwind 化済み（ParentCategoryGroup.tsx）。
+ * 動的 DOM（categoryItemBuilder.ts）も使うため残置。 */
 .category-group-learned-badge {
   font-size: 20px;
   line-height: 1;
@@ -150,8 +158,8 @@
   letter-spacing: 0;
 }
 
-/* カテゴリグループの解説ボタン（廃止：全解説はカテゴリ選択で表示） */
-
+/* カテゴリアイテム関連のスタイルは Tailwind 化済み（CategoryItem.tsx）。
+ * 動的 DOM（categoryItemView.ts / categoryItemBuilder.ts）も同じクラスを使うため残置。 */
 .category-item {
   display: grid;
   grid-template-columns: 1fr;
@@ -161,12 +169,10 @@
   transition: background 0.15s;
 }
 
-/* 解説・例文あり: 1:2 グリッドレイアウト */
 .category-item.category-item-has-info {
   grid-template-columns: 1fr 2fr;
 }
 
-/* 左列: ステータス・単元名・進捗・学年・統計 */
 .category-item-left {
   display: flex;
   align-items: center;
@@ -175,7 +181,6 @@
   min-width: 0;
 }
 
-/* 右列: 解説・例文（常に表示） */
 .category-item-right {
   display: flex;
   flex-direction: column;
@@ -210,7 +215,6 @@
   color: white;
 }
 
-/* カテゴリ例文 */
 .category-example {
   font-size: 16px;
   color: #24292e;
@@ -220,6 +224,7 @@
   overflow-wrap: break-word;
 }
 
+/* ::before pseudo-element はJSXでは表現不能なため CSS に残置 */
 .category-example::before {
   content: "例）";
   font-style: normal;
@@ -246,7 +251,6 @@
   color: white;
 }
 
-/* カテゴリ説明文（単元一覧内） */
 .category-item-description {
   font-size: 15px;
   color: #586069;
@@ -259,7 +263,7 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* 説明・例文インラインコンテナ（category-item-right に置き換え済み - 後方互換のため保持） */
+/* `.category-item-inline-info` は廃止済み（後方互換のみ） */
 .category-item-inline-info {
   display: none;
   flex-direction: column;

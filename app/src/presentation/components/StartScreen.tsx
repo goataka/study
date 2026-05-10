@@ -26,9 +26,15 @@ export function StartScreen(): React.JSX.Element {
       ].join(" ")}
     >
       <StartHeader />
-      <div className="start-content-layout" id="subjectContent">
+      <div
+        className="start-content-layout grid grid-cols-[1fr_12px_2fr] gap-0 items-stretch flex-1 min-h-0 bg-white overflow-hidden"
+        id="subjectContent"
+      >
         <CategoryPanel />
-        <div className="notebook-spine" aria-hidden="true"></div>
+        <div
+          className="notebook-spine shrink-0 w-3 bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]"
+          aria-hidden="true"
+        ></div>
         <div className="quiz-panel">
           <button id="mobileBackBtn" className="mobile-back-btn" type="button" aria-label="単元一覧に戻る">
             ← 単元一覧

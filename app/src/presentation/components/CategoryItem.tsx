@@ -69,10 +69,6 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
     active = false,
   } = props;
 
-  const classes = ["category-item"];
-  if (description !== undefined || example !== undefined) classes.push("category-item-has-info");
-  if (active) classes.push("active");
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     if (!onActivate) return;
     if (e.key === "Enter" || e.key === " ") {
@@ -89,7 +85,22 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
 
   return (
     <div
-      className={classes.join(" ")}
+      className={[
+        "category-item",
+        // ベーススタイル
+        "grid grid-cols-1 rounded-md cursor-pointer select-none transition-[background] duration-150",
+        // has-info: 1:2 グリッド（解説・例文あり）
+        "[&.category-item-has-info]:grid-cols-[1fr_2fr]",
+        // hover・active 状態
+        "hover:bg-[#e8f0fe]",
+        "[&.active]:bg-[#0366d6] [&.active]:text-white",
+        // group: 子要素で group-[.active]: variant を使用
+        "group",
+        description !== undefined || example !== undefined ? "category-item-has-info" : "",
+        active ? "active" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       data-subject={subject}
       data-category={categoryId}
       data-parent-category={parentCatId}
@@ -99,31 +110,56 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
       onClick={onActivate}
       onKeyDown={handleKeyDown}
     >
-      <div className="category-item-left">
-        <span className="category-status" aria-hidden="true">
+      <div className="category-item-left flex items-center gap-2 px-[10px] py-[7px] min-w-0">
+        <span className="category-status text-sm shrink-0 leading-none" aria-hidden="true">
           {statusIcon}
         </span>
-        <div className="category-name-area">
-          <div className="category-title-row">
-            <span className="category-name">{categoryName}</span>
-            {hierarchyText && <span className="category-hierarchy">{hierarchyText}</span>}
+        <div className="category-name-area flex flex-col gap-0.5 min-w-0 flex-1">
+          <div className="category-title-row flex items-baseline gap-1.5 min-w-0">
+            <span className="category-name text-lg font-semibold text-[#24292e] group-[.active]:text-white">
+              {categoryName}
+            </span>
+            {hierarchyText && (
+              <span className="category-hierarchy text-xs text-[#586069] bg-[#f0f0f0] px-1.5 py-px rounded-[10px] whitespace-nowrap shrink min-w-0 max-w-[45%] overflow-hidden text-ellipsis ml-auto">
+                {hierarchyText}
+              </span>
+            )}
             {referenceGrade && showReferenceGrade && (
-              <span className={gradeClass ? `category-grade ${gradeClass}` : "category-grade"}>{referenceGrade}</span>
+              <span
+                className={[
+                  gradeClass ? `category-grade ${gradeClass}` : "category-grade",
+                  "text-lg whitespace-nowrap px-[5px] py-px rounded-[10px] shrink-0",
+                  "group-[.active]:bg-white/25 group-[.active]:text-white",
+                ].join(" ")}
+              >
+                {referenceGrade}
+              </span>
             )}
           </div>
-          <div className="category-progress-row">
+          <div className="category-progress-row flex items-center gap-1.5">
             <div className="category-progress-bar">
               <div className="category-progress-fill" style={{ width: `${progressFillPercent}%` }} />
               <div className="category-progress-fill-inprogress" style={{ width: `${progressInProgressPercent}%` }} />
             </div>
-            <span className="category-stats">{statsText}</span>
+            <span className="category-stats text-[13px] text-[#586069] whitespace-nowrap shrink-0 group-[.active]:text-white/85">
+              {statsText}
+            </span>
           </div>
         </div>
       </div>
       {(description !== undefined || example !== undefined) && (
-        <div className="category-item-right">
-          {description && <span className="category-item-description">{description}</span>}
-          {example !== undefined && <span className="category-example">{backtickSegments(example)}</span>}
+        <div className="category-item-right flex flex-col gap-[3px] justify-center px-[10px] py-[7px] pl-2 border-l border-[rgba(0,0,0,0.06)] min-w-0 overflow-hidden group-[.active]:border-white/20">
+          {description && (
+            <span className="category-item-description text-[15px] text-[#586069] leading-[1.4] break-words group-[.active]:text-white/80">
+              {description}
+            </span>
+          )}
+          {/* category-example の ::before { content: "例）" } は 04-category-groups.css に残置 */}
+          {example !== undefined && (
+            <span className="category-example text-base text-[#24292e] self-end text-right break-words group-[.active]:text-white/80">
+              {backtickSegments(example)}
+            </span>
+          )}
         </div>
       )}
     </div>

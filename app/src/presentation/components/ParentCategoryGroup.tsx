@@ -49,15 +49,33 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
     items,
   } = props;
 
-  const groupClasses = ["category-group"];
-  if (collapsed) groupClasses.push("collapsed");
-
   return (
-    <div className={groupClasses.join(" ")} data-parent-category={parentCatId} data-top-category={topCatId}>
-      <div className="category-group-header" data-parent-category={parentCatId}>
+    <div
+      className={[
+        "category-group flex flex-col gap-0.5",
+        // collapsed 状態で子 category-item を非表示（CSS .category-group.collapsed .category-item で制御）
+        collapsed ? "collapsed" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      data-parent-category={parentCatId}
+      data-top-category={topCatId}
+    >
+      <div
+        className={[
+          "category-group-header",
+          "flex items-center gap-1 text-base font-semibold text-[#586069]",
+          "uppercase tracking-[0.5px] px-[10px] pt-2 pb-1 mt-1 cursor-pointer select-none rounded",
+          "transition-[background] duration-150",
+          "hover:bg-[#f0f4f8]",
+          "[&.active]:bg-[#e8f0f9] [&.active]:text-[#0366d6]",
+        ].join(" ")}
+        data-parent-category={parentCatId}
+      >
+        {/* category-group-toggle::before { content: "▼" } は 04-category-groups.css に残置 */}
         <button
           type="button"
-          className="category-group-toggle"
+          className="category-group-toggle border-none bg-transparent p-0 m-0 text-inherit cursor-pointer leading-none"
           aria-label="セクションの折りたたみを切り替える"
           aria-expanded={collapsed ? "false" : "true"}
           onClick={(e) => {
@@ -67,14 +85,14 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
         />
         <button
           type="button"
-          className="category-group-header-action"
+          className="category-group-header-action flex-1 flex items-center gap-1 border-none bg-transparent p-0 m-0 font-[inherit] text-inherit text-left cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             onHeaderActivate?.();
           }}
         >
           <span>{parentCatName}</span>
-          <span className="category-group-learned-badge" aria-hidden="true">
+          <span className="category-group-learned-badge text-xl leading-none normal-case tracking-normal" aria-hidden="true">
             {learnedBadge}
           </span>
         </button>

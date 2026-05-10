@@ -7,23 +7,65 @@
 
 export function CategoryPanel(): React.JSX.Element {
   return (
-    <div className="category-panel">
-      <div className="category-panel-header">
-        <span id="categoryListTitle" className="category-list-title">
+    <div
+      className={[
+        "category-panel",
+        // ノート紙風：白地 + 薄青罫線（32px間隔）
+        "bg-white",
+        "[background-image:repeating-linear-gradient(transparent,transparent_31px,#d8e8f8_31px,#d8e8f8_32px)]",
+        "[background-size:100%_32px] [background-position:0_12px]",
+        "border-none p-3 min-h-[200px] flex flex-col overflow-hidden",
+        "shadow-[inset_-3px_0_6px_rgba(0,0,0,0.08)]",
+      ].join(" ")}
+    >
+      <div className="category-panel-header flex items-center justify-between mb-2 gap-1.5">
+        <span id="categoryListTitle" className="category-list-title text-sm font-bold text-[#0366d6] shrink-0">
           📚 単元一覧
         </span>
-        <div className="category-status-filter" role="group" aria-label="学習状態フィルター">
-          <span className="category-status-filter-label">学習状況：</span>
-          <button id="filterStatusAll" className="category-status-filter-btn active" type="button" aria-pressed="true">
+        <div
+          className="category-status-filter flex items-center gap-0.5"
+          role="group"
+          aria-label="学習状態フィルター"
+        >
+          <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
+          <button
+            id="filterStatusAll"
+            className={[
+              "category-status-filter-btn",
+              "active",
+              "text-xs px-[7px] py-0.5 border border-[#d1d5da] rounded-[10px]",
+              "bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap",
+              "transition-[background,color] duration-150",
+              "hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6]",
+              "[&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white",
+            ].join(" ")}
+            type="button"
+            aria-pressed="true"
+          >
             すべて
           </button>
-          <button id="filterStatusUnlearned" className="category-status-filter-btn" type="button" aria-pressed="false">
+          <button
+            id="filterStatusUnlearned"
+            className="category-status-filter-btn text-xs px-[7px] py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white"
+            type="button"
+            aria-pressed="false"
+          >
             未学習
           </button>
-          <button id="filterStatusStudying" className="category-status-filter-btn" type="button" aria-pressed="false">
+          <button
+            id="filterStatusStudying"
+            className="category-status-filter-btn text-xs px-[7px] py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white"
+            type="button"
+            aria-pressed="false"
+          >
             学習中
           </button>
-          <button id="filterStatusLearned" className="category-status-filter-btn" type="button" aria-pressed="false">
+          <button
+            id="filterStatusLearned"
+            className="category-status-filter-btn text-xs px-[7px] py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white"
+            type="button"
+            aria-pressed="false"
+          >
             学習済
           </button>
         </div>
@@ -34,8 +76,8 @@ export function CategoryPanel(): React.JSX.Element {
       <div id="overallDateNav" className="activity-date-nav hidden">
         <span id="activityDateDisplay" className="activity-date-display"></span>
       </div>
-      <div id="categoryControls" className="category-controls"></div>
-      <div id="categoryList" className="category-list"></div>
+      <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2"></div>
+      <div id="categoryList" className="category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0"></div>
     </div>
   );
 }

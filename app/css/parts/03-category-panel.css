@@ -7,132 +7,23 @@
  *       `quiz.css` 内での @import 順を変更しないこと。
  */
 
-/* スタートコンテンツレイアウト */
-.start-content-layout {
-  display: grid;
-  grid-template-columns: 1fr 12px 2fr;
-  gap: 0;
-  align-items: stretch;
-  flex: 1;
-  min-height: 0;
-  /* ノートエリア：白背景の左右幅いっぱい（上部はヘッダーと接続、下部のみ角丸） */
-  background: white;
-  border-radius: 0;
-  box-shadow: none;
-  overflow: hidden;
-}
+/* `.start-content-layout` / `.notebook-spine` の基本スタイルは
+ * Tailwind ユーティリティへ移行済み（StartScreen.tsx）。
+ * クラス名は `10-responsive-base.css` が参照するため JSX 側に残置。 */
 
-/* ノートの折り目（パネル間の背骨） */
-.notebook-spine {
-  /* 薄いグレーのタブ区切り */
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.025) 0%,
-    #e3e3e3 20%,
-    #f3f3f3 50%,
-    #e3e3e3 80%,
-    rgba(0, 0, 0, 0.025) 100%
-  );
-  flex-shrink: 0;
-  width: 12px;
-}
+/* `.category-panel` の基本スタイルは Tailwind 化済み（CategoryPanel.tsx）。
+ * `.category-panel-header` / `.category-list-title` / `.hide-learned-btn` /
+ * `.category-status-filter` / `.category-status-filter-btn` のスタイルも移行済み。
+ * `.category-controls` / `.grade-filter-btn` / `.category-view-toggle` / `.grade-filter-label` は
+ * Tailwind 化済み（categoryViewControls.tsx）。 */
 
-/* カテゴリパネル */
-.category-panel {
-  /* ノート紙風：白地 + 薄青の罫線（32px間隔で均等に配置） */
-  background-color: white;
-  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
-  background-size: 100% 32px;
-  /* padding分だけ背景をオフセットして罫線を均等に表示する */
-  background-position: 0 12px;
-  border: none;
-  border-right: none;
-  border-radius: 0;
-  padding: 12px;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.08);
-}
+/* `.category-list` の基本スタイルは Tailwind 化済み（CategoryPanel.tsx）。 */
 
-.category-panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  gap: 6px;
-}
+/* 学習状態フィルター: 複合クラスセレクタのため CSS に残置 */
 
-.category-list-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #0366d6;
-  flex-shrink: 0;
-}
-
-.hide-learned-btn {
-  font-size: 14px;
-  padding: 3px 8px;
-  border: 1px solid #d1d5da;
-  border-radius: 4px;
-  background: white;
-  color: #586069;
-  cursor: pointer;
-  user-select: none;
-  transition:
-    background 0.15s,
-    color 0.15s;
-}
-
-.hide-learned-btn:hover {
-  background: #e8f0fe;
-  border-color: #0366d6;
-  color: #0366d6;
-}
-
-.hide-learned-btn[aria-pressed="true"] {
-  background: #0366d6;
-  border-color: #0366d6;
-  color: white;
-}
-
+/* 非表示フィルター: hide-learned 付きリスト内の .learned アイテムを非表示 */
 .category-list.hide-learned .category-item.learned {
   display: none;
-}
-
-/* カテゴリ学習状態フィルターボタングループ */
-.category-status-filter {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.category-status-filter-btn {
-  font-size: 12px;
-  padding: 2px 7px;
-  border: 1px solid #d1d5da;
-  border-radius: 10px;
-  background: white;
-  color: #586069;
-  cursor: pointer;
-  user-select: none;
-  transition:
-    background 0.15s,
-    color 0.15s;
-  white-space: nowrap;
-}
-
-.category-status-filter-btn:hover {
-  background: #e8f0fe;
-  border-color: #0366d6;
-  color: #0366d6;
-}
-
-.category-status-filter-btn.active {
-  background: #0366d6;
-  border-color: #0366d6;
-  color: white;
 }
 
 /* 学習状態フィルター: 未学習のみ表示 */
@@ -177,73 +68,6 @@
 
 .category-list.detail-active .category-item-right {
   display: none;
-}
-
-/* カテゴリ操作コントロール */
-.category-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 8px;
-}
-
-.category-view-toggle {
-  font-size: 14px;
-  padding: 3px 8px;
-  border: 1px solid #d1d5da;
-  border-radius: 4px;
-  background: white;
-  color: #586069;
-  cursor: pointer;
-  user-select: none;
-  transition:
-    background 0.15s,
-    color 0.15s;
-}
-
-.category-view-toggle:hover {
-  background: #e8f0fe;
-  border-color: #0366d6;
-  color: #0366d6;
-}
-
-.category-view-toggle[aria-pressed="true"] {
-  background: #0366d6;
-  border-color: #0366d6;
-  color: white;
-}
-
-.grade-filter-label {
-  font-size: 12px;
-  color: #586069;
-  margin-left: 4px;
-}
-
-.grade-filter-btn {
-  font-size: 12px;
-  padding: 2px 8px;
-  border: 1px solid #d1d5da;
-  border-radius: 10px;
-  background: white;
-  color: #586069;
-  cursor: pointer;
-  user-select: none;
-  transition:
-    background 0.15s,
-    color 0.15s;
-}
-
-.grade-filter-btn:hover {
-  background: #e8f0fe;
-  border-color: #0366d6;
-  color: #0366d6;
-}
-
-.grade-filter-btn[aria-pressed="true"] {
-  background: #0366d6;
-  border-color: #0366d6;
-  color: white;
 }
 
 /* 学年グループ（学年別ビュー） */
@@ -300,6 +124,7 @@
   background: #d1d5da;
 }
 
+/* 折りたたみ矢印（3 つのグループ種別で共通） */
 .category-grade-group-toggle,
 .category-top-group-toggle,
 .category-group-toggle {
@@ -323,23 +148,9 @@
   transform: rotate(-90deg);
 }
 
-/* 単元アイテムの解説ボタン（廃止：全解説はカテゴリ選択で表示） */
-
-/* 学年別ビューでの階層情報（カテゴリ・サブカテゴリ名） - 単元詳細エリアと同じ形式で右寄せ */
-.category-hierarchy {
-  font-size: 12px;
-  color: #586069;
-  background: #f0f0f0;
-  padding: 1px 6px;
-  border-radius: 10px;
-  white-space: nowrap;
-  flex-shrink: 1;
-  min-width: 0;
-  max-width: 45%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-left: auto;
-}
+/* 学年別ビューでの階層情報（カテゴリ・サブカテゴリ名） */
+/* `.category-hierarchy` の基本スタイルは Tailwind 化済み（CategoryItem.tsx）。
+ * カスタムスクロールバーは CSS に残置（Tailwind では完全な制御が困難）。 */
 
 #categoryList {
   flex: 1;
@@ -368,10 +179,4 @@
 .category-panel::-webkit-scrollbar-thumb:hover,
 #categoryList::-webkit-scrollbar-thumb:hover {
   background: #a8adb3;
-}
-
-.category-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
