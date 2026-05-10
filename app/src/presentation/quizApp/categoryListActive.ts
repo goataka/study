@@ -86,7 +86,7 @@ export function updateCategoryListActive(params: UpdateCategoryListActiveParams)
 /**
  * インナーパネルタブのコンテンツ表示を切り替える。
  *
- * React 化に伴い、ストア (`panelTabsStore`) を更新することで `<QuizPanel>` が
+ * ストア (`panelTabsStore`) を更新することで `<QuizPanel>` が
  * `useSyncExternalStore` 経由で再レンダリングし、active クラス・aria-selected・
  * tabindex・各サブパネルの hidden が宣言的に更新される。
  *

@@ -12,7 +12,7 @@
  * - subscriber が 0 件のとき（= 古い静的 HTML だけが残っているケースや、何も
  *   描画されていないケース）は `window.confirm` / `window.alert` にフォールバック
  *   する。これにより既存の「DOM 要素がない場合は window.confirm にフォールバック
- *   する」仕様（quizApp.quizPanel/confirmDialog.test.ts）と互換が保たれる。
+ *   する」仕様（quizApp/quizPanel/confirmDialog.test.ts）と互換が保たれる。
  */
 
 export interface ConfirmDialogState {

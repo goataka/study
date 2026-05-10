@@ -1,9 +1,8 @@
 /**
  * 問題一覧パネル（questions タブ）の React コンポーネント。
- * 旧版の `buildQuestionListItem`（命令的 DOM 構築 + click ハンドラ）を
- * `QuestionListItem` に置き換え、ヒント表示の開閉を `useState` で管理する。
+ * `QuestionListItem` がヒント表示の開閉を `useState` で管理する。
  *
- * 既存テスト・E2E 互換性のため、生成される class 名・aria-* 属性は元実装と完全一致させる。
+ * E2E 互換性のため、生成される class 名・aria-* 属性は他のリストビューと統一されている。
  */
 
 import { useState } from "react";

@@ -22,13 +22,12 @@ const NON_GUIDE_PANEL_TAB_IDS = ["panelTab-quiz", "panelTab-history", "panelTab-
 /**
  * panel-tab の hidden 状態を更新する。
  *
- * 旧版は ID ごとに `document.getElementById(id).classList.toggle("hidden", ...)` を
- * 直接呼んでいたが、React 化により panel-tab は `<QuizPanel>` 配下の React コンポーネントが
- * 所有するため、DOM 直接操作だと次回 React 再レンダリング時に上書きされる。
- * そこでストア (`hiddenPanelTabs`) 経由で React に反映する。
+ * panel-tab は `<QuizPanel>` 配下の React コンポーネントが所有するため、DOM を
+ * 直接操作すると次回 React 再レンダリング時に上書きされてしまう。そこでストア
+ * (`hiddenPanelTabs`) 経由で React に反映する。
  *
- * 指定されなかった ID の hidden 状態は、ストアの現在値（`hiddenPanelTabs`）を
- * そのまま維持する（DOM ではなくストアを参照することで純粋な状態遷移として扱う）。
+ * 指定されなかった ID の hidden 状態は、ストアの現在値をそのまま維持する
+ * （DOM ではなくストアを参照することで純粋な状態遷移として扱う）。
  *
  * 後方互換: React 未マウントのテスト構成向けに命令的 DOM 更新も併用する。
  * React マウント時は store 経由で同じ状態に収束するため二重書き込みは無害。
@@ -185,7 +184,6 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
 
   // 総合タブでは単元未選択時のみパネルタブを非表示（単元選択時は教科画面と同じ表示）
   // また、カテゴリ/サブカテゴリ選択時は確認・問題一覧・履歴タブを非表示にする。
-  // 旧版は ID ごとに classList.toggle を 2 段階で呼んでいたが、
   // ストアに 1 度で反映するため 4 タブの最終状態をまとめて計算する。
   const updates: Partial<Record<string, boolean>> = {};
   for (const id of ALL_PANEL_TAB_IDS) {
