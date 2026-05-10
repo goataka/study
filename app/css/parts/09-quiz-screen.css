@@ -450,157 +450,19 @@ button:disabled {
   font-size: 26px;
 }
 
-/* 結果画面のサブタイトル（単元名） */
-.result-unit-name {
-  text-align: center;
-  font-size: 16px;
-  color: #586069;
-  margin-bottom: 20px;
-}
-
-/* 結果画面の前向きメッセージ */
-.result-message {
-  text-align: center;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  color: #0366d6;
-}
-
-.score-display {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-.score-circle {
-  text-align: center;
-  padding: 40px;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.score-circle.pass {
-  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-  color: white;
-}
-
-.score-circle.fail {
-  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
-  color: white;
-}
-
-.score-circle.perfect {
-  background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
-  color: white;
-}
-
-.score-perfect-icon {
-  font-size: 38px;
-  margin-bottom: 4px;
-}
-
-.score-percentage {
-  font-size: 50px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.score-text {
-  font-size: 18px;
-}
-
-.result-details h3 {
-  color: #333;
-  margin-bottom: 20px;
-  font-size: 22px;
-}
-
-.result-item {
-  border-left: 4px solid #e0e0e0;
-  padding: 15px;
-  margin-bottom: 15px;
-  background: #f9f9f9;
-  border-radius: 4px;
-}
-
-.result-item.correct {
-  border-left-color: #38ef7d;
-}
-
-.result-item.incorrect {
-  border-left-color: #f45c43;
-}
-
-.result-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  gap: 8px;
-}
-
-.result-icon {
-  font-size: 26px;
-  margin-right: 2px;
-  font-weight: bold;
-  flex-shrink: 0;
-}
-
-.result-item.correct .result-icon {
-  color: #38ef7d;
-}
-
-.result-item.incorrect .result-icon {
-  color: #f45c43;
-}
-
-.result-question {
-  font-size: 18px;
-  color: #333;
-  font-weight: bold;
-  flex: 1;
-}
-
-.result-user-answer {
-  font-size: 15px;
-  color: #666;
-  text-align: right;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.result-user-answer strong {
-  color: #333;
-}
-
-.result-answer {
-  margin-left: 34px;
-  font-size: 16px;
-  color: #666;
-}
-
-.result-answer div {
-  margin-bottom: 5px;
-}
-
-.result-answer strong {
-  color: #333;
-}
-
-.explanation {
-  margin-top: 8px;
-  padding: 8px 12px;
-  background: #f0f7ff;
-  border-radius: 4px;
-  font-style: italic;
-  color: #0366d6;
-}
+/* 結果画面（単元名・メッセージ・スコア・解答一覧）のスタイルは Tailwind ユーティリティ
+ * + CVA レシピへ移行済み。実装は以下を参照:
+ * - `src/presentation/components/ResultScreen.tsx`（result-unit-name / result-message / scoreDisplay）
+ * - `src/presentation/quizApp/resultScreenView.tsx`（score-circle / score-percentage / score-text / score-perfect-icon）
+ * - `src/presentation/quizApp/ResultDetailsList.tsx`（result-item / result-icon / result-question 等）
+ * - CVA レシピ: `src/presentation/styles/scoreCircleStyles.ts` / `resultItemStyles.ts`
+ *
+ * クラス名（`score-circle` / `score-percentage` / `score-perfect-icon` /
+ * `result-item` / `result-icon` / `result-unit-name` / `result-message` /
+ * `result-question` / `result-user-answer` / `result-answer` / `result-details`）
+ * はテストセレクタ・font-size 切替・レスポンシブ上書きから参照されるため
+ * JSX 側に残置している。
+ */
 
 /* 問題一覧パネル */
 .question-list-panel-body {

@@ -11,9 +11,11 @@ export function ResultScreen(): React.JSX.Element {
   return (
     <div id="resultScreen" className="screen hidden">
       <h2>確認結果</h2>
-      <div id="resultUnitName" className="result-unit-name hidden"></div>
-      <div id="resultMessage" className="result-message"></div>
-      <div id="scoreDisplay" className="score-display"></div>
+      {/* `result-unit-name` クラス名は font-size 切替の参照キーとして残置 */}
+      <div id="resultUnitName" className="result-unit-name mb-5 hidden text-center text-base text-[#586069]"></div>
+      {/* `result-message` クラス名は font-size 切替の参照キーとして残置 */}
+      <div id="resultMessage" className="result-message mb-4 text-center text-[22px] font-bold text-[#0366d6]"></div>
+      <div id="scoreDisplay" className="mb-10 flex justify-center"></div>
       <div className="button-group">
         <button id="retryAllBtn" className={button({ variant: "primary" })}>
           もう一度
@@ -22,6 +24,7 @@ export function ResultScreen(): React.JSX.Element {
           スタート画面に戻る
         </button>
       </div>
+      {/* `result-details` クラス名は font-size 切替（`.result-details h3`）の参照キーとして残置 */}
       <div id="resultDetails" className="result-details"></div>
     </div>
   );
