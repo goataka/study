@@ -75,28 +75,13 @@ export function ProgressDetailPanel(): React.JSX.Element {
           >
             すべて
           </button>
-          <button
-            id="progressStatusUnlearnedBtn"
-            className={statusFilterButton()}
-            type="button"
-            aria-pressed="false"
-          >
+          <button id="progressStatusUnlearnedBtn" className={statusFilterButton()} type="button" aria-pressed="false">
             未学習
           </button>
-          <button
-            id="progressStatusStudyingBtn"
-            className={statusFilterButton()}
-            type="button"
-            aria-pressed="false"
-          >
+          <button id="progressStatusStudyingBtn" className={statusFilterButton()} type="button" aria-pressed="false">
             学習中
           </button>
-          <button
-            id="progressStatusLearnedBtn"
-            className={statusFilterButton()}
-            type="button"
-            aria-pressed="false"
-          >
+          <button id="progressStatusLearnedBtn" className={statusFilterButton()} type="button" aria-pressed="false">
             学習済
           </button>
         </div>
