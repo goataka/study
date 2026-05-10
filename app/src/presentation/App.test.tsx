@@ -230,4 +230,25 @@ describe("App コンポーネント", () => {
     const missing = requiredIds.filter((id) => container!.querySelector(`#${id}`) === null);
     expect(missing).toEqual([]);
   });
+
+  it("レイアウト余白とユーザー名左線の指定クラスが反映されている", () => {
+    act(() => {
+      root = createRoot(container!);
+      root.render(<App bootApp={bootApp} />);
+    });
+
+    const startScreen = container!.querySelector("#startScreen");
+    const startHeader = container!.querySelector("#startScreen > header");
+    const subjectTabs = container!.querySelector(".subject-tabs");
+    const tabsUserArea = container!.querySelector(".tabs-user-area");
+    const appFooter = container!.querySelector(".app-footer");
+    const fontSizeButtons = container!.querySelectorAll<HTMLButtonElement>(".font-size-btn");
+
+    expect(startScreen?.className).toContain("p-4");
+    expect(startHeader?.className).toContain("p-4");
+    expect(subjectTabs?.className).toContain("p-4");
+    expect(appFooter?.className).toContain("mt-2");
+    expect(tabsUserArea?.className).not.toContain("border-l");
+    expect(Array.from(fontSizeButtons).every((btn) => btn.className.includes("px-2 py-1"))).toBe(true);
+  });
 });

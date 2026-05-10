@@ -46,7 +46,7 @@ export function OuterBottomRow(): React.JSX.Element {
             A
           </span>
           <button
-            className="font-size-btn active cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-[10px] py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[11px]"
+            className="font-size-btn active cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[11px]"
             data-size="small"
             aria-pressed="true"
             title="文字サイズ：小"
@@ -54,7 +54,7 @@ export function OuterBottomRow(): React.JSX.Element {
             小
           </button>
           <button
-            className="font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-[10px] py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[15px]"
+            className="font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[15px]"
             data-size="medium"
             aria-pressed="false"
             title="文字サイズ：中"
@@ -62,7 +62,7 @@ export function OuterBottomRow(): React.JSX.Element {
             中
           </button>
           <button
-            className="font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-[10px] py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[19px]"
+            className="font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[19px]"
             data-size="large"
             aria-pressed="false"
             title="文字サイズ：大"
