@@ -21,7 +21,10 @@ export function CategoryPanel(): React.JSX.Element {
       ].join(" ")}
     >
       <div className="category-panel-header flex items-center justify-between mb-2 gap-1.5 px-4">
-        <span id="categoryListTitle" className="category-list-title text-sm font-bold text-[#0366d6] shrink-0 px-1 py-1">
+        <span
+          id="categoryListTitle"
+          className="category-list-title text-sm font-bold text-[#0366d6] shrink-0 px-1 py-1"
+        >
           📚 単元一覧
         </span>
         <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状態フィルター">
@@ -50,7 +53,10 @@ export function CategoryPanel(): React.JSX.Element {
         <span id="activityDateDisplay" className="activity-date-display text-[13px] text-[#586069] font-medium"></span>
       </div>
       <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2 px-4"></div>
-      <div id="categoryList" className="category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0 px-4 pb-2"></div>
+      <div
+        id="categoryList"
+        className="category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0 px-4 pb-2"
+      ></div>
     </div>
   );
 }
