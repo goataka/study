@@ -17,7 +17,7 @@ import { NotesController } from "./notesController";
 import { AvatarController } from "./avatarController";
 
 import { SUBJECTS, currentDateString } from "./uiHelpers";
-import { showConfirmDialog } from "./quizApp/confirmDialog";
+import { openConfirmDialog } from "./components/confirmDialogStore";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
 import { type FontSizeLevel } from "./quizApp/fontSizeManager";
 import {
@@ -365,7 +365,7 @@ export class QuizApp {
 
   /** カスタム確認ダイアログを表示し、ユーザーの選択を Promise で返す。 */
   showConfirmDialog(message: string, alertOnly = false): Promise<boolean> {
-    return showConfirmDialog(message, alertOnly);
+    return openConfirmDialog(message, alertOnly);
   }
 
   /** クイズが進行中かどうかを返す（クイズ画面かつ未採点）。 */

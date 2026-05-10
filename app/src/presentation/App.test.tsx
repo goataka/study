@@ -20,7 +20,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { StrictMode } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { act } from "react";
-import { kanjiCanvasMock } from "./quizApp.testHelpers";
+import { kanjiCanvasMock } from "./quizApp/testHelpers";
 import { App } from "./App";
 
 // React 19 + jsdom + createRoot で `act()` を使うために必要な環境フラグ。

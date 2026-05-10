@@ -13,7 +13,7 @@ import {
   setupFetchMockWithParent,
   mockQuestionFile,
   setupMinimalDom,
-} from "../quizApp.testHelpers";
+} from "./testHelpers";
 
 describe("QuizApp — 初期化仕様", () => {
   beforeEach(() => {

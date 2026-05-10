@@ -14,7 +14,7 @@ import {
   mockQuestionFile,
   setupMinimalDom,
   mockManifest,
-} from "../quizApp.testHelpers";
+} from "./testHelpers";
 
 describe("QuizApp — 回答フィードバック仕様", () => {
   beforeEach(() => {

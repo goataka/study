@@ -13,7 +13,7 @@ import {
   setupFetchMockWithParent,
   mockQuestionFile,
   setupMinimalDom,
-} from "../quizApp.testHelpers";
+} from "./testHelpers";
 
 describe("QuizApp — 読み上げボタン仕様", () => {
   let speechSynthesisMock: {

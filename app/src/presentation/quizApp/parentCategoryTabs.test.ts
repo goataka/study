@@ -12,7 +12,7 @@ import {
   setupFetchMockWith3Levels,
   setupFetchMockWithParent,
   mockQuestionFile,
-} from "../quizApp.testHelpers";
+} from "./testHelpers";
 
 describe("QuizApp — 親カテゴリタブ仕様", () => {
   beforeEach(() => {
