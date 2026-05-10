@@ -20,6 +20,7 @@
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { getSnapshot, resolveConfirmDialog, subscribe, type ConfirmDialogState } from "./confirmDialogStore";
+import { button } from "../styles/buttonStyles";
 
 export function ConfirmDialog(): React.JSX.Element {
   const state: ConfirmDialogState = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
@@ -70,13 +71,12 @@ export function ConfirmDialog(): React.JSX.Element {
     }
   };
 
-  // Tailwind ユーティリティで構成。`hidden` クラスのみ既存 `.hidden` (display:none !important) を利用。
+  // Tailwind ユーティリティ + CVA の `button` レシピで構成。
+  // `hidden` クラスのみ既存 `.hidden` (display:none !important) を利用。
   // 元 CSS の `.confirm-dialog-overlay` / `.confirm-dialog` / `.confirm-dialog-message` /
   // `.confirm-dialog-buttons` 相当のスタイルをユーティリティで置き換えている。
   const overlayBase = "fixed inset-0 z-[1000] flex items-center justify-center bg-black/50";
   const overlayClass = state.open ? overlayBase : `${overlayBase} hidden`;
-  const cancelBaseClass = "secondary-btn";
-  const cancelClass = state.alertOnly ? `${cancelBaseClass} hidden` : cancelBaseClass;
 
   return (
     <div
@@ -92,10 +92,22 @@ export function ConfirmDialog(): React.JSX.Element {
           {state.message}
         </p>
         <div className="flex justify-center gap-3">
-          <button ref={okRef} id="confirmDialogOk" className="primary-btn" type="button" onClick={handleOk}>
+          <button
+            ref={okRef}
+            id="confirmDialogOk"
+            className={button({ variant: "primary" })}
+            type="button"
+            onClick={handleOk}
+          >
             OK
           </button>
-          <button ref={cancelRef} id="confirmDialogCancel" className={cancelClass} type="button" onClick={handleCancel}>
+          <button
+            ref={cancelRef}
+            id="confirmDialogCancel"
+            className={button({ variant: "secondary", hidden: state.alertOnly })}
+            type="button"
+            onClick={handleCancel}
+          >
             キャンセル
           </button>
         </div>

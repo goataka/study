@@ -79,28 +79,15 @@
   margin-bottom: 20px;
 }
 
-.primary-btn,
-.secondary-btn,
-.tertiary-btn {
-  padding: 15px 30px;
-  font-size: 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-weight: bold;
-}
-
-.primary-btn {
-  background: #0366d6;
-  color: white;
-}
-
-.primary-btn:hover:not(:disabled) {
-  background: #0255b8;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(3, 102, 214, 0.4);
-}
+/*
+ * `.primary-btn` / `.secondary-btn` / `.tertiary-btn` の見た目は CVA レシピ
+ * `src/presentation/styles/buttonStyles.ts` の `button({ variant: ... })`
+ * へ移行済み。クラス名自体は `15-font-size.css` の
+ * `body.font-size-medium .primary-btn { font-size: ... }` 等が
+ * フォントサイズ切り替えで参照するため**残置**している。
+ *
+ * 旧 `.primary-btn` / `.secondary-btn` / `.tertiary-btn` の宣言は削除済み。
+ */
 
 /* 練習ボタンは爽やかな水色にする */
 #startPracticeBtn {
@@ -112,25 +99,6 @@
   background: #b4e1fa;
   color: #0f2a43;
   box-shadow: 0 6px 12px rgba(0, 130, 200, 0.25);
-}
-
-.secondary-btn {
-  background: #f0f0f0;
-  color: #333;
-}
-
-.secondary-btn:hover:not(:disabled) {
-  background: #e0e0e0;
-}
-
-.tertiary-btn {
-  background: white;
-  color: #0366d6;
-  border: 2px solid #0366d6;
-}
-
-.tertiary-btn:hover {
-  background: #f8f9ff;
 }
 
 button:disabled {

@@ -12,6 +12,7 @@ import { type PanelTab } from "./panelTabsStore";
 import { useActivePanelTab, useHiddenPanelTabs } from "./usePanelTabsStore";
 import { setQuizSettings } from "./quizSettingsStore";
 import { useQuizSettings } from "./useQuizSettingsStore";
+import { button } from "../../styles/buttonStyles";
 
 interface PanelTabButtonProps {
   tab: PanelTab;
@@ -98,7 +99,7 @@ export function QuizPanel(): React.JSX.Element {
           読み込み中...
         </div>
         <div className="button-group">
-          <button id="startRandomBtn" className="primary-btn">
+          <button id="startRandomBtn" className={button({ variant: "primary" })}>
             スタート
           </button>
         </div>

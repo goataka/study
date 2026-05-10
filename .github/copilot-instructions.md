@@ -311,12 +311,14 @@ app/src/
 - フォーマットは Prettier に統一する（`npm run format` / `npm run format:check`）
 - `pre-commit` フックと CI の `test-and-build` ジョブで `lint` と `format:check` を実行する
 
-### スタイリング（CSS / Tailwind CSS）
+### スタイリング（CSS / Tailwind CSS / CVA）
 
 - スタイリングは **Tailwind CSS v4** を基本とする。新規コンポーネントや既存コンポーネントへの追加スタイルは、原則としてユーティリティクラスで記述する。
-- 既存の `app/css/quiz.css` は段階的な縮小対象。新たな手書きCSSの追加は最小限にとどめ、既存スタイルもリファクタの中で順次 Tailwind ユーティリティへ置き換えていく。
+- 既存の `app/css/quiz.css` は段階的な縮小対象。`app/css/parts/` 配下の partial に分割済み。新たな手書きCSSの追加は最小限にとどめ、既存スタイルもリファクタの中で順次 Tailwind ユーティリティへ置き換えていく。
 - Tailwind の有効化は `app/vite.config.ts` の `@tailwindcss/vite` プラグインと、`app/css/quiz.css` 先頭の `@import "tailwindcss";` で行っている。設定は CSS-first（`@theme` ベース）で、`tailwind.config.*` は使わない。
 - ユーティリティの自動検出対象は `src/**/*.{ts,tsx}` および `index.html` などのテンプレート群。動的なクラス文字列は Tailwind が検出できないため、条件分岐ではフルクラス名を直接書く。
+- **バリエーションのある UI（ボタン・バッジ・タブ等）は [CVA (class-variance-authority)](https://cva.style/) のレシピで定義する**。レシピは `src/presentation/styles/` 配下に `<name>Styles.ts` として置き、コロケーションで `<name>Styles.test.ts` を作成する。例：`button({ variant: "primary", hidden: false })`。
+- CVA レシピを書くときは、フォントサイズ切替（`15-font-size.css`）など既存 CSS が依存する**セマンティッククラス名**（例：`primary-btn`）はレシピの出力に含めて維持する。これにより legacy CSS との互換性を保ちつつ見た目だけ Tailwind に移行できる。
 
 ### テストの配置ルール（コロケーション）
 
