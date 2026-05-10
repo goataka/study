@@ -52,7 +52,7 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     localStorage.clear();
   });
 
-  it("問題タブが問題一覧タブと履歴タブの間に存在する", async () => {
+  it("確認タブが解説タブと問題一覧タブの間に存在し、履歴タブが最後に存在する", async () => {
     setupTabDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -74,9 +74,10 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     expect(questionsIdx).toBeGreaterThanOrEqual(0);
     expect(quizIdx).toBeGreaterThanOrEqual(0);
     expect(historyIdx).toBeGreaterThanOrEqual(0);
-    expect(questionsIdx).toBeGreaterThan(guideIdx);
-    expect(quizIdx).toBeGreaterThan(questionsIdx);
-    expect(historyIdx).toBeGreaterThan(quizIdx);
+    // 新しいタブ順: 解説 → 確認 → 問題 → 履歴
+    expect(quizIdx).toBeGreaterThan(guideIdx);
+    expect(questionsIdx).toBeGreaterThan(quizIdx);
+    expect(historyIdx).toBeGreaterThan(questionsIdx);
   });
 
   it("guideUrl ありのカテゴリで解説タブをクリックすると解説コンテナに URL がロードされる", async () => {

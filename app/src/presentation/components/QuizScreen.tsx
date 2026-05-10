@@ -52,7 +52,7 @@ export function QuizScreen(): React.JSX.Element {
               className="topic-badge absolute left-1/2 max-w-[40%] -translate-x-1/2 overflow-hidden rounded-xl bg-[#0366d6] px-3 py-1 text-sm text-ellipsis whitespace-nowrap text-white"
             ></span>
           </div>
-          <div id="questionText" className="question-text mb-3 text-[26px] leading-relaxed font-bold text-[#333]"></div>
+          <div id="questionText" className="question-text mb-3 text-[26px] leading-relaxed text-[#333]"></div>
           <button
             id="speakBtn"
             className="speak-btn mb-[18px] inline-flex cursor-pointer items-center justify-center rounded-[20px] border border-solid border-[#0366d6] bg-white px-3.5 py-1 text-lg text-[#0366d6] transition-colors duration-200 hover:bg-[#f0f7ff]"

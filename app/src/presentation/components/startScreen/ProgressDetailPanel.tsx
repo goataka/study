@@ -11,6 +11,7 @@
 import { setActiveProgressDetailMode, type ProgressDetailMode } from "./panelTabsStore";
 import { useActiveProgressDetailMode } from "./usePanelTabsStore";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
+import { statusFilterButton } from "../../styles/categoryControlButtonStyles";
 
 interface ProgressDetailTabButtonProps {
   mode: ProgressDetailMode;
@@ -64,11 +65,11 @@ export function ProgressDetailPanel(): React.JSX.Element {
         <ProgressDetailTabButton mode="matrix" active={active} id="progressDetailTab-matrix" label="📊 マトリクス" />
       </div>
       <div className="progress-detail-toolbar">
-        <div className="category-status-filter" role="group" aria-label="学習状況フィルター">
-          <span className="category-status-filter-label">学習状況：</span>
+        <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状況フィルター">
+          <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
           <button
             id="progressStatusAllBtn"
-            className="category-status-filter-btn active"
+            className={`${statusFilterButton()} active`}
             type="button"
             aria-pressed="true"
           >
@@ -76,7 +77,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
           </button>
           <button
             id="progressStatusUnlearnedBtn"
-            className="category-status-filter-btn"
+            className={statusFilterButton()}
             type="button"
             aria-pressed="false"
           >
@@ -84,7 +85,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
           </button>
           <button
             id="progressStatusStudyingBtn"
-            className="category-status-filter-btn"
+            className={statusFilterButton()}
             type="button"
             aria-pressed="false"
           >
@@ -92,7 +93,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
           </button>
           <button
             id="progressStatusLearnedBtn"
-            className="category-status-filter-btn"
+            className={statusFilterButton()}
             type="button"
             aria-pressed="false"
           >
