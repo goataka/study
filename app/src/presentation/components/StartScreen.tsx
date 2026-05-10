@@ -13,7 +13,18 @@ import { OverallSummaryPanel } from "./startScreen/OverallSummaryPanel";
 
 export function StartScreen(): React.JSX.Element {
   return (
-    <div id="startScreen" className="screen flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-4 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]">
+    <div
+      id="startScreen"
+      className={[
+        "screen",
+        // レイアウト（.screen から移行）
+        "flex flex-1 flex-col min-h-0",
+        // #startScreen 固有: ヘッダー/コンテンツ/フッターに分割描画するため透明背景・パディングなし
+        "bg-transparent p-0 overflow-hidden relative",
+        // ノート全体の影
+        "shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
+      ].join(" ")}
+    >
       <StartHeader />
       <div className="start-content-layout" id="subjectContent">
         <CategoryPanel />

@@ -49,18 +49,9 @@
   display: none !important;
 }
 
-/* スタート画面（= ノート全体：ヘッダー + コンテンツ + フッターを統合したノートデザイン） */
-#startScreen {
-  /* ノート外観はヘッダー・コンテンツ・フッターに分割して描画するため透明背景 */
-  background: transparent;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.4),
-    0 2px 6px rgba(0, 0, 0, 0.2);
-  padding: 0;
-  border-radius: 0;
-  overflow: hidden;
-  position: relative;
-}
+/* スタート画面（= ノート全体：ヘッダー + コンテンツ + フッターを統合したノートデザイン）の
+ * 基本スタイルは Tailwind ユーティリティへ移行済み（StartScreen.tsx）。
+ * `#startScreen::before` の折り目 pseudo-element は Tailwind 化が複雑なため CSS に残置。 */
 
 /* 折り目（ノート全体の上下を通る折り目の表現） */
 #startScreen::before {
@@ -82,128 +73,24 @@
   pointer-events: none;
 }
 
-#startScreen h2 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 26px;
-}
+/* `#startScreen h2` は ResultScreen.tsx で Tailwind 化済み。
+ * startScreen には h2 がなく、h2 は ResultScreen.tsx 配下のみ。 */
 
-/* 教科タブ行 + ユーザーエリア（タブと同じ行） */
-.tabs-user-row {
-  display: flex;
-  align-items: flex-end;
-  gap: 0;
-}
+/* 教科タブ行 + ユーザーエリアの基本スタイルは Tailwind 化済み（TabsUserRow.tsx）。
+ * `tabs-user-row` / `tabs-user-area` / `tabs-links-area` のクラス名は
+ * JS の querySelector 参照（screenNavigator.ts 等）のため残置。 */
 
-/* タブ行右端のユーザーエリア */
-.tabs-user-area {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-  padding: 1px 4px 0;
-  position: relative;
-  margin-left: auto;
-}
+/* 付箋スタイルのリンク基本スタイルは Tailwind 化済み（TabsUserRow.tsx）。
+ * `tabs-link-note` / `tabs-link-note-support` クラス名は残置。
+ * `tabs-link-note-github` は JSX に存在しないため削除済み。 */
 
-/* サポート・GitHubリンク（付箋スタイル：管理タブの右） */
-.tabs-links-area {
-  display: flex;
-  align-items: flex-end;
-  gap: 4px;
-  flex-shrink: 0;
-  padding: 8px 4px 0;
-}
+/* 教科タブの基本スタイル・hover・active は Tailwind 化済み（tabsBuilder.tsx）。
+ * `subject-tab` / `active` クラス名は JS 参照のため残置。
+ * `subject-tabs` の基本スタイルも Tailwind 化済み（TabsUserRow.tsx）。
+ * スクロールバー非表示 (`scrollbar-width: none` / `::-webkit-scrollbar`) は
+ * Tailwind arbitrary variant で TabsUserRow.tsx 側に移行済み。 */
 
-.tabs-link-note {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  justify-content: center;
-  padding: 6px 18px 8px;
-  min-width: 28px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-bottom: none;
-  border-radius: 0;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-  transform: translateY(2px);
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
-  transition:
-    filter 0.15s,
-    transform 0.1s;
-  min-height: 33px;
-  line-height: 1;
-}
-
-.tabs-link-note svg {
-  width: 1em;
-  height: 1em;
-}
-
-.tabs-link-note:hover {
-  filter: brightness(1.08);
-  transform: translateY(0);
-}
-
-.tabs-link-note-support {
-  background: #d8f0e8;
-  color: #1a6a40;
-}
-
-.tabs-link-note-github {
-  background: #e8e0f0;
-  color: #3a1a6a;
-}
-
-/* 教科タブ */
-.subject-tabs {
-  display: flex;
-  gap: 4px;
-  border-bottom: none;
-  margin-bottom: 0;
-  overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  padding: 8px 4px 0;
-  align-items: flex-end;
-  justify-content: flex-start;
-}
-
-.subject-tabs::-webkit-scrollbar {
-  display: none; /* Chrome / Safari */
-}
-
-/* 付箋タブ: 各教科タブを付箋スタイルに */
-.subject-tab {
-  padding: 6px 18px 8px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-bottom: none;
-  border-radius: 0;
-  margin-bottom: 0;
-  background: #f0e8c8;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  color: #5a4a28;
-  font-family: inherit;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-  transition:
-    background 0.15s,
-    color 0.15s,
-    transform 0.1s,
-    box-shadow 0.1s;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08);
-  position: relative;
-  transform: translateY(2px);
-}
-
-/* 各タブに付箋らしい色 */
+/* 各タブに付箋らしい色（nth-child による色分けは Tailwind では表現困難なため残置） */
 .subject-tab:nth-child(1) {
   background: #ffe9a0;
 }
@@ -229,24 +116,4 @@
   background: #f0e8c8;
 }
 
-.subject-tab:hover {
-  filter: brightness(1.05);
-  transform: translateY(0px);
-  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.12);
-  color: #333;
-}
-
-.subject-tab.active {
-  color: #1a1a1a;
-  transform: translateY(0);
-  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.15);
-  z-index: 1;
-  font-weight: 700;
-  filter: brightness(1.1);
-  outline: 2px solid rgba(3, 102, 214, 0.5);
-  outline-offset: -1px;
-}
-
-.subject-support-link {
-  text-decoration: none;
-}
+/* `subject-support-link` は JSX に存在しないため削除済み。 */
