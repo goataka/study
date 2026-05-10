@@ -72,10 +72,18 @@ export class CategoryRegistry {
     if (q.guideUrl !== undefined && !this.categoryGuideMap.has(cacheKeys.category)) {
       this.categoryGuideMap.set(cacheKeys.category, q.guideUrl);
     }
-    if (q.parentCategoryGuideUrl !== undefined && cacheKeys.parent !== undefined && !this.parentCategoryGuideMap.has(cacheKeys.parent)) {
+    if (
+      q.parentCategoryGuideUrl !== undefined &&
+      cacheKeys.parent !== undefined &&
+      !this.parentCategoryGuideMap.has(cacheKeys.parent)
+    ) {
       this.parentCategoryGuideMap.set(cacheKeys.parent, q.parentCategoryGuideUrl);
     }
-    if (q.topCategoryGuideUrl !== undefined && cacheKeys.top !== undefined && !this.topCategoryGuideMap.has(cacheKeys.top)) {
+    if (
+      q.topCategoryGuideUrl !== undefined &&
+      cacheKeys.top !== undefined &&
+      !this.topCategoryGuideMap.has(cacheKeys.top)
+    ) {
       this.topCategoryGuideMap.set(cacheKeys.top, q.topCategoryGuideUrl);
     }
     if (q.example !== undefined && !this.categoryExampleMap.has(cacheKeys.category)) {
@@ -88,7 +96,10 @@ export class CategoryRegistry {
       this.categoryDescriptionMap.set(cacheKeys.category, q.description);
     }
     if (q.parentCategory !== undefined && !this.categoryParentMap.has(cacheKeys.category)) {
-      this.categoryParentMap.set(cacheKeys.category, { id: q.parentCategory, name: q.parentCategoryName ?? q.parentCategory });
+      this.categoryParentMap.set(cacheKeys.category, {
+        id: q.parentCategory,
+        name: q.parentCategoryName ?? q.parentCategory,
+      });
     }
     if (q.topCategory !== undefined && !this.categoryTopMap.has(cacheKeys.category)) {
       this.categoryTopMap.set(cacheKeys.category, { id: q.topCategory, name: q.topCategoryName ?? q.topCategory });

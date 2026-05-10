@@ -102,7 +102,9 @@ function ProgressSubjectListItem({
         {stat.icon}
       </span>
       <div className="progress-subject-list-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
-        <span className="progress-subject-list-name text-[15px] font-semibold text-[#24292e] break-words">{stat.name}</span>
+        <span className="progress-subject-list-name text-[15px] font-semibold text-[#24292e] break-words">
+          {stat.name}
+        </span>
         <span className="progress-subject-list-stats text-xs text-[#586069]">{`${stat.mastered} / ${stat.total} 単元`}</span>
       </div>
     </button>

@@ -24,46 +24,25 @@ export function CategoryPanel(): React.JSX.Element {
         <span id="categoryListTitle" className="category-list-title text-sm font-bold text-[#0366d6] shrink-0">
           📚 単元一覧
         </span>
-        <div
-          className="category-status-filter flex items-center gap-0.5"
-          role="group"
-          aria-label="学習状態フィルター"
-        >
+        <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状態フィルター">
           <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
-            <button
-              id="filterStatusAll"
-              className={`${statusFilterButton()} active`}
-              type="button"
-              aria-pressed="true"
-            >
+          <button id="filterStatusAll" className={`${statusFilterButton()} active`} type="button" aria-pressed="true">
             すべて
           </button>
-            <button
-              id="filterStatusUnlearned"
-              className={statusFilterButton()}
-              type="button"
-              aria-pressed="false"
-            >
+          <button id="filterStatusUnlearned" className={statusFilterButton()} type="button" aria-pressed="false">
             未学習
           </button>
-            <button
-              id="filterStatusStudying"
-              className={statusFilterButton()}
-              type="button"
-              aria-pressed="false"
-            >
+          <button id="filterStatusStudying" className={statusFilterButton()} type="button" aria-pressed="false">
             学習中
           </button>
-            <button
-              id="filterStatusLearned"
-              className={statusFilterButton()}
-              type="button"
-              aria-pressed="false"
-            >
+          <button id="filterStatusLearned" className={statusFilterButton()} type="button" aria-pressed="false">
             学習済
           </button>
         </div>
-        <span id="allSubjectPanelTitle" className="all-subject-panel-title hidden text-sm font-bold text-[#0366d6] shrink-0">
+        <span
+          id="allSubjectPanelTitle"
+          className="all-subject-panel-title hidden text-sm font-bold text-[#0366d6] shrink-0"
+        >
           ✨ おすすめ単元
         </span>
       </div>

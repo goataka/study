@@ -92,7 +92,10 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
           }}
         >
           <span>{parentCatName}</span>
-          <span className="category-group-learned-badge text-xl leading-none normal-case tracking-normal" aria-hidden="true">
+          <span
+            className="category-group-learned-badge text-xl leading-none normal-case tracking-normal"
+            aria-hidden="true"
+          >
             {learnedBadge}
           </span>
         </button>

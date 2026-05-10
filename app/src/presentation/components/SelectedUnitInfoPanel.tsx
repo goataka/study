@@ -69,7 +69,9 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
 export function SelectedUnitInfoSimpleBody({ name }: { name: string }): React.JSX.Element {
   return (
     <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px]">
-      <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">{name}</span>
+      <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">
+        {name}
+      </span>
     </div>
   );
 }
@@ -99,11 +101,15 @@ function HeaderRow({ name, description }: { name: string; description?: string }
   return (
     <div className="selected-unit-info-header-row">
       <div className="selected-unit-info-header-left">
-        <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">{name}</span>
+        <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">
+          {name}
+        </span>
       </div>
       {description !== undefined && (
         <div className="selected-unit-info-header-right">
-          <div className="selected-unit-info-desc-right selected-unit-info-desc text-[13px] text-[#444d56] mt-[3px]">{description}</div>
+          <div className="selected-unit-info-desc-right selected-unit-info-desc text-[13px] text-[#444d56] mt-[3px]">
+            {description}
+          </div>
         </div>
       )}
     </div>
@@ -159,8 +165,14 @@ function ProgressRow({
   return (
     <div className="selected-unit-progress-row flex items-center gap-2 mt-1 w-full">
       <div className="selected-unit-progress-bar flex-1 h-1.5 bg-[#e1e4e8] rounded-[3px] overflow-hidden flex">
-        <div className="selected-unit-progress-fill h-full bg-[#28a745] rounded-[3px] transition-[width] duration-300 ease shrink-0" style={{ width: `${masteredPct}%` }} />
-        <div className="selected-unit-progress-fill-inprogress h-full bg-[#f0a800] rounded-[3px] transition-[width] duration-300 ease shrink-0" style={{ width: `${inProgressPct}%` }} />
+        <div
+          className="selected-unit-progress-fill h-full bg-[#28a745] rounded-[3px] transition-[width] duration-300 ease shrink-0"
+          style={{ width: `${masteredPct}%` }}
+        />
+        <div
+          className="selected-unit-progress-fill-inprogress h-full bg-[#f0a800] rounded-[3px] transition-[width] duration-300 ease shrink-0"
+          style={{ width: `${inProgressPct}%` }}
+        />
       </div>
       <span className="selected-unit-progress-label text-xs text-[#586069] whitespace-nowrap">{label}</span>
     </div>

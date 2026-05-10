@@ -24,7 +24,8 @@
  *   <button className={isActive ? `${panelTab()} active` : panelTab()}>...</button>
  */
 
-export const panelTab = cva([
+export const panelTab = cva(
+  [
     // 識別子・font-size 切替用に残置
     "panel-tab",
     // base
@@ -37,7 +38,8 @@ export const panelTab = cva([
     "[&.active]:border-b-[#0366d6]",
     "[&.active]:bg-white",
     "[&.active]:text-[#0366d6]",
-  ].join(" "));
+  ].join(" "),
+);
 
 /** `.panel-tabs` コンテナの共通スタイル（インナータブのバー）。 */
 export const panelTabs = cva("panel-tabs flex border-b border-solid border-[#e1e4e8] bg-[#f6f8fa]");
