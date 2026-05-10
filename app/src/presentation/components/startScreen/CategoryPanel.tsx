@@ -73,8 +73,8 @@ export function CategoryPanel(): React.JSX.Element {
           ✨ おすすめ単元
         </span>
       </div>
-      <div id="overallDateNav" className="activity-date-nav hidden">
-        <span id="activityDateDisplay" className="activity-date-display"></span>
+      <div id="overallDateNav" className="activity-date-nav hidden flex items-center gap-1.5 shrink-0 px-2 py-1">
+        <span id="activityDateDisplay" className="activity-date-display text-[13px] text-[#586069] font-medium"></span>
       </div>
       <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2"></div>
       <div id="categoryList" className="category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0"></div>

@@ -57,7 +57,7 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
   const showDescRow = hasCatOrGrade || data.example !== undefined;
 
   return (
-    <div className="selected-unit-info-body">
+    <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px]">
       <HeaderRow name={data.name} description={data.description} />
       {showDescRow && <DescRow catParts={catParts} grade={data.grade} example={data.example} />}
       <ProgressRow mastered={data.mastered} inProgressCount={data.inProgressCount} total={data.total} />
@@ -68,8 +68,8 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
 /** カテゴリ・トップカテゴリ選択時用の簡易表示（タイトルのみ）。 */
 export function SelectedUnitInfoSimpleBody({ name }: { name: string }): React.JSX.Element {
   return (
-    <div className="selected-unit-info-body">
-      <span className="selected-unit-info-name">{name}</span>
+    <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px]">
+      <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">{name}</span>
     </div>
   );
 }
@@ -83,7 +83,13 @@ export function SelectedUnitCloseButton({
   onClick: () => void;
 }): React.JSX.Element {
   return (
-    <button type="button" className="selected-unit-close-btn" title="閉じる" aria-label={ariaLabel} onClick={onClick}>
+    <button
+      type="button"
+      className="selected-unit-close-btn shrink-0 bg-none border border-[#c8d8f8] rounded-full w-[26px] h-[26px] text-sm leading-none cursor-pointer text-[#586069] transition-[background,color,border-color] duration-150 flex items-center justify-center p-0 hover:bg-[#0366d6] hover:border-[#0366d6] hover:text-white focus-visible:bg-[#0366d6] focus-visible:border-[#0366d6] focus-visible:text-white focus-visible:outline-3 focus-visible:outline-[#9ecbff] focus-visible:outline-offset-2"
+      title="閉じる"
+      aria-label={ariaLabel}
+      onClick={onClick}
+    >
       ✕
     </button>
   );
@@ -93,11 +99,11 @@ function HeaderRow({ name, description }: { name: string; description?: string }
   return (
     <div className="selected-unit-info-header-row">
       <div className="selected-unit-info-header-left">
-        <span className="selected-unit-info-name">{name}</span>
+        <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">{name}</span>
       </div>
       {description !== undefined && (
         <div className="selected-unit-info-header-right">
-          <div className="selected-unit-info-desc-right selected-unit-info-desc">{description}</div>
+          <div className="selected-unit-info-desc-right selected-unit-info-desc text-[13px] text-[#444d56] mt-[3px]">{description}</div>
         </div>
       )}
     </div>
@@ -116,9 +122,14 @@ function DescRow({
   return (
     <div className="selected-unit-info-desc-row">
       <div className="selected-unit-info-desc-left">
-        {catParts.length > 0 && <span className="selected-unit-info-category">{catParts.join(" › ")}</span>}
+        {catParts.length > 0 && (
+          <span className="selected-unit-info-category text-[13px] text-[#586069] bg-[#f0f0f0] px-1.5 py-px rounded-[10px] whitespace-nowrap">
+            {catParts.join(" › ")}
+          </span>
+        )}
         {grade && <GradeBadge grade={grade} />}
       </div>
+      {/* selected-unit-info-example の ::before { content: "例）" } は CSS に残置 */}
       {example !== undefined && (
         <div className="selected-unit-info-desc-right selected-unit-info-example">
           <BacktickText text={example} />
@@ -146,12 +157,12 @@ function ProgressRow({
   const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCount, total);
   const label = inProgressCount > 0 ? `${mastered}(${inProgressCount})/${total}` : `${mastered}/${total}`;
   return (
-    <div className="selected-unit-progress-row">
-      <div className="selected-unit-progress-bar">
-        <div className="selected-unit-progress-fill" style={{ width: `${masteredPct}%` }} />
-        <div className="selected-unit-progress-fill-inprogress" style={{ width: `${inProgressPct}%` }} />
+    <div className="selected-unit-progress-row flex items-center gap-2 mt-1 w-full">
+      <div className="selected-unit-progress-bar flex-1 h-1.5 bg-[#e1e4e8] rounded-[3px] overflow-hidden flex">
+        <div className="selected-unit-progress-fill h-full bg-[#28a745] rounded-[3px] transition-[width] duration-300 ease shrink-0" style={{ width: `${masteredPct}%` }} />
+        <div className="selected-unit-progress-fill-inprogress h-full bg-[#f0a800] rounded-[3px] transition-[width] duration-300 ease shrink-0" style={{ width: `${inProgressPct}%` }} />
       </div>
-      <span className="selected-unit-progress-label">{label}</span>
+      <span className="selected-unit-progress-label text-xs text-[#586069] whitespace-nowrap">{label}</span>
     </div>
   );
 }

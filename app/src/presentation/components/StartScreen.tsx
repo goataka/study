@@ -35,7 +35,16 @@ export function StartScreen(): React.JSX.Element {
           className="notebook-spine shrink-0 w-3 bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]"
           aria-hidden="true"
         ></div>
-        <div className="quiz-panel">
+        <div
+          className={[
+            "quiz-panel",
+            "bg-white",
+            "[background-image:repeating-linear-gradient(transparent,transparent_31px,#d8e8f8_31px,#d8e8f8_32px)]",
+            "[background-size:100%_32px] [background-position:0_12px]",
+            "border-none overflow-hidden flex flex-col",
+            "shadow-[inset_3px_0_6px_rgba(0,0,0,0.08)]",
+          ].join(" ")}
+        >
           <button id="mobileBackBtn" className="mobile-back-btn" type="button" aria-label="単元一覧に戻る">
             ← 単元一覧
           </button>

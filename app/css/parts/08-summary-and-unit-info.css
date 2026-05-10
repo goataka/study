@@ -7,13 +7,16 @@
  *       `quiz.css` 内での @import 順を変更しないこと。
  */
 
-/* 日付ナビゲーション（左パネル上部・総合タブ専用） */
+/* 大部分のスタイルは Tailwind ユーティリティへ移行済み。
+ * 以下の CSS セレクタを残置する。 */
+
+/* 日付ナビゲーション - Tailwind 化済み（CategoryPanel.tsx）。クラス名は残置。 */
 .activity-date-nav {
   display: flex;
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
-  padding: 4px 8px 4px 8px;
+  padding: 4px 8px;
 }
 
 .activity-date-display {
@@ -22,7 +25,7 @@
   font-weight: 500;
 }
 
-/* 総合タブ専用サマリパネル */
+/* 総合タブ専用サマリパネル - Tailwind 化済み（OverallSummaryPanel.tsx）。クラス名は残置。 */
 .overall-summary-panel {
   display: flex;
   flex-direction: column;
@@ -32,7 +35,6 @@
   padding: 0;
 }
 
-/* 総合タブ専用パネルタブバー */
 .overall-panel-tabs {
   display: flex;
   border-bottom: 1px solid #e1e4e8;
@@ -40,7 +42,6 @@
   flex-shrink: 0;
 }
 
-/* 活動パネル */
 .overall-activity-panel {
   display: flex;
   flex-direction: column;
@@ -51,7 +52,6 @@
   min-height: 0;
 }
 
-/* 活動日付行 */
 .overall-activity-date-row {
   flex-shrink: 0;
 }
@@ -84,7 +84,7 @@
   min-height: 0;
 }
 
-/* 活動サマリ（SNS共有用） */
+/* 活動サマリ（SNS共有用）- Tailwind 化済み（OverallSummaryPanel.tsx）。 */
 .share-summary-text {
   font-size: 12px;
   color: #444;
@@ -99,7 +99,6 @@
   flex-shrink: 0;
 }
 
-/* コピー・共有・URL欄の横並び行 */
 .share-actions-row {
   display: flex;
   align-items: center;
@@ -145,12 +144,13 @@
   color: white;
 }
 
-/* URLインライン編集エリア */
 .share-url-inline {
   flex: 1;
   min-width: 0;
 }
 
+/* `.share-url-display-btn` は Tailwind 化済み（OverallSummaryPanel.tsx）。
+ * `.share-url-set` 複合クラスは `[&.share-url-set]:` で Tailwind 化済み。 */
 .share-url-display-btn {
   max-width: 100%;
   padding: 4px 10px;
@@ -216,7 +216,7 @@
   color: white;
 }
 
-/* 総合タブ時のレイアウト: おすすめ単元（左）と活動サマリ（右）を通常レイアウトと同じ比率で表示 */
+/* 総合タブ時のレイアウト */
 .start-content-layout.all-subject-layout {
   grid-template-columns: 1fr 12px 2fr;
 }
@@ -233,8 +233,8 @@
   order: 3;
 }
 
+/* `.quiz-panel` は Tailwind 化済み（StartScreen.tsx）。クラス名は JS で使用するため残置。 */
 .quiz-panel {
-  /* ノート紙風：不透明白地 + 薄青の罫線 */
   background-color: white;
   background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
   background-size: 100% 32px;
@@ -259,6 +259,8 @@
   border-bottom: 1px solid #c8d8f8;
 }
 
+/* `.selected-unit-info-body` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。
+ * `.selected-unit-close-btn` も Tailwind 化済み。 */
 .selected-unit-info-body {
   flex: 1;
   min-width: 0;
@@ -267,29 +269,7 @@
   gap: 3px;
 }
 
-.selected-unit-info-header {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-/* カテゴリ + 学年 + 例文を横並びにする詳細行（タイトルの下） */
-.selected-unit-info-detail-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-/* カテゴリ + 学年グループ（左寄せ） */
-.selected-unit-info-left {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-/* 単元詳細の学年バッジはカテゴリバッジと同サイズ */
+/* `.selected-unit-info-name` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
 .selected-unit-info-name {
   font-size: 16px;
   font-weight: 700;
@@ -299,7 +279,7 @@
   text-overflow: ellipsis;
 }
 
-/* カテゴリパスラベル（単元選択時に単元名の前に表示） */
+/* `.selected-unit-info-category` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
 .selected-unit-info-category {
   font-size: 13px;
   color: #586069;
@@ -309,18 +289,18 @@
   white-space: nowrap;
 }
 
-/* 単元詳細内の学年バッジを18pxに */
 .selected-unit-info .category-grade {
   font-size: 18px;
 }
 
+/* `.selected-unit-info-desc` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
 .selected-unit-info-desc {
   font-size: 13px;
   color: #444d56;
   margin-top: 3px;
 }
 
-/* 単元詳細の進捗バー */
+/* `.selected-unit-progress-*` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
 .selected-unit-progress-row {
   display: flex;
   align-items: center;
@@ -367,6 +347,7 @@
   gap: 8px;
 }
 
+/* `.selected-unit-info-example` の ::before { content: "例）" } は Tailwind で表現不可のため残置。 */
 .selected-unit-info-example {
   font-size: 13px;
   color: #586069;
@@ -381,6 +362,7 @@
   opacity: 0.7;
 }
 
+/* `.selected-unit-close-btn` は Tailwind 化済み（SelectedUnitInfoPanel.tsx）。 */
 .selected-unit-close-btn {
   flex-shrink: 0;
   background: none;
