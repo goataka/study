@@ -47,7 +47,11 @@ export function OverallSummaryPanel(): React.JSX.Element {
       role="region"
       aria-label="活動サマリ"
     >
-      <div className={`${panelTabs()} overall-panel-tabs flex border-b border-[#e1e4e8] bg-[#f6f8fa] shrink-0`} role="tablist" aria-label="概要パネル切り替え">
+      <div
+        className={`${panelTabs()} overall-panel-tabs flex border-b border-[#e1e4e8] bg-[#f6f8fa] shrink-0`}
+        role="tablist"
+        aria-label="概要パネル切り替え"
+      >
         <OverallPanelTabButton panel="learned" active={active} id="overallTab-learned" label="🎓 学習状況" />
         <OverallPanelTabButton panel="share" active={active} id="overallTab-share" label="📤 シェア" />
       </div>
@@ -56,7 +60,10 @@ export function OverallSummaryPanel(): React.JSX.Element {
         className={`${active === "learned" ? "overall-activity-panel flex flex-col flex-1 overflow-y-auto px-4 py-3 gap-2 min-h-0" : "overall-activity-panel hidden"}`}
       >
         <div className="overall-activity-date-row shrink-0">
-          <span id="overallActivityDateLabel" className="overall-activity-date text-base font-semibold text-[#24292e]"></span>
+          <span
+            id="overallActivityDateLabel"
+            className="overall-activity-date text-base font-semibold text-[#24292e]"
+          ></span>
         </div>
         <div id="overallSubjectStatusSummary" className="overall-subject-status-summary flex flex-col gap-1"></div>
         <div id="todayActivityContent" className="history-list overall-today-list flex flex-col gap-2.5"></div>

@@ -256,14 +256,20 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
   const vm = buildMatrixViewModel(ctx);
   if (vm.empty === "no-units") {
     return (
-      <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white" role="status">
+      <div
+        className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white"
+        role="status"
+      >
         単元がありません
       </div>
     );
   }
   if (vm.empty === "no-visible") {
     return (
-      <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white" role="status">
+      <div
+        className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white"
+        role="status"
+      >
         表示する単元がありません
       </div>
     );

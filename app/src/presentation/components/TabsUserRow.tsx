@@ -56,7 +56,11 @@ export function TabsUserRow(): React.JSX.Element {
             maxLength={20}
             placeholder="名前を入力"
           />
-          <button id="headerUserNameSaveBtn" className="header-user-save-btn px-2 py-1 bg-[#28a745] text-white border-none rounded-md cursor-pointer text-base font-semibold transition-[background] duration-200 hover:bg-[#218838]" aria-label="保存">
+          <button
+            id="headerUserNameSaveBtn"
+            className="header-user-save-btn px-2 py-1 bg-[#28a745] text-white border-none rounded-md cursor-pointer text-base font-semibold transition-[background] duration-200 hover:bg-[#218838]"
+            aria-label="保存"
+          >
             ✓
           </button>
         </div>
@@ -69,9 +73,18 @@ export function TabsUserRow(): React.JSX.Element {
         >
           {/* src は AvatarController が動的に設定する。空文字属性は React の警告対象なので未設定にする。 */}
           {/* display は JS が .visible クラスで制御するため 11-header-controls.css の display:none/.visible ルールを残置 */}
-          <img id="headerUserAvatarImg" className="header-user-avatar-img w-full h-full object-cover rounded-full" alt="" aria-hidden="true" />
+          <img
+            id="headerUserAvatarImg"
+            className="header-user-avatar-img w-full h-full object-cover rounded-full"
+            alt=""
+            aria-hidden="true"
+          />
           {/* display は JS が .hidden クラスで制御するため 11-header-controls.css の .hidden ルールを参照 */}
-          <span id="headerUserAvatarPlaceholder" className="header-user-avatar-placeholder text-base leading-none text-[#8a9ab0]" aria-hidden="true">
+          <span
+            id="headerUserAvatarPlaceholder"
+            className="header-user-avatar-placeholder text-base leading-none text-[#8a9ab0]"
+            aria-hidden="true"
+          >
             👤
           </span>
         </button>

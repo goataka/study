@@ -7,7 +7,7 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
-import { kanjiCanvasMock, waitForCondition } from "./testHelpers";
+import { kanjiCanvasMock, mockManifest, mockQuestionFile, waitForCondition } from "./testHelpers";
 
 // ─── テキスト入力問題のタッチペン入力仕様 ──────────────────────────────────
 
