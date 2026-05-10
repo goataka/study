@@ -63,11 +63,8 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
               "transition-[background,color,transform,box-shadow] duration-150",
               // hover 状態
               "hover:brightness-[1.05] hover:translate-y-0 hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
-              // active 状態
-              "[&.active]:text-[#1a1a1a] [&.active]:translate-y-0",
-              "[&.active]:shadow-[0_-3px_8px_rgba(0,0,0,0.15)] [&.active]:z-[1]",
-              "[&.active]:font-bold [&.active]:brightness-110",
-              "[&.active]:outline [&.active]:outline-2 [&.active]:outline-[rgba(3,102,214,0.5)] [&.active]:-outline-offset-1",
+              // active 状態（一括指定）
+              "[&.active]:text-[#1a1a1a] [&.active]:translate-y-0 [&.active]:shadow-[0_-3px_8px_rgba(0,0,0,0.15)] [&.active]:z-[1] [&.active]:font-bold [&.active]:brightness-110 [&.active]:outline [&.active]:outline-2 [&.active]:outline-[rgba(3,102,214,0.5)] [&.active]:-outline-offset-1",
               isActive ? "active" : "",
             ]
               .filter(Boolean)

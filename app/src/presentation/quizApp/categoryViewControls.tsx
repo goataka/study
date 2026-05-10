@@ -10,6 +10,10 @@ import type { QuizUseCase } from "../../application/quizUseCase";
 import type { IProgressRepository } from "../../application/ports";
 import { renderReactInto, clearReactContainer } from "./reactMount";
 
+/** 学年フィルターボタンの共通 Tailwind クラス文字列。 */
+const GRADE_FILTER_BTN_CLASSES =
+  "grade-filter-btn text-xs px-2 py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white";
+
 /** カテゴリビューコントロールへ渡すコールバックと状態。 */
 export interface CategoryViewControlsParams {
   useCase: QuizUseCase;
@@ -138,7 +142,7 @@ function GradeFilterGroup({
       <span className="grade-filter-label text-xs text-[#586069] ml-1">学年:</span>
       <button
         type="button"
-        className="grade-filter-btn text-xs px-2 py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white"
+        className={GRADE_FILTER_BTN_CLASSES}
         aria-pressed={params.selectedGradeFilter === null}
         onClick={() => params.onGradeFilterChange(null)}
       >
@@ -148,7 +152,7 @@ function GradeFilterGroup({
         <button
           key={prefix}
           type="button"
-          className="grade-filter-btn text-xs px-2 py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white"
+          className={GRADE_FILTER_BTN_CLASSES}
           aria-pressed={params.selectedGradeFilter === prefix}
           onClick={() => params.onGradeFilterChange(prefix)}
         >

@@ -31,8 +31,8 @@
   display: block;
 }
 
-/* リロードボタンの基本スタイルは Tailwind 化済み（StartHeader.tsx）。
- * `reload-btn` クラス名は `16-admin.css` のフォントサイズ切替が参照するため残置。 */
+/* `reload-btn` のスタイルは Tailwind 化済み（StartHeader.tsx）のため CSS ルールは削除済み。
+ * クラス名は `16-admin.css` のフォントサイズ切替が参照するため JSX 側に残置。 */
 
 /* `.download-data-btn` / `.support-btn` / `.github-btn` / `.header-user-area` / `.user-info` は
  * 現在 JSX に存在しない（dead code）ため削除済み。 */
