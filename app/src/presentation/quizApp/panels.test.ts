@@ -102,10 +102,10 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
     guideTab?.click();
 
-    await waitForCondition(() => !!document.getElementById("guidePanelFrame")?.dataset.loadedUrl);
+    await waitForCondition(() => !!document.querySelector("#guidePanelFrame .guide-content"));
     const guideFrame = document.getElementById("guidePanelFrame");
     expect(guideFrame).not.toBeNull();
-    expect(guideFrame?.dataset.loadedUrl).toContain("guide");
+    expect(guideFrame?.querySelector(".guide-content")?.textContent).toContain("解説内容");
     expect(guideFrame?.classList.contains("hidden")).toBe(false);
 
     const noContent = document.getElementById("guideNoContent");
@@ -166,7 +166,7 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     const guideTab = document.querySelector('.panel-tab[data-panel="guide"]') as HTMLElement;
     guideTab?.click();
 
-    await waitForCondition(() => !!document.getElementById("guidePanelFrame")?.dataset.loadedUrl);
+    await waitForCondition(() => !!document.querySelector("#guidePanelFrame .guide-content"));
     const guideFrame = document.getElementById("guidePanelFrame");
     // コンテンツ構造（h2）を含む div は除去されないこと
     expect(guideFrame?.innerHTML).toContain("解説タイトル");
