@@ -141,128 +141,37 @@ button:disabled {
   min-height: 0;
 }
 
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: #0366d6;
-  transition: width 0.3s ease;
-}
-
+.progress-bar,
+.progress-fill,
+.cancel-quiz-btn,
+.question-text,
+.speak-btn,
+.choices-container,
+.feedback-content,
+.feedback-result,
+.feedback-explanation,
+.navigation-buttons,
+.nav-btn,
+.submit-btn,
+.topic-badge,
 .question-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  position: relative;
+  /* これらクラスのスタイルは Tailwind ユーティリティ + CVA レシピへ移行済み。
+   * 実装は以下を参照:
+   * - `src/presentation/components/QuizScreen.tsx`
+   * - `src/presentation/components/quizScreen/NotesPanel.tsx`（cancel-quiz-btn）
+   * - CVA レシピ: `src/presentation/styles/navButtonStyles.ts`（nav-btn / submit-btn）
+   *
+   * クラス名は font-size 切替（`15-font-size.css`）・レスポンシブ上書き
+   * （`10-responsive-base.css` / `16-admin.css`）から参照されるため JSX 側に
+   * 残置しているが、ベースのスタイル定義はこの partial には残っていない。
+   */
 }
 
-#questionNumber {
-  font-size: 18px;
-  color: #666;
-  font-weight: bold;
-}
-
-.topic-badge {
-  background: #0366d6;
-  color: white;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 14px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 40%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.guide-link {
-  color: #0366d6;
-  font-size: 14px;
-  text-decoration: none;
-  padding: 4px 10px;
-  border: 1px solid #0366d6;
-  border-radius: 12px;
-  transition: background-color 0.2s;
-}
-
-.guide-link:hover {
-  background-color: #f0f7ff;
-}
-
-.cancel-quiz-btn {
-  font-size: 16px;
-  line-height: 1;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #999;
-  border-radius: 50%;
-  background: white;
-  color: #999;
-  cursor: pointer;
-  transition:
-    background-color 0.2s,
-    color 0.2s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.cancel-quiz-btn:hover {
-  background-color: #666;
-  color: white;
-}
-
-.question-text {
-  font-size: 26px;
-  color: #333;
-  margin-bottom: 12px;
-  font-weight: bold;
-  line-height: 1.5;
-}
-
-.speak-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  padding: 4px 14px;
-  margin-bottom: 18px;
-  border: 1px solid #0366d6;
-  border-radius: 20px;
-  background: white;
-  color: #0366d6;
-  cursor: pointer;
-  transition:
-    background-color 0.2s,
-    color 0.2s;
-}
-
-.speak-btn:hover {
-  background-color: #f0f7ff;
-}
-
-/* 読み上げボタンが非表示のとき、問題テキストと選択肢の間隔を維持する */
+/* 読み上げボタンが非表示のとき、問題テキストと選択肢の間隔を維持する。
+ * 隣接兄弟結合子 `+` を Tailwind の arbitrary variant で表現すると煩雑になるため
+ * このルールだけは partial に残す。 */
 .speak-btn.hidden + .choices-container {
   margin-top: 18px;
-}
-
-.choices-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 30px;
 }
 
 .choice-label {
@@ -317,7 +226,9 @@ button:disabled {
   color: #333;
 }
 
-/* 回答フィードバック */
+/* 回答フィードバックのコンテナのみ partial に残置（fadeIn アニメーションと
+ * `.correct` / `.incorrect` 状態に応じた背景・枠線、`.feedback-result` の文字色）。
+ * `.feedback-content` / `.feedback-explanation` の静的スタイルは Tailwind 化済み。 */
 .answer-feedback {
   margin: 20px 0;
   padding: 20px;
@@ -346,20 +257,6 @@ button:disabled {
   border: 2px solid #f44336;
 }
 
-.feedback-content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.feedback-result {
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .answer-feedback.correct .feedback-result {
   color: #2e7d32;
 }
@@ -368,61 +265,9 @@ button:disabled {
   color: #c62828;
 }
 
-.feedback-explanation {
-  font-size: 18px;
-  color: #333;
-  line-height: 1.6;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 4px;
-}
-
-.navigation-buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: space-between;
-}
-
-.nav-btn,
-.submit-btn {
-  flex: 1;
-  padding: 12px 24px;
-  font-size: 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-weight: bold;
-}
-
-.nav-btn {
-  background: #f0f0f0;
-  color: #333;
-}
-
-.nav-btn:hover:not(:disabled) {
-  background: #e0e0e0;
-}
-
-.submit-btn {
-  background: #0366d6;
-  color: white;
-}
-
-.submit-btn:hover:not(:disabled) {
-  background: #0255b8;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(3, 102, 214, 0.4);
-}
-
-/* 結果画面 */
-#resultScreen h2 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 4px;
-  font-size: 26px;
-}
-
+/* `.submit-btn:hover:not(:disabled)` のスタイル（hover/transform/shadow）も
+ * Tailwind 化済み（`navButton({ variant: "submit" })` 内）。
+ * `#resultScreen h2` も `ResultScreen.tsx` 側で Tailwind ユーティリティへ移行済み。 */
 /* 結果画面（単元名・メッセージ・スコア・解答一覧）のスタイルは Tailwind ユーティリティ
  * + CVA レシピへ移行済み。実装は以下を参照:
  * - `src/presentation/components/ResultScreen.tsx`（result-unit-name / result-message / scoreDisplay）

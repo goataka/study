@@ -10,7 +10,7 @@ import { button } from "../styles/buttonStyles";
 export function ResultScreen(): React.JSX.Element {
   return (
     <div id="resultScreen" className="screen hidden">
-      <h2>確認結果</h2>
+      <h2 className="mb-1 text-center text-[26px] text-[#333]">確認結果</h2>
       {/* `result-unit-name` クラス名は font-size 切替の参照キーとして残置 */}
       <div id="resultUnitName" className="result-unit-name mb-5 hidden text-center text-base text-[#586069]"></div>
       {/* `result-message` クラス名は font-size 切替の参照キーとして残置 */}

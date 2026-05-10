@@ -48,7 +48,7 @@ export function NotesPanel(): React.JSX.Element {
         </div>
         <button
           id="cancelQuizBtn"
-          className="cancel-quiz-btn"
+          className="cancel-quiz-btn inline-flex h-[30px] w-[30px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-solid border-[#999] bg-white p-0 text-base leading-none text-[#999] transition-colors duration-200 hover:bg-[#666] hover:text-white"
           type="button"
           title="中止する"
           aria-label="クイズを中止する"
