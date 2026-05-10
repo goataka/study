@@ -26,9 +26,8 @@ const scoreCircleVariants = cva(
         perfect: "perfect bg-gradient-to-br from-[#f7971e] to-[#ffd200]",
       },
     },
-    defaultVariants: {
-      result: "pass",
-    },
+    // 結果画面では呼び出し側が percentage に応じて pass/fail/perfect を必ず指定するため
+    // デフォルトは設定しない（指定漏れがあれば TypeScript で検出される）。
   },
 );
 

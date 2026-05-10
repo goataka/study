@@ -24,9 +24,7 @@ const resultItemVariants = cva("result-item mb-[15px] rounded border-l-4 border-
       incorrect: "incorrect border-l-[#f45c43]",
     },
   },
-  defaultVariants: {
-    result: "correct",
-  },
+  // 呼び出し側が isCorrect から必ず "correct"|"incorrect" を渡すためデフォルトは設定しない。
 });
 
 const resultIconVariants = cva("result-icon mr-0.5 shrink-0 text-[26px] font-bold", {
@@ -35,9 +33,6 @@ const resultIconVariants = cva("result-icon mr-0.5 shrink-0 text-[26px] font-bol
       correct: "text-[#38ef7d]",
       incorrect: "text-[#f45c43]",
     },
-  },
-  defaultVariants: {
-    result: "correct",
   },
 });
 

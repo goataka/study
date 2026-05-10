@@ -13,6 +13,7 @@ import { useActivePanelTab, useHiddenPanelTabs } from "./usePanelTabsStore";
 import { setQuizSettings } from "./quizSettingsStore";
 import { useQuizSettings } from "./useQuizSettingsStore";
 import { button } from "../../styles/buttonStyles";
+import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 
 interface PanelTabButtonProps {
   tab: PanelTab;
@@ -25,7 +26,7 @@ interface PanelTabButtonProps {
 
 function PanelTabButton({ tab, active, hidden, id, controls, label }: PanelTabButtonProps): React.JSX.Element {
   const isActive = tab === active;
-  const classes = ["panel-tab"];
+  const classes = [panelTab()];
   if (isActive) classes.push("active");
   if (hidden) classes.push("hidden");
   return (
@@ -59,7 +60,7 @@ export function QuizPanel(): React.JSX.Element {
   const hiddenIfNot = (tab: PanelTab): string => (active === tab ? "" : "hidden");
   return (
     <>
-      <div className="panel-tabs" role="tablist" aria-label="パネル切り替え">
+      <div className={panelTabs()} role="tablist" aria-label="パネル切り替え">
         <PanelTabButton
           tab="guide"
           active={active}

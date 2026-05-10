@@ -12,6 +12,7 @@
 
 import { type ProgressDetailMode } from "./panelTabsStore";
 import { useActiveProgressDetailMode } from "./usePanelTabsStore";
+import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 
 interface ProgressDetailTabButtonProps {
   mode: ProgressDetailMode;
@@ -24,7 +25,7 @@ function ProgressDetailTabButton({ mode, active, id, label }: ProgressDetailTabB
   const isActive = mode === active;
   return (
     <button
-      className={isActive ? "panel-tab active" : "panel-tab"}
+      className={isActive ? `${panelTab()} active` : panelTab()}
       id={id}
       data-progress-detail-panel={mode}
       role="tab"
@@ -49,7 +50,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
           ✕
         </button>
       </div>
-      <div className="panel-tabs progress-detail-tabs" role="tablist" aria-label="進度詳細タブ">
+      <div className={`${panelTabs()} progress-detail-tabs`} role="tablist" aria-label="進度詳細タブ">
         <ProgressDetailTabButton mode="grade" active={active} id="progressDetailTab-grade" label="🎓 学年別" />
         <ProgressDetailTabButton
           mode="category"

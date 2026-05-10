@@ -12,6 +12,7 @@
 
 import { type OverallPanelTab } from "./panelTabsStore";
 import { useActiveOverallPanel } from "./usePanelTabsStore";
+import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 
 interface OverallPanelTabButtonProps {
   panel: OverallPanelTab;
@@ -24,7 +25,7 @@ function OverallPanelTabButton({ panel, active, id, label }: OverallPanelTabButt
   const isActive = panel === active;
   return (
     <button
-      className={isActive ? "panel-tab active" : "panel-tab"}
+      className={isActive ? `${panelTab()} active` : panelTab()}
       id={id}
       data-overall-panel={panel}
       role="tab"
@@ -43,7 +44,7 @@ export function OverallSummaryPanel(): React.JSX.Element {
   const shareClass = active === "share" ? "overall-activity-panel" : "overall-activity-panel hidden";
   return (
     <div id="overallSummaryPanel" className="hidden overall-summary-panel" role="region" aria-label="活動サマリ">
-      <div className="panel-tabs overall-panel-tabs" role="tablist" aria-label="概要パネル切り替え">
+      <div className={`${panelTabs()} overall-panel-tabs`} role="tablist" aria-label="概要パネル切り替え">
         <OverallPanelTabButton panel="learned" active={active} id="overallTab-learned" label="🎓 学習状況" />
         <OverallPanelTabButton panel="share" active={active} id="overallTab-share" label="📤 シェア" />
       </div>

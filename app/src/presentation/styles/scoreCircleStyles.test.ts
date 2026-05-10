@@ -6,8 +6,8 @@ import { describe, expect, it } from "vitest";
 import { scoreCircle } from "./scoreCircleStyles";
 
 describe("scoreCircle (CVA)", () => {
-  it("デフォルトは pass バリアントで pass クラスを出力する", () => {
-    const tokens = scoreCircle().split(/\s+/);
+  it("result='pass' で pass クラスを出力する", () => {
+    const tokens = scoreCircle({ result: "pass" }).split(/\s+/);
     expect(tokens).toContain("score-circle");
     expect(tokens).toContain("pass");
     expect(tokens).not.toContain("fail");
