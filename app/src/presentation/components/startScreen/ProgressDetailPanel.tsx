@@ -86,12 +86,12 @@ export function ProgressDetailPanel(): React.JSX.Element {
           </button>
         </div>
       </div>
-        <div
-          id="progressDetailContent"
-          className="progress-detail-content flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-3"
-          role="tabpanel"
-          aria-labelledby={`progressDetailTab-${active}`}
-        ></div>
+      <div
+        id="progressDetailContent"
+        className="progress-detail-content flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-3"
+        role="tabpanel"
+        aria-labelledby={`progressDetailTab-${active}`}
+      ></div>
     </div>
   );
 }
