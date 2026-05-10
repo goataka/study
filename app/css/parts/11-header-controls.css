@@ -157,6 +157,15 @@
   outline: none;
 }
 
+/* 600px 以下の幅では `.header-user-name` の最大幅を縮小する。
+ * もとは `13-notes.css` の `@media (max-width: 600px)` ブロックに混ざっていたが、
+ * セレクタの責務に合わせてヘッダー partial に移動。 */
+@media (max-width: 600px) {
+  .header-user-name {
+    max-width: 120px;
+  }
+}
+
 .header-user-edit {
   display: flex;
   align-items: center;

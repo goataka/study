@@ -53,7 +53,7 @@ export function OverallSummaryPanel(): React.JSX.Element {
           <span id="overallActivityDateLabel" className="overall-activity-date"></span>
         </div>
         <div id="overallSubjectStatusSummary" className="overall-subject-status-summary"></div>
-        <div id="todayActivityContent" className="history-list overall-today-list"></div>
+        <div id="todayActivityContent" className="history-list overall-today-list flex flex-col gap-2.5"></div>
       </div>
       <div id="overallSharePanel" className={shareClass}>
         <div id="shareSummaryText" className="share-summary-text"></div>

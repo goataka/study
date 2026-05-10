@@ -115,86 +115,93 @@ export function QuizPanel(): React.JSX.Element {
             スタート
           </button>
         </div>
-        <div className="question-count-section">
-          <span className="question-count-label">問題数：</span>
-          <div className="question-count-group">
-            <label className="count-label">
+        <div className="question-count-section flex flex-wrap items-center gap-3 py-1.5 max-[600px]:flex-col max-[600px]:items-start">
+          <span className="question-count-label text-lg font-semibold text-[#333]">問題数：</span>
+          <div className="question-count-group flex gap-4">
+            <label className="count-label flex cursor-pointer items-center gap-[5px] text-[17px] text-[#333]">
               <input
                 type="radio"
                 name="questionCount"
                 value="5"
                 checked={settings.questionCount === 5}
                 onChange={() => setQuizSettings({ questionCount: 5 })}
+                className="cursor-pointer accent-[#0366d6]"
               />{" "}
               5問
             </label>
-            <label className="count-label">
+            <label className="count-label flex cursor-pointer items-center gap-[5px] text-[17px] text-[#333]">
               <input
                 type="radio"
                 name="questionCount"
                 value="10"
                 checked={settings.questionCount === 10}
                 onChange={() => setQuizSettings({ questionCount: 10 })}
+                className="cursor-pointer accent-[#0366d6]"
               />{" "}
               10問
             </label>
-            <label className="count-label">
+            <label className="count-label flex cursor-pointer items-center gap-[5px] text-[17px] text-[#333]">
               <input
                 type="radio"
                 name="questionCount"
                 value="20"
                 checked={settings.questionCount === 20}
                 onChange={() => setQuizSettings({ questionCount: 20 })}
+                className="cursor-pointer accent-[#0366d6]"
               />{" "}
               20問
             </label>
           </div>
         </div>
-        <div className="quiz-order-section">
-          <span className="quiz-order-label">並び順：</span>
-          <div className="quiz-order-group">
-            <label className="order-label">
+        <div className="quiz-order-section flex items-center gap-2 py-1.5">
+          <span className="quiz-order-label text-lg font-semibold whitespace-nowrap text-[#333]">並び順：</span>
+          <div className="quiz-order-group flex flex-wrap gap-2">
+            <label className="order-label flex cursor-pointer items-center gap-1 text-[17px] text-[#333]">
               <input
                 type="radio"
                 name="quizOrder"
                 value="straight"
                 checked={settings.quizOrder === "straight"}
                 onChange={() => setQuizSettings({ quizOrder: "straight" })}
+                className="cursor-pointer accent-[#0366d6]"
               />{" "}
               ストレート
             </label>
-            <label className="order-label">
+            <label className="order-label flex cursor-pointer items-center gap-1 text-[17px] text-[#333]">
               <input
                 type="radio"
                 name="quizOrder"
                 value="random"
                 checked={settings.quizOrder === "random"}
                 onChange={() => setQuizSettings({ quizOrder: "random" })}
+                className="cursor-pointer accent-[#0366d6]"
               />{" "}
               ランダム
             </label>
           </div>
         </div>
-        <div className="quiz-learned-section">
-          <span className="quiz-order-label">学習済：</span>
-          <div className="quiz-order-group">
-            <label className="order-label">
+        <div className="quiz-learned-section flex items-center gap-2 py-1.5">
+          <span className="quiz-order-label text-lg font-semibold whitespace-nowrap text-[#333]">学習済：</span>
+          <div className="quiz-order-group flex flex-wrap gap-2">
+            <label className="order-label flex cursor-pointer items-center gap-1 text-[17px] text-[#333]">
               <input
                 type="radio"
                 name="quizLearned"
                 value="exclude"
                 checked={!settings.includeMastered}
                 onChange={() => setQuizSettings({ includeMastered: false })}
+                className="cursor-pointer accent-[#0366d6]"
               />{" "}
               含めない
             </label>
-            <label className="order-label">
+            <label className="order-label flex cursor-pointer items-center gap-1 text-[17px] text-[#333]">
               <input
                 type="radio"
                 name="quizLearned"
                 value="include"
                 checked={settings.includeMastered}
                 onChange={() => setQuizSettings({ includeMastered: true })}
+                className="cursor-pointer accent-[#0366d6]"
               />{" "}
               含める
             </label>
@@ -225,7 +232,7 @@ export function QuizPanel(): React.JSX.Element {
         role="tabpanel"
         aria-labelledby="panelTab-history"
       >
-        <div id="historyList" className="history-list"></div>
+        <div id="historyList" className="history-list flex flex-col gap-2.5"></div>
       </div>
 
       <div

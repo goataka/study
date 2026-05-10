@@ -18,7 +18,9 @@ export interface QuestionListProps {
 /** 問題一覧（フィルター適用後の配列）。空配列なら空メッセージを表示する。 */
 export function QuestionList({ questions, useCase }: QuestionListProps): React.JSX.Element {
   if (questions.length === 0) {
-    return <p className="history-empty">この単元に問題はありません。</p>;
+    return (
+      <p className="history-empty py-10 px-5 text-center text-[17px] text-[#586069]">この単元に問題はありません。</p>
+    );
   }
   return (
     <>
