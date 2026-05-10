@@ -57,9 +57,9 @@ describe("renderAdminContent", () => {
 
     renderAdminContent(categoryList, deps);
 
-    const manageBtn = Array.from(categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child")).find((btn) =>
-      btn.textContent?.includes("管理"),
-    ) as HTMLButtonElement;
+    const manageBtn = Array.from(
+      categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
+    ).find((btn) => btn.textContent?.includes("管理")) as HTMLButtonElement;
     expect(manageBtn).toBeTruthy();
     expect(manageBtn.textContent).toContain("管理");
 
@@ -81,9 +81,9 @@ describe("renderAdminContent", () => {
 
     renderAdminContent(categoryList, deps);
 
-    const manageBtn = Array.from(categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child")).find((btn) =>
-      btn.textContent?.includes("管理"),
-    ) as HTMLButtonElement;
+    const manageBtn = Array.from(
+      categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
+    ).find((btn) => btn.textContent?.includes("管理")) as HTMLButtonElement;
     manageBtn.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(adminContent.querySelector(".admin-manage-tabs")).toBeTruthy();
