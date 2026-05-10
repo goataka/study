@@ -44,12 +44,12 @@ export class QuizUseCase {
 
   async initialize(): Promise<void> {
     this.allQuestions = await this.questionRepo.loadAll();
-    // カテゴリ階層・メタデータをドメインオブジェクトとして構築
-    this.categoryRegistry = new CategoryRegistry(this.allQuestions);
-    // questionId -> Question の O(1) 索引
+    // 単一パスで CategoryRegistry の集計と questionsById の索引を構築する
+    this.categoryRegistry = new CategoryRegistry();
     this.questionsById.clear();
     for (const q of this.allQuestions) {
       this.questionsById.set(q.id, q);
+      this.categoryRegistry.addQuestion(q);
     }
   }
 
