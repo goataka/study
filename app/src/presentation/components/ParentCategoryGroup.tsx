@@ -71,6 +71,7 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
           "[&.active]:bg-[#e8f0f9] [&.active]:text-[#0366d6]",
         ].join(" ")}
         data-parent-category={parentCatId}
+        onClick={() => onHeaderActivate?.()}
       >
         {/* category-group-toggle::before { content: "▼" } は 04-category-groups.css に残置 */}
         <button
@@ -86,10 +87,6 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
         <button
           type="button"
           className="category-group-header-action flex-1 flex items-center gap-1 border-none bg-transparent p-0 m-0 font-[inherit] text-inherit text-left cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation();
-            onHeaderActivate?.();
-          }}
         >
           <span>{parentCatName}</span>
           <span className="category-group-learned-badge text-xl leading-none normal-case tracking-normal" aria-hidden="true">
