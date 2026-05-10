@@ -66,7 +66,7 @@ export function QuizScreen(): React.JSX.Element {
             <button id="nextBtn" className={navButton({ variant: "nav" })}>
               次へ
             </button>
-            <button id="submitBtn" className={`${navButton({ variant: "submit" })} hidden`}>
+            <button id="submitBtn" className={navButton({ variant: "submit", hidden: true })}>
               採点する
             </button>
           </div>

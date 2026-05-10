@@ -13,6 +13,8 @@
 const notesBtnClass =
   "notes-btn cursor-pointer rounded border border-solid border-[#d1d5da] bg-white px-2 py-1 text-lg transition-all duration-200 hover:border-[#b0b0b0] hover:bg-[#f0f0f0] [&.eraser-active]:border-[#f0a800] [&.eraser-active]:bg-[#ffe8b3]";
 const penSelectClass = "cursor-pointer rounded border border-solid border-[#d1d5da] bg-white px-2 py-1 text-sm";
+const cancelBtnClass =
+  "cancel-quiz-btn inline-flex h-[30px] w-[30px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-solid border-[#999] bg-white p-0 text-base leading-none text-[#999] transition-colors duration-200 hover:bg-[#666] hover:text-white";
 
 export function NotesPanel(): React.JSX.Element {
   return (
@@ -57,7 +59,7 @@ export function NotesPanel(): React.JSX.Element {
         </div>
         <button
           id="cancelQuizBtn"
-          className="cancel-quiz-btn inline-flex h-[30px] w-[30px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-solid border-[#999] bg-white p-0 text-base leading-none text-[#999] transition-colors duration-200 hover:bg-[#666] hover:text-white"
+          className={cancelBtnClass}
           type="button"
           title="中止する"
           aria-label="クイズを中止する"

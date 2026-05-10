@@ -25,6 +25,13 @@ const navButtonVariants = cva(
         submit:
           "submit-btn bg-[#0366d6] text-white hover:not-disabled:-translate-y-0.5 hover:not-disabled:bg-[#0255b8] hover:not-disabled:shadow-[0_6px_12px_rgba(3,102,214,0.4)]",
       },
+      hidden: {
+        true: "hidden",
+        false: "",
+      },
+    },
+    defaultVariants: {
+      hidden: false,
     },
   },
 );

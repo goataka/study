@@ -22,4 +22,12 @@ describe("navButton (CVA)", () => {
     expect(navButton({ variant: "nav" }).split(/\s+/)).toContain("flex-1");
     expect(navButton({ variant: "submit" }).split(/\s+/)).toContain("flex-1");
   });
+
+  it("hidden=true で hidden ユーティリティを含む", () => {
+    expect(navButton({ variant: "submit", hidden: true }).split(/\s+/)).toContain("hidden");
+  });
+
+  it("hidden 未指定時は hidden ユーティリティを含まない（採点ボタンの初期表示制御）", () => {
+    expect(navButton({ variant: "submit" }).split(/\s+/)).not.toContain("hidden");
+  });
 });

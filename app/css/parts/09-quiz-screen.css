@@ -174,57 +174,14 @@ button:disabled {
   margin-top: 18px;
 }
 
-.choice-label {
-  display: flex;
-  align-items: center;
-  padding: 15px 20px;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.choice-label:hover {
-  border-color: #0366d6;
-  background: #f0f7ff;
-}
-
-.choice-label:has(input:disabled) {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.choice-label:has(input:disabled):hover {
-  border-color: #e0e0e0;
-  background: transparent;
-}
-
-.choice-label:has(input:disabled:checked) {
-  border-color: #0366d6;
-  background: #f0f7ff;
-  opacity: 1;
-}
-
-.choice-label input[type="radio"] {
-  margin-right: 15px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.choice-label:has(input:disabled) input[type="radio"] {
-  cursor: not-allowed;
-}
-
-.choice-label input[type="radio"]:checked + .choice-text {
-  color: #0366d6;
-  font-weight: bold;
-}
-
-.choice-text {
-  font-size: 20px;
-  color: #333;
-}
+/* `.choice-label` / `.choice-label:has(input:disabled)` 系の状態スタイルおよび
+ * `.choice-text` の基本スタイル（color / font-size）は Tailwind の `has-[…]:` /
+ * `peer-checked:` バリアントへ移行済み。実装は
+ * `src/presentation/quizApp/choicesRenderer.tsx` を参照。
+ *
+ * `.choice-text` クラス名は `15-font-size.css` / `10-responsive-base.css` の
+ * font-size 上書きおよびテストのセレクタから参照されるため `<span>` に残置している。
+ */
 
 /* 回答フィードバックのコンテナのみ partial に残置（fadeIn アニメーションと
  * `.correct` / `.incorrect` 状態に応じた背景・枠線、`.feedback-result` の文字色）。
