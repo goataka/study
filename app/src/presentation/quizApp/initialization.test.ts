@@ -37,4 +37,13 @@ describe("QuizApp — 初期化仕様", () => {
     // 初期値は disabled（問題ロード前）
     expect(retryBtn.disabled).toBe(true);
   });
+
+  it("問題のロードが完了したら statsInfo に問題数が表示される", async () => {
+    new QuizApp();
+    // init() は非同期なので Promiseのキューが流れるまで待つ
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("全：5問");
+  });
 });

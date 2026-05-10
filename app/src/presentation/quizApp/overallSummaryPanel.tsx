@@ -108,9 +108,9 @@ export function updateActivityDateDisplay(useCase: QuizUseCase, selectedActivity
 /**
  * 総合タブのサマリパネルタブ（学習済み / シェア）を切り替える。
  *
- * React 化に伴い、ストアを更新することで `<OverallSummaryPanel>` が再レンダリングし、
+ * ストアを更新することで `<OverallSummaryPanel>` が再レンダリングし、
  * active クラス・aria-selected・各サブパネルの hidden が宣言的に更新される。
- * 後方互換のため、命令的な classList 操作も併用する（React 未マウントのテスト向け）。
+ * 後方互換のため、React 未マウントのテスト向けに命令的な classList 操作も併用する。
  */
 export function showOverallPanel(tab: "learned" | "share"): void {
   setActiveOverallPanel(tab);

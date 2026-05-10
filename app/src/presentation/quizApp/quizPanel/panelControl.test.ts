@@ -324,4 +324,21 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
   });
 });
 
+describe("QuizApp — 確認タブの単元説明非表示仕様", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    localStorage.clear();
+  });
+
+  it("確認タブに categoryDescription 要素は存在しない", async () => {
+    setupTabDom();
+    setupFetchMock();
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(document.getElementById("categoryDescription")).toBeNull();
+  });
+});
+
 // ─── 確認ダイアログ仕様 ────────────────────────────────────────────────────

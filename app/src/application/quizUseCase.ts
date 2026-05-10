@@ -1,11 +1,14 @@
 /**
  * QuizUseCase — 問題のロード・クイズセッションの開始・進捗の保存を統括する。
  * ポート（インターフェース）に依存し、具体的な実装には依存しない。
+ *
+ * カテゴリ階層・カテゴリメタデータのクエリは `CategoryRegistry`（ドメイン層）に委譲する。
  */
 
 import type { Question } from "../domain/question";
 import { QuizSession } from "../domain/quizSession";
 import type { QuizMode, QuizFilter, AnswerResult } from "../domain/quizSession";
+import { CategoryRegistry } from "../domain/categoryRegistry";
 import type { IQuestionRepository, IProgressRepository, QuizRecord, UserDataExport } from "./ports";
 
 export type { QuizMode, QuizFilter, AnswerResult, QuizRecord, UserDataExport };
@@ -23,22 +26,8 @@ export class QuizUseCase {
   /** masteredIds の Set キャッシュ（isMastered() を O(1) にするため） */
   private masteredSet: Set<string>;
   private questionStats: Record<string, { total: number; correct: number }>;
-  /** subject::category -> guideUrl のキャッシュ（O(1) 参照用） */
-  private categoryGuideMap = new Map<string, string>();
-  /** subject::parentCategory -> parentCategoryGuideUrl のキャッシュ（O(1) 参照用） */
-  private parentCategoryGuideMap = new Map<string, string>();
-  /** subject::topCategory -> topCategoryGuideUrl のキャッシュ（O(1) 参照用） */
-  private topCategoryGuideMap = new Map<string, string>();
-  /** subject::category -> example のキャッシュ（O(1) 参照用） */
-  private categoryExampleMap = new Map<string, string>();
-  /** subject::category -> referenceGrade のキャッシュ（O(1) 参照用） */
-  private categoryGradeMap = new Map<string, string>();
-  /** subject::category -> description のキャッシュ（O(1) 参照用） */
-  private categoryDescriptionMap = new Map<string, string>();
-  /** subject::category -> { parentId, parentName } のキャッシュ */
-  private categoryParentMap = new Map<string, { id: string; name: string }>();
-  /** subject::category -> { topId, topName } のキャッシュ */
-  private categoryTopMap = new Map<string, { id: string; name: string }>();
+  /** カテゴリ階層・メタデータのドメインオブジェクト（initialize() で構築） */
+  private categoryRegistry: CategoryRegistry = new CategoryRegistry([]);
   /** questionId -> Question のキャッシュ（O(1) 参照用） */
   private questionsById = new Map<string, Question>();
 
@@ -55,49 +44,12 @@ export class QuizUseCase {
 
   async initialize(): Promise<void> {
     this.allQuestions = await this.questionRepo.loadAll();
-    // subject::category -> guideUrl / referenceGrade / description のキャッシュを構築する
-    this.categoryGuideMap.clear();
-    this.parentCategoryGuideMap.clear();
-    this.topCategoryGuideMap.clear();
-    this.categoryExampleMap.clear();
-    this.categoryGradeMap.clear();
-    this.categoryDescriptionMap.clear();
-    this.categoryParentMap.clear();
-    this.categoryTopMap.clear();
+    // カテゴリ階層・メタデータをドメインオブジェクトとして構築
+    this.categoryRegistry = new CategoryRegistry(this.allQuestions);
+    // questionId -> Question の O(1) 索引
     this.questionsById.clear();
     for (const q of this.allQuestions) {
-      const key = `${q.subject}::${q.category}`;
       this.questionsById.set(q.id, q);
-      if (q.guideUrl !== undefined && !this.categoryGuideMap.has(key)) {
-        this.categoryGuideMap.set(key, q.guideUrl);
-      }
-      if (q.parentCategoryGuideUrl !== undefined && q.parentCategory !== undefined) {
-        const parentKey = `${q.subject}::${q.parentCategory}`;
-        if (!this.parentCategoryGuideMap.has(parentKey)) {
-          this.parentCategoryGuideMap.set(parentKey, q.parentCategoryGuideUrl);
-        }
-      }
-      if (q.topCategoryGuideUrl !== undefined && q.topCategory !== undefined) {
-        const topKey = `${q.subject}::${q.topCategory}`;
-        if (!this.topCategoryGuideMap.has(topKey)) {
-          this.topCategoryGuideMap.set(topKey, q.topCategoryGuideUrl);
-        }
-      }
-      if (q.example !== undefined && !this.categoryExampleMap.has(key)) {
-        this.categoryExampleMap.set(key, q.example);
-      }
-      if (q.referenceGrade !== undefined && !this.categoryGradeMap.has(key)) {
-        this.categoryGradeMap.set(key, q.referenceGrade);
-      }
-      if (q.description !== undefined && !this.categoryDescriptionMap.has(key)) {
-        this.categoryDescriptionMap.set(key, q.description);
-      }
-      if (q.parentCategory !== undefined && !this.categoryParentMap.has(key)) {
-        this.categoryParentMap.set(key, { id: q.parentCategory, name: q.parentCategoryName ?? q.parentCategory });
-      }
-      if (q.topCategory !== undefined && !this.categoryTopMap.has(key)) {
-        this.categoryTopMap.set(key, { id: q.topCategory, name: q.topCategoryName ?? q.topCategory });
-      }
     }
   }
 
@@ -121,58 +73,23 @@ export class QuizUseCase {
   }
 
   getCategoriesForSubject(subject: string): Record<string, string> {
-    const categories: Record<string, string> = {};
-    for (const q of this.allQuestions) {
-      if (q.subject === subject && !(q.category in categories)) {
-        categories[q.category] = q.categoryName;
-      }
-    }
-    return categories;
+    return this.categoryRegistry.getCategoriesForSubject(subject);
   }
 
   getParentCategoriesForSubject(subject: string): Record<string, string> {
-    const parentCategories: Record<string, string> = {};
-    for (const q of this.allQuestions) {
-      if (q.subject === subject && q.parentCategory && !(q.parentCategory in parentCategories)) {
-        parentCategories[q.parentCategory] = q.parentCategoryName ?? q.parentCategory;
-      }
-    }
-    return parentCategories;
+    return this.categoryRegistry.getParentCategoriesForSubject(subject);
   }
 
   getCategoriesForParent(subject: string, parentCategory: string): Record<string, string> {
-    const categories: Record<string, string> = {};
-    for (const q of this.allQuestions) {
-      if (q.subject === subject && q.parentCategory === parentCategory && !(q.category in categories)) {
-        categories[q.category] = q.categoryName;
-      }
-    }
-    return categories;
+    return this.categoryRegistry.getCategoriesForParent(subject, parentCategory);
   }
 
   getTopCategoriesForSubject(subject: string): Record<string, string> {
-    const topCategories: Record<string, string> = {};
-    for (const q of this.allQuestions) {
-      if (q.subject === subject && q.topCategory && !(q.topCategory in topCategories)) {
-        topCategories[q.topCategory] = q.topCategoryName ?? q.topCategory;
-      }
-    }
-    return topCategories;
+    return this.categoryRegistry.getTopCategoriesForSubject(subject);
   }
 
   getParentCategoriesForTop(subject: string, topCategory: string): Record<string, string> {
-    const parentCategories: Record<string, string> = {};
-    for (const q of this.allQuestions) {
-      if (
-        q.subject === subject &&
-        q.topCategory === topCategory &&
-        q.parentCategory &&
-        !(q.parentCategory in parentCategories)
-      ) {
-        parentCategories[q.parentCategory] = q.parentCategoryName ?? q.parentCategory;
-      }
-    }
-    return parentCategories;
+    return this.categoryRegistry.getParentCategoriesForTop(subject, topCategory);
   }
 
   /**
@@ -449,7 +366,7 @@ export class QuizUseCase {
    * 該当カテゴリに guideUrl が設定されていない場合は undefined を返す。
    */
   getCategoryGuideUrl(subject: string, category: string): string | undefined {
-    return this.categoryGuideMap.get(`${subject}::${category}`);
+    return this.categoryRegistry.getCategoryGuideUrl(subject, category);
   }
 
   /**
@@ -457,7 +374,7 @@ export class QuizUseCase {
    * 該当親カテゴリに parentCategoryGuideUrl が設定されていない場合は undefined を返す。
    */
   getParentCategoryGuideUrl(subject: string, parentCategory: string): string | undefined {
-    return this.parentCategoryGuideMap.get(`${subject}::${parentCategory}`);
+    return this.categoryRegistry.getParentCategoryGuideUrl(subject, parentCategory);
   }
 
   /**
@@ -465,7 +382,7 @@ export class QuizUseCase {
    * 該当トップカテゴリに topCategoryGuideUrl が設定されていない場合は undefined を返す。
    */
   getTopCategoryGuideUrl(subject: string, topCategory: string): string | undefined {
-    return this.topCategoryGuideMap.get(`${subject}::${topCategory}`);
+    return this.categoryRegistry.getTopCategoryGuideUrl(subject, topCategory);
   }
 
   /**
@@ -473,7 +390,7 @@ export class QuizUseCase {
    * 親カテゴリが設定されていない場合は undefined を返す。
    */
   getParentCategoryForUnit(subject: string, categoryId: string): { id: string; name: string } | undefined {
-    return this.categoryParentMap.get(`${subject}::${categoryId}`);
+    return this.categoryRegistry.getParentCategoryForUnit(subject, categoryId);
   }
 
   /**
@@ -481,7 +398,7 @@ export class QuizUseCase {
    * トップカテゴリが設定されていない場合は undefined を返す。
    */
   getTopCategoryForUnit(subject: string, categoryId: string): { id: string; name: string } | undefined {
-    return this.categoryTopMap.get(`${subject}::${categoryId}`);
+    return this.categoryRegistry.getTopCategoryForUnit(subject, categoryId);
   }
 
   /**
@@ -489,7 +406,7 @@ export class QuizUseCase {
    * 該当カテゴリに example が設定されていない場合は undefined を返す。
    */
   getCategoryExample(subject: string, category: string): string | undefined {
-    return this.categoryExampleMap.get(`${subject}::${category}`);
+    return this.categoryRegistry.getCategoryExample(subject, category);
   }
 
   /**
@@ -497,7 +414,7 @@ export class QuizUseCase {
    * 該当カテゴリに description が設定されていない場合は undefined を返す。
    */
   getCategoryDescription(subject: string, category: string): string | undefined {
-    return this.categoryDescriptionMap.get(`${subject}::${category}`);
+    return this.categoryRegistry.getCategoryDescription(subject, category);
   }
 
   /**
@@ -506,7 +423,7 @@ export class QuizUseCase {
    * 解説 URL が 1 件も存在しない場合は undefined を返す。
    */
   getFirstAvailableGuideUrl(): string | undefined {
-    return this.categoryGuideMap.values().next().value;
+    return this.categoryRegistry.getFirstAvailableGuideUrl();
   }
 
   /**
@@ -514,7 +431,7 @@ export class QuizUseCase {
    * 該当カテゴリに referenceGrade が設定されていない場合は undefined を返す。
    */
   getCategoryReferenceGrade(subject: string, category: string): string | undefined {
-    return this.categoryGradeMap.get(`${subject}::${category}`);
+    return this.categoryRegistry.getCategoryReferenceGrade(subject, category);
   }
 
   /**
@@ -557,7 +474,12 @@ export class QuizUseCase {
       const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
       const isLearned = studiedKeys.has(key) && wrongCount === 0;
       if (!isLearned) {
-        result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key), isLearned: false });
+        result.push({
+          id: catId,
+          name: catName,
+          referenceGrade: this.categoryRegistry.getCategoryReferenceGrade(subject, catId),
+          isLearned: false,
+        });
       }
     }
 
@@ -570,7 +492,12 @@ export class QuizUseCase {
         const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
         const isLearned = studiedKeys.has(key) && wrongCount === 0;
         if (isLearned && !addedIds.has(catId)) {
-          result.push({ id: catId, name: catName, referenceGrade: this.categoryGradeMap.get(key), isLearned: true });
+          result.push({
+            id: catId,
+            name: catName,
+            referenceGrade: this.categoryRegistry.getCategoryReferenceGrade(subject, catId),
+            isLearned: true,
+          });
         }
       }
     }
@@ -636,41 +563,21 @@ export class QuizUseCase {
    * referenceGrade が設定されていないカテゴリは除外する。
    */
   getUniqueGradesForSubject(subject: string): string[] {
-    const seen = new Set<string>();
-    const grades: string[] = [];
-    for (const q of this.allQuestions) {
-      if (q.subject === subject && q.referenceGrade && !seen.has(q.referenceGrade)) {
-        seen.add(q.referenceGrade);
-        grades.push(q.referenceGrade);
-      }
-    }
-    return grades;
+    return this.categoryRegistry.getUniqueGradesForSubject(subject);
   }
 
   /**
    * 指定した教科・学年のカテゴリを返す（referenceGrade が完全一致するもの）。
    */
   getCategoriesForGrade(subject: string, grade: string): Record<string, string> {
-    const categories: Record<string, string> = {};
-    for (const q of this.allQuestions) {
-      if (q.subject === subject && q.referenceGrade === grade && !(q.category in categories)) {
-        categories[q.category] = q.categoryName;
-      }
-    }
-    return categories;
+    return this.categoryRegistry.getCategoriesForGrade(subject, grade);
   }
 
   /**
    * 指定した教科の参考学年が未設定のカテゴリを返す。
    */
   getCategoriesWithoutGrade(subject: string): Record<string, string> {
-    const categories: Record<string, string> = {};
-    for (const q of this.allQuestions) {
-      if (q.subject === subject && !q.referenceGrade && !(q.category in categories)) {
-        categories[q.category] = q.categoryName;
-      }
-    }
-    return categories;
+    return this.categoryRegistry.getCategoriesWithoutGrade(subject);
   }
 
   /** 問題IDから問題を検索する（O(1)）。見つからない場合は undefined を返す。 */

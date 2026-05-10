@@ -67,7 +67,7 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
 }
 
 /** 現在のフィルター設定に基づいて教科タブのアクティブ状態を同期する。
- *  React 化に伴い、内部的にはキャッシュ済みの callbacks を使って再レンダリングを行う。
+ *  内部的にはキャッシュ済みの callbacks を使って再レンダリングを行うため、
  *  `buildSubjectTabs` が事前に呼び出されている必要がある。 */
 export function selectTabByFilter(currentSubject: string): void {
   if (!cachedCallbacks) return;
@@ -82,8 +82,8 @@ export interface PanelTabsCallbacks {
 /**
  * インナーパネルタブのクリックハンドラを登録する。
  *
- * React 化に伴い `<QuizPanel>` がボタン要素を所有するが、React onClick と DOM 委譲の
- * 二重発火を避けるため、ボタン側には onClick を付けず、本関数が DOM の click を購読する。
+ * `<QuizPanel>` がボタン要素を所有するが、React onClick と DOM 委譲の二重発火を
+ * 避けるため、ボタン側には onClick を付けず、本関数が DOM の click を購読する。
  * これにより静的 HTML 互換のテスト構成と React マウント構成の両方で同じ経路を通る。
  */
 export function buildPanelTabs(callbacks: PanelTabsCallbacks): void {

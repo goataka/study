@@ -1,8 +1,7 @@
 /**
  * 「選択中の単元情報」パネル（`#selectedUnitInfo`）の表示状態をビューモデルに変換する純粋ロジック。
  *
- * 旧 `selectedUnitInfoUpdater.ts` および `selectedUnitInfoRenderer.ts` の DOM 構築部分を分離し、
- * UseCase + 選択状態から `SelectedUnitInfoViewModel` を計算する純粋関数として整理した。
+ * UseCase と選択状態から `SelectedUnitInfoViewModel` を計算する純粋関数群。
  * 実際の DOM 描画は React コンポーネント `SelectedUnitInfoPanel` が担う。
  */
 

@@ -19,11 +19,8 @@ import { __resetPanelTabsStoreForTests } from "../components/startScreen/panelTa
  * テスト用 DOM に確認ダイアログを React マウントするヘルパー。
  * `setupMinimalDom` / `setupTabDom` から呼ばれる。
  *
- * 旧版は `document.body.innerHTML` に静的 HTML として確認ダイアログを記述し、
- * 命令的 `showConfirmDialog`（getElementById/addEventListener 経由）が
- * その DOM を直接操作していたが、React 化に伴い `<ConfirmDialog>` が
- * `useSyncExternalStore` 経由でストアを購読するようになったため、
- * テストでも実際に React コンポーネントをマウントする必要がある。
+ * `<ConfirmDialog>` は `useSyncExternalStore` 経由で `confirmDialogStore` を
+ * 購読しているため、テスト DOM にも実際の React コンポーネントをマウントする。
  */
 function mountConfirmDialog(): void {
   __resetConfirmDialogStoreForTests();
@@ -36,13 +33,9 @@ function mountConfirmDialog(): void {
 /**
  * テスト用 DOM にスタート画面の主要パネル群を React マウントするヘルパー。
  *
- * 旧版は `document.body.innerHTML` に静的 HTML として `panel-tabs` /
- * `quizModePanel` / `guideContent` / `historyContent` / `questionListContent` /
- * `overallSummaryPanel` / `progressDetailPanel` を記述し、命令的 `showPanelTab`
- * （getElementById/classList 経由）が DOM を直接操作していたが、React 化に伴い
- * `<QuizPanel>` / `<OverallSummaryPanel>` / `<ProgressDetailPanel>` が
- * `panelTabsStore` を購読するようになったため、テストでも実際に React コンポーネントを
- * マウントする必要がある。
+ * `<QuizPanel>` / `<OverallSummaryPanel>` / `<ProgressDetailPanel>` は
+ * `panelTabsStore` を購読しているため、テスト DOM にも実際の React コンポーネントを
+ * マウントする。
  */
 function mountStartScreenPanels(): void {
   __resetPanelTabsStoreForTests();

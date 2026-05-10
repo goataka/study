@@ -1,9 +1,8 @@
 /**
- * 履歴一覧パネルのレンダラー（React 版）。
+ * 履歴一覧パネルのレンダラー。
  *
- * 旧版（`document.createElement` で構築する命令的版）から `HistoryList` React
- * コンポーネント + `renderReactInto` のブリッジに置き換えた。
- * 公開 API（関数名・引数）と生成される DOM 構造（class/id）は維持している。
+ * `HistoryList` React コンポーネントを `renderReactInto` でマウントするブリッジ。
+ * 生成される DOM 構造（class/id）は他のビューと統一されている。
  */
 
 import type { QuizFilter, QuizRecord, QuizUseCase } from "../../application/quizUseCase";
