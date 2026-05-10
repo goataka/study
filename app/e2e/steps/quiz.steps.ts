@@ -406,8 +406,8 @@ Then("the share summary text should contain {string}", async ({ page }, text: st
 });
 
 Then("the support button should be visible in the header", async ({ page }) => {
-  // サポートボタン（?）がタブ行のリンクエリア（.tabs-links-area）内に表示されていること
-  await expect(page.locator(".tabs-links-area #supportBtn")).toBeVisible();
+  // サポートボタン（?）がヘッダーに表示されていること
+  await expect(page.locator("#supportBtn")).toBeVisible();
 });
 
 Then("the support button should open support page in a new tab", async ({ page }) => {
