@@ -277,9 +277,7 @@ export function AdminPanelRoot({
               <div className="admin-manage-tab-panel">
                 {manageTab === "import" ? (
                   <div className="admin-reset-section">
-                    <p className="admin-reset-desc">
-                      ダウンロードしたJSONファイルを選択して、学習データを更新します。
-                    </p>
+                    <p className="admin-reset-desc">ダウンロードしたJSONファイルを選択して、学習データを更新します。</p>
                     <label className="admin-import-label">
                       📂 JSONファイルを選択
                       <input
@@ -351,7 +349,12 @@ export function AdminPanelRoot({
               </div>
               <div className="admin-data-tab-content">
                 <div className="admin-data-btn-bar">
-                  <button className="admin-data-action-btn" type="button" title="クリップボードにコピー" onClick={copyCurrentData}>
+                  <button
+                    className="admin-data-action-btn"
+                    type="button"
+                    title="クリップボードにコピー"
+                    onClick={copyCurrentData}
+                  >
                     {copyButtonText}
                   </button>
                 </div>
@@ -365,4 +368,3 @@ export function AdminPanelRoot({
     </>
   );
 }
-

@@ -10,4 +10,3 @@ export interface AdminPanelDeps {
   /** 確認ダイアログを表示し、OK されたら true を resolve する。 */
   showConfirmDialog: (message: string, alertOnly?: boolean) => Promise<boolean>;
 }
-

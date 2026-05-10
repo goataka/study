@@ -56,4 +56,3 @@ export function renderAdminContent(categoryList: HTMLElement, deps: AdminPanelDe
     }),
   );
 }
-
