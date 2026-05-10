@@ -131,7 +131,7 @@ export class CategoryRegistry {
       }
       if (!grades.includes(q.referenceGrade)) grades.push(q.referenceGrade);
 
-      const catsByGrade = this.getOrCreateRecord(this.categoriesByGrade, cacheKeys.grade);
+      const catsByGrade = this.getOrCreateRecord(this.categoriesByGrade, cacheKeys.grade!);
       if (!(q.category in catsByGrade)) catsByGrade[q.category] = q.categoryName;
     } else {
       const catsWithoutGrade = this.getOrCreateRecord(this.categoriesWithoutGradeBySubject, q.subject);
