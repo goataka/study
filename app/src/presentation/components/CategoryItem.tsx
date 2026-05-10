@@ -137,9 +137,9 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
             )}
           </div>
           <div className="category-progress-row flex items-center gap-1.5">
-            <div className="category-progress-bar">
-              <div className="category-progress-fill" style={{ width: `${progressFillPercent}%` }} />
-              <div className="category-progress-fill-inprogress" style={{ width: `${progressInProgressPercent}%` }} />
+            <div className="category-progress-bar flex-1 h-1 bg-[#e1e4e8] rounded-sm overflow-hidden flex">
+              <div className="category-progress-fill h-full bg-[#28a745] rounded-sm shrink-0" style={{ width: `${progressFillPercent}%` }} />
+              <div className="category-progress-fill-inprogress h-full bg-[#f0a800] rounded-sm shrink-0" style={{ width: `${progressInProgressPercent}%` }} />
             </div>
             <span className="category-stats text-[13px] text-[#586069] whitespace-nowrap shrink-0 group-[.active]:text-white/85">
               {statsText}

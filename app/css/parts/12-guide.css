@@ -22,7 +22,9 @@
   box-sizing: border-box;
 }
 
-/* 解説コンテンツラッパー（直接DOM挿入方式） */
+/* 解説コンテンツラッパー（直接DOM挿入方式）。
+ * 内部は Jekyll/kramdown が出力した vanilla HTML なので descendant セレクタが必要。
+ * Tailwind でのクラス指定は不可。 */
 .guide-content {
   display: block;
   width: 100%;
@@ -74,7 +76,7 @@
 .guide-content h2 {
   border-bottom: 1px solid #eaecef;
   padding-bottom: 0.2em;
-  font-size: 16px; /* panel-tab と同じフォントサイズ */
+  font-size: 16px;
 }
 
 .guide-content h3 {
@@ -146,7 +148,6 @@
   width: 100%;
   margin-bottom: 0.8em;
   font-size: 1em;
-  /* 背景を明示的に白にして罫線の上に重ねて読みやすくする */
   background: rgba(255, 255, 255, 0.85);
 }
 
@@ -209,6 +210,7 @@
   max-width: none;
 }
 
+/* `.guide-no-content` は Tailwind 化済み（GuideContent.tsx / QuizPanel.tsx）。 */
 .guide-no-content {
   color: #586069;
   text-align: center;
@@ -216,7 +218,8 @@
   font-size: 17px;
 }
 
-/* カテゴリ名エリア（名前 + 進捗バー） */
+/* カテゴリ名エリア（Tailwind 化済み・CategoryItem.tsx）。
+ * categoryItemView.ts（vanilla DOM）も使うため残置。 */
 .category-name-area {
   flex: 1;
   min-width: 0;
@@ -225,7 +228,7 @@
   gap: 3px;
 }
 
-/* タイトル・学年バッジを横並び（タイトル左・学年右） */
+/* タイトル・学年バッジを横並び（Tailwind 化済み・CategoryItem.tsx）。 */
 .category-title-row {
   display: flex;
   flex-direction: row;
@@ -234,13 +237,13 @@
   min-width: 0;
 }
 
-/* 学年バッジを右側に配置 */
+/* 学年バッジを右側に配置（descendant セレクタのため CSS に残置） */
 .category-title-row .category-grade {
   margin-left: auto;
   flex-shrink: 0;
 }
 
-/* カテゴリ進捗バー */
+/* カテゴリ進捗バー（Tailwind 化済み・CategoryItem.tsx / categoryItemView.ts も使うため残置） */
 .category-progress-row {
   display: flex;
   align-items: center;
@@ -294,8 +297,7 @@
   color: rgba(255, 255, 255, 0.85);
 }
 
-/* カテゴリ解説リンク */
-/* カテゴリ未選択時 — クイズパネルを非表示にして1カラムレイアウトにする */
+/* カテゴリ未選択時 — クイズパネルを非表示にして1カラムレイアウトにする（複合セレクタのため残置） */
 .start-content-layout.category-only {
   grid-template-columns: 1fr;
 }

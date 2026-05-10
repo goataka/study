@@ -71,7 +71,7 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
 
   if (state.kind === "external") {
     return (
-      <p className="guide-error-msg guide-no-content">
+      <p className="guide-error-msg guide-no-content text-[#586069] text-center px-5 py-10 text-[17px]">
         <a href={state.url} target="_blank" rel="noopener noreferrer">
           解説を別タブで開く
         </a>
@@ -80,7 +80,11 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
   }
 
   if (state.kind === "error") {
-    return <p className="guide-error-msg guide-no-content">解説の読み込みに失敗しました。</p>;
+    return (
+      <p className="guide-error-msg guide-no-content text-[#586069] text-center px-5 py-10 text-[17px]">
+        解説の読み込みに失敗しました。
+      </p>
+    );
   }
 
   // sanitizeGuideHtml は信頼できるサニタイザとして XSS リスク要素を除去済み。
