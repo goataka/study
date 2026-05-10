@@ -913,7 +913,7 @@ body.font-size-large .admin-data-close-btn {
 .progress-detail-toolbar {
   display: flex;
   justify-content: flex-end;
-  padding: 0 12px 8px;
+  padding: 0 16px 8px;
 }
 
 /* 進度詳細パネルのモバイル用閉じるボタン行（デスクトップでは非表示） */

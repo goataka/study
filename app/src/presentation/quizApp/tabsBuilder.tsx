@@ -101,7 +101,7 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
         title="サポートページを開く"
         aria-label="サポートページを開く"
       >
-        ❔ サポート
+        ❔ サポート ↗
       </a>
     </>
   );

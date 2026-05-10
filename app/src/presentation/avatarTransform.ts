@@ -122,7 +122,8 @@ export function validateAvatarFile(file: { type: string; size: number }): string
  * `data:image/` スキームでなければ無効として `null` を返す。
  */
 export function validateStoredAvatarDataUrl(stored: string | null): string | null {
-  return stored && stored.startsWith("data:image/") ? stored : null;
+  if (!stored) return null;
+  return stored.startsWith("data:image/") || stored.startsWith("blob:") ? stored : null;
 }
 
 /**

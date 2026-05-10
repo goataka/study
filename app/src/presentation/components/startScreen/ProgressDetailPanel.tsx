@@ -64,7 +64,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
         />
         <ProgressDetailTabButton mode="matrix" active={active} id="progressDetailTab-matrix" label="📊 マトリクス" />
       </div>
-      <div className="progress-detail-toolbar">
+      <div className="progress-detail-toolbar px-4">
         <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状況フィルター">
           <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
           <button
@@ -86,12 +86,12 @@ export function ProgressDetailPanel(): React.JSX.Element {
           </button>
         </div>
       </div>
-      <div
-        id="progressDetailContent"
-        className="progress-detail-content flex-1 overflow-y-auto px-1 py-2 flex flex-col gap-3"
-        role="tabpanel"
-        aria-labelledby={`progressDetailTab-${active}`}
-      ></div>
+        <div
+          id="progressDetailContent"
+          className="progress-detail-content flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-3"
+          role="tabpanel"
+          aria-labelledby={`progressDetailTab-${active}`}
+        ></div>
     </div>
   );
 }
