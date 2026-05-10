@@ -166,6 +166,8 @@ let progressDetailUnsubscribe: (() => void) | null = null;
 
 function isInsideReactMount(el: HTMLElement): boolean {
   return Boolean(
-    el.closest("#quizPanelMount[data-react-mounted], #overallSummaryPanelMount[data-react-mounted], #progressDetailPanelMount[data-react-mounted]"),
+    el.closest(
+      "#quizPanelMount[data-react-mounted], #overallSummaryPanelMount[data-react-mounted], #progressDetailPanelMount[data-react-mounted]",
+    ),
   );
 }
