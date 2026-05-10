@@ -358,14 +358,6 @@ body.font-size-medium .all-subject-panel-title {
   font-size: 16px;
 }
 
-body.font-size-medium .handwriting-text-input {
-  font-size: 22px;
-}
-
-body.font-size-medium .handwriting-confirm-btn {
-  font-size: 22px;
-}
-
 body.font-size-medium .subject-overview-cat-header {
   font-size: 14px;
 }
@@ -715,14 +707,6 @@ body.font-size-large .category-view-toggle {
 
 body.font-size-large .all-subject-panel-title {
   font-size: 19px;
-}
-
-body.font-size-large .handwriting-text-input {
-  font-size: 26px;
-}
-
-body.font-size-large .handwriting-confirm-btn {
-  font-size: 26px;
 }
 
 body.font-size-large .subject-overview-cat-header {

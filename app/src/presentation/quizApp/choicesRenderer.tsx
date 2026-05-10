@@ -100,11 +100,11 @@ function TextInput({ question, session, callbacks }: TextInputProps): React.JSX.
   };
 
   return (
-    <div className="text-answer-wrapper">
+    <div className="text-answer-wrapper flex flex-col gap-3 py-2.5">
       <input
         ref={inputRef}
         type="text"
-        className="text-answer-input"
+        className="text-answer-input box-border w-full rounded-lg border-2 border-solid border-[#e1e4e8] px-4 py-3.5 font-[inherit] text-2xl outline-none transition-colors duration-200 focus:border-[#0366d6] focus:shadow-[0_0_0_3px_rgba(3,102,214,0.2)] disabled:cursor-not-allowed disabled:bg-[#f6f8fa] disabled:text-[#586069]"
         placeholder="答えを入力してください"
         aria-label="解答を入力"
         disabled={answered}
@@ -117,7 +117,12 @@ function TextInput({ question, session, callbacks }: TextInputProps): React.JSX.
           handleSubmit();
         }}
       />
-      <button type="button" className="text-answer-submit-btn" disabled={answered} onClick={handleSubmit}>
+      <button
+        type="button"
+        className="text-answer-submit-btn cursor-pointer self-start rounded-md border-none bg-[#0366d6] px-6 py-2.5 text-lg font-semibold text-white transition-colors duration-200 hover:not-disabled:bg-[#0256b9] disabled:cursor-not-allowed disabled:bg-[#c8e1ff]"
+        disabled={answered}
+        onClick={handleSubmit}
+      >
         確認する
       </button>
     </div>
