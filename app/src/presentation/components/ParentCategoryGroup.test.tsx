@@ -72,6 +72,21 @@ describe("ParentCategoryGroup", () => {
     expect(onToggle).not.toHaveBeenCalled();
   });
 
+  it("ヘッダー領域をクリックしても onHeaderActivate を呼ぶ", () => {
+    const onHeader = vi.fn();
+    const el = render({
+      subject: "math",
+      parentCatId: "p1",
+      parentCatName: "親1",
+      collapsed: false,
+      onHeaderActivate: onHeader,
+      items: [],
+    });
+    const header = el.querySelector(".category-group-header") as HTMLElement;
+    header.click();
+    expect(onHeader).toHaveBeenCalledTimes(1);
+  });
+
   it("toggle ボタンクリックで onToggle のみ呼ぶ（ヘッダーには伝播しない）", () => {
     const onHeader = vi.fn();
     const onToggle = vi.fn();
