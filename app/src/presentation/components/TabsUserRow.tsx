@@ -15,14 +15,14 @@ export function TabsUserRow(): React.JSX.Element {
   return (
     <div className="tabs-user-row flex items-end gap-0">
       <div
-        className="subject-tabs flex gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-1 pt-2 items-end justify-start"
+        className="subject-tabs flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-2 items-end justify-start"
         role="tablist"
         aria-label="教科を選択"
       ></div>
-      <div className="tabs-user-area flex items-center gap-1.5 shrink-0 px-1 pt-px relative ml-auto">
+      <div className="tabs-user-area flex items-center gap-1.5 shrink-0 px-4 pt-px relative ml-4 pl-4 border-l border-white/45">
         <button
           id="headerUserName"
-          className="header-user-name text-[15px] text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-1.5 py-0.5 cursor-pointer transition-[background,color] duration-150 -translate-y-0.5 hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white focus:outline-none"
+          className="header-user-name text-[15px] text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-2 py-1 cursor-pointer transition-[background,color] duration-150 -translate-y-0.5 hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white focus:outline-none"
           type="button"
           title="名前を編集する"
           aria-label="名前を編集する"

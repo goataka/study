@@ -99,6 +99,9 @@ describe("validateStoredAvatarDataUrl", () => {
   it("data:image/ で始まるなら採用", () => {
     expect(validateStoredAvatarDataUrl("data:image/png;base64,xxx")).toBe("data:image/png;base64,xxx");
   });
+  it("blob: URL も互換のため採用", () => {
+    expect(validateStoredAvatarDataUrl("blob:https://example.com/abc")).toBe("blob:https://example.com/abc");
+  });
   it("それ以外は null", () => {
     expect(validateStoredAvatarDataUrl("https://evil.com/x")).toBeNull();
     expect(validateStoredAvatarDataUrl("data:text/plain,hi")).toBeNull();
