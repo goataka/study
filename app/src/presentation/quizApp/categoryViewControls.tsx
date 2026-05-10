@@ -109,12 +109,12 @@ function ViewToggleButton({ params }: { params: CategoryViewControlsParams }): R
     params.onViewModeChange(next);
   };
   return (
-      <button
-        type="button"
-        className={categoryViewToggleButton()}
-        aria-pressed={isGrade}
-        title={isGrade ? "カテゴリ別表示に切り替える" : "学年別表示に切り替える"}
-        onClick={handleClick}
+    <button
+      type="button"
+      className={categoryViewToggleButton()}
+      aria-pressed={isGrade}
+      title={isGrade ? "カテゴリ別表示に切り替える" : "学年別表示に切り替える"}
+      onClick={handleClick}
     >
       {isGrade ? "🎓 学年別" : "📁 カテゴリ別"}
     </button>

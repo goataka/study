@@ -149,7 +149,10 @@ function SubjectOverviewWrapper({
         </div>
       ) : (
         vm.groups.map((group) => (
-          <div key={`${group.topCatId}::${group.parentCatId}`} className="subject-overview-cat-group flex flex-col gap-0.5 mt-0.5">
+          <div
+            key={`${group.topCatId}::${group.parentCatId}`}
+            className="subject-overview-cat-group flex flex-col gap-0.5 mt-0.5"
+          >
             <CategoryGroupHeader group={group} />
             {group.items.map(({ recommended, stats }) => (
               <RecommendedUnitCard
@@ -285,8 +288,14 @@ function RecommendedUnitCard({
         </div>
         <div className="subject-overview-progress-row flex items-center gap-1.5 min-w-0">
           <div className="subject-overview-progress-bar flex-1 h-1 bg-[#e1e4e8] rounded-sm overflow-hidden flex">
-            <div className="subject-overview-progress-fill h-full bg-[#28a745] rounded-sm shrink-0" style={{ width: `${masteredPct}%` }} />
-            <div className="subject-overview-progress-fill-inprogress h-full bg-[#f0a800] rounded-sm shrink-0" style={{ width: `${inProgressPct}%` }} />
+            <div
+              className="subject-overview-progress-fill h-full bg-[#28a745] rounded-sm shrink-0"
+              style={{ width: `${masteredPct}%` }}
+            />
+            <div
+              className="subject-overview-progress-fill-inprogress h-full bg-[#f0a800] rounded-sm shrink-0"
+              style={{ width: `${inProgressPct}%` }}
+            />
           </div>
           {stats.total > 0 && (
             <span className="subject-overview-pct text-[11px] text-[#586069] whitespace-nowrap shrink-0">
