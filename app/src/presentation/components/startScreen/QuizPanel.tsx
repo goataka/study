@@ -15,6 +15,12 @@ import { useQuizSettings } from "./useQuizSettingsStore";
 import { button } from "../../styles/buttonStyles";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 
+// 問題一覧フィルタ（すべて / 未学習 / 学習済）の共通ボタンスタイル。
+// `active` は `questionListView.tsx` の `classList.toggle("active", ...)` で
+// 切り替わるため、Tailwind の arbitrary variant `[&.active]:` でアクティブ表現する。
+const filterBtnClass =
+  "question-list-filter-btn cursor-pointer rounded-xl border border-solid border-[#d1d5da] bg-white px-3 py-1 text-sm text-[#586069] transition-colors duration-150 hover:border-[#0366d6] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:border-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:text-white";
+
 interface PanelTabButtonProps {
   tab: PanelTab;
   active: PanelTab;
@@ -95,11 +101,16 @@ export function QuizPanel(): React.JSX.Element {
         />
       </div>
 
-      <div id="quizModePanel" role="tabpanel" aria-labelledby="panelTab-quiz" className={hiddenIfNot("quiz")}>
-        <div id="statsInfo" className="stats-info">
+      <div
+        id="quizModePanel"
+        role="tabpanel"
+        aria-labelledby="panelTab-quiz"
+        className={`flex flex-1 flex-col overflow-y-auto px-[30px] py-6 ${hiddenIfNot("quiz")}`}
+      >
+        <div id="statsInfo" className="stats-info mb-4 text-center text-base text-[#666]">
           読み込み中...
         </div>
-        <div className="button-group">
+        <div className="button-group mb-5 flex flex-col gap-[15px]">
           <button id="startRandomBtn" className={button({ variant: "primary" })}>
             スタート
           </button>
@@ -196,36 +207,49 @@ export function QuizPanel(): React.JSX.Element {
         </div>
       </div>
 
-      <div id="guideContent" className={hiddenIfNot("guide")} role="tabpanel" aria-labelledby="panelTab-guide">
+      <div
+        id="guideContent"
+        className={`flex min-h-0 flex-1 flex-col overflow-hidden ${hiddenIfNot("guide")}`}
+        role="tabpanel"
+        aria-labelledby="panelTab-guide"
+      >
         <div id="guidePanelFrame" className="guide-frame"></div>
         <p id="guideNoContent" className="guide-no-content hidden">
           このカテゴリには解説がありません。
         </p>
       </div>
 
-      <div id="historyContent" className={hiddenIfNot("history")} role="tabpanel" aria-labelledby="panelTab-history">
+      <div
+        id="historyContent"
+        className={`flex-1 overflow-y-auto px-5 py-4 ${hiddenIfNot("history")}`}
+        role="tabpanel"
+        aria-labelledby="panelTab-history"
+      >
         <div id="historyList" className="history-list"></div>
       </div>
 
       <div
         id="questionListContent"
-        className={hiddenIfNot("questions")}
+        className={`flex min-h-0 flex-1 flex-col overflow-hidden ${hiddenIfNot("questions")}`}
         role="tabpanel"
         aria-labelledby="panelTab-questions"
       >
-        <div className="question-list-filter-bar">
-          <button id="questionListFilterAll" className="question-list-filter-btn active" type="button">
+        <div className="question-list-filter-bar flex shrink-0 items-center gap-2 border-b border-solid border-[#e1e4e8] bg-[#f6f8fa] px-4 py-2">
+          <button id="questionListFilterAll" className={`${filterBtnClass} active`} type="button">
             すべて
           </button>
-          <button id="questionListFilterUnlearned" className="question-list-filter-btn" type="button">
+          <button id="questionListFilterUnlearned" className={filterBtnClass} type="button">
             未学習
           </button>
-          <button id="questionListFilterLearned" className="question-list-filter-btn" type="button">
+          <button id="questionListFilterLearned" className={filterBtnClass} type="button">
             学習済
           </button>
-          <span id="questionListFilterCount" className="question-list-filter-count"></span>
+          <span
+            id="questionListFilterCount"
+            className="question-list-filter-count ml-auto text-[13px] font-semibold text-[#586069]"
+          ></span>
         </div>
-        <div id="questionListBody" className="question-list-panel-body"></div>
+        <div id="questionListBody" className="question-list-panel-body min-h-0 flex-1 overflow-y-auto py-2"></div>
       </div>
     </>
   );

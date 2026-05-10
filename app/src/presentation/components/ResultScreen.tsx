@@ -16,7 +16,7 @@ export function ResultScreen(): React.JSX.Element {
       {/* `result-message` クラス名は font-size 切替の参照キーとして残置 */}
       <div id="resultMessage" className="result-message mb-4 text-center text-[22px] font-bold text-[#0366d6]"></div>
       <div id="scoreDisplay" className="mb-10 flex justify-center"></div>
-      <div className="button-group">
+      <div className="button-group mb-5 flex flex-col gap-[15px]">
         <button id="retryAllBtn" className={button({ variant: "primary" })}>
           もう一度
         </button>
