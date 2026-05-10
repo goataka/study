@@ -4,9 +4,8 @@
  * アバター画像選択・切り抜きダイアログ
  *
  * 大半のスタイルは `src/presentation/components/AvatarCropDialog.tsx` の Tailwind
- * ユーティリティへ移行済み。ここには Tailwind で表現できない以下のみを残す:
- *   - `::backdrop` 疑似要素（モーダル背景）
- *   - `AvatarController` が動的に付け外す `.visible` / `.dragging` の状態スタイル
+ * ユーティリティへ移行済み。ここには Tailwind で表現できない
+ * `::backdrop` 疑似要素（モーダル背景）のみを残す。
  *
  * NOTE: 元 `quiz.css` のカスケード順を保つため、
  *       `quiz.css` 内での @import 順を変更しないこと。
@@ -15,16 +14,4 @@
 /* モーダル背景（HTML <dialog> の ::backdrop は Tailwind ユーティリティで指定不可） */
 .avatar-crop-dialog::backdrop {
   background: rgba(0, 0, 0, 0.4);
-}
-
-/* AvatarController が画像読み込み後に付与する。
-   Tailwind の `hidden`（display:none）に対し、より高い詳細度で display:block を当てる。 */
-.avatar-crop-preview.visible {
-  display: block;
-}
-
-/* ドラッグ中だけカーソルを grabbing に切り替える。
-   既定の `cursor-grab`（Tailwind）に対し、より高い詳細度で上書きする。 */
-.avatar-crop-preview-wrap.dragging {
-  cursor: grabbing;
 }

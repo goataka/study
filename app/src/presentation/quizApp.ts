@@ -6,9 +6,7 @@
 
 import { QuizUseCase } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord, QuizSession, Question } from "../application/quizUseCase";
-import type { IProgressRepository } from "../application/ports";
-import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
-import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";
+import type { IProgressRepository, IQuestionRepository } from "../application/ports";
 import { NotesCanvas } from "./notesCanvas";
 import { KanjiCanvasController } from "./kanjiCanvasController";
 import { NotesController } from "./notesController";
@@ -47,6 +45,36 @@ import type { QuestionListFilter } from "./quizApp/questionListView";
 
 const PANEL_TABS: readonly D.PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 
+export interface QuizAppDefaultDependencies {
+  progressRepo: IProgressRepository;
+  questionRepo: IQuestionRepository;
+}
+
+let defaultDependenciesFactory: (() => QuizAppDefaultDependencies) | null = null;
+
+export function configureQuizAppDefaultDependencies(factory: () => QuizAppDefaultDependencies): void {
+  defaultDependenciesFactory = factory;
+}
+
+function resolveQuizAppDependencies(
+  progressRepo?: IProgressRepository,
+  questionRepo?: IQuestionRepository,
+): QuizAppDefaultDependencies {
+  const defaults = !progressRepo || !questionRepo ? defaultDependenciesFactory?.() : undefined;
+
+  if (!progressRepo && !defaults?.progressRepo) {
+    throw new Error("QuizApp の progressRepo が未設定です。composition root で注入してください。");
+  }
+  if (!questionRepo && !defaults?.questionRepo) {
+    throw new Error("QuizApp の questionRepo が未設定です。composition root で注入してください。");
+  }
+
+  return {
+    progressRepo: progressRepo ?? defaults!.progressRepo,
+    questionRepo: questionRepo ?? defaults!.questionRepo,
+  };
+}
+
 /**
  * QuizApp プレゼンテーション層のメインコントローラ。
  *
@@ -58,6 +86,7 @@ export class QuizApp {
   private static readonly PANEL_TABS = PANEL_TABS;
   useCase!: QuizUseCase;
   progressRepo: IProgressRepository;
+  private readonly questionRepo: IQuestionRepository;
   currentSession: QuizSession | null = null;
   currentMode: QuizMode = "random";
   filter: QuizFilter = { subject: "all", category: "all", parentCategory: undefined };
@@ -120,12 +149,13 @@ export class QuizApp {
   includeMastered: boolean = false;
 
   /**
-   * @param progressRepo 進捗リポジトリ（省略時は LocalStorageProgressRepository を使用）。
-   *   本番環境では IndexedDBProgressRepository を渡すこと。
-   *   テスト環境では LocalStorageProgressRepository（デフォルト）をそのまま使用できる。
+   * @param progressRepo 進捗リポジトリ。省略時は composition root で設定された既定値を使う。
+   * @param questionRepo 問題リポジトリ。省略時は composition root で設定された既定値を使う。
    */
-  constructor(progressRepo?: IProgressRepository) {
-    this.progressRepo = progressRepo ?? new LocalStorageProgressRepository();
+  constructor(progressRepo?: IProgressRepository, questionRepo?: IQuestionRepository) {
+    const resolved = resolveQuizAppDependencies(progressRepo, questionRepo);
+    this.progressRepo = resolved.progressRepo;
+    this.questionRepo = resolved.questionRepo;
     this.avatarController = new AvatarController(this.progressRepo);
     this.kanjiCanvasController = new KanjiCanvasController({
       getCorrectAnswer: () => {
@@ -153,7 +183,7 @@ export class QuizApp {
       await repo.initialize();
     }
 
-    this.useCase = new QuizUseCase(new RemoteQuestionRepository("questions"), this.progressRepo);
+    this.useCase = new QuizUseCase(this.questionRepo, this.progressRepo);
 
     try {
       await this.useCase.initialize();
