@@ -5,8 +5,7 @@
  * 一括で更新する純粋な DOM 操作関数。
  */
 
-import type { Question } from "../../domain/question";
-import type { QuizSession } from "../../domain/quizSession";
+import type { Question, QuizSession } from "../../application/quizUseCase";
 import type { KanjiCanvasController } from "../kanjiCanvasController";
 import { setText } from "../uiHelpers";
 import { renderMultipleChoice, renderTextInput } from "./choicesRenderer";

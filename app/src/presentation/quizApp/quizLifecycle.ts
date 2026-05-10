@@ -10,9 +10,9 @@ import {
   type QuizFilter,
   type QuizUseCase,
   type AnswerResult,
+  type QuizSession,
   ERROR_ALL_MASTERED,
 } from "../../application/quizUseCase";
-import type { QuizSession } from "../../domain/quizSession";
 import { renderResultScreenContent } from "./resultScreenView";
 
 /** クイズ開始時の依存。 */

@@ -2,7 +2,7 @@
  * クイズ画面下部のナビゲーションボタン（前へ・次へ・採点）の表示更新ヘルパー。
  */
 
-import type { QuizSession } from "../../domain/quizSession";
+import type { QuizSession } from "../../application/quizUseCase";
 
 /**
  * 現在のセッション状態に応じて前へ／次へ／採点ボタンの表示・活性状態を更新する。

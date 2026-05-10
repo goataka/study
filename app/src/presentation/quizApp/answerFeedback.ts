@@ -4,7 +4,7 @@
  * 解答後の正誤メッセージと解説を `#answerFeedback` 配下に表示する純粋な DOM 関数。
  */
 
-import type { Question } from "../../domain/question";
+import type { Question } from "../../application/quizUseCase";
 
 /**
  * 回答フィードバック（正誤メッセージ＋解説）を表示する。
