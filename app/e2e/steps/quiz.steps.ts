@@ -173,7 +173,8 @@ When("I open the guide panel tab", async ({ page }) => {
   // 解説パネルタブをクリック
   await page.locator("#panelTab-guide").click();
   // 解説パネルが表示されるまで待つ
-  await expect(page.locator("#guideContent")).not.toHaveClass(/hidden/);
+  // overflow-hidden 等の部分一致を避けるため文字列で完全一致チェック
+  await expect(page.locator("#guideContent")).not.toHaveClass("hidden");
 });
 
 Then("the guide content div should be attached", async ({ page }) => {
