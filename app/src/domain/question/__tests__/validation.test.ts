@@ -2,8 +2,8 @@
  * Question ドメイン — バリデーション仕様
  */
 
-import { validateManifest, validateQuestionFile } from "../question";
-import type { QuestionFile } from "../question";
+import { validateManifest, validateQuestionFile } from "..";
+import type { QuestionFile } from "..";
 
 describe("validateManifest — マニフェスト検証仕様", () => {
   it("有効なマニフェストを受け入れる", () => {
