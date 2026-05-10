@@ -24,7 +24,10 @@ import { navButton } from "../styles/navButtonStyles";
 
 export function QuizScreen(): React.JSX.Element {
   return (
-    <div id="quizScreen" className="screen hidden flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-4 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]">
+    <div
+      id="quizScreen"
+      className="screen hidden flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-4 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]"
+    >
       <div
         className={[
           "quiz-landscape-layout",
@@ -78,7 +81,10 @@ export function QuizScreen(): React.JSX.Element {
             ].join(" ")}
           >
             <div className="feedback-content flex flex-col gap-3">
-              <div id="feedbackResult" className="feedback-result flex items-center gap-2 text-xl font-bold group-[.correct]:text-[#2e7d32] group-[.incorrect]:text-[#c62828]"></div>
+              <div
+                id="feedbackResult"
+                className="feedback-result flex items-center gap-2 text-xl font-bold group-[.correct]:text-[#2e7d32] group-[.incorrect]:text-[#c62828]"
+              ></div>
               <div
                 id="feedbackExplanation"
                 className="feedback-explanation rounded bg-white/70 p-3 text-lg leading-relaxed text-[#333]"

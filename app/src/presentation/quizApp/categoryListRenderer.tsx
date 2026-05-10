@@ -11,10 +11,7 @@ import * as React from "react";
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { CategoryItem, type CategoryItemProps } from "../components/CategoryItem";
 import { ParentCategoryGroup, type ParentCategoryGroupProps } from "../components/ParentCategoryGroup";
-import {
-  type CreateCategoryItemParams,
-  type BuildParentCategoryGroupParams,
-} from "./categoryItemBuilder";
+import { type CreateCategoryItemParams, type BuildParentCategoryGroupParams } from "./categoryItemBuilder";
 import { renderReactInto } from "./reactMount";
 
 /** トップカテゴリヘッダークリック時の選択／非選択トグル処理。 */
@@ -54,7 +51,9 @@ function TopCategoryGroup(props: TopCategoryGroupProps): React.JSX.Element {
 
   return (
     <div
-      className={["category-top-group flex flex-col gap-0.5 mt-1", collapsed ? "collapsed" : ""].filter(Boolean).join(" ")}
+      className={["category-top-group flex flex-col gap-0.5 mt-1", collapsed ? "collapsed" : ""]
+        .filter(Boolean)
+        .join(" ")}
       data-top-category={topCatId}
     >
       <div
@@ -103,7 +102,9 @@ function GradeCategoryGroup(props: GradeCategoryGroupProps): React.JSX.Element {
 
   return (
     <div
-      className={["category-grade-group flex flex-col gap-0.5 mb-1", collapsed ? "collapsed" : ""].filter(Boolean).join(" ")}
+      className={["category-grade-group flex flex-col gap-0.5 mb-1", collapsed ? "collapsed" : ""]
+        .filter(Boolean)
+        .join(" ")}
       data-grade={gradeId}
     >
       <div
@@ -248,7 +249,9 @@ export function renderCategoryListByCategory(params: RenderCategoryListByCategor
       parentCatIdsInTopGroups.add(parentCatId);
       const cats = categoriesByParent.get(parentCatId) ?? {};
       if (Object.keys(cats).length === 0) continue;
-      groupItems.push(buildParentCategoryGroupProps(params.parentGroupCtx, subject, parentCatId, parentCatName, cats, topCatId));
+      groupItems.push(
+        buildParentCategoryGroupProps(params.parentGroupCtx, subject, parentCatId, parentCatName, cats, topCatId),
+      );
     }
 
     if (groupItems.length === 0) continue;
@@ -321,7 +324,9 @@ export function renderCategoryListByGrade(params: RenderCategoryListByGradeParam
         gradeId={gradeId}
         headerLabel={headerLabel}
         collapsed={params.collapsedGradeGroups.has(gradeId)}
-        items={Object.entries(cats).map(([catId, catName]) => buildCategoryItemProps(params.itemCtx, subject, catId, catName))}
+        items={Object.entries(cats).map(([catId, catName]) =>
+          buildCategoryItemProps(params.itemCtx, subject, catId, catName),
+        )}
         onHeaderActivate={() => params.onGradeHeaderClick(gradeId)}
         onToggle={() => {
           if (params.collapsedGradeGroups.has(gradeId)) {

@@ -39,7 +39,10 @@ export function OuterBottomRow(): React.JSX.Element {
       </div>
       <div className="col-start-3 flex items-center gap-2.5 justify-self-end">
         <div id="fontSizeBtns" className="font-size-btns flex items-center gap-1" role="group" aria-label="文字サイズ">
-          <span className="font-size-icon text-lg font-bold text-white mr-0.5 select-none leading-none" aria-hidden="true">
+          <span
+            className="font-size-icon text-lg font-bold text-white mr-0.5 select-none leading-none"
+            aria-hidden="true"
+          >
             A
           </span>
           <button

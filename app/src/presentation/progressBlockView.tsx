@@ -215,7 +215,9 @@ function BlockGroup({ vm, onSelect }: BlockGroupProps): React.JSX.Element {
   return (
     <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white">
       <div className="progress-block-group-header flex flex-row items-center gap-2 flex-wrap">
-        <span className="progress-block-group-name text-[15px] font-bold text-[#24292e] shrink min-w-0 break-words">{vm.groupName}</span>
+        <span className="progress-block-group-name text-[15px] font-bold text-[#24292e] shrink min-w-0 break-words">
+          {vm.groupName}
+        </span>
         <span className="progress-block-group-stats text-xs text-[#586069] shrink-0">{`(${vm.mastered}/${vm.total})`}</span>
       </div>
       <div className="progress-block-sequence flex flex-row flex-wrap gap-[3px]">
@@ -250,7 +252,10 @@ function BlockGroup({ vm, onSelect }: BlockGroupProps): React.JSX.Element {
 
 function EmptyMessage(): React.JSX.Element {
   return (
-    <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white" role="status">
+    <div
+      className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white"
+      role="status"
+    >
       表示する単元がありません
     </div>
   );
@@ -273,14 +278,20 @@ function ProgressDetailByCategoryView({ ctx }: { ctx: ProgressBlockContext }): R
   const vm = buildCategoryViewModel(ctx);
   const onSelect = (catId: string, catName: string): void => ctx.onSelectUnit(ctx.subject, catId, catName);
   if (vm.noUnits) {
-    return <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white">単元がありません</div>;
+    return (
+      <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white">
+        単元がありません
+      </div>
+    );
   }
   if (vm.empty) return <EmptyMessage />;
   return (
     <>
       {vm.topGroups.map((tg) => (
         <Fragment key={tg.topName}>
-          <div className="progress-top-category-header text-sm font-bold text-[#0366d6] px-3 pt-1.5 pb-0.5 border-b-2 border-[#c8d8e8] mt-1.5">{tg.topName}</div>
+          <div className="progress-top-category-header text-sm font-bold text-[#0366d6] px-3 pt-1.5 pb-0.5 border-b-2 border-[#c8d8e8] mt-1.5">
+            {tg.topName}
+          </div>
           {tg.groups.map((g) => (
             <BlockGroup key={g.groupName} vm={g} onSelect={onSelect} />
           ))}

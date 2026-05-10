@@ -48,7 +48,11 @@ export function OverallSummaryPanel(): React.JSX.Element {
       role="region"
       aria-label="活動サマリ"
     >
-      <div className={`${panelTabs()} overall-panel-tabs flex border-b border-[#e1e4e8] bg-[#f6f8fa] shrink-0`} role="tablist" aria-label="概要パネル切り替え">
+      <div
+        className={`${panelTabs()} overall-panel-tabs flex border-b border-[#e1e4e8] bg-[#f6f8fa] shrink-0`}
+        role="tablist"
+        aria-label="概要パネル切り替え"
+      >
         <OverallPanelTabButton panel="learned" active={active} id="overallTab-learned" label="🎓 学習状況" />
         <OverallPanelTabButton panel="share" active={active} id="overallTab-share" label="📤 シェア" />
       </div>
@@ -57,7 +61,10 @@ export function OverallSummaryPanel(): React.JSX.Element {
         className={`${active === "learned" ? "overall-activity-panel flex flex-col flex-1 overflow-y-auto px-4 py-3 gap-2 min-h-0" : "overall-activity-panel hidden"}`}
       >
         <div className="overall-activity-date-row shrink-0">
-          <span id="overallActivityDateLabel" className="overall-activity-date text-base font-semibold text-[#24292e]"></span>
+          <span
+            id="overallActivityDateLabel"
+            className="overall-activity-date text-base font-semibold text-[#24292e]"
+          ></span>
         </div>
         <div id="overallSubjectStatusSummary" className="overall-subject-status-summary flex flex-col gap-1"></div>
         <div id="todayActivityContent" className="history-list overall-today-list flex flex-col gap-2.5"></div>
@@ -71,18 +78,10 @@ export function OverallSummaryPanel(): React.JSX.Element {
           className="share-summary-text text-xs text-[#444] bg-[#f6f8fa] border border-[#e1e4e8] rounded-md px-[10px] py-2 whitespace-pre-wrap break-words min-h-12 leading-[1.5] shrink-0"
         ></div>
         <div className="share-actions-row flex items-center gap-1.5 shrink-0">
-          <button
-            id="copySummaryBtn"
-            className={shareButton({ kind: "copy" })}
-            type="button"
-          >
+          <button id="copySummaryBtn" className={shareButton({ kind: "copy" })} type="button">
             📋 コピー
           </button>
-          <button
-            id="openShareUrlBtn"
-            className={shareButton({ kind: "open", hidden: true })}
-            type="button"
-          >
+          <button id="openShareUrlBtn" className={shareButton({ kind: "open", hidden: true })} type="button">
             📤 共有
           </button>
           <div className="share-url-inline flex-1 min-w-0">
@@ -103,12 +102,7 @@ export function OverallSummaryPanel(): React.JSX.Element {
                 aria-label="共有URL"
                 placeholder="共有URLを入力（例: https://twitter.com）"
               />
-              <button
-                id="saveShareUrlBtn"
-                className={shareButton({ kind: "save" })}
-                type="button"
-                aria-label="保存"
-              >
+              <button id="saveShareUrlBtn" className={shareButton({ kind: "save" })} type="button" aria-label="保存">
                 ✓
               </button>
             </div>
