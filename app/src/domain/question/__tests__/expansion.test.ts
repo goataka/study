@@ -2,8 +2,8 @@
  * Question ドメイン — 問題展開仕様
  */
 
-import { expandQuestions } from "../question";
-import type { QuestionFile, Question } from "../question";
+import { expandQuestions } from "..";
+import type { QuestionFile, Question } from "..";
 
 describe("expandQuestions — 問題展開仕様", () => {
   const qf: QuestionFile = {

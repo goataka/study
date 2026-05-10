@@ -242,11 +242,12 @@ I `played` games.
 
 ### テスト追加のルール
 
-- 新しいソースファイルを追加する場合は、**同一フォルダに対応するテストファイルを必ず作成すること**
-  - 例: `src/infrastructure/foo.ts` → `src/infrastructure/foo.test.ts`
+- 新しいソースファイルを追加する場合は、**対応するテストファイルを必ず作成すること**
+  - 配置先は「テストの配置ルール」に従う（新規コードは `__tests__/` 配下を推奨）
+  - 例: `src/infrastructure/foo.ts` → `src/infrastructure/__tests__/foo.test.ts`
 - インターフェースのみのファイル（`ports.ts` など）はテスト不要だが、その旨をコメントに記載する
 - 新しい問題カテゴリ（JSONファイル）を追加したら、必ず `npm run test` でデータ整合性テストが通ることを確認する
-- バリデーション関数を変更した場合は `src/domain/question.test.ts` のテストも更新する
+- バリデーション関数を変更した場合は `src/domain/question/__tests__/validation.test.ts` のテストも更新する
 - **新しい画面・UI機能を追加・変更した場合は、必ず対応するE2Eシナリオを `e2e/features/` に追加または修正すること**
   - 新しい画面（例: 設定画面、結果詳細画面）を追加した場合 → 対応するフィーチャーファイルを追加する
   - 既存の画面に機能を追加した場合（例: 新ボタン、新フィルター）→ 既存フィーチャーファイルにシナリオを追記する
@@ -258,15 +259,29 @@ I `played` games.
 
 ```
 app/src/
-  domain/           # ビジネスロジック（純粋関数・エンティティ・集約）
-    question.ts     # Question エンティティ、型定義、バリデーション関数
-    question.test.ts
+  domain/           # ビジネスロジック（純粋関数・エンティティ・集約・値オブジェクト）
+    question/       # Question 関連のドメインロジック（型・検証・展開・シャッフル）
+      index.ts                 # 公開エントリ（再エクスポート）
+      types.ts                 # Question / QuestionFile などの型定義
+      validateManifest.ts      # マニフェスト検証
+      validateQuestionFile.ts  # 問題ファイル検証
+      validateGuideUrl.ts      # 解説 URL 検証ヘルパー
+      expandQuestions.ts       # QuestionFile → Question[] 展開
+      shuffleChoices.ts        # 決定論的シャッフル
+      __tests__/               # question/ 配下の全テスト
+    valueObjects/   # ValueObject 群（QuestionId / Score / CategoryPath）
+      index.ts
+      QuestionId.ts
+      Score.ts
+      CategoryPath.ts
+      __tests__/
     quizSession.ts  # QuizSession 集約（問題選択・回答・採点）
-    quizSession.test.ts
+    categoryRegistry.ts # カテゴリ階層・メタデータ集約
+    __tests__/      # quizSession / categoryRegistry のテスト
   application/      # ユースケース（ポートに依存、実装には依存しない）
     ports.ts        # IQuestionRepository / IProgressRepository インターフェース
     quizUseCase.ts  # クイズの開始・採点・進捗保存を統括
-    quizUseCase.test.ts
+    quizUseCase/    # ユースケース内責務分割と各テスト
   infrastructure/   # 外部システムとの接続（fetch、IndexedDB）
     remoteQuestionRepository.ts       # IQuestionRepository の実装（fetch）
     remoteQuestionRepository.test.ts
@@ -280,6 +295,13 @@ app/src/
     notesCanvas.ts  # 手書きメモ用キャンバスコントローラー
     ocrService.ts   # OCR（Tesseract.js）サービス
 ```
+
+#### ドメイン層の値オブジェクト（ValueObject）規約
+
+- **配置先**: `domain/valueObjects/<Name>.ts` に 1 ファイル 1 ValueObject を配置する。テストは同フォルダ配下の `__tests__/` に置く。
+- **不変（immutable）**: コンストラクタを `private` にし、`static` ファクトリ（`from` / `of` 等）経由で生成する。フィールドは `readonly`。
+- **値同一性**: `equals(other)` を実装し、生成時のバリデーションでドメイン不変条件を保証する。
+- **既存代替**: 既存コードがプリミティブ（string / number）を直接扱っている箇所をリファクタする際、新規追加の関数では ValueObject を優先する。外部公開 API の引数型は段階的に置換する。
 
 ### クリーンアーキテクチャの維持ルール
 
@@ -321,10 +343,14 @@ app/src/
 - CVA レシピを書くときは、フォントサイズ切替（`15-font-size.css`）など既存 CSS が依存する**セマンティッククラス名**（例：`primary-btn`）はレシピの出力に含めて維持する。これにより legacy CSS との互換性を保ちつつ見た目だけ Tailwind に移行できる。
 - セマンティッククラス名を CVA レシピから削除してよいのは、**そのクラス名を参照する手書き CSS が `app/css/parts/` 配下から完全に消えた時点**。それまでは互換性維持のため残す。
 
-### テストの配置ルール（コロケーション）
+### テストの配置ルール
 
-- テストファイルは対象ソースファイルと同じディレクトリに配置する（`*.test.ts`）
-- `tests/` ディレクトリは廃止済み。`src/` 内のコロケーションテストを使用すること
+新規追加するテストは、同じフォルダ内の `__tests__/` サブフォルダに配置することを **推奨** とする（DDD の階層をフォルダで明示する方針）。
+
+- 推奨形：`src/domain/valueObjects/QuestionId.ts` ↔ `src/domain/valueObjects/__tests__/QuestionId.test.ts`
+- ファイル名（basename）は対象ソースと同じ語幹に `.test.ts` を付ける
+- `tests/` ディレクトリは廃止済み。`src/` 内に置くこと
+- 既存のコロケーション配置（同一フォルダ直下の `*.test.ts`）も互換のため許容するが、**新規追加・大規模リファクタの際は `__tests__/` 配下に揃える**
 - テストは **仕様テストスタイル**（Behavior-Driven）で記述し、`it("〇〇できる", ...)` のように日本語で仕様を表現する
 
 ### E2E テスト（Playwright + Gherkin）

@@ -2,8 +2,8 @@
  * Question ドメイン — バリデーション仕様
  */
 
-import { validateManifest, validateQuestionFile } from "../question";
-import type { QuestionFile } from "../question";
+import { validateManifest, validateQuestionFile } from "..";
+import type { QuestionFile } from "..";
 
 describe("validateManifest — マニフェスト検証仕様", () => {
   it("有効なマニフェストを受け入れる", () => {
@@ -148,6 +148,14 @@ describe("validateQuestionFile — 問題ファイル検証仕様", () => {
   it("guideUrl に URL エンコードされたパストラバーサルが含まれる場合は拒否する", () => {
     expect(() => validateQuestionFile({ ...validQF, guideUrl: "../math/%2e%2e/etc/passwd" })).toThrow(
       '"guideUrl" must not contain path traversal sequences',
+    );
+  });
+
+  it("guideUrl が不正なパーセントエンコードを含む場合は拒否する（デコード例外）", () => {
+    // "%E0%A4%A" は不完全なエンコードで decodeURIComponent が URIError をスローする。
+    // この種の入力でデコード検査をバイパスしてパストラバーサルを成立させないように reject する。
+    expect(() => validateQuestionFile({ ...validQF, guideUrl: "../math/%E0%A4%A" })).toThrow(
+      '"guideUrl" must be a valid URL-encoded string',
     );
   });
 
@@ -402,6 +410,27 @@ describe("validateQuestionFile — text-input 問題種別の検証仕様", () =
     expect(() => validateQuestionFile({ ...validTextInputQF, questionType: "invalid-type" })).toThrow(
       '"questionType" must be "multiple-choice" or "text-input"',
     );
+  });
+
+  it("問題レベルの caseSensitive が true/false の場合は受け入れる", () => {
+    const qfTrue = {
+      ...validTextInputQF,
+      questions: [{ ...validTextInputQF.questions[0]!, caseSensitive: true }],
+    };
+    const qfFalse = {
+      ...validTextInputQF,
+      questions: [{ ...validTextInputQF.questions[0]!, caseSensitive: false }],
+    };
+    expect(() => validateQuestionFile(qfTrue)).not.toThrow();
+    expect(() => validateQuestionFile(qfFalse)).not.toThrow();
+  });
+
+  it("問題レベルの caseSensitive がブール値でない場合は拒否する", () => {
+    const qf = {
+      ...validTextInputQF,
+      questions: [{ ...validTextInputQF.questions[0]!, caseSensitive: "true" }],
+    };
+    expect(() => validateQuestionFile(qf)).toThrow("Question[0].caseSensitive must be a boolean if present");
   });
 });
 
