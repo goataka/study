@@ -119,6 +119,12 @@ function validateRawQuestion(q: unknown, i: number, fileQuestionType: QuestionTy
   }
   const qType: QuestionType = (qObj.questionType as QuestionType | undefined) ?? fileQuestionType;
 
+  // caseSensitive（問題レベル）はオプション。存在する場合は boolean 必須
+  // （未検証だと "true" 等の文字列が truthy として採点ロジックへ伝播してしまう）
+  if (qObj.caseSensitive !== undefined && typeof qObj.caseSensitive !== "boolean") {
+    throw new Error(`Question[${i}].caseSensitive must be a boolean if present`);
+  }
+
   if (!Array.isArray(qObj.choices) || qObj.choices.length === 0) {
     throw new Error(`Question[${i}].choices must be a non-empty array`);
   }

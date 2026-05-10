@@ -24,11 +24,13 @@ export function validateGuideUrl(value: string, fieldName: string): void {
   }
   // パストラバーサル防止：URL デコード後にさらなる .. が含まれないことを確認
   if (isRelative) {
-    let decoded = value;
+    let decoded: string;
     try {
       decoded = decodeURIComponent(value);
     } catch {
-      // デコード失敗の場合は元の文字列で検証
+      // 不正なパーセントエンコード（例: "%" 単独や "%ZZ"）は、デコード後の `..` 検査をバイパスして
+      // パストラバーサルを成立させる余地を生むため、その時点で拒否する。
+      throw new Error(`"${fieldName}" must be a valid URL-encoded string`);
     }
     const prefix = isParentRelative ? "../" : "./";
     if (decoded.slice(prefix.length).includes("..")) {
