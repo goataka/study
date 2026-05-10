@@ -12,6 +12,9 @@ import { CategoryRegistry } from "../domain/categoryRegistry";
 import type { IQuestionRepository, IProgressRepository, QuizRecord, UserDataExport } from "./ports";
 
 export type { QuizMode, QuizFilter, AnswerResult, QuizRecord, UserDataExport };
+export type { Question } from "../domain/question";
+export { shuffleChoices } from "../domain/question";
+export type { QuizSession } from "../domain/quizSession";
 
 /** 全問習得済み時にスローするエラーメッセージ定数 */
 export const ERROR_ALL_MASTERED = "ALL_MASTERED";

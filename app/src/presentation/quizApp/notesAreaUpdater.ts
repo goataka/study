@@ -2,7 +2,7 @@
  * 問題のタイプ・回答状態に応じてメモエリア（手書きキャンバス／KanjiCanvas 入力）を切り替えるヘルパー。
  */
 
-import type { Question } from "../../domain/question";
+import type { Question } from "../../application/quizUseCase";
 import type { KanjiCanvasController } from "../kanjiCanvasController";
 
 /**

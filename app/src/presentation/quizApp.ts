@@ -5,9 +5,7 @@
  */
 
 import { QuizUseCase } from "../application/quizUseCase";
-import type { QuizMode, QuizFilter, AnswerResult, QuizRecord } from "../application/quizUseCase";
-import { QuizSession } from "../domain/quizSession";
-import type { Question } from "../domain/question";
+import type { QuizMode, QuizFilter, AnswerResult, QuizRecord, QuizSession, Question } from "../application/quizUseCase";
 import type { IProgressRepository } from "../application/ports";
 import { RemoteQuestionRepository } from "../infrastructure/remoteQuestionRepository";
 import { LocalStorageProgressRepository } from "../infrastructure/localStorageProgressRepository";

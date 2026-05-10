@@ -8,8 +8,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import type { Question } from "../../domain/question";
-import type { QuizSession } from "../../domain/quizSession";
+import type { Question, QuizSession } from "../../application/quizUseCase";
 import { renderReactInto } from "./reactMount";
 
 /** 回答後に QuizApp 側で実行するコールバック群。 */

@@ -6,8 +6,7 @@ import {
   formatCategoryStatsText,
   type CategoryStat,
 } from "./categoryStatsCalculator";
-import type { QuizUseCase } from "../../application/quizUseCase";
-import type { Question } from "../../domain/question";
+import type { QuizUseCase, Question } from "../../application/quizUseCase";
 
 describe("categoryStatsCalculator", () => {
   describe("formatCategoryStatsText", () => {

@@ -7,8 +7,7 @@
 
 import { useState } from "react";
 import { flushSync } from "react-dom";
-import type { Question } from "../../domain/question";
-import type { QuizUseCase } from "../../application/quizUseCase";
+import type { Question, QuizUseCase } from "../../application/quizUseCase";
 
 export interface QuestionListProps {
   questions: Question[];

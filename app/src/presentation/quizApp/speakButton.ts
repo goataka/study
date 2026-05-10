@@ -5,7 +5,7 @@
  * クリック時にアメリカ英語（en-US）で読み上げる。
  */
 
-import type { Question } from "../../domain/question";
+import type { Question } from "../../application/quizUseCase";
 
 const QUOTED_SPEECH_PATTERNS = [/「([^」]+)」/, /`([^`]+)`/] as const;
 const TRAILING_HINT_PATTERN = /\s*\([^)]*\)\s*$/;

@@ -6,8 +6,7 @@
  * 経由で描画する。公開 API（関数名・引数）は維持。
  */
 
-import type { Question } from "../../domain/question";
-import type { QuizFilter, QuizUseCase } from "../../application/quizUseCase";
+import type { Question, QuizFilter, QuizUseCase } from "../../application/quizUseCase";
 import { QuestionList } from "./QuestionList";
 import { renderReactInto } from "./reactMount";
 

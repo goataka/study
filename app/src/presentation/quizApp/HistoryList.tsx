@@ -10,8 +10,7 @@
 
 import { useState } from "react";
 import type { QuizUseCase, QuizRecord } from "../../application/quizUseCase";
-import { NO_ANSWER_TEXT } from "../../application/quizUseCase";
-import { shuffleChoices } from "../../domain/question";
+import { NO_ANSWER_TEXT, shuffleChoices } from "../../application/quizUseCase";
 
 export interface HistoryListProps {
   records: QuizRecord[];
