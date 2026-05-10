@@ -28,33 +28,35 @@ export function TabsUserRow(): React.JSX.Element {
       <div className="tabs-user-area">
         <button
           id="headerUserName"
-          className="header-user-name"
+          className="header-user-name text-[15px] text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-1.5 py-0.5 cursor-pointer transition-[background,color] duration-150 -translate-y-0.5 hover:bg-white/20 hover:text-white focus:bg-white/20 focus:text-white focus:outline-none"
           type="button"
           title="名前を編集する"
           aria-label="名前を編集する"
         ></button>
-        <div id="headerUserEdit" className="header-user-edit hidden">
+        <div id="headerUserEdit" className="header-user-edit hidden flex items-center gap-1">
           <input
             type="text"
             id="headerUserNameInput"
-            className="header-user-name-input"
+            className="header-user-name-input px-2 py-1 border border-[#0366d6] rounded-md text-base w-[140px] shadow-[0_0_0_3px_rgba(3,102,214,0.1)] outline-none"
             maxLength={20}
             placeholder="名前を入力"
           />
-          <button id="headerUserNameSaveBtn" className="header-user-save-btn" aria-label="保存">
+          <button id="headerUserNameSaveBtn" className="header-user-save-btn px-2 py-1 bg-[#28a745] text-white border-none rounded-md cursor-pointer text-base font-semibold transition-[background] duration-200 hover:bg-[#218838]" aria-label="保存">
             ✓
           </button>
         </div>
         <button
           id="headerUserAvatar"
-          className="header-user-avatar"
+          className="header-user-avatar relative w-8 h-8 rounded-full border-2 border-[#d0d8e0] overflow-hidden cursor-pointer shrink-0 flex items-center justify-center bg-[#f0f4f8] transition-[border-color,box-shadow] duration-150 select-none p-0 -translate-y-0.5 hover:border-[#0366d6] hover:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus:border-[#0366d6] focus:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus:outline-none"
           type="button"
           title="プロフィール画像を変更する"
           aria-label="プロフィール画像を変更する"
         >
           {/* src は AvatarController が動的に設定する。空文字属性は React の警告対象なので未設定にする。 */}
-          <img id="headerUserAvatarImg" className="header-user-avatar-img" alt="" aria-hidden="true" />
-          <span id="headerUserAvatarPlaceholder" className="header-user-avatar-placeholder" aria-hidden="true">
+          {/* display は JS が .visible クラスで制御するため 11-header-controls.css の display:none/.visible ルールを残置 */}
+          <img id="headerUserAvatarImg" className="header-user-avatar-img w-full h-full object-cover rounded-full" alt="" aria-hidden="true" />
+          {/* display は JS が .hidden クラスで制御するため 11-header-controls.css の .hidden ルールを参照 */}
+          <span id="headerUserAvatarPlaceholder" className="header-user-avatar-placeholder text-base leading-none text-[#8a9ab0]" aria-hidden="true">
             👤
           </span>
         </button>

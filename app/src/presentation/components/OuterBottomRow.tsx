@@ -38,17 +38,32 @@ export function OuterBottomRow(): React.JSX.Element {
         © 2026 goataka
       </div>
       <div className="col-start-3 flex items-center gap-2.5 justify-self-end">
-        <div id="fontSizeBtns" className="font-size-btns" role="group" aria-label="文字サイズ">
-          <span className="font-size-icon" aria-hidden="true">
+        <div id="fontSizeBtns" className="font-size-btns flex items-center gap-1" role="group" aria-label="文字サイズ">
+          <span className="font-size-icon text-lg font-bold text-white mr-0.5 select-none leading-none" aria-hidden="true">
             A
           </span>
-          <button className="font-size-btn active" data-size="small" aria-pressed="true" title="文字サイズ：小">
+          <button
+            className="font-size-btn active cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-[10px] py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[11px]"
+            data-size="small"
+            aria-pressed="true"
+            title="文字サイズ：小"
+          >
             小
           </button>
-          <button className="font-size-btn" data-size="medium" aria-pressed="false" title="文字サイズ：中">
+          <button
+            className="font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-[10px] py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[15px]"
+            data-size="medium"
+            aria-pressed="false"
+            title="文字サイズ：中"
+          >
             中
           </button>
-          <button className="font-size-btn" data-size="large" aria-pressed="false" title="文字サイズ：大">
+          <button
+            className="font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-[10px] py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[19px]"
+            data-size="large"
+            aria-pressed="false"
+            title="文字サイズ：大"
+          >
             大
           </button>
         </div>
