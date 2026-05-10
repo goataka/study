@@ -7,7 +7,8 @@
  *       `quiz.css` 内での @import 順を変更しないこと。
  */
 
-/* 進度タブ: 教科セレクターボタン群 */
+/* 進度タブ: 教科セレクターボタン群
+ * 基本スタイルは Tailwind 化済み（ProgressDetailPanel.tsx）。 */
 .progress-subject-selector {
   display: flex;
   gap: 6px;
@@ -42,7 +43,8 @@
   color: white;
 }
 
-/* 進度タブ: 左パネルの教科リスト */
+/* 進度タブ: 左パネルの教科リスト
+ * 基本スタイルは Tailwind 化済み（progressView.tsx）。クラス名は残置。 */
 .progress-subject-list {
   display: flex;
   flex-direction: column;
@@ -84,36 +86,7 @@
   outline-offset: 2px;
 }
 
-.progress-subject-list-icon {
-  font-size: 18px;
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.progress-subject-list-name-area {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.progress-subject-list-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #24292e;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
-  word-break: break-word;
-}
-
-.progress-subject-list-stats {
-  font-size: 12px;
-  color: #586069;
-}
-
-/* 進度詳細パネル（右パネル） */
+/* 進度詳細パネル関連のスタイルは Tailwind 化済み（ProgressDetailPanel.tsx）。 */
 .progress-detail-panel {
   display: flex;
   flex-direction: column;
@@ -134,7 +107,8 @@
   gap: 12px;
 }
 
-/* 進度詳細: 各グループ行 */
+/* 進度詳細: 各グループ行
+ * 基本スタイルは Tailwind 化済み（progressBlockView.tsx）。クラス名は残置。 */
 .progress-block-group {
   display: flex;
   flex-direction: column;
@@ -145,7 +119,7 @@
   background: white;
 }
 
-/* トップカテゴリヘッダー（カテゴリ別ビューの区切り） */
+/* トップカテゴリヘッダーは Tailwind 化済み（progressBlockView.tsx）。 */
 .progress-top-category-header {
   font-size: 14px;
   font-weight: 700;
@@ -155,6 +129,7 @@
   margin-top: 6px;
 }
 
+/* ■□ブロック列は Tailwind 化済み（progressBlockView.tsx / progressMatrixView.tsx）。 */
 .progress-block-group-header {
   display: flex;
   flex-direction: row;
@@ -181,7 +156,6 @@
   flex-shrink: 0;
 }
 
-/* ■□ブロック列 */
 .progress-block-sequence {
   display: flex;
   flex-direction: row;
@@ -230,7 +204,7 @@
   z-index: 1;
 }
 
-/* マトリクス表示（縦横切り替えボタン） */
+/* マトリクス表示関連（複雑な table セレクタのため CSS に残置） */
 .progress-matrix-corner-toggle {
   user-select: none;
 }
@@ -256,12 +230,12 @@
   background: rgba(246, 164, 0, 0.12);
 }
 
-/* マトリクス表示テーブル */
 .progress-matrix-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 11px;
   table-layout: auto;
+  --matrix-top-header-height: 27px;
 }
 
 .progress-matrix-table th,
@@ -272,7 +246,6 @@
   white-space: nowrap;
 }
 
-/* 1行目のヘッダー（トップカテゴリ）を上端に固定 */
 .progress-matrix-table thead tr:first-child th {
   background: #ddeeff;
   color: #0366d6;
@@ -286,12 +259,6 @@
   color: #24292e;
 }
 
-/* 2行目のヘッダー（親カテゴリ）を1行目の高さ分下にずらして固定。
-   1行目の高さ: padding 4px×2 + line-height 1.5×11px ≈ 25px → 27px に設定 */
-.progress-matrix-table {
-  --matrix-top-header-height: 27px;
-}
-
 .progress-matrix-table thead tr:nth-child(2) th {
   background: #f0f7ff;
   color: #586069;
@@ -301,7 +268,6 @@
   z-index: 2;
 }
 
-/* コーナーセル（学年/カテゴリの交差セル）のみ左・上両方に固定 */
 .progress-matrix-table thead tr:first-child th:first-child {
   position: sticky;
   left: 0;
@@ -335,7 +301,6 @@
   color: #b0b8c1;
 }
 
-/* 単元ブロックを内包するマトリクスセル */
 .progress-matrix-cell-units {
   padding: 4px;
   vertical-align: top;
@@ -348,14 +313,13 @@
   min-width: 140px;
 }
 
-/* マトリクスセル内の単元ブロックを縦配置にする */
 .progress-matrix-cell-units-inner {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-/* 小サイズの単元ブロック（マトリクス内）：縦配置・幅いっぱい */
+/* 小サイズの単元ブロック（マトリクス内）は Tailwind 化済み（progressMatrixView.tsx）。 */
 .progress-block-sm {
   font-size: 10px;
   min-width: 0;
@@ -371,7 +335,6 @@
   font-family: inherit;
 }
 
-/* マトリクスの親カテゴリ行ヘッダー */
 .progress-matrix-parent-header {
   font-size: inherit;
   font-weight: 700;
@@ -381,7 +344,6 @@
   border-bottom: 1px solid #c8d8e8;
 }
 
-/* マトリクスのトップカテゴリ列スパンヘッダー */
 .progress-matrix-top-header {
   background: #e0efff;
   font-weight: 700;

@@ -43,14 +43,19 @@ function ProgressDetailTabButton({ mode, active, id, label }: ProgressDetailTabB
 export function ProgressDetailPanel(): React.JSX.Element {
   const active = useActiveProgressDetailMode();
   return (
-    <div id="progressDetailPanel" className="hidden progress-detail-panel" role="region" aria-label="進度詳細">
+    <div
+      id="progressDetailPanel"
+      className="hidden progress-detail-panel flex flex-col h-full overflow-hidden"
+      role="region"
+      aria-label="進度詳細"
+    >
       <div className="progress-detail-close-row">
         <span className="progress-detail-close-title">📊 進度詳細</span>
         <button id="progressDetailCloseBtn" className="admin-data-close-btn" type="button" aria-label="閉じる">
           ✕
         </button>
       </div>
-      <div className={`${panelTabs()} progress-detail-tabs`} role="tablist" aria-label="進度詳細タブ">
+      <div className={`${panelTabs()} progress-detail-tabs shrink-0`} role="tablist" aria-label="進度詳細タブ">
         <ProgressDetailTabButton mode="grade" active={active} id="progressDetailTab-grade" label="🎓 学年別" />
         <ProgressDetailTabButton
           mode="category"
@@ -99,7 +104,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
       </div>
       <div
         id="progressDetailContent"
-        className="progress-detail-content"
+        className="progress-detail-content flex-1 overflow-y-auto px-1 py-2 flex flex-col gap-3"
         role="tabpanel"
         aria-labelledby={`progressDetailTab-${active}`}
       ></div>
