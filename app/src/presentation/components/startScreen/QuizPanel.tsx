@@ -3,12 +3,10 @@
  *
  * クイズモードの設定（問題数 / 並び順 / 学習済の扱い）と「学習済みにする」ボタンを含む。
  * インナータブの active 状態と各パネルの hidden 表示は `panelTabsStore` を購読して
- * 宣言的に反映する。クリックハンドラは React onClick ではなく `buildPanelTabs`
- * （`quizApp/tabsBuilder.tsx`）の DOM 委譲で処理する（既存の静的 HTML テストとの
- * 二重発火を避けるため。詳細は `PanelTabButton` 内コメント参照）。
+ * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
  */
 
-import { type PanelTab } from "./panelTabsStore";
+import { setActivePanelTab, type PanelTab } from "./panelTabsStore";
 import { useActivePanelTab, useHiddenPanelTabs } from "./usePanelTabsStore";
 import { setQuizSettings } from "./quizSettingsStore";
 import { useQuizSettings } from "./useQuizSettingsStore";
@@ -45,14 +43,7 @@ function PanelTabButton({ tab, active, hidden, id, controls, label }: PanelTabBu
       aria-selected={isActive}
       aria-controls={controls}
       tabIndex={isActive ? 0 : -1}
-      // クリックハンドラは buildPanelTabs（quizApp/tabsBuilder.tsx）が
-      // addEventListener で登録する。React onClick を併用すると、静的 HTML を
-      // 利用する既存テスト群（quizApp/panels.test.ts 等）の DOM 委譲と
-      // 二重発火するため、ここでは onClick を付けない。React は active / hidden /
-      // aria 属性の宣言的反映のみを担う。
-      //
-      // 将来、すべての関連テストが React マウントを使う形に統一できたら
-      // DOM 委譲を撤去し、ここに onClick を移すことで dual-control を解消する。
+      onClick={() => setActivePanelTab(tab)}
     >
       {label}
     </button>

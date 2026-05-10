@@ -5,12 +5,10 @@
  * `progressDetailContent` 内の描画は既存コントローラが行う。
  *
  * タブの active 状態と aria-labelledby は `panelTabsStore` を購読して
- * 宣言的に反映する。クリックハンドラは React onClick ではなく
- * `setupProgressDetailTabs` の DOM 委譲で処理する（既存の静的 HTML テストとの
- * 二重発火を避けるため）。
+ * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
  */
 
-import { type ProgressDetailMode } from "./panelTabsStore";
+import { setActiveProgressDetailMode, type ProgressDetailMode } from "./panelTabsStore";
 import { useActiveProgressDetailMode } from "./usePanelTabsStore";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 
@@ -33,7 +31,7 @@ function ProgressDetailTabButton({ mode, active, id, label }: ProgressDetailTabB
       aria-selected={isActive}
       aria-controls="progressDetailContent"
       tabIndex={isActive ? 0 : -1}
-      // クリックは setupProgressDetailTabs の DOM 委譲が処理する
+      onClick={() => setActiveProgressDetailMode(mode)}
     >
       {label}
     </button>

@@ -7,7 +7,11 @@
  */
 
 import { SUBJECTS } from "../uiHelpers";
-import { setActiveProgressDetailMode } from "../components/startScreen/panelTabsStore";
+import {
+  subscribeOverallPanelSideEffect,
+  subscribePanelTabSideEffect,
+  subscribeProgressDetailSideEffect,
+} from "../components/startScreen/panelTabsStore";
 import { renderReactInto } from "./reactMount";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
@@ -96,14 +100,19 @@ export interface PanelTabsCallbacks {
 }
 
 /**
- * インナーパネルタブのクリックハンドラを登録する。
- *
- * `<QuizPanel>` がボタン要素を所有するが、React onClick と DOM 委譲の二重発火を
- * 避けるため、ボタン側には onClick を付けず、本関数が DOM の click を購読する。
- * これにより静的 HTML 互換のテスト構成と React マウント構成の両方で同じ経路を通る。
+ * インナーパネルタブ切り替え時の副作用ハンドラを登録する。
  */
 export function buildPanelTabs(callbacks: PanelTabsCallbacks): void {
+  panelTabsUnsubscribe?.();
+  panelTabsUnsubscribe = subscribePanelTabSideEffect((panel) => {
+    callbacks.onSelectPanelTab(panel);
+  });
+
+  // 静的HTMLテスト向け後方互換: React未マウントのタブにはDOMリスナーを登録する。
   document.querySelectorAll<HTMLElement>(".panel-tab[data-panel]").forEach((tab) => {
+    if (isInsideReactMount(tab)) return;
+    if (tab.dataset.panelClickBound === "1") return;
+    tab.dataset.panelClickBound = "1";
     tab.addEventListener("click", () => {
       const panel = tab.dataset.panel as PanelTab;
       callbacks.onSelectPanelTab(panel);
@@ -111,9 +120,20 @@ export function buildPanelTabs(callbacks: PanelTabsCallbacks): void {
   });
 }
 
+let panelTabsUnsubscribe: (() => void) | null = null;
+
 /** 総合タブ専用のサマリパネルタブ（学習済み / シェア）にハンドラを登録する。 */
 export function setupOverallPanelTabs(onSelect: (panel: "learned" | "share") => void): void {
+  overallPanelUnsubscribe?.();
+  overallPanelUnsubscribe = subscribeOverallPanelSideEffect((panel) => {
+    onSelect(panel);
+  });
+
+  // 静的HTMLテスト向け後方互換: React未マウントのタブにはDOMリスナーを登録する。
   document.querySelectorAll<HTMLElement>(".panel-tab[data-overall-panel]").forEach((tab) => {
+    if (isInsideReactMount(tab)) return;
+    if (tab.dataset.overallPanelClickBound === "1") return;
+    tab.dataset.overallPanelClickBound = "1";
     tab.addEventListener("click", () => {
       const panel = tab.dataset.overallPanel as "learned" | "share";
       onSelect(panel);
@@ -121,25 +141,31 @@ export function setupOverallPanelTabs(onSelect: (panel: "learned" | "share") => 
   });
 }
 
+let overallPanelUnsubscribe: (() => void) | null = null;
+
 /** 進度タブの詳細パネルタブ（学年別 / カテゴリ別 / マトリクス）にハンドラを登録する。 */
 export function setupProgressDetailTabs(onSelect: (mode: "grade" | "category" | "matrix") => void): void {
+  progressDetailUnsubscribe?.();
+  progressDetailUnsubscribe = subscribeProgressDetailSideEffect((mode) => {
+    onSelect(mode);
+  });
+
+  // 静的HTMLテスト向け後方互換: React未マウントのタブにはDOMリスナーを登録する。
   document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((tab) => {
+    if (isInsideReactMount(tab)) return;
+    if (tab.dataset.progressDetailPanelClickBound === "1") return;
+    tab.dataset.progressDetailPanelClickBound = "1";
     tab.addEventListener("click", () => {
       const mode = tab.dataset.progressDetailPanel as "grade" | "category" | "matrix";
-
-      // ストア更新（React 経由で active クラスを反映）
-      setActiveProgressDetailMode(mode);
-
-      // 後方互換: React 未マウント環境向けに命令的 DOM 更新も併用
-      document.querySelectorAll<HTMLElement>(".panel-tab[data-progress-detail-panel]").forEach((t) => {
-        const active = t.dataset.progressDetailPanel === mode;
-        t.classList.toggle("active", active);
-        t.setAttribute("aria-selected", String(active));
-        t.setAttribute("tabindex", active ? "0" : "-1");
-      });
-      document.getElementById("progressDetailContent")?.setAttribute("aria-labelledby", `progressDetailTab-${mode}`);
-
       onSelect(mode);
     });
   });
+}
+
+let progressDetailUnsubscribe: (() => void) | null = null;
+
+function isInsideReactMount(el: HTMLElement): boolean {
+  return Boolean(
+    el.closest("#quizPanelMount[data-react-mounted], #overallSummaryPanelMount[data-react-mounted], #progressDetailPanelMount[data-react-mounted]"),
+  );
 }
