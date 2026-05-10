@@ -29,7 +29,7 @@ export function StartScreen(): React.JSX.Element {
           <div id="adminContent" className="hidden admin-content-panel" role="region" aria-label="管理"></div>
         </div>
       </div>
-      <footer className="app-footer"></footer>
+      <footer className="flex min-h-[8px] shrink-0 items-center justify-center gap-3 border-t-2 border-[#c8d8e8] bg-white px-3 py-1 text-[#586069] shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)] app-footer"></footer>
     </div>
   );
 }

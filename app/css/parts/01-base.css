@@ -161,24 +161,8 @@ header h1 {
   text-decoration: underline;
 }
 
-/* フッター（ノートの下部：罫線なし、シンプルなボーダーのみ） */
-.app-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 4px 12px;
-  background-color: white;
-  background-image: none;
-  border-top: 2px solid #c8d8e8;
-  border-radius: 0;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.4),
-    0 2px 6px rgba(0, 0, 0, 0.2);
-  flex-shrink: 0;
-  color: #586069;
-  min-height: 8px;
-}
+/* `.app-footer` の基本スタイルは Tailwind ユーティリティへ移行済み（StartScreen.tsx）。
+   `app-footer` クラス自体は `16-admin.css` 内の `:has(...) .app-footer` セレクタのフックとして残している。 */
 
 /*
  * 旧 `.outer-github-link*` / `.outer-bottom-row` / `.outer-copyright` /
