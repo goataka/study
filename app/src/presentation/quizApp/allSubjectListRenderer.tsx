@@ -134,19 +134,22 @@ function SubjectOverviewWrapper({
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
 }): React.JSX.Element {
   return (
-    <div className="subject-overview-wrapper">
+    <div className="subject-overview-wrapper flex flex-col gap-0">
       <SubjectOverviewHeaderRow
         subject={vm.subject}
         currentCount={vm.count}
         onCountChange={(n) => onRecommendedCountChange(vm.subject.id, n)}
       />
       {!vm.hasItems ? (
-        <div className="subject-overview-item" data-subject={vm.subject.id}>
+        <div
+          className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg border border-[#e1e4e8] bg-white cursor-pointer select-none transition-[background,border-color] duration-150 text-left"
+          data-subject={vm.subject.id}
+        >
           単元なし
         </div>
       ) : (
         vm.groups.map((group) => (
-          <div key={`${group.topCatId}::${group.parentCatId}`} className="subject-overview-cat-group">
+          <div key={`${group.topCatId}::${group.parentCatId}`} className="subject-overview-cat-group flex flex-col gap-0.5 mt-0.5">
             <CategoryGroupHeader group={group} />
             {group.items.map(({ recommended, stats }) => (
               <RecommendedUnitCard
@@ -174,18 +177,27 @@ function SubjectOverviewHeaderRow({
   onCountChange: (n: number) => void;
 }): React.JSX.Element {
   return (
-    <div className="subject-overview-subject-row">
-      <span className="subject-overview-icon">{subject.icon}</span>
-      <span className="subject-overview-name">{subject.name}</span>
-      <div className="subject-rec-count-controls">
-        <span className="subject-rec-count-label">目標数:</span>
+    <div className="subject-overview-subject-row flex items-center gap-[5px] pt-1 px-1 pb-0.5 pl-0.5">
+      <span className="subject-overview-icon text-lg leading-none shrink-0">{subject.icon}</span>
+      <span className="subject-overview-name text-sm font-bold text-[#24292e]">{subject.name}</span>
+      <div className="subject-rec-count-controls flex items-center gap-0.5 ml-auto">
+        <span className="subject-rec-count-label text-[11px] text-[#586069] mr-0.5">目標数:</span>
         {RECOMMENDED_COUNT_OPTIONS.map((n) => {
           const active = currentCount === n;
           return (
             <button
               key={n}
               type="button"
-              className={`overall-rec-count-btn${active ? " active" : ""}`}
+              className={[
+                "overall-rec-count-btn",
+                "text-xs px-2 py-0.5 border border-[#d1d5da] rounded bg-white text-[#24292e] cursor-pointer",
+                "transition-[background,border-color] duration-150",
+                "hover:bg-[#e8f0fe] hover:border-[#0366d6]",
+                "[&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white",
+                active ? "active" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
               aria-pressed={active}
               onClick={() => onCountChange(n)}
             >
@@ -206,14 +218,14 @@ function CategoryGroupHeader({
   if (!group.parentCatId) return null;
   const showTop = group.topCatId && group.topCatId !== group.parentCatId;
   return (
-    <div className="subject-overview-cat-header">
+    <div className="subject-overview-cat-header text-[11px] text-[#586069] px-0.5 pb-px">
       {showTop && (
         <>
-          <span className="subject-overview-outer-cat">{group.topCatName}</span>
-          <span className="subject-overview-cat-header-arrow"> › </span>
+          <span className="subject-overview-outer-cat font-semibold text-[#444d56]">{group.topCatName}</span>
+          <span className="subject-overview-cat-header-arrow text-[#a0a0a0] mx-0.5"> › </span>
         </>
       )}
-      <span className="subject-overview-outer-cat">{group.parentCatName}</span>
+      <span className="subject-overview-outer-cat font-semibold text-[#444d56]">{group.parentCatName}</span>
     </div>
   );
 }
@@ -233,7 +245,6 @@ function RecommendedUnitCard({
   const statusEmoji = isAllMastered ? "✅" : stats.isStudying ? "🔄" : "⬜";
   const { masteredPct, inProgressPct } = calcDualProgressPct(stats.mastered, stats.inProgressCount, stats.total);
   const gradeClassName = recommended.referenceGrade ? gradeColorClass(recommended.referenceGrade) : "";
-  const gradeFullClass = ["subject-overview-grade", gradeClassName].filter(Boolean).join(" ");
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -242,28 +253,43 @@ function RecommendedUnitCard({
   };
   return (
     <div
-      className="subject-overview-item"
+      className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg border border-[#e1e4e8] bg-white cursor-pointer select-none transition-[background,border-color] duration-150 text-left hover:bg-[#e8f0fe] hover:border-[#0366d6] focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2"
       role="button"
       tabIndex={0}
       data-subject={subjectId}
       onClick={onActivate}
       onKeyDown={handleKeyDown}
     >
-      <span className="subject-overview-status" aria-hidden="true">
+      <span className="subject-overview-status text-sm shrink-0 leading-none" aria-hidden="true">
         {statusEmoji}
       </span>
-      <div className="subject-overview-name-area">
-        <div className="subject-overview-title-row">
-          <span className="subject-overview-rec-name">{recommended.name}</span>
-          {recommended.referenceGrade && <span className={gradeFullClass}>{recommended.referenceGrade}</span>}
+      <div className="subject-overview-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
+        <div className="subject-overview-title-row flex flex-row items-center gap-1.5 min-w-0 flex-wrap">
+          <span className="subject-overview-rec-name text-base font-semibold min-w-0">{recommended.name}</span>
+          {recommended.referenceGrade && (
+            <span
+              className={[
+                "subject-overview-grade ml-auto shrink-0",
+                "text-lg px-[5px] py-px rounded-[10px] whitespace-nowrap",
+                "[&.grade-elementary]:text-[#c0392b] [&.grade-elementary]:bg-[#fde8e8]",
+                "[&.grade-middle]:text-[#0366d6] [&.grade-middle]:bg-[#e8f0fe]",
+                "[&.grade-high]:text-[#1a7f37] [&.grade-high]:bg-[#e8f8f0]",
+                gradeClassName,
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              {recommended.referenceGrade}
+            </span>
+          )}
         </div>
-        <div className="subject-overview-progress-row">
-          <div className="subject-overview-progress-bar">
-            <div className="subject-overview-progress-fill" style={{ width: `${masteredPct}%` }} />
-            <div className="subject-overview-progress-fill-inprogress" style={{ width: `${inProgressPct}%` }} />
+        <div className="subject-overview-progress-row flex items-center gap-1.5 min-w-0">
+          <div className="subject-overview-progress-bar flex-1 h-1 bg-[#e1e4e8] rounded-sm overflow-hidden flex">
+            <div className="subject-overview-progress-fill h-full bg-[#28a745] rounded-sm shrink-0" style={{ width: `${masteredPct}%` }} />
+            <div className="subject-overview-progress-fill-inprogress h-full bg-[#f0a800] rounded-sm shrink-0" style={{ width: `${inProgressPct}%` }} />
           </div>
           {stats.total > 0 && (
-            <span className="subject-overview-pct">
+            <span className="subject-overview-pct text-[11px] text-[#586069] whitespace-nowrap shrink-0">
               {stats.inProgressCount > 0
                 ? `${stats.mastered}(${stats.inProgressCount})/${stats.total}`
                 : `${stats.mastered}/${stats.total}`}

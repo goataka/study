@@ -69,7 +69,7 @@ export function CategoryPanel(): React.JSX.Element {
             学習済
           </button>
         </div>
-        <span id="allSubjectPanelTitle" className="all-subject-panel-title hidden">
+        <span id="allSubjectPanelTitle" className="all-subject-panel-title hidden text-sm font-bold text-[#0366d6] shrink-0">
           ✨ おすすめ単元
         </span>
       </div>
