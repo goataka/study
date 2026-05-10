@@ -54,11 +54,7 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
   if (collapsed) groupClasses.push("collapsed");
 
   return (
-    <div
-      className={groupClasses.join(" ")}
-      data-parent-category={parentCatId}
-      data-top-category={topCatId}
-    >
+    <div className={groupClasses.join(" ")} data-parent-category={parentCatId} data-top-category={topCatId}>
       <div
         className="category-group-header"
         role="button"
