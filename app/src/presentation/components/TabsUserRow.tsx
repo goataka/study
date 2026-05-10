@@ -1,9 +1,12 @@
 /**
- * 教科タブ + サポートリンク + ユーザーエリア（名前 / アバター / アバター編集ダイアログ）。
+ * 教科タブ + ユーザーエリア（名前 / アバター / アバター編集ダイアログ）。
  *
  * これら DOM 要素は既存の vanilla 実装（`QuizApp` / `AvatarController` 等）が
  * `getElementById` 経由で参照する。React は初期マークアップだけを担当し、
  * 後続の更新（テキスト・src 等）は引き続き既存コントローラが行う。
+ *
+ * サポートリンクはタブ行の末尾（管理タブの後）に tabsBuilder が挿入するため
+ * ここには含めない。
  */
 
 import { AvatarCropDialog } from "./AvatarCropDialog";
@@ -16,30 +19,6 @@ export function TabsUserRow(): React.JSX.Element {
         role="tablist"
         aria-label="教科を選択"
       ></div>
-      <div className="tabs-links-area flex items-end gap-1 shrink-0 px-1 pt-2">
-        <a
-          id="supportBtn"
-          className={[
-            "tabs-link-note tabs-link-note-support",
-            "inline-flex items-center gap-1 justify-center",
-            "px-[18px] pt-[6px] pb-2 min-w-7 min-h-[33px]",
-            "border border-[rgba(0,0,0,0.12)] border-b-0 rounded-none",
-            "text-[15px] font-semibold no-underline whitespace-nowrap leading-none",
-            "translate-y-0.5 shadow-[0_-2px_4px_rgba(0,0,0,0.08)]",
-            "transition-[filter,transform] duration-150",
-            "hover:brightness-[1.08] hover:translate-y-0",
-            // tabs-link-note-support 固有色
-            "bg-[#d8f0e8] text-[#1a6a40]",
-          ].join(" ")}
-          href="./support/"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="サポートページを開く"
-          aria-label="サポートページを開く"
-        >
-          ❔
-        </a>
-      </div>
       <div className="tabs-user-area flex items-center gap-1.5 shrink-0 px-1 pt-px relative ml-auto">
         <button
           id="headerUserName"

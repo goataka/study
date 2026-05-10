@@ -7,7 +7,7 @@
 import { expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
 
-/** statsInfo に表示される問題数テキストのパターン（例: "全：3993問 / 学習中：0問 / 学習済：0問"） */
+/** statsInfo に表示される問題数テキストのパターン（例: "学習中：0問 / 学習済：0問 / 全：3993問"） */
 export const STATS_INFO_PATTERN = /全：[1-9]\d*問/;
 
 /** statsInfo の問題ロード完了タイムアウト（ミリ秒） */

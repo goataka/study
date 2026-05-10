@@ -621,8 +621,8 @@ body.font-size-large .admin-data-close-btn {
 }
 
 .admin-menu-btn.active {
-  background: #0366d6;
-  color: #ffffff;
+  background: #e8f0fe;
+  color: #24292e;
   border-color: #0366d6;
 }
 

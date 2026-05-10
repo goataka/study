@@ -16,7 +16,7 @@ export function CategoryPanel(): React.JSX.Element {
         "bg-white",
         "[background-image:repeating-linear-gradient(transparent,transparent_31px,#d8e8f8_31px,#d8e8f8_32px)]",
         "[background-size:100%_32px] [background-position:0_12px]",
-        "border-none p-3 min-h-[200px] flex flex-col overflow-hidden",
+        "border-none p-4 min-h-[200px] flex flex-col overflow-hidden",
         "shadow-[inset_-3px_0_6px_rgba(0,0,0,0.08)]",
       ].join(" ")}
     >

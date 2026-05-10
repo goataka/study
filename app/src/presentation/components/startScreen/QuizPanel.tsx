@@ -67,20 +67,20 @@ export function QuizPanel(): React.JSX.Element {
           label="📖 解説"
         />
         <PanelTabButton
-          tab="questions"
-          active={active}
-          hidden={hiddenTabs.has("questions")}
-          id="panelTab-questions"
-          controls="questionListContent"
-          label="📋 問題"
-        />
-        <PanelTabButton
           tab="quiz"
           active={active}
           hidden={hiddenTabs.has("quiz")}
           id="panelTab-quiz"
           controls="quizModePanel"
           label="✅ 確認"
+        />
+        <PanelTabButton
+          tab="questions"
+          active={active}
+          hidden={hiddenTabs.has("questions")}
+          id="panelTab-questions"
+          controls="questionListContent"
+          label="📋 問題"
         />
         <PanelTabButton
           tab="history"

@@ -92,7 +92,7 @@ describe("App コンポーネント", () => {
     });
     const requiredIds = [
       // ヘッダー / ユーザー / アバター
-      "supportBtn",
+      // supportBtn は tabsBuilder が動的に描画するため静的 ID リストから除外
       "headerUserName",
       "headerUserEdit",
       "headerUserNameInput",

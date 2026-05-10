@@ -50,7 +50,7 @@ export function updateStartScreen(params: UpdateStartScreenParams): void {
     return useCase.getQuestionStat(q.id).total > 0 && !masteredIdsSet.has(q.id);
   }).length;
 
-  statsInfo.textContent = `全：${filteredCount}問 / 学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問`;
+  statsInfo.textContent = `学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問 / 全：${filteredCount}問`;
 
   // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
   if (markLearnedBtn) {

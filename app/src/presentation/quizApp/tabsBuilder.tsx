@@ -82,6 +82,27 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
           </button>
         );
       })}
+      <a
+        id="supportBtn"
+        className={[
+          "tabs-link-note tabs-link-note-support",
+          "inline-flex items-center gap-1 justify-center",
+          "px-[18px] pt-[6px] pb-2 min-w-7 min-h-[33px]",
+          "border border-[rgba(0,0,0,0.12)] border-b-0",
+          "text-[15px] font-semibold no-underline whitespace-nowrap leading-none",
+          "translate-y-0.5 shadow-[0_-2px_4px_rgba(0,0,0,0.08)]",
+          "transition-[filter,transform] duration-150",
+          "hover:brightness-[1.08] hover:translate-y-0",
+          "bg-[#d8f0e8] text-[#1a6a40]",
+        ].join(" ")}
+        href="./support/"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="サポートページを開く"
+        aria-label="サポートページを開く"
+      >
+        ❔ サポート
+      </a>
     </>
   );
 }
