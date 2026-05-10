@@ -73,8 +73,8 @@ export function QuizScreen(): React.JSX.Element {
         </div>
 
         <div className="quiz-notes-col">
-          <div className="notes-area">
-            <div id="notesMemoContent">
+          <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-lg border-2 border-solid border-[#e1e4e8] bg-transparent">
+            <div id="notesMemoContent" className="flex min-h-0 flex-1 flex-col">
               <NotesPanel />
               <KanjiInputArea />
             </div>

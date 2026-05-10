@@ -7,110 +7,18 @@
  *       `quiz.css` 内での @import 順を変更しないこと。
  */
 
-/* メモエリア */
-.notes-area {
-  border: 2px solid #e1e4e8;
-  border-radius: 8px;
-  overflow-y: auto;
-  background: transparent;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.notes-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  background: #f6f8fa;
-  border-bottom: 1px solid #e1e4e8;
-  flex-shrink: 0;
-}
-
-.notes-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-}
-
-.notes-controls {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.notes-btn {
-  padding: 4px 8px;
-  border: 1px solid #d1d5da;
-  border-radius: 4px;
-  background: white;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-size: 18px;
-}
-
-.notes-btn:hover {
-  background: #f0f0f0;
-  border-color: #b0b0b0;
-}
-
-.pen-size-select,
-.pen-color-select {
-  padding: 4px 8px;
-  border: 1px solid #d1d5da;
-  border-radius: 4px;
-  background: white;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.pen-color-select {
-  width: 60px;
-}
-
-.notes-canvas {
-  display: block;
-  width: 100%;
-  flex: 1;
-  min-height: 400px;
-  cursor: crosshair;
-  touch-action: none; /* タッチイベントのデフォルト動作を無効化 */
-  background: transparent;
-}
-
-.notes-btn.eraser-active {
-  background: #ffe8b3;
-  border-color: #f0a800;
-}
-
-#notesMemoContent {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-/* モバイル対応 */
-@media (max-width: 767px) {
-  .notes-canvas {
-    min-height: 200px;
-  }
-}
-
-@media (max-width: 600px) {
-  .notes-header {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  .notes-controls {
-    width: 100%;
-    justify-content: space-between;
-  }
-}
+/* メモエリア（`.notes-area` / `.notes-header` / `.notes-title` / `.notes-controls` /
+ * `.notes-btn` / `.notes-btn.eraser-active` / `.pen-size-select` / `.pen-color-select` /
+ * `.notes-canvas` / `#notesMemoContent`）は Tailwind ユーティリティへ移行済み。
+ * 実装は `src/presentation/components/QuizScreen.tsx` /
+ * `src/presentation/components/quizScreen/NotesPanel.tsx` を参照。
+ *
+ * モバイル対応の `@media (max-width: 767px)` / `@media (max-width: 600px)` も
+ * Tailwind の `max-md:` / `max-[600px]:` バリアントで NotesPanel.tsx に直接移行済み。
+ *
+ * `notes-controls` クラス名は `notesAreaUpdater.ts` の
+ * `querySelector(".notes-controls")` から参照されるため JSX 側に残置している。
+ */
 
 /* 問題数選択 */
 .question-count-section {
