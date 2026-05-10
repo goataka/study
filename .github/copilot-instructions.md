@@ -311,6 +311,13 @@ app/src/
 - フォーマットは Prettier に統一する（`npm run format` / `npm run format:check`）
 - `pre-commit` フックと CI の `test-and-build` ジョブで `lint` と `format:check` を実行する
 
+### スタイリング（CSS / Tailwind CSS）
+
+- スタイリングは **Tailwind CSS v4** を基本とする。新規コンポーネントや既存コンポーネントへの追加スタイルは、原則としてユーティリティクラスで記述する。
+- 既存の `app/css/quiz.css` は段階的な縮小対象。新たな手書きCSSの追加は最小限にとどめ、既存スタイルもリファクタの中で順次 Tailwind ユーティリティへ置き換えていく。
+- Tailwind の有効化は `app/vite.config.ts` の `@tailwindcss/vite` プラグインと、`app/css/quiz.css` 先頭の `@import "tailwindcss";` で行っている。設定は CSS-first（`@theme` ベース）で、`tailwind.config.*` は使わない。
+- ユーティリティの自動検出対象は `src/**/*.{ts,tsx}` および `index.html` などのテンプレート群。動的なクラス文字列は Tailwind が検出できないため、条件分岐ではフルクラス名を直接書く。
+
 ### テストの配置ルール（コロケーション）
 
 - テストファイルは対象ソースファイルと同じディレクトリに配置する（`*.test.ts`）
