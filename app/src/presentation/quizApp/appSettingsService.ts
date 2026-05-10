@@ -7,6 +7,7 @@
  */
 
 import type { IProgressRepository } from "../../application/ports";
+import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
 import { sanitizeShareUrl } from "../uiHelpers";
 import { applyFontSizeToDom, type FontSizeLevel } from "./fontSizeManager";
 
@@ -62,10 +63,22 @@ export function saveShareUrl(repo: IProgressRepository, url: string): string {
 
 /**
  * 永続化されているクイズ設定を読み込み、対応するラジオボタンの checked を更新する。
+ * 同時に React 共有ストア (`quizSettingsStore`) にも反映し、`<QuizPanel>` の
+ * 制御コンポーネントが正しい初期値を表示できるようにする。
  */
 export function loadQuizSettings(repo: IProgressRepository): QuizSettingsState {
   const settings = repo.loadQuizSettings();
 
+  // ストア側を更新（React 制御コンポーネントの真の値）。
+  // setQuizSettings は値が変化していなければ no-op。
+  setQuizSettings({
+    questionCount: settings.questionCount,
+    quizOrder: settings.quizOrder,
+    includeMastered: settings.includeMastered,
+  });
+
+  // 後方互換: 静的 HTML を使う既存テスト向けに DOM の checked も同期する。
+  // React マウント時は controlled component が同じ checked を出力するため二重書き込みは無害。
   const countInput = document.querySelector<HTMLInputElement>(
     `input[name="questionCount"][value="${settings.questionCount}"]`,
   );
@@ -94,6 +107,10 @@ export function saveQuizSettings(repo: IProgressRepository, settings: QuizSettin
 /**
  * 現在 DOM 上で選択されている `questionCount` の値を読み取る。
  * 未選択の場合は fallback を返す。
+ *
+ * React 制御コンポーネント (`<QuizPanel>`) でも `checked` 属性は DOM に反映されるため、
+ * `:checked` セレクタで読める。したがってストアと DOM のどちらが先に
+ * 設定されていても本関数は正しい値を返す。
  */
 export function loadQuestionCountFromDom(fallback: number): number {
   const checked = document.querySelector<HTMLInputElement>('input[name="questionCount"]:checked');

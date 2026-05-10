@@ -6,6 +6,7 @@
  */
 
 import type { AvatarController } from "../avatarController";
+import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
 
 /** ヘッダー（タイトルロゴ・ユーザー名編集・管理メニュー）のイベント。 */
 export interface HeaderListenersCallbacks {
@@ -110,7 +111,10 @@ export function setupQuizSettingsListeners(callbacks: QuizSettingsCallbacks): vo
     input.addEventListener("change", (e) => {
       const target = e.target as HTMLInputElement;
       if (target.checked) {
-        callbacks.onQuestionCountChange(parseInt(target.value));
+        const count = parseInt(target.value);
+        // React 共有ストアにも反映（QuizPanel が controlled で参照）
+        setQuizSettings({ questionCount: count });
+        callbacks.onQuestionCountChange(count);
       }
     });
   });
@@ -119,7 +123,9 @@ export function setupQuizSettingsListeners(callbacks: QuizSettingsCallbacks): vo
     input.addEventListener("change", (e) => {
       const target = e.target as HTMLInputElement;
       if (target.checked) {
-        callbacks.onQuizOrderChange(target.value as "random" | "straight");
+        const order = target.value as "random" | "straight";
+        setQuizSettings({ quizOrder: order });
+        callbacks.onQuizOrderChange(order);
       }
     });
   });
@@ -128,7 +134,9 @@ export function setupQuizSettingsListeners(callbacks: QuizSettingsCallbacks): vo
     input.addEventListener("change", (e) => {
       const target = e.target as HTMLInputElement;
       if (target.checked) {
-        callbacks.onIncludeMasteredChange(target.value === "include");
+        const include = target.value === "include";
+        setQuizSettings({ includeMastered: include });
+        callbacks.onIncludeMasteredChange(include);
       }
     });
   });

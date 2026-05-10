@@ -8,6 +8,8 @@
 
 import { type PanelTab } from "./panelTabsStore";
 import { useActivePanelTab, useHiddenPanelTabs } from "./usePanelTabsStore";
+import { setQuizSettings } from "./quizSettingsStore";
+import { useQuizSettings } from "./useQuizSettingsStore";
 
 interface PanelTabButtonProps {
   tab: PanelTab;
@@ -50,6 +52,7 @@ function PanelTabButton({ tab, active, hidden, id, controls, label }: PanelTabBu
 export function QuizPanel(): React.JSX.Element {
   const active = useActivePanelTab();
   const hiddenTabs = useHiddenPanelTabs();
+  const settings = useQuizSettings();
   const hiddenIfNot = (tab: PanelTab): string => (active === tab ? "" : "hidden");
   return (
     <>
@@ -101,13 +104,34 @@ export function QuizPanel(): React.JSX.Element {
           <span className="question-count-label">問題数：</span>
           <div className="question-count-group">
             <label className="count-label">
-              <input type="radio" name="questionCount" value="5" /> 5問
+              <input
+                type="radio"
+                name="questionCount"
+                value="5"
+                checked={settings.questionCount === 5}
+                onChange={() => setQuizSettings({ questionCount: 5 })}
+              />{" "}
+              5問
             </label>
             <label className="count-label">
-              <input type="radio" name="questionCount" value="10" defaultChecked /> 10問
+              <input
+                type="radio"
+                name="questionCount"
+                value="10"
+                checked={settings.questionCount === 10}
+                onChange={() => setQuizSettings({ questionCount: 10 })}
+              />{" "}
+              10問
             </label>
             <label className="count-label">
-              <input type="radio" name="questionCount" value="20" /> 20問
+              <input
+                type="radio"
+                name="questionCount"
+                value="20"
+                checked={settings.questionCount === 20}
+                onChange={() => setQuizSettings({ questionCount: 20 })}
+              />{" "}
+              20問
             </label>
           </div>
         </div>
@@ -115,10 +139,24 @@ export function QuizPanel(): React.JSX.Element {
           <span className="quiz-order-label">並び順：</span>
           <div className="quiz-order-group">
             <label className="order-label">
-              <input type="radio" name="quizOrder" value="straight" /> ストレート
+              <input
+                type="radio"
+                name="quizOrder"
+                value="straight"
+                checked={settings.quizOrder === "straight"}
+                onChange={() => setQuizSettings({ quizOrder: "straight" })}
+              />{" "}
+              ストレート
             </label>
             <label className="order-label">
-              <input type="radio" name="quizOrder" value="random" defaultChecked /> ランダム
+              <input
+                type="radio"
+                name="quizOrder"
+                value="random"
+                checked={settings.quizOrder === "random"}
+                onChange={() => setQuizSettings({ quizOrder: "random" })}
+              />{" "}
+              ランダム
             </label>
           </div>
         </div>
@@ -126,10 +164,24 @@ export function QuizPanel(): React.JSX.Element {
           <span className="quiz-order-label">学習済：</span>
           <div className="quiz-order-group">
             <label className="order-label">
-              <input type="radio" name="quizLearned" value="exclude" defaultChecked /> 含めない
+              <input
+                type="radio"
+                name="quizLearned"
+                value="exclude"
+                checked={!settings.includeMastered}
+                onChange={() => setQuizSettings({ includeMastered: false })}
+              />{" "}
+              含めない
             </label>
             <label className="order-label">
-              <input type="radio" name="quizLearned" value="include" /> 含める
+              <input
+                type="radio"
+                name="quizLearned"
+                value="include"
+                checked={settings.includeMastered}
+                onChange={() => setQuizSettings({ includeMastered: true })}
+              />{" "}
+              含める
             </label>
           </div>
         </div>
