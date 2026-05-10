@@ -13,6 +13,7 @@
 import { type OverallPanelTab } from "./panelTabsStore";
 import { useActiveOverallPanel } from "./usePanelTabsStore";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
+import { shareButton } from "../../styles/shareButtonStyles";
 
 interface OverallPanelTabButtonProps {
   panel: OverallPanelTab;
@@ -72,14 +73,14 @@ export function OverallSummaryPanel(): React.JSX.Element {
         <div className="share-actions-row flex items-center gap-1.5 shrink-0">
           <button
             id="copySummaryBtn"
-            className="share-copy-btn px-3 py-1 text-[13px] border border-[#0366d6] rounded bg-white text-[#0366d6] cursor-pointer whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#0366d6] hover:text-white"
+            className={shareButton({ kind: "copy" })}
             type="button"
           >
             📋 コピー
           </button>
           <button
             id="openShareUrlBtn"
-            className="share-url-open-btn hidden px-3 py-1 text-[13px] border border-[#1a7f37] rounded bg-white text-[#1a7f37] cursor-pointer whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#1a7f37] hover:text-white"
+            className={shareButton({ kind: "open", hidden: true })}
             type="button"
           >
             📤 共有
@@ -104,7 +105,7 @@ export function OverallSummaryPanel(): React.JSX.Element {
               />
               <button
                 id="saveShareUrlBtn"
-                className="share-url-save-btn px-[10px] py-1 text-[13px] border border-[#1a7f37] rounded bg-white text-[#1a7f37] cursor-pointer whitespace-nowrap hover:bg-[#1a7f37] hover:text-white"
+                className={shareButton({ kind: "save" })}
                 type="button"
                 aria-label="保存"
               >
