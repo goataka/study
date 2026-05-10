@@ -5,7 +5,9 @@
  * テキストや URL は既存コントローラ（`shareSummary` 系・履歴ビュー等）が動的に更新する。
  *
  * タブの active 状態と各サブパネルの hidden 表示は `panelTabsStore` を購読して
- * 宣言的に反映する。クリックは onClick で `setActiveOverallPanel` を直接呼ぶ。
+ * 宣言的に反映する。クリックハンドラは React onClick ではなく
+ * `setupOverallPanelTabs` の DOM 委譲で処理する（既存の静的 HTML テストとの
+ * 二重発火を避けるため）。
  */
 
 import { type OverallPanelTab } from "./panelTabsStore";

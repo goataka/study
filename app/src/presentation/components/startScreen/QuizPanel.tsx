@@ -3,7 +3,9 @@
  *
  * クイズモードの設定（問題数 / 並び順 / 学習済の扱い）と「学習済みにする」ボタンを含む。
  * インナータブの active 状態と各パネルの hidden 表示は `panelTabsStore` を購読して
- * 宣言的に反映する。クリックは onClick で `setActivePanelTab` を直接呼び出す。
+ * 宣言的に反映する。クリックハンドラは React onClick ではなく `buildPanelTabs`
+ * （`quizApp/tabsBuilder.tsx`）の DOM 委譲で処理する（既存の静的 HTML テストとの
+ * 二重発火を避けるため。詳細は `PanelTabButton` 内コメント参照）。
  */
 
 import { type PanelTab } from "./panelTabsStore";

@@ -35,6 +35,10 @@ describe("ParentCategoryGroup", () => {
     expect(el.dataset.parentCategory).toBe("p1");
     expect(el.dataset.topCategory).toBe("t1");
     expect(el.classList.contains("collapsed")).toBe(false);
+    // ヘッダー div は presentational（role なし、tabIndex なし）であること
+    const header = el.querySelector(".category-group-header") as HTMLElement;
+    expect(header.getAttribute("role")).toBeNull();
+    expect(header.getAttribute("tabindex")).toBeNull();
   });
 
   it("collapsed=true で collapsed クラスを付与し aria-expanded を false にする", () => {
@@ -50,7 +54,7 @@ describe("ParentCategoryGroup", () => {
     expect(toggle?.getAttribute("aria-expanded")).toBe("false");
   });
 
-  it("ヘッダークリックで onHeaderActivate を呼ぶ（toggle ボタンは別 handler）", () => {
+  it("ヘッダーアクションボタンクリックで onHeaderActivate のみ呼ぶ", () => {
     const onHeader = vi.fn();
     const onToggle = vi.fn();
     const el = render({
@@ -62,8 +66,8 @@ describe("ParentCategoryGroup", () => {
       onToggle,
       items: [],
     });
-    const header = el.querySelector(".category-group-header") as HTMLElement;
-    header.click();
+    const action = el.querySelector(".category-group-header-action") as HTMLButtonElement;
+    action.click();
     expect(onHeader).toHaveBeenCalledTimes(1);
     expect(onToggle).not.toHaveBeenCalled();
   });
@@ -115,7 +119,10 @@ describe("ParentCategoryGroup", () => {
     expect(el.querySelector(".category-group-learned-badge")?.textContent).toBe("✅");
   });
 
-  it("Enter キーで onHeaderActivate を呼ぶ", () => {
+  it("ヘッダーアクションボタンは <button> なので Enter キーで自動的に click され onHeaderActivate を呼ぶ", () => {
+    // jsdom は実際のブラウザのように Enter/Space → click を自動生成しないが、
+    // ネイティブ <button> を使うことでブラウザではキーボード操作が標準で動作する。
+    // ここでは click() が onHeaderActivate を呼ぶことを確認する（Enter/Space の挙動はブラウザに委譲）。
     const onHeader = vi.fn();
     const el = render({
       subject: "math",
@@ -125,8 +132,9 @@ describe("ParentCategoryGroup", () => {
       onHeaderActivate: onHeader,
       items: [],
     });
-    const header = el.querySelector(".category-group-header") as HTMLElement;
-    header.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    const action = el.querySelector(".category-group-header-action") as HTMLButtonElement;
+    action.focus();
+    action.click();
     expect(onHeader).toHaveBeenCalledTimes(1);
   });
 });

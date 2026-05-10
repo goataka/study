@@ -2,11 +2,18 @@
  * 親カテゴリグループ（折りたたみ可能なセクション）の React コンポーネント。
  *
  * 命令的 DOM ビルダー `presentation/quizApp/categoryItemBuilder.ts` の
- * `buildParentCategoryGroup` と等価な構造（同じクラス名・dataset・aria 属性）を
- * React で生成する。子の単元アイテムは `<CategoryItem>` で表示する。
+ * `buildParentCategoryGroup` を参考にしつつ、アクセシビリティを考慮して
+ * 構造を整理した版。`<CategoryItem>` を子要素として束ねる。
  *
- * クリック / Enter / Space で `onHeaderActivate` が発火、折りたたみアイコン
- * クリックで `onToggle` が発火する。表示専用の純粋コンポーネント。
+ * アクセシビリティ:
+ * - ヘッダー行 `.category-group-header` は presentational な `<div>`（role なし）。
+ * - その内部に **兄弟関係** の 2 つの `<button>` を配置:
+ *   - `.category-group-toggle`: 折りたたみアイコン（`onToggle`）
+ *   - `.category-group-header-action`: タイトル選択ボタン（`onHeaderActivate`）
+ * - ネストした interactive 要素を避けることで、スクリーンリーダーや
+ *   キーボード操作の解釈が安定する。
+ *
+ * Enter / Space は実 `<button>` がネイティブに処理するため、独自ハンドラ不要。
  */
 
 import * as React from "react";
@@ -42,30 +49,12 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
     items,
   } = props;
 
-  const handleHeaderKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
-    if (!onHeaderActivate) return;
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onHeaderActivate();
-    }
-  };
-
   const groupClasses = ["category-group"];
   if (collapsed) groupClasses.push("collapsed");
 
   return (
     <div className={groupClasses.join(" ")} data-parent-category={parentCatId} data-top-category={topCatId}>
-      <div
-        className="category-group-header"
-        role="button"
-        tabIndex={0}
-        data-parent-category={parentCatId}
-        onClick={(e) => {
-          e.stopPropagation();
-          onHeaderActivate?.();
-        }}
-        onKeyDown={handleHeaderKeyDown}
-      >
+      <div className="category-group-header" data-parent-category={parentCatId}>
         <button
           type="button"
           className="category-group-toggle"
@@ -76,10 +65,19 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
             onToggle?.();
           }}
         />
-        <span>{parentCatName}</span>
-        <span className="category-group-learned-badge" aria-hidden="true">
-          {learnedBadge}
-        </span>
+        <button
+          type="button"
+          className="category-group-header-action"
+          onClick={(e) => {
+            e.stopPropagation();
+            onHeaderActivate?.();
+          }}
+        >
+          <span>{parentCatName}</span>
+          <span className="category-group-learned-badge" aria-hidden="true">
+            {learnedBadge}
+          </span>
+        </button>
       </div>
       {items.map((item) => (
         <CategoryItem key={`${item.subject}::${item.categoryId}`} {...item} />
