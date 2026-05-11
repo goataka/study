@@ -8,7 +8,7 @@
 export function StartHeader(): React.JSX.Element {
   return (
     <header className="shrink-0 flex flex-wrap items-center justify-between gap-y-2 bg-white p-4 border-b-2 border-[#c8d8e8]">
-      <div className="header-title-area flex flex-row items-center gap-2 shrink-0 min-w-0 border-b-2 border-[#c8d8e8] pb-0.5">
+      <div className="header-title-area flex flex-row items-center gap-2 shrink-0 border-b-2 border-[#c8d8e8] pb-0.5">
         <h1
           id="titleBtn"
           role="button"
@@ -23,10 +23,10 @@ export function StartHeader(): React.JSX.Element {
       </div>
       <div className="header-date-area flex w-full items-center justify-end gap-2 shrink-0 sm:w-auto">
         <span className="header-date-label text-[15px] text-[#c8d8e8] font-semibold shrink-0">Date:</span>
-          <span
-            id="headerTodayDate"
-            className="header-today-date text-[15px] text-[#586069] font-semibold whitespace-nowrap shrink-0 tracking-[0.03em] border-b-2 border-[#c8d8e8] pb-px px-2 min-w-[120px] sm:min-w-[160px] text-center"
-          ></span>
+        <span
+          id="headerTodayDate"
+          className="header-today-date text-[15px] text-[#586069] font-semibold whitespace-nowrap shrink-0 tracking-[0.03em] border-b-2 border-[#c8d8e8] pb-px px-2 min-w-[120px] sm:min-w-[160px] text-center"
+        ></span>
         <button
           id="reloadBtn"
           className="reload-btn inline-flex items-center justify-center w-7 h-7 border-none rounded-md bg-transparent text-[#586069] text-lg cursor-pointer shrink-0 p-0 transition-[background,color] duration-200 hover:text-[#0366d6] hover:bg-[#f0f7ff]"

@@ -29,6 +29,8 @@ describe("StartHeader", () => {
 
     expect(header?.className).toContain("flex-wrap");
     expect(dateArea?.className).toContain("w-full");
+    expect(dateArea?.className).toContain("sm:w-auto");
     expect(date?.className).toContain("min-w-[120px]");
+    expect(date?.className).toContain("sm:min-w-[160px]");
   });
 });

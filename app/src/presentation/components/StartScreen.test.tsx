@@ -21,15 +21,18 @@ describe("StartScreen", () => {
     container.remove();
   });
 
-  it("モバイルで1カラム、md以上で2カラム構成のクラスを持つ", () => {
+  it("モバイル（md未満）1カラム・md以上2カラムを意図したレスポンシブクラスを持つ", () => {
     flushSync(() => root.render(<StartScreen currentScreen="start" />));
 
     const subjectContent = container.querySelector("#subjectContent");
     const spine = container.querySelector(".notebook-spine");
+    const quizPanel = container.querySelector(".quiz-panel");
 
     expect(subjectContent?.className).toContain("grid-cols-1");
     expect(subjectContent?.className).toContain("md:grid-cols-[1fr_12px_2fr]");
     expect(spine?.className).toContain("hidden");
     expect(spine?.className).toContain("md:block");
+    expect(quizPanel?.className).toContain("shadow-none");
+    expect(quizPanel?.className).toContain("md:shadow-[inset_3px_0_6px_rgba(0,0,0,0.08)]");
   });
 });
