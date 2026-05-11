@@ -38,7 +38,7 @@ export interface AppProps {
 export function App({ bootApp }: AppProps): React.JSX.Element {
   // React.StrictMode による二重マウントで二重起動しないようガードする
   const bootedRef = useRef(false);
-  const currentScreen = useSyncExternalStore(subscribeScreenStore, getScreenSnapshot);
+  const currentScreen = useSyncExternalStore(subscribeScreenStore, getScreenSnapshot, getScreenSnapshot);
 
   useEffect(() => {
     if (bootedRef.current) return;

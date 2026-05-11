@@ -12,11 +12,7 @@ import { QuizPanel } from "../components/startScreen/QuizPanel";
 import { OverallSummaryPanel } from "../components/startScreen/OverallSummaryPanel";
 import { ProgressDetailPanel } from "../components/startScreen/ProgressDetailPanel";
 import { __resetPanelTabsStoreForTests } from "../components/startScreen/panelTabsStore";
-import {
-  __resetScreenStoreForTests,
-  getScreenSnapshot,
-  subscribeScreenStore,
-} from "../components/screenStore";
+import { __resetScreenStoreForTests, getScreenSnapshot, subscribeScreenStore } from "../components/screenStore";
 import { configureQuizAppDefaultDependencies } from "../quizApp";
 import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
 import { RemoteQuestionRepository } from "../../infrastructure/remoteQuestionRepository";

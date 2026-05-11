@@ -27,6 +27,7 @@ export function getScreenSnapshot(): ScreenName {
 }
 
 export function setCurrentScreen(screen: ScreenName, options: SetCurrentScreenOptions = {}): void {
+  if (currentScreen === screen) return;
   const historyMode = options.history ?? "auto";
 
   if (historyMode !== "none") {
@@ -38,7 +39,6 @@ export function setCurrentScreen(screen: ScreenName, options: SetCurrentScreenOp
     }
   }
 
-  if (currentScreen === screen) return;
   currentScreen = screen;
   notify();
 }

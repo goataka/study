@@ -55,6 +55,18 @@ describe("screenStore", () => {
     unsubscribe();
   });
 
+  it("同一画面への切り替えでは履歴も更新しない", () => {
+    const pushSpy = vi.spyOn(window.history, "pushState");
+    const replaceSpy = vi.spyOn(window.history, "replaceState");
+
+    setCurrentScreen("start");
+    setCurrentScreen("quiz");
+    setCurrentScreen("quiz");
+
+    expect(pushSpy).toHaveBeenCalledTimes(1);
+    expect(replaceSpy).not.toHaveBeenCalled();
+  });
+
   it("history state から画面名を正規化できる", () => {
     expect(getScreenNameFromHistoryState({ screen: "quiz" })).toBe("quiz");
     expect(getScreenNameFromHistoryState({ screen: "result" })).toBe("result");
