@@ -22,6 +22,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { act } from "react";
 import { kanjiCanvasMock } from "./quizApp/testHelpers";
 import { App } from "./App";
+import { __resetScreenStoreForTests, setCurrentScreen } from "./components/screenStore";
 
 // React 19 + jsdom + createRoot で `act()` を使うために必要な環境フラグ。
 // 設定しないと "The current testing environment is not configured to support act(...)" が
@@ -39,6 +40,7 @@ describe("App コンポーネント", () => {
     // 重複 ID が container 外に存在すると jsdom のスコープ querySelector が混乱する。
     document.body.innerHTML = "";
     bootApp = vi.fn();
+    __resetScreenStoreForTests();
     kanjiCanvasMock.init.mockClear();
     container = document.createElement("div");
     container.id = "react-test-root";
@@ -51,6 +53,7 @@ describe("App コンポーネント", () => {
     });
     root = null;
     container?.remove();
+    __resetScreenStoreForTests();
   });
 
   it("エラーなくレンダリングできる", () => {
@@ -250,5 +253,27 @@ describe("App コンポーネント", () => {
     expect(appFooter?.className).toContain("mt-2");
     expect(tabsUserArea?.className).not.toContain("border-l");
     expect(Array.from(fontSizeButtons).every((btn) => btn.className.includes("px-2 py-1"))).toBe(true);
+  });
+
+  it("screenStore の状態に応じて画面の hidden クラスが切り替わる", () => {
+    act(() => {
+      root = createRoot(container!);
+      root.render(<App bootApp={bootApp} />);
+    });
+
+    const startScreen = container!.querySelector("#startScreen");
+    const quizScreen = container!.querySelector("#quizScreen");
+    const resultScreen = container!.querySelector("#resultScreen");
+
+    expect(startScreen?.classList.contains("hidden")).toBe(false);
+    expect(quizScreen?.classList.contains("hidden")).toBe(true);
+    expect(resultScreen?.classList.contains("hidden")).toBe(true);
+
+    act(() => {
+      setCurrentScreen("quiz", { history: "none" });
+    });
+    expect(startScreen?.classList.contains("hidden")).toBe(true);
+    expect(quizScreen?.classList.contains("hidden")).toBe(false);
+    expect(resultScreen?.classList.contains("hidden")).toBe(true);
   });
 });

@@ -6,12 +6,21 @@
  */
 
 import { button } from "../styles/buttonStyles";
+import type { ScreenName } from "./screenStore";
 
-export function ResultScreen(): React.JSX.Element {
+interface ResultScreenProps {
+  currentScreen: ScreenName;
+}
+
+export function ResultScreen({ currentScreen }: ResultScreenProps): React.JSX.Element {
   return (
     <div
       id="resultScreen"
-      className="screen hidden flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-4 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]"
+      className={[
+        "screen",
+        currentScreen !== "result" ? "hidden" : "",
+        "flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-4 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
+      ].join(" ")}
     >
       <h2 className="mb-1 text-center text-[26px] text-[#333]">確認結果</h2>
       {/* `result-unit-name` クラス名は font-size 切替の参照キーとして残置 */}

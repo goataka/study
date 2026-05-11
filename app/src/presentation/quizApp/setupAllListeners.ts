@@ -73,7 +73,7 @@ export interface AllListenersDeps {
   onShareUrlDisplayClick: () => void;
   onSaveAndCloseShareUrl: () => void;
   onCloseShareUrlEdit: () => void;
-  onPopState: () => Promise<void>;
+  onPopState: () => Promise<boolean>;
   onMobileBack: () => void;
 }
 

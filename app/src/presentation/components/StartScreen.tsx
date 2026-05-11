@@ -10,13 +10,19 @@ import { CategoryPanel } from "./startScreen/CategoryPanel";
 import { QuizPanel } from "./startScreen/QuizPanel";
 import { ProgressDetailPanel } from "./startScreen/ProgressDetailPanel";
 import { OverallSummaryPanel } from "./startScreen/OverallSummaryPanel";
+import type { ScreenName } from "./screenStore";
 
-export function StartScreen(): React.JSX.Element {
+interface StartScreenProps {
+  currentScreen: ScreenName;
+}
+
+export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Element {
   return (
     <div
       id="startScreen"
       className={[
         "screen",
+        currentScreen !== "start" ? "hidden" : "",
         // レイアウト（.screen から移行）
         "flex flex-1 flex-col min-h-0",
         // #startScreen 固有: ヘッダー/コンテンツ/フッターを1つのノートとして見せるため白背景 + 余白

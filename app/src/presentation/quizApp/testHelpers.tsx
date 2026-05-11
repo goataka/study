@@ -12,6 +12,11 @@ import { QuizPanel } from "../components/startScreen/QuizPanel";
 import { OverallSummaryPanel } from "../components/startScreen/OverallSummaryPanel";
 import { ProgressDetailPanel } from "../components/startScreen/ProgressDetailPanel";
 import { __resetPanelTabsStoreForTests } from "../components/startScreen/panelTabsStore";
+import {
+  __resetScreenStoreForTests,
+  getScreenSnapshot,
+  subscribeScreenStore,
+} from "../components/screenStore";
 import { configureQuizAppDefaultDependencies } from "../quizApp";
 import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
 import { RemoteQuestionRepository } from "../../infrastructure/remoteQuestionRepository";
@@ -51,6 +56,25 @@ function mountStartScreenPanels(): void {
   if (overallMount) renderReactInto(overallMount, <OverallSummaryPanel />);
   const progressMount = document.getElementById("progressDetailPanelMount");
   if (progressMount) renderReactInto(progressMount, <ProgressDetailPanel />);
+}
+
+function mountScreenStoreDomBridge(): void {
+  __resetScreenStoreForTests();
+  const sync = (): void => {
+    const current = getScreenSnapshot();
+    const screens = [
+      { id: "startScreen", name: "start" },
+      { id: "quizScreen", name: "quiz" },
+      { id: "resultScreen", name: "result" },
+    ] as const;
+    screens.forEach(({ id, name }) => {
+      document.getElementById(id)?.classList.toggle("hidden", current !== name);
+    });
+    document.querySelector<HTMLElement>(".subject-tabs")?.classList.toggle("hidden", current !== "start");
+    document.querySelector<HTMLElement>(".tabs-links-area")?.classList.toggle("hidden", current !== "start");
+  };
+  subscribeScreenStore(sync);
+  sync();
 }
 
 // KanjiCanvas グローバルのモック（jsdom 環境では kanji-canvas.min.js がロードされないため）
@@ -137,6 +161,7 @@ export function setupMinimalDom(): void {
       <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
   `;
+  mountScreenStoreDomBridge();
   mountConfirmDialog();
 }
 /** タブUIを含むフルレイアウトのDOM */
@@ -191,6 +216,7 @@ export function setupTabDom(): void {
       <button id="backToStartBtn">スタート画面に戻る</button>
     </div>
   `;
+  mountScreenStoreDomBridge();
   mountConfirmDialog();
   mountStartScreenPanels();
 }

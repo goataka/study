@@ -14,6 +14,7 @@ import { AvatarController } from "./avatarController";
 
 import { SUBJECTS, currentDateString } from "./uiHelpers";
 import { openConfirmDialog } from "./components/confirmDialogStore";
+import { getScreenSnapshot, setCurrentScreen, type ScreenName } from "./components/screenStore";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
 import { type FontSizeLevel } from "./quizApp/fontSizeManager";
 import {
@@ -38,7 +39,6 @@ import { getURLParams, parseURLState, syncURLFragment, type ProgressStatusFilter
 import { applyCategoryStatusFilter as applyCategoryStatusFilterFn } from "./quizApp/categoryCollapseState";
 import { updateSubjectStats as updateSubjectStatsFn } from "./quizApp/categoryStatsView";
 import { findFirstUnlearnedCategory } from "./quizApp/firstUnlearnedFinder";
-import { showScreen as showScreenFn, type ScreenName } from "./quizApp/screenNavigator";
 import { setupAllListeners } from "./quizApp/setupAllListeners";
 import * as D from "./quizApp/delegators";
 import type { QuestionListFilter } from "./quizApp/questionListView";
@@ -384,7 +384,7 @@ export class QuizApp {
       onShareUrlDisplayClick: () => D.openShareUrlEdit(this),
       onSaveAndCloseShareUrl: () => D.saveAndCloseShareUrl(this),
       onCloseShareUrlEdit: () => D.closeShareUrlEdit(),
-      onPopState: () => this.navigateToStart(),
+      onPopState: () => this.confirmNavigateToStart(),
       onMobileBack: () => D.navigateBackToList(this),
     });
   }
@@ -398,24 +398,25 @@ export class QuizApp {
 
   /** クイズが進行中かどうかを返す（クイズ画面かつ未採点）。 */
   private isQuizInProgress(): boolean {
-    const quizScreen = document.getElementById("quizScreen");
-    return !!this.currentSession && !quizScreen?.classList.contains("hidden");
+    return !!this.currentSession && getScreenSnapshot() === "quiz";
+  }
+
+  /** スタート画面へ遷移できるか判定する。クイズ進行中は確認ダイアログを表示する。 */
+  private async confirmNavigateToStart(): Promise<boolean> {
+    if (!this.isQuizInProgress()) return true;
+    return this.showConfirmDialog("問題が途中です。単元選択に戻りますか？（進行状況は保存されません）");
   }
 
   /** スタート画面へ遷移する。クイズ進行中は確認ダイアログを表示する。 */
   private async navigateToStart(): Promise<void> {
-    if (this.isQuizInProgress()) {
-      const confirmed = await this.showConfirmDialog(
-        "問題が途中です。単元選択に戻りますか？（進行状況は保存されません）",
-      );
-      if (!confirmed) return;
-    }
+    const canNavigate = await this.confirmNavigateToStart();
+    if (!canNavigate) return;
     this.showScreen("start");
   }
 
   /** 指定画面へ切り替え、必要であればスタート画面の状態を更新する。 */
   showScreen(screenName: ScreenName): void {
-    showScreenFn(screenName);
+    setCurrentScreen(screenName);
 
     if (screenName === "start") {
       updateSubjectStatsFn(this.useCase);

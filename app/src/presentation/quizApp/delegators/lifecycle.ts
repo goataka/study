@@ -47,6 +47,7 @@ import { renderQuestion as renderQuestionFn } from "../questionRenderer";
 import { showAnswerFeedback as showAnswerFeedbackFn } from "../answerFeedback";
 import { updateNavigationButtons as updateNavigationButtonsFn } from "../navigationButtons";
 import { updateNotesAreaForQuestion as updateNotesAreaForQuestionFn } from "../notesAreaUpdater";
+import { getQuizSettingsSnapshot } from "../../components/startScreen/quizSettingsStore";
 import {
   getSelectionLevel,
   getEffectiveFilter,
@@ -152,6 +153,8 @@ export function toggleLearnedStatus(app: QuizApp): void {
 }
 
 export async function startQuiz(app: QuizApp, mode: QuizMode): Promise<void> {
+  const quizSettings = getQuizSettingsSnapshot();
+  app.quizOrder = quizSettings.quizOrder;
   const effectiveMode = resolveEffectiveMode(mode, app.quizOrder);
   const deps = {
     useCase: app.useCase,
@@ -176,9 +179,12 @@ export async function startQuiz(app: QuizApp, mode: QuizMode): Promise<void> {
   }
   app.currentSession = session;
   app.currentMode = effectiveMode;
+  const isPracticeMode = effectiveMode === "practice" || app.quizOrder === "straight";
   app.notesController.clearAllStates();
   app.showScreen("quiz");
-  document.getElementById("quizScreen")?.classList.toggle("practice-mode", effectiveMode === "practice");
+  setTimeout(() => {
+    document.getElementById("quizScreen")?.classList.toggle("practice-mode", isPracticeMode);
+  }, 0);
   app.notesController.initialize();
   app.notesController.getCanvas()?.clear();
   renderQuestion(app);
