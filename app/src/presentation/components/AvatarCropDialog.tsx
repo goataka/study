@@ -4,10 +4,9 @@
  * `AvatarController` がダイアログ要素・プレビュー画像・ズーム入力を直接 DOM 操作する。
  * React は静的な初期マークアップのみを描画する。
  *
- * NOTE: 静的スタイルは Tailwind ユーティリティへ移行済み。
- *       動的に付け外しされる `.visible`（プレビュー表示）/ `.dragging`
- *       （ドラッグ中カーソル）と `::backdrop` セレクタは Tailwind で表現できないため、
- *       `07-avatar-dialog.css` に最小限の規則として残している。
+ * NOTE: 静的スタイルと `.visible` / `.dragging` の状態スタイルは
+ * Tailwind ユーティリティへ移行済み。`::backdrop` 疑似要素のみ
+ * `07-avatar-dialog.css` に残している。
  */
 
 export function AvatarCropDialog(): React.JSX.Element {
@@ -31,12 +30,12 @@ export function AvatarCropDialog(): React.JSX.Element {
         </label>
         <div
           id="avatarCropPreviewWrap"
-          className="relative flex h-[120px] w-[120px] cursor-grab touch-none select-none items-center justify-center overflow-hidden rounded-full border-2 border-[#d0d8e0] bg-[#f0f4f8] [overscroll-behavior:contain] avatar-crop-preview-wrap"
+          className="relative flex h-[120px] w-[120px] cursor-grab touch-none select-none items-center justify-center overflow-hidden rounded-full border-2 border-[#d0d8e0] bg-[#f0f4f8] [overscroll-behavior:contain] avatar-crop-preview-wrap [&.dragging]:cursor-grabbing"
         >
           {/* src は AvatarController が動的に設定する。空文字属性は React の警告対象なので未設定にする。 */}
           <img
             id="avatarCropPreview"
-            className="pointer-events-none hidden h-full w-full object-cover avatar-crop-preview"
+            className="pointer-events-none hidden h-full w-full object-cover avatar-crop-preview [&.visible]:block"
             alt=""
             aria-hidden="true"
           />

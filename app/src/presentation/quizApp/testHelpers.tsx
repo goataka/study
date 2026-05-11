@@ -12,6 +12,14 @@ import { QuizPanel } from "../components/startScreen/QuizPanel";
 import { OverallSummaryPanel } from "../components/startScreen/OverallSummaryPanel";
 import { ProgressDetailPanel } from "../components/startScreen/ProgressDetailPanel";
 import { __resetPanelTabsStoreForTests } from "../components/startScreen/panelTabsStore";
+import { configureQuizAppDefaultDependencies } from "../quizApp";
+import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
+import { RemoteQuestionRepository } from "../../infrastructure/remoteQuestionRepository";
+
+configureQuizAppDefaultDependencies(() => ({
+  progressRepo: new LocalStorageProgressRepository(),
+  questionRepo: new RemoteQuestionRepository("questions"),
+}));
 
 /**
  * テスト用 DOM に確認ダイアログを React マウントするヘルパー。
