@@ -1,4 +1,5 @@
 node_modules/
+copilot-hooks/
 app/src/**/*.js
 app/*.js
 app/tsconfig.build.tsbuildinfo

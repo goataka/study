@@ -69,22 +69,16 @@ jobs:
           set -euo pipefail
 
           LATEST_TAG="$(gh release list --limit 1 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[0].tagName // ""')"
-
-          if [ -z "${LATEST_TAG}" ]; then
-            echo "最新リリースが存在しません。"
-            echo "release-app.yml を実行して本番用リリースを作成してください。"
-            exit 1
-          fi
-
           rm -f /tmp/app-dist.zip
-          if ! gh release download "${LATEST_TAG}" --pattern "app-dist.zip" --dir /tmp; then
-            echo "最新リリースが存在しないか、app-dist.zip が見つかりません。"
-            echo "release-app.yml を実行して本番用リリースを作成してください。"
-            exit 1
+          if [ -n "${LATEST_TAG}" ] && gh release download "${LATEST_TAG}" --pattern "app-dist.zip" --dir /tmp; then
+            sudo mkdir -p _site/v1
+            sudo unzip -q /tmp/app-dist.zip -d _site/v1
+          else
+            echo "::warning::最新リリース（app-dist.zip）が見つからないため、main のビルド成果物を /v1 に配置します。"
+            echo "::warning::本番用の固定成果物を使う場合は release-app.yml を実行してリリースを作成してください。"
+            sudo mkdir -p _site/v1
+            sudo cp -r app/dist/. _site/v1/
           fi
-
-          sudo mkdir -p _site/v1
-          sudo unzip -q /tmp/app-dist.zip -d _site/v1
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v5
