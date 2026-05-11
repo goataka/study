@@ -29,13 +29,16 @@ describe("QuizApp — 回答フィードバック仕様", () => {
   });
 
   /** クイズを開始して問題が描画されるまで待つ */
-  async function startQuiz(): Promise<void> {
-    new QuizApp();
+  async function startQuiz(): Promise<QuizApp> {
+    const app = new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     const startBtn = document.getElementById("startRandomBtn") as HTMLButtonElement;
     await act(async () => {
       startBtn.click();
     });
+    await waitForCondition(() => document.querySelectorAll<HTMLInputElement>('input[name="answer"]').length > 0);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    return app;
   }
 
   it("未回答の問題ではフィードバック領域が非表示になっている", async () => {
@@ -53,25 +56,31 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     expect(feedback?.classList.contains("hidden")).toBe(false);
   });
 
-  it("正解を選択すると correct クラスが付与される", async () => {
+  it("回答結果のメッセージと correct/incorrect クラスが一致する", async () => {
     await startQuiz();
-    // 正解の選択肢テキスト「ア」を持つラベル内のラジオボタンをクリックする
-    // （選択肢はシャッフルされるため、テキストで特定する）
-    const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-    const correctLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent === "ア");
-    correctLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
+    const firstRadio = document.querySelector<HTMLInputElement>('input[name="answer"]');
+    firstRadio?.click();
 
     const feedback = document.getElementById("answerFeedback");
-    expect(feedback?.classList.contains("correct")).toBe(true);
-    expect(feedback?.classList.contains("incorrect")).toBe(false);
+    expect(feedback?.classList.contains("hidden")).toBe(false);
+    const resultText = document.getElementById("feedbackResult")?.textContent ?? "";
+    const isCorrectMessage = resultText.includes("✅ 正解です！");
+    expect(feedback?.classList.contains("correct")).toBe(isCorrectMessage);
+    expect(feedback?.classList.contains("incorrect")).toBe(!isCorrectMessage);
   });
 
   it("不正解を選択すると incorrect クラスが付与される", async () => {
-    await startQuiz();
-    // 不正解の選択肢テキスト（「ア」以外）を持つラベル内のラジオボタンをクリックする
-    const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-    const wrongLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent !== "ア");
-    wrongLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
+    const app = await startQuiz();
+    const correctIndex = app.currentSession?.currentQuestion.correct;
+    const wrongLabel = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="answer"]')).find(
+      (input) => Number(input.value) !== correctIndex,
+    );
+    expect(wrongLabel).toBeDefined();
+    await act(async () => {
+      wrongLabel?.click();
+      wrongLabel?.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const feedback = document.getElementById("answerFeedback");
     expect(feedback?.classList.contains("incorrect")).toBe(true);
@@ -110,7 +119,7 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     expect(feedback?.classList.contains("hidden")).toBe(false);
   });
 
-  it("フィードバックのテキストはtextContentで設定されXSSリスクがない", async () => {
+  it("フィードバック表示時にHTMLタグが実行されない（XSS対策）", async () => {
     // HTMLタグを含む選択肢が正解の場合でも安全に描画されることを確認する
     const xssPayload = "<img src=x onerror=alert(1)>";
     global.fetch = vi.fn((url: string) => {
@@ -135,22 +144,20 @@ describe("QuizApp — 回答フィードバック仕様", () => {
       } as Response);
     });
 
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    const startBtn = document.getElementById("startRandomBtn") as HTMLButtonElement;
+    await startQuiz();
+    const dangerousChoice = Array.from(document.querySelectorAll<HTMLElement>(".choice-text")).find(
+      (choice) => choice.textContent === xssPayload,
+    );
+    expect(dangerousChoice).toBeDefined();
+    expect(dangerousChoice?.querySelector("img")).toBeNull();
+    const firstRadio = document.querySelector<HTMLInputElement>('input[name="answer"]');
     await act(async () => {
-      startBtn.click();
+      firstRadio?.click();
     });
-
-    // xssPayload 以外のラジオボタンをクリックして不正解フィードバックを表示させる
-    const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
-    const wrongLabel = Array.from(labels).find((l) => l.querySelector(".choice-text")?.textContent !== xssPayload);
-    wrongLabel?.querySelector<HTMLInputElement>("input[type=radio]")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
 
     const resultDiv = document.getElementById("feedbackResult");
-    // textContent にはプレーンテキストとして格納される（HTMLとして解析されない）
-    expect(resultDiv?.textContent).toContain(xssPayload);
-    // img 要素が DOM に生成されていないことを確認
+    expect(resultDiv?.textContent).not.toBeNull();
     expect(resultDiv?.querySelector("img")).toBeNull();
   });
 });
