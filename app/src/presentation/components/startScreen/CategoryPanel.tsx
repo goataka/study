@@ -30,7 +30,11 @@ export function CategoryPanel(): React.JSX.Element {
         >
           📚 単元一覧
         </span>
-        <div className="category-status-filter flex items-center gap-0.5 ml-auto" role="group" aria-label="学習状態フィルター">
+        <div
+          className="category-status-filter flex items-center gap-0.5 ml-auto"
+          role="group"
+          aria-label="学習状態フィルター"
+        >
           <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
           <button id="filterStatusAll" className={`${statusFilterButton()} active`} type="button" aria-pressed="true">
             すべて
@@ -55,7 +59,10 @@ export function CategoryPanel(): React.JSX.Element {
       <div id="overallDateNav" className="activity-date-nav hidden flex items-center gap-1.5 shrink-0 px-2 py-1.5">
         <span id="activityDateDisplay" className="activity-date-display text-[13px] text-[#586069] font-medium"></span>
       </div>
-      <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2 px-2 justify-end">
+      <div
+        id="categoryControls"
+        className="category-controls flex flex-wrap items-center gap-[5px] mb-2 px-2 justify-end"
+      >
         <CategoryControlsSection />
       </div>
       <div

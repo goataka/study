@@ -46,7 +46,9 @@ describe("GuideContent", () => {
       Promise.resolve({
         ok: true,
         text: () =>
-          Promise.resolve("<html><body><h1>タイトル</h1><h2>見出し</h2><p>本文</p><script>bad()</script></body></html>"),
+          Promise.resolve(
+            "<html><body><h1>タイトル</h1><h2>見出し</h2><p>本文</p><script>bad()</script></body></html>",
+          ),
       } as Response),
     );
 
