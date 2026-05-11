@@ -2,6 +2,7 @@
 
 import { describe, it, expect, beforeEach } from "vitest";
 import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
+import { getFontSizeSnapshot, setFontSizeLevel } from "../components/fontSizeStore";
 import {
   loadUserName,
   loadFontSize,
@@ -19,6 +20,7 @@ describe("appSettingsService", () => {
   beforeEach(() => {
     localStorage.clear();
     document.body.innerHTML = "";
+    setFontSizeLevel("small");
   });
 
   describe("loadUserName", () => {
@@ -34,13 +36,13 @@ describe("appSettingsService", () => {
   });
 
   describe("loadFontSize / applyFontSize", () => {
-    it("永続化された値があれば DOM へ即時反映する", () => {
+    it("永続化された値があれば store に反映する", () => {
       const repo = new LocalStorageProgressRepository();
       repo.saveFontSizeLevel("large");
-      document.body.innerHTML = `<button class="font-size-btn" data-size="large"></button>`;
+      setFontSizeLevel("small");
       const result = loadFontSize(repo, "small");
       expect(result).toBe("large");
-      expect(document.body.classList.contains("font-size-large")).toBe(true);
+      expect(getFontSizeSnapshot()).toBe("large");
     });
     it("applyFontSize は persist=true で永続化する", () => {
       const repo = new LocalStorageProgressRepository();

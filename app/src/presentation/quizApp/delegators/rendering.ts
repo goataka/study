@@ -56,7 +56,6 @@ import {
   type PanelTab,
 } from "../tabsBuilder";
 import { showOverallPanel as showOverallPanelFn } from "../overallSummaryPanel";
-import { updateSubjectStats as updateSubjectStatsFn } from "../categoryStatsView";
 import { applyCategoryStatusFilter as applyCategoryStatusFilterFn } from "../categoryCollapseState";
 import { isCurrentCategoryLearned as isCurrentCategoryLearnedFn } from "../quizLifecycle";
 import { selectUnitContext, deselectAndRefresh, updateGuidePanelContent, updateSelectedUnitInfo } from "./lifecycle";
@@ -237,7 +236,6 @@ export function renderCategoryList(app: QuizApp): void {
     renderCategoryListByCategory: () => renderCategoryListByCategory(app),
     updateCategoryListActive: () => updateCategoryListActive(app),
     applyCategoryStatusFilter: () => applyCategoryStatusFilterFn(app.categoryStatusFilter),
-    updateSubjectStats: () => updateSubjectStatsFn(app.useCase),
     showConfirmDialog: (msg, alertOnly) => app.showConfirmDialog(msg, alertOnly),
   });
 }
@@ -335,7 +333,6 @@ export function renderProgressView(app: QuizApp): void {
       renderProgressDetailContent(app);
       app.syncURLFragment();
     },
-    onAfterRender: () => updateSubjectStatsFn(app.useCase),
   });
 }
 
@@ -439,7 +436,6 @@ export function updateStartScreen(app: QuizApp, allRecords?: QuizRecord[]): void
     hasSelectedUnit: app.selectedUnitContext !== null,
     allRecords,
     isCurrentCategoryLearned: () => isCurrentCategoryLearnedFn(app.useCase, getEffectiveFilter(app)),
-    updateSubjectStats: () => updateSubjectStatsFn(app.useCase),
     updateQuizPanelVisibility: () => updateQuizPanelVisibility(app),
     renderHistoryList: (filter, records) => renderHistoryList(app, filter, records),
     renderQuestionList: () => renderQuestionList(app),

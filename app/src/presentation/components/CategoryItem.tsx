@@ -27,6 +27,8 @@ export interface CategoryItemProps {
   example?: string;
   /** ステータスアイコン文字（デフォルト ⬜）。 */
   statusIcon?: string;
+  /** 学習状態クラス（learned / studying / unlearned）。 */
+  statusKind?: "learned" | "studying" | "unlearned";
   /** 進捗（学習済み）バーの充填率（0〜100）。 */
   progressFillPercent?: number;
   /** 進行中バーの充填率（0〜100）。 */
@@ -62,6 +64,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
     description,
     example,
     statusIcon = "⬜",
+    statusKind = "unlearned",
     progressFillPercent = 0,
     progressInProgressPercent = 0,
     statsText = "",
@@ -82,6 +85,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
     : "";
 
   const gradeClass = referenceGrade && showReferenceGrade ? gradeColorClass(referenceGrade) : null;
+  const isProgressDone = progressFillPercent === 100 && progressInProgressPercent === 0;
 
   return (
     <div
@@ -97,6 +101,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
         // group: 子要素で group-[.active]: variant を使用
         "group",
         description !== undefined || example !== undefined ? "category-item-has-info" : "",
+        statusKind,
         active ? "active" : "",
       ]
         .filter(Boolean)
@@ -139,7 +144,12 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
           <div className="category-progress-row flex items-center gap-1.5">
             <div className="category-progress-bar flex-1 h-1 bg-[#e1e4e8] rounded-sm overflow-hidden flex">
               <div
-                className="category-progress-fill h-full bg-[#28a745] rounded-sm shrink-0"
+                className={[
+                  "category-progress-fill h-full bg-[#28a745] rounded-sm shrink-0",
+                  isProgressDone ? "progress-fill-done" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
                 style={{ width: `${progressFillPercent}%` }}
               />
               <div

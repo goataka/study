@@ -9,7 +9,8 @@ import type { QuizUseCase } from "../../application/quizUseCase";
 import { renderProgressDetailMatrix } from "../progressMatrixView";
 import { renderProgressDetailByGrade, renderProgressDetailByCategory } from "../progressBlockView";
 import { renderProgressSubjectList, syncProgressDetailControls } from "./progressView";
-import { clearReactContainer } from "./reactMount";
+import { categoryListContentStore } from "../components/categoryListContentStore";
+import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
 
 /** 進度タブ詳細パネルの表示モード。 */
 export type ProgressDetailViewMode = "grade" | "category" | "matrix";
@@ -29,14 +30,12 @@ export function renderProgressView(params: {
   onSelectSubject: (subjectId: string) => void;
   onSelectUnit: (subject: string, catId: string, catName: string) => void;
   onToggleMatrixTranspose: () => void;
-  onAfterRender: () => void;
 }): void {
   const categoryList = document.getElementById("categoryList");
-  const controlsEl = document.getElementById("categoryControls");
   if (!categoryList) return;
-  // 進度タブ自身が categoryList を React で再描画するため、wipe 時はマーカーも消す
-  clearReactContainer(categoryList);
-  if (controlsEl) clearReactContainer(controlsEl);
+  // 進度タブ自身が categoryList を React で再描画するため、wipe 時はストアをリセットする
+  categoryListContentStore.reset();
+  categoryControlsContentStore.reset();
 
   // ── 左パネル: 教科リスト（React 描画） ──
   renderProgressSubjectList(categoryList, params.useCase, {
@@ -54,8 +53,6 @@ export function renderProgressView(params: {
     onSelectUnit: params.onSelectUnit,
     onToggleMatrixTranspose: params.onToggleMatrixTranspose,
   });
-
-  params.onAfterRender();
 }
 
 /**

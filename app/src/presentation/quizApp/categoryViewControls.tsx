@@ -1,14 +1,13 @@
 /**
  * カテゴリビュー操作コントロール（学年フィルター・ビューモード切替）の React 描画ヘルパー。
  *
- * もともと `controlsEl.appendChild(...)` で逐次組み立てていたものを、
- * `CategoryViewControls` React コンポーネントに置き換えた。
+ * `categoryControlsContentStore` 経由で React ツリーに描画する。
  * 公開 API（`renderCategoryViewControls(params)`）は互換維持。
  */
 
 import type { QuizUseCase } from "../../application/quizUseCase";
 import type { IProgressRepository } from "../../application/ports";
-import { renderReactInto, clearReactContainer } from "./reactMount";
+import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
 import { categoryViewToggleButton, gradeFilterButton } from "../styles/categoryControlButtonStyles";
 
 /** カテゴリビューコントロールへ渡すコールバックと状態。 */
@@ -32,14 +31,9 @@ const PREFIX_LABEL: Record<string, string> = { 小学: "小学", 中学: "中学
  * カテゴリビュー操作コントロール（学年フィルター・ビューモード切替）を描画する。
  */
 export function renderCategoryViewControls(params: CategoryViewControlsParams): void {
-  const controlsEl = document.getElementById("categoryControls");
-  if (!controlsEl) return;
-
   if (params.subject === "all" || params.subject === "progress") {
     // 総合タブ・進度タブ: コントロールは renderAllSubjectList/renderProgressView 内で描画するため不要。
-    // 既存の中身を消しつつ、後続で renderReactInto が呼ばれた場合に新規 root を作るよう
-    // マーカーも削除する。
-    clearReactContainer(controlsEl);
+    categoryControlsContentStore.reset();
     return;
   }
 
@@ -48,7 +42,7 @@ export function renderCategoryViewControls(params: CategoryViewControlsParams): 
   if (grades.length === 0) {
     // 学年情報がない場合はフィルターをリセットし、ビューモード切替ボタンのみ描画する。
     params.onGradeFilterReset();
-    renderReactInto(controlsEl, <CategoryViewControls params={params} prefixes={[]} />);
+    categoryControlsContentStore.set(<CategoryViewControls params={params} prefixes={[]} />);
     return;
   }
 
@@ -62,7 +56,7 @@ export function renderCategoryViewControls(params: CategoryViewControlsParams): 
 
   // 1 種類以下なら学年フィルター UI は非表示（ビューモード切替ボタンのみ）
   const visiblePrefixes = prefixes.length < 2 ? [] : prefixes;
-  renderReactInto(controlsEl, <CategoryViewControls params={params} prefixes={visiblePrefixes} />);
+  categoryControlsContentStore.set(<CategoryViewControls params={params} prefixes={visiblePrefixes} />);
 }
 
 function collectGradePrefixes(grades: string[]): string[] {

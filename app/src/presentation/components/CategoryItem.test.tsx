@@ -3,23 +3,26 @@
 import * as React from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { CategoryItem } from "./CategoryItem";
-import { clearReactContainer, renderReactInto } from "../quizApp/reactMount";
+import { createRoot, type Root } from "react-dom/client";
+import { flushSync } from "react-dom";
 
 describe("CategoryItem (React コンポーネント)", () => {
   let container: HTMLElement;
+  let root: Root;
 
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+    root = createRoot(container);
   });
 
   afterEach(() => {
-    clearReactContainer(container);
+    flushSync(() => root.unmount());
     container.remove();
   });
 
   function render(props: React.ComponentProps<typeof CategoryItem>): HTMLElement {
-    renderReactInto(container, <CategoryItem {...props} />);
+    flushSync(() => root.render(<CategoryItem {...props} />));
     return container.querySelector(".category-item") as HTMLElement;
   }
 

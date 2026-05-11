@@ -1,13 +1,13 @@
 /**
  * 履歴一覧パネルのレンダラー。
  *
- * `HistoryList` React コンポーネントを `renderReactInto` でマウントするブリッジ。
+ * `historyListContentStore` を通じて React ツリーに描画する。
  * 生成される DOM 構造（class/id）は他のビューと統一されている。
  */
 
 import type { QuizFilter, QuizRecord, QuizUseCase } from "../../application/quizUseCase";
 import { HistoryList } from "./HistoryList";
-import { renderReactInto } from "./reactMount";
+import { historyListContentStore } from "../components/historyListContentStore";
 
 /**
  * 履歴一覧（`#historyList`）を描画する。
@@ -18,15 +18,11 @@ import { renderReactInto } from "./reactMount";
  * @param allRecords 呼び出し元で取得済みの履歴配列（省略時は内部で取得）
  */
 export function renderHistoryList(filter: QuizFilter, useCase: QuizUseCase, allRecords?: QuizRecord[]): void {
-  const historyList = document.getElementById("historyList");
-  if (!historyList) return;
-
   const records = (allRecords ?? useCase.getHistory())
     .filter((r) => matchesRecordFilterIncludingAllCategory(r, filter, useCase))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  renderReactInto(
-    historyList,
+  historyListContentStore.set(
     <HistoryList
       records={records}
       useCase={useCase}

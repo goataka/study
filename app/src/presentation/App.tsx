@@ -17,13 +17,15 @@
  * 1 度のみ起動する（テストで検証済み）。
  */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { TabsUserRow } from "./components/TabsUserRow";
 import { StartScreen } from "./components/StartScreen";
 import { OuterBottomRow } from "./components/OuterBottomRow";
 import { QuizScreen } from "./components/QuizScreen";
 import { ResultScreen } from "./components/ResultScreen";
 import { ConfirmDialog } from "./components/ConfirmDialog";
+import { getFontSizeSnapshot, subscribeFontSizeStore } from "./components/fontSizeStore";
+import { getScreenSnapshot, subscribeScreenStore } from "./components/screenStore";
 
 export interface AppProps {
   /**
@@ -37,6 +39,8 @@ export interface AppProps {
 export function App({ bootApp }: AppProps): React.JSX.Element {
   // React.StrictMode による二重マウントで二重起動しないようガードする
   const bootedRef = useRef(false);
+  const currentScreen = useSyncExternalStore(subscribeScreenStore, getScreenSnapshot, getScreenSnapshot);
+  const fontSizeLevel = useSyncExternalStore(subscribeFontSizeStore, getFontSizeSnapshot, getFontSizeSnapshot);
 
   useEffect(() => {
     if (bootedRef.current) return;
@@ -45,14 +49,20 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
     bootApp();
   }, [bootApp]);
 
+  useEffect(() => {
+    document.body.classList.remove("font-size-medium", "font-size-large");
+    if (fontSizeLevel === "medium") document.body.classList.add("font-size-medium");
+    if (fontSizeLevel === "large") document.body.classList.add("font-size-large");
+  }, [fontSizeLevel]);
+
   return (
     <>
       <div className="flex flex-col w-full h-full">
-        <TabsUserRow />
-        <StartScreen />
+        <TabsUserRow currentScreen={currentScreen} />
+        <StartScreen currentScreen={currentScreen} />
         <OuterBottomRow />
-        <QuizScreen />
-        <ResultScreen />
+        <QuizScreen currentScreen={currentScreen} />
+        <ResultScreen currentScreen={currentScreen} />
       </div>
       <ConfirmDialog />
     </>

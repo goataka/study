@@ -9,16 +9,29 @@
  * ここには含めない。
  */
 
+import { useSyncExternalStore } from "react";
 import { AvatarCropDialog } from "./AvatarCropDialog";
+import type { ScreenName } from "./screenStore";
+import { subjectTabsContentStore } from "./subjectTabsContentStore";
 
-export function TabsUserRow(): React.JSX.Element {
+interface TabsUserRowProps {
+  currentScreen: ScreenName;
+}
+
+export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Element {
   return (
     <div className="tabs-user-row flex items-end gap-0 [background:linear-gradient(to_bottom,#1e3a5f_0%,#0d2137_100%)] shrink-0">
       <div
-        className="subject-tabs flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden p-4 items-end justify-start"
+        className={[
+          "subject-tabs",
+          currentScreen !== "start" ? "hidden" : "",
+          "flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden p-4 items-end justify-start",
+        ].join(" ")}
         role="tablist"
         aria-label="教科を選択"
-      ></div>
+      >
+        <SubjectTabsSection />
+      </div>
       <div className="tabs-user-area flex items-center gap-1.5 shrink-0 px-4 pt-px relative ml-4 pl-4">
         <button
           id="headerUserName"
@@ -70,4 +83,14 @@ export function TabsUserRow(): React.JSX.Element {
       </div>
     </div>
   );
+}
+
+/** 教科タブ列 — subjectTabsContentStore から描画。 */
+function SubjectTabsSection(): React.JSX.Element {
+  const node = useSyncExternalStore(
+    subjectTabsContentStore.subscribe,
+    subjectTabsContentStore.get,
+    subjectTabsContentStore.get,
+  );
+  return <>{node}</>;
 }

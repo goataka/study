@@ -2,13 +2,13 @@
  * 問題一覧パネル（questions タブ）のレンダラー（React 版）。
  *
  * フィルターボタンの active 切り替え・件数バッジ更新は引き続き命令的に行うが、
- * 一覧本文（`#questionListBody`）は `QuestionList` コンポーネントを `renderReactInto`
- * 経由で描画する。公開 API（関数名・引数）は維持。
+ * 一覧本文（`#questionListBody`）は `QuestionList` コンポーネントを
+ * `questionListContentStore` 経由で描画する。公開 API（関数名・引数）は維持。
  */
 
 import type { Question, QuizFilter, QuizUseCase } from "../../application/quizUseCase";
 import { QuestionList } from "./QuestionList";
-import { renderReactInto } from "./reactMount";
+import { questionListContentStore } from "../components/questionListContentStore";
 
 export type QuestionListFilter = "all" | "learned" | "unlearned";
 
@@ -21,9 +21,6 @@ export function renderQuestionList(
   questionListFilter: QuestionListFilter,
   useCase: QuizUseCase,
 ): void {
-  const bodyEl = document.getElementById("questionListBody");
-  if (!bodyEl) return;
-
   const filterButtonMap = {
     all: "questionListFilterAll",
     unlearned: "questionListFilterUnlearned",
@@ -38,7 +35,7 @@ export function renderQuestionList(
   const countEl = document.getElementById("questionListFilterCount");
   if (countEl) countEl.textContent = `${questions.length}問`;
 
-  renderReactInto(bodyEl, <QuestionList questions={questions} useCase={useCase} />);
+  questionListContentStore.set(<QuestionList questions={questions} useCase={useCase} />);
 }
 
 function applyFilter(questions: Question[], listFilter: QuestionListFilter, useCase: QuizUseCase): Question[] {

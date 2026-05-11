@@ -3,13 +3,14 @@
  *
  * `IProgressRepository` を介してユーザー名・フォントサイズ・共有 URL・クイズ設定・
  * おすすめ単元数を読み書きする。DOM への反映はそれぞれの専用ヘルパー
- * （`fontSizeManager`, `userNameEditor` など）に委譲する。
+ * （`fontSizeStore`, `userNameEditor` など）に委譲する。
  */
 
 import type { IProgressRepository } from "../../application/ports";
+import { setFontSizeLevel, syncFontSizeDom } from "../components/fontSizeStore";
 import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
 import { sanitizeShareUrl } from "../uiHelpers";
-import { applyFontSizeToDom, type FontSizeLevel } from "./fontSizeManager";
+import type { FontSizeLevel } from "../components/fontSizeStore";
 
 /** クイズ実行時の設定値。 */
 export interface QuizSettingsState {
@@ -33,7 +34,8 @@ export function loadUserName(repo: IProgressRepository, fallback: string): strin
 export function loadFontSize(repo: IProgressRepository, fallback: FontSizeLevel): FontSizeLevel {
   const saved = repo.loadFontSizeLevel();
   const level = saved ?? fallback;
-  applyFontSizeToDom(level, false, (l) => repo.saveFontSizeLevel(l));
+  setFontSizeLevel(level);
+  syncFontSizeDom(level);
   return level;
 }
 
@@ -41,7 +43,9 @@ export function loadFontSize(repo: IProgressRepository, fallback: FontSizeLevel)
  * フォントサイズを DOM に適用しつつ、必要なら永続化する。
  */
 export function applyFontSize(repo: IProgressRepository, level: FontSizeLevel, persist = true): void {
-  applyFontSizeToDom(level, persist, (l) => repo.saveFontSizeLevel(l));
+  setFontSizeLevel(level);
+  syncFontSizeDom(level);
+  if (persist) repo.saveFontSizeLevel(level);
 }
 
 /**

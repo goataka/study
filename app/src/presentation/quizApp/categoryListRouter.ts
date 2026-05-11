@@ -10,7 +10,8 @@
 import type { QuizUseCase } from "../../application/quizUseCase";
 import type { IProgressRepository } from "../../application/ports";
 import { renderAdminContent } from "../adminPanel";
-import { clearReactContainer } from "./reactMount";
+import { categoryListContentStore } from "../components/categoryListContentStore";
+import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
 
 /** renderCategoryList ルーターのパラメータ。 */
 export interface RenderCategoryListRouterParams {
@@ -27,20 +28,15 @@ export interface RenderCategoryListRouterParams {
   renderCategoryListByCategory: () => void;
   updateCategoryListActive: () => void;
   applyCategoryStatusFilter: () => void;
-  updateSubjectStats: () => void;
   showConfirmDialog: (msg: string, alertOnly?: boolean) => Promise<boolean>;
 }
 
-/**
- * 教科フィルターに応じてカテゴリリストを描画する。
- */
 export function renderCategoryListRouter(params: RenderCategoryListRouterParams): void {
   const categoryList = document.getElementById("categoryList");
   if (!categoryList) return;
 
-  // 共有コンテナ。React 化された renderAllSubjectList / renderProgressView 等が
-  // 描画する場合に備え、wipe 時はマーカーも明示的に削除する。
-  clearReactContainer(categoryList);
+  // カテゴリリストを空にリセットしてから各サブビューが再描画する
+  categoryListContentStore.reset();
 
   const { subject } = params;
 
@@ -52,8 +48,7 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
 
   if (subject === "admin") {
     // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
-    const controlsEl = document.getElementById("categoryControls");
-    if (controlsEl) clearReactContainer(controlsEl);
+    categoryControlsContentStore.reset();
     // タイトルを「⚙️ メニュー」に変更
     const titleEl = document.getElementById("categoryListTitle");
     if (titleEl) titleEl.textContent = "⚙️ メニュー";
@@ -68,8 +63,7 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
 
   if (subject === "progress") {
     // 進度タブ: コントロールをクリアし、タイトルを設定して進度ビューを描画する
-    const controlsEl = document.getElementById("categoryControls");
-    if (controlsEl) clearReactContainer(controlsEl);
+    categoryControlsContentStore.reset();
     const titleEl = document.getElementById("categoryListTitle");
     if (titleEl) titleEl.textContent = "📚 教科";
     params.renderProgressView();
@@ -93,6 +87,4 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
   params.updateCategoryListActive();
   // 学習状態フィルターを適用する
   params.applyCategoryStatusFilter();
-  // 進捗バー・学習状態を更新する（ビューモード・フィルター切替後も正確に反映する）
-  params.updateSubjectStats();
 }

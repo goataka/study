@@ -1,8 +1,8 @@
 /**
  * ノート外の下部エリア：GitHub リンク + コピーライト + 文字サイズ切り替え。
  *
- * 文字サイズボタンの押下状態は既存コントローラ（`fontSizeManager` 等）が
- * `aria-pressed` / `active` クラスを付け替えて表現する。
+ * 文字サイズボタンの押下状態は `fontSizeStore` の値から
+ * `aria-pressed` / `active` クラスを算出して表現する。
  *
  * NOTE: 旧 `.outer-bottom-row` / `.outer-github-link(-label)` / `.outer-copyright` /
  *       `.outer-bottom-actions` の各スタイルは Tailwind ユーティリティへ移行済み。
@@ -10,7 +10,15 @@
  *       JSX 側の `width`/`height` 属性で表現する（既存マークアップ通り）。
  */
 
+import { useSyncExternalStore } from "react";
+import { getFontSizeSnapshot, subscribeFontSizeStore, type FontSizeLevel } from "./fontSizeStore";
+
 export function OuterBottomRow(): React.JSX.Element {
+  const fontSizeLevel = useSyncExternalStore(subscribeFontSizeStore, getFontSizeSnapshot, getFontSizeSnapshot);
+  const isActive = (level: FontSizeLevel): boolean => fontSizeLevel === level;
+  const fontSizeButtonBaseClass =
+    "font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6]";
+
   return (
     <div className="order-2 grid shrink-0 grid-cols-[1fr_auto_1fr] items-center px-1 pt-0.5 pb-0.5">
       <a
@@ -46,25 +54,25 @@ export function OuterBottomRow(): React.JSX.Element {
             A
           </span>
           <button
-            className="font-size-btn active cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[11px]"
+            className={`${fontSizeButtonBaseClass} text-[11px]${isActive("small") ? " active" : ""}`}
             data-size="small"
-            aria-pressed="true"
+            aria-pressed={isActive("small")}
             title="文字サイズ：小"
           >
             小
           </button>
           <button
-            className="font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[15px]"
+            className={`${fontSizeButtonBaseClass} text-[15px]${isActive("medium") ? " active" : ""}`}
             data-size="medium"
-            aria-pressed="false"
+            aria-pressed={isActive("medium")}
             title="文字サイズ：中"
           >
             中
           </button>
           <button
-            className="font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[19px]"
+            className={`${fontSizeButtonBaseClass} text-[19px]${isActive("large") ? " active" : ""}`}
             data-size="large"
-            aria-pressed="false"
+            aria-pressed={isActive("large")}
             title="文字サイズ：大"
           >
             大

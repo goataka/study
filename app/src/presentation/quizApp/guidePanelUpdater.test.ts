@@ -1,8 +1,15 @@
 // @vitest-environment jsdom
 
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { act } from "react";
+import { createRoot } from "react-dom/client";
+import { flushSync } from "react-dom";
+import React from "react";
 import { loadGuideContent } from "./guideLoader";
 import { updateGuidePanelContentByIds } from "./guidePanelUpdater";
+import { QuizPanel } from "../components/startScreen/QuizPanel";
+import { __resetPanelTabsStoreForTests } from "../components/startScreen/panelTabsStore";
+import { guidePanelContentStore } from "../components/guidePanelContentStore";
 
 function createUseCaseStub() {
   return {
@@ -21,16 +28,21 @@ describe("guidePanelUpdater", () => {
     return new Promise((resolve) => setTimeout(resolve, 0));
   }
 
+  beforeEach(() => {
+    __resetPanelTabsStoreForTests();
+    guidePanelContentStore.reset();
+    const mount = document.createElement("div");
+    mount.id = "quizPanelMount";
+    document.body.appendChild(mount);
+    flushSync(() => createRoot(mount).render(React.createElement(QuizPanel)));
+  });
+
   afterEach(() => {
     vi.restoreAllMocks();
     document.body.innerHTML = "";
   });
 
-  it("学年ガイド表示時に loadedUrl をクリアしトークンを進める", async () => {
-    document.body.innerHTML = `
-      <div id="guidePanelFrame" data-loaded-url="../english/old-guide"></div>
-      <div id="guideNoContent"></div>
-    `;
+  it("学年ガイド表示時にトークンを進め学年ガイドを描画する", async () => {
     let currentToken = 0;
     const tokenRef = {
       nextToken: () => ++currentToken,
@@ -54,16 +66,11 @@ describe("guidePanelUpdater", () => {
 
     const guideFrame = document.getElementById("guidePanelFrame") as HTMLElement;
     expect(currentToken).toBe(1);
-    expect(guideFrame.dataset.loadedUrl).toBe("");
     expect(guideFrame.textContent).toContain("小学1年");
     expect(guideFrame.textContent).toContain("たし算");
   });
 
   it("進行中のガイド読込より後で学年ガイドを表示した場合は学年ガイドが維持される", async () => {
-    document.body.innerHTML = `
-      <div id="guidePanelFrame"></div>
-      <div id="guideNoContent"></div>
-    `;
     let currentToken = 0;
     const tokenRef = {
       nextToken: () => ++currentToken,
@@ -79,12 +86,16 @@ describe("guidePanelUpdater", () => {
         }),
     );
 
-    const guideFrame = document.getElementById("guidePanelFrame") as HTMLElement;
+    // guideLoader の loadGuideContent はスタンドアロン div を使う（後方互換）
+    const tempFrame = document.createElement("div");
+    const tempNoContent = document.createElement("div");
+    document.body.appendChild(tempFrame);
+    document.body.appendChild(tempNoContent);
     const pendingLoad = loadGuideContent(
-      guideFrame,
+      tempFrame,
       "../english/pronunciation/01-alphabet/guide",
       tokenRef,
-      document.getElementById("guideNoContent") as HTMLElement,
+      tempNoContent,
     );
 
     await updateGuidePanelContentByIds(
@@ -107,16 +118,12 @@ describe("guidePanelUpdater", () => {
     } as Response);
     await pendingLoad;
 
-    expect(guideFrame.dataset.loadedUrl).toBe("");
+    const guideFrame = document.getElementById("guidePanelFrame") as HTMLElement;
     expect(guideFrame.textContent).toContain("小学1年");
     expect(guideFrame.textContent).not.toContain("外部ガイド");
   });
 
   it("学年ガイド表示後に URL ガイドへ遷移すると同一 React マウントでガイドが描画される", async () => {
-    document.body.innerHTML = `
-      <div id="guidePanelFrame"></div>
-      <div id="guideNoContent"></div>
-    `;
     let currentToken = 0;
     const tokenRef = {
       nextToken: () => ++currentToken,
@@ -141,7 +148,6 @@ describe("guidePanelUpdater", () => {
     );
 
     const guideFrame = document.getElementById("guidePanelFrame") as HTMLElement;
-    expect(guideFrame.hasAttribute("data-react-mounted")).toBe(true);
     expect(guideFrame.textContent).toContain("小学1年");
 
     // 2) URL ベースのガイドに遷移する（学年グループを解除して単元選択へ）
@@ -164,10 +170,11 @@ describe("guidePanelUpdater", () => {
       "guideNoContent",
     );
     await flush();
-    await flush();
+    // useEffect（fetch）を含む非同期処理を完全にフラッシュする
+    await act(async () => {});
+    await act(async () => {});
 
     // React マウントを維持したまま、同一ルートで URL ガイドへ切り替わる
-    expect(guideFrame.hasAttribute("data-react-mounted")).toBe(true);
     expect(guideFrame.textContent).not.toContain("小学1年");
     expect(guideFrame.textContent).toContain("外部ガイド");
   });

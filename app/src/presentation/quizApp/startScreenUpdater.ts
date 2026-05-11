@@ -22,7 +22,6 @@ export interface UpdateStartScreenParams {
   /** 「現在のカテゴリは学習済み」かを判定するクロージャ。 */
   isCurrentCategoryLearned: () => boolean;
   /** 関連サブパネル更新の副作用群。 */
-  updateSubjectStats: () => void;
   updateQuizPanelVisibility: () => void;
   renderHistoryList: (filter: QuizFilter, allRecords?: QuizRecord[]) => void;
   renderQuestionList: () => void;
@@ -34,7 +33,6 @@ export interface UpdateStartScreenParams {
  * スタート画面の統計エリアと関連パネルを更新する。
  */
 export function updateStartScreen(params: UpdateStartScreenParams): void {
-  params.updateSubjectStats();
   params.updateQuizPanelVisibility();
   const statsInfo = document.getElementById("statsInfo");
   const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement | null;

@@ -11,7 +11,7 @@ import type { QuizUseCase } from "../application/quizUseCase";
 import { formatExportFilename } from "./adminPanelLogic";
 import { AdminPanelRoot } from "./adminPanel/AdminPanelRoot";
 import type { AdminPanelDeps } from "./adminPanel/types";
-import { clearReactContainer, renderReactInto } from "./quizApp/reactMount";
+import { categoryListContentStore } from "./components/categoryListContentStore";
 
 export type { AdminPanelDeps } from "./adminPanel/types";
 
@@ -38,15 +38,13 @@ export function downloadUserData(useCase: QuizUseCase): void {
 /**
  * 管理画面（カテゴリリスト領域＋adminContent 領域）を描画する。
  */
-export function renderAdminContent(categoryList: HTMLElement, deps: AdminPanelDeps): void {
+export function renderAdminContent(_categoryList: HTMLElement, deps: AdminPanelDeps): void {
   const adminContentEl = document.getElementById("adminContent");
   if (!adminContentEl) return;
 
-  clearReactContainer(categoryList);
   adminContentEl.innerHTML = "";
 
-  renderReactInto(
-    categoryList,
+  categoryListContentStore.set(
     createElement(AdminPanelRoot, {
       ...deps,
       adminContentEl,

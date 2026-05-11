@@ -7,6 +7,7 @@
 
 import type { AvatarController } from "../avatarController";
 import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
+import { getScreenNameFromHistoryState, getScreenSnapshot, setCurrentScreen } from "../components/screenStore";
 
 /** ヘッダー（タイトルロゴ・ユーザー名編集・管理メニュー）のイベント。 */
 export interface HeaderListenersCallbacks {
@@ -206,25 +207,31 @@ export function setupShareSummaryListeners(callbacks: ShareSummaryCallbacks): vo
 
 /** ブラウザ履歴・モバイル戻るボタンのナビゲーション系イベント。 */
 export interface HistoryNavigationCallbacks {
-  /** popstate でスタート画面に戻る試み。Promise を返し、キャンセル時の挙動は呼び出し側が決める。 */
-  onPopState: () => Promise<void>;
+  /** popstate でスタート画面に戻る可否を確認する。 */
+  onPopState: () => Promise<boolean>;
   onMobileBack: () => void;
 }
 
 export function setupHistoryNavigationListeners(callbacks: HistoryNavigationCallbacks): void {
   // ブラウザの戻るボタンでスタート画面に戻る（setupEventListeners はコンストラクタから 1 度だけ呼ばれる）
   // クイズ進行中の場合は確認ダイアログを表示し、キャンセルされたら履歴に再プッシュして戻る操作を打ち消す
-  window.addEventListener("popstate", () => {
-    const startScreen = document.getElementById("startScreen");
-    if (!startScreen?.classList.contains("hidden")) return;
-    void callbacks.onPopState().then(() => {
-      // キャンセル時（スタート画面に遷移しなかった場合）は履歴エントリを再追加して「進む」操作を封じる
-      const stillOnStart = !document.getElementById("startScreen")?.classList.contains("hidden");
-      if (!stillOnStart) {
-        const activeScreen = document.querySelector(".screen:not(.hidden)");
-        const screenName = activeScreen?.id === "quizScreen" ? "quiz" : "result";
-        window.history.pushState({ screen: screenName }, document.title);
+  window.addEventListener("popstate", (event: PopStateEvent) => {
+    const previousScreen = getScreenSnapshot();
+    const nextScreen = getScreenNameFromHistoryState(event.state);
+    if (nextScreen !== "start") {
+      setCurrentScreen(nextScreen, { history: "none" });
+      return;
+    }
+    if (previousScreen === "start") return;
+
+    void callbacks.onPopState().then((canNavigate) => {
+      if (canNavigate) {
+        setCurrentScreen("start", { history: "none" });
+        return;
       }
+
+      // キャンセル時（スタート画面に遷移しなかった場合）は履歴エントリを再追加して「進む」操作を封じる
+      window.history.pushState({ screen: previousScreen }, document.title);
     });
   });
 

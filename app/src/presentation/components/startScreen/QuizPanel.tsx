@@ -6,12 +6,16 @@
  * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
  */
 
+import { useSyncExternalStore } from "react";
 import { setActivePanelTab, type PanelTab } from "./panelTabsStore";
 import { useActivePanelTab, useHiddenPanelTabs } from "./usePanelTabsStore";
 import { setQuizSettings } from "./quizSettingsStore";
 import { useQuizSettings } from "./useQuizSettingsStore";
 import { button } from "../../styles/buttonStyles";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
+import { historyListContentStore } from "../historyListContentStore";
+import { questionListContentStore } from "../questionListContentStore";
+import { guidePanelContentStore } from "../guidePanelContentStore";
 
 // 問題一覧フィルタ（すべて / 未学習 / 学習済）の共通ボタンスタイル。
 // `active` は `questionListView.tsx` の `classList.toggle("active", ...)` で
@@ -215,10 +219,7 @@ export function QuizPanel(): React.JSX.Element {
         role="tabpanel"
         aria-labelledby="panelTab-guide"
       >
-        <div id="guidePanelFrame" className="guide-frame flex-1 overflow-y-auto min-h-0 px-3 py-2"></div>
-        <p id="guideNoContent" className="guide-no-content hidden">
-          このカテゴリには解説がありません。
-        </p>
+        <GuidePanelSection />
       </div>
 
       <div
@@ -227,7 +228,7 @@ export function QuizPanel(): React.JSX.Element {
         role="tabpanel"
         aria-labelledby="panelTab-history"
       >
-        <div id="historyList" className="history-list flex flex-col gap-2.5"></div>
+        <HistoryListSection />
       </div>
 
       <div
@@ -251,8 +252,63 @@ export function QuizPanel(): React.JSX.Element {
             className="question-list-filter-count ml-auto text-[13px] font-semibold text-[#586069]"
           ></span>
         </div>
-        <div id="questionListBody" className="question-list-panel-body min-h-0 flex-1 overflow-y-auto py-2"></div>
+        <div id="questionListBody" className="question-list-panel-body min-h-0 flex-1 overflow-y-auto py-2">
+          <QuestionListSection />
+        </div>
       </div>
     </>
   );
+}
+
+/** 解説パネルフレーム — guidePanelContentStore から描画。 */
+function GuidePanelSection(): React.JSX.Element {
+  const node = useSyncExternalStore(
+    guidePanelContentStore.subscribe,
+    guidePanelContentStore.get,
+    guidePanelContentStore.get,
+  );
+  if (!node) {
+    return (
+      <>
+        <div id="guidePanelFrame" className="guide-frame flex-1 overflow-y-auto min-h-0 px-3 py-2 hidden"></div>
+        <p id="guideNoContent" className="guide-no-content">
+          このカテゴリには解説がありません。
+        </p>
+      </>
+    );
+  }
+  return (
+    <>
+      <div id="guidePanelFrame" className="guide-frame flex-1 overflow-y-auto min-h-0 px-3 py-2">
+        {node}
+      </div>
+      <p id="guideNoContent" className="guide-no-content hidden">
+        このカテゴリには解説がありません。
+      </p>
+    </>
+  );
+}
+
+/** 履歴一覧 — historyListContentStore から描画。 */
+function HistoryListSection(): React.JSX.Element {
+  const node = useSyncExternalStore(
+    historyListContentStore.subscribe,
+    historyListContentStore.get,
+    historyListContentStore.get,
+  );
+  return (
+    <div id="historyList" className="history-list flex flex-col gap-2.5">
+      {node}
+    </div>
+  );
+}
+
+/** 問題一覧本文 — questionListContentStore から描画。 */
+function QuestionListSection(): React.JSX.Element {
+  const node = useSyncExternalStore(
+    questionListContentStore.subscribe,
+    questionListContentStore.get,
+    questionListContentStore.get,
+  );
+  return <>{node}</>;
 }

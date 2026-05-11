@@ -5,6 +5,7 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
+import { act } from "react";
 import {
   waitForCondition,
   setupTabDom,
@@ -32,7 +33,9 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     const startBtn = document.getElementById("startRandomBtn") as HTMLButtonElement;
-    startBtn.click();
+    await act(async () => {
+      startBtn.click();
+    });
   }
 
   it("未回答の問題ではフィードバック領域が非表示になっている", async () => {

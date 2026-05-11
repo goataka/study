@@ -5,7 +5,10 @@
  * カテゴリリスト本体（動的描画）を含む。
  */
 
+import { useSyncExternalStore } from "react";
 import { statusFilterButton } from "../../styles/categoryControlButtonStyles";
+import { categoryControlsContentStore } from "../categoryControlsContentStore";
+import { categoryListContentStore } from "../categoryListContentStore";
 
 export function CategoryPanel(): React.JSX.Element {
   return (
@@ -52,7 +55,9 @@ export function CategoryPanel(): React.JSX.Element {
       <div id="overallDateNav" className="activity-date-nav hidden flex items-center gap-1.5 shrink-0 px-4 py-1.5">
         <span id="activityDateDisplay" className="activity-date-display text-[13px] text-[#586069] font-medium"></span>
       </div>
-      <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2 px-4"></div>
+      <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2 px-4">
+        <CategoryControlsSection />
+      </div>
       <div
         id="categoryList"
         className={[
@@ -68,7 +73,29 @@ export function CategoryPanel(): React.JSX.Element {
           "[&.detail-active_.category-item.category-item-has-info]:[grid-template-columns:1fr]",
           "[&.detail-active_.category-item-right]:hidden",
         ].join(" ")}
-      ></div>
+      >
+        <CategoryListSection />
+      </div>
     </div>
   );
+}
+
+/** カテゴリビューコントロール — categoryControlsContentStore から描画。 */
+function CategoryControlsSection(): React.JSX.Element {
+  const node = useSyncExternalStore(
+    categoryControlsContentStore.subscribe,
+    categoryControlsContentStore.get,
+    categoryControlsContentStore.get,
+  );
+  return <>{node}</>;
+}
+
+/** カテゴリ一覧 — categoryListContentStore から描画。 */
+function CategoryListSection(): React.JSX.Element {
+  const node = useSyncExternalStore(
+    categoryListContentStore.subscribe,
+    categoryListContentStore.get,
+    categoryListContentStore.get,
+  );
+  return <>{node}</>;
 }

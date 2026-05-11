@@ -2,14 +2,14 @@
  * 解説パネル (`#guidePanelFrame` 等) の解説 URL 解決と内容更新を行うヘルパー。
  *
  * 選択レベル（単元・親カテゴリ・トップカテゴリ・未選択）に応じて適切な guide URL を解決し、
- * `loadGuideContent` を呼び出して描画する。
+ * `guidePanelContentStore` を更新して描画する。
  */
 
 import * as React from "react";
 import type { QuizFilter, QuizUseCase } from "../../application/quizUseCase";
 import { GradeGuideContent, type GradeGuideEntry } from "../components/GradeGuideContent";
 import { GuideContent } from "../components/GuideContent";
-import { renderReactInto, clearReactContainer } from "./reactMount";
+import { guidePanelContentStore } from "../components/guidePanelContentStore";
 
 export type SelectionLevel = "none" | "topCategory" | "parentCategory" | "unit";
 
@@ -65,38 +65,27 @@ export async function updateGuidePanelContentByIds(
   state: GuideUrlResolverState,
   counterRef: GuideLoadCounterRef,
   frameId: string,
-  noContentId: string,
+  _noContentId: string,
 ): Promise<void> {
-  const guideFrame = document.getElementById(frameId);
-  const noContent = document.getElementById(noContentId);
-  if (!guideFrame) return;
-
   if (state.selectedGradeGroup && state.filter.subject !== "all" && state.filter.subject !== "progress") {
     counterRef.nextToken();
-    renderGradeGuideContent(guideFrame, useCase, state.filter.subject, state.selectedGradeGroup);
-    guideFrame.classList.remove("hidden");
-    noContent?.classList.add("hidden");
+    renderGradeGuideContent(useCase, state.filter.subject, state.selectedGradeGroup);
     return;
   }
 
   const guideUrl = resolveGuideUrl(useCase, state);
 
   if (guideUrl) {
-    guideFrame.dataset.loadedUrl = "";
-    renderReactInto(guideFrame, <GuideContent guideUrl={guideUrl} />);
-    guideFrame.classList.remove("hidden");
-    noContent?.classList.add("hidden");
+    guidePanelContentStore.set(<GuideContent guideUrl={guideUrl} />);
   } else {
-    clearReactContainer(guideFrame);
-    guideFrame.dataset.loadedUrl = "";
-    guideFrame.classList.add("hidden");
-    noContent?.classList.remove("hidden");
+    guidePanelContentStore.reset();
   }
+
+  // frameId は後方互換のため引数に残すが、ストアベース描画では不要
+  void frameId;
 }
 
-function renderGradeGuideContent(container: HTMLElement, useCase: QuizUseCase, subject: string, grade: string): void {
-  // React で再レンダリングするため、従来の loadedUrl キャッシュは無効化する
-  container.dataset.loadedUrl = "";
+function renderGradeGuideContent(useCase: QuizUseCase, subject: string, grade: string): void {
   const categories =
     grade === "none" ? useCase.getCategoriesWithoutGrade(subject) : useCase.getCategoriesForGrade(subject, grade);
   const title = grade === "none" ? "学年未設定" : grade;
@@ -105,5 +94,5 @@ function renderGradeGuideContent(container: HTMLElement, useCase: QuizUseCase, s
     name: categoryName,
     description: useCase.getCategoryDescription(subject, categoryId),
   }));
-  renderReactInto(container, <GradeGuideContent title={title} entries={entries} />);
+  guidePanelContentStore.set(<GradeGuideContent title={title} entries={entries} />);
 }
