@@ -1,5 +1,8 @@
 # Jekyllサイト（support/）とViteアプリ（app/）をGitHub Pagesにデプロイするワークフロー
-# アプリはサイトのトップ（/）に配置し、サポートコンテンツは /support/ 以下に配置する
+# 環境構成:
+# - 転送環境: /   （/v1 へ location.replace で転送）
+# - 検証環境: /v0（main からビルドした最新成果物）
+# - 本番環境: /v1（最新リリースの成果物）
 name: Deploy to GitHub Pages
 
 on:
@@ -50,7 +53,59 @@ jobs:
       - name: アプリビルドをサイトにコピー
         working-directory: ${{ github.workspace }}
         run: |
-          sudo cp -r app/dist/. _site/
+          sudo mkdir -p _site/v0
+          sudo cp -r app/dist/. _site/v0/
+
+      - name: 転送環境の index.html を生成
+        working-directory: ${{ github.workspace }}
+        run: |
+          cat <<'HTML' | sudo tee _site/index.html > /dev/null
+          <!doctype html>
+          <html lang="ja">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>Goataka Study</title>
+              <script>
+                const basePath = window.location.pathname.replace(/\/$/, "");
+                window.location.replace(`${basePath}/v1/`);
+              </script>
+            </head>
+            <body>
+              <noscript>
+                JavaScript を有効にしてください。<a href="./v1/">本番環境へ移動</a>
+              </noscript>
+            </body>
+          </html>
+          HTML
+
+      - name: 最新リリース成果物を取得して本番環境に展開
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        working-directory: ${{ github.workspace }}
+        run: |
+          set -euo pipefail
+
+          RELEASE_JSON="$(curl -sSfL \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPOSITORY}/releases/latest")"
+          ASSET_URL="$(echo "${RELEASE_JSON}" | jq -r '.assets[] | select(.name == "app-dist.zip") | .browser_download_url' | head -n1)"
+
+          if [ -z "${ASSET_URL}" ] || [ "${ASSET_URL}" = "null" ]; then
+            echo "最新リリースに app-dist.zip が見つかりません。"
+            exit 1
+          fi
+
+          curl -sSfL \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/octet-stream" \
+            "${ASSET_URL}" \
+            -o /tmp/app-dist.zip
+
+          sudo mkdir -p _site/v1
+          sudo unzip -q /tmp/app-dist.zip -d _site/v1
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v5

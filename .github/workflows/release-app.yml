@@ -1,0 +1,51 @@
+name: Release App Artifact
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: "リリースタグ名（例: v1.0.0）"
+        required: true
+        type: string
+      release_name:
+        description: "リリース名（未指定時はタグ名を使用）"
+        required: false
+        type: string
+
+env:
+  NODE_VERSION: "22"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: 本番用リリース作成
+    runs-on: ubuntu-latest
+    if: github.ref_name == 'main'
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v6
+
+      - name: Node.js 環境のセットアップ
+        uses: ./.github/actions/setup-quiz
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Viteビルド
+        run: npm run build
+        working-directory: app
+
+      - name: リリース成果物を圧縮
+        run: |
+          cd app/dist
+          zip -qr /tmp/app-dist.zip .
+
+      - name: GitHub Release を作成
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag_name }}
+          name: ${{ inputs.release_name || inputs.tag_name }}
+          target_commitish: main
+          generate_release_notes: true
+          files: /tmp/app-dist.zip
