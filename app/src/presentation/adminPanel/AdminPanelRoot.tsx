@@ -295,7 +295,9 @@ export function AdminPanelRoot({
               <div className="admin-manage-tab-panel flex flex-col gap-3">
                 {manageTab === "import" ? (
                   <div className="admin-reset-section flex flex-col gap-2">
-                    <p className="admin-reset-desc text-sm text-[#586069]">ダウンロードしたJSONファイルを選択して、学習データを更新します。</p>
+                    <p className="admin-reset-desc text-sm text-[#586069]">
+                      ダウンロードしたJSONファイルを選択して、学習データを更新します。
+                    </p>
                     <label className="admin-import-label inline-flex items-center gap-2 px-3 py-1.5 text-sm font-semibold rounded-md border border-[#0366d6] text-[#0366d6] bg-white cursor-pointer hover:bg-[#e8f0fe]">
                       📂 JSONファイルを選択
                       <input
@@ -329,7 +331,7 @@ export function AdminPanelRoot({
                       すべての学習データをJSONファイルとしてダウンロードします。定期的なバックアップにご利用ください。
                     </p>
                     <button
-                      className={`admin-import-apply-btn ${actionBtnBase} bg-[#0366d6] text-white border border-[#0255b8] hover:bg-[#0255b8] mt-2`}
+                      className={`admin-import-apply-btn ${actionBtnBase} bg-[#0366d6] text-white border border-[#0255b8] hover:bg-[#0255b8]`}
                       type="button"
                       onClick={onExportAllData}
                     >
@@ -339,7 +341,9 @@ export function AdminPanelRoot({
                 ) : null}
                 {manageTab === "reset" ? (
                   <div className="admin-reset-section flex flex-col gap-2">
-                    <p className="admin-reset-desc text-sm text-[#586069]">すべての学習データ（履歴・学習済み・進捗）を削除します。</p>
+                    <p className="admin-reset-desc text-sm text-[#586069]">
+                      すべての学習データ（履歴・学習済み・進捗）を削除します。
+                    </p>
                     <button
                       className={`admin-reset-btn ${actionBtnBase} bg-[#dc3545] text-white border border-[#c82333] hover:bg-[#c82333]`}
                       type="button"
@@ -388,7 +392,9 @@ export function AdminPanelRoot({
                     {copyButtonText}
                   </button>
                 </div>
-                <pre className="admin-data text-xs bg-[#f6f8fa] border border-[#e1e4e8] rounded-md p-3 overflow-x-auto max-h-[50vh] whitespace-pre-wrap break-all">{viewJsonText}</pre>
+                <pre className="admin-data text-xs bg-[#f6f8fa] border border-[#e1e4e8] rounded-md p-3 overflow-x-auto max-h-[50vh] whitespace-pre-wrap break-all">
+                  {viewJsonText}
+                </pre>
               </div>
             </>
           ) : null}

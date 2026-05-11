@@ -94,8 +94,12 @@ export function updateActivityDateDisplay(useCase: QuizUseCase, selectedActivity
     const sepIdx = key.indexOf("::");
     const subj = key.slice(0, sepIdx);
     const cat = key.slice(sepIdx + 2);
+    // category="all" は集計用の特殊カテゴリで個別の単元ではないためスキップする
+    if (cat === "all") continue;
     const { mastered, total } = useCase.getMasteredCountForCategory(subj, cat);
-    if (total > 0 && mastered === total) {
+    // 問題数が 0 の場合（カテゴリが削除済み等）はスキップする
+    if (total === 0) continue;
+    if (mastered === total) {
       masteredCount++;
     } else {
       studiedCount++;

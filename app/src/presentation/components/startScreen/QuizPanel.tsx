@@ -199,7 +199,11 @@ export function QuizPanel(): React.JSX.Element {
           </div>
         </div>
         <div className="mark-learned-section">
-          <button id="markLearnedBtn" className="mark-learned-btn px-4 py-2 text-sm font-semibold border border-[#28a745] rounded-md bg-[#f0fff4] text-[#28a745] cursor-pointer transition-[background,color,border-color] duration-200 hover:bg-[#28a745] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          <button
+            id="markLearnedBtn"
+            className="mark-learned-btn px-4 py-2 text-sm font-semibold border border-[#28a745] rounded-md bg-[#f0fff4] text-[#28a745] cursor-pointer transition-[background,color,border-color] duration-200 hover:bg-[#28a745] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
             ✅ 学習済みにする
           </button>
         </div>

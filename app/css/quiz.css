@@ -3,7 +3,8 @@
  *
  * Tailwind CSS v4 の `@import "tailwindcss"` のみを定義する。
  * 画面スタイルは原則として TSX 側の Tailwind ユーティリティ / CVA で管理する。
- * ただし、Tailwind ユーティリティでは表現困難なグローバルスタイルをここに追記する。
+ * ただし、動的に読み込まれるマークダウンコンテンツ用のスタイルなど、
+ * TSX で管理できないグローバルスタイルをここに追記する。
  */
 
 /* Tailwind CSS v4：プラグインが自動でテンプレートを走査しユーティリティを生成する。 */
@@ -53,11 +54,22 @@ body {
   color: #24292e;
 }
 
-.guide-frame .markdown-body h1 { font-size: 1.5em; }
-.guide-frame .markdown-body h2 { font-size: 1.25em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
-.guide-frame .markdown-body h3 { font-size: 1.1em; }
+.guide-frame .markdown-body h1 {
+  font-size: 1.5em;
+}
+.guide-frame .markdown-body h2 {
+  font-size: 1.25em;
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+.guide-frame .markdown-body h3 {
+  font-size: 1.1em;
+}
 
-.guide-frame .markdown-body p { margin-top: 0; margin-bottom: 1em; }
+.guide-frame .markdown-body p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
 
 .guide-frame .markdown-body ul,
 .guide-frame .markdown-body ol {
@@ -65,7 +77,9 @@ body {
   margin-bottom: 1em;
 }
 
-.guide-frame .markdown-body li { margin: 0.25em 0; }
+.guide-frame .markdown-body li {
+  margin: 0.25em 0;
+}
 
 .guide-frame .markdown-body table {
   border-collapse: collapse;
@@ -111,8 +125,13 @@ body {
   font-size: 0.9em;
 }
 
-.guide-frame .markdown-body a { color: #0366d6; text-decoration: none; }
-.guide-frame .markdown-body a:hover { text-decoration: underline; }
+.guide-frame .markdown-body a {
+  color: #0366d6;
+  text-decoration: none;
+}
+.guide-frame .markdown-body a:hover {
+  text-decoration: underline;
+}
 
 .guide-frame .markdown-body blockquote {
   padding: 0 1em;
