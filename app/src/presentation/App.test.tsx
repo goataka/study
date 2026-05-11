@@ -182,6 +182,7 @@ describe("App コンポーネント", () => {
       "selectedUnitInfo",
       // ノート外下部行
       "githubBtn",
+      "environmentSwitch",
       "fontSizeBtns",
       // クイズ画面
       "quizScreen",
@@ -252,6 +253,21 @@ describe("App コンポーネント", () => {
     expect(appFooter).toBeNull();
     expect(tabsUserArea?.className).not.toContain("border-l");
     expect(Array.from(fontSizeButtons).every((btn) => btn.className.includes("px-2 py-1"))).toBe(true);
+  });
+
+  it("環境切り替えは現在環境を太字・非リンクで表示する", () => {
+    act(() => {
+      root = createRoot(container!);
+      root.render(<App bootApp={bootApp} />);
+    });
+
+    const switcher = container!.querySelector("#environmentSwitch");
+    expect(switcher?.querySelector("strong")?.textContent).toBe("v1");
+    expect(
+      Array.from(switcher?.querySelectorAll("a") ?? []).some(
+        (anchor) => anchor.textContent === "rc" && anchor.getAttribute("href")?.includes("/rc") === true,
+      ),
+    ).toBe(true);
   });
 
   it("screenStore の状態に応じて画面の hidden クラスが切り替わる", () => {
