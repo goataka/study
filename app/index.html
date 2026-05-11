@@ -28,22 +28,25 @@
     <meta name="twitter:description" content="小中高向け学習アプリ" />
     <script>
       /* 1920×1080 を基準として画面全体にフィットするようスケーリングを適用する */
-      /* clientWidth/clientHeight を使用してスクロールバーを除いた表示領域を取得する */
+      /* window.innerWidth/innerHeight を使用して表示領域を取得する */
       /* モバイル（横幅 768px 未満）ではスケーリングを無効にして CSS レスポンシブに任せる */
       (function () {
         function applyScale() {
           var el = document.documentElement;
-          var w = el.clientWidth;
+          var w = window.innerWidth;
+          var h = window.innerHeight;
           if (w < 768) {
             el.style.transform = "";
             el.style.transformOrigin = "";
             el.style.width = "";
+            el.style.height = "";
             return;
           }
-          var scale = Math.min(w / 1920, el.clientHeight / 1080);
+          var scale = Math.min(w / 1920, h / 1080);
           el.style.transformOrigin = "top left";
           el.style.transform = "scale(" + scale + ")";
           el.style.width = 100 / scale + "%";
+          el.style.height = 100 / scale + "%";
         }
         applyScale();
         window.addEventListener("resize", applyScale);

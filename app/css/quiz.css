@@ -83,6 +83,12 @@ textarea:focus-visible {
   animation: score-celebration 1s ease-in-out infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-score-celebration {
+    animation: none;
+  }
+}
+
 /* ─── 解説パネル（.guide-content）のマークダウンスタイル ──────────────────── */
 /* GitHub Pages から取得した解説 HTML の .markdown-body に基本スタイルを提供する。 */
 .guide-frame .markdown-body {
