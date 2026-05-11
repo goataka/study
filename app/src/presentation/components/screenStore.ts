@@ -34,7 +34,7 @@ export function setCurrentScreen(screen: ScreenName, options: SetCurrentScreenOp
     if (mode === "push") {
       window.history.pushState({ screen }, document.title);
     } else {
-      window.history.replaceState({ screen: "start" }, document.title);
+      window.history.replaceState({ screen }, document.title);
     }
   }
 

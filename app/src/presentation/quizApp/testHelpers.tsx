@@ -60,6 +60,8 @@ function mountStartScreenPanels(): void {
 
 function mountScreenStoreDomBridge(): void {
   __resetScreenStoreForTests();
+  // QuizApp 単体テストは React ツリーをマウントしないケースが多いため、
+  // screenStore の状態変化を最小DOMへ反映するテスト専用ブリッジを用意する。
   const sync = (): void => {
     const current = getScreenSnapshot();
     const screens = [

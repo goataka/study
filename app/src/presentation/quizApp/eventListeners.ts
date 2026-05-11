@@ -216,13 +216,13 @@ export function setupHistoryNavigationListeners(callbacks: HistoryNavigationCall
   // ブラウザの戻るボタンでスタート画面に戻る（setupEventListeners はコンストラクタから 1 度だけ呼ばれる）
   // クイズ進行中の場合は確認ダイアログを表示し、キャンセルされたら履歴に再プッシュして戻る操作を打ち消す
   window.addEventListener("popstate", (event: PopStateEvent) => {
-    const currentScreen = getScreenSnapshot();
+    const previousScreen = getScreenSnapshot();
     const nextScreen = getScreenNameFromHistoryState(event.state);
     if (nextScreen !== "start") {
       setCurrentScreen(nextScreen, { history: "none" });
       return;
     }
-    if (currentScreen === "start") return;
+    if (previousScreen === "start") return;
 
     void callbacks.onPopState().then((canNavigate) => {
       if (canNavigate) {
@@ -231,8 +231,7 @@ export function setupHistoryNavigationListeners(callbacks: HistoryNavigationCall
       }
 
       // キャンセル時（スタート画面に遷移しなかった場合）は履歴エントリを再追加して「進む」操作を封じる
-      window.history.pushState({ screen: currentScreen }, document.title);
-      setCurrentScreen(currentScreen, { history: "none" });
+      window.history.pushState({ screen: previousScreen }, document.title);
     });
   });
 

@@ -182,9 +182,17 @@ export async function startQuiz(app: QuizApp, mode: QuizMode): Promise<void> {
   const isPracticeMode = effectiveMode === "practice" || app.quizOrder === "straight";
   app.notesController.clearAllStates();
   app.showScreen("quiz");
-  setTimeout(() => {
+  // 画面遷移直後の React 再レンダリングで class が上書きされるため、
+  // ペイント直前のタイミングで practice-mode を適用して既存スタイル互換を維持する。
+  const applyPracticeModeClass = (): void => {
     document.getElementById("quizScreen")?.classList.toggle("practice-mode", isPracticeMode);
-  }, 0);
+  };
+  // jsdom など requestAnimationFrame がない環境では setTimeout をフォールバックに使う。
+  if (typeof window.requestAnimationFrame === "function") {
+    window.requestAnimationFrame(applyPracticeModeClass);
+  } else {
+    setTimeout(applyPracticeModeClass, 0);
+  }
   app.notesController.initialize();
   app.notesController.getCanvas()?.clear();
   renderQuestion(app);
