@@ -85,6 +85,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           "relative flex-1 grid min-h-0 items-stretch gap-0",
           "grid-cols-[1.2fr_12px_1.8fr] max-[900px]:grid-cols-1",
           // 折り目：中央の 12px カラムに影付きグラデーション縦線を before: で描画
+          // 0.4 は左カラム比率 1.2 / (1.2 + 1.8) に対応
           "before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-3",
           "before:left-[calc((100%_-_12px)_*_0.4)]",
           "before:pointer-events-none",

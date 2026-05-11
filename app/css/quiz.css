@@ -43,7 +43,6 @@ body {
   background-position: 0 var(--notebook-line-offset);
 }
 
-button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 select:focus-visible,
