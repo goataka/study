@@ -190,6 +190,7 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     await chooseAnswerByIndex(Number(wrongRadio?.value));
 
     const resultDiv = document.getElementById("feedbackResult");
+    await waitForCondition(() => (resultDiv?.textContent ?? "").length > 0);
     expect(resultDiv?.textContent).toContain(xssPayload);
     expect(resultDiv?.querySelector("img")).toBeNull();
   });
