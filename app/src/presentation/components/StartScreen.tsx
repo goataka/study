@@ -47,7 +47,7 @@ export function StartScreen(): React.JSX.Element {
         >
           <button
             id="mobileBackBtn"
-            className="mobile-back-btn hidden px-3 py-2 text-sm font-semibold text-[#0366d6] border-none bg-transparent cursor-pointer hover:underline"
+            className="mobile-back-btn px-3 py-2 text-sm font-semibold text-[#0366d6] border-none bg-transparent cursor-pointer hover:underline"
             type="button"
             aria-label="単元一覧に戻る"
           >

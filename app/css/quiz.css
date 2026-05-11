@@ -22,7 +22,7 @@ body,
 
 body {
   background-color: #7a4e28;
-  background-image: url("../wood-bg.png");
+  background-image: url("/wood-bg.png");
   background-repeat: repeat;
 }
 

@@ -457,6 +457,62 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(label?.textContent).toBe("学習数：");
   });
 
+  it("category='all' の当日記録は学習数（⭐）にカウントされない", async () => {
+    const today = new Date().toISOString();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: today,
+          subject: "english",
+          subjectName: "英語",
+          category: "all",
+          categoryName: "英語 全体",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 9,
+          entries: [],
+        },
+      ]),
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const label = document.getElementById("overallActivityDateLabel");
+    // category="all" は集計用カテゴリなので学習数にはカウントしない
+    expect(label?.textContent).toBe("学習数：");
+  });
+
+  it("存在しないカテゴリ（total===0）の当日記録は学習数（⭐）にカウントされない", async () => {
+    const today = new Date().toISOString();
+    localStorage.setItem(
+      "quizHistory",
+      JSON.stringify([
+        {
+          id: "r1",
+          date: today,
+          subject: "english",
+          subjectName: "英語",
+          category: "nonexistent-category",
+          categoryName: "存在しないカテゴリ",
+          mode: "random",
+          totalCount: 10,
+          correctCount: 9,
+          entries: [],
+        },
+      ]),
+    );
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const label = document.getElementById("overallActivityDateLabel");
+    // 問題数 0 のカテゴリ（削除済み等）は学習数にカウントしない
+    expect(label?.textContent).toBe("学習数：");
+  });
+
   it("シェアタブをクリックすると overallSharePanel が表示され overallLearnedPanel が非表示になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
