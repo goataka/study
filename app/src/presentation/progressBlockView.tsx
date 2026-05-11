@@ -10,7 +10,7 @@
 import type { QuizUseCase } from "../application/quizUseCase";
 import type { ProgressStatusFilter } from "./quizApp/urlStateService";
 import { getLearningProgressStatus } from "./uiHelpers";
-import { renderReactInto } from "./quizApp/reactMount";
+import { progressDetailContentStore } from "./components/progressDetailContentStore";
 import { Fragment } from "react";
 
 export interface ProgressBlockContext {
@@ -310,13 +310,13 @@ function ProgressDetailByCategoryView({ ctx }: { ctx: ProgressBlockContext }): R
 /**
  * 進度詳細の学年別ビューを描画する（互換 API）。
  */
-export function renderProgressDetailByGrade(container: HTMLElement, ctx: ProgressBlockContext): void {
-  renderReactInto(container, <ProgressDetailByGradeView ctx={ctx} />);
+export function renderProgressDetailByGrade(_container: HTMLElement, ctx: ProgressBlockContext): void {
+  progressDetailContentStore.set(<ProgressDetailByGradeView ctx={ctx} />);
 }
 
 /**
  * 進度詳細のカテゴリ別ビューを描画する（互換 API）。
  */
-export function renderProgressDetailByCategory(container: HTMLElement, ctx: ProgressBlockContext): void {
-  renderReactInto(container, <ProgressDetailByCategoryView ctx={ctx} />);
+export function renderProgressDetailByCategory(_container: HTMLElement, ctx: ProgressBlockContext): void {
+  progressDetailContentStore.set(<ProgressDetailByCategoryView ctx={ctx} />);
 }

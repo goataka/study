@@ -8,10 +8,13 @@
  * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
  */
 
+import { useSyncExternalStore } from "react";
 import { setActiveOverallPanel, type OverallPanelTab } from "./panelTabsStore";
 import { useActiveOverallPanel } from "./usePanelTabsStore";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 import { shareButton } from "../../styles/shareButtonStyles";
+import { overallStatusContentStore } from "../overallStatusContentStore";
+import { todayActivityContentStore } from "../todayActivityContentStore";
 
 interface OverallPanelTabButtonProps {
   panel: OverallPanelTab;
@@ -64,8 +67,12 @@ export function OverallSummaryPanel(): React.JSX.Element {
             className="overall-activity-date text-base font-semibold text-[#24292e]"
           ></span>
         </div>
-        <div id="overallSubjectStatusSummary" className="overall-subject-status-summary flex flex-col gap-1"></div>
-        <div id="todayActivityContent" className="history-list overall-today-list flex flex-col gap-2.5"></div>
+        <div id="overallSubjectStatusSummary" className="overall-subject-status-summary flex flex-col gap-1">
+          <OverallStatusSection />
+        </div>
+        <div id="todayActivityContent" className="history-list overall-today-list flex flex-col gap-2.5">
+          <TodayActivitySection />
+        </div>
       </div>
       <div
         id="overallSharePanel"
@@ -109,4 +116,16 @@ export function OverallSummaryPanel(): React.JSX.Element {
       </div>
     </div>
   );
+}
+
+/** 教科別学習状況サマリ — overallStatusContentStore から描画。 */
+function OverallStatusSection(): React.JSX.Element {
+  const node = useSyncExternalStore(overallStatusContentStore.subscribe, overallStatusContentStore.get, overallStatusContentStore.get);
+  return <>{node}</>;
+}
+
+/** 今日の活動 — todayActivityContentStore から描画。 */
+function TodayActivitySection(): React.JSX.Element {
+  const node = useSyncExternalStore(todayActivityContentStore.subscribe, todayActivityContentStore.get, todayActivityContentStore.get);
+  return <>{node}</>;
 }

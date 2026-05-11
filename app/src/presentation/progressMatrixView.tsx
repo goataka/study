@@ -12,7 +12,7 @@
 import type { QuizUseCase } from "../application/quizUseCase";
 import type { ProgressStatusFilter } from "./quizApp/urlStateService";
 import { getLearningProgressStatus } from "./uiHelpers";
-import { renderReactInto } from "./quizApp/reactMount";
+import { progressDetailContentStore } from "./components/progressDetailContentStore";
 
 const EMPTY_PROGRESS = { mastered: 0, total: 0, inProgress: 0 } as const;
 
@@ -366,6 +366,6 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
 /**
  * 進度詳細マトリクスビューを `container` に描画する（互換 API）。
  */
-export function renderProgressDetailMatrix(container: HTMLElement, ctx: ProgressMatrixContext): void {
-  renderReactInto(container, <ProgressMatrixView ctx={ctx} />);
+export function renderProgressDetailMatrix(_container: HTMLElement, ctx: ProgressMatrixContext): void {
+  progressDetailContentStore.set(<ProgressMatrixView ctx={ctx} />);
 }

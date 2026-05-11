@@ -21,7 +21,7 @@ import {
   type CategoryStat,
 } from "./categoryStatsCalculator";
 import { type CreateCategoryItemParams, type BuildParentCategoryGroupParams } from "./categoryItemBuilder";
-import { renderReactInto } from "./reactMount";
+import { categoryListContentStore } from "../components/categoryListContentStore";
 
 /** トップカテゴリヘッダークリック時の選択／非選択トグル処理。 */
 export type TopHeaderClickHandler = (topCatId: string) => void;
@@ -270,9 +270,6 @@ function buildParentCategoryGroupProps(
  * gradeFilter が設定されている場合は学年でフィルタリングする。
  */
 export function renderCategoryListByCategory(params: RenderCategoryListByCategoryParams): void {
-  const categoryList = document.getElementById("categoryList");
-  if (!categoryList) return;
-
   const { useCase, subject } = params;
   const statsCtx = {
     statsMap: computeCategoryStatsMap(useCase),
@@ -359,7 +356,7 @@ export function renderCategoryListByCategory(params: RenderCategoryListByCategor
     }
   }
 
-  renderReactInto(categoryList, <>{nodes}</>);
+  categoryListContentStore.set(<>{nodes}</>);
 }
 
 /** renderCategoryListByGrade に渡すパラメータ。 */
@@ -379,9 +376,6 @@ export interface RenderCategoryListByGradeParams {
  * 学年グループ（小学1年, 中学1年 等）でまとめて表示する。
  */
 export function renderCategoryListByGrade(params: RenderCategoryListByGradeParams): void {
-  const categoryList = document.getElementById("categoryList");
-  if (!categoryList) return;
-
   const { useCase, subject } = params;
   const statsCtx = {
     statsMap: computeCategoryStatsMap(useCase),
@@ -422,5 +416,5 @@ export function renderCategoryListByGrade(params: RenderCategoryListByGradeParam
     pushGradeGroup("none", "学年未設定", useCase.getCategoriesWithoutGrade(subject));
   }
 
-  renderReactInto(categoryList, <>{groups}</>);
+  categoryListContentStore.set(<>{groups}</>);
 }

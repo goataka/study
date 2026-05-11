@@ -2,7 +2,7 @@
  * 教科タブ・パネルタブ・進度タブの構築とアクティブ状態同期を行うヘルパー群。
  *
  * 教科タブは React で完全制御化されており、`buildSubjectTabs` を再呼び出しすることで
- * active 状態を切り替える（`renderReactInto` 経由でキャッシュ済み root に対して再レンダリング）。
+ * active 状態を切り替える（`subjectTabsContentStore` 経由で再レンダリング）。
  * `selectTabByFilter` は後方互換のための薄いラッパーとして残している。
  */
 
@@ -12,7 +12,7 @@ import {
   subscribePanelTabSideEffect,
   subscribeProgressDetailSideEffect,
 } from "../components/startScreen/panelTabsStore";
-import { renderReactInto } from "./reactMount";
+import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
 export type PanelTab = "quiz" | "guide" | "history" | "questions";
@@ -27,17 +27,14 @@ export interface SubjectTabsCallbacks {
  * 教科タブ群を `.subject-tabs` 配下に React で構築する。
  *
  * `currentSubject` を渡すことで active 状態を制御する。再呼び出し時は
- * `renderReactInto` がキャッシュ済み root に対して props のみを更新し、
- * React の reconciliation で active クラス・aria-selected を最小差分で更新する。
+ * ストアを更新し、React の reconciliation で active クラス・aria-selected を最小差分で更新する。
  *
  * `selectTabByFilter` から再レンダリングできるよう、最後に渡された callbacks を
  * モジュール内にキャッシュする。
  */
 export function buildSubjectTabs(callbacks: SubjectTabsCallbacks, currentSubject: string): void {
   cachedCallbacks = callbacks;
-  const tabsContainer = document.querySelector(".subject-tabs");
-  if (!tabsContainer) return;
-  renderReactInto(tabsContainer, <SubjectTabs callbacks={callbacks} currentSubject={currentSubject} />);
+  subjectTabsContentStore.set(<SubjectTabs callbacks={callbacks} currentSubject={currentSubject} />);
 }
 
 let cachedCallbacks: SubjectTabsCallbacks | null = null;

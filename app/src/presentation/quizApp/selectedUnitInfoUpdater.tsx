@@ -3,7 +3,7 @@
  *
  * 選択レベル（unit / parentCategory / topCategory / 学年グループ）に応じて
  * 対応する詳細サマリ（タイトル・カテゴリ・例文・進捗バー＋閉じるボタン）を
- * `SelectedUnitInfoPanel` で同期描画する。
+ * `selectedUnitInfoContentStore` 経由で `SelectedUnitInfoPanel` に描画する。
  */
 
 import * as React from "react";
@@ -14,7 +14,7 @@ import {
   buildGradeGroupViewModel,
   buildCategoryOrTopViewModel,
 } from "./selectedUnitInfoViewModel";
-import { renderReactInto } from "./reactMount";
+import { selectedUnitInfoContentStore } from "../components/selectedUnitInfoContentStore";
 
 /** 選択中の単元コンテキスト（総合タブから単元選択中の場合に使われる）。 */
 export interface SelectedUnitContext {
@@ -47,8 +47,6 @@ export interface UpdateSelectedUnitInfoParams {
  */
 export function updateSelectedUnitInfo(params: UpdateSelectedUnitInfoParams): void {
   const container = document.getElementById("selectedUnitInfo");
-  if (!container) return;
-
   const { useCase, filter, selectionLevel, selectedUnitContext, categoryViewMode, selectedGradeGroup } = params;
   const categoryListEl = document.getElementById("categoryList");
 
@@ -79,7 +77,7 @@ export function updateSelectedUnitInfo(params: UpdateSelectedUnitInfoParams): vo
   }
 
   if (selectionLevel === "none" || filter.subject === "all") {
-    container.classList.add("hidden");
+    container?.classList.add("hidden");
     categoryListEl?.classList.remove("detail-active");
     return;
   }
@@ -110,8 +108,8 @@ export function updateSelectedUnitInfo(params: UpdateSelectedUnitInfoParams): vo
 }
 
 /** パネルを表示し、関連する class 属性を同期する共通処理。 */
-function showPanel(container: HTMLElement, categoryListEl: HTMLElement | null, element: React.ReactElement): void {
-  container.classList.remove("hidden");
-  renderReactInto(container, element);
+function showPanel(container: HTMLElement | null, categoryListEl: HTMLElement | null, element: React.ReactElement): void {
+  container?.classList.remove("hidden");
+  selectedUnitInfoContentStore.set(element);
   categoryListEl?.classList.add("detail-active");
 }

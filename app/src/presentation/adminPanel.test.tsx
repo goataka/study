@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { QuizUseCase } from "../application/quizUseCase";
 import type { IProgressRepository } from "../application/ports";
 import { renderAdminContent } from "./adminPanel";
+import { mountTestContentBridge } from "./quizApp/testHelpers";
 
 function createDeps() {
   const useCase = {
@@ -48,6 +49,7 @@ describe("renderAdminContent", () => {
       <div id="categoryList"></div>
       <div id="adminContent"></div>
     `;
+    mountTestContentBridge();
   });
 
   it("管理メニューを表示し、管理ボタンで管理タブを開ける", async () => {

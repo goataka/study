@@ -7,7 +7,7 @@
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { SUBJECTS } from "../uiHelpers";
 import { setActiveProgressDetailMode } from "../components/startScreen/panelTabsStore";
-import { renderReactInto } from "./reactMount";
+import { categoryListContentStore } from "../components/categoryListContentStore";
 import type { ProgressStatusFilter } from "./urlStateService";
 
 /** 進度タブ教科リストのコールバック群。 */
@@ -44,15 +44,15 @@ export function buildProgressSubjectStats(useCase: QuizUseCase): ProgressSubject
 }
 
 /**
- * 進度タブ左パネル用の教科リストを指定コンテナへ React で描画する。
+ * 進度タブ左パネル用の教科リストをカテゴリリストストアへ描画する。
  */
 export function renderProgressSubjectList(
-  container: Element,
+  _container: Element,
   useCase: QuizUseCase,
   callbacks: ProgressSubjectListCallbacks,
 ): void {
   const stats = buildProgressSubjectStats(useCase);
-  renderReactInto(container, <ProgressSubjectList stats={stats} callbacks={callbacks} />);
+  categoryListContentStore.set(<ProgressSubjectList stats={stats} callbacks={callbacks} />);
 }
 
 // ─── React コンポーネント ────────────────────────────────────────────────

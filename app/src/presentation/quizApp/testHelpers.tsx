@@ -4,8 +4,11 @@
 
 // @vitest-environment jsdom
 
+import { useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { vi } from "vitest";
-import { renderReactInto } from "./reactMount";
+import { createRoot } from "react-dom/client";
+import { flushSync } from "react-dom";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { __resetConfirmDialogStoreForTests } from "../components/confirmDialogStore";
 import { QuizPanel } from "../components/startScreen/QuizPanel";
@@ -16,6 +19,11 @@ import { __resetScreenStoreForTests, getScreenSnapshot, subscribeScreenStore } f
 import { configureQuizAppDefaultDependencies } from "../quizApp";
 import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
 import { RemoteQuestionRepository } from "../../infrastructure/remoteQuestionRepository";
+import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
+import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
+import { categoryListContentStore } from "../components/categoryListContentStore";
+import { selectedUnitInfoContentStore } from "../components/selectedUnitInfoContentStore";
+import { choicesContentStore } from "../components/choicesContentStore";
 
 configureQuizAppDefaultDependencies(() => ({
   progressRepo: new LocalStorageProgressRepository(),
@@ -34,24 +42,24 @@ function mountConfirmDialog(): void {
   const root = document.createElement("div");
   root.id = "confirmDialogRoot";
   document.body.appendChild(root);
-  renderReactInto(root, <ConfirmDialog />);
+  flushSync(() => createRoot(root).render(<ConfirmDialog />));
 }
 
 /**
  * テスト用 DOM にスタート画面の主要パネル群を React マウントするヘルパー。
  *
  * `<QuizPanel>` / `<OverallSummaryPanel>` / `<ProgressDetailPanel>` は
- * `panelTabsStore` を購読しているため、テスト DOM にも実際の React コンポーネントを
- * マウントする。
+ * `panelTabsStore` やコンテンツストアを購読しているため、テスト DOM にも実際の
+ * React コンポーネントをマウントする。
  */
 function mountStartScreenPanels(): void {
   __resetPanelTabsStoreForTests();
   const quizMount = document.getElementById("quizPanelMount");
-  if (quizMount) renderReactInto(quizMount, <QuizPanel />);
+  if (quizMount) flushSync(() => createRoot(quizMount).render(<QuizPanel />));
   const overallMount = document.getElementById("overallSummaryPanelMount");
-  if (overallMount) renderReactInto(overallMount, <OverallSummaryPanel />);
+  if (overallMount) flushSync(() => createRoot(overallMount).render(<OverallSummaryPanel />));
   const progressMount = document.getElementById("progressDetailPanelMount");
-  if (progressMount) renderReactInto(progressMount, <ProgressDetailPanel />);
+  if (progressMount) flushSync(() => createRoot(progressMount).render(<ProgressDetailPanel />));
 }
 
 function mountScreenStoreDomBridge(): void {
@@ -73,6 +81,52 @@ function mountScreenStoreDomBridge(): void {
   };
   subscribeScreenStore(sync);
   sync();
+}
+
+/**
+ * テスト専用ブリッジコンポーネント。
+ *
+ * `StartScreen` / `CategoryPanel` / `QuizScreen` / `TabsUserRow` が
+ * テスト DOM でマウントされていない場合に、各コンテンツストアを購読して
+ * React Portal 経由で対応 DOM 要素に描画する。
+ * これにより、テストで DOM 操作（クリック等）が正しく機能する。
+ */
+function TestContentBridge(): React.JSX.Element {
+  const subjectTabsNode = useSyncExternalStore(subjectTabsContentStore.subscribe, subjectTabsContentStore.get, subjectTabsContentStore.get);
+  const categoryControlsNode = useSyncExternalStore(categoryControlsContentStore.subscribe, categoryControlsContentStore.get, categoryControlsContentStore.get);
+  const categoryListNode = useSyncExternalStore(categoryListContentStore.subscribe, categoryListContentStore.get, categoryListContentStore.get);
+  const selectedUnitInfoNode = useSyncExternalStore(selectedUnitInfoContentStore.subscribe, selectedUnitInfoContentStore.get, selectedUnitInfoContentStore.get);
+  const choicesNode = useSyncExternalStore(choicesContentStore.subscribe, choicesContentStore.get, choicesContentStore.get);
+
+  const tabsEl = document.querySelector<HTMLElement>(".subject-tabs");
+  const controlsEl = document.getElementById("categoryControls");
+  const listEl = document.getElementById("categoryList");
+  const unitInfoEl = document.getElementById("selectedUnitInfo");
+  const choicesEl = document.getElementById("choicesContainer");
+
+  return (
+    <>
+      {tabsEl && subjectTabsNode ? createPortal(subjectTabsNode, tabsEl) : null}
+      {controlsEl && categoryControlsNode ? createPortal(categoryControlsNode, controlsEl) : null}
+      {listEl && categoryListNode ? createPortal(categoryListNode, listEl) : null}
+      {unitInfoEl && selectedUnitInfoNode ? createPortal(selectedUnitInfoNode, unitInfoEl) : null}
+      {choicesEl && choicesNode ? createPortal(choicesNode, choicesEl) : null}
+    </>
+  );
+}
+
+/**
+ * テスト DOM にコンテンツブリッジをマウントするヘルパー。
+ * `setupMinimalDom` / `setupTabDom` から呼ばれる。
+ *
+ * エクスポートしてあるため、独自セットアップを行うテストファイル（adminPanel.test.tsx 等）
+ * からも個別に呼び出せる。
+ */
+export function mountTestContentBridge(): void {
+  const bridgeRoot = document.createElement("div");
+  bridgeRoot.id = "testContentBridgeRoot";
+  document.body.appendChild(bridgeRoot);
+  flushSync(() => createRoot(bridgeRoot).render(<TestContentBridge />));
 }
 
 // KanjiCanvas グローバルのモック（jsdom 環境では kanji-canvas.min.js がロードされないため）
@@ -161,6 +215,7 @@ export function setupMinimalDom(): void {
   `;
   mountScreenStoreDomBridge();
   mountConfirmDialog();
+  mountTestContentBridge();
 }
 /** タブUIを含むフルレイアウトのDOM */
 export function setupTabDom(): void {
@@ -217,6 +272,7 @@ export function setupTabDom(): void {
   mountScreenStoreDomBridge();
   mountConfirmDialog();
   mountStartScreenPanels();
+  mountTestContentBridge();
 }
 
 export const mockManifest = {

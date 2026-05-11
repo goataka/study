@@ -5,12 +5,14 @@
  * 各子要素は既存 `QuizApp` 配下のコントローラ群が `getElementById` 経由で操作する。
  */
 
+import { useSyncExternalStore } from "react";
 import { StartHeader } from "./startScreen/StartHeader";
 import { CategoryPanel } from "./startScreen/CategoryPanel";
 import { QuizPanel } from "./startScreen/QuizPanel";
 import { ProgressDetailPanel } from "./startScreen/ProgressDetailPanel";
 import { OverallSummaryPanel } from "./startScreen/OverallSummaryPanel";
 import type { ScreenName } from "./screenStore";
+import { selectedUnitInfoContentStore } from "./selectedUnitInfoContentStore";
 
 interface StartScreenProps {
   currentScreen: ScreenName;
@@ -59,7 +61,9 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
           >
             ← 単元一覧
           </button>
-          <div id="selectedUnitInfo" className="selected-unit-info hidden"></div>
+          <div id="selectedUnitInfo" className="selected-unit-info hidden">
+            <SelectedUnitInfoSection />
+          </div>
           <QuizPanel />
           <ProgressDetailPanel />
           <OverallSummaryPanel />
@@ -69,4 +73,10 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
       <footer className="flex min-h-[8px] shrink-0 items-center justify-center gap-3 border-t-2 border-[#c8d8e8] bg-white px-3 py-1 mt-2 text-[#586069] shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)] app-footer"></footer>
     </div>
   );
+}
+
+/** 選択中の単元情報パネル — selectedUnitInfoContentStore から描画。 */
+function SelectedUnitInfoSection(): React.JSX.Element {
+  const node = useSyncExternalStore(selectedUnitInfoContentStore.subscribe, selectedUnitInfoContentStore.get, selectedUnitInfoContentStore.get);
+  return <>{node}</>;
 }

@@ -9,7 +9,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Question, QuizSession } from "../../application/quizUseCase";
-import { renderReactInto } from "./reactMount";
+import { choicesContentStore } from "../components/choicesContentStore";
 
 /** 回答後に QuizApp 側で実行するコールバック群。 */
 export interface ChoiceRendererCallbacks {
@@ -160,11 +160,9 @@ export function renderMultipleChoice(
   session: QuizSession,
   callbacks: ChoiceRendererCallbacks,
 ): void {
-  const container = document.getElementById("choicesContainer");
-  if (!container) return;
   // 問題が変わった時に React の useState を初期化するため、key に問題インデックス＋ID を含める。
   const key = `${session.currentIndex}-${question.id}`;
-  renderReactInto(container, <MultipleChoice key={key} question={question} session={session} callbacks={callbacks} />);
+  choicesContentStore.set(<MultipleChoice key={key} question={question} session={session} callbacks={callbacks} />);
 }
 
 /**
@@ -172,8 +170,6 @@ export function renderMultipleChoice(
  * 確認ボタンまたは Enter で `callbacks.onAnswered` と `callbacks.onTextAnswered` を呼ぶ。
  */
 export function renderTextInput(question: Question, session: QuizSession, callbacks: ChoiceRendererCallbacks): void {
-  const container = document.getElementById("choicesContainer");
-  if (!container) return;
   const key = `${session.currentIndex}-${question.id}`;
-  renderReactInto(container, <TextInput key={key} question={question} session={session} callbacks={callbacks} />);
+  choicesContentStore.set(<TextInput key={key} question={question} session={session} callbacks={callbacks} />);
 }

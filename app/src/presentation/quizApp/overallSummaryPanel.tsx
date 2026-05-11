@@ -14,18 +14,17 @@ import { SUBJECTS } from "../uiHelpers";
 import { filterRecordsBySelectedDate } from "../shareSummary";
 import { setActiveOverallPanel } from "../components/startScreen/panelTabsStore";
 import { HistoryList } from "./HistoryList";
-import { renderReactInto } from "./reactMount";
+import { overallStatusContentStore } from "../components/overallStatusContentStore";
+import { todayActivityContentStore } from "../components/todayActivityContentStore";
 
 /**
  * 総合タブの「学習状況」を描画する。
  * 教科ごとの目標数に対する学習数とメッセージを表示する。
  */
 export function renderOverallSubjectStatus(useCase: QuizUseCase, subjectRecommendedCounts: Map<string, number>): void {
-  const container = document.getElementById("overallSubjectStatusSummary");
-  if (!container) return;
   const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
   const rows = subjects.map((subject) => buildOverallStatusRow(useCase, subject, subjectRecommendedCounts));
-  renderReactInto(container, <OverallSubjectStatusSummary rows={rows} />);
+  overallStatusContentStore.set(<OverallSubjectStatusSummary rows={rows} />);
 }
 
 interface OverallStatusRow {
@@ -134,15 +133,11 @@ export function showOverallPanel(tab: "learned" | "share"): void {
  * `selectedActivityDate` の日付と一致するクイズ記録を履歴と同じ形式で表示する。
  */
 export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase, selectedActivityDate: string): void {
-  const container = document.getElementById("todayActivityContent");
-  if (!container) return;
-
   const todayRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
   // 最新順に並べて履歴形式で表示（総合タブなので教科名プレフィックスを付ける）
   const sorted = [...todayRecords].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  renderReactInto(
-    container,
+  todayActivityContentStore.set(
     <HistoryList
       records={sorted}
       useCase={useCase}

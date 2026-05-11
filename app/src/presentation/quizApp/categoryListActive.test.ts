@@ -3,7 +3,8 @@
 import React from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { updateCategoryListActive, showPanelTab } from "./categoryListActive";
-import { renderReactInto } from "./reactMount";
+import { createRoot } from "react-dom/client";
+import { flushSync } from "react-dom";
 import { QuizPanel } from "../components/startScreen/QuizPanel";
 import { __resetPanelTabsStoreForTests } from "../components/startScreen/panelTabsStore";
 
@@ -167,7 +168,7 @@ describe("showPanelTab", () => {
     __resetPanelTabsStoreForTests();
     document.body.innerHTML = `<div id="quizPanelMount"></div>`;
     const mount = document.getElementById("quizPanelMount");
-    if (mount) renderReactInto(mount, React.createElement(QuizPanel));
+    if (mount) flushSync(() => createRoot(mount).render(React.createElement(QuizPanel)));
   });
 
   afterEach(() => {

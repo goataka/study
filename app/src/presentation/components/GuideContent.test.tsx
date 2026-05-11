@@ -2,19 +2,22 @@
 
 import * as React from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { renderReactInto, clearReactContainer } from "../quizApp/reactMount";
+import { createRoot, type Root } from "react-dom/client";
+import { flushSync } from "react-dom";
 import { GuideContent } from "./GuideContent";
 
 describe("GuideContent", () => {
   let container: HTMLElement;
+  let root: Root;
 
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
+    root = createRoot(container);
   });
 
   afterEach(() => {
-    clearReactContainer(container);
+    flushSync(() => root.unmount());
     container.remove();
     vi.restoreAllMocks();
   });
@@ -24,13 +27,13 @@ describe("GuideContent", () => {
   }
 
   it("guideUrl が null の場合は何も描画しない", () => {
-    renderReactInto(container, React.createElement(GuideContent, { guideUrl: null }));
+    flushSync(() => root.render(React.createElement(GuideContent, { guideUrl: null })));
     expect(container.querySelector(".guide-content")).toBeNull();
     expect(container.querySelector(".guide-error-msg")).toBeNull();
   });
 
   it("外部オリジン URL は別タブリンクを描画する", async () => {
-    renderReactInto(container, React.createElement(GuideContent, { guideUrl: "https://example.com/g" }));
+    flushSync(() => root.render(React.createElement(GuideContent, { guideUrl: "https://example.com/g" })));
     await flush();
     const link = container.querySelector("a[target='_blank']") as HTMLAnchorElement | null;
     expect(link).not.toBeNull();
@@ -46,7 +49,7 @@ describe("GuideContent", () => {
       } as Response),
     );
 
-    renderReactInto(container, React.createElement(GuideContent, { guideUrl: "/g.html" }));
+    flushSync(() => root.render(React.createElement(GuideContent, { guideUrl: "/g.html" })));
     await flush();
     await flush();
 
@@ -60,7 +63,7 @@ describe("GuideContent", () => {
     global.fetch = vi.fn(() => Promise.reject(new Error("net")));
     vi.spyOn(console, "error").mockImplementation(() => {});
 
-    renderReactInto(container, React.createElement(GuideContent, { guideUrl: "/g.html" }));
+    flushSync(() => root.render(React.createElement(GuideContent, { guideUrl: "/g.html" })));
     await flush();
     await flush();
 
@@ -77,12 +80,12 @@ describe("GuideContent", () => {
     );
     global.fetch = fetchMock as unknown as typeof fetch;
 
-    renderReactInto(container, React.createElement(GuideContent, { guideUrl: "/a.html" }));
+    flushSync(() => root.render(React.createElement(GuideContent, { guideUrl: "/a.html" })));
     await flush();
     await flush();
     expect(container.querySelector(".guide-content")?.textContent).toContain("/a.html");
 
-    renderReactInto(container, React.createElement(GuideContent, { guideUrl: "/b.html" }));
+    flushSync(() => root.render(React.createElement(GuideContent, { guideUrl: "/b.html" })));
     await flush();
     await flush();
     expect(container.querySelector(".guide-content")?.textContent).toContain("/b.html");

@@ -11,7 +11,7 @@
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { groupRecommendedByCategory, type RecommendedItem } from "../recommendedGrouping";
 import { SUBJECTS, gradeColorClass, calcDualProgressPct } from "../uiHelpers";
-import { renderReactInto } from "./reactMount";
+import { categoryListContentStore } from "../components/categoryListContentStore";
 
 /** 総合タブ教科一覧描画のパラメータ。 */
 export interface RenderAllSubjectListParams {
@@ -85,14 +85,11 @@ export function buildAllSubjectViewModel(params: {
 
 /** 「総合」タブ用の教科一覧を描画する。 */
 export function renderAllSubjectList(params: RenderAllSubjectListParams): void {
-  const categoryList = document.getElementById("categoryList");
-  if (!categoryList) return;
   const subjects = buildAllSubjectViewModel({
     useCase: params.useCase,
     subjectRecommendedCounts: params.subjectRecommendedCounts,
   });
-  renderReactInto(
-    categoryList,
+  categoryListContentStore.set(
     <AllSubjectList
       subjects={subjects}
       onRecommendedCountChange={params.onRecommendedCountChange}

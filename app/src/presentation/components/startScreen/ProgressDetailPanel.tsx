@@ -8,10 +8,12 @@
  * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
  */
 
+import { useSyncExternalStore } from "react";
 import { setActiveProgressDetailMode, type ProgressDetailMode } from "./panelTabsStore";
 import { useActiveProgressDetailMode } from "./usePanelTabsStore";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 import { statusFilterButton } from "../../styles/categoryControlButtonStyles";
+import { progressDetailContentStore } from "../progressDetailContentStore";
 
 interface ProgressDetailTabButtonProps {
   mode: ProgressDetailMode;
@@ -96,7 +98,15 @@ export function ProgressDetailPanel(): React.JSX.Element {
         className="progress-detail-content flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-3"
         role="tabpanel"
         aria-labelledby={`progressDetailTab-${active}`}
-      ></div>
+      >
+        <ProgressDetailSection />
+      </div>
     </div>
   );
+}
+
+/** 進度詳細コンテンツ — progressDetailContentStore から描画。 */
+function ProgressDetailSection(): React.JSX.Element {
+  const node = useSyncExternalStore(progressDetailContentStore.subscribe, progressDetailContentStore.get, progressDetailContentStore.get);
+  return <>{node}</>;
 }

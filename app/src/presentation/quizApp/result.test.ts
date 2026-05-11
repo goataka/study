@@ -7,7 +7,7 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
-import { setupTabDom, setupFetchMock, mockQuestionFile } from "./testHelpers";
+import { setupTabDom, setupFetchMock, mockQuestionFile, mountTestContentBridge } from "./testHelpers";
 
 describe("QuizApp — 結果画面の全問正解表示仕様", () => {
   beforeEach(() => {
@@ -49,6 +49,7 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
     `;
     setupFetchMock();
     localStorage.clear();
+    mountTestContentBridge();
   });
 
   afterEach(() => {

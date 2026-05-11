@@ -11,6 +11,7 @@ import {
   setupFetchMock,
   setupFetchMockWith3Levels,
   mockQuestionFile,
+  mountTestContentBridge,
 } from "../testHelpers";
 
 describe("QuizApp — クイズパネル表示制御仕様", () => {
@@ -75,6 +76,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     `;
     setupFetchMock();
     localStorage.clear();
+    mountTestContentBridge();
   });
 
   afterEach(() => {

@@ -23,6 +23,7 @@ import { NotesPanel } from "./quizScreen/NotesPanel";
 import { KanjiInputArea } from "./quizScreen/KanjiInputArea";
 import { navButton } from "../styles/navButtonStyles";
 import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "./quizSessionStore";
+import { choicesContentStore } from "./choicesContentStore";
 import type { ScreenName } from "./screenStore";
 
 interface QuizScreenProps {
@@ -123,7 +124,9 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
             🔊
           </button>
           {/* `.speak-btn.hidden + .choices-container` のマージン補正は legacy CSS に残置 */}
-          <div id="choicesContainer" className="choices-container mb-[30px] flex flex-col gap-3"></div>
+          <div id="choicesContainer" className="choices-container mb-[30px] flex flex-col gap-3">
+            <ChoicesSection />
+          </div>
 
           <div
             id="answerFeedback"
@@ -197,4 +200,10 @@ export function extractSpeechText(questionText: string): string {
     if (match?.[1]) return match[1];
   }
   return trimmed.replace(TRAILING_HINT_PATTERN, "").trim();
+}
+
+/** クイズ選択肢エリア — choicesContentStore から描画。 */
+function ChoicesSection(): React.JSX.Element {
+  const node = useSyncExternalStore(choicesContentStore.subscribe, choicesContentStore.get, choicesContentStore.get);
+  return <>{node}</>;
 }
