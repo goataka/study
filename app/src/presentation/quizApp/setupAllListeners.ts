@@ -6,7 +6,7 @@
  */
 
 import type { AvatarController } from "../avatarController";
-import type { FontSizeLevel } from "./fontSizeManager";
+import type { FontSizeLevel } from "../components/fontSizeStore";
 import type { QuestionListFilter } from "./questionListView";
 import type { ProgressStatusFilter } from "./urlStateService";
 import {

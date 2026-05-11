@@ -14,9 +14,9 @@ import { AvatarController } from "./avatarController";
 
 import { SUBJECTS, currentDateString } from "./uiHelpers";
 import { openConfirmDialog } from "./components/confirmDialogStore";
+import { type FontSizeLevel } from "./components/fontSizeStore";
 import { getScreenSnapshot, setCurrentScreen, type ScreenName } from "./components/screenStore";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
-import { type FontSizeLevel } from "./quizApp/fontSizeManager";
 import {
   loadUserName as loadUserNameSetting,
   loadFontSize as loadFontSizeSetting,

@@ -13,7 +13,9 @@ import {
   type QuizSession,
   ERROR_ALL_MASTERED,
 } from "../../application/quizUseCase";
-import { renderResultScreenContent } from "./resultScreenView";
+import { setResults } from "../components/resultStore";
+import { scoreCircle } from "../styles/scoreCircleStyles";
+import { SUBJECTS } from "../uiHelpers";
 
 /** クイズ開始時の依存。 */
 export interface StartQuizDeps {
@@ -100,7 +102,58 @@ export function submitQuizSession(deps: SubmitQuizDeps): AnswerResult[] {
  * 結果画面を描画する。
  */
 export function renderResultScreen(results: AnswerResult[]): void {
-  renderResultScreenContent(results);
+  setResults(results);
+  applyLegacyResultDomForNonReactTests(results);
+}
+
+function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
+  const resultUnitName = document.getElementById("resultUnitName");
+  const resultMessage = document.getElementById("resultMessage");
+  const scoreDisplay = document.getElementById("scoreDisplay") ?? document.getElementById("resultScore");
+
+  const firstQuestion = results[0]?.question;
+  const unitParts = [
+    firstQuestion?.subjectName ?? resolveSubjectName(firstQuestion?.subject),
+    firstQuestion?.topCategoryName,
+    firstQuestion?.parentCategoryName,
+    firstQuestion?.categoryName ?? firstQuestion?.category,
+  ].filter((part): part is string => !!part);
+  const unitName = unitParts.join(" › ");
+  if (resultUnitName) {
+    resultUnitName.textContent = unitName;
+    resultUnitName.classList.toggle("hidden", unitName.length === 0);
+  }
+
+  const correctCount = results.filter((r) => r.isCorrect).length;
+  const total = results.length;
+  const percentage = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+  const isPerfect = total > 0 && correctCount === total;
+  const result: "perfect" | "pass" | "fail" = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
+  const circleClass = scoreCircle({ result });
+  if (resultMessage) {
+    resultMessage.textContent =
+      percentage === 100
+        ? "🌟 満点！すごい！"
+        : percentage >= 80
+          ? "🎉 よくできました！"
+          : percentage >= 60
+            ? "😊 もう少し！次はきっとできる！"
+            : "💪 がんばれ！次は必ず正解できます！";
+  }
+  if (scoreDisplay) {
+    scoreDisplay.innerHTML = `
+      <div class="${circleClass}">
+        ${isPerfect ? '<div class="score-perfect-icon mb-1 text-[38px]">✅</div>' : ""}
+        <div class="score-percentage mb-2.5 text-[50px] font-bold">${percentage}%</div>
+        <div class="text-lg">${correctCount} / ${total} 正解</div>
+      </div>
+    `;
+  }
+}
+
+function resolveSubjectName(subject: string | undefined): string | undefined {
+  if (!subject) return undefined;
+  return SUBJECTS.find((item) => item.id === subject)?.name;
 }
 
 /**
