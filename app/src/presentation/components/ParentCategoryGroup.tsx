@@ -53,7 +53,8 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
     <div
       className={[
         "category-group flex flex-col gap-0.5",
-        // collapsed 状態で子 category-item を非表示（CSS .category-group.collapsed .category-item で制御）
+        // collapsed 状態で子 category-item を非表示
+        collapsed ? "[&_.category-item]:hidden" : "",
         collapsed ? "collapsed" : "",
       ]
         .filter(Boolean)
@@ -73,17 +74,28 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
         data-parent-category={parentCatId}
         onClick={() => onHeaderActivate?.()}
       >
-        {/* category-group-toggle::before { content: "▼" } は 04-category-groups.css に残置 */}
         <button
           type="button"
-          className="category-group-toggle border-none bg-transparent p-0 m-0 text-inherit cursor-pointer leading-none"
+          className="category-group-toggle inline-flex items-center justify-center border-none bg-transparent p-0 m-0 text-inherit cursor-pointer leading-none"
           aria-label="セクションの折りたたみを切り替える"
           aria-expanded={collapsed ? "false" : "true"}
           onClick={(e) => {
             e.stopPropagation();
             onToggle?.();
           }}
-        />
+        >
+          <span
+            aria-hidden="true"
+            className={[
+              "inline-block text-[10px] text-[#8b949e] transition-transform duration-200",
+              collapsed ? "-rotate-90" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            ▼
+          </span>
+        </button>
         <button
           type="button"
           className="category-group-header-action flex-1 flex items-center gap-1 border-none bg-transparent p-0 m-0 font-[inherit] text-inherit text-left cursor-pointer"

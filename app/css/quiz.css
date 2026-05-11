@@ -1,31 +1,9 @@
 /*
  * quiz.css エントリポイント。
  *
- * このファイル自体には個別ルールを書かず、Tailwind CSS と、
- * `css/parts/` 以下に機能/領域ごとに分割した partial を順に読み込む。
- * 元の単一 `quiz.css`（6614 行）から機械的に分割したもので、
- * **import 順 = 元の宣言順**。カスケードを保つため順序は変えないこと。
- *
- * 新規スタイルは原則 Tailwind ユーティリティで記述する。
- * どうしても CSS で書く必要がある場合のみ、対象 partial へ追記する。
+ * Tailwind CSS v4 の `@import "tailwindcss"` のみを定義する。
+ * 画面スタイルは原則として TSX 側の Tailwind ユーティリティ / CVA で管理する。
  */
 
 /* Tailwind CSS v4：プラグインが自動でテンプレートを走査しユーティリティを生成する。 */
 @import "tailwindcss";
-
-@import "./parts/01-base.css";
-@import "./parts/02-notebook-and-tabs.css";
-@import "./parts/03-category-panel.css";
-@import "./parts/04-category-groups.css";
-@import "./parts/05-subject-overview.css";
-@import "./parts/06-progress-and-matrix.css";
-@import "./parts/07-avatar-dialog.css";
-@import "./parts/08-summary-and-unit-info.css";
-@import "./parts/09-quiz-screen.css";
-@import "./parts/10-responsive-base.css";
-@import "./parts/11-header-controls.css";
-@import "./parts/12-guide.css";
-@import "./parts/13-notes.css";
-@import "./parts/14-text-input.css";
-@import "./parts/15-font-size.css";
-@import "./parts/16-admin.css";

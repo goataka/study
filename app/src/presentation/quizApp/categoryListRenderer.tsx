@@ -52,6 +52,14 @@ function TopCategoryGroup(props: TopCategoryGroupProps): React.JSX.Element {
   return (
     <div
       className={["category-top-group flex flex-col gap-0.5 mt-1", collapsed ? "collapsed" : ""]
+        .concat([
+          collapsed ? "[&>.category-group]:hidden" : "",
+          collapsed ? "[&>.category-item]:hidden" : "",
+          "[&_.category-group]:pl-1.5",
+          "[&_.category-group]:border-l-2",
+          "[&_.category-group]:border-l-[#e1e4e8]",
+          "[&_.category-group]:ml-1",
+        ])
         .filter(Boolean)
         .join(" ")}
       data-top-category={topCatId}
@@ -68,14 +76,26 @@ function TopCategoryGroup(props: TopCategoryGroupProps): React.JSX.Element {
       >
         <button
           type="button"
-          className="category-top-group-toggle border-none bg-transparent p-0 m-0 text-inherit cursor-pointer leading-none opacity-80"
+          className="category-top-group-toggle inline-flex items-center justify-center border-none bg-transparent p-0 m-0 text-inherit cursor-pointer leading-none"
           aria-label="セクションの折りたたみを切り替える"
           aria-expanded={collapsed ? "false" : "true"}
           onClick={(e) => {
             e.stopPropagation();
             onToggle();
           }}
-        />
+        >
+          <span
+            aria-hidden="true"
+            className={[
+              "inline-block text-[10px] opacity-80 transition-transform duration-200",
+              collapsed ? "-rotate-90" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            ▼
+          </span>
+        </button>
         <button
           type="button"
           className="category-group-header-action flex-1 border-none bg-transparent p-0 m-0 font-[inherit] text-inherit text-left cursor-pointer"
@@ -103,6 +123,7 @@ function GradeCategoryGroup(props: GradeCategoryGroupProps): React.JSX.Element {
   return (
     <div
       className={["category-grade-group flex flex-col gap-0.5 mb-1", collapsed ? "collapsed" : ""]
+        .concat([collapsed ? "[&>.category-item]:hidden" : ""])
         .filter(Boolean)
         .join(" ")}
       data-grade={gradeId}
@@ -117,7 +138,7 @@ function GradeCategoryGroup(props: GradeCategoryGroupProps): React.JSX.Element {
       >
         <button
           type="button"
-          className="category-grade-group-toggle border-none bg-transparent p-0 m-0 text-inherit cursor-pointer leading-none"
+          className="category-grade-group-toggle inline-flex items-center justify-center border-none bg-transparent p-0 m-0 text-inherit cursor-pointer leading-none"
           aria-label="セクションの折りたたみを切り替える"
           aria-expanded={collapsed ? "false" : "true"}
           onClick={(e) => {
@@ -128,7 +149,16 @@ function GradeCategoryGroup(props: GradeCategoryGroupProps): React.JSX.Element {
             e.currentTarget.setAttribute("aria-expanded", nextCollapsed ? "false" : "true");
             onToggle();
           }}
-        />
+        >
+          <span
+            aria-hidden="true"
+            className={["inline-block text-[10px] transition-transform duration-200", collapsed ? "-rotate-90" : ""]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            ▼
+          </span>
+        </button>
         <button
           type="button"
           className="category-group-header-action flex-1 border-none bg-transparent p-0 m-0 font-[inherit] text-inherit text-left cursor-pointer"
