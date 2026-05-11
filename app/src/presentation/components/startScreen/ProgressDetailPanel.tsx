@@ -6,6 +6,8 @@
  *
  * タブの active 状態と aria-labelledby は `panelTabsStore` を購読して
  * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
+ *
+ * パネル全体の表示/非表示は `panelVisibilityStore` を購読して React で制御する。
  */
 
 import { useSyncExternalStore } from "react";
@@ -14,6 +16,7 @@ import { useActiveProgressDetailMode } from "./usePanelTabsStore";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 import { statusFilterButton } from "../../styles/categoryControlButtonStyles";
 import { progressDetailContentStore } from "../progressDetailContentStore";
+import { subscribePanelVisibility, getPanelVisibilitySnapshot } from "./panelVisibilityStore";
 
 interface ProgressDetailTabButtonProps {
   mode: ProgressDetailMode;
@@ -43,10 +46,15 @@ function ProgressDetailTabButton({ mode, active, id, label }: ProgressDetailTabB
 
 export function ProgressDetailPanel(): React.JSX.Element {
   const active = useActiveProgressDetailMode();
+  const panelHidden = useSyncExternalStore(
+    subscribePanelVisibility,
+    () => getPanelVisibilitySnapshot().progressDetailPanel,
+    () => getPanelVisibilitySnapshot().progressDetailPanel,
+  );
   return (
     <div
       id="progressDetailPanel"
-      className="hidden progress-detail-panel flex flex-col h-full overflow-hidden"
+      className={`progress-detail-panel flex flex-col h-full overflow-hidden${panelHidden ? " hidden" : ""}`}
       role="region"
       aria-label="進度詳細"
     >

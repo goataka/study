@@ -88,5 +88,10 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
   }
 
   // sanitizeGuideHtml は信頼できるサニタイザとして XSS リスク要素を除去済み。
-  return <div className="guide-content" dangerouslySetInnerHTML={{ __html: state.html }} />;
+  return (
+    <div
+      className="guide-content px-4 py-3 text-[14px] leading-relaxed text-[#24292e]"
+      dangerouslySetInnerHTML={{ __html: state.html }}
+    />
+  );
 }

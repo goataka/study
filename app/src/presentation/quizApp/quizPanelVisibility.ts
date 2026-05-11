@@ -6,6 +6,10 @@
  */
 
 import { getPanelTabsSnapshot, setHiddenPanelTabs } from "../components/startScreen/panelTabsStore";
+import {
+  setOverallSummaryPanelHidden,
+  setProgressDetailPanelHidden,
+} from "../components/startScreen/panelVisibilityStore";
 import type { PanelTab } from "./tabsBuilder";
 
 /** ID → PanelTab マッピング。 */
@@ -110,6 +114,8 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
     "panelTab-history": true,
     "panelTab-questions": true,
   });
+  setOverallSummaryPanelHidden(true);
+  setProgressDetailPanelHidden(true);
   [
     "quizModePanel",
     "guideContent",
@@ -145,6 +151,7 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
     "panelTab-questions": !hasProgressUnit,
   });
   if (hasProgressUnit) {
+    setProgressDetailPanelHidden(true);
     document.getElementById("progressDetailPanel")?.classList.add("hidden");
     params.onShowPanelTab(params.activePanelTab);
   } else {
@@ -153,6 +160,7 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
       document.getElementById(id)?.classList.add("hidden");
     });
   }
+  setOverallSummaryPanelHidden(true);
   document.getElementById("overallSummaryPanel")?.classList.add("hidden");
   document.getElementById("adminContent")?.classList.add("hidden");
   if (hasProgressUnit) {
@@ -199,6 +207,8 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   if (isAll) {
     if (hasOverallUnit) {
       // 総合タブから単元選択時: 教科の画面と同じレイアウトで表示
+      setOverallSummaryPanelHidden(true);
+      setProgressDetailPanelHidden(true);
       document.getElementById("overallSummaryPanel")?.classList.add("hidden");
       document.getElementById("progressDetailPanel")?.classList.add("hidden");
       params.onShowPanelTab(params.activePanelTab);
@@ -207,11 +217,15 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
       ["quizModePanel", "guideContent", "historyContent", "questionListContent"].forEach((id) => {
         document.getElementById(id)?.classList.add("hidden");
       });
+      setOverallSummaryPanelHidden(false);
+      setProgressDetailPanelHidden(true);
       document.getElementById("overallSummaryPanel")?.classList.remove("hidden");
       document.getElementById("progressDetailPanel")?.classList.add("hidden");
     }
   } else {
     // 総合サマリパネル・進度詳細パネルを非表示にして通常のパネルを表示
+    setOverallSummaryPanelHidden(true);
+    setProgressDetailPanelHidden(true);
     document.getElementById("overallSummaryPanel")?.classList.add("hidden");
     document.getElementById("progressDetailPanel")?.classList.add("hidden");
     // 「総合」以外では現在アクティブなパネルを表示する（総合から戻った場合も含む）

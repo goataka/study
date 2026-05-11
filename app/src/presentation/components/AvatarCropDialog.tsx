@@ -9,6 +9,8 @@
  * `07-avatar-dialog.css` に残している。
  */
 
+import { dialogButton } from "../styles/dialogButtonStyles";
+
 export function AvatarCropDialog(): React.JSX.Element {
   return (
     <dialog
@@ -57,18 +59,10 @@ export function AvatarCropDialog(): React.JSX.Element {
           aria-label="拡大縮小"
         />
         <div className="flex w-full gap-2">
-          <button
-            id="avatarCropConfirmBtn"
-            type="button"
-            className="flex-1 cursor-pointer rounded-md border border-[#28a745] bg-[#28a745] px-3 py-1.5 text-[13px] font-semibold text-white transition-colors duration-150 hover:bg-[#218838]"
-          >
+          <button id="avatarCropConfirmBtn" type="button" className={dialogButton({ variant: "confirm" })}>
             確定
           </button>
-          <button
-            id="avatarCropCancelBtn"
-            type="button"
-            className="flex-1 cursor-pointer rounded-md border border-[#d1d5da] bg-white px-3 py-1.5 text-[13px] font-semibold text-[#586069] transition-colors duration-150 hover:bg-[#f6f8fa]"
-          >
+          <button id="avatarCropCancelBtn" type="button" className={dialogButton({ variant: "cancel" })}>
             キャンセル
           </button>
         </div>

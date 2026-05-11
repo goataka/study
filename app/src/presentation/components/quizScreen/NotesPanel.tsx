@@ -9,11 +9,7 @@
  * `pen-size-select` / `pen-color-select` のクラス名は既存テスト・セレクタ互換のため残置している。
  */
 
-const notesBtnClass =
-  "notes-btn cursor-pointer rounded border border-solid border-[#d1d5da] bg-white px-2 py-1 text-lg transition-all duration-200 hover:border-[#b0b0b0] hover:bg-[#f0f0f0] [&.eraser-active]:border-[#f0a800] [&.eraser-active]:bg-[#ffe8b3]";
-const penSelectClass = "cursor-pointer rounded border border-solid border-[#d1d5da] bg-white px-2 py-1 text-sm";
-const cancelBtnClass =
-  "cancel-quiz-btn inline-flex h-[30px] w-[30px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-solid border-[#999] bg-white p-0 text-base leading-none text-[#999] transition-colors duration-200 hover:bg-[#666] hover:text-white";
+import { notesButton, penSelect, cancelQuizButton } from "../../styles/notesPanelStyles";
 
 interface NotesPanelProps {
   showKanjiInput: boolean;
@@ -49,14 +45,14 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
         <div className={notesControlsClass}>
           <button
             id="clearNotesBtn"
-            className={notesBtnClass}
+            className={notesButton()}
             type="button"
             title="メモをクリア"
             aria-label="メモをクリア"
           >
             🗑️
           </button>
-          <button id="eraserBtn" className={notesBtnClass} type="button" title="消しゴム" aria-label="消しゴム">
+          <button id="eraserBtn" className={notesButton()} type="button" title="消しゴム" aria-label="消しゴム">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -68,12 +64,12 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
               <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16zm.255-8.172 4.893 4.894-2.276 2.035-5.022-5.022 2.405-1.907z" />
             </svg>
           </button>
-          <select id="penSizeSelect" className={penSelectClass} title="線の太さ" aria-label="線の太さ" defaultValue="2">
+          <select id="penSizeSelect" className={penSelect()} title="線の太さ" aria-label="線の太さ" defaultValue="2">
             <option value="2">普通</option>
             <option value="4">太い</option>
             <option value="6">極太</option>
           </select>
-          <select id="penColorSelect" className={`${penSelectClass} w-[60px]`} title="色" aria-label="線の色">
+          <select id="penColorSelect" className={`${penSelect()} w-[60px]`} title="色" aria-label="線の色">
             <option value="#000000">黒</option>
             <option value="#0366d6">青</option>
             <option value="#dc3545">赤</option>
@@ -82,7 +78,7 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
         </div>
         <button
           id="cancelQuizBtn"
-          className={cancelBtnClass}
+          className={cancelQuizButton()}
           type="button"
           title="中止する"
           aria-label="クイズを中止する"

@@ -242,7 +242,7 @@ function CornerToggle({ transposed, onToggleTranspose }: CornerToggleProps): Rea
   return (
     <button
       type="button"
-      className="progress-matrix-corner-toggle-btn"
+      className="progress-matrix-corner-toggle-btn text-[0.75em] px-1.5 py-0.5 border border-[#c8d8f8] rounded bg-[#e8f0fe] text-[#0366d6] cursor-pointer whitespace-nowrap hover:bg-[#d0e4ff]"
       aria-label="学年とカテゴリの縦横を切り替える"
       aria-pressed={transposed}
       onClick={onToggleTranspose}
@@ -278,7 +278,7 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
   const onSelect = (catId: string, catName: string): void => ctx.onSelectUnit(ctx.subject, catId, catName);
 
   return (
-    <div style={{ overflowX: "auto", overflowY: "auto", flex: 1, minHeight: 0 }}>
+    <div className="overflow-x-auto overflow-y-auto flex-1 min-h-0">
       <table className="progress-matrix-table progress-matrix-table-units">
         {ctx.transposed ? (
           <>

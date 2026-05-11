@@ -101,14 +101,14 @@ export function SelectedUnitCloseButton({
 
 function HeaderRow({ name, description }: { name: string; description?: string }): React.JSX.Element {
   return (
-    <div className="selected-unit-info-header-row">
-      <div className="selected-unit-info-header-left">
+    <div className="selected-unit-info-header-row flex items-start justify-between gap-2 min-w-0">
+      <div className="selected-unit-info-header-left flex-1 min-w-0">
         <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">
           {name}
         </span>
       </div>
       {description !== undefined && (
-        <div className="selected-unit-info-header-right">
+        <div className="selected-unit-info-header-right shrink-0 text-right">
           <div className="selected-unit-info-desc-right selected-unit-info-desc text-[13px] text-[#444d56] mt-[3px]">
             {description}
           </div>
@@ -128,8 +128,8 @@ function DescRow({
   example?: string;
 }): React.JSX.Element {
   return (
-    <div className="selected-unit-info-desc-row">
-      <div className="selected-unit-info-desc-left">
+    <div className="selected-unit-info-desc-row flex items-center justify-between gap-2 min-w-0">
+      <div className="selected-unit-info-desc-left flex-1 min-w-0 flex items-center gap-1">
         {catParts.length > 0 && (
           <span className="selected-unit-info-category text-[13px] text-[#586069] bg-[#f0f0f0] px-1.5 py-px rounded-[10px] whitespace-nowrap">
             {catParts.join(" › ")}
@@ -139,7 +139,7 @@ function DescRow({
       </div>
       {/* selected-unit-info-example の ::before { content: "例）" } は CSS に残置 */}
       {example !== undefined && (
-        <div className="selected-unit-info-desc-right selected-unit-info-example">
+        <div className="selected-unit-info-desc-right selected-unit-info-example shrink-0 text-right">
           <BacktickText text={example} />
         </div>
       )}

@@ -24,6 +24,8 @@
  *   <button className={isActive ? `${panelTab()} active` : panelTab()}>...</button>
  */
 
+import { cva } from "class-variance-authority";
+
 export const panelTab = cva(
   [
     // 識別子・font-size 切替用に残置
@@ -44,4 +46,3 @@ export const panelTab = cva(
 
 /** `.panel-tabs` コンテナの共通スタイル（インナータブのバー）。 */
 export const panelTabs = cva("panel-tabs flex border-b border-solid border-[#e1e4e8] bg-[#f6f8fa]");
-import { cva } from "class-variance-authority";

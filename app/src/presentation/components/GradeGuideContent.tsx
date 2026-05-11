@@ -29,12 +29,14 @@ export interface GradeGuideContentProps {
 /** 学年グループの解説サマリを描画する。 */
 export function GradeGuideContent({ title, entries }: GradeGuideContentProps): React.JSX.Element {
   return (
-    <div className="guide-content">
-      <h2>{`🎓 ${title}`}</h2>
-      <p>{`対象学年: ${title} / ${entries.length}単元`}</p>
-      <ul>
+    <div className="guide-content px-4 py-3 text-[14px] leading-relaxed text-[#24292e]">
+      <h2 className="mt-4 mb-2 text-[1.25em] font-semibold leading-tight text-[#24292e] border-b border-[#eaecef] pb-[0.3em]">{`🎓 ${title}`}</h2>
+      <p className="mt-0 mb-4">{`対象学年: ${title} / ${entries.length}単元`}</p>
+      <ul className="mb-4 pl-8 list-disc">
         {entries.map((entry) => (
-          <li key={entry.id}>{entry.description ? `${entry.name} — ${entry.description}` : entry.name}</li>
+          <li key={entry.id} className="my-1">
+            {entry.description ? `${entry.name} — ${entry.description}` : entry.name}
+          </li>
         ))}
       </ul>
     </div>

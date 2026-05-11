@@ -13,6 +13,7 @@ import { useSyncExternalStore } from "react";
 import { AvatarCropDialog } from "./AvatarCropDialog";
 import type { ScreenName } from "./screenStore";
 import { subjectTabsContentStore } from "./subjectTabsContentStore";
+import { headerUserSaveButton } from "../styles/headerUserSaveButtonStyles";
 
 interface TabsUserRowProps {
   currentScreen: ScreenName;
@@ -53,11 +54,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
             maxLength={20}
             placeholder="名前を入力"
           />
-          <button
-            id="headerUserNameSaveBtn"
-            className="header-user-save-btn px-2 py-1 bg-[#28a745] text-white border-none rounded-md cursor-pointer text-base font-semibold transition-[background] duration-200 hover:bg-[#218838]"
-            aria-label="保存"
-          >
+          <button id="headerUserNameSaveBtn" className={headerUserSaveButton()} aria-label="保存">
             ✓
           </button>
         </div>

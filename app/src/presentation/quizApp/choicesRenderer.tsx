@@ -10,6 +10,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Question, QuizSession } from "../../application/quizUseCase";
 import { choicesContentStore } from "../components/choicesContentStore";
+import { choiceLabel, choiceInput, choiceText } from "../styles/choiceStyles";
 
 /** 回答後に QuizApp 側で実行するコールバック群。 */
 export interface ChoiceRendererCallbacks {
@@ -47,26 +48,18 @@ function MultipleChoice({ question, session, callbacks }: MultipleChoiceProps): 
   // （`querySelector(".choice-label" / ".choice-text")`）で参照されるため残置している。
   // `:has(input:disabled)` 系の状態スタイルは Tailwind の `has-[…]` バリアントで表現し、
   // `<input>:checked + .choice-text` の文字色変化は `peer-checked:` で表現する。
-  const labelClass =
-    "choice-label flex cursor-pointer items-center rounded-lg border-2 border-solid border-[#e0e0e0] px-5 py-[15px] transition-all duration-300" +
-    " hover:border-[#0366d6] hover:bg-[#f0f7ff]" +
-    " has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-60" +
-    " has-[input:disabled]:hover:border-[#e0e0e0] has-[input:disabled]:hover:bg-transparent" +
-    " has-[input:disabled:checked]:border-[#0366d6] has-[input:disabled:checked]:bg-[#f0f7ff] has-[input:disabled:checked]:opacity-100";
-  const inputClass = "peer mr-[15px] h-5 w-5 cursor-pointer disabled:cursor-not-allowed";
-  const textClass = "choice-text text-xl text-[#333] peer-checked:font-bold peer-checked:text-[#0366d6]";
 
   return (
     <>
       {question.choices.map((choice, index) => (
-        <label key={index} className={labelClass}>
+        <label key={index} className={choiceLabel()}>
           <input
             type="radio"
             name="answer"
             value={String(index)}
             checked={picked === index}
             disabled={isLocked}
-            className={inputClass}
+            className={choiceInput()}
             onChange={() => {
               if (isLocked) return;
               session.selectAnswer(session.currentIndex, index);
@@ -74,7 +67,7 @@ function MultipleChoice({ question, session, callbacks }: MultipleChoiceProps): 
               callbacks.onAnswered(question, index);
             }}
           />
-          <span className={textClass}>{choice}</span>
+          <span className={choiceText()}>{choice}</span>
         </label>
       ))}
     </>
