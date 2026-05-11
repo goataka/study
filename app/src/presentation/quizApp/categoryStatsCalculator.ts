@@ -18,6 +18,8 @@ export interface CategoryStat {
   mastered: number;
 }
 
+export const EMPTY_CATEGORY_STAT: CategoryStat = { total: 0, inProgress: 0, mastered: 0 };
+
 /** 表示用ステータス。 */
 export type CategoryStatusKind = "learned" | "studying" | "unlearned";
 

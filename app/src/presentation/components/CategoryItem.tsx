@@ -85,6 +85,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
     : "";
 
   const gradeClass = referenceGrade && showReferenceGrade ? gradeColorClass(referenceGrade) : null;
+  const isProgressDone = progressFillPercent === 100 && progressInProgressPercent === 0;
 
   return (
     <div
@@ -145,7 +146,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
               <div
                 className={[
                   "category-progress-fill h-full bg-[#28a745] rounded-sm shrink-0",
-                  progressFillPercent === 100 && progressInProgressPercent === 0 ? "progress-fill-done" : "",
+                  isProgressDone ? "progress-fill-done" : "",
                 ]
                   .filter(Boolean)
                   .join(" ")}

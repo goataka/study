@@ -16,6 +16,7 @@ import {
   categoryStatsKey,
   computeCategoryStatsMap,
   deriveCategoryItemStatus,
+  EMPTY_CATEGORY_STAT,
   formatCategoryStatsText,
   type CategoryStat,
 } from "./categoryStatsCalculator";
@@ -217,7 +218,7 @@ function buildCategoryItemProps(
   };
 
   const key = categoryStatsKey(subject, categoryId);
-  const stat = statsCtx.statsMap.get(key) ?? { total: 0, inProgress: 0, mastered: 0 };
+  const stat = statsCtx.statsMap.get(key) ?? EMPTY_CATEGORY_STAT;
   const statusView = deriveCategoryItemStatus(stat, statsCtx.studiedKeys, key);
   const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.inProgress, stat.total);
 
