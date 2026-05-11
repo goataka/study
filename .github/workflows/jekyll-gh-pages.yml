@@ -143,12 +143,12 @@ jobs:
 
       - name: RCサイトの準備完了を確認
         env:
-          PLAYWRIGHT_BASE_URL: ${{ format('{0}v0/', needs.deploy.outputs.page_url) }}
+          PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: |
-          echo "Waiting for rc site to be ready at ${PLAYWRIGHT_BASE_URL}"
-          BASE_URL="${PLAYWRIGHT_BASE_URL%/}/"
-          APP_URL="${BASE_URL}"
-          QUESTIONS_URL="${BASE_URL}questions/index.json"
+          BASE_URL="${PAGES_BASE_URL%/}/"
+          APP_URL="${BASE_URL}v0/"
+          QUESTIONS_URL="${APP_URL}questions/index.json"
+          echo "Waiting for rc site to be ready at ${APP_URL}"
           for i in $(seq 1 12); do
             APP_ERROR=""
             QUESTIONS_ERROR=""
@@ -204,7 +204,7 @@ jobs:
 
       - name: RCアプリの初期化完了を確認
         env:
-          PLAYWRIGHT_BASE_URL: ${{ format('{0}v0/', needs.deploy.outputs.page_url) }}
+          PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: |
           node <<'JS'
           const { chromium } = require("playwright");
@@ -212,7 +212,8 @@ jobs:
           const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
           (async () => {
-            const baseUrl = process.env.PLAYWRIGHT_BASE_URL;
+            const pagesBaseUrl = process.env.PAGES_BASE_URL ?? "";
+            const baseUrl = `${pagesBaseUrl.replace(/\/?$/, "/")}v0/`;
             const deadline = Date.now() + 120_000;
             let attempt = 0;
             let lastStatsText = "";
@@ -261,5 +262,5 @@ jobs:
 
       - name: RC環境E2Eテスト実行
         env:
-          PLAYWRIGHT_BASE_URL: ${{ format('{0}v0/', needs.deploy.outputs.page_url) }}
-        run: npm run test:e2e
+          PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
+        run: PLAYWRIGHT_BASE_URL="${PAGES_BASE_URL%/}/v0/" npm run test:e2e
