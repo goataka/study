@@ -262,7 +262,11 @@ export function QuizPanel(): React.JSX.Element {
 
 /** 解説パネルフレーム — guidePanelContentStore から描画。 */
 function GuidePanelSection(): React.JSX.Element {
-  const node = useSyncExternalStore(guidePanelContentStore.subscribe, guidePanelContentStore.get, guidePanelContentStore.get);
+  const node = useSyncExternalStore(
+    guidePanelContentStore.subscribe,
+    guidePanelContentStore.get,
+    guidePanelContentStore.get,
+  );
   if (!node) {
     return (
       <>
@@ -287,12 +291,24 @@ function GuidePanelSection(): React.JSX.Element {
 
 /** 履歴一覧 — historyListContentStore から描画。 */
 function HistoryListSection(): React.JSX.Element {
-  const node = useSyncExternalStore(historyListContentStore.subscribe, historyListContentStore.get, historyListContentStore.get);
-  return <div id="historyList" className="history-list flex flex-col gap-2.5">{node}</div>;
+  const node = useSyncExternalStore(
+    historyListContentStore.subscribe,
+    historyListContentStore.get,
+    historyListContentStore.get,
+  );
+  return (
+    <div id="historyList" className="history-list flex flex-col gap-2.5">
+      {node}
+    </div>
+  );
 }
 
 /** 問題一覧本文 — questionListContentStore から描画。 */
 function QuestionListSection(): React.JSX.Element {
-  const node = useSyncExternalStore(questionListContentStore.subscribe, questionListContentStore.get, questionListContentStore.get);
+  const node = useSyncExternalStore(
+    questionListContentStore.subscribe,
+    questionListContentStore.get,
+    questionListContentStore.get,
+  );
   return <>{node}</>;
 }

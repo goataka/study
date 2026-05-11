@@ -108,7 +108,11 @@ export function updateSelectedUnitInfo(params: UpdateSelectedUnitInfoParams): vo
 }
 
 /** パネルを表示し、関連する class 属性を同期する共通処理。 */
-function showPanel(container: HTMLElement | null, categoryListEl: HTMLElement | null, element: React.ReactElement): void {
+function showPanel(
+  container: HTMLElement | null,
+  categoryListEl: HTMLElement | null,
+  element: React.ReactElement,
+): void {
   container?.classList.remove("hidden");
   selectedUnitInfoContentStore.set(element);
   categoryListEl?.classList.add("detail-active");

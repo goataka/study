@@ -87,6 +87,10 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
 
 /** 教科タブ列 — subjectTabsContentStore から描画。 */
 function SubjectTabsSection(): React.JSX.Element {
-  const node = useSyncExternalStore(subjectTabsContentStore.subscribe, subjectTabsContentStore.get, subjectTabsContentStore.get);
+  const node = useSyncExternalStore(
+    subjectTabsContentStore.subscribe,
+    subjectTabsContentStore.get,
+    subjectTabsContentStore.get,
+  );
   return <>{node}</>;
 }

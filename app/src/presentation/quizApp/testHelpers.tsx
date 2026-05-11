@@ -92,11 +92,31 @@ function mountScreenStoreDomBridge(): void {
  * これにより、テストで DOM 操作（クリック等）が正しく機能する。
  */
 function TestContentBridge(): React.JSX.Element {
-  const subjectTabsNode = useSyncExternalStore(subjectTabsContentStore.subscribe, subjectTabsContentStore.get, subjectTabsContentStore.get);
-  const categoryControlsNode = useSyncExternalStore(categoryControlsContentStore.subscribe, categoryControlsContentStore.get, categoryControlsContentStore.get);
-  const categoryListNode = useSyncExternalStore(categoryListContentStore.subscribe, categoryListContentStore.get, categoryListContentStore.get);
-  const selectedUnitInfoNode = useSyncExternalStore(selectedUnitInfoContentStore.subscribe, selectedUnitInfoContentStore.get, selectedUnitInfoContentStore.get);
-  const choicesNode = useSyncExternalStore(choicesContentStore.subscribe, choicesContentStore.get, choicesContentStore.get);
+  const subjectTabsNode = useSyncExternalStore(
+    subjectTabsContentStore.subscribe,
+    subjectTabsContentStore.get,
+    subjectTabsContentStore.get,
+  );
+  const categoryControlsNode = useSyncExternalStore(
+    categoryControlsContentStore.subscribe,
+    categoryControlsContentStore.get,
+    categoryControlsContentStore.get,
+  );
+  const categoryListNode = useSyncExternalStore(
+    categoryListContentStore.subscribe,
+    categoryListContentStore.get,
+    categoryListContentStore.get,
+  );
+  const selectedUnitInfoNode = useSyncExternalStore(
+    selectedUnitInfoContentStore.subscribe,
+    selectedUnitInfoContentStore.get,
+    selectedUnitInfoContentStore.get,
+  );
+  const choicesNode = useSyncExternalStore(
+    choicesContentStore.subscribe,
+    choicesContentStore.get,
+    choicesContentStore.get,
+  );
 
   const tabsEl = document.querySelector<HTMLElement>(".subject-tabs");
   const controlsEl = document.getElementById("categoryControls");

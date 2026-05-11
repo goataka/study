@@ -77,6 +77,10 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
 
 /** 選択中の単元情報パネル — selectedUnitInfoContentStore から描画。 */
 function SelectedUnitInfoSection(): React.JSX.Element {
-  const node = useSyncExternalStore(selectedUnitInfoContentStore.subscribe, selectedUnitInfoContentStore.get, selectedUnitInfoContentStore.get);
+  const node = useSyncExternalStore(
+    selectedUnitInfoContentStore.subscribe,
+    selectedUnitInfoContentStore.get,
+    selectedUnitInfoContentStore.get,
+  );
   return <>{node}</>;
 }

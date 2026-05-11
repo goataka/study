@@ -82,12 +82,20 @@ export function CategoryPanel(): React.JSX.Element {
 
 /** カテゴリビューコントロール — categoryControlsContentStore から描画。 */
 function CategoryControlsSection(): React.JSX.Element {
-  const node = useSyncExternalStore(categoryControlsContentStore.subscribe, categoryControlsContentStore.get, categoryControlsContentStore.get);
+  const node = useSyncExternalStore(
+    categoryControlsContentStore.subscribe,
+    categoryControlsContentStore.get,
+    categoryControlsContentStore.get,
+  );
   return <>{node}</>;
 }
 
 /** カテゴリ一覧 — categoryListContentStore から描画。 */
 function CategoryListSection(): React.JSX.Element {
-  const node = useSyncExternalStore(categoryListContentStore.subscribe, categoryListContentStore.get, categoryListContentStore.get);
+  const node = useSyncExternalStore(
+    categoryListContentStore.subscribe,
+    categoryListContentStore.get,
+    categoryListContentStore.get,
+  );
   return <>{node}</>;
 }

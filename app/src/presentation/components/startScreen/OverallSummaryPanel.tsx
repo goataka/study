@@ -120,12 +120,20 @@ export function OverallSummaryPanel(): React.JSX.Element {
 
 /** 教科別学習状況サマリ — overallStatusContentStore から描画。 */
 function OverallStatusSection(): React.JSX.Element {
-  const node = useSyncExternalStore(overallStatusContentStore.subscribe, overallStatusContentStore.get, overallStatusContentStore.get);
+  const node = useSyncExternalStore(
+    overallStatusContentStore.subscribe,
+    overallStatusContentStore.get,
+    overallStatusContentStore.get,
+  );
   return <>{node}</>;
 }
 
 /** 今日の活動 — todayActivityContentStore から描画。 */
 function TodayActivitySection(): React.JSX.Element {
-  const node = useSyncExternalStore(todayActivityContentStore.subscribe, todayActivityContentStore.get, todayActivityContentStore.get);
+  const node = useSyncExternalStore(
+    todayActivityContentStore.subscribe,
+    todayActivityContentStore.get,
+    todayActivityContentStore.get,
+  );
   return <>{node}</>;
 }

@@ -107,6 +107,10 @@ export function ProgressDetailPanel(): React.JSX.Element {
 
 /** 進度詳細コンテンツ — progressDetailContentStore から描画。 */
 function ProgressDetailSection(): React.JSX.Element {
-  const node = useSyncExternalStore(progressDetailContentStore.subscribe, progressDetailContentStore.get, progressDetailContentStore.get);
+  const node = useSyncExternalStore(
+    progressDetailContentStore.subscribe,
+    progressDetailContentStore.get,
+    progressDetailContentStore.get,
+  );
   return <>{node}</>;
 }
