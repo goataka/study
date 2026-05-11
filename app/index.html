@@ -27,21 +27,26 @@
     <meta name="twitter:title" content="学習アプリ" />
     <meta name="twitter:description" content="小中高向け学習アプリ" />
     <script>
-      /* 1920×1080 を基準として画面全体にフィットするようズームスケーリングを適用する */
+      /* 1920×1080 を基準として画面全体にフィットするようスケーリングを適用する */
       /* clientWidth/clientHeight を使用してスクロールバーを除いた表示領域を取得する */
-      /* モバイル（横幅 768px 未満）では zoom を無効にして CSS レスポンシブに任せる */
+      /* モバイル（横幅 768px 未満）ではスケーリングを無効にして CSS レスポンシブに任せる */
       (function () {
-        function applyZoom() {
+        function applyScale() {
           var el = document.documentElement;
           var w = el.clientWidth;
           if (w < 768) {
-            el.style.zoom = "";
+            el.style.transform = "";
+            el.style.transformOrigin = "";
+            el.style.width = "";
             return;
           }
-          el.style.zoom = Math.min(w / 1920, el.clientHeight / 1080);
+          var scale = Math.min(w / 1920, el.clientHeight / 1080);
+          el.style.transformOrigin = "top left";
+          el.style.transform = "scale(" + scale + ")";
+          el.style.width = 100 / scale + "%";
         }
-        applyZoom();
-        window.addEventListener("resize", applyZoom);
+        applyScale();
+        window.addEventListener("resize", applyScale);
       })();
     </script>
   </head>

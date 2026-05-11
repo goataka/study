@@ -10,6 +10,12 @@
 /* Tailwind CSS v4：プラグインが自動でテンプレートを走査しユーティリティを生成する。 */
 @import "tailwindcss";
 
+:root {
+  --notebook-line-color: #d8e8f8;
+  --notebook-line-gap: 32px;
+  --notebook-line-offset: 12px;
+}
+
 /* ─── HTML / body ──────────────────────────────────────────────────────────── */
 /* 全体の高さを確保し、木目調の背景を表示する。 */
 html,
@@ -26,6 +32,58 @@ body {
   background-repeat: repeat;
 }
 
+.notebook-lines {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent calc(var(--notebook-line-gap) - 1px),
+    var(--notebook-line-color) calc(var(--notebook-line-gap) - 1px),
+    var(--notebook-line-color) var(--notebook-line-gap)
+  );
+  background-size: 100% var(--notebook-line-gap);
+  background-position: 0 var(--notebook-line-offset);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #0366d6;
+  outline-offset: 2px;
+}
+
+@keyframes feedback-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-feedback-in {
+  animation: feedback-in 0.3s ease-in;
+}
+
+@keyframes score-celebration {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-6px) rotate(-10deg);
+  }
+  70% {
+    transform: translateY(-2px) rotate(8deg);
+  }
+}
+
+.animate-score-celebration {
+  animation: score-celebration 1s ease-in-out infinite;
+}
+
 /* ─── 解説パネル（.guide-content）のマークダウンスタイル ──────────────────── */
 /* GitHub Pages から取得した解説 HTML の .markdown-body に基本スタイルを提供する。 */
 .guide-frame .markdown-body {
@@ -34,8 +92,13 @@ body {
   line-height: 1.6;
   color: #24292e;
   background-color: #fff;
-  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
-  background-position: 0 12px;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent calc(var(--notebook-line-gap) - 1px),
+    var(--notebook-line-color) calc(var(--notebook-line-gap) - 1px),
+    var(--notebook-line-color) var(--notebook-line-gap)
+  );
+  background-position: 0 var(--notebook-line-offset);
   padding: 16px;
   margin: 4px 0;
 }

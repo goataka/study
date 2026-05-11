@@ -8,7 +8,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const statusFilterButton = cva(
-  "category-status-filter-btn text-xs border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white",
+  "category-status-filter-btn text-xs border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1 [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white",
   {
     variants: {
       size: {
@@ -22,11 +22,11 @@ export const statusFilterButton = cva(
 );
 
 export const gradeFilterButton = cva(
-  "grade-filter-btn text-xs px-2 py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white",
+  "grade-filter-btn text-xs px-2 py-0.5 border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1 [&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white",
 );
 
 export const categoryViewToggleButton = cva(
-  "category-view-toggle text-sm px-2 py-[3px] border border-[#d1d5da] rounded cursor-pointer select-none bg-white text-[#586069] transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white",
+  "category-view-toggle text-sm px-2 py-[3px] border border-[#d1d5da] rounded cursor-pointer select-none bg-white text-[#586069] transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1 [&[aria-pressed='true']]:bg-[#0366d6] [&[aria-pressed='true']]:border-[#0366d6] [&[aria-pressed='true']]:text-white",
 );
 
 export type StatusFilterButtonVariantProps = VariantProps<typeof statusFilterButton>;

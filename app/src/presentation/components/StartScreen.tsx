@@ -40,15 +40,13 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
       >
         <CategoryPanel />
         <div
-          className="notebook-spine hidden md:block shrink-0 w-3 bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]"
+          className="notebook-spine hidden md:block shrink-0 w-3 h-full self-stretch bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]"
           aria-hidden="true"
         ></div>
         <div
           className={[
             "quiz-panel",
-            "bg-white",
-            "[background-image:repeating-linear-gradient(transparent,transparent_31px,#d8e8f8_31px,#d8e8f8_32px)]",
-            "[background-size:100%_32px] [background-position:0_12px]",
+            "notebook-lines bg-white",
             "border-none overflow-hidden flex flex-col",
             "shadow-none md:shadow-[inset_3px_0_6px_rgba(0,0,0,0.08)]",
           ].join(" ")}
@@ -60,6 +58,7 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
           <ProgressDetailPanel />
           <OverallSummaryPanel />
           <div id="adminContent" className="hidden admin-content-panel" role="region" aria-label="管理"></div>
+          <div className="h-8 shrink-0 border-t border-[#e6edf5] bg-white/90" aria-hidden="true"></div>
         </div>
       </div>
     </div>

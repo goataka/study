@@ -17,7 +17,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 const navButtonVariants = cva(
-  "flex-1 cursor-pointer rounded-lg border-none px-6 py-3 text-lg font-bold transition-all duration-300",
+  "flex-1 cursor-pointer rounded-lg border-none px-6 py-3 text-lg font-bold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-2 focus-visible:ring-offset-white",
   {
     variants: {
       variant: {

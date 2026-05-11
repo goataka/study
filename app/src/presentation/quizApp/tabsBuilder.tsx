@@ -58,10 +58,10 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
               // レイアウト・ボーダー
               "pt-[6px] px-[18px] pb-2 border border-[rgba(0,0,0,0.12)] border-b-0",
               // 文字
-              "cursor-pointer text-[15px] font-semibold text-[#5a4a28] font-[inherit]",
+              "cursor-pointer text-sm font-semibold text-[#5a4a28] font-[inherit]",
               "flex items-center gap-1.5 whitespace-nowrap",
               "shadow-[0_-2px_4px_rgba(0,0,0,0.08)] relative translate-y-0.5",
-              "transition-[background,color,transform,box-shadow] duration-150",
+              "transition-[background,color,transform,box-shadow] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1",
               // hover 状態
               "hover:brightness-[1.05] hover:translate-y-0 hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
               // active 状態（一括指定）
@@ -87,7 +87,7 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
           "inline-flex items-center gap-1 justify-center",
           "px-[18px] pt-[6px] pb-2 min-w-7 min-h-[33px]",
           "border border-[rgba(0,0,0,0.12)] border-b-0",
-          "text-[15px] font-semibold no-underline whitespace-nowrap leading-none",
+          "text-sm font-semibold no-underline whitespace-nowrap leading-none",
           "translate-y-0.5 shadow-[0_-2px_4px_rgba(0,0,0,0.08)]",
           "transition-[filter,transform] duration-150",
           "hover:brightness-[1.08] hover:translate-y-0",

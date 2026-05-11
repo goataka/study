@@ -34,7 +34,7 @@ export function ResultScreen({ currentScreen }: ResultScreenProps): React.JSX.El
     >
       <button
         type="button"
-        className="result-close-x-btn absolute top-4 right-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-base font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6] transition-[background,color,border-color] duration-150"
+        className="result-close-x-btn absolute top-4 right-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-base font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-2 transition-[background,color,border-color] duration-150"
         aria-label="閉じる"
         title="閉じる"
         onClick={() => {
@@ -57,7 +57,20 @@ export function ResultScreen({ currentScreen }: ResultScreenProps): React.JSX.El
       </div>
       <div id="scoreDisplay" className="mb-10 flex justify-center">
         {vm.total > 0 ? (
-          <div className={scoreCircle({ result: vm.scoreClass })}>
+          <div className={`${scoreCircle({ result: vm.scoreClass })} relative overflow-visible`}>
+            {vm.isPerfect ? (
+              <>
+                <span className="absolute -left-6 top-3 text-2xl animate-score-celebration" aria-hidden="true">
+                  🎉
+                </span>
+                <span
+                  className="absolute -right-6 top-8 text-2xl animate-score-celebration [animation-delay:0.15s]"
+                  aria-hidden="true"
+                >
+                  🎊
+                </span>
+              </>
+            ) : null}
             {vm.isPerfect ? <div className="score-perfect-icon mb-1 text-[38px]">✅</div> : null}
             <div className="score-percentage mb-2.5 text-[50px] font-bold">{vm.percentage}%</div>
             <div className="text-lg">

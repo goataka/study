@@ -81,17 +81,18 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
       <div
         className={[
           "quiz-landscape-layout",
-          // グリッドレイアウト（左：問題エリア 1fr、中：折り目 12px、右：メモエリア 2fr）
+          // グリッドレイアウト（左：問題エリア 1.2fr、中：折り目 12px、右：メモエリア 1.8fr）
           "relative flex-1 grid min-h-0 items-stretch gap-0",
-          "grid-cols-[1fr_12px_2fr]",
+          "grid-cols-[1.2fr_12px_1.8fr] max-[900px]:grid-cols-1",
           // 折り目：中央の 12px カラムに影付きグラデーション縦線を before: で描画
           "before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-3",
-          "before:left-[calc((100%_-_12px)_/_3)]",
+          "before:left-[calc((100%_-_12px)_*_0.4)]",
           "before:pointer-events-none",
           "before:bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]",
+          "max-[900px]:before:hidden",
         ].join(" ")}
       >
-        <div className="quiz-main-col col-start-1 min-w-0 overflow-y-auto min-h-0 p-3">
+        <div className="quiz-main-col col-start-1 min-w-0 overflow-y-auto min-h-0 p-3 max-[900px]:col-start-1">
           <div className="progress-bar mb-5 h-2 w-full overflow-hidden rounded bg-[#e0e0e0]">
             <div
               id="progressFill"
@@ -134,8 +135,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
               "answer-feedback",
               quizSession.answerFeedback.visible ? "" : "hidden",
               "my-5 rounded-lg p-5",
-              // fadeIn アニメーション（@keyframes は 09-quiz-screen.css に残置）
-              "[animation:fadeIn_0.3s_ease-in]",
+              "animate-feedback-in",
               // .correct / .incorrect 状態に応じた背景・枠線
               "border-2 border-solid border-transparent",
               quizSession.answerFeedback.isCorrect
@@ -177,7 +177,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           </div>
         </div>
 
-        <div className="quiz-notes-col col-start-3 flex flex-col min-h-0">
+        <div className="quiz-notes-col col-start-3 flex flex-col min-h-0 max-[900px]:col-start-1 max-[900px]:min-h-[260px]">
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-lg border-2 border-solid border-[#e1e4e8] bg-transparent">
             <div id="notesMemoContent" className="flex min-h-0 flex-1 flex-col">
               <NotesPanel showKanjiInput={quizSession.showKanjiInput} />
