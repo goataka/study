@@ -53,6 +53,7 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
   }, [bootApp]);
 
   useEffect(() => {
+    const prevFontSize = document.documentElement.style.fontSize;
     document.body.classList.remove("font-size-medium", "font-size-large");
     if (fontSizeLevel === "medium") {
       document.body.classList.add("font-size-medium");
@@ -63,6 +64,10 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
     } else {
       document.documentElement.style.fontSize = "";
     }
+    return () => {
+      document.body.classList.remove("font-size-medium", "font-size-large");
+      document.documentElement.style.fontSize = prevFontSize;
+    };
   }, [fontSizeLevel]);
 
   return (

@@ -109,13 +109,17 @@ export function renderResultScreen(results: AnswerResult[]): void {
 /**
  * #resultScreen が React によって管理されているかを判定する。
  * React 管理下では resultStore 経由で ResultScreen が自律的に描画するため、
- * legacy innerHTML 注入をスキップする必要がある。
+ * legacy DOM 書き換えをすべてスキップする必要がある。
  */
 function isResultScreenManagedByReact(): boolean {
   return document.getElementById("resultScreen")?.hasAttribute("data-react-managed") ?? false;
 }
 
 function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
+  // React 管理下では ResultScreen コンポーネントが resultStore を通じて自律的に描画するため、
+  // legacy DOM 書き換え（resultUnitName / resultMessage / scoreDisplay）をすべてスキップする。
+  if (isResultScreenManagedByReact()) return;
+
   const resultUnitName = document.getElementById("resultUnitName");
   const resultMessage = document.getElementById("resultMessage");
   // `resultScore` は `setupTabDom` を使う QuizApp 単体テストのレガシーDOM ID 互換のため残す。
@@ -143,9 +147,7 @@ function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
             ? "😊 もう少し！次はきっとできる！"
             : "💪 がんばれ！次は必ず正解できます！";
   }
-  // React が管理している #resultScreen（data-react-managed 属性あり）では
-  // resultStore を通じて ResultScreen が描画するため scoreDisplay の innerHTML 注入をスキップする。
-  if (scoreDisplay && !isResultScreenManagedByReact()) {
+  if (scoreDisplay) {
     scoreDisplay.innerHTML = `
       <div class="${circleClass}">
         ${isPerfect ? '<div class="score-perfect-icon mb-1 text-[38px]">✅</div>' : ""}
