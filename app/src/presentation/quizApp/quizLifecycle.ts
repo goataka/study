@@ -106,6 +106,15 @@ export function renderResultScreen(results: AnswerResult[]): void {
   applyLegacyResultDomForNonReactTests(results);
 }
 
+/**
+ * #resultScreen が React によって管理されているかを判定する。
+ * React 管理下では resultStore 経由で ResultScreen が自律的に描画するため、
+ * legacy innerHTML 注入をスキップする必要がある。
+ */
+function isResultScreenManagedByReact(): boolean {
+  return document.getElementById("resultScreen")?.hasAttribute("data-react-managed") ?? false;
+}
+
 function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
   const resultUnitName = document.getElementById("resultUnitName");
   const resultMessage = document.getElementById("resultMessage");
@@ -136,9 +145,7 @@ function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
   }
   // React が管理している #resultScreen（data-react-managed 属性あり）では
   // resultStore を通じて ResultScreen が描画するため scoreDisplay の innerHTML 注入をスキップする。
-  const resultScreen = document.getElementById("resultScreen");
-  const isReactManaged = resultScreen?.hasAttribute("data-react-managed") ?? false;
-  if (scoreDisplay && !isReactManaged) {
+  if (scoreDisplay && !isResultScreenManagedByReact()) {
     scoreDisplay.innerHTML = `
       <div class="${circleClass}">
         ${isPerfect ? '<div class="score-perfect-icon mb-1 text-[38px]">✅</div>' : ""}
