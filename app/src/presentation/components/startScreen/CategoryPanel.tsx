@@ -55,7 +55,19 @@ export function CategoryPanel(): React.JSX.Element {
       <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2 px-4"></div>
       <div
         id="categoryList"
-        className="category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0 px-4 pb-2"
+        className={[
+          "category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0 px-4 pb-2",
+          "[&.hide-learned_.category-item.learned]:hidden",
+          "[&.filter-unlearned_.category-item.learned]:hidden",
+          "[&.filter-unlearned_.category-item.studying]:hidden",
+          "[&.filter-studying_.category-item:not(.studying)]:hidden",
+          "[&.filter-learned_.category-item:not(.learned)]:hidden",
+          "[&.filter-learned_.category-item.learned]:!grid",
+          "[&.filter-studying_.category-item.studying]:!grid",
+          "[&.filter-unlearned_.category-item:not(.learned):not(.studying)]:!grid",
+          "[&.detail-active_.category-item.category-item-has-info]:[grid-template-columns:1fr]",
+          "[&.detail-active_.category-item-right]:hidden",
+        ].join(" ")}
       ></div>
     </div>
   );
