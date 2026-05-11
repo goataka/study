@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Goataka Study</title>
     <script>
-      const targetPath = "/v1/";
-      const suffix = `${window.location.search}${window.location.hash}`;
-      window.location.replace(`${targetPath}${suffix}`);
+      const targetUrl = new URL("./v1/", window.location.href);
+      targetUrl.search = window.location.search;
+      targetUrl.hash = window.location.hash;
+      window.location.replace(targetUrl.toString());
     </script>
   </head>
   <body>

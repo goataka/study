@@ -46,7 +46,7 @@ jobs:
           set -euo pipefail
 
           LATEST_V1_TAG="$(
-            gh release list --limit 100 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[].tagName' \
+            gh release list --limit 1000 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[].tagName' \
               | grep -E '^v1\.[0-9]+\.[0-9]+$' \
               | sort -V \
               | tail -n1 || true

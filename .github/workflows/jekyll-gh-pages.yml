@@ -71,7 +71,7 @@ jobs:
           LATEST_TAG="$(gh release list --limit 1 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[0].tagName // ""')"
 
           if [ -z "${LATEST_TAG}" ]; then
-            echo "最新リリースが存在しないか、app-dist.zip が見つかりません。"
+            echo "最新リリースが存在しません。"
             echo "release-app.yml を実行して本番用リリースを作成してください。"
             exit 1
           fi
