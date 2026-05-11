@@ -29,7 +29,7 @@ permalink: /support/technical-reference/
 ### インデックスファイル
 
 ```text
-https://goataka.github.io/study/questions/index.json
+https://goataka.github.io/study/v1/questions/index.json
 ```
 
 インデックスファイルには、利用可能な全問題ファイルの一覧が含まれます。
@@ -37,15 +37,15 @@ https://goataka.github.io/study/questions/index.json
 ### 問題ファイル
 
 ```text
-https://goataka.github.io/study/questions/{subject}/{category}.json
+https://goataka.github.io/study/v1/questions/{subject}/{category}.json
 ```
 
 例：
 
 ```text
-https://goataka.github.io/study/questions/english/alphabet.json
-https://goataka.github.io/study/questions/math/addition-no-carry-1digit.json
-https://goataka.github.io/study/questions/japanese/kanji-grade1.json
+https://goataka.github.io/study/v1/questions/english/alphabet.json
+https://goataka.github.io/study/v1/questions/math/addition-no-carry-1digit.json
+https://goataka.github.io/study/v1/questions/japanese/kanji-grade1.json
 ```
 
 ## インデックスファイルの形式

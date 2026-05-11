@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goataka Study</title>
+    <script>
+      const targetUrl = new URL("./v1/", window.location.href);
+      targetUrl.search = window.location.search;
+      targetUrl.hash = window.location.hash;
+      window.location.replace(targetUrl.toString());
+    </script>
+  </head>
+  <body>
+    <noscript>
+      JavaScript を有効にしてください。<a href="./v1/">本番環境へ移動</a>
+    </noscript>
+  </body>
+</html>
