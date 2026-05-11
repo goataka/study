@@ -51,10 +51,9 @@ export function TabsUserRow(): React.JSX.Element {
           aria-label="プロフィール画像を変更する"
         >
           {/* src は AvatarController が動的に設定する。空文字属性は React の警告対象なので未設定にする。 */}
-          {/* display は JS が .visible クラスで制御するため 11-header-controls.css の display:none/.visible ルールを残置 */}
           <img
             id="headerUserAvatarImg"
-            className="header-user-avatar-img w-full h-full object-cover rounded-full"
+            className="header-user-avatar-img hidden h-full w-full rounded-full object-cover [&.visible]:block"
             alt=""
             aria-hidden="true"
           />

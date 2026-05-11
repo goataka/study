@@ -13,6 +13,7 @@ import { createRoot } from "react-dom/client";
 import { App } from "./presentation/App";
 import { QuizApp } from "./presentation/quizApp";
 import { IndexedDBProgressRepository } from "./infrastructure/indexedDBProgressRepository";
+import { RemoteQuestionRepository } from "./infrastructure/remoteQuestionRepository";
 
 const container = document.getElementById("root");
 if (!container) {
@@ -21,7 +22,7 @@ if (!container) {
 
 // 本番用の依存組み立て。テストや将来のストーリーブックでは別の bootApp を渡せる。
 const bootApp = (): void => {
-  new QuizApp(new IndexedDBProgressRepository());
+  new QuizApp(new IndexedDBProgressRepository(), new RemoteQuestionRepository("questions"));
 };
 
 createRoot(container).render(

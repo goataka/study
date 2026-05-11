@@ -5,6 +5,8 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
+import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
+import type { IQuestionRepository } from "../../application/ports";
 import {
   waitForCondition,
   setupTabDom,
@@ -45,5 +47,29 @@ describe("QuizApp — 初期化仕様", () => {
 
     const statsInfo = document.getElementById("statsInfo");
     expect(statsInfo?.textContent).toContain("全：5問");
+  });
+
+  it("明示的に注入した questionRepo / progressRepo でも初期化できる", async () => {
+    const questionRepo: IQuestionRepository = {
+      loadAll: async () => [
+        {
+          id: "injected-q1",
+          subject: "english",
+          subjectName: "英語",
+          category: "alphabet",
+          categoryName: "アルファベット",
+          question: "A",
+          choices: ["エー", "ビー", "シー", "ディー"],
+          correct: 0,
+          explanation: "A の読み",
+        },
+      ],
+    };
+
+    new QuizApp(new LocalStorageProgressRepository(), questionRepo);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("全：1問");
   });
 });
