@@ -68,23 +68,37 @@ jobs:
         run: |
           set -euo pipefail
 
-          LATEST_TAG="$(gh release list --limit 1 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[0].tagName // ""')"
-
-          if [ -z "${LATEST_TAG}" ]; then
-            echo "最新リリースが存在しません。"
-            echo "release-app.yml を実行して本番用リリースを作成してください。"
-            exit 1
+          if RELEASE_TAG_OUTPUT="$(gh release list --limit 1 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[0].tagName // ""')"; then
+            LATEST_TAG="${RELEASE_TAG_OUTPUT}"
+          else
+            echo "::warning::最新リリースの取得に失敗したため、リリース成果物の展開をスキップしてフォールバックします。"
+            LATEST_TAG=""
           fi
 
-          rm -f /tmp/app-dist.zip
-          if ! gh release download "${LATEST_TAG}" --pattern "app-dist.zip" --dir /tmp; then
-            echo "最新リリースが存在しないか、app-dist.zip が見つかりません。"
-            echo "release-app.yml を実行して本番用リリースを作成してください。"
-            exit 1
-          fi
-
+          DEPLOYED_FROM_RELEASE="false"
           sudo mkdir -p _site/v1
-          sudo unzip -q /tmp/app-dist.zip -d _site/v1
+
+          if [ -n "${LATEST_TAG}" ]; then
+            rm -f /tmp/app-dist.zip
+            if gh release download "${LATEST_TAG}" --pattern "app-dist.zip" --dir /tmp; then
+              echo "::notice::最新リリース ${LATEST_TAG} の app-dist.zip を /v1 に配置します。"
+              sudo unzip -q /tmp/app-dist.zip -d _site/v1
+              DEPLOYED_FROM_RELEASE="true"
+            else
+              echo "::warning::最新リリース ${LATEST_TAG} の app-dist.zip を取得できなかったため、フォールバック展開します。"
+            fi
+          fi
+
+          if [ "${DEPLOYED_FROM_RELEASE}" = "false" ]; then
+            if [ ! -d app/dist ]; then
+              echo "::error::app/dist が存在しません。このジョブ内の「Viteビルド」ステップが成功しているか確認してください。"
+              exit 1
+            fi
+
+            echo "::warning::最新リリース（app-dist.zip）が見つからないため、main のビルド成果物を /v1 に配置します。"
+            echo "::warning::本番用の固定成果物を使う場合は release-app.yml を実行してリリースを作成してください。"
+            sudo cp -r app/dist/. _site/v1/
+          fi
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v5
