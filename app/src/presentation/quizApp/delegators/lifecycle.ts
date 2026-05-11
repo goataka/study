@@ -3,8 +3,6 @@
  */
 
 import type { QuizApp } from "../../quizApp";
-import type { Question } from "../../../domain/question";
-import type { QuizSession } from "../../../domain/quizSession";
 import type { QuizMode, AnswerResult } from "../../../application/quizUseCase";
 import { updateSelectedUnitInfo as updateSelectedUnitInfoFn } from "../selectedUnitInfoUpdater";
 import { updateGuidePanelContentByIds as updateGuidePanelContentByIdsFn } from "../guidePanelUpdater";
@@ -43,11 +41,11 @@ import {
   isCurrentCategoryLearned as isCurrentCategoryLearnedFn,
   toggleLearnedStatus as toggleLearnedStatusFn,
 } from "../quizLifecycle";
-import { renderQuestion as renderQuestionFn } from "../questionRenderer";
-import { showAnswerFeedback as showAnswerFeedbackFn } from "../answerFeedback";
-import { updateNavigationButtons as updateNavigationButtonsFn } from "../navigationButtons";
-import { updateNotesAreaForQuestion as updateNotesAreaForQuestionFn } from "../notesAreaUpdater";
+import { renderMultipleChoice, renderTextInput } from "../choicesRenderer";
+import { updateSpeakButton } from "../speakButton";
 import { getQuizSettingsSnapshot } from "../../components/startScreen/quizSettingsStore";
+import { clearQuizSessionStore, syncQuizSessionStore } from "../../components/quizSessionStore";
+import { setText } from "../../uiHelpers";
 import {
   getSelectionLevel,
   getEffectiveFilter,
@@ -201,15 +199,24 @@ export async function startQuiz(app: QuizApp, mode: QuizMode): Promise<void> {
 export function renderQuestion(app: QuizApp): void {
   const session = app.currentSession;
   if (!session) return;
-  renderQuestionFn(session, app.kanjiCanvasController, {
-    onAnswered: (q, idx, text) => {
-      showAnswerFeedbackFn(q, idx, text);
-      updateNavigationButtonsFn(session);
+  const question = session.currentQuestion;
+  const callbacks = {
+    onAnswered: () => {
+      syncQuizSessionStore(session, { kanjiAvailable: app.kanjiCanvasController.isAvailable() });
+      applyLegacyQuizDom(session, app.kanjiCanvasController);
     },
-    onTextAnswered: (q) => {
-      updateNotesAreaForQuestionFn(q, true, app.kanjiCanvasController);
+    onTextAnswered: () => {
+      syncQuizSessionStore(session, { kanjiAvailable: app.kanjiCanvasController.isAvailable() });
+      applyLegacyQuizDom(session, app.kanjiCanvasController);
     },
-  });
+  };
+  if (question.questionType === "text-input") {
+    renderTextInput(question, session, callbacks);
+  } else {
+    renderMultipleChoice(question, session, callbacks);
+  }
+  syncQuizSessionStore(session, { kanjiAvailable: app.kanjiCanvasController.isAvailable() });
+  applyLegacyQuizDom(session, app.kanjiCanvasController);
 }
 
 export function navigate(app: QuizApp, direction: 1 | -1): void {
@@ -240,7 +247,107 @@ export function submitQuiz(app: QuizApp): void {
 export function showResultScreen(app: QuizApp, results: AnswerResult[]): void {
   renderResultScreenFn(results);
   app.showScreen("result");
+  clearQuizSessionStore();
   void checkAllMasteredAndCongratulate(app);
+}
+
+function applyLegacyQuizDom(
+  session: import("../../../domain/quizSession").QuizSession,
+  kanjiCanvasController: import("../../kanjiCanvasController").KanjiCanvasController,
+): void {
+  const question = session.currentQuestion;
+  const total = session.totalCount;
+  const idx = session.currentIndex;
+  setText("questionNumber", `問題 ${idx + 1} / ${total}`);
+  const topicParts: string[] = [];
+  if (question.topCategoryName) topicParts.push(question.topCategoryName);
+  if (question.parentCategoryName) topicParts.push(question.parentCategoryName);
+  topicParts.push(question.categoryName ?? question.category);
+  setText("topicName", topicParts.join(" › "));
+  const progressFill = document.getElementById("progressFill") as HTMLElement | null;
+  if (progressFill) progressFill.style.width = `${((idx + 1) / total) * 100}%`;
+  setText("questionText", question.question);
+  updateSpeakButton(question);
+  applyLegacyFeedback(session, question);
+  applyLegacyNavigation(session);
+  applyLegacyNotes(session, question, kanjiCanvasController);
+}
+
+function applyLegacyFeedback(
+  session: import("../../../domain/quizSession").QuizSession,
+  question: import("../../../domain/question").Question,
+): void {
+  const feedbackDiv = document.getElementById("answerFeedback");
+  if (!feedbackDiv) return;
+  const userAnswer = session.getAnswer(session.currentIndex);
+  if (userAnswer === undefined) {
+    feedbackDiv.classList.add("hidden");
+    return;
+  }
+  const isCorrect = question.correct === userAnswer;
+  const resultDiv = document.getElementById("feedbackResult");
+  const explanationDiv = document.getElementById("feedbackExplanation");
+  const userAnswerText =
+    question.questionType === "text-input" ? session.getTextAnswer(session.currentIndex) : undefined;
+  if (resultDiv) {
+    if (isCorrect) {
+      resultDiv.textContent = "✅ 正解です！";
+    } else if (question.questionType === "text-input") {
+      const correctAnswer = question.choices[question.correct] ?? "";
+      resultDiv.textContent = userAnswerText
+        ? `❌ 不正解です。あなたの解答「${userAnswerText}」→ 正解は「${correctAnswer}」`
+        : `❌ 不正解です。正解は「${correctAnswer}」`;
+    } else {
+      const correctAnswer = question.choices[question.correct] ?? "";
+      resultDiv.textContent = `❌ 不正解です。正解は「${correctAnswer}」です。`;
+    }
+  }
+  if (explanationDiv) explanationDiv.textContent = question.explanation;
+  feedbackDiv.classList.remove("hidden");
+  feedbackDiv.classList.toggle("correct", isCorrect);
+  feedbackDiv.classList.toggle("incorrect", !isCorrect);
+}
+
+function applyLegacyNavigation(session: import("../../../domain/quizSession").QuizSession): void {
+  const prevBtn = document.getElementById("prevBtn") as HTMLButtonElement | null;
+  const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement | null;
+  const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
+  if (!prevBtn || !nextBtn || !submitBtn) return;
+  const isLast = session.currentIndex === session.totalCount - 1;
+  prevBtn.disabled = session.currentIndex === 0;
+  if (isLast) {
+    nextBtn.classList.add("hidden");
+    submitBtn.classList.remove("hidden");
+    submitBtn.disabled = !session.canSubmit();
+  } else {
+    nextBtn.classList.remove("hidden");
+    submitBtn.classList.add("hidden");
+    nextBtn.disabled = session.getAnswer(session.currentIndex) === undefined;
+  }
+}
+
+function applyLegacyNotes(
+  session: import("../../../domain/quizSession").QuizSession,
+  question: import("../../../domain/question").Question,
+  kanjiCanvasController: import("../../kanjiCanvasController").KanjiCanvasController,
+): void {
+  const notesTitle = document.getElementById("notesTitle");
+  const kanjiInputArea = document.getElementById("kanjiInputArea");
+  const notesCanvas = document.getElementById("notesCanvas");
+  const notesControls = document.querySelector<HTMLElement>(".notes-controls");
+  const isAnswered = session.getAnswer(session.currentIndex) !== undefined;
+  const showKanji = question.questionType === "text-input" && !isAnswered && kanjiCanvasController.isAvailable();
+  if (notesTitle) notesTitle.textContent = showKanji ? "✏️ 1文字ずつ書いて漢字を入力できます" : "タッチペンで書けます";
+  if (kanjiInputArea) kanjiInputArea.classList.toggle("hidden", !showKanji);
+  if (notesCanvas) notesCanvas.classList.toggle("hidden", showKanji);
+  if (notesControls) notesControls.classList.toggle("hidden", showKanji);
+  if (!showKanji) return;
+  const kanjiInputBody = document.getElementById("kanjiInputBody");
+  const kanjiToggleBtn = document.getElementById("kanjiToggleBtn");
+  if (kanjiInputBody) kanjiInputBody.classList.remove("hidden");
+  if (kanjiToggleBtn) kanjiCanvasController.applyToggleBtnState(kanjiToggleBtn, true);
+  kanjiCanvasController.initialize();
+  kanjiCanvasController.erase();
 }
 
 export async function checkAllMasteredAndCongratulate(app: QuizApp): Promise<void> {
@@ -320,22 +427,4 @@ export function buildParentCategoryGroup(
   topCatId?: string,
 ): HTMLElement {
   return buildParentCategoryGroupFn(getParentGroupContext(app), subject, parentCatId, parentCatName, cats, topCatId);
-}
-
-// ─── 問題表示補助 ──────────────────────────────────────────────────────────
-
-export function showAnswerFeedback(question: Question, userAnswerIndex: number, userAnswerText?: string): void {
-  showAnswerFeedbackFn(question, userAnswerIndex, userAnswerText);
-}
-
-export function updateNavigationButtons(session: QuizSession): void {
-  updateNavigationButtonsFn(session);
-}
-
-export function updateNotesAreaForQuestion(
-  question: Question | null,
-  isAnswered: boolean,
-  kanjiCanvasController: import("../../kanjiCanvasController").KanjiCanvasController,
-): void {
-  updateNotesAreaForQuestionFn(question, isAnswered, kanjiCanvasController);
 }

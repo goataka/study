@@ -1,8 +1,8 @@
 /**
  * クイズ実施画面（左：問題・選択肢・ナビ、右：手書きメモ + 漢字認識キャンバス）。
  *
- * 問題テキスト・選択肢・フィードバック等は既存コントローラ
- * （`questionRenderer` / `choicesRenderer` / `answerFeedback` 等）が DOM 操作で更新する。
+ * 問題テキスト・フィードバック・ナビゲーション状態は `quizSessionStore` を購読して描画する。
+ * 選択肢入力 UI 自体は `choicesRenderer` が描画する。
  * 手書きメモ用キャンバスと漢字認識キャンバスは `NotesController` /
  * `KanjiCanvasController` が初期化する。
  *
@@ -18,9 +18,11 @@
  * legacy 側の `classList.toggle("correct" / "incorrect")` と互換維持する。
  */
 
+import { useSyncExternalStore } from "react";
 import { NotesPanel } from "./quizScreen/NotesPanel";
 import { KanjiInputArea } from "./quizScreen/KanjiInputArea";
 import { navButton } from "../styles/navButtonStyles";
+import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "./quizSessionStore";
 import type { ScreenName } from "./screenStore";
 
 interface QuizScreenProps {
@@ -28,6 +30,21 @@ interface QuizScreenProps {
 }
 
 export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Element {
+  const quizSession = useSyncExternalStore(subscribeQuizSessionStore, getQuizSessionSnapshot, getQuizSessionSnapshot);
+  const question = quizSession.question;
+
+  const handleSpeakClick = (): void => {
+    if (!question || !quizSession.showSpeakButton) return;
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(extractSpeechText(question.question));
+      utterance.lang = "en-US";
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      // 読み上げ非対応環境では何もしない
+    }
+  };
+
   return (
     <div
       id="quizScreen"
@@ -52,22 +69,33 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
       >
         <div className="quiz-main-col col-start-1 min-w-0 overflow-y-auto min-h-0 p-3">
           <div className="progress-bar mb-5 h-2 w-full overflow-hidden rounded bg-[#e0e0e0]">
-            <div id="progressFill" className="progress-fill h-full bg-[#0366d6] transition-[width] duration-300"></div>
+            <div
+              id="progressFill"
+              className="progress-fill h-full bg-[#0366d6] transition-[width] duration-300"
+              style={{ width: `${quizSession.progressPercent}%` }}
+            ></div>
           </div>
           <div className="question-info relative mb-5 flex items-center justify-between">
-            <span id="questionNumber" className="text-lg font-bold text-[#666]"></span>
+            <span id="questionNumber" className="text-lg font-bold text-[#666]">
+              {quizSession.questionNumberText}
+            </span>
             <span
               id="topicName"
               className="topic-badge absolute left-1/2 max-w-[40%] -translate-x-1/2 overflow-hidden rounded-xl bg-[#0366d6] px-3 py-1 text-sm text-ellipsis whitespace-nowrap text-white"
-            ></span>
+            >
+              {quizSession.topicName}
+            </span>
           </div>
-          <div id="questionText" className="question-text mb-3 text-[26px] leading-relaxed text-[#333]"></div>
+          <div id="questionText" className="question-text mb-3 text-[26px] leading-relaxed text-[#333]">
+            {question?.question ?? ""}
+          </div>
           <button
             id="speakBtn"
-            className="speak-btn mb-[18px] inline-flex cursor-pointer items-center justify-center rounded-[20px] border border-solid border-[#0366d6] bg-white px-3.5 py-1 text-lg text-[#0366d6] transition-colors duration-200 hover:bg-[#f0f7ff]"
+            className={`speak-btn mb-[18px] inline-flex cursor-pointer items-center justify-center rounded-[20px] border border-solid border-[#0366d6] bg-white px-3.5 py-1 text-lg text-[#0366d6] transition-colors duration-200 hover:bg-[#f0f7ff]${quizSession.showSpeakButton ? "" : " hidden"}`}
             type="button"
             title="読み上げ"
             aria-label="英語を読み上げる"
+            onClick={handleSpeakClick}
           >
             🔊
           </button>
@@ -77,14 +105,16 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           <div
             id="answerFeedback"
             className={[
-              "answer-feedback hidden",
+              "answer-feedback",
+              quizSession.answerFeedback.visible ? "" : "hidden",
               "my-5 rounded-lg p-5",
               // fadeIn アニメーション（@keyframes は 09-quiz-screen.css に残置）
               "[animation:fadeIn_0.3s_ease-in]",
               // .correct / .incorrect 状態に応じた背景・枠線
               "border-2 border-solid border-transparent",
-              "[&.correct]:bg-[#e8f5e9] [&.correct]:border-[#4caf50]",
-              "[&.incorrect]:bg-[#ffebee] [&.incorrect]:border-[#f44336]",
+              quizSession.answerFeedback.isCorrect
+                ? "correct [&.correct]:bg-[#e8f5e9] [&.correct]:border-[#4caf50]"
+                : "incorrect [&.incorrect]:bg-[#ffebee] [&.incorrect]:border-[#f44336]",
               // feedback-result の文字色を親クラスで制御するためのグループ化
               "group",
             ].join(" ")}
@@ -93,21 +123,33 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
               <div
                 id="feedbackResult"
                 className="feedback-result flex items-center gap-2 text-xl font-bold group-[.correct]:text-[#2e7d32] group-[.incorrect]:text-[#c62828]"
-              ></div>
+              >
+                {quizSession.answerFeedback.resultText}
+              </div>
               <div
                 id="feedbackExplanation"
                 className="feedback-explanation rounded bg-white/70 p-3 text-lg leading-relaxed text-[#333]"
-              ></div>
+              >
+                {quizSession.answerFeedback.explanation}
+              </div>
             </div>
           </div>
           <div className="navigation-buttons flex justify-between gap-[15px]">
-            <button id="prevBtn" className={navButton({ variant: "nav" })} disabled>
+            <button id="prevBtn" className={navButton({ variant: "nav" })} disabled={quizSession.prevDisabled}>
               前へ
             </button>
-            <button id="nextBtn" className={navButton({ variant: "nav" })}>
+            <button
+              id="nextBtn"
+              className={`${navButton({ variant: "nav" })}${quizSession.nextHidden ? " hidden" : ""}`}
+              disabled={quizSession.nextDisabled}
+            >
               次へ
             </button>
-            <button id="submitBtn" className={navButton({ variant: "submit", hidden: true })}>
+            <button
+              id="submitBtn"
+              className={navButton({ variant: "submit", hidden: quizSession.submitHidden })}
+              disabled={quizSession.submitDisabled}
+            >
               採点する
             </button>
           </div>
@@ -116,12 +158,24 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
         <div className="quiz-notes-col col-start-3 flex flex-col min-h-0">
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-lg border-2 border-solid border-[#e1e4e8] bg-transparent">
             <div id="notesMemoContent" className="flex min-h-0 flex-1 flex-col">
-              <NotesPanel />
-              <KanjiInputArea />
+              <NotesPanel showKanjiInput={quizSession.showKanjiInput} />
+              <KanjiInputArea showKanjiInput={quizSession.showKanjiInput} />
             </div>
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+const QUOTED_SPEECH_PATTERNS = [/「([^」]+)」/, /`([^`]+)`/] as const;
+const TRAILING_HINT_PATTERN = /\s*\([^)]*\)\s*$/;
+
+function extractSpeechText(questionText: string): string {
+  const trimmed = questionText.trim();
+  for (const pattern of QUOTED_SPEECH_PATTERNS) {
+    const match = trimmed.match(pattern);
+    if (match?.[1]) return match[1];
+  }
+  return trimmed.replace(TRAILING_HINT_PATTERN, "").trim();
 }

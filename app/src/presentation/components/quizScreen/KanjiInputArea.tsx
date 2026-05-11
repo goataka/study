@@ -15,9 +15,16 @@
 const kanjiCtrlBtnClass =
   "cursor-pointer rounded border border-solid border-[#e1e4e8] bg-white px-2.5 py-1 text-base transition-colors duration-150 hover:bg-[#f3f4f6]";
 
-export function KanjiInputArea(): React.JSX.Element {
+interface KanjiInputAreaProps {
+  showKanjiInput: boolean;
+}
+
+export function KanjiInputArea({ showKanjiInput }: KanjiInputAreaProps): React.JSX.Element {
   return (
-    <div id="kanjiInputArea" className="hidden flex flex-col gap-2 border-t border-solid border-[#e1e4e8] p-2">
+    <div
+      id="kanjiInputArea"
+      className={`${showKanjiInput ? "flex" : "hidden"} flex-col gap-2 border-t border-solid border-[#e1e4e8] p-2`}
+    >
       <div className="kanji-input-header flex items-center justify-between gap-2">
         <span className="text-[15px] text-[#586069]">1文字ずつ書いてください</span>
       </div>

@@ -15,6 +15,7 @@ import { AvatarController } from "./avatarController";
 import { SUBJECTS, currentDateString } from "./uiHelpers";
 import { openConfirmDialog } from "./components/confirmDialogStore";
 import { type FontSizeLevel } from "./components/fontSizeStore";
+import { clearQuizSessionStore } from "./components/quizSessionStore";
 import { getScreenSnapshot, setCurrentScreen, type ScreenName } from "./components/screenStore";
 import { updateHeaderTodayDate } from "./quizApp/headerDate";
 import {
@@ -419,6 +420,7 @@ export class QuizApp {
     setCurrentScreen(screenName);
 
     if (screenName === "start") {
+      clearQuizSessionStore();
       updateSubjectStatsFn(this.useCase);
       this.selectFirstUnlearnedCategory();
       const screenRecords = this.useCase.getHistory();
