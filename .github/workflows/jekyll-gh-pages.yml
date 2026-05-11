@@ -76,6 +76,10 @@ jobs:
           else
             echo "::warning::最新リリース（app-dist.zip）が見つからないため、main のビルド成果物を /v1 に配置します。"
             echo "::warning::本番用の固定成果物を使う場合は release-app.yml を実行してリリースを作成してください。"
+            if [ ! -d app/dist ]; then
+              echo "::error::フォールバック元の app/dist が存在しません。先に Vite ビルドが成功しているか確認してください。"
+              exit 1
+            fi
             sudo mkdir -p _site/v1
             sudo cp -r app/dist/. _site/v1/
           fi
