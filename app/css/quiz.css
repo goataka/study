@@ -226,3 +226,54 @@ body {
   text-align: center;
   font-size: 0.78em;
 }
+
+/* ─── 単元詳細表示時の説明・例の非表示 ──────────────────────────────────── */
+/* 選択単元情報パネル（#selectedUnitInfo）表示中は右カラム（説明・例）を隠す */
+#categoryList.detail-active .category-item-right {
+  display: none;
+}
+
+#categoryList.detail-active .category-item.category-item-has-info {
+  grid-template-columns: 1fr;
+}
+
+/* ─── 単元詳細パネルのレイアウト ──────────────────────────────────────────── */
+/* 解説・例文を右寄せに配置するための flex レイアウト */
+.selected-unit-info-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.selected-unit-info-header-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.selected-unit-info-header-right {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.selected-unit-info-desc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.selected-unit-info-desc-left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.selected-unit-info-desc-right {
+  flex-shrink: 0;
+  text-align: right;
+}
