@@ -160,7 +160,7 @@ jobs:
           PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: |
           BASE_URL="${PAGES_BASE_URL%/}/"
-          APP_URL="${BASE_URL}v0/"
+          APP_URL="${BASE_URL}rc/"
           QUESTIONS_URL="${APP_URL}questions/index.json"
           echo "Waiting for rc site to be ready at ${APP_URL}"
           for i in $(seq 1 12); do
@@ -227,7 +227,7 @@ jobs:
 
           (async () => {
             const pagesBaseUrl = process.env.PAGES_BASE_URL ?? "";
-            const baseUrl = `${pagesBaseUrl.replace(/\/?$/, "/")}v0/`;
+            const baseUrl = `${pagesBaseUrl.replace(/\/?$/, "/")}rc/`;
             const deadline = Date.now() + 120_000;
             let attempt = 0;
             let lastStatsText = "";
@@ -277,4 +277,4 @@ jobs:
       - name: RC環境E2Eテスト実行
         env:
           PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
-        run: PLAYWRIGHT_BASE_URL="${PAGES_BASE_URL%/}/v0/" npm run test:e2e
+        run: PLAYWRIGHT_BASE_URL="${PAGES_BASE_URL%/}/rc/" npm run test:e2e
