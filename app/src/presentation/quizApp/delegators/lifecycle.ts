@@ -3,7 +3,10 @@
  */
 
 import type { QuizApp } from "../../quizApp";
+import type { Question } from "../../../domain/question";
+import type { QuizSession } from "../../../domain/quizSession";
 import type { QuizMode, AnswerResult } from "../../../application/quizUseCase";
+import type { KanjiCanvasController } from "../../kanjiCanvasController";
 import { updateSelectedUnitInfo as updateSelectedUnitInfoFn } from "../selectedUnitInfoUpdater";
 import { updateGuidePanelContentByIds as updateGuidePanelContentByIdsFn } from "../guidePanelUpdater";
 import { loadGuideContent as loadGuideContentFn } from "../guideLoader";
@@ -251,10 +254,7 @@ export function showResultScreen(app: QuizApp, results: AnswerResult[]): void {
   void checkAllMasteredAndCongratulate(app);
 }
 
-function applyLegacyQuizDom(
-  session: import("../../../domain/quizSession").QuizSession,
-  kanjiCanvasController: import("../../kanjiCanvasController").KanjiCanvasController,
-): void {
+function applyLegacyQuizDom(session: QuizSession, kanjiCanvasController: KanjiCanvasController): void {
   const question = session.currentQuestion;
   const total = session.totalCount;
   const idx = session.currentIndex;
@@ -273,10 +273,7 @@ function applyLegacyQuizDom(
   applyLegacyNotes(session, question, kanjiCanvasController);
 }
 
-function applyLegacyFeedback(
-  session: import("../../../domain/quizSession").QuizSession,
-  question: import("../../../domain/question").Question,
-): void {
+function applyLegacyFeedback(session: QuizSession, question: Question): void {
   const feedbackDiv = document.getElementById("answerFeedback");
   if (!feedbackDiv) return;
   const userAnswer = session.getAnswer(session.currentIndex);
@@ -308,7 +305,7 @@ function applyLegacyFeedback(
   feedbackDiv.classList.toggle("incorrect", !isCorrect);
 }
 
-function applyLegacyNavigation(session: import("../../../domain/quizSession").QuizSession): void {
+function applyLegacyNavigation(session: QuizSession): void {
   const prevBtn = document.getElementById("prevBtn") as HTMLButtonElement | null;
   const nextBtn = document.getElementById("nextBtn") as HTMLButtonElement | null;
   const submitBtn = document.getElementById("submitBtn") as HTMLButtonElement | null;
@@ -327,9 +324,9 @@ function applyLegacyNavigation(session: import("../../../domain/quizSession").Qu
 }
 
 function applyLegacyNotes(
-  session: import("../../../domain/quizSession").QuizSession,
-  question: import("../../../domain/question").Question,
-  kanjiCanvasController: import("../../kanjiCanvasController").KanjiCanvasController,
+  session: QuizSession,
+  question: Question,
+  kanjiCanvasController: KanjiCanvasController,
 ): void {
   const notesTitle = document.getElementById("notesTitle");
   const kanjiInputArea = document.getElementById("kanjiInputArea");

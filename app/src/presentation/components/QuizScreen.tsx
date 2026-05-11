@@ -45,6 +45,29 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
     }
   };
 
+  const speakButtonClass = [
+    "speak-btn",
+    "mb-[18px]",
+    "inline-flex",
+    "cursor-pointer",
+    "items-center",
+    "justify-center",
+    "rounded-[20px]",
+    "border",
+    "border-solid",
+    "border-[#0366d6]",
+    "bg-white",
+    "px-3.5",
+    "py-1",
+    "text-lg",
+    "text-[#0366d6]",
+    "transition-colors",
+    "duration-200",
+    "hover:bg-[#f0f7ff]",
+    quizSession.showSpeakButton ? "" : "hidden",
+  ].join(" ");
+  const nextButtonClass = [navButton({ variant: "nav" }), quizSession.nextHidden ? "hidden" : ""].join(" ");
+
   return (
     <div
       id="quizScreen"
@@ -91,7 +114,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           </div>
           <button
             id="speakBtn"
-            className={`speak-btn mb-[18px] inline-flex cursor-pointer items-center justify-center rounded-[20px] border border-solid border-[#0366d6] bg-white px-3.5 py-1 text-lg text-[#0366d6] transition-colors duration-200 hover:bg-[#f0f7ff]${quizSession.showSpeakButton ? "" : " hidden"}`}
+            className={speakButtonClass}
             type="button"
             title="読み上げ"
             aria-label="英語を読み上げる"
@@ -138,11 +161,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
             <button id="prevBtn" className={navButton({ variant: "nav" })} disabled={quizSession.prevDisabled}>
               前へ
             </button>
-            <button
-              id="nextBtn"
-              className={`${navButton({ variant: "nav" })}${quizSession.nextHidden ? " hidden" : ""}`}
-              disabled={quizSession.nextDisabled}
-            >
+            <button id="nextBtn" className={nextButtonClass} disabled={quizSession.nextDisabled}>
               次へ
             </button>
             <button
@@ -171,7 +190,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
 const QUOTED_SPEECH_PATTERNS = [/「([^」]+)」/, /`([^`]+)`/] as const;
 const TRAILING_HINT_PATTERN = /\s*\([^)]*\)\s*$/;
 
-function extractSpeechText(questionText: string): string {
+export function extractSpeechText(questionText: string): string {
   const trimmed = questionText.trim();
   for (const pattern of QUOTED_SPEECH_PATTERNS) {
     const match = trimmed.match(pattern);

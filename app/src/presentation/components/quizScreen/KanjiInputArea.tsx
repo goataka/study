@@ -20,11 +20,17 @@ interface KanjiInputAreaProps {
 }
 
 export function KanjiInputArea({ showKanjiInput }: KanjiInputAreaProps): React.JSX.Element {
+  const rootClass = [
+    showKanjiInput ? "flex" : "hidden",
+    "flex-col",
+    "gap-2",
+    "border-t",
+    "border-solid",
+    "border-[#e1e4e8]",
+    "p-2",
+  ].join(" ");
   return (
-    <div
-      id="kanjiInputArea"
-      className={`${showKanjiInput ? "flex" : "hidden"} flex-col gap-2 border-t border-solid border-[#e1e4e8] p-2`}
-    >
+    <div id="kanjiInputArea" className={rootClass}>
       <div className="kanji-input-header flex items-center justify-between gap-2">
         <span className="text-[15px] text-[#586069]">1文字ずつ書いてください</span>
       </div>

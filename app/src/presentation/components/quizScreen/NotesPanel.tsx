@@ -20,15 +20,33 @@ interface NotesPanelProps {
 }
 
 export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Element {
+  const notesControlsClass = [
+    "notes-controls",
+    "flex",
+    "items-center",
+    "gap-2",
+    "max-[600px]:w-full",
+    "max-[600px]:justify-between",
+    showKanjiInput ? "hidden" : "",
+  ].join(" ");
+  const notesCanvasClass = [
+    "min-h-[400px]",
+    "w-full",
+    "flex-1",
+    "cursor-crosshair",
+    "touch-none",
+    "bg-transparent",
+    "max-md:min-h-[200px]",
+    showKanjiInput ? "hidden" : "block",
+  ].join(" ");
+
   return (
     <>
       <div className="flex shrink-0 items-center justify-between border-b border-solid border-[#e1e4e8] bg-[#f6f8fa] px-[15px] py-2.5 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-2.5">
         <span id="notesTitle" className="text-base font-semibold text-[#333]">
           {showKanjiInput ? "✏️ 1文字ずつ書いて漢字を入力できます" : "タッチペンで書けます"}
         </span>
-        <div
-          className={`notes-controls flex items-center gap-2 max-[600px]:w-full max-[600px]:justify-between${showKanjiInput ? " hidden" : ""}`}
-        >
+        <div className={notesControlsClass}>
           <button
             id="clearNotesBtn"
             className={notesBtnClass}
@@ -72,10 +90,7 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
           ✕
         </button>
       </div>
-      <canvas
-        id="notesCanvas"
-        className={`min-h-[400px] w-full flex-1 cursor-crosshair touch-none bg-transparent max-md:min-h-[200px]${showKanjiInput ? " hidden" : " block"}`}
-      ></canvas>
+      <canvas id="notesCanvas" className={notesCanvasClass}></canvas>
     </>
   );
 }
