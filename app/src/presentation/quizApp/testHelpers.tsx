@@ -7,7 +7,7 @@
 import { useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { vi } from "vitest";
-import { createRoot } from "react-dom/client";
+import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 import { ConfirmDialog } from "../components/ConfirmDialog";
 import { __resetConfirmDialogStoreForTests } from "../components/confirmDialogStore";
@@ -31,6 +31,24 @@ configureQuizAppDefaultDependencies(() => ({
 }));
 
 /**
+ * テスト中に作成された React ルートを追跡する。
+ * DOM を置換する前にアンマウントして、孤立したサブスクリプションを防ぐ。
+ */
+const mountedRoots: Root[] = [];
+
+/** 追跡している全 React ルートをアンマウントしてサブスクリプションを解放する。 */
+function unmountAllTrackedRoots(): void {
+  while (mountedRoots.length > 0) {
+    const root = mountedRoots.pop()!;
+    try {
+      flushSync(() => root.unmount());
+    } catch {
+      // 既にデタッチされたルートのエラーを無視する
+    }
+  }
+}
+
+/**
  * テスト用 DOM に確認ダイアログを React マウントするヘルパー。
  * `setupMinimalDom` / `setupTabDom` から呼ばれる。
  *
@@ -42,7 +60,9 @@ function mountConfirmDialog(): void {
   const root = document.createElement("div");
   root.id = "confirmDialogRoot";
   document.body.appendChild(root);
-  flushSync(() => createRoot(root).render(<ConfirmDialog />));
+  const reactRoot = createRoot(root);
+  mountedRoots.push(reactRoot);
+  flushSync(() => reactRoot.render(<ConfirmDialog />));
 }
 
 /**
@@ -55,11 +75,23 @@ function mountConfirmDialog(): void {
 function mountStartScreenPanels(): void {
   __resetPanelTabsStoreForTests();
   const quizMount = document.getElementById("quizPanelMount");
-  if (quizMount) flushSync(() => createRoot(quizMount).render(<QuizPanel />));
+  if (quizMount) {
+    const root = createRoot(quizMount);
+    mountedRoots.push(root);
+    flushSync(() => root.render(<QuizPanel />));
+  }
   const overallMount = document.getElementById("overallSummaryPanelMount");
-  if (overallMount) flushSync(() => createRoot(overallMount).render(<OverallSummaryPanel />));
+  if (overallMount) {
+    const root = createRoot(overallMount);
+    mountedRoots.push(root);
+    flushSync(() => root.render(<OverallSummaryPanel />));
+  }
   const progressMount = document.getElementById("progressDetailPanelMount");
-  if (progressMount) flushSync(() => createRoot(progressMount).render(<ProgressDetailPanel />));
+  if (progressMount) {
+    const root = createRoot(progressMount);
+    mountedRoots.push(root);
+    flushSync(() => root.render(<ProgressDetailPanel />));
+  }
 }
 
 function mountScreenStoreDomBridge(): void {
@@ -146,7 +178,9 @@ export function mountTestContentBridge(): void {
   const bridgeRoot = document.createElement("div");
   bridgeRoot.id = "testContentBridgeRoot";
   document.body.appendChild(bridgeRoot);
-  flushSync(() => createRoot(bridgeRoot).render(<TestContentBridge />));
+  const root = createRoot(bridgeRoot);
+  mountedRoots.push(root);
+  flushSync(() => root.render(<TestContentBridge />));
 }
 
 // KanjiCanvas グローバルのモック（jsdom 環境では kanji-canvas.min.js がロードされないため）
@@ -191,6 +225,7 @@ export async function waitForCondition(
 
 /** テストに必要な最小限のHTML要素を生成する */
 export function setupMinimalDom(): void {
+  unmountAllTrackedRoots();
   window.history.replaceState({}, "", "/");
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
@@ -239,6 +274,7 @@ export function setupMinimalDom(): void {
 }
 /** タブUIを含むフルレイアウトのDOM */
 export function setupTabDom(): void {
+  unmountAllTrackedRoots();
   window.history.replaceState({}, "", "/");
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
