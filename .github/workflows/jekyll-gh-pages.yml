@@ -33,6 +33,9 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
+        with:
+          # release 起点でも /rc は常に main の最新成果物を配置する
+          ref: main
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
