@@ -8,7 +8,7 @@
   - [英語](https://goataka.github.io/study/v1/?subject=english) - フォニックス・文法・語彙
   - [数学](https://goataka.github.io/study/v1/?subject=math) - 算数・数学の計算・文章問題
   - [国語](https://goataka.github.io/study/v1/?subject=japanese) - 漢字・語彙
-- [アプリ（検証）](https://goataka.github.io/study/v0/) - main からの最新成果物を確認する環境
+- [アプリ（検証）](https://goataka.github.io/study/rc/) - main からの最新成果物を確認する環境
 - [サポート](support/README.md) - 利用の仕方やコンテンツ一覧
 
 ### 特徴
@@ -23,8 +23,10 @@ GitHub Actions により `app/` アプリと`support/` フォルダの内容が 
 
 - **転送環境 URL**: <https://goataka.github.io/study/>（`/v1/` へ転送）
 - **本番環境 URL**: <https://goataka.github.io/study/v1/>
-- **検証環境 URL**: <https://goataka.github.io/study/v0/>
-- **サポート URL**: <https://goataka.github.io/study/support/>
+- **検証環境 URL**: <https://goataka.github.io/study/rc/>
+- **サポート URL（共通）**: <https://goataka.github.io/study/support/>
+- **サポート URL（本番）**: <https://goataka.github.io/study/v1/support/>
+- **サポート URL（検証）**: <https://goataka.github.io/study/rc/support/>
 - **デプロイワークフロー URL**: <https://github.com/goataka/study/blob/main/.github/workflows/jekyll-gh-pages.yml>
 - **リリース作成ワークフロー URL**: <https://github.com/goataka/study/blob/main/.github/workflows/release-app.yml>
 

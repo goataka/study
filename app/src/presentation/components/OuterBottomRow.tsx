@@ -13,9 +13,40 @@
 import { useSyncExternalStore } from "react";
 import { getFontSizeSnapshot, subscribeFontSizeStore, type FontSizeLevel } from "./fontSizeStore";
 
+type DeployEnvironment = "v1" | "rc";
+
+function detectCurrentEnvironment(pathname: string): DeployEnvironment {
+  const segments = pathname.split("/").filter((segment) => segment.length > 0);
+  for (const segment of segments) {
+    if (segment === "v1" || segment === "rc") {
+      return segment;
+    }
+  }
+  return "v1";
+}
+
+function buildEnvironmentUrl(targetEnv: DeployEnvironment): string {
+  if (typeof window === "undefined") return "#";
+
+  const url = new URL(window.location.href);
+  const segments = url.pathname.split("/");
+  const envIndex = segments.findIndex((segment) => segment === "v1" || segment === "rc");
+
+  if (envIndex >= 0) {
+    segments[envIndex] = targetEnv;
+  } else {
+    const insertIndex = segments[segments.length - 1] === "" ? segments.length - 1 : segments.length;
+    segments.splice(insertIndex, 0, targetEnv);
+  }
+
+  url.pathname = segments.join("/");
+  return url.toString();
+}
+
 export function OuterBottomRow(): React.JSX.Element {
   const fontSizeLevel = useSyncExternalStore(subscribeFontSizeStore, getFontSizeSnapshot, getFontSizeSnapshot);
   const isActive = (level: FontSizeLevel): boolean => fontSizeLevel === level;
+  const currentEnv = typeof window === "undefined" ? "v1" : detectCurrentEnvironment(window.location.pathname);
   const fontSizeButtonBaseClass =
     "font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6]";
 
@@ -43,7 +74,26 @@ export function OuterBottomRow(): React.JSX.Element {
         <span className="text-[14px] font-semibold tracking-[0.02em]">View on GitHub</span>
       </a>
       <div className="col-start-2 shrink-0 px-0 py-0.5 text-center text-[13px] tracking-[0.05em] text-white">
-        © 2026 goataka
+        © 2026 goataka{" "}
+        <span id="environmentSwitch" className="ml-1 inline-flex items-center gap-1.5 tracking-normal">
+          <span>[</span>
+          {currentEnv === "v1" ? (
+            <strong className="font-bold">v1</strong>
+          ) : (
+            <a className="underline hover:opacity-80" href={buildEnvironmentUrl("v1")}>
+              v1
+            </a>
+          )}
+          <span>|</span>
+          {currentEnv === "rc" ? (
+            <strong className="font-bold">rc</strong>
+          ) : (
+            <a className="underline hover:opacity-80" href={buildEnvironmentUrl("rc")}>
+              rc
+            </a>
+          )}
+          <span>]</span>
+        </span>
       </div>
       <div className="col-start-3 flex items-center gap-2.5 justify-self-end">
         <div id="fontSizeBtns" className="font-size-btns flex items-center gap-1" role="group" aria-label="文字サイズ">

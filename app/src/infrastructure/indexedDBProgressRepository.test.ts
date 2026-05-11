@@ -9,7 +9,7 @@
 
 import "fake-indexeddb/auto";
 import { IDBFactory } from "fake-indexeddb";
-import { IndexedDBProgressRepository } from "./indexedDBProgressRepository";
+import { IndexedDBProgressRepository, resolveDbPrefix } from "./indexedDBProgressRepository";
 import type { QuizRecord } from "../application/ports";
 
 /** テスト間で IndexedDB をリセットする */
@@ -52,6 +52,16 @@ describe("IndexedDBProgressRepository — 初期化仕様", () => {
   it("initialize() が正常に完了する", async () => {
     const repo = new IndexedDBProgressRepository();
     await expect(repo.initialize()).resolves.toBeUndefined();
+  });
+});
+
+describe("resolveDbPrefix — 環境判定仕様", () => {
+  it("パスに rc が含まれる場合は rc を返す", () => {
+    expect(resolveDbPrefix("/study/rc/")).toBe("rc");
+  });
+
+  it("パスに環境名がない場合は v1 を返す", () => {
+    expect(resolveDbPrefix("/study/support/")).toBe("v1");
   });
 });
 

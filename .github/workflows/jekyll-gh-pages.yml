@@ -1,13 +1,15 @@
 # Jekyllサイト（support/）とViteアプリ（app/）をGitHub Pagesにデプロイするワークフロー
 # 環境構成:
 # - 転送環境: /   （/v1 へ location.replace で転送）
-# - 検証環境: /v0（main からビルドした最新成果物）
+# - 検証環境: /rc（main からビルドした最新成果物）
 # - 本番環境: /v1（最新リリースの成果物）
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: ["main"]
+  release:
+    types: [published]
   workflow_dispatch:
 
 env:
@@ -50,11 +52,11 @@ jobs:
           source: ./support
           destination: ./_site
 
-      - name: アプリビルドをサイトにコピー
+      - name: アプリビルドを検証環境にコピー
         working-directory: ${{ github.workspace }}
         run: |
-          sudo mkdir -p _site/v0
-          sudo cp -r app/dist/. _site/v0/
+          sudo mkdir -p _site/rc
+          sudo cp -r app/dist/. _site/rc/
 
       - name: 転送環境の index.html を配置
         working-directory: ${{ github.workspace }}
@@ -99,6 +101,13 @@ jobs:
             echo "::warning::本番用の固定成果物を使う場合は release-app.yml を実行してリリースを作成してください。"
             sudo cp -r app/dist/. _site/v1/
           fi
+
+      - name: サポートサイトを本番/検証環境配下にも配置
+        working-directory: ${{ github.workspace }}
+        run: |
+          sudo mkdir -p _site/v1/support _site/rc/support
+          sudo cp -r _site/support/. _site/v1/support/
+          sudo cp -r _site/support/. _site/rc/support/
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v5
