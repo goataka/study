@@ -16,30 +16,34 @@ Then("the page content should fit within the viewport height", async ({ page }) 
   expect(bodyHeight).toBeLessThanOrEqual(viewportHeight);
 });
 
-// html 要素の zoom 値が期待値と一致することを確認（1920×1080 標準基準のスケーリング検証）
-Then("the html zoom should be {float}", async ({ page }, expectedZoom: number) => {
-  const zoom = await page.evaluate(() => {
-    const raw = parseFloat(document.documentElement.style.zoom);
+// html 要素の transform: scale 値が期待値と一致することを確認（1920×1080 標準基準のスケーリング検証）
+Then("the html scale should be {float}", async ({ page }, expectedScale: number) => {
+  const scale = await page.evaluate(() => {
+    const transform = document.documentElement.style.transform;
+    const match = transform.match(/scale\(([^)]+)\)/);
+    const raw = match ? parseFloat(match[1]) : NaN;
     if (!Number.isFinite(raw))
-      throw new Error(`zoom が有効な数値ではありません: "${document.documentElement.style.zoom}"`);
+      throw new Error(`scale が有効な数値ではありません: "${document.documentElement.style.transform}"`);
     return raw;
   });
-  expect(zoom).toBeCloseTo(expectedZoom, 4);
+  expect(scale).toBeCloseTo(expectedScale, 4);
 });
 
-// html 要素の zoom 値が期待値に近い（許容誤差 0.01）ことを確認
-Then("the html zoom should be approximately {float}", async ({ page }, expectedZoom: number) => {
-  const zoom = await page.evaluate(() => {
-    const raw = parseFloat(document.documentElement.style.zoom);
+// html 要素の transform: scale 値が期待値に近い（許容誤差 0.01）ことを確認
+Then("the html scale should be approximately {float}", async ({ page }, expectedScale: number) => {
+  const scale = await page.evaluate(() => {
+    const transform = document.documentElement.style.transform;
+    const match = transform.match(/scale\(([^)]+)\)/);
+    const raw = match ? parseFloat(match[1]) : NaN;
     if (!Number.isFinite(raw))
-      throw new Error(`zoom が有効な数値ではありません: "${document.documentElement.style.zoom}"`);
+      throw new Error(`scale が有効な数値ではありません: "${document.documentElement.style.transform}"`);
     return raw;
   });
-  expect(zoom).toBeCloseTo(expectedZoom, 2);
+  expect(scale).toBeCloseTo(expectedScale, 2);
 });
 
-// html 要素に zoom が適用されていないことを確認（モバイル対応の検証）
-Then("the html zoom should not be applied", async ({ page }) => {
-  const zoomValue = await page.evaluate(() => document.documentElement.style.zoom);
-  expect(zoomValue).toBe("");
+// html 要素に scale が適用されていないことを確認（モバイル対応の検証）
+Then("the html scale should not be applied", async ({ page }) => {
+  const scaleValue = await page.evaluate(() => document.documentElement.style.transform);
+  expect(scaleValue).toBe("");
 });

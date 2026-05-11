@@ -32,6 +32,7 @@ export const panelTab = cva(
     "flex-1 cursor-pointer border-none border-b-2 border-solid border-b-transparent",
     "bg-transparent px-4 py-2.5 text-base font-semibold whitespace-nowrap text-[#586069]",
     "transition-[color,border-color] duration-150",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-inset",
     // hover
     "hover:bg-[#e8f0fe] hover:text-[#0366d6]",
     // active（classList で `.active` が付与されたとき適用）

@@ -216,7 +216,7 @@ export function AdminPanelRoot({
   const viewJsonText = selectedViewSection ? JSON.stringify(selectedViewSection.content, null, 2) : "";
 
   const menuBtnBase =
-    "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
+    "w-full px-3 py-2 text-sm font-semibold border border-[#d1d5da] rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit] text-left";
   const menuBtnChild = `${menuBtnBase} bg-white text-[#586069] hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white`;
   const tabBtnBase =
     "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit] bg-[#f6f8fa] text-[#586069] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:bg-white [&.active]:text-[#24292e] [&.active]:border-[#d1d5da]";
@@ -225,9 +225,8 @@ export function AdminPanelRoot({
 
   return (
     <>
-      <div className="admin-menu-bar flex items-center gap-1 p-2 bg-[#f6f8fa] border-b border-[#e1e4e8]">
-        <span className="admin-menu-parent-label text-xs text-[#586069] font-semibold px-2 shrink-0">🛢️ データ</span>
-        <span className="text-[#d1d5da] shrink-0">›</span>
+      <div className="admin-menu-bar flex flex-col items-stretch gap-2 p-2 bg-[#f6f8fa] border-b border-[#e1e4e8]">
+        <span className="admin-menu-parent-label text-sm text-[#586069] font-semibold px-1 shrink-0">🛢️ データ</span>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "manage" ? " active" : ""}`}
           type="button"

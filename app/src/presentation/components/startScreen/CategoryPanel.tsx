@@ -16,9 +16,7 @@ export function CategoryPanel(): React.JSX.Element {
       className={[
         "category-panel",
         // ノート紙風：白地 + 薄青罫線（32px間隔）
-        "bg-white",
-        "[background-image:repeating-linear-gradient(transparent,transparent_31px,#d8e8f8_31px,#d8e8f8_32px)]",
-        "[background-size:100%_32px] [background-position:0_12px]",
+        "notebook-lines bg-white",
         "border-none p-2 min-h-[200px] flex flex-col overflow-hidden",
         "shadow-[inset_-3px_0_6px_rgba(0,0,0,0.08)]",
       ].join(" ")}

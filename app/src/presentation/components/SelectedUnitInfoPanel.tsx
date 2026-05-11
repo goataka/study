@@ -41,7 +41,7 @@ export type SelectedUnitInfoViewModel =
 /** パネル全体の React コンポーネント。 */
 export function SelectedUnitInfoPanel({ vm }: { vm: SelectedUnitInfoViewModel }): React.JSX.Element {
   return (
-    <div className="relative">
+    <div className="relative pr-9">
       {vm.kind === "full" ? <SelectedUnitInfoBody data={vm.data} /> : <SelectedUnitInfoSimpleBody name={vm.name} />}
       <div className="absolute top-0 right-0">
         <SelectedUnitCloseButton ariaLabel={vm.closeAriaLabel} onClick={vm.onClose} />

@@ -20,22 +20,27 @@ interface TabsUserRowProps {
 
 export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Element {
   return (
-    <div className="tabs-user-row flex items-end gap-0 shrink-0">
-      <div
-        className={[
-          "subject-tabs",
-          currentScreen !== "start" ? "hidden" : "",
-          "flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-2 pb-0 items-end justify-start",
-        ].join(" ")}
-        role="tablist"
-        aria-label="教科を選択"
-      >
-        <SubjectTabsSection />
+    <div className="tabs-user-row flex min-h-14 items-center gap-0 shrink-0">
+      <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>
+        <div
+          className={[
+            "subject-tabs",
+            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-2 pb-0 items-end justify-start",
+          ].join(" ")}
+          role="tablist"
+          aria-label="教科を選択"
+        >
+          <SubjectTabsSection />
+        </div>
+        <div
+          className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white to-transparent"
+          aria-hidden="true"
+        />
       </div>
       <div className="tabs-user-area flex items-center gap-1.5 shrink-0 px-4 pt-px pb-2 relative ml-4 pl-4">
         <button
           id="headerUserName"
-          className="header-user-name text-[15px] text-[#3d1a00] font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-2 py-1 cursor-pointer transition-[background,color] duration-150 -translate-y-0.5 hover:bg-black/10 hover:text-[#1a0a00] focus:bg-black/10 focus:text-[#1a0a00] focus:outline-none"
+          className="header-user-name text-sm text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-2 py-1 cursor-pointer transition-[background,color] duration-150 hover:bg-white/15 hover:text-white focus-visible:bg-white/15 focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           type="button"
           title="名前を編集する"
           aria-label="名前を編集する"
@@ -58,7 +63,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         </div>
         <button
           id="headerUserAvatar"
-          className="header-user-avatar relative w-8 h-8 rounded-full border-2 border-[#d0d8e0] overflow-hidden cursor-pointer shrink-0 flex items-center justify-center bg-[#f0f4f8] transition-[border-color,box-shadow] duration-150 select-none p-0 -translate-y-0.5 hover:border-[#0366d6] hover:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus:border-[#0366d6] focus:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus:outline-none"
+          className="header-user-avatar relative w-11 h-11 rounded-full border-2 border-[#d0d8e0] overflow-hidden cursor-pointer shrink-0 flex items-center justify-center bg-[#f0f4f8] transition-[border-color,box-shadow] duration-150 select-none p-0 hover:border-[#0366d6] hover:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:border-[#0366d6] focus-visible:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           type="button"
           title="プロフィール画像を変更する"
           aria-label="プロフィール画像を変更する"

@@ -25,7 +25,7 @@ import { cva, type VariantProps } from "class-variance-authority";
  * 詳細度（0,2,0 vs 0,1,0）で勝つため、フォントサイズ切替は従来通り動作する。
  */
 const buttonVariants = cva(
-  "cursor-pointer rounded-lg border-none px-[30px] py-[15px] text-xl font-bold transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50",
+  "cursor-pointer rounded-lg border-none px-[30px] py-[15px] text-xl font-bold transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-2 focus-visible:ring-offset-white",
   {
     variants: {
       variant: {
