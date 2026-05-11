@@ -69,7 +69,7 @@ function OverallSubjectStatusSummary({ rows }: { rows: OverallStatusRow[] }): Re
   return (
     <>
       {rows.map((row) => (
-        <div key={row.key} className="overall-subject-status-row">
+        <div key={row.key} className="overall-subject-status-row text-sm text-[#24292e] py-0.5">
           {row.text}
         </div>
       ))}

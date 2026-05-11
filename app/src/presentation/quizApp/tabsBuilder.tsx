@@ -60,7 +60,7 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
               "subject-tab",
               // レイアウト・ボーダー
               "pt-[6px] px-[18px] pb-2 border border-[rgba(0,0,0,0.12)] border-b-0",
-              // 文字・背景（nth-child 色は 02-notebook-and-tabs.css で上書き）
+              // 文字
               "cursor-pointer text-[15px] font-semibold text-[#5a4a28] font-[inherit]",
               "flex items-center gap-1.5 whitespace-nowrap",
               "shadow-[0_-2px_4px_rgba(0,0,0,0.08)] relative translate-y-0.5",
@@ -73,6 +73,7 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
             ]
               .filter(Boolean)
               .join(" ")}
+            style={{ backgroundColor: isActive ? subject.tabBgActive : subject.tabBg }}
             data-subject={subject.id}
             role="tab"
             aria-selected={isActive}

@@ -11,12 +11,12 @@
 
 /** 教科一覧（タブ表示用） */
 export const SUBJECTS = [
-  { id: "all", name: "おすすめ", icon: "✨" },
-  { id: "progress", name: "進度", icon: "📈" },
-  { id: "english", name: "英語", icon: "📚" },
-  { id: "math", name: "数学", icon: "🔢" },
-  { id: "japanese", name: "国語", icon: "📖" },
-  { id: "admin", name: "管理", icon: "⚙️" },
+  { id: "all", name: "おすすめ", icon: "✨", tabBg: "#fffde7", tabBgActive: "#fff9c4" },
+  { id: "progress", name: "進度", icon: "📈", tabBg: "#e8f0f8", tabBgActive: "#d0e0f0" },
+  { id: "english", name: "英語", icon: "📚", tabBg: "#e8f0ff", tabBgActive: "#d0e4ff" },
+  { id: "math", name: "数学", icon: "🔢", tabBg: "#e8fff0", tabBgActive: "#d0ffe0" },
+  { id: "japanese", name: "国語", icon: "📖", tabBg: "#fff0f0", tabBgActive: "#ffe0e0" },
+  { id: "admin", name: "管理", icon: "⚙️", tabBg: "#f0f0f0", tabBgActive: "#e0e0e0" },
 ] as const;
 
 const KATAKANA_TO_HIRAGANA_OFFSET = 0x60;

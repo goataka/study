@@ -3,7 +3,120 @@
  *
  * Tailwind CSS v4 の `@import "tailwindcss"` のみを定義する。
  * 画面スタイルは原則として TSX 側の Tailwind ユーティリティ / CVA で管理する。
+ * ただし、Tailwind ユーティリティでは表現困難なグローバルスタイルをここに追記する。
  */
 
 /* Tailwind CSS v4：プラグインが自動でテンプレートを走査しユーティリティを生成する。 */
 @import "tailwindcss";
+
+/* ─── HTML / body ──────────────────────────────────────────────────────────── */
+/* 全体の高さを確保し、木目調の背景を表示する。 */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #7a4e28;
+  background-image: url("../wood-bg.png");
+  background-repeat: repeat;
+}
+
+/* ─── 解説パネル（.guide-content）のマークダウンスタイル ──────────────────── */
+/* GitHub Pages から取得した解説 HTML の .markdown-body に基本スタイルを提供する。 */
+.guide-frame .markdown-body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #24292e;
+  background-color: #fff;
+  background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
+  background-position: 0 12px;
+  border: 1px solid #d1d5da;
+  padding: 16px;
+  margin: 4px 0;
+}
+
+.guide-frame .markdown-body h1,
+.guide-frame .markdown-body h2,
+.guide-frame .markdown-body h3,
+.guide-frame .markdown-body h4,
+.guide-frame .markdown-body h5,
+.guide-frame .markdown-body h6 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #24292e;
+}
+
+.guide-frame .markdown-body h1 { font-size: 1.5em; }
+.guide-frame .markdown-body h2 { font-size: 1.25em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+.guide-frame .markdown-body h3 { font-size: 1.1em; }
+
+.guide-frame .markdown-body p { margin-top: 0; margin-bottom: 1em; }
+
+.guide-frame .markdown-body ul,
+.guide-frame .markdown-body ol {
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+
+.guide-frame .markdown-body li { margin: 0.25em 0; }
+
+.guide-frame .markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1em;
+  overflow: auto;
+}
+
+.guide-frame .markdown-body table th,
+.guide-frame .markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.guide-frame .markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.guide-frame .markdown-body table th {
+  background-color: #f0f6ff;
+  font-weight: 600;
+}
+
+.guide-frame .markdown-body code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9em;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+}
+
+.guide-frame .markdown-body pre {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+  margin-bottom: 1em;
+}
+
+.guide-frame .markdown-body pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+.guide-frame .markdown-body a { color: #0366d6; text-decoration: none; }
+.guide-frame .markdown-body a:hover { text-decoration: underline; }
+
+.guide-frame .markdown-body blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+  margin: 0 0 1em 0;
+}

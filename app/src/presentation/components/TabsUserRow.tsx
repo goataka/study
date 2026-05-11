@@ -13,7 +13,7 @@ import { AvatarCropDialog } from "./AvatarCropDialog";
 
 export function TabsUserRow(): React.JSX.Element {
   return (
-    <div className="tabs-user-row flex items-end gap-0">
+    <div className="tabs-user-row flex items-end gap-0 [background:linear-gradient(to_bottom,#1e3a5f_0%,#0d2137_100%)] shrink-0">
       <div
         className="subject-tabs flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden p-4 items-end justify-start"
         role="tablist"

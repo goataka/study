@@ -48,9 +48,9 @@ export function ProgressDetailPanel(): React.JSX.Element {
       role="region"
       aria-label="進度詳細"
     >
-      <div className="progress-detail-close-row">
-        <span className="progress-detail-close-title">📊 進度詳細</span>
-        <button id="progressDetailCloseBtn" className="admin-data-close-btn" type="button" aria-label="閉じる">
+      <div className="progress-detail-close-row flex items-center justify-between px-4 py-2 border-b border-[#e1e4e8] shrink-0">
+        <span className="progress-detail-close-title text-sm font-bold text-[#24292e]">📊 進度詳細</span>
+        <button id="progressDetailCloseBtn" className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]" type="button" aria-label="閉じる">
           ✕
         </button>
       </div>

@@ -45,7 +45,7 @@ export function StartScreen(): React.JSX.Element {
             "shadow-[inset_3px_0_6px_rgba(0,0,0,0.08)]",
           ].join(" ")}
         >
-          <button id="mobileBackBtn" className="mobile-back-btn" type="button" aria-label="単元一覧に戻る">
+          <button id="mobileBackBtn" className="mobile-back-btn hidden px-3 py-2 text-sm font-semibold text-[#0366d6] border-none bg-transparent cursor-pointer hover:underline" type="button" aria-label="単元一覧に戻る">
             ← 単元一覧
           </button>
           <div id="selectedUnitInfo" className="selected-unit-info hidden"></div>

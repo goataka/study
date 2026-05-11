@@ -47,7 +47,7 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
 
   return (
     <>
-      <div className="container">
+      <div className="flex flex-col w-full h-full">
         <TabsUserRow />
         <StartScreen />
         <OuterBottomRow />
