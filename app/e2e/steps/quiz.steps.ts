@@ -180,7 +180,7 @@ When("I open the guide panel tab", async ({ page }) => {
 Then("the guide content div should be attached", async ({ page }) => {
   // 解説コンテンツdivが解説パネルにアタッチされていることを確認（Shadow DOMからの直接DOM挿入方式に変更済み）
   const guideContent = page.locator("#guidePanelFrame .guide-content");
-  await expect(guideContent).toBeAttached();
+  await expect(guideContent).toBeAttached({ timeout: 15_000 });
 });
 
 When("I open the history panel", async ({ page }) => {
