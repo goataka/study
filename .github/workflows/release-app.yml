@@ -22,8 +22,14 @@ jobs:
   build-and-release:
     name: 本番用リリース作成
     runs-on: ubuntu-latest
-    if: github.ref_name == 'main'
     steps:
+      - name: 実行ブランチを検証
+        run: |
+          if [ "${GITHUB_REF_NAME}" != "main" ]; then
+            echo "このワークフローは main ブランチから実行してください。"
+            exit 1
+          fi
+
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 

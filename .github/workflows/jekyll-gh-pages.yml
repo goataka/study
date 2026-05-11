@@ -68,7 +68,8 @@ jobs:
               <title>Goataka Study</title>
               <script>
                 const basePath = window.location.pathname.replace(/\/$/, "");
-                window.location.replace(`${basePath}/v1/`);
+                const targetPath = basePath ? `${basePath}/v1/` : "/v1/";
+                window.location.replace(targetPath);
               </script>
             </head>
             <body>
@@ -94,7 +95,8 @@ jobs:
           ASSET_URL="$(echo "${RELEASE_JSON}" | jq -r '.assets[] | select(.name == "app-dist.zip") | .browser_download_url' | head -n1)"
 
           if [ -z "${ASSET_URL}" ] || [ "${ASSET_URL}" = "null" ]; then
-            echo "最新リリースに app-dist.zip が見つかりません。"
+            echo "最新リリースが存在しないか、app-dist.zip が見つかりません。"
+            echo "release-app.yml を実行して本番用リリースを作成してください。"
             exit 1
           fi
 
