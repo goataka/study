@@ -36,7 +36,6 @@ body {
   background-color: #fff;
   background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
   background-position: 0 12px;
-  border: 1px solid #d1d5da;
   padding: 16px;
   margin: 4px 0;
 }
@@ -138,4 +137,143 @@ body {
   color: #6a737d;
   border-left: 0.25em solid #dfe2e5;
   margin: 0 0 1em 0;
+}
+
+/* ─── フォントサイズ切り替え ──────────────────────────────────────────────── */
+/* body クラスに応じて html の font-size を変更することで、
+   Tailwind の rem ベースのサイズ（text-sm / text-base / text-lg 等）がスケールする。
+   実際の適用は App.tsx の useEffect 内で document.documentElement.style.fontSize を設定する。 */
+
+/* ─── 進度マトリクス（.progress-matrix-table）レイアウト ────────────────── */
+.progress-matrix-table {
+  border-collapse: collapse;
+  min-width: max-content;
+  font-size: 0.85em;
+}
+
+.progress-matrix-table th,
+.progress-matrix-table td {
+  border: 1px solid #d1d5da;
+  padding: 4px 6px;
+  vertical-align: top;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.progress-matrix-table thead th {
+  background-color: #f6f8fa;
+  font-weight: 600;
+  font-size: 0.8em;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.progress-matrix-table tbody th {
+  background-color: #f6f8fa;
+  font-weight: 600;
+  font-size: 0.8em;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  white-space: nowrap;
+  min-width: 60px;
+}
+
+.progress-matrix-cell-units {
+  padding: 4px;
+  min-width: 80px;
+  vertical-align: top;
+}
+
+.progress-matrix-cell-units-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.progress-matrix-corner-toggle {
+  background-color: #e8f0fe;
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.progress-matrix-corner-toggle-btn {
+  font-size: 0.75em;
+  padding: 2px 6px;
+  border: 1px solid #c8d8f8;
+  border-radius: 4px;
+  background: #e8f0fe;
+  color: #0366d6;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.progress-matrix-corner-toggle-btn:hover {
+  background: #d0e4ff;
+}
+
+.progress-matrix-top-header {
+  background-color: #e8f0fe;
+  text-align: center;
+}
+
+.progress-matrix-parent-header {
+  background-color: #f0f6ff;
+  text-align: center;
+  font-size: 0.78em;
+}
+
+/* ─── 単元詳細表示時の説明・例の非表示 ──────────────────────────────────── */
+/* 選択単元情報パネル（#selectedUnitInfo）表示中は右カラム（説明・例）を隠す */
+#categoryList.detail-active .category-item-right {
+  display: none;
+}
+
+#categoryList.detail-active .category-item.category-item-has-info {
+  grid-template-columns: 1fr;
+}
+
+/* ─── 単元詳細パネルのレイアウト ──────────────────────────────────────────── */
+/* 解説・例文を右寄せに配置するための flex レイアウト */
+.selected-unit-info-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.selected-unit-info-header-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.selected-unit-info-header-right {
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.selected-unit-info-desc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.selected-unit-info-desc-left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.selected-unit-info-desc-right {
+  flex-shrink: 0;
+  text-align: right;
 }

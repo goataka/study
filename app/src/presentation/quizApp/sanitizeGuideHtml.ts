@@ -103,6 +103,9 @@ export function sanitizeGuideHtml(html: string): string {
     }
   });
 
+  // 解説タブでは h1（ページタイトル）と h2（セクション見出し）は表示しない
+  bodyClone.querySelectorAll("h1, h2").forEach((el) => el.remove());
+
   return bodyClone.innerHTML;
 }
 

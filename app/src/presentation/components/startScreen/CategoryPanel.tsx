@@ -19,18 +19,18 @@ export function CategoryPanel(): React.JSX.Element {
         "bg-white",
         "[background-image:repeating-linear-gradient(transparent,transparent_31px,#d8e8f8_31px,#d8e8f8_32px)]",
         "[background-size:100%_32px] [background-position:0_12px]",
-        "border-none p-4 min-h-[200px] flex flex-col overflow-hidden",
+        "border-none p-2 min-h-[200px] flex flex-col overflow-hidden",
         "shadow-[inset_-3px_0_6px_rgba(0,0,0,0.08)]",
       ].join(" ")}
     >
-      <div className="category-panel-header flex items-center justify-between mb-2 gap-1.5 px-4">
+      <div className="category-panel-header flex items-center justify-between mb-2 gap-1.5 px-2">
         <span
           id="categoryListTitle"
           className="category-list-title text-sm font-bold text-[#0366d6] shrink-0 px-1 py-1"
         >
           📚 単元一覧
         </span>
-        <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状態フィルター">
+        <div className="category-status-filter flex items-center gap-0.5 ml-auto" role="group" aria-label="学習状態フィルター">
           <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
           <button id="filterStatusAll" className={`${statusFilterButton()} active`} type="button" aria-pressed="true">
             すべて
@@ -52,16 +52,16 @@ export function CategoryPanel(): React.JSX.Element {
           ✨ おすすめ単元
         </span>
       </div>
-      <div id="overallDateNav" className="activity-date-nav hidden flex items-center gap-1.5 shrink-0 px-4 py-1.5">
+      <div id="overallDateNav" className="activity-date-nav hidden flex items-center gap-1.5 shrink-0 px-2 py-1.5">
         <span id="activityDateDisplay" className="activity-date-display text-[13px] text-[#586069] font-medium"></span>
       </div>
-      <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2 px-4">
+      <div id="categoryControls" className="category-controls flex flex-wrap items-center gap-[5px] mb-2 px-2 justify-end">
         <CategoryControlsSection />
       </div>
       <div
         id="categoryList"
         className={[
-          "category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0 px-4 pb-2",
+          "category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0 px-2 pb-2",
           "[&.hide-learned_.category-item.learned]:hidden",
           "[&.filter-unlearned_.category-item.learned]:hidden",
           "[&.filter-unlearned_.category-item.studying]:hidden",

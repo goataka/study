@@ -221,19 +221,13 @@ export function AdminPanelRoot({
   const tabBtnBase =
     "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit] bg-[#f6f8fa] text-[#586069] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:bg-white [&.active]:text-[#24292e] [&.active]:border-[#d1d5da]";
   const actionBtnBase =
-    "px-3 py-1.5 text-sm font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
+    "self-start px-3 py-1.5 text-sm font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
 
   return (
     <>
-      <div className="admin-menu-bar flex items-center gap-2 p-2 bg-[#f6f8fa] border-b border-[#e1e4e8]">
-        <button
-          className={`admin-menu-btn admin-menu-parent ${menuBtnBase} opacity-50 cursor-not-allowed`}
-          type="button"
-          disabled
-          aria-disabled="true"
-        >
-          🛢️ データ
-        </button>
+      <div className="admin-menu-bar flex items-center gap-1 p-2 bg-[#f6f8fa] border-b border-[#e1e4e8]">
+        <span className="admin-menu-parent-label text-xs text-[#586069] font-semibold px-2 shrink-0">🛢️ データ</span>
+        <span className="text-[#d1d5da] shrink-0">›</span>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "manage" ? " active" : ""}`}
           type="button"

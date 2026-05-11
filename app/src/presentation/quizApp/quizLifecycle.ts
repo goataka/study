@@ -106,7 +106,20 @@ export function renderResultScreen(results: AnswerResult[]): void {
   applyLegacyResultDomForNonReactTests(results);
 }
 
+/**
+ * #resultScreen が React によって管理されているかを判定する。
+ * React 管理下では resultStore 経由で ResultScreen が自律的に描画するため、
+ * legacy DOM 書き換えをすべてスキップする必要がある。
+ */
+function isResultScreenManagedByReact(): boolean {
+  return document.getElementById("resultScreen")?.hasAttribute("data-react-managed") ?? false;
+}
+
 function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
+  // React 管理下では ResultScreen コンポーネントが resultStore を通じて自律的に描画するため、
+  // legacy DOM 書き換え（resultUnitName / resultMessage / scoreDisplay）をすべてスキップする。
+  if (isResultScreenManagedByReact()) return;
+
   const resultUnitName = document.getElementById("resultUnitName");
   const resultMessage = document.getElementById("resultMessage");
   // `resultScore` は `setupTabDom` を使う QuizApp 単体テストのレガシーDOM ID 互換のため残す。

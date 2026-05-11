@@ -123,7 +123,7 @@ function GradeFilterGroup({
   params: CategoryViewControlsParams;
 }): React.JSX.Element {
   return (
-    <div className="grade-filter-group flex items-center gap-[5px]">
+    <div className="grade-filter-group flex items-center gap-[5px] ml-auto">
       <span className="grade-filter-label text-xs text-[#586069] ml-1">学年:</span>
       <button
         type="button"

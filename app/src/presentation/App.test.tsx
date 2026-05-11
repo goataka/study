@@ -116,7 +116,6 @@ describe("App コンポーネント", () => {
       "titleBtn",
       "headerTodayDate",
       "reloadBtn",
-      "adminMenuBtn",
       // カテゴリパネル
       "subjectContent",
       "categoryListTitle",
@@ -180,7 +179,6 @@ describe("App コンポーネント", () => {
       "saveShareUrlBtn",
       // 管理タブ
       "adminContent",
-      "mobileBackBtn",
       "selectedUnitInfo",
       // ノート外下部行
       "githubBtn",
@@ -247,10 +245,11 @@ describe("App コンポーネント", () => {
     const appFooter = container!.querySelector(".app-footer");
     const fontSizeButtons = container!.querySelectorAll<HTMLButtonElement>(".font-size-btn");
 
-    expect(startScreen?.className).toContain("p-4");
-    expect(startHeader?.className).toContain("p-4");
-    expect(subjectTabs?.className).toContain("p-4");
-    expect(appFooter?.className).toContain("mt-2");
+    expect(startScreen?.className).toContain("p-2");
+    expect(startHeader?.className).toContain("pt-2");
+    expect(subjectTabs?.className).toContain("px-4");
+    // app-footer はフッター削除により存在しない
+    expect(appFooter).toBeNull();
     expect(tabsUserArea?.className).not.toContain("border-l");
     expect(Array.from(fontSizeButtons).every((btn) => btn.className.includes("px-2 py-1"))).toBe(true);
   });
