@@ -35,12 +35,12 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
     >
       <StartHeader />
       <div
-        className="start-content-layout grid grid-cols-[1fr_12px_2fr] gap-0 items-stretch flex-1 min-h-0 bg-white overflow-hidden"
+        className="start-content-layout grid grid-cols-1 md:grid-cols-[1fr_12px_2fr] gap-0 items-stretch flex-1 min-h-0 bg-white overflow-hidden"
         id="subjectContent"
       >
         <CategoryPanel />
         <div
-          className="notebook-spine shrink-0 w-3 bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]"
+          className="notebook-spine hidden md:block shrink-0 w-3 bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]"
           aria-hidden="true"
         ></div>
         <div
@@ -50,7 +50,7 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
             "[background-image:repeating-linear-gradient(transparent,transparent_31px,#d8e8f8_31px,#d8e8f8_32px)]",
             "[background-size:100%_32px] [background-position:0_12px]",
             "border-none overflow-hidden flex flex-col",
-            "shadow-[inset_3px_0_6px_rgba(0,0,0,0.08)]",
+            "shadow-none md:shadow-[inset_3px_0_6px_rgba(0,0,0,0.08)]",
           ].join(" ")}
         >
           <button

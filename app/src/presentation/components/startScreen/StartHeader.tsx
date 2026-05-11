@@ -7,7 +7,7 @@
 
 export function StartHeader(): React.JSX.Element {
   return (
-    <header className="shrink-0 flex items-center justify-between bg-white p-4 border-b-2 border-[#c8d8e8]">
+    <header className="shrink-0 flex flex-wrap items-center justify-between gap-y-2 bg-white p-4 border-b-2 border-[#c8d8e8]">
       <div className="header-title-area flex flex-row items-center gap-2 shrink-0 border-b-2 border-[#c8d8e8] pb-0.5">
         <h1
           id="titleBtn"
@@ -21,11 +21,11 @@ export function StartHeader(): React.JSX.Element {
         </h1>
         <span className="header-grade-label text-sm text-[#586069] font-medium tracking-[0.05em]">小・中・高</span>
       </div>
-      <div className="header-date-area flex items-center gap-2 shrink-0">
+      <div className="header-date-area flex w-full items-center justify-end gap-2 shrink-0 sm:w-auto">
         <span className="header-date-label text-[15px] text-[#c8d8e8] font-semibold shrink-0">Date:</span>
         <span
           id="headerTodayDate"
-          className="header-today-date text-[15px] text-[#586069] font-semibold whitespace-nowrap shrink-0 tracking-[0.03em] border-b-2 border-[#c8d8e8] pb-px px-2 min-w-[160px] text-center"
+          className="header-today-date text-[15px] text-[#586069] font-semibold whitespace-nowrap shrink-0 tracking-[0.03em] border-b-2 border-[#c8d8e8] pb-px px-2 min-w-[120px] sm:min-w-[160px] text-center"
         ></span>
         <button
           id="reloadBtn"
