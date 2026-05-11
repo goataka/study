@@ -38,7 +38,7 @@ export function StartHeader(): React.JSX.Element {
         </button>
         <button
           id="adminMenuBtn"
-          className="admin-menu-header-btn"
+          className="admin-menu-header-btn inline-flex items-center justify-center w-7 h-7 border-none rounded-md bg-transparent text-[#586069] text-lg cursor-pointer shrink-0 p-0 transition-[background,color] duration-200 hover:text-[#0366d6] hover:bg-[#f0f7ff]"
           type="button"
           title="メニュー"
           aria-label="メニューを開く"

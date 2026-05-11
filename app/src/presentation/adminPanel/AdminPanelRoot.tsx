@@ -215,21 +215,34 @@ export function AdminPanelRoot({
   const selectedViewSection = sections[viewTabIndex];
   const viewJsonText = selectedViewSection ? JSON.stringify(selectedViewSection.content, null, 2) : "";
 
+  const menuBtnBase =
+    "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
+  const menuBtnChild = `${menuBtnBase} bg-white text-[#586069] hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white`;
+  const tabBtnBase =
+    "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit] bg-[#f6f8fa] text-[#586069] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:bg-white [&.active]:text-[#24292e] [&.active]:border-[#d1d5da]";
+  const actionBtnBase =
+    "px-3 py-1.5 text-sm font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
+
   return (
     <>
-      <div className="admin-menu-bar">
-        <button className="admin-menu-btn admin-menu-parent" type="button" disabled aria-disabled="true">
+      <div className="admin-menu-bar flex items-center gap-2 p-2 bg-[#f6f8fa] border-b border-[#e1e4e8]">
+        <button
+          className={`admin-menu-btn admin-menu-parent ${menuBtnBase} opacity-50 cursor-not-allowed`}
+          type="button"
+          disabled
+          aria-disabled="true"
+        >
           🛢️ データ
         </button>
         <button
-          className={`admin-menu-btn admin-menu-child${activeMenu === "manage" ? " active" : ""}`}
+          className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "manage" ? " active" : ""}`}
           type="button"
           onClick={() => switchMenu("manage")}
         >
           🛠️ 管理
         </button>
         <button
-          className={`admin-menu-btn admin-menu-child${activeMenu === "view" ? " active" : ""}`}
+          className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "view" ? " active" : ""}`}
           type="button"
           onClick={() => switchMenu("view")}
         >
@@ -238,19 +251,24 @@ export function AdminPanelRoot({
       </div>
       {createPortal(
         <div
-          className={`admin-menu-content${activeMenu === "manage" ? " admin-manage-open" : ""}${activeMenu === "view" ? " admin-data-open" : ""}`}
+          className={`admin-menu-content${activeMenu ? " flex flex-col gap-3 p-4 bg-white border border-[#e1e4e8] rounded-md shadow-lg max-h-[80vh] overflow-y-auto m-2" : " hidden"}`}
         >
           {activeMenu === "manage" ? (
             <>
-              <div className="admin-manage-close-row">
-                <span className="admin-data-header-title">🛢️ データ管理</span>
-                <button className="admin-data-close-btn" type="button" aria-label="閉じる" onClick={closeContent}>
+              <div className="admin-manage-close-row flex items-center justify-between mb-1">
+                <span className="admin-data-header-title text-base font-bold text-[#24292e]">🛢️ データ管理</span>
+                <button
+                  className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
+                  type="button"
+                  aria-label="閉じる"
+                  onClick={closeContent}
+                >
                   ✕
                 </button>
               </div>
-              <div className="admin-manage-tabs">
+              <div className="admin-manage-tabs flex gap-1 border-b border-[#e1e4e8] pb-0">
                 <button
-                  className={`admin-manage-tab${manageTab === "import" ? " active" : ""}`}
+                  className={`admin-manage-tab ${tabBtnBase}${manageTab === "import" ? " active" : ""}`}
                   type="button"
                   data-tab="import"
                   onClick={() => setManageTab("import")}
@@ -258,7 +276,7 @@ export function AdminPanelRoot({
                   📥 インポート
                 </button>
                 <button
-                  className={`admin-manage-tab${manageTab === "export" ? " active" : ""}`}
+                  className={`admin-manage-tab ${tabBtnBase}${manageTab === "export" ? " active" : ""}`}
                   type="button"
                   data-tab="export"
                   onClick={() => setManageTab("export")}
@@ -266,7 +284,7 @@ export function AdminPanelRoot({
                   📤 エクスポート
                 </button>
                 <button
-                  className={`admin-manage-tab${manageTab === "reset" ? " active" : ""}`}
+                  className={`admin-manage-tab ${tabBtnBase}${manageTab === "reset" ? " active" : ""}`}
                   type="button"
                   data-tab="reset"
                   onClick={() => setManageTab("reset")}
@@ -274,11 +292,13 @@ export function AdminPanelRoot({
                   🗑️ 初期化
                 </button>
               </div>
-              <div className="admin-manage-tab-panel">
+              <div className="admin-manage-tab-panel flex flex-col gap-3">
                 {manageTab === "import" ? (
-                  <div className="admin-reset-section">
-                    <p className="admin-reset-desc">ダウンロードしたJSONファイルを選択して、学習データを更新します。</p>
-                    <label className="admin-import-label">
+                  <div className="admin-reset-section flex flex-col gap-2">
+                    <p className="admin-reset-desc text-sm text-[#586069]">
+                      ダウンロードしたJSONファイルを選択して、学習データを更新します。
+                    </p>
+                    <label className="admin-import-label inline-flex items-center gap-2 px-3 py-1.5 text-sm font-semibold rounded-md border border-[#0366d6] text-[#0366d6] bg-white cursor-pointer hover:bg-[#e8f0fe]">
                       📂 JSONファイルを選択
                       <input
                         type="file"
@@ -288,28 +308,31 @@ export function AdminPanelRoot({
                         onChange={onImportFileChange}
                       />
                     </label>
-                    <span className="admin-import-filename">{selectedFileName}</span>
+                    <span className="admin-import-filename text-xs text-[#586069]">{selectedFileName}</span>
                     {showPreview ? (
-                      <pre className="admin-data" style={{ marginTop: "8px" }}>
+                      <pre className="admin-data text-xs bg-[#f6f8fa] border border-[#e1e4e8] rounded-md p-3 overflow-x-auto max-h-40 whitespace-pre-wrap break-all mt-2">
                         {previewText}
                       </pre>
                     ) : null}
                     {showApplyButton ? (
-                      <button className="admin-import-apply-btn" type="button" onClick={onApplyImport}>
+                      <button
+                        className={`admin-import-apply-btn ${actionBtnBase} bg-[#0366d6] text-white border border-[#0255b8] hover:bg-[#0255b8]`}
+                        type="button"
+                        onClick={onApplyImport}
+                      >
                         {applyButtonText}
                       </button>
                     ) : null}
                   </div>
                 ) : null}
                 {manageTab === "export" ? (
-                  <div className="admin-reset-section">
-                    <p className="admin-reset-desc">
+                  <div className="admin-reset-section flex flex-col gap-2">
+                    <p className="admin-reset-desc text-sm text-[#586069]">
                       すべての学習データをJSONファイルとしてダウンロードします。定期的なバックアップにご利用ください。
                     </p>
                     <button
-                      className="admin-import-apply-btn"
+                      className={`admin-import-apply-btn ${actionBtnBase} bg-[#0366d6] text-white border border-[#0255b8] hover:bg-[#0255b8]`}
                       type="button"
-                      style={{ marginTop: "8px" }}
                       onClick={onExportAllData}
                     >
                       ⬇️ データをエクスポートする
@@ -317,9 +340,15 @@ export function AdminPanelRoot({
                   </div>
                 ) : null}
                 {manageTab === "reset" ? (
-                  <div className="admin-reset-section">
-                    <p className="admin-reset-desc">すべての学習データ（履歴・学習済み・進捗）を削除します。</p>
-                    <button className="admin-reset-btn" type="button" onClick={onResetAllData}>
+                  <div className="admin-reset-section flex flex-col gap-2">
+                    <p className="admin-reset-desc text-sm text-[#586069]">
+                      すべての学習データ（履歴・学習済み・進捗）を削除します。
+                    </p>
+                    <button
+                      className={`admin-reset-btn ${actionBtnBase} bg-[#dc3545] text-white border border-[#c82333] hover:bg-[#c82333]`}
+                      type="button"
+                      onClick={onResetAllData}
+                    >
                       🗑️ 全データを初期化する
                     </button>
                   </div>
@@ -329,17 +358,22 @@ export function AdminPanelRoot({
           ) : null}
           {activeMenu === "view" ? (
             <>
-              <div className="admin-manage-close-row">
-                <span className="admin-data-header-title">📊 データ参照</span>
-                <button className="admin-data-close-btn" type="button" aria-label="閉じる" onClick={closeContent}>
+              <div className="admin-manage-close-row flex items-center justify-between mb-1">
+                <span className="admin-data-header-title text-base font-bold text-[#24292e]">📊 データ参照</span>
+                <button
+                  className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
+                  type="button"
+                  aria-label="閉じる"
+                  onClick={closeContent}
+                >
                   ✕
                 </button>
               </div>
-              <div className="admin-data-tabs">
+              <div className="admin-data-tabs flex gap-1 border-b border-[#e1e4e8] pb-0">
                 {sections.map(({ title }, index) => (
                   <button
                     key={`${title}-${index}`}
-                    className={`admin-data-tab${viewTabIndex === index ? " active" : ""}`}
+                    className={`admin-data-tab ${tabBtnBase}${viewTabIndex === index ? " active" : ""}`}
                     type="button"
                     onClick={() => setViewTabIndex(index)}
                   >
@@ -347,10 +381,10 @@ export function AdminPanelRoot({
                   </button>
                 ))}
               </div>
-              <div className="admin-data-tab-content">
-                <div className="admin-data-btn-bar">
+              <div className="admin-data-tab-content flex flex-col gap-2">
+                <div className="admin-data-btn-bar flex gap-2">
                   <button
-                    className="admin-data-action-btn"
+                    className={`admin-data-action-btn ${actionBtnBase} bg-[#f6f8fa] text-[#24292e] border border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]`}
                     type="button"
                     title="クリップボードにコピー"
                     onClick={copyCurrentData}
@@ -358,7 +392,9 @@ export function AdminPanelRoot({
                     {copyButtonText}
                   </button>
                 </div>
-                <pre className="admin-data">{viewJsonText}</pre>
+                <pre className="admin-data text-xs bg-[#f6f8fa] border border-[#e1e4e8] rounded-md p-3 overflow-x-auto max-h-[50vh] whitespace-pre-wrap break-all">
+                  {viewJsonText}
+                </pre>
               </div>
             </>
           ) : null}

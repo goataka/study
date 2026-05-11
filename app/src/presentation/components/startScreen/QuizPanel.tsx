@@ -199,7 +199,11 @@ export function QuizPanel(): React.JSX.Element {
           </div>
         </div>
         <div className="mark-learned-section">
-          <button id="markLearnedBtn" className="mark-learned-btn" disabled>
+          <button
+            id="markLearnedBtn"
+            className="mark-learned-btn px-4 py-2 text-sm font-semibold border border-[#28a745] rounded-md bg-[#f0fff4] text-[#28a745] cursor-pointer transition-[background,color,border-color] duration-200 hover:bg-[#28a745] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
             ✅ 学習済みにする
           </button>
         </div>
@@ -211,7 +215,7 @@ export function QuizPanel(): React.JSX.Element {
         role="tabpanel"
         aria-labelledby="panelTab-guide"
       >
-        <div id="guidePanelFrame" className="guide-frame"></div>
+        <div id="guidePanelFrame" className="guide-frame flex-1 overflow-y-auto min-h-0 px-3 py-2"></div>
         <p id="guideNoContent" className="guide-no-content hidden">
           このカテゴリには解説がありません。
         </p>
