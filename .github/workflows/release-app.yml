@@ -22,7 +22,7 @@ jobs:
           fi
 
       - name: コードのチェックアウト
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
