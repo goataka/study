@@ -19,6 +19,17 @@ export interface ChoiceRendererCallbacks {
   onTextAnswered?: (question: Question) => void;
 }
 
+const sessionKeyMap = new WeakMap<QuizSession, number>();
+let nextSessionKey = 1;
+
+function getSessionKey(session: QuizSession): number {
+  const existing = sessionKeyMap.get(session);
+  if (existing !== undefined) return existing;
+  const key = nextSessionKey++;
+  sessionKeyMap.set(session, key);
+  return key;
+}
+
 interface MultipleChoiceProps {
   question: Question;
   session: QuizSession;
@@ -160,8 +171,8 @@ export function renderMultipleChoice(
   session: QuizSession,
   callbacks: ChoiceRendererCallbacks,
 ): void {
-  // 問題が変わった時に React の useState を初期化するため、key に問題インデックス＋ID を含める。
-  const key = `${session.currentIndex}-${question.id}`;
+  // 問題・セッションが変わった時に React の useState を初期化するため、key にセッションキーも含める。
+  const key = `${getSessionKey(session)}-${session.currentIndex}-${question.id}`;
   choicesContentStore.set(<MultipleChoice key={key} question={question} session={session} callbacks={callbacks} />);
 }
 
@@ -170,6 +181,6 @@ export function renderMultipleChoice(
  * 確認ボタンまたは Enter で `callbacks.onAnswered` と `callbacks.onTextAnswered` を呼ぶ。
  */
 export function renderTextInput(question: Question, session: QuizSession, callbacks: ChoiceRendererCallbacks): void {
-  const key = `${session.currentIndex}-${question.id}`;
+  const key = `${getSessionKey(session)}-${session.currentIndex}-${question.id}`;
   choicesContentStore.set(<TextInput key={key} question={question} session={session} callbacks={callbacks} />);
 }
