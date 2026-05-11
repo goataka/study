@@ -149,7 +149,10 @@ export function toggleLearnedStatus(app: QuizApp): void {
     useCase: app.useCase,
     effectiveFilter: getEffectiveFilter(app),
     showConfirmDialog: (msg) => app.showConfirmDialog(msg),
-    onAfterToggle: () => updateStartScreen(app),
+    onAfterToggle: () => {
+      renderCategoryList(app);
+      updateStartScreen(app);
+    },
   }).catch(console.error);
 }
 

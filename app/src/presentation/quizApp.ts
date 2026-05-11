@@ -38,7 +38,6 @@ import {
 } from "./quizApp/userNameEditor";
 import { getURLParams, parseURLState, syncURLFragment, type ProgressStatusFilter } from "./quizApp/urlStateService";
 import { applyCategoryStatusFilter as applyCategoryStatusFilterFn } from "./quizApp/categoryCollapseState";
-import { updateSubjectStats as updateSubjectStatsFn } from "./quizApp/categoryStatsView";
 import { findFirstUnlearnedCategory } from "./quizApp/firstUnlearnedFinder";
 import { setupAllListeners } from "./quizApp/setupAllListeners";
 import * as D from "./quizApp/delegators";
@@ -209,7 +208,6 @@ export class QuizApp {
     D.buildPanelTabs(this);
     D.setupOverallPanelTabs(this);
     D.setupProgressDetailTabs(this);
-    updateSubjectStatsFn(this.useCase);
     this.selectFirstUnlearnedCategory();
     const initRecords = this.useCase.getHistory();
     D.autoSelectPanelTab(this, initRecords);
@@ -421,7 +419,6 @@ export class QuizApp {
 
     if (screenName === "start") {
       clearQuizSessionStore();
-      updateSubjectStatsFn(this.useCase);
       this.selectFirstUnlearnedCategory();
       const screenRecords = this.useCase.getHistory();
       D.autoSelectPanelTab(this, screenRecords);

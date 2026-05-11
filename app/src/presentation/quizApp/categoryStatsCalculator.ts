@@ -1,7 +1,6 @@
 /**
  * カテゴリ統計の計算ロジック（純粋関数）。
  *
- * `categoryStatsView.ts` から DOM 副作用を持たないロジックだけを抽出した版。
  * `<CategoryItem>` などの React コンポーネントが props として直接受け取れる形を返す。
  *
  * - `computeCategoryStatsMap`: 全問題を 1 回走査し、`subject::category` / `subject::parent::*` /

@@ -29,7 +29,6 @@ export function renderProgressView(params: {
   onSelectSubject: (subjectId: string) => void;
   onSelectUnit: (subject: string, catId: string, catName: string) => void;
   onToggleMatrixTranspose: () => void;
-  onAfterRender: () => void;
 }): void {
   const categoryList = document.getElementById("categoryList");
   const controlsEl = document.getElementById("categoryControls");
@@ -54,8 +53,6 @@ export function renderProgressView(params: {
     onSelectUnit: params.onSelectUnit,
     onToggleMatrixTranspose: params.onToggleMatrixTranspose,
   });
-
-  params.onAfterRender();
 }
 
 /**

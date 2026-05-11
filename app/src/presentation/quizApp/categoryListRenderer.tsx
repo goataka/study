@@ -11,6 +11,14 @@ import * as React from "react";
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { CategoryItem, type CategoryItemProps } from "../components/CategoryItem";
 import { ParentCategoryGroup, type ParentCategoryGroupProps } from "../components/ParentCategoryGroup";
+import { calcDualProgressPct } from "../uiHelpers";
+import {
+  categoryStatsKey,
+  computeCategoryStatsMap,
+  deriveCategoryItemStatus,
+  formatCategoryStatsText,
+  type CategoryStat,
+} from "./categoryStatsCalculator";
 import { type CreateCategoryItemParams, type BuildParentCategoryGroupParams } from "./categoryItemBuilder";
 import { renderReactInto } from "./reactMount";
 
@@ -175,6 +183,7 @@ function GradeCategoryGroup(props: GradeCategoryGroupProps): React.JSX.Element {
 
 function buildCategoryItemProps(
   ctx: CreateCategoryItemParams,
+  statsCtx: { statsMap: Map<string, CategoryStat>; studiedKeys: Set<string> },
   subject: string,
   categoryId: string,
   categoryName: string,
@@ -207,6 +216,11 @@ function buildCategoryItemProps(
     ctx.callbacks.onSyncURLFragment();
   };
 
+  const key = categoryStatsKey(subject, categoryId);
+  const stat = statsCtx.statsMap.get(key) ?? { total: 0, inProgress: 0, mastered: 0 };
+  const statusView = deriveCategoryItemStatus(stat, statsCtx.studiedKeys, key);
+  const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.inProgress, stat.total);
+
   return {
     subject,
     categoryId,
@@ -218,12 +232,18 @@ function buildCategoryItemProps(
     showReferenceGrade: ctx.categoryViewMode !== "grade",
     description: ctx.useCase.getCategoryDescription(subject, categoryId),
     example: ctx.useCase.getCategoryExample(subject, categoryId),
+    statusIcon: statusView.icon,
+    statusKind: statusView.status,
+    progressFillPercent: masteredPct,
+    progressInProgressPercent: inProgressPct,
+    statsText: formatCategoryStatsText(stat),
     onActivate,
   };
 }
 
 function buildParentCategoryGroupProps(
   params: BuildParentCategoryGroupParams,
+  statsCtx: { statsMap: Map<string, CategoryStat>; studiedKeys: Set<string> },
   subject: string,
   parentCatId: string,
   parentCatName: string,
@@ -239,7 +259,7 @@ function buildParentCategoryGroupProps(
     onHeaderActivate: () => params.onParentHeaderClick(parentCatId),
     onToggle: () => params.onToggleParentCategory(parentCatId),
     items: Object.entries(cats).map(([catId, catName]) =>
-      buildCategoryItemProps(params.itemCtx, subject, catId, catName, parentCatId, topCatId),
+      buildCategoryItemProps(params.itemCtx, statsCtx, subject, catId, catName, parentCatId, topCatId),
     ),
   };
 }
@@ -253,6 +273,10 @@ export function renderCategoryListByCategory(params: RenderCategoryListByCategor
   if (!categoryList) return;
 
   const { useCase, subject } = params;
+  const statsCtx = {
+    statsMap: computeCategoryStatsMap(useCase),
+    studiedKeys: useCase.getStudiedCategoryKeys(),
+  };
 
   const allParentCategories = useCase.getParentCategoriesForSubject(subject);
   const categoriesByParent = new Map<string, Record<string, string>>();
@@ -280,7 +304,15 @@ export function renderCategoryListByCategory(params: RenderCategoryListByCategor
       const cats = categoriesByParent.get(parentCatId) ?? {};
       if (Object.keys(cats).length === 0) continue;
       groupItems.push(
-        buildParentCategoryGroupProps(params.parentGroupCtx, subject, parentCatId, parentCatName, cats, topCatId),
+        buildParentCategoryGroupProps(
+          params.parentGroupCtx,
+          statsCtx,
+          subject,
+          parentCatId,
+          parentCatName,
+          cats,
+          topCatId,
+        ),
       );
     }
 
@@ -306,7 +338,14 @@ export function renderCategoryListByCategory(params: RenderCategoryListByCategor
     if (parentCatIdsInTopGroups.has(parentCatId)) continue;
     const cats = categoriesByParent.get(parentCatId) ?? {};
     if (Object.keys(cats).length === 0) continue;
-    const groupProps = buildParentCategoryGroupProps(params.parentGroupCtx, subject, parentCatId, parentCatName, cats);
+    const groupProps = buildParentCategoryGroupProps(
+      params.parentGroupCtx,
+      statsCtx,
+      subject,
+      parentCatId,
+      parentCatName,
+      cats,
+    );
     nodes.push(<ParentCategoryGroup key={`parent::${parentCatId}`} {...groupProps} />);
   }
 
@@ -314,7 +353,7 @@ export function renderCategoryListByCategory(params: RenderCategoryListByCategor
   for (const [catId, catName] of Object.entries(allCategories)) {
     const belongsToParent = Array.from(categoriesByParent.values()).some((cats) => catId in cats);
     if (!belongsToParent && params.gradeFilterMatches(subject, catId)) {
-      const itemProps = buildCategoryItemProps(params.itemCtx, subject, catId, catName);
+      const itemProps = buildCategoryItemProps(params.itemCtx, statsCtx, subject, catId, catName);
       nodes.push(<CategoryItem key={`unit::${catId}`} {...itemProps} />);
     }
   }
@@ -343,6 +382,10 @@ export function renderCategoryListByGrade(params: RenderCategoryListByGradeParam
   if (!categoryList) return;
 
   const { useCase, subject } = params;
+  const statsCtx = {
+    statsMap: computeCategoryStatsMap(useCase),
+    studiedKeys: useCase.getStudiedCategoryKeys(),
+  };
   const grades = useCase.getUniqueGradesForSubject(subject);
   const groups: React.ReactNode[] = [];
 
@@ -355,7 +398,7 @@ export function renderCategoryListByGrade(params: RenderCategoryListByGradeParam
         headerLabel={headerLabel}
         collapsed={params.collapsedGradeGroups.has(gradeId)}
         items={Object.entries(cats).map(([catId, catName]) =>
-          buildCategoryItemProps(params.itemCtx, subject, catId, catName),
+          buildCategoryItemProps(params.itemCtx, statsCtx, subject, catId, catName),
         )}
         onHeaderActivate={() => params.onGradeHeaderClick(gradeId)}
         onToggle={() => {

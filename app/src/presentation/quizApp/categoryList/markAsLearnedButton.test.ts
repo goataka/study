@@ -56,7 +56,9 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 学習済みになるので ✅ が表示される
-    const statusEl = catItem?.querySelector(".category-status");
+    const statusEl = document
+      .querySelector('.category-item[data-category="phonics-1"]')
+      ?.querySelector(".category-status");
     expect(statusEl?.textContent).toBe("✅");
   });
 
@@ -93,13 +95,19 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     markLearnedBtn.click();
     document.getElementById("confirmDialogOk")?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(catItem?.querySelector(".category-status")?.textContent).toBe("✅");
+    expect(
+      document.querySelector('.category-item[data-category="phonics-1"]')?.querySelector(".category-status")
+        ?.textContent,
+    ).toBe("✅");
 
     // 未学習に戻す
     markLearnedBtn.click();
     document.getElementById("confirmDialogOk")?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(catItem?.querySelector(".category-status")?.textContent).toBe("🔄");
+    expect(
+      document.querySelector('.category-item[data-category="phonics-1"]')?.querySelector(".category-status")
+        ?.textContent,
+    ).toBe("🔄");
     expect(markLearnedBtn.textContent).toBe("✅ 学習済みにする");
   });
 });

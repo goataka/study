@@ -27,7 +27,6 @@ export interface RenderCategoryListRouterParams {
   renderCategoryListByCategory: () => void;
   updateCategoryListActive: () => void;
   applyCategoryStatusFilter: () => void;
-  updateSubjectStats: () => void;
   showConfirmDialog: (msg: string, alertOnly?: boolean) => Promise<boolean>;
 }
 
@@ -93,6 +92,4 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
   params.updateCategoryListActive();
   // 学習状態フィルターを適用する
   params.applyCategoryStatusFilter();
-  // 進捗バー・学習状態を更新する（ビューモード・フィルター切替後も正確に反映する）
-  params.updateSubjectStats();
 }
