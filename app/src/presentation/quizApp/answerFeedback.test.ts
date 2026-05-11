@@ -36,7 +36,10 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     await act(async () => {
       startBtn.click();
     });
-    await waitForCondition(() => document.querySelectorAll<HTMLInputElement>('input[name="answer"]').length > 0);
+    await waitForCondition(
+      () =>
+        app.currentSession !== null && document.querySelectorAll<HTMLInputElement>('input[name="answer"]').length > 0,
+    );
     await new Promise((resolve) => setTimeout(resolve, 0));
     return app;
   }
@@ -189,9 +192,11 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     expect(wrongRadio).toBeDefined();
     await chooseAnswerByIndex(Number(wrongRadio?.value));
 
-    const resultDiv = document.getElementById("feedbackResult");
-    await waitForCondition(() => (resultDiv?.textContent ?? "").length > 0);
-    expect(resultDiv?.textContent).toContain(xssPayload);
-    expect(resultDiv?.querySelector("img")).toBeNull();
+    await waitForCondition(() => (document.getElementById("feedbackResult")?.textContent ?? "").length > 0, {
+      timeout: 2_000,
+    });
+    const latestResultDiv = document.getElementById("feedbackResult");
+    expect(latestResultDiv?.textContent).toContain(xssPayload);
+    expect(latestResultDiv?.querySelector("img")).toBeNull();
   });
 });

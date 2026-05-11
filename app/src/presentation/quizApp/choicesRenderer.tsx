@@ -161,7 +161,7 @@ export function renderMultipleChoice(
   callbacks: ChoiceRendererCallbacks,
 ): void {
   // 問題が変わった時に React の useState を初期化するため、key に問題インデックス＋ID を含める。
-  const key = `${session.currentIndex}-${question.id}`;
+  const key = `${session.currentIndex}-${question.id}-${session.getAnswer(session.currentIndex) ?? "unanswered"}`;
   choicesContentStore.set(<MultipleChoice key={key} question={question} session={session} callbacks={callbacks} />);
 }
 
@@ -170,6 +170,6 @@ export function renderMultipleChoice(
  * 確認ボタンまたは Enter で `callbacks.onAnswered` と `callbacks.onTextAnswered` を呼ぶ。
  */
 export function renderTextInput(question: Question, session: QuizSession, callbacks: ChoiceRendererCallbacks): void {
-  const key = `${session.currentIndex}-${question.id}`;
+  const key = `${session.currentIndex}-${question.id}-${session.getAnswer(session.currentIndex) ?? "unanswered"}`;
   choicesContentStore.set(<TextInput key={key} question={question} session={session} callbacks={callbacks} />);
 }
