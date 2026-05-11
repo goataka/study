@@ -69,21 +69,26 @@ jobs:
           set -euo pipefail
 
           LATEST_TAG="$(gh release list --limit 1 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[0].tagName // ""')"
-          rm -f /tmp/app-dist.zip
-          if [ -n "${LATEST_TAG}" ] && gh release download "${LATEST_TAG}" --pattern "app-dist.zip" --dir /tmp; then
-            echo "::notice::最新リリース ${LATEST_TAG} の app-dist.zip を /v1 に配置します。"
-            sudo mkdir -p _site/v1
-            sudo unzip -q /tmp/app-dist.zip -d _site/v1
-          else
-            echo "::warning::最新リリース（app-dist.zip）が見つからないため、main のビルド成果物を /v1 に配置します。"
-            echo "::warning::本番用の固定成果物を使う場合は release-app.yml を実行してリリースを作成してください。"
-            if [ ! -d app/dist ]; then
-              echo "::error::フォールバック元の app/dist が存在しません。このジョブのビルドステップが成功しているか確認してください。"
-              exit 1
-            fi
-            sudo mkdir -p _site/v1
-            sudo cp -r app/dist/. _site/v1/
+
+          if [ ! -d app/dist ]; then
+            echo "::error::app/dist が存在しません。このジョブのビルドステップが成功しているか確認してください。"
+            exit 1
           fi
+
+          if [ -n "${LATEST_TAG}" ]; then
+            rm -f /tmp/app-dist.zip
+            if gh release download "${LATEST_TAG}" --pattern "app-dist.zip" --dir /tmp; then
+              echo "::notice::最新リリース ${LATEST_TAG} の app-dist.zip を /v1 に配置します。"
+              sudo mkdir -p _site/v1
+              sudo unzip -q /tmp/app-dist.zip -d _site/v1
+              exit 0
+            fi
+          fi
+
+          echo "::warning::最新リリース（app-dist.zip）が見つからないため、main のビルド成果物を /v1 に配置します。"
+          echo "::warning::本番用の固定成果物を使う場合は release-app.yml を実行してリリースを作成してください。"
+          sudo mkdir -p _site/v1
+          sudo cp -r app/dist/. _site/v1/
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v5
