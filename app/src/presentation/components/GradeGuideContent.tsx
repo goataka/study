@@ -7,6 +7,7 @@
  */
 
 import * as React from "react";
+import { guideContent } from "../styles/guideContentStyles";
 
 /** 1 単元分の表示エントリ。 */
 export interface GradeGuideEntry {
@@ -29,7 +30,7 @@ export interface GradeGuideContentProps {
 /** 学年グループの解説サマリを描画する。 */
 export function GradeGuideContent({ title, entries }: GradeGuideContentProps): React.JSX.Element {
   return (
-    <div className="guide-content px-4 py-3 text-[14px] leading-relaxed text-[#24292e]">
+    <div className={guideContent()}>
       <h2 className="mt-4 mb-2 text-[1.25em] font-semibold leading-tight text-[#24292e] border-b border-[#eaecef] pb-[0.3em]">{`🎓 ${title}`}</h2>
       <p className="mt-0 mb-4">{`対象学年: ${title} / ${entries.length}単元`}</p>
       <ul className="mb-4 pl-8 list-disc">

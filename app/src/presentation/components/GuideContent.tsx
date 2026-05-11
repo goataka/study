@@ -15,6 +15,7 @@
 
 import * as React from "react";
 import { isExternalGuideUrl, sanitizeGuideHtml } from "../quizApp/sanitizeGuideHtml";
+import { guideContent } from "../styles/guideContentStyles";
 
 export interface GuideContentProps {
   /** 解説ページの URL（同一オリジン HTML または外部 URL）。null の場合は何も表示しない。 */
@@ -88,10 +89,5 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
   }
 
   // sanitizeGuideHtml は信頼できるサニタイザとして XSS リスク要素を除去済み。
-  return (
-    <div
-      className="guide-content px-4 py-3 text-[14px] leading-relaxed text-[#24292e]"
-      dangerouslySetInnerHTML={{ __html: state.html }}
-    />
-  );
+  return <div className={guideContent()} dangerouslySetInnerHTML={{ __html: state.html }} />;
 }

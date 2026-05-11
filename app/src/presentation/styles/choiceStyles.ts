@@ -20,11 +20,14 @@
 import { cva } from "class-variance-authority";
 
 export const choiceLabel = cva(
-  "choice-label flex cursor-pointer items-center rounded-lg border-2 border-solid border-[#e0e0e0] px-5 py-[15px] transition-all duration-300" +
-    " hover:border-[#0366d6] hover:bg-[#f0f7ff]" +
-    " has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-60" +
-    " has-[input:disabled]:hover:border-[#e0e0e0] has-[input:disabled]:hover:bg-transparent" +
-    " has-[input:disabled:checked]:border-[#0366d6] has-[input:disabled:checked]:bg-[#f0f7ff] has-[input:disabled:checked]:opacity-100",
+  [
+    "choice-label",
+    "flex cursor-pointer items-center rounded-lg border-2 border-solid border-[#e0e0e0] px-5 py-[15px] transition-all duration-300",
+    "hover:border-[#0366d6] hover:bg-[#f0f7ff]",
+    "has-[input:disabled]:cursor-not-allowed has-[input:disabled]:opacity-60",
+    "has-[input:disabled]:hover:border-[#e0e0e0] has-[input:disabled]:hover:bg-transparent",
+    "has-[input:disabled:checked]:border-[#0366d6] has-[input:disabled:checked]:bg-[#f0f7ff] has-[input:disabled:checked]:opacity-100",
+  ].join(" "),
 );
 
 export const choiceInput = cva("peer mr-[15px] h-5 w-5 cursor-pointer disabled:cursor-not-allowed");
