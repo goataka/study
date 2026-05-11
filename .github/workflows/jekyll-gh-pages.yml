@@ -147,6 +147,7 @@ jobs:
         run: |
           echo "Waiting for production site to be ready at ${PLAYWRIGHT_BASE_URL}"
           BASE_URL="${PLAYWRIGHT_BASE_URL%/}/"
+          APP_URL="${BASE_URL}v1/"
           QUESTIONS_URL="${BASE_URL}v1/questions/index.json"
           for i in $(seq 1 12); do
             APP_ERROR=""
@@ -154,7 +155,7 @@ jobs:
             APP_HTML_FILE=$(mktemp)
             APP_ERROR_LOG=$(mktemp)
             QUESTIONS_ERROR_LOG=$(mktemp)
-            if ! APP_STATUS=$(curl --connect-timeout 5 --max-time 10 -sS -L -o "${APP_HTML_FILE}" -w "%{http_code}" "${BASE_URL}" 2>"${APP_ERROR_LOG}"); then
+            if ! APP_STATUS=$(curl --connect-timeout 5 --max-time 10 -sS -L -o "${APP_HTML_FILE}" -w "%{http_code}" "${APP_URL}" 2>"${APP_ERROR_LOG}"); then
               APP_STATUS="CURL_ERROR"
               if [ -s "${APP_ERROR_LOG}" ]; then
                 APP_ERROR="yes"
