@@ -137,7 +137,10 @@ describe("QuizApp — 回答フィードバック仕様", () => {
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
+    const startBtn = document.getElementById("startRandomBtn") as HTMLButtonElement;
+    await act(async () => {
+      startBtn.click();
+    });
 
     // xssPayload 以外のラジオボタンをクリックして不正解フィードバックを表示させる
     const labels = document.querySelectorAll<HTMLLabelElement>(".choice-label");
