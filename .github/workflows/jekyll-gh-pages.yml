@@ -134,7 +134,7 @@ jobs:
           timeout: 1800000
 
   e2e-production:
-    name: 本番環境E2Eテスト
+    name: RC環境E2Eテスト
     runs-on: ubuntu-latest
     needs: deploy
     defaults:
@@ -155,20 +155,21 @@ jobs:
         # PLAYWRIGHT_VERSION は env で一元管理（ファイル先頭参照）
         run: npx playwright install --with-deps chromium
 
-      - name: 本番サイトの準備完了を確認
+      - name: RCサイトの準備完了を確認
         env:
-          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
+          PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: |
-          echo "Waiting for production site to be ready at ${PLAYWRIGHT_BASE_URL}"
-          BASE_URL="${PLAYWRIGHT_BASE_URL%/}/"
-          QUESTIONS_URL="${BASE_URL}v1/questions/index.json"
+          BASE_URL="${PAGES_BASE_URL%/}/"
+          APP_URL="${BASE_URL}v0/"
+          QUESTIONS_URL="${APP_URL}questions/index.json"
+          echo "Waiting for rc site to be ready at ${APP_URL}"
           for i in $(seq 1 12); do
             APP_ERROR=""
             QUESTIONS_ERROR=""
             APP_HTML_FILE=$(mktemp)
             APP_ERROR_LOG=$(mktemp)
             QUESTIONS_ERROR_LOG=$(mktemp)
-            if ! APP_STATUS=$(curl --connect-timeout 5 --max-time 10 -sS -L -o "${APP_HTML_FILE}" -w "%{http_code}" "${BASE_URL}" 2>"${APP_ERROR_LOG}"); then
+            if ! APP_STATUS=$(curl --connect-timeout 5 --max-time 10 -sS -L -o "${APP_HTML_FILE}" -w "%{http_code}" "${APP_URL}" 2>"${APP_ERROR_LOG}"); then
               APP_STATUS="CURL_ERROR"
               if [ -s "${APP_ERROR_LOG}" ]; then
                 APP_ERROR="yes"
@@ -215,9 +216,9 @@ jobs:
           echo "Site did not become ready within 2 minutes"
           exit 1
 
-      - name: 本番アプリの初期化完了を確認
+      - name: RCアプリの初期化完了を確認
         env:
-          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
+          PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: |
           node <<'JS'
           const { chromium } = require("playwright");
@@ -225,7 +226,8 @@ jobs:
           const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
           (async () => {
-            const baseUrl = process.env.PLAYWRIGHT_BASE_URL;
+            const pagesBaseUrl = process.env.PAGES_BASE_URL ?? "";
+            const baseUrl = `${pagesBaseUrl.replace(/\/?$/, "/")}v0/`;
             const deadline = Date.now() + 120_000;
             let attempt = 0;
             let lastStatsText = "";
@@ -264,7 +266,7 @@ jobs:
               }
             }
 
-            console.error(`Production app did not finish initializing within 2 minutes. Last statsInfo="${lastStatsText}"`);
+            console.error(`RC app did not finish initializing within 2 minutes. Last statsInfo="${lastStatsText}"`);
             process.exit(1);
           })().catch((error) => {
             console.error(error);
@@ -272,7 +274,7 @@ jobs:
           });
           JS
 
-      - name: 本番環境E2Eテスト実行
+      - name: RC環境E2Eテスト実行
         env:
-          PLAYWRIGHT_BASE_URL: ${{ needs.deploy.outputs.page_url }}
-        run: npm run test:e2e
+          PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
+        run: PLAYWRIGHT_BASE_URL="${PAGES_BASE_URL%/}/v0/" npm run test:e2e
