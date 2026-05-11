@@ -68,7 +68,13 @@ jobs:
         run: |
           set -euo pipefail
 
-          LATEST_TAG="$(gh release list --limit 1 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[0].tagName // ""')"
+          if RELEASE_TAG_OUTPUT="$(gh release list --limit 1 --exclude-drafts --exclude-pre-releases --json tagName --jq '.[0].tagName // ""')"; then
+            LATEST_TAG="${RELEASE_TAG_OUTPUT}"
+          else
+            echo "::warning::最新リリースの取得に失敗したため、リリース成果物の展開をスキップしてフォールバックします。"
+            LATEST_TAG=""
+          fi
+
           DEPLOYED_FROM_RELEASE="false"
           sudo mkdir -p _site/v1
 
