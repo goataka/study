@@ -19,6 +19,36 @@ export const SUBJECTS = [
   { id: "admin", name: "管理", icon: "⚙️", tabBg: "#f0f0f0", tabBgActive: "#e0e0e0" },
 ] as const;
 
+/** 教科IDから表示名を取得する。未定義または未登録IDの場合は `undefined` を返す。 */
+export function getSubjectNameById(subjectId: string | undefined): string | undefined {
+  if (!subjectId) return undefined;
+  return SUBJECTS.find((item) => item.id === subjectId)?.name;
+}
+
+export interface UnitNameSource {
+  subject?: string;
+  subjectName?: string;
+  topCategoryName?: string;
+  parentCategoryName?: string;
+  category?: string;
+  categoryName?: string;
+}
+
+/**
+ * 問題の教科・カテゴリ階層情報から表示用の単元名（`A › B › C`）を組み立てる。
+ * source が未定義、または有効な要素が1つもない場合は空文字を返す。
+ */
+export function buildUnitName(source: UnitNameSource | undefined): string {
+  if (!source) return "";
+  const parts = [
+    source.subjectName ?? getSubjectNameById(source.subject),
+    source.topCategoryName,
+    source.parentCategoryName,
+    source.categoryName ?? source.category,
+  ].filter((part): part is string => !!part);
+  return parts.join(" › ");
+}
+
 const KATAKANA_TO_HIRAGANA_OFFSET = 0x60;
 
 /** 参考学年文字列から CSS クラス名を返す（小学→grade-elementary, 中学→grade-middle, 高校→grade-high） */

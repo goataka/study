@@ -1,3 +1,10 @@
+/**
+ * フォントサイズ状態の外部ストア。
+ *
+ * React 側は `useSyncExternalStore` で購読し、`App` が body クラスを反映する。
+ * `syncFontSizeDom` は QuizApp 単体DOMテスト互換のために残している同期ヘルパー。
+ */
+
 export type FontSizeLevel = "small" | "medium" | "large";
 
 type Listener = () => void;

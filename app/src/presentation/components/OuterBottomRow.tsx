@@ -16,6 +16,8 @@ import { getFontSizeSnapshot, subscribeFontSizeStore, type FontSizeLevel } from 
 export function OuterBottomRow(): React.JSX.Element {
   const fontSizeLevel = useSyncExternalStore(subscribeFontSizeStore, getFontSizeSnapshot, getFontSizeSnapshot);
   const isActive = (level: FontSizeLevel): boolean => fontSizeLevel === level;
+  const fontSizeButtonBaseClass =
+    "font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6]";
 
   return (
     <div className="order-2 grid shrink-0 grid-cols-[1fr_auto_1fr] items-center px-1 pt-0.5 pb-0.5">
@@ -52,7 +54,7 @@ export function OuterBottomRow(): React.JSX.Element {
             A
           </span>
           <button
-            className={`font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[11px]${isActive("small") ? " active" : ""}`}
+            className={`${fontSizeButtonBaseClass} text-[11px]${isActive("small") ? " active" : ""}`}
             data-size="small"
             aria-pressed={isActive("small")}
             title="文字サイズ：小"
@@ -60,7 +62,7 @@ export function OuterBottomRow(): React.JSX.Element {
             小
           </button>
           <button
-            className={`font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[15px]${isActive("medium") ? " active" : ""}`}
+            className={`${fontSizeButtonBaseClass} text-[15px]${isActive("medium") ? " active" : ""}`}
             data-size="medium"
             aria-pressed={isActive("medium")}
             title="文字サイズ：中"
@@ -68,7 +70,7 @@ export function OuterBottomRow(): React.JSX.Element {
             中
           </button>
           <button
-            className={`font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6] text-[19px]${isActive("large") ? " active" : ""}`}
+            className={`${fontSizeButtonBaseClass} text-[19px]${isActive("large") ? " active" : ""}`}
             data-size="large"
             aria-pressed={isActive("large")}
             title="文字サイズ：大"

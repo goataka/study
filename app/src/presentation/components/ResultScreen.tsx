@@ -7,7 +7,7 @@
 
 import { useMemo, useSyncExternalStore } from "react";
 import type { AnswerResult } from "../../application/quizUseCase";
-import { SUBJECTS } from "../uiHelpers";
+import { buildUnitName } from "../uiHelpers";
 import { ResultDetailsList } from "../quizApp/ResultDetailsList";
 import { button } from "../styles/buttonStyles";
 import { scoreCircle } from "../styles/scoreCircleStyles";
@@ -82,14 +82,7 @@ function buildResultViewModel(results: AnswerResult[] | null): {
   const correctCount = results?.filter((r) => r.isCorrect).length ?? 0;
   const total = results?.length ?? 0;
   const percentage = total > 0 ? Math.round((correctCount / total) * 100) : 0;
-  const firstQuestion = results?.[0]?.question;
-  const unitParts = [
-    firstQuestion?.subjectName ?? resolveSubjectName(firstQuestion?.subject),
-    firstQuestion?.topCategoryName,
-    firstQuestion?.parentCategoryName,
-    firstQuestion?.categoryName ?? firstQuestion?.category,
-  ].filter((part): part is string => !!part);
-  const unitName = unitParts.join(" › ");
+  const unitName = buildUnitName(results?.[0]?.question);
   const message =
     percentage === 100
       ? "🌟 満点！すごい！"
@@ -102,9 +95,4 @@ function buildResultViewModel(results: AnswerResult[] | null): {
   const scoreClass: "perfect" | "pass" | "fail" = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
 
   return { unitName, message, correctCount, total, percentage, isPerfect, scoreClass };
-}
-
-function resolveSubjectName(subject: string | undefined): string | undefined {
-  if (!subject) return undefined;
-  return SUBJECTS.find((item) => item.id === subject)?.name;
 }

@@ -15,7 +15,7 @@ import {
 } from "../../application/quizUseCase";
 import { setResults } from "../components/resultStore";
 import { scoreCircle } from "../styles/scoreCircleStyles";
-import { SUBJECTS } from "../uiHelpers";
+import { buildUnitName } from "../uiHelpers";
 
 /** クイズ開始時の依存。 */
 export interface StartQuizDeps {
@@ -109,16 +109,10 @@ export function renderResultScreen(results: AnswerResult[]): void {
 function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
   const resultUnitName = document.getElementById("resultUnitName");
   const resultMessage = document.getElementById("resultMessage");
+  // `resultScore` は `setupTabDom` を使う QuizApp 単体テストのレガシーDOM ID 互換のため残す。
   const scoreDisplay = document.getElementById("scoreDisplay") ?? document.getElementById("resultScore");
 
-  const firstQuestion = results[0]?.question;
-  const unitParts = [
-    firstQuestion?.subjectName ?? resolveSubjectName(firstQuestion?.subject),
-    firstQuestion?.topCategoryName,
-    firstQuestion?.parentCategoryName,
-    firstQuestion?.categoryName ?? firstQuestion?.category,
-  ].filter((part): part is string => !!part);
-  const unitName = unitParts.join(" › ");
+  const unitName = buildUnitName(results[0]?.question);
   if (resultUnitName) {
     resultUnitName.textContent = unitName;
     resultUnitName.classList.toggle("hidden", unitName.length === 0);
@@ -149,11 +143,6 @@ function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
       </div>
     `;
   }
-}
-
-function resolveSubjectName(subject: string | undefined): string | undefined {
-  if (!subject) return undefined;
-  return SUBJECTS.find((item) => item.id === subject)?.name;
 }
 
 /**
