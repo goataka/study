@@ -153,7 +153,7 @@ describe("guidePanelUpdater", () => {
     // 2) URL ベースのガイドに遷移する（学年グループを解除して単元選択へ）
     global.fetch = vi.fn().mockResolvedValue({
       ok: true,
-      text: async () => "<html><body><main><h1>外部ガイド</h1></main></body></html>",
+      text: async () => "<html><body><main><h1>外部ガイド</h1><p>ガイド本文</p></main></body></html>",
     } as unknown as Response);
 
     await updateGuidePanelContentByIds(
@@ -176,6 +176,8 @@ describe("guidePanelUpdater", () => {
 
     // React マウントを維持したまま、同一ルートで URL ガイドへ切り替わる
     expect(guideFrame.textContent).not.toContain("小学1年");
-    expect(guideFrame.textContent).toContain("外部ガイド");
+    // h1 は除去されるが本文は表示される
+    expect(guideFrame.textContent).not.toContain("外部ガイド");
+    expect(guideFrame.textContent).toContain("ガイド本文");
   });
 });

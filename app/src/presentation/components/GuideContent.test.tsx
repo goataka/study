@@ -41,11 +41,12 @@ describe("GuideContent", () => {
     expect(link?.href).toContain("example.com/g");
   });
 
-  it("同一オリジン URL は fetch + sanitize して挿入する", async () => {
+  it("同一オリジン URL は fetch + sanitize して挿入する（h1 は除去）", async () => {
     global.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
-        text: () => Promise.resolve("<html><body><h1>タイトル</h1><script>bad()</script></body></html>"),
+        text: () =>
+          Promise.resolve("<html><body><h1>タイトル</h1><h2>見出し</h2><p>本文</p><script>bad()</script></body></html>"),
       } as Response),
     );
 
@@ -55,7 +56,11 @@ describe("GuideContent", () => {
 
     const guide = container.querySelector(".guide-content") as HTMLElement | null;
     expect(guide).not.toBeNull();
-    expect(guide?.innerHTML).toContain("タイトル");
+    // h1/h2 は sanitizeGuideHtml で除去されるため表示されない
+    expect(guide?.innerHTML).not.toContain("タイトル");
+    expect(guide?.innerHTML).not.toContain("見出し");
+    // 本文は残る
+    expect(guide?.innerHTML).toContain("本文");
     expect(guide?.innerHTML).not.toContain("script");
   });
 

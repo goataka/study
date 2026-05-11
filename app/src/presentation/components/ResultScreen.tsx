@@ -25,12 +25,24 @@ export function ResultScreen({ currentScreen }: ResultScreenProps): React.JSX.El
   return (
     <div
       id="resultScreen"
+      data-react-managed="true"
       className={[
         "screen",
         currentScreen !== "result" ? "hidden" : "",
-        "flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-4 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
+        "flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-4 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)] relative",
       ].join(" ")}
     >
+      <button
+        type="button"
+        className="result-close-x-btn absolute top-4 right-4 inline-flex items-center justify-center w-8 h-8 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-base font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6] transition-[background,color,border-color] duration-150"
+        aria-label="閉じる"
+        title="閉じる"
+        onClick={() => {
+          document.getElementById("backToStartBtn")?.click();
+        }}
+      >
+        ✕
+      </button>
       <h2 className="mb-1 text-center text-[26px] text-[#333]">確認結果</h2>
       {/* `result-unit-name` クラス名は font-size 切替の参照キーとして残置 */}
       <div

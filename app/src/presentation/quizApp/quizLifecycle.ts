@@ -134,7 +134,11 @@ function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
             ? "😊 もう少し！次はきっとできる！"
             : "💪 がんばれ！次は必ず正解できます！";
   }
-  if (scoreDisplay) {
+  // React が管理している #resultScreen（data-react-managed 属性あり）では
+  // resultStore を通じて ResultScreen が描画するため scoreDisplay の innerHTML 注入をスキップする。
+  const resultScreen = document.getElementById("resultScreen");
+  const isReactManaged = resultScreen?.hasAttribute("data-react-managed") ?? false;
+  if (scoreDisplay && !isReactManaged) {
     scoreDisplay.innerHTML = `
       <div class="${circleClass}">
         ${isPerfect ? '<div class="score-perfect-icon mb-1 text-[38px]">✅</div>' : ""}

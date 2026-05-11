@@ -55,13 +55,14 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(recName?.textContent).toBeTruthy();
   });
 
-  it("未学習の場合、教科アイテムの進捗率は 0/total 形式で表示される", async () => {
+  it("未学習の場合、教科アイテムの進捗率は表示されない（学習後のみ表示）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
     const pctSpan = englishItem?.querySelector(".subject-overview-pct");
-    expect(pctSpan?.textContent).toBe("0/5");
+    // mastered=0 かつ inProgress=0 の場合は進捗テキストを表示しない
+    expect(pctSpan).toBeNull();
   });
 
   it("outerDate 表示は廃止され、学習履歴に関わらず表示されない", async () => {

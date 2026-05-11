@@ -294,7 +294,7 @@ function RecommendedUnitCard({
               style={{ width: `${inProgressPct}%` }}
             />
           </div>
-          {stats.total > 0 && (
+          {stats.total > 0 && (stats.mastered > 0 || stats.inProgressCount > 0) && (
             <span className="subject-overview-pct text-[11px] text-[#586069] whitespace-nowrap shrink-0">
               {stats.inProgressCount > 0
                 ? `${stats.mastered}(${stats.inProgressCount})/${stats.total}`

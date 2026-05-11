@@ -1,7 +1,7 @@
 /**
  * スタート画面（教科選択時に表示するメイン画面）の最上位コンポーネント。
  *
- * ヘッダー / 単元一覧パネル / 右側パネル / フッター を子コンポーネントから合成する。
+ * ヘッダー / 単元一覧パネル / 右側パネル を子コンポーネントから合成する。
  * 各子要素は既存 `QuizApp` 配下のコントローラ群が `getElementById` 経由で操作する。
  */
 
@@ -27,8 +27,8 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
         currentScreen !== "start" ? "hidden" : "",
         // レイアウト（.screen から移行）
         "flex flex-1 flex-col min-h-0",
-        // #startScreen 固有: ヘッダー/コンテンツ/フッターを1つのノートとして見せるため白背景 + 余白
-        "bg-white p-4 overflow-hidden relative",
+        // #startScreen 固有: ヘッダー/コンテンツを1つのノートとして見せるため白背景 + 余白
+        "bg-white p-2 overflow-hidden relative",
         // ノート全体の影
         "shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
       ].join(" ")}
@@ -53,14 +53,6 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
             "shadow-none md:shadow-[inset_3px_0_6px_rgba(0,0,0,0.08)]",
           ].join(" ")}
         >
-          <button
-            id="mobileBackBtn"
-            className="mobile-back-btn px-3 py-2 text-sm font-semibold text-[#0366d6] border-none bg-transparent cursor-pointer hover:underline"
-            type="button"
-            aria-label="単元一覧に戻る"
-          >
-            ← 単元一覧
-          </button>
           <div id="selectedUnitInfo" className="selected-unit-info hidden">
             <SelectedUnitInfoSection />
           </div>
@@ -70,7 +62,6 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
           <div id="adminContent" className="hidden admin-content-panel" role="region" aria-label="管理"></div>
         </div>
       </div>
-      <footer className="flex min-h-[8px] shrink-0 items-center justify-center gap-3 border-t-2 border-[#c8d8e8] bg-white px-3 py-1 mt-2 text-[#586069] shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)] app-footer"></footer>
     </div>
   );
 }

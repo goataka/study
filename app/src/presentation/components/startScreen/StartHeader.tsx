@@ -7,7 +7,7 @@
 
 export function StartHeader(): React.JSX.Element {
   return (
-    <header className="shrink-0 flex flex-wrap items-center justify-between gap-y-2 bg-white p-4 border-b-2 border-[#c8d8e8]">
+    <header className="shrink-0 flex flex-wrap items-center justify-between gap-y-2 bg-white pt-2 px-4 pb-4 border-b-2 border-[#c8d8e8]">
       <div className="header-title-area flex flex-row items-center gap-2 shrink-0 border-b-2 border-[#c8d8e8] pb-0.5">
         <h1
           id="titleBtn"
@@ -35,15 +35,6 @@ export function StartHeader(): React.JSX.Element {
           aria-label="ページを更新する"
         >
           🔄
-        </button>
-        <button
-          id="adminMenuBtn"
-          className="admin-menu-header-btn inline-flex items-center justify-center w-7 h-7 border-none rounded-md bg-transparent text-[#586069] text-lg cursor-pointer shrink-0 p-0 transition-[background,color] duration-200 hover:text-[#0366d6] hover:bg-[#f0f7ff]"
-          type="button"
-          title="メニュー"
-          aria-label="メニューを開く"
-        >
-          ⚙️
         </button>
       </div>
     </header>
