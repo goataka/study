@@ -17,6 +17,8 @@ import {
   mockManifest,
 } from "./testHelpers";
 
+const FEEDBACK_WAIT_TIMEOUT_MS = 2_000;
+
 describe("QuizApp — 回答フィードバック仕様", () => {
   beforeEach(() => {
     setupMinimalDom();
@@ -193,7 +195,7 @@ describe("QuizApp — 回答フィードバック仕様", () => {
     await chooseAnswerByIndex(Number(wrongRadio?.value));
 
     await waitForCondition(() => (document.getElementById("feedbackResult")?.textContent ?? "").length > 0, {
-      timeout: 2_000,
+      timeout: FEEDBACK_WAIT_TIMEOUT_MS,
     });
     const latestResultDiv = document.getElementById("feedbackResult");
     expect(latestResultDiv?.textContent).toContain(xssPayload);
