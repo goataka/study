@@ -20,6 +20,8 @@ export function resolveDbPrefix(pathname: string): "v1" | "rc" {
   return "v1";
 }
 
+// DB 名はモジュール初期化時の URL で確定する。
+// 環境切り替え（v1/rc）はフルリロード遷移を前提としており、その都度再評価される。
 const DB_PREFIX = typeof window === "undefined" ? "v1" : resolveDbPrefix(window.location.pathname);
 const DB_NAME = `${DB_PREFIX}-studyProgressDB`;
 const DB_VERSION = 1;

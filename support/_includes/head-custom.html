@@ -50,6 +50,7 @@
 </style>
 <script>
   function detectDeployEnv(pathname) {
+    // app 側（OuterBottomRow / IndexedDB）と同等の判定を、Jekyll 側でも単独で使えるよう重複して実装する。
     const segments = pathname.split('/').filter(Boolean);
     for (const segment of segments) {
       if (segment === 'v1' || segment === 'rc') {
@@ -60,6 +61,8 @@
   }
 
   function buildDeployUrl(targetEnv) {
+    // app 側の URL 変換ロジックと似ているが、support ページでは
+    // /support -> /{env}/support を補正する必要があるためここで分岐を持つ。
     const url = new URL(location.href);
     const segments = url.pathname.split('/');
     const envIndex = segments.findIndex((segment) => segment === 'v1' || segment === 'rc');

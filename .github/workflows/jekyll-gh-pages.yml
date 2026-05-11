@@ -105,6 +105,8 @@ jobs:
       - name: サポートサイトを本番/検証環境配下にも配置
         working-directory: ${{ github.workspace }}
         run: |
+          # GitHub Pages ではサーバー側 rewrite / symlink を使えないため、
+          # /support, /v1/support, /rc/support の3経路を静的に配置して切り替えを実現する。
           sudo mkdir -p _site/v1/support _site/rc/support
           sudo cp -r _site/support/. _site/v1/support/
           sudo cp -r _site/support/. _site/rc/support/

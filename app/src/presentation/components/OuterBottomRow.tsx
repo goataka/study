@@ -15,6 +15,8 @@ import { getFontSizeSnapshot, subscribeFontSizeStore, type FontSizeLevel } from 
 
 type DeployEnvironment = "v1" | "rc";
 
+// support/_includes/head-custom.html にも同等ロジックがあるが、
+// React バンドル外（Jekyll 静的ページ）でも動かすためここで独立して持つ。
 function detectCurrentEnvironment(pathname: string): DeployEnvironment {
   const segments = pathname.split("/").filter((segment) => segment.length > 0);
   for (const segment of segments) {
