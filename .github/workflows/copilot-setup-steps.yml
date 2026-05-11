@@ -1,0 +1,48 @@
+name: "Copilot Setup Steps"
+
+# copilot-setup-steps.yml の変更時に自動実行して動作確認できるようにする
+# また Actions タブから手動実行も可能
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  # Copilot が認識するためにジョブ名は copilot-setup-steps にする
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v6
+
+      - name: Node.js 環境のセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: app/package-lock.json
+
+      - name: 依存関係のインストール（lefthook を含む）
+        working-directory: app
+        # LEFTHOOK=0 で prepare スクリプト内の lefthook install をスキップし、
+        # 後続ステップで正しい hooksPath に明示的にインストールする
+        run: LEFTHOOK=0 npm ci
+
+      - name: lefthook を PATH に追加
+        # Copilot セッション中に lefthook コマンドを使えるようにする
+        run: echo "$GITHUB_WORKSPACE/app/node_modules/.bin" >> "$GITHUB_PATH"
+
+      - name: lefthook フックを copilot-hooks にインストール
+        # Copilot agent は core.hooksPath を copilot-hooks に設定するため、
+        # 同じパスに lefthook のフックをインストールしておく
+        run: |
+          git config core.hooksPath copilot-hooks
+          app/node_modules/.bin/lefthook install
