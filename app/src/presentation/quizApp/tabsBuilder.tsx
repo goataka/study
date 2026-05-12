@@ -64,10 +64,10 @@ function SupportPanelContent({ supportHref }: SupportPanelContentProps): React.J
       <h2 className="mb-2 text-lg font-bold">❔ サポート</h2>
       <p className="mb-3">使い方とよくある質問をアプリ内で確認できます。</p>
       <ul className="mb-4 pl-8 list-disc">
-        <li>🚀 スタートアップガイド（使い始め方）</li>
-        <li>🖥️ 機能リファレンス（画面と機能の説明）</li>
-        <li>🔧 技術リファレンス（問題データ仕様）</li>
-        <li>❓ トラブルシューティング（FAQ）</li>
+        <li className="my-1">🚀 スタートアップガイド（使い始め方）</li>
+        <li className="my-1">🖥️ 機能リファレンス（画面と機能の説明）</li>
+        <li className="my-1">🔧 技術リファレンス（問題データ仕様）</li>
+        <li className="my-1">❓ トラブルシューティング（FAQ）</li>
       </ul>
       <p className="mt-4">
         詳細ページ:{" "}
