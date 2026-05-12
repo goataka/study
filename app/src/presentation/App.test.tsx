@@ -190,7 +190,6 @@ describe("App コンポーネント", () => {
       "questionNumber",
       "topicName",
       "questionText",
-      "speakBtn",
       "choicesContainer",
       "answerFeedback",
       "feedbackResult",

@@ -51,7 +51,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
   };
 
   return (
-    <div className="tabs-user-row flex min-h-12 items-center gap-0 shrink-0 bg-white">
+    <div className="tabs-user-row flex min-h-12 items-center gap-0 shrink-0 bg-transparent">
       <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>
         <div
           ref={scrollerRef}
@@ -67,7 +67,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         {canScrollLeft && (
           <button
             type="button"
-            className="absolute left-0 top-[calc(50%+1px)] -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-7 h-[34px] rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
+            className="absolute left-0 top-[calc(50%+1px)] -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-6 h-7 rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
             aria-label="左にスクロール"
             onClick={() => scrollTabs("left")}
           >
@@ -77,7 +77,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         {canScrollRight && (
           <button
             type="button"
-            className="absolute right-0 top-[calc(50%+1px)] -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-7 h-[34px] rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
+            className="absolute right-0 top-[calc(50%+1px)] -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-6 h-7 rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
             aria-label="右にスクロール"
             onClick={() => scrollTabs("right")}
           >

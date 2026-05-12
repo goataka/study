@@ -36,9 +36,6 @@ export interface AppProps {
   bootApp: () => void;
 }
 
-const FONT_SIZE_MEDIUM_PX = "20px";
-const FONT_SIZE_LARGE_PX = "24px";
-
 export function App({ bootApp }: AppProps): React.JSX.Element {
   // React.StrictMode による二重マウントで二重起動しないようガードする
   const bootedRef = useRef(false);
@@ -53,20 +50,14 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
   }, [bootApp]);
 
   useEffect(() => {
-    const prevFontSize = document.documentElement.style.fontSize;
     document.body.classList.remove("font-size-medium", "font-size-large");
     if (fontSizeLevel === "medium") {
       document.body.classList.add("font-size-medium");
-      document.documentElement.style.fontSize = FONT_SIZE_MEDIUM_PX;
     } else if (fontSizeLevel === "large") {
       document.body.classList.add("font-size-large");
-      document.documentElement.style.fontSize = FONT_SIZE_LARGE_PX;
-    } else {
-      document.documentElement.style.fontSize = "";
     }
     return () => {
       document.body.classList.remove("font-size-medium", "font-size-large");
-      document.documentElement.style.fontSize = prevFontSize;
     };
   }, [fontSizeLevel]);
 

@@ -139,7 +139,7 @@ function SubjectOverviewWrapper({
       />
       {!vm.hasItems ? (
         <div
-          className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg border border-[#e1e4e8] bg-white cursor-pointer select-none transition-[background,border-color] duration-150 text-left"
+          className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg border border-[#e1e4e8] bg-transparent cursor-pointer select-none transition-[background,border-color] duration-150 text-left"
           data-subject={vm.subject.id}
         >
           単元なし
@@ -190,7 +190,7 @@ function SubjectOverviewHeaderRow({
               type="button"
               className={[
                 "overall-rec-count-btn",
-                "text-xs px-2 py-0.5 border border-[#d1d5da] rounded bg-white text-[#24292e] cursor-pointer",
+                "text-xs px-2 py-0.5 border border-[#d1d5da] rounded bg-transparent text-[#24292e] cursor-pointer",
                 "transition-[background,border-color] duration-150",
                 "hover:bg-[#e8f0fe] hover:border-[#0366d6]",
                 "[&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white",
@@ -253,7 +253,7 @@ function RecommendedUnitCard({
   };
   return (
     <div
-      className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg border border-[#e1e4e8] bg-white cursor-pointer select-none transition-[background,border-color] duration-150 text-left hover:bg-[#e8f0fe] hover:border-[#0366d6] focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2"
+      className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg border border-[#e1e4e8] bg-transparent cursor-pointer select-none transition-[background,border-color] duration-150 text-left hover:bg-[#e8f0fe] hover:border-[#0366d6] focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2"
       role="button"
       tabIndex={0}
       data-subject={subjectId}
@@ -270,7 +270,7 @@ function RecommendedUnitCard({
             <span
               className={[
                 "subject-overview-grade ml-auto shrink-0",
-                "text-lg px-[5px] py-px rounded-[10px] whitespace-nowrap",
+                "text-xs px-[5px] py-px rounded-[10px] whitespace-nowrap",
                 "[&.grade-elementary]:text-[#c0392b] [&.grade-elementary]:bg-[#fde8e8]",
                 "[&.grade-middle]:text-[#0366d6] [&.grade-middle]:bg-[#e8f0fe]",
                 "[&.grade-high]:text-[#1a7f37] [&.grade-high]:bg-[#e8f8f0]",

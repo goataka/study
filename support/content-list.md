@@ -1,5 +1,5 @@
 ---
-permalink: /support/content-list/
+permalink: /content-list/
 ---
 
 # 📝 コンテンツ一覧

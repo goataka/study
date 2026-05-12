@@ -134,6 +134,9 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
                 className={[
                   gradeClass ? `category-grade ${gradeClass}` : "category-grade",
                   "text-xs whitespace-nowrap px-[5px] py-px rounded-[10px] shrink-0 ml-auto",
+                  "[&.grade-elementary]:text-[#c0392b] [&.grade-elementary]:bg-[#fde8e8]",
+                  "[&.grade-middle]:text-[#0366d6] [&.grade-middle]:bg-[#e8f0fe]",
+                  "[&.grade-high]:text-[#1a7f37] [&.grade-high]:bg-[#e8f8f0]",
                   "group-[.active]:bg-white/25 group-[.active]:text-white",
                 ].join(" ")}
               >

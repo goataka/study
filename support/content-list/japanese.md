@@ -1,5 +1,5 @@
 ---
-permalink: /support/content-list/japanese/
+permalink: /content-list/japanese/
 ---
 
 # 📖 国語コンテンツ一覧
