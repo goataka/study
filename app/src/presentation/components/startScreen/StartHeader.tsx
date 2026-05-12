@@ -13,7 +13,7 @@ export function StartHeader(): React.JSX.Element {
           id="titleBtn"
           role="button"
           tabIndex={0}
-          className="title-btn shrink-0 flex items-center gap-1.5 whitespace-nowrap text-sm font-bold text-[#0366d6] cursor-pointer transition-colors duration-200 hover:text-[#0255b8] focus-visible:text-[#0255b8] focus-visible:outline-none focus-visible:underline px-2 py-1"
+          className="title-btn shrink-0 flex items-center gap-1.5 whitespace-nowrap text-sm font-extrabold text-[#0366d6] cursor-pointer transition-colors duration-200 hover:text-[#0255b8] focus-visible:text-[#0255b8] focus-visible:outline-none focus-visible:underline px-2 py-1"
           title="スタート画面へ戻る"
         >
           <img src="./favicon.svg" className="header-logo w-[18px] h-[18px] shrink-0" alt="" aria-hidden="true" />{" "}

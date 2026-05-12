@@ -109,7 +109,7 @@ function HeaderRow({ name, description }: { name: string; description?: string }
       </div>
       {description !== undefined && (
         <div className="selected-unit-info-header-right shrink-0 text-right">
-          <div className="selected-unit-info-desc-right selected-unit-info-desc text-[13px] text-[#444d56] mt-[3px]">
+          <div className="selected-unit-info-desc-right selected-unit-info-desc text-base text-[#444d56] mt-[3px]">
             {description}
           </div>
         </div>
@@ -150,7 +150,7 @@ function DescRow({
 function GradeBadge({ grade }: { grade: string }): React.JSX.Element {
   const colorClass = gradeColorClass(grade);
   const className = ["category-grade", colorClass].filter(Boolean).join(" ");
-  return <span className={className}>{grade}</span>;
+  return <span className={`${className} text-xs`}>{grade}</span>;
 }
 
 function ProgressRow({

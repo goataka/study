@@ -12,6 +12,7 @@
 
 import type { AnswerResult } from "../../application/quizUseCase";
 import { resultIcon, resultItem } from "../styles/resultItemStyles";
+import { speakButton } from "../styles/speakButtonStyles";
 
 export interface ResultDetailsListProps {
   results: AnswerResult[];
@@ -42,12 +43,39 @@ function ResultItem({ result }: ResultItemProps): React.JSX.Element {
       : (question.choices[userAnswerIndex] ?? "未回答");
   const correctAnswerText = question.choices[question.correct] ?? "";
   const variant = isCorrect ? "correct" : "incorrect";
+  const canSpeakEnglish =
+    question.subject === "english" &&
+    typeof window.speechSynthesis !== "undefined" &&
+    typeof SpeechSynthesisUtterance !== "undefined";
+
+  const handleSpeakClick = (): void => {
+    if (!canSpeakEnglish) return;
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(question.question.trim());
+      utterance.lang = "en-US";
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      // 読み上げ非対応環境では何もしない
+    }
+  };
 
   return (
     <div className={resultItem({ result: variant })}>
       <div className="mb-2.5 flex items-center gap-2">
         <span className={resultIcon({ result: variant })}>{isCorrect ? "✓" : "✗"}</span>
         <span className="result-question flex-1 text-lg font-bold text-[#333]">{question.question}</span>
+        {canSpeakEnglish && (
+          <button
+            type="button"
+            className={`${speakButton()} !mb-0 !mr-1 !px-2.5 !py-0.5`}
+            aria-label="問題文を読み上げる"
+            title="問題文を読み上げる"
+            onClick={handleSpeakClick}
+          >
+            🔊
+          </button>
+        )}
         <span className="result-user-answer shrink-0 text-right text-[15px] whitespace-nowrap text-[#666]">
           {"あなた: "}
           <strong className="text-[#333]">{userAnswerText}</strong>

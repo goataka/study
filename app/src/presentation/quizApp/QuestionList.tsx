@@ -8,6 +8,7 @@
 import { useState } from "react";
 import { flushSync } from "react-dom";
 import type { Question, QuizUseCase } from "../../application/quizUseCase";
+import { speakButton } from "../styles/speakButtonStyles";
 
 export interface QuestionListProps {
   questions: Question[];
@@ -40,6 +41,22 @@ function QuestionListItem({ question, useCase }: QuestionListItemProps): React.J
   const stat = useCase.getQuestionStat(question.id);
   const isCompleted = useCase.isMastered(question.id);
   const streak = useCase.getCorrectStreak(question.id);
+  const canSpeakEnglish =
+    question.subject === "english" &&
+    typeof window.speechSynthesis !== "undefined" &&
+    typeof SpeechSynthesisUtterance !== "undefined";
+
+  const handleSpeakClick = (): void => {
+    if (!canSpeakEnglish) return;
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(question.question.trim());
+      utterance.lang = "en-US";
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      // 読み上げ非対応環境では何もしない
+    }
+  };
 
   // `question-list-item` / `question-list-completed` クラス名は font-size 切替・テスト
   // セレクタ参照のため残置。背景・枠線・右上の折り目（::before / clip-path）も
@@ -76,6 +93,17 @@ function QuestionListItem({ question, useCase }: QuestionListItemProps): React.J
         <span className="question-list-stat shrink-0 rounded-[10px] bg-black/5 px-1.5 py-0.5 text-[13px] whitespace-nowrap text-[#586069]">
           {statText}
         </span>
+        {canSpeakEnglish && (
+          <button
+            type="button"
+            className={`${speakButton()} !mb-0 !px-2.5 !py-0.5`}
+            aria-label="問題文を読み上げる"
+            title="問題文を読み上げる"
+            onClick={handleSpeakClick}
+          >
+            🔊
+          </button>
+        )}
         <button
           type="button"
           className="question-list-hint-btn shrink-0 cursor-pointer rounded border-none bg-transparent px-1 py-0.5 text-lg leading-none hover:bg-[#f0f7ff]"

@@ -99,4 +99,20 @@ describe("GuideContent", () => {
 
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
+
+  it("support 配下への相対 guideUrl は /support/ プレフィックス付きで fetch される", async () => {
+    const fetchMock = vi.fn(() =>
+      Promise.resolve({
+        ok: true,
+        text: () => Promise.resolve("<html><body><p>ok</p></body></html>"),
+      } as Response),
+    );
+    global.fetch = fetchMock as unknown as typeof fetch;
+
+    flushSync(() => root.render(React.createElement(GuideContent, { guideUrl: "./english/grammar/guide" })));
+    await flush();
+    await flush();
+
+    expect(fetchMock).toHaveBeenCalledWith("./support/english/grammar/guide");
+  });
 });

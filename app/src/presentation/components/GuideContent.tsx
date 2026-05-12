@@ -29,6 +29,17 @@ type LoadState =
   | { kind: "ready"; url: string; html: string }
   | { kind: "error"; url: string };
 
+function resolveGuideFetchUrl(guideUrl: string): string {
+  if (/^https?:\/\//i.test(guideUrl)) return guideUrl;
+  if (guideUrl.startsWith("/")) return guideUrl;
+  if (guideUrl.startsWith("./support/") || guideUrl.startsWith("../support/")) return guideUrl;
+  if (guideUrl.startsWith("./") || guideUrl.startsWith("../")) {
+    const relativePath = guideUrl.replace(/^\.\.?\//, "");
+    return `./support/${relativePath}`;
+  }
+  return guideUrl;
+}
+
 export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element | null {
   const [state, setState] = React.useState<LoadState>({ kind: "idle" });
 
@@ -46,7 +57,7 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
     let cancelled = false;
     setState({ kind: "loading", url: guideUrl });
 
-    fetch(guideUrl)
+    fetch(resolveGuideFetchUrl(guideUrl))
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.text();

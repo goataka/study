@@ -79,9 +79,9 @@ export function ProgressDetailPanel(): React.JSX.Element {
         />
         <ProgressDetailTabButton mode="matrix" active={active} id="progressDetailTab-matrix" label="📊 マトリクス" />
       </div>
-      <div className="progress-detail-toolbar px-4 flex justify-end">
+      <div className="progress-detail-toolbar px-4 py-1 flex justify-end">
         <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状況フィルター">
-          <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
+          <span className="category-status-filter-label text-sm text-[#586069]">学習状況：</span>
           <button
             id="progressStatusAllBtn"
             className={`${statusFilterButton()} active`}

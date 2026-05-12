@@ -13,6 +13,17 @@
 
 import { isExternalGuideUrl, sanitizeGuideHtml } from "./sanitizeGuideHtml";
 
+function resolveGuideFetchUrl(guideUrl: string): string {
+  if (/^https?:\/\//i.test(guideUrl)) return guideUrl;
+  if (guideUrl.startsWith("/")) return guideUrl;
+  if (guideUrl.startsWith("./support/") || guideUrl.startsWith("../support/")) return guideUrl;
+  if (guideUrl.startsWith("./") || guideUrl.startsWith("../")) {
+    const relativePath = guideUrl.replace(/^\.\.?\//, "");
+    return `./support/${relativePath}`;
+  }
+  return guideUrl;
+}
+
 /**
  * トークン付きで `loadGuideContent` を呼び出すための環境。
  *
@@ -66,7 +77,7 @@ export async function loadGuideContent(
   }
 
   try {
-    const response = await fetch(guideUrl);
+    const response = await fetch(resolveGuideFetchUrl(guideUrl));
     if (token !== tokenSource.currentToken()) return; // 古いリクエストは破棄
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const html = await response.text();

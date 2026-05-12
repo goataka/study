@@ -133,7 +133,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
               <span
                 className={[
                   gradeClass ? `category-grade ${gradeClass}` : "category-grade",
-                  "text-lg whitespace-nowrap px-[5px] py-px rounded-[10px] shrink-0",
+                  "text-xs whitespace-nowrap px-[5px] py-px rounded-[10px] shrink-0 ml-auto",
                   "group-[.active]:bg-white/25 group-[.active]:text-white",
                 ].join(" ")}
               >

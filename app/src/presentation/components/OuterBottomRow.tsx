@@ -50,6 +50,10 @@ export function OuterBottomRow(): React.JSX.Element {
   const fontSizeLevel = useSyncExternalStore(subscribeFontSizeStore, getFontSizeSnapshot, getFontSizeSnapshot);
   const isActive = (level: FontSizeLevel): boolean => fontSizeLevel === level;
   const currentEnv = typeof window === "undefined" ? "v1" : detectCurrentEnvironment(window.location.pathname);
+  const confirmEnvironmentSwitch = (targetEnv: DeployEnvironment): boolean => {
+    if (targetEnv !== "rc" || currentEnv === "rc") return true;
+    return window.confirm("rc 環境へ切り替えます。よろしいですか？");
+  };
 
   return (
     <div className="order-2 grid shrink-0 grid-cols-[1fr_auto_1fr] items-center px-1 pt-0.5 pb-0.5">
@@ -89,7 +93,13 @@ export function OuterBottomRow(): React.JSX.Element {
           {currentEnv === "rc" ? (
             <strong className="font-bold">rc</strong>
           ) : (
-            <a className="underline hover:opacity-80" href={buildEnvironmentUrl("rc")}>
+            <a
+              className="underline hover:opacity-80"
+              href={buildEnvironmentUrl("rc")}
+              onClick={(e) => {
+                if (!confirmEnvironmentSwitch("rc")) e.preventDefault();
+              }}
+            >
               rc
             </a>
           )}
