@@ -3,7 +3,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { setupFontSizeListeners } from "./eventListeners";
 
-describe("setupFontSizeListeners", () => {
+describe("QuizApp — フォントサイズ切替イベント仕様", () => {
   it("フォントサイズボタンが再描画されてもクリックイベントを処理できる", () => {
     document.body.innerHTML = `
       <div id="fontSizeBtns">

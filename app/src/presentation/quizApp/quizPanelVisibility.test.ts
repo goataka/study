@@ -16,7 +16,7 @@ function createParams(subject: string) {
   };
 }
 
-describe("updateQuizPanelVisibility", () => {
+describe("QuizApp — クイズパネル表示制御仕様", () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div id="subjectContent"><div class="quiz-panel"></div><div class="notebook-spine"></div></div>
