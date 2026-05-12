@@ -96,6 +96,7 @@ export function updateQuizPanelVisibility(params: QuizPanelVisibilityParams): vo
 }
 
 function applyAdminTabLayout(subjectContent: HTMLElement): void {
+  setCategoryPanelBackground("transparent");
   subjectContent.classList.remove("category-only");
   subjectContent.classList.remove("all-subject-layout");
   subjectContent.classList.remove("all-subject-unit-selected");
@@ -132,6 +133,7 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
 }
 
 function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVisibilityParams): void {
+  setCategoryPanelBackground("transparent");
   const hasProgressUnit = params.hasSelectedUnit;
   subjectContent.classList.remove("category-only");
   subjectContent.classList.remove("all-subject-layout");
@@ -173,6 +175,7 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
 }
 
 function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVisibilityParams): void {
+  setCategoryPanelBackground("default");
   const isAll = params.subject === "all";
   const hasOverallUnit = params.hasSelectedUnit;
   const noCategory = !isAll && params.selectionLevel === "none" && !params.isGradeGroupSelected;
@@ -257,4 +260,16 @@ function ensureQuizPanelVisible(subjectContent: HTMLElement): void {
   const notebookSpine = subjectContent.querySelector(".notebook-spine") as HTMLElement | null;
   quizPanel?.classList.remove("hidden");
   notebookSpine?.classList.remove("md:hidden");
+}
+
+function setCategoryPanelBackground(mode: "default" | "transparent"): void {
+  const categoryPanel = document.querySelector(".category-panel");
+  if (!(categoryPanel instanceof HTMLElement)) return;
+  if (mode === "transparent") {
+    categoryPanel.classList.remove("notebook-lines", "bg-white", "shadow-[inset_-3px_0_6px_rgba(0,0,0,0.08)]");
+    categoryPanel.classList.add("bg-transparent", "shadow-none");
+    return;
+  }
+  categoryPanel.classList.remove("bg-transparent", "shadow-none");
+  categoryPanel.classList.add("notebook-lines", "bg-white", "shadow-[inset_-3px_0_6px_rgba(0,0,0,0.08)]");
 }

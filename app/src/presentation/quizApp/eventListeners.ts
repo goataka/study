@@ -161,13 +161,18 @@ export function setupCategoryStatusFilterListeners(
 
 /** フォントサイズ切替ボタンのイベント。 */
 export function setupFontSizeListeners(onSelect: (size: "small" | "medium" | "large") => void): void {
-  document.querySelectorAll<HTMLButtonElement>(".font-size-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const size = btn.dataset.size as "small" | "medium" | "large" | undefined;
-      if (size === "small" || size === "medium" || size === "large") {
-        onSelect(size);
-      }
-    });
+  const container = document.getElementById("fontSizeBtns");
+  if (!container) return;
+  if (container.dataset.fontSizeClickBound === "1") return;
+  container.dataset.fontSizeClickBound = "1";
+  container.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement | null;
+    const button = target?.closest<HTMLButtonElement>(".font-size-btn");
+    if (!button) return;
+    const size = button.dataset.size as "small" | "medium" | "large" | undefined;
+    if (size === "small" || size === "medium" || size === "large") {
+      onSelect(size);
+    }
   });
 }
 

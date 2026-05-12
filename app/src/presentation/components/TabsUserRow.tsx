@@ -57,7 +57,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           ref={scrollerRef}
           className={[
             "subject-tabs",
-            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-2 pb-0 items-end justify-start",
+            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-0 items-end justify-start",
           ].join(" ")}
           role="tablist"
           aria-label="教科を選択"
@@ -67,7 +67,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         {canScrollLeft && (
           <button
             type="button"
-            className="absolute left-0 top-[calc(50%+1px)] -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-6 h-7 rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-6 h-[34px] rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
             aria-label="左にスクロール"
             onClick={() => scrollTabs("left")}
           >
@@ -77,7 +77,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         {canScrollRight && (
           <button
             type="button"
-            className="absolute right-0 top-[calc(50%+1px)] -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-6 h-7 rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-6 h-[34px] rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
             aria-label="右にスクロール"
             onClick={() => scrollTabs("right")}
           >

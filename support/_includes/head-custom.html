@@ -27,6 +27,11 @@
     background-image: url("{{ '/wood-bg.png' | relative_url }}");
     background-repeat: repeat;
   }
+  .site-header,
+  .page-content,
+  .site-footer {
+    background: transparent;
+  }
   .markdown-body {
     position: relative;
     overflow: hidden;
@@ -36,16 +41,6 @@
     border: 1px solid #d1d5da;
     border-radius: 0;
     padding: 16px;
-  }
-  .markdown-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 40%;
-    width: 12px;
-    pointer-events: none;
-    background: linear-gradient(to right, rgba(0,0,0,0.025) 0%, #e3e3e3 20%, #f3f3f3 50%, #e3e3e3 80%, rgba(0,0,0,0.025) 100%);
   }
   .site-footer {
     border-top: 0;
@@ -57,18 +52,22 @@
     padding: 0.4rem 1rem;
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
   }
+  .site-footer p { margin: 0; }
   .site-footer * {
     color: #fff;
   }
   .env-switcher {
-    margin: 0 0 8px;
-    text-align: right;
-    font-size: 14px;
+    margin: 0;
+    font-size: 13px;
     line-height: 1.4;
+    letter-spacing: 0.02em;
   }
   .env-switcher a {
-    color: #0366d6;
+    color: #fff;
+    text-decoration: underline;
   }
   .env-switcher strong {
     font-weight: 700;
@@ -109,7 +108,7 @@
 
   function appendEnvSwitcher() {
     if (new URLSearchParams(location.search).get('embedded') === '1') return;
-    const container = document.querySelector('main') || document.body;
+    const container = document.querySelector('.site-footer .wrapper') || document.querySelector('main') || document.body;
     if (!container || document.getElementById('envSwitcher')) return;
     const current = detectDeployEnv(location.pathname);
     const wrapper = document.createElement('div');
@@ -121,7 +120,7 @@
       ' | ' +
       (current === 'rc' ? '<strong>rc</strong>' : '<a href="' + buildDeployUrl('rc') + '">rc</a>') +
       ' ]';
-    container.prepend(wrapper);
+    container.append(wrapper);
   }
 
   // ?embedded=1 が付与されているとき（クイズの解説 iframe として表示されるとき）、
