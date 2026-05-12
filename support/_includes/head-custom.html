@@ -24,6 +24,7 @@
   html.embedded-mode.font-size-large body { font-size: 1em !important; }
   body {
     background-color: #7a4e28;
+    /* baseurl や配信パス差異（/support 配下など）でも木目背景を維持するため複数候補を指定する */
     background-image: url("{{ '/wood-bg.png' | relative_url }}"), url("../wood-bg.png"), url("./wood-bg.png");
     background-repeat: repeat;
   }
