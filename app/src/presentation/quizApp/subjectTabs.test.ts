@@ -162,4 +162,24 @@ describe("QuizApp — 教科タブ仕様", () => {
     await waitForCondition(() => document.getElementById("panelTab-guide")?.classList.contains("active") === true);
     expect(document.getElementById("panelTab-guide")?.classList.contains("active")).toBe(true);
   });
+
+  it("サポート内容の箇条書きとリンクに視認性クラスが付く", async () => {
+    new QuizApp();
+    await waitForCondition(() => document.querySelector(".subject-tabs #supportBtn") !== null);
+    const supportButton = document.querySelector(".subject-tabs #supportBtn") as HTMLButtonElement | null;
+    expect(supportButton).not.toBeNull();
+    supportButton?.click();
+
+    await waitForCondition(() => document.querySelector("#guidePanelFrame ul") !== null);
+    const list = document.querySelector("#guidePanelFrame ul");
+    const link = document.querySelector("#guidePanelFrame a");
+    expect(list).not.toBeNull();
+    expect(link).not.toBeNull();
+    expect(list?.className).toContain("list-disc");
+    expect(list?.className).toContain("pl-8");
+    expect(link?.className).toContain("underline");
+    expect(link?.className).toContain("text-[#0366d6]");
+    expect(link?.getAttribute("target")).toBe("_blank");
+    expect(link?.getAttribute("rel")).toBe("noopener noreferrer");
+  });
 });

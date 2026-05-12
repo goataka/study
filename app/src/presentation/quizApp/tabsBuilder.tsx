@@ -61,17 +61,22 @@ interface SupportPanelContentProps {
 function SupportPanelContent({ supportHref }: SupportPanelContentProps): React.JSX.Element {
   return (
     <div className={guideContent()}>
-      <h2>❔ サポート</h2>
-      <p>使い方とよくある質問をアプリ内で確認できます。</p>
-      <ul>
+      <h2 className="mb-2 text-lg font-bold">❔ サポート</h2>
+      <p className="mb-3">使い方とよくある質問をアプリ内で確認できます。</p>
+      <ul className="mb-4 pl-8 list-disc">
         <li>🚀 スタートアップガイド（使い始め方）</li>
         <li>🖥️ 機能リファレンス（画面と機能の説明）</li>
         <li>🔧 技術リファレンス（問題データ仕様）</li>
         <li>❓ トラブルシューティング（FAQ）</li>
       </ul>
-      <p>
+      <p className="mt-4">
         詳細ページ:{" "}
-        <a href={supportHref} target="_blank" rel="noopener noreferrer">
+        <a
+          href={supportHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#0366d6] underline hover:text-[#0255b8]"
+        >
           サポートページを開く
         </a>
       </p>
