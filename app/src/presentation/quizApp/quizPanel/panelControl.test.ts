@@ -107,6 +107,8 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(true);
+    const quizPanel = subjectContent?.querySelector(".quiz-panel");
+    expect(quizPanel?.classList.contains("hidden")).toBe(true);
   });
 
   it("カテゴリアイテムをクリックすると category-only クラスが除去される", async () => {
@@ -123,6 +125,8 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
+    const quizPanel = subjectContent?.querySelector(".quiz-panel");
+    expect(quizPanel?.classList.contains("hidden")).toBe(false);
   });
 
   it("総合タブ表示中は「解説」タブボタンが非表示になる", async () => {

@@ -187,6 +187,10 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   // 何も選択されていない場合（総合タブを除く）は右パネルを非表示にしてカテゴリリストを全幅表示する
   // 総合タブは総合サマリパネルを右に表示するため category-only にしない
   subjectContent.classList.toggle("category-only", noCategory);
+  const quizPanel = subjectContent.querySelector(".quiz-panel") as HTMLElement | null;
+  const notebookSpine = subjectContent.querySelector(".notebook-spine") as HTMLElement | null;
+  quizPanel?.classList.toggle("hidden", noCategory);
+  notebookSpine?.classList.toggle("md:hidden", noCategory);
   // 管理コンテンツパネルを非表示にする（管理タブ以外）
   document.getElementById("adminContent")?.classList.add("hidden");
 

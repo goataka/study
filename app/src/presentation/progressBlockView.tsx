@@ -227,8 +227,8 @@ function BlockGroup({ vm, onSelect }: BlockGroupProps): React.JSX.Element {
             type="button"
             className={[
               "progress-block",
-              "inline-flex items-center justify-center min-w-[60px] max-w-[140px] px-1.5 py-[3px]",
-              "rounded-[3px] text-[11px] cursor-pointer border border-[#d1d5da] bg-[#f6f8fa] text-[#24292e]",
+              "inline-flex items-center justify-center min-w-[60px] max-w-[140px] px-2 py-1",
+              "rounded-[3px] text-sm cursor-pointer border border-[#d1d5da] bg-[#f6f8fa] text-[#24292e]",
               "transition-[background] duration-100 overflow-hidden leading-[1.3] break-words font-[inherit] text-left",
               "hover:brightness-[0.92] hover:z-[1]",
               "[&.mastered]:bg-[#28a745] [&.mastered]:border-[#28a745] [&.mastered]:text-white",
