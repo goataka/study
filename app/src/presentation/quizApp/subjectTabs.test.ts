@@ -138,4 +138,13 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(supportLink?.getAttribute("href")).toBe("./support/");
     expect(supportLink?.textContent).toContain("↗");
   });
+
+  it("v1 配下ではサポートリンクが 1 階層上の support を指す", async () => {
+    window.history.replaceState({}, "", "/study/v1/");
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const supportLink = document.querySelector(".subject-tabs #supportBtn") as HTMLAnchorElement | null;
+    expect(supportLink?.getAttribute("href")).toBe("../support/");
+  });
 });

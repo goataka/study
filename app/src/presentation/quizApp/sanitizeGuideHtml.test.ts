@@ -38,6 +38,13 @@ describe("sanitizeGuideHtml", () => {
     expect(out).not.toContain('id="p"');
   });
 
+  it("h1 は除去し、h2 は保持する", () => {
+    const html = `<html><body><h1>大見出し</h1><h2>中見出し</h2></body></html>`;
+    const out = sanitizeGuideHtml(html);
+    expect(out).not.toContain("大見出し");
+    expect(out).toContain("中見出し");
+  });
+
   it("site-header / site-footer / edit-link を除去する", () => {
     const html = `<html><body>
       <header class="site-header">H</header>

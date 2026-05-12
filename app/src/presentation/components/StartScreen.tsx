@@ -28,7 +28,7 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
         // レイアウト（.screen から移行）
         "flex flex-1 flex-col min-h-0",
         // #startScreen 固有: ヘッダー/コンテンツを1つのノートとして見せるため白背景 + 余白
-        "bg-white p-2 overflow-hidden relative",
+        "bg-white px-2 pb-2 pt-0 overflow-hidden relative",
         // ノート全体の影
         "shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
       ].join(" ")}

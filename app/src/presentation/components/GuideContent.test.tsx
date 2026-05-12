@@ -41,7 +41,7 @@ describe("GuideContent", () => {
     expect(link?.href).toContain("example.com/g");
   });
 
-  it("同一オリジン URL は fetch + sanitize して挿入する（h1 は除去）", async () => {
+  it("同一オリジン URL は fetch + sanitize して挿入する（h1 は除去、h2 は保持）", async () => {
     global.fetch = vi.fn(() =>
       Promise.resolve({
         ok: true,
@@ -58,9 +58,10 @@ describe("GuideContent", () => {
 
     const guide = container.querySelector(".guide-content") as HTMLElement | null;
     expect(guide).not.toBeNull();
-    // h1/h2 は sanitizeGuideHtml で除去されるため表示されない
+    // h1 は sanitizeGuideHtml で除去されるため表示されない
     expect(guide?.innerHTML).not.toContain("タイトル");
-    expect(guide?.innerHTML).not.toContain("見出し");
+    // h2 は表示する
+    expect(guide?.innerHTML).toContain("見出し");
     // 本文は残る
     expect(guide?.innerHTML).toContain("本文");
     expect(guide?.innerHTML).not.toContain("script");

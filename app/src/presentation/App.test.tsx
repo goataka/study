@@ -246,7 +246,8 @@ describe("App コンポーネント", () => {
     const appFooter = container!.querySelector(".app-footer");
     const fontSizeButtons = container!.querySelectorAll<HTMLButtonElement>(".font-size-btn");
 
-    expect(startScreen?.className).toContain("p-2");
+    expect(startScreen?.className).toContain("px-2");
+    expect(startScreen?.className).toContain("pt-0");
     expect(startHeader?.className).toContain("pt-2");
     expect(subjectTabs?.className).toContain("px-4");
     // app-footer はフッター削除により存在しない

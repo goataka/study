@@ -29,7 +29,7 @@ function ProgressDetailTabButton({ mode, active, id, label }: ProgressDetailTabB
   const isActive = mode === active;
   return (
     <button
-      className={isActive ? `${panelTab()} active` : panelTab()}
+      className={isActive ? `${panelTab()} text-lg active` : `${panelTab()} text-lg`}
       id={id}
       data-progress-detail-panel={mode}
       role="tab"
@@ -59,7 +59,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
       aria-label="進度詳細"
     >
       <div className="progress-detail-close-row flex items-center justify-between px-4 py-2 border-b border-[#e1e4e8] shrink-0">
-        <span className="progress-detail-close-title text-sm font-bold text-[#24292e]">📊 進度詳細</span>
+        <span className="progress-detail-close-title text-lg font-bold text-[#24292e]">📊 進度詳細</span>
         <button
           id="progressDetailCloseBtn"
           className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
@@ -81,22 +81,37 @@ export function ProgressDetailPanel(): React.JSX.Element {
       </div>
       <div className="progress-detail-toolbar px-4 py-1 flex justify-end">
         <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状況フィルター">
-          <span className="category-status-filter-label text-sm text-[#586069]">学習状況：</span>
+          <span className="category-status-filter-label text-base text-[#586069]">学習状況：</span>
           <button
             id="progressStatusAllBtn"
-            className={`${statusFilterButton()} active`}
+            className={`${statusFilterButton()} !text-base`}
             type="button"
             aria-pressed="true"
           >
             すべて
           </button>
-          <button id="progressStatusUnlearnedBtn" className={statusFilterButton()} type="button" aria-pressed="false">
+          <button
+            id="progressStatusUnlearnedBtn"
+            className={`${statusFilterButton()} !text-base`}
+            type="button"
+            aria-pressed="false"
+          >
             未学習
           </button>
-          <button id="progressStatusStudyingBtn" className={statusFilterButton()} type="button" aria-pressed="false">
+          <button
+            id="progressStatusStudyingBtn"
+            className={`${statusFilterButton()} !text-base`}
+            type="button"
+            aria-pressed="false"
+          >
             学習中
           </button>
-          <button id="progressStatusLearnedBtn" className={statusFilterButton()} type="button" aria-pressed="false">
+          <button
+            id="progressStatusLearnedBtn"
+            className={`${statusFilterButton()} !text-base`}
+            type="button"
+            aria-pressed="false"
+          >
             学習済
           </button>
         </div>

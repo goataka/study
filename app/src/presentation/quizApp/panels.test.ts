@@ -134,7 +134,7 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
     expect(noContent?.classList.contains("hidden")).toBe(false);
   });
 
-  it("「This site is open source」を含む div でもコンテンツ構造（ul 等）を含む場合は除去されない、h2 は解説タブで非表示", async () => {
+  it("「This site is open source」を含む div でもコンテンツ構造（ul 等）を含む場合は除去されず、h2 は表示される", async () => {
     setupTabDom();
     global.fetch = vi.fn((url: string) => {
       const urlStr = String(url);
@@ -167,8 +167,8 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
 
     await waitForCondition(() => !!document.querySelector("#guidePanelFrame .guide-content"));
     const guideFrame = document.getElementById("guidePanelFrame");
-    // h2 は sanitizeGuideHtml で除去されるため「解説タイトル」は表示されない
-    expect(guideFrame?.innerHTML).not.toContain("解説タイトル");
+    // h2 は表示する
+    expect(guideFrame?.innerHTML).toContain("解説タイトル");
     // ul/li はコンテンツ構造として残る
     expect(guideFrame?.innerHTML).toContain("項目1");
     // コンテンツ構造を持たない p タグは除去されること

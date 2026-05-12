@@ -149,8 +149,17 @@ function DescRow({
 
 function GradeBadge({ grade }: { grade: string }): React.JSX.Element {
   const colorClass = gradeColorClass(grade);
-  const className = ["category-grade", colorClass].filter(Boolean).join(" ");
-  return <span className={`${className} text-xs`}>{grade}</span>;
+  const className = [
+    "category-grade",
+    colorClass,
+    "text-xs whitespace-nowrap px-[5px] py-px rounded-[10px] shrink-0",
+    "[&.grade-elementary]:text-[#c0392b] [&.grade-elementary]:bg-[#fde8e8]",
+    "[&.grade-middle]:text-[#0366d6] [&.grade-middle]:bg-[#e8f0fe]",
+    "[&.grade-high]:text-[#1a7f37] [&.grade-high]:bg-[#e8f8f0]",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  return <span className={className}>{grade}</span>;
 }
 
 function ProgressRow({
