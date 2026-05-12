@@ -16,6 +16,7 @@
 import * as React from "react";
 import { isExternalGuideUrl, sanitizeGuideHtml } from "../quizApp/sanitizeGuideHtml";
 import { guideContent } from "../styles/guideContentStyles";
+import { resolveGuideFetchUrl } from "../quizApp/guideFetchUrl";
 
 export interface GuideContentProps {
   /** 解説ページの URL（同一オリジン HTML または外部 URL）。null の場合は何も表示しない。 */
@@ -28,17 +29,6 @@ type LoadState =
   | { kind: "external"; url: string }
   | { kind: "ready"; url: string; html: string }
   | { kind: "error"; url: string };
-
-function resolveGuideFetchUrl(guideUrl: string): string {
-  if (/^https?:\/\//i.test(guideUrl)) return guideUrl;
-  if (guideUrl.startsWith("/")) return guideUrl;
-  if (guideUrl.startsWith("./support/") || guideUrl.startsWith("../support/")) return guideUrl;
-  if (guideUrl.startsWith("./") || guideUrl.startsWith("../")) {
-    const relativePath = guideUrl.replace(/^\.\.?\//, "");
-    return `./support/${relativePath}`;
-  }
-  return guideUrl;
-}
 
 export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element | null {
   const [state, setState] = React.useState<LoadState>({ kind: "idle" });

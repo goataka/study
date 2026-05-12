@@ -12,17 +12,7 @@
  */
 
 import { isExternalGuideUrl, sanitizeGuideHtml } from "./sanitizeGuideHtml";
-
-function resolveGuideFetchUrl(guideUrl: string): string {
-  if (/^https?:\/\//i.test(guideUrl)) return guideUrl;
-  if (guideUrl.startsWith("/")) return guideUrl;
-  if (guideUrl.startsWith("./support/") || guideUrl.startsWith("../support/")) return guideUrl;
-  if (guideUrl.startsWith("./") || guideUrl.startsWith("../")) {
-    const relativePath = guideUrl.replace(/^\.\.?\//, "");
-    return `./support/${relativePath}`;
-  }
-  return guideUrl;
-}
+import { resolveGuideFetchUrl } from "./guideFetchUrl";
 
 /**
  * トークン付きで `loadGuideContent` を呼び出すための環境。
