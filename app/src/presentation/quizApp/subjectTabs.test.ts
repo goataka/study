@@ -186,7 +186,10 @@ describe("QuizApp — 教科タブ仕様", () => {
       button.textContent?.includes("トラブルシューティング"),
     ) as HTMLButtonElement | undefined;
     expect(troubleshootingButton).toBeDefined();
-    troubleshootingButton?.click();
+    if (!troubleshootingButton) {
+      throw new Error("トラブルシューティングボタンが見つかりません");
+    }
+    troubleshootingButton.click();
     await waitForCondition(
       () =>
         document.querySelector("#guidePanelFrame section h3")?.textContent?.includes("トラブルシューティング") === true,
