@@ -11,7 +11,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        bash \
         ca-certificates \
         curl \
         fonts-noto-cjk \
@@ -20,8 +19,6 @@ RUN apt-get update \
         locales \
     && sed -i '/ja_JP.UTF-8/s/^# //g' /etc/locale.gen \
     && locale-gen \
-    # /bin/sh を dash から bash に変更（GitHub Actions の pipefail 対応）
-    && ln -sf bash /bin/sh \
     # ブラウザインストール用の CLI 実行を安定させるため、Playwright をグローバルに導入する
     && npm install -g "@playwright/test@${PLAYWRIGHT_VERSION}" "playwright-bdd@${PLAYWRIGHT_BDD_VERSION}" \
     && npx playwright install --with-deps chromium \

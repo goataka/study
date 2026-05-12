@@ -15,13 +15,6 @@ jobs:
   # Copilot が認識するためにジョブ名は copilot-setup-steps にする
   copilot-setup-steps:
     runs-on: ubuntu-latest
-    container:
-      # Playwright + Chromium などを含む既存のCI用イメージを流用する
-      # GHA の container.image では env を参照せず、GHCR イメージを直接指定する
-      image: ghcr.io/goataka/study-app-ci:latest
-    defaults:
-      run:
-        shell: bash
     permissions:
       contents: read
       packages: read # GHCR からイメージを取得するために必要
@@ -29,9 +22,6 @@ jobs:
     steps:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
-
-      - name: Git safe directory の設定（コンテナ内UID不一致対応）
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
