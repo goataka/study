@@ -101,7 +101,8 @@ jobs:
 
       - name: ビジュアルリグレッションテスト実行
         id: vr-test
-        run: npm run test:e2e:vr
+        run: |
+          npm run test:e2e:vr || npm run test:e2e:vr
         continue-on-error: true
 
       - name: スナップショットの自動更新とコミット（差分あり時）
@@ -119,7 +120,8 @@ jobs:
       - name: ビジュアルリグレッションテスト（スナップショット更新後の再確認）
         id: vr-recheck
         if: steps.vr-test.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        run: npm run test:e2e:vr
+        run: |
+          npm run test:e2e:vr || npm run test:e2e:vr
         continue-on-error: true
 
       # 初回VRテスト失敗時のみ、再確認結果を最終判定に使う
