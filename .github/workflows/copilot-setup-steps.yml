@@ -19,7 +19,9 @@ jobs:
       # Playwright + Chromium などを含む既存のCI用イメージを流用する
       # GHA の container.image では env を参照せず、GHCR イメージを直接指定する
       image: ghcr.io/goataka/study-app-ci:latest
-
+    defaults:
+      run:
+        shell: bash
     permissions:
       contents: read
       packages: read # GHCR からイメージを取得するために必要
