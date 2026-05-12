@@ -7,10 +7,17 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
-import { setupTabDom, setupFetchMock, mockQuestionFile, mountTestContentBridge } from "./testHelpers";
+import {
+  setupTabDom,
+  setupFetchMock,
+  mockQuestionFile,
+  mountTestContentBridge,
+  unmountAllTrackedRoots,
+} from "./testHelpers";
 
 describe("QuizApp — 結果画面の全問正解表示仕様", () => {
   beforeEach(() => {
+    unmountAllTrackedRoots();
     document.body.innerHTML = `
       <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
       <span id="headerUserName"></span>

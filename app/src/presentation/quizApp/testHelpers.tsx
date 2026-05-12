@@ -36,8 +36,14 @@ configureQuizAppDefaultDependencies(() => ({
  */
 const mountedRoots: Root[] = [];
 
-/** 追跡している全 React ルートをアンマウントしてサブスクリプションを解放する。 */
-function unmountAllTrackedRoots(): void {
+/**
+ * 追跡している全 React ルートをアンマウントしてサブスクリプションを解放する。
+ *
+ * `setupMinimalDom` / `setupTabDom` は自動的に呼び出すが、
+ * `mountTestContentBridge` を単独で呼ぶテスト（adminPanel.test.tsx 等）は
+ * `document.body.innerHTML` を置換する前にこの関数を明示的に呼ぶ必要がある。
+ */
+export function unmountAllTrackedRoots(): void {
   while (mountedRoots.length > 0) {
     const root = mountedRoots.pop()!;
     try {

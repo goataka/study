@@ -7,7 +7,7 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
-import { kanjiCanvasMock, waitForCondition, mountTestContentBridge } from "./testHelpers";
+import { kanjiCanvasMock, waitForCondition, mountTestContentBridge, unmountAllTrackedRoots } from "./testHelpers";
 
 // ─── テキスト入力問題のタッチペン入力仕様 ──────────────────────────────────
 
@@ -92,6 +92,7 @@ function setupTextInputDom(): void {
 
 describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () => {
   beforeEach(() => {
+    unmountAllTrackedRoots();
     setupTextInputDom();
     kanjiCanvasMock.recognize.mockReturnValue("");
 
