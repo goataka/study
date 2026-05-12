@@ -39,6 +39,12 @@ export class StubProgressRepository implements IProgressRepository {
   private stats: Record<string, { total: number; correct: number }>;
   private masteredIds: string[];
   private recommendedCounts: Record<string, number>;
+  private userName: string | null = null;
+  private userAvatar: string | null = null;
+  private categoryViewMode: "category" | "grade" = "category";
+  private fontSizeLevel: "small" | "medium" | "large" | null = null;
+  private shareUrl: string = "";
+  private quizSettings: QuizSettings = { questionCount: 10, quizOrder: "random", includeMastered: false };
   constructor(
     initialIds: string[] = [],
     initialHistory: QuizRecord[] = [],
@@ -82,9 +88,17 @@ export class StubProgressRepository implements IProgressRepository {
     return [...this.masteredIds];
   }
   loadUserName(): string | null {
-    return null;
+    return this.userName;
   }
-  saveUserName(_name: string): void {}
+  saveUserName(name: string): void {
+    this.userName = name;
+  }
+  loadUserAvatar(): string | null {
+    return this.userAvatar;
+  }
+  saveUserAvatar(dataUrl: string): void {
+    this.userAvatar = dataUrl;
+  }
   loadHistory() {
     return [...this.history];
   }
@@ -95,13 +109,17 @@ export class StubProgressRepository implements IProgressRepository {
     return [...this.history];
   }
   loadCategoryViewMode(): "category" | "grade" {
-    return "category";
+    return this.categoryViewMode;
   }
-  saveCategoryViewMode(_mode: "category" | "grade"): void {}
+  saveCategoryViewMode(mode: "category" | "grade"): void {
+    this.categoryViewMode = mode;
+  }
   loadFontSizeLevel(): "small" | "medium" | "large" | null {
-    return null;
+    return this.fontSizeLevel;
   }
-  saveFontSizeLevel(_level: "small" | "medium" | "large"): void {}
+  saveFontSizeLevel(level: "small" | "medium" | "large"): void {
+    this.fontSizeLevel = level;
+  }
   loadQuestionStats(): Record<string, { total: number; correct: number }> {
     return { ...this.stats };
   }
@@ -114,27 +132,28 @@ export class StubProgressRepository implements IProgressRepository {
   exportAllData(): UserDataExport {
     return {
       exportedAt: new Date().toISOString(),
-      userName: null,
+      userName: this.userName,
       wrongIds: this.loadWrongIds(),
       correctStreaks: this.loadCorrectStreaks(),
       masteredIds: this.loadMasteredIds(),
       history: this.loadHistory(),
-      categoryViewMode: "category",
-      fontSizeLevel: null,
+      categoryViewMode: this.categoryViewMode,
+      fontSizeLevel: this.fontSizeLevel,
+      recommendedCounts: { ...this.recommendedCounts },
     };
   }
   loadShareUrl(): string {
-    return "";
+    return this.shareUrl;
   }
-  saveShareUrl(_url: string): void {}
-  loadUserAvatar(): string | null {
-    return null;
+  saveShareUrl(url: string): void {
+    this.shareUrl = url;
   }
-  saveUserAvatar(_dataUrl: string): void {}
   loadQuizSettings(): QuizSettings {
-    return { questionCount: 10, quizOrder: "random", includeMastered: false };
+    return { ...this.quizSettings };
   }
-  saveQuizSettings(_settings: QuizSettings): void {}
+  saveQuizSettings(settings: QuizSettings): void {
+    this.quizSettings = { ...settings };
+  }
   loadRecommendedCounts(): Record<string, number> {
     return { ...this.recommendedCounts };
   }
@@ -148,5 +167,11 @@ export class StubProgressRepository implements IProgressRepository {
     this.stats = {};
     this.masteredIds = [];
     this.recommendedCounts = {};
+    this.userName = null;
+    this.userAvatar = null;
+    this.categoryViewMode = "category";
+    this.fontSizeLevel = null;
+    this.shareUrl = "";
+    this.quizSettings = { questionCount: 10, quizOrder: "random", includeMastered: false };
   }
 }

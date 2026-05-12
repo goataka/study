@@ -17,8 +17,10 @@ import { ProgressDetailPanel } from "../components/startScreen/ProgressDetailPan
 import { __resetPanelTabsStoreForTests } from "../components/startScreen/panelTabsStore";
 import { __resetScreenStoreForTests, getScreenSnapshot, subscribeScreenStore } from "../components/screenStore";
 import { configureQuizAppDefaultDependencies } from "../quizApp";
-import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
+import { StubProgressRepository } from "../../application/quizUseCase/testHelpers";
 import { RemoteQuestionRepository } from "../../infrastructure/remoteQuestionRepository";
+
+export { StubProgressRepository };
 import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
 import { categoryListContentStore } from "../components/categoryListContentStore";
@@ -26,7 +28,7 @@ import { selectedUnitInfoContentStore } from "../components/selectedUnitInfoCont
 import { choicesContentStore } from "../components/choicesContentStore";
 
 configureQuizAppDefaultDependencies(() => ({
-  progressRepo: new LocalStorageProgressRepository(),
+  progressRepo: new StubProgressRepository(),
   questionRepo: new RemoteQuestionRepository("questions"),
 }));
 

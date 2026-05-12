@@ -26,7 +26,6 @@ describe("QuizApp — スマホ用単元一覧戻るボタン仕様", () => {
       <button id="adminMenuBtn" class="admin-menu-header-btn">⚙️</button>
     `,
     );
-    localStorage.clear();
   });
 
   afterEach(() => {

@@ -17,7 +17,6 @@ import {
 describe("QuizApp — カテゴリ/サブカテゴリ選択と表示制御仕様", () => {
   beforeEach(() => {
     setupTabDom();
-    localStorage.clear();
   });
 
   afterEach(() => {

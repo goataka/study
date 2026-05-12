@@ -2,7 +2,7 @@
  * QuestionId ValueObject — 仕様テスト
  */
 
-import { QuestionId } from "../QuestionId";
+import { QuestionId } from "./QuestionId";
 
 describe("QuestionId — 問題識別 ValueObject 仕様", () => {
   it("非空文字列から生成できる", () => {

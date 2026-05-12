@@ -5,13 +5,12 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../../quizApp";
-import { setupTabDom, setupFetchMock } from "../testHelpers";
+import { StubProgressRepository, setupTabDom, setupFetchMock } from "../testHelpers";
 
 describe("QuizApp — 問題一覧タブ仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -136,8 +135,9 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
 
   it("「学習済み」フィルターボタンをクリックすると学習済み問題のみ表示される", async () => {
     // 問題を習得済みにしてから確認
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q3"]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveMasteredIds(["q1", "q3"]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
@@ -156,8 +156,9 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
   });
 
   it("「未学習」フィルターボタンをクリックすると未学習問題のみ表示される", async () => {
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q3"]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveMasteredIds(["q1", "q3"]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
@@ -173,8 +174,9 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
   });
 
   it("「すべて」フィルターボタンをクリックすると全問題が再表示される", async () => {
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q3"]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveMasteredIds(["q1", "q3"]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;

@@ -7,13 +7,12 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
-import { setupTabDom, setupFetchMock } from "./testHelpers";
+import { StubProgressRepository, setupTabDom, setupFetchMock } from "./testHelpers";
 
 describe("QuizApp — 進度タブ仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -307,9 +306,10 @@ describe("QuizApp — 進度タブ仕様", () => {
   });
 
   it("進度タブで「未学習」を選ぶと学習済み単元ブロックが非表示になる", async () => {
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    const repo = new StubProgressRepository();
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;

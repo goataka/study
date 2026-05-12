@@ -13,13 +13,13 @@ import {
   setupFetchMockWithParent,
   mockQuestionFile,
   setupMinimalDom,
+  StubProgressRepository,
 } from "../testHelpers";
 
 describe("QuizApp — フォントサイズ切替仕様", () => {
   beforeEach(() => {
     setupMinimalDom();
     setupFetchMock();
-    localStorage.clear();
     // body クラスを初期化する
     document.body.classList.remove("font-size-medium", "font-size-large");
   });
@@ -28,41 +28,45 @@ describe("QuizApp — フォントサイズ切替仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化時にlocalStorageに保存値がなければ bodyにフォントサイズクラスが付かない", async () => {
+  it("初期化時に保存値がなければ bodyにフォントサイズクラスが付かない", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(document.body.classList.contains("font-size-medium")).toBe(false);
     expect(document.body.classList.contains("font-size-large")).toBe(false);
   });
 
-  it("localStorageに medium が保存されていれば初期化時に body.font-size-medium が付く", async () => {
-    localStorage.setItem("fontSizeLevel", "medium");
-    new QuizApp();
+  it("medium が保存されていれば初期化時に body.font-size-medium が付く", async () => {
+    const repo = new StubProgressRepository();
+    repo.saveFontSizeLevel("medium");
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(document.body.classList.contains("font-size-medium")).toBe(true);
     expect(document.body.classList.contains("font-size-large")).toBe(false);
   });
 
-  it("localStorageに large が保存されていれば初期化時に body.font-size-large が付く", async () => {
-    localStorage.setItem("fontSizeLevel", "large");
-    new QuizApp();
+  it("large が保存されていれば初期化時に body.font-size-large が付く", async () => {
+    const repo = new StubProgressRepository();
+    repo.saveFontSizeLevel("large");
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(document.body.classList.contains("font-size-large")).toBe(true);
     expect(document.body.classList.contains("font-size-medium")).toBe(false);
   });
 
-  it("初期化時にlocalStorageへの書き戻しが発生しない（localStorageに保存値がない場合）", async () => {
-    new QuizApp();
+  it("初期化時に fontSizeLevel の書き戻しが発生しない（保存値がない場合）", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(localStorage.getItem("fontSizeLevel")).toBeNull();
+    expect(repo.loadFontSizeLevel()).toBeNull();
   });
 
-  it("初期化時にlocalStorageへの書き戻しが発生しない（medium が保存されている場合）", async () => {
-    localStorage.setItem("fontSizeLevel", "medium");
-    new QuizApp();
+  it("初期化時に fontSizeLevel の書き戻しが発生しない（medium が保存されている場合）", async () => {
+    const repo = new StubProgressRepository();
+    repo.saveFontSizeLevel("medium");
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
     // 初期復元で書き戻しが起きていないことを確認（値は変わらず medium のまま）
-    expect(localStorage.getItem("fontSizeLevel")).toBe("medium");
+    expect(repo.loadFontSizeLevel()).toBe("medium");
   });
 
   it("「中」ボタンをクリックするとbody.font-size-mediumが付く", async () => {
@@ -107,37 +111,41 @@ describe("QuizApp — フォントサイズ切替仕様", () => {
     expect(largeBtn.getAttribute("aria-pressed")).toBe("false");
   });
 
-  it("「中」ボタンクリック後にlocalStorageに medium が保存される", async () => {
-    new QuizApp();
+  it("「中」ボタンクリック後に medium が永続化される", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
     const mediumBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="medium"]')!;
     mediumBtn.click();
-    expect(localStorage.getItem("fontSizeLevel")).toBe("medium");
+    expect(repo.loadFontSizeLevel()).toBe("medium");
   });
 
-  it("「大」ボタンクリック後にlocalStorageに large が保存される", async () => {
-    new QuizApp();
+  it("「大」ボタンクリック後に large が永続化される", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
     const largeBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="large"]')!;
     largeBtn.click();
-    expect(localStorage.getItem("fontSizeLevel")).toBe("large");
+    expect(repo.loadFontSizeLevel()).toBe("large");
   });
 
-  it("「小」ボタンクリック後にlocalStorageに small が保存される", async () => {
-    new QuizApp();
+  it("「小」ボタンクリック後に small が永続化される", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
     const smallBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="small"]')!;
     smallBtn.click();
-    expect(localStorage.getItem("fontSizeLevel")).toBe("small");
+    expect(repo.loadFontSizeLevel()).toBe("small");
   });
 
-  it("フォントサイズ変更時にlocalStorageに値が保存される", async () => {
-    new QuizApp();
+  it("フォントサイズ変更時に値が永続化される", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const largeBtn = document.querySelector<HTMLButtonElement>('.font-size-btn[data-size="large"]')!;
     largeBtn.click();
 
-    expect(localStorage.getItem("fontSizeLevel")).toBe("large");
+    expect(repo.loadFontSizeLevel()).toBe("large");
   });
 });

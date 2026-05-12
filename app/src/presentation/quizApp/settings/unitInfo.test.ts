@@ -18,7 +18,6 @@ describe("QuizApp — 選択中の単元情報パネル仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -102,7 +101,6 @@ describe("QuizApp — 選択中の単元情報パネル仕様", () => {
   it("親カテゴリのみの単元選択時にカテゴリパスバッジが表示される", async () => {
     setupTabDom();
     setupFetchMockWithParent();
-    localStorage.clear();
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -121,7 +119,6 @@ describe("QuizApp — 選択中の単元情報パネル仕様", () => {
   it("トップカテゴリ＋親カテゴリの単元選択時にカテゴリパスバッジが `Top › Parent` 形式で表示される", async () => {
     setupTabDom();
     setupFetchMockWith3Levels();
-    localStorage.clear();
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

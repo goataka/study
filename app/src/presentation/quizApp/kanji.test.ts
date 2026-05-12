@@ -104,7 +104,6 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
       return Promise.resolve({ ok: true, json: () => Promise.resolve(mockTextInputFile) } as Response);
     });
 
-    localStorage.clear();
     mountTestContentBridge();
   });
 

@@ -18,7 +18,6 @@ describe("QuizApp — 親カテゴリタブ仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMockWithParent();
-    localStorage.clear();
   });
 
   afterEach(() => {

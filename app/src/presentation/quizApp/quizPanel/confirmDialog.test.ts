@@ -18,7 +18,6 @@ describe("QuizApp — 確認ダイアログ仕様", () => {
   beforeEach(() => {
     setupMinimalDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {

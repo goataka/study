@@ -17,7 +17,6 @@ describe("QuizApp — 3階層カテゴリ仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMockWith3Levels();
-    localStorage.clear();
   });
 
   afterEach(() => {

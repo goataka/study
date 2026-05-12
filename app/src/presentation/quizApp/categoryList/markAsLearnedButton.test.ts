@@ -11,7 +11,6 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {

@@ -12,13 +12,13 @@ import {
   setupFetchMockWith3Levels,
   setupFetchMockWithParent,
   mockQuestionFile,
+  StubProgressRepository,
 } from "../testHelpers";
 
 describe("QuizApp — クイズ設定永続化仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -26,11 +26,9 @@ describe("QuizApp — クイズ設定永続化仕様", () => {
   });
 
   it("保存済みクイズ設定（問題数）が初期化時に DOM に反映される", async () => {
-    localStorage.setItem(
-      "quizSettings",
-      JSON.stringify({ questionCount: 20, quizOrder: "random", includeMastered: false }),
-    );
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveQuizSettings({ questionCount: 20, quizOrder: "random", includeMastered: false });
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const radio20 = document.querySelector<HTMLInputElement>('input[name="questionCount"][value="20"]');
@@ -40,11 +38,9 @@ describe("QuizApp — クイズ設定永続化仕様", () => {
   });
 
   it("保存済みクイズ設定（並び順）が初期化時に DOM に反映される", async () => {
-    localStorage.setItem(
-      "quizSettings",
-      JSON.stringify({ questionCount: 10, quizOrder: "straight", includeMastered: false }),
-    );
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveQuizSettings({ questionCount: 10, quizOrder: "straight", includeMastered: false });
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const radioStraight = document.querySelector<HTMLInputElement>('input[name="quizOrder"][value="straight"]');
@@ -52,39 +48,37 @@ describe("QuizApp — クイズ設定永続化仕様", () => {
   });
 
   it("保存済みクイズ設定（学習済み含む）が初期化時に DOM に反映される", async () => {
-    localStorage.setItem(
-      "quizSettings",
-      JSON.stringify({ questionCount: 10, quizOrder: "random", includeMastered: true }),
-    );
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveQuizSettings({ questionCount: 10, quizOrder: "random", includeMastered: true });
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const includeRadio = document.querySelector<HTMLInputElement>('input[name="quizLearned"][value="include"]');
     expect(includeRadio?.checked).toBe(true);
   });
 
-  it("問題数ラジオを変更すると localStorage に設定が保存される", async () => {
-    new QuizApp();
+  it("問題数ラジオを変更すると設定が永続化される", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const radio5 = document.querySelector<HTMLInputElement>('input[name="questionCount"][value="5"]');
     radio5!.checked = true;
     radio5?.dispatchEvent(new Event("change", { bubbles: true }));
 
-    const saved = JSON.parse(localStorage.getItem("quizSettings") ?? "{}");
-    expect(saved.questionCount).toBe(5);
+    expect(repo.loadQuizSettings().questionCount).toBe(5);
   });
 
-  it("並び順ラジオを変更すると localStorage に設定が保存される", async () => {
-    new QuizApp();
+  it("並び順ラジオを変更すると設定が永続化される", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const radioStraight = document.querySelector<HTMLInputElement>('input[name="quizOrder"][value="straight"]');
     radioStraight!.checked = true;
     radioStraight?.dispatchEvent(new Event("change", { bubbles: true }));
 
-    const saved = JSON.parse(localStorage.getItem("quizSettings") ?? "{}");
-    expect(saved.quizOrder).toBe("straight");
+    expect(repo.loadQuizSettings().quizOrder).toBe("straight");
   });
 });
 

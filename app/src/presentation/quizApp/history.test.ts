@@ -7,13 +7,12 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
-import { setupTabDom, setupFetchMock, mockQuestionFile } from "./testHelpers";
+import { setupTabDom, setupFetchMock, mockQuestionFile, StubProgressRepository } from "./testHelpers";
 
 describe("QuizApp — 履歴モード表示仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -34,8 +33,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=random の履歴には履歴モード表示がない", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("random")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
@@ -43,8 +43,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=practice の履歴には履歴モード表示がない", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("practice")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("practice")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
@@ -52,8 +53,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=retry の履歴には履歴モード表示がない", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("retry")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("retry")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
@@ -61,8 +63,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=manual の履歴には履歴モード表示がない", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("manual")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const modeEl = document.querySelector(".history-mode");
@@ -70,8 +73,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=manual の履歴のスコアは「-」と表示される", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("manual")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const scoreEl = document.querySelector(".history-score");
@@ -79,8 +83,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=manual の履歴には横三角（▶）が表示されない", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("manual")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const toggleEl = document.querySelector(".history-toggle");
@@ -88,8 +93,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=manual の履歴のヘッダーは操作不可で、click や Enter/Space でも詳細は開かない", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("manual")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("manual")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const header = document.querySelector<HTMLElement>(".history-item-header");
@@ -113,8 +119,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=random の履歴にはスコアが「N/N (N%)」形式で表示される", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("random")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const scoreEl = document.querySelector(".history-score");
@@ -122,8 +129,9 @@ describe("QuizApp — 履歴モード表示仕様", () => {
   });
 
   it("mode=random の履歴には横三角（▶）が表示される", async () => {
-    localStorage.setItem("quizHistory", JSON.stringify([buildRecord("random")]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([buildRecord("random")]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const toggleEl = document.querySelector(".history-toggle");
@@ -157,7 +165,6 @@ describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様"
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -166,8 +173,9 @@ describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様"
 
   it("正解エントリーでは問題文と「正解:」テキストが表示される", async () => {
     const record = buildRecordWithEntries([{ questionId: "q1", isCorrect: true, userAnswerIndex: 0 }]);
-    localStorage.setItem("quizHistory", JSON.stringify([record]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([record]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 履歴を展開するためにヘッダーをクリック
@@ -182,8 +190,9 @@ describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様"
 
   it("不正解エントリーでは「あなたの回答:」と「→ 正解:」が表示される", async () => {
     const record = buildRecordWithEntries([{ questionId: "q1", isCorrect: false, userAnswerIndex: 1 }]);
-    localStorage.setItem("quizHistory", JSON.stringify([record]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([record]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const header = document.querySelector<HTMLElement>(".history-item-header");
@@ -204,8 +213,9 @@ describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様"
         correctAnswerText: "旧データの正解",
       },
     ]);
-    localStorage.setItem("quizHistory", JSON.stringify([record]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([record]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const header = document.querySelector<HTMLElement>(".history-item-header");
@@ -218,8 +228,9 @@ describe("QuizApp — 履歴エントリーの問題文・回答再構築仕様"
 
   it("questionId が存在しない場合はフォールバック表示になる", async () => {
     const record = buildRecordWithEntries([{ questionId: "nonexistent-q", isCorrect: true, userAnswerIndex: 0 }]);
-    localStorage.setItem("quizHistory", JSON.stringify([record]));
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([record]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const header = document.querySelector<HTMLElement>(".history-item-header");
@@ -236,7 +247,6 @@ describe("QuizApp — 単元選択時の履歴抽出仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -244,25 +254,23 @@ describe("QuizApp — 単元選択時の履歴抽出仕様", () => {
   });
 
   it("教科全体（category=all）で解いた履歴でも、単元を選択すると該当問題の履歴が表示される", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "all",
-          categoryName: "英語 全体",
-          mode: "random",
-          totalCount: 1,
-          correctCount: 1,
-          entries: [{ questionId: "q1", isCorrect: true, userAnswerIndex: 0 }],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 1,
+        correctCount: 1,
+        entries: [{ questionId: "q1", isCorrect: true, userAnswerIndex: 0 }],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector<HTMLElement>('.subject-tab[data-subject="english"]');

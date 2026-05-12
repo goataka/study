@@ -16,7 +16,6 @@ import {
 describe("QuizApp — 学年別ビューモード仕様 (#495)", () => {
   beforeEach(() => {
     setupTabDom();
-    localStorage.clear();
   });
 
   afterEach(() => {
