@@ -44,7 +44,3 @@ export function syncFontSizeDom(level: FontSizeLevel): void {
     btn.setAttribute("aria-pressed", String(active));
   });
 }
-
-export function resolveRootFontSize(level: FontSizeLevel): string {
-  return ROOT_FONT_SIZE_BY_LEVEL[level];
-}
