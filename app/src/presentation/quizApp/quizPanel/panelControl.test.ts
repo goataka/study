@@ -301,7 +301,7 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     expect(subjectContent?.classList.contains("category-only")).toBe(true);
   });
 
-  it("カテゴリ未選択状態から進度/管理タブに切り替えると右パネルの hidden が解除される", async () => {
+  it("カテゴリ未選択状態から進度タブに切り替えると右パネルの hidden が解除される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -316,6 +316,18 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     progressTab?.click();
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
     expect(quizPanel?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("カテゴリ未選択状態から管理タブに切り替えると右パネルの hidden が解除される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const subjectContent = document.getElementById("subjectContent");
+    const quizPanel = subjectContent?.querySelector(".quiz-panel");
+    expect(quizPanel?.classList.contains("hidden")).toBe(true);
 
     const adminTab = document.querySelector('.subject-tab[data-subject="admin"]') as HTMLElement;
     adminTab?.click();
