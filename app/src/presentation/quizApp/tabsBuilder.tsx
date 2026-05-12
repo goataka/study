@@ -8,6 +8,7 @@
 
 import { SUBJECTS } from "../uiHelpers";
 import {
+  setActivePanelTab,
   subscribeOverallPanelSideEffect,
   subscribePanelTabSideEffect,
   subscribeProgressDetailSideEffect,
@@ -15,6 +16,8 @@ import {
 import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { subjectTab } from "../styles/subjectTabStyles";
 import { resolveSupportHrefForPath } from "../../shared/deployEnvironment";
+import { guidePanelContentStore } from "../components/guidePanelContentStore";
+import { guideContent } from "../styles/guideContentStyles";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
 export type PanelTab = "quiz" | "guide" | "history" | "questions";
@@ -51,6 +54,31 @@ function resolveSupportHref(): string {
   return resolveSupportHrefForPath(window.location.pathname);
 }
 
+function openSupportInGuidePanel(): void {
+  const supportHref = resolveSupportHref();
+  setActivePanelTab("guide");
+  queueMicrotask(() => {
+    guidePanelContentStore.set(
+      <div className={guideContent()}>
+        <h2>❔ サポート</h2>
+        <p>使い方とよくある質問をアプリ内で確認できます。</p>
+        <ul>
+          <li>🚀 スタートアップガイド（使い始め方）</li>
+          <li>🖥️ 機能リファレンス（画面と機能の説明）</li>
+          <li>🔧 技術リファレンス（問題データ仕様）</li>
+          <li>❓ トラブルシューティング（FAQ）</li>
+        </ul>
+        <p>
+          詳細ページ:{" "}
+          <a href={supportHref} target="_blank" rel="noopener noreferrer">
+            サポートページを開く
+          </a>
+        </p>
+      </div>,
+    );
+  });
+}
+
 function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX.Element {
   return (
     <>
@@ -71,22 +99,21 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
           </button>
         );
       })}
-      <a
+      <button
         id="supportBtn"
+        type="button"
         className={[
           subjectTab({ active: false }),
           "tabs-link-note tabs-link-note-support no-underline",
           "justify-center",
           "bg-[#e8f0ff]",
         ].join(" ")}
-        href={resolveSupportHref()}
-        target="_blank"
-        rel="noopener noreferrer"
-        title="サポートページを開く"
-        aria-label="サポートページを開く"
+        title="サポートを解説パネルで開く"
+        aria-label="サポートを解説パネルで開く"
+        onClick={openSupportInGuidePanel}
       >
-        ❔ サポート ↗
-      </a>
+        ❔ サポート
+      </button>
     </>
   );
 }

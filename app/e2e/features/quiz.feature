@@ -196,8 +196,8 @@ Feature: 学習アプリ
   Scenario: サポートボタン（?）がヘッダーに表示される
     Then the support button should be visible in the header
 
-  Scenario: サポートボタン（?）をクリックすると別タブでサポートページが開く
-    Then the support button should open support page in a new tab
+  Scenario: サポートボタン（?）をクリックすると解説パネル内にサポートが表示される
+    Then the support button should show support content in guide panel
 
   Scenario: 管理タブの初期化パネルが表示される
     When I click the "管理" tab
