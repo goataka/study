@@ -72,7 +72,7 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
 
   return (
     <>
-      <div className="flex flex-col h-full mx-4">
+      <div className="flex flex-col h-full">
         <TabsUserRow currentScreen={currentScreen} />
         <StartScreen currentScreen={currentScreen} />
         <OuterBottomRow />

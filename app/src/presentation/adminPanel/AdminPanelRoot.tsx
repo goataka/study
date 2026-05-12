@@ -216,7 +216,7 @@ export function AdminPanelRoot({
   const viewJsonText = selectedViewSection ? JSON.stringify(selectedViewSection.content, null, 2) : "";
 
   const menuBtnBase =
-    "category-item w-full px-[10px] py-[7px] text-lg font-semibold border border-[#e1e4e8] rounded-md cursor-pointer transition-[background,color,border-color] duration-150 font-[inherit] text-left";
+    "category-item w-full flex items-center gap-2 px-[10px] py-[7px] text-lg font-semibold border border-[#e1e4e8] rounded-md cursor-pointer transition-[background,color,border-color] duration-150 font-[inherit] text-left";
   const menuBtnChild = `${menuBtnBase} bg-white text-[#24292e] hover:bg-[#e8f0fe] hover:border-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white`;
   const tabBtnBase =
     "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit] bg-[#f6f8fa] text-[#586069] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:bg-white [&.active]:text-[#24292e] [&.active]:border-[#d1d5da]";

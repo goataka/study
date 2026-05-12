@@ -99,6 +99,7 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
   subjectContent.classList.remove("category-only");
   subjectContent.classList.remove("all-subject-layout");
   subjectContent.classList.remove("all-subject-unit-selected");
+  ensureQuizPanelVisible(subjectContent);
   // 管理タブでは学習状態フィルターを非表示にする
   const adminStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
@@ -135,6 +136,7 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
   subjectContent.classList.remove("category-only");
   subjectContent.classList.remove("all-subject-layout");
   subjectContent.classList.remove("all-subject-unit-selected");
+  ensureQuizPanelVisible(subjectContent);
   // 進度タブでは学習状態フィルターを非表示にする
   const progressStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (progressStatusFilter) progressStatusFilter.classList.add("hidden");
@@ -187,6 +189,10 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   // 何も選択されていない場合（総合タブを除く）は右パネルを非表示にしてカテゴリリストを全幅表示する
   // 総合タブは総合サマリパネルを右に表示するため category-only にしない
   subjectContent.classList.toggle("category-only", noCategory);
+  const quizPanel = subjectContent.querySelector(".quiz-panel") as HTMLElement | null;
+  const notebookSpine = subjectContent.querySelector(".notebook-spine") as HTMLElement | null;
+  quizPanel?.classList.toggle("hidden", noCategory);
+  notebookSpine?.classList.toggle("md:hidden", noCategory);
   // 管理コンテンツパネルを非表示にする（管理タブ以外）
   document.getElementById("adminContent")?.classList.add("hidden");
 
@@ -244,4 +250,11 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
 
   // 選択中の単元情報パネルを更新する
   params.onUpdateSelectedUnitInfo();
+}
+
+function ensureQuizPanelVisible(subjectContent: HTMLElement): void {
+  const quizPanel = subjectContent.querySelector(".quiz-panel") as HTMLElement | null;
+  const notebookSpine = subjectContent.querySelector(".notebook-spine") as HTMLElement | null;
+  quizPanel?.classList.remove("hidden");
+  notebookSpine?.classList.remove("md:hidden");
 }

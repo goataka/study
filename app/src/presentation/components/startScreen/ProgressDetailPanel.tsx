@@ -81,37 +81,22 @@ export function ProgressDetailPanel(): React.JSX.Element {
       </div>
       <div className="progress-detail-toolbar px-4 py-1 flex justify-end">
         <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状況フィルター">
-          <span className="category-status-filter-label text-base text-[#586069]">学習状況：</span>
+          <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
           <button
             id="progressStatusAllBtn"
-            className={`${statusFilterButton()} !text-base active`}
+            className={`${statusFilterButton()} active`}
             type="button"
             aria-pressed="true"
           >
             すべて
           </button>
-          <button
-            id="progressStatusUnlearnedBtn"
-            className={`${statusFilterButton()} !text-base`}
-            type="button"
-            aria-pressed="false"
-          >
+          <button id="progressStatusUnlearnedBtn" className={statusFilterButton()} type="button" aria-pressed="false">
             未学習
           </button>
-          <button
-            id="progressStatusStudyingBtn"
-            className={`${statusFilterButton()} !text-base`}
-            type="button"
-            aria-pressed="false"
-          >
+          <button id="progressStatusStudyingBtn" className={statusFilterButton()} type="button" aria-pressed="false">
             学習中
           </button>
-          <button
-            id="progressStatusLearnedBtn"
-            className={`${statusFilterButton()} !text-base`}
-            type="button"
-            aria-pressed="false"
-          >
+          <button id="progressStatusLearnedBtn" className={statusFilterButton()} type="button" aria-pressed="false">
             学習済
           </button>
         </div>

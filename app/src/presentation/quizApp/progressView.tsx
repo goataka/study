@@ -81,16 +81,20 @@ function ProgressSubjectListItem({
   callbacks: ProgressSubjectListCallbacks;
 }): React.JSX.Element {
   const isActive = stat.id === callbacks.currentSubjectId;
+  const isMastered = stat.total > 0 && stat.mastered === stat.total;
+  const isInProgress = !isMastered && stat.mastered > 0;
+  const statusIcon = isMastered ? "✅" : isInProgress ? "🟨" : "⬜";
+  const masteredPct = stat.total > 0 ? Math.round((stat.mastered / stat.total) * 100) : 0;
   return (
     <button
       type="button"
       className={[
         "progress-subject-list-item",
-        "category-item flex flex-row items-center gap-2 px-3 py-2 rounded-md border border-[#e1e4e8] bg-white",
-        "cursor-pointer select-none transition-[background,border-color] duration-150 text-left w-full",
-        "hover:bg-[#e8f0fe] hover:border-[#0366d6]",
+        "category-item flex w-full cursor-pointer select-none rounded-md text-left transition-[background,border-color] duration-150",
+        "hover:bg-[#e8f0fe]",
         "focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2",
-        "[&.active]:bg-[#e8f0fe] [&.active]:border-[#0366d6] [&.active]:font-semibold",
+        "[&.active]:bg-[#0366d6] [&.active]:text-white",
+        "group",
         isActive ? "active" : "",
       ]
         .filter(Boolean)
@@ -99,12 +103,31 @@ function ProgressSubjectListItem({
       data-subject={stat.id}
       onClick={() => callbacks.onSelectSubject(stat.id)}
     >
-      <span className="progress-subject-list-icon text-[22px] shrink-0 leading-none" aria-hidden="true">
-        {stat.icon}
-      </span>
-      <div className="progress-subject-list-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
-        <span className="progress-subject-list-name text-lg font-semibold text-[#24292e] break-words">{stat.name}</span>
-        <span className="progress-subject-list-stats text-base text-[#586069]">{`${stat.mastered} / ${stat.total} 単元`}</span>
+      <div className="category-item-left flex min-w-0 flex-1 items-center gap-2 py-[7px] pl-[10px] pr-[14px]">
+        <span className="category-status text-sm shrink-0 leading-none" aria-hidden="true">
+          {statusIcon}
+        </span>
+        <div className="category-name-area flex min-w-0 flex-1 flex-col gap-0.5">
+          <div className="category-title-row flex min-w-0 items-center gap-1.5">
+            <span className="progress-subject-list-icon text-[19px] shrink-0 leading-none" aria-hidden="true">
+              {stat.icon}
+            </span>
+            <span className="progress-subject-list-name text-lg font-semibold text-[#24292e] break-words group-[.active]:text-white">
+              {stat.name}
+            </span>
+          </div>
+          <div className="category-progress-row flex items-center gap-1.5">
+            <div className="category-progress-bar flex h-1 min-w-0 flex-1 overflow-hidden rounded-sm bg-[#e1e4e8]">
+              <div
+                className="category-progress-fill h-full bg-[#28a745] rounded-sm shrink-0"
+                style={{ width: `${masteredPct}%` }}
+              />
+            </div>
+            <span className="progress-subject-list-stats text-[13px] text-[#586069] whitespace-nowrap shrink-0 group-[.active]:text-white/85">
+              {`${stat.mastered}/${stat.total}`}
+            </span>
+          </div>
+        </div>
       </div>
     </button>
   );

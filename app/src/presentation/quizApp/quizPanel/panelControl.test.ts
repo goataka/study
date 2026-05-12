@@ -107,6 +107,8 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(true);
+    const quizPanel = subjectContent?.querySelector(".quiz-panel");
+    expect(quizPanel?.classList.contains("hidden")).toBe(true);
   });
 
   it("カテゴリアイテムをクリックすると category-only クラスが除去される", async () => {
@@ -123,6 +125,8 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(false);
+    const quizPanel = subjectContent?.querySelector(".quiz-panel");
+    expect(quizPanel?.classList.contains("hidden")).toBe(false);
   });
 
   it("総合タブ表示中は「解説」タブボタンが非表示になる", async () => {
@@ -295,6 +299,40 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
 
     const subjectContent = document.getElementById("subjectContent");
     expect(subjectContent?.classList.contains("category-only")).toBe(true);
+  });
+
+  it("カテゴリ未選択状態から進度タブに切り替えると右パネルの hidden が解除される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const subjectContent = document.getElementById("subjectContent");
+    const quizPanel = subjectContent?.querySelector(".quiz-panel");
+    expect(quizPanel?.classList.contains("hidden")).toBe(true);
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+    expect(subjectContent?.classList.contains("category-only")).toBe(false);
+    expect(quizPanel?.classList.contains("hidden")).toBe(false);
+  });
+
+  it("カテゴリ未選択状態から管理タブに切り替えると右パネルの hidden が解除される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+
+    const subjectContent = document.getElementById("subjectContent");
+    const quizPanel = subjectContent?.querySelector(".quiz-panel");
+    expect(quizPanel?.classList.contains("hidden")).toBe(true);
+
+    const adminTab = document.querySelector('.subject-tab[data-subject="admin"]') as HTMLElement;
+    adminTab?.click();
+    expect(subjectContent?.classList.contains("category-only")).toBe(false);
+    expect(quizPanel?.classList.contains("hidden")).toBe(false);
   });
 
   it("解説タブがアクティブな状態で選択済み単元を再クリックすると先頭が自動選択されない", async () => {

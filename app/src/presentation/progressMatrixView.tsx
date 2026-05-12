@@ -213,8 +213,8 @@ function UnitBlock({ unit, onSelect }: UnitBlockProps): React.JSX.Element {
       className={[
         "progress-block progress-block-sm",
         // progress-block ベーススタイル
-        "inline-flex items-center justify-start min-w-0 w-full px-1 py-0.5 m-0",
-        "rounded-[3px] text-[10px] cursor-pointer border border-[#d1d5da] bg-[#f6f8fa] text-[#24292e]",
+        "inline-flex items-center justify-start min-w-0 w-full px-2 py-1 m-0",
+        "rounded-[3px] text-sm cursor-pointer border border-[#d1d5da] bg-[#f6f8fa] text-[#24292e]",
         "transition-[background] duration-100 leading-[1.3] break-all font-[inherit] text-left",
         "hover:brightness-[0.92] hover:z-[1]",
         // progress-block-sm 固有: 縦配置・幅いっぱい

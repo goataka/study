@@ -27,8 +27,8 @@ export function detectDeployEnvironment(pathname: string): DeployEnvironment {
  */
 export function needsParentSupportPath(pathname: string): boolean {
   const segments = toPathSegments(pathname);
-  const env = detectDeployEnvironmentFromSegments(segments);
-  return segments.includes(env);
+  const envSegment = segments[1];
+  return envSegment === "rc" || /^v\d+$/.test(envSegment ?? "");
 }
 
 export function resolveSupportHrefForPath(pathname: string): string {
