@@ -414,7 +414,8 @@ Then("the support button should open support page in a new tab", async ({ page }
   // サポートボタン（?）をクリックすると別タブが開くこと
   const supportBtn = page.locator("#supportBtn");
   await expect(supportBtn).toHaveAttribute("target", "_blank");
-  await expect(supportBtn).toHaveAttribute("href", "./support/");
+  const expectedHref = /\/(?:v1|rc)(?:\/|$)/.test(new URL(page.url()).pathname) ? "../support/" : "./support/";
+  await expect(supportBtn).toHaveAttribute("href", expectedHref);
 
   const [supportPage] = await Promise.all([page.waitForEvent("popup"), supportBtn.click()]);
 
