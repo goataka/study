@@ -185,6 +185,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     const troubleshootingButton = Array.from(menuButtons).find((button) =>
       button.textContent?.includes("トラブルシューティング"),
     ) as HTMLButtonElement | undefined;
+    expect(troubleshootingButton).toBeDefined();
     troubleshootingButton?.click();
     await waitForCondition(
       () =>

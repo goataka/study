@@ -90,7 +90,12 @@ const SUPPORT_SECTIONS: SupportSection[] = [
 
 function SupportPanelContent(): React.JSX.Element {
   const [activeSectionId, setActiveSectionId] = useState<SupportSection["id"]>("startup");
-  const activeSection = SUPPORT_SECTIONS.find((section) => section.id === activeSectionId) ?? SUPPORT_SECTIONS[0]!;
+  const activeSection =
+    SUPPORT_SECTIONS.find((section) => section.id === activeSectionId) ??
+    SUPPORT_SECTIONS.find((section) => section.id === "startup");
+  if (!activeSection) {
+    throw new Error("サポートセクションが未設定です。");
+  }
 
   return (
     <div className={guideContent()}>
