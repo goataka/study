@@ -1,7 +1,8 @@
 // @vitest-environment jsdom
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { canSpeakEnglishQuestion, speakEnglishQuestionText } from "./speakEnglishText";
+import type { Question } from "../../application/quizUseCase";
+import { canSpeakEnglishQuestion, extractSpeechText, speakEnglishQuestionText } from "./speakEnglishText";
 
 describe("speakEnglishText", () => {
   beforeEach(() => {
@@ -22,8 +23,11 @@ describe("speakEnglishText", () => {
       writable: true,
       configurable: true,
     });
-    const question = {
+    const question: Question = {
       subject: "english",
+      subjectName: "英語",
+      category: "alphabet",
+      categoryName: "アルファベット",
       id: "q1",
       question: "apple",
       choices: ["a", "b", "c", "d"],
@@ -34,8 +38,11 @@ describe("speakEnglishText", () => {
   });
 
   it("英語以外の問題では読み上げ不可", () => {
-    const question = {
+    const question: Question = {
       subject: "math",
+      subjectName: "数学",
+      category: "calc",
+      categoryName: "計算",
       id: "q1",
       question: "1+1",
       choices: ["1", "2", "3", "4"],
@@ -61,5 +68,17 @@ describe("speakEnglishText", () => {
     const utterance = speak.mock.calls[0]?.[0] as SpeechSynthesisUtterance;
     expect(utterance.lang).toBe("en-US");
     expect(utterance.text).toBe("apple");
+  });
+
+  it("「」で囲まれた部分だけを抽出できる", () => {
+    expect(extractSpeechText("「A」の読み方は？")).toBe("A");
+  });
+
+  it("バッククォートで囲まれた部分だけを抽出できる", () => {
+    expect(extractSpeechText("次の単語 `banana` を読もう")).toBe("banana");
+  });
+
+  it("末尾ヒント括弧を除去して抽出できる", () => {
+    expect(extractSpeechText("cat (ねこ)")).toBe("cat");
   });
 });

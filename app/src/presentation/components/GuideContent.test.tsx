@@ -100,7 +100,7 @@ describe("GuideContent", () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
-  it("support 配下への相対 guideUrl は /support/ プレフィックス付きで fetch される", async () => {
+  it("support 配下への相対 guideUrl は ./support/ プレフィックス付きで fetch される", async () => {
     const fetchMock = vi.fn(() =>
       Promise.resolve({
         ok: true,
