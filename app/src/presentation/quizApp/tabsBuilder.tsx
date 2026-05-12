@@ -45,10 +45,15 @@ interface SubjectTabsProps {
   currentSubject: string;
 }
 
+const SUPPORT_PARENT_PATH_SEGMENTS = ["/v1", "/rc"] as const;
+
 function resolveSupportHref(): string {
   if (typeof window === "undefined") return "./support/";
   const path = window.location.pathname;
-  if (path.includes("/v1/") || path.endsWith("/v1") || path.includes("/rc/") || path.endsWith("/rc")) {
+  const needsParent = SUPPORT_PARENT_PATH_SEGMENTS.some((segment) => {
+    return path.includes(`${segment}/`) || path.endsWith(segment);
+  });
+  if (needsParent) {
     return "../support/";
   }
   return "./support/";
