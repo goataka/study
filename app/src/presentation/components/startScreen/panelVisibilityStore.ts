@@ -50,3 +50,9 @@ export function setProgressDetailPanelHidden(hidden: boolean): void {
   state = { ...state, progressDetailPanel: hidden };
   notify();
 }
+
+/** テスト用: ストアの状態と listener を初期化する。 */
+export function __resetPanelVisibilityStoreForTests(): void {
+  state = { overallSummaryPanel: true, progressDetailPanel: true };
+  listeners.clear();
+}

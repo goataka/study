@@ -6,7 +6,6 @@
  *
  * `notes-btn.eraser-active` は legacy 側の `classList.toggle("eraser-active", isEraser)`
  * と互換にするため、Tailwind の arbitrary variant `[&.eraser-active]:` を採用する。
- * `pen-size-select` / `pen-color-select` のクラス名は既存テスト・セレクタ互換のため残置している。
  */
 
 import { notesButton, penSelect, cancelQuizButton } from "../../styles/notesPanelStyles";

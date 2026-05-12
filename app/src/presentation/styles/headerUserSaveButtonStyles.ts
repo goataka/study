@@ -2,8 +2,6 @@
  * ヘッダー内ユーザー名保存ボタンの CVA レシピ。
  *
  * `TabsUserRow.tsx` の `#headerUserNameSaveBtn` に使用する。
- * セマンティッククラス（`header-user-save-btn`）は
- * 既存テスト・CSS 互換のため残置する。
  *
  * 利用例:
  *   <button className={headerUserSaveButton()}>✓</button>

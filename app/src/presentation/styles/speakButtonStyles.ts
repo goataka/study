@@ -2,8 +2,7 @@
  * 読み上げボタン（QuizScreen の英語読み上げ）の CVA レシピ。
  *
  * セマンティッククラス（`speak-btn`）は
- * 既存 CSS（`.speak-btn.hidden + .choices-container` のマージン補正）から
- * 参照されるため残置する。
+ * 既存テスト（`kanji.test.ts` / `result.test.ts` 等）互換のため残置する。
  *
  * 利用例:
  *   <button className={speakButton({ hidden: false })}>🔊</button>

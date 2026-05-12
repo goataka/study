@@ -5,7 +5,6 @@
  *   `eraser-active` 状態は legacy 側の `classList.toggle("eraser-active", isEraser)` と
  *   互換にするため、Tailwind の arbitrary variant `[&.eraser-active]:` を採用する。
  * - `penSelect`: 線の太さ・色セレクトボックス共通スタイル。
- *   `pen-size-select` / `pen-color-select` のクラス名は既存テスト・セレクタ互換のため残置。
  * - `cancelQuizButton`: 中止ボタン（円形 ✕）スタイル。
  *   セマンティッククラス（`cancel-quiz-btn`）は既存テスト互換のため残置。
  *

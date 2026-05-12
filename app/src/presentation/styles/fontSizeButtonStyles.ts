@@ -2,7 +2,8 @@
  * 文字サイズ切り替えボタンの CVA レシピ。
  *
  * セマンティッククラス（`font-size-btn`）は
- * 既存の `15-font-size.css` から参照されるため残置する。
+ * DOM セレクタ（`querySelectorAll(".font-size-btn")`）互換のため残置する。
+ * （`fontSizeStore.ts` / `eventListeners.ts` で参照）
  *
  * `active` 状態は `aria-pressed` 属性と `active` クラスの両方で表現する
  * （Tailwind の arbitrary variant `[&.active]:` を使用）。
