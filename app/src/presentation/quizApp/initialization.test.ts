@@ -5,7 +5,7 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
-import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
+import { StubProgressRepository } from "../../application/quizUseCase/testHelpers";
 import type { IQuestionRepository } from "../../application/ports";
 import {
   waitForCondition,
@@ -21,7 +21,6 @@ describe("QuizApp — 初期化仕様", () => {
   beforeEach(() => {
     setupMinimalDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -66,7 +65,7 @@ describe("QuizApp — 初期化仕様", () => {
       ],
     };
 
-    new QuizApp(new LocalStorageProgressRepository(), questionRepo);
+    new QuizApp(new StubProgressRepository(), questionRepo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const statsInfo = document.getElementById("statsInfo");

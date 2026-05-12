@@ -16,7 +16,6 @@ import {
 describe("QuizApp — 学年フィルター仕様 (#494)", () => {
   beforeEach(() => {
     setupTabDom();
-    localStorage.clear();
   });
 
   afterEach(() => {

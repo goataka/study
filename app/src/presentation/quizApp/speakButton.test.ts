@@ -16,7 +16,6 @@ describe("QuizApp — 読み上げボタン仕様", () => {
   beforeEach(() => {
     setupMinimalDom();
     setupFetchMock();
-    localStorage.clear();
 
     speechSynthesisMock = {
       cancel: vi.fn(),

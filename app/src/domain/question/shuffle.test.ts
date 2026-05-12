@@ -2,8 +2,8 @@
  * Question ドメイン — 選択肢シャッフル仕様
  */
 
-import { shuffleChoices } from "..";
-import type { Question } from "..";
+import { shuffleChoices } from ".";
+import type { Question } from ".";
 
 describe("shuffleChoices — 選択肢シャッフル仕様", () => {
   const question: Question = {

@@ -14,7 +14,6 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
     window.history.replaceState({}, "", "/");
   });
 

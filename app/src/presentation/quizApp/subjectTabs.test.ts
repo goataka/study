@@ -18,7 +18,6 @@ describe("QuizApp — 教科タブ仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {

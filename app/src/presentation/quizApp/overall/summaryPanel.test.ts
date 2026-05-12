@@ -5,13 +5,18 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../../quizApp";
-import { waitForCondition, setupTabDom, setupFetchMock, setupFetchMockWith3Levels } from "../testHelpers";
+import {
+  waitForCondition,
+  setupTabDom,
+  setupFetchMock,
+  setupFetchMockWith3Levels,
+  StubProgressRepository,
+} from "../testHelpers";
 
 describe("QuizApp — 総合タブのサマリパネル仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -61,25 +66,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
   it("今日の学習記録がないが過去に記録がある場合、todayActivityContent には空メッセージが表示される", async () => {
     const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: yesterday,
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 8,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: yesterday,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 8,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const container = document.getElementById("todayActivityContent");
@@ -92,25 +95,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
   it("今日の学習記録がある場合、todayActivityContent にスコアが表示される", async () => {
     const today = new Date().toISOString();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: today,
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 8,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 8,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const container = document.getElementById("todayActivityContent");
@@ -119,25 +120,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
   it("todayActivityContent では category=all の当日記録も学習履歴として表示される", async () => {
     const today = new Date().toISOString();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: today,
-          subject: "english",
-          subjectName: "英語",
-          category: "all",
-          categoryName: "英語 全体",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 9,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 9,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const container = document.getElementById("todayActivityContent");
@@ -158,25 +157,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
   it("今日の学習記録がなく過去記録のみの場合、共有テキストは指定日基準で未実施表示になる", async () => {
     const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: yesterday,
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 8,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: yesterday,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 8,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const summaryEl = document.getElementById("shareSummaryText");
@@ -192,26 +189,24 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
   });
 
   it("総合タブの学習状況サマリは履歴だけでなく進捗データで反映される", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 4,
-          entries: [],
-        },
-      ]),
-    );
-    localStorage.setItem("questionStats", JSON.stringify({ q1: { total: 1, correct: 1 } }));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 4,
+        entries: [],
+      },
+    ]);
+    repo.saveQuestionStats({ q1: { total: 1, correct: 1 } });
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const status = document.getElementById("overallSubjectStatusSummary");
@@ -219,25 +214,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
   });
 
   it("進捗データがない履歴のみの単元は学習状況サマリで未学習として扱われる", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 4,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 4,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const status = document.getElementById("overallSubjectStatusSummary");
@@ -248,25 +241,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     setupFetchMockWith3Levels();
 
     const today = new Date().toISOString();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: today,
-          subject: "english",
-          subjectName: "英語",
-          category: "tenses-past",
-          categoryName: "過去形",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 7,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "tenses-past",
+        categoryName: "過去形",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 7,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const summaryEl = document.getElementById("shareSummaryText");
@@ -291,9 +282,10 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
   });
 
   it("共有URLが空の場合 openShareUrlBtn が非表示になる", async () => {
-    localStorage.setItem("overallShareUrl", "https://twitter.com");
+    const repo = new StubProgressRepository();
+    repo.saveShareUrl("https://twitter.com");
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // URLをクリアして保存
@@ -305,21 +297,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(openBtn?.classList.contains("hidden")).toBe(true);
   });
 
-  it("保存した共有URLが localStorageに保存される", async () => {
-    new QuizApp();
+  it("保存した共有URLが progressRepo に保存される", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
     urlInput.value = "https://example.com/share";
     document.getElementById("saveShareUrlBtn")?.click();
 
-    expect(localStorage.getItem("overallShareUrl")).toBe("https://example.com/share");
+    expect(repo.loadShareUrl()).toBe("https://example.com/share");
   });
 
   it("localhost に共有URLが保存されていれば初期表示時に openShareUrlBtn が表示される", async () => {
-    localStorage.setItem("overallShareUrl", "https://twitter.com");
+    const repo = new StubProgressRepository();
+    repo.saveShareUrl("https://twitter.com");
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const openBtn = document.getElementById("openShareUrlBtn");
@@ -338,21 +332,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(openBtn?.classList.contains("hidden")).toBe(true);
   });
 
-  it("javascript: スキームの URL は localStorage に保存されない", async () => {
-    new QuizApp();
+  it("javascript: スキームの URL は progressRepo に保存されない", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const urlInput = document.getElementById("shareUrlInput") as HTMLInputElement;
     urlInput.value = "javascript:alert(1)";
     document.getElementById("saveShareUrlBtn")?.click();
 
-    expect(localStorage.getItem("overallShareUrl")).toBeNull();
+    expect(repo.loadShareUrl()).toBe("");
   });
 
   it("localStorage に javascript: の URL が保存されていても初期表示時に openShareUrlBtn が非表示のままになる", async () => {
-    localStorage.setItem("overallShareUrl", "javascript:alert(1)");
+    const repo = new StubProgressRepository();
+    repo.saveShareUrl("javascript:alert(1)");
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const openBtn = document.getElementById("openShareUrlBtn");
@@ -360,9 +356,10 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
   });
 
   it("shareUrlDisplayBtn をクリックすると編集エリアが開き入力フィールドに現在のURLが設定される", async () => {
-    localStorage.setItem("overallShareUrl", "https://twitter.com");
+    const repo = new StubProgressRepository();
+    repo.saveShareUrl("https://twitter.com");
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     document.getElementById("shareUrlDisplayBtn")?.click();
@@ -407,7 +404,8 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
   });
 
   it("共有URLのURLInputでEnterキーを押すと保存して編集エリアが閉じる", async () => {
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     document.getElementById("shareUrlDisplayBtn")?.click();
@@ -416,11 +414,12 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
 
     expect(document.getElementById("shareUrlEditArea")?.classList.contains("hidden")).toBe(true);
-    expect(localStorage.getItem("overallShareUrl")).toBe("https://example.com/enter");
+    expect(repo.loadShareUrl()).toBe("https://example.com/enter");
   });
 
   it("共有URLのURLInputでEscapeキーを押すと保存せずに編集エリアが閉じ aria-expanded が false になる", async () => {
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     document.getElementById("shareUrlDisplayBtn")?.click();
@@ -431,15 +430,16 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     const displayBtn = document.getElementById("shareUrlDisplayBtn");
     expect(document.getElementById("shareUrlEditArea")?.classList.contains("hidden")).toBe(true);
     expect(displayBtn?.getAttribute("aria-expanded")).toBe("false");
-    expect(localStorage.getItem("overallShareUrl")).toBeNull();
+    expect(repo.loadShareUrl()).toBe("");
   });
 
   it("openShareUrlBtn をクリックすると window.open が正しい引数で呼ばれる", async () => {
-    localStorage.setItem("overallShareUrl", "https://twitter.com");
+    const repo = new StubProgressRepository();
+    repo.saveShareUrl("https://twitter.com");
 
     const openSpy = vi.spyOn(window, "open").mockImplementation(() => null);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     document.getElementById("openShareUrlBtn")?.click();
@@ -459,25 +459,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
   it("category='all' の当日記録は学習数（⭐）にカウントされない", async () => {
     const today = new Date().toISOString();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: today,
-          subject: "english",
-          subjectName: "英語",
-          category: "all",
-          categoryName: "英語 全体",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 9,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "all",
+        categoryName: "英語 全体",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 9,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const label = document.getElementById("overallActivityDateLabel");
@@ -487,25 +485,23 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
   it("存在しないカテゴリ（total===0）の当日記録は学習数（⭐）にカウントされない", async () => {
     const today = new Date().toISOString();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: today,
-          subject: "english",
-          subjectName: "英語",
-          category: "nonexistent-category",
-          categoryName: "存在しないカテゴリ",
-          mode: "random",
-          totalCount: 10,
-          correctCount: 9,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "nonexistent-category",
+        categoryName: "存在しないカテゴリ",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 9,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const label = document.getElementById("overallActivityDateLabel");

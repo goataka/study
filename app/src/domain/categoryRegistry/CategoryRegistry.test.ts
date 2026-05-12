@@ -8,7 +8,7 @@
 
 import { describe, it, expect } from "vitest";
 import type { Question } from "../question";
-import { CategoryRegistry } from "../categoryRegistry";
+import { CategoryRegistry } from "./CategoryRegistry";
 
 function makeQuestion(overrides: Partial<Question> & Pick<Question, "id" | "subject" | "category">): Question {
   return {

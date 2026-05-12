@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { describe, it, expect, beforeEach } from "vitest";
-import { LocalStorageProgressRepository } from "../../infrastructure/localStorageProgressRepository";
+import { StubProgressRepository } from "../../application/quizUseCase/testHelpers";
 import { getFontSizeSnapshot, setFontSizeLevel } from "../components/fontSizeStore";
 import {
   loadUserName,
@@ -18,26 +18,25 @@ import {
 
 describe("appSettingsService", () => {
   beforeEach(() => {
-    localStorage.clear();
     document.body.innerHTML = "";
     setFontSizeLevel("small");
   });
 
   describe("loadUserName", () => {
     it("保存された名前があればそれを返す", () => {
-      const repo = new LocalStorageProgressRepository();
+      const repo = new StubProgressRepository();
       repo.saveUserName("たろう");
       expect(loadUserName(repo, "ゲスト")).toBe("たろう");
     });
     it("保存値がなければ fallback を返す", () => {
-      const repo = new LocalStorageProgressRepository();
+      const repo = new StubProgressRepository();
       expect(loadUserName(repo, "ゲスト")).toBe("ゲスト");
     });
   });
 
   describe("loadFontSize / applyFontSize", () => {
     it("永続化された値があれば store に反映する", () => {
-      const repo = new LocalStorageProgressRepository();
+      const repo = new StubProgressRepository();
       repo.saveFontSizeLevel("large");
       setFontSizeLevel("small");
       const result = loadFontSize(repo, "small");
@@ -45,7 +44,7 @@ describe("appSettingsService", () => {
       expect(getFontSizeSnapshot()).toBe("large");
     });
     it("applyFontSize は persist=true で永続化する", () => {
-      const repo = new LocalStorageProgressRepository();
+      const repo = new StubProgressRepository();
       document.body.innerHTML = `<button class="font-size-btn" data-size="medium"></button>`;
       applyFontSize(repo, "medium", true);
       expect(repo.loadFontSizeLevel()).toBe("medium");
@@ -54,13 +53,13 @@ describe("appSettingsService", () => {
 
   describe("loadShareUrl / saveShareUrl", () => {
     it("不正なスキームは空に正規化される", () => {
-      const repo = new LocalStorageProgressRepository();
+      const repo = new StubProgressRepository();
       const sanitized = saveShareUrl(repo, "javascript:alert(1)");
       expect(sanitized).toBe("");
       expect(loadShareUrl(repo)).toBe("");
     });
     it("有効な URL はそのまま保存される", () => {
-      const repo = new LocalStorageProgressRepository();
+      const repo = new StubProgressRepository();
       saveShareUrl(repo, "https://example.com/share");
       expect(loadShareUrl(repo)).toBe("https://example.com/share");
     });
@@ -68,7 +67,7 @@ describe("appSettingsService", () => {
 
   describe("loadQuizSettings / saveQuizSettings", () => {
     it("保存値を読み込んでラジオボタンを更新する", () => {
-      const repo = new LocalStorageProgressRepository();
+      const repo = new StubProgressRepository();
       saveQuizSettings(repo, { questionCount: 20, quizOrder: "straight", includeMastered: true });
       document.body.innerHTML = `
         <input type="radio" name="questionCount" value="10">
@@ -101,7 +100,7 @@ describe("appSettingsService", () => {
 
   describe("loadRecommendedCounts / saveRecommendedCounts", () => {
     it("Map ↔ Record で双方向に変換できる", () => {
-      const repo = new LocalStorageProgressRepository();
+      const repo = new StubProgressRepository();
       const counts = new Map<string, number>([
         ["english", 3],
         ["math", 5],

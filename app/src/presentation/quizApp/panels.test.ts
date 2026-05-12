@@ -7,7 +7,7 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../quizApp";
-import { waitForCondition, setupMinimalDom, setupTabDom, setupFetchMock } from "./testHelpers";
+import { StubProgressRepository, waitForCondition, setupMinimalDom, setupTabDom, setupFetchMock } from "./testHelpers";
 
 describe("QuizApp — 解説パネルタブ仕様", () => {
   /** guideUrl ありの問題ファイル */
@@ -49,7 +49,6 @@ describe("QuizApp — 解説パネルタブ仕様", () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
-    localStorage.clear();
   });
 
   it("確認タブが解説タブと問題一覧タブの間に存在し、履歴タブが最後に存在する", async () => {
@@ -201,7 +200,6 @@ describe("QuizApp — パネルインナータブ仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -285,9 +283,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
         entries: [],
       },
     ];
-    localStorage.setItem("quizHistory", JSON.stringify(records));
+    const repo = new StubProgressRepository();
+    repo.saveHistory(records);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const historyTab = document.querySelector('.panel-tab[data-panel="history"]') as HTMLElement;
@@ -317,7 +316,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
   });
 
   it("教科タブを選択すると選択した教科の記録のみ表示される", async () => {
-    // 英語と数学の両方の記録をlocalStorageに追加
+    // 英語と数学の両方の記録をrepoに追加
     const records = [
       {
         id: "r1",
@@ -344,9 +343,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
         entries: [],
       },
     ];
-    localStorage.setItem("quizHistory", JSON.stringify(records));
+    const repo = new StubProgressRepository();
+    repo.saveHistory(records);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 英語タブをクリック（デフォルトで英語が選択されているが明示的にクリック）
@@ -360,7 +360,7 @@ describe("QuizApp — パネルインナータブ仕様", () => {
   });
 
   it("数学タブを選択すると数学の記録のみ表示される", async () => {
-    // 英語と数学の両方の記録をlocalStorageに追加
+    // 英語と数学の両方の記録をrepoに追加
     const records = [
       {
         id: "r1",
@@ -387,9 +387,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
         entries: [],
       },
     ];
-    localStorage.setItem("quizHistory", JSON.stringify(records));
+    const repo = new StubProgressRepository();
+    repo.saveHistory(records);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 数学タブをクリック
@@ -430,9 +431,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
         entries: [],
       },
     ];
-    localStorage.setItem("quizHistory", JSON.stringify(records));
+    const repo = new StubProgressRepository();
+    repo.saveHistory(records);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 英語タブをクリックしてカテゴリ一覧を表示
@@ -477,9 +479,10 @@ describe("QuizApp — パネルインナータブ仕様", () => {
         entries: [],
       },
     ];
-    localStorage.setItem("quizHistory", JSON.stringify(records));
+    const repo = new StubProgressRepository();
+    repo.saveHistory(records);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 英語タブをクリックしてカテゴリ一覧を表示
@@ -506,7 +509,6 @@ describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様"
     window.history.pushState({}, "", "/"); // URL を確実にリセット
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -536,25 +538,23 @@ describe("QuizApp — 単元選択時の初期パネルタブ自動選択仕様"
   });
 
   it("解答履歴がある単元をクリックすると確認タブが表示される", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 3,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 英語タブをクリックしてカテゴリ一覧を表示

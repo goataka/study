@@ -2,7 +2,7 @@
  * CategoryPath ValueObject — 仕様テスト
  */
 
-import { CategoryPath } from "../CategoryPath";
+import { CategoryPath } from "./CategoryPath";
 
 describe("CategoryPath — カテゴリ階層 ValueObject 仕様", () => {
   it("subject と category から生成できる", () => {

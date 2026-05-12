@@ -5,13 +5,12 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../../quizApp";
-import { setupTabDom, setupFetchMock, setupFetchMockWithParent } from "../testHelpers";
+import { StubProgressRepository, setupTabDom, setupFetchMock, setupFetchMockWithParent } from "../testHelpers";
 
 describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -31,28 +30,26 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
   });
 
   it("「すべて」フィルター選択時に hide-learned クラスが付与されず学習済みカテゴリが表示対象になる", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 5,
-          entries: [],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
+      },
+    ]);
+    repo.saveWrongIds([]);
     // ✅ が表示されるには全問題が masteredIds に含まれる必要がある
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -130,28 +127,26 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
 
   it("学習済カテゴリ（全問題が masteredIds に含まれる）にはlearnedクラスが付与される", async () => {
     // 全問題が masteredIds に含まれる場合に learned クラスが付与される
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 5,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
+      },
+    ]);
     // 間違いなし・全問題習得済み
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    repo.saveWrongIds([]);
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -162,26 +157,24 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
   });
 
   it("学習中（履歴あり・間違いあり）のカテゴリにはlearnedクラスが付与されない", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 3,
-          entries: [],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 3,
+        entries: [],
+      },
+    ]);
+    repo.saveWrongIds(["q1"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -192,28 +185,26 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
   });
 
   it("filter-learned フィルター適用時、learnedクラスを持つカテゴリが表示対象となる", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 5,
-          entries: [],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
+      },
+    ]);
+    repo.saveWrongIds([]);
     // ✅（learned）には全問題が masteredIds に含まれる必要がある
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 英語タブを選択してカテゴリを表示
@@ -232,12 +223,13 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
 
   it("quizHistoryが空でもmasteredIdsに全問題が含まれる場合、learnedクラスが付与される", async () => {
     // クイズ未実施（履歴なし）でも、全問題を手動で学習済みにした場合に learned 扱いになること
-    localStorage.setItem("quizHistory", JSON.stringify([]));
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([]);
+    repo.saveWrongIds([]);
     // mockQuestionFile は 5問（q1〜q5）
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -254,26 +246,24 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
 
   it("未学習フィルター時、グループヘッダーのバッジは常に空（トロフィー機能廃止）", async () => {
     setupFetchMockWithParent();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 4,
-          correctCount: 4,
-          entries: [],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 4,
+        correctCount: 4,
+        entries: [],
+      },
+    ]);
+    repo.saveWrongIds([]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -290,26 +280,24 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
 
   it("すべて表示フィルターに戻してもグループヘッダーのバッジは空のまま", async () => {
     setupFetchMockWithParent();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 4,
-          correctCount: 4,
-          entries: [],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 4,
+        correctCount: 4,
+        entries: [],
+      },
+    ]);
+    repo.saveWrongIds([]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;

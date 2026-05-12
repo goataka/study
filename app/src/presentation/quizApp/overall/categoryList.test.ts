@@ -5,13 +5,18 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../../quizApp";
-import { waitForCondition, setupTabDom, setupFetchMock, setupFetchMockWith3Levels } from "../testHelpers";
+import {
+  StubProgressRepository,
+  waitForCondition,
+  setupTabDom,
+  setupFetchMock,
+  setupFetchMockWith3Levels,
+} from "../testHelpers";
 
 describe("QuizApp — 総合タブの教科一覧仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -67,25 +72,23 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
   it("outerDate 表示は廃止され、学習履歴に関わらず表示されない", async () => {
     const studyDate = "2025-04-01T10:00:00.000Z";
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: studyDate,
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 5,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: studyDate,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const wrapper = document.querySelector('.subject-overview-wrapper:has([data-subject="english"])');
@@ -121,7 +124,8 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
   });
 
   it("表示数ボタンを押すと progressRepo に保存され、次回 new QuizApp() で復元される", async () => {
-    new QuizApp();
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     // 英語の3ボタンをクリック
@@ -133,14 +137,12 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     btn3?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // localStorage（LocalStorageProgressRepository）に保存されていることを確認
-    const saved = localStorage.getItem("recommendedCounts");
-    expect(saved).not.toBeNull();
-    const parsed = JSON.parse(saved!) as Record<string, number>;
-    expect(parsed["english"]).toBe(3);
+    // progressRepo に保存されていることを確認
+    const saved = repo.loadRecommendedCounts();
+    expect(saved["english"]).toBe(3);
 
-    // 再初期化して復元されることを確認
-    new QuizApp();
+    // 再初期化して復元されることを確認（同じ repo を渡す）
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const wrappers2 = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
@@ -153,27 +155,25 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
   it("全問正解の学習済みカテゴリは進捗率100%と表示される", async () => {
     const studyDate = new Date().toISOString();
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: studyDate,
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 5,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: studyDate,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
+      },
+    ]);
     // getCategoryProgressPct は mastered / total で算出するため全問題を masteredIds に設定する
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
@@ -249,25 +249,23 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
   });
 
   it("総合タブのおすすめ単元をクリックすると（履歴あり）確認タブが表示される", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 3,
-          correctCount: 3,
-          entries: [],
-        },
-      ]),
-    );
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 3,
+        correctCount: 3,
+        entries: [],
+      },
+    ]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishItem = document.querySelector<HTMLElement>('.subject-overview-item[data-subject="english"]');

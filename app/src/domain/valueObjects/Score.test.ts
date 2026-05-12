@@ -2,7 +2,7 @@
  * Score ValueObject — 仕様テスト
  */
 
-import { Score } from "../Score";
+import { Score } from "./Score";
 
 describe("Score — クイズ採点結果 ValueObject 仕様", () => {
   it("正解数と全問数から生成できる", () => {

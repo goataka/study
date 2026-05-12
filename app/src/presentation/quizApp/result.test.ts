@@ -8,6 +8,7 @@
 
 import { QuizApp } from "../quizApp";
 import {
+  StubProgressRepository,
   setupTabDom,
   setupFetchMock,
   mockQuestionFile,
@@ -55,7 +56,6 @@ describe("QuizApp — 結果画面の全問正解表示仕様", () => {
       </div>
     `;
     setupFetchMock();
-    localStorage.clear();
     mountTestContentBridge();
   });
 
@@ -145,7 +145,6 @@ describe("QuizApp — 確認結果画面の単元名表示仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -220,7 +219,6 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -252,34 +250,32 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
   });
 
   it("学習済（間違いなし）カテゴリの進捗バーは 100% になり progress-fill-done クラスが付く", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 5,
-          entries: [
-            { questionId: "q1", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q2", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q3", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q4", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
-          ],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [
+          { questionId: "q1", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q2", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q3", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q4", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
+        ],
+      },
+    ]);
+    repo.saveWrongIds([]);
     // 進捗バーは mastered / total を使うため全問題を mastered に設定する
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -315,34 +311,32 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
   });
 
   it("学習済（間違いなし）カテゴリの進捗数値は mastered/total 形式になる", async () => {
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 5,
-          entries: [
-            { questionId: "q1", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q2", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q3", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q4", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
-          ],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [
+          { questionId: "q1", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q2", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q3", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q4", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
+        ],
+      },
+    ]);
+    repo.saveWrongIds([]);
     // 進捗バーは mastered / total を使うため全問題を mastered に設定する
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -355,36 +349,34 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
 
   it("学習中問題ありのカテゴリの進捗数値は mastered(inProgress)/total 形式になり、バー幅も 80% になる", async () => {
     // mockQuestionFile には q1–q5 の5問がある。q1 を学習中（1回解答済み未習得）として登録し、q2–q5 を習得済みとする。
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "random",
-          totalCount: 5,
-          correctCount: 4,
-          entries: [
-            { questionId: "q1", isCorrect: false, userAnswerIndex: 1 },
-            { questionId: "q2", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q3", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q4", isCorrect: true, userAnswerIndex: 0 },
-            { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
-          ],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify(["q1"]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 5,
+        correctCount: 4,
+        entries: [
+          { questionId: "q1", isCorrect: false, userAnswerIndex: 1 },
+          { questionId: "q2", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q3", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q4", isCorrect: true, userAnswerIndex: 0 },
+          { questionId: "q5", isCorrect: true, userAnswerIndex: 0 },
+        ],
+      },
+    ]);
+    repo.saveWrongIds(["q1"]);
     // 進捗バーは mastered / total を使うため q2–q5 の4問を mastered に設定する（4/5 = 80%）
-    localStorage.setItem("masteredIds", JSON.stringify(["q2", "q3", "q4", "q5"]));
+    repo.saveMasteredIds(["q2", "q3", "q4", "q5"]);
     // q1 は1回回答済みで未習得（学習中）
-    localStorage.setItem("questionStats", JSON.stringify({ q1: { total: 1, correct: 0 } }));
+    repo.saveQuestionStats({ q1: { total: 1, correct: 0 } });
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -403,28 +395,26 @@ describe("QuizApp — カテゴリ進捗バー仕様", () => {
 
   it("手動で学習済みにしたカテゴリ（entries が空の manual レコード）の進捗バーは 100% になる", async () => {
     // manual モードは entries が空でも履歴レコードが存在する（学習済みマーク機能）
-    localStorage.setItem(
-      "quizHistory",
-      JSON.stringify([
-        {
-          id: "r1",
-          date: new Date().toISOString(),
-          subject: "english",
-          subjectName: "英語",
-          category: "phonics-1",
-          categoryName: "フォニックス（1文字）",
-          mode: "manual",
-          totalCount: 5,
-          correctCount: 5,
-          entries: [],
-        },
-      ]),
-    );
-    localStorage.setItem("wrongQuestions", JSON.stringify([]));
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "manual",
+        totalCount: 5,
+        correctCount: 5,
+        entries: [],
+      },
+    ]);
+    repo.saveWrongIds([]);
     // markCategoryAsLearned は masteredIds にも追加するため、テストでも masteredIds を設定する
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
 
-    new QuizApp();
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;

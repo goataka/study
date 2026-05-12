@@ -2,8 +2,8 @@
  * QuizSession 集約 — 仕様テスト
  */
 
-import { QuizSession } from "../quizSession";
-import type { Question } from "../question";
+import { QuizSession } from "./quizSession";
+import type { Question } from "./question";
 
 const makeQuestion = (id: string, correct = 0): Question => ({
   id,

@@ -16,7 +16,6 @@ import {
 describe("QuizApp — 単元アイテム解説ボタン仕様 (#501)", () => {
   beforeEach(() => {
     setupTabDom();
-    localStorage.clear();
   });
 
   afterEach(() => {

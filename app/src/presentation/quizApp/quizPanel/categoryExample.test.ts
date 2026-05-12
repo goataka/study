@@ -16,13 +16,11 @@ import {
 describe("QuizApp — カテゴリ例文表示仕様", () => {
   afterEach(() => {
     vi.restoreAllMocks();
-    localStorage.clear();
   });
 
   it("example なしのカテゴリでは例文要素が存在しない", async () => {
     setupTabDom();
     setupFetchMock(); // mockQuestionFile には example がない
-    localStorage.clear();
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -38,7 +36,6 @@ describe("QuizApp — カテゴリ例文表示仕様", () => {
   it("description も example もないカテゴリでは category-item-inline-info が存在しない", async () => {
     setupTabDom();
     setupFetchMock(); // mockQuestionFile には description も example もない
-    localStorage.clear();
 
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

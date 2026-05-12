@@ -12,13 +12,13 @@ import {
   setupFetchMockWith3Levels,
   setupFetchMockWithParent,
   mockQuestionFile,
+  StubProgressRepository,
 } from "../testHelpers";
 
 describe("QuizApp — 学習済みフィルター（含める/含めない）仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
@@ -27,8 +27,8 @@ describe("QuizApp — 学習済みフィルター（含める/含めない）仕
 
   it("初期状態では「含めない」が選択されており全問習得済み時にスタートできない", async () => {
     // 全問を習得済みにする
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
-    new QuizApp();
+    const repo = new StubProgressRepository([], [], {}, {}, ["q1", "q2", "q3", "q4", "q5"]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
@@ -59,8 +59,8 @@ describe("QuizApp — 学習済みフィルター（含める/含めない）仕
 
   it("「含める」を選択すると学習済み問題も含めてスタートできる", async () => {
     // 全問を習得済みにする
-    localStorage.setItem("masteredIds", JSON.stringify(["q1", "q2", "q3", "q4", "q5"]));
-    new QuizApp();
+    const repo = new StubProgressRepository([], [], {}, {}, ["q1", "q2", "q3", "q4", "q5"]);
+    new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;

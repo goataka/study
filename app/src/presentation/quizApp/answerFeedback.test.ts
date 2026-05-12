@@ -14,7 +14,6 @@ describe("QuizApp — 回答フィードバック仕様", () => {
   beforeEach(() => {
     setupMinimalDom();
     setupFetchMock();
-    localStorage.clear();
   });
 
   afterEach(() => {
