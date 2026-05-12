@@ -110,12 +110,11 @@ jobs:
         run: |
           # Jekyllのビルド先は _site/support/ のため、
           # guide URL（./english/... 等）がRC/本番環境から参照できるよう
-          # 教科ディレクトリを rc/ と v1/ 直下にコピーする。
-          for subject_dir in english math japanese; do
-            if [ -d "_site/support/$subject_dir" ]; then
-              sudo cp -r "_site/support/$subject_dir" "_site/rc/"
-              sudo cp -r "_site/support/$subject_dir" "_site/v1/"
-            fi
+          # support 配下の教科ディレクトリを rc/ と v1/ 直下にコピーする。
+          shopt -s nullglob
+          for subject_path in _site/support/*/; do
+            sudo cp -r "${subject_path}" "_site/rc/"
+            sudo cp -r "${subject_path}" "_site/v1/"
           done
           # アプリの href="./support/" リンクが解決できるよう
           # サポートサイト全体を rc/support/ と v1/support/ にも配置する。
