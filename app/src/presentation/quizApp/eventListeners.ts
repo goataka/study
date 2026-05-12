@@ -10,6 +10,8 @@ import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
 import { getScreenNameFromHistoryState, getScreenSnapshot, setCurrentScreen } from "../components/screenStore";
 import { setProgressDetailPanelHidden } from "../components/startScreen/panelVisibilityStore";
 
+const fontSizeListenerBoundContainers = new WeakSet<HTMLElement>();
+
 /** ヘッダー（タイトルロゴ・ユーザー名編集・管理メニュー）のイベント。 */
 export interface HeaderListenersCallbacks {
   onTitleClick: () => void;
@@ -163,8 +165,8 @@ export function setupCategoryStatusFilterListeners(
 export function setupFontSizeListeners(onSelect: (size: "small" | "medium" | "large") => void): void {
   const container = document.getElementById("fontSizeBtns");
   if (!container) return;
-  if (container.dataset.fontSizeClickBound === "1") return;
-  container.dataset.fontSizeClickBound = "1";
+  if (fontSizeListenerBoundContainers.has(container)) return;
+  fontSizeListenerBoundContainers.add(container);
   container.addEventListener("click", (event) => {
     const target = event.target as HTMLElement | null;
     const button = target?.closest<HTMLButtonElement>(".font-size-btn");
