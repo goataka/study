@@ -36,18 +36,18 @@ describe("QuizApp — クイズパネル表示制御仕様", () => {
     `;
   });
 
-  it("管理タブではカテゴリパネル背景が透明になる", () => {
+  it("管理タブではカテゴリパネル背景がノート背景のままになる", () => {
     updateQuizPanelVisibility(createParams("admin"));
     const categoryPanel = document.querySelector(".category-panel");
-    expect(categoryPanel?.classList.contains("bg-transparent")).toBe(true);
-    expect(categoryPanel?.classList.contains("notebook-lines")).toBe(false);
+    expect(categoryPanel?.classList.contains("bg-transparent")).toBe(false);
+    expect(categoryPanel?.classList.contains("notebook-lines")).toBe(true);
   });
 
-  it("進度タブではカテゴリパネル背景が透明になる", () => {
+  it("進度タブではカテゴリパネル背景がノート背景のままになる", () => {
     updateQuizPanelVisibility(createParams("progress"));
     const categoryPanel = document.querySelector(".category-panel");
-    expect(categoryPanel?.classList.contains("bg-transparent")).toBe(true);
-    expect(categoryPanel?.classList.contains("notebook-lines")).toBe(false);
+    expect(categoryPanel?.classList.contains("bg-transparent")).toBe(false);
+    expect(categoryPanel?.classList.contains("notebook-lines")).toBe(true);
   });
 
   it("通常教科タブではカテゴリパネル背景がノート背景に戻る", () => {

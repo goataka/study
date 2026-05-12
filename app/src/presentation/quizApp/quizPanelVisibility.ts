@@ -96,7 +96,7 @@ export function updateQuizPanelVisibility(params: QuizPanelVisibilityParams): vo
 }
 
 function applyAdminTabLayout(subjectContent: HTMLElement): void {
-  setCategoryPanelBackground("transparent");
+  setCategoryPanelBackground("default");
   subjectContent.classList.remove("category-only");
   subjectContent.classList.remove("all-subject-layout");
   subjectContent.classList.remove("all-subject-unit-selected");
@@ -133,7 +133,7 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
 }
 
 function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVisibilityParams): void {
-  setCategoryPanelBackground("transparent");
+  setCategoryPanelBackground("default");
   const hasProgressUnit = params.hasSelectedUnit;
   subjectContent.classList.remove("category-only");
   subjectContent.classList.remove("all-subject-layout");

@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { describe, expect, it, vi } from "vitest";
-import { getFontSizeSnapshot, setFontSizeLevel, subscribeFontSizeStore } from "./fontSizeStore";
+import { getFontSizeSnapshot, setFontSizeLevel, subscribeFontSizeStore, syncFontSizeDom } from "./fontSizeStore";
 
 describe("fontSizeStore", () => {
   it("setFontSizeLevel でスナップショットが更新される", () => {
@@ -20,5 +20,16 @@ describe("fontSizeStore", () => {
 
     expect(listener).toHaveBeenCalledTimes(1);
     unsubscribe();
+  });
+
+  it("syncFontSizeDom は html の font-size をレベルに応じて更新する", () => {
+    syncFontSizeDom("medium");
+    expect(document.documentElement.style.fontSize).toBe("120%");
+
+    syncFontSizeDom("large");
+    expect(document.documentElement.style.fontSize).toBe("150%");
+
+    syncFontSizeDom("small");
+    expect(document.documentElement.style.fontSize).toBe("100%");
   });
 });

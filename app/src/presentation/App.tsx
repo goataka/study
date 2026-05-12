@@ -24,7 +24,7 @@ import { OuterBottomRow } from "./components/OuterBottomRow";
 import { QuizScreen } from "./components/QuizScreen";
 import { ResultScreen } from "./components/ResultScreen";
 import { ConfirmDialog } from "./components/ConfirmDialog";
-import { getFontSizeSnapshot, subscribeFontSizeStore } from "./components/fontSizeStore";
+import { getFontSizeSnapshot, subscribeFontSizeStore, syncFontSizeDom } from "./components/fontSizeStore";
 import { getScreenSnapshot, subscribeScreenStore } from "./components/screenStore";
 
 export interface AppProps {
@@ -50,20 +50,16 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
   }, [bootApp]);
 
   useEffect(() => {
-    document.body.classList.remove("font-size-medium", "font-size-large");
-    if (fontSizeLevel === "medium") {
-      document.body.classList.add("font-size-medium");
-    } else if (fontSizeLevel === "large") {
-      document.body.classList.add("font-size-large");
-    }
+    syncFontSizeDom(fontSizeLevel);
     return () => {
+      document.documentElement.style.fontSize = "";
       document.body.classList.remove("font-size-medium", "font-size-large");
     };
   }, [fontSizeLevel]);
 
   return (
     <>
-      <div className="mx-auto flex h-full w-full max-w-[1680px] flex-col px-2">
+      <div className="mx-auto flex h-full w-full flex-col px-2">
         <TabsUserRow currentScreen={currentScreen} />
         <StartScreen currentScreen={currentScreen} />
         <OuterBottomRow />
