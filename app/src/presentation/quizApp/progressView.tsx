@@ -7,6 +7,7 @@
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { SUBJECTS } from "../uiHelpers";
 import { setActiveProgressDetailMode } from "../components/startScreen/panelTabsStore";
+import { setProgressDetailPanelHidden } from "../components/startScreen/panelVisibilityStore";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import type { ProgressStatusFilter } from "./urlStateService";
 
@@ -122,6 +123,7 @@ export function syncProgressDetailControls(
 ): void {
   const panel = document.getElementById("progressDetailPanel");
   if (!panel) return;
+  setProgressDetailPanelHidden(false);
   panel.classList.remove("hidden");
 
   // タブ active 状態は React コンポーネントが panelTabsStore を購読して反映する。

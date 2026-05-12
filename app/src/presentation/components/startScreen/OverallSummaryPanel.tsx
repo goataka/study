@@ -6,6 +6,8 @@
  *
  * タブの active 状態と各サブパネルの hidden 表示は `panelTabsStore` を購読して
  * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
+ *
+ * パネル全体の表示/非表示は `panelVisibilityStore` を購読して React で制御する。
  */
 
 import { useSyncExternalStore } from "react";
@@ -15,6 +17,7 @@ import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 import { shareButton } from "../../styles/shareButtonStyles";
 import { overallStatusContentStore } from "../overallStatusContentStore";
 import { todayActivityContentStore } from "../todayActivityContentStore";
+import { subscribePanelVisibility, getPanelVisibilitySnapshot } from "./panelVisibilityStore";
 
 interface OverallPanelTabButtonProps {
   panel: OverallPanelTab;
@@ -42,10 +45,15 @@ function OverallPanelTabButton({ panel, active, id, label }: OverallPanelTabButt
 
 export function OverallSummaryPanel(): React.JSX.Element {
   const active = useActiveOverallPanel();
+  const panelHidden = useSyncExternalStore(
+    subscribePanelVisibility,
+    () => getPanelVisibilitySnapshot().overallSummaryPanel,
+    () => getPanelVisibilitySnapshot().overallSummaryPanel,
+  );
   return (
     <div
       id="overallSummaryPanel"
-      className="hidden overall-summary-panel flex flex-col gap-0 flex-1 overflow-hidden p-0"
+      className={`overall-summary-panel flex flex-col gap-0 flex-1 overflow-hidden p-0${panelHidden ? " hidden" : ""}`}
       role="region"
       aria-label="活動サマリ"
     >

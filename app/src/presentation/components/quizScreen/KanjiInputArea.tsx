@@ -11,9 +11,7 @@
  * 有効に働くため共存できる。
  */
 
-// すべての kanji 操作ボタンに共通する見た目（旧 `.kanji-ctrl-btn`）。
-const kanjiCtrlBtnClass =
-  "cursor-pointer rounded border border-solid border-[#e1e4e8] bg-white px-2.5 py-1 text-base transition-colors duration-150 hover:bg-[#f3f4f6]";
+import { kanjiCtrlButton } from "../../styles/kanjiCtrlButtonStyles";
 
 interface KanjiInputAreaProps {
   showKanjiInput: boolean;
@@ -48,7 +46,7 @@ export function KanjiInputArea({ showKanjiInput }: KanjiInputAreaProps): React.J
           <div className="flex justify-end gap-1.5">
             <button
               id="kanjiDeleteLastBtn"
-              className={kanjiCtrlBtnClass}
+              className={kanjiCtrlButton()}
               type="button"
               title="最後の1画を消す"
               aria-label="最後の1画を消す"
@@ -57,7 +55,7 @@ export function KanjiInputArea({ showKanjiInput }: KanjiInputAreaProps): React.J
             </button>
             <button
               id="kanjiEraseBtn"
-              className={kanjiCtrlBtnClass}
+              className={kanjiCtrlButton()}
               type="button"
               title="全部消す"
               aria-label="全部消す"
@@ -66,7 +64,7 @@ export function KanjiInputArea({ showKanjiInput }: KanjiInputAreaProps): React.J
             </button>
             <button
               id="kanjiToggleBtn"
-              className={kanjiCtrlBtnClass}
+              className={kanjiCtrlButton()}
               type="button"
               title="入力エリアを折りたたむ"
               aria-label="入力エリアを折りたたむ"

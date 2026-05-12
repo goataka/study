@@ -11,6 +11,7 @@
 import { useState } from "react";
 import type { QuizUseCase, QuizRecord } from "../../application/quizUseCase";
 import { NO_ANSWER_TEXT, shuffleChoices } from "../../application/quizUseCase";
+import { historyScore, historyEntry, historyEntryIcon } from "../styles/historyStyles";
 
 export interface HistoryListProps {
   records: QuizRecord[];
@@ -112,11 +113,7 @@ function HistoryItem({ record, useCase, showSubjectPrefix }: HistoryItemProps): 
         {isManual ? (
           <span className="history-score text-base font-bold whitespace-nowrap">-</span>
         ) : (
-          <span
-            className={`history-score text-base font-bold whitespace-nowrap ${
-              pct >= 70 ? "pass text-[#28a745]" : "fail text-[#dc3545]"
-            }`}
-          >
+          <span className={historyScore({ result: pct >= 70 ? "pass" : "fail" })}>
             {`${record.correctCount}/${record.totalCount} (${pct}%)`}
           </span>
         )}
@@ -156,15 +153,9 @@ function HistoryItem({ record, useCase, showSubjectPrefix }: HistoryItemProps): 
             return (
               <div
                 key={`${entry.questionId}-${idx}`}
-                className={`history-entry flex items-start gap-2.5 rounded-md p-2 text-[15px] ${
-                  entry.isCorrect ? "correct bg-[#f0fff4]" : "incorrect bg-[#fff0f0]"
-                }`}
+                className={historyEntry({ result: entry.isCorrect ? "correct" : "incorrect" })}
               >
-                <span
-                  className={`history-entry-icon mt-px shrink-0 text-base font-bold ${
-                    entry.isCorrect ? "text-[#28a745]" : "text-[#dc3545]"
-                  }`}
-                >
+                <span className={historyEntryIcon({ result: entry.isCorrect ? "correct" : "incorrect" })}>
                   {entry.isCorrect ? "✓" : "✗"}
                 </span>
                 <div className="history-entry-content flex-1">

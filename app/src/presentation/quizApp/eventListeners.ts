@@ -8,6 +8,7 @@
 import type { AvatarController } from "../avatarController";
 import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
 import { getScreenNameFromHistoryState, getScreenSnapshot, setCurrentScreen } from "../components/screenStore";
+import { setProgressDetailPanelHidden } from "../components/startScreen/panelVisibilityStore";
 
 /** ヘッダー（タイトルロゴ・ユーザー名編集・管理メニュー）のイベント。 */
 export interface HeaderListenersCallbacks {
@@ -241,6 +242,7 @@ export function setupHistoryNavigationListeners(callbacks: HistoryNavigationCall
 /** 進度詳細パネルのモバイル用クローズボタンにハンドラーを登録する。 */
 export function setupProgressDetailPanelListeners(): void {
   document.getElementById("progressDetailCloseBtn")?.addEventListener("click", () => {
+    setProgressDetailPanelHidden(true);
     document.getElementById("progressDetailPanel")?.classList.add("hidden");
   });
 }

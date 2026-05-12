@@ -22,6 +22,7 @@ import { useSyncExternalStore } from "react";
 import { NotesPanel } from "./quizScreen/NotesPanel";
 import { KanjiInputArea } from "./quizScreen/KanjiInputArea";
 import { navButton } from "../styles/navButtonStyles";
+import { speakButton } from "../styles/speakButtonStyles";
 import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "./quizSessionStore";
 import { choicesContentStore } from "./choicesContentStore";
 import type { ScreenName } from "./screenStore";
@@ -46,27 +47,6 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
     }
   };
 
-  const speakButtonClass = [
-    "speak-btn",
-    "mb-[18px]",
-    "inline-flex",
-    "cursor-pointer",
-    "items-center",
-    "justify-center",
-    "rounded-[20px]",
-    "border",
-    "border-solid",
-    "border-[#0366d6]",
-    "bg-white",
-    "px-3.5",
-    "py-1",
-    "text-lg",
-    "text-[#0366d6]",
-    "transition-colors",
-    "duration-200",
-    "hover:bg-[#f0f7ff]",
-    quizSession.showSpeakButton ? "" : "hidden",
-  ].join(" ");
   const nextButtonClass = [navButton({ variant: "nav" }), quizSession.nextHidden ? "hidden" : ""].join(" ");
 
   return (
@@ -117,7 +97,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           </div>
           <button
             id="speakBtn"
-            className={speakButtonClass}
+            className={speakButton({ hidden: !quizSession.showSpeakButton })}
             type="button"
             title="読み上げ"
             aria-label="英語を読み上げる"

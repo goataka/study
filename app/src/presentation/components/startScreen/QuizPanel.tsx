@@ -13,15 +13,14 @@ import { setQuizSettings } from "./quizSettingsStore";
 import { useQuizSettings } from "./useQuizSettingsStore";
 import { button } from "../../styles/buttonStyles";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
+import { questionListFilterButton } from "../../styles/questionListFilterButtonStyles";
 import { historyListContentStore } from "../historyListContentStore";
 import { questionListContentStore } from "../questionListContentStore";
 import { guidePanelContentStore } from "../guidePanelContentStore";
 
-// 問題一覧フィルタ（すべて / 未学習 / 学習済）の共通ボタンスタイル。
+// 問題一覧フィルタ（すべて / 未学習 / 学習済）のボタンスタイルは questionListFilterButton() で生成する。
 // `active` は `questionListView.tsx` の `classList.toggle("active", ...)` で
 // 切り替わるため、Tailwind の arbitrary variant `[&.active]:` でアクティブ表現する。
-const filterBtnClass =
-  "question-list-filter-btn cursor-pointer rounded-xl border border-solid border-[#d1d5da] bg-white px-3 py-1 text-sm text-[#586069] transition-colors duration-150 hover:border-[#0366d6] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:border-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:text-white";
 
 interface PanelTabButtonProps {
   tab: PanelTab;
@@ -238,13 +237,13 @@ export function QuizPanel(): React.JSX.Element {
         aria-labelledby="panelTab-questions"
       >
         <div className="question-list-filter-bar flex shrink-0 items-center gap-2 border-b border-solid border-[#e1e4e8] bg-[#f6f8fa] px-4 py-2">
-          <button id="questionListFilterAll" className={`${filterBtnClass} active`} type="button">
+          <button id="questionListFilterAll" className={`${questionListFilterButton()} active`} type="button">
             すべて
           </button>
-          <button id="questionListFilterUnlearned" className={filterBtnClass} type="button">
+          <button id="questionListFilterUnlearned" className={questionListFilterButton()} type="button">
             未学習
           </button>
-          <button id="questionListFilterLearned" className={filterBtnClass} type="button">
+          <button id="questionListFilterLearned" className={questionListFilterButton()} type="button">
             学習済
           </button>
           <span

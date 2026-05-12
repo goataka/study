@@ -12,6 +12,7 @@
 
 import { useSyncExternalStore } from "react";
 import { getFontSizeSnapshot, subscribeFontSizeStore, type FontSizeLevel } from "./fontSizeStore";
+import { fontSizeButton } from "../styles/fontSizeButtonStyles";
 
 type DeployEnvironment = "v1" | "rc";
 
@@ -49,8 +50,6 @@ export function OuterBottomRow(): React.JSX.Element {
   const fontSizeLevel = useSyncExternalStore(subscribeFontSizeStore, getFontSizeSnapshot, getFontSizeSnapshot);
   const isActive = (level: FontSizeLevel): boolean => fontSizeLevel === level;
   const currentEnv = typeof window === "undefined" ? "v1" : detectCurrentEnvironment(window.location.pathname);
-  const fontSizeButtonBaseClass =
-    "font-size-btn cursor-pointer border border-solid border-[#c8d8e8] rounded-md bg-[#f0f7ff] px-2 py-1 text-[#586069] font-semibold font-[inherit] transition-[background,color,border-color] duration-200 hover:border-[#0366d6] hover:text-[#0366d6] hover:bg-[#e0efff] [&.active]:bg-[#0366d6] [&.active]:text-white [&.active]:border-[#0366d6]";
 
   return (
     <div className="order-2 grid shrink-0 grid-cols-[1fr_auto_1fr] items-center px-1 pt-0.5 pb-0.5">
@@ -106,7 +105,7 @@ export function OuterBottomRow(): React.JSX.Element {
             A
           </span>
           <button
-            className={`${fontSizeButtonBaseClass} text-[11px]${isActive("small") ? " active" : ""}`}
+            className={fontSizeButton({ size: "small", active: isActive("small") })}
             data-size="small"
             aria-pressed={isActive("small")}
             title="文字サイズ：小"
@@ -114,7 +113,7 @@ export function OuterBottomRow(): React.JSX.Element {
             小
           </button>
           <button
-            className={`${fontSizeButtonBaseClass} text-[15px]${isActive("medium") ? " active" : ""}`}
+            className={fontSizeButton({ size: "medium", active: isActive("medium") })}
             data-size="medium"
             aria-pressed={isActive("medium")}
             title="文字サイズ：中"
@@ -122,7 +121,7 @@ export function OuterBottomRow(): React.JSX.Element {
             中
           </button>
           <button
-            className={`${fontSizeButtonBaseClass} text-[19px]${isActive("large") ? " active" : ""}`}
+            className={fontSizeButton({ size: "large", active: isActive("large") })}
             data-size="large"
             aria-pressed={isActive("large")}
             title="文字サイズ：大"
