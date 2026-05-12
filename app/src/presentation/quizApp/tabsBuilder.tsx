@@ -61,7 +61,10 @@ interface SupportPanelContentProps {
 function SupportPanelContent({ supportHref }: SupportPanelContentProps): React.JSX.Element {
   return (
     <div className={guideContent()}>
-      <h2 className="mb-2 text-lg font-bold">❔ サポート</h2>
+      <h2 className="mb-2 text-lg font-bold">
+        <span aria-hidden="true">❔ </span>
+        サポート
+      </h2>
       <p className="mb-3">使い方とよくある質問をアプリ内で確認できます。</p>
       <ul className="mb-4 pl-8 list-disc">
         <li className="my-1">
