@@ -99,6 +99,10 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
   subjectContent.classList.remove("category-only");
   subjectContent.classList.remove("all-subject-layout");
   subjectContent.classList.remove("all-subject-unit-selected");
+  const quizPanel = subjectContent.querySelector(".quiz-panel") as HTMLElement | null;
+  const notebookSpine = subjectContent.querySelector(".notebook-spine") as HTMLElement | null;
+  quizPanel?.classList.remove("hidden");
+  notebookSpine?.classList.remove("md:hidden");
   // 管理タブでは学習状態フィルターを非表示にする
   const adminStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
@@ -135,6 +139,10 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
   subjectContent.classList.remove("category-only");
   subjectContent.classList.remove("all-subject-layout");
   subjectContent.classList.remove("all-subject-unit-selected");
+  const quizPanel = subjectContent.querySelector(".quiz-panel") as HTMLElement | null;
+  const notebookSpine = subjectContent.querySelector(".notebook-spine") as HTMLElement | null;
+  quizPanel?.classList.remove("hidden");
+  notebookSpine?.classList.remove("md:hidden");
   // 進度タブでは学習状態フィルターを非表示にする
   const progressStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (progressStatusFilter) progressStatusFilter.classList.add("hidden");
