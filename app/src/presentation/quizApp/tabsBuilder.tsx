@@ -15,9 +15,9 @@ import {
 } from "../components/startScreen/panelTabsStore";
 import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { subjectTab } from "../styles/subjectTabStyles";
-import { resolveSupportHrefForPath } from "../../shared/deployEnvironment";
 import { guidePanelContentStore } from "../components/guidePanelContentStore";
 import { guideContent } from "../styles/guideContentStyles";
+import { useState } from "react";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
 export type PanelTab = "quiz" | "guide" | "history" | "questions";
@@ -49,63 +49,101 @@ interface SubjectTabsProps {
   currentSubject: string;
 }
 
-function resolveSupportHref(): string {
-  if (typeof window === "undefined") return "./support/";
-  return resolveSupportHrefForPath(window.location.pathname);
+interface SupportSection {
+  id: "startup" | "operation" | "technical" | "troubleshooting";
+  menuLabel: string;
+  title: string;
+  summary: string;
+  points: string[];
 }
 
-interface SupportPanelContentProps {
-  supportHref: string;
-}
+const SUPPORT_SECTIONS: SupportSection[] = [
+  {
+    id: "startup",
+    menuLabel: "🚀 スタートアップガイド",
+    title: "🚀 スタートアップガイド",
+    summary: "はじめて使うときの流れを確認できます。",
+    points: ["学習の始め方", "単元の選び方", "クイズ開始までの基本操作"],
+  },
+  {
+    id: "operation",
+    menuLabel: "🖥️ 機能リファレンス",
+    title: "🖥️ 機能リファレンス",
+    summary: "画面構成と主要機能の使い方を確認できます。",
+    points: ["ヘッダーの各ボタン", "単元一覧の見方", "解説・確認・問題・履歴タブの使い方"],
+  },
+  {
+    id: "technical",
+    menuLabel: "🔧 技術リファレンス",
+    title: "🔧 技術リファレンス",
+    summary: "問題データ仕様や技術的な前提を確認できます。",
+    points: ["問題データ JSON の構造", "解説URLのルール", "運用時の注意点"],
+  },
+  {
+    id: "troubleshooting",
+    menuLabel: "❓ トラブルシューティング",
+    title: "❓ トラブルシューティング",
+    summary: "よくある困りごとと対処方法を確認できます。",
+    points: ["表示や動作の確認手順", "データ保存まわりの注意", "再読み込み時のチェックポイント"],
+  },
+];
 
-function SupportPanelContent({ supportHref }: SupportPanelContentProps): React.JSX.Element {
+function SupportPanelContent(): React.JSX.Element {
+  const [activeSectionId, setActiveSectionId] = useState<SupportSection["id"]>("startup");
+  const activeSection = SUPPORT_SECTIONS.find((section) => section.id === activeSectionId) ?? SUPPORT_SECTIONS[0]!;
+
   return (
     <div className={guideContent()}>
       <h2 className="mb-2 text-lg font-bold">
         <span aria-hidden="true">❔ </span>
         サポート
       </h2>
-      <p className="mb-3">使い方とよくある質問をアプリ内で確認できます。</p>
-      <ul className="mb-4 pl-8 list-disc">
-        <li className="my-1">
-          <span aria-hidden="true">🚀 </span>
-          スタートアップガイド（使い始め方）
-        </li>
-        <li className="my-1">
-          <span aria-hidden="true">🖥️ </span>
-          機能リファレンス（画面と機能の説明）
-        </li>
-        <li className="my-1">
-          <span aria-hidden="true">🔧 </span>
-          技術リファレンス（問題データ仕様）
-        </li>
-        <li className="my-1">
-          <span aria-hidden="true">❓ </span>
-          トラブルシューティング（FAQ）
-        </li>
-      </ul>
-      <p className="mt-4">
-        詳細ページ:{" "}
-        <a
-          href={supportHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[#0366d6] underline hover:text-[#0255b8]"
-        >
-          サポートページを開く
-        </a>
-      </p>
+      <p className="mb-3">左のメニューから項目を選ぶと内容を表示できます。</p>
+      <div className="grid grid-cols-[220px_minmax(0,1fr)] gap-4" data-support-layout="split">
+        <nav className="border-r border-[#e1e4e8] pr-3" aria-label="サポートメニュー">
+          <ul className="space-y-2">
+            {SUPPORT_SECTIONS.map((section) => {
+              const isActive = section.id === activeSection.id;
+              return (
+                <li key={section.id}>
+                  <button
+                    type="button"
+                    className={[
+                      "w-full rounded px-2 py-1 text-left text-sm",
+                      isActive ? "bg-[#e8f0ff] font-semibold text-[#0366d6]" : "hover:bg-[#f6f8fa]",
+                    ].join(" ")}
+                    aria-current={isActive ? "page" : undefined}
+                    onClick={() => setActiveSectionId(section.id)}
+                  >
+                    {section.menuLabel}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <section className="min-w-0" aria-live="polite">
+          <h3 className="mb-2 text-base font-semibold">{activeSection.title}</h3>
+          <p className="mb-3">{activeSection.summary}</p>
+          <ul className="pl-6 list-disc">
+            {activeSection.points.map((point) => (
+              <li key={point} className="my-1">
+                {point}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </div>
   );
 }
 
 function openSupportInGuidePanel(): void {
-  const supportHref = resolveSupportHref();
   setActivePanelTab("guide");
   // ガイドタブ有効化の副作用（通常ガイド描画）より後にサポート内容を反映する。
   // 先に set すると通常ガイドで上書きされるため、同一イベントループ内の後段で set する。
   queueMicrotask(() => {
-    guidePanelContentStore.set(<SupportPanelContent supportHref={supportHref} />);
+    guidePanelContentStore.set(<SupportPanelContent />);
   });
 }
 

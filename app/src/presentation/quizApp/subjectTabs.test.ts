@@ -163,25 +163,32 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(document.getElementById("panelTab-guide")?.classList.contains("active")).toBe(true);
   });
 
-  it("サポート内容の箇条書きとリンクに視認性クラスが付き、絵文字はaria-hiddenになる", async () => {
+  it("サポート内容は左メニュー・右コンテンツの分割表示になり、外部リンクを表示しない", async () => {
     new QuizApp();
     await waitForCondition(() => document.querySelector(".subject-tabs #supportBtn") !== null);
     const supportButton = document.querySelector(".subject-tabs #supportBtn") as HTMLButtonElement | null;
     expect(supportButton).not.toBeNull();
     supportButton?.click();
 
-    await waitForCondition(() => document.querySelector("#guidePanelFrame ul") !== null);
-    const list = document.querySelector("#guidePanelFrame ul");
+    await waitForCondition(() => document.querySelector("#guidePanelFrame [data-support-layout='split']") !== null);
+    const supportLayout = document.querySelector("#guidePanelFrame [data-support-layout='split']");
+    const menu = document.querySelector("#guidePanelFrame nav[aria-label='サポートメニュー']");
+    const menuButtons = document.querySelectorAll("#guidePanelFrame nav[aria-label='サポートメニュー'] button");
+    const heading = document.querySelector("#guidePanelFrame section h3");
     const link = document.querySelector("#guidePanelFrame a");
-    const hiddenEmojiSpans = document.querySelectorAll("#guidePanelFrame span[aria-hidden='true']");
-    expect(list).not.toBeNull();
-    expect(link).not.toBeNull();
-    expect(hiddenEmojiSpans.length).toBeGreaterThanOrEqual(5);
-    expect(list?.className).toContain("list-disc");
-    expect(list?.className).toContain("pl-8");
-    expect(link?.className).toContain("underline");
-    expect(link?.className).toContain("text-[#0366d6]");
-    expect(link?.getAttribute("target")).toBe("_blank");
-    expect(link?.getAttribute("rel")).toBe("noopener noreferrer");
+    expect(supportLayout).not.toBeNull();
+    expect(menu).not.toBeNull();
+    expect(menuButtons.length).toBe(4);
+    expect(heading?.textContent).toContain("スタートアップガイド");
+    expect(link).toBeNull();
+
+    const troubleshootingButton = Array.from(menuButtons).find((button) =>
+      button.textContent?.includes("トラブルシューティング"),
+    ) as HTMLButtonElement | undefined;
+    troubleshootingButton?.click();
+    await waitForCondition(
+      () =>
+        document.querySelector("#guidePanelFrame section h3")?.textContent?.includes("トラブルシューティング") === true,
+    );
   });
 });

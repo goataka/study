@@ -415,7 +415,10 @@ Then("the support button should show support content in guide panel", async ({ p
   const supportBtn = page.locator("#supportBtn");
   await supportBtn.click();
   await expect(page.locator("#panelTab-guide")).toHaveClass(/active/);
-  await expect(page.locator("#guidePanelFrame .guide-content")).toContainText("サポート");
+  await expect(page.locator("#guidePanelFrame [data-support-layout='split']")).toBeVisible();
+  await expect(page.locator("#guidePanelFrame nav[aria-label='サポートメニュー']")).toBeVisible();
+  await expect(page.locator("#guidePanelFrame section")).toContainText("スタートアップガイド");
+  await expect(page.locator("#guidePanelFrame a")).toHaveCount(0);
 });
 
 When("I select {string} quiz order", async ({ page }, order: string) => {
