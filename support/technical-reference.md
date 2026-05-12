@@ -1,5 +1,5 @@
 ---
-permalink: /support/technical-reference/
+permalink: /technical-reference/
 ---
 
 # 技術リファレンス

@@ -1,5 +1,5 @@
 ---
-permalink: /support/content-list/english/
+permalink: /content-list/english/
 ---
 
 # 📚 英語コンテンツ一覧

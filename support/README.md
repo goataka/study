@@ -1,5 +1,5 @@
 ---
-permalink: /support/
+permalink: /
 ---
 
 # サポート

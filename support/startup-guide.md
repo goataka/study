@@ -1,5 +1,5 @@
 ---
-permalink: /support/startup-guide/
+permalink: /startup-guide/
 ---
 
 # スタートアップガイド

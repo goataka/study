@@ -22,7 +22,6 @@ import { useSyncExternalStore } from "react";
 import { NotesPanel } from "./quizScreen/NotesPanel";
 import { KanjiInputArea } from "./quizScreen/KanjiInputArea";
 import { navButton } from "../styles/navButtonStyles";
-import { speakButton } from "../styles/speakButtonStyles";
 import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "./quizSessionStore";
 import { choicesContentStore } from "./choicesContentStore";
 import type { ScreenName } from "./screenStore";
@@ -83,15 +82,6 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           <div id="questionText" className="question-text mb-3 text-[26px] leading-relaxed text-[#333]">
             {question?.question ?? ""}
           </div>
-          <button
-            id="speakBtn"
-            className={speakButton({ hidden: true })}
-            type="button"
-            aria-hidden="true"
-            tabIndex={-1}
-          >
-            🔊
-          </button>
           <div id="choicesContainer" className="choices-container mb-[30px] flex flex-col gap-3">
             <ChoicesSection />
           </div>

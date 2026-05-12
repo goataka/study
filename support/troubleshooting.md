@@ -1,5 +1,5 @@
 ---
-permalink: /support/troubleshooting/
+permalink: /troubleshooting/
 ---
 
 # トラブルシューティング

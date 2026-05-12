@@ -1,5 +1,5 @@
 ---
-permalink: /support/operation-guide/
+permalink: /operation-guide/
 ---
 
 # 機能リファレンス

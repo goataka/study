@@ -1,5 +1,5 @@
 ---
-permalink: /support/content-list/math/
+permalink: /content-list/math/
 ---
 
 # 🔢 数学コンテンツ一覧

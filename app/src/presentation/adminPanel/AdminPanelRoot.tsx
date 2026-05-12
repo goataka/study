@@ -217,7 +217,7 @@ export function AdminPanelRoot({
 
   const menuBtnBase =
     "category-item w-full flex items-center gap-2 px-[10px] py-[7px] text-lg font-semibold border border-[#e1e4e8] rounded-md cursor-pointer transition-[background,color,border-color] duration-150 font-[inherit] text-left";
-  const menuBtnChild = `${menuBtnBase} bg-white text-[#24292e] hover:bg-[#e8f0fe] hover:border-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white`;
+  const menuBtnChild = `${menuBtnBase} bg-[#f0f0f0] text-[#24292e] hover:bg-[#e8f0fe] hover:border-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white`;
   const tabBtnBase =
     "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit] bg-[#f6f8fa] text-[#586069] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:bg-white [&.active]:text-[#24292e] [&.active]:border-[#d1d5da]";
   const actionBtnBase =
@@ -246,14 +246,14 @@ export function AdminPanelRoot({
       </div>
       {createPortal(
         <div
-          className={`admin-menu-content${activeMenu ? " flex flex-col gap-3 p-4 bg-white border border-[#e1e4e8] rounded-md shadow-lg max-h-[80vh] overflow-y-auto m-2" : " hidden"}`}
+          className={`admin-menu-content${activeMenu ? " flex flex-col gap-3 p-4 bg-transparent border border-[#e1e4e8] rounded-md shadow-lg max-h-[80vh] overflow-y-auto m-2" : " hidden"}`}
         >
           {activeMenu === "manage" ? (
             <>
               <div className="admin-manage-close-row flex items-center justify-between mb-1">
                 <span className="admin-data-header-title text-base font-bold text-[#24292e]">🛢️ データ管理</span>
                 <button
-                  className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
+                  className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-transparent text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
                   type="button"
                   aria-label="閉じる"
                   onClick={closeContent}
@@ -356,7 +356,7 @@ export function AdminPanelRoot({
               <div className="admin-manage-close-row flex items-center justify-between mb-1">
                 <span className="admin-data-header-title text-base font-bold text-[#24292e]">📊 データ参照</span>
                 <button
-                  className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-white text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
+                  className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-transparent text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
                   type="button"
                   aria-label="閉じる"
                   onClick={closeContent}
