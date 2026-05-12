@@ -57,7 +57,7 @@ interface SupportSection {
   points: string[];
 }
 
-const SUPPORT_SECTIONS: SupportSection[] = [
+const SUPPORT_SECTIONS: readonly [SupportSection, ...SupportSection[]] = [
   {
     id: "startup",
     menuLabel: "🚀 スタートアップガイド",
@@ -89,12 +89,8 @@ const SUPPORT_SECTIONS: SupportSection[] = [
 ];
 
 function SupportPanelContent(): React.JSX.Element {
-  const firstSection = SUPPORT_SECTIONS[0];
-  if (!firstSection) {
-    throw new Error("サポートセクションが未設定です。");
-  }
   const [activeSectionId, setActiveSectionId] = useState<SupportSection["id"]>("startup");
-  const activeSection = SUPPORT_SECTIONS.find((section) => section.id === activeSectionId) ?? firstSection;
+  const activeSection = SUPPORT_SECTIONS.find((section) => section.id === activeSectionId) ?? SUPPORT_SECTIONS[0];
 
   return (
     <div className={guideContent()}>
