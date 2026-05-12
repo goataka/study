@@ -44,7 +44,7 @@ export function OuterBottomRow(): React.JSX.Element {
   };
 
   return (
-    <div className="order-2 grid shrink-0 grid-cols-[1fr_auto_1fr] items-center px-1 pt-0.5 pb-0.5">
+    <div className="order-2 grid shrink-0 grid-cols-[1fr_auto_1fr] items-center px-2 pt-0.5 pb-0.5">
       <a
         id="githubBtn"
         className="col-start-1 inline-flex items-center justify-self-start gap-1.5 px-2 py-1 text-white opacity-90 no-underline transition-opacity duration-150 hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"

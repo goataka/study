@@ -10,6 +10,8 @@ import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
 import { getScreenNameFromHistoryState, getScreenSnapshot, setCurrentScreen } from "../components/screenStore";
 import { setProgressDetailPanelHidden } from "../components/startScreen/panelVisibilityStore";
 
+const fontSizeListenerBoundContainers = new WeakSet<HTMLElement>();
+
 /** ヘッダー（タイトルロゴ・ユーザー名編集・管理メニュー）のイベント。 */
 export interface HeaderListenersCallbacks {
   onTitleClick: () => void;
@@ -161,13 +163,18 @@ export function setupCategoryStatusFilterListeners(
 
 /** フォントサイズ切替ボタンのイベント。 */
 export function setupFontSizeListeners(onSelect: (size: "small" | "medium" | "large") => void): void {
-  document.querySelectorAll<HTMLButtonElement>(".font-size-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const size = btn.dataset.size as "small" | "medium" | "large" | undefined;
-      if (size === "small" || size === "medium" || size === "large") {
-        onSelect(size);
-      }
-    });
+  const container = document.getElementById("fontSizeBtns");
+  if (!container) return;
+  if (fontSizeListenerBoundContainers.has(container)) return;
+  fontSizeListenerBoundContainers.add(container);
+  container.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement | null;
+    const button = target?.closest<HTMLButtonElement>(".font-size-btn");
+    if (!button) return;
+    const size = button.dataset.size as "small" | "medium" | "large" | undefined;
+    if (size === "small" || size === "medium" || size === "large") {
+      onSelect(size);
+    }
   });
 }
 
