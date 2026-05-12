@@ -12,12 +12,14 @@ import {
   setupFetchMockWith3Levels,
   mockQuestionFile,
   mountTestContentBridge,
+  unmountAllTrackedRoots,
 } from "../testHelpers";
 
 describe("QuizApp — クイズパネル表示制御仕様", () => {
   beforeEach(() => {
     // 前テストで URL フラグメントが書き換わっている可能性があるためリセットする
     window.history.replaceState({}, "", "/");
+    unmountAllTrackedRoots();
     // quiz-panel クラスを含む DOM を追加
     document.body.innerHTML = `
       <div id="startScreen" class="screen active">

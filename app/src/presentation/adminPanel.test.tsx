@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { QuizUseCase } from "../application/quizUseCase";
 import type { IProgressRepository } from "../application/ports";
 import { renderAdminContent } from "./adminPanel";
-import { mountTestContentBridge } from "./quizApp/testHelpers";
+import { mountTestContentBridge, unmountAllTrackedRoots } from "./quizApp/testHelpers";
 
 function createDeps() {
   const useCase = {
@@ -45,6 +45,7 @@ function createDeps() {
 
 describe("renderAdminContent", () => {
   beforeEach(() => {
+    unmountAllTrackedRoots();
     document.body.innerHTML = `
       <div id="categoryList"></div>
       <div id="adminContent"></div>

@@ -6,16 +6,7 @@
 
 import { QuizApp } from "../quizApp";
 import { act } from "react";
-import {
-  waitForCondition,
-  setupTabDom,
-  setupFetchMock,
-  setupFetchMockWith3Levels,
-  setupFetchMockWithParent,
-  mockQuestionFile,
-  setupMinimalDom,
-  mockManifest,
-} from "./testHelpers";
+import { waitForCondition, setupFetchMock, mockQuestionFile, setupMinimalDom, mockManifest } from "./testHelpers";
 
 const FEEDBACK_WAIT_TIMEOUT_MS = 2_000;
 
@@ -72,53 +63,25 @@ describe("QuizApp — 回答フィードバック仕様", () => {
   });
 
   it("正解を選択すると correct クラスが付与される", async () => {
-    await startQuiz();
-    const radioValues = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="answer"]')).map((radio) =>
-      Number(radio.value),
-    );
-    expect(radioValues.length).toBeGreaterThan(0);
-
-    let foundCorrect = false;
-    for (const value of radioValues) {
-      setupMinimalDom();
-      setupFetchMock();
-      localStorage.clear();
-      await startQuiz();
-      await chooseAnswerByIndex(value);
-      const feedback = document.getElementById("answerFeedback");
-      if (feedback?.classList.contains("correct")) {
-        expect(feedback.classList.contains("incorrect")).toBe(false);
-        foundCorrect = true;
-        break;
-      }
-    }
-
-    expect(foundCorrect).toBe(true);
+    const app = await startQuiz();
+    const correctIndex = app.currentSession!.currentQuestion.correct;
+    await chooseAnswerByIndex(correctIndex);
+    const feedback = document.getElementById("answerFeedback");
+    expect(feedback?.classList.contains("correct")).toBe(true);
+    expect(feedback?.classList.contains("incorrect")).toBe(false);
   });
 
   it("不正解を選択すると incorrect クラスが付与される", async () => {
-    await startQuiz();
-    const radioValues = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="answer"]')).map((radio) =>
-      Number(radio.value),
+    const app = await startQuiz();
+    const correctIndex = app.currentSession!.currentQuestion.correct;
+    const incorrectRadio = Array.from(document.querySelectorAll<HTMLInputElement>('input[name="answer"]')).find(
+      (radio) => Number(radio.value) !== correctIndex,
     );
-    expect(radioValues.length).toBeGreaterThan(0);
-
-    let foundIncorrect = false;
-    for (const value of radioValues) {
-      setupMinimalDom();
-      setupFetchMock();
-      localStorage.clear();
-      await startQuiz();
-      await chooseAnswerByIndex(value);
-      const feedback = document.getElementById("answerFeedback");
-      if (feedback?.classList.contains("incorrect")) {
-        expect(feedback.classList.contains("correct")).toBe(false);
-        foundIncorrect = true;
-        break;
-      }
-    }
-
-    expect(foundIncorrect).toBe(true);
+    expect(incorrectRadio).not.toBeNull();
+    await chooseAnswerByIndex(Number(incorrectRadio!.value));
+    const feedback = document.getElementById("answerFeedback");
+    expect(feedback?.classList.contains("incorrect")).toBe(true);
+    expect(feedback?.classList.contains("correct")).toBe(false);
   });
 
   it("回答後に次の問題へ移動するとフィードバックが非表示になる", async () => {
