@@ -88,7 +88,7 @@ export function OverallSummaryPanel(): React.JSX.Element {
       >
         <div
           id="shareSummaryText"
-          className="share-summary-text text-xs text-[#444] bg-[#f6f8fa] border border-[#e1e4e8] rounded-md px-[10px] py-2 whitespace-pre-wrap break-words min-h-12 leading-[1.5] shrink-0"
+          className="share-summary-text text-sm text-[#444] bg-[#f6f8fa] border border-[#e1e4e8] rounded-md px-[10px] py-2 whitespace-pre-wrap break-words min-h-12 leading-[1.6] shrink-0"
         ></div>
         <div className="share-actions-row flex items-center gap-1.5 shrink-0">
           <button id="copySummaryBtn" className={shareButton({ kind: "copy" })} type="button">
@@ -100,7 +100,7 @@ export function OverallSummaryPanel(): React.JSX.Element {
           <div className="share-url-inline flex-1 min-w-0">
             <button
               id="shareUrlDisplayBtn"
-              className="share-url-display-btn max-w-full px-[10px] py-1 text-xs border-none rounded bg-transparent text-[#0366d6] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap block text-left transition-[color,background] duration-150 hover:bg-[#e8f0fe] [&.share-url-set]:text-[#999] [&.share-url-set]:hover:bg-[#f0f0f0] [&.share-url-set]:hover:text-[#666]"
+              className="share-url-display-btn max-w-full px-[10px] py-1 text-sm border-none rounded bg-transparent text-[#0366d6] cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap block text-left transition-[color,background] duration-150 hover:bg-[#e8f0fe] [&.share-url-set]:text-[#999] [&.share-url-set]:hover:bg-[#f0f0f0] [&.share-url-set]:hover:text-[#666]"
               type="button"
               title="URLを編集"
               aria-expanded="false"
@@ -111,7 +111,7 @@ export function OverallSummaryPanel(): React.JSX.Element {
               <input
                 type="url"
                 id="shareUrlInput"
-                className="share-url-input flex-1 min-w-0 px-2 py-1 text-xs border border-[#d1d5da] rounded bg-white text-[#24292e]"
+                className="share-url-input flex-1 min-w-0 px-2 py-1 text-sm border border-[#d1d5da] rounded bg-white text-[#24292e]"
                 aria-label="共有URL"
                 placeholder="共有URLを入力（例: https://twitter.com）"
               />

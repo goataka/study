@@ -28,12 +28,38 @@
     background-repeat: repeat;
   }
   .markdown-body {
+    position: relative;
+    overflow: hidden;
     background-color: #fff;
     background-image: repeating-linear-gradient(transparent, transparent 31px, #d8e8f8 31px, #d8e8f8 32px);
     background-position: 0 12px;
     border: 1px solid #d1d5da;
     border-radius: 0;
     padding: 16px;
+  }
+  .markdown-body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 40%;
+    width: 12px;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(0,0,0,0.025) 0%, #e3e3e3 20%, #f3f3f3 50%, #e3e3e3 80%, rgba(0,0,0,0.025) 100%);
+  }
+  .site-footer {
+    border-top: 0;
+    background: transparent;
+    color: #fff;
+  }
+  .site-footer .wrapper {
+    max-width: none;
+    padding: 0.4rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .site-footer * {
+    color: #fff;
   }
   .env-switcher {
     margin: 0 0 8px;

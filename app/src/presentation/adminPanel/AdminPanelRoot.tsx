@@ -225,7 +225,7 @@ export function AdminPanelRoot({
 
   return (
     <>
-      <div className="admin-menu-bar flex flex-col items-stretch gap-2 p-2 bg-[#f6f8fa] border-b border-[#e1e4e8]">
+      <div className="admin-menu-bar flex flex-col items-stretch gap-2 p-1 bg-[#f6f8fa] border border-[#e1e4e8] rounded-md m-1">
         <span className="admin-menu-parent-label text-sm text-[#586069] font-semibold px-1 shrink-0">🛢️ データ</span>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "manage" ? " active" : ""}`}

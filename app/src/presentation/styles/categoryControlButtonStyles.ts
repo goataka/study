@@ -8,11 +8,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const statusFilterButton = cva(
-  "category-status-filter-btn text-xs border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1 [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white",
+  "category-status-filter-btn text-sm border border-[#d1d5da] rounded-[10px] bg-white text-[#586069] cursor-pointer select-none whitespace-nowrap transition-[background,color] duration-150 hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1 [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white",
   {
     variants: {
       size: {
-        standard: "px-[7px] py-0.5",
+        standard: "px-2 py-0.5",
       },
     },
     defaultVariants: {

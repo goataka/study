@@ -9,7 +9,7 @@
  * ここには含めない。
  */
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AvatarCropDialog } from "./AvatarCropDialog";
 import type { ScreenName } from "./screenStore";
 import { subjectTabsContentStore } from "./subjectTabsContentStore";
@@ -20,10 +20,41 @@ interface TabsUserRowProps {
 }
 
 export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Element {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const update = (): void => {
+      const maxLeft = el.scrollWidth - el.clientWidth;
+      const left = Math.max(0, el.scrollLeft);
+      setCanScrollLeft(left > 0);
+      setCanScrollRight(maxLeft - left > 1);
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    const resizeObserver = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
+    resizeObserver?.observe(el);
+    return () => {
+      el.removeEventListener("scroll", update);
+      resizeObserver?.disconnect();
+    };
+  }, [currentScreen]);
+
+  const scrollTabs = (direction: "left" | "right"): void => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const amount = Math.max(120, Math.floor(el.clientWidth * 0.45));
+    el.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
+  };
+
   return (
-    <div className="tabs-user-row flex min-h-14 items-center gap-0 shrink-0">
+    <div className="tabs-user-row flex min-h-12 items-center gap-0 shrink-0">
       <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>
         <div
+          ref={scrollerRef}
           className={[
             "subject-tabs",
             "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-2 pb-0 items-end justify-start",
@@ -33,12 +64,28 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         >
           <SubjectTabsSection />
         </div>
-        <div
-          className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white to-transparent"
-          aria-hidden="true"
-        />
+        {canScrollLeft && (
+          <button
+            type="button"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#c8d8e8] bg-white/95 text-[#0366d6] shadow-sm hover:bg-[#e8f0fe]"
+            aria-label="左にスクロール"
+            onClick={() => scrollTabs("left")}
+          >
+            ◀
+          </button>
+        )}
+        {canScrollRight && (
+          <button
+            type="button"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#c8d8e8] bg-white/95 text-[#0366d6] shadow-sm hover:bg-[#e8f0fe]"
+            aria-label="右にスクロール"
+            onClick={() => scrollTabs("right")}
+          >
+            ▶
+          </button>
+        )}
       </div>
-      <div className="tabs-user-area flex items-center gap-1.5 shrink-0 px-4 pt-px pb-2 relative ml-4 pl-4">
+      <div className="tabs-user-area flex items-center gap-1.5 shrink-0 px-4 pt-px pb-0 relative ml-2 pl-2">
         <button
           id="headerUserName"
           className="header-user-name text-sm text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-2 py-1 cursor-pointer transition-[background,color] duration-150 hover:bg-white/15 hover:text-white focus-visible:bg-white/15 focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
@@ -60,7 +107,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         </div>
         <button
           id="headerUserAvatar"
-          className="header-user-avatar relative w-11 h-11 rounded-full border-2 border-[#d0d8e0] overflow-hidden cursor-pointer shrink-0 flex items-center justify-center bg-[#f0f4f8] transition-[border-color,box-shadow] duration-150 select-none p-0 hover:border-[#0366d6] hover:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:border-[#0366d6] focus-visible:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          className="header-user-avatar relative w-9 h-9 rounded-full border-2 border-[#d0d8e0] overflow-hidden cursor-pointer shrink-0 flex items-center justify-center bg-[#f0f4f8] transition-[border-color,box-shadow] duration-150 select-none p-0 hover:border-[#0366d6] hover:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:border-[#0366d6] focus-visible:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           type="button"
           title="プロフィール画像を変更する"
           aria-label="プロフィール画像を変更する"
@@ -75,7 +122,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           {/* display は JS が .hidden クラスで制御するため 11-header-controls.css の .hidden ルールを参照 */}
           <span
             id="headerUserAvatarPlaceholder"
-            className="header-user-avatar-placeholder text-base leading-none text-[#8a9ab0]"
+            className="header-user-avatar-placeholder text-base leading-none text-[#0366d6]"
             aria-hidden="true"
           >
             👤

@@ -7,7 +7,7 @@
  * `KanjiCanvasController` が初期化する。
  *
  * セマンティッククラス（`progress-bar` / `progress-fill` / `topic-badge` /
- * `question-text` / `speak-btn` / `choices-container` / `answer-feedback` /
+ * `question-text` / `choices-container` / `answer-feedback` /
  * `feedback-content` / `feedback-result` / `feedback-explanation` /
  * `navigation-buttons` / `nav-btn` / `submit-btn`）は font-size 切替
  * （`15-font-size.css`）・レスポンシブ上書き（`10-responsive-base.css`）・
@@ -34,18 +34,6 @@ interface QuizScreenProps {
 export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Element {
   const quizSession = useSyncExternalStore(subscribeQuizSessionStore, getQuizSessionSnapshot, getQuizSessionSnapshot);
   const question = quizSession.question;
-
-  const handleSpeakClick = (): void => {
-    if (!question || !quizSession.showSpeakButton) return;
-    try {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(extractSpeechText(question.question));
-      utterance.lang = "en-US";
-      window.speechSynthesis.speak(utterance);
-    } catch {
-      // 読み上げ非対応環境では何もしない
-    }
-  };
 
   const nextButtonClass = [navButton({ variant: "nav" }), quizSession.nextHidden ? "hidden" : ""].join(" ");
 
@@ -97,15 +85,13 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           </div>
           <button
             id="speakBtn"
-            className={speakButton({ hidden: !quizSession.showSpeakButton })}
+            className={speakButton({ hidden: true })}
             type="button"
-            title="読み上げ"
-            aria-label="英語を読み上げる"
-            onClick={handleSpeakClick}
+            aria-hidden="true"
+            tabIndex={-1}
           >
             🔊
           </button>
-          {/* `.speak-btn.hidden + .choices-container` のマージン補正は legacy CSS に残置 */}
           <div id="choicesContainer" className="choices-container mb-[30px] flex flex-col gap-3">
             <ChoicesSection />
           </div>

@@ -16,6 +16,7 @@
 import * as React from "react";
 import { isExternalGuideUrl, sanitizeGuideHtml } from "../quizApp/sanitizeGuideHtml";
 import { guideContent } from "../styles/guideContentStyles";
+import { resolveGuideFetchUrl } from "../quizApp/guideFetchUrl";
 
 export interface GuideContentProps {
   /** 解説ページの URL（同一オリジン HTML または外部 URL）。null の場合は何も表示しない。 */
@@ -46,7 +47,7 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
     let cancelled = false;
     setState({ kind: "loading", url: guideUrl });
 
-    fetch(guideUrl)
+    fetch(resolveGuideFetchUrl(guideUrl))
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.text();

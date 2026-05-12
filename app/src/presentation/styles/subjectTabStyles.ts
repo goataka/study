@@ -31,7 +31,7 @@ export const subjectTab = cva(
     // hover 状態
     "hover:brightness-[1.05] hover:translate-y-0 hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
     // active 状態
-    "[&.active]:text-[#1a1a1a] [&.active]:translate-y-0 [&.active]:shadow-[0_-3px_8px_rgba(0,0,0,0.15)] [&.active]:z-[1] [&.active]:font-bold [&.active]:brightness-110 [&.active]:outline [&.active]:outline-2 [&.active]:outline-[rgba(3,102,214,0.5)] [&.active]:-outline-offset-1",
+    "[&.active]:text-[#1a1a1a] [&.active]:translate-y-[-2px] [&.active]:shadow-[0_-4px_10px_rgba(0,0,0,0.16)] [&.active]:z-[1] [&.active]:font-bold [&.active]:brightness-110 [&.active]:scale-[1.04]",
   ].join(" "),
   {
     variants: {
