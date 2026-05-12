@@ -150,7 +150,6 @@ describe("QuizApp — 教科タブ仕様", () => {
     await waitForCondition(
       () => document.getElementById("guidePanelFrame")?.textContent?.includes("サポート") === true,
     );
-    expect(document.getElementById("guidePanelFrame")?.textContent).toContain("サポート");
   });
 
   it("サポートボタンを押すと解説タブに切り替わる", async () => {

@@ -54,28 +54,38 @@ function resolveSupportHref(): string {
   return resolveSupportHrefForPath(window.location.pathname);
 }
 
+interface SupportPanelContentProps {
+  supportHref: string;
+}
+
+function SupportPanelContent({ supportHref }: SupportPanelContentProps): React.JSX.Element {
+  return (
+    <div className={guideContent()}>
+      <h2>❔ サポート</h2>
+      <p>使い方とよくある質問をアプリ内で確認できます。</p>
+      <ul>
+        <li>🚀 スタートアップガイド（使い始め方）</li>
+        <li>🖥️ 機能リファレンス（画面と機能の説明）</li>
+        <li>🔧 技術リファレンス（問題データ仕様）</li>
+        <li>❓ トラブルシューティング（FAQ）</li>
+      </ul>
+      <p>
+        詳細ページ:{" "}
+        <a href={supportHref} target="_blank" rel="noopener noreferrer">
+          サポートページを開く
+        </a>
+      </p>
+    </div>
+  );
+}
+
 function openSupportInGuidePanel(): void {
   const supportHref = resolveSupportHref();
   setActivePanelTab("guide");
+  // ガイドタブ有効化の副作用（通常ガイド描画）より後にサポート内容を反映する。
+  // 先に set すると通常ガイドで上書きされるため、同一イベントループ内の後段で set する。
   queueMicrotask(() => {
-    guidePanelContentStore.set(
-      <div className={guideContent()}>
-        <h2>❔ サポート</h2>
-        <p>使い方とよくある質問をアプリ内で確認できます。</p>
-        <ul>
-          <li>🚀 スタートアップガイド（使い始め方）</li>
-          <li>🖥️ 機能リファレンス（画面と機能の説明）</li>
-          <li>🔧 技術リファレンス（問題データ仕様）</li>
-          <li>❓ トラブルシューティング（FAQ）</li>
-        </ul>
-        <p>
-          詳細ページ:{" "}
-          <a href={supportHref} target="_blank" rel="noopener noreferrer">
-            サポートページを開く
-          </a>
-        </p>
-      </div>,
-    );
+    guidePanelContentStore.set(<SupportPanelContent supportHref={supportHref} />);
   });
 }
 
