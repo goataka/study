@@ -1,4 +1,4 @@
-FROM node:22-bookworm-slim
+FROM node:22-bookworm
 
 ARG PLAYWRIGHT_VERSION=1.59.1
 ARG PLAYWRIGHT_BDD_VERSION=8.5.0
