@@ -51,13 +51,14 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
   };
 
   return (
-    <div className="tabs-user-row flex min-h-12 items-center gap-0 shrink-0 bg-transparent">
-      <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>
+    <div id="tabsUserRow" className="tabs-user-row flex min-h-12 items-center gap-0 shrink-0 bg-transparent">
+      <div className={`relative flex-1 min-w-0 bg-white${currentScreen !== "start" ? " hidden" : ""}`}>
         <div
+          id="subjectTabs"
           ref={scrollerRef}
           className={[
             "subject-tabs",
-            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-0 items-end justify-start",
+            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-0 items-end justify-start bg-white",
           ].join(" ")}
           role="tablist"
           aria-label="教科を選択"
@@ -66,8 +67,9 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         </div>
         {canScrollLeft && (
           <button
+            id="subjectTabsScrollLeft"
             type="button"
-            className="absolute left-0 top-0 z-10 inline-flex items-center justify-center min-w-6 h-full rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
+            className="absolute left-0 bottom-0 z-10 inline-flex items-center justify-center min-w-6 h-[38px] rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
             aria-label="左にスクロール"
             onClick={() => scrollTabs("left")}
           >
@@ -76,8 +78,9 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         )}
         {canScrollRight && (
           <button
+            id="subjectTabsScrollRight"
             type="button"
-            className="absolute right-0 top-0 z-10 inline-flex items-center justify-center min-w-6 h-full rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
+            className="absolute right-0 bottom-0 z-10 inline-flex items-center justify-center min-w-6 h-[38px] rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] text-xs shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
             aria-label="右にスクロール"
             onClick={() => scrollTabs("right")}
           >
@@ -85,7 +88,10 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           </button>
         )}
       </div>
-      <div className="tabs-user-area ml-auto flex items-center gap-1.5 shrink-0 px-4 pt-px pb-0 relative pl-2">
+      <div
+        id="tabsUserArea"
+        className="tabs-user-area ml-auto flex items-center gap-1.5 shrink-0 px-4 pt-px pb-0 relative pl-2"
+      >
         <button
           id="headerUserName"
           className="header-user-name text-sm text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-2 py-1 cursor-pointer transition-[background,color] duration-150 hover:bg-white/15 hover:text-white focus-visible:bg-white/15 focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"

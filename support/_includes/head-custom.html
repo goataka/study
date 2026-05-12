@@ -24,7 +24,7 @@
   html.embedded-mode.font-size-large body { font-size: 1em !important; }
   body {
     background-color: #7a4e28;
-    background-image: url("{{ '/wood-bg.png' | relative_url }}");
+    background-image: url("{{ '/wood-bg.png' | relative_url }}"), url("../wood-bg.png"), url("./wood-bg.png");
     background-repeat: repeat;
   }
   .site-header,
@@ -61,6 +61,11 @@
   .site-footer p { margin: 0; }
   .site-footer * {
     color: #fff;
+  }
+  #supportFooterCopy,
+  #envSwitcher {
+    color: #fff;
+    text-align: center;
   }
   .env-switcher {
     margin: 0;

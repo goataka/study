@@ -46,6 +46,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
       ].join(" ")}
     >
       <div
+        id="quizLayout"
         className={[
           "quiz-landscape-layout",
           // グリッドレイアウト（左：問題エリア 1.2fr、中：折り目 12px、右：メモエリア 1.8fr）
@@ -134,7 +135,10 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           </div>
         </div>
 
-        <div className="quiz-notes-col col-start-3 flex flex-col min-h-0 max-[900px]:col-start-1 max-[900px]:min-h-[260px]">
+        <div
+          id="quizNotesColumn"
+          className="quiz-notes-col col-start-3 flex flex-col min-h-0 max-[900px]:col-start-1 max-[900px]:min-h-[260px]"
+        >
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-lg border-2 border-solid border-[#e1e4e8] bg-transparent">
             <div id="notesMemoContent" className="flex min-h-0 flex-1 flex-col">
               <NotesPanel showKanjiInput={quizSession.showKanjiInput} />

@@ -13,6 +13,7 @@ import { categoryListContentStore } from "../categoryListContentStore";
 export function CategoryPanel(): React.JSX.Element {
   return (
     <div
+      id="categoryPanel"
       className={[
         "category-panel",
         // ノート紙風：白地 + 薄青罫線（32px間隔）
@@ -66,7 +67,7 @@ export function CategoryPanel(): React.JSX.Element {
       <div
         id="categoryList"
         className={[
-          "category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0 px-2 pb-2",
+          "category-list flex flex-col gap-0.5 flex-1 overflow-y-auto min-h-0 px-2 pb-1",
           "[&.hide-learned_.category-item.learned]:hidden",
           "[&.filter-unlearned_.category-item.learned]:hidden",
           "[&.filter-unlearned_.category-item.studying]:hidden",

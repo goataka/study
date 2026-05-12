@@ -217,7 +217,7 @@ export function AdminPanelRoot({
 
   const menuBtnBase =
     "category-item w-full flex items-center gap-2 px-[10px] py-[7px] text-lg font-semibold border border-[#e1e4e8] rounded-md cursor-pointer transition-[background,color,border-color] duration-150 font-[inherit] text-left";
-  const menuBtnChild = `${menuBtnBase} bg-[#f0f0f0] text-[#24292e] hover:bg-[#e0e0e0] hover:border-[rgba(0,0,0,0.16)] [&.active]:bg-[#e0e0e0] [&.active]:border-[rgba(0,0,0,0.2)] [&.active]:text-[#1a1a1a]`;
+  const menuBtnChild = `${menuBtnBase} bg-transparent text-[#24292e] hover:bg-[#f6f8fa] hover:border-[rgba(0,0,0,0.16)] [&.active]:bg-transparent [&.active]:border-[rgba(0,0,0,0.2)] [&.active]:text-[#1a1a1a]`;
   const tabBtnBase =
     "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit] bg-[#f6f8fa] text-[#586069] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:bg-white [&.active]:text-[#24292e] [&.active]:border-[#d1d5da]";
   const actionBtnBase =
