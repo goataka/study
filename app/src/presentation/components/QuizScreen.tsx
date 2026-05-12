@@ -60,7 +60,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           "max-[900px]:before:hidden",
         ].join(" ")}
       >
-        <div className="quiz-main-col col-start-1 min-w-0 overflow-y-auto min-h-0 p-3 max-[900px]:col-start-1">
+        <div className="quiz-main-col notebook-lines bg-white col-start-1 min-w-0 overflow-y-auto min-h-0 p-3 max-[900px]:col-start-1">
           <div className="progress-bar mb-5 h-2 w-full overflow-hidden rounded bg-[#e0e0e0]">
             <div
               id="progressFill"

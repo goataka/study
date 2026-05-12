@@ -28,6 +28,7 @@ export function setFontSizeLevel(level: FontSizeLevel): void {
 }
 
 export function syncFontSizeDom(level: FontSizeLevel): void {
+  document.documentElement.style.fontSize = level === "large" ? "150%" : level === "medium" ? "120%" : "100%";
   document.body.classList.remove("font-size-medium", "font-size-large");
   if (level === "medium") document.body.classList.add("font-size-medium");
   if (level === "large") document.body.classList.add("font-size-large");

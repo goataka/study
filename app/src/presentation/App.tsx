@@ -50,6 +50,8 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
   }, [bootApp]);
 
   useEffect(() => {
+    const rootFontSize = fontSizeLevel === "large" ? "150%" : fontSizeLevel === "medium" ? "120%" : "100%";
+    document.documentElement.style.fontSize = rootFontSize;
     document.body.classList.remove("font-size-medium", "font-size-large");
     if (fontSizeLevel === "medium") {
       document.body.classList.add("font-size-medium");
@@ -57,13 +59,14 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
       document.body.classList.add("font-size-large");
     }
     return () => {
+      document.documentElement.style.fontSize = "";
       document.body.classList.remove("font-size-medium", "font-size-large");
     };
   }, [fontSizeLevel]);
 
   return (
     <>
-      <div className="mx-auto flex h-full w-full max-w-[1680px] flex-col px-2">
+      <div className="mx-auto flex h-full w-full flex-col px-2">
         <TabsUserRow currentScreen={currentScreen} />
         <StartScreen currentScreen={currentScreen} />
         <OuterBottomRow />

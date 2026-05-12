@@ -226,7 +226,7 @@ export function AdminPanelRoot({
   return (
     <>
       <div className="admin-menu-bar flex flex-col items-stretch gap-0.5">
-        <span className="admin-menu-parent-label text-sm text-[#586069] font-semibold px-1 py-1 shrink-0">
+        <span className="admin-menu-parent-label inline-flex items-center rounded-sm bg-[#0366d6] px-2 py-1 text-sm font-bold text-white shrink-0">
           🛢️ データ
         </span>
         <button

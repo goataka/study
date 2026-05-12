@@ -24,7 +24,7 @@
   html.embedded-mode.font-size-large body { font-size: 1em !important; }
   body {
     background-color: #7a4e28;
-    background-image: url("{{ '/wood-bg.png' | relative_url }}");
+    background-image: url("wood-bg.png");
     background-repeat: repeat;
   }
   .site-header,
@@ -54,6 +54,9 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+  }
+  .site-footer .wrapper > :not(#supportFooterCopy):not(.env-switcher) {
+    display: none;
   }
   .site-footer p { margin: 0; }
   .site-footer * {
@@ -110,6 +113,13 @@
     if (new URLSearchParams(location.search).get('embedded') === '1') return;
     const container = document.querySelector('.site-footer .wrapper') || document.querySelector('main') || document.body;
     if (!container || document.getElementById('envSwitcher')) return;
+    let copy = document.getElementById('supportFooterCopy');
+    if (!copy) {
+      copy = document.createElement('p');
+      copy.id = 'supportFooterCopy';
+      copy.textContent = '© 2026 goataka';
+      container.append(copy);
+    }
     const current = detectDeployEnv(location.pathname);
     const wrapper = document.createElement('div');
     wrapper.id = 'envSwitcher';
