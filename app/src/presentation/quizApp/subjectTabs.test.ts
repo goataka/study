@@ -147,4 +147,12 @@ describe("QuizApp — 教科タブ仕様", () => {
     const supportLink = document.querySelector(".subject-tabs #supportBtn") as HTMLAnchorElement | null;
     expect(supportLink?.getAttribute("href")).toBe("../support/");
   });
+
+  it("サポートリンクはタブロールを持たない", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const supportLink = document.querySelector(".subject-tabs #supportBtn") as HTMLAnchorElement | null;
+    expect(supportLink?.getAttribute("role")).toBeNull();
+  });
 });
