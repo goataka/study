@@ -163,7 +163,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(document.getElementById("panelTab-guide")?.classList.contains("active")).toBe(true);
   });
 
-  it("サポート内容の箇条書きとリンクに視認性クラスが付く", async () => {
+  it("サポート内容の箇条書きとリンクに視認性クラスが付き、絵文字はaria-hiddenになる", async () => {
     new QuizApp();
     await waitForCondition(() => document.querySelector(".subject-tabs #supportBtn") !== null);
     const supportButton = document.querySelector(".subject-tabs #supportBtn") as HTMLButtonElement | null;
@@ -173,8 +173,10 @@ describe("QuizApp — 教科タブ仕様", () => {
     await waitForCondition(() => document.querySelector("#guidePanelFrame ul") !== null);
     const list = document.querySelector("#guidePanelFrame ul");
     const link = document.querySelector("#guidePanelFrame a");
+    const hiddenEmojiSpans = document.querySelectorAll("#guidePanelFrame span[aria-hidden='true']");
     expect(list).not.toBeNull();
     expect(link).not.toBeNull();
+    expect(hiddenEmojiSpans.length).toBeGreaterThanOrEqual(5);
     expect(list?.className).toContain("list-disc");
     expect(list?.className).toContain("pl-8");
     expect(link?.className).toContain("underline");
