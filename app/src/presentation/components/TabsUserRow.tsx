@@ -29,7 +29,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
     if (!el) return;
     const update = (): void => {
       const maxLeft = el.scrollWidth - el.clientWidth;
-      const left = Math.max(0, Math.round(el.scrollLeft));
+      const left = Math.max(0, el.scrollLeft);
       setCanScrollLeft(left > 0);
       setCanScrollRight(maxLeft - left > 1);
     };

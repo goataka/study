@@ -9,6 +9,7 @@ import { useState } from "react";
 import { flushSync } from "react-dom";
 import type { Question, QuizUseCase } from "../../application/quizUseCase";
 import { speakButton } from "../styles/speakButtonStyles";
+import { canSpeakEnglishQuestion, speakEnglishQuestionText } from "./speakEnglishText";
 
 export interface QuestionListProps {
   questions: Question[];
@@ -41,21 +42,11 @@ function QuestionListItem({ question, useCase }: QuestionListItemProps): React.J
   const stat = useCase.getQuestionStat(question.id);
   const isCompleted = useCase.isMastered(question.id);
   const streak = useCase.getCorrectStreak(question.id);
-  const canSpeakEnglish =
-    question.subject === "english" &&
-    typeof window.speechSynthesis !== "undefined" &&
-    typeof SpeechSynthesisUtterance !== "undefined";
+  const canSpeakEnglish = canSpeakEnglishQuestion(question);
 
   const handleSpeakClick = (): void => {
     if (!canSpeakEnglish) return;
-    try {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(question.question.trim());
-      utterance.lang = "en-US";
-      window.speechSynthesis.speak(utterance);
-    } catch {
-      // 読み上げ非対応環境では何もしない
-    }
+    speakEnglishQuestionText(question.question);
   };
 
   // `question-list-item` / `question-list-completed` クラス名は font-size 切替・テスト

@@ -10,7 +10,7 @@ import type { Question } from "../../application/quizUseCase";
 /**
  * 現在の問題に応じて読み上げボタンの表示・クリックハンドラを更新する。
  */
-export function updateSpeakButton(_question: Question): void {
+export function updateSpeakButton(_question?: Question): void {
   const btn = document.getElementById("speakBtn");
   if (!btn) return;
   btn.classList.add("hidden");

@@ -13,6 +13,7 @@
 import type { AnswerResult } from "../../application/quizUseCase";
 import { resultIcon, resultItem } from "../styles/resultItemStyles";
 import { speakButton } from "../styles/speakButtonStyles";
+import { canSpeakEnglishQuestion, speakEnglishQuestionText } from "./speakEnglishText";
 
 export interface ResultDetailsListProps {
   results: AnswerResult[];
@@ -43,21 +44,11 @@ function ResultItem({ result }: ResultItemProps): React.JSX.Element {
       : (question.choices[userAnswerIndex] ?? "未回答");
   const correctAnswerText = question.choices[question.correct] ?? "";
   const variant = isCorrect ? "correct" : "incorrect";
-  const canSpeakEnglish =
-    question.subject === "english" &&
-    typeof window.speechSynthesis !== "undefined" &&
-    typeof SpeechSynthesisUtterance !== "undefined";
+  const canSpeakEnglish = canSpeakEnglishQuestion(question);
 
   const handleSpeakClick = (): void => {
     if (!canSpeakEnglish) return;
-    try {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(question.question.trim());
-      utterance.lang = "en-US";
-      window.speechSynthesis.speak(utterance);
-    } catch {
-      // 読み上げ非対応環境では何もしない
-    }
+    speakEnglishQuestionText(question.question);
   };
 
   return (
