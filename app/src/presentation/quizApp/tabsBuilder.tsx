@@ -99,8 +99,11 @@ function SupportPanelContent(): React.JSX.Element {
         サポート
       </h2>
       <p className="mb-3">左のメニューから項目を選ぶと内容を表示できます。</p>
-      <div className="grid grid-cols-[220px_minmax(0,1fr)] gap-4" data-support-layout="split">
-        <nav className="border-r border-[#e1e4e8] pr-3" aria-label="サポートメニュー">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-[220px_minmax(0,1fr)]" data-support-layout="split">
+        <nav
+          className="border-b border-[#e1e4e8] pb-3 md:border-r md:border-b-0 md:pr-3 md:pb-0"
+          aria-label="サポートメニュー"
+        >
           <ul className="space-y-2">
             {SUPPORT_SECTIONS.map((section) => {
               const isActive = section.id === activeSection.id;
