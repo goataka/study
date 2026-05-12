@@ -27,7 +27,8 @@ describe("QuizApp — 学習済みフィルター（含める/含めない）仕
 
   it("初期状態では「含めない」が選択されており全問習得済み時にスタートできない", async () => {
     // 全問を習得済みにする
-    const repo = new StubProgressRepository([], [], {}, {}, ["q1", "q2", "q3", "q4", "q5"]);
+    const repo = new StubProgressRepository();
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
     new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -59,7 +60,8 @@ describe("QuizApp — 学習済みフィルター（含める/含めない）仕
 
   it("「含める」を選択すると学習済み問題も含めてスタートできる", async () => {
     // 全問を習得済みにする
-    const repo = new StubProgressRepository([], [], {}, {}, ["q1", "q2", "q3", "q4", "q5"]);
+    const repo = new StubProgressRepository();
+    repo.saveMasteredIds(["q1", "q2", "q3", "q4", "q5"]);
     new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 

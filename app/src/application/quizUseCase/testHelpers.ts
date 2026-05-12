@@ -139,6 +139,7 @@ export class StubProgressRepository implements IProgressRepository {
       history: this.loadHistory(),
       categoryViewMode: this.categoryViewMode,
       fontSizeLevel: this.fontSizeLevel,
+      recommendedCounts: { ...this.recommendedCounts },
     };
   }
   loadShareUrl(): string {
