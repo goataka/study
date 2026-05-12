@@ -53,7 +53,7 @@ jobs:
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./support
-          destination: ./_site
+          destination: ./_site/support
 
       - name: アプリビルドを検証環境にコピー
         working-directory: ${{ github.workspace }}
@@ -108,11 +108,20 @@ jobs:
       - name: サポートサイトを本番/検証環境配下にも配置
         working-directory: ${{ github.workspace }}
         run: |
-          # GitHub Pages ではサーバー側 rewrite / symlink を使えないため、
-          # /support, /v1/support, /rc/support の3経路を静的に配置して切り替えを実現する。
-          sudo mkdir -p _site/v1/support _site/rc/support
-          sudo cp -r _site/support/. _site/v1/support/
+          # Jekyllのビルド先は _site/support/ のため、
+          # guide URL（./english/... 等）がRC/本番環境から参照できるよう
+          # 教科ディレクトリを rc/ と v1/ 直下にコピーする。
+          for subject_dir in english math japanese; do
+            if [ -d "_site/support/$subject_dir" ]; then
+              sudo cp -r "_site/support/$subject_dir" "_site/rc/"
+              sudo cp -r "_site/support/$subject_dir" "_site/v1/"
+            fi
+          done
+          # アプリの href="./support/" リンクが解決できるよう
+          # サポートサイト全体を rc/support/ と v1/support/ にも配置する。
+          sudo mkdir -p _site/rc/support _site/v1/support
           sudo cp -r _site/support/. _site/rc/support/
+          sudo cp -r _site/support/. _site/v1/support/
 
       - name: Pages アーティファクトのアップロード
         uses: actions/upload-pages-artifact@v5
