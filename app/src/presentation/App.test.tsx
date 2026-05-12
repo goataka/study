@@ -255,7 +255,7 @@ describe("App コンポーネント", () => {
     const fontSizeButtons = container!.querySelectorAll<HTMLButtonElement>(".font-size-btn");
 
     expect(startScreen?.className).toContain("px-2");
-    expect(appLayout?.className).toContain("px-[40px]");
+    expect(appLayout?.className).toContain("px-10");
     expect(startScreen?.className).toContain("pt-0");
     expect(startHeader?.className).toContain("pt-2");
     expect(subjectTabs?.className).toContain("px-4");

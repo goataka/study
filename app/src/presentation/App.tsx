@@ -59,7 +59,7 @@ export function App({ bootApp }: AppProps): React.JSX.Element {
 
   return (
     <>
-      <div id="appLayout" className="mx-auto flex h-full w-full flex-col px-[40px]">
+      <div id="appLayout" className="mx-auto flex h-full w-full flex-col px-10">
         <TabsUserRow currentScreen={currentScreen} />
         <StartScreen currentScreen={currentScreen} />
         <OuterBottomRow />
