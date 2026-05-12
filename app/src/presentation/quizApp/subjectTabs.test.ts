@@ -36,7 +36,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const tabs = document.querySelectorAll(".subject-tab");
+    const tabs = document.querySelectorAll(".subject-tab[data-subject]");
     tabs.forEach((tab) => {
       expect(tab.getAttribute("role")).toBe("tab");
     });

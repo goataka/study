@@ -14,6 +14,7 @@ import {
 } from "../components/startScreen/panelTabsStore";
 import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { subjectTab } from "../styles/subjectTabStyles";
+import { resolveSupportHrefForPath } from "../../shared/deployEnvironment";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
 export type PanelTab = "quiz" | "guide" | "history" | "questions";
@@ -45,19 +46,9 @@ interface SubjectTabsProps {
   currentSubject: string;
 }
 
-// /study/v1/ や /study/rc/ など、app 配下から 1 階層上の support を参照すべきパス。
-const SUPPORT_PARENT_PATH_SEGMENTS = ["/v1", "/rc"] as const;
-
 function resolveSupportHref(): string {
   if (typeof window === "undefined") return "./support/";
-  const path = window.location.pathname;
-  const needsParent = SUPPORT_PARENT_PATH_SEGMENTS.some((segment) => {
-    return path.includes(`${segment}/`) || path.endsWith(segment);
-  });
-  if (needsParent) {
-    return "../support/";
-  }
-  return "./support/";
+  return resolveSupportHrefForPath(window.location.pathname);
 }
 
 function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX.Element {
@@ -91,8 +82,6 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
         href={resolveSupportHref()}
         target="_blank"
         rel="noopener noreferrer"
-        role="tab"
-        aria-selected={false}
         title="サポートページを開く"
         aria-label="サポートページを開く"
       >

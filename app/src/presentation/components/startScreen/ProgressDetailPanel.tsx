@@ -84,7 +84,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
           <span className="category-status-filter-label text-base text-[#586069]">学習状況：</span>
           <button
             id="progressStatusAllBtn"
-            className={`${statusFilterButton()} !text-base`}
+            className={`${statusFilterButton()} !text-base active`}
             type="button"
             aria-pressed="true"
           >
