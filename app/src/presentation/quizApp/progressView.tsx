@@ -65,7 +65,7 @@ interface ProgressSubjectListProps {
 
 function ProgressSubjectList({ stats, callbacks }: ProgressSubjectListProps): React.JSX.Element {
   return (
-    <div className="progress-subject-list flex flex-col gap-2 p-1 bg-[#f6f8fa] border border-[#e1e4e8] rounded-md">
+    <div className="progress-subject-list flex flex-col gap-0.5">
       {stats.map((s) => (
         <ProgressSubjectListItem key={s.id} stat={s} callbacks={callbacks} />
       ))}
@@ -86,7 +86,7 @@ function ProgressSubjectListItem({
       type="button"
       className={[
         "progress-subject-list-item",
-        "flex flex-row items-center gap-2 px-3 py-3 rounded-lg border border-[#e1e4e8] bg-white",
+        "category-item flex flex-row items-center gap-2 px-3 py-2 rounded-md border border-[#e1e4e8] bg-white",
         "cursor-pointer select-none transition-[background,border-color] duration-150 text-left w-full",
         "hover:bg-[#e8f0fe] hover:border-[#0366d6]",
         "focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2",
@@ -99,14 +99,12 @@ function ProgressSubjectListItem({
       data-subject={stat.id}
       onClick={() => callbacks.onSelectSubject(stat.id)}
     >
-      <span className="progress-subject-list-icon text-xl shrink-0 leading-none" aria-hidden="true">
+      <span className="progress-subject-list-icon text-[22px] shrink-0 leading-none" aria-hidden="true">
         {stat.icon}
       </span>
       <div className="progress-subject-list-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
-        <span className="progress-subject-list-name text-base font-semibold text-[#24292e] break-words">
-          {stat.name}
-        </span>
-        <span className="progress-subject-list-stats text-sm text-[#586069]">{`${stat.mastered} / ${stat.total} 単元`}</span>
+        <span className="progress-subject-list-name text-lg font-semibold text-[#24292e] break-words">{stat.name}</span>
+        <span className="progress-subject-list-stats text-base text-[#586069]">{`${stat.mastered} / ${stat.total} 単元`}</span>
       </div>
     </button>
   );

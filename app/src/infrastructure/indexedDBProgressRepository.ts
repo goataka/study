@@ -9,15 +9,10 @@
  */
 
 import type { IProgressRepository, QuizRecord, QuizSettings, UserDataExport } from "../application/ports";
+import { detectDeployEnvironment } from "../shared/deployEnvironment";
 
 export function resolveDbPrefix(pathname: string): "v1" | "rc" {
-  const segments = pathname.split("/").filter((segment) => segment.length > 0);
-  for (const segment of segments) {
-    if (segment === "v1" || segment === "rc") {
-      return segment;
-    }
-  }
-  return "v1";
+  return detectDeployEnvironment(pathname);
 }
 
 // DB 名はモジュール初期化時の URL で確定する。

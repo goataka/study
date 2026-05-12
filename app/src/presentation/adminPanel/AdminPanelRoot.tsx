@@ -216,8 +216,8 @@ export function AdminPanelRoot({
   const viewJsonText = selectedViewSection ? JSON.stringify(selectedViewSection.content, null, 2) : "";
 
   const menuBtnBase =
-    "w-full px-3 py-2 text-sm font-semibold border border-[#d1d5da] rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit] text-left";
-  const menuBtnChild = `${menuBtnBase} bg-white text-[#586069] hover:bg-[#e8f0fe] hover:border-[#0366d6] hover:text-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white`;
+    "category-item w-full px-[10px] py-[7px] text-lg font-semibold border border-[#e1e4e8] rounded-md cursor-pointer transition-[background,color,border-color] duration-150 font-[inherit] text-left";
+  const menuBtnChild = `${menuBtnBase} bg-white text-[#24292e] hover:bg-[#e8f0fe] hover:border-[#0366d6] [&.active]:bg-[#0366d6] [&.active]:border-[#0366d6] [&.active]:text-white`;
   const tabBtnBase =
     "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit] bg-[#f6f8fa] text-[#586069] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:bg-white [&.active]:text-[#24292e] [&.active]:border-[#d1d5da]";
   const actionBtnBase =
@@ -225,8 +225,10 @@ export function AdminPanelRoot({
 
   return (
     <>
-      <div className="admin-menu-bar flex flex-col items-stretch gap-2 p-1 bg-[#f6f8fa] border border-[#e1e4e8] rounded-md m-1">
-        <span className="admin-menu-parent-label text-sm text-[#586069] font-semibold px-1 shrink-0">🛢️ データ</span>
+      <div className="admin-menu-bar flex flex-col items-stretch gap-0.5">
+        <span className="admin-menu-parent-label text-sm text-[#586069] font-semibold px-1 py-1 shrink-0">
+          🛢️ データ
+        </span>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "manage" ? " active" : ""}`}
           type="button"

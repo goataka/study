@@ -13,21 +13,8 @@
 import { useSyncExternalStore } from "react";
 import { getFontSizeSnapshot, subscribeFontSizeStore, type FontSizeLevel } from "./fontSizeStore";
 import { fontSizeButton } from "../styles/fontSizeButtonStyles";
-
-type DeployEnvironment = "v1" | "rc";
+import { detectDeployEnvironment, type DeployEnvironment } from "../../shared/deployEnvironment";
 const RC_SWITCH_CONFIRM_MESSAGE = "rc 環境へ切り替えます。よろしいですか？";
-
-// support/_includes/head-custom.html にも同等ロジックがあるが、
-// React バンドル外（Jekyll 静的ページ）でも動かすためここで独立して持つ。
-function detectCurrentEnvironment(pathname: string): DeployEnvironment {
-  const segments = pathname.split("/").filter((segment) => segment.length > 0);
-  for (const segment of segments) {
-    if (segment === "v1" || segment === "rc") {
-      return segment;
-    }
-  }
-  return "v1";
-}
 
 function buildEnvironmentUrl(targetEnv: DeployEnvironment): string {
   if (typeof window === "undefined") return "#";
@@ -50,7 +37,7 @@ function buildEnvironmentUrl(targetEnv: DeployEnvironment): string {
 export function OuterBottomRow(): React.JSX.Element {
   const fontSizeLevel = useSyncExternalStore(subscribeFontSizeStore, getFontSizeSnapshot, getFontSizeSnapshot);
   const isActive = (level: FontSizeLevel): boolean => fontSizeLevel === level;
-  const currentEnv = typeof window === "undefined" ? "v1" : detectCurrentEnvironment(window.location.pathname);
+  const currentEnv = typeof window === "undefined" ? "v1" : detectDeployEnvironment(window.location.pathname);
   const confirmEnvironmentSwitch = (targetEnv: DeployEnvironment): boolean => {
     if (targetEnv !== "rc" || currentEnv === "rc") return true;
     return window.confirm(RC_SWITCH_CONFIRM_MESSAGE);

@@ -41,7 +41,10 @@ export function AvatarCropDialog(): React.JSX.Element {
             alt=""
             aria-hidden="true"
           />
-          <span id="avatarCropPreviewPlaceholder" className="pointer-events-none text-[48px] leading-none">
+          <span
+            id="avatarCropPreviewPlaceholder"
+            className="pointer-events-none text-[48px] leading-none text-[#0366d6]"
+          >
             👤
           </span>
         </div>

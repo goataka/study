@@ -67,7 +67,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         {canScrollLeft && (
           <button
             type="button"
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#c8d8e8] bg-white/95 text-[#0366d6] shadow-sm hover:bg-[#e8f0fe]"
+            className="absolute left-0 top-[calc(50%+1px)] -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-7 min-h-[33px] rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
             aria-label="左にスクロール"
             onClick={() => scrollTabs("left")}
           >
@@ -77,7 +77,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         {canScrollRight && (
           <button
             type="button"
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#c8d8e8] bg-white/95 text-[#0366d6] shadow-sm hover:bg-[#e8f0fe]"
+            className="absolute right-0 top-[calc(50%+1px)] -translate-y-1/2 z-10 inline-flex items-center justify-center min-w-7 min-h-[33px] rounded-none border border-[rgba(0,0,0,0.12)] border-b-0 bg-[#e8f0ff] text-[#5a4a28] shadow-[0_-2px_4px_rgba(0,0,0,0.08)] hover:brightness-[1.05]"
             aria-label="右にスクロール"
             onClick={() => scrollTabs("right")}
           >
@@ -85,7 +85,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           </button>
         )}
       </div>
-      <div className="tabs-user-area flex items-center gap-1.5 shrink-0 px-4 pt-px pb-0 relative ml-2 pl-2">
+      <div className="tabs-user-area ml-auto flex items-center gap-1.5 shrink-0 px-4 pt-px pb-0 relative pl-2">
         <button
           id="headerUserName"
           className="header-user-name text-sm text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-2 py-1 cursor-pointer transition-[background,color] duration-150 hover:bg-white/15 hover:text-white focus-visible:bg-white/15 focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"

@@ -14,6 +14,7 @@ import {
 } from "../components/startScreen/panelTabsStore";
 import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { subjectTab } from "../styles/subjectTabStyles";
+import { resolveSupportHrefForPath } from "../../shared/deployEnvironment";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
 export type PanelTab = "quiz" | "guide" | "history" | "questions";
@@ -45,6 +46,11 @@ interface SubjectTabsProps {
   currentSubject: string;
 }
 
+function resolveSupportHref(): string {
+  if (typeof window === "undefined") return "./support/";
+  return resolveSupportHrefForPath(window.location.pathname);
+}
+
 function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX.Element {
   return (
     <>
@@ -68,17 +74,12 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
       <a
         id="supportBtn"
         className={[
-          "tabs-link-note tabs-link-note-support",
-          "inline-flex items-center gap-1 justify-center",
-          "px-[18px] pt-[6px] pb-2 min-w-7 min-h-[33px]",
-          "border border-[rgba(0,0,0,0.12)] border-b-0",
-          "text-sm font-semibold no-underline whitespace-nowrap leading-none",
-          "translate-y-0.5 shadow-[0_-2px_4px_rgba(0,0,0,0.08)]",
-          "transition-[filter,transform,color,background] duration-150",
-          "hover:brightness-[1.05] hover:translate-y-0 hover:text-[#333]",
-          "bg-[#e8f0ff] text-[#5a4a28]",
+          subjectTab({ active: false }),
+          "tabs-link-note tabs-link-note-support no-underline",
+          "justify-center",
+          "bg-[#e8f0ff]",
         ].join(" ")}
-        href="./support/"
+        href={resolveSupportHref()}
         target="_blank"
         rel="noopener noreferrer"
         title="サポートページを開く"
