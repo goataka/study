@@ -45,6 +45,7 @@ interface SubjectTabsProps {
   currentSubject: string;
 }
 
+// /study/v1/ や /study/rc/ など、app 配下から 1 階層上の support を参照すべきパス。
 const SUPPORT_PARENT_PATH_SEGMENTS = ["/v1", "/rc"] as const;
 
 function resolveSupportHref(): string {
