@@ -24,7 +24,7 @@ import { KanjiInputArea } from "./quizScreen/KanjiInputArea";
 import { navButton } from "../styles/navButtonStyles";
 import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "./quizSessionStore";
 import { choicesContentStore } from "./choicesContentStore";
-import { quizUnitInfoContentStore } from "./quizUnitInfoContentStore";
+import { StartHeader } from "./startScreen/StartHeader";
 import type { ScreenName } from "./screenStore";
 
 interface QuizScreenProps {
@@ -140,7 +140,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           id="quizNotesColumn"
           className="quiz-notes-col col-start-3 flex flex-col min-h-0 max-[900px]:col-start-1 max-[900px]:min-h-[260px]"
         >
-          <SelectedUnitInfoSection />
+          <StartHeader />
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-lg border-2 border-solid border-[#e1e4e8] bg-transparent">
             <div id="notesMemoContent" className="flex min-h-0 flex-1 flex-col">
               <NotesPanel showKanjiInput={quizSession.showKanjiInput} />
@@ -168,15 +168,5 @@ export function extractSpeechText(questionText: string): string {
 /** クイズ選択肢エリア — choicesContentStore から描画。 */
 function ChoicesSection(): React.JSX.Element {
   const node = useSyncExternalStore(choicesContentStore.subscribe, choicesContentStore.get, choicesContentStore.get);
-  return <>{node}</>;
-}
-
-/** 選択中の単元情報（表示専用・閉じるボタンなし） — quizUnitInfoContentStore から描画。 */
-function SelectedUnitInfoSection(): React.JSX.Element {
-  const node = useSyncExternalStore(
-    quizUnitInfoContentStore.subscribe,
-    quizUnitInfoContentStore.get,
-    quizUnitInfoContentStore.get,
-  );
   return <>{node}</>;
 }

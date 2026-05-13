@@ -143,6 +143,12 @@ Feature: 学習アプリ
     Then only hiragana candidates should be visible in the candidate list
     And non-hiragana candidates should not be visible in the candidate list
 
+  Scenario: クイズ画面の右カラムにStartHeaderと同じヘッダーが表示される
+    Given I have selected a quiz category
+    When I click the "スタート" button
+    Then the quiz screen should be visible
+    And the quiz notes column should show the start header
+
   @vr
   Scenario: スタート画面のビジュアル確認
     Then the start screen matches the snapshot

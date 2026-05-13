@@ -4,24 +4,17 @@
  * 選択レベル（unit / parentCategory / topCategory / 学年グループ）に応じて
  * 対応する詳細サマリ（タイトル・カテゴリ・例文・進捗バー＋閉じるボタン）を
  * `selectedUnitInfoContentStore` 経由で `SelectedUnitInfoPanel` に描画する。
- * クイズ画面用の表示専用コンテンツは `quizUnitInfoContentStore` に設定する。
  */
 
 import * as React from "react";
 import type { QuizUseCase, QuizFilter } from "../../application/quizUseCase";
-import {
-  SelectedUnitInfoPanel,
-  SelectedUnitInfoBody,
-  SelectedUnitInfoSimpleBody,
-} from "../components/SelectedUnitInfoPanel";
-import type { SelectedUnitInfoViewModel } from "../components/SelectedUnitInfoPanel";
+import { SelectedUnitInfoPanel } from "../components/SelectedUnitInfoPanel";
 import {
   buildSingleUnitViewModel,
   buildGradeGroupViewModel,
   buildCategoryOrTopViewModel,
 } from "./selectedUnitInfoViewModel";
 import { selectedUnitInfoContentStore } from "../components/selectedUnitInfoContentStore";
-import { quizUnitInfoContentStore } from "../components/quizUnitInfoContentStore";
 
 /** 選択中の単元コンテキスト（総合タブから単元選択中の場合に使われる）。 */
 export interface SelectedUnitContext {
@@ -68,7 +61,7 @@ export function updateSelectedUnitInfo(params: UpdateSelectedUnitInfoParams): vo
       closeAriaLabel: "単元の解説を閉じる",
       onClose: params.onCloseOverallUnitView,
     });
-    showPanel(container, categoryListEl, <SelectedUnitInfoPanel vm={vm} />, vm);
+    showPanel(container, categoryListEl, <SelectedUnitInfoPanel vm={vm} />);
     return;
   }
 
@@ -79,14 +72,13 @@ export function updateSelectedUnitInfo(params: UpdateSelectedUnitInfoParams): vo
       grade: selectedGradeGroup,
       onDeselect: params.onDeselect,
     });
-    showPanel(container, categoryListEl, <SelectedUnitInfoPanel vm={vm} />, vm);
+    showPanel(container, categoryListEl, <SelectedUnitInfoPanel vm={vm} />);
     return;
   }
 
   if (selectionLevel === "none" || filter.subject === "all") {
     container?.classList.add("hidden");
     categoryListEl?.classList.remove("detail-active");
-    quizUnitInfoContentStore.reset();
     return;
   }
 
@@ -101,7 +93,7 @@ export function updateSelectedUnitInfo(params: UpdateSelectedUnitInfoParams): vo
       closeAriaLabel: "選択を解除して閉じる",
       onClose: params.onDeselect,
     });
-    showPanel(container, categoryListEl, <SelectedUnitInfoPanel vm={vm} />, vm);
+    showPanel(container, categoryListEl, <SelectedUnitInfoPanel vm={vm} />);
     return;
   }
 
@@ -112,7 +104,7 @@ export function updateSelectedUnitInfo(params: UpdateSelectedUnitInfoParams): vo
     selectedTopCategoryId: params.selectedTopCategoryId,
     onDeselect: params.onDeselect,
   });
-  showPanel(container, categoryListEl, <SelectedUnitInfoPanel vm={vm} />, vm);
+  showPanel(container, categoryListEl, <SelectedUnitInfoPanel vm={vm} />);
 }
 
 /** パネルを表示し、関連する class 属性を同期する共通処理。 */
@@ -120,13 +112,8 @@ function showPanel(
   container: HTMLElement | null,
   categoryListEl: HTMLElement | null,
   element: React.ReactElement,
-  vm: SelectedUnitInfoViewModel,
 ): void {
   container?.classList.remove("hidden");
   selectedUnitInfoContentStore.set(element);
   categoryListEl?.classList.add("detail-active");
-  // クイズ画面用：閉じるボタンなしの表示専用コンテンツを設定
-  const quizElement =
-    vm.kind === "full" ? <SelectedUnitInfoBody data={vm.data} /> : <SelectedUnitInfoSimpleBody name={vm.name} />;
-  quizUnitInfoContentStore.set(quizElement);
 }

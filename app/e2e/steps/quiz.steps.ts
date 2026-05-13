@@ -495,6 +495,17 @@ When("I click the admin export tab", async ({ page }) => {
   await page.locator(".admin-manage-tab").filter({ hasText: "エクスポート" }).click();
 });
 
+Then("the quiz notes column should show the start header", async ({ page }) => {
+  // クイズ画面の右カラム（#quizNotesColumn）に StartHeader（header 要素）が表示されていること
+  const quizNotesColumn = page.locator("#quizNotesColumn");
+  const header = quizNotesColumn.locator("header");
+  await expect(header).toBeVisible();
+  // StartHeader の教科名テキストが表示されていること
+  await expect(header.locator(".header-active-subject-name")).toBeVisible();
+  // 日付エリアが表示されていること
+  await expect(header.locator("#headerTodayDate")).toBeVisible();
+});
+
 Then("an admin JSON file download should be triggered", async ({ page }) => {
   // エクスポートタブをクリックしてボタンをクリックするとJSONファイルがダウンロードされること
   await page.locator(".admin-manage-tab").filter({ hasText: "エクスポート" }).click();
