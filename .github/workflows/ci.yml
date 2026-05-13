@@ -207,6 +207,27 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@v6
 
+      - name: 失敗したジョブ結果を整形
+        id: failed-jobs
+        shell: bash
+        env:
+          TEST_AND_BUILD_RESULT: ${{ needs.test-and-build.result }}
+          E2E_RESULT: ${{ needs.e2e.result }}
+          VISUAL_REGRESSION_RESULT: ${{ needs.visual-regression.result }}
+          MARKDOWNLINT_RESULT: ${{ needs.markdownlint.result }}
+        run: |
+          set -euo pipefail
+
+          {
+            echo "value<<EOF"
+            echo "ジョブ結果:"
+            [ "${TEST_AND_BUILD_RESULT}" = "failure" ] && echo "- test-and-build: failure"
+            [ "${E2E_RESULT}" = "failure" ] && echo "- e2e: failure"
+            [ "${VISUAL_REGRESSION_RESULT}" = "failure" ] && echo "- visual-regression: failure"
+            [ "${MARKDOWNLINT_RESULT}" = "failure" ] && echo "- markdownlint: failure"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: CopilotにCI修正を依頼
         uses: ./.github/actions/fix-gha-error
         with:
@@ -217,9 +238,4 @@ jobs:
           run-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           head-branch: ${{ github.head_ref }}
           pr-number: ${{ github.event.pull_request.number }}
-          error-context: |
-            ジョブ結果:
-            - test-and-build: ${{ needs.test-and-build.result }}
-            - e2e: ${{ needs.e2e.result }}
-            - visual-regression: ${{ needs.visual-regression.result }}
-            - markdownlint: ${{ needs.markdownlint.result }}
+          error-context: ${{ steps.failed-jobs.outputs.value }}

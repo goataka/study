@@ -143,14 +143,7 @@ runs:
         # PRが関連しているかチェック
         PR_NUMBER="${REQUESTED_PR_NUMBER}"
         TARGET_BRANCH=""
-        PULL_REQUEST_COUNT=0
-        PULL_REQUESTS_JSON="${WF_PULL_REQUESTS}"
-
-        # workflow_run 以外から呼ばれた場合は空文字列になり得るため、
-        # jq でエラーなく扱えるよう JSON の null に正規化する。
-        if [ -z "${PULL_REQUESTS_JSON}" ]; then
-          PULL_REQUESTS_JSON="null"
-        fi
+        PULL_REQUESTS_JSON="${WF_PULL_REQUESTS:-null}"
 
         if [ -n "$PR_NUMBER" ]; then
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
@@ -159,15 +152,17 @@ runs:
 
         # まず workflow_run.pull_requests から取得を試みる
         if [ -z "$PR_NUMBER" ]; then
+          # workflow_run 以外から呼ばれた場合も jq で扱えるよう、
+          # pull_requests のJSONが空なら null として扱う。
           PULL_REQUEST_COUNT=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq 'length // 0')
-        fi
-        if [ -z "$PR_NUMBER" ] && [ "$PULL_REQUEST_COUNT" -gt 0 ]; then
-          _BRANCH=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq -r '.[0].head.ref // empty')
-          _PR=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq -r '.[0].number // empty')
-          if [ -n "$_BRANCH" ] && [ -n "$_PR" ]; then
-            TARGET_BRANCH="$_BRANCH"
-            PR_NUMBER="$_PR"
-            echo "::notice::PRベースのワークフロー実行です (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
+          if [ "$PULL_REQUEST_COUNT" -gt 0 ]; then
+            _BRANCH=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq -r '.[0].head.ref // empty')
+            _PR=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq -r '.[0].number // empty')
+            if [ -n "$_BRANCH" ] && [ -n "$_PR" ]; then
+              TARGET_BRANCH="$_BRANCH"
+              PR_NUMBER="$_PR"
+              echo "::notice::PRベースのワークフロー実行です (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
+            fi
           fi
         fi
 
