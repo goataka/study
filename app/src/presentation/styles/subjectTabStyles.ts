@@ -30,8 +30,10 @@ export const subjectTab = cva(
     "transition-[background,color,box-shadow] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1",
     // hover 状態
     "hover:brightness-[1.05] hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
-    // active 状態（太字のみ、隙間なし）
-    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110",
+    // active 状態（太字・下にはみ出す）
+    // pb-[40px] でタブの下部に同色の矩形を描画し、-mb-[40px] でレイアウト上の高さ増加を打ち消す
+    // これにより、タブ行の高さを変えずにアクティブタブがコンテンツ領域に向かって突出する
+    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110 [&.active]:pb-[40px] [&.active]:-mb-[40px]",
   ].join(" "),
   {
     variants: {

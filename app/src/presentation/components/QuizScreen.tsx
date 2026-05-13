@@ -24,6 +24,7 @@ import { KanjiInputArea } from "./quizScreen/KanjiInputArea";
 import { navButton } from "../styles/navButtonStyles";
 import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "./quizSessionStore";
 import { choicesContentStore } from "./choicesContentStore";
+import { StartHeader } from "./startScreen/StartHeader";
 import type { ScreenName } from "./screenStore";
 
 interface QuizScreenProps {
@@ -139,6 +140,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           id="quizNotesColumn"
           className="quiz-notes-col col-start-3 flex flex-col min-h-0 max-[900px]:col-start-1 max-[900px]:min-h-[260px]"
         >
+          <StartHeader />
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-lg border-2 border-solid border-[#e1e4e8] bg-transparent">
             <div id="notesMemoContent" className="flex min-h-0 flex-1 flex-col">
               <NotesPanel showKanjiInput={quizSession.showKanjiInput} />
