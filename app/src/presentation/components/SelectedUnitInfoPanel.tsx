@@ -59,7 +59,7 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
   const showDescRow = hasCatOrGrade || data.example !== undefined;
 
   return (
-    <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px]">
+    <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px] pl-[5px]">
       <HeaderRow name={data.name} description={data.description} />
       {showDescRow && <DescRow catParts={catParts} grade={data.grade} example={data.example} />}
       <ProgressRow mastered={data.mastered} inProgressCount={data.inProgressCount} total={data.total} />
@@ -70,7 +70,7 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
 /** カテゴリ・トップカテゴリ選択時用の簡易表示（タイトルのみ）。 */
 export function SelectedUnitInfoSimpleBody({ name }: { name: string }): React.JSX.Element {
   return (
-    <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px]">
+    <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px] pl-[5px]">
       <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">
         {name}
       </span>

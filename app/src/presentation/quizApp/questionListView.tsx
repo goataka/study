@@ -30,12 +30,69 @@ export function renderQuestionList(
     document.getElementById(id)?.classList.toggle("active", key === questionListFilter);
   });
 
-  const questions = applyFilter(useCase.getFilteredQuestions(filter), questionListFilter, useCase);
+  const allQuestions = useCase.getFilteredQuestions(filter);
+  const questions = applyFilter(allQuestions, questionListFilter, useCase);
 
   const countEl = document.getElementById("questionListFilterCount");
   if (countEl) countEl.textContent = `${questions.length}問`;
 
+  // タイトルと日付を更新する
+  updateQuestionListHeader(filter, allQuestions, useCase);
+
   questionListContentStore.set(<QuestionList questions={questions} useCase={useCase} />);
+}
+
+/**
+ * 問題一覧パネルのヘッダー（タイトルと最終学習日）を更新する。
+ */
+function updateQuestionListHeader(filter: QuizFilter, questions: Question[], useCase: QuizUseCase): void {
+  const headerEl = document.getElementById("questionListHeader");
+  const titleEl = document.getElementById("questionListTitle");
+  const dateEl = document.getElementById("questionListDate");
+  if (!headerEl || !titleEl || !dateEl) return;
+
+  // タイトル: 最初の問題のカテゴリ名を使用（全体の場合は教科名）
+  const firstQuestion = questions[0];
+  const title = firstQuestion?.categoryName ?? firstQuestion?.category ?? "";
+
+  // 最終学習日: その教科・カテゴリの最新の学習記録を取得
+  const lastStudyDate = getLastStudyDateForFilter(filter, useCase);
+  const dateText = lastStudyDate ? `最終学習: ${formatDate(new Date(lastStudyDate))}` : "";
+
+  if (title) {
+    titleEl.textContent = title;
+    dateEl.textContent = dateText;
+    headerEl.classList.remove("hidden");
+    headerEl.classList.add("flex");
+  } else {
+    headerEl.classList.add("hidden");
+    headerEl.classList.remove("flex");
+  }
+}
+
+/** フィルターに対応する最終学習日を取得する。単一パスで最新日時を求める。 */
+function getLastStudyDateForFilter(filter: QuizFilter, useCase: QuizUseCase): string | null {
+  const history = useCase.getHistory();
+  let latestDate: string | null = null;
+  let latestTime = -Infinity;
+  for (const r of history) {
+    if (filter.subject !== "all" && r.subject !== filter.subject) continue;
+    if (filter.category !== "all" && r.category !== filter.category) continue;
+    const t = new Date(r.date).getTime();
+    if (t > latestTime) {
+      latestTime = t;
+      latestDate = r.date;
+    }
+  }
+  return latestDate;
+}
+
+/** 日付を "YYYY/MM/DD" 形式にフォーマットする。 */
+function formatDate(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}/${m}/${d}`;
 }
 
 function applyFilter(questions: Question[], listFilter: QuestionListFilter, useCase: QuizUseCase): Question[] {

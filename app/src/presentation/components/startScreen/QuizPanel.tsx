@@ -236,6 +236,19 @@ export function QuizPanel(): React.JSX.Element {
         role="tabpanel"
         aria-labelledby="panelTab-questions"
       >
+        <div
+          id="questionListHeader"
+          className="question-list-header hidden shrink-0 items-center justify-between gap-2 border-b border-solid border-[#e1e4e8] bg-white px-4 py-1.5"
+        >
+          <span
+            id="questionListTitle"
+            className="question-list-title text-[13px] font-bold text-[#24292e] overflow-hidden text-ellipsis whitespace-nowrap"
+          ></span>
+          <span
+            id="questionListDate"
+            className="question-list-date ml-auto shrink-0 text-[11px] text-[#586069] whitespace-nowrap"
+          ></span>
+        </div>
         <div className="question-list-filter-bar flex shrink-0 items-center gap-2 border-b border-solid border-[#e1e4e8] bg-[#f6f8fa] px-4 py-2">
           <button id="questionListFilterAll" className={`${questionListFilterButton()} active`} type="button">
             すべて

@@ -98,3 +98,13 @@ export function navigateToAdmin(filter: QuizFilter): boolean {
   }
   return true;
 }
+
+/**
+ * サポートモードへ遷移する。
+ * `filter.subject` を "support" に設定し、サポートパネルを表示する準備をする。
+ */
+export function navigateToSupport(filter: QuizFilter): void {
+  filter.subject = "support";
+  filter.category = "all";
+  filter.parentCategory = undefined;
+}

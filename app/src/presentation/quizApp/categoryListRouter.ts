@@ -4,12 +4,14 @@
  * - "all" → 総合タブの教科一覧
  * - "admin" → 管理タブのメニュー
  * - "progress" → 進度タブの教科リスト
+ * - "support" → サポートタブのメニューリスト
  * - その他 → 通常の単元一覧（カテゴリ別 or 学年別）
  */
 
 import type { QuizUseCase } from "../../application/quizUseCase";
 import type { IProgressRepository } from "../../application/ports";
 import { renderAdminContent } from "../adminPanel";
+import { renderSupportPanel } from "./supportPanel";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
 
@@ -58,6 +60,13 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
       shareUrl: params.shareUrl,
       showConfirmDialog: params.showConfirmDialog,
     });
+    return;
+  }
+
+  if (subject === "support") {
+    // サポートタブではコントロールを非表示にしてサポートメニューを表示する
+    categoryControlsContentStore.reset();
+    renderSupportPanel();
     return;
   }
 

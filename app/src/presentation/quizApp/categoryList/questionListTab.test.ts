@@ -192,4 +192,59 @@ describe("QuizApp — 問題一覧タブ仕様", () => {
     expect(document.querySelectorAll(".question-list-item").length).toBe(5);
     expect(allBtn?.classList.contains("active")).toBe(true);
   });
+
+  it("「問題一覧」タブをクリックするとヘッダーにカテゴリ名が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const headerEl = document.getElementById("questionListHeader");
+    const titleEl = document.getElementById("questionListTitle");
+
+    expect(headerEl?.classList.contains("hidden")).toBe(false);
+    // mockQuestionFile の categoryName が「フォニックス（1文字）」
+    expect(titleEl?.textContent).toBe("フォニックス（1文字）");
+  });
+
+  it("「問題一覧」タブ表示時に履歴がある場合は最終学習日が表示される", async () => {
+    const repo = new StubProgressRepository(
+      [],
+      [
+        {
+          id: "r1",
+          date: "2025-01-15T10:00:00.000Z",
+          subject: "english",
+          subjectName: "英語",
+          category: "phonics-1",
+          categoryName: "フォニックス（1文字）",
+          mode: "normal",
+          totalCount: 5,
+          correctCount: 3,
+          entries: [],
+        },
+      ],
+    );
+    new QuizApp(repo);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const dateEl = document.getElementById("questionListDate");
+    expect(dateEl?.textContent).toContain("最終学習:");
+    expect(dateEl?.textContent).toContain("2025/01/15");
+  });
+
+  it("「問題一覧」タブ表示時に履歴がない場合は最終学習日が空になる", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const questionsTab = document.querySelector('.panel-tab[data-panel="questions"]') as HTMLElement;
+    questionsTab?.click();
+
+    const dateEl = document.getElementById("questionListDate");
+    expect(dateEl?.textContent).toBe("");
+  });
 });

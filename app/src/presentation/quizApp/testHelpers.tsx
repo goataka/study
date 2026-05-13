@@ -25,6 +25,7 @@ import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { selectedUnitInfoContentStore } from "../components/selectedUnitInfoContentStore";
+import { supportContentStore } from "../components/supportContentStore";
 import { choicesContentStore } from "../components/choicesContentStore";
 
 configureQuizAppDefaultDependencies(() => ({
@@ -152,6 +153,11 @@ function TestContentBridge(): React.JSX.Element {
     selectedUnitInfoContentStore.get,
     selectedUnitInfoContentStore.get,
   );
+  const supportContentNode = useSyncExternalStore(
+    supportContentStore.subscribe,
+    supportContentStore.get,
+    supportContentStore.get,
+  );
   const choicesNode = useSyncExternalStore(
     choicesContentStore.subscribe,
     choicesContentStore.get,
@@ -162,6 +168,7 @@ function TestContentBridge(): React.JSX.Element {
   const controlsEl = document.getElementById("categoryControls");
   const listEl = document.getElementById("categoryList");
   const unitInfoEl = document.getElementById("selectedUnitInfo");
+  const supportContentEl = document.getElementById("supportContent");
   const choicesEl = document.getElementById("choicesContainer");
 
   return (
@@ -170,6 +177,7 @@ function TestContentBridge(): React.JSX.Element {
       {controlsEl && categoryControlsNode ? createPortal(categoryControlsNode, controlsEl) : null}
       {listEl && categoryListNode ? createPortal(categoryListNode, listEl) : null}
       {unitInfoEl && selectedUnitInfoNode ? createPortal(selectedUnitInfoNode, unitInfoEl) : null}
+      {supportContentEl && supportContentNode ? createPortal(supportContentNode, supportContentEl) : null}
       {choicesEl && choicesNode ? createPortal(choicesNode, choicesEl) : null}
     </>
   );
@@ -311,6 +319,7 @@ export function setupTabDom(): void {
         <div id="overallSummaryPanelMount"></div>
         <div id="progressDetailPanelMount"></div>
         <div id="adminContent" class="hidden admin-content-panel" role="region" aria-label="管理"></div>
+        <div id="supportContent" class="hidden support-content-panel" role="region" aria-label="サポート"></div>
       </div>
     </div>
     <div id="quizScreen" class="screen">

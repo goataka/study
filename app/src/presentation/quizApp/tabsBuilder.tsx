@@ -8,16 +8,12 @@
 
 import { SUBJECTS } from "../uiHelpers";
 import {
-  setActivePanelTab,
   subscribeOverallPanelSideEffect,
   subscribePanelTabSideEffect,
   subscribeProgressDetailSideEffect,
 } from "../components/startScreen/panelTabsStore";
 import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { subjectTab } from "../styles/subjectTabStyles";
-import { guidePanelContentStore } from "../components/guidePanelContentStore";
-import { guideContent } from "../styles/guideContentStyles";
-import { useState } from "react";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
 export type PanelTab = "quiz" | "guide" | "history" | "questions";
@@ -26,6 +22,8 @@ export type PanelTab = "quiz" | "guide" | "history" | "questions";
 export interface SubjectTabsCallbacks {
   /** タブクリック時の遷移ハンドラ。指定教科 ID へ切り替える。 */
   onSelectSubject: (subjectId: string) => void;
+  /** サポートボタンクリック時のハンドラ。 */
+  onOpenSupport: () => void;
 }
 
 /**
@@ -47,107 +45,6 @@ let cachedCallbacks: SubjectTabsCallbacks | null = null;
 interface SubjectTabsProps {
   callbacks: SubjectTabsCallbacks;
   currentSubject: string;
-}
-
-interface SupportSection {
-  id: "startup" | "operation" | "technical" | "troubleshooting";
-  menuLabel: string;
-  title: string;
-  summary: string;
-  points: string[];
-}
-
-const SUPPORT_SECTIONS: readonly [SupportSection, ...SupportSection[]] = [
-  {
-    id: "startup",
-    menuLabel: "🚀 スタートアップガイド",
-    title: "🚀 スタートアップガイド",
-    summary: "はじめて使うときの流れを確認できます。",
-    points: ["学習の始め方", "単元の選び方", "クイズ開始までの基本操作"],
-  },
-  {
-    id: "operation",
-    menuLabel: "🖥️ 機能リファレンス",
-    title: "🖥️ 機能リファレンス",
-    summary: "画面構成と主要機能の使い方を確認できます。",
-    points: ["ヘッダーの各ボタン", "単元一覧の見方", "解説・確認・問題・履歴タブの使い方"],
-  },
-  {
-    id: "technical",
-    menuLabel: "🔧 技術リファレンス",
-    title: "🔧 技術リファレンス",
-    summary: "問題データ仕様や技術的な前提を確認できます。",
-    points: ["問題データ JSON の構造", "解説URLのルール", "運用時の注意点"],
-  },
-  {
-    id: "troubleshooting",
-    menuLabel: "❓ トラブルシューティング",
-    title: "❓ トラブルシューティング",
-    summary: "よくある困りごとと対処方法を確認できます。",
-    points: ["表示や動作の確認手順", "データ保存まわりの注意", "再読み込み時のチェックポイント"],
-  },
-];
-
-function SupportPanelContent(): React.JSX.Element {
-  const [activeSectionId, setActiveSectionId] = useState<SupportSection["id"]>("startup");
-  const activeSection = SUPPORT_SECTIONS.find((section) => section.id === activeSectionId) ?? SUPPORT_SECTIONS[0];
-
-  return (
-    <div className={guideContent()}>
-      <h2 className="mb-2 text-lg font-bold">
-        <span aria-hidden="true">❔ </span>
-        サポート
-      </h2>
-      <p className="mb-3">左のメニューから項目を選ぶと内容を表示できます。</p>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-[220px_minmax(0,1fr)]" data-support-layout="split">
-        <nav
-          className="border-b border-[#e1e4e8] pb-3 md:border-r md:border-b-0 md:pr-3 md:pb-0"
-          aria-label="サポートメニュー"
-        >
-          <ul className="space-y-2">
-            {SUPPORT_SECTIONS.map((section) => {
-              const isActive = section.id === activeSection.id;
-              return (
-                <li key={section.id}>
-                  <button
-                    type="button"
-                    className={[
-                      "w-full rounded px-2 py-1 text-left text-sm",
-                      isActive ? "bg-[#e8f0ff] font-semibold text-[#0366d6]" : "hover:bg-[#f6f8fa]",
-                    ].join(" ")}
-                    aria-current={isActive ? "page" : undefined}
-                    onClick={() => setActiveSectionId(section.id)}
-                  >
-                    {section.menuLabel}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-        <section className="min-w-0" aria-live="polite">
-          <h3 className="mb-2 text-base font-semibold">{activeSection.title}</h3>
-          <p className="mb-3">{activeSection.summary}</p>
-          <ul className="pl-6 list-disc">
-            {activeSection.points.map((point) => (
-              <li key={point} className="my-1">
-                {point}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
-    </div>
-  );
-}
-
-function openSupportInGuidePanel(): void {
-  setActivePanelTab("guide");
-  // ガイドタブ有効化の副作用（通常ガイド描画）より後にサポート内容を反映する。
-  // 先に set すると通常ガイドで上書きされるため、同一イベントループ内の後段で set する。
-  queueMicrotask(() => {
-    guidePanelContentStore.set(<SupportPanelContent />);
-  });
 }
 
 function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX.Element {
@@ -174,14 +71,17 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
         id="supportBtn"
         type="button"
         className={[
-          subjectTab({ active: false }),
+          subjectTab({ active: currentSubject === "support" }),
           "tabs-link-note tabs-link-note-support no-underline",
           "justify-center",
           "bg-[#e8f0ff]",
         ].join(" ")}
-        title="サポートを解説パネルで開く"
-        aria-label="サポートを解説パネルで開く"
-        onClick={openSupportInGuidePanel}
+        data-subject="support"
+        role="tab"
+        aria-selected={currentSubject === "support"}
+        title="サポートを表示する"
+        aria-label="サポートを表示する"
+        onClick={() => callbacks.onOpenSupport()}
       >
         ❔ サポート
       </button>

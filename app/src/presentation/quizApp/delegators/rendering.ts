@@ -28,7 +28,11 @@ import {
 } from "../categoryListActive";
 import { selectNextPanelTab } from "../autoSelectPanelTab";
 import { updateQuizPanelVisibility as updateQuizPanelVisibilityFn } from "../quizPanelVisibility";
-import { updateStartScreen as updateStartScreenFn, navigateToAdmin as navigateToAdminFn } from "../startScreenUpdater";
+import {
+  updateStartScreen as updateStartScreenFn,
+  navigateToAdmin as navigateToAdminFn,
+  navigateToSupport as navigateToSupportFn,
+} from "../startScreenUpdater";
 import {
   type CreateCategoryItemParams,
   type CategorySelectionCallbacks,
@@ -175,6 +179,9 @@ export function buildSubjectTabs(app: QuizApp): void {
         renderCategoryList(app);
         updateStartScreen(app);
         app.syncURLFragment();
+      },
+      onOpenSupport: () => {
+        navigateToSupport(app);
       },
     },
     app.filter.subject,
@@ -416,13 +423,22 @@ export function renderQuestionList(app: QuizApp, filter?: QuestionListFilter): v
   renderQuestionListView(getEffectiveFilter(app), filter ?? app.questionListFilter, app.useCase);
 }
 
-// ─── スタート画面・管理画面 ────────────────────────────────────────────────
+// ─── スタート画面・管理画面・サポート ────────────────────────────────────────────────
 
 export function navigateToAdmin(app: QuizApp): void {
   const ok = navigateToAdminFn(app.filter);
   if (!ok) return;
   app.selectedTopCategoryId = null;
   app.selectedUnitContext = null;
+  renderCategoryList(app);
+  updateStartScreen(app);
+}
+
+export function navigateToSupport(app: QuizApp): void {
+  navigateToSupportFn(app.filter);
+  app.selectedTopCategoryId = null;
+  app.selectedUnitContext = null;
+  selectTabByFilter(app);
   renderCategoryList(app);
   updateStartScreen(app);
 }
