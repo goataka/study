@@ -15,6 +15,7 @@ import type { ScreenName } from "./screenStore";
 import { subjectTabsContentStore } from "./subjectTabsContentStore";
 import { headerUserSaveButton } from "../styles/headerUserSaveButtonStyles";
 import { activeSubjectStore } from "./activeSubjectStore";
+import { SUBJECTS } from "../uiHelpers";
 
 interface TabsUserRowProps {
   currentScreen: ScreenName;
@@ -48,6 +49,9 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       resizeObserver?.disconnect();
     };
   }, [currentScreen]);
+
+  const activeSubjectInfo = SUBJECTS.find((s) => s.id === activeSubject.id);
+  const quizTabBgColor = activeSubjectInfo?.tabBgActive;
 
   const scrollTabs = (direction: "left" | "right"): void => {
     const el = scrollerRef.current;
@@ -120,18 +124,20 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       {/* クイズ中ヘッダー情報（教科タブと同じ場所・問題画面専用） */}
       <div
         className={[
-          "quiz-tab-info flex-1 flex items-end gap-3 px-4 pb-2 self-end",
+          "quiz-tab-info flex-1 flex items-end gap-3 px-4 pb-2",
+          quizTabBgColor ? "pt-[40px]" : "self-end",
           currentScreen !== "quiz" ? "hidden" : "",
         ]
           .filter(Boolean)
           .join(" ")}
+        style={quizTabBgColor ? { backgroundColor: quizTabBgColor } : undefined}
       >
-        <span className="quiz-tab-subject text-base font-extrabold text-white whitespace-nowrap">
+        <span className="quiz-tab-subject text-base font-extrabold text-[#5a4a28] whitespace-nowrap">
           {activeSubject.icon} {activeSubject.name}
         </span>
         <span
           id="quizTabDate"
-          className="quiz-tab-date text-base text-white/80 font-semibold whitespace-nowrap shrink-0 tracking-[0.03em] border-b-2 border-white/40 pb-px px-2 min-w-[120px] text-center"
+          className="quiz-tab-date text-base text-[#5a4a28]/70 font-semibold whitespace-nowrap shrink-0 tracking-[0.03em] border-b-2 border-[#5a4a28]/30 pb-px px-2 min-w-[120px] text-center"
         ></span>
       </div>
       <div

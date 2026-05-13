@@ -30,8 +30,8 @@ export const subjectTab = cva(
     "transition-[background,color,box-shadow] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1",
     // hover 状態
     "hover:brightness-[1.05] hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
-    // active 状態（太字のみ、隙間なし）
-    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110",
+    // active 状態（太字・上にはみ出す）
+    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110 [&.active]:pt-[40px]",
   ].join(" "),
   {
     variants: {

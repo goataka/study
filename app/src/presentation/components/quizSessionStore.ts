@@ -1,4 +1,5 @@
 import type { Question, QuizSession } from "../../application/quizUseCase";
+import { buildUnitName } from "../uiHelpers";
 
 type Listener = () => void;
 
@@ -88,7 +89,7 @@ export function syncQuizSessionStore(session: QuizSession, options: { kanjiAvail
   snapshot = {
     question,
     questionNumberText: `問題 ${idx + 1} / ${total}`,
-    topicName: `No. ${idx + 1}`,
+    topicName: buildUnitName(question),
     progressPercent: ((idx + 1) / total) * 100,
     answerFeedback: {
       visible: isAnswered,
