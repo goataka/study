@@ -143,7 +143,7 @@ runs:
         # PRが関連しているかチェック
         PR_NUMBER="${INPUT_PR_NUMBER}"
         TARGET_BRANCH=""
-        PR_COUNT=0
+        PULL_REQUEST_COUNT=0
 
         if [ -n "$PR_NUMBER" ]; then
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
@@ -152,9 +152,9 @@ runs:
 
         # まず workflow_run.pull_requests から取得を試みる
         if [ -z "$PR_NUMBER" ]; then
-          PR_COUNT=$(echo "${WF_PULL_REQUESTS:-null}" | jq 'length // 0')
+          PULL_REQUEST_COUNT=$(echo "${WF_PULL_REQUESTS:-null}" | jq 'length // 0')
         fi
-        if [ -z "$PR_NUMBER" ] && [ "$PR_COUNT" -gt 0 ]; then
+        if [ -z "$PR_NUMBER" ] && [ "$PULL_REQUEST_COUNT" -gt 0 ]; then
           _BRANCH=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].head.ref // empty')
           _PR=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].number // empty')
           if [ -n "$_BRANCH" ] && [ -n "$_PR" ]; then
@@ -195,7 +195,7 @@ runs:
           exit 1
         fi
 
-        echo "::notice::収集した情報: workflow=${WORKFLOW_NAME}, commit=${COMMIT_SHORT}, target_branch=${TARGET_BRANCH}, pr_count=${PR_COUNT:-0}"
+        echo "::notice::収集した情報: workflow=${WORKFLOW_NAME}, commit=${COMMIT_SHORT}, target_branch=${TARGET_BRANCH}, pr_count=${PULL_REQUEST_COUNT:-0}"
 
     - name: CopilotにCI修正を依頼
       id: request-fix
