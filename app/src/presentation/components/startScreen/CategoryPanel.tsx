@@ -29,6 +29,12 @@ export function CategoryPanel(): React.JSX.Element {
         >
           📚 単元一覧
         </span>
+        <span
+          id="supportMenuTitle"
+          className="support-menu-title hidden text-sm font-bold text-[#0366d6] shrink-0 px-1 py-1"
+        >
+          📜 メニュー
+        </span>
         <div
           className="category-status-filter flex items-center gap-0.5 ml-auto"
           role="group"

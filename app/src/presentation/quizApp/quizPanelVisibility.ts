@@ -114,6 +114,7 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
   // 管理タブでは「おすすめ単元」タイトルを非表示、「管理」タイトルを表示
   document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
   document.getElementById("categoryListTitle")?.classList.remove("hidden");
+  document.getElementById("supportMenuTitle")?.classList.add("hidden");
   // 管理タブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、管理コンテンツを表示する
   updateHiddenPanelTabs({
     "panelTab-guide": true,
@@ -149,9 +150,10 @@ function applySupportTabLayout(subjectContent: HTMLElement): void {
   if (supportStatusFilter) supportStatusFilter.classList.add("hidden");
   // サポートタブでは日付ナビを非表示にする
   document.getElementById("overallDateNav")?.classList.add("hidden");
-  // サポートタブでは「おすすめ単元」タイトルを非表示、「サポート」タイトルは左列コンポーネント内で表示
+  // サポートタブでは「おすすめ単元」タイトルと通常の単元一覧タイトルを非表示、サポートメニュータイトルを表示
   document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
   document.getElementById("categoryListTitle")?.classList.add("hidden");
+  document.getElementById("supportMenuTitle")?.classList.remove("hidden");
   // サポートタブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、サポートコンテンツを表示する
   updateHiddenPanelTabs({
     "panelTab-guide": true,
@@ -195,6 +197,7 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
   // 進度タブでは「おすすめ単元」タイトルを非表示、「進度」タイトルを表示
   document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
   document.getElementById("categoryListTitle")?.classList.remove("hidden");
+  document.getElementById("supportMenuTitle")?.classList.add("hidden");
   // 進度タブでは、単元未選択時は進度詳細のみ表示、単元選択時は単元詳細のみ表示する
   updateHiddenPanelTabs({
     "panelTab-guide": !hasProgressUnit,
@@ -298,6 +301,8 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   document.getElementById("allSubjectPanelTitle")?.classList.toggle("hidden", !isAll);
   // 「単元一覧」タイトルは教科別タブ時のみ表示
   document.getElementById("categoryListTitle")?.classList.toggle("hidden", isAll);
+  // サポートメニュータイトルは常に非表示（サポートタブ以外）
+  document.getElementById("supportMenuTitle")?.classList.add("hidden");
   // 学習状態フィルターボタンは総合タブ・管理タブでは非表示
   const statusFilterEl = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (statusFilterEl) statusFilterEl.classList.toggle("hidden", isAll || params.subject === "admin");

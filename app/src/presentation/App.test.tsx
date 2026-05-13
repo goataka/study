@@ -273,7 +273,7 @@ describe("App コンポーネント", () => {
       root = createRoot(container!);
       root.render(<App bootApp={bootApp} />);
     });
-    expect(container?.querySelector(".app-name-text")?.textContent).toContain("小中高学習アプリ");
+    expect(container?.querySelector(".app-name-text")?.textContent).toContain("Open Study Project学習アプリ 小中高");
   });
 
   it("環境切り替えは現在環境を太字・非リンクで表示する", () => {
@@ -289,6 +289,27 @@ describe("App コンポーネント", () => {
         (anchor) => anchor.textContent === "rc" && anchor.getAttribute("href")?.includes("/rc") === true,
       ),
     ).toBe(true);
+  });
+
+  it("クイズ画面ではアプリ名エリアが表示され、教科名と日付エリアが教科タブ位置に表示される", () => {
+    act(() => {
+      root = createRoot(container!);
+      root.render(<App bootApp={bootApp} />);
+    });
+    act(() => {
+      setCurrentScreen("quiz", { history: "none" });
+    });
+    // アプリ名エリアが表示される
+    const appNameArea = container!.querySelector(".app-name-area");
+    expect(appNameArea?.classList.contains("hidden")).toBe(false);
+    // 教科タブ位置に教科名と日付エリアが表示される
+    const quizTabInfo = container!.querySelector(".quiz-tab-info");
+    expect(quizTabInfo).not.toBeNull();
+    expect(quizTabInfo?.classList.contains("hidden")).toBe(false);
+    // 教科名スパンが存在する
+    expect(container!.querySelector(".quiz-tab-subject")).not.toBeNull();
+    // 日付エリアが存在する
+    expect(container!.getElementById?.("quizTabDate") ?? container!.querySelector("#quizTabDate")).not.toBeNull();
   });
 
   it("screenStore の状態に応じて画面の hidden クラスが切り替わる", () => {

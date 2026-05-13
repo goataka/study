@@ -78,10 +78,3 @@ permalink: /content-list/math/
 | 36 | ♾️ 極限 | 高校3年 | [解説](../../../math/calculus/limits/guide) | <a href="../../../?subject=math&category=limits" target="_blank" rel="noopener noreferrer">確認</a> | lim(n→∞) 1/n = 0 |
 | 37 | 📊 微分 | 高校3年 | [解説](../../../math/calculus/differentiation/guide) | <a href="../../../?subject=math&category=differentiation" target="_blank" rel="noopener noreferrer">確認</a> | f(x)=x³ → f'(x)=3x² |
 | 38 | 📊 積分 | 高校3年 | [解説](../../../math/calculus/integration/guide) | <a href="../../../?subject=math&category=integration" target="_blank" rel="noopener noreferrer">確認</a> | ∫2xdx = x² + C |
-
-## 🔗 関連リンク
-
-- [📝 コンテンツ一覧（全教科）](../)
-- [📚 英語コンテンツ一覧](../english/)
-- [📖 国語コンテンツ一覧](../japanese/)
-- [🚀 サポートトップ](../../)

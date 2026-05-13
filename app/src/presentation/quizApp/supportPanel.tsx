@@ -13,7 +13,7 @@ import { createElement, useSyncExternalStore, useState } from "react";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { supportContentStore } from "../components/supportContentStore";
 import { GuideContent } from "../components/GuideContent";
-import { subjectTab } from "../styles/subjectTabStyles";
+import { panelTab, panelTabs } from "../styles/panelTabStyles";
 
 // ─── 左列メニュー定義 ──────────────────────────────────────────────────────
 
@@ -25,9 +25,9 @@ export interface SupportMenuItem {
 }
 
 export const SUPPORT_MENU_ITEMS: readonly [SupportMenuItem, ...SupportMenuItem[]] = [
-  { id: "intro", label: "はじめに" },
-  { id: "manual", label: "マニュアル" },
-  { id: "contents", label: "コンテンツ" },
+  { id: "intro", label: "🏠 はじめに" },
+  { id: "manual", label: "📖 マニュアル" },
+  { id: "contents", label: "📚 コンテンツ" },
 ];
 
 // ─── サブタブ定義 ──────────────────────────────────────────────────────────
@@ -82,9 +82,6 @@ export function SupportMenuList(): React.JSX.Element {
 
   return (
     <div className="support-menu-list flex flex-col p-2" data-testid="support-menu-list">
-      <div className="px-2 pb-2 pt-1">
-        <span className="text-sm font-bold text-[#0366d6]">❔ サポート</span>
-      </div>
       <nav aria-label="サポートメニュー">
         <ul className="space-y-1">
           {SUPPORT_MENU_ITEMS.map((item) => {
@@ -152,15 +149,16 @@ function SupportSubTabContent({ tabs }: { tabs: readonly [SubTab, ...SubTab[]] }
   return (
     <div className="support-subtab-content flex flex-col flex-1 overflow-hidden">
       {/* サブタブバー */}
-      <div className="support-subtab-bar flex gap-1 border-b-0 px-3 pt-2 pb-0 flex-wrap items-end">
+      <div className={panelTabs()} role="tablist">
         {tabs.map((tab) => {
           const isActive = tab.id === activeTabId;
           return (
             <button
               key={tab.id}
               type="button"
-              className={["support-subtab", subjectTab({ active: isActive }), "pt-1.5 pb-1 px-3 text-xs"].join(" ")}
-              style={{ backgroundColor: isActive ? "#d0e4ff" : "#e8f0ff" }}
+              className={["support-subtab", panelTab(), isActive ? "active" : ""].filter(Boolean).join(" ")}
+              role="tab"
+              aria-selected={isActive}
               onClick={() => setActiveTabId(tab.id)}
             >
               {tab.label}
