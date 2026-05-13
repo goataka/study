@@ -309,7 +309,7 @@ describe("App コンポーネント", () => {
     // 教科名スパンが存在する
     expect(container!.querySelector(".quiz-tab-subject")).not.toBeNull();
     // 日付エリアが存在する
-    expect(container!.getElementById?.("quizTabDate") ?? container!.querySelector("#quizTabDate")).not.toBeNull();
+    expect(container!.querySelector("#quizTabDate")).not.toBeNull();
   });
 
   it("screenStore の状態に応じて画面の hidden クラスが切り替わる", () => {

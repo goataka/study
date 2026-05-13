@@ -34,4 +34,22 @@ describe("updateHeaderTodayDate", () => {
     document.body.innerHTML = "";
     expect(() => updateHeaderTodayDate(new Date(2026, 4, 8))).not.toThrow();
   });
+
+  it("#quizTabDate が存在する場合に同じ日付文字列が設定される", () => {
+    document.body.innerHTML = `<span id="headerTodayDate"></span><span id="quizTabDate"></span>`;
+    updateHeaderTodayDate(new Date(2026, 4, 8));
+    expect(document.getElementById("quizTabDate")?.textContent).toBe("2026/05/08（金）");
+  });
+
+  it("#quizTabDate のみ存在する場合も日付が設定される", () => {
+    document.body.innerHTML = `<span id="quizTabDate"></span>`;
+    updateHeaderTodayDate(new Date(2026, 4, 8));
+    expect(document.getElementById("quizTabDate")?.textContent).toBe("2026/05/08（金）");
+  });
+
+  it("#quizTabDate が存在しない場合は安全に何もしない", () => {
+    document.body.innerHTML = `<span id="headerTodayDate"></span>`;
+    expect(() => updateHeaderTodayDate(new Date(2026, 4, 8))).not.toThrow();
+    expect(document.getElementById("quizTabDate")).toBeNull();
+  });
 });

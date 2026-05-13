@@ -126,8 +126,8 @@ export function SupportContentDisplay(): React.JSX.Element {
       aria-live="polite"
     >
       {activeMenuId === "intro" && <SupportIntroContent />}
-      {activeMenuId === "manual" && <SupportSubTabContent tabs={MANUAL_TABS} />}
-      {activeMenuId === "contents" && <SupportSubTabContent tabs={CONTENT_TABS} />}
+      {activeMenuId === "manual" && <SupportSubTabContent tabs={MANUAL_TABS} namespace="manual" />}
+      {activeMenuId === "contents" && <SupportSubTabContent tabs={CONTENT_TABS} namespace="contents" />}
     </div>
   );
 }
@@ -142,23 +142,34 @@ function SupportIntroContent(): React.JSX.Element {
 }
 
 /** マニュアル/コンテンツ: サブタブで md コンテンツを切り替えて表示。 */
-function SupportSubTabContent({ tabs }: { tabs: readonly [SubTab, ...SubTab[]] }): React.JSX.Element {
+function SupportSubTabContent({
+  tabs,
+  namespace,
+}: {
+  tabs: readonly [SubTab, ...SubTab[]];
+  namespace: string;
+}): React.JSX.Element {
   const [activeTabId, setActiveTabId] = useState<string>(tabs[0].id);
   const activeTab = tabs.find((t) => t.id === activeTabId) ?? tabs[0];
+  const tabBtnId = (id: string) => `supportTab-${namespace}-${id}`;
+  const panelId = `supportTabPanel-${namespace}`;
 
   return (
     <div className="support-subtab-content flex flex-col flex-1 overflow-hidden">
       {/* サブタブバー */}
-      <div className={panelTabs()} role="tablist">
+      <div className={panelTabs()} role="tablist" aria-label="サポートサブタブ切り替え">
         {tabs.map((tab) => {
           const isActive = tab.id === activeTabId;
           return (
             <button
               key={tab.id}
+              id={tabBtnId(tab.id)}
               type="button"
               className={["support-subtab", panelTab(), isActive ? "active" : ""].filter(Boolean).join(" ")}
               role="tab"
               aria-selected={isActive}
+              aria-controls={panelId}
+              tabIndex={isActive ? 0 : -1}
               onClick={() => setActiveTabId(tab.id)}
             >
               {tab.label}
@@ -167,8 +178,13 @@ function SupportSubTabContent({ tabs }: { tabs: readonly [SubTab, ...SubTab[]] }
         })}
       </div>
       {/* サブタブコンテンツ */}
-      <div className="support-subtab-panel support-guide-frame flex-1 overflow-y-auto px-4 py-3 guide-frame">
-        {activeTab && <GuideContent guideUrl={activeTab.url} />}
+      <div
+        id={panelId}
+        role="tabpanel"
+        aria-labelledby={tabBtnId(activeTab.id)}
+        className="support-subtab-panel support-guide-frame flex-1 overflow-y-auto px-4 py-3 guide-frame"
+      >
+        <GuideContent guideUrl={activeTab.url} />
       </div>
     </div>
   );
