@@ -96,6 +96,10 @@ describe("App コンポーネント", () => {
     const requiredIds = [
       // ヘッダー / ユーザー / アバター
       // supportBtn は tabsBuilder が動的に描画するため静的 ID リストから除外
+      "appLayout",
+      "tabsUserRow",
+      "subjectTabs",
+      "tabsUserArea",
       "headerUserName",
       "headerUserEdit",
       "headerUserNameInput",
@@ -118,6 +122,8 @@ describe("App コンポーネント", () => {
       "reloadBtn",
       // カテゴリパネル
       "subjectContent",
+      "categoryPanel",
+      "startQuizPanel",
       "categoryListTitle",
       "filterStatusAll",
       "filterStatusUnlearned",
@@ -186,6 +192,8 @@ describe("App コンポーネント", () => {
       "fontSizeBtns",
       // クイズ画面
       "quizScreen",
+      "quizLayout",
+      "quizNotesColumn",
       "progressFill",
       "questionNumber",
       "topicName",
@@ -239,6 +247,7 @@ describe("App コンポーネント", () => {
     });
 
     const startScreen = container!.querySelector("#startScreen");
+    const appLayout = container!.querySelector("#appLayout");
     const startHeader = container!.querySelector("#startScreen > header");
     const subjectTabs = container!.querySelector(".subject-tabs");
     const tabsUserArea = container!.querySelector(".tabs-user-area");
@@ -246,6 +255,7 @@ describe("App コンポーネント", () => {
     const fontSizeButtons = container!.querySelectorAll<HTMLButtonElement>(".font-size-btn");
 
     expect(startScreen?.className).toContain("px-2");
+    expect(appLayout?.className).toContain("px-10");
     expect(startScreen?.className).toContain("pt-0");
     expect(startHeader?.className).toContain("pt-2");
     expect(subjectTabs?.className).toContain("px-4");

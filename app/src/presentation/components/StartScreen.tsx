@@ -44,6 +44,7 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
           aria-hidden="true"
         ></div>
         <div
+          id="startQuizPanel"
           className={[
             "quiz-panel",
             "notebook-lines bg-white",

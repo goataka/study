@@ -93,7 +93,7 @@ textarea:focus-visible {
 /* GitHub Pages から取得した解説 HTML の .markdown-body に基本スタイルを提供する。 */
 .guide-frame .markdown-body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.6;
   color: #24292e;
   background-color: #fff;
@@ -323,6 +323,7 @@ textarea:focus-visible {
 .selected-unit-info-header-right {
   flex-shrink: 0;
   text-align: right;
+  padding-right: 5px;
 }
 
 .selected-unit-info-desc-row {
@@ -344,4 +345,5 @@ textarea:focus-visible {
 .selected-unit-info-desc-right {
   flex-shrink: 0;
   text-align: right;
+  padding-right: 5px;
 }
