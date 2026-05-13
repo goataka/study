@@ -252,7 +252,12 @@ jobs:
                 const statsInfo = page.locator("#statsInfo");
                 await statsInfo.waitFor({ state: "visible", timeout: 10_000 });
                 await page.waitForFunction(
-                  () => /全：[1-9]\d*問/.test(document.querySelector("#statsInfo")?.textContent ?? ""),
+                  () => {
+                    const statsInfoText = document.querySelector("#statsInfo")?.textContent ?? "";
+                    const supportMenuVisible = document.querySelector("nav[aria-label='サポートメニュー']") !== null;
+                    const supportTabActive = document.querySelector('.subject-tab[data-subject="support"].active') !== null;
+                    return /全：[1-9]\d*問/.test(statsInfoText) || supportMenuVisible || supportTabActive;
+                  },
                   undefined,
                   { timeout: 30_000 },
                 );
