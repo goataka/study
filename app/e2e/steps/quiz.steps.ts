@@ -32,8 +32,8 @@ When("I click the {string} tab", async ({ page }, tabText: string) => {
 });
 
 Then("the header should remain visible", async ({ page }) => {
-  // ヘッダーが表示されていることを確認
-  const header = page.locator("header");
+  // スタート画面のヘッダーが表示されていることを確認（#startScreen にスコープを絞る）
+  const header = page.locator("#startScreen header");
   await expect(header).toBeVisible();
 
   // ヘッダーがビューポート内に完全に収まっていることを確認
