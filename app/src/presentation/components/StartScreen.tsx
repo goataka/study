@@ -46,7 +46,10 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
         id="subjectContent"
       >
         <CategoryPanel />
-        {/* グリッド列2のスペーサー（折り目の位置を保持するためのダミー要素） */}
+        {/* グリッド列2のスペーサー（折り目の位置を保持するためのダミー要素）。
+            `notebook-spine` クラスは quizPanelVisibility.ts の querySelector と
+            `[&.category-only_.notebook-spine]:hidden` CSS ルールとの後方互換のために残置する。
+            視覚的な折り目は startScreen 内の絶対配置要素（上記の .notebook-spine）が担う。 */}
         <div className="notebook-spine hidden md:block w-3 shrink-0" aria-hidden="true" />
         <div
           id="startQuizPanel"

@@ -13,7 +13,9 @@ import { panelTab, panelTabs } from "../styles/panelTabStyles";
 import type { AdminPanelDeps } from "./types";
 
 type ManageTab = "import" | "export" | "reset";
+/** "spec" は独立した左メニュー項目（データセクションではないため SectionKey には含めない）。 */
 type ActiveMenu = "manage" | "view" | "spec" | null;
+/** データ参照タブのセクションキー（仕様は独立メニューのため除外）。 */
 type SectionKey = "settings" | AdminSectionKey;
 
 interface AdminPanelRootProps extends AdminPanelDeps {
