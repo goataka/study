@@ -110,7 +110,6 @@ export function SupportMenuList(): React.JSX.Element {
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => {
                     supportSectionStore.set(section.id);
-                    renderSupportContentPanel();
                   }}
                 >
                   {section.menuLabel}

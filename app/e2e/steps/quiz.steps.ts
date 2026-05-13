@@ -411,14 +411,17 @@ Then("the support button should be visible in the header", async ({ page }) => {
 });
 
 Then("the support button should show support content in guide panel", async ({ page }) => {
-  // サポートボタン（?）をクリックすると解説パネル内にサポートが表示されること
+  // サポートボタン（?）をクリックするとサポート専用パネルが表示されること
   const supportBtn = page.locator("#supportBtn");
   await supportBtn.click();
-  await expect(page.locator("#panelTab-guide")).toHaveClass(/active/);
-  await expect(page.locator("#guidePanelFrame [data-support-layout='split']")).toBeVisible();
-  await expect(page.locator("#guidePanelFrame nav[aria-label='サポートメニュー']")).toBeVisible();
-  await expect(page.locator("#guidePanelFrame section")).toContainText("スタートアップガイド");
-  await expect(page.locator("#guidePanelFrame a")).toHaveCount(0);
+  // 解説タブではなくサポートコンテンツパネルが表示される
+  await expect(page.locator("#supportContent")).toBeVisible();
+  // 左列: サポートメニューリストが表示される
+  await expect(page.locator("nav[aria-label='サポートメニュー']")).toBeVisible();
+  // 右列: サポートコンテンツが表示される
+  await expect(page.locator("#supportContent")).toContainText("スタートアップガイド");
+  // 外部リンクは表示しない
+  await expect(page.locator("#supportContent a")).toHaveCount(0);
 });
 
 When("I select {string} quiz order", async ({ page }, order: string) => {

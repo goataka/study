@@ -53,7 +53,12 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
   return (
     <div
       id="tabsUserRow"
-      className={`tabs-user-row flex items-end gap-0 shrink-0 bg-transparent${currentScreen === "start" ? " min-h-12" : ""}`}
+      className={[
+        "tabs-user-row flex items-end gap-0 shrink-0 bg-transparent",
+        currentScreen === "start" ? "min-h-12" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>
         <div
