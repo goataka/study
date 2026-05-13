@@ -13,6 +13,7 @@ import { ProgressDetailPanel } from "./startScreen/ProgressDetailPanel";
 import { OverallSummaryPanel } from "./startScreen/OverallSummaryPanel";
 import type { ScreenName } from "./screenStore";
 import { selectedUnitInfoContentStore } from "./selectedUnitInfoContentStore";
+import { supportContentStore } from "./supportContentStore";
 
 interface StartScreenProps {
   currentScreen: ScreenName;
@@ -59,6 +60,14 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
           <ProgressDetailPanel />
           <OverallSummaryPanel />
           <div id="adminContent" className="hidden admin-content-panel" role="region" aria-label="管理"></div>
+          <div
+            id="supportContent"
+            className="hidden support-content-panel flex flex-col flex-1 overflow-hidden"
+            role="region"
+            aria-label="サポート"
+          >
+            <SupportContentSection />
+          </div>
         </div>
       </div>
     </div>
@@ -72,5 +81,11 @@ function SelectedUnitInfoSection(): React.JSX.Element {
     selectedUnitInfoContentStore.get,
     selectedUnitInfoContentStore.get,
   );
+  return <>{node}</>;
+}
+
+/** サポートコンテンツ右列 — supportContentStore から描画。 */
+function SupportContentSection(): React.JSX.Element {
+  const node = useSyncExternalStore(supportContentStore.subscribe, supportContentStore.get, supportContentStore.get);
   return <>{node}</>;
 }

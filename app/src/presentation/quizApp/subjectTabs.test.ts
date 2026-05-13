@@ -139,28 +139,18 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(supportButton?.textContent).toContain("サポート");
   });
 
-  it("v1 配下ではサポートボタンで解説パネル内にサポート内容を表示する", async () => {
-    window.history.replaceState({}, "", "/study/v1/");
+  it("サポートボタンを押すと専用サポートパネルが表示される（解説タブではなく）", async () => {
     new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
+    await waitForCondition(() => document.querySelector(".subject-tabs #supportBtn") !== null);
     const supportButton = document.querySelector(".subject-tabs #supportBtn") as HTMLButtonElement | null;
+    expect(supportButton).not.toBeNull();
     supportButton?.click();
 
-    await waitForCondition(
-      () => document.getElementById("guidePanelFrame")?.textContent?.includes("サポート") === true,
-    );
-  });
-
-  it("サポートボタンを押すと解説タブに切り替わる", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const supportButton = document.querySelector(".subject-tabs #supportBtn") as HTMLButtonElement | null;
-    supportButton?.click();
-
-    await waitForCondition(() => document.getElementById("panelTab-guide")?.classList.contains("active") === true);
-    expect(document.getElementById("panelTab-guide")?.classList.contains("active")).toBe(true);
+    // サポートコンテンツが #supportContent に表示される
+    await waitForCondition(() => document.getElementById("supportContent")?.classList.contains("hidden") === false);
+    expect(document.getElementById("supportContent")?.classList.contains("hidden")).toBe(false);
+    // 解説タブはアクティブにならない
+    expect(document.getElementById("panelTab-guide")?.classList.contains("active")).toBe(false);
   });
 
   it("サポート内容は左メニュー・右コンテンツの分割表示になり、外部リンクを表示しない", async () => {
@@ -170,26 +160,36 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(supportButton).not.toBeNull();
     supportButton?.click();
 
-    await waitForCondition(() => document.querySelector("#guidePanelFrame [data-support-layout='split']") !== null);
-    const supportLayout = document.querySelector("#guidePanelFrame [data-support-layout='split']");
-    const menu = document.querySelector("#guidePanelFrame nav[aria-label='サポートメニュー']");
-    const menuButtons = document.querySelectorAll("#guidePanelFrame nav[aria-label='サポートメニュー'] button");
-    const heading = document.querySelector("#guidePanelFrame section h3");
-    const link = document.querySelector("#guidePanelFrame a");
-    expect(supportLayout).not.toBeNull();
+    // 左列: サポートメニューリストが表示される
+    await waitForCondition(() => document.querySelector("nav[aria-label='サポートメニュー']") !== null);
+    const menu = document.querySelector("nav[aria-label='サポートメニュー']");
+    const menuButtons = document.querySelectorAll("nav[aria-label='サポートメニュー'] button");
     expect(menu).not.toBeNull();
     expect(menuButtons.length).toBe(4);
-    expect(heading?.textContent).toContain("スタートアップガイド");
-    expect(link).toBeNull();
 
+    // 右列: #supportContent にコンテンツが表示される
+    await waitForCondition(() => {
+      const content = document.getElementById("supportContent");
+      return (
+        content !== null &&
+        !content.classList.contains("hidden") &&
+        content.textContent?.includes("スタートアップガイド") === true
+      );
+    });
+    const content = document.getElementById("supportContent");
+    expect(content).not.toBeNull();
+    expect(content?.textContent).toContain("スタートアップガイド");
+    // 外部リンクは表示しない
+    expect(content?.querySelector("a")).toBeNull();
+
+    // メニューボタンをクリックするとコンテンツが切り替わる
     const troubleshootingButton = Array.from(menuButtons).find((button) =>
       button.textContent?.includes("トラブルシューティング"),
     ) as HTMLButtonElement | undefined;
     expect(troubleshootingButton).toBeDefined();
     troubleshootingButton!.click();
     await waitForCondition(
-      () =>
-        document.querySelector("#guidePanelFrame section h3")?.textContent?.includes("トラブルシューティング") === true,
+      () => document.getElementById("supportContent")?.textContent?.includes("トラブルシューティング") === true,
     );
   });
 });

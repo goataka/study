@@ -16,7 +16,7 @@ export const SUBJECTS = [
   { id: "english", name: "英語", icon: "📚", tabBg: "#e8f0ff", tabBgActive: "#d0e4ff" },
   { id: "math", name: "数学", icon: "🔢", tabBg: "#e8fff0", tabBgActive: "#d0ffe0" },
   { id: "japanese", name: "国語", icon: "📖", tabBg: "#fff0f0", tabBgActive: "#ffe0e0" },
-  { id: "admin", name: "管理", icon: "⚙️", tabBg: "transparent", tabBgActive: "transparent" },
+  { id: "admin", name: "管理", icon: "⚙️", tabBg: "#f0f4f8", tabBgActive: "#dce8f4" },
 ] as const;
 
 /** 教科IDから表示名を取得する。未定義または未登録IDの場合は `undefined` を返す。 */

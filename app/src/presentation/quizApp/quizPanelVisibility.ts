@@ -87,6 +87,11 @@ export function updateQuizPanelVisibility(params: QuizPanelVisibilityParams): vo
     return;
   }
 
+  if (params.subject === "support") {
+    applySupportTabLayout(subjectContent);
+    return;
+  }
+
   if (params.subject === "progress") {
     applyProgressTabLayout(subjectContent, params);
     return;
@@ -130,6 +135,49 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
   });
   document.getElementById("selectedUnitInfo")?.classList.add("hidden");
   document.getElementById("adminContent")?.classList.remove("hidden");
+  document.getElementById("supportContent")?.classList.add("hidden");
+}
+
+function applySupportTabLayout(subjectContent: HTMLElement): void {
+  setCategoryPanelBackground("default");
+  subjectContent.classList.remove("category-only");
+  subjectContent.classList.remove("all-subject-layout");
+  subjectContent.classList.remove("all-subject-unit-selected");
+  ensureQuizPanelVisible(subjectContent);
+  // サポートタブでは学習状態フィルターを非表示にする
+  const supportStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
+  if (supportStatusFilter) supportStatusFilter.classList.add("hidden");
+  // サポートタブでは日付ナビを非表示にする
+  document.getElementById("overallDateNav")?.classList.add("hidden");
+  // サポートタブでは「おすすめ単元」タイトルを非表示、「サポート」タイトルは左列コンポーネント内で表示
+  document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
+  document.getElementById("categoryListTitle")?.classList.add("hidden");
+  // サポートタブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、サポートコンテンツを表示する
+  updateHiddenPanelTabs({
+    "panelTab-guide": true,
+    "panelTab-quiz": true,
+    "panelTab-history": true,
+    "panelTab-questions": true,
+  });
+  setOverallSummaryPanelHidden(true);
+  setProgressDetailPanelHidden(true);
+  [
+    "quizModePanel",
+    "guideContent",
+    "historyContent",
+    "questionListContent",
+    "overallSummaryPanel",
+    "progressDetailPanel",
+  ].forEach((id) => {
+    document.getElementById(id)?.classList.add("hidden");
+  });
+  document.getElementById("selectedUnitInfo")?.classList.add("hidden");
+  document.getElementById("adminContent")?.classList.add("hidden");
+  const supportContent = document.getElementById("supportContent");
+  if (supportContent) {
+    supportContent.classList.remove("hidden");
+    supportContent.classList.add("flex");
+  }
 }
 
 function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVisibilityParams): void {
@@ -167,6 +215,8 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
   setOverallSummaryPanelHidden(true);
   document.getElementById("overallSummaryPanel")?.classList.add("hidden");
   document.getElementById("adminContent")?.classList.add("hidden");
+  document.getElementById("supportContent")?.classList.remove("flex");
+  document.getElementById("supportContent")?.classList.add("hidden");
   if (hasProgressUnit) {
     params.onUpdateSelectedUnitInfo();
   } else {
@@ -198,6 +248,9 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   notebookSpine?.classList.toggle("md:hidden", noCategory);
   // 管理コンテンツパネルを非表示にする（管理タブ以外）
   document.getElementById("adminContent")?.classList.add("hidden");
+  // サポートコンテンツパネルを非表示にする（サポートタブ以外）
+  document.getElementById("supportContent")?.classList.remove("flex");
+  document.getElementById("supportContent")?.classList.add("hidden");
 
   // 総合タブでは単元未選択時のみパネルタブを非表示（単元選択時は教科画面と同じ表示）
   // また、カテゴリ/サブカテゴリ選択時は確認・問題一覧・履歴タブを非表示にする。
