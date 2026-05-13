@@ -218,7 +218,7 @@ jobs:
           head-branch: ${{ github.head_ref }}
           pr-number: ${{ github.event.pull_request.number }}
           error-context: |
-            job 結果:
+            ジョブ結果:
             - test-and-build: ${{ needs.test-and-build.result }}
             - e2e: ${{ needs.e2e.result }}
             - visual-regression: ${{ needs.visual-regression.result }}

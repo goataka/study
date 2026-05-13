@@ -146,7 +146,7 @@ runs:
         PULL_REQUEST_COUNT=0
         PULL_REQUESTS_JSON="${WF_PULL_REQUESTS}"
 
-        # jq で安定して扱えるよう、空文字列は JSON の null に正規化する。
+        # jq でエラーなく扱えるよう、空文字列は JSON の null に正規化する。
         if [ -z "${PULL_REQUESTS_JSON}" ]; then
           PULL_REQUESTS_JSON="null"
         fi
@@ -229,7 +229,7 @@ runs:
         BODY_FILE=$(mktemp)
 
         if [ "$IS_PR" = "true" ]; then
-          printf '@copilot このPRのワークフローエラーを修復してください。\n\nワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nCIログ: %s\n' \
+          printf '@copilot このPRのワークフローエラーを修正してください。\n\nワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nCIログ: %s\n' \
             "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${PR_NUMBER}" "${RUN_URL}" >"$BODY_FILE"
           [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
           GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
