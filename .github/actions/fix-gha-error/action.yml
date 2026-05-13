@@ -144,6 +144,7 @@ runs:
         PR_NUMBER="${INPUT_PR_NUMBER}"
         TARGET_BRANCH=""
         PULL_REQUEST_COUNT=0
+        PULL_REQUESTS_JSON="${WF_PULL_REQUESTS}"
 
         if [ -n "$PR_NUMBER" ]; then
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
@@ -152,11 +153,14 @@ runs:
 
         # まず workflow_run.pull_requests から取得を試みる
         if [ -z "$PR_NUMBER" ]; then
-          PULL_REQUEST_COUNT=$(echo "${WF_PULL_REQUESTS:-null}" | jq 'length // 0')
+          if [ -z "${PULL_REQUESTS_JSON}" ]; then
+            PULL_REQUESTS_JSON="null"
+          fi
+          PULL_REQUEST_COUNT=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq 'length // 0')
         fi
         if [ -z "$PR_NUMBER" ] && [ "$PULL_REQUEST_COUNT" -gt 0 ]; then
-          _BRANCH=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].head.ref // empty')
-          _PR=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].number // empty')
+          _BRANCH=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq -r '.[0].head.ref // empty')
+          _PR=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq -r '.[0].number // empty')
           if [ -n "$_BRANCH" ] && [ -n "$_PR" ]; then
             TARGET_BRANCH="$_BRANCH"
             PR_NUMBER="$_PR"
