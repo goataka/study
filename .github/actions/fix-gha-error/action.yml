@@ -107,7 +107,7 @@ runs:
         echo "head_sha=${HEAD_SHA}" >> $GITHUB_OUTPUT
         echo "run_url=${RUN_URL}" >> $GITHUB_OUTPUT
         echo "head_branch=${HEAD_BRANCH}" >> $GITHUB_OUTPUT
-        echo "input_pr_number=${INPUT_PR_NUMBER}" >> $GITHUB_OUTPUT
+        echo "requested_pr_number=${INPUT_PR_NUMBER}" >> $GITHUB_OUTPUT
 
         if [ -z "${HEAD_BRANCH:-}" ]; then
           echo "::warning::workflow_run.head_branch が空です。PR情報から後続で判定します。"
@@ -124,7 +124,7 @@ runs:
         WF_HEAD_SHA: ${{ steps.validate-input.outputs.head_sha }}
         WF_HTML_URL: ${{ steps.validate-input.outputs.run_url }}
         WF_HEAD_BRANCH: ${{ steps.validate-input.outputs.head_branch }}
-        INPUT_PR_NUMBER: ${{ steps.validate-input.outputs.input_pr_number }}
+        REQUESTED_PR_NUMBER: ${{ steps.validate-input.outputs.requested_pr_number }}
         WF_PULL_REQUESTS: ${{ toJson(github.event.workflow_run.pull_requests) }}
       run: |
         set -euo pipefail
@@ -141,19 +141,19 @@ runs:
         echo "run_url=${RUN_URL}" >> $GITHUB_OUTPUT
 
         # PRが関連しているかチェック
-        PR_NUMBER="${INPUT_PR_NUMBER}"
+        PR_NUMBER="${REQUESTED_PR_NUMBER}"
         TARGET_BRANCH=""
         PULL_REQUEST_COUNT=0
         PULL_REQUESTS_JSON="${WF_PULL_REQUESTS}"
 
-        # jq でエラーなく扱えるよう、空文字列は JSON の null に正規化する。
+        # workflow_run 以外から呼ばれた場合は空文字列になり得るため、
+        # jq でエラーなく扱えるよう JSON の null に正規化する。
         if [ -z "${PULL_REQUESTS_JSON}" ]; then
           PULL_REQUESTS_JSON="null"
         fi
 
         if [ -n "$PR_NUMBER" ]; then
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
-          PULL_REQUEST_COUNT=0
           echo "::notice::入力値でPRを特定しました (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
         fi
 
@@ -202,7 +202,7 @@ runs:
           exit 1
         fi
 
-        echo "::notice::収集した情報: workflow=${WORKFLOW_NAME}, commit=${COMMIT_SHORT}, target_branch=${TARGET_BRANCH}, pr_count=${PULL_REQUEST_COUNT:-0}"
+        echo "::notice::収集した情報: workflow=${WORKFLOW_NAME}, commit=${COMMIT_SHORT}, target_branch=${TARGET_BRANCH}"
 
     - name: CopilotにCI修正を依頼
       id: request-fix
