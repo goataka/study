@@ -410,19 +410,15 @@ Then("the support button should be visible in the header", async ({ page }) => {
   await expect(page.locator("#supportBtn")).toBeVisible();
 });
 
-Then("the support button should open support page in a new tab", async ({ page }) => {
-  // サポートボタン（?）をクリックすると別タブが開くこと
+Then("the support button should show support content in guide panel", async ({ page }) => {
+  // サポートボタン（?）をクリックすると解説パネル内にサポートが表示されること
   const supportBtn = page.locator("#supportBtn");
-  await expect(supportBtn).toHaveAttribute("target", "_blank");
-  const currentPath = new URL(page.url()).pathname;
-  const isVersionedEnvironment = /\/(?:v1|rc)(?:\/|$)/.test(currentPath);
-  const expectedHref = isVersionedEnvironment ? "../support/" : "./support/";
-  await expect(supportBtn).toHaveAttribute("href", expectedHref);
-
-  const [supportPage] = await Promise.all([page.waitForEvent("popup"), supportBtn.click()]);
-
-  await supportPage.waitForLoadState();
-  expect(supportPage.url()).toContain("support");
+  await supportBtn.click();
+  await expect(page.locator("#panelTab-guide")).toHaveClass(/active/);
+  await expect(page.locator("#guidePanelFrame [data-support-layout='split']")).toBeVisible();
+  await expect(page.locator("#guidePanelFrame nav[aria-label='サポートメニュー']")).toBeVisible();
+  await expect(page.locator("#guidePanelFrame section")).toContainText("スタートアップガイド");
+  await expect(page.locator("#guidePanelFrame a")).toHaveCount(0);
 });
 
 When("I select {string} quiz order", async ({ page }, order: string) => {
