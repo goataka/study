@@ -92,6 +92,7 @@ function setupTextInputDom(): void {
 
 describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () => {
   beforeEach(() => {
+    window.localStorage.setItem("study-guide-first-visit-done", "1");
     unmountAllTrackedRoots();
     setupTextInputDom();
     kanjiCanvasMock.recognize.mockReturnValue("");

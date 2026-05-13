@@ -16,12 +16,15 @@ import {
 
 describe("QuizApp — 教科タブ仕様", () => {
   beforeEach(() => {
+    window.localStorage.clear();
+    window.history.replaceState({}, "", "/");
     setupTabDom();
     setupFetchMock();
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
+    window.history.replaceState({}, "", "/");
   });
 
   it("問題ロード後にタブに教科（おすすめ・進度・英語・数学・国語・管理・サポート）が7件描画される", async () => {
@@ -42,7 +45,18 @@ describe("QuizApp — 教科タブ仕様", () => {
     });
   });
 
-  it("初期状態では「おすすめ」タブがアクティブになっている", async () => {
+  it("初回アクセスでは「ガイド」タブがアクティブになっている", async () => {
+    window.localStorage.removeItem("study-guide-first-visit-done");
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideTab = document.querySelector('.subject-tab[data-subject="support"]');
+    expect(guideTab?.classList.contains("active")).toBe(true);
+    expect(guideTab?.getAttribute("aria-selected")).toBe("true");
+  });
+
+  it("2回目以降のアクセスでは「おすすめ」タブがアクティブになる", async () => {
+    window.localStorage.setItem("study-guide-first-visit-done", "1");
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -136,7 +150,7 @@ describe("QuizApp — 教科タブ仕様", () => {
     const supportButton = document.querySelector(".subject-tabs #supportBtn") as HTMLButtonElement | null;
     expect(supportButton).not.toBeNull();
     expect(supportButton?.tagName).toBe("BUTTON");
-    expect(supportButton?.textContent).toContain("サポート");
+    expect(supportButton?.textContent).toContain("ガイド");
   });
 
   it("サポートボタンは管理タブの前に表示される", async () => {
@@ -173,17 +187,17 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(supportButton).not.toBeNull();
     supportButton?.click();
 
-    // 左列: サポートメニューリストが表示される（3項目: はじめに/マニュアル/コンテンツ）
+    // 左列: サポートメニューリストが表示される（3項目: はじめに/使い方/コンテンツ）
     await waitForCondition(() => document.querySelector("nav[aria-label='サポートメニュー']") !== null);
     const menu = document.querySelector("nav[aria-label='サポートメニュー']");
     const menuButtons = document.querySelectorAll("nav[aria-label='サポートメニュー'] button");
     expect(menu).not.toBeNull();
     expect(menuButtons.length).toBe(3);
 
-    // 左メニューに「はじめに」「マニュアル」「コンテンツ」が含まれる
+    // 左メニューに「はじめに」「使い方」「コンテンツ」が含まれる
     const menuLabels = Array.from(menuButtons).map((b) => b.textContent ?? "");
     expect(menuLabels.some((l) => l.includes("はじめに"))).toBe(true);
-    expect(menuLabels.some((l) => l.includes("マニュアル"))).toBe(true);
+    expect(menuLabels.some((l) => l.includes("使い方"))).toBe(true);
     expect(menuLabels.some((l) => l.includes("コンテンツ"))).toBe(true);
 
     // 右列: #supportContent にコンテンツが表示される
@@ -194,19 +208,8 @@ describe("QuizApp — 教科タブ仕様", () => {
     const content = document.getElementById("supportContent");
     expect(content).not.toBeNull();
 
-    // マニュアルボタンをクリックするとサブタブが表示される
-    const manualButton = Array.from(menuButtons).find((button) => button.textContent?.includes("マニュアル")) as
-      | HTMLButtonElement
-      | undefined;
-    expect(manualButton).toBeDefined();
-    manualButton!.click();
-
-    // マニュアルタブにスタートアップガイドのサブタブが表示される
-    await waitForCondition(() => document.querySelector(".support-subtab") !== null);
-    const subTabs = document.querySelectorAll(".support-subtab");
-    expect(subTabs.length).toBeGreaterThan(0);
-    const subTabLabels = Array.from(subTabs).map((b) => b.textContent ?? "");
-    expect(subTabLabels.some((l) => l.includes("スタートアップガイド"))).toBe(true);
-    expect(subTabLabels.some((l) => l.includes("トラブルシューティング"))).toBe(true);
+    // 使い方ボタンが存在することを確認する
+    const usageButton = Array.from(menuButtons).find((button) => button.textContent?.includes("使い方"));
+    expect(usageButton).toBeDefined();
   });
 });

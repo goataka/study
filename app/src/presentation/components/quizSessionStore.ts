@@ -80,10 +80,6 @@ export function syncQuizSessionStore(session: QuizSession, options: { kanjiAvail
           : `❌ 不正解です。正解は「${correctAnswer}」`
         : `❌ 不正解です。正解は「${correctAnswer}」です。`
     : "";
-  const topicParts: string[] = [];
-  if (question.topCategoryName) topicParts.push(question.topCategoryName);
-  if (question.parentCategoryName) topicParts.push(question.parentCategoryName);
-  topicParts.push(question.categoryName ?? question.category);
   const isLast = idx === total - 1;
   const showKanjiInput = isTextInput && !isAnswered && options.kanjiAvailable;
   const isSpeechAvailable =
@@ -92,7 +88,7 @@ export function syncQuizSessionStore(session: QuizSession, options: { kanjiAvail
   snapshot = {
     question,
     questionNumberText: `問題 ${idx + 1} / ${total}`,
-    topicName: topicParts.join(" › "),
+    topicName: `No. ${idx + 1}`,
     progressPercent: ((idx + 1) / total) * 100,
     answerFeedback: {
       visible: isAnswered,

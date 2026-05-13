@@ -44,6 +44,7 @@ import * as D from "./quizApp/delegators";
 import type { QuestionListFilter } from "./quizApp/questionListView";
 
 const PANEL_TABS: readonly D.PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
+const SUPPORT_FIRST_VISIT_KEY = "study-guide-first-visit-done";
 
 export interface QuizAppDefaultDependencies {
   progressRepo: IProgressRepository;
@@ -201,6 +202,7 @@ export class QuizApp {
     this.includeMastered = settings.includeMastered;
     this.categoryViewMode = this.progressRepo.loadCategoryViewMode();
     this.loadFilterFromURL();
+    this.applyFirstVisitGuidePreference();
     this.questionCount = loadQuestionCountFromDomSetting(this.questionCount);
     this.subjectRecommendedCounts = loadRecommendedCountsSetting(this.progressRepo);
     this.setupEventListeners();
@@ -250,6 +252,26 @@ export class QuizApp {
     if (parsed.categoryView !== undefined) this.categoryViewMode = parsed.categoryView;
     if (parsed.questionFilter !== undefined) this.questionListFilter = parsed.questionFilter;
     if (parsed.selectedUnitContext !== undefined) this.selectedUnitContext = parsed.selectedUnitContext;
+  }
+
+  /**
+   * URL 指定がない初回アクセス時のみ「ガイド」タブを初期表示にする。
+   * 2回目以降は既定の「おすすめ」タブを維持する。
+   */
+  private applyFirstVisitGuidePreference(): void {
+    const params = getURLParams();
+    if (params.has("subject")) return;
+    if (this.filter.subject !== "all") return;
+
+    const hasVisited = window.localStorage.getItem(SUPPORT_FIRST_VISIT_KEY) === "1";
+    if (hasVisited) return;
+
+    this.filter.subject = "support";
+    this.filter.category = "all";
+    this.filter.parentCategory = undefined;
+    this.selectedTopCategoryId = null;
+    this.selectedUnitContext = null;
+    window.localStorage.setItem(SUPPORT_FIRST_VISIT_KEY, "1");
   }
 
   /**
@@ -434,6 +456,7 @@ export class QuizApp {
    * URL パラメータでカテゴリが明示指定されている場合はスキップする。
    */
   private selectFirstUnlearnedCategory(): void {
+    if (this.filter.subject === "support") return;
     const params = getURLParams();
     const result = findFirstUnlearnedCategory(
       params.has("subject") || params.has("category") || params.has("unitCategory"),

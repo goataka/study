@@ -111,10 +111,10 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
   if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
   // 管理タブでは日付ナビを非表示にする
   document.getElementById("overallDateNav")?.classList.add("hidden");
-  // 管理タブでは「おすすめ単元」タイトルを非表示、「管理」タイトルを表示
+  // 管理タブでは「おすすめ単元」タイトルと通常の単元一覧タイトルを非表示にし、メニュータイトルを表示
   document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
-  document.getElementById("categoryListTitle")?.classList.remove("hidden");
-  document.getElementById("supportMenuTitle")?.classList.add("hidden");
+  document.getElementById("categoryListTitle")?.classList.add("hidden");
+  document.getElementById("supportMenuTitle")?.classList.remove("hidden");
   // 管理タブでは通常のパネルタブ・コンテンツ・総合サマリパネルを非表示にして、管理コンテンツを表示する
   updateHiddenPanelTabs({
     "panelTab-guide": true,

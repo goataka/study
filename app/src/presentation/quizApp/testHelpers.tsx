@@ -243,6 +243,7 @@ export async function waitForCondition(
 export function setupMinimalDom(): void {
   unmountAllTrackedRoots();
   window.history.replaceState({}, "", "/");
+  window.localStorage.setItem("study-guide-first-visit-done", "1");
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
@@ -292,6 +293,7 @@ export function setupMinimalDom(): void {
 export function setupTabDom(): void {
   unmountAllTrackedRoots();
   window.history.replaceState({}, "", "/");
+  window.localStorage.setItem("study-guide-first-visit-done", "1");
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">

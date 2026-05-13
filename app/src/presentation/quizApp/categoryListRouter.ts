@@ -51,9 +51,6 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
   if (subject === "admin") {
     // 管理タブでは学年フィルター・表示切替コントロールを非表示にする
     categoryControlsContentStore.reset();
-    // タイトルを「⚙️ メニュー」に変更
-    const titleEl = document.getElementById("categoryListTitle");
-    if (titleEl) titleEl.textContent = "⚙️ メニュー";
     renderAdminContent(categoryList, {
       useCase: params.useCase,
       progressRepo: params.progressRepo,

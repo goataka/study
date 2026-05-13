@@ -18,6 +18,7 @@ import {
 
 describe("QuizApp — 結果画面の全問正解表示仕様", () => {
   beforeEach(() => {
+    window.localStorage.setItem("study-guide-first-visit-done", "1");
     unmountAllTrackedRoots();
     document.body.innerHTML = `
       <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>

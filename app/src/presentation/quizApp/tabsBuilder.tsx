@@ -44,7 +44,7 @@ export function buildSubjectTabs(callbacks: SubjectTabsCallbacks, currentSubject
   if (subject) {
     activeSubjectStore.set({ id: subject.id, name: subject.name, icon: subject.icon });
   } else if (currentSubject === "support") {
-    activeSubjectStore.set({ id: "support", name: "サポート", icon: "❔" });
+    activeSubjectStore.set({ id: "support", name: "ガイド", icon: "🚀" });
   }
 }
 
@@ -79,7 +79,6 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
 
   return (
     <>
-      {mainSubjects.map((subject) => renderSubjectButton(subject))}
       <button
         id="supportBtn"
         type="button"
@@ -92,12 +91,13 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
         data-subject="support"
         role="tab"
         aria-selected={currentSubject === "support"}
-        title="サポートを表示する"
-        aria-label="サポートを表示する"
+        title="ガイドを表示する"
+        aria-label="ガイドを表示する"
         onClick={() => callbacks.onOpenSupport()}
       >
-        ❔ サポート
+        🚀 ガイド
       </button>
+      {mainSubjects.map((subject) => renderSubjectButton(subject))}
       {adminSubject ? renderSubjectButton(adminSubject) : null}
     </>
   );

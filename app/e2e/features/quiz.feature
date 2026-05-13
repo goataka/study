@@ -16,14 +16,17 @@ Feature: 学習アプリ
 
   Scenario: 総合タブには各教科の概要カードが表示される
     Then the start screen should be visible
+    When I click the "おすすめ" tab
     And the subject overview items should be visible
 
   Scenario: 総合タブには活動サマリパネルが表示される
     Then the start screen should be visible
+    When I click the "おすすめ" tab
     And the overall summary panel should be visible
 
   Scenario: 総合タブの活動サマリには日付が含まれる
     Then the start screen should be visible
+    When I click the "おすすめ" tab
     And the share summary text should contain "📅"
 
   Scenario: 単元を選択するとクイズパネルが表示される
