@@ -146,6 +146,10 @@ runs:
         PULL_REQUEST_COUNT=0
         PULL_REQUESTS_JSON="${WF_PULL_REQUESTS}"
 
+        if [ -z "${PULL_REQUESTS_JSON}" ]; then
+          PULL_REQUESTS_JSON="null"
+        fi
+
         if [ -n "$PR_NUMBER" ]; then
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
           echo "::notice::入力値でPRを特定しました (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
@@ -153,9 +157,6 @@ runs:
 
         # まず workflow_run.pull_requests から取得を試みる
         if [ -z "$PR_NUMBER" ]; then
-          if [ -z "${PULL_REQUESTS_JSON}" ]; then
-            PULL_REQUESTS_JSON="null"
-          fi
           PULL_REQUEST_COUNT=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq 'length // 0')
         fi
         if [ -z "$PR_NUMBER" ] && [ "$PULL_REQUEST_COUNT" -gt 0 ]; then
@@ -226,7 +227,7 @@ runs:
         BODY_FILE=$(mktemp)
 
         if [ "$IS_PR" = "true" ]; then
-          printf '@copilot このPRのCIエラーを修復してください。\n\nワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nCIログ: %s\n' \
+          printf '@copilot このPRのワークフローエラーを修復してください。\n\nワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nCIログ: %s\n' \
             "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${PR_NUMBER}" "${RUN_URL}" >"$BODY_FILE"
           [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
           GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
