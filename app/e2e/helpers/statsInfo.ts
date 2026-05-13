@@ -4,7 +4,6 @@
  * statsInfo の期待テキストパターンを一元管理する。
  * 形式が変わった場合はここだけ修正すればすべてのステップに反映される。
  */
-import { expect } from "@playwright/test";
 import type { Page } from "@playwright/test";
 
 /** statsInfo に表示される問題数テキストのパターン（例: "学習中：0問 / 学習済：0問 / 全：3993問"） */
@@ -19,7 +18,16 @@ export const STATS_LOAD_TIMEOUT = 10_000;
  * 全0問はロード失敗を示すため、このパターンには一致しない。
  */
 export async function waitForStatsInfoLoaded(page: Page): Promise<void> {
-  await expect(page.locator("#statsInfo")).toContainText(STATS_INFO_PATTERN, {
-    timeout: STATS_LOAD_TIMEOUT,
-  });
+  await page.waitForFunction(
+    (pattern) => {
+      const statsInfoText = document.getElementById("statsInfo")?.textContent ?? "";
+      const supportMenuVisible = document.querySelector("nav[aria-label='サポートメニュー']") !== null;
+      const supportTabActive = document.querySelector('.subject-tab[data-subject="support"].active') !== null;
+      return new RegExp(pattern).test(statsInfoText) || supportMenuVisible || supportTabActive;
+    },
+    STATS_INFO_PATTERN.source,
+    {
+      timeout: STATS_LOAD_TIMEOUT,
+    },
+  );
 }

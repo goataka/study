@@ -33,7 +33,7 @@ export function CategoryPanel(): React.JSX.Element {
           id="supportMenuTitle"
           className="support-menu-title hidden text-sm font-bold text-[#0366d6] shrink-0 px-1 py-1"
         >
-          📜 メニュー
+          📜メニュー
         </span>
         <div
           className="category-status-filter flex items-center gap-0.5 ml-auto"

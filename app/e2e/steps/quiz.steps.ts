@@ -422,7 +422,7 @@ Then("the support button should show support content in support panel", async ({
   const menuButtons = page.locator("nav[aria-label='サポートメニュー'] button");
   await expect(menuButtons).toHaveCount(3);
   await expect(menuButtons.nth(0)).toContainText("はじめに");
-  await expect(menuButtons.nth(1)).toContainText("マニュアル");
+  await expect(menuButtons.nth(1)).toContainText("使い方");
   await expect(menuButtons.nth(2)).toContainText("コンテンツ");
   // マニュアルをクリックするとサブタブが表示される
   await menuButtons.nth(1).click();

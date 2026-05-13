@@ -8,11 +8,12 @@ import {
   validateImportPayload,
   type AdminSectionKey,
 } from "../adminPanelLogic";
+import { GuideContent } from "../components/GuideContent";
 import type { AdminPanelDeps } from "./types";
 
 type ManageTab = "import" | "export" | "reset";
 type ActiveMenu = "manage" | "view" | null;
-type SectionKey = "settings" | AdminSectionKey;
+type SectionKey = "settings" | AdminSectionKey | "spec";
 
 interface AdminPanelRootProps extends AdminPanelDeps {
   adminContentEl: HTMLElement;
@@ -55,6 +56,7 @@ export function AdminPanelRoot({
           fullContent: data.masteredIds,
         },
         { title: "連続正解", fileKey: "streaks" as const, content: data.correctStreaks },
+        { title: "🧩 仕様", fileKey: "spec" as const, content: null },
       ] satisfies Array<{ title: string; fileKey: SectionKey; content: unknown; fullContent?: unknown }>,
     [data, progressRepo, shareUrl],
   );
@@ -213,6 +215,7 @@ export function AdminPanelRoot({
   };
 
   const selectedViewSection = sections[viewTabIndex];
+  const isSpecSection = selectedViewSection?.fileKey === "spec";
   const viewJsonText = selectedViewSection ? JSON.stringify(selectedViewSection.content, null, 2) : "";
 
   const menuBtnBase =
@@ -234,7 +237,7 @@ export function AdminPanelRoot({
           type="button"
           onClick={() => switchMenu("manage")}
         >
-          🛠️ 管理
+          ✅ 管理
         </button>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "view" ? " active" : ""}`}
@@ -377,19 +380,27 @@ export function AdminPanelRoot({
                 ))}
               </div>
               <div className="admin-data-tab-content flex flex-col gap-2">
-                <div className="admin-data-btn-bar flex gap-2">
-                  <button
-                    className={`admin-data-action-btn ${actionBtnBase} bg-[#f6f8fa] text-[#24292e] border border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]`}
-                    type="button"
-                    title="クリップボードにコピー"
-                    onClick={copyCurrentData}
-                  >
-                    {copyButtonText}
-                  </button>
-                </div>
-                <pre className="admin-data text-xs bg-[#f6f8fa] border border-[#e1e4e8] rounded-md p-3 overflow-x-auto max-h-[50vh] whitespace-pre-wrap break-all">
-                  {viewJsonText}
-                </pre>
+                {isSpecSection ? (
+                  <div className="support-guide-frame flex-1 overflow-y-auto rounded-md border border-[#e1e4e8] bg-white p-3 guide-frame">
+                    <GuideContent guideUrl="../support/technical-reference/" />
+                  </div>
+                ) : (
+                  <>
+                    <div className="admin-data-btn-bar flex gap-2">
+                      <button
+                        className={`admin-data-action-btn ${actionBtnBase} bg-[#f6f8fa] text-[#24292e] border border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]`}
+                        type="button"
+                        title="クリップボードにコピー"
+                        onClick={copyCurrentData}
+                      >
+                        {copyButtonText}
+                      </button>
+                    </div>
+                    <pre className="admin-data text-xs bg-[#f6f8fa] border border-[#e1e4e8] rounded-md p-3 overflow-x-auto max-h-[50vh] whitespace-pre-wrap break-all">
+                      {viewJsonText}
+                    </pre>
+                  </>
+                )}
               </div>
             </>
           ) : null}

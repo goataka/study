@@ -95,4 +95,23 @@ describe("renderAdminContent", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(adminContent.querySelector(".admin-manage-tabs")).toBeNull();
   });
+
+  it("参照メニューに「仕様」タブが表示される", async () => {
+    const categoryList = document.getElementById("categoryList") as HTMLElement;
+    const adminContent = document.getElementById("adminContent") as HTMLElement;
+    const deps = createDeps();
+
+    renderAdminContent(categoryList, deps);
+
+    const viewBtn = Array.from(
+      categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
+    ).find((btn) => btn.textContent?.includes("参照")) as HTMLButtonElement;
+    viewBtn.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const specTab = Array.from(adminContent.querySelectorAll<HTMLButtonElement>(".admin-data-tab")).find((btn) =>
+      btn.textContent?.includes("仕様"),
+    );
+    expect(specTab).toBeTruthy();
+  });
 });

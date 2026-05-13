@@ -3,7 +3,7 @@
  *
  * 左列:
  *   - はじめに（スタートアップガイドのmdを表示）
- *   - マニュアル（🚀/🖥️/🔧/❓ の4タブで各mdを表示）
+ *   - 使い方（🚀/🖥️/❓ の3タブで各mdを表示）
  *   - コンテンツ（英語/数学/国語の3タブで各mdを表示）
  *
  * 右列: 各メニューに対応するmdコンテンツをタブで表示する。
@@ -14,10 +14,11 @@ import { categoryListContentStore } from "../components/categoryListContentStore
 import { supportContentStore } from "../components/supportContentStore";
 import { GuideContent } from "../components/GuideContent";
 import { panelTab, panelTabs } from "../styles/panelTabStyles";
+import { getURLParams } from "./urlStateService";
 
 // ─── 左列メニュー定義 ──────────────────────────────────────────────────────
 
-export type SupportMenuId = "intro" | "manual" | "contents";
+export type SupportMenuId = "intro" | "usage" | "contents";
 
 export interface SupportMenuItem {
   id: SupportMenuId;
@@ -26,7 +27,7 @@ export interface SupportMenuItem {
 
 export const SUPPORT_MENU_ITEMS: readonly [SupportMenuItem, ...SupportMenuItem[]] = [
   { id: "intro", label: "🏠 はじめに" },
-  { id: "manual", label: "📖 マニュアル" },
+  { id: "usage", label: "📖 使い方" },
   { id: "contents", label: "📚 コンテンツ" },
 ];
 
@@ -38,10 +39,9 @@ interface SubTab {
   url: string;
 }
 
-const MANUAL_TABS: readonly [SubTab, ...SubTab[]] = [
+const USAGE_TABS: readonly [SubTab, ...SubTab[]] = [
   { id: "startup", label: "🚀 スタートアップガイド", url: "../support/startup-guide/" },
   { id: "operation", label: "🖥️ 機能リファレンス", url: "../support/operation-guide/" },
-  { id: "technical", label: "🔧 技術リファレンス", url: "../support/technical-reference/" },
   { id: "troubleshooting", label: "❓ トラブルシューティング", url: "../support/troubleshooting/" },
 ];
 
@@ -66,8 +66,8 @@ export const supportMenuStore = {
     _menuListeners.add(fn);
     return () => _menuListeners.delete(fn);
   },
-  reset: (): void => {
-    _activeMenuId = SUPPORT_MENU_ITEMS[0].id;
+  reset: (id: SupportMenuId = SUPPORT_MENU_ITEMS[0].id): void => {
+    _activeMenuId = id;
     _menuListeners.forEach((fn) => fn());
   },
 };
@@ -126,7 +126,7 @@ export function SupportContentDisplay(): React.JSX.Element {
       aria-live="polite"
     >
       {activeMenuId === "intro" && <SupportIntroContent />}
-      {activeMenuId === "manual" && <SupportSubTabContent tabs={MANUAL_TABS} namespace="manual" />}
+      {activeMenuId === "usage" && <SupportSubTabContent tabs={USAGE_TABS} namespace="usage" />}
       {activeMenuId === "contents" && <SupportSubTabContent tabs={CONTENT_TABS} namespace="contents" />}
     </div>
   );
@@ -141,7 +141,7 @@ function SupportIntroContent(): React.JSX.Element {
   );
 }
 
-/** マニュアル/コンテンツ: サブタブで md コンテンツを切り替えて表示。 */
+/** 使い方/コンテンツ: サブタブで md コンテンツを切り替えて表示。 */
 function SupportSubTabContent({
   tabs,
   namespace,
@@ -207,9 +207,18 @@ export function renderSupportContentPanel(): void {
  * `quizPanelVisibility.ts` から呼ぶことで、両列が同期した状態で表示される。
  */
 export function renderSupportPanel(): void {
-  supportMenuStore.reset();
+  supportMenuStore.reset(resolveSupportMenuFromUrl());
   renderSupportMenuList();
   renderSupportContentPanel();
+}
+
+function resolveSupportMenuFromUrl(): SupportMenuId {
+  const params = getURLParams();
+  const supportMenu = params.get("supportMenu");
+  if (supportMenu === "intro" || supportMenu === "usage" || supportMenu === "contents") {
+    return supportMenu;
+  }
+  return SUPPORT_MENU_ITEMS[0].id;
 }
 
 // ─── 後方互換エクスポート ──────────────────────────────────────────────────────

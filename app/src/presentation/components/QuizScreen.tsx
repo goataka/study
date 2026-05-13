@@ -42,7 +42,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
       className={[
         "screen",
         currentScreen !== "quiz" ? "hidden" : "",
-        "flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-4 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
+        "flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-6 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
       ].join(" ")}
     >
       <div
@@ -75,7 +75,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
             </span>
             <span
               id="topicName"
-              className="topic-badge absolute left-1/2 max-w-[40%] -translate-x-1/2 overflow-hidden rounded-xl bg-[#0366d6] px-3 py-1 text-sm text-ellipsis whitespace-nowrap text-white"
+              className="topic-badge absolute left-1/2 max-w-[40%] -translate-x-1/2 overflow-hidden rounded-xl bg-[#0366d6] px-3 py-1 text-sm text-ellipsis whitespace-nowrap text-white after:content-[''] after:absolute after:left-1/2 after:top-full after:mt-1 after:h-2 after:w-2 after:-translate-x-1/2 after:rounded-[2px] after:bg-[#0366d6]"
             >
               {quizSession.topicName}
             </span>

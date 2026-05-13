@@ -63,7 +63,7 @@ export function parseURLState(useCase: QuizUseCase): ParsedURLState {
   const subject = params.get("subject");
   const category = params.get("category");
   // 不正な subject は無視する。SUBJECTS に存在する ID のみ受け付ける。
-  const isKnownSubject = !!subject && SUBJECTS.some((s) => s.id === subject);
+  const isKnownSubject = !!subject && (subject === "support" || SUBJECTS.some((s) => s.id === subject));
   if (isKnownSubject) {
     state.subject = subject!;
     if (category && category !== "all") {

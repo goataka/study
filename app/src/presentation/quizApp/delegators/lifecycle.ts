@@ -262,11 +262,7 @@ function applyLegacyQuizDom(session: QuizSession, kanjiCanvasController: KanjiCa
   const total = session.totalCount;
   const idx = session.currentIndex;
   setText("questionNumber", `問題 ${idx + 1} / ${total}`);
-  const topicParts: string[] = [];
-  if (question.topCategoryName) topicParts.push(question.topCategoryName);
-  if (question.parentCategoryName) topicParts.push(question.parentCategoryName);
-  topicParts.push(question.categoryName ?? question.category);
-  setText("topicName", topicParts.join(" › "));
+  setText("topicName", `No. ${idx}`);
   const progressFill = document.getElementById("progressFill") as HTMLElement | null;
   if (progressFill) progressFill.style.width = `${((idx + 1) / total) * 100}%`;
   setText("questionText", question.question);
