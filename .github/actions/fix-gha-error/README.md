@@ -5,7 +5,7 @@
 ## 動作
 
 - **PRあり**: 対象PRに `@copilot` メンションコメントを投稿
-- **PRなし（初回）**: `[CI失敗] {ワークフロー名}` タイトルでIssueを作成しCopilotをアサイン
+- **PRなし（初回）**: `[ワークフロー失敗] {ワークフロー名}` タイトルでIssueを作成しCopilotをアサイン
 - **PRなし（再失敗）**: 既存Issueに `@copilot` メンションコメントを追加
 - `workflow_run` 以外のワークフローからも、必要なコンテキストを inputs で渡せば再利用可能
 
@@ -24,7 +24,7 @@
 | `workflow-name` | ❌   | 対象ワークフロー名。未指定時は `workflow_run` から取得                                                       |
 | `head-sha`      | ❌   | 対象コミット SHA。未指定時は `workflow_run` から取得                                                         |
 | `run-url`       | ❌   | 対象実行URL。未指定時は `workflow_run` から取得                                                              |
-| `head-branch`   | ❌   | 対象ブランチ名。未指定時は `workflow_run` から取得                                                           |
+| `head-branch`   | ❌   | 対象ブランチ名。未指定時は `workflow_run` から取得。`pr-number` 指定時に空なら PR 情報から補完を試みる       |
 | `pr-number`     | ❌   | 対象PR番号。未指定時は `workflow_run` から推定                                                               |
 | `error-context` | ❌   | 追加のエラー情報（オプション）                                                                               |
 
@@ -67,6 +67,11 @@ jobs:
     head-branch: ${{ github.head_ref }}
     pr-number: ${{ github.event.pull_request.number }}
 ```
+
+### Issue のタイトル例
+
+- 初回作成: `[ワークフロー失敗] Deploy to GitHub Pages`
+- 再失敗時: 同じタイトルのオープン Issue があれば、その Issue にコメントを追加
 
 ## 参考
 

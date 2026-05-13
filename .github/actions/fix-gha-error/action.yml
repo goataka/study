@@ -5,7 +5,7 @@
 # 存在すればコメントを追加、なければ新規Issueを作成してCopilotをアサインする
 
 name: "Fix GHA Error"
-description: "GHAエラー発生時にCopilotに修正を依頼する（PRコメント or Issue作成）"
+description: "GitHub Actions のワークフロー失敗時にCopilotに修正を依頼する（PRコメント or Issue作成）"
 branding:
   icon: "alert-circle"
   color: "red"
@@ -103,11 +103,11 @@ runs:
           exit 1
         fi
 
-        echo "workflow_name=${WORKFLOW_NAME}" >> $GITHUB_OUTPUT
-        echo "head_sha=${HEAD_SHA}" >> $GITHUB_OUTPUT
-        echo "run_url=${RUN_URL}" >> $GITHUB_OUTPUT
-        echo "head_branch=${HEAD_BRANCH}" >> $GITHUB_OUTPUT
-        echo "requested_pr_number=${INPUT_PR_NUMBER}" >> $GITHUB_OUTPUT
+        echo "workflow_name=${WORKFLOW_NAME}" >> "$GITHUB_OUTPUT"
+        echo "head_sha=${HEAD_SHA}" >> "$GITHUB_OUTPUT"
+        echo "run_url=${RUN_URL}" >> "$GITHUB_OUTPUT"
+        echo "head_branch=${HEAD_BRANCH}" >> "$GITHUB_OUTPUT"
+        echo "requested_pr_number=${INPUT_PR_NUMBER}" >> "$GITHUB_OUTPUT"
 
         if [ -z "${HEAD_BRANCH:-}" ]; then
           echo "::warning::workflow_run.head_branch が空です。PR情報から後続で判定します。"
@@ -135,10 +135,10 @@ runs:
         COMMIT_SHORT="${COMMIT_SHA:0:7}"
         RUN_URL="${WF_HTML_URL}"
 
-        echo "workflow_name=${WORKFLOW_NAME}" >> $GITHUB_OUTPUT
-        echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
-        echo "commit_short=${COMMIT_SHORT}" >> $GITHUB_OUTPUT
-        echo "run_url=${RUN_URL}" >> $GITHUB_OUTPUT
+        echo "workflow_name=${WORKFLOW_NAME}" >> "$GITHUB_OUTPUT"
+        echo "commit_sha=${COMMIT_SHA}" >> "$GITHUB_OUTPUT"
+        echo "commit_short=${COMMIT_SHORT}" >> "$GITHUB_OUTPUT"
+        echo "run_url=${RUN_URL}" >> "$GITHUB_OUTPUT"
 
         # PRが関連しているかチェック
         PR_NUMBER="${REQUESTED_PR_NUMBER}"
@@ -147,6 +147,9 @@ runs:
 
         if [ -n "$PR_NUMBER" ]; then
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
+          if [ -z "${TARGET_BRANCH}" ]; then
+            TARGET_BRANCH=$(gh pr view "${PR_NUMBER}" --json headRefName --jq '.headRefName // empty')
+          fi
           echo "::notice::入力値でPRを特定しました (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
         fi
 
@@ -177,18 +180,18 @@ runs:
         fi
 
         if [ -n "$PR_NUMBER" ]; then
-          echo "is_pr=true" >> $GITHUB_OUTPUT
-          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
-          echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
+          echo "is_pr=true" >> "$GITHUB_OUTPUT"
+          echo "target_branch=${TARGET_BRANCH}" >> "$GITHUB_OUTPUT"
+          echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
         else
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
           if [ -z "$TARGET_BRANCH" ]; then
             echo "::error::ターゲットブランチを特定できませんでした"
             exit 1
           fi
-          echo "is_pr=false" >> $GITHUB_OUTPUT
-          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
-          echo "pr_number=" >> $GITHUB_OUTPUT
+          echo "is_pr=false" >> "$GITHUB_OUTPUT"
+          echo "target_branch=${TARGET_BRANCH}" >> "$GITHUB_OUTPUT"
+          echo "pr_number=" >> "$GITHUB_OUTPUT"
           echo "::notice::ブランチベースのワークフロー実行です (ターゲット: ${TARGET_BRANCH})"
         fi
 
@@ -224,13 +227,13 @@ runs:
         BODY_FILE=$(mktemp)
 
         if [ "$IS_PR" = "true" ]; then
-          printf '@copilot このPRのワークフローエラーを修正してください。\n\nワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nCIログ: %s\n' \
+          printf '@copilot このPRのワークフローエラーを修正してください。\n\nワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nActions実行ログ: %s\n' \
             "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${PR_NUMBER}" "${RUN_URL}" >"$BODY_FILE"
           [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
           GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
           echo "::notice::PR #${PR_NUMBER} にCopilotメンションコメントを投稿しました"
         else
-          ISSUE_TITLE="[CI失敗] ${WORKFLOW_NAME}"
+          ISSUE_TITLE="[ワークフロー失敗] ${WORKFLOW_NAME}"
           EXISTING_ISSUE_NUMBER=$(gh issue list \
             --state open \
             --search "${ISSUE_TITLE} in:title" \
@@ -240,13 +243,13 @@ runs:
             | head -1)
 
           if [ -n "${EXISTING_ISSUE_NUMBER}" ]; then
-            printf '@copilot ワークフロー「%s」が再度失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
+            printf '@copilot ワークフロー「%s」が再度失敗しました (commit: %s)\n\nActions実行ログ: %s / ブランチ: %s\n' \
               "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
             [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
             GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh issue comment "${EXISTING_ISSUE_NUMBER}" --body-file "$BODY_FILE"
             echo "::notice::既存Issue #${EXISTING_ISSUE_NUMBER} にCopilotメンションコメントを追加しました"
           else
-            printf '@copilot ワークフロー「%s」が失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
+            printf '@copilot ワークフロー「%s」が失敗しました (commit: %s)\n\nActions実行ログ: %s / ブランチ: %s\n' \
               "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
             [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
             # まずIssueを作成し、次にCopilotをアサインする（2ステップに分けて重複作成を防ぐ）
