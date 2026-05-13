@@ -57,4 +57,29 @@ describe("quizSessionStore", () => {
     expect(snapshot.submitHidden).toBe(false);
     expect(snapshot.submitDisabled).toBe(false);
   });
+
+  it("topicName は buildUnitName による単元名（教科 › カテゴリ）形式で表示される", () => {
+    clearQuizSessionStore();
+    const session = new QuizSession([
+      {
+        id: "q1",
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス1",
+        topCategoryName: "フォニックス",
+        parentCategoryName: "発音",
+        question: "Q1",
+        choices: ["A", "B", "C", "D"],
+        correct: 0,
+        explanation: "E1",
+      },
+    ]);
+
+    syncQuizSessionStore(session, { kanjiAvailable: false });
+    const snapshot = getQuizSessionSnapshot();
+    expect(snapshot.topicName).toContain("英語");
+    expect(snapshot.topicName).toContain("フォニックス1");
+    expect(snapshot.topicName).toContain("›");
+  });
 });

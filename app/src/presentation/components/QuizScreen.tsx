@@ -24,7 +24,7 @@ import { KanjiInputArea } from "./quizScreen/KanjiInputArea";
 import { navButton } from "../styles/navButtonStyles";
 import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "./quizSessionStore";
 import { choicesContentStore } from "./choicesContentStore";
-import { selectedUnitInfoContentStore } from "./selectedUnitInfoContentStore";
+import { quizUnitInfoContentStore } from "./quizUnitInfoContentStore";
 import type { ScreenName } from "./screenStore";
 
 interface QuizScreenProps {
@@ -171,12 +171,12 @@ function ChoicesSection(): React.JSX.Element {
   return <>{node}</>;
 }
 
-/** 選択中の単元情報 — selectedUnitInfoContentStore から描画（StartScreen と同じ内容）。 */
+/** 選択中の単元情報（表示専用・閉じるボタンなし） — quizUnitInfoContentStore から描画。 */
 function SelectedUnitInfoSection(): React.JSX.Element {
   const node = useSyncExternalStore(
-    selectedUnitInfoContentStore.subscribe,
-    selectedUnitInfoContentStore.get,
-    selectedUnitInfoContentStore.get,
+    quizUnitInfoContentStore.subscribe,
+    quizUnitInfoContentStore.get,
+    quizUnitInfoContentStore.get,
   );
   return <>{node}</>;
 }
