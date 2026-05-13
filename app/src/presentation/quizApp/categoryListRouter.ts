@@ -63,7 +63,7 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
   if (subject === "support") {
     // サポートタブではコントロールを非表示にしてサポートメニューを表示する
     categoryControlsContentStore.reset();
-    renderSupportPanel();
+    renderSupportPanel(params.useCase);
     return;
   }
 
