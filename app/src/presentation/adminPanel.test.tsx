@@ -53,7 +53,7 @@ describe("renderAdminContent", () => {
     mountTestContentBridge();
   });
 
-  it("管理メニューを表示し、管理ボタンで管理タブを開ける", async () => {
+  it("管理メニューを表示し、更改ボタンで管理タブを開ける", async () => {
     const categoryList = document.getElementById("categoryList") as HTMLElement;
     const adminContent = document.getElementById("adminContent") as HTMLElement;
     const deps = createDeps();
@@ -62,9 +62,9 @@ describe("renderAdminContent", () => {
 
     const manageBtn = Array.from(
       categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
-    ).find((btn) => btn.textContent?.includes("管理")) as HTMLButtonElement;
+    ).find((btn) => btn.textContent?.includes("更改")) as HTMLButtonElement;
     expect(manageBtn).toBeTruthy();
-    expect(manageBtn.textContent).toContain("管理");
+    expect(manageBtn.textContent).toContain("更改");
 
     manageBtn.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -86,7 +86,7 @@ describe("renderAdminContent", () => {
 
     const manageBtn = Array.from(
       categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
-    ).find((btn) => btn.textContent?.includes("管理")) as HTMLButtonElement;
+    ).find((btn) => btn.textContent?.includes("更改")) as HTMLButtonElement;
     manageBtn.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(adminContent.querySelector(".admin-manage-tabs")).toBeTruthy();
@@ -96,22 +96,15 @@ describe("renderAdminContent", () => {
     expect(adminContent.querySelector(".admin-manage-tabs")).toBeNull();
   });
 
-  it("参照メニューに「仕様」タブが表示される", async () => {
+  it("左メニューに「仕様」ボタンが表示される", async () => {
     const categoryList = document.getElementById("categoryList") as HTMLElement;
-    const adminContent = document.getElementById("adminContent") as HTMLElement;
     const deps = createDeps();
 
     renderAdminContent(categoryList, deps);
 
-    const viewBtn = Array.from(
+    const specBtn = Array.from(
       categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
-    ).find((btn) => btn.textContent?.includes("参照")) as HTMLButtonElement;
-    viewBtn.click();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const specTab = Array.from(adminContent.querySelectorAll<HTMLButtonElement>(".admin-data-tab")).find((btn) =>
-      btn.textContent?.includes("仕様"),
-    );
-    expect(specTab).toBeTruthy();
+    ).find((btn) => btn.textContent?.includes("仕様"));
+    expect(specBtn).toBeTruthy();
   });
 });

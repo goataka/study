@@ -54,7 +54,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
     <div
       id="tabsUserRow"
       className={[
-        "tabs-user-row flex items-end gap-0 shrink-0 bg-transparent",
+        "tabs-user-row flex items-end gap-0 shrink-0 bg-transparent relative z-[2]",
         currentScreen === "start" || currentScreen === "quiz" ? "min-h-12" : "",
       ]
         .filter(Boolean)

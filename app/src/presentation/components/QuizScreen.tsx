@@ -43,9 +43,10 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
       className={[
         "screen",
         currentScreen !== "quiz" ? "hidden" : "",
-        "flex flex-1 flex-col overflow-y-auto min-h-0 bg-white pt-6 px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
+        "flex flex-1 flex-col overflow-y-auto min-h-0 bg-white px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
       ].join(" ")}
     >
+      <StartHeader />
       <div
         id="quizLayout"
         className={[
@@ -140,7 +141,6 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           id="quizNotesColumn"
           className="quiz-notes-col col-start-3 flex flex-col min-h-0 max-[900px]:col-start-1 max-[900px]:min-h-[260px]"
         >
-          <StartHeader />
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-lg border-2 border-solid border-[#e1e4e8] bg-transparent">
             <div id="notesMemoContent" className="flex min-h-0 flex-1 flex-col">
               <NotesPanel showKanjiInput={quizSession.showKanjiInput} />
