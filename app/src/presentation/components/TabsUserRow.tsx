@@ -51,14 +51,14 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
   };
 
   return (
-    <div id="tabsUserRow" className="tabs-user-row flex min-h-12 items-center gap-0 shrink-0 bg-transparent">
-      <div className={`relative flex-1 min-w-0 bg-white${currentScreen !== "start" ? " hidden" : ""}`}>
+    <div id="tabsUserRow" className="tabs-user-row flex min-h-12 items-end gap-0 shrink-0 bg-transparent">
+      <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>
         <div
           id="subjectTabs"
           ref={scrollerRef}
           className={[
             "subject-tabs",
-            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-0 items-end justify-start bg-white",
+            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-0 items-end justify-start",
           ].join(" ")}
           role="tablist"
           aria-label="教科を選択"
@@ -90,7 +90,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       </div>
       <div
         id="tabsUserArea"
-        className="tabs-user-area ml-auto flex items-center gap-1.5 shrink-0 px-4 pt-px pb-0 relative pl-2"
+        className="tabs-user-area ml-auto self-center flex items-center gap-1.5 shrink-0 px-4 pt-px pb-0 relative pl-2"
       >
         <button
           id="headerUserName"
