@@ -207,9 +207,6 @@ describe("App コンポーネント", () => {
       "submitBtn",
       // ノートパネル
       "notesMemoContent",
-      "notesMetaAppName",
-      "notesMetaSubject",
-      "notesMetaDate",
       "notesTitle",
       "clearNotesBtn",
       "eraserBtn",
@@ -291,7 +288,7 @@ describe("App コンポーネント", () => {
     ).toBe(true);
   });
 
-  it("クイズ画面ではアプリ名エリアが表示され、教科名と日付エリアが教科タブ位置に表示される", () => {
+  it("クイズ画面ではアプリ名エリアが表示される", () => {
     act(() => {
       root = createRoot(container!);
       root.render(<App bootApp={bootApp} />);
@@ -302,14 +299,9 @@ describe("App コンポーネント", () => {
     // アプリ名エリアが表示される
     const appNameArea = container!.querySelector(".app-name-area");
     expect(appNameArea?.classList.contains("hidden")).toBe(false);
-    // 教科タブ位置に教科名と日付エリアが表示される
-    const quizTabInfo = container!.querySelector(".quiz-tab-info");
-    expect(quizTabInfo).not.toBeNull();
-    expect(quizTabInfo?.classList.contains("hidden")).toBe(false);
-    // 教科名スパンが存在する
-    expect(container!.querySelector(".quiz-tab-subject")).not.toBeNull();
-    // 日付エリアが存在する
-    expect(container!.querySelector("#quizTabDate")).not.toBeNull();
+    // 教科名・日付の quiz-tab-info は不要（issue #878）
+    expect(container!.querySelector(".quiz-tab-subject")).toBeNull();
+    expect(container!.querySelector("#quizTabDate")).toBeNull();
   });
 
   it("screenStore の状態に応じて画面の hidden クラスが切り替わる", () => {

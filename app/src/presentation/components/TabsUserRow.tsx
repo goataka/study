@@ -14,8 +14,6 @@ import { AvatarCropDialog } from "./AvatarCropDialog";
 import type { ScreenName } from "./screenStore";
 import { subjectTabsContentStore } from "./subjectTabsContentStore";
 import { headerUserSaveButton } from "../styles/headerUserSaveButtonStyles";
-import { activeSubjectStore } from "./activeSubjectStore";
-import { SUBJECTS } from "../uiHelpers";
 
 interface TabsUserRowProps {
   currentScreen: ScreenName;
@@ -25,11 +23,6 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const activeSubject = useSyncExternalStore(
-    activeSubjectStore.subscribe,
-    activeSubjectStore.get,
-    activeSubjectStore.get,
-  );
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -49,9 +42,6 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       resizeObserver?.disconnect();
     };
   }, [currentScreen]);
-
-  const activeSubjectInfo = SUBJECTS.find((s) => s.id === activeSubject.id);
-  const quizTabBgColor = activeSubjectInfo?.tabBgActive;
 
   const scrollTabs = (direction: "left" | "right"): void => {
     const el = scrollerRef.current;
@@ -120,25 +110,6 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
             ▶
           </button>
         )}
-      </div>
-      {/* クイズ中ヘッダー情報（教科タブと同じ場所・問題画面専用） */}
-      <div
-        className={[
-          "quiz-tab-info flex-1 flex items-end gap-3 px-4 pb-2 self-end",
-          quizTabBgColor ? "pt-[40px]" : "",
-          currentScreen !== "quiz" ? "hidden" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        style={quizTabBgColor ? { backgroundColor: quizTabBgColor } : undefined}
-      >
-        <span className="quiz-tab-subject text-base font-extrabold text-[#5a4a28] whitespace-nowrap">
-          {activeSubject.icon} {activeSubject.name}
-        </span>
-        <span
-          id="quizTabDate"
-          className="quiz-tab-date text-base text-[#5a4a28]/70 font-semibold whitespace-nowrap shrink-0 tracking-[0.03em] border-b-2 border-[#5a4a28]/30 pb-px px-2 min-w-[120px] text-center"
-        ></span>
       </div>
       <div
         id="tabsUserArea"
