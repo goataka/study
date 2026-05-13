@@ -463,8 +463,8 @@ Then("learned category items should be visible in the category list", async ({ p
 });
 
 When("I click the admin manage menu button", async ({ page }) => {
-  // 管理メニューの「管理」ボタンをクリックしてデータ管理セクションを開く
-  await page.locator(".admin-menu-btn").filter({ hasText: "管理" }).click();
+  // 管理メニューの「更改」ボタンをクリックしてデータ管理セクションを開く
+  await page.locator(".admin-menu-btn").filter({ hasText: "更改" }).click();
 });
 
 Then("the admin reset panel should be visible", async ({ page }) => {
@@ -496,9 +496,10 @@ When("I click the admin export tab", async ({ page }) => {
 });
 
 Then("the quiz notes column should show the start header", async ({ page }) => {
-  // クイズ画面の右カラム（#quizNotesColumn）に StartHeader（header 要素）が表示されていること
-  const quizNotesColumn = page.locator("#quizNotesColumn");
-  const header = quizNotesColumn.locator("header");
+  // クイズ画面（#quizScreen）の上部に StartHeader（header 要素）が表示されていること
+  // ※ StartHeader は #quizLayout 外（全幅）に配置されている
+  const quizScreen = page.locator("#quizScreen");
+  const header = quizScreen.locator("header").first();
   await expect(header).toBeVisible();
   // StartHeader の教科名テキストが表示されていること
   await expect(header.locator(".header-active-subject-name")).toBeVisible();

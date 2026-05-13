@@ -123,14 +123,18 @@ function buildContentSubjects(useCase: QuizUseCase): ContentSubject[] {
       // このトップカテゴリに直属する単元（親カテゴリなし）
       const parentCatIds = new Set(Object.keys(parentCats));
       const allParentCatUnits = new Set(
-        [...parentCatIds].flatMap((pid) => Object.keys(useCase.getCategoriesForParent(subjectId, pid))),
+        parentCatIds.size > 0
+          ? Array.from(parentCatIds).flatMap((pid) => Object.keys(useCase.getCategoriesForParent(subjectId, pid)))
+          : [],
       );
+      /** トップカテゴリ topId に直属し、いずれの親カテゴリにも属さない単元かを判定する。 */
+      const isDirectChildOfTopCategory = (catId: string): boolean => {
+        const top = useCase.getTopCategoryForUnit(subjectId, catId);
+        const parent = useCase.getParentCategoryForUnit(subjectId, catId);
+        return top?.id === topId && (!parent || !allParentCatUnits.has(catId));
+      };
       const flatUnits: ContentUnit[] = Object.entries(allCats)
-        .filter(([catId]) => {
-          const parent = useCase.getParentCategoryForUnit(subjectId, catId);
-          const top = useCase.getTopCategoryForUnit(subjectId, catId);
-          return top?.id === topId && (!parent || !allParentCatUnits.has(catId));
-        })
+        .filter(([catId]) => isDirectChildOfTopCategory(catId))
         .map(([catId, catName]) => ({
           catId,
           name: catName,
