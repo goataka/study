@@ -308,7 +308,7 @@ export function setupTabDom(): void {
         <button id="filterStatusUnlearned" class="category-status-filter-btn" type="button" aria-pressed="false">未学習</button>
         <button id="filterStatusStudying" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
         <button id="filterStatusLearned" class="category-status-filter-btn" type="button" aria-pressed="false">学習済</button>
-        <span id="allSubjectPanelTitle" class="hidden">📌 おすすめ単元</span>
+        <span id="allSubjectPanelTitle" class="hidden">📚 今日の単元</span>
         <div id="overallDateNav" class="hidden">
           <span id="activityDateDisplay" class="activity-date-display"></span>
         </div>

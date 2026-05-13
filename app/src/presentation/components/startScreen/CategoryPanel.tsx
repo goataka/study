@@ -52,7 +52,7 @@ export function CategoryPanel(): React.JSX.Element {
           id="allSubjectPanelTitle"
           className="all-subject-panel-title hidden text-sm font-bold text-[#0366d6] shrink-0"
         >
-          ✨ おすすめ単元
+          📚 今日の単元
         </span>
       </div>
       <div id="overallDateNav" className="activity-date-nav hidden items-center gap-1.5 shrink-0 px-2 py-1.5">

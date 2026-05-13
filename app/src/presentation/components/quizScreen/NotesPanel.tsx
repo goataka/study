@@ -9,12 +9,21 @@
  */
 
 import { notesButton, penSelect, cancelQuizButton } from "../../styles/notesPanelStyles";
+import { useSyncExternalStore } from "react";
+import { activeSubjectStore } from "../activeSubjectStore";
 
 interface NotesPanelProps {
   showKanjiInput: boolean;
 }
 
 export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Element {
+  const activeSubject = useSyncExternalStore(
+    activeSubjectStore.subscribe,
+    activeSubjectStore.get,
+    activeSubjectStore.get,
+  );
+  const today = formatTodayText(new Date());
+
   const notesControlsClass = [
     "notes-controls",
     "flex",
@@ -38,6 +47,17 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
 
   return (
     <>
+      <div className="notes-meta-row flex shrink-0 items-center justify-between gap-2 border-b border-solid border-[#e1e4e8] bg-white px-[15px] py-1 text-xs text-[#586069]">
+        <span id="notesMetaAppName" className="font-semibold text-[#0366d6]">
+          小中高学習アプリ
+        </span>
+        <span id="notesMetaSubject" className="truncate">
+          {activeSubject.icon} {activeSubject.name}
+        </span>
+        <span id="notesMetaDate" className="shrink-0">
+          {today}
+        </span>
+      </div>
       <div className="flex shrink-0 items-center justify-between border-b border-solid border-[#e1e4e8] bg-[#f6f8fa] px-[15px] py-2.5 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-2.5">
         <span id="notesTitle" className="text-base font-semibold text-[#333]">
           {showKanjiInput ? "✏️ 1文字ずつ書いて漢字を入力できます" : "タッチペンで書けます"}
@@ -89,4 +109,13 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
       <canvas id="notesCanvas" className={notesCanvasClass}></canvas>
     </>
   );
+}
+
+const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"] as const;
+
+function formatTodayText(date: Date): string {
+  const yyyy = date.getFullYear();
+  const mm = String(date.getMonth() + 1).padStart(2, "0");
+  const dd = String(date.getDate()).padStart(2, "0");
+  return `${yyyy}/${mm}/${dd}（${WEEKDAYS[date.getDay()]}）`;
 }

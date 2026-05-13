@@ -21,6 +21,11 @@ describe("SUBJECTS", () => {
       expect(s.icon.length).toBeGreaterThan(0);
     });
   });
+
+  it("英語タブのアイコンは 🗣️ である", () => {
+    const english = SUBJECTS.find((s) => s.id === "english");
+    expect(english?.icon).toBe("🗣️");
+  });
 });
 
 describe("gradeColorClass", () => {

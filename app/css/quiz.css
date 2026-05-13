@@ -111,6 +111,11 @@ textarea:focus-visible {
   margin: 4px 0;
 }
 
+.support-guide-frame .markdown-body {
+  background-color: transparent;
+  background-image: none;
+}
+
 .guide-frame .markdown-body h1,
 .guide-frame .markdown-body h2,
 .guide-frame .markdown-body h3,

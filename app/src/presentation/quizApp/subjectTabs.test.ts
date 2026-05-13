@@ -139,6 +139,19 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(supportButton?.textContent).toContain("サポート");
   });
 
+  it("サポートボタンは管理タブの前に表示される", async () => {
+    new QuizApp();
+    await waitForCondition(() => document.querySelector(".subject-tabs #supportBtn") !== null);
+
+    const tabs = Array.from(document.querySelectorAll(".subject-tabs [data-subject]"));
+    const supportIndex = tabs.findIndex((tab) => tab.getAttribute("data-subject") === "support");
+    const adminIndex = tabs.findIndex((tab) => tab.getAttribute("data-subject") === "admin");
+
+    expect(supportIndex).toBeGreaterThanOrEqual(0);
+    expect(adminIndex).toBeGreaterThanOrEqual(0);
+    expect(supportIndex).toBeLessThan(adminIndex);
+  });
+
   it("サポートボタンを押すと専用サポートパネルが表示される（解説タブではなく）", async () => {
     new QuizApp();
     await waitForCondition(() => document.querySelector(".subject-tabs #supportBtn") !== null);

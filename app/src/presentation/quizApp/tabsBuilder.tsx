@@ -56,25 +56,30 @@ interface SubjectTabsProps {
 }
 
 function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX.Element {
+  const adminSubject = SUBJECTS.find((subject) => subject.id === "admin");
+  const mainSubjects = SUBJECTS.filter((subject) => subject.id !== "admin");
+
+  const renderSubjectButton = (subject: (typeof SUBJECTS)[number]): React.JSX.Element => {
+    const isActive = subject.id === currentSubject;
+    return (
+      <button
+        key={subject.id}
+        type="button"
+        className={subjectTab({ active: isActive })}
+        style={{ backgroundColor: isActive ? subject.tabBgActive : subject.tabBg }}
+        data-subject={subject.id}
+        role="tab"
+        aria-selected={isActive}
+        onClick={() => callbacks.onSelectSubject(subject.id)}
+      >
+        <span className="tab-label">{`${subject.icon} ${subject.name}`}</span>
+      </button>
+    );
+  };
+
   return (
     <>
-      {SUBJECTS.map((subject) => {
-        const isActive = subject.id === currentSubject;
-        return (
-          <button
-            key={subject.id}
-            type="button"
-            className={subjectTab({ active: isActive })}
-            style={{ backgroundColor: isActive ? subject.tabBgActive : subject.tabBg }}
-            data-subject={subject.id}
-            role="tab"
-            aria-selected={isActive}
-            onClick={() => callbacks.onSelectSubject(subject.id)}
-          >
-            <span className="tab-label">{`${subject.icon} ${subject.name}`}</span>
-          </button>
-        );
-      })}
+      {mainSubjects.map((subject) => renderSubjectButton(subject))}
       <button
         id="supportBtn"
         type="button"
@@ -93,6 +98,7 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
       >
         ❔ サポート
       </button>
+      {adminSubject ? renderSubjectButton(adminSubject) : null}
     </>
   );
 }

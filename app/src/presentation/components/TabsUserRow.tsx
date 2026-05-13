@@ -70,7 +70,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           .join(" ")}
       >
         <img src="./favicon.svg" className="header-logo w-[18px] h-[18px] shrink-0" alt="" aria-hidden="true" />
-        <span className="app-name-text text-sm font-extrabold text-white whitespace-nowrap">学習アプリ</span>
+        <span className="app-name-text text-lg font-extrabold text-white whitespace-nowrap">小中高学習アプリ</span>
       </div>
       {/* 教科タブ（中央寄せ） */}
       <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>

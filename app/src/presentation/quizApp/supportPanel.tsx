@@ -13,6 +13,7 @@ import { createElement, useSyncExternalStore, useState } from "react";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { supportContentStore } from "../components/supportContentStore";
 import { GuideContent } from "../components/GuideContent";
+import { subjectTab } from "../styles/subjectTabStyles";
 
 // ─── 左列メニュー定義 ──────────────────────────────────────────────────────
 
@@ -137,8 +138,8 @@ export function SupportContentDisplay(): React.JSX.Element {
 /** はじめに: スタートアップガイドの md コンテンツを直接表示。 */
 function SupportIntroContent(): React.JSX.Element {
   return (
-    <div className="support-intro-content flex-1 overflow-y-auto px-4 py-3 guide-frame">
-      <GuideContent guideUrl="../support/startup-guide/" />
+    <div className="support-intro-content support-guide-frame flex-1 overflow-y-auto px-4 py-3 guide-frame">
+      <GuideContent guideUrl="../support/" />
     </div>
   );
 }
@@ -151,19 +152,15 @@ function SupportSubTabContent({ tabs }: { tabs: readonly [SubTab, ...SubTab[]] }
   return (
     <div className="support-subtab-content flex flex-col flex-1 overflow-hidden">
       {/* サブタブバー */}
-      <div className="support-subtab-bar flex gap-1 border-b border-[#e1e4e8] px-3 pt-2 pb-0 flex-wrap">
+      <div className="support-subtab-bar flex gap-1 border-b-0 px-3 pt-2 pb-0 flex-wrap items-end">
         {tabs.map((tab) => {
           const isActive = tab.id === activeTabId;
           return (
             <button
               key={tab.id}
               type="button"
-              className={[
-                "support-subtab px-3 py-1.5 text-sm font-semibold border border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit]",
-                isActive
-                  ? "bg-white text-[#24292e] border-[#d1d5da]"
-                  : "bg-[#f6f8fa] text-[#586069] border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]",
-              ].join(" ")}
+              className={["support-subtab", subjectTab({ active: isActive }), "pt-1.5 pb-1 px-3 text-xs"].join(" ")}
+              style={{ backgroundColor: isActive ? "#d0e4ff" : "#e8f0ff" }}
               onClick={() => setActiveTabId(tab.id)}
             >
               {tab.label}
@@ -172,7 +169,7 @@ function SupportSubTabContent({ tabs }: { tabs: readonly [SubTab, ...SubTab[]] }
         })}
       </div>
       {/* サブタブコンテンツ */}
-      <div className="support-subtab-panel flex-1 overflow-y-auto px-4 py-3 guide-frame">
+      <div className="support-subtab-panel support-guide-frame flex-1 overflow-y-auto px-4 py-3 guide-frame">
         {activeTab && <GuideContent guideUrl={activeTab.url} />}
       </div>
     </div>

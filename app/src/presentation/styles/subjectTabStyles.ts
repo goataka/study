@@ -31,7 +31,7 @@ export const subjectTab = cva(
     // hover 状態
     "hover:brightness-[1.05] hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
     // active 状態（太字のみ、隙間なし）
-    "[&.active]:text-[#1a1a1a] [&.active]:font-bold [&.active]:brightness-110",
+    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110",
   ].join(" "),
   {
     variants: {
