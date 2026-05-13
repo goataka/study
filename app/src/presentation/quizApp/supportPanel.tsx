@@ -1,78 +1,73 @@
 /**
  * サポートパネル — 左列メニューリストと右列コンテンツ表示の React コンポーネント。
  *
- * ・左列: `categoryListContentStore` に `SupportMenuList` をセットする
- * ・右列: `supportContentStore` に `SupportContentDisplay` をセットする
+ * 左列:
+ *   - はじめに（スタートアップガイドのmdを表示）
+ *   - マニュアル（🚀/🖥️/🔧/❓ の4タブで各mdを表示）
+ *   - コンテンツ（英語/数学/国語の3タブで各mdを表示）
  *
- * `renderSupportPanel()` を呼ぶことで両列を描画する。
- * アクティブセクションは `supportSectionStore` で共有する。
+ * 右列: 各メニューに対応するmdコンテンツをタブで表示する。
  */
 
-import { createElement, useSyncExternalStore } from "react";
+import { createElement, useSyncExternalStore, useState } from "react";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { supportContentStore } from "../components/supportContentStore";
+import { GuideContent } from "../components/GuideContent";
 
-// ─── サポートセクション定義 ──────────────────────────────────────────────────
+// ─── 左列メニュー定義 ──────────────────────────────────────────────────────
 
-export interface SupportSection {
-  id: "startup" | "operation" | "technical" | "troubleshooting";
-  menuLabel: string;
-  title: string;
-  summary: string;
-  points: string[];
+export type SupportMenuId = "intro" | "manual" | "contents";
+
+export interface SupportMenuItem {
+  id: SupportMenuId;
+  label: string;
 }
 
-export const SUPPORT_SECTIONS: readonly [SupportSection, ...SupportSection[]] = [
-  {
-    id: "startup",
-    menuLabel: "🚀 スタートアップガイド",
-    title: "🚀 スタートアップガイド",
-    summary: "はじめて使うときの流れを確認できます。",
-    points: ["学習の始め方", "単元の選び方", "クイズ開始までの基本操作"],
-  },
-  {
-    id: "operation",
-    menuLabel: "🖥️ 機能リファレンス",
-    title: "🖥️ 機能リファレンス",
-    summary: "画面構成と主要機能の使い方を確認できます。",
-    points: ["ヘッダーの各ボタン", "単元一覧の見方", "解説・確認・問題・履歴タブの使い方"],
-  },
-  {
-    id: "technical",
-    menuLabel: "🔧 技術リファレンス",
-    title: "🔧 技術リファレンス",
-    summary: "問題データ仕様や技術的な前提を確認できます。",
-    points: ["問題データ JSON の構造", "解説URLのルール", "運用時の注意点"],
-  },
-  {
-    id: "troubleshooting",
-    menuLabel: "❓ トラブルシューティング",
-    title: "❓ トラブルシューティング",
-    summary: "よくある困りごとと対処方法を確認できます。",
-    points: ["表示や動作の確認手順", "データ保存まわりの注意", "再読み込み時のチェックポイント"],
-  },
+export const SUPPORT_MENU_ITEMS: readonly [SupportMenuItem, ...SupportMenuItem[]] = [
+  { id: "intro", label: "はじめに" },
+  { id: "manual", label: "マニュアル" },
+  { id: "contents", label: "コンテンツ" },
 ];
 
-// ─── アクティブセクション ストア ─────────────────────────────────────────────
+// ─── サブタブ定義 ──────────────────────────────────────────────────────────
 
-type SupportSectionId = SupportSection["id"];
+interface SubTab {
+  id: string;
+  label: string;
+  url: string;
+}
 
-let _activeSectionId: SupportSectionId = SUPPORT_SECTIONS[0].id;
-const _listeners = new Set<() => void>();
+const MANUAL_TABS: readonly [SubTab, ...SubTab[]] = [
+  { id: "startup", label: "🚀 スタートアップガイド", url: "../support/startup-guide/" },
+  { id: "operation", label: "🖥️ 機能リファレンス", url: "../support/operation-guide/" },
+  { id: "technical", label: "🔧 技術リファレンス", url: "../support/technical-reference/" },
+  { id: "troubleshooting", label: "❓ トラブルシューティング", url: "../support/troubleshooting/" },
+];
 
-export const supportSectionStore = {
-  get: (): SupportSectionId => _activeSectionId,
-  set: (id: SupportSectionId): void => {
-    _activeSectionId = id;
-    _listeners.forEach((fn) => fn());
+const CONTENT_TABS: readonly [SubTab, ...SubTab[]] = [
+  { id: "english", label: "英語", url: "../support/content-list/english/" },
+  { id: "math", label: "数学", url: "../support/content-list/math/" },
+  { id: "japanese", label: "国語", url: "../support/content-list/japanese/" },
+];
+
+// ─── アクティブメニュー ストア ─────────────────────────────────────────────
+
+let _activeMenuId: SupportMenuId = SUPPORT_MENU_ITEMS[0].id;
+const _menuListeners = new Set<() => void>();
+
+export const supportMenuStore = {
+  get: (): SupportMenuId => _activeMenuId,
+  set: (id: SupportMenuId): void => {
+    _activeMenuId = id;
+    _menuListeners.forEach((fn) => fn());
   },
   subscribe: (fn: () => void): (() => void) => {
-    _listeners.add(fn);
-    return () => _listeners.delete(fn);
+    _menuListeners.add(fn);
+    return () => _menuListeners.delete(fn);
   },
   reset: (): void => {
-    _activeSectionId = SUPPORT_SECTIONS[0].id;
-    _listeners.forEach((fn) => fn());
+    _activeMenuId = SUPPORT_MENU_ITEMS[0].id;
+    _menuListeners.forEach((fn) => fn());
   },
 };
 
@@ -80,15 +75,9 @@ export const supportSectionStore = {
 
 /**
  * サポートメニューリスト（左列）。
- * 各セクションボタンをクリックすると `supportSectionStore` を更新し、
- * 右列のコンテンツも同期して切り替わる。
  */
 export function SupportMenuList(): React.JSX.Element {
-  const activeSectionId = useSyncExternalStore(
-    supportSectionStore.subscribe,
-    supportSectionStore.get,
-    supportSectionStore.get,
-  );
+  const activeMenuId = useSyncExternalStore(supportMenuStore.subscribe, supportMenuStore.get, supportMenuStore.get);
 
   return (
     <div className="support-menu-list flex flex-col p-2" data-testid="support-menu-list">
@@ -97,10 +86,10 @@ export function SupportMenuList(): React.JSX.Element {
       </div>
       <nav aria-label="サポートメニュー">
         <ul className="space-y-1">
-          {SUPPORT_SECTIONS.map((section) => {
-            const isActive = section.id === activeSectionId;
+          {SUPPORT_MENU_ITEMS.map((item) => {
+            const isActive = item.id === activeMenuId;
             return (
-              <li key={section.id}>
+              <li key={item.id}>
                 <button
                   type="button"
                   className={[
@@ -109,10 +98,10 @@ export function SupportMenuList(): React.JSX.Element {
                   ].join(" ")}
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => {
-                    supportSectionStore.set(section.id);
+                    supportMenuStore.set(item.id);
                   }}
                 >
-                  {section.menuLabel}
+                  {item.label}
                 </button>
               </li>
             );
@@ -127,31 +116,65 @@ export function SupportMenuList(): React.JSX.Element {
 
 /**
  * サポートコンテンツ表示（右列）。
- * `supportSectionStore` のアクティブセクションに対応する内容を表示する。
+ * `supportMenuStore` のアクティブメニューに対応するコンテンツを表示する。
  */
 export function SupportContentDisplay(): React.JSX.Element {
-  const activeSectionId = useSyncExternalStore(
-    supportSectionStore.subscribe,
-    supportSectionStore.get,
-    supportSectionStore.get,
-  );
-  const section = SUPPORT_SECTIONS.find((s) => s.id === activeSectionId) ?? SUPPORT_SECTIONS[0];
+  const activeMenuId = useSyncExternalStore(supportMenuStore.subscribe, supportMenuStore.get, supportMenuStore.get);
 
   return (
     <div
-      className="support-content-display flex-1 overflow-y-auto px-5 py-4"
+      className="support-content-display flex flex-col flex-1 overflow-hidden"
       data-testid="support-content-display"
       aria-live="polite"
     >
-      <h2 className="mb-3 text-lg font-bold text-[#24292e]">{section.title}</h2>
-      <p className="mb-4 text-[15px] text-[#586069]">{section.summary}</p>
-      <ul className="list-disc pl-6 space-y-1.5">
-        {section.points.map((point) => (
-          <li key={point} className="text-[15px] text-[#24292e]">
-            {point}
-          </li>
-        ))}
-      </ul>
+      {activeMenuId === "intro" && <SupportIntroContent />}
+      {activeMenuId === "manual" && <SupportSubTabContent tabs={MANUAL_TABS} />}
+      {activeMenuId === "contents" && <SupportSubTabContent tabs={CONTENT_TABS} />}
+    </div>
+  );
+}
+
+/** はじめに: スタートアップガイドの md コンテンツを直接表示。 */
+function SupportIntroContent(): React.JSX.Element {
+  return (
+    <div className="support-intro-content flex-1 overflow-y-auto px-4 py-3 guide-frame">
+      <GuideContent guideUrl="../support/startup-guide/" />
+    </div>
+  );
+}
+
+/** マニュアル/コンテンツ: サブタブで md コンテンツを切り替えて表示。 */
+function SupportSubTabContent({ tabs }: { tabs: readonly [SubTab, ...SubTab[]] }): React.JSX.Element {
+  const [activeTabId, setActiveTabId] = useState<string>(tabs[0].id);
+  const activeTab = tabs.find((t) => t.id === activeTabId) ?? tabs[0];
+
+  return (
+    <div className="support-subtab-content flex flex-col flex-1 overflow-hidden">
+      {/* サブタブバー */}
+      <div className="support-subtab-bar flex gap-1 border-b border-[#e1e4e8] px-3 pt-2 pb-0 flex-wrap">
+        {tabs.map((tab) => {
+          const isActive = tab.id === activeTabId;
+          return (
+            <button
+              key={tab.id}
+              type="button"
+              className={[
+                "support-subtab px-3 py-1.5 text-sm font-semibold border border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit]",
+                isActive
+                  ? "bg-white text-[#24292e] border-[#d1d5da]"
+                  : "bg-[#f6f8fa] text-[#586069] border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]",
+              ].join(" ")}
+              onClick={() => setActiveTabId(tab.id)}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
+      {/* サブタブコンテンツ */}
+      <div className="support-subtab-panel flex-1 overflow-y-auto px-4 py-3 guide-frame">
+        {activeTab && <GuideContent guideUrl={activeTab.url} />}
+      </div>
     </div>
   );
 }
@@ -173,7 +196,17 @@ export function renderSupportContentPanel(): void {
  * `quizPanelVisibility.ts` から呼ぶことで、両列が同期した状態で表示される。
  */
 export function renderSupportPanel(): void {
-  supportSectionStore.reset();
+  supportMenuStore.reset();
   renderSupportMenuList();
   renderSupportContentPanel();
 }
+
+// ─── 後方互換エクスポート ──────────────────────────────────────────────────────
+
+/** @deprecated supportMenuStore を使用してください。 */
+export const supportSectionStore = {
+  get: () => supportMenuStore.get() as string,
+  set: (id: string): void => supportMenuStore.set(id as SupportMenuId),
+  subscribe: supportMenuStore.subscribe,
+  reset: supportMenuStore.reset,
+};

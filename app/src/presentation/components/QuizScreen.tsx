@@ -50,7 +50,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
         className={[
           "quiz-landscape-layout",
           // グリッドレイアウト（左：問題エリア 1.2fr、中：折り目 12px、右：メモエリア 1.8fr）
-          "relative flex-1 grid min-h-0 items-stretch gap-0",
+          "relative flex-1 grid items-stretch gap-0",
           "grid-cols-[1.2fr_12px_1.8fr] max-[900px]:grid-cols-1",
           // 折り目：中央の 12px カラムに影付きグラデーション縦線を before: で描画
           // 0.4 は左カラム比率 1.2 / (1.2 + 1.8) に対応
@@ -61,7 +61,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           "max-[900px]:before:hidden",
         ].join(" ")}
       >
-        <div className="quiz-main-col notebook-lines bg-white col-start-1 min-w-0 overflow-y-auto min-h-0 p-3 max-[900px]:col-start-1">
+        <div className="quiz-main-col notebook-lines bg-white col-start-1 min-w-0 p-3 max-[900px]:col-start-1">
           <div className="progress-bar mb-5 h-2 w-full overflow-hidden rounded bg-[#e0e0e0]">
             <div
               id="progressFill"

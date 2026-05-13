@@ -26,12 +26,12 @@ export const subjectTab = cva(
     // 文字
     "cursor-pointer text-sm font-semibold text-[#5a4a28] font-[inherit]",
     "flex items-center gap-1.5 whitespace-nowrap",
-    "shadow-[0_-2px_4px_rgba(0,0,0,0.08)] relative translate-y-0.5",
-    "transition-[background,color,transform,box-shadow] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1",
+    "shadow-[0_-2px_4px_rgba(0,0,0,0.08)] relative",
+    "transition-[background,color,box-shadow] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0366d6] focus-visible:ring-offset-1",
     // hover 状態
-    "hover:brightness-[1.05] hover:translate-y-0 hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
-    // active 状態
-    "[&.active]:text-[#1a1a1a] [&.active]:translate-y-[-2px] [&.active]:shadow-[0_-4px_10px_rgba(0,0,0,0.16)] [&.active]:z-[1] [&.active]:font-bold [&.active]:brightness-110 [&.active]:scale-[1.04]",
+    "hover:brightness-[1.05] hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
+    // active 状態（太字のみ、隙間なし）
+    "[&.active]:text-[#1a1a1a] [&.active]:font-bold [&.active]:brightness-110",
   ].join(" "),
   {
     variants: {

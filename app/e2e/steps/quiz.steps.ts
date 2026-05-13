@@ -19,7 +19,8 @@ Then("the quiz title should be {string}", async ({ page }, title: string) => {
 });
 
 Then("the quiz title should contain {string}", async ({ page }, title: string) => {
-  await expect(page.locator("h1")).toContainText(title);
+  // アプリ名はタブ行の左側 .app-name-text に表示される
+  await expect(page.locator(".app-name-text")).toContainText(title);
 });
 
 When("I click the {string} tab", async ({ page }, tabText: string) => {
@@ -416,12 +417,19 @@ Then("the support button should show support content in support panel", async ({
   await supportBtn.click();
   // 解説タブではなくサポートコンテンツパネルが表示される
   await expect(page.locator("#supportContent")).toBeVisible();
-  // 左列: サポートメニューリストが表示される
+  // 左列: サポートメニューリストが表示される（3項目: はじめに / マニュアル / コンテンツ）
   await expect(page.locator("nav[aria-label='サポートメニュー']")).toBeVisible();
-  // 右列: サポートコンテンツが表示される
-  await expect(page.locator("#supportContent")).toContainText("スタートアップガイド");
-  // 外部リンクは表示しない
-  await expect(page.locator("#supportContent a")).toHaveCount(0);
+  const menuButtons = page.locator("nav[aria-label='サポートメニュー'] button");
+  await expect(menuButtons).toHaveCount(3);
+  await expect(menuButtons.nth(0)).toContainText("はじめに");
+  await expect(menuButtons.nth(1)).toContainText("マニュアル");
+  await expect(menuButtons.nth(2)).toContainText("コンテンツ");
+  // マニュアルをクリックするとサブタブが表示される
+  await menuButtons.nth(1).click();
+  const subTabs = page.locator(".support-subtab");
+  await expect(subTabs.first()).toBeVisible();
+  await expect(subTabs.filter({ hasText: "スタートアップガイド" })).toBeVisible();
+  await expect(subTabs.filter({ hasText: "トラブルシューティング" })).toBeVisible();
 });
 
 When("I select {string} quiz order", async ({ page }, order: string) => {

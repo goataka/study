@@ -55,7 +55,7 @@ export function CategoryPanel(): React.JSX.Element {
           ✨ おすすめ単元
         </span>
       </div>
-      <div id="overallDateNav" className="activity-date-nav hidden flex items-center gap-1.5 shrink-0 px-2 py-1.5">
+      <div id="overallDateNav" className="activity-date-nav hidden items-center gap-1.5 shrink-0 px-2 py-1.5">
         <span id="activityDateDisplay" className="activity-date-display text-[13px] text-[#586069] font-medium"></span>
       </div>
       <div
