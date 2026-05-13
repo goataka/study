@@ -75,11 +75,15 @@ jobs:
     container:
       # GHA の container.image では env を参照せず、GHCR イメージを直接指定する
       image: ghcr.io/goataka/study-app-ci:latest
+    env:
+      SNAPSHOT_DIR: app/e2e/snapshots/
+      MAX_PREVIEW_COUNT: "10"
     defaults:
       run:
         working-directory: app
     permissions:
       contents: write
+      issues: write
       packages: read
     steps:
       - name: コードのチェックアウト
@@ -106,16 +110,118 @@ jobs:
         continue-on-error: true
 
       - name: スナップショットの自動更新とコミット（差分あり時）
+        id: snapshot-update
         if: steps.vr-test.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
           npm run test:e2e:vr:update || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet -- e2e/snapshots/; then
-            git add e2e/snapshots/
+          if [ -n "$(git -C "$GITHUB_WORKSPACE" status --porcelain -- "$SNAPSHOT_DIR")" ]; then
+            git -C "$GITHUB_WORKSPACE" add -A -- "$SNAPSHOT_DIR"
+            {
+              echo "snapshot_updated=true"
+              echo "snapshot_files<<EOF"
+              git -C "$GITHUB_WORKSPACE" diff --cached --name-only -- "$SNAPSHOT_DIR"
+              echo "EOF"
+            } >> "$GITHUB_OUTPUT"
             LEFTHOOK=0 git commit -m "ci: VRスナップショットを自動更新 [skip ci]"
             git push
+          else
+            echo "snapshot_updated=false" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: 更新されたスナップショットをPRコメントで共有
+        if: steps.snapshot-update.outputs.snapshot_updated == 'true'
+        uses: actions/github-script@v8
+        env:
+          SNAPSHOT_FILES: ${{ steps.snapshot-update.outputs.snapshot_files }}
+          MAX_PREVIEW_COUNT: ${{ env.MAX_PREVIEW_COUNT }}
+        with:
+          script: |
+            const marker = "<!-- vr-snapshot-preview -->";
+            const files = (process.env.SNAPSHOT_FILES ?? "")
+              .split("\n")
+              .map((file) => file.trim())
+              .filter(Boolean);
+
+            if (files.length === 0) {
+              core.info("共有対象のスナップショットがありません。");
+              return;
+            }
+
+            const { owner, repo } = context.repo;
+            const pullNumber = context.payload.pull_request.number;
+            const { data: pullRequest } = await github.rest.pulls.get({
+              owner,
+              repo,
+              pull_number: pullNumber,
+            });
+            const headSha = pullRequest.head.sha;
+            const maxPreviewCountRaw = process.env.MAX_PREVIEW_COUNT ?? "";
+            if (!/^[1-9]\d*$/.test(maxPreviewCountRaw)) {
+              core.setFailed("MAX_PREVIEW_COUNT が不正です。正の整数を指定してください。");
+              return;
+            }
+            const maxPreviewCount = Number.parseInt(maxPreviewCountRaw, 10);
+            const imageFiles = files.filter((file) =>
+              /\.(png|jpe?g|webp|gif)$/i.test(file),
+            );
+
+            if (imageFiles.length === 0) {
+              core.info("画像形式のスナップショットがありません。");
+              return;
+            }
+
+            const previewImages = imageFiles
+              .slice(0, maxPreviewCount)
+              .map((file) => {
+                const encodedPath = file
+                  .split("/")
+                  .map((segment) => encodeURIComponent(segment))
+                  .join("/");
+                const imageUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${headSha}/${encodedPath}`;
+                return `### \`${file}\`\n![${file}](${imageUrl})`;
+              })
+              .join("\n\n");
+
+            const overLimitText =
+              imageFiles.length > maxPreviewCount
+                ? `\n\n_表示上限のため ${imageFiles.length - maxPreviewCount} 件は省略しました。_`
+                : "";
+            const body = [
+              marker,
+              "## 📸 VRスナップショット更新プレビュー",
+              "",
+              "CIでスナップショットが更新されたため、変更画像を共有します。",
+              "",
+              `${previewImages}${overLimitText}`,
+            ].join("\n");
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number: pullNumber,
+              per_page: 100,
+            });
+            const existing = comments.find(
+              (comment) => comment.user?.login === "github-actions[bot]" && comment.body?.includes(marker),
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+              return;
+            }
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: pullNumber,
+              body,
+            });
 
       - name: ビジュアルリグレッションテスト（スナップショット更新後の再確認）
         id: vr-recheck
