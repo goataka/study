@@ -197,7 +197,7 @@ Feature: 学習アプリ
     Then the support button should be visible in the header
 
   Scenario: サポートボタン（?）をクリックするとサポートパネルが表示される
-    Then the support button should show support content in guide panel
+    Then the support button should show support content in support panel
 
   Scenario: 管理タブの初期化パネルが表示される
     When I click the "管理" tab

@@ -70,17 +70,21 @@ function updateQuestionListHeader(filter: QuizFilter, questions: Question[], use
   }
 }
 
-/** フィルターに対応する最終学習日を取得する。 */
+/** フィルターに対応する最終学習日を取得する。単一パスで最新日時を求める。 */
 function getLastStudyDateForFilter(filter: QuizFilter, useCase: QuizUseCase): string | null {
   const history = useCase.getHistory();
-  const matchingRecords = history.filter((r) => {
-    if (filter.subject !== "all" && r.subject !== filter.subject) return false;
-    if (filter.category !== "all" && r.category !== filter.category) return false;
-    return true;
-  });
-  if (matchingRecords.length === 0) return null;
-  const latest = matchingRecords.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0];
-  return latest?.date ?? null;
+  let latestDate: string | null = null;
+  let latestTime = -Infinity;
+  for (const r of history) {
+    if (filter.subject !== "all" && r.subject !== filter.subject) continue;
+    if (filter.category !== "all" && r.category !== filter.category) continue;
+    const t = new Date(r.date).getTime();
+    if (t > latestTime) {
+      latestTime = t;
+      latestDate = r.date;
+    }
+  }
+  return latestDate;
 }
 
 /** 日付を "YYYY/MM/DD" 形式にフォーマットする。 */

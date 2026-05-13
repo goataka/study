@@ -76,6 +76,9 @@ function SubjectTabs({ callbacks, currentSubject }: SubjectTabsProps): React.JSX
           "justify-center",
           "bg-[#e8f0ff]",
         ].join(" ")}
+        data-subject="support"
+        role="tab"
+        aria-selected={currentSubject === "support"}
         title="サポートを表示する"
         aria-label="サポートを表示する"
         onClick={() => callbacks.onOpenSupport()}

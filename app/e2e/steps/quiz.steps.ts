@@ -410,7 +410,7 @@ Then("the support button should be visible in the header", async ({ page }) => {
   await expect(page.locator("#supportBtn")).toBeVisible();
 });
 
-Then("the support button should show support content in guide panel", async ({ page }) => {
+Then("the support button should show support content in support panel", async ({ page }) => {
   // サポートボタン（?）をクリックするとサポート専用パネルが表示されること
   const supportBtn = page.locator("#supportBtn");
   await supportBtn.click();
