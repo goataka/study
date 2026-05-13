@@ -6,13 +6,6 @@ permalink: /troubleshooting/
 
 よくある質問（FAQ）と問題の解決方法を説明します。
 
-## 目次
-
-- [データについて](#データについて)
-- [よくある質問（FAQ）](#よくある質問faq)
-- [不具合・要望の報告](#不具合要望の報告)
-- [関連リンク](#-関連リンク)
-
 ## データについて
 
 ### データがおかしくなった・進捗をリセットしたい
@@ -99,10 +92,3 @@ permalink: /troubleshooting/
 
 - **リポジトリ**: [goataka/study](https://github.com/goataka/study)
 - **Issues**: [バグ報告・要望](https://github.com/goataka/study/issues/new)
-
-## 🔗 関連リンク
-
-- [サポートトップ](../) ─ サポートページのトップ
-- [スタートアップガイド](../startup-guide/) ─ 使い始め方と基本操作
-- [機能リファレンス](../operation-guide/) ─ 画面構成と各機能
-- [技術リファレンス](../technical-reference/) ─ 問題データのJSON形式

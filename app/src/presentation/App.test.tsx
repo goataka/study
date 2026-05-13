@@ -207,6 +207,9 @@ describe("App コンポーネント", () => {
       "submitBtn",
       // ノートパネル
       "notesMemoContent",
+      "notesMetaAppName",
+      "notesMetaSubject",
+      "notesMetaDate",
       "notesTitle",
       "clearNotesBtn",
       "eraserBtn",
@@ -263,6 +266,14 @@ describe("App コンポーネント", () => {
     expect(appFooter).toBeNull();
     expect(tabsUserArea?.className).not.toContain("border-l");
     expect(Array.from(fontSizeButtons).every((btn) => btn.className.includes("px-2 py-1"))).toBe(true);
+  });
+
+  it("タブ行に小中高学習アプリ名を表示する", () => {
+    act(() => {
+      root = createRoot(container!);
+      root.render(<App bootApp={bootApp} />);
+    });
+    expect(container?.querySelector(".app-name-text")?.textContent).toContain("小中高学習アプリ");
   });
 
   it("環境切り替えは現在環境を太字・非リンクで表示する", () => {
