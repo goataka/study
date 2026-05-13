@@ -179,3 +179,47 @@ jobs:
           reporter: github-pr-review
           fail_level: warning
           markdownlint_flags: "."
+
+  request-ci-fix:
+    name: CopilotにCI修正を依頼
+    runs-on: ubuntu-latest
+    needs:
+      - test-and-build
+      - e2e
+      - visual-regression
+      - markdownlint
+    if: >-
+      ${{
+        always() &&
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        (
+          needs.test-and-build.result == 'failure' ||
+          needs.e2e.result == 'failure' ||
+          needs.visual-regression.result == 'failure' ||
+          needs.markdownlint.result == 'failure'
+        )
+      }}
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v6
+
+      - name: CopilotにCI修正を依頼
+        uses: ./.github/actions/fix-gha-error
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          copilot-token: ${{ secrets.COPILOT_CLASSIC }}
+          workflow-name: ${{ github.workflow }}
+          head-sha: ${{ github.event.pull_request.head.sha }}
+          run-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          head-branch: ${{ github.head_ref }}
+          pr-number: ${{ github.event.pull_request.number }}
+          error-context: |
+            job 結果:
+            - test-and-build: ${{ needs.test-and-build.result }}
+            - e2e: ${{ needs.e2e.result }}
+            - visual-regression: ${{ needs.visual-regression.result }}
+            - markdownlint: ${{ needs.markdownlint.result }}
