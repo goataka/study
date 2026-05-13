@@ -37,14 +37,14 @@ interface SubTab {
   url: string;
 }
 
-const MANUAL_TABS: readonly SubTab[] = [
+const MANUAL_TABS: readonly [SubTab, ...SubTab[]] = [
   { id: "startup", label: "🚀 スタートアップガイド", url: "../support/startup-guide/" },
   { id: "operation", label: "🖥️ 機能リファレンス", url: "../support/operation-guide/" },
   { id: "technical", label: "🔧 技術リファレンス", url: "../support/technical-reference/" },
   { id: "troubleshooting", label: "❓ トラブルシューティング", url: "../support/troubleshooting/" },
 ];
 
-const CONTENT_TABS: readonly SubTab[] = [
+const CONTENT_TABS: readonly [SubTab, ...SubTab[]] = [
   { id: "english", label: "英語", url: "../support/content-list/english/" },
   { id: "math", label: "数学", url: "../support/content-list/math/" },
   { id: "japanese", label: "国語", url: "../support/content-list/japanese/" },
@@ -144,8 +144,8 @@ function SupportIntroContent(): React.JSX.Element {
 }
 
 /** マニュアル/コンテンツ: サブタブで md コンテンツを切り替えて表示。 */
-function SupportSubTabContent({ tabs }: { tabs: readonly SubTab[] }): React.JSX.Element {
-  const [activeTabId, setActiveTabId] = useState<string>(tabs[0]?.id ?? "");
+function SupportSubTabContent({ tabs }: { tabs: readonly [SubTab, ...SubTab[]] }): React.JSX.Element {
+  const [activeTabId, setActiveTabId] = useState<string>(tabs[0].id);
   const activeTab = tabs.find((t) => t.id === activeTabId) ?? tabs[0];
 
   return (

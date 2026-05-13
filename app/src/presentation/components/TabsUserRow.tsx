@@ -62,7 +62,12 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
     >
       {/* アプリ名（左固定） */}
       <div
-        className={`app-name-area shrink-0 flex items-center gap-1.5 px-4 pb-2 self-end${currentScreen !== "start" ? " hidden" : ""}`}
+        className={[
+          "app-name-area shrink-0 flex items-center gap-1.5 px-4 pb-2 self-end",
+          currentScreen !== "start" ? "hidden" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         <img src="./favicon.svg" className="header-logo w-[18px] h-[18px] shrink-0" alt="" aria-hidden="true" />
         <span className="app-name-text text-sm font-extrabold text-white whitespace-nowrap">学習アプリ</span>
