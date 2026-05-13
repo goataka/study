@@ -5,7 +5,7 @@
 # 存在すればコメントを追加、なければ新規Issueを作成してCopilotをアサインする
 
 name: "Fix GHA Error"
-description: "GHAエラー発生時にCopilotに修正を依頼する（PRコメント or Issue作成）"
+description: "GitHub Actions のワークフロー失敗時にCopilotに修正を依頼する（PRコメント or Issue作成）"
 branding:
   icon: "alert-circle"
   color: "red"
@@ -16,6 +16,26 @@ inputs:
     required: true
   copilot-token:
     description: "Copilot classic token for assigning Copilot to issues (COPILOT_CLASSIC)"
+    required: false
+    default: ""
+  workflow-name:
+    description: "対象ワークフロー名（未指定時は workflow_run コンテキストから取得）"
+    required: false
+    default: ""
+  head-sha:
+    description: "対象コミット SHA（未指定時は workflow_run コンテキストから取得）"
+    required: false
+    default: ""
+  run-url:
+    description: "対象実行のURL（未指定時は workflow_run コンテキストから取得）"
+    required: false
+    default: ""
+  head-branch:
+    description: "対象ブランチ名（未指定時は workflow_run コンテキストから取得）"
+    required: false
+    default: ""
+  pr-number:
+    description: "対象PR番号（未指定時は workflow_run コンテキストから推定）"
     required: false
     default: ""
   error-context:
@@ -48,16 +68,28 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN_INPUT: ${{ inputs.github-token }}
-        WF_NAME: ${{ github.event.workflow_run.name }}
-        WF_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
-        WF_HTML_URL: ${{ github.event.workflow_run.html_url }}
-        WF_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+        INPUT_WORKFLOW_NAME: ${{ inputs.workflow-name }}
+        INPUT_HEAD_SHA: ${{ inputs.head-sha }}
+        INPUT_RUN_URL: ${{ inputs.run-url }}
+        INPUT_HEAD_BRANCH: ${{ inputs.head-branch }}
+        INPUT_PR_NUMBER: ${{ inputs.pr-number }}
+        EVENT_WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+        EVENT_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        EVENT_RUN_URL: ${{ github.event.workflow_run.html_url }}
+        EVENT_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
       run: |
         set -euo pipefail
 
         echo "::add-mask::${GITHUB_TOKEN_INPUT}"
 
-        required=(GITHUB_TOKEN_INPUT WF_NAME WF_HEAD_SHA WF_HTML_URL)
+        WORKFLOW_NAME="${INPUT_WORKFLOW_NAME:-${EVENT_WORKFLOW_NAME:-}}"
+        HEAD_SHA="${INPUT_HEAD_SHA:-${EVENT_HEAD_SHA:-}}"
+        RUN_URL="${INPUT_RUN_URL:-${EVENT_RUN_URL:-}}"
+        HEAD_BRANCH="${INPUT_HEAD_BRANCH:-${EVENT_HEAD_BRANCH:-}}"
+
+        export WORKFLOW_NAME HEAD_SHA RUN_URL
+
+        required=(GITHUB_TOKEN_INPUT WORKFLOW_NAME HEAD_SHA RUN_URL)
         missing=()
 
         for key in "${required[@]}"; do
@@ -71,21 +103,28 @@ runs:
           exit 1
         fi
 
-        if [ -z "${WF_HEAD_BRANCH:-}" ]; then
+        echo "workflow_name=${WORKFLOW_NAME}" >> "$GITHUB_OUTPUT"
+        echo "head_sha=${HEAD_SHA}" >> "$GITHUB_OUTPUT"
+        echo "run_url=${RUN_URL}" >> "$GITHUB_OUTPUT"
+        echo "head_branch=${HEAD_BRANCH}" >> "$GITHUB_OUTPUT"
+        echo "requested_pr_number=${INPUT_PR_NUMBER}" >> "$GITHUB_OUTPUT"
+
+        if [ -z "${HEAD_BRANCH:-}" ]; then
           echo "::warning::workflow_run.head_branch が空です。PR情報から後続で判定します。"
         fi
 
-        echo "::notice::入力値とコンテキストの基本チェックが完了しました (workflow=${WF_NAME}, commit=${WF_HEAD_SHA:0:7})"
+        echo "::notice::入力値とコンテキストの基本チェックが完了しました (workflow=${WORKFLOW_NAME}, commit=${HEAD_SHA:0:7})"
 
     - name: エラー情報の収集
       id: collect-error
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.github-token }}
-        WF_NAME: ${{ github.event.workflow_run.name }}
-        WF_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
-        WF_HTML_URL: ${{ github.event.workflow_run.html_url }}
-        WF_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+        WF_NAME: ${{ steps.validate-input.outputs.workflow_name }}
+        WF_HEAD_SHA: ${{ steps.validate-input.outputs.head_sha }}
+        WF_HTML_URL: ${{ steps.validate-input.outputs.run_url }}
+        WF_HEAD_BRANCH: ${{ steps.validate-input.outputs.head_branch }}
+        REQUESTED_PR_NUMBER: ${{ steps.validate-input.outputs.requested_pr_number }}
         WF_PULL_REQUESTS: ${{ toJson(github.event.workflow_run.pull_requests) }}
       run: |
         set -euo pipefail
@@ -96,24 +135,37 @@ runs:
         COMMIT_SHORT="${COMMIT_SHA:0:7}"
         RUN_URL="${WF_HTML_URL}"
 
-        echo "workflow_name=${WORKFLOW_NAME}" >> $GITHUB_OUTPUT
-        echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
-        echo "commit_short=${COMMIT_SHORT}" >> $GITHUB_OUTPUT
-        echo "run_url=${RUN_URL}" >> $GITHUB_OUTPUT
+        echo "workflow_name=${WORKFLOW_NAME}" >> "$GITHUB_OUTPUT"
+        echo "commit_sha=${COMMIT_SHA}" >> "$GITHUB_OUTPUT"
+        echo "commit_short=${COMMIT_SHORT}" >> "$GITHUB_OUTPUT"
+        echo "run_url=${RUN_URL}" >> "$GITHUB_OUTPUT"
 
         # PRが関連しているかチェック
-        PR_NUMBER=""
+        PR_NUMBER="${REQUESTED_PR_NUMBER}"
         TARGET_BRANCH=""
+        PULL_REQUESTS_JSON="${WF_PULL_REQUESTS:-null}"
+
+        if [ -n "$PR_NUMBER" ]; then
+          TARGET_BRANCH="${WF_HEAD_BRANCH}"
+          if [ -z "${TARGET_BRANCH}" ]; then
+            TARGET_BRANCH=$(gh pr view "${PR_NUMBER}" --json headRefName --jq '.headRefName // empty')
+          fi
+          echo "::notice::入力値でPRを特定しました (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
+        fi
 
         # まず workflow_run.pull_requests から取得を試みる
-        PR_COUNT=$(echo "${WF_PULL_REQUESTS}" | jq 'length // 0')
-        if [ "$PR_COUNT" -gt 0 ]; then
-          _BRANCH=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].head.ref // empty')
-          _PR=$(echo "${WF_PULL_REQUESTS}" | jq -r '.[0].number // empty')
-          if [ -n "$_BRANCH" ] && [ -n "$_PR" ]; then
-            TARGET_BRANCH="$_BRANCH"
-            PR_NUMBER="$_PR"
-            echo "::notice::PRベースのワークフロー実行です (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
+        if [ -z "$PR_NUMBER" ]; then
+          # workflow_run 以外から呼ばれた場合も jq で扱えるよう、
+          # pull_requests のJSONが空なら null として扱う。
+          PULL_REQUEST_COUNT=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq 'length // 0')
+          if [ "$PULL_REQUEST_COUNT" -gt 0 ]; then
+            _BRANCH=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq -r '.[0].head.ref // empty')
+            _PR=$(printf '%s' "${PULL_REQUESTS_JSON}" | jq -r '.[0].number // empty')
+            if [ -n "$_BRANCH" ] && [ -n "$_PR" ]; then
+              TARGET_BRANCH="$_BRANCH"
+              PR_NUMBER="$_PR"
+              echo "::notice::PRベースのワークフロー実行です (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
+            fi
           fi
         fi
 
@@ -128,18 +180,18 @@ runs:
         fi
 
         if [ -n "$PR_NUMBER" ]; then
-          echo "is_pr=true" >> $GITHUB_OUTPUT
-          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
-          echo "pr_number=${PR_NUMBER}" >> $GITHUB_OUTPUT
+          echo "is_pr=true" >> "$GITHUB_OUTPUT"
+          echo "target_branch=${TARGET_BRANCH}" >> "$GITHUB_OUTPUT"
+          echo "pr_number=${PR_NUMBER}" >> "$GITHUB_OUTPUT"
         else
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
           if [ -z "$TARGET_BRANCH" ]; then
             echo "::error::ターゲットブランチを特定できませんでした"
             exit 1
           fi
-          echo "is_pr=false" >> $GITHUB_OUTPUT
-          echo "target_branch=${TARGET_BRANCH}" >> $GITHUB_OUTPUT
-          echo "pr_number=" >> $GITHUB_OUTPUT
+          echo "is_pr=false" >> "$GITHUB_OUTPUT"
+          echo "target_branch=${TARGET_BRANCH}" >> "$GITHUB_OUTPUT"
+          echo "pr_number=" >> "$GITHUB_OUTPUT"
           echo "::notice::ブランチベースのワークフロー実行です (ターゲット: ${TARGET_BRANCH})"
         fi
 
@@ -148,7 +200,7 @@ runs:
           exit 1
         fi
 
-        echo "::notice::収集した情報: workflow=${WORKFLOW_NAME}, commit=${COMMIT_SHORT}, target_branch=${TARGET_BRANCH}, pr_count=${PR_COUNT:-0}"
+        echo "::notice::収集した情報: workflow=${WORKFLOW_NAME}, commit=${COMMIT_SHORT}, target_branch=${TARGET_BRANCH}"
 
     - name: CopilotにCI修正を依頼
       id: request-fix
@@ -175,13 +227,13 @@ runs:
         BODY_FILE=$(mktemp)
 
         if [ "$IS_PR" = "true" ]; then
-          printf '@copilot ワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nCIログ: %s\n' \
+          printf '@copilot このPRのワークフローエラーを修正してください。\n\nワークフロー「%s」が失敗しました (commit: %s, PR: #%s)\n\nActions実行ログ: %s\n' \
             "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${PR_NUMBER}" "${RUN_URL}" >"$BODY_FILE"
           [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
           GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh pr comment "${PR_NUMBER}" --body-file "$BODY_FILE"
           echo "::notice::PR #${PR_NUMBER} にCopilotメンションコメントを投稿しました"
         else
-          ISSUE_TITLE="[CI失敗] ${WORKFLOW_NAME}"
+          ISSUE_TITLE="[ワークフロー失敗] ${WORKFLOW_NAME}"
           EXISTING_ISSUE_NUMBER=$(gh issue list \
             --state open \
             --search "${ISSUE_TITLE} in:title" \
@@ -191,13 +243,13 @@ runs:
             | head -1)
 
           if [ -n "${EXISTING_ISSUE_NUMBER}" ]; then
-            printf '@copilot ワークフロー「%s」が再度失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
+            printf '@copilot ワークフロー「%s」が再度失敗しました (commit: %s)\n\nActions実行ログ: %s / ブランチ: %s\n' \
               "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
             [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
             GH_TOKEN="${COPILOT_TOKEN:-${GH_TOKEN}}" gh issue comment "${EXISTING_ISSUE_NUMBER}" --body-file "$BODY_FILE"
             echo "::notice::既存Issue #${EXISTING_ISSUE_NUMBER} にCopilotメンションコメントを追加しました"
           else
-            printf '@copilot ワークフロー「%s」が失敗しました (commit: %s)\n\nCIログ: %s / ブランチ: %s\n' \
+            printf '@copilot ワークフロー「%s」が失敗しました (commit: %s)\n\nActions実行ログ: %s / ブランチ: %s\n' \
               "${WORKFLOW_NAME}" "${COMMIT_SHORT}" "${RUN_URL}" "${TARGET_BRANCH}" >"$BODY_FILE"
             [ -n "${ERROR_CONTEXT}" ] && printf '詳細: %s\n' "${ERROR_CONTEXT}" >>"$BODY_FILE"
             # まずIssueを作成し、次にCopilotをアサインする（2ステップに分けて重複作成を防ぐ）

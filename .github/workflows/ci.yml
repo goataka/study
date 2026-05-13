@@ -179,3 +179,63 @@ jobs:
           reporter: github-pr-review
           fail_level: warning
           markdownlint_flags: "."
+
+  request-ci-fix:
+    name: CopilotにCI修正を依頼
+    runs-on: ubuntu-latest
+    needs:
+      - test-and-build
+      - e2e
+      - visual-regression
+      - markdownlint
+    if: >-
+      ${{
+        always() &&
+        github.event_name == 'pull_request' &&
+        github.event.pull_request.head.repo.full_name == github.repository &&
+        (
+          needs.test-and-build.result == 'failure' ||
+          needs.e2e.result == 'failure' ||
+          needs.visual-regression.result == 'failure' ||
+          needs.markdownlint.result == 'failure'
+        )
+      }}
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@v6
+
+      - name: 失敗したジョブ結果を整形
+        id: failed-jobs
+        shell: bash
+        env:
+          TEST_AND_BUILD_RESULT: ${{ needs.test-and-build.result }}
+          E2E_RESULT: ${{ needs.e2e.result }}
+          VISUAL_REGRESSION_RESULT: ${{ needs.visual-regression.result }}
+          MARKDOWNLINT_RESULT: ${{ needs.markdownlint.result }}
+        run: |
+          set -euo pipefail
+
+          {
+            echo "value<<EOF"
+            echo "ジョブ結果:"
+            [ "${TEST_AND_BUILD_RESULT}" = "failure" ] && echo "- test-and-build: failure"
+            [ "${E2E_RESULT}" = "failure" ] && echo "- e2e: failure"
+            [ "${VISUAL_REGRESSION_RESULT}" = "failure" ] && echo "- visual-regression: failure"
+            [ "${MARKDOWNLINT_RESULT}" = "failure" ] && echo "- markdownlint: failure"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: CopilotにCI修正を依頼
+        uses: ./.github/actions/fix-gha-error
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          copilot-token: ${{ secrets.COPILOT_CLASSIC }}
+          workflow-name: ${{ github.workflow }}
+          head-sha: ${{ github.event.pull_request.head.sha }}
+          run-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          head-branch: ${{ github.head_ref }}
+          pr-number: ${{ github.event.pull_request.number }}
+          error-context: ${{ steps.failed-jobs.outputs.value }}

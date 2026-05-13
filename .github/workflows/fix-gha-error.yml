@@ -8,7 +8,6 @@ on:
   workflow_run:
     # ここに監視するワークフロー名を列挙する（各ワークフローの name: フィールドと完全一致が必要）
     workflows:
-      - "CI"
       - "Deploy to GitHub Pages"
     types:
       - completed
