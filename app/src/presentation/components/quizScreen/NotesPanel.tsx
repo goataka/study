@@ -113,7 +113,7 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
 
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"] as const;
 
-function formatTodayText(date: Date): string {
+export function formatTodayText(date: Date): string {
   const yyyy = date.getFullYear();
   const mm = String(date.getMonth() + 1).padStart(2, "0");
   const dd = String(date.getDate()).padStart(2, "0");
