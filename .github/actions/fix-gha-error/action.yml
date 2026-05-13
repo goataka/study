@@ -146,12 +146,14 @@ runs:
         PULL_REQUEST_COUNT=0
         PULL_REQUESTS_JSON="${WF_PULL_REQUESTS}"
 
+        # jq で安定して扱えるよう、空文字列は JSON の null に正規化する。
         if [ -z "${PULL_REQUESTS_JSON}" ]; then
           PULL_REQUESTS_JSON="null"
         fi
 
         if [ -n "$PR_NUMBER" ]; then
           TARGET_BRANCH="${WF_HEAD_BRANCH}"
+          PULL_REQUEST_COUNT=0
           echo "::notice::入力値でPRを特定しました (PR #${PR_NUMBER}, ブランチ: ${TARGET_BRANCH})"
         fi
 
