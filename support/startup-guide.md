@@ -62,5 +62,5 @@ permalink: /startup-guide/
 
 各コンテンツには解説ページがあります。問題の前後に解説を読むと理解が深まります。
 
-- コンテンツ一覧は [ガイド（コンテンツ）](../#subject=support&supportMenu=contents) から開けます
+- コンテンツ一覧は [ガイド（コンテンツ）](../../#subject=support&supportMenu=contents) から開けます
 - 解説ページは問題中の「解説を見る」からも開けます

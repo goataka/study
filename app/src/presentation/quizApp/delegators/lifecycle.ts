@@ -262,7 +262,7 @@ function applyLegacyQuizDom(session: QuizSession, kanjiCanvasController: KanjiCa
   const total = session.totalCount;
   const idx = session.currentIndex;
   setText("questionNumber", `問題 ${idx + 1} / ${total}`);
-  setText("topicName", `No. ${idx}`);
+  setText("topicName", `No. ${idx + 1}`);
   const progressFill = document.getElementById("progressFill") as HTMLElement | null;
   if (progressFill) progressFill.style.width = `${((idx + 1) / total) * 100}%`;
   setText("questionText", question.question);

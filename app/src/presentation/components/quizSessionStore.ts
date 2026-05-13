@@ -88,7 +88,7 @@ export function syncQuizSessionStore(session: QuizSession, options: { kanjiAvail
   snapshot = {
     question,
     questionNumberText: `問題 ${idx + 1} / ${total}`,
-    topicName: `No. ${idx}`,
+    topicName: `No. ${idx + 1}`,
     progressPercent: ((idx + 1) / total) * 100,
     answerFeedback: {
       visible: isAnswered,
