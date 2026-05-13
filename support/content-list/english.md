@@ -143,10 +143,3 @@ permalink: /content-list/english/
 | 03 | 😊 感情・気持ち | 中学2年 | [解説](../../../english/vocabulary/eiken-3/feelings/guide) | [確認](../../../?subject=english&category=eiken3-feelings-jp-en) | [確認](../../../?subject=english&category=eiken3-feelings-en-jp) | [確認](../../../?subject=english&category=eiken3-feelings-fill) |
 | 04 | 🛒 買い物・お金 | 中学2年 | [解説](../../../english/vocabulary/eiken-3/shopping/guide) | [確認](../../../?subject=english&category=eiken3-shopping-jp-en) | [確認](../../../?subject=english&category=eiken3-shopping-en-jp) | [確認](../../../?subject=english&category=eiken3-shopping-fill) |
 | 05 | ✈️ 旅行・交通 | 中学2年 | [解説](../../../english/vocabulary/eiken-3/travel/guide) | [確認](../../../?subject=english&category=eiken3-travel-jp-en) | [確認](../../../?subject=english&category=eiken3-travel-en-jp) | [確認](../../../?subject=english&category=eiken3-travel-fill) |
-
-## 🔗 関連リンク
-
-- [📝 コンテンツ一覧（全教科）](../)
-- [🔢 数学コンテンツ一覧](../math/)
-- [📖 国語コンテンツ一覧](../japanese/)
-- [🚀 サポートトップ](../../)

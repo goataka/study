@@ -46,10 +46,3 @@ permalink: /content-list/japanese/
 | 24 | 対比関係 その２ | 中学生 | [解説](../../../japanese/reading/contrast/guide) | <a href="../../../?subject=japanese&category=reading-contrast-2" target="_blank" rel="noopener noreferrer">確認</a> | しかし・一方 |
 | 25 | 因果関係 その１ | 中学生 | [解説](../../../japanese/reading/cause-effect/guide) | <a href="../../../?subject=japanese&category=reading-cause-effect" target="_blank" rel="noopener noreferrer">確認</a> | だから・なぜなら |
 | 26 | 因果関係 その２ | 中学生 | [解説](../../../japanese/reading/cause-effect/guide) | <a href="../../../?subject=japanese&category=reading-cause-effect-2" target="_blank" rel="noopener noreferrer">確認</a> | だから・なぜなら |
-
-## 🔗 関連リンク
-
-- [📝 コンテンツ一覧（全教科）](../)
-- [📚 英語コンテンツ一覧](../english/)
-- [🔢 数学コンテンツ一覧](../math/)
-- [🚀 サポートトップ](../../)

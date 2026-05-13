@@ -14,6 +14,7 @@ import { AvatarCropDialog } from "./AvatarCropDialog";
 import type { ScreenName } from "./screenStore";
 import { subjectTabsContentStore } from "./subjectTabsContentStore";
 import { headerUserSaveButton } from "../styles/headerUserSaveButtonStyles";
+import { activeSubjectStore } from "./activeSubjectStore";
 
 interface TabsUserRowProps {
   currentScreen: ScreenName;
@@ -23,6 +24,11 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const activeSubject = useSyncExternalStore(
+    activeSubjectStore.subscribe,
+    activeSubjectStore.get,
+    activeSubjectStore.get,
+  );
 
   useEffect(() => {
     const el = scrollerRef.current;
@@ -55,7 +61,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       id="tabsUserRow"
       className={[
         "tabs-user-row flex items-end gap-0 shrink-0 bg-transparent",
-        currentScreen === "start" ? "min-h-12" : "",
+        currentScreen === "start" || currentScreen === "quiz" ? "min-h-12" : "",
       ]
         .filter(Boolean)
         .join(" ")}
@@ -64,15 +70,17 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       <div
         className={[
           "app-name-area shrink-0 flex items-center gap-1.5 px-4 pb-2 self-end",
-          currentScreen !== "start" ? "hidden" : "",
+          currentScreen !== "start" && currentScreen !== "quiz" ? "hidden" : "",
         ]
           .filter(Boolean)
           .join(" ")}
       >
-        <img src="./favicon.svg" className="header-logo w-[18px] h-[18px] shrink-0" alt="" aria-hidden="true" />
-        <span className="app-name-text text-lg font-extrabold text-white whitespace-nowrap">小中高学習アプリ</span>
+        <img src="./favicon.svg" className="header-logo w-9 h-9 shrink-0" alt="" aria-hidden="true" />
+        <span className="app-name-text text-lg font-extrabold text-white whitespace-nowrap">
+          Open Study Text 小中高
+        </span>
       </div>
-      {/* 教科タブ（中央寄せ） */}
+      {/* 教科タブ（中央寄せ・スタート画面専用） */}
       <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>
         <div
           id="subjectTabs"
@@ -108,6 +116,23 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
             ▶
           </button>
         )}
+      </div>
+      {/* クイズ中ヘッダー情報（教科タブと同じ場所・問題画面専用） */}
+      <div
+        className={[
+          "quiz-tab-info flex-1 flex items-end gap-3 px-4 pb-2 self-end",
+          currentScreen !== "quiz" ? "hidden" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        <span className="quiz-tab-subject text-base font-extrabold text-white whitespace-nowrap">
+          {activeSubject.icon} {activeSubject.name}
+        </span>
+        <span
+          id="quizTabDate"
+          className="quiz-tab-date text-base text-white/80 font-semibold whitespace-nowrap shrink-0 tracking-[0.03em] border-b-2 border-white/40 pb-px px-2 min-w-[120px] text-center"
+        ></span>
       </div>
       <div
         id="tabsUserArea"
