@@ -83,6 +83,7 @@ jobs:
         working-directory: app
     permissions:
       contents: write
+      issues: write
       packages: read
     steps:
       - name: コードのチェックアウト
@@ -115,7 +116,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ -n "$(git -C "$GITHUB_WORKSPACE" status --porcelain -- "$SNAPSHOT_DIR")" ]; then
-            git -C "$GITHUB_WORKSPACE" add "$SNAPSHOT_DIR"
+            git -C "$GITHUB_WORKSPACE" add -A -- "$SNAPSHOT_DIR"
             {
               echo "snapshot_updated=true"
               echo "snapshot_files<<EOF"
