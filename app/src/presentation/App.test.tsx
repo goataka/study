@@ -273,7 +273,7 @@ describe("App コンポーネント", () => {
       root = createRoot(container!);
       root.render(<App bootApp={bootApp} />);
     });
-    expect(container?.querySelector(".app-name-text")?.textContent).toContain("Open Study Project学習アプリ 小中高");
+    expect(container?.querySelector(".app-name-text")?.textContent).toContain("Open Study Text 小中高");
   });
 
   it("環境切り替えは現在環境を太字・非リンクで表示する", () => {

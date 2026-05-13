@@ -77,7 +77,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       >
         <img src="./favicon.svg" className="header-logo w-9 h-9 shrink-0" alt="" aria-hidden="true" />
         <span className="app-name-text text-lg font-extrabold text-white whitespace-nowrap">
-          Open Study Project学習アプリ 小中高
+          Open Study Text 小中高
         </span>
       </div>
       {/* 教科タブ（中央寄せ・スタート画面専用） */}
