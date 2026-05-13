@@ -124,8 +124,8 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       {/* クイズ中ヘッダー情報（教科タブと同じ場所・問題画面専用） */}
       <div
         className={[
-          "quiz-tab-info flex-1 flex items-end gap-3 px-4 pb-2",
-          quizTabBgColor ? "pt-[40px]" : "self-end",
+          "quiz-tab-info flex-1 flex items-end gap-3 px-4 pb-2 self-end",
+          quizTabBgColor ? "pt-[40px]" : "",
           currentScreen !== "quiz" ? "hidden" : "",
         ]
           .filter(Boolean)
