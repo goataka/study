@@ -135,7 +135,7 @@ export function SupportContentDisplay(): React.JSX.Element {
   );
 }
 
-/** はじめに: スタートアップガイドの md コンテンツを直接表示。 */
+/** はじめに: サポートトップ（無料・ログイン不要など）の md コンテンツを表示。 */
 function SupportIntroContent(): React.JSX.Element {
   return (
     <div className="support-intro-content support-guide-frame flex-1 overflow-y-auto px-4 py-3 guide-frame">
