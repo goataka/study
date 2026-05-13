@@ -160,36 +160,40 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(supportButton).not.toBeNull();
     supportButton?.click();
 
-    // 左列: サポートメニューリストが表示される
+    // 左列: サポートメニューリストが表示される（3項目: はじめに/マニュアル/コンテンツ）
     await waitForCondition(() => document.querySelector("nav[aria-label='サポートメニュー']") !== null);
     const menu = document.querySelector("nav[aria-label='サポートメニュー']");
     const menuButtons = document.querySelectorAll("nav[aria-label='サポートメニュー'] button");
     expect(menu).not.toBeNull();
-    expect(menuButtons.length).toBe(4);
+    expect(menuButtons.length).toBe(3);
+
+    // 左メニューに「はじめに」「マニュアル」「コンテンツ」が含まれる
+    const menuLabels = Array.from(menuButtons).map((b) => b.textContent ?? "");
+    expect(menuLabels.some((l) => l.includes("はじめに"))).toBe(true);
+    expect(menuLabels.some((l) => l.includes("マニュアル"))).toBe(true);
+    expect(menuLabels.some((l) => l.includes("コンテンツ"))).toBe(true);
 
     // 右列: #supportContent にコンテンツが表示される
     await waitForCondition(() => {
       const content = document.getElementById("supportContent");
-      return (
-        content !== null &&
-        !content.classList.contains("hidden") &&
-        content.textContent?.includes("スタートアップガイド") === true
-      );
+      return content !== null && !content.classList.contains("hidden");
     });
     const content = document.getElementById("supportContent");
     expect(content).not.toBeNull();
-    expect(content?.textContent).toContain("スタートアップガイド");
-    // 外部リンクは表示しない
-    expect(content?.querySelector("a")).toBeNull();
 
-    // メニューボタンをクリックするとコンテンツが切り替わる
-    const troubleshootingButton = Array.from(menuButtons).find((button) =>
-      button.textContent?.includes("トラブルシューティング"),
-    ) as HTMLButtonElement | undefined;
-    expect(troubleshootingButton).toBeDefined();
-    troubleshootingButton!.click();
-    await waitForCondition(
-      () => document.getElementById("supportContent")?.textContent?.includes("トラブルシューティング") === true,
-    );
+    // マニュアルボタンをクリックするとサブタブが表示される
+    const manualButton = Array.from(menuButtons).find((button) => button.textContent?.includes("マニュアル")) as
+      | HTMLButtonElement
+      | undefined;
+    expect(manualButton).toBeDefined();
+    manualButton!.click();
+
+    // マニュアルタブにスタートアップガイドのサブタブが表示される
+    await waitForCondition(() => document.querySelector(".support-subtab") !== null);
+    const subTabs = document.querySelectorAll(".support-subtab");
+    expect(subTabs.length).toBeGreaterThan(0);
+    const subTabLabels = Array.from(subTabs).map((b) => b.textContent ?? "");
+    expect(subTabLabels.some((l) => l.includes("スタートアップガイド"))).toBe(true);
+    expect(subTabLabels.some((l) => l.includes("トラブルシューティング"))).toBe(true);
   });
 });

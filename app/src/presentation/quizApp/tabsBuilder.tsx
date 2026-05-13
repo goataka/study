@@ -14,6 +14,7 @@ import {
 } from "../components/startScreen/panelTabsStore";
 import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { subjectTab } from "../styles/subjectTabStyles";
+import { activeSubjectStore } from "../components/activeSubjectStore";
 
 /** インナーパネルタブの ID（クイズ／解説／履歴／問題一覧）。 */
 export type PanelTab = "quiz" | "guide" | "history" | "questions";
@@ -38,6 +39,13 @@ export interface SubjectTabsCallbacks {
 export function buildSubjectTabs(callbacks: SubjectTabsCallbacks, currentSubject: string): void {
   cachedCallbacks = callbacks;
   subjectTabsContentStore.set(<SubjectTabs callbacks={callbacks} currentSubject={currentSubject} />);
+  // アクティブ教科ストアを更新（StartHeader に教科名を表示するため）
+  const subject = SUBJECTS.find((s) => s.id === currentSubject);
+  if (subject) {
+    activeSubjectStore.set({ id: subject.id, name: subject.name, icon: subject.icon });
+  } else if (currentSubject === "support") {
+    activeSubjectStore.set({ id: "support", name: "サポート", icon: "❔" });
+  }
 }
 
 let cachedCallbacks: SubjectTabsCallbacks | null = null;

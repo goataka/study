@@ -139,7 +139,7 @@ function SubjectOverviewWrapper({
       />
       {!vm.hasItems ? (
         <div
-          className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg border border-[#e1e4e8] bg-transparent cursor-pointer select-none transition-[background,border-color] duration-150 text-left"
+          className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg bg-transparent cursor-pointer select-none transition-[background] duration-150 text-left"
           data-subject={vm.subject.id}
         >
           単元なし
@@ -253,7 +253,7 @@ function RecommendedUnitCard({
   };
   return (
     <div
-      className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg border border-[#e1e4e8] bg-transparent cursor-pointer select-none transition-[background,border-color] duration-150 text-left hover:bg-[#e8f0fe] hover:border-[#0366d6] focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2"
+      className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg bg-transparent cursor-pointer select-none transition-[background] duration-150 text-left hover:bg-[#e8f0fe] focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2"
       role="button"
       tabIndex={0}
       data-subject={subjectId}
