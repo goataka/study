@@ -208,6 +208,15 @@ Feature: 学習アプリ
   Scenario: サポートボタン（?）をクリックするとサポートパネルが表示される
     Then the support button should show support content in support panel
 
+  Scenario: 管理タブを開くと更改コンテンツがデフォルトで表示される
+    When I click the "管理" tab
+    Then the admin manage tabs should be visible by default
+
+  Scenario: 管理タブの更改ボタンを再クリックしてもコンテンツは閉じない
+    When I click the "管理" tab
+    And I click the admin manage menu button
+    Then the admin manage tabs should be visible by default
+
   Scenario: 管理タブの初期化パネルが表示される
     When I click the "管理" tab
     And I click the admin manage menu button

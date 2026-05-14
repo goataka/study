@@ -26,6 +26,11 @@ describe("SUBJECTS 定数", () => {
     const english = SUBJECTS.find((s) => s.id === "english");
     expect(english?.icon).toBe("🌐");
   });
+
+  it("数学タブのアイコンは 📐 である", () => {
+    const math = SUBJECTS.find((s) => s.id === "math");
+    expect(math?.icon).toBe("📐");
+  });
 });
 
 describe("gradeColorClass 関数", () => {
