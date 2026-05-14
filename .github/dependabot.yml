@@ -13,6 +13,11 @@ updates:
     labels:
       - "dependencies"
       - "npm"
+    # リリース直後の不安定バージョンを避けるためクールダウンを設定
+    cooldown:
+      semver-patch-days: 7
+      semver-minor-days: 14
+      semver-major-days: 30
     groups:
       # 開発依存はまとめて1つのPRにする
       dev-dependencies:
@@ -36,6 +41,9 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
+    # リリース直後の不安定バージョンを避けるためクールダウンを設定
+    cooldown:
+      default-days: 7
     groups:
       actions:
         patterns:
