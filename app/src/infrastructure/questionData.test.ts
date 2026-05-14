@@ -128,7 +128,10 @@ describe("各カテゴリファイル — スキーマ検証", () => {
 
   it("英検3級・4級の語彙単元には guideUrl と example がある", () => {
     const targets = questionFiles.filter(
-      (qf) => qf.subject === "english" && (qf.topCategory === "eiken-3" || qf.topCategory === "eiken-4"),
+      (qf) =>
+        qf.subject === "english" &&
+        (qf.topCategory === "eiken-3" || qf.topCategory === "eiken-4") &&
+        /^eiken[34]-/.test(qf.parentCategory ?? ""),
     );
     for (const qf of targets) {
       expect(typeof qf.guideUrl).toBe("string");
@@ -145,6 +148,7 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     for (const qf of targets) {
       expect(typeof qf.description).toBe("string");
       expect(qf.description?.trim().length).toBeGreaterThan(0);
+      expect(qf.description).toContain(qf.referenceGrade ?? "");
     }
   });
 
