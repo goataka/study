@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "子供向け学習アプリ",
   "type": "module",
+  "packageManager": "pnpm@10.11.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit --project tsconfig.build.json && vite build",

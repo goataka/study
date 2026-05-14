@@ -39,7 +39,7 @@ export default defineConfig({
   webServer: isExternalUrl
     ? undefined
     : {
-        command: "npm run preview",
+        command: "pnpm run preview",
         url: "http://localhost:4173",
         reuseExistingServer: !process.env.CI,
         timeout: 30_000, // previewサーバーの起動を最大30秒待つ

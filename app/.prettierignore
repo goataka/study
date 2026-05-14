@@ -6,5 +6,5 @@ playwright-report
 test-results
 public/vendor
 e2e-results.json
-package-lock.json
+pnpm-lock.yaml
 e2e/snapshots

@@ -232,7 +232,7 @@ I `played` games.
 1. **コミット前にテストを実行する**
 
    ```bash
-   cd app && npm run build && npm run test && npm run test:e2e
+   cd app && pnpm run build && pnpm run test && pnpm run test:e2e
    ```
 
    lefthook の `pre-commit` フックが自動的にこのコマンドを実行するため、`lefthook install` 済みの環境ではコミット時に自動チェックされる。
@@ -262,7 +262,7 @@ I `played` games.
   - 配置先は「テストの配置ルール」に従う（新規コードは `tests/` 配下を推奨）
   - 例: `src/infrastructure/foo.ts` → `src/infrastructure/tests/foo.test.ts`
 - インターフェースのみのファイル（`ports.ts` など）はテスト不要だが、その旨をコメントに記載する
-- 新しい問題カテゴリ（JSONファイル）を追加したら、必ず `npm run test` でデータ整合性テストが通ることを確認する
+- 新しい問題カテゴリ（JSONファイル）を追加したら、必ず `pnpm run test` でデータ整合性テストが通ることを確認する
 - バリデーション関数を変更した場合は `src/domain/question/tests/validation.test.ts` のテストも更新する
 - **新しい画面・UI機能を追加・変更した場合は、必ず対応するE2Eシナリオを `e2e/features/` に追加または修正すること**
   - 新しい画面（例: 設定画面、結果詳細画面）を追加した場合 → 対応するフィーチャーファイルを追加する
@@ -345,12 +345,12 @@ app/src/
 - **抽出後の関数は純粋関数にする**: コントローラのインスタンスや `this` を引数で受け取らない。必要な依存（`useCase`, リポジトリ, 状態オブジェクト, コールバック）は引数として明示的に渡す。
 - **依存はクリーンアーキテクチャに従う**: 抽出したモジュールでも `domain` / `application` への依存方向を守る。`infrastructure` の具象クラスは直接 import しない。
 - **コントローラは薄いファサードに保つ**: 抽出後のコントローラ側メソッドは、状態を集めて純粋関数を呼ぶだけの 1〜数行のラッパーに留める。
-- **抽出ごとに `npm run test` をパスさせる**: 1 度に 1 責務ずつ抽出し、その都度テストを通す。複数責務を一度に動かさない。
+- **抽出ごとに `pnpm run test` をパスさせる**: 1 度に 1 責務ずつ抽出し、その都度テストを通す。複数責務を一度に動かさない。
 
 ### Lint・フォーマットルール
 
-- TypeScript コードは ESLint + `typescript-eslint` でチェックする（`npm run lint`）
-- フォーマットは Prettier に統一する（`npm run format` / `npm run format:check`）
+- TypeScript コードは ESLint + `typescript-eslint` でチェックする（`pnpm run lint`）
+- フォーマットは Prettier に統一する（`pnpm run format` / `pnpm run format:check`）
 - `pre-commit` フックと CI の `test-and-build` ジョブで `lint` と `format:check` を実行する
 
 ### スタイリング（CSS / Tailwind CSS / CVA）
@@ -383,8 +383,8 @@ app/src/
 ### E2E テスト（Playwright + Gherkin）
 
 ```bash
-cd app && npm run test:e2e     # Gherkin シナリオを実行
-cd app && npm run test:e2e:ui  # UI モードで実行
+cd app && pnpm run test:e2e     # Gherkin シナリオを実行
+cd app && pnpm run test:e2e:ui  # UI モードで実行
 ```
 
 - フィーチャーファイル: `e2e/features/**/*.feature`

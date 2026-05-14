@@ -43,7 +43,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Viteビルド
-        run: npm run build
+        run: pnpm run build
         working-directory: app
 
       - name: GitHub Pages のセットアップ
@@ -162,7 +162,7 @@ jobs:
 
       - name: Playwright ブラウザのインストール
         # PLAYWRIGHT_VERSION は env で一元管理（ファイル先頭参照）
-        run: npx playwright install --with-deps chromium
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: RCサイトの準備完了を確認
         env:
@@ -291,4 +291,4 @@ jobs:
       - name: RC環境E2Eテスト実行
         env:
           PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
-        run: PLAYWRIGHT_BASE_URL="${PAGES_BASE_URL%/}/rc/" npm run test:e2e
+        run: PLAYWRIGHT_BASE_URL="${PAGES_BASE_URL%/}/rc/" pnpm run test:e2e

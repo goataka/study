@@ -28,16 +28,16 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Lint 実行
-        run: npm run lint
+        run: pnpm run lint
 
       - name: フォーマット確認（Prettier）
-        run: npm run format:check
+        run: pnpm run format:check
 
       - name: 単体テスト実行
-        run: npm run test
+        run: pnpm run test
 
       - name: Viteビルド
-        run: npm run build
+        run: pnpm run build
 
   e2e:
     name: E2Eテスト（app）
@@ -64,10 +64,10 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Viteビルド（E2E用）
-        run: npm run build
+        run: pnpm run build
 
       - name: E2Eテスト実行（Gherkin シナリオ）
-        run: npm run test:e2e
+        run: pnpm run test:e2e
 
   visual-regression:
     name: ビジュアルリグレッションテスト（app）
@@ -101,19 +101,19 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Viteビルド（VR用）
-        run: npm run build
+        run: pnpm run build
 
       - name: ビジュアルリグレッションテスト実行
         id: vr-test
         run: |
-          npm run test:e2e:vr || npm run test:e2e:vr
+          pnpm run test:e2e:vr || pnpm run test:e2e:vr
         continue-on-error: true
 
       - name: スナップショットの自動更新とコミット（差分あり時）
         id: snapshot-update
         if: steps.vr-test.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
-          npm run test:e2e:vr:update || true
+          pnpm run test:e2e:vr:update || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ -n "$(git -C "$GITHUB_WORKSPACE" status --porcelain -- "$SNAPSHOT_DIR")" ]; then
@@ -227,7 +227,7 @@ jobs:
         id: vr-recheck
         if: steps.vr-test.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
-          npm run test:e2e:vr || npm run test:e2e:vr
+          pnpm run test:e2e:vr || pnpm run test:e2e:vr
         continue-on-error: true
 
       # 初回VRテスト失敗時のみ、再確認結果を最終判定に使う
@@ -269,7 +269,7 @@ jobs:
       - name: Markdownの自動修正
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
-          npx --yes markdownlint-cli --fix "**/*.md" --ignore node_modules --ignore quiz/node_modules 2>/dev/null || true
+          pnpm dlx markdownlint-cli --fix "**/*.md" --ignore node_modules --ignore quiz/node_modules 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet; then

@@ -1,7 +1,7 @@
 #!/bin/bash
 # ローカル環境セットアップスクリプト
 # CIの visual-regression ジョブと同じ環境をローカルで再現する。
-# npm の pretest:e2e:vr フックから自動的に呼び出される。
+# pnpm の pretest:e2e:vr フックから自動的に呼び出される。
 
 set -e
 

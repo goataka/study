@@ -8,14 +8,14 @@ cd "$(dirname "$0")/.." || exit 1
 echo "🔍 VRスナップショットを確認しています..."
 
 # VRテストをチェックモードで実行（スナップショット更新なし）
-if npm run test:e2e:vr; then
+if pnpm run test:e2e:vr; then
   echo "✅ VRスナップショットは最新の状態です。"
   exit 0
 fi
 
 # VRテストが失敗した場合: スナップショットを更新
 echo "📸 VRスナップショットを更新しています..."
-if ! npm run test:e2e:vr:update; then
+if ! pnpm run test:e2e:vr:update; then
   echo ""
   echo "❌ VRスナップショットの更新に失敗しました。"
   echo "   setup-env.sh の実行ログや vr-report/ を確認してください。"
