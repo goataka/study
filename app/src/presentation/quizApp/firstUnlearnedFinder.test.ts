@@ -3,7 +3,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { findFirstUnlearnedCategory } from "./firstUnlearnedFinder";
 
-describe("findFirstUnlearnedCategory", () => {
+describe("findFirstUnlearnedCategory 関数", () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <ul id="categoryList">

@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { shareButton } from "./shareButtonStyles";
 
-describe("shareButton (CVA)", () => {
+describe("shareButton スタイル（CVA）", () => {
   it("copy バリアントで share-copy-btn クラスを出力する", () => {
     const cls = shareButton({ kind: "copy" });
     expect(cls).toContain("share-copy-btn");

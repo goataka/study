@@ -23,7 +23,7 @@ function createUseCaseStub() {
   };
 }
 
-describe("guidePanelUpdater", () => {
+describe("guidePanelUpdater 関数", () => {
   function flush(): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, 0));
   }

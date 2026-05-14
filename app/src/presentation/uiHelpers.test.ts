@@ -5,7 +5,7 @@
 import { describe, it, expect } from "vitest";
 import { SUBJECTS, gradeColorClass, calcDualProgressPct } from "./uiHelpers";
 
-describe("SUBJECTS", () => {
+describe("SUBJECTS 定数", () => {
   it("「英語」「数学」「国語」「管理」「おすすめ」「進度」をすべて含む", () => {
     const ids = SUBJECTS.map((s) => s.id);
     expect(ids).toEqual(["all", "progress", "english", "math", "japanese", "admin"]);
@@ -28,7 +28,7 @@ describe("SUBJECTS", () => {
   });
 });
 
-describe("gradeColorClass", () => {
+describe("gradeColorClass 関数", () => {
   it("「小」で始まる学年は grade-elementary を返す", () => {
     expect(gradeColorClass("小1")).toBe("grade-elementary");
     expect(gradeColorClass("小学校6年")).toBe("grade-elementary");
@@ -51,7 +51,7 @@ describe("gradeColorClass", () => {
   });
 });
 
-describe("calcDualProgressPct", () => {
+describe("calcDualProgressPct 関数", () => {
   it("total が 0 の場合は両方 0 を返す", () => {
     expect(calcDualProgressPct(0, 0, 0)).toEqual({ masteredPct: 0, inProgressPct: 0 });
   });

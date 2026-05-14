@@ -7,7 +7,7 @@ import {
   validateImportPayload,
 } from "./adminPanelLogic";
 
-describe("truncateArray", () => {
+describe("truncateArray 関数", () => {
   it("件数が maxItems 以下ならそのまま返す（コピー）", () => {
     const arr = [1, 2, 3];
     const out = truncateArray(arr, 5);
@@ -22,7 +22,7 @@ describe("truncateArray", () => {
   });
 });
 
-describe("detectFileKeyFromFilename", () => {
+describe("detectFileKeyFromFilename 関数", () => {
   it("history を含むファイル名は history", () => {
     expect(detectFileKeyFromFilename("study-history-2024.json")).toBe("history");
   });
@@ -43,7 +43,7 @@ describe("detectFileKeyFromFilename", () => {
   });
 });
 
-describe("validateImportPayload", () => {
+describe("validateImportPayload 関数", () => {
   it("history で配列ならOK", () => {
     expect(validateImportPayload("history", [], "履歴")).toBeNull();
   });
@@ -67,7 +67,7 @@ describe("validateImportPayload", () => {
   });
 });
 
-describe("formatPreviewText", () => {
+describe("formatPreviewText 関数", () => {
   it("インデント整形した JSON を返す", () => {
     expect(formatPreviewText({ a: 1 })).toBe('{\n  "a": 1\n}');
   });
@@ -79,7 +79,7 @@ describe("formatPreviewText", () => {
   });
 });
 
-describe("formatExportFilename", () => {
+describe("formatExportFilename 関数", () => {
   it("study-data-YYYY-MM-DD.json 形式", () => {
     const filename = formatExportFilename(new Date("2024-03-15T12:00:00Z"));
     expect(filename).toBe("study-data-2024-03-15.json");

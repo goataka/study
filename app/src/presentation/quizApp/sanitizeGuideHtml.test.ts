@@ -3,7 +3,7 @@
 import { describe, expect, it } from "vitest";
 import { isExternalGuideUrl, sanitizeGuideHtml } from "./sanitizeGuideHtml";
 
-describe("sanitizeGuideHtml", () => {
+describe("sanitizeGuideHtml 関数", () => {
   it("script 要素を除去する", () => {
     const html = "<html><body><p>hi</p><script>alert(1)</script></body></html>";
     const out = sanitizeGuideHtml(html);
@@ -82,7 +82,7 @@ describe("sanitizeGuideHtml", () => {
   });
 });
 
-describe("isExternalGuideUrl", () => {
+describe("isExternalGuideUrl 関数", () => {
   it("同一オリジン (相対) は false", () => {
     expect(isExternalGuideUrl("/path")).toBe(false);
     expect(isExternalGuideUrl("./rel.html")).toBe(false);

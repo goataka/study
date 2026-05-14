@@ -3,7 +3,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { getFontSizeSnapshot, setFontSizeLevel, subscribeFontSizeStore, syncFontSizeDom } from "./fontSizeStore";
 
-describe("fontSizeStore", () => {
+describe("fontSizeStore ストア", () => {
   it("setFontSizeLevel でスナップショットが更新される", () => {
     setFontSizeLevel("small");
     setFontSizeLevel("large");

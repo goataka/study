@@ -6,7 +6,7 @@
  */
 
 import type { QuizUseCase, QuizFilter } from "../../application/quizUseCase";
-import type { SelectedUnitInfoViewModel } from "../components/SelectedUnitInfoPanel";
+import type { SelectedUnitInfoViewModel } from "../components/startScreen/SelectedUnitInfoPanel";
 
 /** 単一単元の詳細ビューモデルを構築する。 */
 export function buildSingleUnitViewModel(params: {

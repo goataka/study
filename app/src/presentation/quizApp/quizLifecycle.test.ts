@@ -13,8 +13,8 @@ function makeFilter(): QuizFilter {
   return { subject: "english", category: "alphabet", parentCategory: undefined };
 }
 
-describe("quizLifecycle", () => {
-  describe("resolveEffectiveMode", () => {
+describe("quizLifecycle 関数", () => {
+  describe("resolveEffectiveMode 関数", () => {
     it("random + straight → practice", () => {
       expect(resolveEffectiveMode("random", "straight")).toBe("practice");
     });
@@ -26,7 +26,7 @@ describe("quizLifecycle", () => {
     });
   });
 
-  describe("tryStartQuizSession", () => {
+  describe("tryStartQuizSession 関数", () => {
     it("成功時に session を返す", () => {
       const fakeSession = { id: "s1" } as never;
       const useCase = {
@@ -101,7 +101,7 @@ describe("quizLifecycle", () => {
     });
   });
 
-  describe("confirmAndStartWithAllQuestions", () => {
+  describe("confirmAndStartWithAllQuestions 関数", () => {
     it("ユーザーがキャンセルすれば null", async () => {
       const useCase = {
         startSessionWithAllQuestions: vi.fn(),
@@ -135,7 +135,7 @@ describe("quizLifecycle", () => {
     });
   });
 
-  describe("submitQuizSession", () => {
+  describe("submitQuizSession 関数", () => {
     it("採点して履歴記録し onAfterSubmit を呼ぶ", () => {
       const fakeResults = [{ id: "r1" }];
       const useCase = {
@@ -157,7 +157,7 @@ describe("quizLifecycle", () => {
     });
   });
 
-  describe("isCurrentCategoryLearned", () => {
+  describe("isCurrentCategoryLearned 関数", () => {
     it("category=all のとき false", () => {
       const useCase = { getMasteredCountForCategory: vi.fn() };
       const filter: QuizFilter = { subject: "english", category: "all", parentCategory: undefined };
@@ -177,7 +177,7 @@ describe("quizLifecycle", () => {
     });
   });
 
-  describe("toggleLearnedStatus", () => {
+  describe("toggleLearnedStatus 関数", () => {
     it("確認キャンセル時は何もしない", async () => {
       const useCase = {
         getMasteredCountForCategory: vi.fn(() => ({ mastered: 0, total: 5 })),

@@ -25,7 +25,7 @@ afterEach(() => {
   __resetPanelTabsStoreForTests();
 });
 
-describe("panelTabsStore", () => {
+describe("panelTabsStore ストア", () => {
   it("初期状態は quiz / learned / grade", () => {
     const s = getPanelTabsSnapshot();
     expect(s.activePanelTab).toBe("quiz");

@@ -16,13 +16,13 @@ import {
   saveRecommendedCounts,
 } from "./appSettingsService";
 
-describe("appSettingsService", () => {
+describe("appSettingsService サービス", () => {
   beforeEach(() => {
     document.body.innerHTML = "";
     setFontSizeLevel("small");
   });
 
-  describe("loadUserName", () => {
+  describe("loadUserName 関数", () => {
     it("保存された名前があればそれを返す", () => {
       const repo = new StubProgressRepository();
       repo.saveUserName("たろう");
@@ -34,7 +34,7 @@ describe("appSettingsService", () => {
     });
   });
 
-  describe("loadFontSize / applyFontSize", () => {
+  describe("loadFontSize / applyFontSize 関数", () => {
     it("永続化された値があれば store に反映する", () => {
       const repo = new StubProgressRepository();
       repo.saveFontSizeLevel("large");
@@ -51,7 +51,7 @@ describe("appSettingsService", () => {
     });
   });
 
-  describe("loadShareUrl / saveShareUrl", () => {
+  describe("loadShareUrl / saveShareUrl 関数", () => {
     it("不正なスキームは空に正規化される", () => {
       const repo = new StubProgressRepository();
       const sanitized = saveShareUrl(repo, "javascript:alert(1)");
@@ -65,7 +65,7 @@ describe("appSettingsService", () => {
     });
   });
 
-  describe("loadQuizSettings / saveQuizSettings", () => {
+  describe("loadQuizSettings / saveQuizSettings 関数", () => {
     it("保存値を読み込んでラジオボタンを更新する", () => {
       const repo = new StubProgressRepository();
       saveQuizSettings(repo, { questionCount: 20, quizOrder: "straight", includeMastered: true });
@@ -85,7 +85,7 @@ describe("appSettingsService", () => {
     });
   });
 
-  describe("loadQuestionCountFromDom", () => {
+  describe("loadQuestionCountFromDom 関数", () => {
     it("checked のラジオから値を読み取る", () => {
       document.body.innerHTML = `
         <input type="radio" name="questionCount" value="5">
@@ -98,7 +98,7 @@ describe("appSettingsService", () => {
     });
   });
 
-  describe("loadRecommendedCounts / saveRecommendedCounts", () => {
+  describe("loadRecommendedCounts / saveRecommendedCounts 関数", () => {
     it("Map ↔ Record で双方向に変換できる", () => {
       const repo = new StubProgressRepository();
       const counts = new Map<string, number>([

@@ -66,8 +66,8 @@ function createEffects(records: QuizRecord[] = []): {
   return { effects: spies as unknown as SelectionLifecycleEffects, spies };
 }
 
-describe("selectionHandlers", () => {
-  describe("handleTopHeaderClick", () => {
+describe("selectionHandlers 関数", () => {
+  describe("handleTopHeaderClick 関数", () => {
     it("未選択 → 選択時に他の選択を全てクリアする", () => {
       const { s, access } = createState({ selectedGradeGroup: "g1", isPanelTabUserSelected: true });
       s.filter.parentCategory = "p1";
@@ -89,7 +89,7 @@ describe("selectionHandlers", () => {
     });
   });
 
-  describe("handleParentHeaderClick", () => {
+  describe("handleParentHeaderClick 関数", () => {
     it("既に同じ親カテゴリが選択されていれば非選択にする", () => {
       const { s, access } = createState();
       s.filter.parentCategory = "p1";
@@ -106,7 +106,7 @@ describe("selectionHandlers", () => {
     });
   });
 
-  describe("handleGradeHeaderClick", () => {
+  describe("handleGradeHeaderClick 関数", () => {
     it("同じ学年で再クリック時は非選択にする", () => {
       const { s, access } = createState({ selectedGradeGroup: "g1" });
       const { effects } = createEffects();
@@ -115,7 +115,7 @@ describe("selectionHandlers", () => {
     });
   });
 
-  describe("deselectAndRefresh", () => {
+  describe("deselectAndRefresh 関数", () => {
     it("すべての選択を解除して URL 同期を呼ぶ", () => {
       const { s, access } = createState({ selectedTopCategoryId: "t1", selectedGradeGroup: "g1" });
       s.filter.category = "c1";
@@ -128,7 +128,7 @@ describe("selectionHandlers", () => {
     });
   });
 
-  describe("selectUnitContext", () => {
+  describe("selectUnitContext 関数", () => {
     it("単元情報を設定し URL を同期する", () => {
       const { s, access } = createState({ isPanelTabUserSelected: true });
       const { effects, spies } = createEffects();
@@ -139,7 +139,7 @@ describe("selectionHandlers", () => {
     });
   });
 
-  describe("closeOverallUnitView", () => {
+  describe("closeOverallUnitView 関数", () => {
     it("単元選択を解除する", () => {
       const { s, access } = createState({
         selectedUnitContext: { subject: "english", categoryId: "c1", categoryName: "n" },
@@ -151,7 +151,7 @@ describe("selectionHandlers", () => {
     });
   });
 
-  describe("navigateBackToList", () => {
+  describe("navigateBackToList 関数", () => {
     it("総合タブでは単元選択のみ解除する", () => {
       const { s, access } = createState({
         selectedUnitContext: { subject: "english", categoryId: "c1", categoryName: "n" },

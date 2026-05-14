@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { fontSizeButton } from "./fontSizeButtonStyles";
 
-describe("fontSizeButton (CVA)", () => {
+describe("fontSizeButton スタイル（CVA）", () => {
   it("セマンティッククラスを含む", () => {
     const cls = fontSizeButton({ size: "small" });
     expect(cls).toContain("font-size-btn");

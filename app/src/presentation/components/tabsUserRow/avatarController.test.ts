@@ -1,9 +1,9 @@
 // @vitest-environment jsdom
 
-import type { IProgressRepository } from "../application/ports";
+import type { IProgressRepository } from "../../../application/ports";
 import { AvatarController } from "./avatarController";
 
-describe("AvatarController", () => {
+describe("AvatarController コントローラー", () => {
   beforeEach(() => {
     localStorage.clear();
     document.body.innerHTML = `

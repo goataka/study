@@ -7,7 +7,7 @@
 import { describe, it, expect } from "vitest";
 import { buildCategoryItem } from "./categoryItemView";
 
-describe("buildCategoryItem", () => {
+describe("buildCategoryItem 関数", () => {
   it("subject / category / parent / top の dataset 属性を正しく設定する", () => {
     const el = buildCategoryItem({
       subject: "english",

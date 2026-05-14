@@ -22,7 +22,7 @@ function render(vm: Parameters<typeof SelectedUnitInfoPanel>[0]["vm"]): HTMLElem
   return container;
 }
 
-describe("SelectedUnitInfoPanel", () => {
+describe("SelectedUnitInfoPanel コンポーネント", () => {
   it("単元名・カテゴリパス・学年・例文・進捗バーを含む完全な body を描画する", () => {
     const container = render({
       kind: "full",

@@ -8,7 +8,7 @@ import {
   expandTopCategory,
 } from "./categoryCollapseToggles";
 
-describe("categoryCollapseToggles", () => {
+describe("categoryCollapseToggles 関数", () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div data-parent-category-id="p1"></div>
@@ -18,7 +18,7 @@ describe("categoryCollapseToggles", () => {
     `;
   });
 
-  describe("toggleParentCategory", () => {
+  describe("toggleParentCategory 関数", () => {
     it("折りたたみと展開を交互に切り替える", () => {
       const collapsed = new Set<string>();
       toggleParentCategory(collapsed, "p1");
@@ -28,7 +28,7 @@ describe("categoryCollapseToggles", () => {
     });
   });
 
-  describe("expandParentCategory", () => {
+  describe("expandParentCategory 関数", () => {
     it("折りたたまれていないときは何もしない", () => {
       const collapsed = new Set<string>();
       expandParentCategory(collapsed, "p1");
@@ -41,7 +41,7 @@ describe("categoryCollapseToggles", () => {
     });
   });
 
-  describe("toggleTopCategory / expandTopCategory", () => {
+  describe("toggleTopCategory / expandTopCategory 関数", () => {
     it("toggleTopCategory は状態を交互に切り替える", () => {
       const collapsed = new Set<string>();
       toggleTopCategory(collapsed, "t1");

@@ -17,7 +17,7 @@
  */
 
 import * as React from "react";
-import { CategoryItem, type CategoryItemProps } from "./CategoryItem";
+import { CategoryItem, type CategoryItemProps } from "../CategoryItem";
 
 export interface ParentCategoryGroupProps {
   subject: string;

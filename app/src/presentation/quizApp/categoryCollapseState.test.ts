@@ -7,7 +7,7 @@ import {
   applyCategoryStatusFilter,
 } from "./categoryCollapseState";
 
-describe("categoryCollapseState", () => {
+describe("categoryCollapseState 関数", () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <ul id="categoryList">
@@ -25,7 +25,7 @@ describe("categoryCollapseState", () => {
     `;
   });
 
-  describe("applyParentCategoryCollapsedState", () => {
+  describe("applyParentCategoryCollapsedState 関数", () => {
     it("折りたたみ true で collapsed クラスを付与し aria-expanded を false にする", () => {
       applyParentCategoryCollapsedState("parentA", true);
       const group = document.querySelector<HTMLElement>('.category-group[data-parent-category="parentA"]');
@@ -51,7 +51,7 @@ describe("categoryCollapseState", () => {
     });
   });
 
-  describe("applyTopCategoryCollapsedState", () => {
+  describe("applyTopCategoryCollapsedState 関数", () => {
     it("折りたたみ状態を DOM とトグルボタンに反映する", () => {
       applyTopCategoryCollapsedState("topA", true);
       const group = document.querySelector<HTMLElement>('.category-top-group[data-top-category="topA"]');
@@ -68,7 +68,7 @@ describe("categoryCollapseState", () => {
     });
   });
 
-  describe("applyCategoryStatusFilter", () => {
+  describe("applyCategoryStatusFilter 関数", () => {
     it("'all' のときフィルタクラスは付与されず all ボタンだけが active になる", () => {
       applyCategoryStatusFilter("all");
       const list = document.getElementById("categoryList");

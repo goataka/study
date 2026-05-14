@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { choiceLabel, choiceInput, choiceText } from "./choiceStyles";
 
-describe("choiceLabel (CVA)", () => {
+describe("choiceLabel スタイル（CVA）", () => {
   it("choice-label クラスを含む", () => {
     const cls = choiceLabel();
     expect(cls).toContain("choice-label");
@@ -17,14 +17,14 @@ describe("choiceLabel (CVA)", () => {
   });
 });
 
-describe("choiceInput (CVA)", () => {
+describe("choiceInput スタイル（CVA）", () => {
   it("peer クラスを含む", () => {
     const cls = choiceInput();
     expect(cls).toContain("peer");
   });
 });
 
-describe("choiceText (CVA)", () => {
+describe("choiceText スタイル（CVA）", () => {
   it("choice-text クラスを含む", () => {
     const cls = choiceText();
     expect(cls).toContain("choice-text");

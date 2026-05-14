@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { resultIcon, resultItem } from "./resultItemStyles";
 
-describe("resultItem (CVA)", () => {
+describe("resultItem スタイル（CVA）", () => {
   it("result='correct' で result-item correct セマンティッククラスを出力する", () => {
     const tokens = resultItem({ result: "correct" }).split(/\s+/);
     expect(tokens).toContain("result-item");
@@ -21,7 +21,7 @@ describe("resultItem (CVA)", () => {
   });
 });
 
-describe("resultIcon (CVA)", () => {
+describe("resultIcon スタイル（CVA）", () => {
   it("result='correct' で result-icon クラスを含み正解色を出力する", () => {
     const cls = resultIcon({ result: "correct" });
     expect(cls.split(/\s+/)).toContain("result-icon");

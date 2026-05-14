@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { questionListFilterButton } from "./questionListFilterButtonStyles";
 
-describe("questionListFilterButton (CVA)", () => {
+describe("questionListFilterButton スタイル（CVA）", () => {
   it("セマンティッククラスを含む", () => {
     const cls = questionListFilterButton();
     expect(cls).toContain("question-list-filter-btn");

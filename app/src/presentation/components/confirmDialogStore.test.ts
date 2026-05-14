@@ -40,7 +40,7 @@ describe("confirmDialogStore — 仕様", () => {
     expect(getSubscriberCount()).toBe(0);
   });
 
-  describe("openConfirmDialog", () => {
+  describe("openConfirmDialog 関数", () => {
     it("subscriber がなければ window.confirm にフォールバックする", async () => {
       const spy = vi.spyOn(window, "confirm").mockReturnValue(true);
       const result = await openConfirmDialog("ほんとうに？");
@@ -77,7 +77,7 @@ describe("confirmDialogStore — 仕様", () => {
     });
   });
 
-  describe("resolveConfirmDialog", () => {
+  describe("resolveConfirmDialog 関数", () => {
     beforeEach(() => {
       const root = document.createElement("div");
       root.id = "confirmDialog";

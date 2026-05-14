@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { dialogButton } from "./dialogButtonStyles";
 
-describe("dialogButton (CVA)", () => {
+describe("dialogButton スタイル（CVA）", () => {
   it("confirm バリアントでは緑系のスタイルを出力する", () => {
     const cls = dialogButton({ variant: "confirm" });
     expect(cls).toContain("bg-[#28a745]");

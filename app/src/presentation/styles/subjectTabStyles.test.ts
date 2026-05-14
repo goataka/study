@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { subjectTab } from "./subjectTabStyles";
 
-describe("subjectTab (CVA)", () => {
+describe("subjectTab スタイル（CVA）", () => {
   it("subject-tab セマンティッククラスを含む", () => {
     const cls = subjectTab();
     expect(cls).toContain("subject-tab");

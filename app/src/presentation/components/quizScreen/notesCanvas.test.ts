@@ -41,7 +41,7 @@ function createCanvasStub() {
   return { canvasStub, ctxStub, clearRectMock, drawImageMock };
 }
 
-describe("NotesCanvas", () => {
+describe("NotesCanvas クラス", () => {
   describe("インスタンス生成", () => {
     it("NotesCanvasクラスをインスタンス化できる", () => {
       const notesCanvas = new NotesCanvas();

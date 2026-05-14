@@ -38,7 +38,7 @@ function setupCategoryList(): void {
   `;
 }
 
-describe("updateCategoryListActive", () => {
+describe("updateCategoryListActive 関数", () => {
   beforeEach(() => {
     setupCategoryList();
   });
@@ -163,7 +163,7 @@ describe("updateCategoryListActive", () => {
   });
 });
 
-describe("showPanelTab", () => {
+describe("showPanelTab 関数", () => {
   beforeEach(() => {
     __resetPanelTabsStoreForTests();
     document.body.innerHTML = `<div id="quizPanelMount"></div>`;

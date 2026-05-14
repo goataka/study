@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { historyScore, historyEntry, historyEntryIcon } from "./historyStyles";
 
-describe("historyScore (CVA)", () => {
+describe("historyScore スタイル（CVA）", () => {
   it("result='pass' で pass クラスと緑色テキストを出力する", () => {
     const tokens = historyScore({ result: "pass" }).split(/\s+/);
     expect(tokens).toContain("history-score");
@@ -21,7 +21,7 @@ describe("historyScore (CVA)", () => {
   });
 });
 
-describe("historyEntry (CVA)", () => {
+describe("historyEntry スタイル（CVA）", () => {
   it("result='correct' で correct クラスと緑背景を出力する", () => {
     const tokens = historyEntry({ result: "correct" }).split(/\s+/);
     expect(tokens).toContain("history-entry");
@@ -37,7 +37,7 @@ describe("historyEntry (CVA)", () => {
   });
 });
 
-describe("historyEntryIcon (CVA)", () => {
+describe("historyEntryIcon スタイル（CVA）", () => {
   it("result='correct' で緑色テキストを出力する", () => {
     const cls = historyEntryIcon({ result: "correct" });
     expect(cls).toContain("history-entry-icon");

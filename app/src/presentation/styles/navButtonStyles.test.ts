@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { navButton } from "./navButtonStyles";
 
-describe("navButton (CVA)", () => {
+describe("navButton スタイル（CVA）", () => {
   it("variant='nav' で nav-btn セマンティッククラスを含む", () => {
     const tokens = navButton({ variant: "nav" }).split(/\s+/);
     expect(tokens).toContain("nav-btn");

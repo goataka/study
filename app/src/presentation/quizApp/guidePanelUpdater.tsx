@@ -7,8 +7,8 @@
 
 import * as React from "react";
 import type { QuizFilter, QuizUseCase } from "../../application/quizUseCase";
-import { GradeGuideContent, type GradeGuideEntry } from "../components/GradeGuideContent";
-import { GuideContent } from "../components/GuideContent";
+import { GradeGuideContent, type GradeGuideEntry } from "../components/startScreen/GradeGuideContent";
+import { GuideContent } from "../components/startScreen/GuideContent";
 import { guidePanelContentStore } from "../components/guidePanelContentStore";
 
 export type SelectionLevel = "none" | "topCategory" | "parentCategory" | "unit";

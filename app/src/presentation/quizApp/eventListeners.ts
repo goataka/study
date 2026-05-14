@@ -5,7 +5,7 @@
  * `addEventListener` で DOM に紐付ける純粋なセットアップ関数。
  */
 
-import type { AvatarController } from "../avatarController";
+import type { AvatarController } from "../components/tabsUserRow/avatarController";
 import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
 import { getScreenNameFromHistoryState, getScreenSnapshot, setCurrentScreen } from "../components/screenStore";
 import { setProgressDetailPanelHidden } from "../components/startScreen/panelVisibilityStore";

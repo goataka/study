@@ -5,14 +5,14 @@
 import { describe, expect, it } from "vitest";
 import { categoryViewToggleButton, gradeFilterButton, statusFilterButton } from "./categoryControlButtonStyles";
 
-describe("statusFilterButton (CVA)", () => {
+describe("statusFilterButton スタイル（CVA）", () => {
   it("category-status-filter-btn クラスを含む", () => {
     const cls = statusFilterButton();
     expect(cls).toContain("category-status-filter-btn");
   });
 });
 
-describe("gradeFilterButton (CVA)", () => {
+describe("gradeFilterButton スタイル（CVA）", () => {
   it("grade-filter-btn クラスを含む", () => {
     const cls = gradeFilterButton();
     expect(cls).toContain("grade-filter-btn");
@@ -24,7 +24,7 @@ describe("gradeFilterButton (CVA)", () => {
   });
 });
 
-describe("categoryViewToggleButton (CVA)", () => {
+describe("categoryViewToggleButton スタイル（CVA）", () => {
   it("category-view-toggle クラスを含む", () => {
     const cls = categoryViewToggleButton();
     expect(cls).toContain("category-view-toggle");

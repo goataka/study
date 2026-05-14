@@ -10,7 +10,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { KanjiCanvasController } from "./kanjiCanvasController";
 
-describe("KanjiCanvasController", () => {
+describe("KanjiCanvasController コントローラー", () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <canvas id="kanjiCanvas" width="200" height="200"></canvas>
@@ -23,7 +23,7 @@ describe("KanjiCanvasController", () => {
     delete (globalThis as unknown as { KanjiCanvas?: unknown }).KanjiCanvas;
   });
 
-  describe("isAvailable", () => {
+  describe("isAvailable 関数", () => {
     it("KanjiCanvas グローバルが未定義のとき false を返す", () => {
       const ctrl = new KanjiCanvasController({
         getCorrectAnswer: () => undefined,
@@ -42,7 +42,7 @@ describe("KanjiCanvasController", () => {
     });
   });
 
-  describe("applyToggleBtnState", () => {
+  describe("applyToggleBtnState 関数", () => {
     it("expanded=true で ▲・展開済みラベルを設定する", () => {
       const ctrl = new KanjiCanvasController({
         getCorrectAnswer: () => undefined,

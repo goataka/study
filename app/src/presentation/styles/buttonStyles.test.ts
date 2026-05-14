@@ -9,7 +9,7 @@
 import { describe, expect, it } from "vitest";
 import { button } from "./buttonStyles";
 
-describe("button (CVA)", () => {
+describe("button スタイル（CVA）", () => {
   it("デフォルトは primary バリアントで primary-btn クラスを出力する", () => {
     const cls = button();
     const tokens = cls.split(/\s+/);

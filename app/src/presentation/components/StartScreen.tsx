@@ -12,7 +12,7 @@ import { QuizPanel } from "./startScreen/QuizPanel";
 import { ProgressDetailPanel } from "./startScreen/ProgressDetailPanel";
 import { OverallSummaryPanel } from "./startScreen/OverallSummaryPanel";
 import type { ScreenName } from "./screenStore";
-import { selectedUnitInfoContentStore } from "./selectedUnitInfoContentStore";
+import { selectedUnitInfoContentStore } from "./startScreen/selectedUnitInfoContentStore";
 import { supportContentStore } from "./supportContentStore";
 
 interface StartScreenProps {

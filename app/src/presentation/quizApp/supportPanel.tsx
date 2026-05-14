@@ -12,7 +12,7 @@
 import { createElement, useSyncExternalStore, useState } from "react";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { supportContentStore } from "../components/supportContentStore";
-import { GuideContent } from "../components/GuideContent";
+import { GuideContent } from "../components/startScreen/GuideContent";
 import { panelTab, panelTabs } from "../styles/panelTabStyles";
 import { getURLParams } from "./urlStateService";
 import type { QuizUseCase } from "../../application/quizUseCase";
@@ -451,13 +451,3 @@ function resolveSupportMenuFromUrl(): SupportMenuId {
   }
   return SUPPORT_MENU_ITEMS[0].id;
 }
-
-// ─── 後方互換エクスポート ──────────────────────────────────────────────────────
-
-/** @deprecated supportMenuStore を使用してください。 */
-export const supportSectionStore = {
-  get: () => supportMenuStore.get() as string,
-  set: (id: string): void => supportMenuStore.set(id as SupportMenuId),
-  subscribe: supportMenuStore.subscribe,
-  reset: supportMenuStore.reset,
-};

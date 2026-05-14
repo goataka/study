@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { notesButton, penSelect, cancelQuizButton } from "./notesPanelStyles";
 
-describe("notesButton (CVA)", () => {
+describe("notesButton スタイル（CVA）", () => {
   it("notes-btn クラスを含む", () => {
     const cls = notesButton();
     expect(cls).toContain("notes-btn");
@@ -17,7 +17,7 @@ describe("notesButton (CVA)", () => {
   });
 });
 
-describe("penSelect (CVA)", () => {
+describe("penSelect スタイル（CVA）", () => {
   it("スタイルクラスを出力する", () => {
     const cls = penSelect();
     expect(cls).toContain("cursor-pointer");
@@ -26,7 +26,7 @@ describe("penSelect (CVA)", () => {
   });
 });
 
-describe("cancelQuizButton (CVA)", () => {
+describe("cancelQuizButton スタイル（CVA）", () => {
   it("cancel-quiz-btn クラスを含む", () => {
     const cls = cancelQuizButton();
     expect(cls).toContain("cancel-quiz-btn");

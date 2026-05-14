@@ -5,7 +5,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 import { StartHeader } from "./StartHeader";
 
-describe("StartHeader", () => {
+describe("StartHeader コンポーネント", () => {
   let container: HTMLElement;
   let root: Root;
 
