@@ -1,5 +1,5 @@
 # app ディレクトリの Node.js 環境をセットアップするコンポジットアクション
-# 各ジョブで繰り返される「Node.js セットアップ + npm ci」の共通処理を集約する
+# 各ジョブで繰り返される「Node.js セットアップ + pnpm install」の共通処理を集約する
 name: "Setup App"
 description: "Node.js のセットアップと app の依存関係をインストールする"
 
@@ -12,14 +12,20 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: pnpm のセットアップ
+      uses: pnpm/action-setup@v4
+      with:
+        version: 10
+        run_install: false
+
     - name: Node.js のセットアップ
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
-        cache: "npm"
-        cache-dependency-path: app/package-lock.json
+        cache: "pnpm"
+        cache-dependency-path: app/pnpm-lock.yaml
 
     - name: 依存関係のインストール
       shell: bash
       working-directory: ${{ github.workspace }}/app
-      run: npm ci
+      run: pnpm install --frozen-lockfile

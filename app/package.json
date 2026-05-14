@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "子供向け学習アプリ",
   "type": "module",
+  "packageManager": "pnpm@10.11.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit --project tsconfig.build.json && vite build",
@@ -23,7 +24,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@playwright/test": "^1.59.1",
+    "@playwright/test": "1.60.0",
     "@tailwindcss/vite": "^4.3.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
@@ -39,7 +40,7 @@
     "globals": "^17.6.0",
     "jsdom": "^29.1.1",
     "lefthook": "^2.1.6",
-    "playwright-bdd": "^8.5.0",
+    "playwright-bdd": "8.5.1",
     "prettier": "^3.8.3",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
