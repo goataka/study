@@ -229,13 +229,20 @@ I `played` games.
 
 `app/` フォルダのコードを変更した場合は、必ず以下の手順を守ること：
 
-1. **コミット前にテストを実行する**
+1. **テストは lefthook が自動実行する（手動実行不要）**
+
+   lefthook がコミット・プッシュ時に自動実行するため、通常は手動で実行する必要はない。
+
+   - `pre-commit`（コミット時）: lint + format + ビルド + 単体テスト
+   - `pre-push`（プッシュ時）: ビルド + 単体テスト + **E2E テスト** + VR スナップショット確認
+
+   動作確認のために手動で実行したい場合は以下を使う:
 
    ```bash
-   cd app && pnpm run build && pnpm run test && pnpm run test:e2e
+   cd app && pnpm run build && pnpm run test          # ビルド + 単体テスト（高速）
+   cd app && pnpm run test:e2e                         # E2E テスト（プッシュ前に確認したい場合のみ）
+   cd app && bash scripts/pre-push-vr-check.sh        # VR スナップショット確認（プッシュ前に確認したい場合のみ）
    ```
-
-   lefthook の `pre-commit` フックが自動的にこのコマンドを実行するため、`lefthook install` 済みの環境ではコミット時に自動チェックされる。
 
 2. **CI でも自動検証される**
    - `ci.yml` の `test-and-build` ジョブが単体テストとビルドを実行する
