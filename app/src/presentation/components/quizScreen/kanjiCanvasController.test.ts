@@ -120,6 +120,19 @@ describe("KanjiCanvasController コントローラー", () => {
       expect(texts).toEqual(["A", "B"]);
     });
 
+    it("英語問題で認識候補にラテン文字がない場合は正解文字列を候補として表示する", () => {
+      (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
+        recognize: () => "あ 漢 い",
+      };
+      const ctrl = new KanjiCanvasController({
+        getCorrectAnswer: () => "played",
+        onSelectCandidate: () => {},
+      });
+      ctrl.updateCandidates();
+      const texts = Array.from(document.querySelectorAll(".kanji-candidate-btn")).map((b) => b.textContent);
+      expect(texts).toEqual(["played"]);
+    });
+
     it("正解情報がないときはフィルタせず最大5候補まで表示する", () => {
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
         recognize: () => "一 二 三 四 五 六 七",

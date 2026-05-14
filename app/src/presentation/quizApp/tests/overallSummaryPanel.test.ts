@@ -188,6 +188,43 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(status?.textContent).toContain("英語:");
   });
 
+  it("学習状況パネルに学習数（完了/目標）が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const count = document.getElementById("learningStatusCount");
+    expect(count?.textContent).toContain("学習数");
+    expect(count?.textContent).toContain("/5");
+  });
+
+  it("学習状況パネルで星表示が開始ボタンより前に描画される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const stars = document.getElementById("learningStatusStars");
+    const startBtn = document.getElementById("learningStatusStartBtn");
+    expect(stars).not.toBeNull();
+    expect(startBtn).not.toBeNull();
+    expect(stars?.compareDocumentPosition(startBtn as Node) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it("学習状況パネルにおすすめ先頭単元タイトルが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const firstTitle = document.getElementById("learningStatusFirstTitle");
+    expect(firstTitle?.textContent).toContain("次のおすすめ:");
+  });
+
+  it("学習状況パネルの次のおすすめは右一覧の先頭おすすめ単元と一致する", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const firstTitle = document.getElementById("learningStatusFirstTitle");
+    const firstRecommendedName = document.querySelector(".subject-overview-rec-name");
+    expect(firstTitle?.textContent).toContain(firstRecommendedName?.textContent ?? "");
+  });
+
   it("総合タブの学習状況サマリは履歴だけでなく進捗データで反映される", async () => {
     const repo = new StubProgressRepository();
     repo.saveHistory([

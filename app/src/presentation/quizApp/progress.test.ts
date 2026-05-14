@@ -201,6 +201,20 @@ describe("QuizApp — 進度タブ仕様", () => {
     expect(content?.children.length).toBeGreaterThan(0);
   });
 
+  it("進度詳細の学年別・カテゴリ別見出しは大きめフォントで表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+    const categoryTab = document.getElementById("progressDetailTab-category") as HTMLButtonElement | null;
+    categoryTab?.click();
+
+    const groupName = document.querySelector(".progress-block-group-name");
+    expect(groupName).not.toBeNull();
+    expect(groupName?.className ?? "").toContain("text-lg");
+  });
+
   it("進度詳細パネルのカテゴリ別タブをクリックするとビューが切り替わる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -214,6 +228,47 @@ describe("QuizApp — 進度タブ仕様", () => {
     expect(catTab?.classList.contains("active")).toBe(true);
     const gradeTab = document.getElementById("progressDetailTab-grade");
     expect(gradeTab?.classList.contains("active")).toBe(false);
+  });
+
+  it("進度マトリクスの行列切り替えボタンは大きめフォントで表示される", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () =>
+            Promise.resolve({
+              version: "2.0.0",
+              subjects: { english: { name: "英語" } },
+              questionFiles: ["english/matrix-font.json"],
+            }),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            subject: "english",
+            subjectName: "英語",
+            category: "matrix-font-cat",
+            categoryName: "マトリクス単元",
+            referenceGrade: "小学1年",
+            questions: [{ id: "mf-1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" }],
+          }),
+      } as Response);
+    });
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+    const matrixTab = document.getElementById("progressDetailTab-matrix") as HTMLButtonElement | null;
+    matrixTab?.click();
+
+    const toggleBtn = document.querySelector(".progress-matrix-corner-toggle-btn") as HTMLButtonElement | null;
+    expect(toggleBtn).not.toBeNull();
+    expect(toggleBtn?.className ?? "").toContain("text-sm");
+    expect(toggleBtn?.className ?? "").toContain("font-semibold");
   });
 
   it("他の教科タブに切り替えると進度詳細パネルが非表示になる", async () => {

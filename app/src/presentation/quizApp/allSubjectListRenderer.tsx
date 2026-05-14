@@ -66,6 +66,25 @@ interface GlobalRecommendedListProps {
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
 }
 
+/** 文字列から決定論的なハッシュ値を生成する。 */
+export function hashString(value: string): number {
+  let hash = 0;
+  for (let i = 0; i < value.length; i++) {
+    hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
+  }
+  return hash;
+}
+
+/** 日付と単元IDを入力に、日替わりで安定する擬似ランダム順を作る。 */
+export function shuffleUnitsByDailySeed(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
+  const seed = new Date().toISOString().slice(0, 10);
+  return [...units].sort((a, b) => {
+    const ha = hashString(`${seed}:${a.subject}:${a.categoryId}`);
+    const hb = hashString(`${seed}:${b.subject}:${b.categoryId}`);
+    return ha - hb;
+  });
+}
+
 function GlobalRecommendedList({
   useCase,
   goalCount,
@@ -75,7 +94,7 @@ function GlobalRecommendedList({
 }: GlobalRecommendedListProps): React.JSX.Element {
   // 「もっと追加」で増やす一時的な追加件数（永続化しない。目標数設定とは別）
   const [extraCount, setExtraCount] = useState(0);
-  const units = useCase.getRecommendedUnitsGlobal(goalCount, alphaCount + extraCount);
+  const units = shuffleUnitsByDailySeed(useCase.getRecommendedUnitsGlobal(goalCount, alphaCount + extraCount));
 
   const mainUnits = units.slice(0, goalCount);
   const extraUnits = units.slice(goalCount);
@@ -102,7 +121,9 @@ function GlobalRecommendedList({
             aria-label="目標数を超えた単元"
           >
             <div className="flex-1 h-px bg-[#d0d7de]" />
-            <span className="text-[10px] text-[#8b949e] whitespace-nowrap select-none">＋α</span>
+            <span className="text-[11px] text-[#586069] whitespace-nowrap select-none">
+              🎯 目標ここまで / ここから追加チャレンジ
+            </span>
             <div className="flex-1 h-px bg-[#d0d7de]" />
           </div>
           {extraUnits.map((unit) => (
@@ -120,7 +141,7 @@ function GlobalRecommendedList({
           className="global-recommended-add-btn w-full text-sm py-1 px-2 rounded border border-dashed border-[#d1d5da] text-[#586069] bg-transparent cursor-pointer hover:bg-[#f6f8fa] hover:border-[#0366d6] hover:text-[#0366d6] transition-[background,border-color,color] duration-150"
           onClick={() => setExtraCount((c) => c + calcAlphaCount(goalCount))}
         >
-          ＋ もっと追加
+          🚀 もっと追加してチャレンジ
         </button>
       </div>
     </div>
@@ -137,7 +158,6 @@ function GlobalCountHeaderRow({
   return (
     <div className="global-count-header-row flex items-center gap-[5px] pt-1 px-1 pb-0.5 pl-0.5">
       <span className="global-count-icon text-lg leading-none shrink-0">🎯</span>
-      <span className="global-count-label text-sm font-bold text-[#24292e]">おすすめ</span>
       <div className="global-count-controls flex items-center gap-0.5 ml-auto">
         <span className="global-count-label-small text-[11px] text-[#586069] mr-0.5">目標数:</span>
         {GLOBAL_RECOMMENDED_COUNT_OPTIONS.map((n) => {
@@ -208,6 +228,9 @@ function RecommendedUnitCard({
       </span>
       <div className="subject-overview-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
         <div className="subject-overview-title-row flex flex-row items-center gap-1 min-w-0 flex-wrap">
+          <span className="subject-overview-subject text-[11px] px-1.5 py-px rounded bg-[#f6f8fa] text-[#586069] shrink-0">
+            {SUBJECTS.find((s) => s.id === unit.subject)?.name ?? unit.subject}
+          </span>
           <span className={`subject-overview-rec-name font-semibold min-w-0 ${badge ? badge.sizeClass : "text-sm"}`}>
             {unit.categoryName}
           </span>

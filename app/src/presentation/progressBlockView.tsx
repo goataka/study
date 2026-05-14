@@ -223,7 +223,7 @@ function BlockGroup({ vm, onSelect }: BlockGroupProps): React.JSX.Element {
   return (
     <div className="progress-block-group flex flex-col gap-1.5 px-3 py-[10px] border border-[#e1e4e8] rounded-lg bg-white">
       <div className="progress-block-group-header flex flex-row items-center gap-2 flex-wrap">
-        <span className="progress-block-group-name text-[15px] font-bold text-[#24292e] shrink min-w-0 break-words">
+        <span className="progress-block-group-name text-lg font-bold text-[#24292e] shrink min-w-0 break-words">
           {vm.groupName}
         </span>
         <span className="progress-block-group-stats text-xs text-[#586069] shrink-0">{`(${vm.mastered}/${vm.total})`}</span>
@@ -298,7 +298,7 @@ function ProgressDetailByCategoryView({ ctx }: { ctx: ProgressBlockContext }): R
       {vm.topGroups.map((tg) => (
         <Fragment key={tg.topName}>
           <div className="progress-top-category-header text-base font-bold text-[#0366d6] px-3 pt-1.5 pb-0.5 border-b-2 border-[#c8d8e8] mt-1.5 flex items-center gap-2">
-            <span>{tg.topName}</span>
+            <span className="text-lg">{tg.topName}</span>
             <span className="text-xs font-normal text-[#586069]">{`(${tg.mastered}/${tg.total})`}</span>
           </div>
           {tg.groups.map((g) => (
