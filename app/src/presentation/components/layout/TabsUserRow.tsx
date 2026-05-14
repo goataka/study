@@ -63,7 +63,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       {/* アプリ名（左固定） */}
       <div
         className={[
-          "app-name-area shrink-0 flex items-center gap-1.5 px-4 pb-2 self-end",
+          "app-name-area shrink-0 flex items-center gap-1.5 px-4 self-center",
           currentScreen !== "start" && currentScreen !== "quiz" ? "hidden" : "",
         ]
           .filter(Boolean)
@@ -75,13 +75,15 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         </span>
       </div>
       {/* 教科タブ（中央寄せ・スタート画面専用） */}
-      <div className={`relative flex-1 min-w-0${currentScreen !== "start" ? " hidden" : ""}`}>
+      <div
+        className={`relative flex-1 min-w-0 border-b border-solid border-[rgba(0,0,0,0.12)]${currentScreen !== "start" ? " hidden" : ""}`}
+      >
         <div
           id="subjectTabs"
           ref={scrollerRef}
           className={[
             "subject-tabs",
-            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-0 items-start justify-center",
+            "relative flex flex-1 min-w-0 gap-1 border-b-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-[40px] -mb-[40px] items-start justify-center",
           ].join(" ")}
           role="tablist"
           aria-label="教科を選択"

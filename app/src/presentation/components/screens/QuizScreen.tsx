@@ -142,7 +142,7 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           id="quizNotesColumn"
           className="quiz-notes-col col-start-3 flex flex-col min-h-0 max-[900px]:col-start-1 max-[900px]:min-h-[260px]"
         >
-          <div className="flex min-h-0 flex-1 flex-col overflow-y-auto rounded-lg border-2 border-solid border-[#e1e4e8] bg-transparent">
+          <div className="flex min-h-0 flex-1 flex-col overflow-y-auto border-2 border-solid border-[#e1e4e8] bg-transparent">
             <div id="notesMemoContent" className="flex min-h-0 flex-1 flex-col">
               <NotesPanel showKanjiInput={quizSession.showKanjiInput} />
               <KanjiInputArea showKanjiInput={quizSession.showKanjiInput} />

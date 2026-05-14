@@ -77,23 +77,24 @@ describe("管理パネル描画", () => {
     expect(adminContent.querySelector(".admin-reset-btn")).toBeTruthy();
   });
 
-  it("管理ボタンを再クリックするとコンテンツが閉じる", async () => {
+  it("管理ボタンを再クリックしてもコンテンツは閉じない", async () => {
     const categoryList = document.getElementById("categoryList") as HTMLElement;
     const adminContent = document.getElementById("adminContent") as HTMLElement;
     const deps = createDeps();
 
     renderAdminContent(categoryList, deps);
 
+    // 初期状態でも manage タブが表示されていることを確認
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(adminContent.querySelector(".admin-manage-tabs")).toBeTruthy();
+
     const manageBtn = Array.from(
       categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
     ).find((btn) => btn.textContent?.includes("更改")) as HTMLButtonElement;
     manageBtn.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
+    // 再クリックしてもコンテンツは閉じない
     expect(adminContent.querySelector(".admin-manage-tabs")).toBeTruthy();
-
-    manageBtn.click();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(adminContent.querySelector(".admin-manage-tabs")).toBeNull();
   });
 
   it("左メニューに「仕様」ボタンが表示される", async () => {

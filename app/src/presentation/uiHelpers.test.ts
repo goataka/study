@@ -22,9 +22,9 @@ describe("SUBJECTS 定数", () => {
     });
   });
 
-  it("英語タブのアイコンは 🗣️ である", () => {
+  it("英語タブのアイコンは 🌐 である", () => {
     const english = SUBJECTS.find((s) => s.id === "english");
-    expect(english?.icon).toBe("🗣️");
+    expect(english?.icon).toBe("🌐");
   });
 });
 

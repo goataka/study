@@ -115,7 +115,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
       onClick={onActivate}
       onKeyDown={handleKeyDown}
     >
-      <div className="category-item-left flex items-center gap-2 pl-[10px] pr-[14px] py-[7px] min-w-0">
+      <div className="category-item-left flex items-center gap-2 pl-[10px] pr-[20px] py-[7px] min-w-0">
         <span className="category-status text-sm shrink-0 leading-none" aria-hidden="true">
           {statusIcon}
         </span>

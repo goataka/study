@@ -16,6 +16,7 @@ import { GuideContent } from "../components/startScreen/GuideContent";
 import { panelTab, panelTabs } from "../styles/panelTabStyles";
 import { getURLParams } from "./urlStateService";
 import type { QuizUseCase } from "../../application/quizUseCase";
+import { SUBJECTS } from "../uiHelpers";
 
 // ─── 左列メニュー定義 ──────────────────────────────────────────────────────
 
@@ -98,11 +99,11 @@ const contentSubjectsStore = {
 
 /** QuizUseCase からコンテンツ一覧データを構築する。 */
 function buildContentSubjects(useCase: QuizUseCase): ContentSubject[] {
-  const subjectDefs = [
-    { id: "english", label: "英語" },
-    { id: "math", label: "数学" },
-    { id: "japanese", label: "国語" },
-  ];
+  // SUBJECTS の順序・絵文字を使用して教科タブと一致させる
+  const subjectDefs = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "progress" && s.id !== "admin").map((s) => ({
+    id: s.id,
+    label: `${s.icon} ${s.name}`,
+  }));
 
   return subjectDefs.map(({ id: subjectId, label: subjectLabel }) => {
     const topCats = useCase.getTopCategoriesForSubject(subjectId);

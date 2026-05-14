@@ -63,7 +63,7 @@ export function AdminPanelRoot({
     [data, progressRepo, shareUrl],
   );
 
-  const [activeMenu, setActiveMenu] = useState<ActiveMenu>(null);
+  const [activeMenu, setActiveMenu] = useState<ActiveMenu>("manage");
   const [manageTab, setManageTab] = useState<ManageTab>("import");
   const [viewTabIndex, setViewTabIndex] = useState(0);
 
@@ -76,15 +76,7 @@ export function AdminPanelRoot({
   const [detectedFileKey, setDetectedFileKey] = useState<AdminSectionKey | null>(null);
   const [copyButtonText, setCopyButtonText] = useState("📋 コピー");
 
-  const closeContent = (): void => {
-    setActiveMenu(null);
-  };
-
   const switchMenu = (menu: Exclude<ActiveMenu, null>): void => {
-    if (activeMenu === menu) {
-      setActiveMenu(null);
-      return;
-    }
     setActiveMenu(menu);
   };
 
@@ -220,8 +212,8 @@ export function AdminPanelRoot({
   const viewJsonText = selectedViewSection ? JSON.stringify(selectedViewSection.content, null, 2) : "";
 
   const menuBtnBase =
-    "category-item w-full flex items-center gap-2 px-[10px] py-[7px] text-lg font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit] text-left";
-  const menuBtnChild = `${menuBtnBase} bg-transparent text-[#24292e] hover:bg-[#f6f8fa] [&.active]:bg-transparent [&.active]:text-[#1a1a1a]`;
+    "w-full rounded-md px-3 py-2 text-left text-sm cursor-pointer transition-[background,color] duration-150 font-[inherit]";
+  const menuBtnChild = `admin-menu-btn admin-menu-child ${menuBtnBase} text-[#24292e] hover:bg-[#f6f8fa] [&.active]:bg-[#e8f0ff] [&.active]:font-semibold [&.active]:text-[#0366d6]`;
   const actionBtnBase =
     "self-start px-3 py-1.5 text-sm font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
 
@@ -259,16 +251,6 @@ export function AdminPanelRoot({
         >
           {activeMenu === "manage" ? (
             <>
-              <div className="admin-manage-close-row flex items-center justify-end px-4 pt-4 pb-1">
-                <button
-                  className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-transparent text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
-                  type="button"
-                  aria-label="閉じる"
-                  onClick={closeContent}
-                >
-                  ✕
-                </button>
-              </div>
               <div className={`admin-manage-tabs ${panelTabs()}`}>
                 <button
                   className={`admin-manage-tab ${panelTab()}${manageTab === "import" ? " active" : ""}`}
@@ -361,16 +343,6 @@ export function AdminPanelRoot({
           ) : null}
           {activeMenu === "view" ? (
             <>
-              <div className="admin-manage-close-row flex items-center justify-end px-4 pt-4 pb-1">
-                <button
-                  className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-transparent text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
-                  type="button"
-                  aria-label="閉じる"
-                  onClick={closeContent}
-                >
-                  ✕
-                </button>
-              </div>
               <div className={`admin-data-tabs ${panelTabs()}`}>
                 {sections.map(({ title }, index) => (
                   <button
