@@ -6,13 +6,13 @@
  */
 
 import { useMemo, useSyncExternalStore } from "react";
-import type { AnswerResult } from "../../application/quizUseCase";
-import { buildUnitName } from "../uiHelpers";
-import { ResultDetailsList } from "../quizApp/ResultDetailsList";
-import { button } from "../styles/buttonStyles";
-import { scoreCircle } from "../styles/scoreCircleStyles";
-import { getResultSnapshot, subscribeResultStore } from "./resultStore";
-import type { ScreenName } from "./screenStore";
+import type { AnswerResult } from "../../../application/quizUseCase";
+import { buildUnitName } from "../../uiHelpers";
+import { ResultDetailsList } from "../../quizApp/ResultDetailsList";
+import { button } from "../../styles/buttonStyles";
+import { scoreCircle } from "../../styles/scoreCircleStyles";
+import { getResultSnapshot, subscribeResultStore } from "../resultStore";
+import type { ScreenName } from "../screenStore";
 
 interface ResultScreenProps {
   currentScreen: ScreenName;

@@ -15,10 +15,10 @@ function makeFilter(): QuizFilter {
 
 describe("quizLifecycle 関数", () => {
   describe("resolveEffectiveMode 関数", () => {
-    it("random + straight → practice", () => {
+    it("mode=random かつ quizOrder=straight なら practice を返す", () => {
       expect(resolveEffectiveMode("random", "straight")).toBe("practice");
     });
-    it("random + random → random", () => {
+    it("mode=random かつ quizOrder=random なら random を返す", () => {
       expect(resolveEffectiveMode("random", "random")).toBe("random");
     });
     it("practice モードはそのまま", () => {
@@ -45,7 +45,7 @@ describe("quizLifecycle 関数", () => {
       expect(out).toEqual({ kind: "success", session: fakeSession });
       expect(useCase.startSession).toHaveBeenCalled();
     });
-    it("ERROR_ALL_MASTERED → all-mastered", () => {
+    it("ERROR_ALL_MASTERED を受けたら all-mastered を返す", () => {
       const useCase = {
         startSession: vi.fn(() => {
           throw new Error(ERROR_ALL_MASTERED);

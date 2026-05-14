@@ -18,11 +18,11 @@
  */
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
-import { TabsUserRow } from "./components/TabsUserRow";
-import { StartScreen } from "./components/StartScreen";
-import { OuterBottomRow } from "./components/OuterBottomRow";
-import { QuizScreen } from "./components/QuizScreen";
-import { ResultScreen } from "./components/ResultScreen";
+import { TabsUserRow } from "./components/layout/TabsUserRow";
+import { StartScreen } from "./components/screens/StartScreen";
+import { OuterBottomRow } from "./components/layout/OuterBottomRow";
+import { QuizScreen } from "./components/screens/QuizScreen";
+import { ResultScreen } from "./components/screens/ResultScreen";
 import { ConfirmDialog } from "./components/ConfirmDialog";
 import { getFontSizeSnapshot, subscribeFontSizeStore, syncFontSizeDom } from "./components/fontSizeStore";
 import { getScreenSnapshot, subscribeScreenStore } from "./components/screenStore";

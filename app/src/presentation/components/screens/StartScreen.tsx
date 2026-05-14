@@ -6,14 +6,14 @@
  */
 
 import { useSyncExternalStore } from "react";
-import { StartHeader } from "./startScreen/StartHeader";
-import { CategoryPanel } from "./startScreen/CategoryPanel";
-import { QuizPanel } from "./startScreen/QuizPanel";
-import { ProgressDetailPanel } from "./startScreen/ProgressDetailPanel";
-import { OverallSummaryPanel } from "./startScreen/OverallSummaryPanel";
-import type { ScreenName } from "./screenStore";
-import { selectedUnitInfoContentStore } from "./startScreen/selectedUnitInfoContentStore";
-import { supportContentStore } from "./supportContentStore";
+import { StartHeader } from "../startScreen/StartHeader";
+import { CategoryPanel } from "../startScreen/CategoryPanel";
+import { QuizPanel } from "../startScreen/QuizPanel";
+import { ProgressDetailPanel } from "../startScreen/ProgressDetailPanel";
+import { OverallSummaryPanel } from "../startScreen/OverallSummaryPanel";
+import type { ScreenName } from "../screenStore";
+import { selectedUnitInfoContentStore } from "../startScreen/selectedUnitInfoContentStore";
+import { supportContentStore } from "../supportContentStore";
 
 interface StartScreenProps {
   currentScreen: ScreenName;

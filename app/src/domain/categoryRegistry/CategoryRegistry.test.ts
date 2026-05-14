@@ -25,7 +25,7 @@ function makeQuestion(overrides: Partial<Question> & Pick<Question, "id" | "subj
   };
 }
 
-describe("CategoryRegistry", () => {
+describe("CategoryRegistry クラス", () => {
   const questions: Question[] = [
     makeQuestion({
       id: "q1",
