@@ -217,7 +217,6 @@ describe("App コンポーネント", () => {
       "kanjiInputArea",
       "kanjiInputBody",
       "kanjiCanvas",
-      "kanjiDeleteLastBtn",
       "kanjiEraseBtn",
       "kanjiCandidateList",
       // 結果画面

@@ -389,7 +389,6 @@ export class QuizApp {
       },
       onClearNotes: () => this.notesController.clear(this.currentSession?.currentIndex),
       onToggleEraser: () => this.notesController.toggleEraserMode(),
-      onKanjiDeleteLast: () => this.kanjiCanvasController.deleteLast(),
       onKanjiErase: () => this.kanjiCanvasController.erase(),
       onCategoryStatusFilterChange: (filter) => this.setCategoryStatusFilter(filter),
       onPenSizeChange: (size) => this.notesCanvas?.setPenSize(size),

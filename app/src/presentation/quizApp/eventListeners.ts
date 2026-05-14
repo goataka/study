@@ -334,11 +334,9 @@ export function setupNotesPenSelectListeners(callbacks: NotesPenSelectCallbacks)
 
 /** 漢字認識キャンバス（KanjiCanvas）のイベント。 */
 export interface KanjiCanvasCallbacks {
-  onDeleteLast: () => void;
   onErase: () => void;
 }
 
 export function setupKanjiCanvasListeners(callbacks: KanjiCanvasCallbacks): void {
-  document.getElementById("kanjiDeleteLastBtn")?.addEventListener("click", callbacks.onDeleteLast);
   document.getElementById("kanjiEraseBtn")?.addEventListener("click", callbacks.onErase);
 }

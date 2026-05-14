@@ -239,7 +239,7 @@ textarea:focus-visible {
 .progress-matrix-table thead th {
   background-color: #f6f8fa;
   font-weight: 600;
-  font-size: 0.8em;
+  font-size: 1em;
   text-align: center;
   position: sticky;
   top: 0;
@@ -249,12 +249,19 @@ textarea:focus-visible {
 .progress-matrix-table tbody th {
   background-color: #f6f8fa;
   font-weight: 600;
-  font-size: 0.8em;
+  font-size: 1em;
   position: sticky;
   left: 0;
   z-index: 1;
   white-space: nowrap;
   min-width: 60px;
+}
+
+.progress-matrix-header-total {
+  font-size: 0.75em;
+  font-weight: normal;
+  color: #586069;
+  white-space: nowrap;
 }
 
 .progress-matrix-cell-units {
@@ -300,7 +307,6 @@ textarea:focus-visible {
 .progress-matrix-parent-header {
   background-color: #f0f6ff;
   text-align: center;
-  font-size: 0.78em;
 }
 
 /* ─── 単元詳細表示時の説明・例の非表示 ──────────────────────────────────── */

@@ -39,7 +39,7 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
     <>
       <div className="flex shrink-0 items-center justify-between border-b border-solid border-[#e1e4e8] bg-transparent px-[15px] py-2.5 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-2.5">
         <span id="notesTitle" className="text-base font-semibold text-[#333]">
-          {showKanjiInput ? "✏️ 1文字ずつ書いて漢字を入力できます" : "タッチペンで書けます"}
+          {showKanjiInput ? "✏️ 1文字ずつ書いて入力できます" : "タッチペンで書けます"}
         </span>
         <div className={notesControlsClass}>
           <button

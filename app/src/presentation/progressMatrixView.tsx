@@ -49,6 +49,10 @@ interface MatrixViewModel {
   cellsByGrade: Map<string, CellUnits[]>;
   topGroups: { topId: string; topName: string; count: number }[];
   empty: "no-units" | "no-visible" | null;
+  /** 学年ごとの表示単元数。 */
+  gradeTotals: Map<string, number>;
+  /** 列（親カテゴリ）ごとの表示単元数。 */
+  colTotals: Map<string, number>;
 }
 
 function buildUnitVM(
@@ -109,7 +113,15 @@ function buildMatrixViewModel(ctx: ProgressMatrixContext): MatrixViewModel {
   }
 
   if (grades.length === 0 || colDefs.length === 0) {
-    return { visibleGrades: [], visibleCols: [], cellsByGrade: new Map(), topGroups: [], empty: "no-units" };
+    return {
+      visibleGrades: [],
+      visibleCols: [],
+      cellsByGrade: new Map(),
+      topGroups: [],
+      empty: "no-units",
+      gradeTotals: new Map(),
+      colTotals: new Map(),
+    };
   }
 
   // ── フィルター ──
@@ -160,7 +172,15 @@ function buildMatrixViewModel(ctx: ProgressMatrixContext): MatrixViewModel {
       : colDefs;
 
   if (visibleGrades.length === 0 || visibleCols.length === 0) {
-    return { visibleGrades: [], visibleCols: [], cellsByGrade: new Map(), topGroups: [], empty: "no-visible" };
+    return {
+      visibleGrades: [],
+      visibleCols: [],
+      cellsByGrade: new Map(),
+      topGroups: [],
+      empty: "no-visible",
+      gradeTotals: new Map(),
+      colTotals: new Map(),
+    };
   }
 
   // ── セル毎の単元配列を組み立て ──
@@ -190,7 +210,27 @@ function buildMatrixViewModel(ctx: ProgressMatrixContext): MatrixViewModel {
     }
   }
 
-  return { visibleGrades, visibleCols, cellsByGrade, topGroups, empty: null };
+  // ── 学年・列ごとの合計単元数を計算 ──
+  const gradeTotals = new Map<string, number>();
+  for (const grade of visibleGrades) {
+    const row = cellsByGrade.get(grade) ?? [];
+    gradeTotals.set(
+      grade,
+      row.reduce((n, cells) => n + cells.length, 0),
+    );
+  }
+  const colTotals = new Map<string, number>();
+  for (let colIdx = 0; colIdx < visibleCols.length; colIdx++) {
+    const col = visibleCols[colIdx];
+    if (!col) continue;
+    let total = 0;
+    for (const grade of visibleGrades) {
+      total += cellsByGrade.get(grade)?.[colIdx]?.length ?? 0;
+    }
+    colTotals.set(col.parentId, total);
+  }
+
+  return { visibleGrades, visibleCols, cellsByGrade, topGroups, empty: null, gradeTotals, colTotals };
 }
 
 function buildMatrixCategoryLabel(col: ColDef): string {
@@ -289,7 +329,8 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
                 </th>
                 {vm.visibleGrades.map((grade) => (
                   <th key={grade} className="progress-matrix-parent-header">
-                    {grade}
+                    <div>{grade}</div>
+                    <div className="progress-matrix-header-total">({vm.gradeTotals.get(grade) ?? 0})</div>
                   </th>
                 ))}
               </tr>
@@ -297,7 +338,10 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
             <tbody>
               {vm.visibleCols.map((col, colIdx) => (
                 <tr key={col.parentId}>
-                  <th scope="row">{buildMatrixCategoryLabel(col)}</th>
+                  <th scope="row">
+                    <div>{buildMatrixCategoryLabel(col)}</div>
+                    <div className="progress-matrix-header-total">({vm.colTotals.get(col.parentId) ?? 0})</div>
+                  </th>
                   {vm.visibleGrades.map((grade) => {
                     const units = vm.cellsByGrade.get(grade)?.[colIdx] ?? [];
                     return (
@@ -330,7 +374,8 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
               <tr>
                 {vm.visibleCols.map((col) => (
                   <th key={col.parentId} className="progress-matrix-parent-header">
-                    {buildMatrixCategoryLabel(col)}
+                    <div>{buildMatrixCategoryLabel(col)}</div>
+                    <div className="progress-matrix-header-total">({vm.colTotals.get(col.parentId) ?? 0})</div>
                   </th>
                 ))}
               </tr>
@@ -338,7 +383,10 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
             <tbody>
               {vm.visibleGrades.map((grade) => (
                 <tr key={grade}>
-                  <th scope="row">{grade}</th>
+                  <th scope="row">
+                    <div>{grade}</div>
+                    <div className="progress-matrix-header-total">({vm.gradeTotals.get(grade) ?? 0})</div>
+                  </th>
                   {vm.visibleCols.map((col, colIdx) => {
                     const units = vm.cellsByGrade.get(grade)?.[colIdx] ?? [];
                     return (
