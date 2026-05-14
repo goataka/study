@@ -8,9 +8,18 @@
  * 公開 API（`renderAllSubjectList(params)`）と DOM の class 構造は既存実装と互換。
  */
 
+import { useState } from "react";
 import type { QuizUseCase, GlobalRecommendedUnit } from "../../application/quizUseCase";
-import { calcDualProgressPct, gradeColorClass } from "../uiHelpers";
+import { calcDualProgressPct, gradeColorClass, SUBJECTS } from "../uiHelpers";
 import { categoryListContentStore } from "../components/categoryListContentStore";
+
+/**
+ * 教科 ID からアイコン文字列を返す。
+ * SUBJECTS（presentation 層）から解決し、application 層に UI 情報を持たせない。
+ */
+function getSubjectIcon(subjectId: string): string {
+  return SUBJECTS.find((s) => s.id === subjectId)?.icon ?? "📚";
+}
 
 /** 目標数の選択肢 */
 export const GLOBAL_RECOMMENDED_COUNT_OPTIONS = [3, 5, 8, 13, 21];
@@ -29,24 +38,20 @@ export interface RenderAllSubjectListParams {
   onGlobalCountChange: (count: number) => void;
   /** 単元カードクリック時に呼ばれる。 */
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
-  /** 「もっと追加」ボタンクリック時に呼ばれる（省略可）。 */
-  onAddMore?: () => void;
 }
 
 /** 「総合」タブ用のおすすめ単元一覧を描画する。 */
 export function renderAllSubjectList(params: RenderAllSubjectListParams): void {
   const goalCount = params.globalRecommendedCount;
   const alphaCount = calcAlphaCount(goalCount);
-  const units = params.useCase.getRecommendedUnitsGlobal(goalCount, alphaCount);
 
   categoryListContentStore.set(
     <GlobalRecommendedList
-      units={units}
+      useCase={params.useCase}
       goalCount={goalCount}
       alphaCount={alphaCount}
       onGlobalCountChange={params.onGlobalCountChange}
       onSelectUnit={params.onSelectUnit}
-      onAddMore={params.onAddMore}
     />,
   );
 }
@@ -54,22 +59,24 @@ export function renderAllSubjectList(params: RenderAllSubjectListParams): void {
 // ─── React コンポーネント ────────────────────────────────────────────────
 
 interface GlobalRecommendedListProps {
-  units: GlobalRecommendedUnit[];
+  useCase: QuizUseCase;
   goalCount: number;
   alphaCount: number;
   onGlobalCountChange: (count: number) => void;
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
-  onAddMore?: () => void;
 }
 
 function GlobalRecommendedList({
-  units,
+  useCase,
   goalCount,
-  alphaCount: _alphaCount,
+  alphaCount,
   onGlobalCountChange,
   onSelectUnit,
-  onAddMore,
 }: GlobalRecommendedListProps): React.JSX.Element {
+  // 「もっと追加」で増やす一時的な追加件数（永続化しない。目標数設定とは別）
+  const [extraCount, setExtraCount] = useState(0);
+  const units = useCase.getRecommendedUnitsGlobal(goalCount, alphaCount + extraCount);
+
   const mainUnits = units.slice(0, goalCount);
   const extraUnits = units.slice(goalCount);
 
@@ -111,7 +118,7 @@ function GlobalRecommendedList({
         <button
           type="button"
           className="global-recommended-add-btn w-full text-sm py-1 px-2 rounded border border-dashed border-[#d1d5da] text-[#586069] bg-transparent cursor-pointer hover:bg-[#f6f8fa] hover:border-[#0366d6] hover:text-[#0366d6] transition-[background,border-color,color] duration-150"
-          onClick={onAddMore}
+          onClick={() => setExtraCount((c) => c + calcAlphaCount(goalCount))}
         >
           ＋ もっと追加
         </button>
@@ -197,7 +204,7 @@ function RecommendedUnitCard({
       onKeyDown={handleKeyDown}
     >
       <span className="subject-overview-status text-sm shrink-0 leading-none pt-px" aria-hidden="true">
-        {unit.subjectIcon}
+        {getSubjectIcon(unit.subject)}
       </span>
       <div className="subject-overview-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
         <div className="subject-overview-title-row flex flex-row items-center gap-1 min-w-0 flex-wrap">

@@ -660,7 +660,8 @@ export class QuizUseCase {
   }
 
   /**
-   * 今日（YYYY-MM-DD）ステージが進んだ単元数を返す。
+   * 今日（YYYY-MM-DD）ステージが進んだ単元のユニーク数を返す。
+   * ※ 同一単元が同日内に複数回ステージ遷移しても 1 件として数える（lastCompletedAt で判定）。
    * 学習状況の星表示で使用する。
    */
   getTodayAdvancedCount(): number {
@@ -695,13 +696,14 @@ export class QuizUseCase {
    */
   getRecommendedUnitsGlobal(goalCount: number, alphaCount: number): GlobalRecommendedUnit[] {
     const total = goalCount + alphaCount;
-    const nonAllSubjects = ["english", "math", "japanese"];
+    // 問題が登録されている教科を CategoryRegistry から取得する（ハードコード不要）
+    const subjects = this.categoryRegistry.getSubjects();
     const now = new Date();
 
     const unlearned: GlobalRecommendedUnit[] = [];
     const reviewReady: GlobalRecommendedUnit[] = [];
 
-    for (const subjectId of nonAllSubjects) {
+    for (const subjectId of subjects) {
       const maxGrade = this._getUnlockedMaxGrade(subjectId);
       const categories = this.getCategoriesForSubject(subjectId);
 
@@ -720,12 +722,9 @@ export class QuizUseCase {
         const { mastered, total: totalQ } = this.getMasteredCountForCategory(subjectId, catId);
         const inProgressCount = this.getInProgressCount({ subject: subjectId, category: catId });
         const referenceGrade = this.categoryRegistry.getCategoryReferenceGrade(subjectId, catId);
-        const subjectInfo = getSubjectInfo(subjectId);
 
         const unit: GlobalRecommendedUnit = {
           subject: subjectId,
-          subjectName: subjectInfo.name,
-          subjectIcon: subjectInfo.icon,
           categoryId: catId,
           categoryName: catName,
           stage,
@@ -740,7 +739,7 @@ export class QuizUseCase {
         if (stage === 0) {
           unlearned.push(unit);
         } else {
-          // 待機期間チェック
+          // 待機期間チェック: 学習済(stage=1)→7日、復習済(stage=2)→14日
           const waitDays = stage === 1 ? 7 : 14;
           if (stageRecord && isWaitPeriodElapsed(stageRecord.lastCompletedAt, waitDays, now)) {
             reviewReady.push(unit);
@@ -752,25 +751,14 @@ export class QuizUseCase {
     // 復習候補はランダムシャッフル
     shuffleArray(reviewReady);
 
-    // 交互配置: 未学習, 復習, 未学習, 復習, ...
+    // 交互配置: [unlearned, review, unlearned, review, ...] の順に total 件まで取り出す
+    // 片方が枯渇した場合は残りの候補で埋める
     const result: GlobalRecommendedUnit[] = [];
     let ui = 0;
     let ri = 0;
-    while (result.length < total) {
-      if (ui < unlearned.length) {
-        const item = unlearned[ui++];
-        if (item) result.push(item);
-      } else if (ri < reviewReady.length) {
-        const item = reviewReady[ri++];
-        if (item) result.push(item);
-      } else {
-        break;
-      }
-      if (result.length >= total) break;
-      if (ri < reviewReady.length) {
-        const item = reviewReady[ri++];
-        if (item) result.push(item);
-      }
+    while (result.length < total && (ui < unlearned.length || ri < reviewReady.length)) {
+      if (ui < unlearned.length) result.push(unlearned[ui++]!);
+      if (result.length < total && ri < reviewReady.length) result.push(reviewReady[ri++]!);
     }
 
     return result.slice(0, total);
@@ -816,8 +804,6 @@ export class QuizUseCase {
 /** グローバルおすすめ単元の1件 */
 export interface GlobalRecommendedUnit {
   subject: string;
-  subjectName: string;
-  subjectIcon: string;
   categoryId: string;
   categoryName: string;
   stage: CategoryStage;
@@ -830,16 +816,6 @@ export interface GlobalRecommendedUnit {
 }
 
 // ─── モジュールプライベートヘルパー ────────────────────────────────────────
-
-const SUBJECT_INFO: Record<string, { name: string; icon: string }> = {
-  english: { name: "英語", icon: "🌐" },
-  math: { name: "数学", icon: "📐" },
-  japanese: { name: "国語", icon: "📖" },
-};
-
-function getSubjectInfo(subjectId: string): { name: string; icon: string } {
-  return SUBJECT_INFO[subjectId] ?? { name: subjectId, icon: "📚" };
-}
 
 /** 参考学年文字列を数値に変換してソートに使う */
 function gradeOrder(grade: string): number {

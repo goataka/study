@@ -133,7 +133,10 @@ export class QuizApp {
   selectedActivityDate: string = currentDateString();
   /** 総合タブ・進度タブから単元を選択した場合の選択情報（null の場合は未選択） */
   selectedUnitContext: { subject: string; categoryId: string; categoryName: string } | null = null;
-  /** 総合タブで各教科ごとに表示するおすすめ単元数 */
+  /**
+   * 総合タブで各教科ごとに表示するおすすめ単元数。
+   * 現在は全教科共通の `globalRecommendedCount` に置き換わったため未使用（旧フローの互換のため残置）。
+   */
   subjectRecommendedCounts: Map<string, number> = new Map();
   /** 全教科共通のおすすめ単元目標数 */
   globalRecommendedCount: number = 5;
@@ -535,6 +538,15 @@ export class QuizApp {
     this.selectedTopCategoryId = null;
     D.updateCategoryListActive(this);
     // updateStartScreen() は呼び出し元が担う（二重実行を避けるため）
+  }
+
+  /**
+   * QuizApp を破棄する際のクリーンアップ。
+   * モジュールスコープのシングルトンストアへの参照をクリアし、
+   * テストや HMR で複数インスタンスを生成する際のリーク・競合を防ぐ。
+   */
+  cleanup(): void {
+    setStartQuizAction(null);
   }
 }
 

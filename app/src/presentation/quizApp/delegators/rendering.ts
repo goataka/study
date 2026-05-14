@@ -315,13 +315,6 @@ export function renderAllSubjectList(app: QuizApp): void {
     onSelectUnit: (subjectId, categoryId, categoryName) => {
       selectUnitContext(app, subjectId, categoryId, categoryName);
     },
-    onAddMore: () => {
-      // 追加ボタン: 目標数に加えてさらに追加の単元を表示（現実装では目標数を+1して再描画）
-      const nextCount = app.globalRecommendedCount + 1;
-      app.globalRecommendedCount = nextCount;
-      app.saveGlobalRecommendedCount();
-      renderCategoryList(app);
-    },
   });
 }
 

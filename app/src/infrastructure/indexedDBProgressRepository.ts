@@ -244,7 +244,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
         if (
           isPlainObject(v) &&
           (v.stage === 0 || v.stage === 1 || v.stage === 2 || v.stage === 3) &&
-          // TODO: [0,1,2,3].includes() に変えることを検討 (TS型推論上は上記の方が明確)
+          // 明示的な比較で TypeScript が stage の型（0|1|2|3）を絞り込めるようにする
           typeof v.lastCompletedAt === "string"
         ) {
           result[k] = { stage: v.stage as CategoryStageRecord["stage"], lastCompletedAt: v.lastCompletedAt };
