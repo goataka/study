@@ -66,7 +66,8 @@ interface GlobalRecommendedListProps {
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
 }
 
-function seededHash(value: string): number {
+/** 文字列から決定論的なハッシュ値を生成する。 */
+export function hashString(value: string): number {
   let hash = 0;
   for (let i = 0; i < value.length; i++) {
     hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
@@ -74,11 +75,12 @@ function seededHash(value: string): number {
   return hash;
 }
 
-function shuffleUnitsByDailySeed(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
+/** 日付と単元IDを入力に、日替わりで安定する擬似ランダム順を作る。 */
+export function shuffleUnitsByDailySeed(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
   const seed = new Date().toISOString().slice(0, 10);
   return [...units].sort((a, b) => {
-    const ha = seededHash(`${seed}:${a.subject}:${a.categoryId}`);
-    const hb = seededHash(`${seed}:${b.subject}:${b.categoryId}`);
+    const ha = hashString(`${seed}:${a.subject}:${a.categoryId}`);
+    const hb = hashString(`${seed}:${b.subject}:${b.categoryId}`);
     return ha - hb;
   });
 }

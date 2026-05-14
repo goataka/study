@@ -124,10 +124,11 @@ export class KanjiCanvasController {
         kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)),
       );
     } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer.normalize("NFKC"))) {
+      const normalizedAnswer = correctAnswer.normalize("NFKC").trim();
       candidates = candidates.filter((char) => isLatinOnly(char));
       if (candidates.length === 0) {
-        const fallback = correctAnswer.normalize("NFKC").trim();
-        if (fallback) candidates = [fallback];
+        // 英語問題で認識結果が空振りした場合でも入力を進められるよう、正解文字列を候補として提示する。
+        if (normalizedAnswer) candidates = [normalizedAnswer];
       }
     }
 
