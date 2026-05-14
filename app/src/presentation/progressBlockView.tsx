@@ -53,6 +53,10 @@ interface BlockEntryVM {
 interface TopGroupVM {
   topName: string;
   groups: BlockGroupVM[];
+  /** トップカテゴリ配下の全単元数。 */
+  total: number;
+  /** トップカテゴリ配下の習得済み単元数。 */
+  mastered: number;
 }
 
 function buildCategoryProgressMap(useCase: QuizUseCase, subject: string): Map<string, CategoryProgress> {
@@ -184,7 +188,11 @@ function buildCategoryViewModel(ctx: ProgressBlockContext): {
       const g = buildGroup(ctx, categories, progressMap, name);
       if (g) groups.push(g);
     }
-    if (groups.length > 0) topGroups.push({ topName, groups });
+    if (groups.length > 0) {
+      const total = groups.reduce((n, g) => n + g.total, 0);
+      const mastered = groups.reduce((n, g) => n + g.mastered, 0);
+      topGroups.push({ topName, groups, total, mastered });
+    }
   }
 
   const noTopGroups: BlockGroupVM[] = [];
@@ -289,8 +297,9 @@ function ProgressDetailByCategoryView({ ctx }: { ctx: ProgressBlockContext }): R
     <>
       {vm.topGroups.map((tg) => (
         <Fragment key={tg.topName}>
-          <div className="progress-top-category-header text-sm font-bold text-[#0366d6] px-3 pt-1.5 pb-0.5 border-b-2 border-[#c8d8e8] mt-1.5">
-            {tg.topName}
+          <div className="progress-top-category-header text-base font-bold text-[#0366d6] px-3 pt-1.5 pb-0.5 border-b-2 border-[#c8d8e8] mt-1.5 flex items-center gap-2">
+            <span>{tg.topName}</span>
+            <span className="text-xs font-normal text-[#586069]">{`(${tg.mastered}/${tg.total})`}</span>
           </div>
           {tg.groups.map((g) => (
             <BlockGroup key={g.groupName} vm={g} onSelect={onSelect} />

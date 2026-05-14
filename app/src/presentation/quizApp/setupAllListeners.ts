@@ -56,7 +56,6 @@ export interface AllListenersDeps {
   onClearNotes: () => void;
   onToggleEraser: () => void;
   // 漢字キャンバス
-  onKanjiDeleteLast: () => void;
   onKanjiErase: () => void;
   // カテゴリ状況フィルター
   onCategoryStatusFilterChange: (filter: "all" | "unlearned" | "studying" | "learned") => void;
@@ -110,7 +109,6 @@ export function setupAllListeners(deps: AllListenersDeps): void {
     onToggleEraser: deps.onToggleEraser,
   });
   setupKanjiCanvasListeners({
-    onDeleteLast: deps.onKanjiDeleteLast,
     onErase: deps.onKanjiErase,
   });
   setupCategoryStatusFilterListeners(deps.onCategoryStatusFilterChange);

@@ -68,7 +68,6 @@ function setupTextInputDom(): void {
           <div class="kanji-input-header">
             <span class="kanji-input-label">1文字ずつ書いてください</span>
             <div class="kanji-input-controls">
-              <button id="kanjiDeleteLastBtn" type="button">↩</button>
               <button id="kanjiEraseBtn" type="button">🗑️</button>
               <button id="kanjiToggleBtn" type="button" aria-expanded="true">▲</button>
             </div>
@@ -296,16 +295,6 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     expect(candidateBtns.length).toBe(5);
   });
 
-  it("↩ボタンをクリックするとKanjiCanvasの最後のストロークが削除される", async () => {
-    new QuizApp();
-    await new Promise((resolve) => setTimeout(resolve, 0));
-    document.getElementById("startRandomBtn")?.click();
-
-    document.getElementById("kanjiDeleteLastBtn")?.click();
-
-    expect(kanjiCanvasMock.deleteLast).toHaveBeenCalledWith("kanjiCanvas");
-  });
-
   it("🗑️ボタンをクリックするとKanjiCanvasが全消去される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -426,13 +415,13 @@ describe("QuizApp — テキスト入力問題のKanjiCanvas入力仕様", () =>
     await new Promise((resolve) => setTimeout(resolve, 0));
     document.getElementById("startRandomBtn")?.click();
 
-    // 英語のtext-input問題ではKanjiCanvas入力エリアは非表示
+    // 英語のtext-input問題ではKanjiCanvas入力エリアが表示される
     const kanjiInputArea = document.getElementById("kanjiInputArea");
-    expect(kanjiInputArea?.classList.contains("hidden")).toBe(true);
+    expect(kanjiInputArea?.classList.contains("hidden")).toBe(false);
 
-    // ノートキャンバスは表示される
+    // ノートキャンバスは非表示
     const notesCanvas = document.getElementById("notesCanvas");
-    expect(notesCanvas?.classList.contains("hidden")).toBe(false);
+    expect(notesCanvas?.classList.contains("hidden")).toBe(true);
   });
 
   it("漢字書き取り問題（正解が漢字）では認識候補がフィルタされず漢字も表示される", async () => {

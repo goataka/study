@@ -45,15 +45,6 @@ export function KanjiInputArea({ showKanjiInput }: KanjiInputAreaProps): React.J
         <div className="kanji-candidates-area flex flex-col items-end gap-2">
           <div className="flex justify-end gap-1.5">
             <button
-              id="kanjiDeleteLastBtn"
-              className={kanjiCtrlButton()}
-              type="button"
-              title="最後の1画を消す"
-              aria-label="最後の1画を消す"
-            >
-              ↩
-            </button>
-            <button
               id="kanjiEraseBtn"
               className={kanjiCtrlButton()}
               type="button"
