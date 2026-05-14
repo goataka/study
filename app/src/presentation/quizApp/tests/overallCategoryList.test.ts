@@ -23,13 +23,13 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期状態（総合タブ）では教科概要アイテムが教科数分（総合除く）描画される", async () => {
+  it("初期状態（総合タブ）では教科概要アイテムが1件以上描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const overviewItems = document.querySelectorAll(".subject-overview-item");
-    // SUBJECTS から "all" を除いた 3 教科（英語・数学・国語）
-    expect(overviewItems.length).toBe(3);
+    // グローバルおすすめリストとして少なくとも1件の単元が表示される
+    expect(overviewItems.length).toBeGreaterThanOrEqual(1);
   });
 
   it("各教科概要アイテムに data-subject が設定されている", async () => {
@@ -70,61 +70,53 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(pctSpan).toBeNull();
   });
 
-  it("各教科の subject-rec-count-controls に3つの表示数切替ボタンが表示される", async () => {
+  it("グローバル目標数ボタンが表示される（3/5/8/13/21）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 教科ごとに 1/3/5 ボタンが表示されるため、3教科 × 3ボタン = 9個
+    // グローバル目標数の 5 つのボタン（3/5/8/13/21）が表示される
     const countBtns = document.querySelectorAll(".overall-rec-count-btn");
-    expect(countBtns.length).toBeGreaterThanOrEqual(3);
+    expect(countBtns.length).toBeGreaterThanOrEqual(5);
   });
 
-  it("英語の表示数を3に切り替えると英語の複数カードが表示される", async () => {
+  it("目標数ボタンで切り替えると英語の表示カードが更新される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 英語の subject-overview-wrapper 内の3ボタンをクリック（:has()非依存の検索）
-    const wrappers = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
-    const englishWrapper = wrappers.find((w) => w.querySelector('[data-subject="english"]'));
-    const btn3 = Array.from(englishWrapper?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
-      (b) => b.textContent === "3",
-    ) as HTMLElement | undefined;
+    // 目標数を 3 に切り替え
+    const btn3 = Array.from(document.querySelectorAll(".overall-rec-count-btn")).find((b) => b.textContent === "3") as
+      | HTMLElement
+      | undefined;
     btn3?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 英語には複数カテゴリあるので複数カードが表示されるはず
+    // 英語には複数カテゴリあるので英語アイテムが表示されるはず
     const englishItems = document.querySelectorAll('.subject-overview-item[data-subject="english"]');
     expect(englishItems.length).toBeGreaterThanOrEqual(1);
   });
 
-  it("表示数ボタンを押すと progressRepo に保存され、次回 new QuizApp() で復元される", async () => {
+  it("目標数ボタンを押すと progressRepo に保存され、次回 new QuizApp() で復元される", async () => {
     const repo = new StubProgressRepository();
     new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 英語の3ボタンをクリック
-    const wrappers = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
-    const englishWrapper = wrappers.find((w) => w.querySelector('[data-subject="english"]'));
-    const btn3 = Array.from(englishWrapper?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
-      (b) => b.textContent === "3",
-    ) as HTMLElement | undefined;
-    btn3?.click();
+    // グローバル目標数の5ボタンをクリック（現在のデフォルトは5なので、8をクリックしてみる）
+    const countBtns = Array.from(document.querySelectorAll(".overall-rec-count-btn"));
+    const btn8 = countBtns.find((b) => b.textContent === "8") as HTMLElement | undefined;
+    btn8?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // progressRepo に保存されていることを確認
-    const saved = repo.loadRecommendedCounts();
-    expect(saved["english"]).toBe(3);
+    // progressRepo に globalRecommendedCount として保存されていることを確認
+    const saved = repo.loadGlobalRecommendedCount();
+    expect(saved).toBe(8);
 
     // 再初期化して復元されることを確認（同じ repo を渡す）
     new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const wrappers2 = Array.from(document.querySelectorAll(".subject-overview-wrapper"));
-    const englishWrapper2 = wrappers2.find((w) => w.querySelector('[data-subject="english"]'));
-    const activeBtn = Array.from(englishWrapper2?.querySelectorAll(".overall-rec-count-btn") ?? []).find(
-      (b) => b.textContent === "3",
-    ) as HTMLElement | undefined;
-    expect(activeBtn?.classList.contains("active")).toBe(true);
+    const countBtns2 = Array.from(document.querySelectorAll(".overall-rec-count-btn"));
+    const activeBtn8 = countBtns2.find((b) => b.textContent === "8") as HTMLElement | undefined;
+    expect(activeBtn8?.classList.contains("active")).toBe(true);
   });
 
   it("全問正解の学習済みカテゴリは進捗率100%と表示される", async () => {

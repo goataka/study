@@ -8,7 +8,13 @@
  * - initialize() を呼び出すことで IndexedDB からキャッシュを初期化する
  */
 
-import type { IProgressRepository, QuizRecord, QuizSettings, UserDataExport } from "../application/ports";
+import type {
+  IProgressRepository,
+  QuizRecord,
+  QuizSettings,
+  UserDataExport,
+  CategoryStageRecord,
+} from "../application/ports";
 import { detectDeployEnvironment } from "../shared/deployEnvironment";
 
 export function resolveDbPrefix(pathname: string): "v1" | "rc" {
@@ -34,6 +40,8 @@ const KEY_FONT_SIZE_LEVEL = "fontSizeLevel";
 const KEY_SHARE_URL = "overallShareUrl";
 const KEY_QUIZ_SETTINGS = "quizSettings";
 const KEY_RECOMMENDED_COUNTS = "recommendedCounts";
+const KEY_CATEGORY_STAGES = "categoryStages";
+const KEY_GLOBAL_RECOMMENDED_COUNT = "globalRecommendedCount";
 
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
@@ -52,6 +60,8 @@ interface ProgressCache {
   shareUrl: string;
   quizSettings: QuizSettings;
   recommendedCounts: Record<string, number>;
+  categoryStages: Record<string, CategoryStageRecord>;
+  globalRecommendedCount: number;
 }
 
 /** プレーンオブジェクト（null 非許容、配列非許容）かどうかを判定する型ガード */
@@ -79,6 +89,8 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       shareUrl: "",
       quizSettings: { questionCount: 10, quizOrder: "random", includeMastered: false },
       recommendedCounts: {},
+      categoryStages: {},
+      globalRecommendedCount: 5,
     };
   }
 
@@ -160,6 +172,8 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       shareUrl,
       quizSettings,
       recommendedCounts,
+      categoryStages,
+      globalRecommendedCount,
     ] = await Promise.all([
       getValue(KEY_WRONG_QUESTIONS),
       getValue(KEY_CORRECT_STREAKS),
@@ -173,6 +187,8 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       getValue(KEY_SHARE_URL),
       getValue(KEY_QUIZ_SETTINGS),
       getValue(KEY_RECOMMENDED_COUNTS),
+      getValue(KEY_CATEGORY_STAGES),
+      getValue(KEY_GLOBAL_RECOMMENDED_COUNT),
     ]);
 
     await transactionDone;
@@ -221,6 +237,22 @@ export class IndexedDBProgressRepository implements IProgressRepository {
         if (typeof v === "number" && v > 0) result[k] = v;
       }
       cache.recommendedCounts = result;
+    }
+    if (isPlainObject(categoryStages)) {
+      const result: Record<string, CategoryStageRecord> = {};
+      for (const [k, v] of Object.entries(categoryStages as Record<string, unknown>)) {
+        if (
+          isPlainObject(v) &&
+          (v.stage === 0 || v.stage === 1 || v.stage === 2 || v.stage === 3) &&
+          typeof v.lastCompletedAt === "string"
+        ) {
+          result[k] = { stage: v.stage as CategoryStageRecord["stage"], lastCompletedAt: v.lastCompletedAt };
+        }
+      }
+      cache.categoryStages = result;
+    }
+    if (typeof globalRecommendedCount === "number" && globalRecommendedCount > 0) {
+      cache.globalRecommendedCount = globalRecommendedCount;
     }
 
     return cache;
@@ -373,6 +405,24 @@ export class IndexedDBProgressRepository implements IProgressRepository {
     this.persistKey(KEY_RECOMMENDED_COUNTS, counts);
   }
 
+  loadCategoryStages(): Record<string, CategoryStageRecord> {
+    return this.cache.categoryStages;
+  }
+
+  saveCategoryStages(stages: Record<string, CategoryStageRecord>): void {
+    this.cache.categoryStages = stages;
+    this.persistKey(KEY_CATEGORY_STAGES, stages);
+  }
+
+  loadGlobalRecommendedCount(): number {
+    return this.cache.globalRecommendedCount;
+  }
+
+  saveGlobalRecommendedCount(count: number): void {
+    this.cache.globalRecommendedCount = count;
+    this.persistKey(KEY_GLOBAL_RECOMMENDED_COUNT, count);
+  }
+
   exportAllData(): UserDataExport {
     return {
       exportedAt: new Date().toISOString(),
@@ -384,6 +434,8 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       categoryViewMode: this.loadCategoryViewMode(),
       fontSizeLevel: this.loadFontSizeLevel(),
       recommendedCounts: this.loadRecommendedCounts(),
+      categoryStages: this.loadCategoryStages(),
+      globalRecommendedCount: this.loadGlobalRecommendedCount(),
     };
   }
 

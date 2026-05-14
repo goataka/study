@@ -29,6 +29,8 @@ import {
   loadQuestionCountFromDom as loadQuestionCountFromDomSetting,
   loadRecommendedCounts as loadRecommendedCountsSetting,
   saveRecommendedCounts as saveRecommendedCountsSetting,
+  loadGlobalRecommendedCount as loadGlobalRecommendedCountSetting,
+  saveGlobalRecommendedCount as saveGlobalRecommendedCountSetting,
 } from "./quizApp/appSettingsService";
 import {
   openUserNameEdit as openUserNameEditUi,
@@ -42,6 +44,7 @@ import { findFirstUnlearnedCategory } from "./quizApp/firstUnlearnedFinder";
 import { setupAllListeners } from "./quizApp/setupAllListeners";
 import * as D from "./quizApp/delegators";
 import type { QuestionListFilter } from "./quizApp/questionListView";
+import { setStartQuizAction } from "./components/learningStatusActionsStore";
 
 const PANEL_TABS: readonly D.PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 const SUPPORT_FIRST_VISIT_KEY = "study-guide-first-visit-done";
@@ -132,6 +135,8 @@ export class QuizApp {
   selectedUnitContext: { subject: string; categoryId: string; categoryName: string } | null = null;
   /** 総合タブで各教科ごとに表示するおすすめ単元数 */
   subjectRecommendedCounts: Map<string, number> = new Map();
+  /** 全教科共通のおすすめ単元目標数 */
+  globalRecommendedCount: number = 5;
   /** 総合タブの現在アクティブなサマリパネル */
   activeOverallPanel: "learned" | "share" = "learned";
   /** 進度タブで選択中の教科ID */
@@ -205,6 +210,18 @@ export class QuizApp {
     this.applyFirstVisitGuidePreference();
     this.questionCount = loadQuestionCountFromDomSetting(this.questionCount);
     this.subjectRecommendedCounts = loadRecommendedCountsSetting(this.progressRepo);
+    this.globalRecommendedCount = loadGlobalRecommendedCountSetting(this.progressRepo);
+    // 「開始する」ボタンのアクションを登録する
+    setStartQuizAction(() => {
+      // おすすめ一覧の先頭単元を選択してクイズを開始する
+      const goalCount = this.globalRecommendedCount;
+      const units = this.useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2)));
+      if (units.length > 0 && !this.filter.category) {
+        const first = units[0]!;
+        D.selectUnitContext(this, first.subject, first.categoryId, first.categoryName);
+      }
+      void D.startQuiz(this, "random");
+    });
     this.setupEventListeners();
     D.buildSubjectTabs(this);
     D.buildPanelTabs(this);
@@ -227,6 +244,11 @@ export class QuizApp {
   /** おすすめ単元の表示数をリポジトリに保存する */
   saveRecommendedCounts(): void {
     saveRecommendedCountsSetting(this.progressRepo, this.subjectRecommendedCounts);
+  }
+
+  /** 全教科共通のおすすめ単元目標数をリポジトリに保存する */
+  saveGlobalRecommendedCount(): void {
+    saveGlobalRecommendedCountSetting(this.progressRepo, this.globalRecommendedCount);
   }
 
   /**

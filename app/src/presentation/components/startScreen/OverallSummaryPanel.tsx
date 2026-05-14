@@ -1,8 +1,9 @@
 /**
  * 総合タブ専用のサマリパネル（学習状況 / シェア）。
  *
- * 活動日付・教科別ステータス・活動一覧（履歴形式）と、共有用テキスト・URL 編集領域を含む。
- * テキストや URL は既存コントローラ（`shareSummary` 系・履歴ビュー等）が動的に更新する。
+ * 「学習状況」タブには「開始する」ボタンと星表示を配置する。
+ * 教科別ステータス・活動一覧は後方互換のため保持（非表示）。
+ * シェアタブには共有テキスト・URL 編集領域を含む。
  *
  * タブの active 状態と各サブパネルの hidden 表示は `panelTabsStore` を購読して
  * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
@@ -17,6 +18,7 @@ import { panelTab, panelTabs } from "../../styles/panelTabStyles";
 import { shareButton } from "../../styles/shareButtonStyles";
 import { overallStatusContentStore } from "../overallStatusContentStore";
 import { todayActivityContentStore } from "../todayActivityContentStore";
+import { learningStatusContentStore } from "../learningStatusContentStore";
 import { subscribePanelVisibility, getPanelVisibilitySnapshot } from "./panelVisibilityStore";
 
 interface OverallPanelTabButtonProps {
@@ -67,18 +69,23 @@ export function OverallSummaryPanel(): React.JSX.Element {
       </div>
       <div
         id="overallLearnedPanel"
-        className={`${active === "learned" ? "overall-activity-panel flex flex-col flex-1 overflow-y-auto px-4 py-3 gap-2 min-h-0" : "overall-activity-panel hidden"}`}
+        className={`${active === "learned" ? "overall-activity-panel flex flex-col flex-1 overflow-y-auto min-h-0" : "overall-activity-panel hidden"}`}
       >
-        <div className="overall-activity-date-row shrink-0">
+        {/* 開始するボタン＋星表示 */}
+        <LearningStatusSection />
+        {/* 後方互換: 活動日付ラベル（非表示） */}
+        <div className="overall-activity-date-row hidden">
           <span
             id="overallActivityDateLabel"
             className="overall-activity-date text-base font-semibold text-[#24292e]"
           ></span>
         </div>
-        <div id="overallSubjectStatusSummary" className="overall-subject-status-summary flex flex-col gap-1">
+        {/* 教科別学習状況サマリ（非表示）: overallStatusContentStore から描画 */}
+        <div id="overallSubjectStatusSummary" className="hidden">
           <OverallStatusSection />
         </div>
-        <div id="todayActivityContent" className="history-list overall-today-list flex flex-col gap-2.5">
+        {/* 今日の活動（非表示）: todayActivityContentStore から描画 */}
+        <div id="todayActivityContent" className="hidden">
           <TodayActivitySection />
         </div>
       </div>
@@ -124,6 +131,16 @@ export function OverallSummaryPanel(): React.JSX.Element {
       </div>
     </div>
   );
+}
+
+/** 学習状況（開始するボタン＋星表示） — learningStatusContentStore から描画。 */
+function LearningStatusSection(): React.JSX.Element {
+  const node = useSyncExternalStore(
+    learningStatusContentStore.subscribe,
+    learningStatusContentStore.get,
+    learningStatusContentStore.get,
+  );
+  return <>{node}</>;
 }
 
 /** 教科別学習状況サマリ — overallStatusContentStore から描画。 */
