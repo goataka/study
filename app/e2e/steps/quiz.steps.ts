@@ -467,6 +467,11 @@ When("I click the admin manage menu button", async ({ page }) => {
   await page.locator(".admin-menu-btn").filter({ hasText: "更改" }).click();
 });
 
+Then("the admin manage tabs should be visible by default", async ({ page }) => {
+  // 管理タブを開いた直後に更改タブバー（.admin-manage-tabs）が表示されていること（デフォルト表示）
+  await expect(page.locator(".admin-manage-tabs")).toBeVisible();
+});
+
 Then("the admin reset panel should be visible", async ({ page }) => {
   // 「🗑️ 初期化」タブをクリックして初期化コンテンツを表示する
   await page.locator(".admin-manage-tab").filter({ hasText: "初期化" }).click();
