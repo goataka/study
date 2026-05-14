@@ -255,7 +255,7 @@ export function AdminPanelRoot({
       </div>
       {createPortal(
         <div
-          className={`admin-menu-content${activeMenu ? " flex flex-col gap-0 bg-transparent max-h-[calc(100vh-120px)] overflow-y-auto" : " hidden"}`}
+          className={`admin-menu-content${activeMenu ? " flex flex-col gap-0 bg-transparent max-h-[calc(100vh_-_120px)] overflow-y-auto" : " hidden"}`}
         >
           {activeMenu === "manage" ? (
             <>

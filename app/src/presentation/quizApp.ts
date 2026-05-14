@@ -419,16 +419,23 @@ export class QuizApp {
 
   /** URL フラグメントの変更（コンテンツリンクのクリックなど）を受けて SPA 内ナビゲーションを行う。 */
   private handleHashNavigation(): void {
-    const params = getURLParams();
-    const subject = params.get("subject");
-    const category = params.get("category");
-    const panel = params.get("panel");
+    // getURLParams() はクエリパラメータを優先するため、hashchange 経路では
+    // window.location.hash を直接パースして常にハッシュ値を参照する。
+    const hashParams = new URLSearchParams(window.location.hash.slice(1));
+    const subject = hashParams.get("subject");
+    const category = hashParams.get("category");
+    const panel = hashParams.get("panel");
 
     if (!subject) return;
 
+    // parseURLState と同等のバリデーション: 未知の subject / category は無視する。
+    const isKnownSubject = subject === "support" || SUBJECTS.some((s) => s.id === subject);
+    if (!isKnownSubject) return;
+
     this.filter.subject = subject;
     if (category && category !== "all") {
-      this.filter.category = category;
+      const categories = this.useCase.getCategoriesForSubject(subject);
+      this.filter.category = Object.prototype.hasOwnProperty.call(categories, category) ? category : "all";
     } else {
       this.filter.category = "all";
     }
@@ -442,6 +449,9 @@ export class QuizApp {
       this.isPanelTabUserSelected = true;
     }
 
+    // タブのアクティブ状態とカテゴリ一覧を再描画してから画面遷移する。
+    D.selectTabByFilter(this);
+    D.renderCategoryList(this);
     this.showScreen("start");
   }
 

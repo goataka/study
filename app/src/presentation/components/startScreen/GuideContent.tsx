@@ -102,14 +102,15 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
         const href = (anchor as HTMLAnchorElement).getAttribute("href") ?? "";
         let hash: string | null = null;
         if (href.startsWith("#")) {
-          // ハッシュのみのリンク
-          hash = href;
+          // ハッシュのみのリンク: アプリ状態パラメータ（subject=）を含む場合のみ SPA で処理する
+          if (href.includes("subject=")) {
+            hash = href;
+          }
         } else if (href.includes("#")) {
-          // 相対パス + ハッシュ（例: ../../#subject=support&supportMenu=contents）
-          // 同一オリジンへの遷移かどうか確認してからハッシュ部分を SPA で処理する
+          // 相対パス + ハッシュ: 同一オリジンかつアプリ状態ハッシュ（subject=）の場合のみ処理する
           try {
             const resolved = new URL(href, window.location.href);
-            if (resolved.origin === window.location.origin) {
+            if (resolved.origin === window.location.origin && resolved.hash.includes("subject=")) {
               hash = resolved.hash || null;
             }
           } catch {
