@@ -23,7 +23,7 @@ const q3 = makeQuestion("q3", 2);
 
 describe("QuizSession — セッション初期化仕様", () => {
   it("少なくとも1問が必要", () => {
-    expect(() => new QuizSession([])).toThrow("at least one question");
+    expect(() => new QuizSession([])).toThrow("少なくとも1問が必要です");
   });
 
   it("問題リストが正しく設定される", () => {
@@ -47,12 +47,12 @@ describe("QuizSession — 回答仕様", () => {
 
   it("無効な問題インデックスはエラー", () => {
     const session = new QuizSession([q1]);
-    expect(() => session.selectAnswer(5, 0)).toThrow("Invalid question index");
+    expect(() => session.selectAnswer(5, 0)).toThrow("問題インデックスが無効です");
   });
 
   it("無効な選択肢インデックスはエラー", () => {
     const session = new QuizSession([q1]);
-    expect(() => session.selectAnswer(0, 4)).toThrow("Invalid choice index");
+    expect(() => session.selectAnswer(0, 4)).toThrow("選択肢インデックスが無効です");
   });
 });
 
@@ -65,13 +65,13 @@ describe("QuizSession — ナビゲーション仕様", () => {
 
   it("先頭より前には進めない", () => {
     const session = new QuizSession([q1, q2]);
-    expect(() => session.navigate(-1)).toThrow("Cannot navigate to index -1");
+    expect(() => session.navigate(-1)).toThrow("インデックス -1 へは移動できません");
   });
 
   it("末尾より後には進めない", () => {
     const session = new QuizSession([q1, q2]);
     session.navigate(1);
-    expect(() => session.navigate(1)).toThrow("Cannot navigate to index 2");
+    expect(() => session.navigate(1)).toThrow("インデックス 2 へは移動できません");
   });
 });
 
@@ -267,7 +267,7 @@ describe("QuizSession — text-input 問題の回答仕様", () => {
   it("無効な問題インデックスはエラー", () => {
     const q = makeTextInputQuestion("kanji-4");
     const session = new QuizSession([q]);
-    expect(() => session.selectTextAnswer(5, "やま")).toThrow("Invalid question index");
+    expect(() => session.selectTextAnswer(5, "やま")).toThrow("問題インデックスが無効です");
   });
 
   it("text-input 問題は選択肢をシャッフルしない", () => {
@@ -297,9 +297,7 @@ describe("QuizSession — text-input 問題の回答仕様", () => {
 describe("QuizSession — selectTextAnswer ガード仕様", () => {
   it("multiple-choice 問題に selectTextAnswer を呼び出すとエラーになる", () => {
     const session = new QuizSession([q1]);
-    expect(() => session.selectTextAnswer(0, "A")).toThrow(
-      "selectTextAnswer cannot be called on a non-text-input question",
-    );
+    expect(() => session.selectTextAnswer(0, "A")).toThrow("selectTextAnswer は text-input 問題以外には呼び出せません");
   });
 });
 

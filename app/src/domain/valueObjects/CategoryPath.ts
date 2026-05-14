@@ -36,10 +36,10 @@ export class CategoryPath {
   }): CategoryPath {
     const { subject, category, parentCategory, topCategory } = params;
     if (typeof subject !== "string" || subject.length === 0) {
-      throw new Error("CategoryPath.subject must be a non-empty string");
+      throw new Error("CategoryPath.subject は空でない文字列でなければなりません");
     }
     if (typeof category !== "string" || category.length === 0) {
-      throw new Error("CategoryPath.category must be a non-empty string");
+      throw new Error("CategoryPath.category は空でない文字列でなければなりません");
     }
     return new CategoryPath(subject, category, parentCategory, topCategory);
   }

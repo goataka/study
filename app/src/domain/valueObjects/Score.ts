@@ -25,13 +25,13 @@ export class Score {
    */
   static of(correct: number, total: number): Score {
     if (!Number.isInteger(correct) || correct < 0) {
-      throw new Error("Score.correct must be a non-negative integer");
+      throw new Error("Score.correct は非負整数でなければなりません");
     }
     if (!Number.isInteger(total) || total < 0) {
-      throw new Error("Score.total must be a non-negative integer");
+      throw new Error("Score.total は非負整数でなければなりません");
     }
     if (correct > total) {
-      throw new Error("Score.correct must not exceed Score.total");
+      throw new Error("Score.correct は Score.total を超えることができません");
     }
     return new Score(correct, total);
   }

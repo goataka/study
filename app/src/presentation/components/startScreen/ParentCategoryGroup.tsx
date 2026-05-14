@@ -26,8 +26,6 @@ export interface ParentCategoryGroupProps {
   topCatId?: string;
   /** 折りたたみ状態。 */
   collapsed: boolean;
-  /** 全単元学習済みバッジの表示テキスト（例: "✅"）。空文字なら表示しない。 */
-  learnedBadge?: string;
   /** ヘッダー（タイトル行）のアクティベート（クリック / Enter / Space）。 */
   onHeaderActivate?: () => void;
   /** 折りたたみトグルアイコンクリック。 */
@@ -43,7 +41,6 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
     parentCatName,
     topCatId,
     collapsed,
-    learnedBadge = "",
     onHeaderActivate,
     onToggle,
     items,
@@ -101,12 +98,6 @@ export function ParentCategoryGroup(props: ParentCategoryGroupProps): React.JSX.
           className="category-group-header-action flex-1 flex items-center gap-1 border-none bg-transparent p-0 m-0 font-[inherit] text-inherit text-left cursor-pointer"
         >
           <span>{parentCatName}</span>
-          <span
-            className="category-group-learned-badge text-xl leading-none normal-case tracking-normal"
-            aria-hidden="true"
-          >
-            {learnedBadge}
-          </span>
         </button>
       </div>
       {items.map((item) => (

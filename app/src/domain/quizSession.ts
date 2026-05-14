@@ -31,7 +31,7 @@ export class QuizSession {
 
   constructor(questions: Question[]) {
     if (questions.length === 0) {
-      throw new Error("QuizSession requires at least one question");
+      throw new Error("QuizSession には少なくとも1問が必要です");
     }
     // text-input 問題はシャッフルしない（shuffleChoices 内でも早期リターンするが明示的に区別）
     this._questions = questions.map((q) => shuffleChoices(q));
@@ -55,10 +55,10 @@ export class QuizSession {
 
   selectAnswer(questionIndex: number, choiceIndex: number): void {
     if (questionIndex < 0 || questionIndex >= this._questions.length) {
-      throw new Error(`Invalid question index: ${questionIndex}`);
+      throw new Error(`問題インデックスが無効です: ${questionIndex}`);
     }
     if (choiceIndex < 0 || choiceIndex > 3) {
-      throw new Error(`Invalid choice index: ${choiceIndex}`);
+      throw new Error(`選択肢インデックスが無効です: ${choiceIndex}`);
     }
     this._userAnswers.set(questionIndex, choiceIndex);
   }
@@ -70,11 +70,11 @@ export class QuizSession {
    */
   selectTextAnswer(questionIndex: number, text: string): void {
     if (questionIndex < 0 || questionIndex >= this._questions.length) {
-      throw new Error(`Invalid question index: ${questionIndex}`);
+      throw new Error(`問題インデックスが無効です: ${questionIndex}`);
     }
     const question = this._questions[questionIndex]!;
     if ((question.questionType ?? "multiple-choice") !== "text-input") {
-      throw new Error(`selectTextAnswer cannot be called on a non-text-input question (index: ${questionIndex})`);
+      throw new Error(`selectTextAnswer は text-input 問題以外には呼び出せません（インデックス: ${questionIndex}）`);
     }
     this._userTextAnswers.set(questionIndex, text);
     const correctAnswer = question.choices[question.correct] ?? "";
@@ -96,7 +96,7 @@ export class QuizSession {
   navigate(direction: 1 | -1): void {
     const next = this._currentIndex + direction;
     if (next < 0 || next >= this._questions.length) {
-      throw new Error(`Cannot navigate to index ${next}`);
+      throw new Error(`インデックス ${next} へは移動できません`);
     }
     this._currentIndex = next;
   }

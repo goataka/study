@@ -12,19 +12,19 @@ describe("Score — クイズ採点結果 ValueObject 仕様", () => {
   });
 
   it("負の正解数を拒否する", () => {
-    expect(() => Score.of(-1, 5)).toThrow("Score.correct must be a non-negative integer");
+    expect(() => Score.of(-1, 5)).toThrow("Score.correct は非負整数でなければなりません");
   });
 
   it("整数でない正解数を拒否する", () => {
-    expect(() => Score.of(1.5, 5)).toThrow("Score.correct must be a non-negative integer");
+    expect(() => Score.of(1.5, 5)).toThrow("Score.correct は非負整数でなければなりません");
   });
 
   it("負の全問数を拒否する", () => {
-    expect(() => Score.of(0, -1)).toThrow("Score.total must be a non-negative integer");
+    expect(() => Score.of(0, -1)).toThrow("Score.total は非負整数でなければなりません");
   });
 
   it("正解数が全問数を超える場合は拒否する", () => {
-    expect(() => Score.of(6, 5)).toThrow("Score.correct must not exceed Score.total");
+    expect(() => Score.of(6, 5)).toThrow("Score.correct は Score.total を超えることができません");
   });
 
   it("正答率を比率として返す", () => {

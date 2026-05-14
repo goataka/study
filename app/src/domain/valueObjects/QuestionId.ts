@@ -25,7 +25,7 @@ export class QuestionId {
    */
   static from(value: string): QuestionId {
     if (typeof value !== "string" || value.length === 0) {
-      throw new Error("QuestionId must be a non-empty string");
+      throw new Error("QuestionId は空でない文字列でなければなりません");
     }
     return new QuestionId(value);
   }

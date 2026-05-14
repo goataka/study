@@ -125,18 +125,6 @@ describe("ParentCategoryGroup コンポーネント", () => {
     expect(items[1].querySelector(".category-name")?.textContent).toBe("単元2");
   });
 
-  it("learnedBadge が空文字でなければ表示する", () => {
-    const el = render({
-      subject: "math",
-      parentCatId: "p1",
-      parentCatName: "親1",
-      collapsed: false,
-      learnedBadge: "✅",
-      items: [],
-    });
-    expect(el.querySelector(".category-group-learned-badge")?.textContent).toBe("✅");
-  });
-
   it("ヘッダーアクションボタンは <button> なので Enter キーで自動的に click され onHeaderActivate を呼ぶ", () => {
     // jsdom は実際のブラウザのように Enter/Space → click を自動生成しないが、
     // ネイティブ <button> を使うことでブラウザではキーボード操作が標準で動作する。

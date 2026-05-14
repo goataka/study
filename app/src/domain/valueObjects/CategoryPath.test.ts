@@ -15,13 +15,13 @@ describe("CategoryPath — カテゴリ階層 ValueObject 仕様", () => {
 
   it("空 subject を拒否する", () => {
     expect(() => CategoryPath.of({ subject: "", category: "x" })).toThrow(
-      "CategoryPath.subject must be a non-empty string",
+      "CategoryPath.subject は空でない文字列でなければなりません",
     );
   });
 
   it("空 category を拒否する", () => {
     expect(() => CategoryPath.of({ subject: "math", category: "" })).toThrow(
-      "CategoryPath.category must be a non-empty string",
+      "CategoryPath.category は空でない文字列でなければなりません",
     );
   });
 

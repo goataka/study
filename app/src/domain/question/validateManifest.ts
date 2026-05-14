@@ -10,16 +10,16 @@ import type { QuestionsManifest } from "./types";
  */
 export function validateManifest(data: unknown): asserts data is QuestionsManifest {
   if (!data || typeof data !== "object") {
-    throw new Error("Manifest must be an object");
+    throw new Error("マニフェストはオブジェクトでなければなりません");
   }
   const manifest = data as Record<string, unknown>;
   if (typeof manifest.version !== "string") {
-    throw new Error('Manifest must have a "version" string field');
+    throw new Error('マニフェストには "version" 文字列フィールドが必要です');
   }
   if (!manifest.subjects || typeof manifest.subjects !== "object") {
-    throw new Error('Manifest must have a "subjects" object');
+    throw new Error('マニフェストには "subjects" オブジェクトが必要です');
   }
   if (!Array.isArray(manifest.questionFiles)) {
-    throw new Error('Manifest must have a "questionFiles" array');
+    throw new Error('マニフェストには "questionFiles" 配列が必要です');
   }
 }

@@ -20,7 +20,7 @@ export function validateGuideUrl(value: string, fieldName: string): void {
   const isRelative = isCurrentRelative || isParentRelative;
   const isAbsolute = /^https?:\/\//i.test(value);
   if (!isRelative && !isAbsolute) {
-    throw new Error(`"${fieldName}" must be a relative path starting with "./" or "../" or an http/https URL`);
+    throw new Error(`"${fieldName}" は "./" または "../" で始まる相対パスか http/https URL でなければなりません`);
   }
   // パストラバーサル防止：URL デコード後にさらなる .. が含まれないことを確認
   if (isRelative) {
@@ -30,11 +30,11 @@ export function validateGuideUrl(value: string, fieldName: string): void {
     } catch {
       // 不正なパーセントエンコード（例: "%" 単独や "%ZZ"）は、デコード後の `..` 検査をバイパスして
       // パストラバーサルを成立させる余地を生むため、その時点で拒否する。
-      throw new Error(`"${fieldName}" must be a valid URL-encoded string`);
+      throw new Error(`"${fieldName}" は有効な URLエンコード文字列でなければなりません`);
     }
     const prefix = isParentRelative ? "../" : "./";
     if (decoded.slice(prefix.length).includes("..")) {
-      throw new Error(`"${fieldName}" must not contain path traversal sequences`);
+      throw new Error(`"${fieldName}" にはパストラバーサルシーケンスを含めることができません`);
     }
   }
 }
