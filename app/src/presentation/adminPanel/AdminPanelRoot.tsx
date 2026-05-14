@@ -229,38 +229,37 @@ export function AdminPanelRoot({
     <>
       <div className="admin-menu-bar flex flex-col items-stretch gap-0.5">
         <span className="admin-menu-parent-label inline-flex items-center rounded-sm bg-[#0366d6] px-2 py-1 text-sm font-bold text-white shrink-0">
-          🛢️ データ
+          🛢️ データ管理
         </span>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "manage" ? " active" : ""}`}
           type="button"
           onClick={() => switchMenu("manage")}
         >
-          ✅ 更改
+          ✅ データ更改
         </button>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "view" ? " active" : ""}`}
           type="button"
           onClick={() => switchMenu("view")}
         >
-          📖 参照
+          📖 データ参照
         </button>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "spec" ? " active" : ""}`}
           type="button"
           onClick={() => switchMenu("spec")}
         >
-          🧩 仕様
+          🧩 データ仕様
         </button>
       </div>
       {createPortal(
         <div
-          className={`admin-menu-content${activeMenu ? " flex flex-col gap-3 p-4 bg-transparent max-h-[80vh] overflow-y-auto" : " hidden"}`}
+          className={`admin-menu-content${activeMenu ? " flex flex-col gap-0 bg-transparent max-h-[calc(100vh-120px)] overflow-y-auto" : " hidden"}`}
         >
           {activeMenu === "manage" ? (
             <>
-              <div className="admin-manage-close-row flex items-center justify-between mb-1">
-                <span className="admin-data-header-title text-base font-bold text-[#24292e]">🛢️ データ管理</span>
+              <div className="admin-manage-close-row flex items-center justify-end px-4 pt-4 pb-1">
                 <button
                   className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-transparent text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
                   type="button"
@@ -296,7 +295,7 @@ export function AdminPanelRoot({
                   🗑️ 初期化
                 </button>
               </div>
-              <div className="admin-manage-tab-panel flex flex-col gap-3">
+              <div className="admin-manage-tab-panel flex flex-col gap-3 p-4">
                 {manageTab === "import" ? (
                   <div className="admin-reset-section flex flex-col gap-2">
                     <p className="admin-reset-desc text-sm text-[#586069]">
@@ -362,8 +361,7 @@ export function AdminPanelRoot({
           ) : null}
           {activeMenu === "view" ? (
             <>
-              <div className="admin-manage-close-row flex items-center justify-between mb-1">
-                <span className="admin-data-header-title text-base font-bold text-[#24292e]">📊 データ参照</span>
+              <div className="admin-manage-close-row flex items-center justify-end px-4 pt-4 pb-1">
                 <button
                   className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-transparent text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
                   type="button"
@@ -385,7 +383,7 @@ export function AdminPanelRoot({
                   </button>
                 ))}
               </div>
-              <div className="admin-data-tab-content flex flex-col gap-2">
+              <div className="admin-data-tab-content flex flex-col gap-2 p-4">
                 <div className="admin-data-btn-bar flex gap-2">
                   <button
                     className={`admin-data-action-btn ${actionBtnBase} bg-[#f6f8fa] text-[#24292e] border border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]`}
@@ -403,7 +401,7 @@ export function AdminPanelRoot({
             </>
           ) : null}
           {activeMenu === "spec" ? (
-            <div className="support-guide-frame flex-1 overflow-y-auto rounded-md bg-white p-3 guide-frame">
+            <div className="support-guide-frame flex-1 overflow-y-auto rounded-md bg-transparent p-3 guide-frame">
               <GuideContent guideUrl="../support/technical-reference/" />
             </div>
           ) : null}

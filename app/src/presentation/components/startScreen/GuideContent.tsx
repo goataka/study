@@ -90,5 +90,37 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
   }
 
   // sanitizeGuideHtml は信頼できるサニタイザとして XSS リスク要素を除去済み。
-  return <div className={guideContent()} dangerouslySetInnerHTML={{ __html: state.html }} />;
+  // ガイド内のリンクをクリックした際に、アプリ内ハッシュ（#subject=...&category=... 等）へ
+  // 遷移するリンクはページリロードを起こさず SPA 内ナビゲーションで処理する。
+  return (
+    <div
+      className={guideContent()}
+      dangerouslySetInnerHTML={{ __html: state.html }}
+      onClick={(e) => {
+        const anchor = (e.target as HTMLElement).closest("a[href]");
+        if (!anchor) return;
+        const href = (anchor as HTMLAnchorElement).getAttribute("href") ?? "";
+        let hash: string | null = null;
+        if (href.startsWith("#")) {
+          // ハッシュのみのリンク
+          hash = href;
+        } else if (href.includes("#")) {
+          // 相対パス + ハッシュ（例: ../../#subject=support&supportMenu=contents）
+          // 同一オリジンへの遷移かどうか確認してからハッシュ部分を SPA で処理する
+          try {
+            const resolved = new URL(href, window.location.href);
+            if (resolved.origin === window.location.origin) {
+              hash = resolved.hash || null;
+            }
+          } catch {
+            // 解析失敗はデフォルト動作に任せる
+          }
+        }
+        if (hash) {
+          e.preventDefault();
+          window.location.hash = hash.startsWith("#") ? hash.slice(1) : hash;
+        }
+      }}
+    />
+  );
 }

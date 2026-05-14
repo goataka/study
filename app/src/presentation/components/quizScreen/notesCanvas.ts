@@ -22,11 +22,16 @@ export class NotesCanvas {
   // ─── 初期化 ────────────────────────────────────────────────────────────────
 
   public initialize(canvasId: string): void {
-    this.canvas = document.getElementById(canvasId) as HTMLCanvasElement | null;
-    if (!this.canvas) {
+    const newCanvas = document.getElementById(canvasId) as HTMLCanvasElement | null;
+    if (!newCanvas) {
       console.warn(`指定したIDのcanvas要素が見つかりません: ${canvasId}`);
       return;
     }
+
+    // 同じ canvas 要素への再初期化（クイズ画面表示後の寸法再計算など）は
+    // イベントリスナーを重複登録しないよう setupCanvas のみ呼ぶ。
+    const isReinit = this.canvas === newCanvas;
+    this.canvas = newCanvas;
 
     this.ctx = this.canvas.getContext("2d");
     if (!this.ctx) {
@@ -35,7 +40,9 @@ export class NotesCanvas {
     }
 
     this.setupCanvas();
-    this.attachEventListeners();
+    if (!isReinit) {
+      this.attachEventListeners();
+    }
   }
 
   private setupCanvas(): void {

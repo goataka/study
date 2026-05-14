@@ -408,6 +408,41 @@ export class QuizApp {
       onPopState: () => this.confirmNavigateToStart(),
       onMobileBack: () => D.navigateBackToList(this),
     });
+
+    // コンテンツパネルの <a href="#subject=...&category=..."> リンクを
+    // SPA 内ナビゲーションとして処理するために hashchange を購読する。
+    // syncURLFragment は replaceState を使うので hashchange は発火しない（無限ループなし）。
+    window.addEventListener("hashchange", () => {
+      this.handleHashNavigation();
+    });
+  }
+
+  /** URL フラグメントの変更（コンテンツリンクのクリックなど）を受けて SPA 内ナビゲーションを行う。 */
+  private handleHashNavigation(): void {
+    const params = getURLParams();
+    const subject = params.get("subject");
+    const category = params.get("category");
+    const panel = params.get("panel");
+
+    if (!subject) return;
+
+    this.filter.subject = subject;
+    if (category && category !== "all") {
+      this.filter.category = category;
+    } else {
+      this.filter.category = "all";
+    }
+    this.filter.parentCategory = undefined;
+    this.selectedTopCategoryId = null;
+    this.selectedUnitContext = null;
+
+    const VALID_PANELS: D.PanelTab[] = ["quiz", "guide", "history", "questions"];
+    if (panel && VALID_PANELS.includes(panel as D.PanelTab)) {
+      this.activePanelTab = panel as D.PanelTab;
+      this.isPanelTabUserSelected = true;
+    }
+
+    this.showScreen("start");
   }
 
   // ─── 画面切替・ナビゲーション ──────────────────────────────────────────────

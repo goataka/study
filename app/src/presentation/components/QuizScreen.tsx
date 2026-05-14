@@ -43,7 +43,15 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
       className={[
         "screen",
         currentScreen !== "quiz" ? "hidden" : "",
-        "flex flex-1 flex-col overflow-y-auto min-h-0 bg-white px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
+        // 折り目をヘッダー上端まで延ばすために relative を追加。
+        // before: 疑似要素で全高にわたる縦線を描画する（header 含む）。
+        // 0.4 は左カラム比率 1.2 / (1.2 + 1.8) に対応。px-10（40px）分のオフセットを加算する。
+        "relative flex flex-1 flex-col overflow-y-auto min-h-0 bg-white px-10 pb-10 shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
+        "before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-3",
+        "before:left-[calc(40px+(100%-92px)*0.4)]",
+        "before:pointer-events-none before:z-0",
+        "before:bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]",
+        "max-[900px]:before:hidden",
       ].join(" ")}
     >
       <StartHeader />
@@ -54,13 +62,6 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           // グリッドレイアウト（左：問題エリア 1.2fr、中：折り目 12px、右：メモエリア 1.8fr）
           "relative flex-1 grid items-stretch gap-0",
           "grid-cols-[1.2fr_12px_1.8fr] max-[900px]:grid-cols-1",
-          // 折り目：中央の 12px カラムに影付きグラデーション縦線を before: で描画
-          // 0.4 は左カラム比率 1.2 / (1.2 + 1.8) に対応
-          "before:content-[''] before:absolute before:top-0 before:bottom-0 before:w-3",
-          "before:left-[calc((100%_-_12px)_*_0.4)]",
-          "before:pointer-events-none",
-          "before:bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]",
-          "max-[900px]:before:hidden",
         ].join(" ")}
       >
         <div className="quiz-main-col notebook-lines bg-white col-start-1 min-w-0 p-3 max-[900px]:col-start-1">
