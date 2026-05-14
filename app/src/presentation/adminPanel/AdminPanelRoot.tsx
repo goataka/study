@@ -224,7 +224,6 @@ export function AdminPanelRoot({
   return (
     <>
       <PanelMenuList
-        groupLabel="🛢️ データ管理"
         items={adminMenuItems}
         activeId={activeMenu ?? ""}
         onSelect={(id) => showMenu(id as Exclude<ActiveMenu, null>)}

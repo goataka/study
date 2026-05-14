@@ -8,7 +8,6 @@
 import type { AvatarController } from "../components/tabsUserRow/avatarController";
 import { setQuizSettings } from "../components/startScreen/quizSettingsStore";
 import { getScreenNameFromHistoryState, getScreenSnapshot, setCurrentScreen } from "../components/screenStore";
-import { setProgressDetailPanelHidden } from "../components/startScreen/panelVisibilityStore";
 
 const fontSizeListenerBoundContainers = new WeakSet<HTMLElement>();
 
@@ -246,14 +245,6 @@ export function setupHistoryNavigationListeners(callbacks: HistoryNavigationCall
   document.getElementById("mobileBackBtn")?.addEventListener("click", callbacks.onMobileBack);
 }
 
-/** 進度詳細パネルのモバイル用クローズボタンにハンドラーを登録する。 */
-export function setupProgressDetailPanelListeners(): void {
-  document.getElementById("progressDetailCloseBtn")?.addEventListener("click", () => {
-    setProgressDetailPanelHidden(true);
-    document.getElementById("progressDetailPanel")?.classList.add("hidden");
-  });
-}
-
 /** クイズ進行ボタン（開始・前後・採点・キャンセルなど）のイベント。 */
 export interface QuizFlowCallbacks {
   onStartRandom: () => void;
@@ -345,20 +336,9 @@ export function setupNotesPenSelectListeners(callbacks: NotesPenSelectCallbacks)
 export interface KanjiCanvasCallbacks {
   onDeleteLast: () => void;
   onErase: () => void;
-  onApplyToggleBtnState: (btn: HTMLElement, expanded: boolean) => void;
 }
 
 export function setupKanjiCanvasListeners(callbacks: KanjiCanvasCallbacks): void {
   document.getElementById("kanjiDeleteLastBtn")?.addEventListener("click", callbacks.onDeleteLast);
   document.getElementById("kanjiEraseBtn")?.addEventListener("click", callbacks.onErase);
-
-  // KanjiCanvas 折りたたみトグルボタン
-  document.getElementById("kanjiToggleBtn")?.addEventListener("click", () => {
-    const body = document.getElementById("kanjiInputBody");
-    const btn = document.getElementById("kanjiToggleBtn");
-    if (!body || !btn) return;
-    const isExpanded = btn.getAttribute("aria-expanded") === "true";
-    body.classList.toggle("hidden", isExpanded);
-    callbacks.onApplyToggleBtnState(btn, !isExpanded);
-  });
 }
