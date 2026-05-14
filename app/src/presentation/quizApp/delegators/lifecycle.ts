@@ -6,7 +6,7 @@ import type { QuizApp } from "../../quizApp";
 import type { Question } from "../../../domain/question";
 import type { QuizSession } from "../../../domain/quizSession";
 import type { QuizMode, AnswerResult } from "../../../application/quizUseCase";
-import type { KanjiCanvasController } from "../../kanjiCanvasController";
+import type { KanjiCanvasController } from "../../components/quizScreen/kanjiCanvasController";
 import { updateSelectedUnitInfo as updateSelectedUnitInfoFn } from "../selectedUnitInfoUpdater";
 import { updateGuidePanelContentByIds as updateGuidePanelContentByIdsFn } from "../guidePanelUpdater";
 import { loadGuideContent as loadGuideContentFn } from "../guideLoader";

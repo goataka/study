@@ -5,7 +5,7 @@
  * QuizApp 本体は単一の関数呼び出しで全リスナーを登録できるようにする。
  */
 
-import type { AvatarController } from "../avatarController";
+import type { AvatarController } from "../components/tabsUserRow/avatarController";
 import type { FontSizeLevel } from "../components/fontSizeStore";
 import type { QuestionListFilter } from "./questionListView";
 import type { ProgressStatusFilter } from "./urlStateService";

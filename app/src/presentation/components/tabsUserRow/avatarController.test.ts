@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import type { IProgressRepository } from "../application/ports";
+import type { IProgressRepository } from "../../../application/ports";
 import { AvatarController } from "./avatarController";
 
 describe("AvatarController コントローラー", () => {

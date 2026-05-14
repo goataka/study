@@ -9,7 +9,7 @@
  * `07-avatar-dialog.css` に残している。
  */
 
-import { dialogButton } from "../styles/dialogButtonStyles";
+import { dialogButton } from "../../styles/dialogButtonStyles";
 
 export function AvatarCropDialog(): React.JSX.Element {
   return (

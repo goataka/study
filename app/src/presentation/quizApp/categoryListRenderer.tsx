@@ -10,7 +10,7 @@
 import * as React from "react";
 import type { QuizUseCase } from "../../application/quizUseCase";
 import { CategoryItem, type CategoryItemProps } from "../components/CategoryItem";
-import { ParentCategoryGroup, type ParentCategoryGroupProps } from "../components/ParentCategoryGroup";
+import { ParentCategoryGroup, type ParentCategoryGroupProps } from "../components/startScreen/ParentCategoryGroup";
 import { calcDualProgressPct } from "../uiHelpers";
 import {
   categoryStatsKey,

@@ -24,7 +24,7 @@ export { StubProgressRepository };
 import { subjectTabsContentStore } from "../components/subjectTabsContentStore";
 import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
 import { categoryListContentStore } from "../components/categoryListContentStore";
-import { selectedUnitInfoContentStore } from "../components/selectedUnitInfoContentStore";
+import { selectedUnitInfoContentStore } from "../components/startScreen/selectedUnitInfoContentStore";
 import { supportContentStore } from "../components/supportContentStore";
 import { choicesContentStore } from "../components/choicesContentStore";
 

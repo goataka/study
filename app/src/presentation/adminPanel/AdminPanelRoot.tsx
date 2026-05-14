@@ -8,7 +8,7 @@ import {
   validateImportPayload,
   type AdminSectionKey,
 } from "../adminPanelLogic";
-import { GuideContent } from "../components/GuideContent";
+import { GuideContent } from "../components/startScreen/GuideContent";
 import { panelTab, panelTabs } from "../styles/panelTabStyles";
 import type { AdminPanelDeps } from "./types";
 

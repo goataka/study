@@ -6,7 +6,7 @@
  */
 
 import type { QuizUseCase, QuizFilter } from "../../application/quizUseCase";
-import { buildCategoryItem } from "../categoryItemView";
+import { buildCategoryItem } from "../components/startScreen/categoryItemView";
 
 /** カテゴリ／親カテゴリ選択時に呼ばれるコールバック群。 */
 export interface CategorySelectionCallbacks {

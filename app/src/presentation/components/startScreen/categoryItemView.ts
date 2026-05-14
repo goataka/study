@@ -5,7 +5,7 @@
  * クリック/キーボードハンドラーは QuizApp 側で attach する。
  */
 
-import { gradeColorClass, renderBacktickText } from "./uiHelpers";
+import { gradeColorClass, renderBacktickText } from "../../uiHelpers";
 
 /**
  * カテゴリアイテム生成に必要な情報。

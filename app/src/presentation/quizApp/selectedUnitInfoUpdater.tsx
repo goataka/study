@@ -8,13 +8,13 @@
 
 import * as React from "react";
 import type { QuizUseCase, QuizFilter } from "../../application/quizUseCase";
-import { SelectedUnitInfoPanel } from "../components/SelectedUnitInfoPanel";
+import { SelectedUnitInfoPanel } from "../components/startScreen/SelectedUnitInfoPanel";
 import {
   buildSingleUnitViewModel,
   buildGradeGroupViewModel,
   buildCategoryOrTopViewModel,
 } from "./selectedUnitInfoViewModel";
-import { selectedUnitInfoContentStore } from "../components/selectedUnitInfoContentStore";
+import { selectedUnitInfoContentStore } from "../components/startScreen/selectedUnitInfoContentStore";
 
 /** 選択中の単元コンテキスト（総合タブから単元選択中の場合に使われる）。 */
 export interface SelectedUnitContext {

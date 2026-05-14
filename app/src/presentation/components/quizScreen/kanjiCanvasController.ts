@@ -14,7 +14,7 @@
  * 認識結果から候補をふるい分ける純粋ロジックは `uiHelpers` の文字種判定関数を利用する。
  */
 
-import { isHiraganaOnly, isLatinOnly, loadScript, normalizeKanaText } from "./uiHelpers";
+import { isHiraganaOnly, isLatinOnly, loadScript, normalizeKanaText } from "../../uiHelpers";
 
 export interface KanjiCanvasControllerOptions {
   /** 現在の問題の正解文字列を返す（候補フィルタ用）。null/undefined ならフィルタ無効。 */

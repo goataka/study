@@ -14,9 +14,9 @@
  */
 
 import * as React from "react";
-import { isExternalGuideUrl, sanitizeGuideHtml } from "../quizApp/sanitizeGuideHtml";
-import { guideContent } from "../styles/guideContentStyles";
-import { resolveGuideFetchUrl } from "../quizApp/guideFetchUrl";
+import { isExternalGuideUrl, sanitizeGuideHtml } from "../../quizApp/sanitizeGuideHtml";
+import { guideContent } from "../../styles/guideContentStyles";
+import { resolveGuideFetchUrl } from "../../quizApp/guideFetchUrl";
 
 export interface GuideContentProps {
   /** 解説ページの URL（同一オリジン HTML または外部 URL）。null の場合は何も表示しない。 */

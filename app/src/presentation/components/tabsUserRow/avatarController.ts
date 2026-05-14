@@ -7,7 +7,7 @@
  * - presentation 層に属し、IProgressRepository を経由してのみ永続化する。
  */
 
-import type { IProgressRepository } from "../application/ports";
+import type { IProgressRepository } from "../../../application/ports";
 import {
   clampZoom,
   nextCropOnDrag,

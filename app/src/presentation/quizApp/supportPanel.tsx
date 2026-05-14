@@ -12,7 +12,7 @@
 import { createElement, useSyncExternalStore, useState } from "react";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { supportContentStore } from "../components/supportContentStore";
-import { GuideContent } from "../components/GuideContent";
+import { GuideContent } from "../components/startScreen/GuideContent";
 import { panelTab, panelTabs } from "../styles/panelTabStyles";
 import { getURLParams } from "./urlStateService";
 import type { QuizUseCase } from "../../application/quizUseCase";

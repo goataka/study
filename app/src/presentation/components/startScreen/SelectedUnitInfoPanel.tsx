@@ -9,7 +9,7 @@
  */
 
 import * as React from "react";
-import { gradeColorClass, calcDualProgressPct, parseBacktickText } from "../uiHelpers";
+import { gradeColorClass, calcDualProgressPct, parseBacktickText } from "../../uiHelpers";
 
 /** 単元詳細表示に必要なデータ（`buildSelectedUnitInfoBody` と同型）。 */
 export interface SelectedUnitInfoData {

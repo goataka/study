@@ -7,10 +7,10 @@
 import { QuizUseCase } from "../application/quizUseCase";
 import type { QuizMode, QuizFilter, AnswerResult, QuizRecord, QuizSession, Question } from "../application/quizUseCase";
 import type { IProgressRepository, IQuestionRepository } from "../application/ports";
-import { NotesCanvas } from "./notesCanvas";
-import { KanjiCanvasController } from "./kanjiCanvasController";
-import { NotesController } from "./notesController";
-import { AvatarController } from "./avatarController";
+import { NotesCanvas } from "./components/quizScreen/notesCanvas";
+import { KanjiCanvasController } from "./components/quizScreen/kanjiCanvasController";
+import { NotesController } from "./components/quizScreen/notesController";
+import { AvatarController } from "./components/tabsUserRow/avatarController";
 
 import { SUBJECTS, currentDateString } from "./uiHelpers";
 import { openConfirmDialog } from "./components/confirmDialogStore";

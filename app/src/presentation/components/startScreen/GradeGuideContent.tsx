@@ -7,7 +7,7 @@
  */
 
 import * as React from "react";
-import { guideContent } from "../styles/guideContentStyles";
+import { guideContent } from "../../styles/guideContentStyles";
 
 /** 1 単元分の表示エントリ。 */
 export interface GradeGuideEntry {
