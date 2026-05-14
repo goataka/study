@@ -138,7 +138,7 @@ jobs:
 
       - name: 更新されたスナップショットをPRコメントで共有
         if: steps.snapshot-update.outputs.snapshot_updated == 'true'
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         env:
           SNAPSHOT_FILES: ${{ steps.snapshot-update.outputs.snapshot_files }}
           MAX_PREVIEW_COUNT: ${{ env.MAX_PREVIEW_COUNT }}
@@ -273,7 +273,7 @@ jobs:
           token: ${{ secrets.COPILOT_CLASSIC || github.token }}
 
       - name: Node.js のセットアップ
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
 
