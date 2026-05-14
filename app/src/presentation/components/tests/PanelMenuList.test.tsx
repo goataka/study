@@ -26,7 +26,7 @@ describe("PanelMenuList", () => {
 
   it("グループラベルを省略できる", () => {
     render(<PanelMenuList items={ITEMS} activeId="item1" onSelect={() => {}} />);
-    expect(screen.queryByRole("heading")).toBeNull();
+    expect(document.querySelector(".panel-menu-group-label")).toBeNull();
   });
 
   it("アクティブなアイテムに aria-current=page を付与する", () => {

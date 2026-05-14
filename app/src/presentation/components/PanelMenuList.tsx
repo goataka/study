@@ -1,7 +1,7 @@
 /**
  * 左列メニューリスト共通コンポーネント。
  *
- * ガイドタブ（SupportMenuList）と管理タブ（AdminPanelRoot の admin-menu-bar）の
+ * ガイドタブ（SupportMenuList）と管理タブ（AdminPanelRoot の左メニュー）の
  * 両方で同じ仕様・スタイルのメニューリストを提供する。
  *
  * - `groupLabel` を指定するとセクション見出しラベルを表示する（管理タブ用）

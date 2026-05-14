@@ -25,7 +25,6 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
     showKanjiInput ? "hidden" : "",
   ].join(" ");
   const notesCanvasClass = [
-    "notebook-lines",
     "min-h-[400px]",
     "w-full",
     "flex-1",
