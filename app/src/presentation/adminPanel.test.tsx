@@ -60,9 +60,9 @@ describe("管理パネル描画", () => {
 
     renderAdminContent(categoryList, deps);
 
-    const manageBtn = Array.from(
-      categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
-    ).find((btn) => btn.textContent?.includes("更改")) as HTMLButtonElement;
+    const manageBtn = Array.from(categoryList.querySelectorAll<HTMLButtonElement>(".panel-menu-btn")).find((btn) =>
+      btn.textContent?.includes("更改"),
+    ) as HTMLButtonElement;
     expect(manageBtn).toBeTruthy();
     expect(manageBtn.textContent).toContain("更改");
 
@@ -88,9 +88,9 @@ describe("管理パネル描画", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(adminContent.querySelector(".admin-manage-tabs")).toBeTruthy();
 
-    const manageBtn = Array.from(
-      categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
-    ).find((btn) => btn.textContent?.includes("更改")) as HTMLButtonElement;
+    const manageBtn = Array.from(categoryList.querySelectorAll<HTMLButtonElement>(".panel-menu-btn")).find((btn) =>
+      btn.textContent?.includes("更改"),
+    ) as HTMLButtonElement;
     manageBtn.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
     // 再クリックしてもコンテンツは閉じない
@@ -103,9 +103,9 @@ describe("管理パネル描画", () => {
 
     renderAdminContent(categoryList, deps);
 
-    const specBtn = Array.from(
-      categoryList.querySelectorAll<HTMLButtonElement>(".admin-menu-btn.admin-menu-child"),
-    ).find((btn) => btn.textContent?.includes("仕様"));
+    const specBtn = Array.from(categoryList.querySelectorAll<HTMLButtonElement>(".panel-menu-btn")).find((btn) =>
+      btn.textContent?.includes("仕様"),
+    );
     expect(specBtn).toBeTruthy();
   });
 });

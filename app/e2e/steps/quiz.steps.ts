@@ -464,7 +464,7 @@ Then("学習済みの単元が単元一覧に表示される", async ({ page }) 
 
 When("管理メニューボタンをクリックする", async ({ page }) => {
   // 管理メニューの「更改」ボタンをクリックしてデータ管理セクションを開く
-  await page.locator(".admin-menu-btn").filter({ hasText: "更改" }).click();
+  await page.locator(".panel-menu-btn").filter({ hasText: "更改" }).click();
 });
 
 Then("管理タブコンテンツがデフォルトで表示される", async ({ page }) => {

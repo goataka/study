@@ -36,7 +36,7 @@ export function KanjiInputArea({ showKanjiInput }: KanjiInputAreaProps): React.J
         <div className="inline-flex shrink-0 overflow-hidden rounded-md border-2 border-solid border-[#e1e4e8]">
           <canvas
             id="kanjiCanvas"
-            className="kanji-canvas block h-[400px] w-[400px] shrink-0 cursor-crosshair touch-none notebook-lines bg-white"
+            className="kanji-canvas block h-[400px] w-[400px] shrink-0 cursor-crosshair touch-none bg-transparent"
             width="400"
             height="400"
             data-stroke-numbers="false"

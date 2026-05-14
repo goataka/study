@@ -13,6 +13,7 @@ import { createElement, useSyncExternalStore, useState } from "react";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { supportContentStore } from "../components/supportContentStore";
 import { GuideContent } from "../components/startScreen/GuideContent";
+import { PanelMenuList } from "../components/PanelMenuList";
 import { panelTab, panelTabs } from "../styles/panelTabStyles";
 import { getURLParams } from "./urlStateService";
 import type { QuizUseCase } from "../../application/quizUseCase";
@@ -216,36 +217,19 @@ export const supportMenuStore = {
 
 /**
  * サポートメニューリスト（左列）。
+ * PanelMenuList コンポーネントを使用して管理タブの左メニューと仕様を共通化する。
  */
 export function SupportMenuList(): React.JSX.Element {
   const activeMenuId = useSyncExternalStore(supportMenuStore.subscribe, supportMenuStore.get, supportMenuStore.get);
 
   return (
-    <div className="support-menu-list flex flex-col p-2" data-testid="support-menu-list">
-      <nav aria-label="サポートメニュー">
-        <ul className="space-y-1">
-          {SUPPORT_MENU_ITEMS.map((item) => {
-            const isActive = item.id === activeMenuId;
-            return (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  className={[
-                    "w-full rounded-md px-3 py-2 text-left text-sm",
-                    isActive ? "bg-[#e8f0ff] font-semibold text-[#0366d6]" : "text-[#24292e] hover:bg-[#f6f8fa]",
-                  ].join(" ")}
-                  aria-current={isActive ? "page" : undefined}
-                  onClick={() => {
-                    supportMenuStore.set(item.id);
-                  }}
-                >
-                  {item.label}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+    <div data-testid="support-menu-list">
+      <PanelMenuList
+        items={SUPPORT_MENU_ITEMS}
+        activeId={activeMenuId}
+        onSelect={(id) => supportMenuStore.set(id as SupportMenuId)}
+        ariaLabel="サポートメニュー"
+      />
     </div>
   );
 }
@@ -417,20 +401,7 @@ function SupportDynamicContentsDisplay(): React.JSX.Element {
       <div className="support-contents-body flex-1 overflow-y-auto px-4 py-3">
         {subject && (
           <>
-            {/* トップカテゴリなしのフラット単元 */}
-            {subject.flatUnits.length > 0 && (
-              <ContentUnitsTable units={subject.flatUnits} subjectId={subject.subjectId} />
-            )}
-            {/* トップカテゴリなし・親カテゴリありのグループ（例: 読解・語彙） */}
-            {subject.orphanParents.map((parent) => (
-              <section key={parent.parentId} className="mb-4">
-                <h2 className="text-base font-bold text-[#24292e] mt-4 mb-2 border-b border-[#e1e4e8] pb-1">
-                  {parent.parentName}
-                </h2>
-                <ContentUnitsTable units={parent.units} subjectId={subject.subjectId} />
-              </section>
-            ))}
-            {/* トップカテゴリ → 親カテゴリ → 単元 */}
+            {/* トップカテゴリ → 親カテゴリ → 単元（単元一覧と同じ順序） */}
             {subject.topCategories.map((top) => (
               <section key={top.topId} className="mb-4">
                 <h2 className="text-base font-bold text-[#24292e] mt-4 mb-2 border-b border-[#e1e4e8] pb-1">
@@ -447,6 +418,19 @@ function SupportDynamicContentsDisplay(): React.JSX.Element {
                 {top.flatUnits.length > 0 && <ContentUnitsTable units={top.flatUnits} subjectId={subject.subjectId} />}
               </section>
             ))}
+            {/* トップカテゴリなし・親カテゴリありのグループ（例: 語彙・読解） */}
+            {subject.orphanParents.map((parent) => (
+              <section key={parent.parentId} className="mb-4">
+                <h2 className="text-base font-bold text-[#24292e] mt-4 mb-2 border-b border-[#e1e4e8] pb-1">
+                  {parent.parentName}
+                </h2>
+                <ContentUnitsTable units={parent.units} subjectId={subject.subjectId} />
+              </section>
+            ))}
+            {/* トップカテゴリなし・親カテゴリなしのフラット単元 */}
+            {subject.flatUnits.length > 0 && (
+              <ContentUnitsTable units={subject.flatUnits} subjectId={subject.subjectId} />
+            )}
           </>
         )}
       </div>
