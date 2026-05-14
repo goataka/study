@@ -35,7 +35,8 @@ export const subjectTab = cva(
     // これにより、タブ行の高さを変えずにアクティブタブの拡張部分が下のコンテンツ（StartScreen header）に
     // オーバーラップして視覚的に接続する
     // items-start（TabsUserRow 側）と合わせることで全タブの上端位置はそろったまま
-    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110 [&.active]:pb-[40px] [&.active]:-mb-[40px] [&.active]:z-10",
+    // [&.active]:border-b で延伸部分の下端に枠線を復活させる（border-b-0 を上書き）
+    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110 [&.active]:pb-[40px] [&.active]:-mb-[40px] [&.active]:z-10 [&.active]:border-b",
   ].join(" "),
   {
     variants: {

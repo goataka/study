@@ -9,6 +9,7 @@ import {
   type AdminSectionKey,
 } from "../adminPanelLogic";
 import { GuideContent } from "../components/startScreen/GuideContent";
+import { PanelMenuList } from "../components/PanelMenuList";
 import { panelTab, panelTabs } from "../styles/panelTabStyles";
 import type { AdminPanelDeps } from "./types";
 
@@ -211,40 +212,24 @@ export function AdminPanelRoot({
   const selectedViewSection = sections[viewTabIndex];
   const viewJsonText = selectedViewSection ? JSON.stringify(selectedViewSection.content, null, 2) : "";
 
-  const menuBtnBase =
-    "w-full rounded-md px-3 py-2 text-left text-sm cursor-pointer transition-[background,color] duration-150 font-[inherit]";
-  const menuBtnChild = `admin-menu-btn admin-menu-child ${menuBtnBase} text-[#24292e] hover:bg-[#f6f8fa] [&.active]:bg-[#e8f0ff] [&.active]:font-semibold [&.active]:text-[#0366d6]`;
   const actionBtnBase =
     "self-start px-3 py-1.5 text-sm font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
 
+  const adminMenuItems = [
+    { id: "manage" as const, label: "✅ データ更改" },
+    { id: "view" as const, label: "📖 データ参照" },
+    { id: "spec" as const, label: "🧩 データ仕様" },
+  ];
+
   return (
     <>
-      <div className="admin-menu-bar flex flex-col items-stretch gap-0.5">
-        <span className="admin-menu-parent-label inline-flex items-center rounded-sm bg-[#0366d6] px-2 py-1 text-sm font-bold text-white shrink-0">
-          🛢️ データ管理
-        </span>
-        <button
-          className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "manage" ? " active" : ""}`}
-          type="button"
-          onClick={() => showMenu("manage")}
-        >
-          ✅ データ更改
-        </button>
-        <button
-          className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "view" ? " active" : ""}`}
-          type="button"
-          onClick={() => showMenu("view")}
-        >
-          📖 データ参照
-        </button>
-        <button
-          className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "spec" ? " active" : ""}`}
-          type="button"
-          onClick={() => showMenu("spec")}
-        >
-          🧩 データ仕様
-        </button>
-      </div>
+      <PanelMenuList
+        groupLabel="🛢️ データ管理"
+        items={adminMenuItems}
+        activeId={activeMenu ?? ""}
+        onSelect={(id) => showMenu(id as Exclude<ActiveMenu, null>)}
+        ariaLabel="管理メニュー"
+      />
       {createPortal(
         <div
           className={`admin-menu-content${activeMenu ? " flex flex-col gap-0 bg-transparent max-h-[calc(100vh_-_120px)] overflow-y-auto" : " hidden"}`}

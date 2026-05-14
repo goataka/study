@@ -31,14 +31,14 @@ export function NotesPanel({ showKanjiInput }: NotesPanelProps): React.JSX.Eleme
     "flex-1",
     "cursor-crosshair",
     "touch-none",
-    "bg-white",
+    "bg-transparent",
     "max-md:min-h-[200px]",
     showKanjiInput ? "hidden" : "block",
   ].join(" ");
 
   return (
     <>
-      <div className="flex shrink-0 items-center justify-between border-b border-solid border-[#e1e4e8] bg-[#f6f8fa] px-[15px] py-2.5 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-2.5">
+      <div className="flex shrink-0 items-center justify-between border-b border-solid border-[#e1e4e8] bg-transparent px-[15px] py-2.5 max-[600px]:flex-col max-[600px]:items-start max-[600px]:gap-2.5">
         <span id="notesTitle" className="text-base font-semibold text-[#333]">
           {showKanjiInput ? "✏️ 1文字ずつ書いて漢字を入力できます" : "タッチペンで書けます"}
         </span>

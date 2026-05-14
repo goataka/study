@@ -16,7 +16,7 @@ export function StartHeader(): React.JSX.Element {
   );
 
   return (
-    <header className="shrink-0 flex flex-wrap items-center justify-between gap-y-2 bg-transparent pt-2 px-4 pb-4 border-b-2 border-[#c8d8e8]">
+    <header className="shrink-0 flex flex-wrap items-center justify-between gap-y-2 bg-transparent pt-2 px-4 pb-2 border-b-2 border-[#c8d8e8]">
       <div className="header-title-area flex flex-row items-center gap-2 shrink-0 border-b-2 border-[#c8d8e8] pb-0.5">
         <h1
           id="titleBtn"
