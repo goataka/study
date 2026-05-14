@@ -5,7 +5,7 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../../quizApp";
-import { StubProgressRepository, setupTabDom, setupFetchMock, setupFetchMockWithParent } from "../testHelpers";
+import { StubProgressRepository, setupTabDom, setupFetchMock } from "../testHelpers";
 
 describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
   beforeEach(() => {

@@ -126,15 +126,15 @@ Feature: 学習アプリ
 
   Scenario: 折りたたみ状態で「学習済み」フィルターを適用すると学習済みアイテムが表示される
     When "英語" タブをクリックする
-    And I select the category item "tenses-regular-present"
-    And I click the quiz panel tab
-    Then the quiz mode panel should be visible
+    And "tenses-regular-present" の単元をクリックする
+    And 確認タブをクリックする
+    Then クイズモードパネルが表示される
     When "✅ 学習済みにする" ボタンをクリックする
     And ダイアログを確認する
     And "verb" カテゴリグループのトグルボタンをクリックする
     Then "verb" カテゴリグループが折りたたまれている
-    When I apply the "learned" status filter
-    Then learned category items should be visible in the category list
+    When "learned" 学習状態フィルターを適用する
+    Then 学習済みの単元が単元一覧に表示される
 
   @kanji-stub
   Scenario: ひらがな問題では手書き認識でひらがな以外の候補が表示されない
