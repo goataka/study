@@ -11,6 +11,7 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
+  "description": "小学1年向けの漢字書き取り問題です。",
   "questions": [
     {
       "id": "d6da4587-8789-5406-80a8-7dec56660440",

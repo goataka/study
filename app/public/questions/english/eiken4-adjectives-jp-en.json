@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-adjectives",
   "parentCategoryName": "形容詞",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/adjectives/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/adjectives/guide",
   "referenceGrade": "中学1年",
   "description": "気持ちや状態を表す形容詞を日本語から英語に訳す問題です。",
+  "example": "`空腹な` は英語で `hungry`。",
   "questions": [
     {
       "id": "fd2f1b24-f5c9-5a1d-a9f7-a828097cca47",

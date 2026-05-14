@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-jobs",
   "parentCategoryName": "職業",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/jobs/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/jobs/guide",
   "referenceGrade": "中学2年",
   "description": "職業を表す単語を使った文章の穴埋め問題です。",
+  "example": "My father is a `doctor` at the hospital.",
   "questions": [
     {
       "id": "b1994f38-b246-5cdc-865b-f43e04a5a6b7",

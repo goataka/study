@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-feelings",
   "parentCategoryName": "感情・気持ち",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/feelings/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/feelings/guide",
   "referenceGrade": "中学2年",
   "description": "感情や気持ちを表す単語を日本語から英語に訳す問題です。",
+  "example": "`緊張している` は英語で `nervous`。",
   "questions": [
     {
       "id": "429b1bd9-1a7e-5276-9d22-9481900c5444",

@@ -10,6 +10,7 @@
   "parentCategoryName": "動物",
   "referenceGrade": "小学3年",
   "description": "動物の名前を使った文章の穴埋め問題です。",
+  "example": "I have a `cat`.",
   "questions": [
     {
       "id": "054b6081-7dda-5088-8b17-06fc72c5a789",

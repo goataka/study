@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-verbs",
   "parentCategoryName": "動作動詞",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/verbs/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/verbs/guide",
   "referenceGrade": "中学1年",
   "description": "動作動詞を使った文章の穴埋め問題です。",
+  "example": "I like to `cook` food.",
   "questions": [
     {
       "id": "0bf7883a-8d07-50c8-b7c8-3df1e9e94b19",

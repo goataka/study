@@ -28,6 +28,7 @@ interface QuestionFile {
   subjectName: string;
   category: string;
   categoryName: string;
+  topCategory?: string;
   parentCategory?: string;
   questionType?: "multiple-choice" | "text-input";
   guideUrl?: string;
@@ -122,6 +123,28 @@ describe("各カテゴリファイル — スキーマ検証", () => {
       expect(typeof qf.subjectName).toBe("string");
       expect(typeof qf.category).toBe("string");
       expect(typeof qf.categoryName).toBe("string");
+    }
+  });
+
+  it("英検3級・4級の語彙単元には guideUrl と example がある", () => {
+    const targets = questionFiles.filter(
+      (qf) => qf.subject === "english" && (qf.topCategory === "eiken-3" || qf.topCategory === "eiken-4"),
+    );
+    for (const qf of targets) {
+      expect(typeof qf.guideUrl).toBe("string");
+      expect(qf.guideUrl?.trim().length).toBeGreaterThan(0);
+      expect(typeof qf.example).toBe("string");
+      expect(qf.example?.trim().length).toBeGreaterThan(0);
+    }
+  });
+
+  it("漢字書き取り単元には description がある", () => {
+    const targets = questionFiles.filter(
+      (qf) => qf.subject === "japanese" && qf.category.startsWith("kanji-") && qf.category.endsWith("-writing"),
+    );
+    for (const qf of targets) {
+      expect(typeof qf.description).toBe("string");
+      expect(qf.description?.trim().length).toBeGreaterThan(0);
     }
   });
 

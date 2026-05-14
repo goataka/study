@@ -10,6 +10,7 @@
   "parentCategoryName": "家族・人",
   "referenceGrade": "小学3年",
   "description": "家族・人に関する言葉を使った文章の穴埋め問題です。",
+  "example": "My `father` is a doctor.",
   "questions": [
     {
       "id": "b5e8214f-fa88-52dc-b98a-62f7af05e07a",

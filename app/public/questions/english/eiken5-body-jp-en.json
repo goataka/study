@@ -10,6 +10,7 @@
   "parentCategoryName": "身体",
   "referenceGrade": "小学3年",
   "description": "身体の部位を日本語から英語に訳す問題です。",
+  "example": "`あたま` は英語で `head`。",
   "questions": [
     {
       "id": "eda259b5-2bae-513d-95fc-a8dc5bc1ea6a",

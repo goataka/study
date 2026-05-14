@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-places",
   "parentCategoryName": "街・場所",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/places/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/places/guide",
   "referenceGrade": "中学1年",
   "description": "街や場所を表す単語を日本語から英語に訳す問題です。",
+  "example": "`病院` は英語で `hospital`。",
   "questions": [
     {
       "id": "f347b18b-1883-5b6f-93c3-68da3de22e84",

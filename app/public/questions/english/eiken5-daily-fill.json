@@ -10,6 +10,7 @@
   "parentCategoryName": "日常生活",
   "referenceGrade": "小学4年",
   "description": "日常生活に関する言葉を使った文章の穴埋め問題です。",
+  "example": "I get up in the `morning`.",
   "questions": [
     {
       "id": "1cbc12b6-a738-5559-b9f2-d6707c5e2359",

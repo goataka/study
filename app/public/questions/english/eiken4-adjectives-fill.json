@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-adjectives",
   "parentCategoryName": "形容詞",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/adjectives/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/adjectives/guide",
   "referenceGrade": "中学1年",
   "description": "形容詞を使った文章の穴埋め問題です。",
+  "example": "I am `hungry`. I need food.",
   "questions": [
     {
       "id": "2fc8ed1a-98b5-5dfe-998f-80bef60e589d",

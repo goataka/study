@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-time",
   "parentCategoryName": "時間・日付",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/time/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/time/guide",
   "referenceGrade": "中学1年",
   "description": "時間・日付に関する単語を日本語から英語に訳す問題です。",
+  "example": "`月曜日` は英語で `Monday`。",
   "questions": [
     {
       "id": "2562c7a6-d257-5e04-807b-7fa7e5e81339",

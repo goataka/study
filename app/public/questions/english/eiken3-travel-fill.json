@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-travel",
   "parentCategoryName": "旅行・交通",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/travel/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/travel/guide",
   "referenceGrade": "中学2年",
   "description": "旅行・交通の単語を使った文章の穴埋め問題です。",
+  "example": "Don't forget your `passport` when you travel abroad.",
   "questions": [
     {
       "id": "cc4ceb5e-0f66-5105-81b4-64b15fe466c5",

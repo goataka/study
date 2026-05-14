@@ -10,6 +10,7 @@
   "parentCategoryName": "学校・文具",
   "referenceGrade": "小学4年",
   "description": "学校・文具に関する言葉を英語から日本語に訳す問題です。",
+  "example": "`school` は日本語で `がっこう`。",
   "questions": [
     {
       "id": "44a5d82f-0ee3-507f-8521-5ef639965812",

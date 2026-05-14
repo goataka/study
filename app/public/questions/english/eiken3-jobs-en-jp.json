@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-jobs",
   "parentCategoryName": "職業",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/jobs/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/jobs/guide",
   "referenceGrade": "中学2年",
   "description": "職業を表す単語を英語から日本語に訳す問題です。",
+  "example": "`doctor` は日本語で `医者`。",
   "questions": [
     {
       "id": "db47725e-5a96-5def-8803-a279a5ecab75",

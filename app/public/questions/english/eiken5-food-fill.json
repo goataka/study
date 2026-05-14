@@ -10,6 +10,7 @@
   "parentCategoryName": "食べ物・飲み物",
   "referenceGrade": "小学3年",
   "description": "食べ物・飲み物の名前を使った文章の穴埋め問題です。",
+  "example": "I eat an `apple` every day.",
   "questions": [
     {
       "id": "3c51ba6c-73bf-5ead-bc90-5a837ecdaf6d",
