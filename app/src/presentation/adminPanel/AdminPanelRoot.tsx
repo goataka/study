@@ -9,11 +9,14 @@ import {
   type AdminSectionKey,
 } from "../adminPanelLogic";
 import { GuideContent } from "../components/GuideContent";
+import { panelTab, panelTabs } from "../styles/panelTabStyles";
 import type { AdminPanelDeps } from "./types";
 
 type ManageTab = "import" | "export" | "reset";
-type ActiveMenu = "manage" | "view" | null;
-type SectionKey = "settings" | AdminSectionKey | "spec";
+/** "spec" は独立した左メニュー項目（データセクションではないため SectionKey には含めない）。 */
+type ActiveMenu = "manage" | "view" | "spec" | null;
+/** データ参照タブのセクションキー（仕様は独立メニューのため除外）。 */
+type SectionKey = "settings" | AdminSectionKey;
 
 interface AdminPanelRootProps extends AdminPanelDeps {
   adminContentEl: HTMLElement;
@@ -56,7 +59,6 @@ export function AdminPanelRoot({
           fullContent: data.masteredIds,
         },
         { title: "連続正解", fileKey: "streaks" as const, content: data.correctStreaks },
-        { title: "🧩 仕様", fileKey: "spec" as const, content: null },
       ] satisfies Array<{ title: string; fileKey: SectionKey; content: unknown; fullContent?: unknown }>,
     [data, progressRepo, shareUrl],
   );
@@ -215,14 +217,11 @@ export function AdminPanelRoot({
   };
 
   const selectedViewSection = sections[viewTabIndex];
-  const isSpecSection = selectedViewSection?.fileKey === "spec";
   const viewJsonText = selectedViewSection ? JSON.stringify(selectedViewSection.content, null, 2) : "";
 
   const menuBtnBase =
     "category-item w-full flex items-center gap-2 px-[10px] py-[7px] text-lg font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit] text-left";
   const menuBtnChild = `${menuBtnBase} bg-transparent text-[#24292e] hover:bg-[#f6f8fa] [&.active]:bg-transparent [&.active]:text-[#1a1a1a]`;
-  const tabBtnBase =
-    "px-3 py-1.5 text-sm font-semibold border border-[#d1d5da] border-b-0 rounded-t-md cursor-pointer transition-[background,color] duration-150 font-[inherit] bg-[#f6f8fa] text-[#586069] hover:bg-[#e8f0fe] hover:text-[#0366d6] [&.active]:bg-white [&.active]:text-[#24292e] [&.active]:border-[#d1d5da]";
   const actionBtnBase =
     "self-start px-3 py-1.5 text-sm font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
 
@@ -237,7 +236,7 @@ export function AdminPanelRoot({
           type="button"
           onClick={() => switchMenu("manage")}
         >
-          ✅ 管理
+          ✅ 更改
         </button>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "view" ? " active" : ""}`}
@@ -246,10 +245,17 @@ export function AdminPanelRoot({
         >
           📖 参照
         </button>
+        <button
+          className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "spec" ? " active" : ""}`}
+          type="button"
+          onClick={() => switchMenu("spec")}
+        >
+          🧩 仕様
+        </button>
       </div>
       {createPortal(
         <div
-          className={`admin-menu-content${activeMenu ? " flex flex-col gap-3 p-4 bg-transparent border border-[#e1e4e8] rounded-md shadow-lg max-h-[80vh] overflow-y-auto m-2" : " hidden"}`}
+          className={`admin-menu-content${activeMenu ? " flex flex-col gap-3 p-4 bg-transparent max-h-[80vh] overflow-y-auto" : " hidden"}`}
         >
           {activeMenu === "manage" ? (
             <>
@@ -264,9 +270,9 @@ export function AdminPanelRoot({
                   ✕
                 </button>
               </div>
-              <div className="admin-manage-tabs flex gap-1 border-b border-[#e1e4e8] pb-0">
+              <div className={`admin-manage-tabs ${panelTabs()}`}>
                 <button
-                  className={`admin-manage-tab ${tabBtnBase}${manageTab === "import" ? " active" : ""}`}
+                  className={`admin-manage-tab ${panelTab()}${manageTab === "import" ? " active" : ""}`}
                   type="button"
                   data-tab="import"
                   onClick={() => setManageTab("import")}
@@ -274,7 +280,7 @@ export function AdminPanelRoot({
                   📥 インポート
                 </button>
                 <button
-                  className={`admin-manage-tab ${tabBtnBase}${manageTab === "export" ? " active" : ""}`}
+                  className={`admin-manage-tab ${panelTab()}${manageTab === "export" ? " active" : ""}`}
                   type="button"
                   data-tab="export"
                   onClick={() => setManageTab("export")}
@@ -282,7 +288,7 @@ export function AdminPanelRoot({
                   📤 エクスポート
                 </button>
                 <button
-                  className={`admin-manage-tab ${tabBtnBase}${manageTab === "reset" ? " active" : ""}`}
+                  className={`admin-manage-tab ${panelTab()}${manageTab === "reset" ? " active" : ""}`}
                   type="button"
                   data-tab="reset"
                   onClick={() => setManageTab("reset")}
@@ -367,11 +373,11 @@ export function AdminPanelRoot({
                   ✕
                 </button>
               </div>
-              <div className="admin-data-tabs flex gap-1 border-b border-[#e1e4e8] pb-0">
+              <div className={`admin-data-tabs ${panelTabs()}`}>
                 {sections.map(({ title }, index) => (
                   <button
                     key={`${title}-${index}`}
-                    className={`admin-data-tab ${tabBtnBase}${viewTabIndex === index ? " active" : ""}`}
+                    className={`admin-data-tab ${panelTab()}${viewTabIndex === index ? " active" : ""}`}
                     type="button"
                     onClick={() => setViewTabIndex(index)}
                   >
@@ -380,29 +386,26 @@ export function AdminPanelRoot({
                 ))}
               </div>
               <div className="admin-data-tab-content flex flex-col gap-2">
-                {isSpecSection ? (
-                  <div className="support-guide-frame flex-1 overflow-y-auto rounded-md border border-[#e1e4e8] bg-white p-3 guide-frame">
-                    <GuideContent guideUrl="../support/technical-reference/" />
-                  </div>
-                ) : (
-                  <>
-                    <div className="admin-data-btn-bar flex gap-2">
-                      <button
-                        className={`admin-data-action-btn ${actionBtnBase} bg-[#f6f8fa] text-[#24292e] border border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]`}
-                        type="button"
-                        title="クリップボードにコピー"
-                        onClick={copyCurrentData}
-                      >
-                        {copyButtonText}
-                      </button>
-                    </div>
-                    <pre className="admin-data text-xs bg-[#f6f8fa] border border-[#e1e4e8] rounded-md p-3 overflow-x-auto max-h-[50vh] whitespace-pre-wrap break-all">
-                      {viewJsonText}
-                    </pre>
-                  </>
-                )}
+                <div className="admin-data-btn-bar flex gap-2">
+                  <button
+                    className={`admin-data-action-btn ${actionBtnBase} bg-[#f6f8fa] text-[#24292e] border border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]`}
+                    type="button"
+                    title="クリップボードにコピー"
+                    onClick={copyCurrentData}
+                  >
+                    {copyButtonText}
+                  </button>
+                </div>
+                <pre className="admin-data text-xs bg-[#f6f8fa] border border-[#e1e4e8] rounded-md p-3 overflow-x-auto max-h-[50vh] whitespace-pre-wrap break-all">
+                  {viewJsonText}
+                </pre>
               </div>
             </>
+          ) : null}
+          {activeMenu === "spec" ? (
+            <div className="support-guide-frame flex-1 overflow-y-auto rounded-md bg-white p-3 guide-frame">
+              <GuideContent guideUrl="../support/technical-reference/" />
+            </div>
           ) : null}
         </div>,
         adminContentEl,

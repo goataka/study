@@ -34,16 +34,23 @@ export function StartScreen({ currentScreen }: StartScreenProps): React.JSX.Elem
         "shadow-[0_8px_24px_rgba(0,0,0,0.4),0_2px_6px_rgba(0,0,0,0.2)]",
       ].join(" ")}
     >
+      {/* ノートの折り目（スタート画面全体にまたがる絶対配置・ヘッダー領域含む） */}
+      <div
+        className="notebook-spine hidden md:block absolute top-0 bottom-0 w-3 z-0 pointer-events-none bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]"
+        style={{ left: "calc((100% - 28px) / 3 + 8px)" }}
+        aria-hidden="true"
+      />
       <StartHeader />
       <div
-        className="start-content-layout grid grid-cols-1 md:grid-cols-[1fr_12px_2fr] md:[&.category-only]:grid-cols-1 md:[&.category-only_.notebook-spine]:hidden md:[&.category-only_.quiz-panel]:hidden gap-0 items-stretch flex-1 min-h-0 bg-white overflow-hidden"
+        className="start-content-layout grid grid-cols-1 md:grid-cols-[1fr_12px_2fr] md:[&.category-only]:grid-cols-1 md:[&.category-only_.quiz-panel]:hidden gap-0 items-stretch flex-1 min-h-0 bg-white overflow-hidden"
         id="subjectContent"
       >
         <CategoryPanel />
-        <div
-          className="notebook-spine hidden md:block shrink-0 w-3 h-full self-stretch bg-[linear-gradient(to_right,rgba(0,0,0,0.025)_0%,#e3e3e3_20%,#f3f3f3_50%,#e3e3e3_80%,rgba(0,0,0,0.025)_100%)]"
-          aria-hidden="true"
-        ></div>
+        {/* グリッド列2のスペーサー（折り目の位置を保持するためのダミー要素）。
+            `notebook-spine` クラスは quizPanelVisibility.ts の querySelector と
+            `[&.category-only_.notebook-spine]:hidden` CSS ルールとの後方互換のために残置する。
+            視覚的な折り目は startScreen 内の絶対配置要素（上記の .notebook-spine）が担う。 */}
+        <div className="notebook-spine hidden md:block w-3 shrink-0" aria-hidden="true" />
         <div
           id="startQuizPanel"
           className={[
