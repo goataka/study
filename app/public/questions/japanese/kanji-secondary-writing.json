@@ -11,6 +11,7 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
+  "description": "中学生向けの漢字書き取り問題です。",
   "questions": [
     {
       "id": "4a22a30b-431d-59db-a128-d61f8874abd8",

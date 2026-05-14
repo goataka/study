@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-places",
   "parentCategoryName": "街・場所",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/places/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/places/guide",
   "referenceGrade": "中学1年",
   "description": "街・場所の単語を使った文章の穴埋め問題です。",
+  "example": "My mother works at a `hospital`.",
   "questions": [
     {
       "id": "e73c5da4-5011-5b52-a0ce-ed8c97583b6c",

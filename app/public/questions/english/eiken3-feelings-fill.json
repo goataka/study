@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-feelings",
   "parentCategoryName": "感情・気持ち",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/feelings/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/feelings/guide",
   "referenceGrade": "中学2年",
   "description": "感情・気持ちの単語を使った文章の穴埋め問題です。",
+  "example": "I feel `nervous` before my speech.",
   "questions": [
     {
       "id": "4d16550d-6087-5eeb-a040-8f39de684c73",

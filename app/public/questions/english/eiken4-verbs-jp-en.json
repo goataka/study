@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-verbs",
   "parentCategoryName": "動作動詞",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/verbs/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/verbs/guide",
   "referenceGrade": "中学1年",
   "description": "動作を表す動詞を日本語から英語に訳す問題です。",
+  "example": "`料理する` は英語で `cook`。",
   "questions": [
     {
       "id": "2dc46059-f4bb-557b-b80e-2dbfb5c92ce8",

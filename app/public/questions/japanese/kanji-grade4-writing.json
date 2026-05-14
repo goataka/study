@@ -11,6 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
+  "description": "小学4年向けの漢字書き取り問題です。",
   "questions": [
     {
       "id": "9eb7094b-3d20-5a08-855a-9a3420fddacb",

@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-shopping",
   "parentCategoryName": "買い物・お金",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/shopping/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/shopping/guide",
   "referenceGrade": "中学2年",
   "description": "買い物やお金に関する単語を日本語から英語に訳す問題です。",
+  "example": "`値段` は英語で `price`。",
   "questions": [
     {
       "id": "501b553b-0cf6-5ff0-be36-ee6872040b4a",

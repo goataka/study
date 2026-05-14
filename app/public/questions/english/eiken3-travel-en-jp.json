@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-travel",
   "parentCategoryName": "旅行・交通",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/travel/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/travel/guide",
   "referenceGrade": "中学2年",
   "description": "旅行や交通に関する単語を英語から日本語に訳す問題です。",
+  "example": "`passport` は日本語で `パスポート`。",
   "questions": [
     {
       "id": "e51579fc-55b2-532c-9914-1fe0912d5dc1",

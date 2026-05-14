@@ -10,6 +10,7 @@
   "parentCategoryName": "場所",
   "referenceGrade": "小学4年",
   "description": "場所に関する言葉を英語から日本語に訳す問題です。",
+  "example": "`house` は日本語で `いえ`。",
   "questions": [
     {
       "id": "efc489a2-8578-5a0f-84c0-e5170faec2e2",

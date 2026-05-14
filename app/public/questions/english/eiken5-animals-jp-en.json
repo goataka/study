@@ -10,6 +10,7 @@
   "parentCategoryName": "動物",
   "referenceGrade": "小学3年",
   "description": "動物の名前を日本語から英語に訳す問題です。",
+  "example": "`ねこ` は英語で `cat`。",
   "questions": [
     {
       "id": "9ff55f66-bcb4-5c27-b950-52334ba75caf",

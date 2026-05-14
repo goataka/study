@@ -10,6 +10,7 @@
   "parentCategoryName": "学校・文具",
   "referenceGrade": "小学4年",
   "description": "学校・文具に関する言葉を使った文章の穴埋め問題です。",
+  "example": "I go to `school` every day.",
   "questions": [
     {
       "id": "9eeda779-8ef7-5d30-87d3-54f002f2bb5f",

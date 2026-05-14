@@ -11,6 +11,7 @@
   "example": "羅・曖・昧・冶",
   "questionType": "text-input",
   "referenceGrade": "中学生",
+  "description": "中学生向けの漢字書き取り問題です。",
   "questions": [
     {
       "id": "1ff67300-59d5-5c99-849f-28c2a76b6d35",

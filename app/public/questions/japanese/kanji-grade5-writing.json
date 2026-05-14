@@ -11,6 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
+  "description": "小学5年向けの漢字書き取り問題です。",
   "questions": [
     {
       "id": "47082293-44d1-5570-a357-bd5074778c26",

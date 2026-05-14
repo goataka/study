@@ -10,6 +10,7 @@
   "parentCategoryName": "身体",
   "referenceGrade": "小学3年",
   "description": "身体の部位を使った文章の穴埋め問題です。",
+  "example": "My `head` hurts.",
   "questions": [
     {
       "id": "66549b60-5a96-564a-944d-2bb1f9d54e9b",

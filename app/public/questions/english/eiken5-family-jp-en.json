@@ -10,6 +10,7 @@
   "parentCategoryName": "家族・人",
   "referenceGrade": "小学3年",
   "description": "家族・人に関する言葉を日本語から英語に訳す問題です。",
+  "example": "`おとうさん` は英語で `father`。",
   "questions": [
     {
       "id": "53e120ff-3bd3-5b7e-9087-dc3d0fc93199",

@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-nature",
   "parentCategoryName": "自然・環境",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/nature/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/nature/guide",
   "referenceGrade": "中学2年",
   "description": "自然・環境の単語を使った文章の穴埋め問題です。",
+  "example": "We climbed the `mountain` last summer.",
   "questions": [
     {
       "id": "e8f023e0-b531-5cdf-93b1-6594b8bbec2d",

@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-nature",
   "parentCategoryName": "自然・環境",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/nature/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/nature/guide",
   "referenceGrade": "中学2年",
   "description": "自然や環境に関する単語を英語から日本語に訳す問題です。",
+  "example": "`mountain` は日本語で `山`。",
   "questions": [
     {
       "id": "c73fa9a4-b923-5dff-933c-56ac26ad7b8c",

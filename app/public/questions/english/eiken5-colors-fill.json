@@ -10,6 +10,7 @@
   "parentCategoryName": "色・数",
   "referenceGrade": "小学3年",
   "description": "色・数の言葉を使った文章の穴埋め問題です。",
+  "example": "The apple is `red`.",
   "questions": [
     {
       "id": "9c83b2fd-42d0-583f-a7d5-b91da5560387",

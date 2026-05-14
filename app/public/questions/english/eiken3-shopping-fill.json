@@ -9,8 +9,10 @@
   "parentCategory": "eiken3-shopping",
   "parentCategoryName": "買い物・お金",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-3/shopping/guide",
+  "guideUrl": "./english/vocabulary/eiken-3/shopping/guide",
   "referenceGrade": "中学2年",
   "description": "買い物・お金の単語を使った文章の穴埋め問題です。",
+  "example": "What is the `price` of this bag?",
   "questions": [
     {
       "id": "49964be9-0107-5488-a4df-141331c69a29",

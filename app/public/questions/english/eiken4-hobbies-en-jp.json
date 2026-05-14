@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-hobbies",
   "parentCategoryName": "スポーツ・趣味",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/hobbies/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/hobbies/guide",
   "referenceGrade": "中学1年",
   "description": "スポーツや趣味を表す単語を英語から日本語に訳す問題です。",
+  "example": "`soccer` は日本語で `サッカー`。",
   "questions": [
     {
       "id": "f66f58f9-91b3-5b65-aafc-fa0b194c19f1",

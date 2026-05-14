@@ -9,8 +9,10 @@
   "parentCategory": "eiken4-hobbies",
   "parentCategoryName": "スポーツ・趣味",
   "parentCategoryGuideUrl": "./english/vocabulary/eiken-4/hobbies/guide",
+  "guideUrl": "./english/vocabulary/eiken-4/hobbies/guide",
   "referenceGrade": "中学1年",
   "description": "スポーツ・趣味の単語を使った文章の穴埋め問題です。",
+  "example": "I play `soccer` every weekend.",
   "questions": [
     {
       "id": "82bf5f15-4fc4-506b-b2df-e2aa2ca185ad",

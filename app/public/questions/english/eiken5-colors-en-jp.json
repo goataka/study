@@ -10,6 +10,7 @@
   "parentCategoryName": "色・数",
   "referenceGrade": "小学3年",
   "description": "色・数の言葉を英語から日本語に訳す問題です。",
+  "example": "`red` は日本語で `あか`。",
   "questions": [
     {
       "id": "72b8a70b-39c6-5083-a113-e79aedcb0f10",

@@ -10,6 +10,7 @@
   "parentCategoryName": "食べ物・飲み物",
   "referenceGrade": "小学3年",
   "description": "食べ物・飲み物の名前を英語から日本語に訳す問題です。",
+  "example": "`apple` は日本語で `りんご`。",
   "questions": [
     {
       "id": "a79f47dd-4a9d-531e-9677-4bbddf6cc92d",

@@ -10,6 +10,7 @@
   "parentCategoryName": "場所",
   "referenceGrade": "小学4年",
   "description": "場所に関する言葉を使った文章の穴埋め問題です。",
+  "example": "I live in a `house`.",
   "questions": [
     {
       "id": "257b6ebe-914a-57bb-89f7-64ba225d359d",

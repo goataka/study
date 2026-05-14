@@ -10,6 +10,7 @@
   "parentCategoryName": "日常生活",
   "referenceGrade": "小学4年",
   "description": "日常生活に関する言葉を日本語から英語に訳す問題です。",
+  "example": "`あさ` は英語で `morning`。",
   "questions": [
     {
       "id": "bdf56715-018a-5dd6-aba5-7d5be4c39c57",
