@@ -1,8 +1,8 @@
 /**
- * 漢字 / ひらがな手書き入力エリア（text-input 問題のときのみ表示）。
+ * 手書き入力エリア（text-input 問題のときのみ表示）。
  *
  * `KanjiCanvasController` がキャンバスへの描画と認識結果のリスト表示を制御する。
- * 折りたたみトグルボタンや「最後の1画を消す」「全部消す」も含む。
+ * 「全部消す」ボタンも含む。
  *
  * クラス名（`kanji-input-body` / `kanji-canvas` / `kanji-candidates-area` /
  * `kanji-candidate-list`）は `16-admin.css` のレスポンシブ上書き
