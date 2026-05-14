@@ -230,7 +230,7 @@ jobs:
           PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
         run: |
           node <<'JS'
-          const { chromium } = require("playwright");
+          const { chromium } = require("@playwright/test");
 
           const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
