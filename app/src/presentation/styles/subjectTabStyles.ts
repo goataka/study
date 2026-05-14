@@ -31,10 +31,11 @@ export const subjectTab = cva(
     // hover 状態
     "hover:brightness-[1.05] hover:shadow-[0_-3px_6px_rgba(0,0,0,0.12)] hover:text-[#333]",
     // active 状態（太字・下に延伸して StartScreen に重なる）
-    // pb-[40px] でタブ下部に同色の矩形を描画し、タブ行がアクティブタブの高さまで拡張する
-    // items-start（TabsUserRow 側）と合わせることで、全タブの上端位置をそろえたまま
-    // アクティブタブだけが下方向に突出してコンテンツ領域に向かって視覚的に接続する
-    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110 [&.active]:pb-[40px] [&.active]:z-10",
+    // pb-[40px] でタブ下部に同色の矩形を描画し、-mb-[40px] でレイアウト上の高さ増加を打ち消す
+    // これにより、タブ行の高さを変えずにアクティブタブの拡張部分が下のコンテンツ（StartScreen header）に
+    // オーバーラップして視覚的に接続する
+    // items-start（TabsUserRow 側）と合わせることで全タブの上端位置はそろったまま
+    "[&.active]:text-[#1a1a1a] [&.active]:font-extrabold [&.active]:brightness-110 [&.active]:pb-[40px] [&.active]:-mb-[40px] [&.active]:z-10",
   ].join(" "),
   {
     variants: {
