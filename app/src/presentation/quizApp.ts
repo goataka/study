@@ -408,6 +408,51 @@ export class QuizApp {
       onPopState: () => this.confirmNavigateToStart(),
       onMobileBack: () => D.navigateBackToList(this),
     });
+
+    // コンテンツパネルの <a href="#subject=...&category=..."> リンクを
+    // SPA 内ナビゲーションとして処理するために hashchange を購読する。
+    // syncURLFragment は replaceState を使うので hashchange は発火しない（無限ループなし）。
+    window.addEventListener("hashchange", () => {
+      this.handleHashNavigation();
+    });
+  }
+
+  /** URL フラグメントの変更（コンテンツリンクのクリックなど）を受けて SPA 内ナビゲーションを行う。 */
+  private handleHashNavigation(): void {
+    // getURLParams() はクエリパラメータを優先するため、hashchange 経路では
+    // window.location.hash を直接パースして常にハッシュ値を参照する。
+    const hashParams = new URLSearchParams(window.location.hash.slice(1));
+    const subject = hashParams.get("subject");
+    const category = hashParams.get("category");
+    const panel = hashParams.get("panel");
+
+    if (!subject) return;
+
+    // parseURLState と同等のバリデーション: 未知の subject / category は無視する。
+    const isKnownSubject = subject === "support" || SUBJECTS.some((s) => s.id === subject);
+    if (!isKnownSubject) return;
+
+    this.filter.subject = subject;
+    if (category && category !== "all") {
+      const categories = this.useCase.getCategoriesForSubject(subject);
+      this.filter.category = Object.prototype.hasOwnProperty.call(categories, category) ? category : "all";
+    } else {
+      this.filter.category = "all";
+    }
+    this.filter.parentCategory = undefined;
+    this.selectedTopCategoryId = null;
+    this.selectedUnitContext = null;
+
+    const VALID_PANELS: D.PanelTab[] = ["quiz", "guide", "history", "questions"];
+    if (panel && VALID_PANELS.includes(panel as D.PanelTab)) {
+      this.activePanelTab = panel as D.PanelTab;
+      this.isPanelTabUserSelected = true;
+    }
+
+    // タブのアクティブ状態とカテゴリ一覧を再描画してから画面遷移する。
+    D.selectTabByFilter(this);
+    D.renderCategoryList(this);
+    this.showScreen("start");
   }
 
   // ─── 画面切替・ナビゲーション ──────────────────────────────────────────────

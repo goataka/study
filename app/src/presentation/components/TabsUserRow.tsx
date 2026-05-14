@@ -81,7 +81,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           ref={scrollerRef}
           className={[
             "subject-tabs",
-            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-0 items-end justify-center",
+            "relative flex flex-1 min-w-0 gap-1 border-b-0 mb-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-0 items-start justify-center",
           ].join(" ")}
           role="tablist"
           aria-label="教科を選択"

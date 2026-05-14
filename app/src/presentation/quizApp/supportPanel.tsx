@@ -73,6 +73,8 @@ interface ContentSubject {
   subjectId: string;
   subjectLabel: string;
   topCategories: ContentTop[];
+  /** トップカテゴリなし・親カテゴリありのグループ（例: 読解・語彙） */
+  orphanParents: ContentParent[];
   /** トップカテゴリなし・親カテゴリなしのフラットな単元 */
   flatUnits: ContentUnit[];
 }
@@ -145,12 +147,37 @@ function buildContentSubjects(useCase: QuizUseCase): ContentSubject[] {
       return { topId, topName, parents, flatUnits };
     });
 
-    // トップカテゴリなしのフラットな単元
+    // トップカテゴリなしのフラットな単元（親カテゴリなし）
     const topCatIds = new Set(Object.keys(topCats));
+
+    // トップカテゴリなし・親カテゴリあり → 親カテゴリ単位でグループ化（例: 読解・語彙）
+    const orphanParentMap = new Map<string, { name: string; units: ContentUnit[] }>();
+    Object.entries(allCats).forEach(([catId, catName]) => {
+      const top = useCase.getTopCategoryForUnit(subjectId, catId);
+      if (top && topCatIds.has(top.id)) return; // topCategory 管理下は除外
+      const parent = useCase.getParentCategoryForUnit(subjectId, catId);
+      if (!parent) return; // 親なしはflatUnitsへ
+      if (!orphanParentMap.has(parent.id)) {
+        orphanParentMap.set(parent.id, { name: parent.name, units: [] });
+      }
+      orphanParentMap.get(parent.id)!.units.push({
+        catId,
+        name: catName,
+        example: useCase.getCategoryExample(subjectId, catId),
+        hasGuide: useCase.getCategoryGuideUrl(subjectId, catId) !== undefined,
+      });
+    });
+    const orphanParents: ContentParent[] = Array.from(orphanParentMap.entries()).map(([parentId, { name, units }]) => ({
+      parentId,
+      parentName: name,
+      units,
+    }));
+
     const flatUnits: ContentUnit[] = Object.entries(allCats)
       .filter(([catId]) => {
         const top = useCase.getTopCategoryForUnit(subjectId, catId);
-        return !top || !topCatIds.has(top.id);
+        const parent = useCase.getParentCategoryForUnit(subjectId, catId);
+        return (!top || !topCatIds.has(top.id)) && !parent;
       })
       .map(([catId, catName]) => ({
         catId,
@@ -159,7 +186,7 @@ function buildContentSubjects(useCase: QuizUseCase): ContentSubject[] {
         hasGuide: useCase.getCategoryGuideUrl(subjectId, catId) !== undefined,
       }));
 
-    return { subjectId, subjectLabel, topCategories, flatUnits };
+    return { subjectId, subjectLabel, topCategories, orphanParents, flatUnits };
   });
 }
 
@@ -393,6 +420,15 @@ function SupportDynamicContentsDisplay(): React.JSX.Element {
             {subject.flatUnits.length > 0 && (
               <ContentUnitsTable units={subject.flatUnits} subjectId={subject.subjectId} />
             )}
+            {/* トップカテゴリなし・親カテゴリありのグループ（例: 読解・語彙） */}
+            {subject.orphanParents.map((parent) => (
+              <section key={parent.parentId} className="mb-4">
+                <h2 className="text-base font-bold text-[#24292e] mt-4 mb-2 border-b border-[#e1e4e8] pb-1">
+                  {parent.parentName}
+                </h2>
+                <ContentUnitsTable units={parent.units} subjectId={subject.subjectId} />
+              </section>
+            ))}
             {/* トップカテゴリ → 親カテゴリ → 単元 */}
             {subject.topCategories.map((top) => (
               <section key={top.topId} className="mb-4">

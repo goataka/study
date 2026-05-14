@@ -16,22 +16,22 @@ export class NotesController {
   private notesCanvas: NotesCanvas | null = null;
   private notesStates: Map<number, DrawingState> = new Map();
 
-  /** メモキャンバスを初期化する（初回のみ）。デフォルトのペンサイズ・色を DOM から復元する。 */
+  /** メモキャンバスを初期化する（再呼び出しで寸法を再計算する）。デフォルトのペンサイズ・色を DOM から復元する。 */
   initialize(): void {
     if (!this.notesCanvas) {
       this.notesCanvas = new NotesCanvas();
-      this.notesCanvas.initialize("notesCanvas");
+    }
+    this.notesCanvas.initialize("notesCanvas");
 
-      // デフォルト設定を適用
-      const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
-      const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
+    // デフォルト設定を適用
+    const penSizeSelect = document.getElementById("penSizeSelect") as HTMLSelectElement | null;
+    const penColorSelect = document.getElementById("penColorSelect") as HTMLSelectElement | null;
 
-      if (penSizeSelect) {
-        this.notesCanvas.setPenSize(parseInt(penSizeSelect.value));
-      }
-      if (penColorSelect) {
-        this.notesCanvas.setPenColor(penColorSelect.value);
-      }
+    if (penSizeSelect) {
+      this.notesCanvas.setPenSize(parseInt(penSizeSelect.value));
+    }
+    if (penColorSelect) {
+      this.notesCanvas.setPenColor(penColorSelect.value);
     }
   }
 

@@ -188,17 +188,18 @@ export async function startQuiz(app: QuizApp, mode: QuizMode): Promise<void> {
   app.showScreen("quiz");
   // 画面遷移直後の React 再レンダリングで class が上書きされるため、
   // ペイント直前のタイミングで practice-mode を適用して既存スタイル互換を維持する。
-  const applyPracticeModeClass = (): void => {
+  // canvas も React 再レンダリング後に初期化することで、offsetWidth が正しく取得できる。
+  const applyAfterRender = (): void => {
     document.getElementById("quizScreen")?.classList.toggle("practice-mode", isPracticeMode);
+    app.notesController.initialize();
+    app.notesController.getCanvas()?.clear();
   };
   // jsdom など requestAnimationFrame がない環境では setTimeout をフォールバックに使う。
   if (typeof window.requestAnimationFrame === "function") {
-    window.requestAnimationFrame(applyPracticeModeClass);
+    window.requestAnimationFrame(applyAfterRender);
   } else {
-    setTimeout(applyPracticeModeClass, 0);
+    setTimeout(applyAfterRender, 0);
   }
-  app.notesController.initialize();
-  app.notesController.getCanvas()?.clear();
   renderQuestion(app);
 }
 

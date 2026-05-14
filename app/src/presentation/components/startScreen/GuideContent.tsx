@@ -90,5 +90,41 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
   }
 
   // sanitizeGuideHtml は信頼できるサニタイザとして XSS リスク要素を除去済み。
-  return <div className={guideContent()} dangerouslySetInnerHTML={{ __html: state.html }} />;
+  // ガイド内のリンクをクリックした際に、アプリ内ハッシュ（#subject=...&category=... 等）へ
+  // 遷移するリンクはページリロードを起こさず SPA 内ナビゲーションで処理する。
+  return (
+    <div
+      className={guideContent()}
+      dangerouslySetInnerHTML={{ __html: state.html }}
+      onClick={(e) => {
+        const anchor = (e.target as HTMLElement).closest("a[href]");
+        if (!anchor) return;
+        const href = (anchor as HTMLAnchorElement).getAttribute("href") ?? "";
+        /** ハッシュ文字列（# 含む）がアプリ状態パラメータ subject を持つか確認する。 */
+        const isAppStateHash = (rawHash: string): boolean =>
+          new URLSearchParams(rawHash.startsWith("#") ? rawHash.slice(1) : rawHash).has("subject");
+        let hash: string | null = null;
+        if (href.startsWith("#")) {
+          // ハッシュのみのリンク: アプリ状態パラメータ（subject）を持つ場合のみ SPA で処理する
+          if (isAppStateHash(href)) {
+            hash = href;
+          }
+        } else if (href.includes("#")) {
+          // 相対パス + ハッシュ: 同一オリジンかつアプリ状態ハッシュ（subject）の場合のみ処理する
+          try {
+            const resolved = new URL(href, window.location.href);
+            if (resolved.origin === window.location.origin && isAppStateHash(resolved.hash)) {
+              hash = resolved.hash || null;
+            }
+          } catch {
+            // 解析失敗はデフォルト動作に任せる
+          }
+        }
+        if (hash) {
+          e.preventDefault();
+          window.location.hash = hash.startsWith("#") ? hash.slice(1) : hash;
+        }
+      }}
+    />
+  );
 }
