@@ -66,6 +66,9 @@ jobs:
       - name: Viteビルド（E2E用）
         run: pnpm run build
 
+      - name: Playwrightブラウザのインストール（E2E用）
+        run: pnpm exec playwright install chromium
+
       - name: E2Eテスト実行（Gherkin シナリオ）
         run: pnpm run test:e2e
 
@@ -102,6 +105,9 @@ jobs:
 
       - name: Viteビルド（VR用）
         run: pnpm run build
+
+      - name: Playwrightブラウザのインストール（VR用）
+        run: pnpm exec playwright install chromium
 
       - name: ビジュアルリグレッションテスト実行
         id: vr-test
