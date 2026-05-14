@@ -19,6 +19,7 @@ import { overallStatusContentStore } from "../components/overallStatusContentSto
 import { todayActivityContentStore } from "../components/todayActivityContentStore";
 import { learningStatusContentStore } from "../components/learningStatusContentStore";
 import { triggerStartQuiz } from "../components/learningStatusActionsStore";
+import { shuffleUnitsByDailySeed } from "./allSubjectListRenderer";
 
 /**
  * 総合タブの「学習状況」を描画する（後方互換用）。
@@ -150,7 +151,9 @@ export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase,
  */
 export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: number): void {
   const completedToday = useCase.getTodayAdvancedCount();
-  const [firstRecommended] = useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2)));
+  const [firstRecommended] = shuffleUnitsByDailySeed(
+    useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2))),
+  );
   const firstRecommendedTitle = firstRecommended
     ? `${SUBJECTS.find((s) => s.id === firstRecommended.subject)?.name ?? firstRecommended.subject}：${firstRecommended.categoryName}`
     : "";

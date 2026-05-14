@@ -216,6 +216,15 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(firstTitle?.textContent).toContain("次のおすすめ:");
   });
 
+  it("学習状況パネルの次のおすすめは右一覧の先頭おすすめ単元と一致する", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const firstTitle = document.getElementById("learningStatusFirstTitle");
+    const firstRecommendedName = document.querySelector(".subject-overview-rec-name");
+    expect(firstTitle?.textContent).toContain(firstRecommendedName?.textContent ?? "");
+  });
+
   it("総合タブの学習状況サマリは履歴だけでなく進捗データで反映される", async () => {
     const repo = new StubProgressRepository();
     repo.saveHistory([
