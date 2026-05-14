@@ -241,6 +241,7 @@ I `played` games.
    ```bash
    cd app && pnpm run build && pnpm run test          # ビルド + 単体テスト（高速）
    cd app && pnpm run test:e2e                         # E2E テスト（プッシュ前に確認したい場合のみ）
+   cd app && bash scripts/pre-push-vr-check.sh        # VR スナップショット確認（プッシュ前に確認したい場合のみ）
    ```
 
 2. **CI でも自動検証される**
