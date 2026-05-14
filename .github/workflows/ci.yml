@@ -269,7 +269,7 @@ jobs:
       - name: Markdownの自動修正
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         run: |
-          pnpm dlx markdownlint-cli --fix "**/*.md" --ignore node_modules --ignore quiz/node_modules 2>/dev/null || true
+          pnpm dlx markdownlint-cli --fix "**/*.md" --ignore node_modules --ignore app/node_modules 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet; then
