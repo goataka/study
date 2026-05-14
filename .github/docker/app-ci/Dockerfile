@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LANG=ja_JP.UTF-8 \
     LC_ALL=ja_JP.UTF-8 \
     PNPM_HOME=/pnpm \
-    PATH=/pnpm:$PATH \
+    PATH=/pnpm:/pnpm/bin:$PATH \
     PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 
 RUN apt-get update \
