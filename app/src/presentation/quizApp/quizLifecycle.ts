@@ -160,6 +160,7 @@ function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
 
 /**
  * 現在のフィルター対象の問題がすべて学習済みかチェックし、達成時におめでとうメッセージを表示する。
+ * 達成時は単元のステージを1段階進め、次のサイクルのために mastery をリセットする。
  */
 export async function checkAllMasteredAndCongratulate(deps: {
   useCase: QuizUseCase;
@@ -172,6 +173,10 @@ export async function checkAllMasteredAndCongratulate(deps: {
   const allMastered = filteredQuestions.every((q) => masteredSet.has(q.id));
   if (allMastered) {
     await deps.showConfirmDialog("🎉 おめでとうございます！\nこの単元のすべての問題を学習済みにしました！", true);
+    // ステージを1段階進める（学習済→復習済→修了済）
+    if (deps.effectiveFilter.category !== "all") {
+      deps.useCase.advanceCategoryStage(deps.effectiveFilter.subject, deps.effectiveFilter.category);
+    }
   }
 }
 

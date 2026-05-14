@@ -9,9 +9,17 @@ import type { Question } from "../domain/question";
 import { QuizSession } from "../domain/quizSession";
 import type { QuizMode, QuizFilter, AnswerResult } from "../domain/quizSession";
 import { CategoryRegistry } from "../domain/categoryRegistry";
-import type { IQuestionRepository, IProgressRepository, QuizRecord, UserDataExport } from "./ports";
+import type {
+  IQuestionRepository,
+  IProgressRepository,
+  QuizRecord,
+  UserDataExport,
+  CategoryStageRecord,
+  CategoryStage,
+} from "./ports";
 
 export type { QuizMode, QuizFilter, AnswerResult, QuizRecord, UserDataExport };
+export type { CategoryStageRecord, CategoryStage };
 export type { Question } from "../domain/question";
 export { shuffleChoices } from "../domain/question";
 export type { QuizSession } from "../domain/quizSession";
@@ -33,6 +41,8 @@ export class QuizUseCase {
   private categoryRegistry: CategoryRegistry = new CategoryRegistry([]);
   /** questionId -> Question のキャッシュ（O(1) 参照用） */
   private questionsById = new Map<string, Question>();
+  /** 単元ごとの学習ステージ (キー: "subject::categoryId") */
+  private categoryStages: Record<string, CategoryStageRecord>;
 
   constructor(
     private readonly questionRepo: IQuestionRepository,
@@ -43,6 +53,7 @@ export class QuizUseCase {
     this.masteredIds = this.progressRepo.loadMasteredIds();
     this.masteredSet = new Set(this.masteredIds);
     this.questionStats = this.progressRepo.loadQuestionStats();
+    this.categoryStages = this.progressRepo.loadCategoryStages();
   }
 
   async initialize(): Promise<void> {
@@ -274,6 +285,7 @@ export class QuizUseCase {
     this.masteredIds = this.progressRepo.loadMasteredIds();
     this.masteredSet = new Set(this.masteredIds);
     this.questionStats = this.progressRepo.loadQuestionStats();
+    this.categoryStages = this.progressRepo.loadCategoryStages();
   }
 
   /**
@@ -596,5 +608,260 @@ export class QuizUseCase {
     this.masteredIds = [];
     this.masteredSet = new Set();
     this.questionStats = {};
+    this.categoryStages = {};
+  }
+
+  // ─── カテゴリステージ管理 ──────────────────────────────────────────────────
+
+  /**
+   * 指定した単元の学習ステージ情報を返す。
+   * ステージ: 0=未学習, 1=学習済, 2=復習済, 3=修了済
+   */
+  getCategoryStage(subject: string, categoryId: string): { stage: CategoryStage; lastCompletedAt: string | null } {
+    const key = `${subject}::${categoryId}`;
+    const record = this.categoryStages[key];
+    if (!record) return { stage: 0, lastCompletedAt: null };
+    return { stage: record.stage, lastCompletedAt: record.lastCompletedAt };
+  }
+
+  /**
+   * 指定した単元のステージを1段階進める。
+   * - ステージが 3 (修了済) の場合は何もしない。
+   * - ステージが 0→1, 1→2 に進む場合: masteredIds と correctStreaks をリセット（再学習のため）。
+   * - ステージが 2→3 に進む場合: リセットしない（修了済のため学習終了）。
+   */
+  advanceCategoryStage(subject: string, categoryId: string): void {
+    const key = `${subject}::${categoryId}`;
+    const current = this.categoryStages[key];
+    const currentStage = current?.stage ?? 0;
+    if (currentStage >= 3) return;
+
+    const newStage = (currentStage + 1) as CategoryStage;
+    const now = new Date().toISOString();
+    this.categoryStages[key] = { stage: newStage, lastCompletedAt: now };
+    this.progressRepo.saveCategoryStages(this.categoryStages);
+
+    // ステージが修了済（3）未満の場合、この単元の mastery をリセットして再学習を促す
+    if (newStage < 3) {
+      const questionIds = new Set(
+        this.allQuestions.filter((q) => q.subject === subject && q.category === categoryId).map((q) => q.id),
+      );
+      this.masteredIds = this.masteredIds.filter((id) => !questionIds.has(id));
+      for (const id of questionIds) {
+        this.masteredSet.delete(id);
+        delete this.correctStreaks[id];
+        // wrongIds からも除いてクリーンな状態にする
+        this.wrongIds = this.wrongIds.filter((wid) => wid !== id);
+      }
+      this.progressRepo.saveMasteredIds(this.masteredIds);
+      this.progressRepo.saveCorrectStreaks(this.correctStreaks);
+      this.progressRepo.saveWrongIds(this.wrongIds);
+    }
+  }
+
+  /**
+   * 今日（YYYY-MM-DD）ステージが進んだ単元のユニーク数を返す。
+   * ※ 同一単元が同日内に複数回ステージ遷移しても 1 件として数える（lastCompletedAt で判定）。
+   * 学習状況の星表示で使用する。
+   */
+  getTodayAdvancedCount(): number {
+    const today = new Date().toISOString().slice(0, 10);
+    return Object.values(this.categoryStages).filter(
+      (r) => r.lastCompletedAt != null && r.lastCompletedAt.startsWith(today),
+    ).length;
+  }
+
+  /**
+   * 全教科共通のおすすめ単元数設定を返す。
+   */
+  getGlobalRecommendedCount(): number {
+    return this.progressRepo.loadGlobalRecommendedCount();
+  }
+
+  /**
+   * 全教科共通のおすすめ単元数設定を保存する。
+   */
+  saveGlobalRecommendedCount(count: number): void {
+    this.progressRepo.saveGlobalRecommendedCount(count);
+  }
+
+  /**
+   * 全教科横断のおすすめ単元リストを返す（目標数＋α）。
+   *
+   * アルゴリズム:
+   * 1. 各教科の「利用可能単元」を収集（修了済を除く、学年上限内、待機期間経過済み）
+   * 2. 未学習単元（stage=0）と復習対象単元（stage>0 かつ待機期間経過）を分離
+   * 3. 未学習は設定順、復習はランダムで交互に配置
+   * 4. 目標数+α分を返す
+   */
+  getRecommendedUnitsGlobal(goalCount: number, alphaCount: number): GlobalRecommendedUnit[] {
+    const total = goalCount + alphaCount;
+    // 問題が登録されている教科を CategoryRegistry から取得する（ハードコード不要）
+    const subjects = this.categoryRegistry.getSubjects();
+    const now = new Date();
+
+    const unlearned: GlobalRecommendedUnit[] = [];
+    const reviewReady: GlobalRecommendedUnit[] = [];
+
+    for (const subjectId of subjects) {
+      const maxGrade = this._getUnlockedMaxGrade(subjectId);
+      const categories = this.getCategoriesForSubject(subjectId);
+
+      for (const [catId, catName] of Object.entries(categories)) {
+        const key = `${subjectId}::${catId}`;
+        const stageRecord = this.categoryStages[key];
+        const stage = stageRecord?.stage ?? 0;
+
+        // 修了済はスキップ
+        if (stage >= 3) continue;
+
+        // 学年制限チェック
+        const grade = this.categoryRegistry.getCategoryReferenceGrade(subjectId, catId);
+        if (grade && maxGrade !== null && !isGradeWithinLimit(grade, maxGrade)) continue;
+
+        const { mastered, total: totalQ } = this.getMasteredCountForCategory(subjectId, catId);
+        const inProgressCount = this.getInProgressCount({ subject: subjectId, category: catId });
+        const referenceGrade = this.categoryRegistry.getCategoryReferenceGrade(subjectId, catId);
+
+        const unit: GlobalRecommendedUnit = {
+          subject: subjectId,
+          categoryId: catId,
+          categoryName: catName,
+          stage,
+          lastCompletedAt: stageRecord?.lastCompletedAt ?? null,
+          referenceGrade,
+          mastered,
+          totalQuestions: totalQ,
+          inProgressCount,
+          type: stage === 0 ? "unlearned" : "review",
+        };
+
+        if (stage === 0) {
+          unlearned.push(unit);
+        } else {
+          // 待機期間チェック: 学習済(stage=1)→7日、復習済(stage=2)→14日
+          const waitDays = stage === 1 ? 7 : 14;
+          if (stageRecord && isWaitPeriodElapsed(stageRecord.lastCompletedAt, waitDays, now)) {
+            reviewReady.push(unit);
+          }
+        }
+      }
+    }
+
+    // 復習候補はランダムシャッフル
+    shuffleArray(reviewReady);
+
+    // 交互配置: [unlearned, review, unlearned, review, ...] の順に total 件まで取り出す
+    // 片方が枯渇した場合は残りの候補で埋める
+    const result: GlobalRecommendedUnit[] = [];
+    let ui = 0;
+    let ri = 0;
+    while (result.length < total && (ui < unlearned.length || ri < reviewReady.length)) {
+      if (ui < unlearned.length) result.push(unlearned[ui++]!);
+      if (result.length < total && ri < reviewReady.length) result.push(reviewReady[ri++]!);
+    }
+
+    return result.slice(0, total);
+  }
+
+  /**
+   * 指定教科で学習解禁されている最大学年を返す。
+   * 全ての単元が 学習済（stage >= 1）となった学年の次学年を返す。
+   * どの学年も全単元学習済みでない場合は最初の学年のみ許可（null=学年制限なし）。
+   */
+  private _getUnlockedMaxGrade(subjectId: string): string | null {
+    const grades = this.categoryRegistry.getUniqueGradesForSubject(subjectId);
+    if (grades.length === 0) return null; // 学年なし = 制限なし
+
+    // 学年の昇順ソート
+    const sortedGrades = [...grades].sort((a, b) => gradeOrder(a) - gradeOrder(b));
+
+    let maxUnlockedIdx = -1;
+    for (let i = 0; i < sortedGrades.length; i++) {
+      const grade = sortedGrades[i]!;
+      const categoriesInGrade = this.categoryRegistry.getCategoriesForGrade(subjectId, grade);
+      const allLearned = Object.keys(categoriesInGrade).every((catId) => {
+        const key = `${subjectId}::${catId}`;
+        return (this.categoryStages[key]?.stage ?? 0) >= 1;
+      });
+      if (allLearned && Object.keys(categoriesInGrade).length > 0) {
+        maxUnlockedIdx = i;
+      } else {
+        break; // 途中で学習済みでない学年があれば停止
+      }
+    }
+
+    // maxUnlockedIdx = 解禁済みの最高学年インデックス
+    // 次の学年 = maxUnlockedIdx + 1 が上限
+    const limitIdx = maxUnlockedIdx + 1;
+    if (limitIdx >= sortedGrades.length) return null; // 全学年解禁
+    return sortedGrades[limitIdx] ?? sortedGrades[0] ?? null;
+  }
+}
+
+// ─── グローバルおすすめ単元の型定義 ────────────────────────────────────────
+
+/** グローバルおすすめ単元の1件 */
+export interface GlobalRecommendedUnit {
+  subject: string;
+  categoryId: string;
+  categoryName: string;
+  stage: CategoryStage;
+  lastCompletedAt: string | null;
+  referenceGrade?: string;
+  mastered: number;
+  totalQuestions: number;
+  inProgressCount: number;
+  type: "unlearned" | "review";
+}
+
+// ─── モジュールプライベートヘルパー ────────────────────────────────────────
+
+/** 参考学年文字列を数値に変換してソートに使う */
+function gradeOrder(grade: string): number {
+  const map: Record<string, number> = {
+    小学1年: 1,
+    小学2年: 2,
+    小学3年: 3,
+    小学4年: 4,
+    小学5年: 5,
+    小学6年: 6,
+    中学1年: 7,
+    中学2年: 8,
+    中学3年: 9,
+    高校1年: 10,
+    高校2年: 11,
+    高校3年: 12,
+  };
+  if (grade in map) return map[grade]!;
+  // フォールバック: 先頭1文字で大まかな順序を決める
+  if (grade.startsWith("小")) return 1;
+  if (grade.startsWith("中")) return 7;
+  if (grade.startsWith("高")) return 10;
+  return 99;
+}
+
+/**
+ * 指定学年が最大許可学年（maxGrade）以内かどうかを判定する。
+ * maxGrade = null の場合は常に true（制限なし）。
+ */
+function isGradeWithinLimit(grade: string, maxGrade: string | null): boolean {
+  if (maxGrade === null) return true;
+  return gradeOrder(grade) <= gradeOrder(maxGrade);
+}
+
+/** 待機期間（日数）が経過しているかを判定する */
+function isWaitPeriodElapsed(lastCompletedAt: string, waitDays: number, now: Date): boolean {
+  const last = new Date(lastCompletedAt);
+  const diffMs = now.getTime() - last.getTime();
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+  return diffDays >= waitDays;
+}
+
+/** 配列をフィッシャー–イェーツ法でインプレースシャッフルする */
+function shuffleArray<T>(arr: T[]): void {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j]!, arr[i]!];
   }
 }

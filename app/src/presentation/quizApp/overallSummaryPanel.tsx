@@ -1,9 +1,10 @@
 /**
  * 総合タブ用サマリパネルの描画ヘルパー群。
  *
- * - 教科ごとの学習状況サマリ
- * - 活動日付ラベル
- * - 今日の活動リスト
+ * - 活動日付ラベル（後方互換のため保持）
+ * - 学習状況の星表示（開始するボタン＋目標数に応じた☆/⭐/✨/🌟）
+ * - 教科ごとの学習状況サマリ（後方互換）
+ * - 今日の活動リスト（後方互換）
  * - 共有 URL タブの切り替え
  *
  * 全関数とも純粋な DOM 操作で、状態は引数として受け取る。
@@ -16,14 +17,15 @@ import { setActiveOverallPanel } from "../components/startScreen/panelTabsStore"
 import { HistoryList } from "./HistoryList";
 import { overallStatusContentStore } from "../components/overallStatusContentStore";
 import { todayActivityContentStore } from "../components/todayActivityContentStore";
+import { learningStatusContentStore } from "../components/learningStatusContentStore";
+import { triggerStartQuiz } from "../components/learningStatusActionsStore";
 
 /**
- * 総合タブの「学習状況」を描画する。
- * 教科ごとの目標数に対する学習数とメッセージを表示する。
+ * 総合タブの「学習状況」を描画する（後方互換用）。
  */
-export function renderOverallSubjectStatus(useCase: QuizUseCase, subjectRecommendedCounts: Map<string, number>): void {
+export function renderOverallSubjectStatus(useCase: QuizUseCase, globalRecommendedCount: number): void {
   const subjects = SUBJECTS.filter((s) => !["all", "admin", "progress"].includes(s.id));
-  const rows = subjects.map((subject) => buildOverallStatusRow(useCase, subject, subjectRecommendedCounts));
+  const rows = subjects.map((subject) => buildOverallStatusRow(useCase, subject, globalRecommendedCount));
   overallStatusContentStore.set(<OverallSubjectStatusSummary rows={rows} />);
 }
 
@@ -35,7 +37,7 @@ interface OverallStatusRow {
 function buildOverallStatusRow(
   useCase: QuizUseCase,
   subject: { id: string; name: string; icon: string },
-  subjectRecommendedCounts: Map<string, number>,
+  globalRecommendedCount: number,
 ): OverallStatusRow {
   const categories = useCase.getCategoriesForSubject(subject.id);
   const totalUnits = Object.keys(categories).length;
@@ -50,7 +52,7 @@ function buildOverallStatusRow(
     const inProgress = useCase.getInProgressCount({ subject: subject.id, category: categoryId });
     return mastered > 0 || inProgress > 0;
   }).length;
-  const target = Math.max(1, Math.min(subjectRecommendedCounts.get(subject.id) ?? 0, totalUnits));
+  const target = Math.max(1, Math.min(globalRecommendedCount, totalUnits));
   const ratio = Math.min(1, studiedOrInProgressUnitCount / target);
   const message =
     ratio >= 1
@@ -78,14 +80,12 @@ function OverallSubjectStatusSummary({ rows }: { rows: OverallStatusRow[] }): Re
 
 /**
  * 活動ラベル `#overallActivityDateLabel` を本日実施した単元数に更新する。
- * ⭐ = 学習中、🏆 = 完了。
  */
 export function updateActivityDateDisplay(useCase: QuizUseCase, selectedActivityDate: string): void {
   const el = document.getElementById("overallActivityDateLabel");
   if (!el) return;
   const records = useCase.getHistory();
   const selectedDateRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
-  // 選択日付にやった単元数をユニークカウント（unit ごとに集計）
   const unitKeys = new Set(selectedDateRecords.map((r) => `${r.subject}::${r.category}`));
   let masteredCount = 0;
   let studiedCount = 0;
@@ -93,10 +93,8 @@ export function updateActivityDateDisplay(useCase: QuizUseCase, selectedActivity
     const sepIdx = key.indexOf("::");
     const subj = key.slice(0, sepIdx);
     const cat = key.slice(sepIdx + 2);
-    // category="all" は集計用の特殊カテゴリで個別の単元ではないためスキップする
     if (cat === "all") continue;
     const { mastered, total } = useCase.getMasteredCountForCategory(subj, cat);
-    // 問題数が 0 の場合（カテゴリが削除済み等）はスキップする
     if (total === 0) continue;
     if (mastered === total) {
       masteredCount++;
@@ -110,10 +108,6 @@ export function updateActivityDateDisplay(useCase: QuizUseCase, selectedActivity
 
 /**
  * 総合タブのサマリパネルタブ（学習済み / シェア）を切り替える。
- *
- * ストアを更新することで `<OverallSummaryPanel>` が再レンダリングし、
- * active クラス・aria-selected・各サブパネルの hidden が宣言的に更新される。
- * 後方互換のため、React 未マウントのテスト向けに命令的な classList 操作も併用する。
  */
 export function showOverallPanel(tab: "learned" | "share"): void {
   setActiveOverallPanel(tab);
@@ -130,11 +124,9 @@ export function showOverallPanel(tab: "learned" | "share"): void {
 
 /**
  * 今日の活動セクションを描画する。
- * `selectedActivityDate` の日付と一致するクイズ記録を履歴と同じ形式で表示する。
  */
 export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase, selectedActivityDate: string): void {
   const todayRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
-  // 最新順に並べて履歴形式で表示（総合タブなので教科名プレフィックスを付ける）
   const sorted = [...todayRecords].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   todayActivityContentStore.set(
@@ -145,5 +137,75 @@ export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase,
       emptyMessage="この日はまだ問題を解いていません。"
       emptyClassName="today-activity-empty"
     />,
+  );
+}
+
+/**
+ * 学習状況パネルに「開始する」ボタンと星表示を描画する。
+ *
+ * 星ロジック（G = 目標数、n = 今日の完了数）:
+ * - n < G: ⭐×n + ☆×(G-n)
+ * - n >= G: 🌟×floor(n/(2*G)) + ✨×(floor(n/G)%2) + ⭐×(n%G)
+ * - 合計 10 個を超える場合は「…」を付加
+ */
+export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: number): void {
+  const completedToday = useCase.getTodayAdvancedCount();
+  learningStatusContentStore.set(<LearningStatusPanel goalCount={goalCount} completedToday={completedToday} />);
+}
+
+// ─── 星表示コンポーネント ──────────────────────────────────────────────────
+
+function buildStarItems(G: number, n: number): Array<{ symbol: string; className: string }> {
+  const items: Array<{ symbol: string; className: string }> = [];
+  if (G <= 0) return items;
+
+  if (n < G) {
+    for (let i = 0; i < n; i++) items.push({ symbol: "⭐", className: "text-lg" });
+    for (let i = n; i < G; i++) items.push({ symbol: "☆", className: "text-lg text-[#d0d7de]" });
+  } else {
+    const fullSets = Math.floor(n / G);
+    const partial = n % G;
+    const bigStars = Math.floor(fullSets / 2);
+    const sparkles = fullSets % 2;
+
+    for (let i = 0; i < bigStars; i++) items.push({ symbol: "🌟", className: "text-2xl" });
+    for (let i = 0; i < sparkles; i++) items.push({ symbol: "✨", className: "text-xl" });
+    for (let i = 0; i < partial; i++) items.push({ symbol: "⭐", className: "text-lg" });
+  }
+  return items;
+}
+
+function LearningStatusPanel({
+  goalCount,
+  completedToday,
+}: {
+  goalCount: number;
+  completedToday: number;
+}): React.JSX.Element {
+  const allItems = buildStarItems(goalCount, completedToday);
+  const MAX_ITEMS = 10;
+  const displayItems = allItems.slice(0, MAX_ITEMS);
+  const hasMore = allItems.length > MAX_ITEMS;
+
+  return (
+    <div className="learning-status-panel flex flex-col gap-3 py-3 px-4">
+      <button
+        id="learningStatusStartBtn"
+        type="button"
+        className="learning-status-start-btn w-full py-2.5 px-4 text-base font-bold text-white bg-[#0366d6] rounded-lg border-none cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0] transition-[background-color] duration-150 shadow-sm"
+        onClick={triggerStartQuiz}
+      >
+        開始する
+      </button>
+      <div className="learning-status-stars flex flex-row flex-wrap items-center gap-1 mt-1 min-h-[2rem]">
+        {displayItems.map((item, idx) => (
+          <span key={idx} className={`leading-none ${item.className}`}>
+            {item.symbol}
+          </span>
+        ))}
+        {hasMore && <span className="text-[#586069] text-sm">…</span>}
+        {displayItems.length === 0 && <span className="text-sm text-[#8b949e]">今日の完了: 0</span>}
+      </div>
+    </div>
   );
 }

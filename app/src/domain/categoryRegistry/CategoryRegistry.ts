@@ -159,6 +159,11 @@ export class CategoryRegistry {
     return rec;
   }
 
+  /** 問題が登録されている教科の ID 一覧（登録順） */
+  getSubjects(): string[] {
+    return [...this.categoriesBySubject.keys()];
+  }
+
   /** 指定教科のカテゴリ一覧（ID -> 名前） */
   getCategoriesForSubject(subject: string): Record<string, string> {
     return this.categoriesBySubject.get(subject) ?? EMPTY_RECORD;

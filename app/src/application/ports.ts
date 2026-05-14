@@ -44,6 +44,16 @@ export interface QuizSettings {
   includeMastered: boolean;
 }
 
+/** 単元の学習ステージ (0=未学習, 1=学習済, 2=復習済, 3=修了済) */
+export type CategoryStage = 0 | 1 | 2 | 3;
+
+/** 単元ごとのステージ記録 */
+export interface CategoryStageRecord {
+  stage: CategoryStage;
+  /** ステージが最後に進んだ日時（ISO 8601 文字列） */
+  lastCompletedAt: string;
+}
+
 /** 利用者データのエクスポート形式 */
 export interface UserDataExport {
   exportedAt: string;
@@ -55,6 +65,8 @@ export interface UserDataExport {
   categoryViewMode: "category" | "grade";
   fontSizeLevel: "small" | "medium" | "large" | null;
   recommendedCounts?: Record<string, number>;
+  categoryStages?: Record<string, CategoryStageRecord>;
+  globalRecommendedCount?: number;
 }
 
 /** 進捗データ永続化の抽象インターフェース */
@@ -83,6 +95,10 @@ export interface IProgressRepository {
   saveQuizSettings(settings: QuizSettings): void;
   loadRecommendedCounts(): Record<string, number>;
   saveRecommendedCounts(counts: Record<string, number>): void;
+  loadCategoryStages(): Record<string, CategoryStageRecord>;
+  saveCategoryStages(stages: Record<string, CategoryStageRecord>): void;
+  loadGlobalRecommendedCount(): number;
+  saveGlobalRecommendedCount(count: number): void;
   exportAllData(): UserDataExport;
   clearAllData(): Promise<void>;
 }

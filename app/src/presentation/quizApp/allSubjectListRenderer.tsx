@@ -1,98 +1,56 @@
 /**
- * 「総合」タブ用の教科一覧描画ヘルパー（React 版）。
+ * 「総合」タブ用のおすすめ単元一覧描画ヘルパー（React 版）。
  *
- * 各教科カードに推奨の単元・学年・進捗率を表示する。
- * 同一カテゴリの単元はまとめて表示し、トップカテゴリ・親カテゴリも合わせて表示する。
+ * 全教科横断のおすすめ単元を1つのリストとして表示する。
+ * 目標数分の単元をメインリストとして、追加αを区切り線の下に表示する。
  *
  * `categoryList` 共有コンテナへ React で同期描画する。
- * 公開 API（`renderAllSubjectList(params)`）と DOM の class 構造は既存実装と完全互換。
+ * 公開 API（`renderAllSubjectList(params)`）と DOM の class 構造は既存実装と互換。
  */
 
-import type { QuizUseCase } from "../../application/quizUseCase";
-import { groupRecommendedByCategory, type RecommendedItem } from "../recommendedGrouping";
-import { SUBJECTS, gradeColorClass, calcDualProgressPct } from "../uiHelpers";
+import { useState } from "react";
+import type { QuizUseCase, GlobalRecommendedUnit } from "../../application/quizUseCase";
+import { calcDualProgressPct, gradeColorClass, SUBJECTS } from "../uiHelpers";
 import { categoryListContentStore } from "../components/categoryListContentStore";
+
+/**
+ * 教科 ID からアイコン文字列を返す。
+ * SUBJECTS（presentation 層）から解決し、application 層に UI 情報を持たせない。
+ */
+function getSubjectIcon(subjectId: string): string {
+  return SUBJECTS.find((s) => s.id === subjectId)?.icon ?? "📚";
+}
+
+/** 目標数の選択肢 */
+export const GLOBAL_RECOMMENDED_COUNT_OPTIONS = [3, 5, 8, 13, 21];
+
+/** デフォルトのα数（目標数の半分程度） */
+function calcAlphaCount(goalCount: number): number {
+  return Math.max(2, Math.ceil(goalCount / 2));
+}
 
 /** 総合タブ教科一覧描画のパラメータ。 */
 export interface RenderAllSubjectListParams {
   useCase: QuizUseCase;
-  /** 教科ごとの推奨単元表示数。 */
-  subjectRecommendedCounts: Map<string, number>;
-  /** 表示数変更時に呼ばれる（永続化＋再描画）。 */
-  onRecommendedCountChange: (subjectId: string, count: number) => void;
+  /** 全教科共通のおすすめ単元目標数。 */
+  globalRecommendedCount: number;
+  /** 目標数変更時に呼ばれる（永続化＋再描画）。 */
+  onGlobalCountChange: (count: number) => void;
   /** 単元カードクリック時に呼ばれる。 */
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
 }
 
-interface SubjectInfo {
-  id: string;
-  name: string;
-  icon: string;
-}
-
-interface UnitStats {
-  mastered: number;
-  total: number;
-  inProgressCount: number;
-  isStudying: boolean;
-}
-
-interface SubjectViewModel {
-  subject: SubjectInfo;
-  count: number;
-  /** items が空のときは「単元なし」を表示する。 */
-  groups: Array<{
-    topCatId: string;
-    topCatName: string;
-    parentCatId: string;
-    parentCatName: string;
-    items: Array<{ recommended: RecommendedItem; stats: UnitStats }>;
-  }>;
-  hasItems: boolean;
-}
-
-const RECOMMENDED_COUNT_OPTIONS = [1, 3, 5];
-
-/** useCase からビューモデルを作る純粋関数。 */
-export function buildAllSubjectViewModel(params: {
-  useCase: QuizUseCase;
-  subjectRecommendedCounts: Map<string, number>;
-}): SubjectViewModel[] {
-  const { useCase, subjectRecommendedCounts } = params;
-  const nonAllSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
-  const studiedKeys = useCase.getStudiedCategoryKeys();
-
-  return nonAllSubjects.map((subject) => {
-    const count = subjectRecommendedCounts.get(subject.id) ?? 1;
-    const recommendedList = useCase.getRecommendedCategoriesForSubject(subject.id, count);
-    if (recommendedList.length === 0) {
-      return { subject, count, groups: [], hasItems: false };
-    }
-    const groups = groupRecommendedByCategory(subject.id, recommendedList, useCase).map((g) => ({
-      ...g,
-      items: g.items.map((recommended) => {
-        const { mastered, total } = useCase.getMasteredCountForCategory(subject.id, recommended.id);
-        const inProgressCount = useCase.getInProgressCount({ subject: subject.id, category: recommended.id });
-        const catKey = `${subject.id}::${recommended.id}`;
-        const isAllMastered = total > 0 && mastered === total;
-        const isStudying = !isAllMastered && (inProgressCount > 0 || studiedKeys.has(catKey));
-        return { recommended, stats: { mastered, total, inProgressCount, isStudying } };
-      }),
-    }));
-    return { subject, count, groups, hasItems: true };
-  });
-}
-
-/** 「総合」タブ用の教科一覧を描画する。 */
+/** 「総合」タブ用のおすすめ単元一覧を描画する。 */
 export function renderAllSubjectList(params: RenderAllSubjectListParams): void {
-  const subjects = buildAllSubjectViewModel({
-    useCase: params.useCase,
-    subjectRecommendedCounts: params.subjectRecommendedCounts,
-  });
+  const goalCount = params.globalRecommendedCount;
+  const alphaCount = calcAlphaCount(goalCount);
+
   categoryListContentStore.set(
-    <AllSubjectList
-      subjects={subjects}
-      onRecommendedCountChange={params.onRecommendedCountChange}
+    <GlobalRecommendedList
+      useCase={params.useCase}
+      goalCount={goalCount}
+      alphaCount={alphaCount}
+      onGlobalCountChange={params.onGlobalCountChange}
       onSelectUnit={params.onSelectUnit}
     />,
   );
@@ -100,89 +58,89 @@ export function renderAllSubjectList(params: RenderAllSubjectListParams): void {
 
 // ─── React コンポーネント ────────────────────────────────────────────────
 
-interface AllSubjectListProps {
-  subjects: SubjectViewModel[];
-  onRecommendedCountChange: (subjectId: string, count: number) => void;
+interface GlobalRecommendedListProps {
+  useCase: QuizUseCase;
+  goalCount: number;
+  alphaCount: number;
+  onGlobalCountChange: (count: number) => void;
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
 }
 
-function AllSubjectList({ subjects, onRecommendedCountChange, onSelectUnit }: AllSubjectListProps): React.JSX.Element {
-  return (
-    <>
-      {subjects.map((vm) => (
-        <SubjectOverviewWrapper
-          key={vm.subject.id}
-          vm={vm}
-          onRecommendedCountChange={onRecommendedCountChange}
-          onSelectUnit={onSelectUnit}
-        />
-      ))}
-    </>
-  );
-}
-
-function SubjectOverviewWrapper({
-  vm,
-  onRecommendedCountChange,
+function GlobalRecommendedList({
+  useCase,
+  goalCount,
+  alphaCount,
+  onGlobalCountChange,
   onSelectUnit,
-}: {
-  vm: SubjectViewModel;
-  onRecommendedCountChange: (subjectId: string, count: number) => void;
-  onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
-}): React.JSX.Element {
+}: GlobalRecommendedListProps): React.JSX.Element {
+  // 「もっと追加」で増やす一時的な追加件数（永続化しない。目標数設定とは別）
+  const [extraCount, setExtraCount] = useState(0);
+  const units = useCase.getRecommendedUnitsGlobal(goalCount, alphaCount + extraCount);
+
+  const mainUnits = units.slice(0, goalCount);
+  const extraUnits = units.slice(goalCount);
+
   return (
-    <div className="subject-overview-wrapper flex flex-col gap-0">
-      <SubjectOverviewHeaderRow
-        subject={vm.subject}
-        currentCount={vm.count}
-        onCountChange={(n) => onRecommendedCountChange(vm.subject.id, n)}
-      />
-      {!vm.hasItems ? (
-        <div
-          className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg bg-transparent cursor-pointer select-none transition-[background] duration-150 text-left"
-          data-subject={vm.subject.id}
-        >
-          単元なし
-        </div>
+    <div className="global-recommended-list flex flex-col gap-0">
+      <GlobalCountHeaderRow currentCount={goalCount} onCountChange={onGlobalCountChange} />
+      {mainUnits.length === 0 ? (
+        <div className="global-recommended-empty px-3 py-2 text-sm text-[#586069]">おすすめ単元なし</div>
       ) : (
-        vm.groups.map((group) => (
-          <div
-            key={`${group.topCatId}::${group.parentCatId}`}
-            className="subject-overview-cat-group flex flex-col gap-0.5 mt-0.5"
-          >
-            <CategoryGroupHeader group={group} />
-            {group.items.map(({ recommended, stats }) => (
-              <RecommendedUnitCard
-                key={recommended.id}
-                subjectId={vm.subject.id}
-                recommended={recommended}
-                stats={stats}
-                onActivate={() => onSelectUnit(vm.subject.id, recommended.id, recommended.name)}
-              />
-            ))}
-          </div>
+        mainUnits.map((unit) => (
+          <RecommendedUnitCard
+            key={`${unit.subject}::${unit.categoryId}`}
+            unit={unit}
+            onActivate={() => onSelectUnit(unit.subject, unit.categoryId, unit.categoryName)}
+          />
         ))
       )}
+      {extraUnits.length > 0 && (
+        <>
+          <div
+            className="global-recommended-divider flex items-center gap-2 px-2 py-1.5"
+            role="separator"
+            aria-label="目標数を超えた単元"
+          >
+            <div className="flex-1 h-px bg-[#d0d7de]" />
+            <span className="text-[10px] text-[#8b949e] whitespace-nowrap select-none">＋α</span>
+            <div className="flex-1 h-px bg-[#d0d7de]" />
+          </div>
+          {extraUnits.map((unit) => (
+            <RecommendedUnitCard
+              key={`${unit.subject}::${unit.categoryId}`}
+              unit={unit}
+              onActivate={() => onSelectUnit(unit.subject, unit.categoryId, unit.categoryName)}
+            />
+          ))}
+        </>
+      )}
+      <div className="global-recommended-add-row px-3 pt-1.5 pb-2">
+        <button
+          type="button"
+          className="global-recommended-add-btn w-full text-sm py-1 px-2 rounded border border-dashed border-[#d1d5da] text-[#586069] bg-transparent cursor-pointer hover:bg-[#f6f8fa] hover:border-[#0366d6] hover:text-[#0366d6] transition-[background,border-color,color] duration-150"
+          onClick={() => setExtraCount((c) => c + calcAlphaCount(goalCount))}
+        >
+          ＋ もっと追加
+        </button>
+      </div>
     </div>
   );
 }
 
-function SubjectOverviewHeaderRow({
-  subject,
+function GlobalCountHeaderRow({
   currentCount,
   onCountChange,
 }: {
-  subject: SubjectInfo;
   currentCount: number;
   onCountChange: (n: number) => void;
 }): React.JSX.Element {
   return (
-    <div className="subject-overview-subject-row flex items-center gap-[5px] pt-1 px-1 pb-0.5 pl-0.5">
-      <span className="subject-overview-icon text-lg leading-none shrink-0">{subject.icon}</span>
-      <span className="subject-overview-name text-sm font-bold text-[#24292e]">{subject.name}</span>
-      <div className="subject-rec-count-controls flex items-center gap-0.5 ml-auto">
-        <span className="subject-rec-count-label text-[11px] text-[#586069] mr-0.5">目標数:</span>
-        {RECOMMENDED_COUNT_OPTIONS.map((n) => {
+    <div className="global-count-header-row flex items-center gap-[5px] pt-1 px-1 pb-0.5 pl-0.5">
+      <span className="global-count-icon text-lg leading-none shrink-0">🎯</span>
+      <span className="global-count-label text-sm font-bold text-[#24292e]">おすすめ</span>
+      <div className="global-count-controls flex items-center gap-0.5 ml-auto">
+        <span className="global-count-label-small text-[11px] text-[#586069] mr-0.5">目標数:</span>
+        {GLOBAL_RECOMMENDED_COUNT_OPTIONS.map((n) => {
           const active = currentCount === n;
           return (
             <button
@@ -210,67 +168,62 @@ function SubjectOverviewHeaderRow({
   );
 }
 
-function CategoryGroupHeader({
-  group,
-}: {
-  group: { topCatId: string; topCatName: string; parentCatId: string; parentCatName: string };
-}): React.JSX.Element | null {
-  if (!group.parentCatId) return null;
-  const showTop = group.topCatId && group.topCatId !== group.parentCatId;
-  return (
-    <div className="subject-overview-cat-header text-[11px] text-[#586069] px-0.5 pb-px">
-      {showTop && (
-        <>
-          <span className="subject-overview-outer-cat font-semibold text-[#444d56]">{group.topCatName}</span>
-          <span className="subject-overview-cat-header-arrow text-[#a0a0a0] mx-0.5"> › </span>
-        </>
-      )}
-      <span className="subject-overview-outer-cat font-semibold text-[#444d56]">{group.parentCatName}</span>
-    </div>
-  );
+/** ステージバッジを返す */
+function stageBadge(stage: number): { emoji: string; sizeClass: string } | null {
+  if (stage === 1) return { emoji: "🎖️", sizeClass: "text-sm" };
+  if (stage === 2) return { emoji: "🏆", sizeClass: "text-base" };
+  if (stage === 3) return { emoji: "👑", sizeClass: "text-lg" };
+  return null;
 }
 
 function RecommendedUnitCard({
-  subjectId,
-  recommended,
-  stats,
+  unit,
   onActivate,
 }: {
-  subjectId: string;
-  recommended: RecommendedItem;
-  stats: UnitStats;
+  unit: GlobalRecommendedUnit;
   onActivate: () => void;
 }): React.JSX.Element {
-  const isAllMastered = stats.total > 0 && stats.mastered === stats.total;
-  const statusEmoji = isAllMastered ? "✅" : stats.isStudying ? "🔄" : "⬜";
-  const { masteredPct, inProgressPct } = calcDualProgressPct(stats.mastered, stats.inProgressCount, stats.total);
-  const gradeClassName = recommended.referenceGrade ? gradeColorClass(recommended.referenceGrade) : "";
+  const badge = stageBadge(unit.stage);
+  const { masteredPct, inProgressPct } = calcDualProgressPct(unit.mastered, unit.inProgressCount, unit.totalQuestions);
+  const gradeClassName = unit.referenceGrade ? gradeColorClass(unit.referenceGrade) : "";
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       onActivate();
     }
   };
+
   return (
     <div
       className="subject-overview-item flex flex-row items-start gap-1.5 px-3 py-2 rounded-lg bg-transparent cursor-pointer select-none transition-[background] duration-150 text-left hover:bg-[#e8f0fe] focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2"
       role="button"
       tabIndex={0}
-      data-subject={subjectId}
+      data-subject={unit.subject}
       onClick={onActivate}
       onKeyDown={handleKeyDown}
     >
-      <span className="subject-overview-status text-sm shrink-0 leading-none" aria-hidden="true">
-        {statusEmoji}
+      <span className="subject-overview-status text-sm shrink-0 leading-none pt-px" aria-hidden="true">
+        {getSubjectIcon(unit.subject)}
       </span>
       <div className="subject-overview-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
-        <div className="subject-overview-title-row flex flex-row items-center gap-1.5 min-w-0 flex-wrap">
-          <span className="subject-overview-rec-name text-base font-semibold min-w-0">{recommended.name}</span>
-          {recommended.referenceGrade && (
+        <div className="subject-overview-title-row flex flex-row items-center gap-1 min-w-0 flex-wrap">
+          <span className={`subject-overview-rec-name font-semibold min-w-0 ${badge ? badge.sizeClass : "text-sm"}`}>
+            {unit.categoryName}
+          </span>
+          {badge && (
+            <span
+              className={`stage-badge ${badge.sizeClass} shrink-0 leading-none`}
+              aria-label={`ステージ${unit.stage}`}
+            >
+              {badge.emoji}
+            </span>
+          )}
+          {unit.referenceGrade && (
             <span
               className={[
                 "subject-overview-grade ml-auto shrink-0",
-                "text-xs px-[5px] py-px rounded-[10px] whitespace-nowrap",
+                "text-[10px] px-[4px] py-px rounded-[10px] whitespace-nowrap",
                 "[&.grade-elementary]:text-[#c0392b] [&.grade-elementary]:bg-[#fde8e8]",
                 "[&.grade-middle]:text-[#0366d6] [&.grade-middle]:bg-[#e8f0fe]",
                 "[&.grade-high]:text-[#1a7f37] [&.grade-high]:bg-[#e8f8f0]",
@@ -279,7 +232,7 @@ function RecommendedUnitCard({
                 .filter(Boolean)
                 .join(" ")}
             >
-              {recommended.referenceGrade}
+              {unit.referenceGrade}
             </span>
           )}
         </div>
@@ -294,11 +247,11 @@ function RecommendedUnitCard({
               style={{ width: `${inProgressPct}%` }}
             />
           </div>
-          {stats.total > 0 && (stats.mastered > 0 || stats.inProgressCount > 0) && (
+          {unit.totalQuestions > 0 && (unit.mastered > 0 || unit.inProgressCount > 0) && (
             <span className="subject-overview-pct text-[11px] text-[#586069] whitespace-nowrap shrink-0">
-              {stats.inProgressCount > 0
-                ? `${stats.mastered}(${stats.inProgressCount})/${stats.total}`
-                : `${stats.mastered}/${stats.total}`}
+              {unit.inProgressCount > 0
+                ? `${unit.mastered}(${unit.inProgressCount})/${unit.totalQuestions}`
+                : `${unit.mastered}/${unit.totalQuestions}`}
             </span>
           )}
         </div>

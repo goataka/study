@@ -5,7 +5,14 @@
  * 各仕様テストファイルから再利用する。
  */
 
-import type { IQuestionRepository, IProgressRepository, QuizRecord, QuizSettings, UserDataExport } from "../ports";
+import type {
+  IQuestionRepository,
+  IProgressRepository,
+  QuizRecord,
+  QuizSettings,
+  UserDataExport,
+  CategoryStageRecord,
+} from "../ports";
 import type { Question } from "../../domain/question";
 
 export const makeQuestion = (id: string, subject = "english", category = "phonics"): Question => ({
@@ -39,6 +46,8 @@ export class StubProgressRepository implements IProgressRepository {
   private stats: Record<string, { total: number; correct: number }>;
   private masteredIds: string[];
   private recommendedCounts: Record<string, number>;
+  private categoryStages: Record<string, CategoryStageRecord>;
+  private globalRecommendedCount: number;
   private userName: string | null = null;
   private userAvatar: string | null = null;
   private categoryViewMode: "category" | "grade" = "category";
@@ -59,6 +68,8 @@ export class StubProgressRepository implements IProgressRepository {
     this.stats = { ...initialStats };
     this.masteredIds = [...initialMasteredIds];
     this.recommendedCounts = { ...initialRecommendedCounts };
+    this.categoryStages = {};
+    this.globalRecommendedCount = 5;
   }
   loadWrongIds(): string[] {
     return [...this.ids];
@@ -140,6 +151,8 @@ export class StubProgressRepository implements IProgressRepository {
       categoryViewMode: this.categoryViewMode,
       fontSizeLevel: this.fontSizeLevel,
       recommendedCounts: { ...this.recommendedCounts },
+      categoryStages: { ...this.categoryStages },
+      globalRecommendedCount: this.globalRecommendedCount,
     };
   }
   loadShareUrl(): string {
@@ -160,6 +173,21 @@ export class StubProgressRepository implements IProgressRepository {
   saveRecommendedCounts(counts: Record<string, number>): void {
     this.recommendedCounts = { ...counts };
   }
+  loadCategoryStages(): Record<string, CategoryStageRecord> {
+    return { ...this.categoryStages };
+  }
+  saveCategoryStages(stages: Record<string, CategoryStageRecord>): void {
+    this.categoryStages = { ...stages };
+  }
+  getStoredCategoryStages(): Record<string, CategoryStageRecord> {
+    return { ...this.categoryStages };
+  }
+  loadGlobalRecommendedCount(): number {
+    return this.globalRecommendedCount;
+  }
+  saveGlobalRecommendedCount(count: number): void {
+    this.globalRecommendedCount = count;
+  }
   async clearAllData(): Promise<void> {
     this.ids = [];
     this.history = [];
@@ -167,6 +195,8 @@ export class StubProgressRepository implements IProgressRepository {
     this.stats = {};
     this.masteredIds = [];
     this.recommendedCounts = {};
+    this.categoryStages = {};
+    this.globalRecommendedCount = 5;
     this.userName = null;
     this.userAvatar = null;
     this.categoryViewMode = "category";

@@ -306,10 +306,10 @@ export function gradeFilterMatches(app: QuizApp, subject: string, categoryId: st
 export function renderAllSubjectList(app: QuizApp): void {
   renderAllSubjectListFn({
     useCase: app.useCase,
-    subjectRecommendedCounts: app.subjectRecommendedCounts,
-    onRecommendedCountChange: (subjectId, count) => {
-      app.subjectRecommendedCounts.set(subjectId, count);
-      app.saveRecommendedCounts();
+    globalRecommendedCount: app.globalRecommendedCount,
+    onGlobalCountChange: (count) => {
+      app.globalRecommendedCount = count;
+      app.saveGlobalRecommendedCount();
       renderCategoryList(app);
     },
     onSelectUnit: (subjectId, categoryId, categoryName) => {
@@ -378,7 +378,7 @@ export function renderProgressDetailContent(app: QuizApp): void {
 export function renderOverallSummaryPanel(app: QuizApp, allRecords?: QuizRecord[]): void {
   renderOverallSummaryPanelFn({
     useCase: app.useCase,
-    subjectRecommendedCounts: app.subjectRecommendedCounts,
+    globalRecommendedCount: app.globalRecommendedCount,
     selectedActivityDate: app.selectedActivityDate,
     activeOverallPanel: app.activeOverallPanel,
     allRecords,
