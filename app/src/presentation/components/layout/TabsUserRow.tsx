@@ -83,6 +83,9 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           ref={scrollerRef}
           className={[
             "subject-tabs",
+            // overflow-x-auto は overflow-y も auto に計算されるため、アクティブタブの pb-[40px] 拡張が
+            // クリップされてしまう。コンテナ側に pb-[40px] を付与して拡張分をパディング内に収め、
+            // -mb-[40px] でレイアウト上の高さ増加を打ち消すことでクリッピングを回避する。
             "relative flex flex-1 min-w-0 gap-1 border-b-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden px-4 pt-0 pb-[40px] -mb-[40px] items-start justify-center",
           ].join(" ")}
           role="tablist"

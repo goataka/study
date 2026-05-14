@@ -76,7 +76,7 @@ export function AdminPanelRoot({
   const [detectedFileKey, setDetectedFileKey] = useState<AdminSectionKey | null>(null);
   const [copyButtonText, setCopyButtonText] = useState("📋 コピー");
 
-  const switchMenu = (menu: Exclude<ActiveMenu, null>): void => {
+  const showMenu = (menu: Exclude<ActiveMenu, null>): void => {
     setActiveMenu(menu);
   };
 
@@ -226,21 +226,21 @@ export function AdminPanelRoot({
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "manage" ? " active" : ""}`}
           type="button"
-          onClick={() => switchMenu("manage")}
+          onClick={() => showMenu("manage")}
         >
           ✅ データ更改
         </button>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "view" ? " active" : ""}`}
           type="button"
-          onClick={() => switchMenu("view")}
+          onClick={() => showMenu("view")}
         >
           📖 データ参照
         </button>
         <button
           className={`admin-menu-btn admin-menu-child ${menuBtnChild}${activeMenu === "spec" ? " active" : ""}`}
           type="button"
-          onClick={() => switchMenu("spec")}
+          onClick={() => showMenu("spec")}
         >
           🧩 データ仕様
         </button>
