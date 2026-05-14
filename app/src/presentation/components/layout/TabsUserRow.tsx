@@ -10,10 +10,10 @@
  */
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { AvatarCropDialog } from "./tabsUserRow/AvatarCropDialog";
-import type { ScreenName } from "./screenStore";
-import { subjectTabsContentStore } from "./subjectTabsContentStore";
-import { headerUserSaveButton } from "../styles/headerUserSaveButtonStyles";
+import { AvatarCropDialog } from "../tabsUserRow/AvatarCropDialog";
+import type { ScreenName } from "../screenStore";
+import { subjectTabsContentStore } from "../subjectTabsContentStore";
+import { headerUserSaveButton } from "../../styles/headerUserSaveButtonStyles";
 
 interface TabsUserRowProps {
   currentScreen: ScreenName;

@@ -19,13 +19,13 @@
  */
 
 import { useSyncExternalStore } from "react";
-import { NotesPanel } from "./quizScreen/NotesPanel";
-import { KanjiInputArea } from "./quizScreen/KanjiInputArea";
-import { navButton } from "../styles/navButtonStyles";
-import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "./quizSessionStore";
-import { choicesContentStore } from "./choicesContentStore";
-import { StartHeader } from "./startScreen/StartHeader";
-import type { ScreenName } from "./screenStore";
+import { NotesPanel } from "../quizScreen/NotesPanel";
+import { KanjiInputArea } from "../quizScreen/KanjiInputArea";
+import { navButton } from "../../styles/navButtonStyles";
+import { getQuizSessionSnapshot, subscribeQuizSessionStore } from "../quizSessionStore";
+import { choicesContentStore } from "../choicesContentStore";
+import { StartHeader } from "../startScreen/StartHeader";
+import type { ScreenName } from "../screenStore";
 
 interface QuizScreenProps {
   currentScreen: ScreenName;

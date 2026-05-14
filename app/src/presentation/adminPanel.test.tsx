@@ -43,7 +43,7 @@ function createDeps() {
   };
 }
 
-describe("renderAdminContent", () => {
+describe("管理パネル描画", () => {
   beforeEach(() => {
     unmountAllTrackedRoots();
     document.body.innerHTML = `

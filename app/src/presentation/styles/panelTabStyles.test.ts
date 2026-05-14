@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { panelTab, panelTabs } from "./panelTabStyles";
 
-describe("panelTab", () => {
+describe("パネルタブ単体スタイル", () => {
   it("セマンティッククラス `panel-tab` を含む（テスト・font-size 切替用）", () => {
     expect(panelTab().split(/\s+/)).toContain("panel-tab");
   });
@@ -15,7 +15,7 @@ describe("panelTab", () => {
   });
 });
 
-describe("panelTabs", () => {
+describe("パネルタブ群スタイル", () => {
   it("セマンティッククラス `panel-tabs` を含む", () => {
     expect(panelTabs().split(/\s+/)).toContain("panel-tabs");
   });

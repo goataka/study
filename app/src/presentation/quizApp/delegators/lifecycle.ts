@@ -45,7 +45,6 @@ import {
   toggleLearnedStatus as toggleLearnedStatusFn,
 } from "../quizLifecycle";
 import { renderMultipleChoice, renderTextInput } from "../choicesRenderer";
-import { updateSpeakButton } from "../speakButton";
 import { getQuizSettingsSnapshot } from "../../components/startScreen/quizSettingsStore";
 import { clearQuizSessionStore, syncQuizSessionStore } from "../../components/quizSessionStore";
 import { setText } from "../../uiHelpers";
@@ -267,7 +266,6 @@ function applyLegacyQuizDom(session: QuizSession, kanjiCanvasController: KanjiCa
   const progressFill = document.getElementById("progressFill") as HTMLElement | null;
   if (progressFill) progressFill.style.width = `${((idx + 1) / total) * 100}%`;
   setText("questionText", question.question);
-  updateSpeakButton(question);
   applyLegacyFeedback(session, question);
   applyLegacyNavigation(session);
   applyLegacyNotes(session, question, kanjiCanvasController);
