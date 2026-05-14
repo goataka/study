@@ -9,7 +9,7 @@ import {
   getScreenNameFromHistoryState,
 } from "./screenStore";
 
-describe("screenStore", () => {
+describe("screenStore ストア", () => {
   beforeEach(() => {
     __resetScreenStoreForTests();
   });

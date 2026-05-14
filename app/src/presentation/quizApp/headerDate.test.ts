@@ -3,7 +3,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { updateHeaderTodayDate } from "./headerDate";
 
-describe("updateHeaderTodayDate", () => {
+describe("updateHeaderTodayDate 関数", () => {
   beforeEach(() => {
     document.body.innerHTML = `<span id="headerTodayDate"></span>`;
   });

@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { QuizSession } from "../../domain/quizSession";
 import { clearQuizSessionStore, getQuizSessionSnapshot, syncQuizSessionStore } from "./quizSessionStore";
 
-describe("quizSessionStore", () => {
+describe("quizSessionStore ストア", () => {
   it("未回答時はフィードバック非表示で next が無効になる", () => {
     clearQuizSessionStore();
     const session = new QuizSession([

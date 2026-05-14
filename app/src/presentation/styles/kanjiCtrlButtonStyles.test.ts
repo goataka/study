@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { kanjiCtrlButton } from "./kanjiCtrlButtonStyles";
 
-describe("kanjiCtrlButton (CVA)", () => {
+describe("kanjiCtrlButton スタイル（CVA）", () => {
   it("操作ボタンのスタイルクラスを出力する", () => {
     const cls = kanjiCtrlButton();
     expect(cls).toContain("cursor-pointer");

@@ -7,7 +7,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { NotesController } from "./notesController";
 
-describe("NotesController", () => {
+describe("NotesController コントローラー", () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <canvas id="notesCanvas" width="200" height="200"></canvas>
@@ -17,7 +17,7 @@ describe("NotesController", () => {
     `;
   });
 
-  describe("getCanvas", () => {
+  describe("getCanvas 関数", () => {
     it("初期化前は null を返す", () => {
       const ctrl = new NotesController();
       expect(ctrl.getCanvas()).toBeNull();
@@ -38,7 +38,7 @@ describe("NotesController", () => {
     });
   });
 
-  describe("toggleEraserMode", () => {
+  describe("toggleEraserMode 関数", () => {
     it("初期化前は何もしない", () => {
       const ctrl = new NotesController();
       expect(() => ctrl.toggleEraserMode()).not.toThrow();
@@ -57,7 +57,7 @@ describe("NotesController", () => {
     });
   });
 
-  describe("clear", () => {
+  describe("clear 関数", () => {
     it("インデックス指定で対応する状態を削除する", () => {
       const ctrl = new NotesController();
       ctrl.initialize();
@@ -67,7 +67,7 @@ describe("NotesController", () => {
     });
   });
 
-  describe("saveState / restoreState", () => {
+  describe("saveState / restoreState 関数", () => {
     it("初期化前でも例外を投げない", () => {
       const ctrl = new NotesController();
       expect(() => ctrl.saveState(0)).not.toThrow();

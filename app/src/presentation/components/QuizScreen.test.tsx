@@ -3,8 +3,8 @@
 import { describe, expect, it } from "vitest";
 import { extractSpeechText } from "./QuizScreen";
 
-describe("QuizScreen", () => {
-  describe("extractSpeechText", () => {
+describe("QuizScreen コンポーネント", () => {
+  describe("extractSpeechText 関数", () => {
     it("「」で囲まれた部分を読み上げ対象として抽出できる", () => {
       expect(extractSpeechText("「apple」をえらぼう")).toBe("apple");
     });

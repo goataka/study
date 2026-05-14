@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { speakButton } from "./speakButtonStyles";
 
-describe("speakButton (CVA)", () => {
+describe("speakButton スタイル（CVA）", () => {
   it("hidden=false でセマンティッククラスを含む", () => {
     const cls = speakButton({ hidden: false });
     expect(cls).toContain("speak-btn");

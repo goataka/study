@@ -6,7 +6,7 @@ import { ParentCategoryGroup } from "./ParentCategoryGroup";
 import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 
-describe("ParentCategoryGroup", () => {
+describe("ParentCategoryGroup コンポーネント", () => {
   let container: HTMLElement;
   let root: Root;
 

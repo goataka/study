@@ -3,7 +3,7 @@
 import { describe, expect, it } from "vitest";
 import { formatTodayText } from "./NotesPanel";
 
-describe("formatTodayText", () => {
+describe("formatTodayText 関数", () => {
   it("月日をゼロ埋めし、曜日を含む形式で返す", () => {
     expect(formatTodayText(new Date(2026, 0, 3))).toBe("2026/01/03（土）");
   });

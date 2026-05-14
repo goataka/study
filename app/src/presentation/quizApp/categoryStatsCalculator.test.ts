@@ -8,8 +8,8 @@ import {
 } from "./categoryStatsCalculator";
 import type { QuizUseCase, Question } from "../../application/quizUseCase";
 
-describe("categoryStatsCalculator", () => {
-  describe("formatCategoryStatsText", () => {
+describe("categoryStatsCalculator 関数", () => {
+  describe("formatCategoryStatsText 関数", () => {
     it("total が 0 の場合は空文字", () => {
       expect(formatCategoryStatsText({ total: 0, inProgress: 0, mastered: 0 })).toBe("");
     });
@@ -21,7 +21,7 @@ describe("categoryStatsCalculator", () => {
     });
   });
 
-  describe("deriveCategoryItemStatus", () => {
+  describe("deriveCategoryItemStatus 関数", () => {
     const studied = new Set<string>(["x::studied"]);
     it("全問習得済みなら learned", () => {
       const v = deriveCategoryItemStatus({ total: 5, inProgress: 0, mastered: 5 }, studied, "x::a");
@@ -46,7 +46,7 @@ describe("categoryStatsCalculator", () => {
     });
   });
 
-  describe("categoryStatsKey", () => {
+  describe("categoryStatsKey 関数", () => {
     it("category != 'all' なら subject::category", () => {
       expect(categoryStatsKey("english", "abc")).toBe("english::abc");
     });
@@ -55,7 +55,7 @@ describe("categoryStatsCalculator", () => {
     });
   });
 
-  describe("computeCategoryStatsMap", () => {
+  describe("computeCategoryStatsMap 関数", () => {
     function makeQ(id: string, subject: string, category: string, parentCategory?: string): Question {
       return { id, subject, category, parentCategory, type: "input", text: "", answer: "" } as unknown as Question;
     }

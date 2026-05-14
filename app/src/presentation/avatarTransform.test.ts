@@ -9,7 +9,7 @@ import {
   validateStoredAvatarDataUrl,
 } from "./avatarTransform";
 
-describe("parseAvatarTransform", () => {
+describe("parseAvatarTransform 関数", () => {
   it("デフォルトは 50/50/1", () => {
     expect(parseAvatarTransform({ cropPositionX: null, cropPositionY: null, cropZoom: null })).toEqual({
       cropX: 50,
@@ -49,7 +49,7 @@ describe("parseAvatarTransform", () => {
   });
 });
 
-describe("pctDelta", () => {
+describe("pctDelta 関数", () => {
   it("rect サイズ比で % を返す", () => {
     expect(pctDelta(50, 25, 100, 50)).toEqual({ x: 50, y: 50 });
   });
@@ -58,7 +58,7 @@ describe("pctDelta", () => {
   });
 });
 
-describe("nextCropOnDrag", () => {
+describe("nextCropOnDrag 関数", () => {
   it("デルタを開始位置から減算してクランプする", () => {
     expect(nextCropOnDrag(50, 50, 10, 20)).toEqual({ cropX: 40, cropY: 30 });
   });
@@ -70,7 +70,7 @@ describe("nextCropOnDrag", () => {
   });
 });
 
-describe("clampZoom", () => {
+describe("clampZoom 関数", () => {
   it("範囲内はそのまま", () => {
     expect(clampZoom(2)).toBe(2);
   });
@@ -83,7 +83,7 @@ describe("clampZoom", () => {
   });
 });
 
-describe("validateAvatarFile", () => {
+describe("validateAvatarFile 関数", () => {
   it("画像でなければエラー", () => {
     expect(validateAvatarFile({ type: "text/plain", size: 100 })).toContain("画像");
   });
@@ -95,7 +95,7 @@ describe("validateAvatarFile", () => {
   });
 });
 
-describe("validateStoredAvatarDataUrl", () => {
+describe("validateStoredAvatarDataUrl 関数", () => {
   it("data:image/ で始まるなら採用", () => {
     expect(validateStoredAvatarDataUrl("data:image/png;base64,xxx")).toBe("data:image/png;base64,xxx");
   });
@@ -109,7 +109,7 @@ describe("validateStoredAvatarDataUrl", () => {
   });
 });
 
-describe("transformToCss", () => {
+describe("transformToCss 関数", () => {
   it("CSS 値を組み立てる", () => {
     expect(transformToCss({ cropX: 30, cropY: 70, zoom: 2 })).toEqual({
       objectPosition: "30% 70%",

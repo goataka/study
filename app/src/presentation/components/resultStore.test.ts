@@ -3,7 +3,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { getResultSnapshot, setResults, subscribeResultStore } from "./resultStore";
 
-describe("resultStore", () => {
+describe("resultStore ストア", () => {
   it("setResults で結果を保持する", () => {
     const results = [
       {

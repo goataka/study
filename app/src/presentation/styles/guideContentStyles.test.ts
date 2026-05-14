@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { guideContent } from "./guideContentStyles";
 
-describe("guideContent (CVA)", () => {
+describe("guideContent スタイル（CVA）", () => {
   it("guide-content セマンティッククラスを含む", () => {
     const cls = guideContent();
     expect(cls).toContain("guide-content");

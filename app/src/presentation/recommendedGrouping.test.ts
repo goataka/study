@@ -7,7 +7,7 @@
 import { describe, it, expect } from "vitest";
 import { groupRecommendedByCategory, type CategoryLookup, type RecommendedItem } from "./recommendedGrouping";
 
-describe("groupRecommendedByCategory", () => {
+describe("groupRecommendedByCategory 関数", () => {
   const lookup: CategoryLookup = {
     getTopCategoryForUnit: (_subject, categoryId) => {
       if (categoryId.startsWith("a-")) return { id: "topA", name: "TopA" };

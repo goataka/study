@@ -5,7 +5,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 import { OuterBottomRow } from "./OuterBottomRow";
 
-describe("OuterBottomRow", () => {
+describe("OuterBottomRow コンポーネント", () => {
   let container: HTMLElement;
   let root: Root;
 

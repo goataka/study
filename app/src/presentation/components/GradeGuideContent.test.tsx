@@ -22,7 +22,7 @@ function render(props: Parameters<typeof GradeGuideContent>[0]): HTMLElement {
   return container;
 }
 
-describe("GradeGuideContent", () => {
+describe("GradeGuideContent コンポーネント", () => {
   it("見出し・サマリ・単元リストを描画する", () => {
     const container = render({
       title: "小1",

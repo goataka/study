@@ -10,7 +10,7 @@ afterEach(() => {
   __resetQuizSettingsStoreForTests();
 });
 
-describe("quizSettingsStore", () => {
+describe("quizSettingsStore ストア", () => {
   it("初期値は 10問 / random / 学習済を含めない", () => {
     const s = getQuizSettingsSnapshot();
     expect(s.questionCount).toBe(10);

@@ -6,7 +6,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { flushSync } from "react-dom";
 import { GuideContent } from "./GuideContent";
 
-describe("GuideContent", () => {
+describe("GuideContent コンポーネント", () => {
   let container: HTMLElement;
   let root: Root;
 

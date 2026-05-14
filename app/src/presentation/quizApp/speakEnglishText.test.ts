@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { Question } from "../../application/quizUseCase";
 import { canSpeakEnglishQuestion, extractSpeechText, speakEnglishQuestionText } from "./speakEnglishText";
 
-describe("speakEnglishText", () => {
+describe("speakEnglishText 関数", () => {
   beforeEach(() => {
     class MockSpeechSynthesisUtterance {
       lang = "";

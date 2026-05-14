@@ -5,7 +5,7 @@
 import { describe, expect, it } from "vitest";
 import { headerUserSaveButton } from "./headerUserSaveButtonStyles";
 
-describe("headerUserSaveButton (CVA)", () => {
+describe("headerUserSaveButton スタイル（CVA）", () => {
   it("header-user-save-btn セマンティッククラスを含む", () => {
     const cls = headerUserSaveButton();
     expect(cls).toContain("header-user-save-btn");
