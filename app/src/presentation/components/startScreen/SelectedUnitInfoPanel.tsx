@@ -131,7 +131,7 @@ function DescRow({
     <div className="selected-unit-info-desc-row flex items-center justify-between gap-2 min-w-0">
       <div className="selected-unit-info-desc-left flex-1 min-w-0 flex items-center gap-1">
         {catParts.length > 0 && (
-          <span className="selected-unit-info-category text-[13px] text-[#586069] bg-[#f0f0f0] px-1.5 py-px rounded-[10px] whitespace-nowrap">
+          <span className="selected-unit-info-category text-base text-[#586069] bg-[#f0f0f0] px-1.5 py-px rounded-[10px] whitespace-nowrap">
             {catParts.join(" › ")}
           </span>
         )}
@@ -152,7 +152,7 @@ function GradeBadge({ grade }: { grade: string }): React.JSX.Element {
   const className = [
     "category-grade",
     colorClass,
-    "text-xs whitespace-nowrap px-[5px] py-px rounded-[10px] shrink-0",
+    "text-base whitespace-nowrap px-[5px] py-px rounded-[10px] shrink-0",
     "[&.grade-elementary]:text-[#c0392b] [&.grade-elementary]:bg-[#fde8e8]",
     "[&.grade-middle]:text-[#0366d6] [&.grade-middle]:bg-[#e8f0fe]",
     "[&.grade-high]:text-[#1a7f37] [&.grade-high]:bg-[#e8f8f0]",

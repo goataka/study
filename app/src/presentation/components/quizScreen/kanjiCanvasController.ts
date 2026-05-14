@@ -38,17 +38,6 @@ export class KanjiCanvasController {
     return typeof (globalThis as unknown as { KanjiCanvas?: unknown }).KanjiCanvas !== "undefined";
   }
 
-  // ─── 折りたたみボタンの表示状態 ───────────────────────────────────────────
-
-  /** 折りたたみボタンの ARIA 属性・表示テキストを更新する。 */
-  applyToggleBtnState(btn: HTMLElement, expanded: boolean): void {
-    btn.setAttribute("aria-expanded", String(expanded));
-    btn.textContent = expanded ? "▲" : "▼";
-    const label = expanded ? "入力エリアを折りたたむ" : "入力エリアを展開する";
-    btn.title = label;
-    btn.setAttribute("aria-label", label);
-  }
-
   // ─── パターンデータの遅延ロード ───────────────────────────────────────────
 
   /**

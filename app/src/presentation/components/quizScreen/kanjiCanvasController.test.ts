@@ -42,32 +42,6 @@ describe("KanjiCanvasController コントローラー", () => {
     });
   });
 
-  describe("applyToggleBtnState 関数", () => {
-    it("expanded=true で ▲・展開済みラベルを設定する", () => {
-      const ctrl = new KanjiCanvasController({
-        getCorrectAnswer: () => undefined,
-        onSelectCandidate: () => {},
-      });
-      const btn = document.createElement("button");
-      ctrl.applyToggleBtnState(btn, true);
-      expect(btn.getAttribute("aria-expanded")).toBe("true");
-      expect(btn.textContent).toBe("▲");
-      expect(btn.title).toBe("入力エリアを折りたたむ");
-    });
-
-    it("expanded=false で ▼・展開ラベルを設定する", () => {
-      const ctrl = new KanjiCanvasController({
-        getCorrectAnswer: () => undefined,
-        onSelectCandidate: () => {},
-      });
-      const btn = document.createElement("button");
-      ctrl.applyToggleBtnState(btn, false);
-      expect(btn.getAttribute("aria-expanded")).toBe("false");
-      expect(btn.textContent).toBe("▼");
-      expect(btn.title).toBe("入力エリアを展開する");
-    });
-  });
-
   describe("erase / deleteLast — KanjiCanvas 未読込時", () => {
     it("isAvailable=false でも例外を投げず、候補リストをクリアする", () => {
       const ctrl = new KanjiCanvasController({

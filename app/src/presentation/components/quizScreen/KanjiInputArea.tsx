@@ -62,16 +62,6 @@ export function KanjiInputArea({ showKanjiInput }: KanjiInputAreaProps): React.J
             >
               🗑️
             </button>
-            <button
-              id="kanjiToggleBtn"
-              className={kanjiCtrlButton()}
-              type="button"
-              title="入力エリアを折りたたむ"
-              aria-label="入力エリアを折りたたむ"
-              aria-expanded="true"
-            >
-              ▲
-            </button>
           </div>
           <div id="kanjiCandidateList" className="kanji-candidate-list flex min-h-10 min-w-[50px] flex-col gap-1"></div>
         </div>

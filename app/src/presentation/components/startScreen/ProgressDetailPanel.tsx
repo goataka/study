@@ -58,16 +58,8 @@ export function ProgressDetailPanel(): React.JSX.Element {
       role="region"
       aria-label="進度詳細"
     >
-      <div className="progress-detail-close-row flex items-center justify-between px-4 py-2 border-b border-[#e1e4e8] shrink-0">
+      <div className="progress-detail-close-row flex items-center px-4 py-2 border-b border-[#e1e4e8] shrink-0">
         <span className="progress-detail-close-title text-lg font-bold text-[#24292e]">📊 進度詳細</span>
-        <button
-          id="progressDetailCloseBtn"
-          className="admin-data-close-btn inline-flex items-center justify-center w-7 h-7 rounded-full border border-[#d1d5da] bg-transparent text-[#586069] cursor-pointer text-sm font-semibold hover:bg-[#f0f7ff] hover:text-[#0366d6] hover:border-[#0366d6]"
-          type="button"
-          aria-label="閉じる"
-        >
-          ✕
-        </button>
       </div>
       <div className={`${panelTabs()} progress-detail-tabs shrink-0`} role="tablist" aria-label="進度詳細タブ">
         <ProgressDetailTabButton mode="grade" active={active} id="progressDetailTab-grade" label="🎓 学年別" />

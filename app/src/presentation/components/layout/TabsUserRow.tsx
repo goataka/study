@@ -63,7 +63,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
       {/* アプリ名（左固定） */}
       <div
         className={[
-          "app-name-area shrink-0 flex items-center gap-1.5 px-4 self-center",
+          "app-name-area shrink-0 flex items-center gap-1.5 px-4 self-center pt-px pb-0",
           currentScreen !== "start" && currentScreen !== "quiz" ? "hidden" : "",
         ]
           .filter(Boolean)

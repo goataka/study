@@ -82,7 +82,7 @@ export function syncQuizSessionStore(session: QuizSession, options: { kanjiAvail
         : `❌ 不正解です。正解は「${correctAnswer}」です。`
     : "";
   const isLast = idx === total - 1;
-  const showKanjiInput = isTextInput && !isAnswered && options.kanjiAvailable;
+  const showKanjiInput = isTextInput && !isAnswered && options.kanjiAvailable && question.subject !== "english";
   const isSpeechAvailable =
     typeof window.speechSynthesis !== "undefined" && typeof SpeechSynthesisUtterance !== "undefined";
 

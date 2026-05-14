@@ -17,7 +17,6 @@ import {
   setupFontSizeListeners,
   setupShareSummaryListeners,
   setupHistoryNavigationListeners,
-  setupProgressDetailPanelListeners,
   setupQuizFlowListeners,
   setupQuestionListFilterListeners,
   setupProgressFilterListeners,
@@ -59,7 +58,6 @@ export interface AllListenersDeps {
   // 漢字キャンバス
   onKanjiDeleteLast: () => void;
   onKanjiErase: () => void;
-  onKanjiApplyToggleBtnState: (btn: HTMLElement, expanded: boolean) => void;
   // カテゴリ状況フィルター
   onCategoryStatusFilterChange: (filter: "all" | "unlearned" | "studying" | "learned") => void;
   // ペン
@@ -114,7 +112,6 @@ export function setupAllListeners(deps: AllListenersDeps): void {
   setupKanjiCanvasListeners({
     onDeleteLast: deps.onKanjiDeleteLast,
     onErase: deps.onKanjiErase,
-    onApplyToggleBtnState: deps.onKanjiApplyToggleBtnState,
   });
   setupCategoryStatusFilterListeners(deps.onCategoryStatusFilterChange);
   setupNotesPenSelectListeners({
@@ -133,5 +130,4 @@ export function setupAllListeners(deps: AllListenersDeps): void {
     onPopState: deps.onPopState,
     onMobileBack: deps.onMobileBack,
   });
-  setupProgressDetailPanelListeners();
 }

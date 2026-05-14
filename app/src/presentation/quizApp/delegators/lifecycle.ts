@@ -331,16 +331,18 @@ function applyLegacyNotes(
   const notesCanvas = document.getElementById("notesCanvas");
   const notesControls = document.querySelector<HTMLElement>(".notes-controls");
   const isAnswered = session.getAnswer(session.currentIndex) !== undefined;
-  const showKanji = question.questionType === "text-input" && !isAnswered && kanjiCanvasController.isAvailable();
+  const showKanji =
+    question.questionType === "text-input" &&
+    !isAnswered &&
+    kanjiCanvasController.isAvailable() &&
+    question.subject !== "english";
   if (notesTitle) notesTitle.textContent = showKanji ? "✏️ 1文字ずつ書いて漢字を入力できます" : "タッチペンで書けます";
   if (kanjiInputArea) kanjiInputArea.classList.toggle("hidden", !showKanji);
   if (notesCanvas) notesCanvas.classList.toggle("hidden", showKanji);
   if (notesControls) notesControls.classList.toggle("hidden", showKanji);
   if (!showKanji) return;
   const kanjiInputBody = document.getElementById("kanjiInputBody");
-  const kanjiToggleBtn = document.getElementById("kanjiToggleBtn");
   if (kanjiInputBody) kanjiInputBody.classList.remove("hidden");
-  if (kanjiToggleBtn) kanjiCanvasController.applyToggleBtnState(kanjiToggleBtn, true);
   kanjiCanvasController.initialize();
   kanjiCanvasController.erase();
 }

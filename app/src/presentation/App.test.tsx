@@ -158,7 +158,6 @@ describe("App コンポーネント", () => {
       "questionListBody",
       // 進度詳細パネル
       "progressDetailPanel",
-      "progressDetailCloseBtn",
       "progressDetailTab-grade",
       "progressDetailTab-category",
       "progressDetailTab-matrix",
@@ -220,7 +219,6 @@ describe("App コンポーネント", () => {
       "kanjiCanvas",
       "kanjiDeleteLastBtn",
       "kanjiEraseBtn",
-      "kanjiToggleBtn",
       "kanjiCandidateList",
       // 結果画面
       "resultScreen",
