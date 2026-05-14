@@ -4,26 +4,26 @@ import { waitForStatsInfoLoaded } from "../helpers/statsInfo";
 
 const { Before, Given, When, Then } = createBdd();
 
-Given("the quiz application is loaded", async ({ page }) => {
+Given("クイズアプリが読み込まれている", async ({ page }) => {
   await page.goto(".");
   // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ
   await waitForStatsInfoLoaded(page);
 });
 
-Then("the start screen should be visible", async ({ page }) => {
+Then("スタート画面が表示される", async ({ page }) => {
   await expect(page.locator("#startScreen")).toBeVisible();
 });
 
-Then("the quiz title should be {string}", async ({ page }, title: string) => {
+Then("クイズタイトルが {string} である", async ({ page }, title: string) => {
   await expect(page.locator("h1")).toHaveText(title);
 });
 
-Then("the quiz title should contain {string}", async ({ page }, title: string) => {
+Then("クイズタイトルに {string} が含まれる", async ({ page }, title: string) => {
   // アプリ名はタブ行の左側 .app-name-text に表示される
   await expect(page.locator(".app-name-text")).toContainText(title);
 });
 
-When("I click the {string} tab", async ({ page }, tabText: string) => {
+When("{string} タブをクリックする", async ({ page }, tabText: string) => {
   // タブボタンをクリック
   const tab = page.locator(".subject-tab").filter({ hasText: tabText });
   await tab.click();
@@ -31,7 +31,7 @@ When("I click the {string} tab", async ({ page }, tabText: string) => {
   await expect(tab).toHaveClass(/active/);
 });
 
-Then("the header should remain visible", async ({ page }) => {
+Then("ヘッダーが表示されている", async ({ page }) => {
   // スタート画面のヘッダーが表示されていることを確認（#startScreen にスコープを絞る）
   const header = page.locator("#startScreen header");
   await expect(header).toBeVisible();
@@ -44,7 +44,7 @@ Then("the header should remain visible", async ({ page }) => {
   expect(headerBox!.y + headerBox!.height).toBeLessThanOrEqual(viewportSize!.height);
 });
 
-Then("the quiz panel should remain visible", async ({ page }) => {
+Then("クイズパネルが表示されたまま", async ({ page }) => {
   // クイズパネルが表示されていることを確認（Shadow DOM piercing による重複を避けるため first() を使用）
   const quizPanel = page.locator(".quiz-panel").first();
   await expect(quizPanel).toBeVisible();
@@ -57,31 +57,31 @@ Then("the quiz panel should remain visible", async ({ page }) => {
   expect(panelBox!.y + panelBox!.height).toBeLessThanOrEqual(viewportSize!.height);
 });
 
-Then("the category list should be visible", async ({ page }) => {
+Then("単元一覧が表示される", async ({ page }) => {
   // カテゴリリストが表示されていることを確認
   const categoryList = page.locator("#categoryList");
   await expect(categoryList).toBeVisible();
 });
 
-Then("the subject overview items should be visible", async ({ page }) => {
+Then("教科概要アイテムが表示される", async ({ page }) => {
   // 総合タブの教科概要アイテムが表示されていることを確認
   const overviewItems = page.locator(".subject-overview-item");
   await expect(overviewItems.first()).toBeVisible();
 });
 
-Then("the quiz panel should be visible", async ({ page }) => {
+Then("クイズパネルが表示される", async ({ page }) => {
   // クイズパネルが表示されていることを確認（Shadow DOM piercing による重複を避けるため first() を使用）
   const quizPanel = page.locator(".quiz-panel").first();
   await expect(quizPanel).toBeVisible();
 });
 
-When("I click the first category item", async ({ page }) => {
+When("最初の単元をクリックする", async ({ page }) => {
   // 最初のカテゴリアイテムをクリックする
   const firstItem = page.locator(".category-item").first();
   await firstItem.click();
 });
 
-Given("I have selected a quiz category", async ({ page }) => {
+Given("クイズの単元を選択済みである", async ({ page }) => {
   // 「英語」タブを選択してカテゴリを1つ選択し、確認タブをクリックしてquizModePanelを表示する
   const tab = page.locator(".subject-tab").filter({ hasText: "英語" });
   await tab.click();
@@ -94,24 +94,24 @@ Given("I have selected a quiz category", async ({ page }) => {
   await expect(page.locator("#quizModePanel").first()).toBeVisible();
 });
 
-When("I click the {string} button", async ({ page }, buttonText: string) => {
+When("{string} ボタンをクリックする", async ({ page }, buttonText: string) => {
   await page.getByRole("button", { name: buttonText, exact: true }).click();
 });
 
-When("I confirm the dialog", async ({ page }) => {
+When("ダイアログを確認する", async ({ page }) => {
   await page.locator("#confirmDialogOk").click();
   await expect(page.locator("#confirmDialog")).toBeHidden();
 });
 
-Then("the quiz screen should be visible", async ({ page }) => {
+Then("クイズ画面が表示される", async ({ page }) => {
   await expect(page.locator("#quizScreen")).toBeVisible();
 });
 
-Then("I should see question 1", async ({ page }) => {
+Then("問題1が表示される", async ({ page }) => {
   await expect(page.locator("#questionNumber")).toHaveText(/問題 1 \//);
 });
 
-When("I select the first choice", async ({ page }) => {
+When("最初の選択肢を選ぶ", async ({ page }) => {
   // 選択肢またはテキスト入力が表示されるまで待つ
   await page.locator(".choice-label, .text-answer-input").first().waitFor({ state: "visible" });
   const isTextInput = await page.locator(".text-answer-input").isVisible();
@@ -123,12 +123,12 @@ When("I select the first choice", async ({ page }) => {
   }
 });
 
-Then("the {string} button should be enabled", async ({ page }, buttonText: string) => {
+Then("{string} ボタンが有効になっている", async ({ page }, buttonText: string) => {
   const button = page.getByRole("button", { name: buttonText });
   await expect(button).toBeEnabled();
 });
 
-When("I answer all questions", async ({ page }) => {
+When("全問題に回答する", async ({ page }) => {
   // 全問題に回答する（最大20問）
   let hasNext = true;
   while (hasNext) {
@@ -156,21 +156,21 @@ When("I answer all questions", async ({ page }) => {
   }
 });
 
-Then("I should see the {string} button", async ({ page }, buttonText: string) => {
+Then("{string} ボタンが表示される", async ({ page }, buttonText: string) => {
   const button = page.locator("#submitBtn");
   await expect(button).toBeVisible();
   await expect(button).toHaveText(buttonText);
 });
 
-Then("the result screen should be visible", async ({ page }) => {
+Then("結果画面が表示される", async ({ page }) => {
   await expect(page.locator("#resultScreen")).toBeVisible();
 });
 
-Then("I should see the score", async ({ page }) => {
+Then("スコアが表示される", async ({ page }) => {
   await expect(page.locator("#scoreDisplay")).toBeVisible();
 });
 
-When("I open the guide panel tab", async ({ page }) => {
+When("解説パネルタブを開く", async ({ page }) => {
   // 解説パネルタブをクリック
   await page.locator("#panelTab-guide").click();
   // 解説パネルが表示されるまで待つ
@@ -178,51 +178,51 @@ When("I open the guide panel tab", async ({ page }) => {
   await expect(page.locator("#guideContent")).not.toHaveClass("hidden");
 });
 
-Then("the guide content div should be attached", async ({ page }) => {
+Then("解説コンテンツ div がアタッチされている", async ({ page }) => {
   // 解説コンテンツdivが解説パネルにアタッチされていることを確認（Shadow DOMからの直接DOM挿入方式に変更済み）
   const guideContent = page.locator("#guidePanelFrame .guide-content");
   await expect(guideContent).toBeAttached({ timeout: 15_000 });
 });
 
-When("I open the history panel", async ({ page }) => {
+When("実施記録パネルを開く", async ({ page }) => {
   await page.locator("#panelTab-history").click();
   await page.locator("#historyList").waitFor({ state: "visible" });
 });
 
-Then("the manual history record score should show {string}", async ({ page }, expected: string) => {
+Then("手動記録のスコアが {string} と表示される", async ({ page }, expected: string) => {
   const scoreEl = page.locator(".history-score").first();
   await expect(scoreEl).toHaveText(expected);
 });
 
-Then("the manual history record should have no toggle arrow", async ({ page }) => {
+Then("手動記録にトグル矢印がない", async ({ page }) => {
   await expect(page.locator(".history-toggle").first()).not.toBeAttached();
 });
 
-Then("clicking the manual history record header should not expand details", async ({ page }) => {
+Then("手動記録のヘッダーをクリックしても詳細が展開しない", async ({ page }) => {
   const header = page.locator(".history-item-header").first();
   const detail = page.locator(".history-detail").first();
   await header.click();
   await expect(detail).toBeHidden();
 });
 
-Then("the quiz screen should have the practice-mode class", async ({ page }) => {
+Then("クイズ画面に practice-mode クラスが付与される", async ({ page }) => {
   await expect(page.locator("#quizScreen")).toHaveClass(/practice-mode/);
 });
 
-Then("the quiz screen should not have the practice-mode class", async ({ page }) => {
+Then("クイズ画面に practice-mode クラスが付与されない", async ({ page }) => {
   await expect(page.locator("#quizScreen")).not.toHaveClass(/practice-mode/);
 });
 
-When("I click the {string} font size button", async ({ page }, size: string) => {
+When("{string} フォントサイズボタンをクリックする", async ({ page }, size: string) => {
   // Shadow DOM piercing による重複を避けるため first() を使用
   await page.locator(`.font-size-btn`).filter({ hasText: size }).first().click();
 });
 
-Then("the body should have the {string} class", async ({ page }, className: string) => {
+Then("body に {string} クラスが付与されている", async ({ page }, className: string) => {
   await expect(page.locator("body")).toHaveClass(new RegExp(className));
 });
 
-Then("the body should not have the {string} class", async ({ page }, className: string) => {
+Then("body から {string} クラスが除去されている", async ({ page }, className: string) => {
   await expect(page.locator("body")).not.toHaveClass(new RegExp(className));
 });
 
@@ -255,7 +255,7 @@ Before({ tags: "@kanji-stub" }, async ({ page }) => {
   });
 });
 
-Given("I have navigated to a hiragana text-input question", async ({ page }) => {
+Given("ひらがなのテキスト入力問題に遷移済みである", async ({ page }) => {
   await page.goto(".");
   await waitForStatsInfoLoaded(page);
   // 国語タブ → 漢字（ひらがな正解の読み問題）
@@ -273,7 +273,7 @@ Given("I have navigated to a hiragana text-input question", async ({ page }) => 
   await expect(page.locator("#kanjiInputArea")).not.toHaveClass(/hidden/);
 });
 
-When("KanjiCanvas recognizes {string} and I draw a stroke on the canvas", async ({ page }, result: string) => {
+When("KanjiCanvas が {string} を認識しキャンバスにストロークを描く", async ({ page }, result: string) => {
   // recognize の戻り値をスタブ経由でセット
   await page.evaluate((r: string) => {
     (window as Window & { __kanjiRecognizeResult?: string }).__kanjiRecognizeResult = r;
@@ -284,7 +284,7 @@ When("KanjiCanvas recognizes {string} and I draw a stroke on the canvas", async 
   await page.waitForTimeout(200);
 });
 
-Then("only hiragana candidates should be visible in the candidate list", async ({ page }) => {
+Then("候補一覧にひらがな候補のみが表示される", async ({ page }) => {
   const candidateList = page.locator("#kanjiCandidateList");
   await expect(candidateList).toBeVisible();
   // 候補ボタンが少なくとも1つ表示されている
@@ -296,63 +296,63 @@ Then("only hiragana candidates should be visible in the candidate list", async (
   }
 });
 
-Then("non-hiragana candidates should not be visible in the candidate list", async ({ page }) => {
+Then("ひらがな以外の候補が候補一覧に表示されない", async ({ page }) => {
   const candidateList = page.locator("#kanjiCandidateList");
   // 認識結果に含まれていた漢字候補（山・川）がボタンとして表示されていないこと
   await expect(candidateList.locator(".kanji-candidate-btn", { hasText: "山" })).toHaveCount(0);
   await expect(candidateList.locator(".kanji-candidate-btn", { hasText: "川" })).toHaveCount(0);
 });
 
-When("I click the {string} category group toggle button", async ({ page }, parentCatId: string) => {
+When("{string} カテゴリグループのトグルボタンをクリックする", async ({ page }, parentCatId: string) => {
   // 指定した親カテゴリの三角ボタンをクリックして折りたたみを切り替える
   await page.locator(`.category-group-header[data-parent-category="${parentCatId}"] .category-group-toggle`).click();
 });
 
-When("I click the {string} category group toggle button again", async ({ page }, parentCatId: string) => {
+When("{string} カテゴリグループのトグルボタンを再度クリックする", async ({ page }, parentCatId: string) => {
   // 指定した親カテゴリの三角ボタンを再度クリックして折りたたみを戻す
   await page.locator(`.category-group-header[data-parent-category="${parentCatId}"] .category-group-toggle`).click();
 });
 
-Then("the {string} category group should be collapsed", async ({ page }, parentCatId: string) => {
+Then("{string} カテゴリグループが折りたたまれている", async ({ page }, parentCatId: string) => {
   // 指定した親カテゴリのグループが折りたたまれていること
   await expect(page.locator(`.category-group[data-parent-category="${parentCatId}"]`)).toHaveClass(/collapsed/);
 });
 
-Then("the {string} category group should be expanded", async ({ page }, parentCatId: string) => {
+Then("{string} カテゴリグループが展開されている", async ({ page }, parentCatId: string) => {
   // 指定した親カテゴリのグループが展開されていること
   await expect(page.locator(`.category-group[data-parent-category="${parentCatId}"]`)).not.toHaveClass(/collapsed/);
 });
 
 // ─── 単元一覧の改善 (#501, #494, #495) ────────────────────────────────────────
 
-Then("the guide panel should be active", async ({ page }) => {
+Then("解説タブがアクティブになっている", async ({ page }) => {
   // 解説タブが有効になっていること（panelTab-guide が active クラスを持つ）
   await expect(page.locator("#panelTab-guide").first()).toHaveClass(/active/);
 });
 
-Then("a panel tab should be active", async ({ page }) => {
+Then("いずれかのパネルタブがアクティブになっている", async ({ page }) => {
   // いずれかのパネルタブがアクティブになっていること（タブ引き継ぎ仕様）
   const activeTab = page.locator(".panel-tab.active").first();
   await expect(activeTab).toBeVisible();
 });
 
-Then("the selected unit info should be visible", async ({ page }) => {
+Then("単元詳細情報が表示される", async ({ page }) => {
   // 単元詳細情報エリアが表示されていること
   const unitInfo = page.locator("#selectedUnitInfo").first();
   await expect(unitInfo).not.toHaveClass(/hidden/);
 });
 
-Then("the grade filter buttons should be visible", async ({ page }) => {
+Then("学年フィルターボタンが表示される", async ({ page }) => {
   // 学年フィルターボタンが表示されていること
   await expect(page.locator(".grade-filter-btn").first()).toBeVisible();
 });
 
-When("I click the {string} grade filter button", async ({ page }, grade: string) => {
+When("{string} 学年フィルターボタンをクリックする", async ({ page }, grade: string) => {
   // 指定した学年のフィルターボタンをクリックする
   await page.locator(".grade-filter-btn", { hasText: grade }).click();
 });
 
-Then("only categories with grade starting with {string} should be visible", async ({ page }, gradePrefix: string) => {
+Then("{string} 学年のみのカテゴリが表示される", async ({ page }, gradePrefix: string) => {
   // 表示されているカテゴリアイテムの学年バッジがすべて非空かつ指定のプレフィックスで始まること
   const visibleItems = page.locator(".category-item:visible");
   const count = await visibleItems.count();
@@ -367,27 +367,27 @@ Then("only categories with grade starting with {string} should be visible", asyn
   }
 });
 
-Then("the {string} grade filter button should be inactive", async ({ page }, grade: string) => {
+Then("{string} 学年フィルターボタンが無効状態になっている", async ({ page }, grade: string) => {
   // 指定した学年のフィルターボタンが aria-pressed="false" であること
   await expect(page.locator(".grade-filter-btn", { hasText: grade })).toHaveAttribute("aria-pressed", "false");
 });
 
-Then("the category view toggle button should be visible", async ({ page }) => {
+Then("カテゴリビュー切替ボタンが表示される", async ({ page }) => {
   // ビューモード切替ボタンが表示されていること
   await expect(page.locator(".category-view-toggle")).toBeVisible();
 });
 
-When("I click the view mode toggle button", async ({ page }) => {
+When("ビューモード切替ボタンをクリックする", async ({ page }) => {
   // ビューモード切替ボタンをクリックする
   await page.locator(".category-view-toggle").click();
 });
 
-Then("grade groups should be visible in the category list", async ({ page }) => {
+Then("学年グループが単元一覧に表示される", async ({ page }) => {
   // 学年グループ（category-grade-group）が表示されていること
   await expect(page.locator(".category-grade-group").first()).toBeVisible();
 });
 
-When("I click the first grade group header", async ({ page }) => {
+When("最初の学年グループヘッダーをクリックする", async ({ page }) => {
   await page.locator(".category-grade-group-header").first().click();
 });
 
@@ -396,22 +396,22 @@ Then("the generated guide page should be visible", async ({ page }) => {
   await expect(page.locator("#guidePanelFrame")).toContainText("の解説");
 });
 
-Then("the overall summary panel should be visible", async ({ page }) => {
+Then("総合サマリパネルが表示される", async ({ page }) => {
   // 総合タブの活動サマリパネルが表示されていること
   await expect(page.locator("#overallSummaryPanel")).toBeVisible();
 });
 
-Then("the share summary text should contain {string}", async ({ page }, text: string) => {
+Then("シェアサマリテキストに {string} が含まれる", async ({ page }, text: string) => {
   // 活動サマリテキストに指定のテキストが含まれていること
   await expect(page.locator("#shareSummaryText")).toContainText(text);
 });
 
-Then("the support button should be visible in the header", async ({ page }) => {
+Then("ヘッダーにサポートボタンが表示される", async ({ page }) => {
   // サポートボタン（?）がヘッダーに表示されていること
   await expect(page.locator("#supportBtn")).toBeVisible();
 });
 
-Then("the support button should show support content in support panel", async ({ page }) => {
+Then("サポートボタンがサポートパネルにコンテンツを表示する", async ({ page }) => {
   // サポートボタン（?）をクリックするとサポート専用パネルが表示されること
   const supportBtn = page.locator("#supportBtn");
   await supportBtn.click();
@@ -432,75 +432,75 @@ Then("the support button should show support content in support panel", async ({
   await expect(subTabs.filter({ hasText: "トラブルシューティング" })).toBeVisible();
 });
 
-When("I select {string} quiz order", async ({ page }, order: string) => {
+When("{string} クイズ順を選択する", async ({ page }, order: string) => {
   // シャドウDOM内の重複を避けるため #quizModePanel にスコープを絞る
   await page.locator(`#quizModePanel input[name="quizOrder"][value="${order}"]`).check();
 });
 
-When("I select the category item {string}", async ({ page }, categoryId: string) => {
+When("{string} の単元をクリックする", async ({ page }, categoryId: string) => {
   // 指定した data-category 属性を持つカテゴリアイテムをクリックする
   await page.locator(`.category-item[data-category="${categoryId}"]`).click();
 });
 
-When("I click the quiz panel tab", async ({ page }) => {
+When("確認タブをクリックする", async ({ page }) => {
   // 確認タブ（quizモード）をクリックする（Shadow DOM piercing 回避のため first() を使用）
   await page.locator("#panelTab-quiz").first().click();
 });
 
-Then("the quiz mode panel should be visible", async ({ page }) => {
+Then("クイズモードパネルが表示される", async ({ page }) => {
   await expect(page.locator("#quizModePanel").first()).toBeVisible();
 });
 
-When("I apply the {string} status filter", async ({ page }, filter: string) => {
+When("{string} 学習状態フィルターを適用する", async ({ page }, filter: string) => {
   const btnId = `filterStatus${filter.charAt(0).toUpperCase()}${filter.slice(1)}`;
   await page.locator(`#${btnId}`).click();
 });
 
-Then("learned category items should be visible in the category list", async ({ page }) => {
+Then("学習済みの単元が単元一覧に表示される", async ({ page }) => {
   // 学習済み（.learned クラス付き）のカテゴリアイテムが少なくとも1つ表示されていること
   const learnedItems = page.locator(".category-item.learned");
   await expect(learnedItems.first()).toBeVisible();
 });
 
-When("I click the admin manage menu button", async ({ page }) => {
+When("管理メニューボタンをクリックする", async ({ page }) => {
   // 管理メニューの「更改」ボタンをクリックしてデータ管理セクションを開く
   await page.locator(".admin-menu-btn").filter({ hasText: "更改" }).click();
 });
 
-Then("the admin manage tabs should be visible by default", async ({ page }) => {
+Then("管理タブコンテンツがデフォルトで表示される", async ({ page }) => {
   // 管理タブを開いた直後に更改タブバー（.admin-manage-tabs）が表示されていること（デフォルト表示）
   await expect(page.locator(".admin-manage-tabs")).toBeVisible();
 });
 
-Then("the admin reset panel should be visible", async ({ page }) => {
+Then("管理の初期化パネルが表示される", async ({ page }) => {
   // 「🗑️ 初期化」タブをクリックして初期化コンテンツを表示する
   await page.locator(".admin-manage-tab").filter({ hasText: "初期化" }).click();
   await expect(page.locator(".admin-reset-btn")).toBeVisible();
 });
 
-When("I click the admin reset tab", async ({ page }) => {
+When("管理の初期化タブをクリックする", async ({ page }) => {
   // 「🗑️ 初期化」タブをクリックする
   await page.locator(".admin-manage-tab").filter({ hasText: "初期化" }).click();
 });
 
-Then("the admin reset button should be visible", async ({ page }) => {
+Then("管理の初期化ボタンが表示される", async ({ page }) => {
   // 初期化タブをクリックして初期化ボタンが表示されていること
   await page.locator(".admin-manage-tab").filter({ hasText: "初期化" }).click();
   await expect(page.locator(".admin-reset-btn")).toBeVisible();
 });
 
-Then("the admin export panel should be visible", async ({ page }) => {
+Then("管理のエクスポートパネルが表示される", async ({ page }) => {
   // 「📤 エクスポート」タブをクリックしてエクスポートコンテンツを表示する
   await page.locator(".admin-manage-tab").filter({ hasText: "エクスポート" }).click();
   await expect(page.locator(".admin-import-apply-btn")).toBeVisible();
 });
 
-When("I click the admin export tab", async ({ page }) => {
+When("管理のエクスポートタブをクリックする", async ({ page }) => {
   // 「📤 エクスポート」タブをクリックする
   await page.locator(".admin-manage-tab").filter({ hasText: "エクスポート" }).click();
 });
 
-Then("the quiz notes column should show the start header", async ({ page }) => {
+Then("クイズのノートカラムにスタートヘッダーが表示される", async ({ page }) => {
   // クイズ画面（#quizScreen）の上部に StartHeader（header 要素）が表示されていること
   // ※ StartHeader は #quizLayout 外（全幅）に配置されている
   const quizScreen = page.locator("#quizScreen");
@@ -512,7 +512,7 @@ Then("the quiz notes column should show the start header", async ({ page }) => {
   await expect(header.locator("#headerTodayDate")).toBeVisible();
 });
 
-Then("an admin JSON file download should be triggered", async ({ page }) => {
+Then("管理の JSON ファイルダウンロードがトリガーされる", async ({ page }) => {
   // エクスポートタブをクリックしてボタンをクリックするとJSONファイルがダウンロードされること
   await page.locator(".admin-manage-tab").filter({ hasText: "エクスポート" }).click();
   const exportBtn = page.locator(".admin-import-apply-btn");

@@ -155,11 +155,6 @@ export function buildParentCategoryGroup(
   headerText.textContent = parentCatName;
   groupHeader.appendChild(headerText);
 
-  const learnedBadge = document.createElement("span");
-  learnedBadge.className = "category-group-learned-badge";
-  learnedBadge.setAttribute("aria-hidden", "true");
-  groupHeader.appendChild(learnedBadge);
-
   groupDiv.appendChild(groupHeader);
 
   for (const [catId, catName] of Object.entries(cats)) {

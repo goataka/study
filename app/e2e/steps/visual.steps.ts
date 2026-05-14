@@ -19,7 +19,7 @@ Before({ tags: "@vr" }, async ({ page }) => {
 
 // スタート画面のスクリーンショット比較
 // statsInfo（問題数）はデータ依存のため除外する
-Then("the start screen matches the snapshot", async ({ page }) => {
+Then("スタート画面のスナップショットが一致する", async ({ page }) => {
   await waitForStatsInfoLoaded(page);
   await expect(page).toHaveScreenshot("start-screen.png", {
     mask: [page.locator("#statsInfo")],
@@ -28,7 +28,7 @@ Then("the start screen matches the snapshot", async ({ page }) => {
 
 // クイズ画面のレイアウトのスクリーンショット比較
 // 問題文・選択肢・トピック名など動的コンテンツはマスクして構造のみ確認する
-Then("the quiz screen layout matches the snapshot", async ({ page }) => {
+Then("クイズ画面のレイアウトがスナップショットと一致する", async ({ page }) => {
   await expect(page.locator("#quizScreen")).toBeVisible();
   await expect(page).toHaveScreenshot("quiz-screen.png", {
     mask: [
@@ -43,7 +43,7 @@ Then("the quiz screen layout matches the snapshot", async ({ page }) => {
 
 // 結果画面のレイアウトのスクリーンショット比較
 // スコアや詳細など動的コンテンツはマスクして構造のみ確認する
-Then("the result screen layout matches the snapshot", async ({ page }) => {
+Then("結果画面のレイアウトがスナップショットと一致する", async ({ page }) => {
   await expect(page.locator("#resultScreen")).toBeVisible();
   await expect(page).toHaveScreenshot("result-screen.png", {
     mask: [page.locator("#scoreDisplay"), page.locator("#resultDetails")],

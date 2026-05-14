@@ -5,7 +5,7 @@
 // @vitest-environment jsdom
 
 import { QuizApp } from "../../quizApp";
-import { StubProgressRepository, setupTabDom, setupFetchMock, setupFetchMockWithParent } from "../testHelpers";
+import { StubProgressRepository, setupTabDom, setupFetchMock } from "../testHelpers";
 
 describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
   beforeEach(() => {
@@ -242,72 +242,5 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
     // 絵文字も✅になること
     const statusEl = catItem?.querySelector(".category-status");
     expect(statusEl?.textContent).toBe("✅");
-  });
-
-  it("未学習フィルター時、グループヘッダーのバッジは常に空（トロフィー機能廃止）", async () => {
-    setupFetchMockWithParent();
-    const repo = new StubProgressRepository();
-    repo.saveHistory([
-      {
-        id: "r1",
-        date: new Date().toISOString(),
-        subject: "english",
-        subjectName: "英語",
-        category: "phonics-1",
-        categoryName: "フォニックス（1文字）",
-        mode: "random",
-        totalCount: 4,
-        correctCount: 4,
-        entries: [],
-      },
-    ]);
-    repo.saveWrongIds([]);
-
-    new QuizApp(repo);
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    // 未学習フィルターを選択
-    document.getElementById("filterStatusUnlearned")?.click();
-
-    // バッジ要素は存在するが常に空（トロフィー表示機能は廃止済み）
-    const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
-    const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
-    expect(badge?.textContent).toBe("");
-  });
-
-  it("すべて表示フィルターに戻してもグループヘッダーのバッジは空のまま", async () => {
-    setupFetchMockWithParent();
-    const repo = new StubProgressRepository();
-    repo.saveHistory([
-      {
-        id: "r1",
-        date: new Date().toISOString(),
-        subject: "english",
-        subjectName: "英語",
-        category: "phonics-1",
-        categoryName: "フォニックス（1文字）",
-        mode: "random",
-        totalCount: 4,
-        correctCount: 4,
-        entries: [],
-      },
-    ]);
-    repo.saveWrongIds([]);
-
-    new QuizApp(repo);
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
-    englishTab?.click();
-
-    // すべて表示に切り替える（バッジは常に空）
-    document.getElementById("filterStatusAll")?.click();
-
-    const phonicsHeader = document.querySelector<HTMLElement>('.category-group-header[data-parent-category="phonics"]');
-    const badge = phonicsHeader?.querySelector(".category-group-learned-badge");
-    expect(badge?.textContent).toBe("");
   });
 });

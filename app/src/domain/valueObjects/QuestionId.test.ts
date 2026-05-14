@@ -11,11 +11,13 @@ describe("QuestionId — 問題識別 ValueObject 仕様", () => {
   });
 
   it("空文字列を拒否する", () => {
-    expect(() => QuestionId.from("")).toThrow("QuestionId must be a non-empty string");
+    expect(() => QuestionId.from("")).toThrow("QuestionId は空でない文字列でなければなりません");
   });
 
   it("文字列以外（unknown キャスト）を拒否する", () => {
-    expect(() => QuestionId.from(undefined as unknown as string)).toThrow("QuestionId must be a non-empty string");
+    expect(() => QuestionId.from(undefined as unknown as string)).toThrow(
+      "QuestionId は空でない文字列でなければなりません",
+    );
   });
 
   it("同じ文字列から生成された 2 つの ID は equals で等価とみなされる", () => {

@@ -70,32 +70,6 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(pctSpan).toBeNull();
   });
 
-  it("outerDate 表示は廃止され、学習履歴に関わらず表示されない", async () => {
-    const studyDate = "2025-04-01T10:00:00.000Z";
-    const repo = new StubProgressRepository();
-    repo.saveHistory([
-      {
-        id: "r1",
-        date: studyDate,
-        subject: "english",
-        subjectName: "英語",
-        category: "phonics-1",
-        categoryName: "フォニックス（1文字）",
-        mode: "random",
-        totalCount: 5,
-        correctCount: 5,
-        entries: [],
-      },
-    ]);
-
-    new QuizApp(repo);
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const wrapper = document.querySelector('.subject-overview-wrapper:has([data-subject="english"])');
-    const outerDate = wrapper?.querySelector(".subject-overview-outer-date");
-    expect(outerDate).toBeNull();
-  });
-
   it("各教科の subject-rec-count-controls に3つの表示数切替ボタンが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
