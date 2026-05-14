@@ -100,17 +100,20 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
         const anchor = (e.target as HTMLElement).closest("a[href]");
         if (!anchor) return;
         const href = (anchor as HTMLAnchorElement).getAttribute("href") ?? "";
+        /** ハッシュ文字列（# 含む）がアプリ状態パラメータ subject を持つか確認する。 */
+        const isAppStateHash = (rawHash: string): boolean =>
+          new URLSearchParams(rawHash.startsWith("#") ? rawHash.slice(1) : rawHash).has("subject");
         let hash: string | null = null;
         if (href.startsWith("#")) {
-          // ハッシュのみのリンク: アプリ状態パラメータ（subject=）を含む場合のみ SPA で処理する
-          if (href.includes("subject=")) {
+          // ハッシュのみのリンク: アプリ状態パラメータ（subject）を持つ場合のみ SPA で処理する
+          if (isAppStateHash(href)) {
             hash = href;
           }
         } else if (href.includes("#")) {
-          // 相対パス + ハッシュ: 同一オリジンかつアプリ状態ハッシュ（subject=）の場合のみ処理する
+          // 相対パス + ハッシュ: 同一オリジンかつアプリ状態ハッシュ（subject）の場合のみ処理する
           try {
             const resolved = new URL(href, window.location.href);
-            if (resolved.origin === window.location.origin && resolved.hash.includes("subject=")) {
+            if (resolved.origin === window.location.origin && isAppStateHash(resolved.hash)) {
               hash = resolved.hash || null;
             }
           } catch {
