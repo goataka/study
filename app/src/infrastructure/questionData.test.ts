@@ -148,7 +148,9 @@ describe("各カテゴリファイル — スキーマ検証", () => {
     for (const qf of targets) {
       expect(typeof qf.description).toBe("string");
       expect(qf.description?.trim().length).toBeGreaterThan(0);
-      expect(qf.description).toContain(qf.referenceGrade ?? "");
+      expect(typeof qf.referenceGrade).toBe("string");
+      expect(qf.referenceGrade?.trim().length).toBeGreaterThan(0);
+      expect(qf.description).toContain(qf.referenceGrade as string);
     }
   });
 
