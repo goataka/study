@@ -4,12 +4,12 @@ import { expect } from "@playwright/test";
 const { Given, Then } = createBdd();
 
 // ビューポートサイズを指定サイズに変更する
-Given("the viewport is {int}x{int}", async ({ page }, width: number, height: number) => {
+Given("ビューポートを {int}x{int} に設定する", async ({ page }, width: number, height: number) => {
   await page.setViewportSize({ width, height });
 });
 
 // ページコンテンツが縦方向にビューポートに収まっていることを確認（スクロール不要）
-Then("the page content should fit within the viewport height", async ({ page }) => {
+Then("ページコンテンツがビューポートの高さに収まっている", async ({ page }) => {
   const viewportHeight = page.viewportSize()!.height;
   // JavaScript zoom 適用後の body の視覚的な高さがビューポートを超えないことを確認
   const bodyHeight = await page.evaluate(() => document.body.getBoundingClientRect().height);
@@ -17,7 +17,7 @@ Then("the page content should fit within the viewport height", async ({ page }) 
 });
 
 // html 要素の transform: scale 値が期待値と一致することを確認（1920×1080 標準基準のスケーリング検証）
-Then("the html scale should be {float}", async ({ page }, expectedScale: number) => {
+Then("html の scale が {float} になっている", async ({ page }, expectedScale: number) => {
   const scale = await page.evaluate(() => {
     const transform = document.documentElement.style.transform;
     const match = transform.match(/scale\(([^)]+)\)/);
@@ -30,7 +30,7 @@ Then("the html scale should be {float}", async ({ page }, expectedScale: number)
 });
 
 // html 要素の transform: scale 値が期待値に近い（許容誤差 0.01）ことを確認
-Then("the html scale should be approximately {float}", async ({ page }, expectedScale: number) => {
+Then("html の scale が約 {float} になっている", async ({ page }, expectedScale: number) => {
   const scale = await page.evaluate(() => {
     const transform = document.documentElement.style.transform;
     const match = transform.match(/scale\(([^)]+)\)/);
@@ -43,7 +43,7 @@ Then("the html scale should be approximately {float}", async ({ page }, expected
 });
 
 // html 要素に scale が適用されていないことを確認（モバイル対応の検証）
-Then("the html scale should not be applied", async ({ page }) => {
+Then("html の scale が適用されていない", async ({ page }) => {
   const scaleValue = await page.evaluate(() => document.documentElement.style.transform);
   expect(scaleValue).toBe("");
 });

@@ -1,238 +1,238 @@
 Feature: 学習アプリ
 
   Background:
-    Given the quiz application is loaded
+    Given クイズアプリが読み込まれている
 
   Scenario: スタート画面が表示される
-    Then the start screen should be visible
-    And the quiz title should contain "Open Study Text"
+    Then スタート画面が表示される
+    And クイズタイトルに "Open Study Text" が含まれる
 
   Scenario: タブで教科を切り替えると単元一覧のみ表示される
-    Then the start screen should be visible
-    And the quiz title should contain "Open Study Text"
-    When I click the "英語" tab
-    Then the header should remain visible
-    And the category list should be visible
+    Then スタート画面が表示される
+    And クイズタイトルに "Open Study Text" が含まれる
+    When "英語" タブをクリックする
+    Then ヘッダーが表示されている
+    And 単元一覧が表示される
 
   Scenario: 総合タブには各教科の概要カードが表示される
-    Then the start screen should be visible
-    When I click the "おすすめ" tab
-    And the subject overview items should be visible
+    Then スタート画面が表示される
+    When "おすすめ" タブをクリックする
+    And 教科概要アイテムが表示される
 
   Scenario: 総合タブには活動サマリパネルが表示される
-    Then the start screen should be visible
-    When I click the "おすすめ" tab
-    And the overall summary panel should be visible
+    Then スタート画面が表示される
+    When "おすすめ" タブをクリックする
+    And 総合サマリパネルが表示される
 
   Scenario: 総合タブの活動サマリには日付が含まれる
-    Then the start screen should be visible
-    When I click the "おすすめ" tab
-    And the share summary text should contain "📅"
+    Then スタート画面が表示される
+    When "おすすめ" タブをクリックする
+    And シェアサマリテキストに "📅" が含まれる
 
   Scenario: 単元を選択するとクイズパネルが表示される
-    When I click the "英語" tab
-    And I click the first category item
-    Then the quiz panel should be visible
+    When "英語" タブをクリックする
+    And 最初の単元をクリックする
+    Then クイズパネルが表示される
 
   Scenario: 本番クイズを開始できる
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    Then the quiz screen should be visible
-    And I should see question 1
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    Then クイズ画面が表示される
+    And 問題1が表示される
 
   Scenario: 問題に回答して次の問題に進める
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    And I select the first choice
-    Then the "次へ" button should be enabled
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    And 最初の選択肢を選ぶ
+    Then "次へ" ボタンが有効になっている
 
   Scenario: 全問回答後に採点できる
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    And I answer all questions
-    Then I should see the "採点する" button
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    And 全問題に回答する
+    Then "採点する" ボタンが表示される
 
   Scenario: 採点後に結果画面が表示される
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    And I answer all questions
-    And I click the "採点する" button
-    Then the result screen should be visible
-    And I should see the score
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    And 全問題に回答する
+    And "採点する" ボタンをクリックする
+    Then 結果画面が表示される
+    And スコアが表示される
 
   Scenario: 結果画面から「もう一度」でクイズ画面に戻れる
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    And I answer all questions
-    And I click the "採点する" button
-    Then the result screen should be visible
-    When I click the "もう一度" button
-    Then the quiz screen should be visible
-    And I should see question 1
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    And 全問題に回答する
+    And "採点する" ボタンをクリックする
+    Then 結果画面が表示される
+    When "もう一度" ボタンをクリックする
+    Then クイズ画面が表示される
+    And 問題1が表示される
 
   Scenario: 結果画面から「スタート画面に戻る」で戻れる
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    And I answer all questions
-    And I click the "採点する" button
-    Then the result screen should be visible
-    When I click the "スタート画面に戻る" button
-    Then the start screen should be visible
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    And 全問題に回答する
+    And "採点する" ボタンをクリックする
+    Then 結果画面が表示される
+    When "スタート画面に戻る" ボタンをクリックする
+    Then スタート画面が表示される
 
   Scenario: 解説パネルにコンテンツdivが表示される
-    Given I have selected a quiz category
-    When I open the guide panel tab
-    Then the guide content div should be attached
+    Given クイズの単元を選択済みである
+    When 解説パネルタブを開く
+    Then 解説コンテンツ div がアタッチされている
 
   Scenario: フォントサイズ「大」に切り替えるとbodyにfont-size-largeクラスが付与される
-    Given I have selected a quiz category
-    When I click the "大" font size button
-    Then the body should have the "font-size-large" class
+    Given クイズの単元を選択済みである
+    When "大" フォントサイズボタンをクリックする
+    Then body に "font-size-large" クラスが付与されている
 
   Scenario: フォントサイズ「小」に戻すとfont-size-largeクラスが除去される
-    Given I have selected a quiz category
-    When I click the "大" font size button
-    And I click the "小" font size button
-    Then the body should not have the "font-size-large" class
+    Given クイズの単元を選択済みである
+    When "大" フォントサイズボタンをクリックする
+    And "小" フォントサイズボタンをクリックする
+    Then body から "font-size-large" クラスが除去されている
 
   Scenario: ストレート順でクイズ開始時にquizScreenにpractice-modeクラスが付与される
-    Given I have selected a quiz category
-    When I select "straight" quiz order
-    And I click the "スタート" button
-    Then the quiz screen should be visible
-    And the quiz screen should have the practice-mode class
+    Given クイズの単元を選択済みである
+    When "straight" クイズ順を選択する
+    And "スタート" ボタンをクリックする
+    Then クイズ画面が表示される
+    And クイズ画面に practice-mode クラスが付与される
 
   Scenario: 本番クイズ開始時にquizScreenにpractice-modeクラスが付与されない
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    Then the quiz screen should be visible
-    And the quiz screen should not have the practice-mode class
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    Then クイズ画面が表示される
+    And クイズ画面に practice-mode クラスが付与されない
 
   Scenario: 手動確認済み記録は実施記録でread-only表示になる
-    Given I have selected a quiz category
-    When I click the "✅ 学習済みにする" button
-    And I confirm the dialog
-    And I open the history panel
-    Then the manual history record score should show "-"
-    And the manual history record should have no toggle arrow
-    And clicking the manual history record header should not expand details
+    Given クイズの単元を選択済みである
+    When "✅ 学習済みにする" ボタンをクリックする
+    And ダイアログを確認する
+    And 実施記録パネルを開く
+    Then 手動記録のスコアが "-" と表示される
+    And 手動記録にトグル矢印がない
+    And 手動記録のヘッダーをクリックしても詳細が展開しない
 
   Scenario: 親カテゴリグループを折りたたみ・展開できる
-    When I click the "英語" tab
-    And I click the "verb" category group toggle button
-    Then the "verb" category group should be collapsed
-    When I click the "verb" category group toggle button again
-    Then the "verb" category group should be expanded
+    When "英語" タブをクリックする
+    And "verb" カテゴリグループのトグルボタンをクリックする
+    Then "verb" カテゴリグループが折りたたまれている
+    When "verb" カテゴリグループのトグルボタンを再度クリックする
+    Then "verb" カテゴリグループが展開されている
 
   Scenario: 折りたたみ状態で「学習済み」フィルターを適用すると学習済みアイテムが表示される
-    When I click the "英語" tab
+    When "英語" タブをクリックする
     And I select the category item "tenses-regular-present"
     And I click the quiz panel tab
     Then the quiz mode panel should be visible
-    When I click the "✅ 学習済みにする" button
-    And I confirm the dialog
-    And I click the "verb" category group toggle button
-    Then the "verb" category group should be collapsed
+    When "✅ 学習済みにする" ボタンをクリックする
+    And ダイアログを確認する
+    And "verb" カテゴリグループのトグルボタンをクリックする
+    Then "verb" カテゴリグループが折りたたまれている
     When I apply the "learned" status filter
     Then learned category items should be visible in the category list
 
   @kanji-stub
   Scenario: ひらがな問題では手書き認識でひらがな以外の候補が表示されない
-    Given I have navigated to a hiragana text-input question
-    When KanjiCanvas recognizes "や 山 き 川" and I draw a stroke on the canvas
-    Then only hiragana candidates should be visible in the candidate list
-    And non-hiragana candidates should not be visible in the candidate list
+    Given ひらがなのテキスト入力問題に遷移済みである
+    When KanjiCanvas が "や 山 き 川" を認識しキャンバスにストロークを描く
+    Then 候補一覧にひらがな候補のみが表示される
+    And ひらがな以外の候補が候補一覧に表示されない
 
   Scenario: クイズ画面にStartHeaderが表示される
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    Then the quiz screen should be visible
-    And the quiz notes column should show the start header
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    Then クイズ画面が表示される
+    And クイズのノートカラムにスタートヘッダーが表示される
 
   @vr
   Scenario: スタート画面のビジュアル確認
-    Then the start screen matches the snapshot
+    Then スタート画面のスナップショットが一致する
 
   @vr
   Scenario: クイズ画面のビジュアル確認
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    Then the quiz screen layout matches the snapshot
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    Then クイズ画面のレイアウトがスナップショットと一致する
 
   @vr
   Scenario: 結果画面のビジュアル確認
-    Given I have selected a quiz category
-    When I click the "スタート" button
-    And I answer all questions
-    And I click the "採点する" button
-    Then the result screen layout matches the snapshot
+    Given クイズの単元を選択済みである
+    When "スタート" ボタンをクリックする
+    And 全問題に回答する
+    And "採点する" ボタンをクリックする
+    Then 結果画面のレイアウトがスナップショットと一致する
 
   Scenario: 単元をクリックすると前回のパネルタブが引き継がれる
-    When I click the "数学" tab
-    And I click the first category item
-    Then a panel tab should be active
+    When "数学" タブをクリックする
+    And 最初の単元をクリックする
+    Then いずれかのパネルタブがアクティブになっている
 
   Scenario: 単元をクリックすると単元が選択状態になる
-    When I click the "数学" tab
-    And I click the first category item
-    Then the selected unit info should be visible
+    When "数学" タブをクリックする
+    And 最初の単元をクリックする
+    Then 単元詳細情報が表示される
 
   Scenario: 学年フィルターボタンが表示される
-    When I click the "数学" tab
-    Then the grade filter buttons should be visible
+    When "数学" タブをクリックする
+    Then 学年フィルターボタンが表示される
 
   Scenario: 学年フィルターで絞り込みができる
-    When I click the "数学" tab
-    And I click the "小学" grade filter button
-    Then only categories with grade starting with "小学" should be visible
-    And the "中学" grade filter button should be inactive
+    When "数学" タブをクリックする
+    And "小学" 学年フィルターボタンをクリックする
+    Then "小学" 学年のみのカテゴリが表示される
+    And "中学" 学年フィルターボタンが無効状態になっている
 
   Scenario: ビューモード切替ボタンが表示される
-    When I click the "数学" tab
-    Then the category view toggle button should be visible
+    When "数学" タブをクリックする
+    Then カテゴリビュー切替ボタンが表示される
 
   Scenario: 学年別ビューに切り替えると学年グループが表示される
-    When I click the "数学" tab
-    And I click the view mode toggle button
-    Then grade groups should be visible in the category list
+    When "数学" タブをクリックする
+    And ビューモード切替ボタンをクリックする
+    Then 学年グループが単元一覧に表示される
 
   Scenario: 学年グループのバーから学年詳細を表示できる
-    When I click the "数学" tab
-    And I click the view mode toggle button
-    And I click the first grade group header
-    Then the selected unit info should be visible
+    When "数学" タブをクリックする
+    And ビューモード切替ボタンをクリックする
+    And 最初の学年グループヘッダーをクリックする
+    Then 単元詳細情報が表示される
 
   Scenario: サポートボタン（?）がヘッダーに表示される
-    Then the support button should be visible in the header
+    Then ヘッダーにサポートボタンが表示される
 
   Scenario: サポートボタン（?）をクリックするとサポートパネルが表示される
-    Then the support button should show support content in support panel
+    Then サポートボタンがサポートパネルにコンテンツを表示する
 
   Scenario: 管理タブを開くと更改コンテンツがデフォルトで表示される
-    When I click the "管理" tab
-    Then the admin manage tabs should be visible by default
+    When "管理" タブをクリックする
+    Then 管理タブコンテンツがデフォルトで表示される
 
   Scenario: 管理タブの更改ボタンを再クリックしてもコンテンツは閉じない
-    When I click the "管理" tab
-    And I click the admin manage menu button
-    Then the admin manage tabs should be visible by default
+    When "管理" タブをクリックする
+    And 管理メニューボタンをクリックする
+    Then 管理タブコンテンツがデフォルトで表示される
 
   Scenario: 管理タブの初期化パネルが表示される
-    When I click the "管理" tab
-    And I click the admin manage menu button
-    Then the admin reset panel should be visible
+    When "管理" タブをクリックする
+    And 管理メニューボタンをクリックする
+    Then 管理の初期化パネルが表示される
 
   Scenario: 管理タブの初期化ボタンをクリックすると確認ダイアログが表示される
-    When I click the "管理" tab
-    And I click the admin manage menu button
-    Then the admin reset button should be visible
+    When "管理" タブをクリックする
+    And 管理メニューボタンをクリックする
+    Then 管理の初期化ボタンが表示される
 
   Scenario: 管理タブのエクスポートパネルが表示される
-    When I click the "管理" tab
-    And I click the admin manage menu button
-    Then the admin export panel should be visible
+    When "管理" タブをクリックする
+    And 管理メニューボタンをクリックする
+    Then 管理のエクスポートパネルが表示される
 
   Scenario: 管理タブのエクスポートボタンをクリックするとJSONファイルがダウンロードされる
-    When I click the "管理" tab
-    And I click the admin manage menu button
-    Then an admin JSON file download should be triggered
+    When "管理" タブをクリックする
+    And 管理メニューボタンをクリックする
+    Then 管理の JSON ファイルダウンロードがトリガーされる
