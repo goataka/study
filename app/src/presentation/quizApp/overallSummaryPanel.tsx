@@ -150,7 +150,17 @@ export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase,
  */
 export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: number): void {
   const completedToday = useCase.getTodayAdvancedCount();
-  learningStatusContentStore.set(<LearningStatusPanel goalCount={goalCount} completedToday={completedToday} />);
+  const [firstRecommended] = useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2)));
+  const firstRecommendedTitle = firstRecommended
+    ? `${SUBJECTS.find((s) => s.id === firstRecommended.subject)?.name ?? firstRecommended.subject}：${firstRecommended.categoryName}`
+    : "";
+  learningStatusContentStore.set(
+    <LearningStatusPanel
+      goalCount={goalCount}
+      completedToday={completedToday}
+      firstRecommendedTitle={firstRecommendedTitle}
+    />,
+  );
 }
 
 // ─── 星表示コンポーネント ──────────────────────────────────────────────────
@@ -160,17 +170,17 @@ function buildStarItems(G: number, n: number): Array<{ symbol: string; className
   if (G <= 0) return items;
 
   if (n < G) {
-    for (let i = 0; i < n; i++) items.push({ symbol: "⭐", className: "text-lg" });
-    for (let i = n; i < G; i++) items.push({ symbol: "☆", className: "text-lg text-[#d0d7de]" });
+    for (let i = 0; i < n; i++) items.push({ symbol: "⭐", className: "text-3xl" });
+    for (let i = n; i < G; i++) items.push({ symbol: "☆", className: "text-3xl text-[#c5ced8]" });
   } else {
     const fullSets = Math.floor(n / G);
     const partial = n % G;
     const bigStars = Math.floor(fullSets / 2);
     const sparkles = fullSets % 2;
 
-    for (let i = 0; i < bigStars; i++) items.push({ symbol: "🌟", className: "text-2xl" });
-    for (let i = 0; i < sparkles; i++) items.push({ symbol: "✨", className: "text-xl" });
-    for (let i = 0; i < partial; i++) items.push({ symbol: "⭐", className: "text-lg" });
+    for (let i = 0; i < bigStars; i++) items.push({ symbol: "🌟", className: "text-4xl" });
+    for (let i = 0; i < sparkles; i++) items.push({ symbol: "✨", className: "text-3xl" });
+    for (let i = 0; i < partial; i++) items.push({ symbol: "⭐", className: "text-3xl" });
   }
   return items;
 }
@@ -178,9 +188,11 @@ function buildStarItems(G: number, n: number): Array<{ symbol: string; className
 function LearningStatusPanel({
   goalCount,
   completedToday,
+  firstRecommendedTitle,
 }: {
   goalCount: number;
   completedToday: number;
+  firstRecommendedTitle: string;
 }): React.JSX.Element {
   const allItems = buildStarItems(goalCount, completedToday);
   const MAX_ITEMS = 10;
@@ -188,7 +200,29 @@ function LearningStatusPanel({
   const hasMore = allItems.length > MAX_ITEMS;
 
   return (
-    <div className="learning-status-panel flex flex-col gap-3 py-3 px-4">
+    <div className="learning-status-panel flex flex-col gap-2 py-3 px-4">
+      <div className="learning-status-stars-and-count flex flex-row flex-wrap items-center justify-center gap-2 min-h-[2.75rem]">
+        <div
+          id="learningStatusStars"
+          className="learning-status-stars flex flex-row flex-wrap items-center justify-center gap-0.5"
+        >
+          {displayItems.map((item, idx) => (
+            <span key={idx} className={`leading-none ${item.className}`}>
+              {item.symbol}
+            </span>
+          ))}
+          {hasMore && <span className="text-[#586069] text-sm">…</span>}
+          {displayItems.length === 0 && <span className="text-sm text-[#8b949e]">☆</span>}
+        </div>
+        <span id="learningStatusCount" className="text-sm font-semibold text-[#24292e]">
+          学習数 {Math.min(completedToday, goalCount)}/{goalCount}
+        </span>
+      </div>
+      {firstRecommendedTitle && (
+        <div id="learningStatusFirstTitle" className="text-sm text-[#586069] text-center">
+          次のおすすめ: {firstRecommendedTitle}
+        </div>
+      )}
       <button
         id="learningStatusStartBtn"
         type="button"
@@ -197,15 +231,6 @@ function LearningStatusPanel({
       >
         開始する
       </button>
-      <div className="learning-status-stars flex flex-row flex-wrap items-center gap-1 mt-1 min-h-[2rem]">
-        {displayItems.map((item, idx) => (
-          <span key={idx} className={`leading-none ${item.className}`}>
-            {item.symbol}
-          </span>
-        ))}
-        {hasMore && <span className="text-[#586069] text-sm">…</span>}
-        {displayItems.length === 0 && <span className="text-sm text-[#8b949e]">今日の完了: 0</span>}
-      </div>
     </div>
   );
 }

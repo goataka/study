@@ -282,7 +282,7 @@ function CornerToggle({ transposed, onToggleTranspose }: CornerToggleProps): Rea
   return (
     <button
       type="button"
-      className="progress-matrix-corner-toggle-btn text-[0.75em] px-1.5 py-0.5 border border-[#c8d8f8] rounded bg-[#e8f0fe] text-[#0366d6] cursor-pointer whitespace-nowrap hover:bg-[#d0e4ff]"
+      className="progress-matrix-corner-toggle-btn text-sm font-semibold px-1.5 py-0.5 border border-[#c8d8f8] rounded bg-[#e8f0fe] text-[#0366d6] cursor-pointer whitespace-nowrap hover:bg-[#d0e4ff]"
       aria-label="学年とカテゴリの縦横を切り替える"
       aria-pressed={transposed}
       onClick={onToggleTranspose}
@@ -329,7 +329,7 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
                 </th>
                 {vm.visibleGrades.map((grade) => (
                   <th key={grade} className="progress-matrix-parent-header">
-                    <div>{grade}</div>
+                    <div className="text-base font-semibold">{grade}</div>
                     <div className="progress-matrix-header-total">({vm.gradeTotals.get(grade) ?? 0})</div>
                   </th>
                 ))}
@@ -339,7 +339,7 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
               {vm.visibleCols.map((col, colIdx) => (
                 <tr key={col.parentId}>
                   <th scope="row">
-                    <div>{buildMatrixCategoryLabel(col)}</div>
+                    <div className="text-base font-semibold">{buildMatrixCategoryLabel(col)}</div>
                     <div className="progress-matrix-header-total">({vm.colTotals.get(col.parentId) ?? 0})</div>
                   </th>
                   {vm.visibleGrades.map((grade) => {
@@ -367,14 +367,14 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
                 </th>
                 {vm.topGroups.map((grp, idx) => (
                   <th key={`${grp.topId}-${idx}`} colSpan={grp.count} className="progress-matrix-top-header">
-                    {grp.topName}
+                    <span className="text-base font-semibold">{grp.topName}</span>
                   </th>
                 ))}
               </tr>
               <tr>
                 {vm.visibleCols.map((col) => (
                   <th key={col.parentId} className="progress-matrix-parent-header">
-                    <div>{buildMatrixCategoryLabel(col)}</div>
+                    <div className="text-base font-semibold">{buildMatrixCategoryLabel(col)}</div>
                     <div className="progress-matrix-header-total">({vm.colTotals.get(col.parentId) ?? 0})</div>
                   </th>
                 ))}
@@ -384,7 +384,7 @@ function ProgressMatrixView({ ctx }: { ctx: ProgressMatrixContext }): React.JSX.
               {vm.visibleGrades.map((grade) => (
                 <tr key={grade}>
                   <th scope="row">
-                    <div>{grade}</div>
+                    <div className="text-base font-semibold">{grade}</div>
                     <div className="progress-matrix-header-total">({vm.gradeTotals.get(grade) ?? 0})</div>
                   </th>
                   {vm.visibleCols.map((col, colIdx) => {

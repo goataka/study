@@ -60,6 +60,15 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(recName?.textContent).toBeTruthy();
   });
 
+  it("おすすめ単元カードに教科名ラベルが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
+    const subjectLabel = englishItem?.querySelector(".subject-overview-subject");
+    expect(subjectLabel?.textContent).toBe("英語");
+  });
+
   it("未学習の場合、教科アイテムの進捗率は表示されない（学習後のみ表示）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

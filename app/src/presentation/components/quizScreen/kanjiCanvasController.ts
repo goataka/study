@@ -125,6 +125,10 @@ export class KanjiCanvasController {
       );
     } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer.normalize("NFKC"))) {
       candidates = candidates.filter((char) => isLatinOnly(char));
+      if (candidates.length === 0) {
+        const fallback = correctAnswer.normalize("NFKC").trim();
+        if (fallback) candidates = [fallback];
+      }
     }
 
     candidates = Array.from(new Set(candidates)).slice(0, 5);
