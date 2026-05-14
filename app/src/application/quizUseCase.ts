@@ -665,7 +665,9 @@ export class QuizUseCase {
    */
   getTodayAdvancedCount(): number {
     const today = new Date().toISOString().slice(0, 10);
-    return Object.values(this.categoryStages).filter((r) => r.lastCompletedAt.startsWith(today)).length;
+    return Object.values(this.categoryStages).filter(
+      (r) => r.lastCompletedAt != null && r.lastCompletedAt.startsWith(today),
+    ).length;
   }
 
   /**
@@ -756,15 +758,18 @@ export class QuizUseCase {
     let ri = 0;
     while (result.length < total) {
       if (ui < unlearned.length) {
-        result.push(unlearned[ui++]!);
+        const item = unlearned[ui++];
+        if (item) result.push(item);
       } else if (ri < reviewReady.length) {
-        result.push(reviewReady[ri++]!);
+        const item = reviewReady[ri++];
+        if (item) result.push(item);
       } else {
         break;
       }
       if (result.length >= total) break;
       if (ri < reviewReady.length) {
-        result.push(reviewReady[ri++]!);
+        const item = reviewReady[ri++];
+        if (item) result.push(item);
       }
     }
 

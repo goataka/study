@@ -201,11 +201,7 @@ function RecommendedUnitCard({
       </span>
       <div className="subject-overview-name-area flex-1 min-w-0 flex flex-col gap-[3px]">
         <div className="subject-overview-title-row flex flex-row items-center gap-1 min-w-0 flex-wrap">
-          <span
-            className={["subject-overview-rec-name font-semibold min-w-0", badge ? badge.sizeClass : "text-sm"]
-              .filter(Boolean)
-              .join(" ")}
-          >
+          <span className={`subject-overview-rec-name font-semibold min-w-0 ${badge ? badge.sizeClass : "text-sm"}`}>
             {unit.categoryName}
           </span>
           {badge && (

@@ -213,7 +213,8 @@ export class QuizApp {
     this.globalRecommendedCount = loadGlobalRecommendedCountSetting(this.progressRepo);
     // 「開始する」ボタンのアクションを登録する
     setStartQuizAction(() => {
-      // おすすめ一覧の先頭単元を選択してクイズを開始する
+      // おすすめ一覧の先頭単元を選択してクイズを開始する。
+      // カテゴリが未選択の場合のみ自動選択する（既に選択済みの場合はその単元でクイズを開始）。
       const goalCount = this.globalRecommendedCount;
       const units = this.useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2)));
       if (units.length > 0 && !this.filter.category) {
