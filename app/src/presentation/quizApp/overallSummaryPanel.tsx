@@ -188,9 +188,11 @@ function buildFirstRecommendedTitle(
   const subjectLabel = subj ? `${subj.icon} ${subj.name}` : unit.subject;
   const topCat = useCase.getTopCategoryForUnit(unit.subject, unit.categoryId);
   const parentCat = useCase.getParentCategoryForUnit(unit.subject, unit.categoryId);
+  // トップカテゴリと親カテゴリが同名の場合は重複を避けてトップカテゴリを省略する
+  const topCatName = topCat?.name !== parentCat?.name ? topCat?.name : undefined;
   return {
     subjectLabel,
-    topCatName: topCat?.name,
+    topCatName,
     parentCatName: parentCat?.name,
     categoryName: unit.categoryName,
   };
