@@ -128,6 +128,23 @@ describe("CategoryRegistry クラス", () => {
       expect(reg.getCategoryReferenceGrade("english", "phonics-2")).toBe("小学2年");
     });
 
+    it("getCategoryPrerequisites は前提単元 ID リストを返す（未設定時は空配列）", () => {
+      const questionsWithPrereq: Question[] = [
+        ...questions,
+        makeQuestion({
+          id: "q4",
+          subject: "math",
+          category: "addition-carry",
+          categoryName: "くり上がりあり",
+          prerequisites: ["addition-no-carry"],
+        }),
+      ];
+      const reg = new CategoryRegistry(questionsWithPrereq);
+      expect(reg.getCategoryPrerequisites("math", "addition-carry")).toEqual(["addition-no-carry"]);
+      expect(reg.getCategoryPrerequisites("math", "addition")).toEqual([]);
+      expect(reg.getCategoryPrerequisites("math", "unknown")).toEqual([]);
+    });
+
     it("getFirstAvailableGuideUrl は最初に登録された guideUrl を返す", () => {
       const reg = new CategoryRegistry(questions);
       expect(reg.getFirstAvailableGuideUrl()).toBe("./english/phonics-1/guide.md");
