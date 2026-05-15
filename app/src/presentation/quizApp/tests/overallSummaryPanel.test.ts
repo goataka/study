@@ -213,7 +213,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const firstTitle = document.getElementById("learningStatusFirstTitle");
-    expect(firstTitle?.textContent).toContain("次のおすすめ:");
+    expect(firstTitle?.textContent).toContain("次のおすすめ：");
   });
 
   it("学習状況パネルの次のおすすめは右一覧の先頭おすすめ単元と一致する", async () => {

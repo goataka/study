@@ -105,7 +105,7 @@ describe("KanjiCanvasController コントローラー", () => {
       expect(texts).toEqual(["か", "が", "は", "ば", "ぱ"]);
     });
 
-    it("英語問題（ラテン文字）の場合はラテン文字以外を除外する", () => {
+    it("英語問題（ラテン文字）の場合はラテン文字以外を除外し、正解文字列も候補に追加する", () => {
       const onSelectCandidate = vi.fn();
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
         recognize: () => "A あ B 漢",
@@ -117,7 +117,7 @@ describe("KanjiCanvasController コントローラー", () => {
       ctrl.updateCandidates();
       const buttons = document.querySelectorAll(".kanji-candidate-btn");
       const texts = Array.from(buttons).map((b) => b.textContent);
-      expect(texts).toEqual(["A", "B"]);
+      expect(texts).toEqual(["A", "B", "AB"]);
     });
 
     it("英語問題で認識候補にラテン文字がない場合は正解文字列を候補として表示する", () => {

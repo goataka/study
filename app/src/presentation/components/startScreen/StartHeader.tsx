@@ -18,17 +18,19 @@ export function StartHeader(): React.JSX.Element {
   return (
     <header className="shrink-0 flex flex-wrap items-center justify-between gap-y-2 bg-transparent pt-2 px-4 pb-2 border-b-2 border-[#c8d8e8]">
       <div className="header-title-area flex flex-row items-center gap-2 shrink-0 border-b-2 border-[#c8d8e8] pb-0.5">
-        <h1
-          id="titleBtn"
-          role="button"
-          tabIndex={0}
-          className="title-btn shrink-0 flex items-center gap-1.5 whitespace-nowrap text-base font-extrabold text-[#0366d6] cursor-pointer transition-colors duration-200 hover:text-[#0255b8] focus-visible:text-[#0255b8] focus-visible:outline-none focus-visible:underline px-2 py-1"
-          title="スタート画面へ戻る"
-        >
-          <span className="header-active-subject-icon" aria-hidden="true">
-            {activeSubject.icon}
-          </span>
-          <span className="header-active-subject-name">{activeSubject.name}</span>
+        <h1 className="m-0 p-0 leading-none">
+          <a
+            id="titleBtn"
+            href="./"
+            className="title-btn shrink-0 flex items-center gap-1.5 whitespace-nowrap text-base font-extrabold text-[#0366d6] no-underline cursor-pointer transition-colors duration-200 hover:text-[#0255b8] focus-visible:text-[#0255b8] focus-visible:outline-none focus-visible:underline px-2 py-1"
+            title="スタート画面へ戻る"
+            onClick={(e) => e.preventDefault()}
+          >
+            <span className="header-active-subject-icon" aria-hidden="true">
+              {activeSubject.icon}
+            </span>
+            <span className="header-active-subject-name">{activeSubject.name}</span>
+          </a>
         </h1>
       </div>
       <div className="header-date-area flex w-full items-center justify-end gap-2 shrink-0 sm:w-auto">

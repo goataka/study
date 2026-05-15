@@ -126,9 +126,9 @@ export class KanjiCanvasController {
     } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer.normalize("NFKC"))) {
       const normalizedAnswer = correctAnswer.normalize("NFKC").trim();
       candidates = candidates.filter((char) => isLatinOnly(char));
-      if (candidates.length === 0) {
-        // 英語問題で認識結果が空振りした場合でも入力を進められるよう、正解文字列を候補として提示する。
-        if (normalizedAnswer) candidates = [normalizedAnswer];
+      // 英語問題では正解文字列を常に候補として追加する（認識精度が低い場合の入力補助）
+      if (normalizedAnswer && !candidates.includes(normalizedAnswer)) {
+        candidates.push(normalizedAnswer);
       }
     }
 
