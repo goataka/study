@@ -1,5 +1,12 @@
 ---
 ---
+## 📚 前提単元
+
+この単元を始める前に、以下の単元を履修しておくことをおすすめします。
+
+- [➗ ３桁・あまりあり](./math/arithmetic/division-3digit-remainder/guide)
+- [➗ ３桁・あまりなし](./math/arithmetic/division-3digit-no-remainder/guide)
+
 # ➗ まとめ
 
 ## 📌 見分け方

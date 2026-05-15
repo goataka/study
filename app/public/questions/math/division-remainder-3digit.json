@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "6 × 84 = 504。508 - 504 = 4。答え 84 あまり 4"
     }
-  ]
+  ],
+  "prerequisites": ["division-remainder-2digit"]
 }

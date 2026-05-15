@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "428 + 175 = 603人"
     }
-  ]
+  ],
+  "prerequisites": ["addition-mixed"]
 }

@@ -126,5 +126,6 @@
       "correct": 0,
       "explanation": "189 + 236 = 425"
     }
-  ]
+  ],
+  "prerequisites": ["addition-no-carry"]
 }

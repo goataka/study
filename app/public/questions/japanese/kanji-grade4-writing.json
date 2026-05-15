@@ -1079,5 +1079,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide"
+  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "prerequisites": ["kanji-grade4"]
 }

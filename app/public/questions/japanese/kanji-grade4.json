@@ -1079,5 +1079,6 @@
       "correct": 0,
       "explanation": "標（ひょう）: 目じるし・目標のこと。「目標」「標識」などに使う"
     }
-  ]
+  ],
+  "prerequisites": ["kanji-grade3"]
 }

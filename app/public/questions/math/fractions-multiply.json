@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "5×3 / 6×10 = 15/60 = 1/4"
     }
-  ]
+  ],
+  "prerequisites": ["fractions-same-add"]
 }

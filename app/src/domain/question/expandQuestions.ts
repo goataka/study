@@ -27,5 +27,6 @@ export function expandQuestions(qf: QuestionFile): Question[] {
     description: qf.description,
     questionType: q.questionType ?? fileQuestionType,
     caseSensitive: q.caseSensitive ?? qf.caseSensitive,
+    prerequisites: qf.prerequisites,
   }));
 }

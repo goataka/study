@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "36 × 7 = 252個"
     }
-  ]
+  ],
+  "prerequisites": ["multiplication-mixed"]
 }

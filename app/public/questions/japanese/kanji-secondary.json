@@ -365,5 +365,6 @@
       "correct": 0,
       "explanation": "揺（ゆ）れる: 左右・上下に動くこと・心が不安定になること"
     }
-  ]
+  ],
+  "prerequisites": ["kanji-grade6"]
 }

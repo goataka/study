@@ -89,6 +89,17 @@ export function validateQuestionFile(data: unknown): asserts data is QuestionFil
   if (qf.caseSensitive !== undefined && typeof qf.caseSensitive !== "boolean") {
     throw new Error('"caseSensitive" が存在する場合はブール値でなければなりません');
   }
+  // prerequisites はオプションの文字列配列
+  if (qf.prerequisites !== undefined) {
+    if (!Array.isArray(qf.prerequisites)) {
+      throw new Error('"prerequisites" が存在する場合は配列でなければなりません');
+    }
+    for (const [i, p] of (qf.prerequisites as unknown[]).entries()) {
+      if (typeof p !== "string" || (p as string).trim().length === 0) {
+        throw new Error(`"prerequisites[${i}]" は空でない文字列でなければなりません`);
+      }
+    }
+  }
 
   if (!Array.isArray(qf.questions)) {
     throw new Error('QuestionFile には "questions" 配列が必要です');

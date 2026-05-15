@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "8-2=6、6/9 = 2/3"
     }
-  ]
+  ],
+  "prerequisites": ["fractions-same-add"]
 }

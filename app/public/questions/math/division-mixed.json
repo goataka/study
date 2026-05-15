@@ -98,5 +98,6 @@
       "correct": 0,
       "explanation": "75 ÷ 8 = 9 あまり 3。1人9枚で3枚あまる。"
     }
-  ]
+  ],
+  "prerequisites": ["division-remainder-3digit", "division-no-remainder-3digit"]
 }

@@ -1,5 +1,12 @@
 ---
 ---
+## 📚 前提単元
+
+この単元を始める前に、以下の単元を履修しておくことをおすすめします。
+
+- [➕ ３桁・くり上がりあり](./math/arithmetic/addition-3digit-carry/guide)
+- [➕ ３桁・くり上がりなし](./math/arithmetic/addition-3digit-no-carry/guide)
+
 # ➕ まとめ
 
 ## 📌 見分け方

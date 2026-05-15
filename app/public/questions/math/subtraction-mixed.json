@@ -98,5 +98,6 @@
       "correct": 0,
       "explanation": "347 - 135 = 212頭"
     }
-  ]
+  ],
+  "prerequisites": ["subtraction-borrow-3digit", "subtraction-no-borrow-3digit"]
 }

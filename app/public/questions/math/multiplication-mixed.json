@@ -98,5 +98,6 @@
       "correct": 0,
       "explanation": "25 × 8 = 200人"
     }
-  ]
+  ],
+  "prerequisites": ["multiplication-3digit"]
 }

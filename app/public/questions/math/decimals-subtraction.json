@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "3.2 - 1.75 = 1.45"
     }
-  ]
+  ],
+  "prerequisites": ["decimals-addition"]
 }

@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "604 - 278 = 326人"
     }
-  ]
+  ],
+  "prerequisites": ["subtraction-mixed"]
 }

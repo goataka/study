@@ -98,5 +98,6 @@
       "correct": 0,
       "explanation": "156 + 47 = 203人"
     }
-  ]
+  ],
+  "prerequisites": ["addition-carry-3digit", "addition-no-carry-3digit"]
 }

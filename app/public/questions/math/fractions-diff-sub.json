@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "通分: 10/12 - 3/12 = 7/12"
     }
-  ]
+  ],
+  "prerequisites": ["fractions-same-sub"]
 }

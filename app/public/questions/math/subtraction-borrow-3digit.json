@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "700 - 345 = 355"
     }
-  ]
+  ],
+  "prerequisites": ["subtraction-borrow-2digit"]
 }

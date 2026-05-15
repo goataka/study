@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "8 × 8 = 64なので、64 ÷ 8 = 8"
     }
-  ]
+  ],
+  "prerequisites": ["multiplication-basic"]
 }

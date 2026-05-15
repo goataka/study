@@ -225,5 +225,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-high/guide"
+  "guideUrl": "./japanese/kanji/kanji-high/guide",
+  "prerequisites": ["kanji-high"]
 }

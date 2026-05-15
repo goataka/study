@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "162 + 437 = 599"
     }
-  ]
+  ],
+  "prerequisites": ["addition-no-carry-2digit"]
 }
