@@ -93,7 +93,7 @@ function ProgressSubjectListItem({
         "category-item flex w-full cursor-pointer select-none rounded-md text-left transition-[background,border-color] duration-150",
         "hover:bg-[#e8f0fe]",
         "focus:outline-2 focus:outline-[#0366d6] focus:outline-offset-2",
-        "[&.active]:bg-[#0366d6] [&.active]:text-white",
+        "[&.active]:bg-[#e8f0ff] [&.active]:text-[#0366d6]",
         "group",
         isActive ? "active" : "",
       ]
@@ -112,7 +112,7 @@ function ProgressSubjectListItem({
             <span className="progress-subject-list-icon text-[19px] shrink-0 leading-none" aria-hidden="true">
               {stat.icon}
             </span>
-            <span className="progress-subject-list-name text-lg font-semibold text-[#24292e] break-words group-[.active]:text-white">
+            <span className="progress-subject-list-name text-lg font-semibold text-[#24292e] group-[.active]:text-[#0366d6] break-words">
               {stat.name}
             </span>
           </div>
@@ -123,7 +123,7 @@ function ProgressSubjectListItem({
                 style={{ width: `${masteredPct}%` }}
               />
             </div>
-            <span className="progress-subject-list-stats text-[13px] text-[#586069] whitespace-nowrap shrink-0 group-[.active]:text-white/85">
+            <span className="progress-subject-list-stats text-[13px] text-[#586069] whitespace-nowrap shrink-0 group-[.active]:text-[#0366d6]/85">
               {`${stat.mastered}/${stat.total}`}
             </span>
           </div>

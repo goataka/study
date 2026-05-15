@@ -31,7 +31,7 @@ export interface SupportMenuItem {
 export const SUPPORT_MENU_ITEMS: readonly [SupportMenuItem, ...SupportMenuItem[]] = [
   { id: "intro", label: "🏠 はじめに" },
   { id: "usage", label: "📖 使い方" },
-  { id: "contents", label: "📚 コンテンツ" },
+  { id: "contents", label: "📚 教科・単元" },
 ];
 
 // ─── サブタブ定義 ──────────────────────────────────────────────────────────

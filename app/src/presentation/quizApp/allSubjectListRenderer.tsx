@@ -78,11 +78,56 @@ export function hashString(value: string): number {
 /** 日付と単元IDを入力に、日替わりで安定する擬似ランダム順を作る。 */
 export function shuffleUnitsByDailySeed(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
   const seed = new Date().toISOString().slice(0, 10);
-  return [...units].sort((a, b) => {
+  const shuffled = [...units].sort((a, b) => {
     const ha = hashString(`${seed}:${a.subject}:${a.categoryId}`);
     const hb = hashString(`${seed}:${b.subject}:${b.categoryId}`);
     return ha - hb;
   });
+  return spreadBySubject(shuffled);
+}
+
+/**
+ * 同じ教科が連続しないように単元を並べ替える（グリーディ方式）。
+ * 前回と異なる教科のうち残り数が最大のものを優先して選ぶ。
+ * やむを得ず連続する場合（同一教科しか残っていない場合）は末尾に追加する。
+ */
+function spreadBySubject(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
+  const bySubject = new Map<string, GlobalRecommendedUnit[]>();
+  for (const unit of units) {
+    const arr = bySubject.get(unit.subject) ?? [];
+    arr.push(unit);
+    bySubject.set(unit.subject, arr);
+  }
+
+  const result: GlobalRecommendedUnit[] = [];
+  let prevSubject: string | null = null;
+
+  while (result.length < units.length) {
+    // 前回と異なる教科のうち残り数（1以上）が最大のものを選ぶ
+    let bestSubject: string | null = null;
+    let bestCount = -1;
+    for (const [subj, arr] of bySubject) {
+      if (arr.length > 0 && arr.length > bestCount && subj !== prevSubject) {
+        bestCount = arr.length;
+        bestSubject = subj;
+      }
+    }
+
+    if (bestSubject === null) {
+      // 前回と同じ教科しか残っていない場合はそのまま追加する（止むを得ず連続）
+      for (const [, arr] of bySubject) {
+        while (arr.length > 0) result.push(arr.shift()!);
+      }
+      break;
+    }
+
+    const queue = bySubject.get(bestSubject);
+    if (queue && queue.length > 0) {
+      result.push(queue.shift()!);
+      prevSubject = bestSubject;
+    }
+  }
+  return result;
 }
 
 function GlobalRecommendedList({
@@ -121,9 +166,7 @@ function GlobalRecommendedList({
             aria-label="目標数を超えた単元"
           >
             <div className="flex-1 h-px bg-[#d0d7de]" />
-            <span className="text-[11px] text-[#586069] whitespace-nowrap select-none">
-              🎯 目標ここまで / ここから追加チャレンジ
-            </span>
+            <span className="text-sm text-[#586069] whitespace-nowrap select-none">🎯 目標ここまで / ここから追加</span>
             <div className="flex-1 h-px bg-[#d0d7de]" />
           </div>
           {extraUnits.map((unit) => (
@@ -138,10 +181,10 @@ function GlobalRecommendedList({
       <div className="global-recommended-add-row px-3 pt-1.5 pb-2">
         <button
           type="button"
-          className="global-recommended-add-btn w-full text-sm py-1 px-2 rounded border border-dashed border-[#d1d5da] text-[#586069] bg-transparent cursor-pointer hover:bg-[#f6f8fa] hover:border-[#0366d6] hover:text-[#0366d6] transition-[background,border-color,color] duration-150"
+          className="global-recommended-add-btn w-full text-base py-1.5 px-2 rounded border border-dashed border-[#d1d5da] text-[#586069] bg-transparent cursor-pointer hover:bg-[#f6f8fa] hover:border-[#0366d6] hover:text-[#0366d6] transition-[background,border-color,color] duration-150"
           onClick={() => setExtraCount((c) => c + calcAlphaCount(goalCount))}
         >
-          🚀 もっと追加してチャレンジ
+          🚀 もっと追加
         </button>
       </div>
     </div>
@@ -157,7 +200,6 @@ function GlobalCountHeaderRow({
 }): React.JSX.Element {
   return (
     <div className="global-count-header-row flex items-center gap-[5px] pt-1 px-1 pb-0.5 pl-0.5">
-      <span className="global-count-icon text-lg leading-none shrink-0">🎯</span>
       <div className="global-count-controls flex items-center gap-0.5 ml-auto">
         <span className="global-count-label-small text-[11px] text-[#586069] mr-0.5">目標数:</span>
         {GLOBAL_RECOMMENDED_COUNT_OPTIONS.map((n) => {
@@ -190,9 +232,9 @@ function GlobalCountHeaderRow({
 
 /** ステージバッジを返す */
 function stageBadge(stage: number): { emoji: string; sizeClass: string } | null {
-  if (stage === 1) return { emoji: "🎖️", sizeClass: "text-sm" };
-  if (stage === 2) return { emoji: "🏆", sizeClass: "text-base" };
-  if (stage === 3) return { emoji: "👑", sizeClass: "text-lg" };
+  if (stage === 1) return { emoji: "🎖️", sizeClass: "text-base" };
+  if (stage === 2) return { emoji: "🏆", sizeClass: "text-lg" };
+  if (stage === 3) return { emoji: "👑", sizeClass: "text-xl" };
   return null;
 }
 
@@ -231,7 +273,7 @@ function RecommendedUnitCard({
           <span className="subject-overview-subject text-[11px] px-1.5 py-px rounded bg-[#f6f8fa] text-[#586069] shrink-0">
             {SUBJECTS.find((s) => s.id === unit.subject)?.name ?? unit.subject}
           </span>
-          <span className={`subject-overview-rec-name font-semibold min-w-0 ${badge ? badge.sizeClass : "text-sm"}`}>
+          <span className={`subject-overview-rec-name font-semibold min-w-0 ${badge ? badge.sizeClass : "text-base"}`}>
             {unit.categoryName}
           </span>
           {badge && (

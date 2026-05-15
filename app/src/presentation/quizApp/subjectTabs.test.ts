@@ -194,11 +194,11 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(menu).not.toBeNull();
     expect(menuButtons.length).toBe(3);
 
-    // 左メニューに「はじめに」「使い方」「コンテンツ」が含まれる
+    // 左メニューに「はじめに」「使い方」「教科・単元」が含まれる
     const menuLabels = Array.from(menuButtons).map((b) => b.textContent ?? "");
     expect(menuLabels.some((l) => l.includes("はじめに"))).toBe(true);
     expect(menuLabels.some((l) => l.includes("使い方"))).toBe(true);
-    expect(menuLabels.some((l) => l.includes("コンテンツ"))).toBe(true);
+    expect(menuLabels.some((l) => l.includes("教科・単元"))).toBe(true);
 
     // 右列: #supportContent にコンテンツが表示される
     await waitForCondition(() => {

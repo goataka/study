@@ -154,9 +154,7 @@ export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: numbe
   const [firstRecommended] = shuffleUnitsByDailySeed(
     useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2))),
   );
-  const firstRecommendedTitle = firstRecommended
-    ? `${SUBJECTS.find((s) => s.id === firstRecommended.subject)?.name ?? firstRecommended.subject}：${firstRecommended.categoryName}`
-    : "";
+  const firstRecommendedTitle = buildFirstRecommendedTitle(firstRecommended);
   learningStatusContentStore.set(
     <LearningStatusPanel
       goalCount={goalCount}
@@ -166,6 +164,14 @@ export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: numbe
   );
 }
 
+/** おすすめ先頭単元のタイトル文字列を組み立てる（教科絵文字 + 教科名 + 単元名）。 */
+function buildFirstRecommendedTitle(unit: { subject: string; categoryName: string } | undefined): string {
+  if (!unit) return "";
+  const subj = SUBJECTS.find((s) => s.id === unit.subject);
+  const subjectLabel = subj ? `${subj.icon} ${subj.name}` : unit.subject;
+  return `${subjectLabel}：${unit.categoryName}`;
+}
+
 // ─── 星表示コンポーネント ──────────────────────────────────────────────────
 
 function buildStarItems(G: number, n: number): Array<{ symbol: string; className: string }> {
@@ -173,17 +179,17 @@ function buildStarItems(G: number, n: number): Array<{ symbol: string; className
   if (G <= 0) return items;
 
   if (n < G) {
-    for (let i = 0; i < n; i++) items.push({ symbol: "⭐", className: "text-3xl" });
-    for (let i = n; i < G; i++) items.push({ symbol: "☆", className: "text-3xl text-[#c5ced8]" });
+    for (let i = 0; i < n; i++) items.push({ symbol: "⭐", className: "text-5xl" });
+    for (let i = n; i < G; i++) items.push({ symbol: "☆", className: "text-5xl text-[#c5ced8]" });
   } else {
     const fullSets = Math.floor(n / G);
     const partial = n % G;
     const bigStars = Math.floor(fullSets / 2);
     const sparkles = fullSets % 2;
 
-    for (let i = 0; i < bigStars; i++) items.push({ symbol: "🌟", className: "text-4xl" });
-    for (let i = 0; i < sparkles; i++) items.push({ symbol: "✨", className: "text-3xl" });
-    for (let i = 0; i < partial; i++) items.push({ symbol: "⭐", className: "text-3xl" });
+    for (let i = 0; i < bigStars; i++) items.push({ symbol: "🌟", className: "text-6xl" });
+    for (let i = 0; i < sparkles; i++) items.push({ symbol: "✨", className: "text-5xl" });
+    for (let i = 0; i < partial; i++) items.push({ symbol: "⭐", className: "text-5xl" });
   }
   return items;
 }
@@ -204,6 +210,9 @@ function LearningStatusPanel({
 
   return (
     <div className="learning-status-panel flex flex-col gap-2 py-3 px-4">
+      <span id="learningStatusCount" className="text-base font-semibold text-[#24292e] text-center">
+        学習数 {Math.min(completedToday, goalCount)}/{goalCount}
+      </span>
       <div className="learning-status-stars-and-count flex flex-row flex-wrap items-center justify-center gap-2 min-h-[2.75rem]">
         <div
           id="learningStatusStars"
@@ -215,15 +224,14 @@ function LearningStatusPanel({
             </span>
           ))}
           {hasMore && <span className="text-[#586069] text-sm">…</span>}
-          {displayItems.length === 0 && <span className="text-sm text-[#8b949e]">☆</span>}
+          {displayItems.length === 0 && <span className="text-5xl text-[#c5ced8]">☆</span>}
         </div>
-        <span id="learningStatusCount" className="text-sm font-semibold text-[#24292e]">
-          学習数 {Math.min(completedToday, goalCount)}/{goalCount}
-        </span>
       </div>
       {firstRecommendedTitle && (
-        <div id="learningStatusFirstTitle" className="text-sm text-[#586069] text-center">
-          次のおすすめ: {firstRecommendedTitle}
+        <div id="learningStatusFirstTitle" className="text-[1.75rem] text-[#586069] text-center">
+          次のおすすめ：
+          <br />
+          {firstRecommendedTitle}
         </div>
       )}
       <button
