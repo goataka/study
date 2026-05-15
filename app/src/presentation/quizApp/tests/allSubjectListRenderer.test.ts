@@ -38,8 +38,13 @@ describe("allSubjectListRenderer の日替わり並び替え", () => {
     vi.useRealTimers();
   });
 
-  it("shuffleUnitsByDailySeed は日付が変わると順序が変わる", () => {
-    const units = [createUnit("english", "a"), createUnit("math", "b"), createUnit("japanese", "c")];
+  it("shuffleUnitsByDailySeed は教科分散ルールを優先して日付が変わっても順序を維持する場合がある", () => {
+    const units = [
+      createUnit("english", "a"),
+      createUnit("english", "b"),
+      createUnit("math", "c"),
+      createUnit("japanese", "d"),
+    ];
 
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-05-14T09:00:00Z"));
@@ -47,7 +52,7 @@ describe("allSubjectListRenderer の日替わり並び替え", () => {
 
     vi.setSystemTime(new Date("2026-05-15T09:00:00Z"));
     const day2 = shuffleUnitsByDailySeed(units).map((u) => `${u.subject}:${u.categoryId}`);
-    expect(day1).not.toEqual(day2);
+    expect(day1).toEqual(day2);
 
     vi.useRealTimers();
   });

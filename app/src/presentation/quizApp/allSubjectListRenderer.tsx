@@ -22,7 +22,7 @@ function getSubjectIcon(subjectId: string): string {
 }
 
 /** 目標数の選択肢 */
-export const GLOBAL_RECOMMENDED_COUNT_OPTIONS = [3, 5, 8, 13, 21];
+export const GLOBAL_RECOMMENDED_COUNT_OPTIONS = [2, 3, 5, 8, 13];
 
 /** デフォルトのα数（目標数の半分程度） */
 function calcAlphaCount(goalCount: number): number {
@@ -102,14 +102,28 @@ function spreadBySubject(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[
   const result: GlobalRecommendedUnit[] = [];
   let prevSubject: string | null = null;
 
+  const preferredSubjectOrder: Record<string, number> = {
+    japanese: 0,
+    math: 1,
+    english: 2,
+  };
   while (result.length < units.length) {
     // 前回と異なる教科のうち残り数（1以上）が最大のものを選ぶ
     let bestSubject: string | null = null;
     let bestCount = -1;
     for (const [subj, arr] of bySubject) {
-      if (arr.length > 0 && arr.length > bestCount && subj !== prevSubject) {
+      if (arr.length <= 0 || subj === prevSubject) continue;
+      if (arr.length > bestCount) {
         bestCount = arr.length;
         bestSubject = subj;
+        continue;
+      }
+      if (arr.length === bestCount && bestSubject !== null) {
+        const currentPriority = preferredSubjectOrder[subj] ?? Number.MAX_SAFE_INTEGER;
+        const bestPriority = preferredSubjectOrder[bestSubject] ?? Number.MAX_SAFE_INTEGER;
+        if (currentPriority < bestPriority) {
+          bestSubject = subj;
+        }
       }
     }
 
@@ -166,7 +180,7 @@ function GlobalRecommendedList({
             aria-label="目標数を超えた単元"
           >
             <div className="flex-1 h-px bg-[#d0d7de]" />
-            <span className="text-sm text-[#586069] whitespace-nowrap select-none">🎯 目標ここまで / ここから追加</span>
+            <span className="text-sm text-[#586069] whitespace-nowrap select-none">🎯 目標ここまで</span>
             <div className="flex-1 h-px bg-[#d0d7de]" />
           </div>
           {extraUnits.map((unit) => (
@@ -273,7 +287,7 @@ function RecommendedUnitCard({
           <span className="subject-overview-subject text-[11px] px-1.5 py-px rounded bg-[#f6f8fa] text-[#586069] shrink-0">
             {SUBJECTS.find((s) => s.id === unit.subject)?.name ?? unit.subject}
           </span>
-          <span className={`subject-overview-rec-name font-semibold min-w-0 ${badge ? badge.sizeClass : "text-base"}`}>
+          <span className={`subject-overview-rec-name font-semibold min-w-0 ${badge ? badge.sizeClass : "text-lg"}`}>
             {unit.categoryName}
           </span>
           {badge && (

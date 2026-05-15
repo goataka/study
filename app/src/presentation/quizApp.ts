@@ -216,15 +216,17 @@ export class QuizApp {
     this.globalRecommendedCount = loadGlobalRecommendedCountSetting(this.progressRepo);
     // 「開始する」ボタンのアクションを登録する
     setStartQuizAction(() => {
-      // おすすめ一覧の先頭単元を選択してクイズを開始する。
-      // カテゴリが未選択の場合のみ自動選択する（既に選択済みの場合はその単元でクイズを開始）。
+      // おすすめ一覧の先頭単元を選択し、未学習は解説・学習済みは確認タブを開く。
       const goalCount = this.globalRecommendedCount;
       const units = this.useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2)));
-      if (units.length > 0 && !this.filter.category) {
+      if (units.length > 0 && this.selectedUnitContext === null) {
         const first = units[0]!;
         D.selectUnitContext(this, first.subject, first.categoryId, first.categoryName);
+        return;
       }
-      void D.startQuiz(this, "random");
+      const records = this.useCase.getHistory();
+      D.autoSelectPanelTab(this, records);
+      D.updateStartScreen(this, records);
     });
     this.setupEventListeners();
     D.buildSubjectTabs(this);

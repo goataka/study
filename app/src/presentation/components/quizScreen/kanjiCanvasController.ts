@@ -123,9 +123,9 @@ export class KanjiCanvasController {
       candidates = expandHiraganaCandidatesWithVoicedVariants(
         kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)),
       );
-    } else if (correctAnswer !== undefined && isLatinOnly(correctAnswer.normalize("NFKC"))) {
+    } else if (correctAnswer !== undefined && isLikelyLatinAnswer(correctAnswer)) {
       const normalizedAnswer = correctAnswer.normalize("NFKC").trim();
-      candidates = candidates.filter((char) => isLatinOnly(char));
+      candidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
       // 英語問題では正解文字列を常に候補として追加する（認識精度が低い場合の入力補助）
       if (normalizedAnswer && !candidates.includes(normalizedAnswer)) {
         candidates.push(normalizedAnswer);
@@ -205,4 +205,17 @@ function expandHiraganaCandidatesWithVoicedVariants(candidates: string[]): strin
     if (variants) expanded.push(...variants);
   }
   return expanded;
+}
+
+function isLikelyLatinAnswer(answer: string): boolean {
+  const normalized = answer.normalize("NFKC").trim();
+  if (!normalized) return false;
+  if (isLatinOnly(normalized)) return true;
+  const latinOnlyWithoutSeparators = normalized.replace(/[\s.,!?'"`’‘\-_/():;]+/g, "");
+  return latinOnlyWithoutSeparators.length > 0 && isLatinOnly(latinOnlyWithoutSeparators);
+}
+
+function isLatinAlphabetCandidate(value: string): boolean {
+  if (!isLatinOnly(value)) return false;
+  return /^[A-Za-z]+$/.test(value);
 }

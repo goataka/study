@@ -79,13 +79,14 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(pctSpan).toBeNull();
   });
 
-  it("グローバル目標数ボタンが表示される（3/5/8/13/21）", async () => {
+  it("グローバル目標数ボタンが表示される（2/3/5/8/13）", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // グローバル目標数の 5 つのボタン（3/5/8/13/21）が表示される
-    const countBtns = document.querySelectorAll(".overall-rec-count-btn");
-    expect(countBtns.length).toBeGreaterThanOrEqual(5);
+    const countBtns = Array.from(document.querySelectorAll(".overall-rec-count-btn")).map((btn) =>
+      btn.textContent?.trim(),
+    );
+    expect(countBtns).toEqual(["2", "3", "5", "8", "13"]);
   });
 
   it("目標数ボタンで切り替えると英語の表示カードが更新される", async () => {
@@ -191,6 +192,8 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     const title = document.getElementById("allSubjectPanelTitle");
     expect(title?.classList.contains("hidden")).toBe(false);
+    const info = document.getElementById("allSubjectPanelInfo");
+    expect(info?.classList.contains("hidden")).toBe(false);
   });
 
   it("教科タブに切り替えると allSubjectPanelTitle が非表示になる", async () => {
@@ -202,6 +205,8 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     const title = document.getElementById("allSubjectPanelTitle");
     expect(title?.classList.contains("hidden")).toBe(true);
+    const info = document.getElementById("allSubjectPanelInfo");
+    expect(info?.classList.contains("hidden")).toBe(true);
   });
 
   it("総合タブのおすすめ単元をクリックすると（履歴なし）解説タブが表示される", async () => {
