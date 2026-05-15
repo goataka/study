@@ -56,9 +56,17 @@ export function CategoryPanel(): React.JSX.Element {
         </div>
         <span
           id="allSubjectPanelTitle"
-          className="all-subject-panel-title hidden text-sm font-bold text-[#0366d6] shrink-0"
+          className="all-subject-panel-title hidden text-base font-bold text-[#0366d6] shrink-0"
         >
           📚 今日の単元
+        </span>
+        <span
+          id="allSubjectPanelInfo"
+          className="all-subject-panel-info hidden text-xs text-[#586069] shrink-0 whitespace-nowrap"
+          title="当日学習記録のある単元をおすすめ順で表示します"
+          aria-label="今日の単元の抽出条件"
+        >
+          ℹ️ 当日学習記録のある単元をおすすめ順で表示
         </span>
       </div>
       <div id="overallDateNav" className="activity-date-nav hidden items-center gap-1.5 shrink-0 px-2 py-1.5">

@@ -149,27 +149,63 @@ export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase,
  * - n >= G: 🌟×floor(n/(2*G)) + ✨×(floor(n/G)%2) + ⭐×(n%G)
  * - 合計 10 個を超える場合は「…」を付加
  */
-export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: number): void {
+export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: number, selectedActivityDate: string): void {
   const completedToday = useCase.getTodayAdvancedCount();
   const [firstRecommended] = shuffleUnitsByDailySeed(
     useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2))),
   );
   const firstRecommendedTitle = buildFirstRecommendedTitle(firstRecommended);
+  const todayLearnedUnits = buildTodayLearnedUnits(useCase.getHistory(), selectedActivityDate);
   learningStatusContentStore.set(
     <LearningStatusPanel
       goalCount={goalCount}
       completedToday={completedToday}
       firstRecommendedTitle={firstRecommendedTitle}
+      todayLearnedUnits={todayLearnedUnits}
     />,
   );
 }
 
-/** おすすめ先頭単元のタイトル文字列を組み立てる（教科絵文字 + 教科名 + 単元名）。 */
-function buildFirstRecommendedTitle(unit: { subject: string; categoryName: string } | undefined): string {
-  if (!unit) return "";
+interface FirstRecommendedTitle {
+  subjectLabel: string;
+  categoryName: string;
+}
+
+interface TodayLearnedUnitItem {
+  id: string;
+  title: string;
+}
+
+/** おすすめ先頭単元のタイトル情報を組み立てる（教科絵文字 + 教科名 + 単元名）。 */
+function buildFirstRecommendedTitle(
+  unit: { subject: string; categoryName: string } | undefined,
+): FirstRecommendedTitle | null {
+  if (!unit) return null;
   const subj = SUBJECTS.find((s) => s.id === unit.subject);
   const subjectLabel = subj ? `${subj.icon} ${subj.name}` : unit.subject;
-  return `${subjectLabel}：${unit.categoryName}`;
+  return {
+    subjectLabel,
+    categoryName: unit.categoryName,
+  };
+}
+
+function buildTodayLearnedUnits(records: QuizRecord[], selectedActivityDate: string): TodayLearnedUnitItem[] {
+  const selectedDateRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
+  const items: TodayLearnedUnitItem[] = [];
+  const seen = new Set<string>();
+  for (const record of selectedDateRecords) {
+    if (record.category === "all") continue;
+    const id = `${record.subject}::${record.category}`;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    const subject = SUBJECTS.find((s) => s.id === record.subject);
+    const subjectLabel = subject ? `${subject.icon} ${subject.name}` : record.subjectName;
+    items.push({
+      id,
+      title: `${subjectLabel}：${record.categoryName}`,
+    });
+  }
+  return items;
 }
 
 // ─── 星表示コンポーネント ──────────────────────────────────────────────────
@@ -198,10 +234,12 @@ function LearningStatusPanel({
   goalCount,
   completedToday,
   firstRecommendedTitle,
+  todayLearnedUnits,
 }: {
   goalCount: number;
   completedToday: number;
-  firstRecommendedTitle: string;
+  firstRecommendedTitle: FirstRecommendedTitle | null;
+  todayLearnedUnits: TodayLearnedUnitItem[];
 }): React.JSX.Element {
   const allItems = buildStarItems(goalCount, completedToday);
   const MAX_ITEMS = 10;
@@ -209,7 +247,7 @@ function LearningStatusPanel({
   const hasMore = allItems.length > MAX_ITEMS;
 
   return (
-    <div className="learning-status-panel flex flex-col gap-2 py-3 px-4">
+    <div className="learning-status-panel flex h-full flex-col justify-center gap-2 px-4 py-3">
       <span id="learningStatusCount" className="text-base font-semibold text-[#24292e] text-center">
         学習数 {Math.min(completedToday, goalCount)}/{goalCount}
       </span>
@@ -228,10 +266,11 @@ function LearningStatusPanel({
         </div>
       </div>
       {firstRecommendedTitle && (
-        <div id="learningStatusFirstTitle" className="text-[1.75rem] text-[#586069] text-center">
+        <div id="learningStatusFirstTitle" className="mt-3 mb-3 text-[1.75rem] text-[#586069] text-center">
           次のおすすめ：
           <br />
-          {firstRecommendedTitle}
+          {firstRecommendedTitle.subjectLabel}：
+          <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.categoryName}</strong>
         </div>
       )}
       <button
@@ -242,6 +281,25 @@ function LearningStatusPanel({
       >
         開始する
       </button>
+      <div className="mt-2">
+        <div className="text-sm font-semibold text-[#586069]">今日やった単元</div>
+        <div
+          id="learningStatusTodayUnitsList"
+          className="mt-1 max-h-28 overflow-y-auto rounded-md border border-[#e1e4e8] bg-white px-2 py-1.5"
+        >
+          {todayLearnedUnits.length === 0 ? (
+            <div className="text-sm text-[#8c959f]">まだありません</div>
+          ) : (
+            <ul className="m-0 list-none p-0">
+              {todayLearnedUnits.map((unit) => (
+                <li key={unit.id} className="py-0.5 text-sm text-[#24292e]">
+                  {unit.title}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

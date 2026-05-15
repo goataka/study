@@ -311,6 +311,7 @@ export function setupTabDom(): void {
         <button id="filterStatusStudying" class="category-status-filter-btn" type="button" aria-pressed="false">学習中</button>
         <button id="filterStatusLearned" class="category-status-filter-btn" type="button" aria-pressed="false">学習済</button>
         <span id="allSubjectPanelTitle" class="hidden">📚 今日の単元</span>
+        <span id="allSubjectPanelInfo" class="hidden">ℹ️ 当日学習記録のある単元をおすすめ順で表示</span>
         <div id="overallDateNav" class="hidden">
           <span id="activityDateDisplay" class="activity-date-display"></span>
         </div>

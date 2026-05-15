@@ -208,12 +208,113 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(stars?.compareDocumentPosition(startBtn as Node) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
+  it("開始するを押すと（未学習）解説タブが開く", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("learningStatusStartBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const guideContent = document.getElementById("guideContent");
+    const guideTab = document.getElementById("panelTab-guide");
+    expect(guideContent?.classList.contains("hidden")).toBe(false);
+    expect(guideTab?.classList.contains("active")).toBe(true);
+  });
+
+  it("開始するを押すと（学習済み）確認タブが開く", async () => {
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 8,
+        entries: [],
+      },
+    ]);
+    new QuizApp(repo);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.getElementById("learningStatusStartBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const quizPanel = document.getElementById("quizModePanel");
+    const quizTab = document.getElementById("panelTab-quiz");
+    expect(quizPanel?.classList.contains("hidden")).toBe(false);
+    expect(quizTab?.classList.contains("active")).toBe(true);
+  });
+
   it("学習状況パネルにおすすめ先頭単元タイトルが表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const firstTitle = document.getElementById("learningStatusFirstTitle");
     expect(firstTitle?.textContent).toContain("次のおすすめ：");
+  });
+
+  it("学習状況パネルに今日やった単元リストが表示される", async () => {
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: new Date().toISOString(),
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 8,
+        entries: [],
+      },
+    ]);
+    new QuizApp(repo);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const todayList = document.getElementById("learningStatusTodayUnitsList");
+    expect(todayList?.textContent).toContain("フォニックス（1文字）");
+  });
+
+  it("今日やった単元リストは manual 記録を含めない", async () => {
+    const repo = new StubProgressRepository();
+    const today = new Date().toISOString();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "manual",
+        totalCount: 10,
+        correctCount: 10,
+        entries: [],
+      },
+      {
+        id: "r2",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-2",
+        categoryName: "フォニックス（2文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 8,
+        entries: [],
+      },
+    ]);
+    new QuizApp(repo);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const todayList = document.getElementById("learningStatusTodayUnitsList");
+    expect(todayList?.textContent).not.toContain("フォニックス（1文字）");
+    expect(todayList?.textContent).toContain("フォニックス（2文字）");
   });
 
   it("学習状況パネルの次のおすすめは右一覧の先頭おすすめ単元と一致する", async () => {

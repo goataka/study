@@ -31,7 +31,7 @@ export function renderOverallSummaryPanel(params: {
   updateActivityDateDisplay(params.useCase, params.selectedActivityDate);
   renderOverallSubjectStatus(params.useCase, params.globalRecommendedCount);
   renderTodayActivity(records, params.useCase, params.selectedActivityDate);
-  renderLearningStatusStars(params.useCase, params.globalRecommendedCount);
+  renderLearningStatusStars(params.useCase, params.globalRecommendedCount, params.selectedActivityDate);
   updateShareSummaryText(params.useCase, records, params.selectedActivityDate);
   showOverallPanel(params.activeOverallPanel);
 }
