@@ -10,6 +10,7 @@
 
 import { useState } from "react";
 import type { QuizUseCase, GlobalRecommendedUnit } from "../../application/quizUseCase";
+import type { CategoryStage } from "../../application/ports";
 import { calcDualProgressPct, gradeColorClass, SUBJECTS } from "../uiHelpers";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 
@@ -66,17 +67,8 @@ interface GlobalRecommendedListProps {
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
 }
 
-/** 文字列から決定論的なハッシュ値を生成する。 */
-export function hashString(value: string): number {
-  let hash = 0;
-  for (let i = 0; i < value.length; i++) {
-    hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
-  }
-  return hash;
-}
-
 /** おすすめ単元の入力順を保ったまま返す。 */
-export function shuffleUnitsByDailySeed(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
+export function materializeRecommendedUnits(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
   return [...units];
 }
 
@@ -89,7 +81,7 @@ function GlobalRecommendedList({
 }: GlobalRecommendedListProps): React.JSX.Element {
   // 「もっと追加」で増やす一時的な追加件数（永続化しない。目標数設定とは別）
   const [extraCount, setExtraCount] = useState(0);
-  const units = shuffleUnitsByDailySeed(useCase.getRecommendedUnitsGlobal(goalCount, alphaCount + extraCount));
+  const units = materializeRecommendedUnits(useCase.getRecommendedUnitsGlobal(goalCount, alphaCount + extraCount));
 
   const mainUnits = units.slice(0, goalCount);
   const extraUnits = units.slice(goalCount);
@@ -181,7 +173,7 @@ function GlobalCountHeaderRow({
 }
 
 /** ステージバッジを返す */
-function stageBadge(stage: number): { emoji: string; sizeClass: string } | null {
+function stageBadge(stage: CategoryStage): { emoji: string; sizeClass: string } | null {
   if (stage === 1) return { emoji: "🎖️", sizeClass: "text-base" };
   if (stage === 2) return { emoji: "🏆", sizeClass: "text-lg" };
   if (stage === 3) return { emoji: "👑", sizeClass: "text-xl" };

@@ -20,22 +20,27 @@ export interface HeaderListenersCallbacks {
   onAdminMenuClick: () => void;
 }
 
+function bindEnterSpaceActivation(element: HTMLElement, onActivate: () => void): void {
+  element.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onActivate();
+    }
+  });
+}
+
 export function setupHeaderListeners(callbacks: HeaderListenersCallbacks): void {
   // タイトルクリックでスタート画面へ
   const titleBtn = document.getElementById("titleBtn");
   if (titleBtn instanceof HTMLElement) {
     titleBtn.addEventListener("click", callbacks.onTitleClick);
-    titleBtn.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        callbacks.onTitleClick();
-      }
-    });
+    bindEnterSpaceActivation(titleBtn, callbacks.onTitleClick);
   }
 
   const appNameLink = document.getElementById("appNameLink");
   if (appNameLink instanceof HTMLElement) {
     appNameLink.addEventListener("click", callbacks.onTitleClick);
+    bindEnterSpaceActivation(appNameLink, callbacks.onTitleClick);
   }
 
   // ヘッダーのユーザー名をクリックして編集を開く

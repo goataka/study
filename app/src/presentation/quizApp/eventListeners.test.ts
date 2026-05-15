@@ -44,4 +44,25 @@ describe("QuizApp — ヘッダーイベント仕様", () => {
 
     expect(onTitleClick).toHaveBeenCalledTimes(1);
   });
+
+  it("appNameLink で Enter / Space キー押下時にスタート画面遷移コールバックを呼ぶ", () => {
+    document.body.innerHTML = `
+      <button id="appNameLink" type="button">Open Study Text 小中高</button>
+    `;
+    const onTitleClick = vi.fn();
+
+    setupHeaderListeners({
+      onTitleClick,
+      onOpenUserNameEdit: vi.fn(),
+      onSaveUserName: vi.fn(),
+      onCancelUserName: vi.fn(),
+      onAdminMenuClick: vi.fn(),
+    });
+
+    const appNameLink = document.getElementById("appNameLink");
+    appNameLink?.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+    appNameLink?.dispatchEvent(new KeyboardEvent("keydown", { key: " ", bubbles: true }));
+
+    expect(onTitleClick).toHaveBeenCalledTimes(2);
+  });
 });

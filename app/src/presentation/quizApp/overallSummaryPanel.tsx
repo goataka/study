@@ -19,7 +19,7 @@ import { overallStatusContentStore } from "../components/overallStatusContentSto
 import { todayActivityContentStore } from "../components/todayActivityContentStore";
 import { learningStatusContentStore } from "../components/learningStatusContentStore";
 import { triggerStartQuiz } from "../components/learningStatusActionsStore";
-import { shuffleUnitsByDailySeed } from "./allSubjectListRenderer";
+import { materializeRecommendedUnits } from "./allSubjectListRenderer";
 
 /**
  * 総合タブの「学習状況」を描画する（後方互換用）。
@@ -151,7 +151,7 @@ export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase,
  */
 export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: number, selectedActivityDate: string): void {
   const completedToday = useCase.getTodayAdvancedCount();
-  const [firstRecommended] = shuffleUnitsByDailySeed(
+  const [firstRecommended] = materializeRecommendedUnits(
     useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2))),
   );
   const firstRecommendedTitle = buildFirstRecommendedTitle(firstRecommended);
@@ -270,6 +270,9 @@ function LearningStatusPanel({
           <div className="font-bold">次の単元</div>
           <div className="mt-1 inline-flex flex-wrap items-center justify-center gap-1">
             <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.subjectLabel}</strong>
+            <span className="text-[#586069]" aria-hidden="true">
+              ：
+            </span>
             <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.categoryName}</strong>
           </div>
         </div>
