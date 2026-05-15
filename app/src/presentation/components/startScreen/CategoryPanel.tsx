@@ -62,7 +62,7 @@ export function CategoryPanel(): React.JSX.Element {
         </span>
         <span
           id="allSubjectPanelInfo"
-          className="all-subject-panel-info hidden shrink-0 max-w-[34rem] text-[11px] leading-tight text-[#586069] text-right"
+          className="all-subject-panel-info hidden shrink-0 max-w-[34rem] text-[11px] leading-tight text-[#586069] text-center sm:text-right"
           title="未学習を優先し、復習対象は学習済7日後・復習済14日後から抽出します。修了済は除外し、国語→数学→英語を優先して並べます。"
           aria-label="今日の単元の抽出条件"
         >

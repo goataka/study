@@ -53,12 +53,11 @@ function backtickSegments(text: string): React.ReactNode[] {
   );
 }
 
-function stageBadge(stage: number | undefined): { emoji: string; sizeClass: string } | null {
-  if (stage === 1) return { emoji: "🎖️", sizeClass: "text-base" };
-  if (stage === 2) return { emoji: "🏆", sizeClass: "text-lg" };
-  if (stage === 3) return { emoji: "👑", sizeClass: "text-xl" };
-  return null;
-}
+const STAGE_BADGE_MAP: Readonly<Record<number, { emoji: string; sizeClass: string; label: string }>> = {
+  1: { emoji: "🎖️", sizeClass: "text-base", label: "学習済ステージ" },
+  2: { emoji: "🏆", sizeClass: "text-lg", label: "復習済ステージ" },
+  3: { emoji: "👑", sizeClass: "text-xl", label: "修了済ステージ" },
+} as const;
 
 export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
   const {
@@ -96,7 +95,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
 
   const gradeClass = referenceGrade && showReferenceGrade ? gradeColorClass(referenceGrade) : null;
   const isProgressDone = progressFillPercent === 100 && progressInProgressPercent === 0;
-  const badge = stageBadge(stage);
+  const badge = stage !== undefined ? STAGE_BADGE_MAP[stage] : undefined;
 
   return (
     <div
@@ -138,7 +137,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
             {badge && (
               <span
                 className={`category-stage-badge shrink-0 leading-none ${badge.sizeClass}`}
-                aria-label={`ステージ${stage}`}
+                aria-label={badge.label}
               >
                 {badge.emoji}
               </span>

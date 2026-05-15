@@ -268,9 +268,8 @@ function LearningStatusPanel({
       {firstRecommendedTitle && (
         <div id="learningStatusFirstTitle" className="mt-1 mb-3 text-center text-[1.55rem] leading-snug text-[#586069]">
           <div className="font-bold">次の単元</div>
-          <div className="mt-1">
+          <div className="mt-1 inline-flex flex-wrap items-center justify-center gap-1">
             <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.subjectLabel}</strong>
-            <span className="inline-block w-[1ch]" aria-hidden="true" />
             <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.categoryName}</strong>
           </div>
         </div>

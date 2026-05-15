@@ -761,7 +761,7 @@ export class QuizUseCase {
     let nextReviewSubjectIndex = 0;
     let shouldPickUnlearned = true;
 
-    while (result.length < total) {
+    while (result.length < total && (hasQueuedUnits(unlearnedBySubject) || hasQueuedUnits(reviewReadyBySubject))) {
       if (shouldPickUnlearned) {
         const nextUnlearned = dequeueNextUnit(unlearnedBySubject, subjects, nextUnlearnedSubjectIndex);
         if (nextUnlearned) {
@@ -906,11 +906,17 @@ function sortSubjectsByStudyPriority(subjects: string[]): string[] {
   return [...subjects].sort((a, b) => {
     const aPriority = priorityMap[a] ?? Number.MAX_SAFE_INTEGER;
     const bPriority = priorityMap[b] ?? Number.MAX_SAFE_INTEGER;
-    if (aPriority !== bPriority) return aPriority - bPriority;
-    return 0;
+    return aPriority - bPriority;
   });
 }
 
+/**
+ * `startIndex` から教科優先順にキューを走査し、最初に取り出せる単元を返す。
+ *
+ * - `subjectOrder` の順序で巡回し、空でない最初の教科キューから `shift()` で 1 件取り出す
+ * - `nextSubjectIndex` は、次回の探索開始位置として使う「取り出した教科の次のインデックス」
+ * - すべての教科キューが空の場合は `null` を返す
+ */
 function dequeueNextUnit(
   queuesBySubject: Map<string, GlobalRecommendedUnit[]>,
   subjectOrder: string[],
@@ -934,4 +940,8 @@ function dequeueNextUnit(
   }
 
   return null;
+}
+
+function hasQueuedUnits(queuesBySubject: Map<string, GlobalRecommendedUnit[]>): boolean {
+  return Array.from(queuesBySubject.values()).some((queue) => queue.length > 0);
 }
