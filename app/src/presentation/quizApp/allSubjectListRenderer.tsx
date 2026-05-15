@@ -103,11 +103,11 @@ function spreadBySubject(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[
   let prevSubject: string | null = null;
 
   while (result.length < units.length) {
-    // 前回と異なる教科のうち残り数が最大のものを選ぶ
+    // 前回と異なる教科のうち残り数（1以上）が最大のものを選ぶ
     let bestSubject: string | null = null;
     let bestCount = -1;
     for (const [subj, arr] of bySubject) {
-      if (arr.length > bestCount && subj !== prevSubject) {
+      if (arr.length > 0 && arr.length > bestCount && subj !== prevSubject) {
         bestCount = arr.length;
         bestSubject = subj;
       }

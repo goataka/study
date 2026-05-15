@@ -24,7 +24,13 @@ export function StartHeader(): React.JSX.Element {
             href="./"
             className="title-btn shrink-0 flex items-center gap-1.5 whitespace-nowrap text-base font-extrabold text-[#0366d6] no-underline cursor-pointer transition-colors duration-200 hover:text-[#0255b8] focus-visible:text-[#0255b8] focus-visible:outline-none focus-visible:underline px-2 py-1"
             title="スタート画面へ戻る"
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => {
+              // 修飾キーなしの左クリックのみ preventDefault してアプリ内遷移に寄せる。
+              // Ctrl/⌘+クリック・中クリックなどはブラウザのリンク標準動作（新規タブ等）に任せる。
+              if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+              }
+            }}
           >
             <span className="header-active-subject-icon" aria-hidden="true">
               {activeSubject.icon}

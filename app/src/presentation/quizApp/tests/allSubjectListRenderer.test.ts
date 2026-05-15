@@ -78,6 +78,25 @@ describe("allSubjectListRenderer の日替わり並び替え", () => {
     vi.useRealTimers();
   });
 
+  it("shuffleUnitsByDailySeed は単一教科が大多数を占める（片寄り大）場合もすべての単元を返す", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-05-14T09:00:00Z"));
+
+    // english が 5件、math が 1件 → english が math を枯渇させた後も止まらないことを確認
+    const units = [
+      createUnit("english", "a"),
+      createUnit("english", "b"),
+      createUnit("english", "c"),
+      createUnit("english", "d"),
+      createUnit("english", "e"),
+      createUnit("math", "x"),
+    ];
+    const result = shuffleUnitsByDailySeed(units);
+    expect(result).toHaveLength(6);
+
+    vi.useRealTimers();
+  });
+
   it("shuffleUnitsByDailySeed は単一教科の場合もすべての単元を返す", () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-05-14T09:00:00Z"));
