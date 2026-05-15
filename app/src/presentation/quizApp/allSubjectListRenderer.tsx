@@ -140,8 +140,42 @@ function GlobalCountHeaderRow({
   currentCount: number;
   onCountChange: (n: number) => void;
 }): React.JSX.Element {
+  const [showInfo, setShowInfo] = useState(false);
+
+  const infoConditions = [
+    "未学習の単元を優先して表示",
+    "学習済（📝）は7日後、復習済（📜）は14日後に復習対象として表示",
+    "修了済（🎓）は除外",
+    "国語 → 数学 → 英語の順で優先",
+  ];
+
   return (
     <div className="global-count-header-row flex items-center gap-[5px] pt-1 px-1 pb-0.5 pl-0.5">
+      <div className="relative flex items-center gap-1">
+        <span className="global-count-title text-xs font-semibold text-[#24292e]">今日の単元</span>
+        <button
+          type="button"
+          className="global-count-info-btn text-[11px] text-[#586069] cursor-pointer bg-transparent border-none p-0 leading-none hover:text-[#0366d6]"
+          aria-label="抽出条件を表示"
+          onClick={() => setShowInfo((v) => !v)}
+        >
+          ℹ️
+        </button>
+        {showInfo && (
+          <div
+            className="absolute left-0 top-full z-10 mt-1 w-64 rounded-md border border-[#e1e4e8] bg-white p-3 shadow-md text-sm text-[#24292e]"
+            role="tooltip"
+          >
+            <ul className="m-0 list-disc pl-4 space-y-1">
+              {infoConditions.map((cond, i) => (
+                <li key={i} className="text-[13px] leading-snug text-[#24292e]">
+                  {cond}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
       <div className="global-count-controls flex items-center gap-0.5 ml-auto">
         <span className="global-count-label-small text-[11px] text-[#586069] mr-0.5">目標数:</span>
         {GLOBAL_RECOMMENDED_COUNT_OPTIONS.map((n) => {
@@ -174,9 +208,9 @@ function GlobalCountHeaderRow({
 
 /** ステージバッジを返す */
 function stageBadge(stage: CategoryStage): { emoji: string; sizeClass: string } | null {
-  if (stage === 1) return { emoji: "🎖️", sizeClass: "text-base" };
-  if (stage === 2) return { emoji: "🏆", sizeClass: "text-lg" };
-  if (stage === 3) return { emoji: "👑", sizeClass: "text-xl" };
+  if (stage === 1) return { emoji: "📝", sizeClass: "text-base" };
+  if (stage === 2) return { emoji: "📜", sizeClass: "text-lg" };
+  if (stage === 3) return { emoji: "🎓", sizeClass: "text-xl" };
   return null;
 }
 

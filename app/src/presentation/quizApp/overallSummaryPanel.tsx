@@ -154,8 +154,8 @@ export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: numbe
   const [firstRecommended] = materializeRecommendedUnits(
     useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2))),
   );
-  const firstRecommendedTitle = buildFirstRecommendedTitle(firstRecommended);
-  const todayLearnedUnits = buildTodayLearnedUnits(useCase.getHistory(), selectedActivityDate);
+  const firstRecommendedTitle = buildFirstRecommendedTitle(firstRecommended, useCase);
+  const todayLearnedUnits = buildTodayLearnedUnits(useCase.getHistory(), selectedActivityDate, useCase);
   learningStatusContentStore.set(
     <LearningStatusPanel
       goalCount={goalCount}
@@ -168,6 +168,8 @@ export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: numbe
 
 interface FirstRecommendedTitle {
   subjectLabel: string;
+  topCatName?: string;
+  parentCatName?: string;
   categoryName: string;
 }
 
@@ -176,20 +178,29 @@ interface TodayLearnedUnitItem {
   title: string;
 }
 
-/** おすすめ先頭単元のタイトル情報を組み立てる（教科絵文字 + 教科名 + 単元名）。 */
+/** おすすめ先頭単元のタイトル情報を組み立てる（教科絵文字 + 教科名 + トップ/親カテゴリ + 単元名）。 */
 function buildFirstRecommendedTitle(
-  unit: { subject: string; categoryName: string } | undefined,
+  unit: { subject: string; categoryId: string; categoryName: string } | undefined,
+  useCase: QuizUseCase,
 ): FirstRecommendedTitle | null {
   if (!unit) return null;
   const subj = SUBJECTS.find((s) => s.id === unit.subject);
   const subjectLabel = subj ? `${subj.icon} ${subj.name}` : unit.subject;
+  const topCat = useCase.getTopCategoryForUnit(unit.subject, unit.categoryId);
+  const parentCat = useCase.getParentCategoryForUnit(unit.subject, unit.categoryId);
   return {
     subjectLabel,
+    topCatName: topCat?.name,
+    parentCatName: parentCat?.name,
     categoryName: unit.categoryName,
   };
 }
 
-function buildTodayLearnedUnits(records: QuizRecord[], selectedActivityDate: string): TodayLearnedUnitItem[] {
+function buildTodayLearnedUnits(
+  records: QuizRecord[],
+  selectedActivityDate: string,
+  useCase: QuizUseCase,
+): TodayLearnedUnitItem[] {
   const selectedDateRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
   const items: TodayLearnedUnitItem[] = [];
   const seen = new Set<string>();
@@ -200,9 +211,11 @@ function buildTodayLearnedUnits(records: QuizRecord[], selectedActivityDate: str
     seen.add(id);
     const subject = SUBJECTS.find((s) => s.id === record.subject);
     const subjectLabel = subject ? `${subject.icon} ${subject.name}` : record.subjectName;
+    const parentCat = useCase.getParentCategoryForUnit(record.subject, record.category);
+    const categoryPath = parentCat ? `${parentCat.name} › ${record.categoryName}` : record.categoryName;
     items.push({
       id,
-      title: `${subjectLabel}：${record.categoryName}`,
+      title: `${subjectLabel}：${categoryPath}`,
     });
   }
   return items;
@@ -247,45 +260,65 @@ function LearningStatusPanel({
   const hasMore = allItems.length > MAX_ITEMS;
 
   return (
-    <div className="learning-status-panel flex h-full flex-col justify-center gap-2 px-4 py-3">
-      <span id="learningStatusCount" className="text-base font-semibold text-[#24292e] text-center">
-        学習数 {Math.min(completedToday, goalCount)}/{goalCount}
-      </span>
-      <div className="learning-status-stars-and-count flex flex-row flex-wrap items-center justify-center gap-2 min-h-[2.75rem]">
-        <div
-          id="learningStatusStars"
-          className="learning-status-stars flex flex-row flex-wrap items-center justify-center gap-0.5"
-        >
-          {displayItems.map((item, idx) => (
-            <span key={idx} className={`leading-none ${item.className}`}>
-              {item.symbol}
-            </span>
-          ))}
-          {hasMore && <span className="text-[#586069] text-sm">…</span>}
-          {displayItems.length === 0 && <span className="text-5xl text-[#c5ced8]">☆</span>}
-        </div>
-      </div>
-      {firstRecommendedTitle && (
-        <div id="learningStatusFirstTitle" className="mt-1 mb-3 text-center text-[1.55rem] leading-snug text-[#586069]">
-          <div className="font-bold">次の単元</div>
-          <div className="mt-1 inline-flex flex-wrap items-center justify-center gap-1">
-            <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.subjectLabel}</strong>
-            <span className="text-[#586069]" aria-hidden="true">
-              ：
-            </span>
-            <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.categoryName}</strong>
+    <div className="learning-status-panel flex h-full flex-col px-4 py-3">
+      <div className="flex flex-1 flex-col justify-center gap-2">
+        <span id="learningStatusCount" className="text-base font-semibold text-[#24292e] text-center">
+          学習数 {Math.min(completedToday, goalCount)}/{goalCount}
+        </span>
+        <div className="learning-status-stars-and-count flex flex-row flex-wrap items-center justify-center gap-2 min-h-[2.75rem]">
+          <div
+            id="learningStatusStars"
+            className="learning-status-stars flex flex-row flex-wrap items-center justify-center gap-0.5"
+          >
+            {displayItems.map((item, idx) => (
+              <span key={idx} className={`leading-none ${item.className}`}>
+                {item.symbol}
+              </span>
+            ))}
+            {hasMore && <span className="text-[#586069] text-sm">…</span>}
+            {displayItems.length === 0 && <span className="text-5xl text-[#c5ced8]">☆</span>}
           </div>
         </div>
-      )}
+        {firstRecommendedTitle && (
+          <div id="learningStatusFirstTitle" className="mt-1 text-center text-base leading-snug text-[#586069]">
+            <div className="font-bold">次の単元</div>
+            <div className="mt-1 flex flex-wrap items-center justify-center gap-1 text-sm">
+              <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.subjectLabel}</strong>
+              {(firstRecommendedTitle.topCatName || firstRecommendedTitle.parentCatName) && (
+                <>
+                  <span className="text-[#586069]" aria-hidden="true">
+                    ›
+                  </span>
+                  {firstRecommendedTitle.topCatName && (
+                    <span className="text-[#586069]">{firstRecommendedTitle.topCatName}</span>
+                  )}
+                  {firstRecommendedTitle.topCatName && firstRecommendedTitle.parentCatName && (
+                    <span className="text-[#586069]" aria-hidden="true">
+                      ›
+                    </span>
+                  )}
+                  {firstRecommendedTitle.parentCatName && (
+                    <span className="text-[#586069]">{firstRecommendedTitle.parentCatName}</span>
+                  )}
+                </>
+              )}
+              <span className="text-[#586069]" aria-hidden="true">
+                ›
+              </span>
+              <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.categoryName}</strong>
+            </div>
+          </div>
+        )}
+      </div>
       <button
         id="learningStatusStartBtn"
         type="button"
-        className="learning-status-start-btn mt-1 w-full rounded-lg border-none bg-[#0366d6] px-4 py-2.5 text-base font-bold text-white shadow-sm transition-[background-color] duration-150 cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0]"
+        className="learning-status-start-btn my-2 w-full rounded-lg border-none bg-[#0366d6] px-4 py-2.5 text-base font-bold text-white shadow-sm transition-[background-color] duration-150 cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0]"
         onClick={triggerStartQuiz}
       >
-        開始する
+        スタート
       </button>
-      <div className="mt-2">
+      <div className="flex-1 overflow-hidden">
         <div className="text-center text-sm font-semibold text-[#586069]">今日やった単元</div>
         <div
           id="learningStatusTodayUnitsList"

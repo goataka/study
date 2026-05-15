@@ -68,7 +68,7 @@ describe("CategoryItem (React コンポーネント)", () => {
       stage: 2,
     });
     const badge = el.querySelector(".category-stage-badge");
-    expect(badge?.textContent).toBe("🏆");
+    expect(badge?.textContent).toBe("📜");
     expect(badge?.className).toContain("text-lg");
   });
 

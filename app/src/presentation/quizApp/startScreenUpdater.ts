@@ -53,7 +53,7 @@ export function updateStartScreen(params: UpdateStartScreenParams): void {
   // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
   if (markLearnedBtn) {
     markLearnedBtn.disabled = effectiveFilter.category === "all";
-    markLearnedBtn.textContent = params.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 学習済みにする";
+    markLearnedBtn.textContent = params.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 履修済にする";
   }
 
   params.renderHistoryList(effectiveFilter, params.allRecords);

@@ -124,7 +124,9 @@ export class KanjiCanvasController {
         kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)),
       );
     } else if (correctAnswer !== undefined && isLikelyLatinAnswer(correctAnswer)) {
-      candidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
+      const latinCandidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
+      // ラテン文字の認識候補がない場合はすべての候補をフォールバックとして表示する
+      candidates = latinCandidates.length > 0 ? latinCandidates : candidates;
     }
 
     candidates = Array.from(new Set(candidates)).slice(0, 5);
