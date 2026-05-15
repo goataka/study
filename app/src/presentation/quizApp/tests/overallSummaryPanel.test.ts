@@ -280,6 +280,43 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(todayList?.textContent).toContain("フォニックス（1文字）");
   });
 
+  it("今日やった単元リストは manual 記録を含めない", async () => {
+    const repo = new StubProgressRepository();
+    const today = new Date().toISOString();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "manual",
+        totalCount: 10,
+        correctCount: 10,
+        entries: [],
+      },
+      {
+        id: "r2",
+        date: today,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-2",
+        categoryName: "フォニックス（2文字）",
+        mode: "random",
+        totalCount: 10,
+        correctCount: 8,
+        entries: [],
+      },
+    ]);
+    new QuizApp(repo);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const todayList = document.getElementById("learningStatusTodayUnitsList");
+    expect(todayList?.textContent).not.toContain("フォニックス（1文字）");
+    expect(todayList?.textContent).toContain("フォニックス（2文字）");
+  });
+
   it("学習状況パネルの次のおすすめは右一覧の先頭おすすめ単元と一致する", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

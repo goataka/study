@@ -149,13 +149,13 @@ export function renderTodayActivity(records: QuizRecord[], useCase: QuizUseCase,
  * - n >= G: 🌟×floor(n/(2*G)) + ✨×(floor(n/G)%2) + ⭐×(n%G)
  * - 合計 10 個を超える場合は「…」を付加
  */
-export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: number): void {
+export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: number, selectedActivityDate: string): void {
   const completedToday = useCase.getTodayAdvancedCount();
   const [firstRecommended] = shuffleUnitsByDailySeed(
     useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2))),
   );
   const firstRecommendedTitle = buildFirstRecommendedTitle(firstRecommended);
-  const todayLearnedUnits = buildTodayLearnedUnits(useCase.getHistory());
+  const todayLearnedUnits = buildTodayLearnedUnits(useCase.getHistory(), selectedActivityDate);
   learningStatusContentStore.set(
     <LearningStatusPanel
       goalCount={goalCount}
@@ -189,12 +189,12 @@ function buildFirstRecommendedTitle(
   };
 }
 
-function buildTodayLearnedUnits(records: QuizRecord[]): TodayLearnedUnitItem[] {
-  const today = new Date().toISOString().slice(0, 10);
+function buildTodayLearnedUnits(records: QuizRecord[], selectedActivityDate: string): TodayLearnedUnitItem[] {
+  const selectedDateRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
   const items: TodayLearnedUnitItem[] = [];
   const seen = new Set<string>();
-  for (const record of records) {
-    if (!record.date.startsWith(today) || record.category === "all") continue;
+  for (const record of selectedDateRecords) {
+    if (record.category === "all") continue;
     const id = `${record.subject}::${record.category}`;
     if (seen.has(id)) continue;
     seen.add(id);
