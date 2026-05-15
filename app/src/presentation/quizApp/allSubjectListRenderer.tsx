@@ -87,8 +87,9 @@ export function shuffleUnitsByDailySeed(units: GlobalRecommendedUnit[]): GlobalR
 }
 
 /**
- * 同じ教科が連続しないように単元を並べ替える（ラウンドロビン方式）。
- * `shuffleUnitsByDailySeed` のポスト処理として使用する。
+ * 同じ教科が連続しないように単元を並べ替える（グリーディ方式）。
+ * 前回と異なる教科のうち残り数が最大のものを優先して選ぶ。
+ * やむを得ず連続する場合（同一教科しか残っていない場合）は末尾に追加する。
  */
 function spreadBySubject(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
   const bySubject = new Map<string, GlobalRecommendedUnit[]>();
@@ -97,22 +98,34 @@ function spreadBySubject(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[
     arr.push(unit);
     bySubject.set(unit.subject, arr);
   }
-  const queues = Array.from(bySubject.values());
+
   const result: GlobalRecommendedUnit[] = [];
-  let qi = 0;
+  let prevSubject: string | null = null;
+
   while (result.length < units.length) {
-    let found = false;
-    for (let attempt = 0; attempt < queues.length; attempt++) {
-      const idx = (qi + attempt) % queues.length;
-      const queue = queues[idx];
-      if (queue !== undefined && queue.length > 0) {
-        result.push(queue.shift()!);
-        qi = (idx + 1) % queues.length;
-        found = true;
-        break;
+    // 前回と異なる教科のうち残り数が最大のものを選ぶ
+    let bestSubject: string | null = null;
+    let bestCount = -1;
+    for (const [subj, arr] of bySubject) {
+      if (arr.length > bestCount && subj !== prevSubject) {
+        bestCount = arr.length;
+        bestSubject = subj;
       }
     }
-    if (!found) break;
+
+    if (bestSubject === null) {
+      // 前回と同じ教科しか残っていない場合はそのまま追加する（止むを得ず連続）
+      for (const [, arr] of bySubject) {
+        while (arr.length > 0) result.push(arr.shift()!);
+      }
+      break;
+    }
+
+    const queue = bySubject.get(bestSubject);
+    if (queue && queue.length > 0) {
+      result.push(queue.shift()!);
+      prevSubject = bestSubject;
+    }
   }
   return result;
 }

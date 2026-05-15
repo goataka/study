@@ -154,13 +154,7 @@ export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: numbe
   const [firstRecommended] = shuffleUnitsByDailySeed(
     useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2))),
   );
-  const firstRecommendedTitle = firstRecommended
-    ? (() => {
-        const subj = SUBJECTS.find((s) => s.id === firstRecommended.subject);
-        const subjectLabel = subj ? `${subj.icon} ${subj.name}` : firstRecommended.subject;
-        return `${subjectLabel}：${firstRecommended.categoryName}`;
-      })()
-    : "";
+  const firstRecommendedTitle = buildFirstRecommendedTitle(firstRecommended);
   learningStatusContentStore.set(
     <LearningStatusPanel
       goalCount={goalCount}
@@ -168,6 +162,14 @@ export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: numbe
       firstRecommendedTitle={firstRecommendedTitle}
     />,
   );
+}
+
+/** おすすめ先頭単元のタイトル文字列を組み立てる（教科絵文字 + 教科名 + 単元名）。 */
+function buildFirstRecommendedTitle(unit: { subject: string; categoryName: string } | undefined): string {
+  if (!unit) return "";
+  const subj = SUBJECTS.find((s) => s.id === unit.subject);
+  const subjectLabel = subj ? `${subj.icon} ${subj.name}` : unit.subject;
+  return `${subjectLabel}：${unit.categoryName}`;
 }
 
 // ─── 星表示コンポーネント ──────────────────────────────────────────────────
