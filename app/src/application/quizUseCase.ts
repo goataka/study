@@ -697,11 +697,15 @@ export class QuizUseCase {
   getRecommendedUnitsGlobal(goalCount: number, alphaCount: number): GlobalRecommendedUnit[] {
     const total = goalCount + alphaCount;
     // 問題が登録されている教科を CategoryRegistry から取得する（ハードコード不要）
-    const subjects = this.categoryRegistry.getSubjects();
+    const subjects = sortSubjectsByStudyPriority(this.categoryRegistry.getSubjects());
     const now = new Date();
 
-    const unlearned: GlobalRecommendedUnit[] = [];
-    const reviewReady: GlobalRecommendedUnit[] = [];
+    const unlearnedBySubject = new Map<string, GlobalRecommendedUnit[]>();
+    const reviewReadyBySubject = new Map<string, GlobalRecommendedUnit[]>();
+    subjects.forEach((subject) => {
+      unlearnedBySubject.set(subject, []);
+      reviewReadyBySubject.set(subject, []);
+    });
 
     for (const subjectId of subjects) {
       const maxGrade = this._getUnlockedMaxGrade(subjectId);
@@ -737,28 +741,54 @@ export class QuizUseCase {
         };
 
         if (stage === 0) {
-          unlearned.push(unit);
+          unlearnedBySubject.get(subjectId)?.push(unit);
         } else {
           // 待機期間チェック: 学習済(stage=1)→7日、復習済(stage=2)→14日
           const waitDays = stage === 1 ? 7 : 14;
           if (stageRecord && isWaitPeriodElapsed(stageRecord.lastCompletedAt, waitDays, now)) {
-            reviewReady.push(unit);
+            reviewReadyBySubject.get(subjectId)?.push(unit);
           }
         }
       }
     }
 
-    // 復習候補はランダムシャッフル
-    shuffleArray(reviewReady);
+    // 復習候補は教科ごとにランダム化し、未学習→復習→未学習…の順で交互に配置する。
+    // 教科は 国語→数学→英語 を優先し、該当がない場合のみ同一教科を連続させる。
+    reviewReadyBySubject.forEach((units) => shuffleArray(units));
 
-    // 交互配置: [unlearned, review, unlearned, review, ...] の順に total 件まで取り出す
-    // 片方が枯渇した場合は残りの候補で埋める
     const result: GlobalRecommendedUnit[] = [];
-    let ui = 0;
-    let ri = 0;
-    while (result.length < total && (ui < unlearned.length || ri < reviewReady.length)) {
-      if (ui < unlearned.length) result.push(unlearned[ui++]!);
-      if (result.length < total && ri < reviewReady.length) result.push(reviewReady[ri++]!);
+    let nextUnlearnedSubjectIndex = 0;
+    let nextReviewSubjectIndex = 0;
+    let shouldPickUnlearned = true;
+
+    while (result.length < total) {
+      if (shouldPickUnlearned) {
+        const nextUnlearned = dequeueNextUnit(unlearnedBySubject, subjects, nextUnlearnedSubjectIndex);
+        if (nextUnlearned) {
+          result.push(nextUnlearned.unit);
+          nextUnlearnedSubjectIndex = nextUnlearned.nextSubjectIndex;
+          shouldPickUnlearned = false;
+          continue;
+        }
+      }
+
+      const nextReview = dequeueNextUnit(reviewReadyBySubject, subjects, nextReviewSubjectIndex);
+      if (nextReview) {
+        result.push(nextReview.unit);
+        nextReviewSubjectIndex = nextReview.nextSubjectIndex;
+        shouldPickUnlearned = true;
+        continue;
+      }
+
+      const fallbackUnlearned = dequeueNextUnit(unlearnedBySubject, subjects, nextUnlearnedSubjectIndex);
+      if (fallbackUnlearned) {
+        result.push(fallbackUnlearned.unit);
+        nextUnlearnedSubjectIndex = fallbackUnlearned.nextSubjectIndex;
+        shouldPickUnlearned = false;
+        continue;
+      }
+
+      break;
     }
 
     return result.slice(0, total);
@@ -864,4 +894,44 @@ function shuffleArray<T>(arr: T[]): void {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j]!, arr[i]!];
   }
+}
+
+function sortSubjectsByStudyPriority(subjects: string[]): string[] {
+  const priorityMap: Record<string, number> = {
+    japanese: 0,
+    math: 1,
+    english: 2,
+  };
+
+  return [...subjects].sort((a, b) => {
+    const aPriority = priorityMap[a] ?? Number.MAX_SAFE_INTEGER;
+    const bPriority = priorityMap[b] ?? Number.MAX_SAFE_INTEGER;
+    if (aPriority !== bPriority) return aPriority - bPriority;
+    return 0;
+  });
+}
+
+function dequeueNextUnit(
+  queuesBySubject: Map<string, GlobalRecommendedUnit[]>,
+  subjectOrder: string[],
+  startIndex: number,
+): { unit: GlobalRecommendedUnit; nextSubjectIndex: number } | null {
+  if (subjectOrder.length === 0) return null;
+
+  for (let offset = 0; offset < subjectOrder.length; offset++) {
+    const subjectIndex = (startIndex + offset) % subjectOrder.length;
+    const subject = subjectOrder[subjectIndex];
+    if (!subject) continue;
+
+    const queue = queuesBySubject.get(subject);
+    const unit = queue?.shift();
+    if (unit) {
+      return {
+        unit,
+        nextSubjectIndex: (subjectIndex + 1) % subjectOrder.length,
+      };
+    }
+  }
+
+  return null;
 }

@@ -27,6 +27,8 @@ export interface CategoryItemProps {
   example?: string;
   /** ステータスアイコン文字（デフォルト ⬜）。 */
   statusIcon?: string;
+  /** 学習ステージ（0=未学習, 1=学習済, 2=復習済, 3=修了済）。 */
+  stage?: number;
   /** 学習状態クラス（learned / studying / unlearned）。 */
   statusKind?: "learned" | "studying" | "unlearned";
   /** 進捗（学習済み）バーの充填率（0〜100）。 */
@@ -51,6 +53,13 @@ function backtickSegments(text: string): React.ReactNode[] {
   );
 }
 
+function stageBadge(stage: number | undefined): { emoji: string; sizeClass: string } | null {
+  if (stage === 1) return { emoji: "🎖️", sizeClass: "text-base" };
+  if (stage === 2) return { emoji: "🏆", sizeClass: "text-lg" };
+  if (stage === 3) return { emoji: "👑", sizeClass: "text-xl" };
+  return null;
+}
+
 export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
   const {
     subject,
@@ -64,6 +73,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
     description,
     example,
     statusIcon = "⬜",
+    stage,
     statusKind = "unlearned",
     progressFillPercent = 0,
     progressInProgressPercent = 0,
@@ -86,6 +96,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
 
   const gradeClass = referenceGrade && showReferenceGrade ? gradeColorClass(referenceGrade) : null;
   const isProgressDone = progressFillPercent === 100 && progressInProgressPercent === 0;
+  const badge = stageBadge(stage);
 
   return (
     <div
@@ -124,6 +135,14 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
             <span className="category-name text-lg font-semibold text-[#24292e] group-[.active]:text-white">
               {categoryName}
             </span>
+            {badge && (
+              <span
+                className={`category-stage-badge shrink-0 leading-none ${badge.sizeClass}`}
+                aria-label={`ステージ${stage}`}
+              >
+                {badge.emoji}
+              </span>
+            )}
             {hierarchyText && (
               <span className="category-hierarchy text-xs text-[#586069] bg-[#f0f0f0] px-1.5 py-px rounded-[10px] whitespace-nowrap shrink min-w-0 max-w-[45%] overflow-hidden text-ellipsis ml-auto">
                 {hierarchyText}

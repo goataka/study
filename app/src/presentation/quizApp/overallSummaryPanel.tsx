@@ -266,33 +266,35 @@ function LearningStatusPanel({
         </div>
       </div>
       {firstRecommendedTitle && (
-        <div id="learningStatusFirstTitle" className="mt-3 mb-3 text-[1.75rem] text-[#586069] text-center">
-          次のおすすめ：
-          <br />
-          {firstRecommendedTitle.subjectLabel}：
-          <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.categoryName}</strong>
+        <div id="learningStatusFirstTitle" className="mt-1 mb-3 text-center text-[1.55rem] leading-snug text-[#586069]">
+          <div className="font-bold">次の単元</div>
+          <div className="mt-1">
+            <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.subjectLabel}</strong>
+            <span className="inline-block w-[1ch]" aria-hidden="true" />
+            <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.categoryName}</strong>
+          </div>
         </div>
       )}
       <button
         id="learningStatusStartBtn"
         type="button"
-        className="learning-status-start-btn w-full py-2.5 px-4 text-base font-bold text-white bg-[#0366d6] rounded-lg border-none cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0] transition-[background-color] duration-150 shadow-sm"
+        className="learning-status-start-btn mt-1 w-full rounded-lg border-none bg-[#0366d6] px-4 py-2.5 text-base font-bold text-white shadow-sm transition-[background-color] duration-150 cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0]"
         onClick={triggerStartQuiz}
       >
         開始する
       </button>
       <div className="mt-2">
-        <div className="text-sm font-semibold text-[#586069]">今日やった単元</div>
+        <div className="text-center text-sm font-semibold text-[#586069]">今日やった単元</div>
         <div
           id="learningStatusTodayUnitsList"
-          className="mt-1 max-h-28 overflow-y-auto rounded-md border border-[#e1e4e8] bg-white px-2 py-1.5"
+          className="mt-1 max-h-28 overflow-y-auto rounded-md border border-[#e1e4e8] bg-white px-2 py-1.5 text-center"
         >
           {todayLearnedUnits.length === 0 ? (
             <div className="text-sm text-[#8c959f]">まだありません</div>
           ) : (
             <ul className="m-0 list-none p-0">
               {todayLearnedUnits.map((unit) => (
-                <li key={unit.id} className="py-0.5 text-sm text-[#24292e]">
+                <li key={unit.id} className="py-0.5 text-center text-sm text-[#24292e]">
                   {unit.title}
                 </li>
               ))}

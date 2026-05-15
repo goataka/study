@@ -22,9 +22,16 @@ export interface HeaderListenersCallbacks {
 
 export function setupHeaderListeners(callbacks: HeaderListenersCallbacks): void {
   // タイトルクリックでスタート画面へ
+  const titleTriggers = [document.getElementById("titleBtn"), document.getElementById("appNameLink")].filter(
+    (element): element is HTMLElement => element instanceof HTMLElement,
+  );
+
+  titleTriggers.forEach((titleTrigger) => {
+    titleTrigger.addEventListener("click", callbacks.onTitleClick);
+  });
+
   const titleBtn = document.getElementById("titleBtn");
   if (titleBtn) {
-    titleBtn.addEventListener("click", callbacks.onTitleClick);
     titleBtn.addEventListener("keydown", (e: KeyboardEvent) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();

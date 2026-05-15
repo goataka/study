@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import { describe, expect, it, vi } from "vitest";
-import { setupFontSizeListeners } from "./eventListeners";
+import { setupFontSizeListeners, setupHeaderListeners } from "./eventListeners";
 
 describe("QuizApp — フォントサイズ切替イベント仕様", () => {
   it("フォントサイズボタンが再描画されてもクリックイベントを処理できる", () => {
@@ -22,5 +22,26 @@ describe("QuizApp — フォントサイズ切替イベント仕様", () => {
 
     expect(onSelect).toHaveBeenNthCalledWith(1, "medium");
     expect(onSelect).toHaveBeenNthCalledWith(2, "large");
+  });
+});
+
+describe("QuizApp — ヘッダーイベント仕様", () => {
+  it("appNameLink をクリックするとスタート画面遷移コールバックを呼ぶ", () => {
+    document.body.innerHTML = `
+      <button id="appNameLink" type="button">Open Study Text 小中高</button>
+    `;
+    const onTitleClick = vi.fn();
+
+    setupHeaderListeners({
+      onTitleClick,
+      onOpenUserNameEdit: vi.fn(),
+      onSaveUserName: vi.fn(),
+      onCancelUserName: vi.fn(),
+      onAdminMenuClick: vi.fn(),
+    });
+
+    document.getElementById("appNameLink")?.click();
+
+    expect(onTitleClick).toHaveBeenCalledTimes(1);
   });
 });
