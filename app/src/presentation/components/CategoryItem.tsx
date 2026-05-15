@@ -10,6 +10,7 @@
  */
 
 import * as React from "react";
+import type { CategoryStage } from "../../application/ports";
 import { gradeColorClass, parseBacktickText } from "../uiHelpers";
 
 export interface CategoryItemProps {
@@ -27,6 +28,8 @@ export interface CategoryItemProps {
   example?: string;
   /** ステータスアイコン文字（デフォルト ⬜）。 */
   statusIcon?: string;
+  /** 学習ステージ（0=未学習, 1=学習済, 2=復習済, 3=修了済）。 */
+  stage?: CategoryStage;
   /** 学習状態クラス（learned / studying / unlearned）。 */
   statusKind?: "learned" | "studying" | "unlearned";
   /** 進捗（学習済み）バーの充填率（0〜100）。 */
@@ -51,6 +54,14 @@ function backtickSegments(text: string): React.ReactNode[] {
   );
 }
 
+const STAGE_BADGE_MAP: Readonly<
+  Record<Exclude<CategoryStage, 0>, { emoji: string; sizeClass: string; label: string }>
+> = {
+  1: { emoji: "🎖️", sizeClass: "text-base", label: "学習済ステージ" },
+  2: { emoji: "🏆", sizeClass: "text-lg", label: "復習済ステージ" },
+  3: { emoji: "👑", sizeClass: "text-xl", label: "修了済ステージ" },
+} as const;
+
 export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
   const {
     subject,
@@ -64,6 +75,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
     description,
     example,
     statusIcon = "⬜",
+    stage,
     statusKind = "unlearned",
     progressFillPercent = 0,
     progressInProgressPercent = 0,
@@ -86,6 +98,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
 
   const gradeClass = referenceGrade && showReferenceGrade ? gradeColorClass(referenceGrade) : null;
   const isProgressDone = progressFillPercent === 100 && progressInProgressPercent === 0;
+  const badge = stage && stage > 0 ? STAGE_BADGE_MAP[stage] : undefined;
 
   return (
     <div
@@ -124,6 +137,14 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
             <span className="category-name text-lg font-semibold text-[#24292e] group-[.active]:text-white">
               {categoryName}
             </span>
+            {badge && (
+              <span
+                className={`category-stage-badge shrink-0 leading-none ${badge.sizeClass}`}
+                aria-label={badge.label}
+              >
+                {badge.emoji}
+              </span>
+            )}
             {hierarchyText && (
               <span className="category-hierarchy text-xs text-[#586069] bg-[#f0f0f0] px-1.5 py-px rounded-[10px] whitespace-nowrap shrink min-w-0 max-w-[45%] overflow-hidden text-ellipsis ml-auto">
                 {hierarchyText}

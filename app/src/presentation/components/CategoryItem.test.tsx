@@ -59,6 +59,19 @@ describe("CategoryItem (React コンポーネント)", () => {
     expect(el.querySelector(".category-status")?.textContent).toBe("✅");
   });
 
+  it("stage が指定されると単元名の横にステージ絵文字を表示する", () => {
+    const el = render({
+      subject: "x",
+      categoryId: "c",
+      categoryName: "n",
+      showReferenceGrade: false,
+      stage: 2,
+    });
+    const badge = el.querySelector(".category-stage-badge");
+    expect(badge?.textContent).toBe("🏆");
+    expect(badge?.className).toContain("text-lg");
+  });
+
   it("description / example があれば右列を描画する", () => {
     const el = render({
       subject: "x",

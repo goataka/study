@@ -234,6 +234,7 @@ function buildCategoryItemProps(
     description: ctx.useCase.getCategoryDescription(subject, categoryId),
     example: ctx.useCase.getCategoryExample(subject, categoryId),
     statusIcon: statusView.icon,
+    stage: ctx.useCase.getCategoryStage(subject, categoryId).stage,
     statusKind: statusView.status,
     progressFillPercent: masteredPct,
     progressInProgressPercent: inProgressPct,

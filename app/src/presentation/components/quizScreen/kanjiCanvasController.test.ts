@@ -105,7 +105,7 @@ describe("KanjiCanvasController コントローラー", () => {
       expect(texts).toEqual(["か", "が", "は", "ば", "ぱ"]);
     });
 
-    it("英語問題（ラテン文字）の場合はラテン文字以外を除外し、正解文字列も候補に追加する", () => {
+    it("英語問題（ラテン文字）の場合はラテン文字以外を除外する", () => {
       const onSelectCandidate = vi.fn();
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
         recognize: () => "A あ B 漢",
@@ -117,10 +117,10 @@ describe("KanjiCanvasController コントローラー", () => {
       ctrl.updateCandidates();
       const buttons = document.querySelectorAll(".kanji-candidate-btn");
       const texts = Array.from(buttons).map((b) => b.textContent);
-      expect(texts).toEqual(["A", "B", "AB"]);
+      expect(texts).toEqual(["A", "B"]);
     });
 
-    it("英語問題で認識候補にラテン文字がない場合は正解文字列を候補として表示する", () => {
+    it("英語問題で認識候補にラテン文字がない場合は候補を表示しない", () => {
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
         recognize: () => "あ 漢 い",
       };
@@ -130,10 +130,10 @@ describe("KanjiCanvasController コントローラー", () => {
       });
       ctrl.updateCandidates();
       const texts = Array.from(document.querySelectorAll(".kanji-candidate-btn")).map((b) => b.textContent);
-      expect(texts).toEqual(["played"]);
+      expect(texts).toEqual([]);
     });
 
-    it("英語問題で正解が複数単語でも正解文字列を候補として表示する", () => {
+    it("英語問題で正解が複数単語でも正解文字列を候補として表示しない", () => {
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
         recognize: () => "L 1 あ",
       };
@@ -143,7 +143,7 @@ describe("KanjiCanvasController コントローラー", () => {
       });
       ctrl.updateCandidates();
       const texts = Array.from(document.querySelectorAll(".kanji-candidate-btn")).map((b) => b.textContent);
-      expect(texts).toEqual(["L", "check it out"]);
+      expect(texts).toEqual(["L"]);
     });
 
     it("正解情報がないときはフィルタせず最大5候補まで表示する", () => {

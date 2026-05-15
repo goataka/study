@@ -271,4 +271,40 @@ describe("QuizUseCase — getRecommendedUnitsGlobal 仕様", () => {
     const result = useCase.getRecommendedUnitsGlobal(5, 2);
     expect(result.some((u) => u.categoryId === "multiplication")).toBe(true);
   });
+
+  it("未学習単元は国語→数学→英語を優先して並ぶ", async () => {
+    const questions = [
+      makeQuestion("q1", "english", "english-a"),
+      makeQuestion("q2", "english", "english-b"),
+      makeQuestion("q3", "math", "math-a"),
+      makeQuestion("q4", "japanese", "japanese-a"),
+    ];
+    const { useCase } = await makeUnits(questions);
+
+    const result = useCase.getRecommendedUnitsGlobal(5, 2);
+    expect(result.map((u) => `${u.subject}:${u.categoryId}`)).toEqual([
+      "japanese:japanese-a",
+      "math:math-a",
+      "english:english-a",
+      "english:english-b",
+    ]);
+  });
+
+  it("復習対象がある場合は未学習の次に交互で挿入される", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2025-06-01T10:00:00Z"));
+
+    const questions = [
+      makeQuestion("q1", "japanese", "japanese-new"),
+      makeQuestion("q2", "math", "math-review"),
+      makeQuestion("q3", "english", "english-new"),
+    ];
+    const { useCase } = await makeUnits(questions, { "math::math-review": 1 });
+
+    vi.setSystemTime(new Date("2025-06-08T10:00:01Z"));
+    const result = useCase.getRecommendedUnitsGlobal(5, 2);
+    expect(result.map((u) => u.type).slice(0, 3)).toEqual(["unlearned", "review", "unlearned"]);
+    expect(result[0]?.categoryId).toBe("japanese-new");
+    expect(result[1]?.categoryId).toBe("math-review");
+  });
 });

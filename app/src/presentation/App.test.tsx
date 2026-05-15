@@ -98,6 +98,7 @@ describe("App コンポーネント", () => {
       // supportBtn は tabsBuilder が動的に描画するため静的 ID リストから除外
       "appLayout",
       "tabsUserRow",
+      "appNameLink",
       "subjectTabs",
       "tabsUserArea",
       "headerUserName",

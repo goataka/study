@@ -61,19 +61,23 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
         .join(" ")}
     >
       {/* アプリ名（左固定） */}
-      <div
+      <button
+        id="appNameLink"
+        type="button"
         className={[
-          "app-name-area shrink-0 flex items-center gap-1.5 px-4 self-center pt-px pb-0",
+          "app-name-area shrink-0 flex items-center gap-1.5 px-4 self-center pt-px pb-0 border-none bg-transparent cursor-pointer text-left",
           currentScreen !== "start" && currentScreen !== "quiz" ? "hidden" : "",
         ]
           .filter(Boolean)
           .join(" ")}
+        title="スタート画面へ戻る"
+        aria-label="スタート画面へ戻る"
       >
         <img src="./favicon.svg" className="header-logo w-9 h-9 shrink-0" alt="" aria-hidden="true" />
         <span className="app-name-text text-lg font-extrabold text-white whitespace-nowrap">
           Open Study Text 小中高
         </span>
-      </div>
+      </button>
       {/* 教科タブ（中央寄せ・スタート画面専用） */}
       <div
         className={`relative flex-1 min-w-0 border-b border-solid border-[rgba(0,0,0,0.12)]${currentScreen !== "start" ? " hidden" : ""}`}

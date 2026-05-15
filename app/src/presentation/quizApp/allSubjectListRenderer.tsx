@@ -10,6 +10,7 @@
 
 import { useState } from "react";
 import type { QuizUseCase, GlobalRecommendedUnit } from "../../application/quizUseCase";
+import type { CategoryStage } from "../../application/ports";
 import { calcDualProgressPct, gradeColorClass, SUBJECTS } from "../uiHelpers";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 
@@ -66,82 +67,9 @@ interface GlobalRecommendedListProps {
   onSelectUnit: (subjectId: string, categoryId: string, categoryName: string) => void;
 }
 
-/** 文字列から決定論的なハッシュ値を生成する。 */
-export function hashString(value: string): number {
-  let hash = 0;
-  for (let i = 0; i < value.length; i++) {
-    hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
-  }
-  return hash;
-}
-
-/** 日付と単元IDを入力に、日替わりで安定する擬似ランダム順を作る。 */
-export function shuffleUnitsByDailySeed(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
-  const seed = new Date().toISOString().slice(0, 10);
-  const shuffled = [...units].sort((a, b) => {
-    const ha = hashString(`${seed}:${a.subject}:${a.categoryId}`);
-    const hb = hashString(`${seed}:${b.subject}:${b.categoryId}`);
-    return ha - hb;
-  });
-  return spreadBySubject(shuffled);
-}
-
-/**
- * 同じ教科が連続しないように単元を並べ替える（グリーディ方式）。
- * 前回と異なる教科のうち残り数が最大のものを優先して選ぶ。
- * やむを得ず連続する場合（同一教科しか残っていない場合）は末尾に追加する。
- */
-function spreadBySubject(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
-  const bySubject = new Map<string, GlobalRecommendedUnit[]>();
-  for (const unit of units) {
-    const arr = bySubject.get(unit.subject) ?? [];
-    arr.push(unit);
-    bySubject.set(unit.subject, arr);
-  }
-
-  const result: GlobalRecommendedUnit[] = [];
-  let prevSubject: string | null = null;
-
-  const preferredSubjectOrder: Record<string, number> = {
-    japanese: 0,
-    math: 1,
-    english: 2,
-  };
-  while (result.length < units.length) {
-    // 前回と異なる教科のうち残り数（1以上）が最大のものを選ぶ
-    let bestSubject: string | null = null;
-    let bestCount = -1;
-    for (const [subj, arr] of bySubject) {
-      if (arr.length <= 0 || subj === prevSubject) continue;
-      if (arr.length > bestCount) {
-        bestCount = arr.length;
-        bestSubject = subj;
-        continue;
-      }
-      if (arr.length === bestCount && bestSubject !== null) {
-        const currentPriority = preferredSubjectOrder[subj] ?? Number.MAX_SAFE_INTEGER;
-        const bestPriority = preferredSubjectOrder[bestSubject] ?? Number.MAX_SAFE_INTEGER;
-        if (currentPriority < bestPriority) {
-          bestSubject = subj;
-        }
-      }
-    }
-
-    if (bestSubject === null) {
-      // 前回と同じ教科しか残っていない場合はそのまま追加する（止むを得ず連続）
-      for (const [, arr] of bySubject) {
-        while (arr.length > 0) result.push(arr.shift()!);
-      }
-      break;
-    }
-
-    const queue = bySubject.get(bestSubject);
-    if (queue && queue.length > 0) {
-      result.push(queue.shift()!);
-      prevSubject = bestSubject;
-    }
-  }
-  return result;
+/** おすすめ単元の入力順を保ったまま返す。 */
+export function materializeRecommendedUnits(units: GlobalRecommendedUnit[]): GlobalRecommendedUnit[] {
+  return [...units];
 }
 
 function GlobalRecommendedList({
@@ -153,7 +81,7 @@ function GlobalRecommendedList({
 }: GlobalRecommendedListProps): React.JSX.Element {
   // 「もっと追加」で増やす一時的な追加件数（永続化しない。目標数設定とは別）
   const [extraCount, setExtraCount] = useState(0);
-  const units = shuffleUnitsByDailySeed(useCase.getRecommendedUnitsGlobal(goalCount, alphaCount + extraCount));
+  const units = materializeRecommendedUnits(useCase.getRecommendedUnitsGlobal(goalCount, alphaCount + extraCount));
 
   const mainUnits = units.slice(0, goalCount);
   const extraUnits = units.slice(goalCount);
@@ -245,7 +173,7 @@ function GlobalCountHeaderRow({
 }
 
 /** ステージバッジを返す */
-function stageBadge(stage: number): { emoji: string; sizeClass: string } | null {
+function stageBadge(stage: CategoryStage): { emoji: string; sizeClass: string } | null {
   if (stage === 1) return { emoji: "🎖️", sizeClass: "text-base" };
   if (stage === 2) return { emoji: "🏆", sizeClass: "text-lg" };
   if (stage === 3) return { emoji: "👑", sizeClass: "text-xl" };
