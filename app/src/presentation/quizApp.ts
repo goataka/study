@@ -505,14 +505,35 @@ export class QuizApp {
   /** スタート画面へ遷移できるか判定する。クイズ進行中は確認ダイアログを表示する。 */
   private async confirmNavigateToStart(): Promise<boolean> {
     if (!this.isQuizInProgress()) return true;
-    return this.showConfirmDialog("問題が途中です。単元選択に戻りますか？（進行状況は保存されません）");
+    return this.showConfirmDialog("問題が途中です。単元選択に戻りますか？（回答済みの進行状況は保存されます）");
   }
 
   /** スタート画面へ遷移する。クイズ進行中は確認ダイアログを表示する。 */
   private async navigateToStart(): Promise<void> {
     const canNavigate = await this.confirmNavigateToStart();
     if (!canNavigate) return;
+    this.persistCurrentQuizProgress();
     this.showScreen("start");
+  }
+
+  /** クイズ途中終了時に、回答済み分のみ履歴と進捗へ反映する。 */
+  private persistCurrentQuizProgress(): void {
+    const session = this.currentSession;
+    if (!session || getScreenSnapshot() !== "quiz") return;
+    const results = session.questions.reduce<AnswerResult[]>((acc, question, index) => {
+      const userAnswerIndex = session.getAnswer(index);
+      if (userAnswerIndex === undefined) return acc;
+      acc.push({
+        question,
+        userAnswerIndex,
+        isCorrect: userAnswerIndex === question.correct,
+        userAnswerText: session.getTextAnswer(index),
+      });
+      return acc;
+    }, []);
+    if (results.length === 0) return;
+    this.useCase.submitAnswerResults(results);
+    this.useCase.addHistoryRecord(results, this.filter, this.currentMode);
   }
 
   /** 指定画面へ切り替え、必要であればスタート画面の状態を更新する。 */

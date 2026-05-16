@@ -310,6 +310,7 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   // 学習状態フィルターボタンは総合タブ・管理タブでは非表示
   const statusFilterEl = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (statusFilterEl) statusFilterEl.classList.toggle("hidden", isAll || params.subject === "admin");
+  document.getElementById("categoryStatusInfo")?.classList.toggle("hidden", isAll);
   // overallDateNav: コンテンツが設定されないため常に非表示
 
   // 選択中の単元情報パネルを更新する

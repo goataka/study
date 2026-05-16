@@ -119,6 +119,54 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(statsInfo?.textContent).toContain("全：5問");
   });
 
+  it("カテゴリ選択時は statsInfo 上部に前提単元・着手状況・完了ステータスを表示する", async () => {
+    const mockManifest = {
+      version: "2.0.0",
+      subjects: { english: { name: "英語" } },
+      questionFiles: ["english/basic.json", "english/advanced.json"],
+    };
+    const mockBasic = {
+      subject: "english",
+      subjectName: "英語",
+      category: "basic",
+      categoryName: "基本",
+      questionType: "multiple-choice",
+      questions: [{ id: "b1", question: "a", choices: ["a", "b", "c", "d"], correct: 0, explanation: "basic" }],
+    };
+    const mockAdvanced = {
+      subject: "english",
+      subjectName: "英語",
+      category: "advanced",
+      categoryName: "応用",
+      questionType: "multiple-choice",
+      prerequisites: ["basic"],
+      questions: [{ id: "a1", question: "a", choices: ["a", "b", "c", "d"], correct: 0, explanation: "advanced" }],
+    };
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockManifest) } as Response);
+      }
+      if (urlStr.includes("basic.json")) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(mockBasic) } as Response);
+      }
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(mockAdvanced) } as Response);
+    });
+
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const englishTab = document.querySelector('.subject-tab[data-subject="english"]') as HTMLElement;
+    englishTab?.click();
+    const catItem = document.querySelector('.category-item[data-category="advanced"]') as HTMLElement;
+    catItem?.click();
+
+    const statsInfo = document.getElementById("statsInfo");
+    expect(statsInfo?.textContent).toContain("前提単元：基本");
+    expect(statsInfo?.textContent).toContain("着手状況：着手不可");
+    expect(statsInfo?.textContent).toContain("完了ステータス：未完了");
+  });
+
   it("カテゴリアイテムに role=button と tabindex=0 が設定されている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));

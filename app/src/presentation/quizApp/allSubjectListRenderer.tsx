@@ -188,7 +188,13 @@ function RecommendedUnitCard({
   onActivate: () => void;
 }): React.JSX.Element {
   const badge = stageBadge(unit.stage);
-  const { masteredPct, inProgressPct } = calcDualProgressPct(unit.mastered, unit.inProgressCount, unit.totalQuestions);
+  const effectiveInProgressCount =
+    unit.mastered >= unit.totalQuestions && unit.totalQuestions > 0 ? 0 : unit.inProgressCount;
+  const { masteredPct, inProgressPct } = calcDualProgressPct(
+    unit.mastered,
+    effectiveInProgressCount,
+    unit.totalQuestions,
+  );
   const gradeClassName = unit.referenceGrade ? gradeColorClass(unit.referenceGrade) : "";
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -254,10 +260,10 @@ function RecommendedUnitCard({
               style={{ width: `${inProgressPct}%` }}
             />
           </div>
-          {unit.totalQuestions > 0 && (unit.mastered > 0 || unit.inProgressCount > 0) && (
+          {unit.totalQuestions > 0 && (
             <span className="subject-overview-pct text-[11px] text-[#586069] whitespace-nowrap shrink-0">
-              {unit.inProgressCount > 0
-                ? `${unit.mastered}(${unit.inProgressCount})/${unit.totalQuestions}`
+              {effectiveInProgressCount > 0
+                ? `${unit.mastered}(${effectiveInProgressCount})/${unit.totalQuestions}`
                 : `${unit.mastered}/${unit.totalQuestions}`}
             </span>
           )}

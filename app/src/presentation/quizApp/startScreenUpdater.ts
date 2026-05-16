@@ -47,8 +47,22 @@ export function updateStartScreen(params: UpdateStartScreenParams): void {
   const inProgressInFilter = filteredQuestions.filter((q) => {
     return useCase.getQuestionStat(q.id).total > 0 && !masteredIdsSet.has(q.id);
   }).length;
-
-  statsInfo.textContent = `学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問 / 全：${filteredCount}問`;
+  statsInfo.textContent = "";
+  if (effectiveFilter.subject !== "all" && effectiveFilter.category !== "all") {
+    const prerequisiteNames = useCase.getCategoryPrerequisiteNames(effectiveFilter.subject, effectiveFilter.category);
+    const prereqLabel = prerequisiteNames.length > 0 ? prerequisiteNames.join(" / ") : "ーー";
+    const prerequisiteInfo = document.createElement("div");
+    prerequisiteInfo.textContent = `前提単元：${prereqLabel}`;
+    const prerequisiteMet = useCase.arePrerequisitesMet(effectiveFilter.subject, effectiveFilter.category);
+    const startStatusInfo = document.createElement("div");
+    startStatusInfo.textContent = `着手状況：${prerequisiteMet ? "着手可能" : "着手不可"}`;
+    const completionStatusInfo = document.createElement("div");
+    completionStatusInfo.textContent = `完了ステータス：${params.isCurrentCategoryLearned() ? "完了" : "未完了"}`;
+    statsInfo.append(prerequisiteInfo, startStatusInfo, completionStatusInfo);
+  }
+  const progressInfo = document.createElement("div");
+  progressInfo.textContent = `学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問 / 全：${filteredCount}問`;
+  statsInfo.appendChild(progressInfo);
 
   // 特定カテゴリが選択されている場合のみ「履修済にする」ボタンを有効化
   if (markLearnedBtn) {

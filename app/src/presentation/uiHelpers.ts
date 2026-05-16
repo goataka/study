@@ -87,6 +87,7 @@ export function calcDualProgressPct(
   total: number,
 ): { masteredPct: number; inProgressPct: number } {
   if (total === 0) return { masteredPct: 0, inProgressPct: 0 };
+  if (mastered >= total) return { masteredPct: 100, inProgressPct: 0 };
   const masteredPct = Math.round((mastered / total) * 100);
   const inProgressPct = Math.min(Math.round((wrong / total) * 100), 100 - masteredPct);
   return { masteredPct, inProgressPct };
