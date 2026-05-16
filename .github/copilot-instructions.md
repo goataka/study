@@ -104,7 +104,6 @@
 - 解決済みのレビュー指摘（review comment / conversation）はクローズすること
 - レビュー対応時は PR の概要（Description）を更新しないこと
 - 補足が必要な場合は PR コメントで追記すること
-- Pull request overview に投稿されたコメント（Bot 以外）は、自動で `@copilot` に転送される運用とすること（自動化済み）
 
 ## 共通ルール
 
@@ -141,6 +140,7 @@
 - Issue内容のプランニング後に、対応漏れが無いか、対応意図と異ならないかを確認する
 - Review時にはIssueを確認して、対応漏れが無いか、対応意図と異ならないかを確認する
 - Issue の指摘事項は、完了報告前に一覧で再確認し、未対応項目が残っていないかを確認する
+- Pull request overview に投稿されたコメント（Bot 以外）は自動で `@copilot` に転送されるため、手動で追記する前に自動コメントの有無を確認すること（自動化済み）
 - 機能を更改した場合は、ガイドの使い方（`support/startup-guide.md` / `support/operation-guide.md`）も更新する
 - 問題を更改した場合は、該当単元の解説（`support/**/guide.md`）も更新する
 - Issue とコメント（Issue / PR review / PR comment）に、ルール化すべき内容がないか確認する
