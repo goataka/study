@@ -16,7 +16,8 @@ jobs:
           github.event.comment.user.login == 'github-copilot[bot]' ||
           github.event.comment.user.login == 'copilot-pull-request-reviewer[bot]'
         ) &&
-        contains(github.event.comment.body, 'Pull request overview')
+        contains(github.event.comment.body, 'Pull request overview') &&
+        contains(github.event.comment.body, 'changed files in this pull request and generated')
       }}
     runs-on: ubuntu-latest
     permissions:
