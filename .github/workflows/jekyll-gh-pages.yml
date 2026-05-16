@@ -1,13 +1,13 @@
 # Jekyllサイト（support/）とViteアプリ（app/）をGitHub Pagesにデプロイするワークフロー
 # 環境構成:
 # - 転送環境: /   （/v1 へ location.replace で転送）
-# - 検証環境: /rc（main からビルドした最新成果物）
+# - 検証環境: /rc（develop からビルドした最新成果物）
 # - 本番環境: /v1（最新リリースの成果物）
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["develop"]
   release:
     types: [published]
   workflow_dispatch:
@@ -34,8 +34,8 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
-          # release 起点でも /rc は常に main の最新成果物を配置する
-          ref: main
+          # release 起点でも /rc は常に develop の最新成果物を配置する
+          ref: develop
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -100,7 +100,7 @@ jobs:
               exit 1
             fi
 
-            echo "::warning::最新リリース（app-dist.zip）が見つからないため、main のビルド成果物を /v1 に配置します。"
+            echo "::warning::最新リリース（app-dist.zip）が見つからないため、develop のビルド成果物を /v1 に配置します。"
             echo "::warning::本番用の固定成果物を使う場合は release-app.yml を実行してリリースを作成してください。"
             sudo cp -r app/dist/. _site/v1/
           fi
