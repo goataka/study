@@ -102,6 +102,12 @@ export function SelectedUnitCloseButton({
   );
 }
 
+const CATEGORY_STAGE_LABEL: Readonly<Record<Exclude<CategoryStage, 0>, string>> = {
+  1: "学習済ステージ",
+  2: "復習済ステージ",
+  3: "検定済ステージ",
+} as const;
+
 function HeaderRow({
   name,
   description,
@@ -120,7 +126,7 @@ function HeaderRow({
         {stage !== undefined && stage > 0 && (
           <span
             className="selected-unit-stage-badge shrink-0 leading-none text-base"
-            aria-label={CATEGORY_STAGE_EMOJI[stage as Exclude<CategoryStage, 0>]}
+            aria-label={CATEGORY_STAGE_LABEL[stage as Exclude<CategoryStage, 0>]}
           >
             {CATEGORY_STAGE_EMOJI[stage as Exclude<CategoryStage, 0>]}
           </span>

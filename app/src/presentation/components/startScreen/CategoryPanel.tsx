@@ -128,13 +128,29 @@ function AllSubjectPanelInfoButton(): React.JSX.Element {
 
   useEffect(() => {
     if (!showInfo) return;
-    const handleClickOutside = (e: MouseEvent): void => {
+    const handlePointerDown = (e: PointerEvent): void => {
       if (containerRef.current && e.target instanceof Node && !containerRef.current.contains(e.target)) {
         setShowInfo(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    const handleKeyDown = (e: KeyboardEvent): void => {
+      if (e.key === "Escape") setShowInfo(false);
+    };
+    const handleFocusOut = (e: FocusEvent): void => {
+      // フォーカスがコンテナ外に移動した場合に閉じる
+      if (containerRef.current && e.relatedTarget instanceof Node && !containerRef.current.contains(e.relatedTarget)) {
+        setShowInfo(false);
+      }
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    containerRef.current?.addEventListener("focusout", handleFocusOut);
+    const container = containerRef.current;
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+      container?.removeEventListener("focusout", handleFocusOut);
+    };
   }, [showInfo]);
 
   return (
