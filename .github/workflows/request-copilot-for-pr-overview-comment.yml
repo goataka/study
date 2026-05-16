@@ -10,7 +10,7 @@ jobs:
     name: PR overview コメントを Copilot に転送
     if: >-
       github.event.issue.pull_request != null &&
-      github.event.comment.user.type != 'Bot' &&
+      github.event.comment.user.type == 'User' &&
       !contains(github.event.comment.body, '@copilot')
     runs-on: ubuntu-latest
     permissions:
