@@ -11,7 +11,11 @@ jobs:
     if: >-
       ${{
         github.event.issue.pull_request != null &&
-        contains(github.event.comment.user.login, 'copilot') &&
+        (
+          github.event.comment.user.login == 'copilot[bot]' ||
+          github.event.comment.user.login == 'github-copilot[bot]' ||
+          github.event.comment.user.login == 'copilot-pull-request-reviewer[bot]'
+        ) &&
         contains(github.event.comment.body, 'Pull request overview')
       }}
     runs-on: ubuntu-latest
@@ -24,7 +28,7 @@ jobs:
         with:
           # COPILOT_TOKEN はリポジトリ Secrets に設定し、
           # 最小権限（Issues: write / Pull requests: write）のトークンを使用すること
-          # 未設定時は github.token をフォールバック利用する
+          # 未設定時は、permissions で付与した権限範囲内で github.token をフォールバック利用する
           github-token: ${{ secrets.COPILOT_TOKEN || github.token }}
           script: |
             const { owner, repo } = context.repo;
