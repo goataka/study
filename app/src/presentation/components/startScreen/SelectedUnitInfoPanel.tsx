@@ -71,12 +71,7 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
         total={data.total}
       />
       {showDescRow && <DescRow catParts={catParts} grade={data.grade} example={data.example} />}
-      <ProgressRow
-        mastered={data.mastered}
-        inProgressCount={data.inProgressCount}
-        total={data.total}
-        stage={data.stage}
-      />
+      <ProgressRow mastered={data.mastered} inProgressCount={data.inProgressCount} total={data.total} />
     </div>
   );
 }
@@ -212,15 +207,12 @@ function ProgressRow({
   mastered,
   inProgressCount,
   total,
-  stage,
 }: {
   mastered: number;
   inProgressCount: number;
   total: number;
-  stage?: CategoryStage;
 }): React.JSX.Element {
-  const effectiveInProgressCount =
-    mastered >= total && total > 0 ? 0 : stage !== undefined && stage > 0 ? 0 : inProgressCount;
+  const effectiveInProgressCount = mastered >= total && total > 0 ? 0 : inProgressCount;
   const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, effectiveInProgressCount, total);
   const label =
     effectiveInProgressCount > 0 ? `${mastered}(${effectiveInProgressCount})/${total}` : `${mastered}/${total}`;

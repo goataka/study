@@ -654,12 +654,14 @@ export class QuizUseCase {
       for (const id of questionIds) {
         this.masteredSet.delete(id);
         delete this.correctStreaks[id];
+        delete this.questionStats[id];
         // wrongIds からも除いてクリーンな状態にする
         this.wrongIds = this.wrongIds.filter((wid) => wid !== id);
       }
       this.progressRepo.saveMasteredIds(this.masteredIds);
       this.progressRepo.saveCorrectStreaks(this.correctStreaks);
       this.progressRepo.saveWrongIds(this.wrongIds);
+      this.progressRepo.saveQuestionStats(this.questionStats);
     }
   }
 

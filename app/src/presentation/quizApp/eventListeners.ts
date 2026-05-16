@@ -319,9 +319,13 @@ export function setupProgressFilterListeners(
 export function setupProgressGradeFilterListeners(onSelect: (grade: "小学" | "中学" | "高校" | null) => void): void {
   const filterButtons = [
     { id: "progressGradeAllBtn", grade: null },
+    { id: "progressGradeAllBtnSide", grade: null },
     { id: "progressGradeElemBtn", grade: "小学" as const },
+    { id: "progressGradeElemBtnSide", grade: "小学" as const },
     { id: "progressGradeMiddleBtn", grade: "中学" as const },
+    { id: "progressGradeMiddleBtnSide", grade: "中学" as const },
     { id: "progressGradeHighBtn", grade: "高校" as const },
+    { id: "progressGradeHighBtnSide", grade: "高校" as const },
   ];
   filterButtons.forEach(({ id, grade }) => {
     document.getElementById(id)?.addEventListener("click", () => onSelect(grade));

@@ -72,7 +72,7 @@ export function ProgressDetailPanel(): React.JSX.Element {
         <ProgressDetailTabButton mode="matrix" active={active} id="progressDetailTab-matrix" label="📊 マトリクス" />
       </div>
       <div className="progress-detail-toolbar px-4 py-1 flex items-center justify-end gap-2 flex-wrap">
-        <div className="progress-grade-filter flex items-center gap-0.5" role="group" aria-label="対象学年フィルター">
+        <div className="progress-grade-filter hidden items-center gap-0.5" role="group" aria-label="対象学年フィルター">
           <span className="text-xs text-[#586069]">対象学年：</span>
           <button
             id="progressGradeAllBtn"

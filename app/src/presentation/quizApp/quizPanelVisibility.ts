@@ -109,6 +109,7 @@ function applyAdminTabLayout(subjectContent: HTMLElement): void {
   // 管理タブでは学習状態フィルターを非表示にする
   const adminStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (adminStatusFilter) adminStatusFilter.classList.add("hidden");
+  document.getElementById("progressGradeFilter")?.classList.add("hidden");
   // 管理タブでは日付ナビを非表示にする
   document.getElementById("overallDateNav")?.classList.add("hidden");
   // 管理タブでは「おすすめ単元」タイトルと通常の単元一覧タイトルを非表示にし、メニュータイトルを表示
@@ -149,6 +150,7 @@ function applySupportTabLayout(subjectContent: HTMLElement): void {
   // サポートタブでは学習状態フィルターを非表示にする
   const supportStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (supportStatusFilter) supportStatusFilter.classList.add("hidden");
+  document.getElementById("progressGradeFilter")?.classList.add("hidden");
   // サポートタブでは日付ナビを非表示にする
   document.getElementById("overallDateNav")?.classList.add("hidden");
   // サポートタブでは「おすすめ単元」タイトルと通常の単元一覧タイトルを非表示、サポートメニュータイトルを表示
@@ -194,6 +196,8 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
   // 進度タブでは学習状態フィルターを非表示にする
   const progressStatusFilter = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (progressStatusFilter) progressStatusFilter.classList.add("hidden");
+  document.getElementById("progressGradeFilter")?.classList.remove("hidden");
+  document.getElementById("progressGradeFilter")?.classList.add("flex");
   // 進度タブでは日付ナビを非表示にする
   document.getElementById("overallDateNav")?.classList.add("hidden");
   // 進度タブでは「おすすめ単元」タイトルを非表示、「進度」タイトルを表示
@@ -310,6 +314,8 @@ function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVis
   // 学習状態フィルターボタンは総合タブ・管理タブでは非表示
   const statusFilterEl = document.querySelector(".category-status-filter") as HTMLElement | null;
   if (statusFilterEl) statusFilterEl.classList.toggle("hidden", isAll || params.subject === "admin");
+  document.getElementById("progressGradeFilter")?.classList.add("hidden");
+  document.getElementById("progressGradeFilter")?.classList.remove("flex");
   document.getElementById("categoryStatusInfo")?.classList.toggle("hidden", isAll);
   // overallDateNav: コンテンツが設定されないため常に非表示
 

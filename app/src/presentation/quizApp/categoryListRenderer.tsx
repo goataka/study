@@ -221,7 +221,7 @@ function buildCategoryItemProps(
   const stat = statsCtx.statsMap.get(key) ?? EMPTY_CATEGORY_STAT;
   const statusView = deriveCategoryItemStatus(stat, statsCtx.studiedKeys, key);
   const { stage } = ctx.useCase.getCategoryStage(subject, categoryId);
-  const effectiveInProgress = stage > 0 && stat.mastered < stat.total ? 0 : stat.inProgress;
+  const effectiveInProgress = stat.inProgress;
   const effectiveStat: CategoryStat = { ...stat, inProgress: effectiveInProgress };
   const { masteredPct, inProgressPct } = calcDualProgressPct(
     effectiveStat.mastered,
