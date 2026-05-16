@@ -41,7 +41,7 @@ jobs:
           OWNER="${GH_REPO%%/*}"
           REPO="${GH_REPO#*/}"
           MARKER="<!-- auto-copilot-pr-overview-comment:${COMMENT_ID} -->"
-          if printf '%s' "${COMMENT_BODY}" | grep -Fq '<!-- auto-copilot-pr-overview-comment:'; then
+          if jq -en --arg body "${COMMENT_BODY}" '$body | contains("<!-- auto-copilot-pr-overview-comment:")' >/dev/null; then
             echo "::notice::自動生成した Copilot 依頼コメントのため再転送をスキップします"
             exit 0
           fi
@@ -52,8 +52,7 @@ jobs:
           fi
 
           PARENT_COMMENT_JSON=$(gh api "repos/${GH_REPO}/issues/comments/${COMMENT_IN_REPLY_TO_ID}")
-          PARENT_COMMENT_BODY=$(printf '%s' "${PARENT_COMMENT_JSON}" | jq -r '.body // ""')
-          if ! printf '%s' "${PARENT_COMMENT_BODY}" | grep -Fq '## Pull request overview'; then
+          if ! printf '%s' "${PARENT_COMMENT_JSON}" | jq -e '(.body // "") | contains("## Pull request overview")' >/dev/null; then
             echo "::notice::Pull request overview コメントへの返信ではないため転送をスキップします"
             exit 0
           fi
