@@ -8,7 +8,7 @@ permalink: /operation-guide/
 
 ## スクリーンショット
 
-![学習アプリの画面イメージ](images/quiz-app-screenshot.png)
+![学習アプリの画面イメージ]({{ '/images/quiz-app-screenshot.png' | relative_url }})
 
 ## ヘッダー
 
