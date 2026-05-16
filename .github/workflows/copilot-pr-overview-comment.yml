@@ -12,7 +12,10 @@ jobs:
       ${{
         github.event.issue.pull_request != null &&
         github.event.comment.user.type == 'Bot' &&
-        contains(toLower(github.event.comment.user.login), 'copilot') &&
+        (
+          contains(github.event.comment.user.login, 'copilot') ||
+          contains(github.event.comment.user.login, 'Copilot')
+        ) &&
         contains(github.event.comment.body, 'Pull request overview')
       }}
     runs-on: ubuntu-latest
