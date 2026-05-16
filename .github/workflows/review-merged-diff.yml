@@ -1,13 +1,13 @@
-name: Review Merged Diff On Main
+name: Review Merged Diff On Develop
 
 on:
   push:
     branches:
-      - main
+      - develop
 
 jobs:
   review-merged-diff:
-    name: mainマージ差分レビュー（Copilot CLI）
+    name: develop マージ差分レビュー（Copilot CLI）
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -101,11 +101,11 @@ jobs:
           set -euo pipefail
 
           SHORT_SHA="${GITHUB_SHA:0:7}"
-          ISSUE_TITLE="[Copilotレビュー] mainマージ差分の要対応指摘 (${SHORT_SHA})"
+          ISSUE_TITLE="[Copilotレビュー] developマージ差分の要対応指摘 (${SHORT_SHA})"
           ISSUE_BODY_FILE="$(mktemp)"
 
           {
-            echo "main へマージされた差分を Copilot CLI（@github/copilot）でレビューした結果、対応が必要な指摘が見つかりました。"
+            echo "develop へマージされた差分を Copilot CLI（@github/copilot）でレビューした結果、対応が必要な指摘が見つかりました。"
             echo ""
             echo "- 対象コミット: ${GITHUB_SHA}"
             echo "- 実行URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
