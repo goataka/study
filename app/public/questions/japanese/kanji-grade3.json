@@ -1345,5 +1345,6 @@
       "correct": 0,
       "explanation": "拾（ひろ）う: 落ちているものを取ること。「じゅう」（音読み）とも読む"
     }
-  ]
+  ],
+  "prerequisites": ["kanji-grade2"]
 }

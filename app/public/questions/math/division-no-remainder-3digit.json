@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "6 × 84 = 504なので、504 ÷ 6 = 84"
     }
-  ]
+  ],
+  "prerequisites": ["division-no-remainder-2digit"]
 }

@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "一の位: 2×5=10→0くり上げ1。十の位: 8×5+1=41。答え 410"
     }
-  ]
+  ],
+  "prerequisites": ["multiplication-1digit"]
 }

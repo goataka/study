@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "一の位: 2×8=16→6くり上げ1。十の位: 9×8+1=73→3くり上げ7。百の位: 7×8+7=63。答え 6336"
     }
-  ]
+  ],
+  "prerequisites": ["multiplication-2digit"]
 }

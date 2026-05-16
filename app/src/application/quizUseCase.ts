@@ -488,7 +488,7 @@ export class QuizUseCase {
       const key = `${subject}::${catId}`;
       const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
       const isLearned = studiedKeys.has(key) && wrongCount === 0;
-      if (!isLearned) {
+      if (!isLearned && this._arePrerequisitesMet(subject, catId)) {
         result.push({
           id: catId,
           name: catName,
@@ -498,7 +498,7 @@ export class QuizUseCase {
       }
     }
 
-    // 未学習カテゴリが足りない場合は学習済みカテゴリで補完する
+    // 未学習カテゴリが足りない場合は学習済みカテゴリで補完する（前提単元チェックも適用）
     if (result.length < count) {
       const addedIds = new Set(result.map((r) => r.id));
       for (const [catId, catName] of entries) {
@@ -506,7 +506,7 @@ export class QuizUseCase {
         const key = `${subject}::${catId}`;
         const wrongCount = wrongCountsByCategory.get(catId) ?? 0;
         const isLearned = studiedKeys.has(key) && wrongCount === 0;
-        if (isLearned && !addedIds.has(catId)) {
+        if (isLearned && !addedIds.has(catId) && this._arePrerequisitesMet(subject, catId)) {
           result.push({
             id: catId,
             name: catName,
@@ -719,6 +719,9 @@ export class QuizUseCase {
         // 修了済はスキップ
         if (stage >= 3) continue;
 
+        // 前提単元チェック: 前提単元が未習得（stage=0）の場合はスキップ
+        if (!this._arePrerequisitesMet(subjectId, catId)) continue;
+
         // 学年制限チェック
         const grade = this.categoryRegistry.getCategoryReferenceGrade(subjectId, catId);
         if (grade && maxGrade !== null && !isGradeWithinLimit(grade, maxGrade)) continue;
@@ -792,6 +795,20 @@ export class QuizUseCase {
     }
 
     return result.slice(0, total);
+  }
+
+  /**
+   * 指定した教科・カテゴリの前提単元がすべて習得済みか判定する。
+   * 前提単元の stage >= 1（学習済）の場合に満たされたとみなす。
+   * 前提単元が設定されていない場合は常に true を返す。
+   */
+  private _arePrerequisitesMet(subjectId: string, catId: string): boolean {
+    const prerequisites = this.categoryRegistry.getCategoryPrerequisites(subjectId, catId);
+    if (prerequisites.length === 0) return true;
+    return prerequisites.every((prereqCatId) => {
+      const key = `${subjectId}::${prereqCatId}`;
+      return (this.categoryStages[key]?.stage ?? 0) >= 1;
+    });
   }
 
   /**

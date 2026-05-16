@@ -529,3 +529,55 @@ describe("validateQuestionFile — topCategory/topCategoryName 検証仕様", ()
     expect(() => validateQuestionFile(validQFBase)).not.toThrow();
   });
 });
+
+describe("validateQuestionFile — prerequisites 検証仕様", () => {
+  const validQFBase = {
+    subject: "math",
+    subjectName: "数学",
+    category: "addition-carry",
+    categoryName: "くり上がりあり",
+    questions: [
+      {
+        id: "8de9072f-20ec-57d3-bece-a063727bd360",
+        question: "テスト問題",
+        choices: ["ア", "イ", "ウ", "エ"],
+        correct: 0,
+        explanation: "解説",
+      },
+    ],
+  };
+
+  it("有効な文字列配列なら受け入れる", () => {
+    expect(() => validateQuestionFile({ ...validQFBase, prerequisites: ["addition-no-carry"] })).not.toThrow();
+  });
+
+  it("複数の前提単元も受け入れる", () => {
+    expect(() => validateQuestionFile({ ...validQFBase, prerequisites: ["cat-a", "cat-b"] })).not.toThrow();
+  });
+
+  it("空配列は受け入れる", () => {
+    expect(() => validateQuestionFile({ ...validQFBase, prerequisites: [] })).not.toThrow();
+  });
+
+  it("配列でない場合は拒否する", () => {
+    expect(() => validateQuestionFile({ ...validQFBase, prerequisites: "addition-no-carry" })).toThrow(
+      "配列でなければなりません",
+    );
+  });
+
+  it("要素に空文字列が含まれる場合は拒否する", () => {
+    expect(() => validateQuestionFile({ ...validQFBase, prerequisites: [""] })).toThrow(
+      "空でない文字列でなければなりません",
+    );
+  });
+
+  it("要素に文字列以外が含まれる場合は拒否する", () => {
+    expect(() => validateQuestionFile({ ...validQFBase, prerequisites: [123] })).toThrow(
+      "空でない文字列でなければなりません",
+    );
+  });
+
+  it("省略した場合は受け入れる", () => {
+    expect(() => validateQuestionFile(validQFBase)).not.toThrow();
+  });
+});

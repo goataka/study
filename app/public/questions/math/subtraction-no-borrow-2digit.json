@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "59 - 37 = 22"
     }
-  ]
+  ],
+  "prerequisites": ["subtraction-no-borrow-1digit"]
 }

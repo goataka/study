@@ -1219,5 +1219,6 @@
       "correct": 0,
       "explanation": "臨（のぞ）む: ある場に向き合うこと・臨場感。「りん」（音読み）とも読む"
     }
-  ]
+  ],
+  "prerequisites": ["kanji-grade5"]
 }

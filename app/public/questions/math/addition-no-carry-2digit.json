@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "53 + 26 = 79"
     }
-  ]
+  ],
+  "prerequisites": ["addition-no-carry-1digit"]
 }

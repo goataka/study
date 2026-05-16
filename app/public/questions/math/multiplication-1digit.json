@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "9の段。9 × 6 = 54"
     }
-  ]
+  ],
+  "prerequisites": ["multiplication-basic"]
 }

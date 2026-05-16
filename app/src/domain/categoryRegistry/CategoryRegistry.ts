@@ -34,6 +34,8 @@ export class CategoryRegistry {
   private readonly categoryParentMap = new Map<string, CategoryRef>();
   /** subject::category -> トップカテゴリ参照 */
   private readonly categoryTopMap = new Map<string, CategoryRef>();
+  /** subject::category -> 前提単元のカテゴリ ID リスト */
+  private readonly categoryPrerequisitesMap = new Map<string, string[]>();
 
   // ─── 階層クエリキャッシュ（出現順を保つため Record をインクリメンタルに構築） ──
   /** subject -> { categoryId -> categoryName } */
@@ -103,6 +105,9 @@ export class CategoryRegistry {
     }
     if (q.topCategory !== undefined && !this.categoryTopMap.has(cacheKeys.category)) {
       this.categoryTopMap.set(cacheKeys.category, { id: q.topCategory, name: q.topCategoryName ?? q.topCategory });
+    }
+    if (q.prerequisites !== undefined && !this.categoryPrerequisitesMap.has(cacheKeys.category)) {
+      this.categoryPrerequisitesMap.set(cacheKeys.category, q.prerequisites);
     }
 
     // 階層: subject -> categories
@@ -219,6 +224,11 @@ export class CategoryRegistry {
 
   getCategoryReferenceGrade(subject: string, category: string): string | undefined {
     return this.categoryGradeMap.get(keyFor(subject, category));
+  }
+
+  /** 指定教科・カテゴリの前提単元 ID リストを返す（設定なしの場合は空配列） */
+  getCategoryPrerequisites(subject: string, category: string): string[] {
+    return this.categoryPrerequisitesMap.get(keyFor(subject, category)) ?? [];
   }
 
   /** 利用可能な最初の解説 URL（カテゴリ未選択時のフォールバック用） */

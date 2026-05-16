@@ -124,4 +124,51 @@ describe("QuizUseCase — getRecommendedCategoriesForSubject 仕様", () => {
     const recs = useCase.getRecommendedCategoriesForSubject("math", 3);
     expect(recs).toHaveLength(0);
   });
+
+  it("前提単元が未習得の場合はそのカテゴリを推薦しない", async () => {
+    const q1 = makeQuestion("q1", "math", "addition-no-carry");
+    const q2: typeof q1 = {
+      ...makeQuestion("q2", "math", "addition-carry"),
+      prerequisites: ["addition-no-carry"],
+    };
+    const useCase = new QuizUseCase(new StubQuestionRepository([q1, q2]), new StubProgressRepository());
+    await useCase.initialize();
+
+    const recs = useCase.getRecommendedCategoriesForSubject("math", 2);
+    // addition-no-carry は前提なしで推薦される
+    expect(recs.map((r) => r.id)).toContain("addition-no-carry");
+    // addition-carry は前提単元が未習得なので推薦されない
+    expect(recs.map((r) => r.id)).not.toContain("addition-carry");
+  });
+
+  it("前提単元が習得済み（stage>=1）の場合は推薦する", async () => {
+    const q1 = makeQuestion("q1", "math", "addition-no-carry");
+    const q2: typeof q1 = {
+      ...makeQuestion("q2", "math", "addition-carry"),
+      prerequisites: ["addition-no-carry"],
+    };
+    const useCase = new QuizUseCase(new StubQuestionRepository([q1, q2]), new StubProgressRepository());
+    await useCase.initialize();
+    // addition-no-carry を学習済み（stage=1）にする
+    useCase.advanceCategoryStage("math", "addition-no-carry");
+
+    const recs = useCase.getRecommendedCategoriesForSubject("math", 2);
+    expect(recs.map((r) => r.id)).toContain("addition-carry");
+  });
+
+  it("前提未達のカテゴリは学習済み補完でも除外される", async () => {
+    // phonics-1, phonics-2 は学習済み、addition-carry は前提 addition-no-carry が未習得
+    const q1 = makeQuestion("q1", "math", "addition-no-carry");
+    const q2: typeof q1 = {
+      ...makeQuestion("q2", "math", "addition-carry"),
+      prerequisites: ["addition-no-carry"],
+    };
+    const history: QuizRecord[] = [makeStudiedRecord("math", "addition-carry", "r1")];
+    const useCase = new QuizUseCase(new StubQuestionRepository([q1, q2]), new StubProgressRepository([], history));
+    await useCase.initialize();
+
+    // count=2 で、未学習は addition-no-carry のみ → 補完候補に addition-carry が来うるが前提未達なので除外
+    const recs = useCase.getRecommendedCategoriesForSubject("math", 2);
+    expect(recs.map((r) => r.id)).not.toContain("addition-carry");
+  });
 });

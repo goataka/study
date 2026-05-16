@@ -39,6 +39,8 @@ export interface Question {
   questionType?: QuestionType;
   /** text-input 問題で大文字/小文字を区別するか（デフォルト: false） */
   caseSensitive?: boolean;
+  /** 事前に履修しておくべき単元のカテゴリ ID リスト（同一教科内）。省略時は前提単元なし */
+  prerequisites?: string[];
 }
 
 /** 各問題ファイルの生データ（メタ情報なし） */
@@ -80,6 +82,8 @@ export interface QuestionFile {
   questionType?: QuestionType;
   /** text-input 問題で大文字/小文字を区別するか（省略時: false） */
   caseSensitive?: boolean;
+  /** 事前に履修しておくべき単元のカテゴリ ID リスト（同一教科内）。省略時は前提単元なし */
+  prerequisites?: string[];
   questions: RawQuestion[];
 }
 

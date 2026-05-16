@@ -126,5 +126,6 @@
       "correct": 0,
       "explanation": "735 - 489 = 246"
     }
-  ]
+  ],
+  "prerequisites": ["subtraction-no-borrow"]
 }

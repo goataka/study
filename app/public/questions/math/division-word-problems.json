@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "375 ÷ 6 = 62 あまり 3"
     }
-  ]
+  ],
+  "prerequisites": ["division-mixed"]
 }

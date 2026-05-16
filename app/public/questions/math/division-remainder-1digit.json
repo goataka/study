@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "7 × 2 = 14。18 - 14 = 4。答え 2 あまり 4"
     }
-  ]
+  ],
+  "prerequisites": ["division-no-remainder-1digit"]
 }

@@ -225,5 +225,6 @@
       "correct": 0,
       "explanation": "蓋然（がいぜん）: ある事柄が起こる可能性・確からしさ（「蓋然性が高い」）"
     }
-  ]
+  ],
+  "prerequisites": ["kanji-secondary"]
 }

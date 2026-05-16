@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "8+2=10、10+7=17"
     }
-  ]
+  ],
+  "prerequisites": ["addition-no-carry-1digit"]
 }

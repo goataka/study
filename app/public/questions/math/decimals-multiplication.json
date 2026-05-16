@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "0.6 × 0.4 = 0.24"
     }
-  ]
+  ],
+  "prerequisites": ["decimals-subtraction"]
 }

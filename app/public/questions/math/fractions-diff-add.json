@@ -84,5 +84,6 @@
       "correct": 0,
       "explanation": "通分: 16/24 + 9/24 = 25/24"
     }
-  ]
+  ],
+  "prerequisites": ["fractions-same-add"]
 }

@@ -119,5 +119,6 @@
       "correct": 0,
       "explanation": "896 - 561 = 335"
     }
-  ]
+  ],
+  "prerequisites": ["subtraction-no-borrow-2digit"]
 }

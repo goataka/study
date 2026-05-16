@@ -307,4 +307,24 @@ describe("QuizUseCase — getRecommendedUnitsGlobal 仕様", () => {
     expect(result[0]?.categoryId).toBe("japanese-new");
     expect(result[1]?.categoryId).toBe("math-review");
   });
+
+  it("前提単元が未習得（stage=0）の場合はその単元を推薦しない", async () => {
+    const q1 = makeQuestion("q1", "math", "addition-no-carry");
+    const q2: Question = { ...makeQuestion("q2", "math", "addition-carry"), prerequisites: ["addition-no-carry"] };
+    const { useCase } = await makeUnits([q1, q2]);
+
+    const result = useCase.getRecommendedUnitsGlobal(5, 2);
+    expect(result.some((u) => u.categoryId === "addition-no-carry")).toBe(true);
+    expect(result.some((u) => u.categoryId === "addition-carry")).toBe(false);
+  });
+
+  it("前提単元が学習済み（stage>=1）になると推薦される", async () => {
+    const q1 = makeQuestion("q1", "math", "addition-no-carry");
+    const q2: Question = { ...makeQuestion("q2", "math", "addition-carry"), prerequisites: ["addition-no-carry"] };
+    const { useCase } = await makeUnits([q1, q2], { "math::addition-no-carry": 1 });
+
+    const result = useCase.getRecommendedUnitsGlobal(5, 2);
+    // addition-no-carry は学習済み（復習待機中のため一時的に除外の可能性があるが addition-carry は含まれる）
+    expect(result.some((u) => u.categoryId === "addition-carry")).toBe(true);
+  });
 });

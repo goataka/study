@@ -575,5 +575,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide"
+  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "prerequisites": ["kanji-grade1"]
 }

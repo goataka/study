@@ -365,5 +365,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-secondary/guide"
+  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "prerequisites": ["kanji-secondary"]
 }
