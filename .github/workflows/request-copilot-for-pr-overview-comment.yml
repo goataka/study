@@ -10,7 +10,7 @@ jobs:
     name: PR overview コメントを Copilot に転送
     if: >-
       github.event.issue.pull_request != null &&
-      github.event.comment.user.type == 'User' &&
+      github.event.comment.user.type != 'Bot' &&
       !contains(github.event.comment.body, format('<!-- auto-copilot-pr-overview-comment:{0} -->', github.event.comment.id))
     runs-on: ubuntu-latest
     permissions:
@@ -40,8 +40,16 @@ jobs:
           MARKER="<!-- auto-copilot-pr-overview-comment:${COMMENT_ID} -->"
           BEFORE_CURSOR=""
           EXISTING_COMMENT_ID=""
+          PAGE_REQUEST_COUNT=0
+          MAX_PAGE_REQUESTS=100
 
           while [ -z "${EXISTING_COMMENT_ID}" ]; do
+            PAGE_REQUEST_COUNT=$((PAGE_REQUEST_COUNT + 1))
+            if [ "${PAGE_REQUEST_COUNT}" -gt "${MAX_PAGE_REQUESTS}" ]; then
+              echo "::error::PR コメントの重複確認が上限回数を超えました。ページネーション処理を確認してください。"
+              exit 1
+            fi
+
             GRAPHQL_ARGS=(
               graphql
               -f query='
@@ -69,7 +77,10 @@ jobs:
             if [ -n "${BEFORE_CURSOR}" ]; then
               GRAPHQL_ARGS+=(-F before="${BEFORE_CURSOR}")
             fi
-            RESPONSE=$(gh api "${GRAPHQL_ARGS[@]}")
+            if ! RESPONSE=$(gh api "${GRAPHQL_ARGS[@]}"); then
+              echo "::error::PR コメント一覧の取得に失敗しました。GitHub API の応答と COPILOT_TOKEN の権限を確認してください。"
+              exit 1
+            fi
 
             EXISTING_COMMENT_ID=$(printf '%s' "${RESPONSE}" \
               | jq -r --arg marker "${MARKER}" '
