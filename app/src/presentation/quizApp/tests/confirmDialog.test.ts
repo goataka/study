@@ -12,6 +12,7 @@ import {
   setupFetchMockWith3Levels,
   mockQuestionFile,
   setupMinimalDom,
+  StubProgressRepository,
 } from "../testHelpers";
 
 describe("QuizApp — 確認ダイアログ仕様", () => {
@@ -81,6 +82,26 @@ describe("QuizApp — 確認ダイアログ仕様", () => {
 
     const msg = document.getElementById("confirmDialogMessage");
     expect(msg?.textContent).toContain("単元選択に戻りますか");
+  });
+
+  it("クイズ途中で戻っても回答済み分の履歴と進捗を保存する", async () => {
+    const repo = new StubProgressRepository();
+    new QuizApp(repo);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("startRandomBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    document.querySelector<HTMLInputElement>('input[name="answer"]')?.click();
+    document.getElementById("titleBtn")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    document.getElementById("confirmDialogOk")?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const history = repo.loadHistory();
+    expect(history.length).toBeGreaterThan(0);
+    expect(history[0]?.entries.length).toBe(1);
+    const stats = repo.loadQuestionStats();
+    expect(Object.values(stats).some((s) => s.total > 0)).toBe(true);
   });
 
   it("確認ダイアログDOM要素がない場合はwindow.confirmにフォールバックする", async () => {

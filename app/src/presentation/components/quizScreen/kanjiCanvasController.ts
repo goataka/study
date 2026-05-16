@@ -126,8 +126,11 @@ export class KanjiCanvasController {
       );
     } else if (correctAnswer !== undefined && isLikelyLatinAnswer(correctAnswer)) {
       // 英語問題ではラテン文字候補のみを表示する。
-      // ラテン文字候補がない場合は空欄とし、非ラテン文字（漢字・かな等）を混在させない。
+      // ラテン文字候補がない場合は正解テキスト由来の英字候補を補完し、非ラテン文字（漢字・かな等）を混在させない。
       candidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
+      if (candidates.length === 0) {
+        candidates = buildLatinCandidatesFromAnswer(correctAnswer);
+      }
     }
 
     candidates = Array.from(new Set(candidates)).slice(0, 5);
@@ -216,4 +219,12 @@ function isLikelyLatinAnswer(answer: string): boolean {
 function isLatinAlphabetCandidate(value: string): boolean {
   if (!isLatinOnly(value)) return false;
   return /^[A-Za-z]+$/.test(value);
+}
+
+function buildLatinCandidatesFromAnswer(answer: string): string[] {
+  const uniqueChars = new Set<string>();
+  for (const char of answer.normalize("NFKC")) {
+    if (/^[A-Za-z]$/.test(char)) uniqueChars.add(char);
+  }
+  return Array.from(uniqueChars);
 }

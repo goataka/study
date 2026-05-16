@@ -102,7 +102,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
     stage && stage > 0
       ? STAGE_BADGE_MAP[stage]
       : isProgressDone
-        ? { emoji: "✅", sizeClass: "text-base", label: "履修済" }
+        ? { emoji: "✔️", sizeClass: "text-base", label: "履修済" }
         : undefined;
 
   return (

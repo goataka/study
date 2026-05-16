@@ -257,7 +257,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(firstTitle?.textContent).toContain("次の単元");
   });
 
-  it("学習状況パネルに今日やった単元リストが表示される", async () => {
+  it("学習状況パネルに取り組み中の単元リストが表示される", async () => {
     const repo = new StubProgressRepository();
     repo.saveHistory([
       {
@@ -276,11 +276,11 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const todayList = document.getElementById("learningStatusTodayUnitsList");
+    const todayList = document.getElementById("learningStatusInProgressUnitsList");
     expect(todayList?.textContent).toContain("フォニックス（1文字）");
   });
 
-  it("今日やった単元リストは manual 記録を含めない", async () => {
+  it("取り組み中の単元リストは manual 記録を含めない", async () => {
     const repo = new StubProgressRepository();
     const today = new Date().toISOString();
     repo.saveHistory([
@@ -312,9 +312,18 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const todayList = document.getElementById("learningStatusTodayUnitsList");
+    const todayList = document.getElementById("learningStatusInProgressUnitsList");
     expect(todayList?.textContent).not.toContain("フォニックス（1文字）");
     expect(todayList?.textContent).toContain("フォニックス（2文字）");
+  });
+
+  it("学習状況パネルに「取り組み中の単元」と「終わった単元」の見出しが表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const panel = document.querySelector(".learning-status-panel");
+    expect(panel?.textContent).toContain("取り組み中の単元");
+    expect(panel?.textContent).toContain("終わった単元");
   });
 
   it("学習状況パネルの次のおすすめは右一覧の先頭おすすめ単元と一致する", async () => {

@@ -72,6 +72,19 @@ describe("CategoryItem (React コンポーネント)", () => {
     expect(badge?.className).toContain("text-lg");
   });
 
+  it("stage 未指定かつ進捗100%の場合は単元名の横に ✔️ を表示する", () => {
+    const el = render({
+      subject: "x",
+      categoryId: "c",
+      categoryName: "n",
+      showReferenceGrade: false,
+      progressFillPercent: 100,
+      progressInProgressPercent: 0,
+    });
+    const badge = el.querySelector(".category-stage-badge");
+    expect(badge?.textContent).toBe("✔️");
+  });
+
   it("description / example があれば右列を描画する", () => {
     const el = render({
       subject: "x",

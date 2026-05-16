@@ -63,6 +63,17 @@ describe("SelectedUnitInfoPanel コンポーネント", () => {
     expect(container.querySelector(".selected-unit-progress-label")?.textContent).toBe("5/10");
   });
 
+  it("stage 未指定かつ全問学習済みの場合は単元名の右に ✔️ を表示する", () => {
+    const container = render({
+      kind: "full",
+      closeAriaLabel: "閉じる",
+      onClose: () => undefined,
+      data: { name: "test", mastered: 5, inProgressCount: 2, total: 5 },
+    });
+    expect(container.querySelector(".selected-unit-stage-badge")?.textContent).toBe("✔️");
+    expect(container.querySelector(".selected-unit-progress-label")?.textContent).toBe("5/5");
+  });
+
   it("description / example / カテゴリパス / 学年がすべて未指定なら該当行を描画しない", () => {
     const container = render({
       kind: "full",

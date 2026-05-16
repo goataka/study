@@ -140,7 +140,7 @@ function CategoryStatusInfoButton(): React.JSX.Element {
   }, [showInfo]);
 
   return (
-    <div ref={containerRef} className="relative shrink-0">
+    <div id="categoryStatusInfo" ref={containerRef} className="relative shrink-0">
       <button
         id={buttonId}
         type="button"
@@ -212,11 +212,7 @@ function AllSubjectPanelInfoButton(): React.JSX.Element {
   }, [showInfo]);
 
   return (
-    <div
-      id="allSubjectPanelInfo"
-      ref={containerRef}
-      className="all-subject-panel-info hidden relative shrink-0 ml-auto"
-    >
+    <div id="allSubjectPanelInfo" ref={containerRef} className="all-subject-panel-info hidden relative shrink-0">
       <button
         id={buttonId}
         type="button"

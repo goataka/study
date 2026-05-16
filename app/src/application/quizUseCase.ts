@@ -179,7 +179,12 @@ export class QuizUseCase {
 
   submitSession(session: QuizSession): AnswerResult[] {
     const results = session.getResults();
+    this.submitAnswerResults(results);
+    return results;
+  }
 
+  /** 回答結果を進捗データに反映して保存する。 */
+  submitAnswerResults(results: AnswerResult[]): void {
     for (const r of results) {
       // 問題ごとの回答統計を更新（全問題対象）
       const stat = this.questionStats[r.question.id] ?? { total: 0, correct: 0 };
@@ -217,7 +222,6 @@ export class QuizUseCase {
     this.progressRepo.saveCorrectStreaks(this.correctStreaks);
     this.progressRepo.saveQuestionStats(this.questionStats);
     this.progressRepo.saveMasteredIds(this.masteredIds);
-    return results;
   }
 
   getMasteredIds(): string[] {
@@ -807,6 +811,14 @@ export class QuizUseCase {
    */
   arePrerequisitesMet(subjectId: string, catId: string): boolean {
     return this._arePrerequisitesMet(subjectId, catId);
+  }
+
+  /** 指定した教科・カテゴリの前提単元名一覧を返す（未設定時は空配列）。 */
+  getCategoryPrerequisiteNames(subjectId: string, catId: string): string[] {
+    const categories = this.getCategoriesForSubject(subjectId);
+    return this.categoryRegistry
+      .getCategoryPrerequisites(subjectId, catId)
+      .map((prereqCatId) => categories[prereqCatId] ?? prereqCatId);
   }
 
   /**

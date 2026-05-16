@@ -63,7 +63,13 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
 
   return (
     <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px] pl-[5px]">
-      <HeaderRow name={data.name} description={data.description} stage={data.stage} />
+      <HeaderRow
+        name={data.name}
+        description={data.description}
+        stage={data.stage}
+        mastered={data.mastered}
+        total={data.total}
+      />
       {showDescRow && <DescRow catParts={catParts} grade={data.grade} example={data.example} />}
       <ProgressRow mastered={data.mastered} inProgressCount={data.inProgressCount} total={data.total} />
     </div>
@@ -112,11 +118,16 @@ function HeaderRow({
   name,
   description,
   stage,
+  mastered,
+  total,
 }: {
   name: string;
   description?: string;
   stage?: CategoryStage;
+  mastered: number;
+  total: number;
 }): React.JSX.Element {
+  const showCompletedBadge = stage === undefined && total > 0 && mastered >= total;
   return (
     <div className="selected-unit-info-header-row flex items-start justify-between gap-2 min-w-0">
       <div className="selected-unit-info-header-left flex-1 min-w-0 flex items-baseline gap-1">
@@ -129,6 +140,11 @@ function HeaderRow({
             aria-label={CATEGORY_STAGE_LABEL[stage as Exclude<CategoryStage, 0>]}
           >
             {CATEGORY_STAGE_EMOJI[stage as Exclude<CategoryStage, 0>]}
+          </span>
+        )}
+        {showCompletedBadge && (
+          <span className="selected-unit-stage-badge shrink-0 leading-none text-base" aria-label="履修済">
+            ✔️
           </span>
         )}
       </div>
@@ -196,8 +212,10 @@ function ProgressRow({
   inProgressCount: number;
   total: number;
 }): React.JSX.Element {
-  const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, inProgressCount, total);
-  const label = inProgressCount > 0 ? `${mastered}(${inProgressCount})/${total}` : `${mastered}/${total}`;
+  const effectiveInProgressCount = mastered >= total && total > 0 ? 0 : inProgressCount;
+  const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, effectiveInProgressCount, total);
+  const label =
+    effectiveInProgressCount > 0 ? `${mastered}(${effectiveInProgressCount})/${total}` : `${mastered}/${total}`;
   return (
     <div className="selected-unit-progress-row flex items-center gap-2 mt-1 w-full">
       <div className="selected-unit-progress-bar flex-1 h-1.5 bg-[#e1e4e8] rounded-[3px] overflow-hidden flex">

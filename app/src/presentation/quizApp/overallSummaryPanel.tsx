@@ -156,13 +156,14 @@ export function renderLearningStatusStars(useCase: QuizUseCase, goalCount: numbe
     useCase.getRecommendedUnitsGlobal(goalCount, Math.max(2, Math.ceil(goalCount / 2))),
   );
   const firstRecommendedTitle = buildFirstRecommendedTitle(firstRecommended, useCase);
-  const todayLearnedUnits = buildTodayLearnedUnits(useCase.getHistory(), selectedActivityDate, useCase);
+  const todayLearningStatusUnits = buildTodayLearnedUnits(useCase.getHistory(), selectedActivityDate, useCase);
   learningStatusContentStore.set(
     <LearningStatusPanel
       goalCount={goalCount}
       completedToday={completedToday}
       firstRecommendedTitle={firstRecommendedTitle}
-      todayLearnedUnits={todayLearnedUnits}
+      inProgressUnits={todayLearningStatusUnits.inProgressUnits}
+      completedUnits={todayLearningStatusUnits.completedUnits}
     />,
   );
 }
@@ -182,6 +183,11 @@ interface TodayLearnedUnitItem {
   subject: string;
   categoryId: string;
   categoryName: string;
+}
+
+interface TodayLearningStatusUnits {
+  inProgressUnits: TodayLearnedUnitItem[];
+  completedUnits: TodayLearnedUnitItem[];
 }
 
 /** おすすめ先頭単元のタイトル情報を組み立てる（教科絵文字 + 教科名 + トップ/親カテゴリ + 単元名）。 */
@@ -208,7 +214,7 @@ function buildTodayLearnedUnits(
   records: QuizRecord[],
   selectedActivityDate: string,
   useCase: QuizUseCase,
-): TodayLearnedUnitItem[] {
+): TodayLearningStatusUnits {
   const selectedDateRecords = filterRecordsBySelectedDate(records, selectedActivityDate);
   const items: TodayLearnedUnitItem[] = [];
   const seen = new Set<string>();
@@ -231,7 +237,14 @@ function buildTodayLearnedUnits(
       categoryName: record.categoryName,
     });
   }
-  return items;
+  const inProgressUnits: TodayLearnedUnitItem[] = [];
+  const completedUnits: TodayLearnedUnitItem[] = [];
+  for (const item of items) {
+    const { mastered, total } = useCase.getMasteredCountForCategory(item.subject, item.categoryId);
+    if (total > 0 && mastered >= total) completedUnits.push(item);
+    else inProgressUnits.push(item);
+  }
+  return { inProgressUnits, completedUnits };
 }
 
 // ─── 星表示コンポーネント ──────────────────────────────────────────────────
@@ -260,12 +273,14 @@ function LearningStatusPanel({
   goalCount,
   completedToday,
   firstRecommendedTitle,
-  todayLearnedUnits,
+  inProgressUnits,
+  completedUnits,
 }: {
   goalCount: number;
   completedToday: number;
   firstRecommendedTitle: FirstRecommendedTitle | null;
-  todayLearnedUnits: TodayLearnedUnitItem[];
+  inProgressUnits: TodayLearnedUnitItem[];
+  completedUnits: TodayLearnedUnitItem[];
 }): React.JSX.Element {
   const allItems = buildStarItems(goalCount, completedToday);
   const MAX_ITEMS = 10;
@@ -331,41 +346,60 @@ function LearningStatusPanel({
         スタート
       </button>
       <div className="flex-1 overflow-hidden">
-        <div className="text-center text-sm font-semibold text-[#586069]">今日やった単元</div>
+        <div className="text-center text-sm font-semibold text-[#586069]">取り組み中の単元</div>
+        <div
+          id="learningStatusInProgressUnitsList"
+          className="mt-1 max-h-28 overflow-y-auto rounded-md border border-[#e1e4e8] bg-white px-2 py-1.5 text-center"
+        >
+          {inProgressUnits.length === 0 ? (
+            <div className="text-sm text-[#8c959f]">まだありません</div>
+          ) : (
+            <ul className="m-0 list-none p-0">
+              {inProgressUnits.map((unit) => (
+                <LearningStatusUnitListItem key={unit.id} unit={unit} />
+              ))}
+            </ul>
+          )}
+        </div>
+        <div className="mt-2 text-center text-sm font-semibold text-[#586069]">終わった単元</div>
         <div
           id="learningStatusTodayUnitsList"
           className="mt-1 max-h-28 overflow-y-auto rounded-md border border-[#e1e4e8] bg-white px-2 py-1.5 text-center"
         >
-          {todayLearnedUnits.length === 0 ? (
+          {completedUnits.length === 0 ? (
             <div className="text-sm text-[#8c959f]">まだありません</div>
           ) : (
             <ul className="m-0 list-none p-0">
-              {todayLearnedUnits.map((unit) => {
-                const [subjectLabel, ...rest] = unit.title.split("：");
-                const categoryLabel = rest.join("：");
-                return (
-                  <li key={unit.id} className="py-0.5 text-center text-sm">
-                    <button
-                      type="button"
-                      className="inline-flex items-center gap-1 bg-transparent border-none p-0 cursor-pointer text-[#24292e] hover:text-[#0366d6] hover:underline text-sm"
-                      onClick={() => triggerSelectUnit(unit.subject, unit.categoryId, unit.categoryName)}
-                    >
-                      <span className="text-[#586069]">{subjectLabel}</span>
-                      <span>：</span>
-                      <strong className="font-bold">{categoryLabel}</strong>
-                      {unit.stage > 0 && (
-                        <span className="leading-none" aria-hidden="true">
-                          {CATEGORY_STAGE_EMOJI[unit.stage as Exclude<CategoryStage, 0>]}
-                        </span>
-                      )}
-                    </button>
-                  </li>
-                );
-              })}
+              {completedUnits.map((unit) => (
+                <LearningStatusUnitListItem key={unit.id} unit={unit} />
+              ))}
             </ul>
           )}
         </div>
       </div>
     </div>
+  );
+}
+
+function LearningStatusUnitListItem({ unit }: { unit: TodayLearnedUnitItem }): React.JSX.Element {
+  const [subjectLabel, ...rest] = unit.title.split("：");
+  const categoryLabel = rest.join("：");
+  return (
+    <li className="py-0.5 text-center text-sm">
+      <button
+        type="button"
+        className="inline-flex items-center gap-1 bg-transparent border-none p-0 cursor-pointer text-[#24292e] hover:text-[#0366d6] hover:underline text-sm"
+        onClick={() => triggerSelectUnit(unit.subject, unit.categoryId, unit.categoryName)}
+      >
+        <span className="text-[#586069]">{subjectLabel}</span>
+        <span>：</span>
+        <strong className="font-bold">{categoryLabel}</strong>
+        {unit.stage > 0 && (
+          <span className="leading-none" aria-hidden="true">
+            {CATEGORY_STAGE_EMOJI[unit.stage as Exclude<CategoryStage, 0>]}
+          </span>
+        )}
+      </button>
+    </li>
   );
 }
