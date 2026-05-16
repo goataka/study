@@ -8,7 +8,7 @@
  * 公開 API（`renderAllSubjectList(params)`）と DOM の class 構造は既存実装と互換。
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import type { QuizUseCase, GlobalRecommendedUnit } from "../../application/quizUseCase";
 import type { CategoryStage } from "../../application/ports";
 import { calcDualProgressPct, gradeColorClass, SUBJECTS } from "../uiHelpers";
@@ -140,59 +140,8 @@ function GlobalCountHeaderRow({
   currentCount: number;
   onCountChange: (n: number) => void;
 }): React.JSX.Element {
-  const [showInfo, setShowInfo] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const infoConditions = [
-    "未学習の単元を優先して表示",
-    "学習済（📝）は7日後、復習済（📜）は14日後に復習対象として表示",
-    "修了済（🎓）は除外",
-    "国語 → 数学 → 英語の順で優先",
-  ];
-
-  useEffect(() => {
-    if (!showInfo) return;
-    const handleClickOutside = (e: MouseEvent): void => {
-      if (containerRef.current && e.target instanceof Node && !containerRef.current.contains(e.target)) {
-        setShowInfo(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [showInfo]);
-
-  const infoButtonId = "global-count-info-btn";
-
   return (
     <div className="global-count-header-row flex items-center gap-[5px] pt-1 px-1 pb-0.5 pl-0.5">
-      <div ref={containerRef} className="relative flex items-center gap-1">
-        <span className="global-count-title text-xs font-semibold text-[#24292e]">今日の単元</span>
-        <button
-          id={infoButtonId}
-          type="button"
-          className="global-count-info-btn text-[11px] text-[#586069] cursor-pointer bg-transparent border-none p-0 leading-none hover:text-[#0366d6]"
-          aria-label="抽出条件を表示"
-          aria-expanded={showInfo}
-          onClick={() => setShowInfo((v) => !v)}
-        >
-          ℹ️
-        </button>
-        {showInfo && (
-          <div
-            className="absolute left-0 top-full z-10 mt-1 w-64 rounded-md border border-[#e1e4e8] bg-white p-3 shadow-md text-sm text-[#24292e]"
-            role="region"
-            aria-labelledby={infoButtonId}
-          >
-            <ul className="m-0 list-disc pl-4 space-y-1">
-              {infoConditions.map((cond, i) => (
-                <li key={i} className="text-[13px] leading-snug text-[#24292e]">
-                  {cond}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
       <div className="global-count-controls flex items-center gap-0.5 ml-auto">
         <span className="global-count-label-small text-[11px] text-[#586069] mr-0.5">目標数:</span>
         {GLOBAL_RECOMMENDED_COUNT_OPTIONS.map((n) => {

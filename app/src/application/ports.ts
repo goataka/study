@@ -44,7 +44,7 @@ export interface QuizSettings {
   includeMastered: boolean;
 }
 
-/** 単元の学習ステージ (0=未学習, 1=学習済, 2=復習済, 3=修了済) */
+/** 単元の学習ステージ (0=未学習, 1=学習済, 2=復習済, 3=検定済) */
 export type CategoryStage = 0 | 1 | 2 | 3;
 
 /** 単元ごとのステージ記録 */

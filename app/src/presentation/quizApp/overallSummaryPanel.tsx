@@ -11,7 +11,8 @@
  */
 
 import type { QuizRecord, QuizUseCase } from "../../application/quizUseCase";
-import { SUBJECTS } from "../uiHelpers";
+import type { CategoryStage } from "../../application/ports";
+import { SUBJECTS, CATEGORY_STAGE_EMOJI } from "../uiHelpers";
 import { filterRecordsBySelectedDate } from "../shareSummary";
 import { setActiveOverallPanel } from "../components/startScreen/panelTabsStore";
 import { HistoryList } from "./HistoryList";
@@ -176,6 +177,7 @@ interface FirstRecommendedTitle {
 interface TodayLearnedUnitItem {
   id: string;
   title: string;
+  stage: CategoryStage;
 }
 
 /** おすすめ先頭単元のタイトル情報を組み立てる（教科絵文字 + 教科名 + トップ/親カテゴリ + 単元名）。 */
@@ -215,9 +217,11 @@ function buildTodayLearnedUnits(
     const subjectLabel = subject ? `${subject.icon} ${subject.name}` : record.subjectName;
     const parentCat = useCase.getParentCategoryForUnit(record.subject, record.category);
     const categoryPath = parentCat ? `${parentCat.name} › ${record.categoryName}` : record.categoryName;
+    const { stage } = useCase.getCategoryStage(record.subject, record.category);
     items.push({
       id,
       title: `${subjectLabel}：${categoryPath}`,
+      stage,
     });
   }
   return items;
@@ -263,7 +267,7 @@ function LearningStatusPanel({
 
   return (
     <div className="learning-status-panel flex h-full flex-col px-4 py-3">
-      <div className="flex flex-1 flex-col justify-center gap-2">
+      <div className="flex flex-col justify-center gap-2">
         <span id="learningStatusCount" className="text-base font-semibold text-[#24292e] text-center">
           学習数 {Math.min(completedToday, goalCount)}/{goalCount}
         </span>
@@ -282,9 +286,9 @@ function LearningStatusPanel({
           </div>
         </div>
         {firstRecommendedTitle && (
-          <div id="learningStatusFirstTitle" className="mt-1 text-center text-base leading-snug text-[#586069]">
-            <div className="font-bold">次の単元</div>
-            <div className="mt-1 flex flex-wrap items-center justify-center gap-1 text-sm">
+          <div id="learningStatusFirstTitle" className="mt-1 text-center leading-snug text-[#586069]">
+            <div className="text-sm font-bold">次の単元</div>
+            <div className="mt-0.5 flex flex-wrap items-center justify-center gap-1 text-base">
               <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.subjectLabel}</strong>
               {(firstRecommendedTitle.topCatName || firstRecommendedTitle.parentCatName) && (
                 <>
@@ -304,10 +308,9 @@ function LearningStatusPanel({
                   )}
                 </>
               )}
-              <span className="text-[#586069]" aria-hidden="true">
-                ›
-              </span>
-              <strong className="font-extrabold text-[#24292e]">{firstRecommendedTitle.categoryName}</strong>
+            </div>
+            <div className="mt-0.5 text-2xl font-extrabold text-[#24292e] leading-tight">
+              {firstRecommendedTitle.categoryName}
             </div>
           </div>
         )}
@@ -315,7 +318,7 @@ function LearningStatusPanel({
       <button
         id="learningStatusStartBtn"
         type="button"
-        className="learning-status-start-btn my-2 w-full rounded-lg border-none bg-[#0366d6] px-4 py-2.5 text-base font-bold text-white shadow-sm transition-[background-color] duration-150 cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0]"
+        className="learning-status-start-btn mt-1 mb-2 w-full rounded-lg border-none bg-[#0366d6] px-4 py-2.5 text-base font-bold text-white shadow-sm transition-[background-color] duration-150 cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0]"
         onClick={triggerStartQuiz}
       >
         スタート
@@ -333,6 +336,11 @@ function LearningStatusPanel({
               {todayLearnedUnits.map((unit) => (
                 <li key={unit.id} className="py-0.5 text-center text-sm text-[#24292e]">
                   {unit.title}
+                  {unit.stage > 0 && (
+                    <span className="ml-1 leading-none" aria-hidden="true">
+                      {CATEGORY_STAGE_EMOJI[unit.stage as Exclude<CategoryStage, 0>]}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>

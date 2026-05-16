@@ -323,7 +323,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     const firstTitle = document.getElementById("learningStatusFirstTitle");
     const firstRecommendedName = document.querySelector(".subject-overview-rec-name");
-    expect(firstTitle?.textContent).toContain("›");
+    // 単元名が「次の単元」タイトルに含まれること（単元名は改行して別行に表示）
     expect(firstTitle?.textContent).toContain(firstRecommendedName?.textContent ?? "");
   });
 

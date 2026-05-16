@@ -45,7 +45,7 @@ describe("QuizUseCase — advanceCategoryStage 仕様", () => {
     expect(useCase.getCategoryStage("english", "phonics-1").stage).toBe(3);
   });
 
-  it("ステージが 3（修了済）の場合は no-op", () => {
+  it("ステージが 3（検定済）の場合は no-op", () => {
     for (let i = 0; i < 4; i++) useCase.advanceCategoryStage("english", "phonics-1");
     expect(useCase.getCategoryStage("english", "phonics-1").stage).toBe(3);
   });
@@ -165,7 +165,7 @@ describe("QuizUseCase — getRecommendedUnitsGlobal 仕様", () => {
     return { useCase };
   };
 
-  it("修了済（stage=3）の単元は除外される", async () => {
+  it("検定済（stage=3）の単元は除外される", async () => {
     const questions = [makeQuestion("q1", "english", "phonics-1"), makeQuestion("q2", "english", "phonics-2")];
     const { useCase } = await makeUnits(questions, { "english::phonics-1": 3 });
 

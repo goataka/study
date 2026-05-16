@@ -9,7 +9,8 @@
  */
 
 import * as React from "react";
-import { gradeColorClass, calcDualProgressPct, parseBacktickText } from "../../uiHelpers";
+import type { CategoryStage } from "../../../application/ports";
+import { gradeColorClass, calcDualProgressPct, parseBacktickText, CATEGORY_STAGE_EMOJI } from "../../uiHelpers";
 
 /** 単元詳細表示に必要なデータ（`buildSelectedUnitInfoBody` と同型）。 */
 export interface SelectedUnitInfoData {
@@ -31,6 +32,8 @@ export interface SelectedUnitInfoData {
   inProgressCount: number;
   /** 単元内の総問題数 */
   total: number;
+  /** 学習ステージ（0=未学習, 1=学習済, 2=復習済, 3=検定済） */
+  stage?: CategoryStage;
 }
 
 /** パネルの表示種別。 */
@@ -60,7 +63,7 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
 
   return (
     <div className="selected-unit-info-body flex-1 min-w-0 flex flex-col gap-[3px] pl-[5px]">
-      <HeaderRow name={data.name} description={data.description} />
+      <HeaderRow name={data.name} description={data.description} stage={data.stage} />
       {showDescRow && <DescRow catParts={catParts} grade={data.grade} example={data.example} />}
       <ProgressRow mastered={data.mastered} inProgressCount={data.inProgressCount} total={data.total} />
     </div>
@@ -99,13 +102,35 @@ export function SelectedUnitCloseButton({
   );
 }
 
-function HeaderRow({ name, description }: { name: string; description?: string }): React.JSX.Element {
+const CATEGORY_STAGE_LABEL: Readonly<Record<Exclude<CategoryStage, 0>, string>> = {
+  1: "学習済ステージ",
+  2: "復習済ステージ",
+  3: "検定済ステージ",
+} as const;
+
+function HeaderRow({
+  name,
+  description,
+  stage,
+}: {
+  name: string;
+  description?: string;
+  stage?: CategoryStage;
+}): React.JSX.Element {
   return (
     <div className="selected-unit-info-header-row flex items-start justify-between gap-2 min-w-0">
-      <div className="selected-unit-info-header-left flex-1 min-w-0">
+      <div className="selected-unit-info-header-left flex-1 min-w-0 flex items-baseline gap-1">
         <span className="selected-unit-info-name text-base font-bold text-[#0366d6] whitespace-nowrap overflow-hidden text-ellipsis">
           {name}
         </span>
+        {stage !== undefined && stage > 0 && (
+          <span
+            className="selected-unit-stage-badge shrink-0 leading-none text-base"
+            aria-label={CATEGORY_STAGE_LABEL[stage as Exclude<CategoryStage, 0>]}
+          >
+            {CATEGORY_STAGE_EMOJI[stage as Exclude<CategoryStage, 0>]}
+          </span>
+        )}
       </div>
       {description !== undefined && (
         <div className="selected-unit-info-header-right shrink-0 text-right">

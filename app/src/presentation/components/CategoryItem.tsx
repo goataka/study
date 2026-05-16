@@ -11,7 +11,7 @@
 
 import * as React from "react";
 import type { CategoryStage } from "../../application/ports";
-import { gradeColorClass, parseBacktickText } from "../uiHelpers";
+import { gradeColorClass, parseBacktickText, CATEGORY_STAGE_EMOJI } from "../uiHelpers";
 
 export interface CategoryItemProps {
   subject: string;
@@ -28,7 +28,7 @@ export interface CategoryItemProps {
   example?: string;
   /** ステータスアイコン文字（デフォルト ⬜）。 */
   statusIcon?: string;
-  /** 学習ステージ（0=未学習, 1=学習済, 2=復習済, 3=修了済）。 */
+  /** 学習ステージ（0=未学習, 1=学習済, 2=復習済, 3=検定済）。 */
   stage?: CategoryStage;
   /** 学習状態クラス（learned / studying / unlearned）。 */
   statusKind?: "learned" | "studying" | "unlearned";
@@ -57,9 +57,9 @@ function backtickSegments(text: string): React.ReactNode[] {
 const STAGE_BADGE_MAP: Readonly<
   Record<Exclude<CategoryStage, 0>, { emoji: string; sizeClass: string; label: string }>
 > = {
-  1: { emoji: "📝", sizeClass: "text-base", label: "学習済ステージ" },
-  2: { emoji: "📜", sizeClass: "text-lg", label: "復習済ステージ" },
-  3: { emoji: "🎓", sizeClass: "text-xl", label: "修了済ステージ" },
+  1: { emoji: CATEGORY_STAGE_EMOJI[1], sizeClass: "text-base", label: "学習済ステージ" },
+  2: { emoji: CATEGORY_STAGE_EMOJI[2], sizeClass: "text-lg", label: "復習済ステージ" },
+  3: { emoji: CATEGORY_STAGE_EMOJI[3], sizeClass: "text-xl", label: "検定済ステージ" },
 } as const;
 
 export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
