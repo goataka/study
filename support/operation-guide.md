@@ -8,11 +8,13 @@ permalink: /operation-guide/
 
 ## スクリーンショット
 
-![学習アプリの画面イメージ]({{ '/images/quiz-app-screenshot.png' | relative_url }})
+![学習アプリの画面イメージ（スタート画面）]({{ '/images/operation-start-screen.png' | relative_url }})
 
 ## ヘッダー
 
 画面上部に常時表示されるバーです。
+
+![ヘッダーのスクリーンショット]({{ '/images/operation-header.png' | relative_url }})
 
 | パーツ | 説明 |
 |--------|------|
@@ -25,6 +27,8 @@ permalink: /operation-guide/
 ## スタート画面
 
 アプリを開いたときに最初に表示される画面です。
+
+![スタート画面のスクリーンショット]({{ '/images/operation-start-screen.png' | relative_url }})
 
 ### 教科タブ
 
@@ -118,6 +122,8 @@ permalink: /operation-guide/
 
 クイズ開始後に表示される画面です。
 
+![問題画面のスクリーンショット]({{ '/images/operation-quiz-screen.png' | relative_url }})
+
 ### 問題エリア（左側）
 
 | パーツ | 説明 |
@@ -167,6 +173,8 @@ permalink: /operation-guide/
 
 全問回答・採点後に表示される画面です。
 
+![結果画面のスクリーンショット]({{ '/images/operation-result-screen.png' | relative_url }})
+
 | パーツ | 説明 |
 |--------|------|
 | クイズ結果 | 正解数（例：8/10問正解）を表示する |
@@ -179,6 +187,8 @@ permalink: /operation-guide/
 
 教科タブで「📈 進度」を選択すると表示されます。左列の教科をクリックして教科ごとの進度を確認できます。
 
+![進度タブのスクリーンショット]({{ '/images/operation-progress-tab.png' | relative_url }})
+
 | パーツ | 説明 |
 |--------|------|
 | 教科リスト | 英語・数学・国語から表示対象の教科を切り替える |
@@ -190,6 +200,8 @@ permalink: /operation-guide/
 
 教科タブで「🚀 ガイド」を選択すると表示されます。左列のメニューから以下を選べます。
 
+![ガイドタブのスクリーンショット]({{ '/images/operation-guide-tab.png' | relative_url }})
+
 | メニュー | 説明 |
 |----------|------|
 | 🏠 はじめに | アプリの概要とサポート情報を表示する |
@@ -199,6 +211,8 @@ permalink: /operation-guide/
 ## 管理タブ
 
 教科タブで「⚙️ 管理」を選択すると表示されます。学習データの管理ができます。
+
+![管理タブのスクリーンショット]({{ '/images/operation-admin-tab.png' | relative_url }})
 
 ### 左メニュー
 
