@@ -31,7 +31,7 @@ jobs:
           set -euo pipefail
 
           if [ -z "${GH_TOKEN:-}" ]; then
-            echo "::error::COPILOT_TOKEN が設定されていません"
+            echo "::error::COPILOT_TOKEN が設定されていません。リポジトリの Secrets に COPILOT_TOKEN を設定してください。"
             exit 1
           fi
 
@@ -42,7 +42,8 @@ jobs:
           EXISTING_COMMENT_ID=""
 
           while [ -z "${EXISTING_COMMENT_ID}" ]; do
-            RESPONSE=$(gh api graphql \
+            GRAPHQL_ARGS=(
+              graphql
               -f query='
                 query($owner: String!, $repo: String!, $prNumber: Int!, $before: String) {
                   repository(owner: $owner, name: $repo) {
@@ -60,11 +61,15 @@ jobs:
                     }
                   }
                 }
-              ' \
-              -F owner="${OWNER}" \
-              -F repo="${REPO}" \
-              -F prNumber="${PR_NUMBER}" \
-              -F before="${BEFORE_CURSOR}")
+              '
+              -F owner="${OWNER}"
+              -F repo="${REPO}"
+              -F prNumber="${PR_NUMBER}"
+            )
+            if [ -n "${BEFORE_CURSOR}" ]; then
+              GRAPHQL_ARGS+=(-F before="${BEFORE_CURSOR}")
+            fi
+            RESPONSE=$(gh api "${GRAPHQL_ARGS[@]}")
 
             EXISTING_COMMENT_ID=$(printf '%s' "${RESPONSE}" \
               | jq -r --arg marker "${MARKER}" '
@@ -84,9 +89,6 @@ jobs:
             fi
 
             BEFORE_CURSOR=$(printf '%s' "${RESPONSE}" | jq -r '.data.repository.pullRequest.comments.pageInfo.startCursor // empty')
-            if [ -z "${BEFORE_CURSOR}" ]; then
-              break
-            fi
           done
 
           if [ -n "${EXISTING_COMMENT_ID}" ]; then
