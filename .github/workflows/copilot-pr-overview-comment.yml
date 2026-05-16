@@ -26,6 +26,7 @@ jobs:
       - name: Copilotへレビュー対応を依頼
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         with:
+          # COPILOT_TOKEN は最小権限（Issues/Pull requests: write）のトークンを使用すること
           github-token: ${{ secrets.COPILOT_TOKEN }}
           script: |
             const { owner, repo } = context.repo;
