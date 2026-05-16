@@ -1,0 +1,66 @@
+name: リリースPR作成
+
+# release ブランチから main ブランチへのリリース用PRを作成する
+# 手動トリガーで実行し、既存のオープンPRがあれば再作成しない
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  create-pr:
+    name: リリースPR作成（release → main）
+    runs-on: ubuntu-latest
+    steps:
+      - name: 実行ブランチを検証
+        run: |
+          if [ "${GITHUB_REF_NAME}" != "release" ]; then
+            echo "このワークフローは release ブランチから実行してください。"
+            exit 1
+          fi
+
+      - name: コードのチェックアウト
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: リリースPRを作成
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          # 既存のオープンPRを確認
+          EXISTING_PR=$(gh pr list \
+            --base main \
+            --head release \
+            --state open \
+            --json number \
+            --jq '.[0].number // empty')
+
+          if [ -n "${EXISTING_PR}" ]; then
+            echo "::notice::既存のリリースPR #${EXISTING_PR} があるため、新規作成をスキップします。"
+            echo "PR URL: $(gh pr view "${EXISTING_PR}" --json url --jq '.url')"
+            exit 0
+          fi
+
+          # PRの本文を生成（release..main のコミットログを使用）
+          TODAY="$(date -u '+%Y-%m-%d')"
+          PR_TITLE="リリース: ${TODAY}"
+
+          # PRを作成
+          PR_URL=$(gh pr create \
+            --base main \
+            --head release \
+            --title "${PR_TITLE}" \
+            --body "## リリース内容
+
+release ブランチの変更を main ブランチにマージするリリースPRです。
+
+> [!NOTE]
+> このPRは \`main\` ブランチをベースとするため、CI（\`ci.yml\`）の \`pull_request\` トリガー対象外です（\`pull_request.branches: [release]\`）。
+> \`release\` ブランチへのマージ時に CI が実行済みのため、マージ後の CI（push to main）でのみ最終検証されます。
+")
+
+          echo "::notice::リリースPR を作成しました: ${PR_URL}"
