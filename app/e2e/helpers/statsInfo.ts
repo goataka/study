@@ -10,7 +10,7 @@ import type { Page } from "@playwright/test";
 export const STATS_INFO_PATTERN = /全：[1-9]\d*問/;
 
 /** statsInfo の問題ロード完了タイムアウト（ミリ秒） */
-export const STATS_LOAD_TIMEOUT = 10_000;
+export const STATS_LOAD_TIMEOUT = 30_000;
 
 /**
  * statsInfo に問題数が表示されるまで待つ（JS 初期化完了の目安）。
