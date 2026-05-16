@@ -11,7 +11,7 @@ jobs:
     if: >-
       github.event.issue.pull_request != null &&
       github.event.comment.user.type == 'User' &&
-      !contains(github.event.comment.body, '<!-- auto-copilot-pr-overview-comment:')
+      !contains(github.event.comment.body, format('<!-- auto-copilot-pr-overview-comment:{0} -->', github.event.comment.id))
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -35,9 +35,33 @@ jobs:
             exit 1
           fi
 
+          OWNER="${GH_REPO%%/*}"
+          REPO="${GH_REPO#*/}"
           MARKER="<!-- auto-copilot-pr-overview-comment:${COMMENT_ID} -->"
-          EXISTING_COMMENT_ID=$(gh api "repos/${GH_REPO}/issues/${PR_NUMBER}/comments" --paginate \
-            | jq -r --arg marker "${MARKER}" 'map(select(.body | contains($marker)))[0].id // empty')
+          EXISTING_COMMENT_ID=$(gh api graphql \
+            -f query='
+              query($owner: String!, $repo: String!, $prNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  pullRequest(number: $prNumber) {
+                    comments(last: 50) {
+                      nodes {
+                        databaseId
+                        body
+                      }
+                    }
+                  }
+                }
+              }
+            ' \
+            -F owner="${OWNER}" \
+            -F repo="${REPO}" \
+            -F prNumber="${PR_NUMBER}" \
+            | jq -r --arg marker "${MARKER}" '
+              .data.repository.pullRequest.comments.nodes[]
+              | select(.body | contains($marker))
+              | .databaseId
+            ' \
+            | head -1)
 
           if [ -n "${EXISTING_COMMENT_ID}" ]; then
             echo "::notice::同じ PR overview コメントに対する Copilot 依頼コメントは既に投稿済みです (${EXISTING_COMMENT_ID})"
@@ -47,7 +71,7 @@ jobs:
           BODY_FILE=$(mktemp)
           {
             echo "${MARKER}"
-            echo "@copilot 以下の Pull request overview コメントの内容を確認し、必要な対応を実施してください。"
+            echo "@copilot 以下の Pull request overview コメントの内容を確認し、必要に応じて修正・追加実装・質問への回答を行ってください。"
             echo
             echo "- 対象PR: #${PR_NUMBER}"
             echo "- 元コメント投稿者: @${COMMENT_AUTHOR}"
