@@ -11,7 +11,7 @@ jobs:
     if: >-
       github.event.issue.pull_request != null &&
       github.event.comment.user.type == 'User' &&
-      !contains(github.event.comment.body, '@copilot')
+      !contains(github.event.comment.body, '<!-- auto-copilot-pr-overview-comment:')
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -47,7 +47,7 @@ jobs:
           BODY_FILE=$(mktemp)
           {
             echo "${MARKER}"
-            echo "@copilot Pull request overview にコメントが追加されました。内容を確認して対応してください。"
+            echo "@copilot 以下の Pull request overview コメントの内容を確認し、必要な対応を実施してください。"
             echo
             echo "- 対象PR: #${PR_NUMBER}"
             echo "- 元コメント投稿者: @${COMMENT_AUTHOR}"

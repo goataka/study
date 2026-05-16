@@ -104,7 +104,7 @@
 - 解決済みのレビュー指摘（review comment / conversation）はクローズすること
 - レビュー対応時は PR の概要（Description）を更新しないこと
 - 補足が必要な場合は PR コメントで追記すること
-- Pull request overview のコメントは、自動で `@copilot` に転送される運用とすること（自動化済み）
+- Pull request overview に投稿されたコメント（Bot 以外）は、自動で `@copilot` に転送される運用とすること（自動化済み）
 
 ## 共通ルール
 
