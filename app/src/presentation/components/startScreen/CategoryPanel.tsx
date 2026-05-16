@@ -5,7 +5,7 @@
  * カテゴリリスト本体（動的描画）を含む。
  */
 
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore, useState, useEffect, useRef } from "react";
 import { statusFilterButton } from "../../styles/categoryControlButtonStyles";
 import { categoryControlsContentStore } from "../categoryControlsContentStore";
 import { categoryListContentStore } from "../categoryListContentStore";
@@ -60,14 +60,7 @@ export function CategoryPanel(): React.JSX.Element {
         >
           📚 今日の単元
         </span>
-        <span
-          id="allSubjectPanelInfo"
-          className="all-subject-panel-info hidden shrink-0 max-w-[34rem] text-[11px] leading-tight text-[#586069] text-center sm:text-right"
-          title="未学習を優先し、復習対象は学習済7日後・復習済14日後から抽出します。修了済は除外し、国語→数学→英語を優先して並べます。"
-          aria-label="今日の単元の抽出条件"
-        >
-          ℹ️ 未学習を優先し、復習対象は学習済7日後・復習済14日後から抽出。修了済は除外し、国語→数学→英語を優先。
-        </span>
+        <AllSubjectPanelInfoButton />
       </div>
       <div id="overallDateNav" className="activity-date-nav hidden items-center gap-1.5 shrink-0 px-2 py-1.5">
         <span id="activityDateDisplay" className="activity-date-display text-[13px] text-[#586069] font-medium"></span>
@@ -118,4 +111,59 @@ function CategoryListSection(): React.JSX.Element {
     categoryListContentStore.get,
   );
   return <>{node}</>;
+}
+
+/** 今日の単元の抽出条件を吹き出しで説明する ℹ️ ボタン（総合タブ時のみ表示）。 */
+function AllSubjectPanelInfoButton(): React.JSX.Element {
+  const [showInfo, setShowInfo] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonId = "allSubjectPanelInfoBtn";
+
+  const infoConditions = [
+    "未学習の単元を優先して表示",
+    "学習済（📝）は7日後、復習済（📜）は14日後に復習対象として表示",
+    "検定済（🎓）は除外",
+    "国語 → 数学 → 英語の順で優先",
+  ];
+
+  useEffect(() => {
+    if (!showInfo) return;
+    const handleClickOutside = (e: MouseEvent): void => {
+      if (containerRef.current && e.target instanceof Node && !containerRef.current.contains(e.target)) {
+        setShowInfo(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showInfo]);
+
+  return (
+    <div id="allSubjectPanelInfo" ref={containerRef} className="all-subject-panel-info hidden relative shrink-0">
+      <button
+        id={buttonId}
+        type="button"
+        className="text-base text-[#586069] cursor-pointer bg-transparent border-none p-0 leading-none hover:text-[#0366d6]"
+        aria-label="抽出条件を表示"
+        aria-expanded={showInfo}
+        onClick={() => setShowInfo((v) => !v)}
+      >
+        ℹ️
+      </button>
+      {showInfo && (
+        <div
+          className="absolute left-0 top-full z-10 mt-1 w-72 rounded-md border border-[#e1e4e8] bg-white p-3 shadow-md text-[#24292e]"
+          role="region"
+          aria-labelledby={buttonId}
+        >
+          <ul className="m-0 list-disc pl-4 space-y-1">
+            {infoConditions.map((cond, i) => (
+              <li key={i} className="text-base leading-snug text-[#24292e]">
+                {cond}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }

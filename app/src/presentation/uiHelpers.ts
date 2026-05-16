@@ -9,6 +9,15 @@
  * - ここに置くのは「複数の presentation モジュールから利用される、副作用のない関数」のみ。
  */
 
+import type { CategoryStage } from "../application/ports";
+
+/** 学習ステージ（1=学習済, 2=復習済, 3=検定済）に対応する絵文字マップ。 */
+export const CATEGORY_STAGE_EMOJI: Readonly<Record<Exclude<CategoryStage, 0>, string>> = {
+  1: "📝",
+  2: "📜",
+  3: "🎓",
+} as const;
+
 /** 教科一覧（タブ表示用） */
 export const SUBJECTS = [
   { id: "all", name: "おすすめ", icon: "🎯", tabBg: "#fffde7", tabBgActive: "#fff9c4" },

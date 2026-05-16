@@ -615,7 +615,7 @@ export class QuizUseCase {
 
   /**
    * 指定した単元の学習ステージ情報を返す。
-   * ステージ: 0=未学習, 1=学習済, 2=復習済, 3=修了済
+   * ステージ: 0=未学習, 1=学習済, 2=復習済, 3=検定済
    */
   getCategoryStage(subject: string, categoryId: string): { stage: CategoryStage; lastCompletedAt: string | null } {
     const key = `${subject}::${categoryId}`;
@@ -626,9 +626,9 @@ export class QuizUseCase {
 
   /**
    * 指定した単元のステージを1段階進める。
-   * - ステージが 3 (修了済) の場合は何もしない。
+   * - ステージが 3 (検定済) の場合は何もしない。
    * - ステージが 0→1, 1→2 に進む場合: masteredIds と correctStreaks をリセット（再学習のため）。
-   * - ステージが 2→3 に進む場合: リセットしない（修了済のため学習終了）。
+   * - ステージが 2→3 に進む場合: リセットしない（検定済のため学習終了）。
    */
   advanceCategoryStage(subject: string, categoryId: string): void {
     const key = `${subject}::${categoryId}`;
@@ -641,7 +641,7 @@ export class QuizUseCase {
     this.categoryStages[key] = { stage: newStage, lastCompletedAt: now };
     this.progressRepo.saveCategoryStages(this.categoryStages);
 
-    // ステージが修了済（3）未満の場合、この単元の mastery をリセットして再学習を促す
+    // ステージが検定済（3）未満の場合、この単元の mastery をリセットして再学習を促す
     if (newStage < 3) {
       const questionIds = new Set(
         this.allQuestions.filter((q) => q.subject === subject && q.category === categoryId).map((q) => q.id),
@@ -689,7 +689,7 @@ export class QuizUseCase {
    * 全教科横断のおすすめ単元リストを返す（目標数＋α）。
    *
    * アルゴリズム:
-   * 1. 各教科の「利用可能単元」を収集（修了済を除く、学年上限内、待機期間経過済み）
+   * 1. 各教科の「利用可能単元」を収集（検定済を除く、学年上限内、待機期間経過済み）
    * 2. 未学習単元（stage=0）と復習対象単元（stage>0 かつ待機期間経過）を分離
    * 3. 未学習は設定順、復習はランダムで交互に配置
    * 4. 目標数+α分を返す
@@ -716,7 +716,7 @@ export class QuizUseCase {
         const stageRecord = this.categoryStages[key];
         const stage = stageRecord?.stage ?? 0;
 
-        // 修了済はスキップ
+        // 検定済はスキップ
         if (stage >= 3) continue;
 
         // 前提単元チェック: 前提単元が未習得（stage=0）の場合はスキップ

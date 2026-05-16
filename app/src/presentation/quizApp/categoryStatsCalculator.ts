@@ -25,7 +25,7 @@ export type CategoryStatusKind = "learned" | "studying" | "unlearned";
 
 export interface CategoryItemStatusView {
   status: CategoryStatusKind;
-  /** ステータス絵文字（⬜ / 🔄 / ✅）。 */
+  /** ステータス絵文字（⬜ / 🔄 / ✔️）。 */
   icon: string;
 }
 
@@ -83,7 +83,7 @@ export function formatCategoryStatsText(stat: CategoryStat): string {
 /**
  * 統計と studied キー集合から学習状態を判定する。
  *
- * - 全問習得済み（`mastered === total > 0`）: `learned` (✅)
+ * - 全問習得済み（`mastered === total > 0`）: `learned` (✔️)
  * - 上記以外で `inProgress > 0` または `studiedKeys.has(key)`: `studying` (🔄)
  * - それ以外: `unlearned` (⬜)
  */
@@ -94,7 +94,7 @@ export function deriveCategoryItemStatus(
 ): CategoryItemStatusView {
   const isAllMastered = stat.total > 0 && stat.mastered === stat.total;
   const isStudying = !isAllMastered && (stat.inProgress > 0 || studiedKeys.has(key));
-  if (isAllMastered) return { status: "learned", icon: "✅" };
+  if (isAllMastered) return { status: "learned", icon: "✔️" };
   if (isStudying) return { status: "studying", icon: "🔄" };
   return { status: "unlearned", icon: "⬜" };
 }

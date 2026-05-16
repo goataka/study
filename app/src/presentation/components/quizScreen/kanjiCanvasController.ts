@@ -97,8 +97,8 @@ export class KanjiCanvasController {
   /**
    * KanjiCanvas で描かれたストロークを認識して候補ボタンを更新する。
    * ひらがな問題（正解がひらがなのみ）の場合はひらがな以外の候補を除外する。
-   * 英語問題（正解がラテン文字のみ）の場合はラテン文字候補を優先して表示する。
-   * ラテン文字候補が0件の場合は全候補をフォールバックとして表示する。
+   * 英語問題（正解がラテン文字のみ）の場合はラテン文字候補のみを表示する。
+   * ラテン文字候補が0件の場合は候補を表示しない。
    * ストロークが描かれていない場合は候補を表示しない。
    */
   updateCandidates(): void {
@@ -125,9 +125,9 @@ export class KanjiCanvasController {
         kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)),
       );
     } else if (correctAnswer !== undefined && isLikelyLatinAnswer(correctAnswer)) {
-      const latinCandidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
-      // ラテン文字の認識候補がない場合はすべての候補をフォールバックとして表示する
-      candidates = latinCandidates.length > 0 ? latinCandidates : candidates;
+      // 英語問題ではラテン文字候補のみを表示する。
+      // ラテン文字候補がない場合は空欄とし、非ラテン文字（漢字・かな等）を混在させない。
+      candidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
     }
 
     candidates = Array.from(new Set(candidates)).slice(0, 5);

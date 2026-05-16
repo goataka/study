@@ -173,7 +173,7 @@ export async function checkAllMasteredAndCongratulate(deps: {
   const allMastered = filteredQuestions.every((q) => masteredSet.has(q.id));
   if (allMastered) {
     await deps.showConfirmDialog("🎉 おめでとうございます！\nこの単元のすべての問題を学習済みにしました！", true);
-    // ステージを1段階進める（学習済→復習済→修了済）
+    // ステージを1段階進める（学習済→復習済→検定済）
     if (deps.effectiveFilter.category !== "all") {
       deps.useCase.advanceCategoryStage(deps.effectiveFilter.subject, deps.effectiveFilter.category);
     }

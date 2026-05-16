@@ -25,7 +25,7 @@ describe("categoryStatsCalculator 関数", () => {
     const studied = new Set<string>(["x::studied"]);
     it("全問習得済みなら learned", () => {
       const v = deriveCategoryItemStatus({ total: 5, inProgress: 0, mastered: 5 }, studied, "x::a");
-      expect(v).toEqual({ status: "learned", icon: "✅" });
+      expect(v).toEqual({ status: "learned", icon: "✔️" });
     });
     it("inProgress > 0 なら studying", () => {
       const v = deriveCategoryItemStatus({ total: 5, inProgress: 1, mastered: 0 }, studied, "x::a");

@@ -39,7 +39,7 @@ describe("QuizApp — 履修済にするボタン仕様", () => {
     expect(markLearnedBtn.disabled).toBe(false);
   });
 
-  it("「履修済にする」ボタンをクリックするとカテゴリが ✅ になる", async () => {
+  it("「履修済にする」ボタンをクリックするとカテゴリが ✔️ になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -54,11 +54,11 @@ describe("QuizApp — 履修済にするボタン仕様", () => {
     document.getElementById("confirmDialogOk")?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    // 学習済みになるので ✅ が表示される
+    // 学習済みになるので ✔️ が表示される
     const statusEl = document
       .querySelector('.category-item[data-category="phonics-1"]')
       ?.querySelector(".category-status");
-    expect(statusEl?.textContent).toBe("✅");
+    expect(statusEl?.textContent).toBe("✔️");
   });
 
   it("学習済みのカテゴリを選択するとボタンが「↩ 未学習に戻す」になる", async () => {
@@ -97,7 +97,7 @@ describe("QuizApp — 履修済にするボタン仕様", () => {
     expect(
       document.querySelector('.category-item[data-category="phonics-1"]')?.querySelector(".category-status")
         ?.textContent,
-    ).toBe("✅");
+    ).toBe("✔️");
 
     // 未学習に戻す
     markLearnedBtn.click();

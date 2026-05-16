@@ -25,6 +25,7 @@ export function buildSingleUnitViewModel(params: {
   const description = useCase.getCategoryDescription(subject, categoryId);
   const { mastered, total } = useCase.getMasteredCountForCategory(subject, categoryId);
   const inProgressCount = useCase.getInProgressCount({ subject, category: categoryId });
+  const { stage } = useCase.getCategoryStage(subject, categoryId);
   return {
     kind: "full",
     closeAriaLabel,
@@ -39,6 +40,7 @@ export function buildSingleUnitViewModel(params: {
       mastered,
       inProgressCount,
       total,
+      stage,
     },
   };
 }
