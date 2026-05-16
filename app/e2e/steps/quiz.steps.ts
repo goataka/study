@@ -10,6 +10,11 @@ Given("クイズアプリが読み込まれている", async ({ page }) => {
   await waitForStatsInfoLoaded(page);
 });
 
+Given("クイズアプリの基本UIが読み込まれている", async ({ page }) => {
+  await page.goto(".");
+  await expect(page.locator("#startScreen")).toBeVisible();
+});
+
 Then("スタート画面が表示される", async ({ page }) => {
   await expect(page.locator("#startScreen")).toBeVisible();
 });
