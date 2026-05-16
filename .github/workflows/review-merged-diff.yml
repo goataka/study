@@ -53,8 +53,15 @@ jobs:
             exit 0
           fi
 
-          REVIEW_DIFF_FILE="$(mktemp)"
-          head -c 200000 "${DIFF_FILE}" > "${REVIEW_DIFF_FILE}"
+          REVIEW_DIFF_FILE="$(mktemp --suffix=.md)"
+          {
+            echo "# マージ差分"
+            echo
+            echo '```diff'
+            head -c 200000 "${DIFF_FILE}"
+            echo
+            echo '```'
+          } > "${REVIEW_DIFF_FILE}"
 
           REVIEW_PROMPT_FILE="$(mktemp)"
           printf '%s\n' \
