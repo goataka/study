@@ -727,6 +727,9 @@ export class QuizUseCase {
         if (grade && maxGrade !== null && !isGradeWithinLimit(grade, maxGrade)) continue;
 
         const { mastered, total: totalQ } = this.getMasteredCountForCategory(subjectId, catId);
+
+        // 履修済（全問マスター済み）はスキップ
+        if (totalQ > 0 && mastered === totalQ) continue;
         const inProgressCount = this.getInProgressCount({ subject: subjectId, category: catId });
         const referenceGrade = this.categoryRegistry.getCategoryReferenceGrade(subjectId, catId);
 
@@ -795,6 +798,15 @@ export class QuizUseCase {
     }
 
     return result.slice(0, total);
+  }
+
+  /**
+   * 指定した教科・カテゴリの前提単元がすべて習得済みか判定する（公開 API）。
+   * 前提単元の stage >= 1（学習済）の場合に満たされたとみなす。
+   * 前提単元が設定されていない場合は常に true を返す。
+   */
+  arePrerequisitesMet(subjectId: string, catId: string): boolean {
+    return this._arePrerequisitesMet(subjectId, catId);
   }
 
   /**

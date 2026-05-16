@@ -221,6 +221,19 @@ function buildCategoryItemProps(
   const stat = statsCtx.statsMap.get(key) ?? EMPTY_CATEGORY_STAT;
   const statusView = deriveCategoryItemStatus(stat, statsCtx.studiedKeys, key);
   const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.inProgress, stat.total);
+  const { stage } = ctx.useCase.getCategoryStage(subject, categoryId);
+
+  // ステージ情報・前提条件を踏まえてアイコンを上書きする
+  let statusIcon = statusView.icon;
+  if (statusView.status === "unlearned") {
+    if (!ctx.useCase.arePrerequisitesMet(subject, categoryId)) {
+      // 前提単元が未達成 → 着手不可
+      statusIcon = "⏹️";
+    } else if (stage > 0) {
+      // 学習済/復習済後の待機中（mastery がリセットされた状態）
+      statusIcon = "⏸️";
+    }
+  }
 
   return {
     subject,
@@ -233,8 +246,8 @@ function buildCategoryItemProps(
     showReferenceGrade: ctx.categoryViewMode !== "grade",
     description: ctx.useCase.getCategoryDescription(subject, categoryId),
     example: ctx.useCase.getCategoryExample(subject, categoryId),
-    statusIcon: statusView.icon,
-    stage: ctx.useCase.getCategoryStage(subject, categoryId).stage,
+    statusIcon,
+    stage,
     statusKind: statusView.status,
     progressFillPercent: masteredPct,
     progressInProgressPercent: inProgressPct,

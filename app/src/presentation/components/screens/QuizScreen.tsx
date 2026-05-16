@@ -89,6 +89,21 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
           <div id="choicesContainer" className="choices-container mb-[30px] flex flex-col gap-3">
             <ChoicesSection />
           </div>
+          <div className="navigation-buttons flex justify-between gap-[15px]">
+            <button id="prevBtn" className={navButton({ variant: "nav" })} disabled={quizSession.prevDisabled}>
+              前へ
+            </button>
+            <button id="nextBtn" className={nextButtonClass} disabled={quizSession.nextDisabled}>
+              次へ
+            </button>
+            <button
+              id="submitBtn"
+              className={navButton({ variant: "submit", hidden: quizSession.submitHidden })}
+              disabled={quizSession.submitDisabled}
+            >
+              採点する
+            </button>
+          </div>
 
           <div
             id="answerFeedback"
@@ -120,21 +135,6 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
                 {quizSession.answerFeedback.explanation}
               </div>
             </div>
-          </div>
-          <div className="navigation-buttons flex justify-between gap-[15px]">
-            <button id="prevBtn" className={navButton({ variant: "nav" })} disabled={quizSession.prevDisabled}>
-              前へ
-            </button>
-            <button id="nextBtn" className={nextButtonClass} disabled={quizSession.nextDisabled}>
-              次へ
-            </button>
-            <button
-              id="submitBtn"
-              className={navButton({ variant: "submit", hidden: quizSession.submitHidden })}
-              disabled={quizSession.submitDisabled}
-            >
-              採点する
-            </button>
           </div>
         </div>
 

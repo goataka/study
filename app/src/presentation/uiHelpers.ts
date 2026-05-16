@@ -18,6 +18,15 @@ export const CATEGORY_STAGE_EMOJI: Readonly<Record<Exclude<CategoryStage, 0>, st
   3: "🎓",
 } as const;
 
+/** 単元一覧の着手・完了ステータスアイコンと説明の一覧（ℹ️ 吹き出し用）。 */
+export const CATEGORY_STATUS_ITEMS: ReadonlyArray<{ icon: string; label: string }> = [
+  { icon: "▶️", label: "着手可能 / 着手待ち" },
+  { icon: "🔄", label: "着手中" },
+  { icon: "⏸️", label: "学習済 / 復習済後の着手待ち" },
+  { icon: "✅", label: "履修済 / 検定済" },
+  { icon: "⏹️", label: "着手不可（前提単元が未達成）" },
+] as const;
+
 /** 教科一覧（タブ表示用） */
 export const SUBJECTS = [
   { id: "all", name: "おすすめ", icon: "🎯", tabBg: "#fffde7", tabBgActive: "#fff9c4" },

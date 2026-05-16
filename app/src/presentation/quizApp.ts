@@ -44,7 +44,7 @@ import { findFirstUnlearnedCategory } from "./quizApp/firstUnlearnedFinder";
 import { setupAllListeners } from "./quizApp/setupAllListeners";
 import * as D from "./quizApp/delegators";
 import type { QuestionListFilter } from "./quizApp/questionListView";
-import { setStartQuizAction } from "./components/learningStatusActionsStore";
+import { setStartQuizAction, setSelectUnitAction } from "./components/learningStatusActionsStore";
 
 const PANEL_TABS: readonly D.PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 const SUPPORT_FIRST_VISIT_KEY = "study-guide-first-visit-done";
@@ -228,6 +228,10 @@ export class QuizApp {
       D.autoSelectPanelTab(this, records);
       D.updateStartScreen(this, records);
     });
+    // 「今日やった単元」から単元詳細を開くアクションを登録する
+    setSelectUnitAction((subject, categoryId, categoryName) => {
+      D.selectUnitContext(this, subject, categoryId, categoryName);
+    });
     this.setupEventListeners();
     D.buildSubjectTabs(this);
     D.buildPanelTabs(this);
@@ -384,6 +388,11 @@ export class QuizApp {
         D.startQuiz(this, "random").catch(console.error);
       },
       onBackToStart: () => this.showScreen("start"),
+      onEndLearning: () => {
+        // 単元詳細を閉じてスタート画面に戻る
+        this.selectedUnitContext = null;
+        this.showScreen("start");
+      },
       onCancelQuiz: () => {
         void this.navigateToStart();
       },
@@ -548,6 +557,7 @@ export class QuizApp {
    */
   cleanup(): void {
     setStartQuizAction(null);
+    setSelectUnitAction(null);
   }
 }
 

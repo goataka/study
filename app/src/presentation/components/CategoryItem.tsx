@@ -98,7 +98,12 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
 
   const gradeClass = referenceGrade && showReferenceGrade ? gradeColorClass(referenceGrade) : null;
   const isProgressDone = progressFillPercent === 100 && progressInProgressPercent === 0;
-  const badge = stage && stage > 0 ? STAGE_BADGE_MAP[stage] : undefined;
+  const badge =
+    stage && stage > 0
+      ? STAGE_BADGE_MAP[stage]
+      : isProgressDone
+        ? { emoji: "✅", sizeClass: "text-base", label: "履修済" }
+        : undefined;
 
   return (
     <div
