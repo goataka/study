@@ -220,8 +220,14 @@ function buildCategoryItemProps(
   const key = categoryStatsKey(subject, categoryId);
   const stat = statsCtx.statsMap.get(key) ?? EMPTY_CATEGORY_STAT;
   const statusView = deriveCategoryItemStatus(stat, statsCtx.studiedKeys, key);
-  const { masteredPct, inProgressPct } = calcDualProgressPct(stat.mastered, stat.inProgress, stat.total);
   const { stage } = ctx.useCase.getCategoryStage(subject, categoryId);
+  const effectiveInProgress = stage > 0 && stat.mastered < stat.total ? 0 : stat.inProgress;
+  const effectiveStat: CategoryStat = { ...stat, inProgress: effectiveInProgress };
+  const { masteredPct, inProgressPct } = calcDualProgressPct(
+    effectiveStat.mastered,
+    effectiveStat.inProgress,
+    effectiveStat.total,
+  );
 
   // ステージ情報・前提条件を踏まえてアイコンを上書きする
   let statusIcon = statusView.icon;
@@ -251,7 +257,7 @@ function buildCategoryItemProps(
     statusKind: statusView.status,
     progressFillPercent: masteredPct,
     progressInProgressPercent: inProgressPct,
-    statsText: formatCategoryStatsText(stat),
+    statsText: formatCategoryStatsText(effectiveStat),
     onActivate,
   };
 }

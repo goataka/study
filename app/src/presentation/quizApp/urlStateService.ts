@@ -13,6 +13,7 @@ export type PanelTab = "quiz" | "guide" | "history" | "questions";
 export type OverallPanel = "learned" | "share";
 export type ProgressDetailViewMode = "grade" | "category" | "matrix";
 export type ProgressStatusFilter = "all" | "unlearned" | "studying" | "learned";
+export type ProgressGradeFilter = "小学" | "中学" | "高校";
 export type CategoryViewMode = "category" | "grade";
 export type QuestionListFilter = "all" | "learned" | "unlearned";
 
@@ -44,6 +45,7 @@ export interface ParsedURLState {
   progressSubject?: string;
   progressView?: ProgressDetailViewMode;
   progressStatusFilter?: ProgressStatusFilter;
+  progressGradeFilter?: ProgressGradeFilter | null;
   categoryView?: CategoryViewMode;
   questionFilter?: QuestionListFilter;
   selectedUnitContext?: SelectedUnitContext;
@@ -106,6 +108,10 @@ export function parseURLState(useCase: QuizUseCase): ParsedURLState {
   if (progressStatus && PROGRESS_STATUS_FILTERS.includes(progressStatus as ProgressStatusFilter)) {
     state.progressStatusFilter = progressStatus as ProgressStatusFilter;
   }
+  const progressGrade = params.get("progressGrade");
+  if (progressGrade === "小学" || progressGrade === "中学" || progressGrade === "高校") {
+    state.progressGradeFilter = progressGrade;
+  }
 
   const categoryView = params.get("categoryView");
   if (categoryView === "grade" || categoryView === "category") {
@@ -142,6 +148,7 @@ export interface URLFragmentState {
   progressSubjectId: string;
   progressDetailViewMode: ProgressDetailViewMode;
   progressStatusFilter: ProgressStatusFilter;
+  progressGradeFilter: ProgressGradeFilter | null;
   categoryViewMode: CategoryViewMode;
   questionListFilter: QuestionListFilter;
   selectedUnitContext: SelectedUnitContext | null;
@@ -191,6 +198,9 @@ export function syncURLFragment(state: URLFragmentState, screenName?: "start" | 
     hashParams.set("progressView", state.progressDetailViewMode);
     if (state.progressStatusFilter !== "all") {
       hashParams.set("progressStatus", state.progressStatusFilter);
+    }
+    if (state.progressGradeFilter !== null) {
+      hashParams.set("progressGrade", state.progressGradeFilter);
     }
   }
   if (state.activePanelTab === "questions" && state.questionListFilter !== "all") {

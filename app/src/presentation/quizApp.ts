@@ -151,6 +151,8 @@ export class QuizApp {
   progressMatrixTransposed: boolean = false;
   /** 進度タブの学習状況フィルター */
   progressStatusFilter: ProgressStatusFilter = "all";
+  /** 進度タブの対象学年フィルター（null=すべて） */
+  progressGradeFilter: "小学" | "中学" | "高校" | null = null;
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   guideLoadCounter: number = 0;
   questionListFilter: QuestionListFilter = "all";
@@ -281,6 +283,7 @@ export class QuizApp {
     if (parsed.progressSubject !== undefined) this.progressSubjectId = parsed.progressSubject;
     if (parsed.progressView !== undefined) this.progressDetailViewMode = parsed.progressView;
     if (parsed.progressStatusFilter !== undefined) this.progressStatusFilter = parsed.progressStatusFilter;
+    if (parsed.progressGradeFilter !== undefined) this.progressGradeFilter = parsed.progressGradeFilter;
     if (parsed.categoryView !== undefined) this.categoryViewMode = parsed.categoryView;
     if (parsed.questionFilter !== undefined) this.questionListFilter = parsed.questionFilter;
     if (parsed.selectedUnitContext !== undefined) this.selectedUnitContext = parsed.selectedUnitContext;
@@ -318,6 +321,7 @@ export class QuizApp {
         progressSubjectId: this.progressSubjectId,
         progressDetailViewMode: this.progressDetailViewMode,
         progressStatusFilter: this.progressStatusFilter,
+        progressGradeFilter: this.progressGradeFilter,
         categoryViewMode: this.categoryViewMode,
         questionListFilter: this.questionListFilter,
         selectedUnitContext: this.selectedUnitContext,
@@ -404,6 +408,11 @@ export class QuizApp {
       },
       onProgressStatusFilterChange: (filter) => {
         this.progressStatusFilter = filter;
+        D.renderProgressDetailPanel(this);
+        this.syncURLFragment();
+      },
+      onProgressGradeFilterChange: (grade) => {
+        this.progressGradeFilter = grade;
         D.renderProgressDetailPanel(this);
         this.syncURLFragment();
       },

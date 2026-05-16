@@ -125,7 +125,7 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     expect(window.location.hash).toContain("overallPanel=share");
   });
 
-  it("進度タブの教科・表示モード・学習状況フィルターがフラグメントに反映される", async () => {
+  it("進度タブの教科・表示モード・学習状況/対象学年フィルターがフラグメントに反映される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -134,11 +134,13 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     (document.querySelector('.progress-subject-list-item[data-subject="english"]') as HTMLElement | null)?.click();
     document.getElementById("progressDetailTab-category")?.click();
     document.getElementById("progressStatusLearnedBtn")?.click();
+    document.getElementById("progressGradeElemBtn")?.click();
 
     expect(window.location.hash).toContain("subject=progress");
     expect(window.location.hash).toContain("progressSubject=english");
     expect(window.location.hash).toContain("progressView=category");
     expect(window.location.hash).toContain("progressStatus=learned");
+    expect(window.location.hash).toContain("progressGrade=%E5%B0%8F%E5%AD%A6");
   });
 
   it("問題一覧フィルターとカテゴリ表示モードをフラグメントから復元できる", async () => {
@@ -155,11 +157,11 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     expect(document.querySelector(".category-view-toggle")?.textContent).toContain("🎓");
   });
 
-  it("進度タブの教科・表示モード・学習状況フィルターをフラグメントから復元できる", async () => {
+  it("進度タブの教科・表示モード・学習状況/対象学年フィルターをフラグメントから復元できる", async () => {
     window.history.replaceState(
       {},
       "",
-      "/#subject=progress&progressSubject=english&progressView=grade&progressStatus=learned",
+      "/#subject=progress&progressSubject=english&progressView=grade&progressStatus=learned&progressGrade=%E4%B8%AD%E5%AD%A6",
     );
 
     new QuizApp();
@@ -168,6 +170,7 @@ describe("QuizApp — URL フラグメント同期仕様", () => {
     expect(document.querySelector('.subject-tab[data-subject="progress"]')?.classList.contains("active")).toBe(true);
     expect(document.getElementById("progressDetailTab-grade")?.classList.contains("active")).toBe(true);
     expect(document.getElementById("progressStatusLearnedBtn")?.getAttribute("aria-pressed")).toBe("true");
+    expect(document.getElementById("progressGradeMiddleBtn")?.getAttribute("aria-pressed")).toBe("true");
   });
 
   it("subject だけが指定された場合は最初の単元を自動選択しない", async () => {

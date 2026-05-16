@@ -23,7 +23,7 @@ export function CategoryPanel(): React.JSX.Element {
         "shadow-[inset_-3px_0_6px_rgba(0,0,0,0.08)]",
       ].join(" ")}
     >
-      <div className="category-panel-header flex items-center justify-between mb-2 gap-1.5 px-2">
+      <div className="category-panel-header flex items-center mb-2 gap-1.5 px-2">
         <span
           id="categoryListTitle"
           className="category-list-title text-sm font-bold text-[#0366d6] shrink-0 px-1 py-1"

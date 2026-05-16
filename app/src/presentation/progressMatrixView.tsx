@@ -25,6 +25,8 @@ export interface ProgressMatrixContext {
   transposed: boolean;
   /** 学習状況フィルター */
   statusFilter: ProgressStatusFilter;
+  /** 対象学年フィルター（null=すべて） */
+  gradeFilterPrefix: "小学" | "中学" | "高校" | null;
   /** 縦横切り替えボタン押下時のコールバック（state を反転して再描画する） */
   onToggleTranspose: () => void;
   /** 単元ブロック押下時のコールバック */
@@ -67,7 +69,9 @@ function buildUnitVM(
 
 function buildMatrixViewModel(ctx: ProgressMatrixContext): MatrixViewModel {
   const { subject, useCase } = ctx;
-  const grades = useCase.getUniqueGradesForSubject(subject);
+  const grades = useCase
+    .getUniqueGradesForSubject(subject)
+    .filter((grade) => ctx.gradeFilterPrefix === null || grade.startsWith(ctx.gradeFilterPrefix));
   const allCats = useCase.getCategoriesForSubject(subject);
 
   const categoryProgressMap = new Map<string, { mastered: number; total: number; inProgress: number }>();

@@ -26,6 +26,7 @@ export function renderProgressView(params: {
   progressSubjectId: string;
   progressDetailViewMode: ProgressDetailViewMode;
   progressStatusFilter: ProgressStatusFilterValue;
+  progressGradeFilter: "小学" | "中学" | "高校" | null;
   progressMatrixTransposed: boolean;
   onSelectSubject: (subjectId: string) => void;
   onSelectUnit: (subject: string, catId: string, catName: string) => void;
@@ -49,6 +50,7 @@ export function renderProgressView(params: {
     progressSubjectId: params.progressSubjectId,
     progressDetailViewMode: params.progressDetailViewMode,
     progressStatusFilter: params.progressStatusFilter,
+    progressGradeFilter: params.progressGradeFilter,
     progressMatrixTransposed: params.progressMatrixTransposed,
     onSelectUnit: params.onSelectUnit,
     onToggleMatrixTranspose: params.onToggleMatrixTranspose,
@@ -64,11 +66,12 @@ export function renderProgressDetailPanel(params: {
   progressSubjectId: string;
   progressDetailViewMode: ProgressDetailViewMode;
   progressStatusFilter: ProgressStatusFilterValue;
+  progressGradeFilter: "小学" | "中学" | "高校" | null;
   progressMatrixTransposed: boolean;
   onSelectUnit: (subject: string, catId: string, catName: string) => void;
   onToggleMatrixTranspose: () => void;
 }): void {
-  syncProgressDetailControls(params.progressDetailViewMode, params.progressStatusFilter);
+  syncProgressDetailControls(params.progressDetailViewMode, params.progressStatusFilter, params.progressGradeFilter);
   renderProgressDetailContent(params);
 }
 
@@ -81,6 +84,7 @@ export function renderProgressDetailContent(params: {
   progressSubjectId: string;
   progressDetailViewMode: ProgressDetailViewMode;
   progressStatusFilter: ProgressStatusFilterValue;
+  progressGradeFilter: "小学" | "中学" | "高校" | null;
   progressMatrixTransposed: boolean;
   onSelectUnit: (subject: string, catId: string, catName: string) => void;
   onToggleMatrixTranspose: () => void;
@@ -92,6 +96,7 @@ export function renderProgressDetailContent(params: {
     subject: params.progressSubjectId,
     useCase: params.useCase,
     statusFilter: params.progressStatusFilter,
+    gradeFilterPrefix: params.progressGradeFilter,
     onSelectUnit: params.onSelectUnit,
   };
   if (params.progressDetailViewMode === "grade") {
@@ -102,6 +107,7 @@ export function renderProgressDetailContent(params: {
       useCase: params.useCase,
       transposed: params.progressMatrixTransposed,
       statusFilter: params.progressStatusFilter,
+      gradeFilterPrefix: params.progressGradeFilter,
       onToggleTranspose: params.onToggleMatrixTranspose,
       onSelectUnit: blockCtx.onSelectUnit,
     });

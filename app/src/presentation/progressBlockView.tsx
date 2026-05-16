@@ -20,6 +20,8 @@ export interface ProgressBlockContext {
   useCase: QuizUseCase;
   /** 学習状況フィルター */
   statusFilter: ProgressStatusFilter;
+  /** 対象学年フィルター（null=すべて） */
+  gradeFilterPrefix: "小学" | "中学" | "高校" | null;
   /** 単元ブロック押下時のコールバック */
   onSelectUnit: (subject: string, categoryId: string, categoryName: string) => void;
 }
@@ -74,6 +76,12 @@ function isVisibleCategory(ctx: ProgressBlockContext, progress: CategoryProgress
   return ctx.statusFilter === "all" || getLearningProgressStatus(progress) === ctx.statusFilter;
 }
 
+function isGradeMatched(ctx: ProgressBlockContext, catId: string): boolean {
+  if (ctx.gradeFilterPrefix === null) return true;
+  const grade = ctx.useCase.getCategoryReferenceGrade(ctx.subject, catId);
+  return grade?.startsWith(ctx.gradeFilterPrefix) ?? false;
+}
+
 function buildBlockEntry(catId: string, catName: string, progress: CategoryProgress): BlockEntryVM {
   const isMastered = progress.mastered > 0 && progress.mastered === progress.total;
   const isInProgress = !isMastered && (progress.inProgress > 0 || progress.mastered > 0);
@@ -91,6 +99,7 @@ function visibleEntries(
 ): BlockEntryVM[] {
   const result: BlockEntryVM[] = [];
   for (const [catId, catName] of catEntries) {
+    if (!isGradeMatched(ctx, catId)) continue;
     const p = progressMap.get(catId);
     if (!isVisibleCategory(ctx, p)) continue;
     result.push(buildBlockEntry(catId, catName, p!));
@@ -122,13 +131,16 @@ function buildGradeViewModel(ctx: ProgressBlockContext): BlockGroupVM[] {
 
   const groups: BlockGroupVM[] = [];
   for (const grade of grades) {
+    if (ctx.gradeFilterPrefix !== null && !grade.startsWith(ctx.gradeFilterPrefix)) continue;
     const cats = useCase.getCategoriesForGrade(subject, grade);
     const g = buildGroup(ctx, Object.entries(cats), progressMap, grade);
     if (g) groups.push(g);
   }
-  const uncategorized = useCase.getCategoriesWithoutGrade(subject);
-  const u = buildGroup(ctx, Object.entries(uncategorized), progressMap, "学年未設定");
-  if (u) groups.push(u);
+  if (ctx.gradeFilterPrefix === null) {
+    const uncategorized = useCase.getCategoriesWithoutGrade(subject);
+    const u = buildGroup(ctx, Object.entries(uncategorized), progressMap, "学年未設定");
+    if (u) groups.push(u);
+  }
   return groups;
 }
 

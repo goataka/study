@@ -20,6 +20,7 @@ import {
   setupQuizFlowListeners,
   setupQuestionListFilterListeners,
   setupProgressFilterListeners,
+  setupProgressGradeFilterListeners,
   setupNotesListeners,
   setupNotesPenSelectListeners,
   setupKanjiCanvasListeners,
@@ -43,6 +44,7 @@ export interface AllListenersDeps {
   onQuestionListFilterChange: (value: QuestionListFilter) => void;
   // 進度フィルター
   onProgressStatusFilterChange: (filter: ProgressStatusFilter) => void;
+  onProgressGradeFilterChange: (grade: "小学" | "中学" | "高校" | null) => void;
   // ヘッダー
   onTitleClick: () => void;
   onOpenUserNameEdit: () => void;
@@ -93,6 +95,7 @@ export function setupAllListeners(deps: AllListenersDeps): void {
   });
   setupQuestionListFilterListeners(deps.onQuestionListFilterChange);
   setupProgressFilterListeners(deps.onProgressStatusFilterChange);
+  setupProgressGradeFilterListeners(deps.onProgressGradeFilterChange);
   setupHeaderListeners({
     onTitleClick: deps.onTitleClick,
     onOpenUserNameEdit: deps.onOpenUserNameEdit,

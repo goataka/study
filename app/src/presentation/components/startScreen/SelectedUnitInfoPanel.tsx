@@ -71,7 +71,12 @@ export function SelectedUnitInfoBody({ data }: { data: SelectedUnitInfoData }): 
         total={data.total}
       />
       {showDescRow && <DescRow catParts={catParts} grade={data.grade} example={data.example} />}
-      <ProgressRow mastered={data.mastered} inProgressCount={data.inProgressCount} total={data.total} />
+      <ProgressRow
+        mastered={data.mastered}
+        inProgressCount={data.inProgressCount}
+        total={data.total}
+        stage={data.stage}
+      />
     </div>
   );
 }
@@ -127,7 +132,7 @@ function HeaderRow({
   mastered: number;
   total: number;
 }): React.JSX.Element {
-  const showCompletedBadge = stage === undefined && total > 0 && mastered >= total;
+  const showCompletedBadge = (stage === undefined || stage === 0) && total > 0 && mastered >= total;
   return (
     <div className="selected-unit-info-header-row flex items-start justify-between gap-2 min-w-0">
       <div className="selected-unit-info-header-left flex-1 min-w-0 flex items-baseline gap-1">
@@ -207,12 +212,15 @@ function ProgressRow({
   mastered,
   inProgressCount,
   total,
+  stage,
 }: {
   mastered: number;
   inProgressCount: number;
   total: number;
+  stage?: CategoryStage;
 }): React.JSX.Element {
-  const effectiveInProgressCount = mastered >= total && total > 0 ? 0 : inProgressCount;
+  const effectiveInProgressCount =
+    mastered >= total && total > 0 ? 0 : stage !== undefined && stage > 0 ? 0 : inProgressCount;
   const { masteredPct, inProgressPct } = calcDualProgressPct(mastered, effectiveInProgressCount, total);
   const label =
     effectiveInProgressCount > 0 ? `${mastered}(${effectiveInProgressCount})/${total}` : `${mastered}/${total}`;
