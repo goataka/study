@@ -25,9 +25,8 @@ jobs:
           COMMENT_ID: ${{ github.event.comment.id }}
           COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
           COMMENT_URL: ${{ github.event.comment.html_url }}
-          COMMENT_BODY: ${{ github.event.comment.body }}
           COMMENTS_PER_PAGE: "100"
-          MAX_PAGE_REQUESTS: "100"
+          MAX_PAGE_REQUESTS: "20"
         run: |
           set -euo pipefail
 
@@ -39,10 +38,6 @@ jobs:
           OWNER="${GH_REPO%%/*}"
           REPO="${GH_REPO#*/}"
           MARKER="<!-- auto-copilot-pr-overview-comment:${COMMENT_ID} -->"
-          if printf '%s' "${COMMENT_BODY}" | grep -Fq "${MARKER}"; then
-            echo "::notice::自動生成した Copilot 依頼コメントのため再転送をスキップします"
-            exit 0
-          fi
           BEFORE_CURSOR=""
           EXISTING_COMMENT_ID=""
           PAGE_REQUEST_COUNT=0
@@ -54,6 +49,8 @@ jobs:
               exit 1
             fi
 
+            # 自動生成した Copilot 依頼コメントは直近に追加されるため、
+            # 最新コメント側からさかのぼって重複確認する。
             GH_COMMAND_ARGS=(
               api
               graphql
