@@ -10,8 +10,7 @@ jobs:
     name: PR overview コメントを Copilot に転送
     if: >-
       github.event.issue.pull_request != null &&
-      github.event.comment.user.type != 'Bot' &&
-      !contains(github.event.comment.body, format('<!-- auto-copilot-pr-overview-comment:{0} -->', github.event.comment.id))
+      github.event.comment.user.type != 'Bot'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -40,6 +39,10 @@ jobs:
           OWNER="${GH_REPO%%/*}"
           REPO="${GH_REPO#*/}"
           MARKER="<!-- auto-copilot-pr-overview-comment:${COMMENT_ID} -->"
+          if printf '%s' "${COMMENT_BODY}" | grep -Fq "${MARKER}"; then
+            echo "::notice::自動生成した Copilot 依頼コメントのため再転送をスキップします"
+            exit 0
+          fi
           BEFORE_CURSOR=""
           EXISTING_COMMENT_ID=""
           PAGE_REQUEST_COUNT=0
@@ -51,7 +54,8 @@ jobs:
               exit 1
             fi
 
-            GRAPHQL_ARGS=(
+            GH_COMMAND_ARGS=(
+              api
               graphql
               -f query='
                 query($owner: String!, $repo: String!, $prNumber: Int!, $commentsPerPage: Int!, $before: String) {
@@ -77,9 +81,9 @@ jobs:
               -F commentsPerPage="${COMMENTS_PER_PAGE}"
             )
             if [ -n "${BEFORE_CURSOR}" ]; then
-              GRAPHQL_ARGS+=(-F before="${BEFORE_CURSOR}")
+              GH_COMMAND_ARGS+=(-F before="${BEFORE_CURSOR}")
             fi
-            if ! RESPONSE=$(gh api "${GRAPHQL_ARGS[@]}"); then
+            if ! RESPONSE=$(gh "${GH_COMMAND_ARGS[@]}"); then
               echo "::error::PR コメント一覧の取得に失敗しました。GitHub API の応答、トークン設定、または一時的な通信エラーを確認してください。"
               exit 1
             fi
