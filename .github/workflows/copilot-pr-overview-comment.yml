@@ -1,0 +1,41 @@
+name: Copilot PR Overview Comment
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  request-review-follow-up:
+    name: Copilot概要コメントへの自動返信
+    if: >-
+      ${{
+        github.event.issue.pull_request != null &&
+        (
+          github.event.comment.user.login == 'copilot[bot]' ||
+          github.event.comment.user.login == 'github-copilot[bot]' ||
+          github.event.comment.user.login == 'copilot-pull-request-reviewer[bot]'
+        ) &&
+        contains(github.event.comment.body, 'Pull request overview') &&
+        contains(github.event.comment.body, 'changed files in this pull request and generated')
+      }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Copilotへレビュー対応を依頼
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        with:
+          # COPILOT_TOKEN はリポジトリ Secrets に設定し、
+          # 最小権限（Issues: write / Pull requests: write）のトークンを使用すること
+          # 未設定時は、permissions で付与した権限範囲内で github.token をフォールバック利用する
+          github-token: ${{ secrets.COPILOT_TOKEN || github.token }}
+          script: |
+            const { owner, repo } = context.repo;
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: context.issue.number,
+              body: '@copilot レビューに対応して',
+            });
