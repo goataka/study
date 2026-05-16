@@ -83,7 +83,10 @@ export function ResultScreen({ currentScreen }: ResultScreenProps): React.JSX.El
         <button id="retryAllBtn" className={button({ variant: "primary" })}>
           もう一度
         </button>
-        <button id="backToStartBtn" className={button({ variant: "tertiary" })}>
+        <button id="endLearningBtn" className={button({ variant: "secondary" })}>
+          学習を終わる
+        </button>
+        <button id="backToStartBtn" className={`${button({ variant: "tertiary" })} opacity-50`}>
           スタート画面に戻る
         </button>
       </div>

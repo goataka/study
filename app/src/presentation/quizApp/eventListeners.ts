@@ -264,6 +264,7 @@ export interface QuizFlowCallbacks {
   onSubmit: () => void;
   onRetryAll: () => void;
   onBackToStart: () => void;
+  onEndLearning: () => void;
   onCancelQuiz: () => void;
   onReload: () => void;
 }
@@ -276,6 +277,7 @@ export function setupQuizFlowListeners(callbacks: QuizFlowCallbacks): void {
   document.getElementById("submitBtn")?.addEventListener("click", callbacks.onSubmit);
   document.getElementById("retryAllBtn")?.addEventListener("click", callbacks.onRetryAll);
   document.getElementById("backToStartBtn")?.addEventListener("click", callbacks.onBackToStart);
+  document.getElementById("endLearningBtn")?.addEventListener("click", callbacks.onEndLearning);
   document.getElementById("cancelQuizBtn")?.addEventListener("click", callbacks.onCancelQuiz);
   document.getElementById("reloadBtn")?.addEventListener("click", callbacks.onReload);
 }

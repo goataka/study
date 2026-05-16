@@ -17,7 +17,7 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期状態（未学習）では ⬜ が表示される", async () => {
+  it("初期状態（未学習）では ▶️ が表示される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -26,7 +26,7 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const statusEl = catItem?.querySelector(".category-status");
-    expect(statusEl?.textContent).toBe("⬜");
+    expect(statusEl?.textContent).toBe("▶️");
   });
 
   it("学習済（全問題が masteredIds に含まれる）のカテゴリは ✅ が表示される", async () => {
@@ -58,7 +58,7 @@ describe("QuizApp — カテゴリ学習状態絵文字仕様", () => {
 
     const catItem = document.querySelector('.category-item[data-category="phonics-1"]');
     const statusEl = catItem?.querySelector(".category-status");
-    expect(statusEl?.textContent).toBe("✔️");
+    expect(statusEl?.textContent).toBe("✅");
   });
 
   it("学習中（履歴あり・間違いあり）のカテゴリは 🔄 が表示される", async () => {
