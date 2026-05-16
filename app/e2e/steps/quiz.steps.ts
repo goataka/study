@@ -494,6 +494,12 @@ Then("管理の初期化ボタンが表示される", async ({ page }) => {
   await expect(page.locator(".admin-reset-btn")).toBeVisible();
 });
 
+Then("管理のサンプル初期化ボタンが表示される", async ({ page }) => {
+  // 初期化タブをクリックしてサンプル初期化ボタンが表示されていること
+  await page.locator(".admin-manage-tab").filter({ hasText: "初期化" }).click();
+  await expect(page.locator(".admin-reset-sample-btn")).toBeVisible();
+});
+
 Then("管理のエクスポートパネルが表示される", async ({ page }) => {
   // 「📤 エクスポート」タブをクリックしてエクスポートコンテンツを表示する
   await page.locator(".admin-manage-tab").filter({ hasText: "エクスポート" }).click();

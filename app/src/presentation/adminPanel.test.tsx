@@ -77,6 +77,30 @@ describe("管理パネル描画", () => {
     expect(adminContent.querySelector(".admin-reset-btn")).toBeTruthy();
   });
 
+  it("サンプルデータで初期化ボタンを押すとサンプル保存処理が実行される", async () => {
+    const categoryList = document.getElementById("categoryList") as HTMLElement;
+    const adminContent = document.getElementById("adminContent") as HTMLElement;
+    const deps = createDeps();
+    deps.useCase.initialize = vi.fn(() => new Promise(() => {})) as typeof deps.useCase.initialize;
+
+    renderAdminContent(categoryList, deps);
+
+    const resetTab = adminContent.querySelector(".admin-manage-tab[data-tab='reset']") as HTMLButtonElement;
+    resetTab.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const sampleResetBtn = adminContent.querySelector(".admin-reset-sample-btn") as HTMLButtonElement;
+    expect(sampleResetBtn).toBeTruthy();
+    sampleResetBtn.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(deps.showConfirmDialog).toHaveBeenCalledWith("学習データをサンプルデータで初期化します。続けますか？");
+    expect(deps.useCase.clearAllData).toHaveBeenCalledTimes(1);
+    expect(deps.progressRepo.saveHistory).toHaveBeenCalledTimes(1);
+    expect(deps.progressRepo.saveMasteredIds).toHaveBeenCalledTimes(1);
+    expect(deps.progressRepo.saveCorrectStreaks).toHaveBeenCalledTimes(1);
+  });
+
   it("管理ボタンを再クリックしてもコンテンツは閉じない", async () => {
     const categoryList = document.getElementById("categoryList") as HTMLElement;
     const adminContent = document.getElementById("adminContent") as HTMLElement;
