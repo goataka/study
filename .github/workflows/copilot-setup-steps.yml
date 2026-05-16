@@ -26,7 +26,7 @@ jobs:
       - name: 日本語UTF-8ロケールのセットアップ
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y locales
+          sudo apt-get install -y locales fonts-noto-cjk
           sudo locale-gen ja_JP.UTF-8
           sudo update-locale LANG=ja_JP.UTF-8 LC_ALL=ja_JP.UTF-8
           {
