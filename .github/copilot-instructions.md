@@ -104,6 +104,7 @@
 - 解決済みのレビュー指摘（review comment / conversation）はクローズすること
 - レビュー対応時は PR の概要（Description）を更新しないこと
 - 補足が必要な場合は PR コメントで追記すること
+- Pull request overview のコメントには、自動で `@copilot` への対応依頼コメントを投稿する運用とし、ワークフローでは `COPILOT_TOKEN` を使用すること（自動化済み）
 
 ## 共通ルール
 
@@ -242,7 +243,6 @@ I `played` games.
 1. **テストは lefthook が自動実行する（手動実行不要）**
 
    lefthook がコミット・プッシュ時に自動実行するため、通常は手動で実行する必要はない。
-
    - `pre-commit`（コミット時）: lint + format + ビルド + 単体テスト
    - `pre-push`（プッシュ時）: ビルド + 単体テスト + **E2E テスト** + VR スナップショット確認
 

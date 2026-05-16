@@ -1,0 +1,61 @@
+name: Request Copilot for PR Overview Comment
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  request-copilot:
+    name: PR overview コメントを Copilot に転送
+    if: >-
+      github.event.issue.pull_request != null &&
+      github.event.comment.user.type != 'Bot' &&
+      !contains(github.event.comment.body, '@copilot')
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
+    steps:
+      - name: PR overview コメント内容を Copilot に依頼
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.issue.number }}
+          COMMENT_ID: ${{ github.event.comment.id }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          COMMENT_URL: ${{ github.event.comment.html_url }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::error::COPILOT_TOKEN が設定されていません"
+            exit 1
+          fi
+
+          MARKER="<!-- auto-copilot-pr-overview-comment:${COMMENT_ID} -->"
+          EXISTING_COMMENT_ID=$(gh api "repos/${GH_REPO}/issues/${PR_NUMBER}/comments" --paginate \
+            | jq -r --arg marker "${MARKER}" 'map(select(.body | contains($marker)))[0].id // empty')
+
+          if [ -n "${EXISTING_COMMENT_ID}" ]; then
+            echo "::notice::同じ PR overview コメントに対する Copilot 依頼コメントは既に投稿済みです (${EXISTING_COMMENT_ID})"
+            exit 0
+          fi
+
+          BODY_FILE=$(mktemp)
+          {
+            echo "${MARKER}"
+            echo "@copilot Pull request overview にコメントが追加されました。内容を確認して対応してください。"
+            echo
+            echo "- 対象PR: #${PR_NUMBER}"
+            echo "- 元コメント投稿者: @${COMMENT_AUTHOR}"
+            echo "- 元コメントURL: ${COMMENT_URL}"
+            echo
+            echo "元コメント:"
+            printf '%s\n' "${COMMENT_BODY}" | sed 's/^/> /'
+          } > "${BODY_FILE}"
+
+          gh pr comment "${PR_NUMBER}" --body-file "${BODY_FILE}"
+          rm -f "${BODY_FILE}"
