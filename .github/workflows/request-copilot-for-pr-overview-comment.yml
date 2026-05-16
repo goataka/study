@@ -38,30 +38,56 @@ jobs:
           OWNER="${GH_REPO%%/*}"
           REPO="${GH_REPO#*/}"
           MARKER="<!-- auto-copilot-pr-overview-comment:${COMMENT_ID} -->"
-          EXISTING_COMMENT_ID=$(gh api graphql \
-            -f query='
-              query($owner: String!, $repo: String!, $prNumber: Int!) {
-                repository(owner: $owner, name: $repo) {
-                  pullRequest(number: $prNumber) {
-                    comments(last: 50) {
-                      nodes {
-                        databaseId
-                        body
+          BEFORE_CURSOR=""
+          EXISTING_COMMENT_ID=""
+
+          while [ -z "${EXISTING_COMMENT_ID}" ]; do
+            RESPONSE=$(gh api graphql \
+              -f query='
+                query($owner: String!, $repo: String!, $prNumber: Int!, $before: String) {
+                  repository(owner: $owner, name: $repo) {
+                    pullRequest(number: $prNumber) {
+                      comments(last: 100, before: $before) {
+                        nodes {
+                          databaseId
+                          body
+                        }
+                        pageInfo {
+                          hasPreviousPage
+                          startCursor
+                        }
                       }
                     }
                   }
                 }
-              }
-            ' \
-            -F owner="${OWNER}" \
-            -F repo="${REPO}" \
-            -F prNumber="${PR_NUMBER}" \
-            | jq -r --arg marker "${MARKER}" '
-              .data.repository.pullRequest.comments.nodes[]
-              | select(.body | contains($marker))
-              | .databaseId
-            ' \
-            | head -1)
+              ' \
+              -F owner="${OWNER}" \
+              -F repo="${REPO}" \
+              -F prNumber="${PR_NUMBER}" \
+              -F before="${BEFORE_CURSOR}")
+
+            EXISTING_COMMENT_ID=$(printf '%s' "${RESPONSE}" \
+              | jq -r --arg marker "${MARKER}" '
+                .data.repository.pullRequest.comments.nodes[]
+                | select(.body | contains($marker))
+                | .databaseId
+              ' \
+              | head -1)
+
+            if [ -n "${EXISTING_COMMENT_ID}" ]; then
+              break
+            fi
+
+            HAS_PREVIOUS_PAGE=$(printf '%s' "${RESPONSE}" | jq -r '.data.repository.pullRequest.comments.pageInfo.hasPreviousPage')
+            if [ "${HAS_PREVIOUS_PAGE}" != "true" ]; then
+              break
+            fi
+
+            BEFORE_CURSOR=$(printf '%s' "${RESPONSE}" | jq -r '.data.repository.pullRequest.comments.pageInfo.startCursor // empty')
+            if [ -z "${BEFORE_CURSOR}" ]; then
+              break
+            fi
+          done
 
           if [ -n "${EXISTING_COMMENT_ID}" ]; then
             echo "::notice::同じ PR overview コメントに対する Copilot 依頼コメントは既に投稿済みです (${EXISTING_COMMENT_ID})"
