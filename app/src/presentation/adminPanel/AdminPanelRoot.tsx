@@ -24,6 +24,27 @@ interface AdminPanelRootProps extends AdminPanelDeps {
   onExportAllData: () => void;
 }
 
+const SAMPLE_HISTORY = [
+  {
+    id: "sample-session-1",
+    date: "2026-04-01T09:00:00.000Z",
+    subject: "math",
+    subjectName: "算数",
+    category: "addition-no-carry",
+    categoryName: "くり上がりなしのたし算",
+    mode: "category",
+    totalCount: 5,
+    correctCount: 4,
+    entries: [],
+  },
+];
+
+const SAMPLE_MASTERED_IDS = ["sample-question-1", "sample-question-2"];
+const SAMPLE_CORRECT_STREAKS = {
+  "sample-question-1": 2,
+  "sample-question-2": 1,
+};
+
 export function AdminPanelRoot({
   useCase,
   progressRepo,
@@ -184,6 +205,31 @@ export function AdminPanelRoot({
       });
   };
 
+  const onResetWithSampleData = (): void => {
+    void showConfirmDialog("学習データをサンプルデータで初期化します。続けますか？")
+      .then((confirmed) => {
+        if (!confirmed) return;
+        void useCase
+          .clearAllData()
+          .then(() => {
+            progressRepo.saveHistory(SAMPLE_HISTORY);
+            progressRepo.saveMasteredIds(SAMPLE_MASTERED_IDS);
+            progressRepo.saveCorrectStreaks(SAMPLE_CORRECT_STREAKS);
+            return useCase.initialize();
+          })
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((err: unknown) => {
+            console.error("サンプルデータでの初期化に失敗しました", err);
+            alert("サンプルデータでの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
+          });
+      })
+      .catch((err: unknown) => {
+        console.error("確認ダイアログでエラーが発生しました", err);
+      });
+  };
+
   const copyCurrentData = (): void => {
     const section = sections[viewTabIndex];
     if (!section) return;
@@ -313,6 +359,13 @@ export function AdminPanelRoot({
                     <p className="admin-reset-desc text-sm text-[#586069]">
                       すべての学習データ（履歴・学習済み・進捗）を削除します。
                     </p>
+                    <button
+                      className={`admin-reset-sample-btn ${actionBtnBase} bg-[#28a745] text-white border border-[#218838] hover:bg-[#218838]`}
+                      type="button"
+                      onClick={onResetWithSampleData}
+                    >
+                      🧪 サンプルデータで初期化する
+                    </button>
                     <button
                       className={`admin-reset-btn ${actionBtnBase} bg-[#dc3545] text-white border border-[#c82333] hover:bg-[#c82333]`}
                       type="button"
