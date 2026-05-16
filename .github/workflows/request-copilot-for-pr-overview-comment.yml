@@ -10,7 +10,8 @@ jobs:
     name: PR overview コメントを Copilot に転送
     if: >-
       github.event.issue.pull_request != null &&
-      github.event.comment.user.type != 'Bot'
+      github.event.comment.user.type != 'Bot' &&
+      contains(fromJson('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -23,8 +24,10 @@ jobs:
           GH_REPO: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.issue.number }}
           COMMENT_ID: ${{ github.event.comment.id }}
+          COMMENT_IN_REPLY_TO_ID: ${{ github.event.comment.in_reply_to_id }}
           COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
           COMMENT_URL: ${{ github.event.comment.html_url }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
           COMMENTS_PER_PAGE: "100"
           MAX_PAGE_REQUESTS: "20"
         run: |
@@ -38,6 +41,23 @@ jobs:
           OWNER="${GH_REPO%%/*}"
           REPO="${GH_REPO#*/}"
           MARKER="<!-- auto-copilot-pr-overview-comment:${COMMENT_ID} -->"
+          if printf '%s' "${COMMENT_BODY}" | grep -Fq '<!-- auto-copilot-pr-overview-comment:'; then
+            echo "::notice::自動生成した Copilot 依頼コメントのため再転送をスキップします"
+            exit 0
+          fi
+
+          if [ -z "${COMMENT_IN_REPLY_TO_ID:-}" ]; then
+            echo "::notice::Pull request overview スレッドへの返信コメントではないため転送をスキップします"
+            exit 0
+          fi
+
+          PARENT_COMMENT_JSON=$(gh api "repos/${GH_REPO}/issues/comments/${COMMENT_IN_REPLY_TO_ID}")
+          PARENT_COMMENT_BODY=$(printf '%s' "${PARENT_COMMENT_JSON}" | jq -r '.body // ""')
+          if ! printf '%s' "${PARENT_COMMENT_BODY}" | grep -Fq '## Pull request overview'; then
+            echo "::notice::Pull request overview コメントへの返信ではないため転送をスキップします"
+            exit 0
+          fi
+
           BEFORE_CURSOR=""
           EXISTING_COMMENT_ID=""
           PAGE_REQUEST_COUNT=0
