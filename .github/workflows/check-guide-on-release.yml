@@ -1,11 +1,12 @@
 name: ガイド内容チェック（Copilotエージェント）
 
-# release ブランチへのマージ（push）時に、
+# staging から main へのリリースPR作成時に、
 # Copilotエージェントを使ってガイドの内容が現在の仕様に合致しているかチェックする
 
 on:
-  push:
-    branches: [release]
+  pull_request:
+    branches: [main]
+    types: [opened]
 
 # COPILOT_CLASSIC シークレットは Copilot エージェントをアサインするために推奨（未設定の場合は GITHUB_TOKEN にフォールバック）
 
@@ -16,6 +17,7 @@ permissions:
 jobs:
   check-guide:
     name: ガイド内容チェックをCopilotに依頼
+    if: github.event.pull_request.head.ref == 'staging'
     runs-on: ubuntu-latest
     steps:
       - name: コードのチェックアウト
@@ -29,15 +31,16 @@ jobs:
           github-token: ${{ secrets.COPILOT_CLASSIC || secrets.GITHUB_TOKEN }}
           script: |
             const { owner, repo } = context.repo;
-            const commitSha = context.sha.slice(0, 7);
+            const pr = context.payload.pull_request;
+            const commitSha = pr.head.sha.slice(0, 7);
             const runUrl = process.env.RUN_URL;
 
-            const issueTitle = `[ガイド内容チェック] release ブランチへのマージ (${commitSha})`;
+            const issueTitle = `[ガイド内容チェック] リリースPR #${pr.number} 作成 (${commitSha})`;
             const issueBody = `@copilot 以下のチェックを実施してください。
 
 ## 依頼内容
 
-\`release\` ブランチへのマージ（コミット: ${commitSha}）が行われました。
+\`staging\` から \`main\` へのリリースPR（#${pr.number}, コミット: ${commitSha}）が作成されました。
 \`support/\` 配下のガイドファイル全体の内容が、現在の仕様（\`.github/copilot-instructions.md\` に記載のルール）に合致しているかチェックし、問題があれば修正してください。
 
 ## チェック観点
@@ -75,4 +78,3 @@ jobs:
             } catch (e) {
               core.warning(`Copilotのアサインに失敗しましたが、Issueは作成済みです: #${issue.number}`);
             }
-

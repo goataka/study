@@ -1,7 +1,9 @@
 name: Release App Artifact
 
 on:
-  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    types: [closed]
 
 env:
   NODE_VERSION: "22"
@@ -12,15 +14,9 @@ permissions:
 jobs:
   build-and-release:
     name: 本番用リリース作成
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'staging'
     runs-on: ubuntu-latest
     steps:
-      - name: 実行ブランチを検証
-        run: |
-          if [ "${GITHUB_REF_NAME}" != "main" ]; then
-            echo "このワークフローは main ブランチから実行してください。"
-            exit 1
-          fi
-
       - name: コードのチェックアウト
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 

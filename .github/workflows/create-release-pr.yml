@@ -1,31 +1,86 @@
 name: リリースPR作成
 
-# release ブランチから main ブランチへのリリース用PRを作成する
-# 手動トリガーで実行し、既存のオープンPRがあれば再作成しない
+# リリース前チェックを実施し、問題がなければ staging → main のリリースPRを作成する
 
 on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  issues: write
   pull-requests: write
+
+env:
+  NODE_VERSION: "22"
 
 jobs:
   create-pr:
-    name: リリースPR作成（release → main）
+    name: リリース前チェックとPR作成（staging → main）
     runs-on: ubuntu-latest
     steps:
-      - name: 実行ブランチを検証
-        run: |
-          if [ "${GITHUB_REF_NAME}" != "release" ]; then
-            echo "このワークフローは release ブランチから実行してください。"
-            exit 1
-          fi
-
       - name: コードのチェックアウト
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
 
-      - name: リリースPRを作成
+      - name: Node.js 環境のセットアップ
+        uses: ./.github/actions/setup-quiz
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: リリース前チェック（lint / format / test / build）
+        working-directory: app
+        run: |
+          pnpm run lint
+          pnpm run format:check
+          pnpm run test
+          pnpm run build
+
+      - name: ガイド内容チェック（markdownlint）
+        id: guide-check
+        continue-on-error: true
+        run: pnpm dlx markdownlint-cli "support/**/*.md"
+
+      - name: ガイド内容チェック失敗Issueを作成
+        if: steps.guide-check.outcome == 'failure'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        env:
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const runUrl = process.env.RUN_URL;
+            const { data: issue } = await github.rest.issues.create({
+              owner,
+              repo,
+              title: `[リリース前チェック失敗] ガイド内容チェック (${process.env.GITHUB_RUN_ID})`,
+              body: [
+                "リリース前チェックのガイド内容チェックでエラーが発生しました。",
+                "",
+                `- Workflow Run: ${runUrl}`,
+                "",
+                "ガイド修正後に、再度リリースワークフローを実行してください。",
+              ].join("\n"),
+            });
+            core.notice(`Issueを作成しました: ${issue.html_url}`);
+
+      - name: ガイド内容チェック失敗で中断
+        if: steps.guide-check.outcome == 'failure'
+        run: exit 1
+
+      - name: staging ブランチを main から作り直す
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout -B staging origin/main
+          git push --force origin staging
+
+      - name: staging → main のリリースPRを作成
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -34,7 +89,7 @@ jobs:
           # 既存のオープンPRを確認
           EXISTING_PR=$(gh pr list \
             --base main \
-            --head release \
+            --head staging \
             --state open \
             --json number \
             --jq '.[0].number // empty')
@@ -45,22 +100,19 @@ jobs:
             exit 0
           fi
 
-          # PRの本文を生成（release..main のコミットログを使用）
           TODAY="$(date -u '+%Y-%m-%d')"
           PR_TITLE="リリース: ${TODAY}"
 
           # PRを作成
           PR_URL=$(gh pr create \
             --base main \
-            --head release \
+            --head staging \
             --title "${PR_TITLE}" \
             --body "## リリース内容
 
-release ブランチの変更を main ブランチにマージするリリースPRです。
+staging ブランチ（main から再作成）の変更を main ブランチにマージするリリースPRです。
 
-> [!NOTE]
-> このPRは \`main\` ブランチをベースとするため、CI（\`ci.yml\`）の \`pull_request\` トリガー対象外です（\`pull_request.branches: [release]\`）。
-> \`release\` ブランチへのマージ時に CI が実行済みのため、マージ後の CI（push to main）でのみ最終検証されます。
+このPRがマージされると、リリースタグ付与ワークフローが自動実行されます。
 ")
 
           echo "::notice::リリースPR を作成しました: ${PR_URL}"
