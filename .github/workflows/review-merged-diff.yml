@@ -1,0 +1,132 @@
+name: Review Merged Diff On Develop
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  review-merged-diff:
+    name: develop マージ差分レビュー（Copilot CLI）
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Node.js のセットアップ
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
+        with:
+          node-version: 22
+
+      - name: Copilot CLI（@github/copilot）のインストール
+        run: npm install -g @github/copilot
+
+      - name: マージ差分のレビューを依頼
+        id: copilot-review
+        shell: bash
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN || github.token }}
+        run: |
+          set -euo pipefail
+
+          BEFORE_SHA="${{ github.event.before }}"
+          AFTER_SHA="${{ github.sha }}"
+          DIFF_FILE="$(mktemp)"
+
+          if [ -z "${BEFORE_SHA}" ] || [ "${BEFORE_SHA}" = "0000000000000000000000000000000000000000" ]; then
+            git --no-pager show --no-color --patch "${AFTER_SHA}" > "${DIFF_FILE}"
+          else
+            git --no-pager diff --no-color "${BEFORE_SHA}" "${AFTER_SHA}" > "${DIFF_FILE}"
+          fi
+
+          if [ ! -s "${DIFF_FILE}" ]; then
+            {
+              echo "needs_action=false"
+              echo "review_file="
+            } >> "$GITHUB_OUTPUT"
+            echo "差分がないためレビューをスキップしました。"
+            exit 0
+          fi
+
+          REVIEW_DIFF_FILE="$(mktemp)"
+          head -c 200000 "${DIFF_FILE}" > "${REVIEW_DIFF_FILE}"
+
+          REVIEW_PROMPT_FILE="$(mktemp)"
+          printf '%s\n' \
+            'あなたは厳格なコードレビュアーです。添付されたマージ差分をレビューしてください。' \
+            '' \
+            '出力は必ず次の形式にしてください。' \
+            '判定: NEEDS_ACTION または NO_ACTION' \
+            '対応が必要な個所:' \
+            '- 箇条書きで具体的に列挙（ファイル名・理由・修正案を簡潔に）' \
+            '- 対応が不要な場合は `- なし` と1行で明記' \
+            '' \
+            '注意:' \
+            '- 仕様・セキュリティ・可読性・保守性・テスト観点で確認すること' \
+            '- 推測で断定せず、差分から判断できることのみ書くこと' \
+            > "${REVIEW_PROMPT_FILE}"
+
+          REVIEW_RESULT_FILE="$(mktemp)"
+          copilot \
+            --allow-all-tools \
+            --silent \
+            --prompt "$(cat "${REVIEW_PROMPT_FILE}")" \
+            --attachment "${REVIEW_DIFF_FILE}" > "${REVIEW_RESULT_FILE}"
+
+          cat "${REVIEW_RESULT_FILE}"
+
+          if grep -Eq '^判定:[[:space:]]*NEEDS_ACTION' "${REVIEW_RESULT_FILE}"; then
+            echo "needs_action=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "needs_action=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          {
+            echo "review_file=${REVIEW_RESULT_FILE}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Issue作成とCopilotアサイン
+        if: steps.copilot-review.outputs.needs_action == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_CLASSIC || github.token }}
+          GH_REPO: ${{ github.repository }}
+          REVIEW_FILE: ${{ steps.copilot-review.outputs.review_file }}
+        run: |
+          set -euo pipefail
+
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+          ISSUE_TITLE="[Copilotレビュー] developマージ差分の要対応指摘 (${SHORT_SHA})"
+          ISSUE_BODY_FILE="$(mktemp)"
+
+          {
+            echo "develop へマージされた差分を Copilot CLI（@github/copilot）でレビューした結果、対応が必要な指摘が見つかりました。"
+            echo ""
+            echo "- 対象コミット: ${GITHUB_SHA}"
+            echo "- 実行URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo ""
+            echo "## Copilotレビュー結果"
+            cat "${REVIEW_FILE}"
+          } > "${ISSUE_BODY_FILE}"
+
+          ISSUE_URL="$(gh issue create --title "${ISSUE_TITLE}" --body-file "${ISSUE_BODY_FILE}")"
+          ISSUE_NUMBER="$(echo "${ISSUE_URL}" | grep -oE '[0-9]+$')"
+          if gh issue edit "${ISSUE_NUMBER}" --add-assignee "@copilot"; then
+            echo "Issue #${ISSUE_NUMBER} を作成し、@copilot をアサインしました。"
+          else
+            echo "Issue #${ISSUE_NUMBER} は作成しましたが、@copilot のアサインに失敗しました。"
+          fi
+
+      - name: レビュー結果サマリ
+        shell: bash
+        run: |
+          if [ "${{ steps.copilot-review.outputs.needs_action }}" = "true" ]; then
+            echo "対応が必要な指摘が見つかったため Issue を作成しました。"
+          else
+            echo "対応が必要な指摘はありませんでした。"
+          fi
