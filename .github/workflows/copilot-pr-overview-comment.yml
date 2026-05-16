@@ -1,0 +1,34 @@
+name: Copilot PR Overview Comment
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  request-review-follow-up:
+    name: Copilot概要コメントへの自動返信
+    if: >-
+      ${{
+        github.event.issue.pull_request != null &&
+        github.event.comment.user.type == 'Bot' &&
+        contains(toLower(github.event.comment.user.login), 'copilot') &&
+        contains(github.event.comment.body, 'Pull request overview')
+      }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Copilotへレビュー対応を依頼
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        with:
+          github-token: ${{ secrets.COPILOT_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: context.issue.number,
+              body: '@copilot レビューに対応して',
+            });
