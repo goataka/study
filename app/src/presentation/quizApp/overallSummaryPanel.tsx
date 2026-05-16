@@ -19,7 +19,7 @@ import { HistoryList } from "./HistoryList";
 import { overallStatusContentStore } from "../components/overallStatusContentStore";
 import { todayActivityContentStore } from "../components/todayActivityContentStore";
 import { learningStatusContentStore } from "../components/learningStatusContentStore";
-import { triggerStartQuiz } from "../components/learningStatusActionsStore";
+import { triggerStartQuiz, triggerSelectUnit } from "../components/learningStatusActionsStore";
 import { materializeRecommendedUnits } from "./allSubjectListRenderer";
 
 /**
@@ -176,8 +176,12 @@ interface FirstRecommendedTitle {
 
 interface TodayLearnedUnitItem {
   id: string;
+  /** 教科ラベル + カテゴリ階層（クリック時の表示用タイトル）。 */
   title: string;
   stage: CategoryStage;
+  subject: string;
+  categoryId: string;
+  categoryName: string;
 }
 
 /** おすすめ先頭単元のタイトル情報を組み立てる（教科絵文字 + 教科名 + トップ/親カテゴリ + 単元名）。 */
@@ -222,6 +226,9 @@ function buildTodayLearnedUnits(
       id,
       title: `${subjectLabel}：${categoryPath}`,
       stage,
+      subject: record.subject,
+      categoryId: record.category,
+      categoryName: record.categoryName,
     });
   }
   return items;
@@ -296,7 +303,7 @@ function LearningStatusPanel({
                     ›
                   </span>
                   {firstRecommendedTitle.topCatName && (
-                    <span className="text-[#586069]">{firstRecommendedTitle.topCatName}</span>
+                    <span className="text-base text-[#586069]">{firstRecommendedTitle.topCatName}</span>
                   )}
                   {firstRecommendedTitle.topCatName && firstRecommendedTitle.parentCatName && (
                     <span className="text-[#586069]" aria-hidden="true">
@@ -304,12 +311,12 @@ function LearningStatusPanel({
                     </span>
                   )}
                   {firstRecommendedTitle.parentCatName && (
-                    <span className="text-[#586069]">{firstRecommendedTitle.parentCatName}</span>
+                    <span className="text-base text-[#586069]">{firstRecommendedTitle.parentCatName}</span>
                   )}
                 </>
               )}
             </div>
-            <div className="mt-0.5 text-2xl font-extrabold text-[#24292e] leading-tight">
+            <div className="mt-0.5 text-5xl font-extrabold text-[#24292e] leading-tight">
               {firstRecommendedTitle.categoryName}
             </div>
           </div>
@@ -318,7 +325,7 @@ function LearningStatusPanel({
       <button
         id="learningStatusStartBtn"
         type="button"
-        className="learning-status-start-btn mt-1 mb-2 w-full rounded-lg border-none bg-[#0366d6] px-4 py-2.5 text-base font-bold text-white shadow-sm transition-[background-color] duration-150 cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0]"
+        className="learning-status-start-btn mt-10 mb-10 w-full rounded-lg border-none bg-[#0366d6] px-4 py-2.5 text-base font-bold text-white shadow-sm transition-[background-color] duration-150 cursor-pointer hover:bg-[#0255b3] active:bg-[#024ea0]"
         onClick={triggerStartQuiz}
       >
         スタート
@@ -333,16 +340,28 @@ function LearningStatusPanel({
             <div className="text-sm text-[#8c959f]">まだありません</div>
           ) : (
             <ul className="m-0 list-none p-0">
-              {todayLearnedUnits.map((unit) => (
-                <li key={unit.id} className="py-0.5 text-center text-sm text-[#24292e]">
-                  {unit.title}
-                  {unit.stage > 0 && (
-                    <span className="ml-1 leading-none" aria-hidden="true">
-                      {CATEGORY_STAGE_EMOJI[unit.stage as Exclude<CategoryStage, 0>]}
-                    </span>
-                  )}
-                </li>
-              ))}
+              {todayLearnedUnits.map((unit) => {
+                const [subjectLabel, ...rest] = unit.title.split("：");
+                const categoryLabel = rest.join("：");
+                return (
+                  <li key={unit.id} className="py-0.5 text-center text-sm">
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-1 bg-transparent border-none p-0 cursor-pointer text-[#24292e] hover:text-[#0366d6] hover:underline text-sm"
+                      onClick={() => triggerSelectUnit(unit.subject, unit.categoryId, unit.categoryName)}
+                    >
+                      <span className="text-[#586069]">{subjectLabel}</span>
+                      <span>：</span>
+                      <strong className="font-bold">{categoryLabel}</strong>
+                      {unit.stage > 0 && (
+                        <span className="leading-none" aria-hidden="true">
+                          {CATEGORY_STAGE_EMOJI[unit.stage as Exclude<CategoryStage, 0>]}
+                        </span>
+                      )}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>

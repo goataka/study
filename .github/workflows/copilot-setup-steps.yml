@@ -23,6 +23,18 @@ jobs:
       - name: コードのチェックアウト
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
+      - name: 日本語UTF-8ロケールのセットアップ
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y locales
+          sudo locale-gen ja_JP.UTF-8
+          sudo update-locale LANG=ja_JP.UTF-8 LC_ALL=ja_JP.UTF-8
+          {
+            echo "LANG=ja_JP.UTF-8"
+            echo "LC_ALL=ja_JP.UTF-8"
+            echo "LANGUAGE=ja_JP:ja"
+          } >> "$GITHUB_ENV"
+
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
 

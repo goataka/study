@@ -129,7 +129,7 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     expect(activeBtn8?.classList.contains("active")).toBe(true);
   });
 
-  it("全問正解の学習済みカテゴリは進捗率100%と表示される", async () => {
+  it("全問正解の学習済みカテゴリは今日の単元リストから除外される", async () => {
     const studyDate = new Date().toISOString();
     const repo = new StubProgressRepository();
     repo.saveHistory([
@@ -152,10 +152,9 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
     new QuizApp(repo);
     await new Promise((resolve) => setTimeout(resolve, 0));
 
+    // 履修済（全問マスター済み）の単元は今日の単元リストから除外される
     const englishItem = document.querySelector('.subject-overview-item[data-subject="english"]');
-    const pctSpan = englishItem?.querySelector(".subject-overview-pct");
-    // phonics-1 が学習済みかつ全問習得済み → 5/5
-    expect(pctSpan?.textContent).toBe("5/5");
+    expect(englishItem).toBeNull();
   });
 
   it("教科概要アイテムをクリックしても総合タブのままで教科タブに切り替わらない", async () => {

@@ -36,6 +36,7 @@ export interface AllListenersDeps {
   onSubmit: () => void;
   onRetryAll: () => void;
   onBackToStart: () => void;
+  onEndLearning: () => void;
   onCancelQuiz: () => void;
   onReload: () => void;
   // 問題一覧フィルター
@@ -86,6 +87,7 @@ export function setupAllListeners(deps: AllListenersDeps): void {
     onSubmit: deps.onSubmit,
     onRetryAll: deps.onRetryAll,
     onBackToStart: deps.onBackToStart,
+    onEndLearning: deps.onEndLearning,
     onCancelQuiz: deps.onCancelQuiz,
     onReload: deps.onReload,
   });

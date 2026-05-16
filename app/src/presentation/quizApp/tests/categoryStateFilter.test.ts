@@ -239,8 +239,8 @@ describe("QuizApp — カテゴリ学習状態フィルター仕様", () => {
 
     // 履歴なし・不正解なしでも masteredIds が全問分あれば learned クラスが付与される
     expect(catItem?.classList.contains("learned")).toBe(true);
-    // 絵文字も✔️になること
+    // 絵文字も✅になること
     const statusEl = catItem?.querySelector(".category-status");
-    expect(statusEl?.textContent).toBe("✔️");
+    expect(statusEl?.textContent).toBe("✅");
   });
 });

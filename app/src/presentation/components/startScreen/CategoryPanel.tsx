@@ -9,6 +9,7 @@ import { useSyncExternalStore, useState, useEffect, useRef } from "react";
 import { statusFilterButton } from "../../styles/categoryControlButtonStyles";
 import { categoryControlsContentStore } from "../categoryControlsContentStore";
 import { categoryListContentStore } from "../categoryListContentStore";
+import { CATEGORY_STATUS_ITEMS } from "../../uiHelpers";
 
 export function CategoryPanel(): React.JSX.Element {
   return (
@@ -29,6 +30,7 @@ export function CategoryPanel(): React.JSX.Element {
         >
           📚 単元一覧
         </span>
+        <CategoryStatusInfoButton />
         <span
           id="supportMenuTitle"
           className="support-menu-title hidden text-sm font-bold text-[#0366d6] shrink-0 px-1 py-1"
@@ -113,6 +115,62 @@ function CategoryListSection(): React.JSX.Element {
   return <>{node}</>;
 }
 
+/** 単元一覧のステータスアイコンの説明を吹き出しで表示する ℹ️ ボタン。 */
+function CategoryStatusInfoButton(): React.JSX.Element {
+  const [showInfo, setShowInfo] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonId = "categoryStatusInfoBtn";
+
+  useEffect(() => {
+    if (!showInfo) return;
+    const handlePointerDown = (e: PointerEvent): void => {
+      if (containerRef.current && e.target instanceof Node && !containerRef.current.contains(e.target)) {
+        setShowInfo(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent): void => {
+      if (e.key === "Escape") setShowInfo(false);
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showInfo]);
+
+  return (
+    <div ref={containerRef} className="relative shrink-0">
+      <button
+        id={buttonId}
+        type="button"
+        className="text-base text-[#586069] cursor-pointer bg-transparent border-none p-0 leading-none hover:text-[#0366d6]"
+        aria-label="着手・完了ステータスの説明を表示"
+        aria-expanded={showInfo}
+        onClick={() => setShowInfo((v) => !v)}
+      >
+        ℹ️
+      </button>
+      {showInfo && (
+        <div
+          className="absolute left-0 top-full z-50 mt-1 w-72 rounded-md border border-[#e1e4e8] bg-white p-3 shadow-lg text-[#24292e]"
+          role="region"
+          aria-labelledby={buttonId}
+        >
+          <ul className="m-0 list-none p-0 space-y-1">
+            {CATEGORY_STATUS_ITEMS.map((item, i) => (
+              <li key={i} className="flex items-center gap-2 text-base leading-snug text-[#24292e]">
+                <span className="text-base leading-none shrink-0">{item.icon}</span>
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /** 今日の単元の抽出条件を吹き出しで説明する ℹ️ ボタン（総合タブ時のみ表示）。 */
 function AllSubjectPanelInfoButton(): React.JSX.Element {
   const [showInfo, setShowInfo] = useState(false);
@@ -122,7 +180,7 @@ function AllSubjectPanelInfoButton(): React.JSX.Element {
   const infoConditions = [
     "未学習の単元を優先して表示",
     "学習済（📝）は7日後、復習済（📜）は14日後に復習対象として表示",
-    "検定済（🎓）は除外",
+    "検定済（🎓）・履修済（✅）は除外",
     "国語 → 数学 → 英語の順で優先",
   ];
 
@@ -154,7 +212,11 @@ function AllSubjectPanelInfoButton(): React.JSX.Element {
   }, [showInfo]);
 
   return (
-    <div id="allSubjectPanelInfo" ref={containerRef} className="all-subject-panel-info hidden relative shrink-0">
+    <div
+      id="allSubjectPanelInfo"
+      ref={containerRef}
+      className="all-subject-panel-info hidden relative shrink-0 ml-auto"
+    >
       <button
         id={buttonId}
         type="button"
@@ -167,7 +229,7 @@ function AllSubjectPanelInfoButton(): React.JSX.Element {
       </button>
       {showInfo && (
         <div
-          className="absolute left-0 top-full z-10 mt-1 w-72 rounded-md border border-[#e1e4e8] bg-white p-3 shadow-md text-[#24292e]"
+          className="absolute right-0 top-full z-50 mt-1 w-72 rounded-md border border-[#e1e4e8] bg-white p-3 shadow-lg text-[#24292e]"
           role="region"
           aria-labelledby={buttonId}
         >
