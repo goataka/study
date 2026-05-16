@@ -1,5 +1,5 @@
 /**
- * QuizApp — 学習済みにするボタン仕様
+ * QuizApp — 履修済にするボタン仕様
  */
 
 // @vitest-environment jsdom
@@ -7,7 +7,7 @@
 import { QuizApp } from "../../quizApp";
 import { setupTabDom, setupFetchMock } from "../testHelpers";
 
-describe("QuizApp — 学習済みにするボタン仕様", () => {
+describe("QuizApp — 履修済にするボタン仕様", () => {
   beforeEach(() => {
     setupTabDom();
     setupFetchMock();
@@ -17,7 +17,7 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化時（総合タブ表示中）は「学習済みにする」ボタンが無効になっている", async () => {
+  it("初期化時（総合タブ表示中）は「履修済にする」ボタンが無効になっている", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -25,7 +25,7 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     expect(markLearnedBtn.disabled).toBe(true);
   });
 
-  it("特定カテゴリを選択すると「学習済みにする」ボタンが有効になる", async () => {
+  it("特定カテゴリを選択すると「履修済にする」ボタンが有効になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -39,7 +39,7 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     expect(markLearnedBtn.disabled).toBe(false);
   });
 
-  it("「学習済みにする」ボタンをクリックするとカテゴリが ✅ になる", async () => {
+  it("「履修済にする」ボタンをクリックするとカテゴリが ✅ になる", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -90,7 +90,7 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
     catItem?.click();
 
     const markLearnedBtn = document.getElementById("markLearnedBtn") as HTMLButtonElement;
-    // 学習済みにする
+    // 履修済みにする
     markLearnedBtn.click();
     document.getElementById("confirmDialogOk")?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -107,6 +107,6 @@ describe("QuizApp — 学習済みにするボタン仕様", () => {
       document.querySelector('.category-item[data-category="phonics-1"]')?.querySelector(".category-status")
         ?.textContent,
     ).toBe("🔄");
-    expect(markLearnedBtn.textContent).toBe("✅ 学習済みにする");
+    expect(markLearnedBtn.textContent).toBe("✅ 履修済にする");
   });
 });

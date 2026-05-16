@@ -1,7 +1,7 @@
 /**
  * スタート画面右カラムのインナータブ群（解説 / 確認 / 問題 / 履歴）と各タブのコンテンツ。
  *
- * クイズモードの設定（問題数 / 並び順 / 学習済の扱い）と「学習済みにする」ボタンを含む。
+ * クイズモードの設定（問題数 / 並び順 / 学習済の扱い）と「履修済にする」ボタンを含む。
  * インナータブの active 状態と各パネルの hidden 表示は `panelTabsStore` を購読して
  * 宣言的に反映し、クリックは React onClick で `panelTabsStore` を更新する。
  */
@@ -145,6 +145,17 @@ export function QuizPanel(): React.JSX.Element {
               />{" "}
               20問
             </label>
+            <label className="count-label flex cursor-pointer items-center gap-[5px] text-[17px] text-[#333]">
+              <input
+                type="radio"
+                name="questionCount"
+                value="9999"
+                checked={settings.questionCount === 9999}
+                onChange={() => setQuizSettings({ questionCount: 9999 })}
+                className="cursor-pointer accent-[#0366d6]"
+              />{" "}
+              全て
+            </label>
           </div>
         </div>
         <div className="quiz-order-section flex items-center gap-2 py-1.5">
@@ -207,7 +218,7 @@ export function QuizPanel(): React.JSX.Element {
             className="mark-learned-btn flex w-full items-center justify-center px-4 py-2.5 text-base font-bold border border-[#28a745] rounded-md bg-[#f0fff4] text-[#1f8a39] cursor-pointer transition-[background,color,border-color] duration-200 hover:bg-[#28a745] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             disabled
           >
-            ✅ 学習済みにする
+            ✅ 履修済にする
           </button>
         </div>
       </div>

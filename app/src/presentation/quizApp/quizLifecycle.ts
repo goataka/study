@@ -190,7 +190,7 @@ export async function toggleLearnedStatus(deps: {
   onAfterToggle: () => void;
 }): Promise<void> {
   const isCurrentlyLearned = isCurrentCategoryLearned(deps.useCase, deps.effectiveFilter);
-  const message = isCurrentlyLearned ? "この単元を未学習に戻しますか？" : "この単元を学習済みにしますか？";
+  const message = isCurrentlyLearned ? "この単元を未学習に戻しますか？" : "この単元を履修済にしますか？";
   const confirmed = await deps.showConfirmDialog(message);
   if (!confirmed) return;
   if (isCurrentlyLearned) {

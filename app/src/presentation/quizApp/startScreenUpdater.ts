@@ -1,5 +1,5 @@
 /**
- * スタート画面の統計エリア・「学習済みにする」ボタン・パネルタブのコンテンツ更新ヘルパー。
+ * スタート画面の統計エリア・「履修済にする」ボタン・パネルタブのコンテンツ更新ヘルパー。
  *
  * 全体統計（全N問 / 学習中 / 学習済）の表示と、現在の活性パネルタブに応じた
  * 関連パネル（履歴・問題一覧・解説・総合サマリ）の再描画を担う。
@@ -50,10 +50,10 @@ export function updateStartScreen(params: UpdateStartScreenParams): void {
 
   statsInfo.textContent = `学習中：${inProgressInFilter}問 / 学習済：${masteredInFilter}問 / 全：${filteredCount}問`;
 
-  // 特定カテゴリが選択されている場合のみ「学習済みにする」ボタンを有効化
+  // 特定カテゴリが選択されている場合のみ「履修済にする」ボタンを有効化
   if (markLearnedBtn) {
     markLearnedBtn.disabled = effectiveFilter.category === "all";
-    markLearnedBtn.textContent = params.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 学習済みにする";
+    markLearnedBtn.textContent = params.isCurrentCategoryLearned() ? "↩ 未学習に戻す" : "✅ 履修済にする";
   }
 
   params.renderHistoryList(effectiveFilter, params.allRecords);

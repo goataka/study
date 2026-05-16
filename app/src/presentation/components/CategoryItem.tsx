@@ -57,9 +57,9 @@ function backtickSegments(text: string): React.ReactNode[] {
 const STAGE_BADGE_MAP: Readonly<
   Record<Exclude<CategoryStage, 0>, { emoji: string; sizeClass: string; label: string }>
 > = {
-  1: { emoji: "🎖️", sizeClass: "text-base", label: "学習済ステージ" },
-  2: { emoji: "🏆", sizeClass: "text-lg", label: "復習済ステージ" },
-  3: { emoji: "👑", sizeClass: "text-xl", label: "修了済ステージ" },
+  1: { emoji: "📝", sizeClass: "text-base", label: "学習済ステージ" },
+  2: { emoji: "📜", sizeClass: "text-lg", label: "復習済ステージ" },
+  3: { emoji: "🎓", sizeClass: "text-xl", label: "修了済ステージ" },
 } as const;
 
 export function CategoryItem(props: CategoryItemProps): React.JSX.Element {

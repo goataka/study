@@ -208,7 +208,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(stars?.compareDocumentPosition(startBtn as Node) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
-  it("開始するを押すと（未学習）解説タブが開く", async () => {
+  it("スタートを押すと（未学習）解説タブが開く", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -221,7 +221,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
     expect(guideTab?.classList.contains("active")).toBe(true);
   });
 
-  it("開始するを押すと（学習済み）確認タブが開く", async () => {
+  it("スタートを押すと（学習済み）確認タブが開く", async () => {
     const repo = new StubProgressRepository();
     repo.saveHistory([
       {
@@ -323,7 +323,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     const firstTitle = document.getElementById("learningStatusFirstTitle");
     const firstRecommendedName = document.querySelector(".subject-overview-rec-name");
-    expect(firstTitle?.textContent).toContain("：");
+    expect(firstTitle?.textContent).toContain("›");
     expect(firstTitle?.textContent).toContain(firstRecommendedName?.textContent ?? "");
   });
 
