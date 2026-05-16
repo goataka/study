@@ -11,7 +11,7 @@ jobs:
     if: >-
       ${{
         github.event.issue.pull_request != null &&
-        github.event.comment.user.type == 'Bot' &&
+        secrets.COPILOT_TOKEN != '' &&
         contains(github.event.comment.user.login, 'copilot') &&
         contains(github.event.comment.body, 'Pull request overview')
       }}
