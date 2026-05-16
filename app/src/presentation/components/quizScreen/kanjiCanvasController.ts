@@ -120,20 +120,26 @@ export class KanjiCanvasController {
 
     const correctAnswer = this.options.getCorrectAnswer();
     const normalizedCorrectAnswer = correctAnswer ? normalizeKanaText(correctAnswer) : undefined;
+    const isLatinAnswer = correctAnswer !== undefined && isLikelyLatinAnswer(correctAnswer);
     if (normalizedCorrectAnswer !== undefined && isHiraganaOnly(normalizedCorrectAnswer)) {
       candidates = expandHiraganaCandidatesWithVoicedVariants(
         kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)),
       );
-    } else if (correctAnswer !== undefined && isLikelyLatinAnswer(correctAnswer)) {
+    } else if (isLatinAnswer) {
       // 英語問題ではラテン文字候補のみを表示する。
       // ラテン文字候補がない場合は正解テキスト由来の英字候補を補完し、非ラテン文字（漢字・かな等）を混在させない。
+      // 補完後は大小英字を後方候補として追加する。
       candidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
       if (candidates.length === 0) {
         candidates = buildLatinCandidatesFromAnswer(correctAnswer);
       }
+      candidates = appendLatinAlphabetCandidates(candidates);
     }
 
-    candidates = Array.from(new Set(candidates)).slice(0, 5);
+    candidates = Array.from(new Set(candidates));
+    if (!isLatinAnswer) {
+      candidates = candidates.slice(0, 5);
+    }
 
     candidateList.innerHTML = "";
     candidates.forEach((char) => {
@@ -227,4 +233,18 @@ function buildLatinCandidatesFromAnswer(answer: string): string[] {
     if (/^[A-Za-z]$/.test(char)) uniqueChars.add(char);
   }
   return Array.from(uniqueChars);
+}
+
+const LATIN_ALPHABET_CANDIDATES = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", ..."abcdefghijklmnopqrstuvwxyz"] as const;
+
+function appendLatinAlphabetCandidates(baseCandidates: string[]): string[] {
+  const merged = [...baseCandidates];
+  const seen = new Set(merged);
+  for (const candidate of LATIN_ALPHABET_CANDIDATES) {
+    if (!seen.has(candidate)) {
+      seen.add(candidate);
+      merged.push(candidate);
+    }
+  }
+  return merged;
 }

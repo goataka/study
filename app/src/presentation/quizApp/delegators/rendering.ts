@@ -326,6 +326,7 @@ export function renderProgressView(app: QuizApp): void {
     progressSubjectId: app.progressSubjectId,
     progressDetailViewMode: app.progressDetailViewMode,
     progressStatusFilter: app.progressStatusFilter,
+    progressGradeFilter: app.progressGradeFilter,
     progressMatrixTransposed: app.progressMatrixTransposed,
     onSelectSubject: (subjectId) => {
       app.progressSubjectId = subjectId;
@@ -349,6 +350,7 @@ export function renderProgressDetailPanel(app: QuizApp): void {
     progressSubjectId: app.progressSubjectId,
     progressDetailViewMode: app.progressDetailViewMode,
     progressStatusFilter: app.progressStatusFilter,
+    progressGradeFilter: app.progressGradeFilter,
     progressMatrixTransposed: app.progressMatrixTransposed,
     onSelectUnit: (subject, catId, catName) => selectUnitContext(app, subject, catId, catName),
     onToggleMatrixTranspose: () => {
@@ -365,6 +367,7 @@ export function renderProgressDetailContent(app: QuizApp): void {
     progressSubjectId: app.progressSubjectId,
     progressDetailViewMode: app.progressDetailViewMode,
     progressStatusFilter: app.progressStatusFilter,
+    progressGradeFilter: app.progressGradeFilter,
     progressMatrixTransposed: app.progressMatrixTransposed,
     onSelectUnit: (subject, catId, catName) => selectUnitContext(app, subject, catId, catName),
     onToggleMatrixTranspose: () => {

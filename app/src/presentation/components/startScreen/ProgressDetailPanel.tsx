@@ -71,7 +71,27 @@ export function ProgressDetailPanel(): React.JSX.Element {
         />
         <ProgressDetailTabButton mode="matrix" active={active} id="progressDetailTab-matrix" label="📊 マトリクス" />
       </div>
-      <div className="progress-detail-toolbar px-4 py-1 flex justify-end">
+      <div className="progress-detail-toolbar px-4 py-1 flex items-center justify-end gap-2 flex-wrap">
+        <div className="progress-grade-filter flex items-center gap-0.5" role="group" aria-label="対象学年フィルター">
+          <span className="text-xs text-[#586069]">対象学年：</span>
+          <button
+            id="progressGradeAllBtn"
+            className={`${statusFilterButton()} active`}
+            type="button"
+            aria-pressed="true"
+          >
+            すべて
+          </button>
+          <button id="progressGradeElemBtn" className={statusFilterButton()} type="button" aria-pressed="false">
+            小学
+          </button>
+          <button id="progressGradeMiddleBtn" className={statusFilterButton()} type="button" aria-pressed="false">
+            中学
+          </button>
+          <button id="progressGradeHighBtn" className={statusFilterButton()} type="button" aria-pressed="false">
+            高校
+          </button>
+        </div>
         <div className="category-status-filter flex items-center gap-0.5" role="group" aria-label="学習状況フィルター">
           <span className="category-status-filter-label text-xs text-[#586069]">学習状況：</span>
           <button

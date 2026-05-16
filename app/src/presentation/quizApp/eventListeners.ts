@@ -315,6 +315,19 @@ export function setupProgressFilterListeners(
   });
 }
 
+/** 進度タブ: 対象学年フィルター切替ボタンのイベント。 */
+export function setupProgressGradeFilterListeners(onSelect: (grade: "小学" | "中学" | "高校" | null) => void): void {
+  const filterButtons = [
+    { id: "progressGradeAllBtn", grade: null },
+    { id: "progressGradeElemBtn", grade: "小学" as const },
+    { id: "progressGradeMiddleBtn", grade: "中学" as const },
+    { id: "progressGradeHighBtn", grade: "高校" as const },
+  ];
+  filterButtons.forEach(({ id, grade }) => {
+    document.getElementById(id)?.addEventListener("click", () => onSelect(grade));
+  });
+}
+
 /** メモエリアのコントロール（クリア・消しゴム）のイベント。 */
 export interface NotesCallbacks {
   onClear: () => void;

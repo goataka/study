@@ -141,6 +141,7 @@ function ProgressSubjectListItem({
 export function syncProgressDetailControls(
   progressDetailViewMode: "grade" | "category" | "matrix",
   progressStatusFilter: ProgressStatusFilter,
+  progressGradeFilter: "小学" | "中学" | "高校" | null,
 ): void {
   const panel = document.getElementById("progressDetailPanel");
   if (!panel) return;
@@ -170,6 +171,20 @@ export function syncProgressDetailControls(
     const btn = document.getElementById(id);
     if (!btn) return;
     const active = progressStatusFilter === filter;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-pressed", String(active));
+  });
+
+  const gradeButtons: Array<{ id: string; grade: "小学" | "中学" | "高校" | null }> = [
+    { id: "progressGradeAllBtn", grade: null },
+    { id: "progressGradeElemBtn", grade: "小学" },
+    { id: "progressGradeMiddleBtn", grade: "中学" },
+    { id: "progressGradeHighBtn", grade: "高校" },
+  ];
+  gradeButtons.forEach(({ id, grade }) => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    const active = progressGradeFilter === grade;
     btn.classList.toggle("active", active);
     btn.setAttribute("aria-pressed", String(active));
   });
