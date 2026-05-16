@@ -139,7 +139,7 @@ export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
         </span>
         <div className="category-name-area flex flex-col gap-0.5 min-w-0 flex-1">
           <div className="category-title-row flex items-baseline gap-1.5 min-w-0">
-            <span className="category-name text-lg font-semibold text-[#24292e] group-[.active]:text-white">
+            <span className="category-name min-w-0 break-words text-lg font-semibold text-[#24292e] group-[.active]:text-white">
               {categoryName}
             </span>
             {badge && (

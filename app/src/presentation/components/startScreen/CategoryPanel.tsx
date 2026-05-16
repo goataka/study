@@ -56,6 +56,31 @@ export function CategoryPanel(): React.JSX.Element {
             学習済
           </button>
         </div>
+        <div
+          id="progressGradeFilter"
+          className="progress-grade-filter hidden items-center gap-0.5 ml-auto"
+          role="group"
+          aria-label="対象学年フィルター"
+        >
+          <span className="text-xs text-[#586069]">対象学年：</span>
+          <button
+            id="progressGradeAllBtnSide"
+            className={`${statusFilterButton()} active`}
+            type="button"
+            aria-pressed="true"
+          >
+            すべて
+          </button>
+          <button id="progressGradeElemBtnSide" className={statusFilterButton()} type="button" aria-pressed="false">
+            小学
+          </button>
+          <button id="progressGradeMiddleBtnSide" className={statusFilterButton()} type="button" aria-pressed="false">
+            中学
+          </button>
+          <button id="progressGradeHighBtnSide" className={statusFilterButton()} type="button" aria-pressed="false">
+            高校
+          </button>
+        </div>
         <span
           id="allSubjectPanelTitle"
           className="all-subject-panel-title hidden text-base font-bold text-[#0366d6] shrink-0"
@@ -225,7 +250,7 @@ function AllSubjectPanelInfoButton(): React.JSX.Element {
       </button>
       {showInfo && (
         <div
-          className="absolute right-0 top-full z-50 mt-1 w-72 rounded-md border border-[#e1e4e8] bg-white p-3 shadow-lg text-[#24292e]"
+          className="absolute left-0 top-full z-50 mt-1 w-72 rounded-md border border-[#e1e4e8] bg-white p-3 shadow-lg text-[#24292e]"
           role="region"
           aria-labelledby={buttonId}
         >

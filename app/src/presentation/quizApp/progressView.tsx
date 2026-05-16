@@ -177,9 +177,13 @@ export function syncProgressDetailControls(
 
   const gradeButtons: Array<{ id: string; grade: "小学" | "中学" | "高校" | null }> = [
     { id: "progressGradeAllBtn", grade: null },
+    { id: "progressGradeAllBtnSide", grade: null },
     { id: "progressGradeElemBtn", grade: "小学" },
+    { id: "progressGradeElemBtnSide", grade: "小学" },
     { id: "progressGradeMiddleBtn", grade: "中学" },
+    { id: "progressGradeMiddleBtnSide", grade: "中学" },
     { id: "progressGradeHighBtn", grade: "高校" },
+    { id: "progressGradeHighBtnSide", grade: "高校" },
   ];
   gradeButtons.forEach(({ id, grade }) => {
     const btn = document.getElementById(id);

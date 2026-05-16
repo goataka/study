@@ -58,13 +58,14 @@ describe("QuizUseCase — advanceCategoryStage 仕様", () => {
 
   it("ステージ 0→1 のとき mastery/streak/wrong がリセットされる", async () => {
     // mastered & streak を付けてからステージ進行
-    const rep2 = new StubProgressRepository(["q1"], [], { q1: 3 }, {}, ["q1"]);
+    const rep2 = new StubProgressRepository(["q1"], [], { q1: 3 }, { q1: { total: 5, correct: 4 } }, ["q1"]);
     const uc2 = new QuizUseCase(new StubQuestionRepository([makeQuestion("q1", "english", "phonics-1")]), rep2);
     await uc2.initialize();
     uc2.advanceCategoryStage("english", "phonics-1");
     expect(rep2.loadMasteredIds()).not.toContain("q1");
     expect(rep2.loadCorrectStreaks()["q1"]).toBeUndefined();
     expect(rep2.loadWrongIds()).not.toContain("q1");
+    expect(rep2.loadQuestionStats()["q1"]).toBeUndefined();
   });
 
   it("ステージ 2→3（修了）のとき mastery はリセットしない", async () => {

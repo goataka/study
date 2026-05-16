@@ -10,7 +10,7 @@ permalink: /operation-guide/
 
 画面上部に常時表示されるバーです。
 
-![ヘッダー](images/01-header.png)
+![ヘッダー](../images/01-header.png)
 
 | パーツ | 説明 |
 |--------|------|
@@ -26,7 +26,7 @@ permalink: /operation-guide/
 
 ### 教科タブ
 
-![教科タブ（ガイド）](images/02-start-guide-tab.png)
+![教科タブ（ガイド）](../images/02-start-guide-tab.png)
 
 | タブ | 説明 |
 |------|------|
@@ -42,7 +42,7 @@ permalink: /operation-guide/
 
 おすすめタブ選択時は、全教科横断のおすすめ単元が表示されます。
 
-![おすすめタブ](images/03-start-osusume-tab.png)
+![おすすめタブ](../images/03-start-osusume-tab.png)
 
 #### 学習状況パネル
 
@@ -68,7 +68,7 @@ permalink: /operation-guide/
 
 教科タブを選択すると、左パネルに単元一覧が表示されます。
 
-![単元一覧（英語）](images/04-start-english-unit-list.png)
+![単元一覧（英語）](../images/04-start-english-unit-list.png)
 
 | パーツ | 説明 |
 |--------|------|
@@ -97,11 +97,11 @@ permalink: /operation-guide/
 
 選択した単元の解説ページをアプリ内に表示します。文字サイズは「小/中/大」ボタンと連動します。
 
-![単元詳細 - 解説タブ](images/05-unit-detail-guide-tab.png)
+![単元詳細 - 解説タブ](../images/05-unit-detail-guide-tab.png)
 
 #### 確認タブ（クイズ設定）
 
-![単元詳細 - 確認タブ](images/05b-unit-detail-kakunin-tab.png)
+![単元詳細 - 確認タブ](../images/05b-unit-detail-kakunin-tab.png)
 
 | パーツ | 説明 |
 |--------|------|
@@ -114,7 +114,7 @@ permalink: /operation-guide/
 
 #### 問題タブ
 
-![単元詳細 - 問題タブ](images/05c-unit-detail-mondai-tab.png)
+![単元詳細 - 問題タブ](../images/05c-unit-detail-mondai-tab.png)
 
 | パーツ | 説明 |
 |--------|------|
@@ -123,7 +123,7 @@ permalink: /operation-guide/
 
 #### 履歴タブ
 
-![単元詳細 - 履歴タブ](images/05d-unit-detail-history-tab.png)
+![単元詳細 - 履歴タブ](../images/05d-unit-detail-history-tab.png)
 
 過去のクイズ結果を日付ごとにまとめて表示します。
 
@@ -131,7 +131,7 @@ permalink: /operation-guide/
 
 クイズ開始後に表示される画面です。
 
-![問題画面](images/06-quiz-screen.png)
+![問題画面](../images/06-quiz-screen.png)
 
 ### 問題エリア（左側）
 
@@ -150,7 +150,7 @@ permalink: /operation-guide/
 
 選択肢を選んだ後に表示されます。
 
-![回答フィードバック](images/06b-quiz-feedback.png)
+![回答フィードバック](../images/06b-quiz-feedback.png)
 
 | パーツ | 説明 |
 |--------|------|
@@ -176,15 +176,14 @@ permalink: /operation-guide/
 | パーツ | 説明 |
 |--------|------|
 | 手書きキャンバス | 1文字ずつ書いて文字を入力する |
-| 候補ボタン | 書いた文字の認識候補を表示する。クリックすると解答欄に入力される（英語問題ではアルファベット候補のみ表示し、認識できない場合は候補を表示しない） |
-| ↩（1画消すボタン） | 最後に書いた1画を取り消す |
+| 候補ボタン | 書いた文字の認識候補を表示する。クリックすると解答欄に入力される |
 | 🗑️（全消しボタン） | キャンバスをすべて消去する |
 
 ## 結果画面
 
 全問回答・採点後に表示される画面です。
 
-![結果画面](images/10-result-screen.png)
+![結果画面](../images/10-result-screen.png)
 
 | パーツ | 説明 |
 |--------|------|
@@ -198,13 +197,15 @@ permalink: /operation-guide/
 
 教科タブで「📈 進度」を選択すると表示されます。左列の教科をクリックして教科ごとの進度を確認できます。
 
-![進度タブ](images/07-progress-tab.png)
+- 左列の「対象学年」フィルターで、小学 / 中学 / 高校に絞り込めます
+
+![進度タブ](../images/07-progress-tab.png)
 
 ## ガイドタブ
 
 教科タブで「🚀 ガイド」を選択すると表示されます。左列のメニューから以下を選べます。
 
-![ガイドタブ](images/09-guide-tab.png)
+![ガイドタブ](../images/09-guide-tab.png)
 
 | メニュー | 説明 |
 |----------|------|
@@ -216,7 +217,7 @@ permalink: /operation-guide/
 
 教科タブで「⚙️ 管理」を選択すると表示されます。学習データの管理ができます。
 
-![管理タブ](images/08-management-tab.png)
+![管理タブ](../images/08-management-tab.png)
 
 ### 左メニュー
 
