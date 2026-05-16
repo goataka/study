@@ -43,7 +43,7 @@ jobs:
           MARKER_PREFIX='<!-- auto-copilot-pr-overview-comment:'
           OVERVIEW_MARKER='## Pull request overview'
           MARKER="${MARKER_PREFIX}${COMMENT_ID} -->"
-          if printf '%s' "${COMMENT_BODY}" | jq -Rrs --arg marker_prefix "${MARKER_PREFIX}" 'contains($marker_prefix)' >/dev/null; then
+          if printf '%s' "${COMMENT_BODY}" | jq -Rres --arg marker_prefix "${MARKER_PREFIX}" 'contains($marker_prefix)' >/dev/null; then
             echo "::notice::自動生成した Copilot 依頼コメントのため再転送をスキップします"
             exit 0
           fi
@@ -53,7 +53,10 @@ jobs:
             exit 0
           fi
 
-          PARENT_COMMENT_JSON=$(gh api "repos/${GH_REPO}/issues/comments/${COMMENT_IN_REPLY_TO_ID}")
+          if ! PARENT_COMMENT_JSON=$(gh api "repos/${GH_REPO}/issues/comments/${COMMENT_IN_REPLY_TO_ID}"); then
+            echo "::error::親コメントの取得に失敗しました。コメント ID と GitHub API の応答を確認してください。"
+            exit 1
+          fi
           if ! printf '%s' "${PARENT_COMMENT_JSON}" | jq -e --arg overview_marker "${OVERVIEW_MARKER}" '(.body // "") | contains($overview_marker)' >/dev/null; then
             echo "::notice::Pull request overview コメントへの返信ではないため転送をスキップします"
             exit 0

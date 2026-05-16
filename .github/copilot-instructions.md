@@ -140,7 +140,7 @@
 - Issue内容のプランニング後に、対応漏れが無いか、対応意図と異ならないかを確認する
 - Review時にはIssueを確認して、対応漏れが無いか、対応意図と異ならないかを確認する
 - Issue の指摘事項は、完了報告前に一覧で再確認し、未対応項目が残っていないかを確認する
-- Pull request overview スレッドへの返信コメント（Bot 以外かつ `OWNER` / `MEMBER` / `COLLABORATOR`）は自動で `@copilot` に転送され、同じ返信コメントに対する重複投稿も自動で抑止される（自動化済み）
+- Pull request overview スレッドへの返信コメント（Bot 以外かつ `OWNER` / `MEMBER` / `COLLABORATOR`）は自動で `@copilot` に転送され、同一コメントIDに対する Copilot 依頼の重複投稿も自動で抑止される（自動化済み）
 - 機能を更改した場合は、ガイドの使い方（`support/startup-guide.md` / `support/operation-guide.md`）も更新する
 - 問題を更改した場合は、該当単元の解説（`support/**/guide.md`）も更新する
 - Issue とコメント（Issue / PR review / PR comment）に、ルール化すべき内容がないか確認する
