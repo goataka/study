@@ -47,6 +47,11 @@ jobs:
             exit 0
           fi
 
+          if ! printf '%s' "${COMMENT_BODY}" | grep -Fq '@copilot'; then
+            echo "::notice::@copilot 宛ての返信コメントではないため転送をスキップします"
+            exit 0
+          fi
+
           if [ -z "${COMMENT_IN_REPLY_TO_ID:-}" ]; then
             echo "::notice::Pull request overview スレッドへの返信コメントではないため転送をスキップします"
             exit 0
@@ -136,7 +141,7 @@ jobs:
           BODY_FILE=$(mktemp)
           {
             echo "${MARKER}"
-            echo "@copilot 以下の Pull request overview コメントの内容を確認し、必要に応じて修正・追加実装・質問への回答を行ってください。"
+            echo "@copilot 以下の Pull request overview スレッド上の返信コメントを確認し、必要に応じて修正・追加実装・質問への回答を行ってください。"
             echo
             echo "- 対象PR: #${PR_NUMBER}"
             echo "- 元コメント投稿者: @${COMMENT_AUTHOR}"
