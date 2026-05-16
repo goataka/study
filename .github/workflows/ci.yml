@@ -20,7 +20,7 @@ jobs:
       contents: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -53,7 +53,7 @@ jobs:
       packages: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
         run: git config --global --add safe.directory /__w/study/study
@@ -90,7 +90,7 @@ jobs:
       packages: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           token: ${{ secrets.COPILOT_CLASSIC || github.token }}
@@ -138,7 +138,7 @@ jobs:
 
       - name: 更新されたスナップショットをPRコメントで共有
         if: steps.snapshot-update.outputs.snapshot_updated == 'true'
-        uses: actions/github-script@v9
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         env:
           SNAPSHOT_FILES: ${{ steps.snapshot-update.outputs.snapshot_files }}
           MAX_PREVIEW_COUNT: ${{ env.MAX_PREVIEW_COUNT }}
@@ -253,7 +253,7 @@ jobs:
 
       - name: VRレポートのアップロード（失敗時）
         if: failure()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: vr-report
           path: app/vr-report/
@@ -267,13 +267,13 @@ jobs:
       pull-requests: write
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           token: ${{ secrets.COPILOT_CLASSIC || github.token }}
 
       - name: Node.js のセットアップ
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: 22
 
@@ -293,7 +293,7 @@ jobs:
           fi
 
       - name: reviewdog による Markdown チェック
-        uses: reviewdog/action-markdownlint@v0
+        uses: reviewdog/action-markdownlint@3667398db9118d7e78f7a63d10e26ce454ba5f58 # v0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
@@ -325,7 +325,7 @@ jobs:
       pull-requests: write
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: 失敗したジョブ結果を整形
         id: failed-jobs

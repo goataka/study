@@ -30,6 +30,8 @@ updates:
           - "patch"
 
   # GitHub Actions のワークフロー
+  # アクションはコミットSHAで固定し、バージョンをコメントで記録する（例: @abc123 # v4）
+  # Dependabot が週次でSHAを最新に更新するPRを自動作成する
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
