@@ -1,0 +1,44 @@
+name: リリースPR作成
+
+# develop ブランチからリリースブランチを作成し、main へのPRを作る
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-release-pr:
+    name: リリース用PRを作成
+    runs-on: ubuntu-latest
+    steps:
+      - name: コードのチェックアウト
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - name: リリースブランチ名を決定
+        id: branch-name
+        run: |
+          BRANCH_NAME="release/$(date +'%Y-%m-%d')"
+          echo "branch_name=${BRANCH_NAME}" >> "${GITHUB_OUTPUT}"
+
+      - name: リリースブランチを作成してプッシュ
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "${{ steps.branch-name.outputs.branch_name }}"
+          git push origin "${{ steps.branch-name.outputs.branch_name }}"
+
+      - name: リリースPRを作成
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          RELEASE_DATE="$(date +'%Y-%m-%d')"
+          gh pr create \
+            --base main \
+            --head "${{ steps.branch-name.outputs.branch_name }}" \
+            --title "Release: ${RELEASE_DATE}" \
+            --body "develop ブランチからのリリース用PRです。"
