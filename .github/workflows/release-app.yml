@@ -22,7 +22,7 @@ jobs:
           fi
 
       - name: コードのチェックアウト
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -62,7 +62,7 @@ jobs:
           echo "tag_name=${NEXT_TAG}" >> "${GITHUB_OUTPUT}"
 
       - name: GitHub Release を作成
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@b4309332981a82ec1c5618f44dd2e27cc8bfbfda # v3
         with:
           tag_name: ${{ steps.next-tag.outputs.tag_name }}
           name: ${{ steps.next-tag.outputs.tag_name }}
