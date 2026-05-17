@@ -19,6 +19,10 @@ import { isHiraganaOnly, isLatinOnly, loadScript, normalizeKanaText } from "../.
 export interface KanjiCanvasControllerOptions {
   /** 現在の問題の正解文字列を返す（候補フィルタ用）。null/undefined ならフィルタ無効。 */
   getCorrectAnswer: () => string | undefined;
+  /** 現在の問題メタ情報を返す（英語判定・大文字小文字判定に使用）。 */
+  getCurrentQuestionMeta?: () => { subject?: string; caseSensitive?: boolean } | undefined;
+  /** 現在のテキスト入力値を返す（英語問題の入力連動候補絞り込みに使用）。 */
+  getCurrentInputText?: () => string | undefined;
   /** 候補ボタンが選択されたときに呼ばれるコールバック。 */
   onSelectCandidate: (char: string) => void;
 }
@@ -97,7 +101,7 @@ export class KanjiCanvasController {
   /**
    * KanjiCanvas で描かれたストロークを認識して候補ボタンを更新する。
    * ひらがな問題（正解がひらがなのみ）の場合はひらがな以外の候補を除外する。
-   * 英語問題（正解がラテン文字のみ）の場合はラテン文字候補のみを表示する。
+   * 英語問題ではローマ字候補のみに制限し、入力内容と正解に応じて候補を絞り込む。
    * ストロークが描かれていない場合は候補を表示しない。
    */
   updateCandidates(): void {
@@ -119,14 +123,23 @@ export class KanjiCanvasController {
 
     const correctAnswer = this.options.getCorrectAnswer();
     const normalizedCorrectAnswer = correctAnswer ? normalizeKanaText(correctAnswer) : undefined;
+    const currentQuestionMeta = this.options.getCurrentQuestionMeta?.();
+    const isEnglishQuestion = currentQuestionMeta?.subject === "english";
     const isLatinAnswer = correctAnswer !== undefined && isLikelyLatinAnswer(correctAnswer);
     if (normalizedCorrectAnswer !== undefined && isHiraganaOnly(normalizedCorrectAnswer)) {
       candidates = expandHiraganaCandidatesWithVoicedVariants(
         kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)),
       );
-    } else if (isLatinAnswer) {
-      // 英語問題ではラテン文字候補のみを表示する。
+    } else if (isEnglishQuestion || isLatinAnswer) {
       candidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
+      const currentInputText = this.options.getCurrentInputText?.() ?? "";
+      const linkedCandidates = filterLatinCandidatesByCurrentInput(
+        candidates,
+        correctAnswer,
+        currentInputText,
+        currentQuestionMeta?.caseSensitive ?? false,
+      );
+      candidates = linkedCandidates.length > 0 ? linkedCandidates : candidates;
     }
 
     candidates = Array.from(new Set(candidates));
@@ -216,4 +229,26 @@ function isLikelyLatinAnswer(answer: string): boolean {
 function isLatinAlphabetCandidate(value: string): boolean {
   if (!isLatinOnly(value)) return false;
   return /^[A-Za-z]+$/.test(value);
+}
+
+function extractLatinLetters(value: string): string {
+  return value.normalize("NFKC").replace(/[^A-Za-z]/g, "");
+}
+
+function filterLatinCandidatesByCurrentInput(
+  candidates: string[],
+  correctAnswer: string | undefined,
+  currentInputText: string,
+  caseSensitive: boolean,
+): string[] {
+  if (!correctAnswer) return candidates;
+  const answerLetters = extractLatinLetters(correctAnswer);
+  const inputLetters = extractLatinLetters(currentInputText);
+  const nextExpected = answerLetters[inputLetters.length];
+  if (!nextExpected) return candidates;
+  return candidates.filter((candidate) => {
+    if (!candidate) return false;
+    const firstChar = candidate[0]!;
+    return caseSensitive ? firstChar === nextExpected : firstChar.toLowerCase() === nextExpected.toLowerCase();
+  });
 }
