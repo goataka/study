@@ -8,8 +8,12 @@ on:
   workflow_run:
     # ここに監視するワークフロー名を列挙する（各ワークフローの name: フィールドと完全一致が必要）
     workflows:
-      - "Deploy to GitHub Pages"
       - "CI"
+      - "Review Merged Diff On Develop"
+      - "Deploy to GitHub Pages"
+      - "Build App CI Image"
+      - "リリースPR作成"
+      - "Release App Artifact"
     types:
       - completed
 
