@@ -53,19 +53,11 @@ jobs:
             exit 0
           fi
 
-          REVIEW_DIFF_FILE="$(mktemp --suffix=.md)"
-          {
-            echo "# マージ差分"
-            echo
-            echo '```diff'
-            head -c 200000 "${DIFF_FILE}"
-            echo
-            echo '```'
-          } > "${REVIEW_DIFF_FILE}"
+          DIFF_CONTENT="$(head -c 200000 "${DIFF_FILE}")"
 
           REVIEW_PROMPT_FILE="$(mktemp)"
           printf '%s\n' \
-            'あなたは厳格なコードレビュアーです。添付されたマージ差分をレビューしてください。' \
+            'あなたは厳格なコードレビュアーです。以下のマージ差分をレビューしてください。' \
             '' \
             '出力は必ず次の形式にしてください。' \
             '判定: NEEDS_ACTION または NO_ACTION' \
@@ -76,14 +68,19 @@ jobs:
             '注意:' \
             '- 仕様・セキュリティ・可読性・保守性・テスト観点で確認すること' \
             '- 推測で断定せず、差分から判断できることのみ書くこと' \
+            '' \
+            '# マージ差分' \
+            '' \
+            '```diff' \
+            "${DIFF_CONTENT}" \
+            '```' \
             > "${REVIEW_PROMPT_FILE}"
 
           REVIEW_RESULT_FILE="$(mktemp)"
           copilot \
             --allow-all-tools \
             --silent \
-            --prompt "$(cat "${REVIEW_PROMPT_FILE}")" \
-            --attachment "${REVIEW_DIFF_FILE}" > "${REVIEW_RESULT_FILE}"
+            --prompt "$(cat "${REVIEW_PROMPT_FILE}")" > "${REVIEW_RESULT_FILE}"
 
           cat "${REVIEW_RESULT_FILE}"
 
