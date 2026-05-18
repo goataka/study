@@ -32,9 +32,21 @@ interface ProgressSubjectStats {
  */
 export function buildProgressSubjectStats(useCase: QuizUseCase): ProgressSubjectStats[] {
   const contentSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
+  return buildProgressSubjectStatsWithGradeFilter(useCase, null, contentSubjects);
+}
+
+function buildProgressSubjectStatsWithGradeFilter(
+  useCase: QuizUseCase,
+  gradeFilterPrefix: "小学" | "中学" | "高校" | null,
+  contentSubjects: Array<{ id: string; name: string; icon: string }>,
+): ProgressSubjectStats[] {
   return contentSubjects.map((subj) => {
     const allCats = useCase.getCategoriesForSubject(subj.id);
-    const catIds = Object.keys(allCats);
+    const catIds = Object.keys(allCats).filter((catId) => {
+      if (gradeFilterPrefix === null) return true;
+      const grade = useCase.getCategoryReferenceGrade(subj.id, catId);
+      return grade?.startsWith(gradeFilterPrefix) ?? false;
+    });
     let masteredUnitCount = 0;
     for (const catId of catIds) {
       const { mastered, total } = useCase.getMasteredCountForCategory(subj.id, catId);
@@ -51,8 +63,10 @@ export function renderProgressSubjectList(
   _container: Element,
   useCase: QuizUseCase,
   callbacks: ProgressSubjectListCallbacks,
+  gradeFilterPrefix: "小学" | "中学" | "高校" | null,
 ): void {
-  const stats = buildProgressSubjectStats(useCase);
+  const contentSubjects = SUBJECTS.filter((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress");
+  const stats = buildProgressSubjectStatsWithGradeFilter(useCase, gradeFilterPrefix, contentSubjects);
   categoryListContentStore.set(<ProgressSubjectList stats={stats} callbacks={callbacks} />);
 }
 

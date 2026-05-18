@@ -413,7 +413,7 @@ export class QuizApp {
       },
       onProgressGradeFilterChange: (grade) => {
         this.progressGradeFilter = grade;
-        D.renderProgressDetailPanel(this);
+        D.renderProgressView(this);
         this.syncURLFragment();
       },
       onTitleClick: () => void this.navigateToStart(),

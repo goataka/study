@@ -437,4 +437,65 @@ describe("QuizApp — 進度タブ仕様", () => {
     expect(groupNames).toContain("小学1年");
     expect(groupNames).not.toContain("中学1年");
   });
+
+  it("進度タブで対象学年フィルターを選ぶと教科進捗の合計数も連動する", async () => {
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () =>
+            Promise.resolve({
+              version: "2.0.0",
+              subjects: { english: { name: "英語" } },
+              questionFiles: ["english/elem.json", "english/middle.json"],
+            }),
+        } as Response);
+      }
+      if (urlStr.includes("elem.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () =>
+            Promise.resolve({
+              subject: "english",
+              subjectName: "英語",
+              category: "elem-unit",
+              categoryName: "小学単元",
+              referenceGrade: "小学1年",
+              questions: [{ id: "e1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" }],
+            }),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve({
+            subject: "english",
+            subjectName: "英語",
+            category: "middle-unit",
+            categoryName: "中学単元",
+            referenceGrade: "中学1年",
+            questions: [{ id: "m1", question: "q", choices: ["a", "b", "c", "d"], correct: 0, explanation: "e" }],
+          }),
+      } as Response);
+    });
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const subjectStats = document.querySelector(
+      '.progress-subject-list-item[data-subject="english"] .progress-subject-list-stats',
+    );
+    expect(subjectStats?.textContent).toBe("0/2");
+
+    const elemBtn = document.getElementById("progressGradeElemBtn") as HTMLButtonElement | null;
+    elemBtn?.click();
+
+    const filteredStats = document.querySelector(
+      '.progress-subject-list-item[data-subject="english"] .progress-subject-list-stats',
+    );
+    expect(filteredStats?.textContent).toBe("0/1");
+  });
 });

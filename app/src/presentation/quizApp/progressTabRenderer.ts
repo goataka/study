@@ -39,10 +39,15 @@ export function renderProgressView(params: {
   categoryControlsContentStore.reset();
 
   // ── 左パネル: 教科リスト（React 描画） ──
-  renderProgressSubjectList(categoryList, params.useCase, {
-    currentSubjectId: params.progressSubjectId,
-    onSelectSubject: params.onSelectSubject,
-  });
+  renderProgressSubjectList(
+    categoryList,
+    params.useCase,
+    {
+      currentSubjectId: params.progressSubjectId,
+      onSelectSubject: params.onSelectSubject,
+    },
+    params.progressGradeFilter,
+  );
 
   // ── 右パネル: 進度詳細 ──
   renderProgressDetailPanel({

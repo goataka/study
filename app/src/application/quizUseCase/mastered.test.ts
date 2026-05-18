@@ -38,6 +38,21 @@ describe("QuizUseCase — masteredIds（習得済み）仕様", () => {
     expect(useCase.isMastered("q1")).toBe(false);
   });
 
+  it("復習ステージの問題は1回正解で masteredIds に追加される", async () => {
+    const q = makeQuestion("q1", "english", "phonics-1");
+    const progressRepo = new StubProgressRepository();
+    const useCase = new QuizUseCase(new StubQuestionRepository([q]), progressRepo);
+    await useCase.initialize();
+    useCase.advanceCategoryStage("english", "phonics-1");
+
+    const session = useCase.startSession("random", { subject: "english", category: "phonics-1" });
+    session.selectAnswer(0, session.questions[0]!.correct);
+    useCase.submitSession(session);
+
+    expect(progressRepo.getStoredMasteredIds()).toContain("q1");
+    expect(useCase.isMastered("q1")).toBe(true);
+  });
+
   it("3回連続正解後に不正解でも masteredIds から除かれない", async () => {
     const q = makeQuestion("q1");
     q.correct = 0;
