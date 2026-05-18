@@ -105,13 +105,13 @@ describe("KanjiCanvasController コントローラー", () => {
       expect(texts).toEqual(["か", "が", "は", "ば", "ぱ"]);
     });
 
-    it("英語問題（ラテン文字）の場合はローマ字以外を除外し、入力に連動して次候補へ絞る", () => {
+    it("英語問題（ラテン文字）の場合はローマ字以外を除外する", () => {
       const onSelectCandidate = vi.fn();
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
         recognize: () => "A あ B 漢",
       };
       const ctrl = new KanjiCanvasController({
-        getCorrectAnswer: () => "AB",
+        getCorrectAnswer: () => undefined,
         getCurrentQuestionMeta: () => ({ subject: "english", caseSensitive: true }),
         getCurrentInputText: () => "",
         onSelectCandidate,
@@ -119,7 +119,7 @@ describe("KanjiCanvasController コントローラー", () => {
       ctrl.updateCandidates();
       const buttons = document.querySelectorAll(".kanji-candidate-btn");
       const texts = Array.from(buttons).map((b) => b.textContent);
-      expect(texts).toEqual(["A"]);
+      expect(texts).toEqual(["A", "B"]);
     });
 
     it("英語問題で認識候補にラテン文字がない場合は候補を表示しない", () => {
@@ -128,6 +128,8 @@ describe("KanjiCanvasController コントローラー", () => {
       };
       const ctrl = new KanjiCanvasController({
         getCorrectAnswer: () => "played",
+        getCurrentQuestionMeta: () => ({ subject: "english", caseSensitive: false }),
+        getCurrentInputText: () => "",
         onSelectCandidate: () => {},
       });
       ctrl.updateCandidates();
@@ -150,19 +152,19 @@ describe("KanjiCanvasController コントローラー", () => {
       expect(texts).toEqual(["A", "B"]);
     });
 
-    it("英語問題では現在入力済み文字に連動して次の候補だけを表示する", () => {
+    it("英語問題では現在入力済み文字の末尾に連動して候補を絞る", () => {
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
-        recognize: () => "A E y",
+        recognize: () => "L A y",
       };
       const ctrl = new KanjiCanvasController({
-        getCorrectAnswer: () => "played",
+        getCorrectAnswer: () => undefined,
         getCurrentQuestionMeta: () => ({ subject: "english", caseSensitive: false }),
         getCurrentInputText: () => "pl",
         onSelectCandidate: () => {},
       });
       ctrl.updateCandidates();
       const texts = Array.from(document.querySelectorAll(".kanji-candidate-btn")).map((b) => b.textContent);
-      expect(texts).toEqual(["A"]);
+      expect(texts).toEqual(["L"]);
     });
 
     it("英語問題で正解が複数単語でも認識した英字のみを候補として表示する", () => {
@@ -171,6 +173,8 @@ describe("KanjiCanvasController コントローラー", () => {
       };
       const ctrl = new KanjiCanvasController({
         getCorrectAnswer: () => "check it out",
+        getCurrentQuestionMeta: () => ({ subject: "english", caseSensitive: false }),
+        getCurrentInputText: () => "",
         onSelectCandidate: () => {},
       });
       ctrl.updateCandidates();

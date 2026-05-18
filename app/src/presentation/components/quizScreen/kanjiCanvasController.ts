@@ -101,7 +101,7 @@ export class KanjiCanvasController {
   /**
    * KanjiCanvas で描かれたストロークを認識して候補ボタンを更新する。
    * ひらがな問題（正解がひらがなのみ）の場合はひらがな以外の候補を除外する。
-   * 英語問題ではローマ字候補のみに制限し、入力内容と正解に応じて候補を絞り込む。
+   * 英語問題ではローマ字候補のみに制限し、入力内容に応じて候補を絞り込む。
    * ストロークが描かれていない場合は候補を表示しない。
    */
   updateCandidates(): void {
@@ -125,17 +125,15 @@ export class KanjiCanvasController {
     const normalizedCorrectAnswer = correctAnswer ? normalizeKanaText(correctAnswer) : undefined;
     const currentQuestionMeta = this.options.getCurrentQuestionMeta?.();
     const isEnglishQuestion = currentQuestionMeta?.subject === "english";
-    const isLatinAnswer = correctAnswer !== undefined && isLikelyLatinAnswer(correctAnswer);
     if (normalizedCorrectAnswer !== undefined && isHiraganaOnly(normalizedCorrectAnswer)) {
       candidates = expandHiraganaCandidatesWithVoicedVariants(
         kanaNormalizedCandidates.filter((char) => isHiraganaOnly(char)),
       );
-    } else if (isEnglishQuestion || isLatinAnswer) {
+    } else if (isEnglishQuestion) {
       candidates = candidates.filter((char) => isLatinAlphabetCandidate(char));
       const currentInputText = this.options.getCurrentInputText?.() ?? "";
       const linkedCandidates = filterLatinCandidatesByCurrentInput(
         candidates,
-        correctAnswer,
         currentInputText,
         currentQuestionMeta?.caseSensitive ?? false,
       );
@@ -218,14 +216,6 @@ function expandHiraganaCandidatesWithVoicedVariants(candidates: string[]): strin
   return expanded;
 }
 
-function isLikelyLatinAnswer(answer: string): boolean {
-  const normalized = answer.normalize("NFKC").trim();
-  if (!normalized) return false;
-  if (isLatinOnly(normalized)) return true;
-  const latinOnlyWithoutSeparators = normalized.replace(/[\s.,!?'"`’‘\-_/():;]+/g, "");
-  return latinOnlyWithoutSeparators.length > 0 && isLatinOnly(latinOnlyWithoutSeparators);
-}
-
 function isLatinAlphabetCandidate(value: string): boolean {
   if (!isLatinOnly(value)) return false;
   return /^[A-Za-z]+$/.test(value);
@@ -237,18 +227,16 @@ function extractLatinLetters(value: string): string {
 
 function filterLatinCandidatesByCurrentInput(
   candidates: string[],
-  correctAnswer: string | undefined,
   currentInputText: string,
   caseSensitive: boolean,
 ): string[] {
-  if (!correctAnswer) return candidates;
-  const answerLetters = extractLatinLetters(correctAnswer);
   const inputLetters = extractLatinLetters(currentInputText);
-  const nextExpected = answerLetters[inputLetters.length];
-  if (!nextExpected) return candidates;
+  if (!inputLetters) return candidates;
+  const probe = inputLetters.slice(-1);
+  const normalizedProbe = caseSensitive ? probe : probe.toLowerCase();
   return candidates.filter((candidate) => {
     if (!candidate) return false;
-    const firstChar = candidate[0]!;
-    return caseSensitive ? firstChar === nextExpected : firstChar.toLowerCase() === nextExpected.toLowerCase();
+    const normalizedCandidate = caseSensitive ? candidate : candidate.toLowerCase();
+    return normalizedProbe.endsWith(normalizedCandidate);
   });
 }
