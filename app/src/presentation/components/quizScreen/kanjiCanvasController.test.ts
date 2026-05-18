@@ -167,6 +167,21 @@ describe("KanjiCanvasController コントローラー", () => {
       expect(texts).toEqual(["L"]);
     });
 
+    it("英語問題では正解が設定されていても入力値のみで候補を絞る", () => {
+      (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
+        recognize: () => "L A y",
+      };
+      const ctrl = new KanjiCanvasController({
+        getCorrectAnswer: () => "apple",
+        getCurrentQuestionMeta: () => ({ subject: "english", caseSensitive: false }),
+        getCurrentInputText: () => "pl",
+        onSelectCandidate: () => {},
+      });
+      ctrl.updateCandidates();
+      const texts = Array.from(document.querySelectorAll(".kanji-candidate-btn")).map((b) => b.textContent);
+      expect(texts).toEqual(["L"]);
+    });
+
     it("英語問題で正解が複数単語でも認識した英字のみを候補として表示する", () => {
       (globalThis as unknown as { KanjiCanvas: unknown }).KanjiCanvas = {
         recognize: () => "L 1 あ",

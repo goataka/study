@@ -231,12 +231,12 @@ function filterLatinCandidatesByCurrentInput(
   caseSensitive: boolean,
 ): string[] {
   const inputLetters = extractLatinLetters(currentInputText);
-  if (!inputLetters) return candidates;
+  if (inputLetters.length === 0) return candidates;
   const probe = inputLetters.slice(-1);
   const normalizedProbe = caseSensitive ? probe : probe.toLowerCase();
   return candidates.filter((candidate) => {
     if (!candidate) return false;
     const normalizedCandidate = caseSensitive ? candidate : candidate.toLowerCase();
-    return normalizedProbe.endsWith(normalizedCandidate);
+    return normalizedCandidate.startsWith(normalizedProbe);
   });
 }
