@@ -43,6 +43,8 @@ export class QuizUseCase {
   private categoryRegistry: CategoryRegistry = new CategoryRegistry([]);
   /** questionId -> Question のキャッシュ（O(1) 参照用） */
   private questionsById = new Map<string, Question>();
+  /** "subject::categoryId" -> その単元の問題一覧（initialize() で構築、静的） */
+  private questionsByCategory = new Map<string, Question[]>();
   /** 単元ごとの学習ステージ (キー: "subject::categoryId") */
   private categoryStages: Record<string, CategoryStageRecord>;
 
@@ -61,12 +63,20 @@ export class QuizUseCase {
 
   async initialize(): Promise<void> {
     this.allQuestions = await this.questionRepo.loadAll();
-    // 単一パスで CategoryRegistry の集計と questionsById の索引を構築する
+    // 単一パスで CategoryRegistry の集計と questionsById / questionsByCategory の索引を構築する
     this.categoryRegistry = new CategoryRegistry();
     this.questionsById.clear();
+    this.questionsByCategory.clear();
     for (const q of this.allQuestions) {
       this.questionsById.set(q.id, q);
       this.categoryRegistry.addQuestion(q);
+      const key = `${q.subject}::${q.category}`;
+      const group = this.questionsByCategory.get(key);
+      if (group) {
+        group.push(q);
+      } else {
+        this.questionsByCategory.set(key, [q]);
+      }
     }
   }
 
@@ -549,16 +559,15 @@ export class QuizUseCase {
    * 進捗率は mastered / total で算出する（カテゴリ一覧の進捗バーと統一）。
    */
   getCategoryProgressPct(subject: string, categoryId: string): number {
-    let total = 0;
+    const questions = this.questionsByCategory.get(`${subject}::${categoryId}`) ?? [];
+    const total = questions.length;
+    if (total === 0) return 0;
     let mastered = 0;
     let wrong = 0;
-    for (const q of this.allQuestions) {
-      if (q.subject !== subject || q.category !== categoryId) continue;
-      total++;
+    for (const q of questions) {
       if (this.masteredSet.has(q.id)) mastered++;
       if (this.wrongSet.has(q.id)) wrong++;
     }
-    if (total === 0) return 0;
     const key = `${subject}::${categoryId}`;
     const studied = this.getStudiedCategoryKeys().has(key);
     // 未学習かつ習得済みなし・間違いなしの場合は 0 を返す
@@ -570,14 +579,12 @@ export class QuizUseCase {
    * 指定した教科・カテゴリの学習済み（習得済み）問題数と総問題数を返す。
    */
   getMasteredCountForCategory(subject: string, categoryId: string): { mastered: number; total: number } {
-    let total = 0;
+    const questions = this.questionsByCategory.get(`${subject}::${categoryId}`) ?? [];
     let mastered = 0;
-    for (const q of this.allQuestions) {
-      if (q.subject !== subject || q.category !== categoryId) continue;
-      total++;
+    for (const q of questions) {
       if (this.masteredSet.has(q.id)) mastered++;
     }
-    return { mastered, total };
+    return { mastered, total: questions.length };
   }
 
   /**
@@ -665,17 +672,15 @@ export class QuizUseCase {
 
     // ステージが検定済（3）未満の場合、この単元の mastery をリセットして再学習を促す
     if (newStage < 3) {
-      const questionIds = new Set(
-        this.allQuestions.filter((q) => q.subject === subject && q.category === categoryId).map((q) => q.id),
-      );
+      const questionIds = new Set((this.questionsByCategory.get(`${subject}::${categoryId}`) ?? []).map((q) => q.id));
       this.masteredIds = this.masteredIds.filter((id) => !questionIds.has(id));
       for (const id of questionIds) {
         this.masteredSet.delete(id);
         delete this.correctStreaks[id];
         delete this.questionStats[id];
-        // wrongIds からも除いてクリーンな状態にする
-        this.removeWrongId(id);
       }
+      // wrongIds からも除いてクリーンな状態にする
+      this.removeWrongIds(questionIds);
       this.progressRepo.saveMasteredIds(this.masteredIds);
       this.progressRepo.saveCorrectStreaks(this.correctStreaks);
       this.progressRepo.saveWrongIds(this.wrongIds);
