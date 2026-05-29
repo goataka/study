@@ -139,7 +139,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
             maxLength={20}
             placeholder="名前を入力"
           />
-          <button id="headerUserNameSaveBtn" className={headerUserSaveButton()} aria-label="保存">
+          <button type="button" id="headerUserNameSaveBtn" className={headerUserSaveButton()} aria-label="保存">
             ✓
           </button>
         </div>

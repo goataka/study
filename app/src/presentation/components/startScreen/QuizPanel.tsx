@@ -105,7 +105,7 @@ export function QuizPanel(): React.JSX.Element {
           読み込み中...
         </div>
         <div className="button-group mb-5 flex flex-col gap-[15px]">
-          <button id="startRandomBtn" className={button({ variant: "primary" })}>
+          <button type="button" id="startRandomBtn" className={button({ variant: "primary" })}>
             スタート
           </button>
         </div>
@@ -214,6 +214,7 @@ export function QuizPanel(): React.JSX.Element {
         </div>
         <div className="mark-learned-section mt-auto pt-3">
           <button
+            type="button"
             id="markLearnedBtn"
             className="mark-learned-btn flex w-full items-center justify-center px-4 py-2.5 text-base font-bold border border-[#28a745] rounded-md bg-[#f0fff4] text-[#1f8a39] cursor-pointer transition-[background,color,border-color] duration-200 hover:bg-[#28a745] hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             disabled

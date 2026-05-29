@@ -103,6 +103,7 @@ export function OuterBottomRow(): React.JSX.Element {
             A
           </span>
           <button
+            type="button"
             className={fontSizeButton({ size: "small", active: isActive("small") })}
             data-size="small"
             aria-pressed={isActive("small")}
@@ -111,6 +112,7 @@ export function OuterBottomRow(): React.JSX.Element {
             小
           </button>
           <button
+            type="button"
             className={fontSizeButton({ size: "medium", active: isActive("medium") })}
             data-size="medium"
             aria-pressed={isActive("medium")}
@@ -119,6 +121,7 @@ export function OuterBottomRow(): React.JSX.Element {
             中
           </button>
           <button
+            type="button"
             className={fontSizeButton({ size: "large", active: isActive("large") })}
             data-size="large"
             aria-pressed={isActive("large")}
