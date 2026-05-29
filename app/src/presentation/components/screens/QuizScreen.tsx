@@ -90,13 +90,19 @@ export function QuizScreen({ currentScreen }: QuizScreenProps): React.JSX.Elemen
             <ChoicesSection />
           </div>
           <div className="navigation-buttons flex justify-between gap-[15px]">
-            <button id="prevBtn" className={navButton({ variant: "nav" })} disabled={quizSession.prevDisabled}>
+            <button
+              type="button"
+              id="prevBtn"
+              className={navButton({ variant: "nav" })}
+              disabled={quizSession.prevDisabled}
+            >
               前へ
             </button>
-            <button id="nextBtn" className={nextButtonClass} disabled={quizSession.nextDisabled}>
+            <button type="button" id="nextBtn" className={nextButtonClass} disabled={quizSession.nextDisabled}>
               次へ
             </button>
             <button
+              type="button"
               id="submitBtn"
               className={navButton({ variant: "submit", hidden: quizSession.submitHidden })}
               disabled={quizSession.submitDisabled}
