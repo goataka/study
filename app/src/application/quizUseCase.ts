@@ -32,6 +32,8 @@ export const NO_ANSWER_TEXT = "未回答";
 export class QuizUseCase {
   private allQuestions: Question[] = [];
   private wrongIds: string[];
+  /** wrongIds の Set キャッシュ（含有判定・除去を O(1) にするため） */
+  private wrongSet: Set<string>;
   private correctStreaks: Record<string, number>;
   private masteredIds: string[];
   /** masteredIds の Set キャッシュ（isMastered() を O(1) にするため） */
@@ -49,6 +51,7 @@ export class QuizUseCase {
     private readonly progressRepo: IProgressRepository,
   ) {
     this.wrongIds = this.progressRepo.loadWrongIds();
+    this.wrongSet = new Set(this.wrongIds);
     this.correctStreaks = this.progressRepo.loadCorrectStreaks();
     this.masteredIds = this.progressRepo.loadMasteredIds();
     this.masteredSet = new Set(this.masteredIds);
@@ -73,8 +76,7 @@ export class QuizUseCase {
 
   getWrongCount(filter: QuizFilter): number {
     const filtered = this.getFilteredQuestions(filter);
-    const wrongSet = new Set(this.wrongIds);
-    return filtered.filter((q) => wrongSet.has(q.id)).length;
+    return filtered.filter((q) => this.wrongSet.has(q.id)).length;
   }
 
   /**
@@ -154,8 +156,7 @@ export class QuizUseCase {
       const questions = QuizSession.pickInOrder(unmastered, count);
       return new QuizSession(questions);
     } else {
-      const wrongSet = new Set(this.wrongIds);
-      const retryQuestions = filtered.filter((q) => wrongSet.has(q.id));
+      const retryQuestions = filtered.filter((q) => this.wrongSet.has(q.id));
       if (retryQuestions.length === 0) {
         throw new Error("間違えた問題がありません");
       }
@@ -204,12 +205,12 @@ export class QuizUseCase {
           }
           delete this.correctStreaks[r.question.id];
           // wrongIds からも除く
-          this.wrongIds = this.wrongIds.filter((id) => id !== r.question.id);
+          this.removeWrongId(r.question.id);
         }
       } else {
         // 習得済みの問題は間違えても wrongIds に追加しない（学習済み状態を維持する）
-        if (!this.masteredSet.has(r.question.id) && !this.wrongIds.includes(r.question.id)) {
-          this.wrongIds.push(r.question.id);
+        if (!this.masteredSet.has(r.question.id)) {
+          this.addWrongId(r.question.id);
         }
         // 不正解の場合、連続正解数をリセット（習得済みは維持する）
         if (!this.masteredSet.has(r.question.id)) {
@@ -285,6 +286,7 @@ export class QuizUseCase {
    */
   reloadProgressData(): void {
     this.wrongIds = this.progressRepo.loadWrongIds();
+    this.wrongSet = new Set(this.wrongIds);
     this.correctStreaks = this.progressRepo.loadCorrectStreaks();
     this.masteredIds = this.progressRepo.loadMasteredIds();
     this.masteredSet = new Set(this.masteredIds);
@@ -307,7 +309,7 @@ export class QuizUseCase {
     const questionIds = new Set(questions.map((q) => q.id));
 
     // 対象カテゴリの問題を wrongIds から除く
-    this.wrongIds = this.wrongIds.filter((id) => !questionIds.has(id));
+    this.removeWrongIds(questionIds);
 
     // 対象カテゴリの correctStreaks をクリア
     for (const id of questionIds) {
@@ -357,9 +359,7 @@ export class QuizUseCase {
     if (questions.length === 0) return;
 
     for (const q of questions) {
-      if (!this.wrongIds.includes(q.id)) {
-        this.wrongIds.push(q.id);
-      }
+      this.addWrongId(q.id);
     }
 
     this.progressRepo.saveWrongIds(this.wrongIds);
@@ -378,6 +378,25 @@ export class QuizUseCase {
     const history = this.progressRepo.loadHistory();
     history.unshift(record);
     this.progressRepo.saveHistory(history);
+  }
+
+  /** wrongIds に問題IDを追加する（配列と Set キャッシュを同期、重複は無視）。 */
+  private addWrongId(id: string): void {
+    if (this.wrongSet.has(id)) return;
+    this.wrongIds.push(id);
+    this.wrongSet.add(id);
+  }
+
+  /** wrongIds から問題IDを除去する（配列と Set キャッシュを同期）。 */
+  private removeWrongId(id: string): void {
+    if (!this.wrongSet.delete(id)) return;
+    this.wrongIds = this.wrongIds.filter((wid) => wid !== id);
+  }
+
+  /** wrongIds から複数の問題IDをまとめて除去する（配列と Set キャッシュを同期）。 */
+  private removeWrongIds(ids: Set<string>): void {
+    this.wrongIds = this.wrongIds.filter((wid) => !ids.has(wid));
+    for (const id of ids) this.wrongSet.delete(id);
   }
 
   /**
@@ -479,10 +498,9 @@ export class QuizUseCase {
     const entries = Object.entries(categories);
     if (entries.length === 0) return [];
 
-    const wrongSet = new Set(this.wrongIds);
     const wrongCountsByCategory = new Map<string, number>();
     for (const question of this.allQuestions) {
-      if (question.subject !== subject || !wrongSet.has(question.id)) continue;
+      if (question.subject !== subject || !this.wrongSet.has(question.id)) continue;
       wrongCountsByCategory.set(question.category, (wrongCountsByCategory.get(question.category) ?? 0) + 1);
     }
 
@@ -534,12 +552,11 @@ export class QuizUseCase {
     let total = 0;
     let mastered = 0;
     let wrong = 0;
-    const wrongSet = new Set(this.wrongIds);
     for (const q of this.allQuestions) {
       if (q.subject !== subject || q.category !== categoryId) continue;
       total++;
       if (this.masteredSet.has(q.id)) mastered++;
-      if (wrongSet.has(q.id)) wrong++;
+      if (this.wrongSet.has(q.id)) wrong++;
     }
     if (total === 0) return 0;
     const key = `${subject}::${categoryId}`;
@@ -608,6 +625,7 @@ export class QuizUseCase {
   async clearAllData(): Promise<void> {
     await this.progressRepo.clearAllData();
     this.wrongIds = [];
+    this.wrongSet = new Set();
     this.correctStreaks = {};
     this.masteredIds = [];
     this.masteredSet = new Set();
@@ -656,7 +674,7 @@ export class QuizUseCase {
         delete this.correctStreaks[id];
         delete this.questionStats[id];
         // wrongIds からも除いてクリーンな状態にする
-        this.wrongIds = this.wrongIds.filter((wid) => wid !== id);
+        this.removeWrongId(id);
       }
       this.progressRepo.saveMasteredIds(this.masteredIds);
       this.progressRepo.saveCorrectStreaks(this.correctStreaks);
