@@ -67,6 +67,38 @@ export function buildUnitName(source: UnitNameSource | undefined): string {
   return parts.join(" › ");
 }
 
+// ─── スコア表示ユーティリティ ───────────────────────────────────────────────
+
+/** スコア結果メッセージのしきい値（正答率 %）。 */
+export const SCORE_MESSAGE_THRESHOLDS = {
+  /** 満点 */
+  perfect: 100,
+  /** よくできました */
+  pass: 80,
+  /** もう少し */
+  almost: 60,
+} as const;
+
+/** スコアサークルを「合格」表示にする正答率（%）のしきい値。 */
+export const SCORE_PASS_CIRCLE_THRESHOLD = 70;
+
+/** 結果画面のスコア表示種別。 */
+export type ScoreResultClass = "perfect" | "pass" | "fail";
+
+/** 正答率（%）に応じた結果メッセージを返す。 */
+export function getScoreMessage(percentage: number): string {
+  if (percentage === SCORE_MESSAGE_THRESHOLDS.perfect) return "🌟 満点！すごい！";
+  if (percentage >= SCORE_MESSAGE_THRESHOLDS.pass) return "🎉 よくできました！";
+  if (percentage >= SCORE_MESSAGE_THRESHOLDS.almost) return "😊 もう少し！次はきっとできる！";
+  return "💪 がんばれ！次は必ず正解できます！";
+}
+
+/** 満点判定と正答率（%）からスコアサークルの表示種別を返す。 */
+export function getScoreResultClass(isPerfect: boolean, percentage: number): ScoreResultClass {
+  if (isPerfect) return "perfect";
+  return percentage >= SCORE_PASS_CIRCLE_THRESHOLD ? "pass" : "fail";
+}
+
 const KATAKANA_TO_HIRAGANA_OFFSET = 0x60;
 
 /** 参考学年文字列から CSS クラス名を返す（小学→grade-elementary, 中学→grade-middle, 高校→grade-high） */

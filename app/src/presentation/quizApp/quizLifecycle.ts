@@ -15,7 +15,7 @@ import {
 } from "../../application/quizUseCase";
 import { setResults } from "../components/resultStore";
 import { scoreCircle } from "../styles/scoreCircleStyles";
-import { buildUnitName } from "../uiHelpers";
+import { buildUnitName, getScoreMessage, getScoreResultClass } from "../uiHelpers";
 
 /** クイズ開始時の依存。 */
 export interface StartQuizDeps {
@@ -135,17 +135,10 @@ function applyLegacyResultDomForNonReactTests(results: AnswerResult[]): void {
   const total = results.length;
   const percentage = total > 0 ? Math.round((correctCount / total) * 100) : 0;
   const isPerfect = total > 0 && correctCount === total;
-  const result: "perfect" | "pass" | "fail" = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
+  const result = getScoreResultClass(isPerfect, percentage);
   const circleClass = scoreCircle({ result });
   if (resultMessage) {
-    resultMessage.textContent =
-      percentage === 100
-        ? "🌟 満点！すごい！"
-        : percentage >= 80
-          ? "🎉 よくできました！"
-          : percentage >= 60
-            ? "😊 もう少し！次はきっとできる！"
-            : "💪 がんばれ！次は必ず正解できます！";
+    resultMessage.textContent = getScoreMessage(percentage);
   }
   if (scoreDisplay) {
     scoreDisplay.innerHTML = `
