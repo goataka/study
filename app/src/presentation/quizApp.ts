@@ -470,7 +470,17 @@ export class QuizApp {
         D.renderProgressView(this);
         this.syncURLFragment();
       },
-      onTitleClick: () => void this.navigateToStart(),
+      onTitleClick: () => {
+        void this.navigateToStart().then(() => {
+          if (getScreenSnapshot() === "start" && window.location.hash) {
+            window.history.replaceState(
+              window.history.state,
+              document.title,
+              window.location.pathname + window.location.search,
+            );
+          }
+        });
+      },
       onOpenUserNameEdit: () => this.openUserNameEdit(),
       onSaveUserName: () => this.saveHeaderUserName(),
       onCancelUserName: () => this.closeUserNameEdit(),
