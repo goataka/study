@@ -35,12 +35,16 @@ export function UserProfileDialog(): React.JSX.Element {
   const addInputRef = useRef<HTMLInputElement | null>(null);
   const prevOpenRef = useRef(false);
 
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+
   // ダイアログが開いたときに編集状態をリセットする
   useEffect(() => {
     if (state.open && !prevOpenRef.current) {
       setEditingName(false);
       setAddingUser(false);
       setNewUserName("");
+      // ダイアログにフォーカスを当ててEscapeキーでの閉じを有効にする
+      setTimeout(() => dialogRef.current?.focus(), 0);
     }
     prevOpenRef.current = state.open;
   }, [state.open]);
@@ -94,10 +98,12 @@ export function UserProfileDialog(): React.JSX.Element {
   return (
     <div
       id="userProfileDialog"
+      ref={dialogRef}
       className={overlayClass}
       role="dialog"
       aria-modal="true"
       aria-label="ユーザープロフィール"
+      tabIndex={-1}
       onClick={handleOverlayClick}
       onKeyDown={handleKeyDown}
     >
