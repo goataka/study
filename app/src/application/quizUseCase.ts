@@ -207,8 +207,11 @@ export class QuizUseCase {
         // 全問題の連続正解数をカウント
         this.correctStreaks[r.question.id] = (this.correctStreaks[r.question.id] ?? 0) + 1;
         const streak = this.correctStreaks[r.question.id] ?? 0;
-        if (streak >= 3) {
-          // 3回連続正解で習得済みとして管理
+        const { stage } = this.getCategoryStage(r.question.subject, r.question.category);
+        // 復習ステージ（stage>0）は1回正解で学習済みに戻す。
+        const requiredStreak = stage > 0 ? 1 : 3;
+        if (streak >= requiredStreak) {
+          // 必要回数の連続正解で習得済みとして管理
           if (!this.masteredSet.has(r.question.id)) {
             this.masteredIds.push(r.question.id);
             this.masteredSet.add(r.question.id);
