@@ -9,7 +9,7 @@ export type FontSizeLevel = "small" | "medium" | "large";
 
 type Listener = () => void;
 
-let currentLevel: FontSizeLevel = "small";
+let currentLevel: FontSizeLevel = "medium";
 const listeners = new Set<Listener>();
 const ROOT_FONT_SIZE_BY_LEVEL: Record<FontSizeLevel, string> = {
   small: "100%",

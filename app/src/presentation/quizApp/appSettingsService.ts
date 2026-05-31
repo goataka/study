@@ -146,7 +146,7 @@ export function saveRecommendedCounts(repo: IProgressRepository, counts: Map<str
 
 /**
  * 全教科共通のおすすめ単元数（グローバル目標数）を読み込む。
- * 未設定時はデフォルト値 5 を返す。
+ * 未設定時はデフォルト値 3 を返す。
  */
 export function loadGlobalRecommendedCount(repo: IProgressRepository): number {
   return repo.loadGlobalRecommendedCount();

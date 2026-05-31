@@ -247,8 +247,8 @@ export function setupMinimalDom(): void {
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
-      <button class="font-size-btn active" data-size="small" aria-pressed="true">小</button>
-      <button class="font-size-btn" data-size="medium" aria-pressed="false">中</button>
+      <button class="font-size-btn" data-size="small" aria-pressed="false">小</button>
+      <button class="font-size-btn active" data-size="medium" aria-pressed="true">中</button>
       <button class="font-size-btn" data-size="large" aria-pressed="false">大</button>
     </div>
     <span id="headerUserName"></span>
@@ -297,8 +297,8 @@ export function setupTabDom(): void {
   document.body.innerHTML = `
     <h1 id="titleBtn" class="title-btn" role="button" tabindex="0">学習アプリ</h1>
     <div id="fontSizeBtns" class="font-size-btns" role="group" aria-label="文字サイズ">
-      <button class="font-size-btn active" data-size="small" aria-pressed="true">小</button>
-      <button class="font-size-btn" data-size="medium" aria-pressed="false">中</button>
+      <button class="font-size-btn" data-size="small" aria-pressed="false">小</button>
+      <button class="font-size-btn active" data-size="medium" aria-pressed="true">中</button>
       <button class="font-size-btn" data-size="large" aria-pressed="false">大</button>
     </div>
     <span id="headerUserName"></span>
