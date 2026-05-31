@@ -45,6 +45,7 @@ import { setupAllListeners } from "./quizApp/setupAllListeners";
 import * as D from "./quizApp/delegators";
 import type { QuestionListFilter } from "./quizApp/questionListView";
 import { setStartQuizAction, setSelectUnitAction } from "./components/learningStatusActionsStore";
+import { initUserProfileDialogStore, openUserProfileDialog } from "./components/tabsUserRow/userProfileDialogStore";
 
 const PANEL_TABS: readonly D.PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 const SUPPORT_FIRST_VISIT_KEY = "study-guide-first-visit-done";
@@ -168,6 +169,7 @@ export class QuizApp {
     this.progressRepo = resolved.progressRepo;
     this.questionRepo = resolved.questionRepo;
     this.avatarController = new AvatarController(this.progressRepo);
+    initUserProfileDialogStore(this.progressRepo, this.avatarController);
     this.kanjiCanvasController = new KanjiCanvasController({
       getCorrectAnswer: () => {
         const q = this.currentSession?.currentQuestion;
@@ -375,6 +377,53 @@ export class QuizApp {
     this.closeUserNameEdit();
   }
 
+  /** ヘッダーのユーザー追加 UI を開く。 */
+  openAddUser(): void {
+    const addBtn = document.getElementById("headerAddUserBtn");
+    const editArea = document.getElementById("headerAddUserEdit");
+    const input = document.getElementById("headerAddUserInput") as HTMLInputElement | null;
+    if (!addBtn || !editArea || !input) return;
+    addBtn.classList.add("hidden");
+    editArea.classList.remove("hidden");
+    input.value = "";
+    input.focus();
+  }
+
+  /** ヘッダーのユーザー追加 UI を閉じる。 */
+  closeAddUser(): void {
+    const addBtn = document.getElementById("headerAddUserBtn");
+    const editArea = document.getElementById("headerAddUserEdit");
+    if (!addBtn || !editArea) return;
+    editArea.classList.add("hidden");
+    addBtn.classList.remove("hidden");
+  }
+
+  /** ヘッダーからユーザーを追加し、そのユーザーに切り替える。 */
+  saveAddUser(): void {
+    const input = document.getElementById("headerAddUserInput") as HTMLInputElement | null;
+    if (!input) return;
+    const name = input.value.trim();
+    if (!name) {
+      this.closeAddUser();
+      return;
+    }
+    const created = this.progressRepo.addUser(name);
+    void this.progressRepo
+      .switchUser(created.id)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err: unknown) => {
+        console.error("ユーザーの切り替えに失敗しました", err);
+        alert("ユーザーの追加に失敗しました。ページを再読み込みしてもう一度お試しください。");
+      });
+  }
+
+  /** ユーザープロフィールダイアログを開く。 */
+  openProfileDialog(): void {
+    openUserProfileDialog(this.userName);
+  }
+
   /** カテゴリ一覧の学習状態フィルターを設定して反映する */
   setCategoryStatusFilter(filter: "all" | "unlearned" | "studying" | "learned"): void {
     this.categoryStatusFilter = filter;
@@ -418,7 +467,7 @@ export class QuizApp {
       },
       onProgressGradeFilterChange: (grade) => {
         this.progressGradeFilter = grade;
-        D.renderProgressDetailPanel(this);
+        D.renderProgressView(this);
         this.syncURLFragment();
       },
       onTitleClick: () => void this.navigateToStart(),
@@ -426,6 +475,10 @@ export class QuizApp {
       onSaveUserName: () => this.saveHeaderUserName(),
       onCancelUserName: () => this.closeUserNameEdit(),
       onAdminMenuClick: () => D.navigateToAdmin(this),
+      onOpenAddUser: () => this.openAddUser(),
+      onSaveAddUser: () => this.saveAddUser(),
+      onCancelAddUser: () => this.closeAddUser(),
+      onOpenProfileDialog: () => this.openProfileDialog(),
       onQuestionCountChange: (count) => {
         this.questionCount = count;
         this.saveQuizSettings();

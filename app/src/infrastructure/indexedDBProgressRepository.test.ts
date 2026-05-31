@@ -577,3 +577,137 @@ describe("IndexedDBProgressRepository — clearAllData 仕様", () => {
     expect(repo.loadWrongIds()).toEqual([]);
   });
 });
+
+describe("IndexedDBProgressRepository — 複数ユーザー対応仕様", () => {
+  beforeEach(() => {
+    resetIndexedDB();
+  });
+
+  it("初期状態ではゲストユーザーのみが存在しアクティブである", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    expect(repo.listUsers()).toEqual([{ id: "guest", name: "ゲスト" }]);
+    expect(repo.getActiveUserId()).toBe("guest");
+  });
+
+  it("addUser() で新しいユーザーを追加できる（切り替えは行わない）", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    const created = repo.addUser("太郎");
+    expect(created.name).toBe("太郎");
+    expect(repo.listUsers()).toHaveLength(2);
+    // addUser は切り替えないのでアクティブはゲストのまま
+    expect(repo.getActiveUserId()).toBe("guest");
+  });
+
+  it("ユーザーごとに学習データが分離される", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    repo.saveMasteredIds(["guest-q"]);
+
+    const taro = repo.addUser("太郎");
+    await repo.switchUser(taro.id);
+    expect(repo.getActiveUserId()).toBe(taro.id);
+    // 切り替え直後は太郎のデータは空
+    expect(repo.loadMasteredIds()).toEqual([]);
+    repo.saveMasteredIds(["taro-q"]);
+
+    // ゲストに戻すと元のデータが復元される
+    await repo.switchUser("guest");
+    expect(repo.loadMasteredIds()).toEqual(["guest-q"]);
+  });
+
+  it("名前を保存するとアクティブユーザーのプロフィール名も更新される", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    repo.saveUserName("はなこ");
+    expect(repo.listUsers()[0]).toEqual({ id: "guest", name: "はなこ" });
+  });
+
+  it("別インスタンスでもユーザー一覧とデータが永続化される", async () => {
+    const repo1 = new IndexedDBProgressRepository();
+    await repo1.initialize();
+    const taro = repo1.addUser("太郎");
+    await repo1.switchUser(taro.id);
+    repo1.saveMasteredIds(["taro-q"]);
+    await repo1.flush();
+
+    const repo2 = new IndexedDBProgressRepository();
+    await repo2.initialize();
+    expect(repo2.listUsers().map((u) => u.name)).toContain("太郎");
+    expect(repo2.getActiveUserId()).toBe(taro.id);
+    expect(repo2.loadMasteredIds()).toEqual(["taro-q"]);
+  });
+
+  it("deleteUser() でユーザーとそのデータを削除し、アクティブならゲストへ戻る", async () => {
+    const repo1 = new IndexedDBProgressRepository();
+    await repo1.initialize();
+    const taro = repo1.addUser("太郎");
+    await repo1.switchUser(taro.id);
+    repo1.saveMasteredIds(["taro-q"]);
+    await repo1.flush();
+
+    await repo1.deleteUser(taro.id);
+    expect(repo1.getActiveUserId()).toBe("guest");
+    expect(repo1.listUsers().some((u) => u.id === taro.id)).toBe(false);
+    await repo1.flush();
+
+    // 削除済みユーザーのデータが残っていないこと
+    const repo2 = new IndexedDBProgressRepository();
+    await repo2.initialize();
+    expect(repo2.listUsers().some((u) => u.id === taro.id)).toBe(false);
+  });
+
+  it("ゲストユーザーは削除できない", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    await repo.deleteUser("guest");
+    expect(repo.listUsers().some((u) => u.id === "guest")).toBe(true);
+  });
+
+  it("clearActiveUserData() はアクティブユーザーのデータのみを消去する", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    repo.saveMasteredIds(["guest-q"]);
+    const taro = repo.addUser("太郎");
+    await repo.switchUser(taro.id);
+    repo.saveMasteredIds(["taro-q"]);
+
+    await repo.clearActiveUserData();
+    expect(repo.loadMasteredIds()).toEqual([]);
+
+    // ゲストのデータは残る
+    await repo.switchUser("guest");
+    expect(repo.loadMasteredIds()).toEqual(["guest-q"]);
+  });
+
+  it("exportAllUsersData() で全ユーザーのデータを一括取得できる", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    repo.saveMasteredIds(["guest-q"]);
+    const taro = repo.addUser("太郎");
+    await repo.switchUser(taro.id);
+    repo.saveMasteredIds(["taro-q"]);
+    await repo.flush();
+
+    const dump = await repo.exportAllUsersData();
+    expect(dump.activeUserId).toBe(taro.id);
+    expect(dump.users).toHaveLength(2);
+    const guest = dump.users.find((u) => u.id === "guest");
+    const taroUser = dump.users.find((u) => u.id === taro.id);
+    expect(guest?.data.masteredIds).toEqual(["guest-q"]);
+    expect(taroUser?.data.masteredIds).toEqual(["taro-q"]);
+  });
+
+  it("clearAllData() は全ユーザーを削除してゲストのみに戻す", async () => {
+    const repo = new IndexedDBProgressRepository();
+    await repo.initialize();
+    const taro = repo.addUser("太郎");
+    await repo.switchUser(taro.id);
+    await repo.flush();
+
+    await repo.clearAllData();
+    expect(repo.listUsers()).toEqual([{ id: "guest", name: "ゲスト" }]);
+    expect(repo.getActiveUserId()).toBe("guest");
+  });
+});

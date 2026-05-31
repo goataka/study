@@ -362,3 +362,28 @@ describe("guideUrl — support/ 側の guide.md 存在チェック", () => {
     expect(missing).toHaveLength(0);
   });
 });
+
+describe("operation-guide.md — マニュアル画像参照チェック", () => {
+  it("機能リファレンスの画像参照が相対パスで、support/images 配下に実在する", () => {
+    const operationGuidePath = path.join(SUPPORT_DIR, "operation-guide.md");
+    const markdown = fs.readFileSync(operationGuidePath, "utf-8");
+    const imageRefs = Array.from(markdown.matchAll(/!\[[^\]]*]\(([^)]+)\)/g), (match) => match[1]);
+
+    expect(imageRefs.length).toBeGreaterThan(0);
+
+    const invalid: string[] = [];
+    for (const imageRef of imageRefs) {
+      if (!imageRef.startsWith("../images/")) {
+        invalid.push(`relative path mismatch: ${imageRef}`);
+        continue;
+      }
+
+      const imagePath = path.join(SUPPORT_DIR, imageRef.replace(/^\.\.\//, ""));
+      if (!fs.existsSync(imagePath)) {
+        invalid.push(`missing file: ${imageRef}`);
+      }
+    }
+
+    expect(invalid).toHaveLength(0);
+  });
+});

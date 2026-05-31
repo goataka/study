@@ -57,7 +57,8 @@ export class QuizSession {
     if (questionIndex < 0 || questionIndex >= this._questions.length) {
       throw new Error(`問題インデックスが無効です: ${questionIndex}`);
     }
-    if (choiceIndex < 0 || choiceIndex > 3) {
+    const maxChoiceIndex = this._questions[questionIndex]!.choices.length - 1;
+    if (choiceIndex < 0 || choiceIndex > maxChoiceIndex) {
       throw new Error(`選択肢インデックスが無効です: ${choiceIndex}`);
     }
     this._userAnswers.set(questionIndex, choiceIndex);

@@ -33,6 +33,18 @@ function createDeps() {
     saveMasteredIds: vi.fn(),
     saveCorrectStreaks: vi.fn(),
     loadHistory: vi.fn(() => []),
+    listUsers: vi.fn(() => [
+      { id: "guest", name: "ゲスト" },
+      { id: "user-1", name: "太郎" },
+    ]),
+    getActiveUserId: vi.fn(() => "guest"),
+    addUser: vi.fn((name: string) => ({ id: "user-2", name })),
+    switchUser: vi.fn(() => new Promise<void>(() => {})),
+    deleteUser: vi.fn(() => new Promise<void>(() => {})),
+    clearActiveUserData: vi.fn(() => new Promise<void>(() => {})),
+    exportAllUsersData: vi.fn(() =>
+      Promise.resolve({ exportedAt: new Date().toISOString(), activeUserId: "guest", users: [] }),
+    ),
   } as unknown as IProgressRepository;
 
   return {
@@ -131,5 +143,58 @@ describe("管理パネル描画", () => {
       btn.textContent?.includes("仕様"),
     );
     expect(specBtn).toBeTruthy();
+  });
+
+  it("ユーザーメニューでユーザー一覧を表示し、追加できる", async () => {
+    const categoryList = document.getElementById("categoryList") as HTMLElement;
+    const adminContent = document.getElementById("adminContent") as HTMLElement;
+    const deps = createDeps();
+
+    renderAdminContent(categoryList, deps);
+
+    const usersBtn = Array.from(categoryList.querySelectorAll<HTMLButtonElement>(".panel-menu-btn")).find((btn) =>
+      btn.textContent?.includes("ユーザー"),
+    ) as HTMLButtonElement;
+    expect(usersBtn).toBeTruthy();
+    usersBtn.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const items = adminContent.querySelectorAll(".admin-user-item");
+    expect(items).toHaveLength(2);
+    expect(adminContent.textContent).toContain("ゲスト（使用中）");
+
+    const input = adminContent.querySelector(".admin-user-add-input") as HTMLInputElement;
+    const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")?.set;
+    nativeSetter?.call(input, "次郎");
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const addBtn = adminContent.querySelector(".admin-user-add-btn") as HTMLButtonElement;
+    addBtn.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(deps.progressRepo.addUser).toHaveBeenCalledWith("次郎");
+    expect(deps.progressRepo.switchUser).toHaveBeenCalledWith("user-2");
+  });
+
+  it("ユーザーメニューで全ユーザー一括エクスポートを実行できる", async () => {
+    const categoryList = document.getElementById("categoryList") as HTMLElement;
+    const adminContent = document.getElementById("adminContent") as HTMLElement;
+    const deps = createDeps();
+
+    renderAdminContent(categoryList, deps);
+
+    const usersBtn = Array.from(categoryList.querySelectorAll<HTMLButtonElement>(".panel-menu-btn")).find((btn) =>
+      btn.textContent?.includes("ユーザー"),
+    ) as HTMLButtonElement;
+    usersBtn.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const exportBtn = adminContent.querySelector(".admin-export-all-users-btn") as HTMLButtonElement;
+    expect(exportBtn).toBeTruthy();
+    exportBtn.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(deps.progressRepo.exportAllUsersData).toHaveBeenCalledTimes(1);
   });
 });

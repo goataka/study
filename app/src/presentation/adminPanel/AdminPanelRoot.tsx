@@ -15,13 +15,14 @@ import type { AdminPanelDeps } from "./types";
 
 type ManageTab = "import" | "export" | "reset";
 /** "spec" は独立した左メニュー項目（データセクションではないため SectionKey には含めない）。 */
-type ActiveMenu = "manage" | "view" | "spec" | null;
+type ActiveMenu = "manage" | "view" | "users" | "spec" | null;
 /** データ参照タブのセクションキー（仕様は独立メニューのため除外）。 */
 type SectionKey = "settings" | AdminSectionKey;
 
 interface AdminPanelRootProps extends AdminPanelDeps {
   adminContentEl: HTMLElement;
   onExportAllData: () => void;
+  onExportAllUsersData: () => void;
 }
 
 const SAMPLE_HISTORY = [
@@ -52,6 +53,7 @@ export function AdminPanelRoot({
   showConfirmDialog,
   adminContentEl,
   onExportAllData,
+  onExportAllUsersData,
 }: AdminPanelRootProps): React.JSX.Element {
   const data = useCase.exportAllData();
   const sections = useMemo(
@@ -97,6 +99,7 @@ export function AdminPanelRoot({
   const [parsedData, setParsedData] = useState<unknown>(null);
   const [detectedFileKey, setDetectedFileKey] = useState<AdminSectionKey | null>(null);
   const [copyButtonText, setCopyButtonText] = useState("📋 コピー");
+  const [newUserName, setNewUserName] = useState("");
 
   const showMenu = (menu: Exclude<ActiveMenu, null>): void => {
     setActiveMenu(menu);
@@ -230,6 +233,81 @@ export function AdminPanelRoot({
       });
   };
 
+  const onSwitchUser = (id: string): void => {
+    if (id === progressRepo.getActiveUserId()) return;
+    void progressRepo
+      .switchUser(id)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err: unknown) => {
+        console.error("ユーザーの切り替えに失敗しました", err);
+        alert("ユーザーの切り替えに失敗しました。ページを再読み込みしてもう一度お試しください。");
+      });
+  };
+
+  const onAddUser = (): void => {
+    const name = newUserName.trim();
+    if (!name) {
+      alert("ユーザー名を入力してください。");
+      return;
+    }
+    try {
+      const created = progressRepo.addUser(name);
+      // 登録時はそのユーザーへ切り替える
+      void progressRepo
+        .switchUser(created.id)
+        .then(() => {
+          window.location.reload();
+        })
+        .catch((err: unknown) => {
+          console.error("ユーザーの切り替えに失敗しました", err);
+          alert("ユーザーは追加されましたが、切り替えに失敗しました。ページを再読み込みして切り替えてください。");
+        });
+    } catch (err) {
+      console.error("ユーザーの追加に失敗しました", err);
+      alert("ユーザーの追加に失敗しました。");
+    }
+  };
+
+  const onDeleteUser = (id: string, name: string): void => {
+    void showConfirmDialog(`ユーザー「${name}」と、そのすべての学習データを削除します。よろしいですか？`)
+      .then((confirmed) => {
+        if (!confirmed) return;
+        void progressRepo
+          .deleteUser(id)
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((err: unknown) => {
+            console.error("ユーザーの削除に失敗しました", err);
+            alert("ユーザーの削除に失敗しました。ページを再読み込みしてもう一度お試しください。");
+          });
+      })
+      .catch((err: unknown) => {
+        console.error("確認ダイアログでエラーが発生しました", err);
+      });
+  };
+
+  const onResetActiveUserData = (): void => {
+    void showConfirmDialog("現在のユーザーの学習データのみを削除します。この操作は元に戻せません。続けますか？")
+      .then((confirmed) => {
+        if (!confirmed) return;
+        void progressRepo
+          .clearActiveUserData()
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((err: unknown) => {
+            console.error("ユーザーデータの初期化に失敗しました", err);
+            alert("ユーザーデータの初期化に失敗しました。ページを再読み込みしてもう一度お試しください。");
+          });
+      })
+      .catch((err: unknown) => {
+        console.error("確認ダイアログでエラーが発生しました", err);
+      });
+  };
+
   const copyCurrentData = (): void => {
     const section = sections[viewTabIndex];
     if (!section) return;
@@ -262,6 +340,7 @@ export function AdminPanelRoot({
     "self-start px-3 py-1.5 text-sm font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
 
   const adminMenuItems = [
+    { id: "users" as const, label: "👥 ユーザー" },
     { id: "manage" as const, label: "✅ データ更改" },
     { id: "view" as const, label: "📖 データ参照" },
     { id: "spec" as const, label: "🧩 データ仕様" },
@@ -377,6 +456,91 @@ export function AdminPanelRoot({
                 ) : null}
               </div>
             </>
+          ) : null}
+          {activeMenu === "users" ? (
+            <div className="admin-users-panel flex flex-col gap-3 p-4">
+              <p className="admin-reset-desc text-sm text-[#586069]">
+                複数のユーザーを切り替えて使えます。最初はゲストです。名前を登録すると新しいユーザーに切り替わります。
+              </p>
+              <ul className="admin-user-list flex flex-col gap-1.5 list-none p-0 m-0">
+                {progressRepo.listUsers().map((user) => {
+                  const isActive = user.id === progressRepo.getActiveUserId();
+                  return (
+                    <li
+                      key={user.id}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`admin-user-item flex items-center gap-2 rounded-md border px-3 py-2 ${
+                        isActive ? "border-[#0366d6] bg-[#e8f0fe]" : "border-[#e1e4e8] bg-white"
+                      }`}
+                    >
+                      <span className="admin-user-name flex-1 text-sm font-semibold text-[#24292e] overflow-hidden text-ellipsis whitespace-nowrap">
+                        {user.name || "ゲスト"}
+                        {isActive ? "（使用中）" : ""}
+                      </span>
+                      {isActive ? null : (
+                        <button
+                          className={`admin-user-switch-btn ${actionBtnBase} bg-[#0366d6] text-white border border-[#0255b8] hover:bg-[#0255b8]`}
+                          type="button"
+                          onClick={() => onSwitchUser(user.id)}
+                        >
+                          切り替え
+                        </button>
+                      )}
+                      {user.id === "guest" ? null : (
+                        <button
+                          className={`admin-user-delete-btn ${actionBtnBase} bg-white text-[#dc3545] border border-[#dc3545] hover:bg-[#fdecea]`}
+                          type="button"
+                          aria-label={`${user.name} を削除`}
+                          onClick={() => onDeleteUser(user.id, user.name || "ゲスト")}
+                        >
+                          🗑️
+                        </button>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="admin-user-add flex items-center gap-2">
+                <input
+                  type="text"
+                  className="admin-user-add-input flex-1 px-2 py-1.5 border border-[#d1d5da] rounded-md text-sm outline-none focus:border-[#0366d6]"
+                  maxLength={20}
+                  placeholder="新しいユーザー名"
+                  value={newUserName}
+                  onChange={(e) => setNewUserName(e.target.value)}
+                />
+                <button
+                  className={`admin-user-add-btn ${actionBtnBase} bg-[#28a745] text-white border border-[#218838] hover:bg-[#218838]`}
+                  type="button"
+                  onClick={onAddUser}
+                >
+                  ＋ 追加
+                </button>
+              </div>
+              <hr className="border-0 border-t border-[#e1e4e8] my-1" />
+              <p className="admin-reset-desc text-sm text-[#586069]">データ管理（一括・個別）</p>
+              <button
+                className={`admin-export-all-users-btn ${actionBtnBase} bg-[#0366d6] text-white border border-[#0255b8] hover:bg-[#0255b8]`}
+                type="button"
+                onClick={onExportAllUsersData}
+              >
+                ⬇️ 全ユーザーを一括エクスポート
+              </button>
+              <button
+                className={`admin-export-active-user-btn ${actionBtnBase} bg-[#f6f8fa] text-[#24292e] border border-[#d1d5da] hover:bg-[#e8f0fe] hover:text-[#0366d6]`}
+                type="button"
+                onClick={onExportAllData}
+              >
+                ⬇️ 現在のユーザーを個別エクスポート
+              </button>
+              <button
+                className={`admin-reset-active-user-btn ${actionBtnBase} bg-[#dc3545] text-white border border-[#c82333] hover:bg-[#c82333]`}
+                type="button"
+                onClick={onResetActiveUserData}
+              >
+                🗑️ 現在のユーザーのデータを初期化する
+              </button>
+            </div>
           ) : null}
           {activeMenu === "view" ? (
             <>

@@ -11,6 +11,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AvatarCropDialog } from "../tabsUserRow/AvatarCropDialog";
+import { UserProfileDialog } from "../tabsUserRow/UserProfileDialog";
 import type { ScreenName } from "../screenStore";
 import { subjectTabsContentStore } from "../subjectTabsContentStore";
 import { headerUserSaveButton } from "../../styles/headerUserSaveButtonStyles";
@@ -128,8 +129,8 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           id="headerUserName"
           className="header-user-name text-sm text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-2 py-1 cursor-pointer transition-[background,color] duration-150 hover:bg-white/15 hover:text-white focus-visible:bg-white/15 focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           type="button"
-          title="名前を編集する"
-          aria-label="名前を編集する"
+          title="プロフィールを開く"
+          aria-label="プロフィールを開く"
         ></button>
         <div id="headerUserEdit" className="header-user-edit hidden flex items-center gap-1">
           <input
@@ -139,16 +140,37 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
             maxLength={20}
             placeholder="名前を入力"
           />
-          <button id="headerUserNameSaveBtn" className={headerUserSaveButton()} aria-label="保存">
+          <button type="button" id="headerUserNameSaveBtn" className={headerUserSaveButton()} aria-label="保存">
             ✓
+          </button>
+        </div>
+        <button
+          id="headerAddUserBtn"
+          className="header-add-user-btn text-sm text-white/80 bg-transparent border border-white/40 rounded-md px-1.5 py-0.5 cursor-pointer transition-[background,color,border-color] duration-150 hover:bg-white/15 hover:text-white hover:border-white/70 focus-visible:bg-white/15 focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          type="button"
+          title="ユーザーを追加する"
+          aria-label="ユーザーを追加する"
+        >
+          ＋
+        </button>
+        <div id="headerAddUserEdit" className="header-add-user-edit hidden flex items-center gap-1">
+          <input
+            type="text"
+            id="headerAddUserInput"
+            className="header-add-user-input px-2 py-1 border border-[#28a745] rounded-md text-base w-[140px] shadow-[0_0_0_3px_rgba(40,167,69,0.1)] outline-none"
+            maxLength={20}
+            placeholder="新しいユーザー名"
+          />
+          <button type="button" id="headerAddUserSaveBtn" className={headerUserSaveButton()} aria-label="追加">
+            ＋
           </button>
         </div>
         <button
           id="headerUserAvatar"
           className="header-user-avatar relative w-9 h-9 rounded-full border-2 border-[#d0d8e0] overflow-hidden cursor-pointer shrink-0 flex items-center justify-center bg-[#f0f4f8] transition-[border-color,box-shadow] duration-150 select-none p-0 hover:border-[#0366d6] hover:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:border-[#0366d6] focus-visible:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           type="button"
-          title="プロフィール画像を変更する"
-          aria-label="プロフィール画像を変更する"
+          title="プロフィールを開く"
+          aria-label="プロフィールを開く"
         >
           {/* src は AvatarController が動的に設定する。空文字属性は React の警告対象なので未設定にする。 */}
           <img
@@ -167,6 +189,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           </span>
         </button>
         <AvatarCropDialog />
+        <UserProfileDialog />
       </div>
     </div>
   );

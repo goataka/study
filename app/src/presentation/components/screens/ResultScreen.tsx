@@ -7,7 +7,7 @@
 
 import { useMemo, useSyncExternalStore } from "react";
 import type { AnswerResult } from "../../../application/quizUseCase";
-import { buildUnitName } from "../../uiHelpers";
+import { buildUnitName, getScoreMessage, getScoreResultClass, type ScoreResultClass } from "../../uiHelpers";
 import { ResultDetailsList } from "../../quizApp/ResultDetailsList";
 import { button } from "../../styles/buttonStyles";
 import { scoreCircle } from "../../styles/scoreCircleStyles";
@@ -80,13 +80,13 @@ export function ResultScreen({ currentScreen }: ResultScreenProps): React.JSX.El
         ) : null}
       </div>
       <div className="button-group mb-5 flex flex-col gap-[15px]">
-        <button id="retryAllBtn" className={button({ variant: "primary" })}>
+        <button type="button" id="retryAllBtn" className={button({ variant: "primary" })}>
           もう一度
         </button>
-        <button id="endLearningBtn" className={button({ variant: "secondary" })}>
+        <button type="button" id="endLearningBtn" className={button({ variant: "secondary" })}>
           学習を終わる
         </button>
-        <button id="backToStartBtn" className={`${button({ variant: "tertiary" })} opacity-50`}>
+        <button type="button" id="backToStartBtn" className={`${button({ variant: "tertiary" })} opacity-50`}>
           スタート画面に戻る
         </button>
       </div>
@@ -105,22 +105,15 @@ function buildResultViewModel(results: AnswerResult[] | null): {
   total: number;
   percentage: number;
   isPerfect: boolean;
-  scoreClass: "perfect" | "pass" | "fail";
+  scoreClass: ScoreResultClass;
 } {
   const correctCount = results?.filter((r) => r.isCorrect).length ?? 0;
   const total = results?.length ?? 0;
   const percentage = total > 0 ? Math.round((correctCount / total) * 100) : 0;
   const unitName = buildUnitName(results?.[0]?.question);
-  const message =
-    percentage === 100
-      ? "🌟 満点！すごい！"
-      : percentage >= 80
-        ? "🎉 よくできました！"
-        : percentage >= 60
-          ? "😊 もう少し！次はきっとできる！"
-          : "💪 がんばれ！次は必ず正解できます！";
+  const message = getScoreMessage(percentage);
   const isPerfect = total > 0 && correctCount === total;
-  const scoreClass: "perfect" | "pass" | "fail" = isPerfect ? "perfect" : percentage >= 70 ? "pass" : "fail";
+  const scoreClass: ScoreResultClass = getScoreResultClass(isPerfect, percentage);
 
   return { unitName, message, correctCount, total, percentage, isPerfect, scoreClass };
 }

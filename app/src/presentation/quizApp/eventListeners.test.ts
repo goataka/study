@@ -38,6 +38,10 @@ describe("QuizApp — ヘッダーイベント仕様", () => {
       onSaveUserName: vi.fn(),
       onCancelUserName: vi.fn(),
       onAdminMenuClick: vi.fn(),
+      onOpenAddUser: vi.fn(),
+      onSaveAddUser: vi.fn(),
+      onCancelAddUser: vi.fn(),
+      onOpenProfileDialog: vi.fn(),
     });
 
     document.getElementById("appNameLink")?.click();
@@ -57,6 +61,10 @@ describe("QuizApp — ヘッダーイベント仕様", () => {
       onSaveUserName: vi.fn(),
       onCancelUserName: vi.fn(),
       onAdminMenuClick: vi.fn(),
+      onOpenAddUser: vi.fn(),
+      onSaveAddUser: vi.fn(),
+      onCancelAddUser: vi.fn(),
+      onOpenProfileDialog: vi.fn(),
     });
 
     const appNameLink = document.getElementById("appNameLink");
