@@ -468,6 +468,7 @@ export function AdminPanelRoot({
                   return (
                     <li
                       key={user.id}
+                      aria-current={isActive ? "true" : undefined}
                       className={`admin-user-item flex items-center gap-2 rounded-md border px-3 py-2 ${
                         isActive ? "border-[#0366d6] bg-[#e8f0fe]" : "border-[#e1e4e8] bg-white"
                       }`}

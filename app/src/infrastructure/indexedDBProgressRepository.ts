@@ -619,6 +619,8 @@ export class IndexedDBProgressRepository implements IProgressRepository {
     if (cryptoObj && typeof cryptoObj.randomUUID === "function") {
       return `user-${cryptoObj.randomUUID()}`;
     }
+    // randomUUID が無い環境向けのフォールバック。短時間に連続生成すると衝突する可能性は
+    // 残るが、UI 操作で 1 件ずつ追加する想定のため実用上は十分。
     return `user-${Date.now().toString(36)}-${performance.now().toString(36).replace(".", "")}`;
   }
 
