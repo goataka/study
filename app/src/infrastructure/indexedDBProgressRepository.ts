@@ -13,8 +13,11 @@ import type {
   QuizRecord,
   QuizSettings,
   UserDataExport,
+  MultiUserDataExport,
+  UserProfile,
   CategoryStageRecord,
 } from "../application/ports";
+import { GUEST_USER_ID, GUEST_USER_NAME } from "../application/ports";
 import { detectDeployEnvironment } from "../shared/deployEnvironment";
 
 export function resolveDbPrefix(pathname: string): "v1" | "rc" {
@@ -42,6 +45,27 @@ const KEY_QUIZ_SETTINGS = "quizSettings";
 const KEY_RECOMMENDED_COUNTS = "recommendedCounts";
 const KEY_CATEGORY_STAGES = "categoryStages";
 const KEY_GLOBAL_RECOMMENDED_COUNT = "globalRecommendedCount";
+
+/** ユーザープロフィール一覧とアクティブユーザーを保持するグローバルキー（ユーザー名前空間の対象外）。 */
+const KEY_USER_PROFILES = "userProfiles";
+
+/** ユーザーごとに名前空間を分けて永続化する基底キー一覧。 */
+const PER_USER_KEYS = [
+  KEY_WRONG_QUESTIONS,
+  KEY_CORRECT_STREAKS,
+  KEY_MASTERED_IDS,
+  KEY_QUESTION_STATS,
+  KEY_USER_NAME,
+  KEY_USER_AVATAR,
+  KEY_QUIZ_HISTORY,
+  KEY_CATEGORY_VIEW_MODE,
+  KEY_FONT_SIZE_LEVEL,
+  KEY_SHARE_URL,
+  KEY_QUIZ_SETTINGS,
+  KEY_RECOMMENDED_COUNTS,
+  KEY_CATEGORY_STAGES,
+  KEY_GLOBAL_RECOMMENDED_COUNT,
+] as const;
 
 /** 保存する履歴の最大件数 */
 const MAX_HISTORY = 100;
@@ -72,8 +96,26 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 export class IndexedDBProgressRepository implements IProgressRepository {
   private db: IDBDatabase | null = null;
   private cache: ProgressCache = IndexedDBProgressRepository.defaultCache();
+  /** 登録済みユーザー一覧（先頭は常にゲスト）。 */
+  private profiles: UserProfile[] = IndexedDBProgressRepository.defaultProfiles();
+  /** 現在アクティブなユーザー ID。 */
+  private activeUserId: string = GUEST_USER_ID;
   /** 進行中の書き込みトランザクション Promise を追跡する（テスト用 flush のため） */
   private pendingWrites: Promise<void>[] = [];
+
+  private static defaultProfiles(): UserProfile[] {
+    return [{ id: GUEST_USER_ID, name: GUEST_USER_NAME }];
+  }
+
+  /** アクティブユーザーの名前空間を考慮した実キーを返す。ゲストは互換のため接頭辞なし。 */
+  private namespacedKey(baseKey: string): string {
+    return IndexedDBProgressRepository.keyForUser(this.activeUserId, baseKey);
+  }
+
+  /** 指定ユーザーの名前空間キーを返す。ゲストは互換のため接頭辞なし。 */
+  private static keyForUser(userId: string, baseKey: string): string {
+    return userId === GUEST_USER_ID ? baseKey : `u_${userId}_${baseKey}`;
+  }
 
   private static defaultCache(): ProgressCache {
     return {
@@ -101,10 +143,55 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   async initialize(): Promise<void> {
     try {
       this.db = await this.openDB();
+      await this.loadProfilesFromDB(this.db);
       this.cache = await this.loadAllFromDB(this.db);
     } catch (error) {
       console.error("IndexedDB の初期化に失敗しました（メモリのみで動作します）:", error);
     }
+  }
+
+  /** ユーザープロフィール一覧とアクティブユーザーをグローバルキーから読み込む。 */
+  private async loadProfilesFromDB(db: IDBDatabase): Promise<void> {
+    const raw = await new Promise<unknown>((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, "readonly");
+      const req = tx.objectStore(STORE_NAME).get(KEY_USER_PROFILES);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error ?? new Error("IndexedDB からユーザー情報の取得に失敗しました"));
+    });
+    const parsed = IndexedDBProgressRepository.parseProfilesMeta(raw);
+    this.profiles = parsed.profiles;
+    this.activeUserId = parsed.activeId;
+  }
+
+  /** 永続化されたプロフィールメタを検証し、正規化して返す。 */
+  private static parseProfilesMeta(raw: unknown): { profiles: UserProfile[]; activeId: string } {
+    const profiles = IndexedDBProgressRepository.defaultProfiles();
+    let activeId = GUEST_USER_ID;
+    if (isPlainObject(raw)) {
+      const list = raw.profiles;
+      if (Array.isArray(list)) {
+        for (const item of list) {
+          if (isPlainObject(item) && typeof item.id === "string" && typeof item.name === "string") {
+            if (item.id === GUEST_USER_ID) continue; // ゲストは常に先頭に固定済み
+            if (profiles.some((p) => p.id === item.id)) continue;
+            profiles.push({ id: item.id, name: item.name });
+          }
+        }
+      }
+      if (typeof raw.activeId === "string" && profiles.some((p) => p.id === raw.activeId)) {
+        activeId = raw.activeId;
+      }
+      // ゲストの表示名が保存されていれば反映する
+      if (Array.isArray(list)) {
+        const guest = list.find((p) => isPlainObject(p) && p.id === GUEST_USER_ID) as
+          | Record<string, unknown>
+          | undefined;
+        if (guest && typeof guest.name === "string" && guest.name) {
+          profiles[0] = { id: GUEST_USER_ID, name: guest.name };
+        }
+      }
+    }
+    return { profiles, activeId };
   }
 
   /**
@@ -175,20 +262,20 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       categoryStages,
       globalRecommendedCount,
     ] = await Promise.all([
-      getValue(KEY_WRONG_QUESTIONS),
-      getValue(KEY_CORRECT_STREAKS),
-      getValue(KEY_MASTERED_IDS),
-      getValue(KEY_QUESTION_STATS),
-      getValue(KEY_USER_NAME),
-      getValue(KEY_USER_AVATAR),
-      getValue(KEY_QUIZ_HISTORY),
-      getValue(KEY_CATEGORY_VIEW_MODE),
-      getValue(KEY_FONT_SIZE_LEVEL),
-      getValue(KEY_SHARE_URL),
-      getValue(KEY_QUIZ_SETTINGS),
-      getValue(KEY_RECOMMENDED_COUNTS),
-      getValue(KEY_CATEGORY_STAGES),
-      getValue(KEY_GLOBAL_RECOMMENDED_COUNT),
+      getValue(this.namespacedKey(KEY_WRONG_QUESTIONS)),
+      getValue(this.namespacedKey(KEY_CORRECT_STREAKS)),
+      getValue(this.namespacedKey(KEY_MASTERED_IDS)),
+      getValue(this.namespacedKey(KEY_QUESTION_STATS)),
+      getValue(this.namespacedKey(KEY_USER_NAME)),
+      getValue(this.namespacedKey(KEY_USER_AVATAR)),
+      getValue(this.namespacedKey(KEY_QUIZ_HISTORY)),
+      getValue(this.namespacedKey(KEY_CATEGORY_VIEW_MODE)),
+      getValue(this.namespacedKey(KEY_FONT_SIZE_LEVEL)),
+      getValue(this.namespacedKey(KEY_SHARE_URL)),
+      getValue(this.namespacedKey(KEY_QUIZ_SETTINGS)),
+      getValue(this.namespacedKey(KEY_RECOMMENDED_COUNTS)),
+      getValue(this.namespacedKey(KEY_CATEGORY_STAGES)),
+      getValue(this.namespacedKey(KEY_GLOBAL_RECOMMENDED_COUNT)),
     ]);
 
     await transactionDone;
@@ -274,21 +361,42 @@ export class IndexedDBProgressRepository implements IProgressRepository {
     return normalized;
   }
 
-  /** キャッシュを更新し、IndexedDB に非同期で書き込む */
+  /** キャッシュを更新し、IndexedDB に非同期で書き込む（アクティブユーザーの名前空間で保存する） */
   private persistKey(key: string, value: unknown): void {
+    this.putRaw(this.namespacedKey(key), value);
+  }
+
+  /** 完全修飾キーで IndexedDB に非同期書き込みする低レベルヘルパー。 */
+  private putRaw(fullKey: string, value: unknown): void {
     if (!this.db) return;
     const writePromise = new Promise<void>((resolve, reject) => {
       try {
         const tx = (this.db as IDBDatabase).transaction(STORE_NAME, "readwrite");
         const store = tx.objectStore(STORE_NAME);
-        store.put(value, key);
+        store.put(value, fullKey);
         tx.oncomplete = () => resolve();
         tx.onerror = () => {
-          console.error(`IndexedDB 書き込みエラー (${key}):`, tx.error);
+          console.error(`IndexedDB 書き込みエラー (${fullKey}):`, tx.error);
           reject(tx.error);
         };
       } catch (error) {
-        console.error(`IndexedDB 書き込みエラー (${key}):`, error);
+        console.error(`IndexedDB 書き込みエラー (${fullKey}):`, error);
+        reject(error);
+      }
+    });
+    this.pendingWrites.push(writePromise.catch(() => undefined));
+  }
+
+  /** 完全修飾キーを IndexedDB から削除する低レベルヘルパー。 */
+  private deleteRaw(fullKey: string): void {
+    if (!this.db) return;
+    const writePromise = new Promise<void>((resolve, reject) => {
+      try {
+        const tx = (this.db as IDBDatabase).transaction(STORE_NAME, "readwrite");
+        tx.objectStore(STORE_NAME).delete(fullKey);
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      } catch (error) {
         reject(error);
       }
     });
@@ -340,6 +448,12 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   saveUserName(name: string): void {
     this.cache.userName = name;
     this.persistKey(KEY_USER_NAME, name);
+    // アクティブユーザーのプロフィール表示名も同期する
+    const profile = this.profiles.find((p) => p.id === this.activeUserId);
+    if (profile && profile.name !== name && name) {
+      profile.name = name;
+      this.persistProfiles();
+    }
   }
 
   loadUserAvatar(): string | null {
@@ -441,8 +555,10 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   }
 
   async clearAllData(): Promise<void> {
-    // キャッシュをリセット（DBが未初期化でもメモリ上のデータはクリアする）
+    // キャッシュとユーザー情報をリセット（DBが未初期化でもメモリ上のデータはクリアする）
     this.cache = IndexedDBProgressRepository.defaultCache();
+    this.profiles = IndexedDBProgressRepository.defaultProfiles();
+    this.activeUserId = GUEST_USER_ID;
     // IndexedDB のストアをクリア。DB が未初期化の場合は deleteDatabase で永続データも確実に削除する。
     if (!this.db) {
       await new Promise<void>((resolve, reject) => {
@@ -468,5 +584,109 @@ export class IndexedDBProgressRepository implements IProgressRepository {
         reject(error);
       }
     });
+  }
+
+  // ─── 複数ユーザー対応 ────────────────────────────────────────────────────────
+
+  /** ユーザープロフィール一覧を IndexedDB に永続化する。 */
+  private persistProfiles(): void {
+    this.putRaw(KEY_USER_PROFILES, { activeId: this.activeUserId, profiles: this.profiles });
+  }
+
+  listUsers(): UserProfile[] {
+    return this.profiles.map((p) => ({ ...p }));
+  }
+
+  getActiveUserId(): string {
+    return this.activeUserId;
+  }
+
+  addUser(name: string): UserProfile {
+    const trimmed = name.trim() || GUEST_USER_NAME;
+    const id = `user-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+    const profile: UserProfile = { id, name: trimmed };
+    this.profiles.push(profile);
+    // 新規ユーザーの表示名を事前に保存し、切り替え後の名前表示と一致させる
+    this.putRaw(IndexedDBProgressRepository.keyForUser(id, KEY_USER_NAME), trimmed);
+    this.persistProfiles();
+    return { ...profile };
+  }
+
+  async switchUser(id: string): Promise<void> {
+    if (!this.profiles.some((p) => p.id === id)) return;
+    this.activeUserId = id;
+    this.persistProfiles();
+    if (this.db) {
+      this.cache = await this.loadAllFromDB(this.db);
+    } else {
+      this.cache = IndexedDBProgressRepository.defaultCache();
+    }
+  }
+
+  async deleteUser(id: string): Promise<void> {
+    if (id === GUEST_USER_ID) return; // ゲストは削除しない
+    if (!this.profiles.some((p) => p.id === id)) return;
+    this.profiles = this.profiles.filter((p) => p.id !== id);
+    // 削除対象ユーザーのデータを消去する
+    for (const baseKey of PER_USER_KEYS) {
+      this.deleteRaw(IndexedDBProgressRepository.keyForUser(id, baseKey));
+    }
+    // アクティブユーザーを削除した場合はゲストへ切り替える
+    if (this.activeUserId === id) {
+      await this.switchUser(GUEST_USER_ID);
+    } else {
+      this.persistProfiles();
+    }
+  }
+
+  async clearActiveUserData(): Promise<void> {
+    const target = this.activeUserId;
+    for (const baseKey of PER_USER_KEYS) {
+      this.deleteRaw(IndexedDBProgressRepository.keyForUser(target, baseKey));
+    }
+    this.cache = IndexedDBProgressRepository.defaultCache();
+    await this.flush();
+  }
+
+  async exportAllUsersData(): Promise<MultiUserDataExport> {
+    const users: MultiUserDataExport["users"] = [];
+    for (const profile of this.profiles) {
+      const data = profile.id === this.activeUserId ? this.exportAllData() : await this.readUserExport(profile.id);
+      users.push({ id: profile.id, name: profile.name, data });
+    }
+    return {
+      exportedAt: new Date().toISOString(),
+      activeUserId: this.activeUserId,
+      users,
+    };
+  }
+
+  /** アクティブでないユーザーのデータを IndexedDB から読み出してエクスポート形式に整える。 */
+  private async readUserExport(userId: string): Promise<UserDataExport> {
+    const cache = this.db ? await this.loadCacheForUser(this.db, userId) : IndexedDBProgressRepository.defaultCache();
+    return {
+      exportedAt: new Date().toISOString(),
+      userName: cache.userName,
+      wrongIds: cache.wrongQuestions,
+      correctStreaks: cache.correctStreaks,
+      masteredIds: cache.masteredIds,
+      history: cache.quizHistory,
+      categoryViewMode: cache.categoryViewMode,
+      fontSizeLevel: cache.fontSizeLevel,
+      recommendedCounts: cache.recommendedCounts,
+      categoryStages: cache.categoryStages,
+      globalRecommendedCount: cache.globalRecommendedCount,
+    };
+  }
+
+  /** 指定ユーザーの名前空間でキャッシュを読み込む（アクティブ状態は変更しない）。 */
+  private async loadCacheForUser(db: IDBDatabase, userId: string): Promise<ProgressCache> {
+    const previous = this.activeUserId;
+    this.activeUserId = userId;
+    try {
+      return await this.loadAllFromDB(db);
+    } finally {
+      this.activeUserId = previous;
+    }
   }
 }
