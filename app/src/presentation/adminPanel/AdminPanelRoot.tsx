@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { fallbackCopy } from "../uiHelpers";
 import {
@@ -102,6 +102,12 @@ export function AdminPanelRoot({
   const [newUserName, setNewUserName] = useState("");
   const [resetConfirmStage, setResetConfirmStage] = useState(false);
   const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+    };
+  }, []);
 
   const showMenu = (menu: Exclude<ActiveMenu, null>): void => {
     setActiveMenu(menu);
@@ -462,6 +468,8 @@ export function AdminPanelRoot({
                       className={`admin-reset-btn ${actionBtnBase} ${resetConfirmStage ? "bg-[#b21f2d] animate-pulse" : "bg-[#dc3545]"} text-white border border-[#c82333] hover:bg-[#c82333]`}
                       type="button"
                       onClick={onResetAllData}
+                      aria-live="polite"
+                      aria-label={resetConfirmStage ? "本当に消す（もう一度クリックで実行）" : "全データを初期化する"}
                     >
                       {resetConfirmStage ? "⚠️ 本当に消す" : "🗑️ 全データを初期化する"}
                     </button>
