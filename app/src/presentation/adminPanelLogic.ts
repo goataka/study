@@ -85,3 +85,11 @@ export function formatExportFilename(date: Date = new Date()): string {
   const dateStr = date.toISOString().slice(0, 10);
   return `study-data-${dateStr}.json`;
 }
+
+/**
+ * 全ユーザー一括エクスポート用ファイル名（`study-all-users-YYYY-MM-DD.json`）を生成する。
+ */
+export function formatAllUsersExportFilename(date: Date = new Date()): string {
+  const dateStr = date.toISOString().slice(0, 10);
+  return `study-all-users-${dateStr}.json`;
+}

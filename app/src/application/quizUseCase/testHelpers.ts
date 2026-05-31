@@ -11,8 +11,11 @@ import type {
   QuizRecord,
   QuizSettings,
   UserDataExport,
+  MultiUserDataExport,
+  UserProfile,
   CategoryStageRecord,
 } from "../ports";
+import { GUEST_USER_ID, GUEST_USER_NAME } from "../ports";
 import type { Question } from "../../domain/question";
 
 export const makeQuestion = (id: string, subject = "english", category = "phonics"): Question => ({
@@ -203,5 +206,39 @@ export class StubProgressRepository implements IProgressRepository {
     this.fontSizeLevel = null;
     this.shareUrl = "";
     this.quizSettings = { questionCount: 10, quizOrder: "random", includeMastered: false };
+    this.profiles = [{ id: GUEST_USER_ID, name: GUEST_USER_NAME }];
+    this.activeUserId = GUEST_USER_ID;
+  }
+
+  private profiles: UserProfile[] = [{ id: GUEST_USER_ID, name: GUEST_USER_NAME }];
+  private activeUserId: string = GUEST_USER_ID;
+  listUsers(): UserProfile[] {
+    return this.profiles.map((p) => ({ ...p }));
+  }
+  getActiveUserId(): string {
+    return this.activeUserId;
+  }
+  addUser(name: string): UserProfile {
+    const profile: UserProfile = { id: `user-${this.profiles.length}`, name: name.trim() || GUEST_USER_NAME };
+    this.profiles.push(profile);
+    return { ...profile };
+  }
+  async switchUser(id: string): Promise<void> {
+    if (this.profiles.some((p) => p.id === id)) this.activeUserId = id;
+  }
+  async deleteUser(id: string): Promise<void> {
+    if (id === GUEST_USER_ID) return;
+    this.profiles = this.profiles.filter((p) => p.id !== id);
+    if (this.activeUserId === id) this.activeUserId = GUEST_USER_ID;
+  }
+  async clearActiveUserData(): Promise<void> {
+    await this.clearAllData();
+  }
+  async exportAllUsersData(): Promise<MultiUserDataExport> {
+    return {
+      exportedAt: new Date().toISOString(),
+      activeUserId: this.activeUserId,
+      users: this.profiles.map((p) => ({ id: p.id, name: p.name, data: this.exportAllData() })),
+    };
   }
 }
