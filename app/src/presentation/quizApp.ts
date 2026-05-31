@@ -175,6 +175,11 @@ export class QuizApp {
         const q = this.currentSession?.currentQuestion;
         return q?.choices[q.correct];
       },
+      getCurrentQuestionMeta: () => {
+        const q = this.currentSession?.currentQuestion;
+        return q ? { subject: q.subject, caseSensitive: q.caseSensitive } : undefined;
+      },
+      getCurrentInputText: () => document.querySelector<HTMLInputElement>(".text-answer-input")?.value,
       onSelectCandidate: (char) => {
         const textInput = document.querySelector<HTMLInputElement>(".text-answer-input");
         if (textInput) {
