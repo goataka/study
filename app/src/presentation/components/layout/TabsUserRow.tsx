@@ -11,6 +11,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { AvatarCropDialog } from "../tabsUserRow/AvatarCropDialog";
+import { UserProfileDialog } from "../tabsUserRow/UserProfileDialog";
 import type { ScreenName } from "../screenStore";
 import { subjectTabsContentStore } from "../subjectTabsContentStore";
 import { headerUserSaveButton } from "../../styles/headerUserSaveButtonStyles";
@@ -128,8 +129,8 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           id="headerUserName"
           className="header-user-name text-sm text-white font-semibold max-w-[160px] overflow-hidden text-ellipsis whitespace-nowrap bg-transparent border-none rounded-md px-2 py-1 cursor-pointer transition-[background,color] duration-150 hover:bg-white/15 hover:text-white focus-visible:bg-white/15 focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           type="button"
-          title="名前を編集する"
-          aria-label="名前を編集する"
+          title="プロフィールを開く"
+          aria-label="プロフィールを開く"
         ></button>
         <div id="headerUserEdit" className="header-user-edit hidden flex items-center gap-1">
           <input
@@ -168,8 +169,8 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           id="headerUserAvatar"
           className="header-user-avatar relative w-9 h-9 rounded-full border-2 border-[#d0d8e0] overflow-hidden cursor-pointer shrink-0 flex items-center justify-center bg-[#f0f4f8] transition-[border-color,box-shadow] duration-150 select-none p-0 hover:border-[#0366d6] hover:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:border-[#0366d6] focus-visible:shadow-[0_0_0_2px_rgba(3,102,214,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           type="button"
-          title="プロフィール画像を変更する"
-          aria-label="プロフィール画像を変更する"
+          title="プロフィールを開く"
+          aria-label="プロフィールを開く"
         >
           {/* src は AvatarController が動的に設定する。空文字属性は React の警告対象なので未設定にする。 */}
           <img
@@ -188,6 +189,7 @@ export function TabsUserRow({ currentScreen }: TabsUserRowProps): React.JSX.Elem
           </span>
         </button>
         <AvatarCropDialog />
+        <UserProfileDialog />
       </div>
     </div>
   );

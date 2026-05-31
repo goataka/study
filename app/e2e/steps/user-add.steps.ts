@@ -3,41 +3,56 @@ import { expect } from "@playwright/test";
 
 const { When, Then } = createBdd();
 
-Then("ヘッダーにユーザー追加ボタンが表示される", async ({ page }) => {
-  await expect(page.locator("#headerAddUserBtn")).toBeVisible();
+When("ヘッダーのユーザー名をクリックする", async ({ page }) => {
+  await page.locator("#headerUserName").click();
 });
 
-When("ヘッダーのユーザー追加ボタンをクリックする", async ({ page }) => {
-  await page.locator("#headerAddUserBtn").click();
+When("ヘッダーのアバター画像をクリックする", async ({ page }) => {
+  await page.locator("#headerUserAvatar").click();
 });
 
-Then("ユーザー名入力欄が表示される", async ({ page }) => {
-  await expect(page.locator("#headerAddUserEdit")).toBeVisible();
-  await expect(page.locator("#headerAddUserInput")).toBeVisible();
+Then("プロフィールダイアログが表示される", async ({ page }) => {
+  await expect(page.locator("#userProfileDialog")).toBeVisible();
 });
 
-Then("ユーザー追加ボタンが非表示になる", async ({ page }) => {
-  await expect(page.locator("#headerAddUserBtn")).toBeHidden();
+Then("プロフィールダイアログが非表示になる", async ({ page }) => {
+  await expect(page.locator("#userProfileDialog")).toBeHidden();
 });
 
-When("ユーザー名入力欄でEscapeキーを押す", async ({ page }) => {
-  await page.locator("#headerAddUserInput").press("Escape");
+When("プロフィールダイアログの閉じるボタンをクリックする", async ({ page }) => {
+  await page.locator("#userProfileDialog button[aria-label='閉じる']").click();
 });
 
-Then("ユーザー追加ボタンが表示される", async ({ page }) => {
-  await expect(page.locator("#headerAddUserBtn")).toBeVisible();
+When("プロフィールダイアログでEscapeキーを押す", async ({ page }) => {
+  await page.keyboard.press("Escape");
 });
 
-Then("ユーザー名入力欄が非表示になる", async ({ page }) => {
-  await expect(page.locator("#headerAddUserEdit")).toBeHidden();
+When("プロフィールダイアログの表示名をクリックする", async ({ page }) => {
+  await page.locator("#userProfileDialog button[aria-label='表示名を編集']").click();
 });
 
-When("ユーザー名入力欄に {string} を入力する", async ({ page }, name: string) => {
-  await page.locator("#headerAddUserInput").fill(name);
+When("表示名入力欄に {string} を入力する", async ({ page }, name: string) => {
+  await page.locator("#userProfileDialog input[placeholder='名前を入力']").fill(name);
 });
 
-When("ユーザー追加の保存ボタンをクリックする", async ({ page }) => {
-  await page.locator("#headerAddUserSaveBtn").click();
+When("表示名の保存ボタンをクリックする", async ({ page }) => {
+  await page.locator("#userProfileDialog button:has-text('保存')").click();
+});
+
+Then("ヘッダーのユーザー名が {string} になる", async ({ page }, name: string) => {
+  await expect(page.locator("#headerUserName")).toHaveText(name);
+});
+
+When("プロフィールダイアログの新しいユーザー追加ボタンをクリックする", async ({ page }) => {
+  await page.locator("#userProfileDialog button:has-text('新しいユーザーを追加')").click();
+});
+
+When("新しいユーザー名入力欄に {string} を入力する", async ({ page }, name: string) => {
+  await page.locator("#userProfileDialog input[placeholder='新しいユーザー名']").fill(name);
+});
+
+When("ユーザー追加の追加ボタンをクリックする", async ({ page }) => {
+  await page.locator("#userProfileDialog button:has-text('追加')").click();
 });
 
 Then("ページがリロードされる", async ({ page }) => {
