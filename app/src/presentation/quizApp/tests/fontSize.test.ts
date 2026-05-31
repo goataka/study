@@ -28,10 +28,10 @@ describe("QuizApp — フォントサイズ切替仕様", () => {
     vi.restoreAllMocks();
   });
 
-  it("初期化時に保存値がなければ bodyにフォントサイズクラスが付かない", async () => {
+  it("初期化時に保存値がなければデフォルトの medium が body に付く", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
-    expect(document.body.classList.contains("font-size-medium")).toBe(false);
+    expect(document.body.classList.contains("font-size-medium")).toBe(true);
     expect(document.body.classList.contains("font-size-large")).toBe(false);
   });
 

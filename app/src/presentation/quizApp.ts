@@ -126,8 +126,8 @@ export class QuizApp {
   selectedGradeGroup: string | null = null;
   /** 現在選択中のトップカテゴリID（トップカテゴリ選択時のみ設定、単元選択時は null） */
   selectedTopCategoryId: string | null = null;
-  /** フォントサイズレベル（small=デフォルト, medium, large） */
-  fontSizeLevel: FontSizeLevel = "small";
+  /** フォントサイズレベル（medium=デフォルト, large） */
+  fontSizeLevel: FontSizeLevel = "medium";
   /** 総合タブの活動サマリ共有 URL */
   shareUrl: string = "";
   /** 活動サマリで表示する日付（YYYY-MM-DD 形式）: 常に今日の日付 */
@@ -140,7 +140,7 @@ export class QuizApp {
    */
   subjectRecommendedCounts: Map<string, number> = new Map();
   /** 全教科共通のおすすめ単元目標数 */
-  globalRecommendedCount: number = 5;
+  globalRecommendedCount: number = 3;
   /** 総合タブの現在アクティブなサマリパネル */
   activeOverallPanel: "learned" | "share" = "learned";
   /** 進度タブで選択中の教科ID */

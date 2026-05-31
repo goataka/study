@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { fallbackCopy } from "../uiHelpers";
 import {
@@ -64,7 +64,7 @@ export function AdminPanelRoot({
           fileKey: "settings" as const,
           content: {
             userName: data.userName ?? "ゲスト",
-            fontSizeLevel: data.fontSizeLevel ?? "small",
+            fontSizeLevel: data.fontSizeLevel ?? "medium",
             categoryViewMode: data.categoryViewMode,
             quizSettings: progressRepo.loadQuizSettings(),
             shareUrl: shareUrl || "(未設定)",
@@ -100,6 +100,14 @@ export function AdminPanelRoot({
   const [detectedFileKey, setDetectedFileKey] = useState<AdminSectionKey | null>(null);
   const [copyButtonText, setCopyButtonText] = useState("📋 コピー");
   const [newUserName, setNewUserName] = useState("");
+  const [resetConfirmStage, setResetConfirmStage] = useState(false);
+  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+    };
+  }, []);
 
   const showMenu = (menu: Exclude<ActiveMenu, null>): void => {
     setActiveMenu(menu);
@@ -190,7 +198,18 @@ export function AdminPanelRoot({
   };
 
   const onResetAllData = (): void => {
-    void showConfirmDialog("すべての学習データを削除します。この操作は元に戻せません。続けますか？")
+    if (!resetConfirmStage) {
+      setResetConfirmStage(true);
+      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+      resetTimerRef.current = setTimeout(() => setResetConfirmStage(false), 5000);
+      return;
+    }
+    setResetConfirmStage(false);
+    if (resetTimerRef.current) {
+      clearTimeout(resetTimerRef.current);
+      resetTimerRef.current = null;
+    }
+    void showConfirmDialog("本当に全部消しますか？この操作は元に戻せません。")
       .then((confirmed) => {
         if (!confirmed) return;
         void useCase
@@ -446,11 +465,13 @@ export function AdminPanelRoot({
                       🧪 サンプルデータで初期化する
                     </button>
                     <button
-                      className={`admin-reset-btn ${actionBtnBase} bg-[#dc3545] text-white border border-[#c82333] hover:bg-[#c82333]`}
+                      className={`admin-reset-btn ${actionBtnBase} ${resetConfirmStage ? "bg-[#b21f2d] animate-pulse" : "bg-[#dc3545]"} text-white border border-[#c82333] hover:bg-[#c82333]`}
                       type="button"
                       onClick={onResetAllData}
+                      aria-live="polite"
+                      aria-label={resetConfirmStage ? "本当に消す（もう一度クリックで実行）" : "全データを初期化する"}
                     >
-                      🗑️ 全データを初期化する
+                      {resetConfirmStage ? "⚠️ 本当に消す" : "🗑️ 全データを初期化する"}
                     </button>
                   </div>
                 ) : null}

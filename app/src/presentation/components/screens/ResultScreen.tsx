@@ -80,11 +80,11 @@ export function ResultScreen({ currentScreen }: ResultScreenProps): React.JSX.El
         ) : null}
       </div>
       <div className="button-group mb-5 flex flex-col gap-[15px]">
-        <button type="button" id="retryAllBtn" className={button({ variant: "primary" })}>
-          もう一度
-        </button>
-        <button type="button" id="endLearningBtn" className={button({ variant: "secondary" })}>
+        <button type="button" id="endLearningBtn" className={button({ variant: "primary" })}>
           学習を終わる
+        </button>
+        <button type="button" id="retryAllBtn" className={button({ variant: "secondary" })}>
+          もう一度
         </button>
         <button type="button" id="backToStartBtn" className={`${button({ variant: "tertiary" })} opacity-50`}>
           スタート画面に戻る
