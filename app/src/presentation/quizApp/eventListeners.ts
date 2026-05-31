@@ -18,6 +18,9 @@ export interface HeaderListenersCallbacks {
   onSaveUserName: () => void;
   onCancelUserName: () => void;
   onAdminMenuClick: () => void;
+  onOpenAddUser: () => void;
+  onSaveAddUser: () => void;
+  onCancelAddUser: () => void;
 }
 
 function bindEnterSpaceActivation(element: HTMLElement, onActivate: () => void): void {
@@ -67,6 +70,26 @@ export function setupHeaderListeners(callbacks: HeaderListenersCallbacks): void 
 
   // ヘッダーのメニューボタン（管理パネルへのナビゲーション）
   document.getElementById("adminMenuBtn")?.addEventListener("click", callbacks.onAdminMenuClick);
+
+  // ヘッダーのユーザー追加ボタン
+  document.getElementById("headerAddUserBtn")?.addEventListener("click", callbacks.onOpenAddUser);
+  document.getElementById("headerAddUserSaveBtn")?.addEventListener("click", callbacks.onSaveAddUser);
+
+  const headerAddUserInput = document.getElementById("headerAddUserInput");
+  headerAddUserInput?.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      callbacks.onSaveAddUser();
+    } else if (e.key === "Escape") {
+      callbacks.onCancelAddUser();
+    }
+  });
+  headerAddUserInput?.addEventListener("blur", (e: FocusEvent) => {
+    const relatedTarget = e.relatedTarget as HTMLElement | null;
+    if (relatedTarget?.id !== "headerAddUserSaveBtn") {
+      callbacks.onCancelAddUser();
+    }
+  });
 }
 
 /** アバター画像（ヘッダーのアイコン＋クロップダイアログ）のイベント。 */
