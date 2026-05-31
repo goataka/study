@@ -10,6 +10,7 @@
  */
 
 import type { IProgressRepository, UserProfile } from "../../../application/ports";
+import type { AvatarController } from "./avatarController";
 
 export interface UserProfileDialogState {
   open: boolean;
@@ -31,6 +32,7 @@ type Listener = () => void;
 const listeners = new Set<Listener>();
 let state: UserProfileDialogState = CLOSED_STATE;
 let progressRepo: IProgressRepository | null = null;
+let avatarCtrl: AvatarController | null = null;
 
 function notify(): void {
   for (const listener of listeners) {
@@ -51,9 +53,10 @@ export function getUserProfileDialogSnapshot(): UserProfileDialogState {
   return state;
 }
 
-/** ストアに progressRepo を注入する（QuizApp 起動時に一度だけ呼ぶ）。 */
-export function initUserProfileDialogStore(repo: IProgressRepository): void {
+/** ストアに progressRepo と avatarController を注入する（QuizApp 起動時に一度だけ呼ぶ）。 */
+export function initUserProfileDialogStore(repo: IProgressRepository, avatar: AvatarController): void {
   progressRepo = repo;
+  avatarCtrl = avatar;
 }
 
 /** ダイアログを開く。 */
@@ -84,6 +87,12 @@ export function saveUserName(name: string): string {
   return trimmed;
 }
 
+/** ユーザー切り替え時の共通エラーハンドリング。 */
+function handleSwitchError(err: unknown, action: string): void {
+  console.error("ユーザーの切り替えに失敗しました", err);
+  alert(`${action}に失敗しました。ページを再読み込みしてもう一度お試しください。`);
+}
+
 /** ユーザーを切り替える。 */
 export function switchUser(id: string): void {
   if (!progressRepo) return;
@@ -94,8 +103,7 @@ export function switchUser(id: string): void {
       window.location.reload();
     })
     .catch((err: unknown) => {
-      console.error("ユーザーの切り替えに失敗しました", err);
-      alert("ユーザーの切り替えに失敗しました。ページを再読み込みしてもう一度お試しください。");
+      handleSwitchError(err, "ユーザーの切り替え");
     });
 }
 
@@ -111,9 +119,13 @@ export function addUserAndSwitch(name: string): void {
       window.location.reload();
     })
     .catch((err: unknown) => {
-      console.error("ユーザーの切り替えに失敗しました", err);
-      alert("ユーザーの追加に失敗しました。ページを再読み込みしてもう一度お試しください。");
+      handleSwitchError(err, "ユーザーの追加");
     });
+}
+
+/** アバター画像編集ダイアログを開く（AvatarController 経由）。 */
+export function openAvatarCropDialog(): void {
+  avatarCtrl?.openCropDialog();
 }
 
 /** テスト用リセット。 */
@@ -121,4 +133,5 @@ export function __resetUserProfileDialogStoreForTests(): void {
   state = CLOSED_STATE;
   listeners.clear();
   progressRepo = null;
+  avatarCtrl = null;
 }

@@ -8,7 +8,7 @@
  * - ユーザーの切り替え
  */
 
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   subscribeUserProfileDialog,
   getUserProfileDialogSnapshot,
@@ -16,6 +16,7 @@ import {
   saveUserName,
   switchUser,
   addUserAndSwitch,
+  openAvatarCropDialog,
 } from "./userProfileDialogStore";
 import { dialogButton } from "../../styles/dialogButtonStyles";
 
@@ -32,18 +33,17 @@ export function UserProfileDialog(): React.JSX.Element {
   const [newUserName, setNewUserName] = useState("");
   const nameInputRef = useRef<HTMLInputElement | null>(null);
   const addInputRef = useRef<HTMLInputElement | null>(null);
-
-  // ダイアログが開いた / 閉じたときのリセット
   const prevOpenRef = useRef(false);
-  if (state.open && !prevOpenRef.current) {
-    // 開いた瞬間にリセット
-    prevOpenRef.current = true;
-    setEditingName(false);
-    setAddingUser(false);
-    setNewUserName("");
-  } else if (!state.open && prevOpenRef.current) {
-    prevOpenRef.current = false;
-  }
+
+  // ダイアログが開いたときに編集状態をリセットする
+  useEffect(() => {
+    if (state.open && !prevOpenRef.current) {
+      setEditingName(false);
+      setAddingUser(false);
+      setNewUserName("");
+    }
+    prevOpenRef.current = state.open;
+  }, [state.open]);
 
   const handleStartEditName = (): void => {
     setEditingName(true);
@@ -54,17 +54,18 @@ export function UserProfileDialog(): React.JSX.Element {
   const handleSaveName = (): void => {
     const saved = saveUserName(nameValue);
     setEditingName(false);
-    // ヘッダーの表示名も更新（既存 DOM 操作との連携）
+    // 既存レガシー UI との連携: QuizApp が getElementById で表示名を参照するため
+    // React ストア経由での更新が行き届くまでの暫定的な直接 DOM 操作。
     const headerNameBtn = document.getElementById("headerUserName");
     if (headerNameBtn) headerNameBtn.textContent = saved;
   };
 
   const handleOpenAvatarDialog = (): void => {
     closeUserProfileDialog();
-    // 少し遅延して既存の AvatarCropDialog を開く
+    // プロフィールダイアログを閉じてから AvatarController 経由で
+    // AvatarCropDialog を開く。遅延は閉じ処理の React 再レンダリング完了を待つため。
     setTimeout(() => {
-      const avatarBtn = document.getElementById("headerUserAvatar");
-      avatarBtn?.click();
+      openAvatarCropDialog();
     }, 100);
   };
 

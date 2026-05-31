@@ -94,24 +94,16 @@ export function setupHeaderListeners(callbacks: HeaderListenersCallbacks): void 
 }
 
 /** アバター画像（ヘッダーのアイコン＋クロップダイアログ）のイベント。 */
-export function setupAvatarListeners(avatarController: AvatarController, onOpenProfileDialog?: () => void): void {
+export function setupAvatarListeners(avatarController: AvatarController, onOpenProfileDialog: () => void): void {
   const headerUserAvatar = document.getElementById("headerUserAvatar");
   const avatarCropDialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
   headerUserAvatar?.addEventListener("click", () => {
-    if (onOpenProfileDialog) {
-      onOpenProfileDialog();
-    } else {
-      avatarController.openCropDialog();
-    }
+    onOpenProfileDialog();
   });
   headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      if (onOpenProfileDialog) {
-        onOpenProfileDialog();
-      } else {
-        avatarController.openCropDialog();
-      }
+      onOpenProfileDialog();
     }
   });
 

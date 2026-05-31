@@ -169,7 +169,7 @@ export class QuizApp {
     this.progressRepo = resolved.progressRepo;
     this.questionRepo = resolved.questionRepo;
     this.avatarController = new AvatarController(this.progressRepo);
-    initUserProfileDialogStore(this.progressRepo);
+    initUserProfileDialogStore(this.progressRepo, this.avatarController);
     this.kanjiCanvasController = new KanjiCanvasController({
       getCorrectAnswer: () => {
         const q = this.currentSession?.currentQuestion;
