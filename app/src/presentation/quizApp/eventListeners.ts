@@ -21,6 +21,7 @@ export interface HeaderListenersCallbacks {
   onOpenAddUser: () => void;
   onSaveAddUser: () => void;
   onCancelAddUser: () => void;
+  onOpenProfileDialog: () => void;
 }
 
 function bindEnterSpaceActivation(element: HTMLElement, onActivate: () => void): void {
@@ -46,8 +47,8 @@ export function setupHeaderListeners(callbacks: HeaderListenersCallbacks): void 
     bindEnterSpaceActivation(appNameLink, callbacks.onTitleClick);
   }
 
-  // ヘッダーのユーザー名をクリックして編集を開く
-  document.getElementById("headerUserName")?.addEventListener("click", callbacks.onOpenUserNameEdit);
+  // ヘッダーのユーザー名をクリックしてプロフィールダイアログを開く
+  document.getElementById("headerUserName")?.addEventListener("click", callbacks.onOpenProfileDialog);
   document.getElementById("headerUserNameSaveBtn")?.addEventListener("click", callbacks.onSaveUserName);
 
   // 入力フィールド: Enter で保存、Escape でキャンセル
@@ -93,16 +94,24 @@ export function setupHeaderListeners(callbacks: HeaderListenersCallbacks): void 
 }
 
 /** アバター画像（ヘッダーのアイコン＋クロップダイアログ）のイベント。 */
-export function setupAvatarListeners(avatarController: AvatarController): void {
+export function setupAvatarListeners(avatarController: AvatarController, onOpenProfileDialog?: () => void): void {
   const headerUserAvatar = document.getElementById("headerUserAvatar");
   const avatarCropDialog = document.getElementById("avatarCropDialog") as HTMLDialogElement | null;
   headerUserAvatar?.addEventListener("click", () => {
-    avatarController.openCropDialog();
+    if (onOpenProfileDialog) {
+      onOpenProfileDialog();
+    } else {
+      avatarController.openCropDialog();
+    }
   });
   headerUserAvatar?.addEventListener("keydown", (e: KeyboardEvent) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      avatarController.openCropDialog();
+      if (onOpenProfileDialog) {
+        onOpenProfileDialog();
+      } else {
+        avatarController.openCropDialog();
+      }
     }
   });
 

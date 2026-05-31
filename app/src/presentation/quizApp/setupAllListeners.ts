@@ -54,6 +54,7 @@ export interface AllListenersDeps {
   onOpenAddUser: () => void;
   onSaveAddUser: () => void;
   onCancelAddUser: () => void;
+  onOpenProfileDialog: () => void;
   // クイズ設定
   onQuestionCountChange: (count: number) => void;
   onQuizOrderChange: (order: "random" | "straight") => void;
@@ -108,8 +109,9 @@ export function setupAllListeners(deps: AllListenersDeps): void {
     onOpenAddUser: deps.onOpenAddUser,
     onSaveAddUser: deps.onSaveAddUser,
     onCancelAddUser: deps.onCancelAddUser,
+    onOpenProfileDialog: deps.onOpenProfileDialog,
   });
-  setupAvatarListeners(deps.avatarController);
+  setupAvatarListeners(deps.avatarController, deps.onOpenProfileDialog);
   setupQuizSettingsListeners({
     onQuestionCountChange: deps.onQuestionCountChange,
     onQuizOrderChange: deps.onQuizOrderChange,

@@ -45,6 +45,7 @@ import { setupAllListeners } from "./quizApp/setupAllListeners";
 import * as D from "./quizApp/delegators";
 import type { QuestionListFilter } from "./quizApp/questionListView";
 import { setStartQuizAction, setSelectUnitAction } from "./components/learningStatusActionsStore";
+import { initUserProfileDialogStore, openUserProfileDialog } from "./components/tabsUserRow/userProfileDialogStore";
 
 const PANEL_TABS: readonly D.PanelTab[] = ["quiz", "guide", "history", "questions"] as const;
 const SUPPORT_FIRST_VISIT_KEY = "study-guide-first-visit-done";
@@ -168,6 +169,7 @@ export class QuizApp {
     this.progressRepo = resolved.progressRepo;
     this.questionRepo = resolved.questionRepo;
     this.avatarController = new AvatarController(this.progressRepo);
+    initUserProfileDialogStore(this.progressRepo);
     this.kanjiCanvasController = new KanjiCanvasController({
       getCorrectAnswer: () => {
         const q = this.currentSession?.currentQuestion;
@@ -412,6 +414,11 @@ export class QuizApp {
       });
   }
 
+  /** ユーザープロフィールダイアログを開く。 */
+  openProfileDialog(): void {
+    openUserProfileDialog(this.userName);
+  }
+
   /** カテゴリ一覧の学習状態フィルターを設定して反映する */
   setCategoryStatusFilter(filter: "all" | "unlearned" | "studying" | "learned"): void {
     this.categoryStatusFilter = filter;
@@ -466,6 +473,7 @@ export class QuizApp {
       onOpenAddUser: () => this.openAddUser(),
       onSaveAddUser: () => this.saveAddUser(),
       onCancelAddUser: () => this.closeAddUser(),
+      onOpenProfileDialog: () => this.openProfileDialog(),
       onQuestionCountChange: (count) => {
         this.questionCount = count;
         this.saveQuizSettings();
