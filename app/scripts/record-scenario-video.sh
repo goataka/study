@@ -19,8 +19,8 @@ mkdir -p "${OUT_DIR}"
 rm -rf "${WORK_DIR}"
 
 # BDD のテストコードを生成してから録画付きで実行する
-npx bddgen --config playwright.scenario.config.ts
-npx playwright test --config playwright.scenario.config.ts
+pnpm exec bddgen --config playwright.scenario.config.ts
+pnpm exec playwright test --config playwright.scenario.config.ts
 
 # 生成された動画（1ファイル）を安定したパスへコピーする
 VIDEO_PATH="$(find "${WORK_DIR}" -name '*.webm' | head -n 1)"

@@ -13,7 +13,10 @@ const SCREEN_IDS: Record<string, string> = {
 // 問題番号テキスト（例: "問題 1 / 10"）から現在問題番号と総問題数を取得する
 async function readQuestionProgress(page: Page): Promise<{ current: number; total: number }> {
   const text = await page.locator("#questionNumber").textContent();
-  const match = text?.match(/問題\s*(\d+)\s*\/\s*(\d+)/);
+  if (text === null) {
+    throw new Error("問題番号要素 (#questionNumber) が見つかりません");
+  }
+  const match = text.match(/問題\s*(\d+)\s*\/\s*(\d+)/);
   if (!match) {
     throw new Error(`問題番号テキストを解析できません: "${text}"`);
   }
@@ -33,6 +36,9 @@ Then("プログレスバーの進捗が問題番号と一致している", async
   const { current, total } = await readQuestionProgress(page);
   const expectedPercent = (current / total) * 100;
   const width = await page.locator("#progressFill").evaluate((el) => parseFloat((el as HTMLElement).style.width));
+  if (Number.isNaN(width)) {
+    throw new Error("プログレスバー (#progressFill) の width が数値として取得できません");
+  }
   expect(width).toBeCloseTo(expectedPercent, 1);
 });
 
