@@ -51,6 +51,9 @@ export interface AllListenersDeps {
   onSaveUserName: () => void;
   onCancelUserName: () => void;
   onAdminMenuClick: () => void;
+  onOpenAddUser: () => void;
+  onSaveAddUser: () => void;
+  onCancelAddUser: () => void;
   // クイズ設定
   onQuestionCountChange: (count: number) => void;
   onQuizOrderChange: (order: "random" | "straight") => void;
@@ -102,6 +105,9 @@ export function setupAllListeners(deps: AllListenersDeps): void {
     onSaveUserName: deps.onSaveUserName,
     onCancelUserName: deps.onCancelUserName,
     onAdminMenuClick: deps.onAdminMenuClick,
+    onOpenAddUser: deps.onOpenAddUser,
+    onSaveAddUser: deps.onSaveAddUser,
+    onCancelAddUser: deps.onCancelAddUser,
   });
   setupAvatarListeners(deps.avatarController);
   setupQuizSettingsListeners({

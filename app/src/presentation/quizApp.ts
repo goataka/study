@@ -370,6 +370,48 @@ export class QuizApp {
     this.closeUserNameEdit();
   }
 
+  /** ヘッダーのユーザー追加 UI を開く。 */
+  openAddUser(): void {
+    const addBtn = document.getElementById("headerAddUserBtn");
+    const editArea = document.getElementById("headerAddUserEdit");
+    const input = document.getElementById("headerAddUserInput") as HTMLInputElement | null;
+    if (!addBtn || !editArea || !input) return;
+    addBtn.classList.add("hidden");
+    editArea.classList.remove("hidden");
+    input.value = "";
+    input.focus();
+  }
+
+  /** ヘッダーのユーザー追加 UI を閉じる。 */
+  closeAddUser(): void {
+    const addBtn = document.getElementById("headerAddUserBtn");
+    const editArea = document.getElementById("headerAddUserEdit");
+    if (!addBtn || !editArea) return;
+    editArea.classList.add("hidden");
+    addBtn.classList.remove("hidden");
+  }
+
+  /** ヘッダーからユーザーを追加し、そのユーザーに切り替える。 */
+  saveAddUser(): void {
+    const input = document.getElementById("headerAddUserInput") as HTMLInputElement | null;
+    if (!input) return;
+    const name = input.value.trim();
+    if (!name) {
+      this.closeAddUser();
+      return;
+    }
+    const created = this.progressRepo.addUser(name);
+    void this.progressRepo
+      .switchUser(created.id)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err: unknown) => {
+        console.error("ユーザーの切り替えに失敗しました", err);
+        alert("ユーザーの追加に失敗しました。ページを再読み込みしてもう一度お試しください。");
+      });
+  }
+
   /** カテゴリ一覧の学習状態フィルターを設定して反映する */
   setCategoryStatusFilter(filter: "all" | "unlearned" | "studying" | "learned"): void {
     this.categoryStatusFilter = filter;
@@ -421,6 +463,9 @@ export class QuizApp {
       onSaveUserName: () => this.saveHeaderUserName(),
       onCancelUserName: () => this.closeUserNameEdit(),
       onAdminMenuClick: () => D.navigateToAdmin(this),
+      onOpenAddUser: () => this.openAddUser(),
+      onSaveAddUser: () => this.saveAddUser(),
+      onCancelAddUser: () => this.closeAddUser(),
       onQuestionCountChange: (count) => {
         this.questionCount = count;
         this.saveQuizSettings();

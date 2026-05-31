@@ -340,8 +340,8 @@ export function AdminPanelRoot({
     "self-start px-3 py-1.5 text-sm font-semibold rounded-md cursor-pointer transition-[background,color] duration-150 font-[inherit]";
 
   const adminMenuItems = [
-    { id: "manage" as const, label: "✅ データ更改" },
     { id: "users" as const, label: "👥 ユーザー" },
+    { id: "manage" as const, label: "✅ データ更改" },
     { id: "view" as const, label: "📖 データ参照" },
     { id: "spec" as const, label: "🧩 データ仕様" },
   ];
