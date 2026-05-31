@@ -156,6 +156,7 @@ export function UserProfileDialog(): React.JSX.Element {
               type="button"
               className="w-full text-left px-2 py-1 bg-transparent border border-[#e1e4e8] rounded-md text-sm text-[#24292e] cursor-pointer hover:bg-[#f6f8fa] transition-colors"
               onClick={handleStartEditName}
+              aria-label="表示名を編集"
             >
               {state.currentUserName || "ゲスト"}
               <span className="ml-2 text-[#586069] text-xs">✏️</span>

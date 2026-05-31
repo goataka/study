@@ -28,7 +28,7 @@ When("プロフィールダイアログでEscapeキーを押す", async ({ page 
 });
 
 When("プロフィールダイアログの表示名をクリックする", async ({ page }) => {
-  await page.locator("#userProfileDialog button:has-text('✏️')").click();
+  await page.locator("#userProfileDialog button[aria-label='表示名を編集']").click();
 });
 
 When("表示名入力欄に {string} を入力する", async ({ page }, name: string) => {
