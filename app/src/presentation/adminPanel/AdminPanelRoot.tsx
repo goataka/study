@@ -261,8 +261,8 @@ export function AdminPanelRoot({
           window.location.reload();
         })
         .catch((err: unknown) => {
-          console.error("ユーザーの追加に失敗しました", err);
-          alert("ユーザーの追加に失敗しました。ページを再読み込みしてもう一度お試しください。");
+          console.error("ユーザーの切り替えに失敗しました", err);
+          alert("ユーザーは追加されましたが、切り替えに失敗しました。ページを再読み込みして切り替えてください。");
         });
     } catch (err) {
       console.error("ユーザーの追加に失敗しました", err);

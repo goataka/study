@@ -225,8 +225,9 @@ export class IndexedDBProgressRepository implements IProgressRepository {
   }
 
   /** 1 つの readonly トランザクションで全キーを一括読み込みする */
-  private async loadAllFromDB(db: IDBDatabase): Promise<ProgressCache> {
+  private async loadAllFromDB(db: IDBDatabase, userId: string = this.activeUserId): Promise<ProgressCache> {
     const cache = IndexedDBProgressRepository.defaultCache();
+    const keyFor = (base: string): string => IndexedDBProgressRepository.keyForUser(userId, base);
 
     const transaction = db.transaction(STORE_NAME, "readonly");
     const store = transaction.objectStore(STORE_NAME);
@@ -262,20 +263,20 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       categoryStages,
       globalRecommendedCount,
     ] = await Promise.all([
-      getValue(this.namespacedKey(KEY_WRONG_QUESTIONS)),
-      getValue(this.namespacedKey(KEY_CORRECT_STREAKS)),
-      getValue(this.namespacedKey(KEY_MASTERED_IDS)),
-      getValue(this.namespacedKey(KEY_QUESTION_STATS)),
-      getValue(this.namespacedKey(KEY_USER_NAME)),
-      getValue(this.namespacedKey(KEY_USER_AVATAR)),
-      getValue(this.namespacedKey(KEY_QUIZ_HISTORY)),
-      getValue(this.namespacedKey(KEY_CATEGORY_VIEW_MODE)),
-      getValue(this.namespacedKey(KEY_FONT_SIZE_LEVEL)),
-      getValue(this.namespacedKey(KEY_SHARE_URL)),
-      getValue(this.namespacedKey(KEY_QUIZ_SETTINGS)),
-      getValue(this.namespacedKey(KEY_RECOMMENDED_COUNTS)),
-      getValue(this.namespacedKey(KEY_CATEGORY_STAGES)),
-      getValue(this.namespacedKey(KEY_GLOBAL_RECOMMENDED_COUNT)),
+      getValue(keyFor(KEY_WRONG_QUESTIONS)),
+      getValue(keyFor(KEY_CORRECT_STREAKS)),
+      getValue(keyFor(KEY_MASTERED_IDS)),
+      getValue(keyFor(KEY_QUESTION_STATS)),
+      getValue(keyFor(KEY_USER_NAME)),
+      getValue(keyFor(KEY_USER_AVATAR)),
+      getValue(keyFor(KEY_QUIZ_HISTORY)),
+      getValue(keyFor(KEY_CATEGORY_VIEW_MODE)),
+      getValue(keyFor(KEY_FONT_SIZE_LEVEL)),
+      getValue(keyFor(KEY_SHARE_URL)),
+      getValue(keyFor(KEY_QUIZ_SETTINGS)),
+      getValue(keyFor(KEY_RECOMMENDED_COUNTS)),
+      getValue(keyFor(KEY_CATEGORY_STAGES)),
+      getValue(keyFor(KEY_GLOBAL_RECOMMENDED_COUNT)),
     ]);
 
     await transactionDone;
@@ -603,13 +604,22 @@ export class IndexedDBProgressRepository implements IProgressRepository {
 
   addUser(name: string): UserProfile {
     const trimmed = name.trim() || GUEST_USER_NAME;
-    const id = `user-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+    const id = IndexedDBProgressRepository.generateUserId();
     const profile: UserProfile = { id, name: trimmed };
     this.profiles.push(profile);
     // 新規ユーザーの表示名を事前に保存し、切り替え後の名前表示と一致させる
     this.putRaw(IndexedDBProgressRepository.keyForUser(id, KEY_USER_NAME), trimmed);
     this.persistProfiles();
     return { ...profile };
+  }
+
+  /** 衝突しにくいユーザー ID を生成する（利用可能なら crypto.randomUUID を使う）。 */
+  private static generateUserId(): string {
+    const cryptoObj = typeof globalThis !== "undefined" ? globalThis.crypto : undefined;
+    if (cryptoObj && typeof cryptoObj.randomUUID === "function") {
+      return `user-${cryptoObj.randomUUID()}`;
+    }
+    return `user-${Date.now().toString(36)}-${performance.now().toString(36).replace(".", "")}`;
   }
 
   async switchUser(id: string): Promise<void> {
@@ -627,10 +637,11 @@ export class IndexedDBProgressRepository implements IProgressRepository {
     if (id === GUEST_USER_ID) return; // ゲストは削除しない
     if (!this.profiles.some((p) => p.id === id)) return;
     this.profiles = this.profiles.filter((p) => p.id !== id);
-    // 削除対象ユーザーのデータを消去する
+    // 削除対象ユーザーのデータを消去し、完了を待ってからメタ情報を更新する
     for (const baseKey of PER_USER_KEYS) {
       this.deleteRaw(IndexedDBProgressRepository.keyForUser(id, baseKey));
     }
+    await this.flush();
     // アクティブユーザーを削除した場合はゲストへ切り替える
     if (this.activeUserId === id) {
       await this.switchUser(GUEST_USER_ID);
@@ -663,7 +674,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
 
   /** アクティブでないユーザーのデータを IndexedDB から読み出してエクスポート形式に整える。 */
   private async readUserExport(userId: string): Promise<UserDataExport> {
-    const cache = this.db ? await this.loadCacheForUser(this.db, userId) : IndexedDBProgressRepository.defaultCache();
+    const cache = this.db ? await this.loadAllFromDB(this.db, userId) : IndexedDBProgressRepository.defaultCache();
     return {
       exportedAt: new Date().toISOString(),
       userName: cache.userName,
@@ -677,16 +688,5 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       categoryStages: cache.categoryStages,
       globalRecommendedCount: cache.globalRecommendedCount,
     };
-  }
-
-  /** 指定ユーザーの名前空間でキャッシュを読み込む（アクティブ状態は変更しない）。 */
-  private async loadCacheForUser(db: IDBDatabase, userId: string): Promise<ProgressCache> {
-    const previous = this.activeUserId;
-    this.activeUserId = userId;
-    try {
-      return await this.loadAllFromDB(db);
-    } finally {
-      this.activeUserId = previous;
-    }
   }
 }
