@@ -2,7 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 import { defineBddConfig } from "playwright-bdd";
 
 const testDir = defineBddConfig({
-  features: "e2e/features/quiz.feature",
+  features: "e2e/features/*.feature",
   steps: ["e2e/steps/visual.steps.ts", "e2e/steps/quiz.steps.ts"],
   outputDir: ".features-gen/vr",
   tags: "@vr",
