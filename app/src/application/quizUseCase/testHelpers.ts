@@ -72,7 +72,7 @@ export class StubProgressRepository implements IProgressRepository {
     this.masteredIds = [...initialMasteredIds];
     this.recommendedCounts = { ...initialRecommendedCounts };
     this.categoryStages = {};
-    this.globalRecommendedCount = 5;
+    this.globalRecommendedCount = 3;
   }
   loadWrongIds(): string[] {
     return [...this.ids];
@@ -199,13 +199,13 @@ export class StubProgressRepository implements IProgressRepository {
     this.masteredIds = [];
     this.recommendedCounts = {};
     this.categoryStages = {};
-    this.globalRecommendedCount = 5;
+    this.globalRecommendedCount = 3;
     this.userName = null;
     this.userAvatar = null;
     this.categoryViewMode = "category";
     this.fontSizeLevel = null;
     this.shareUrl = "";
-    this.quizSettings = { questionCount: 10, quizOrder: "random", includeMastered: false };
+    this.quizSettings = { questionCount: 5, quizOrder: "random", includeMastered: false };
     this.profiles = [{ id: GUEST_USER_ID, name: GUEST_USER_NAME }];
     this.activeUserId = GUEST_USER_ID;
   }

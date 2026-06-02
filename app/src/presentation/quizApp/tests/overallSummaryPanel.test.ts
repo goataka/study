@@ -194,7 +194,7 @@ describe("QuizApp — 総合タブのサマリパネル仕様", () => {
 
     const count = document.getElementById("learningStatusCount");
     expect(count?.textContent).toContain("学習数");
-    expect(count?.textContent).toContain("/5");
+    expect(count?.textContent).toContain("/3");
   });
 
   it("学習状況パネルで星表示が開始ボタンより前に描画される", async () => {

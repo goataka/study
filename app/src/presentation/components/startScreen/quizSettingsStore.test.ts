@@ -11,9 +11,9 @@ afterEach(() => {
 });
 
 describe("quizSettingsStore ストア", () => {
-  it("初期値は 10問 / random / 学習済を含めない", () => {
+  it("初期値は 5問 / random / 学習済を含めない", () => {
     const s = getQuizSettingsSnapshot();
-    expect(s.questionCount).toBe(10);
+    expect(s.questionCount).toBe(5);
     expect(s.quizOrder).toBe("random");
     expect(s.includeMastered).toBe(false);
   });

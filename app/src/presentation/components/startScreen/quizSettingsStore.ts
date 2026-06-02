@@ -22,7 +22,7 @@ export interface QuizSettingsState {
 }
 
 const INITIAL_STATE: QuizSettingsState = {
-  questionCount: 10,
+  questionCount: 5,
   quizOrder: "random",
   includeMastered: false,
 };

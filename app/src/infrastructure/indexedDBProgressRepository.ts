@@ -129,10 +129,10 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       categoryViewMode: "category",
       fontSizeLevel: null,
       shareUrl: "",
-      quizSettings: { questionCount: 10, quizOrder: "random", includeMastered: false },
+      quizSettings: { questionCount: 5, quizOrder: "random", includeMastered: false },
       recommendedCounts: {},
       categoryStages: {},
-      globalRecommendedCount: 5,
+      globalRecommendedCount: 3,
     };
   }
 
