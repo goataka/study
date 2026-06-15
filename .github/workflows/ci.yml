@@ -20,7 +20,7 @@ jobs:
       contents: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
       - name: Node.js 環境のセットアップ
         uses: ./.github/actions/setup-quiz
@@ -53,7 +53,7 @@ jobs:
       packages: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
       - name: Git safe directory の設定（コンテナ内UID不一致対応）
         run: git config --global --add safe.directory /__w/study/study
@@ -90,7 +90,7 @@ jobs:
       packages: read
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           token: ${{ secrets.COPILOT_CLASSIC || github.token }}
@@ -267,7 +267,7 @@ jobs:
       pull-requests: write
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           token: ${{ secrets.COPILOT_CLASSIC || github.token }}
@@ -325,7 +325,7 @@ jobs:
       pull-requests: write
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
       - name: 失敗したジョブ結果を整形
         id: failed-jobs
