@@ -1,7 +1,7 @@
 # シナリオ検証の実行動画
 
 `scenario-validation.webm` は、基本ユースケースの連続E2E
-（[`e2e/features/scenario-validation.feature`](../features/scenario-validation.feature)）を
+（[`e2e/features/usecases/start-basic-flow.feature`](../features/usecases/start-basic-flow.feature)）を
 録画付きで実行した最終結果の動画です。
 
 スタート画面 → 教科選択 → 単元選択 → クイズ → 採点 → 結果 → スタート画面復帰までの
