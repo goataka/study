@@ -4,7 +4,7 @@ import { defineBddConfig } from "playwright-bdd";
 // シナリオ検証の連続E2Eだけを対象に、軽量な動画を記録するための設定。
 // 動画を軽くするため、ビューポート・録画サイズを小さめに設定する。
 const testDir = defineBddConfig({
-  features: "e2e/features/scenario-validation.feature",
+  features: "e2e/features/usecases/start-basic-flow.feature",
   steps: "e2e/steps/**/*.ts",
 });
 

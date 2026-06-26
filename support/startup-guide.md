@@ -69,3 +69,12 @@ permalink: /startup-guide/
   - 問題の前後に解説を読むと理解が深まります
   - 単元詳細パネルの「📖 解説」タブから開けます
   - コンテンツ一覧は [ガイド（教科・単元）](../../#subject=support&supportMenu=contents) から一覧できます
+
+## 🧪 開発向け: E2E/VRシナリオの読み方
+
+E2Eシナリオは目的ごとに以下の2系統へ分割されています。
+
+- `app/e2e/features/usecases/`: `start-basic-flow.feature` のような利用者の通し操作（ユースケース）
+- `app/e2e/features/components/`: 画面パーツや個別機能の動作保証
+
+各シナリオの検証ステップではスナップショット比較（VR）を行い、基準画像は `app/e2e/snapshots/` に保存されます。
