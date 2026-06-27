@@ -13,8 +13,10 @@ function createCommonMasks(page: Page) {
 // VR テストの再現性を保つために Math.random をシードする
 // page.addInitScript はページロード前に実行されるため、
 // pickRandom での問題選択が毎回同じ結果になる
-Before(async ({ page }, testInfo: TestInfo) => {
-  if (!testInfo.config.configFile?.includes("playwright.vr.config")) {
+// RC 環境などでは testInfo が未提供になることがあるため、
+// その場合は VR 以外の実行として安全にスキップする
+Before(async ({ page }, testInfo?: TestInfo) => {
+  if (!testInfo?.config?.configFile?.includes("playwright.vr.config")) {
     return;
   }
   await page.addInitScript(() => {
@@ -48,8 +50,8 @@ Then("検証スナップショット {string} が一致する", async ({ page },
   });
 });
 
-After(async ({ page }, testInfo: TestInfo) => {
-  if (!testInfo.config.configFile?.includes("playwright.vr.config")) {
+After(async ({ page }, testInfo?: TestInfo) => {
+  if (!testInfo?.config?.configFile?.includes("playwright.vr.config")) {
     return;
   }
   await expect(page).toHaveScreenshot({
