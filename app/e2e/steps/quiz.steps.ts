@@ -422,19 +422,22 @@ Then("サポートボタンがサポートパネルにコンテンツを表示�
   await supportBtn.click();
   // 解説タブではなくサポートコンテンツパネルが表示される
   await expect(page.locator("#supportContent")).toBeVisible();
-  // 左列: サポートメニューリストが表示される（3項目: はじめに / 使い方 / 教科・単元）
+  // 左列: サポートメニューリストが表示される（5項目）
   await expect(page.locator("nav[aria-label='サポートメニュー']")).toBeVisible();
   const menuButtons = page.locator("nav[aria-label='サポートメニュー'] button");
-  await expect(menuButtons).toHaveCount(3);
+  await expect(menuButtons).toHaveCount(5);
   await expect(menuButtons.nth(0)).toContainText("はじめに");
   await expect(menuButtons.nth(1)).toContainText("使い方");
   await expect(menuButtons.nth(2)).toContainText("教科・単元");
-  // マニュアルをクリックするとサブタブが表示される
+  await expect(menuButtons.nth(3)).toContainText("トラブルシューティング");
+  await expect(menuButtons.nth(4)).toContainText("機能リファレンス");
+  // 使い方をクリックするとサブタブが表示される
   await menuButtons.nth(1).click();
   const subTabs = page.locator(".support-subtab");
   await expect(subTabs.first()).toBeVisible();
-  await expect(subTabs.filter({ hasText: "スタートアップガイド" })).toBeVisible();
-  await expect(subTabs.filter({ hasText: "トラブルシューティング" })).toBeVisible();
+  await expect(subTabs.filter({ hasText: "スタートアップ" })).toBeVisible();
+  await expect(subTabs.filter({ hasText: "毎日の使い方" })).toBeVisible();
+  await expect(subTabs.filter({ hasText: "教科指定の使い方" })).toBeVisible();
 });
 
 When("{string} クイズ順を選択する", async ({ page }, order: string) => {

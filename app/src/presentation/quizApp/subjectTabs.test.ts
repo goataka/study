@@ -235,18 +235,20 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(supportButton).not.toBeNull();
     supportButton?.click();
 
-    // 左列: サポートメニューリストが表示される（3項目: はじめに/使い方/コンテンツ）
+    // 左列: サポートメニューリストが表示される（5項目）
     await waitForCondition(() => document.querySelector("nav[aria-label='サポートメニュー']") !== null);
     const menu = document.querySelector("nav[aria-label='サポートメニュー']");
     const menuButtons = document.querySelectorAll("nav[aria-label='サポートメニュー'] button");
     expect(menu).not.toBeNull();
-    expect(menuButtons.length).toBe(3);
+    expect(menuButtons.length).toBe(5);
 
-    // 左メニューに「はじめに」「使い方」「教科・単元」が含まれる
+    // 左メニューに各項目が含まれる
     const menuLabels = Array.from(menuButtons).map((b) => b.textContent ?? "");
     expect(menuLabels.some((l) => l.includes("はじめに"))).toBe(true);
     expect(menuLabels.some((l) => l.includes("使い方"))).toBe(true);
     expect(menuLabels.some((l) => l.includes("教科・単元"))).toBe(true);
+    expect(menuLabels.some((l) => l.includes("トラブルシューティング"))).toBe(true);
+    expect(menuLabels.some((l) => l.includes("機能リファレンス"))).toBe(true);
 
     // 右列: #supportContent にコンテンツが表示される
     await waitForCondition(() => {
