@@ -66,7 +66,7 @@
 
 - Issue内容のプランニング後に対応漏れ・意図との齟齬を確認する
 - 完了報告前に Issue 指摘事項を一覧で再確認する
-- 機能を更改した場合はガイド（`support/startup-guide.md` / `support/operation-guide.md`）も更新する
+- 機能を更改した場合はガイド（`support/` 配下の使い方ガイドと機能リファレンス `support/operation-guide.md`）も更新する
 - 問題を更改した場合は該当単元の解説（`support/**/guide.md`）も更新する
 - Issue とコメントにルール化すべき内容がないか確認し、あればスキルまたはこのファイルに反映する
 

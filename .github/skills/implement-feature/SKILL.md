@@ -11,7 +11,7 @@ description: アプリの機能実装・改善・リファクタリングを行�
 
 以下のステップを **必ずこの順番** で実施すること：
 
-1. **マニュアルを更新する**（`support/startup-guide.md` / `support/operation-guide.md`）
+1. **マニュアルを更新する**（使い方は `support/startup-guide.md`（初期設定）/ `support/daily-guide.md`（毎日）/ `support/subject-guide.md`（教科指定）、仕様は `support/operation-guide.md`（機能リファレンス））
 2. **E2Eシナリオを作成・更新する**（`app/e2e/features/`）
 3. **実装を行う**
 4. **ステップ定義を作成・更新する**（`app/e2e/steps/`）

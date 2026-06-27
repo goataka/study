@@ -2,9 +2,11 @@
  * サポートパネル — 左列メニューリストと右列コンテンツ表示の React コンポーネント。
  *
  * 左列:
- *   - はじめに（スタートアップガイドのmdを表示）
- *   - 使い方（🚀/🖥️/❓ の3タブで各mdを表示）
- *   - コンテンツ（CategoryRegistry データから動的生成）
+ *   - はじめに（サポートトップの md を表示）
+ *   - 使い方（🚀 スタートアップ / 📅 毎日の使い方 / 🔖 教科指定の使い方 の3タブで各 md を表示）
+ *   - 教科・単元（CategoryRegistry データから動的生成）
+ *   - トラブルシューティング（troubleshooting.md を表示）
+ *   - 機能リファレンス（operation-guide.md を表示）
  *
  * 右列: 各メニューに対応するコンテンツをタブで表示する。
  */
@@ -21,7 +23,7 @@ import { SUBJECTS } from "../uiHelpers";
 
 // ─── 左列メニュー定義 ──────────────────────────────────────────────────────
 
-export type SupportMenuId = "intro" | "usage" | "contents";
+export type SupportMenuId = "intro" | "usage" | "contents" | "troubleshooting" | "reference";
 
 export interface SupportMenuItem {
   id: SupportMenuId;
@@ -32,6 +34,8 @@ export const SUPPORT_MENU_ITEMS: readonly [SupportMenuItem, ...SupportMenuItem[]
   { id: "intro", label: "🏠 はじめに" },
   { id: "usage", label: "📖 使い方" },
   { id: "contents", label: "📚 教科・単元" },
+  { id: "troubleshooting", label: "❓ トラブルシューティング" },
+  { id: "reference", label: "🖥️ 機能リファレンス" },
 ];
 
 // ─── サブタブ定義 ──────────────────────────────────────────────────────────
@@ -43,9 +47,9 @@ interface SubTab {
 }
 
 const USAGE_TABS: readonly [SubTab, ...SubTab[]] = [
-  { id: "startup", label: "🚀 スタートアップガイド", url: "../support/startup-guide/" },
-  { id: "operation", label: "🖥️ 機能リファレンス", url: "../support/operation-guide/" },
-  { id: "troubleshooting", label: "❓ トラブルシューティング", url: "../support/troubleshooting/" },
+  { id: "startup", label: "🚀 スタートアップ", url: "../support/startup-guide/" },
+  { id: "daily", label: "📅 毎日の使い方", url: "../support/daily-guide/" },
+  { id: "subject", label: "🔖 教科指定の使い方", url: "../support/subject-guide/" },
 ];
 
 // ─── コンテンツ一覧データ型 ────────────────────────────────────────────────
@@ -252,6 +256,17 @@ export function SupportContentDisplay(): React.JSX.Element {
       {activeMenuId === "intro" && <SupportIntroContent />}
       {activeMenuId === "usage" && <SupportSubTabContent tabs={USAGE_TABS} namespace="usage" />}
       {activeMenuId === "contents" && <SupportDynamicContentsDisplay />}
+      {activeMenuId === "troubleshooting" && <SupportSingleGuide guideUrl="../support/troubleshooting/" />}
+      {activeMenuId === "reference" && <SupportSingleGuide guideUrl="../support/operation-guide/" />}
+    </div>
+  );
+}
+
+/** 単一の md コンテンツを表示する（サブタブなし）。 */
+function SupportSingleGuide({ guideUrl }: { guideUrl: string }): React.JSX.Element {
+  return (
+    <div className="support-single-guide support-guide-frame flex-1 overflow-y-auto px-4 py-3 guide-frame">
+      <GuideContent guideUrl={guideUrl} />
     </div>
   );
 }
@@ -467,7 +482,13 @@ export function renderSupportPanel(useCase?: QuizUseCase): void {
 function resolveSupportMenuFromUrl(): SupportMenuId {
   const params = getURLParams();
   const supportMenu = params.get("supportMenu");
-  if (supportMenu === "intro" || supportMenu === "usage" || supportMenu === "contents") {
+  if (
+    supportMenu === "intro" ||
+    supportMenu === "usage" ||
+    supportMenu === "contents" ||
+    supportMenu === "troubleshooting" ||
+    supportMenu === "reference"
+  ) {
     return supportMenu;
   }
   return SUPPORT_MENU_ITEMS[0].id;
