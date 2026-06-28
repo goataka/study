@@ -231,8 +231,39 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(historyIndex).toBeLessThan(adminIndex);
   });
 
-  it("履歴タブでは単元毎と問題毎を切り替えて表示できる", async () => {
+  it("履歴タブでは教科メニューから教科を選び、単元毎と問題毎を切り替えて表示できる", async () => {
     const now = new Date().toISOString();
+    global.fetch = vi.fn((url: string) => {
+      const urlStr = String(url);
+      if (urlStr.includes("index.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () =>
+            Promise.resolve({
+              version: "2.0.0",
+              subjects: { english: { name: "英語" }, math: { name: "数学" } },
+              questionFiles: ["english/phonics-1.json", "math/addition-1.json"],
+            }),
+        } as Response);
+      }
+      if (urlStr.includes("math/addition-1.json")) {
+        return Promise.resolve({
+          ok: true,
+          json: () =>
+            Promise.resolve({
+              subject: "math",
+              subjectName: "数学",
+              category: "addition-1",
+              categoryName: "たし算（1）",
+              questions: [{ id: "m1", question: "1+1", choices: ["2", "3", "4", "5"], correct: 0, explanation: "2" }],
+            }),
+        } as Response);
+      }
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockQuestionFile),
+      } as Response);
+    });
     const repo = new StubProgressRepository();
     repo.saveHistory([
       {
@@ -247,6 +278,18 @@ describe("QuizApp — 教科タブ仕様", () => {
         correctCount: 1,
         entries: [{ questionId: "q1", userAnswerIndex: 0, userAnswerChoiceText: "ア", isCorrect: true }],
       },
+      {
+        id: "r2",
+        date: now,
+        subject: "math",
+        subjectName: "数学",
+        category: "addition-1",
+        categoryName: "たし算（1）",
+        mode: "random",
+        totalCount: 1,
+        correctCount: 1,
+        entries: [{ questionId: "m1", userAnswerIndex: 0, userAnswerChoiceText: "2", isCorrect: true }],
+      },
     ]);
 
     new QuizApp(repo);
@@ -256,8 +299,21 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(historyTab).not.toBeNull();
     historyTab?.click();
 
-    await waitForCondition(() => document.getElementById("historySubjectTab-unit") !== null);
+    await waitForCondition(() => document.getElementById("historySubjectMenuButton-english") !== null);
+    expect(document.getElementById("historySubjectMenuButton-english")).not.toBeNull();
+    expect(document.getElementById("historySubjectMenuButton-math")).not.toBeNull();
+    expect(document.getElementById("historySubjectDetailHeading")?.textContent).toContain("英語");
     expect(document.getElementById("historySubjectUnitList")?.classList.contains("hidden")).toBe(false);
+    expect(document.getElementById("historySubjectUnitList")?.textContent).toContain("フォニックス");
+
+    const mathButton = document.getElementById("historySubjectMenuButton-math") as HTMLButtonElement | null;
+    mathButton?.click();
+
+    await waitForCondition(
+      () => document.getElementById("historySubjectDetailHeading")?.textContent?.includes("数学") === true,
+    );
+    expect(document.getElementById("historySubjectDetailHeading")?.textContent).toContain("数学");
+    expect(document.getElementById("historySubjectUnitList")?.textContent).toContain("たし算");
 
     const questionSwitch = document.getElementById("historySubjectTab-question") as HTMLButtonElement | null;
     expect(questionSwitch).not.toBeNull();

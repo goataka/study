@@ -57,8 +57,21 @@ Then("履歴タブの切替ボタンが表示される", async ({ page }) => {
   await expect(page.locator("#historySubjectTab-question")).toBeVisible();
 });
 
+Then("履歴タブの教科メニューが表示される", async ({ page }) => {
+  await expect(page.locator("#historySubjectMenu")).toBeVisible();
+  await expect(page.locator(".history-subject-menu-button").first()).toBeVisible();
+});
+
 Then("履歴タブで「単元毎」が表示される", async ({ page }) => {
   await expect(page.locator("#historySubjectUnitList")).toBeVisible();
+});
+
+When("履歴タブで {string} の教科メニューを選ぶ", async ({ page }, subjectName: string) => {
+  await page.locator(".history-subject-menu-button").filter({ hasText: subjectName }).click();
+});
+
+Then("履歴タブで {string} の詳細が表示される", async ({ page }, subjectName: string) => {
+  await expect(page.locator("#historySubjectDetailHeading")).toContainText(subjectName);
 });
 
 When("履歴タブで「問題毎」に切り替える", async ({ page }) => {
@@ -67,6 +80,23 @@ When("履歴タブで「問題毎」に切り替える", async ({ page }) => {
 
 Then("履歴タブで「問題毎」が表示される", async ({ page }) => {
   await expect(page.locator("#historySubjectQuestionList")).toBeVisible();
+});
+
+Then("進度タブの学習完了ルール案内が表示される", async ({ page }) => {
+  await expect(page.locator("#progressCompletionRuleText")).toContainText(
+    "全問題を検定済（ステージ3）にすると学習完了となります",
+  );
+  await expect(page.locator("#progressCompletionRuleInfoBtn")).toBeVisible();
+});
+
+When("進度タブの学習完了ルール詳細を開く", async ({ page }) => {
+  await page.locator("#progressCompletionRuleInfoBtn").click();
+});
+
+Then("進度タブの学習完了ルール詳細が表示される", async ({ page }) => {
+  await expect(page.locator("#progressCompletionRuleInfoPopover")).toContainText(
+    "全問題を検定済（ステージ3）にすると学習完了となります。",
+  );
 });
 
 Then("ヘッダーが表示されている", async ({ page }) => {
