@@ -32,6 +32,8 @@ export default defineConfig({
   use: {
     baseURL,
     headless: true,
+    // サービスワーカーをブロックしてpage.routeのスタブが確実に適用されるようにする
+    serviceWorkers: "block",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], viewport: { width: 1920, height: 1080 } } }],
   // 外部URLの場合はローカルサーバーを起動しない
