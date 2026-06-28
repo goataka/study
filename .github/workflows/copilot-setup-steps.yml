@@ -54,7 +54,7 @@ jobs:
         run: pnpm exec playwright install-deps chromium
 
       - name: Playwright ブラウザのインストール（E2E用）
-        # pre-push フックで test:e2e を実行するために事前インストールが必要
+        # lefthook の build-and-test で実行する build / test / test:e2e のために事前インストールが必要
         # キャッシュヒット時はバイナリ配置のみ（OS依存ライブラリは上のステップでスキップ）
         working-directory: ${{ github.workspace }}/app
         run: pnpm exec playwright install chromium
