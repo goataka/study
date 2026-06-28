@@ -10,7 +10,7 @@
  * パネル全体の表示/非表示は `panelVisibilityStore` を購読して React で制御する。
  */
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { setActiveProgressDetailMode, type ProgressDetailMode } from "./panelTabsStore";
 import { useActiveProgressDetailMode } from "./usePanelTabsStore";
 import { panelTab, panelTabs } from "../../styles/panelTabStyles";
@@ -44,6 +44,59 @@ function ProgressDetailTabButton({ mode, active, id, label }: ProgressDetailTabB
   );
 }
 
+function ProgressCompletionRuleInfo(): React.JSX.Element {
+  const [showInfo, setShowInfo] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonId = "progressCompletionRuleInfoBtn";
+
+  useEffect(() => {
+    if (!showInfo) return;
+    const handlePointerDown = (event: PointerEvent): void => {
+      if (containerRef.current && event.target instanceof Node && !containerRef.current.contains(event.target)) {
+        setShowInfo(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      if (event.key === "Escape") setShowInfo(false);
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showInfo]);
+
+  return (
+    <div id="progressCompletionRuleInfo" ref={containerRef} className="relative shrink-0">
+      <button
+        id={buttonId}
+        type="button"
+        className="flex items-center gap-1 rounded-md border border-[#d0d7de] bg-white px-2 py-1 text-xs font-semibold text-[#586069] hover:bg-[#f6f8fa] hover:text-[#0366d6]"
+        aria-label="学習完了ルールの説明を表示"
+        aria-expanded={showInfo}
+        onClick={() => setShowInfo((value) => !value)}
+      >
+        <span aria-hidden="true">ℹ️</span>
+        <span>学習完了ルール</span>
+      </button>
+      {showInfo ? (
+        <div
+          id="progressCompletionRuleInfoPopover"
+          className="absolute right-0 top-full z-50 mt-1 w-72 rounded-md border border-[#e1e4e8] bg-white p-3 text-sm text-[#24292e] shadow-lg"
+          role="region"
+          aria-labelledby={buttonId}
+          aria-live="polite"
+        >
+          <p className="m-0 font-semibold">学習完了の条件</p>
+          <p className="m-0 mt-1 leading-relaxed">全問題を検定済（ステージ3）にすると学習完了となります。</p>
+          <p className="m-0 mt-1 leading-relaxed text-[#586069]">ステージ3は「検定済」を表します。</p>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export function ProgressDetailPanel(): React.JSX.Element {
   const active = useActiveProgressDetailMode();
   const panelHidden = useSyncExternalStore(
@@ -60,6 +113,10 @@ export function ProgressDetailPanel(): React.JSX.Element {
     >
       <div className="progress-detail-close-row flex items-center px-4 py-2 border-b border-[#e1e4e8] shrink-0">
         <span className="progress-detail-close-title text-lg font-bold text-[#24292e]">📊 進度詳細</span>
+        <div id="progressCompletionRuleText" className="ml-auto flex items-center gap-2 text-xs text-[#586069]">
+          <span>全問題を検定済（ステージ3）にすると学習完了となります</span>
+          <ProgressCompletionRuleInfo />
+        </div>
       </div>
       <div className={`${panelTabs()} progress-detail-tabs shrink-0`} role="tablist" aria-label="進度詳細タブ">
         <ProgressDetailTabButton mode="grade" active={active} id="progressDetailTab-grade" label="🎓 学年別" />

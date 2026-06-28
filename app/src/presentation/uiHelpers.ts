@@ -23,7 +23,7 @@ export const CATEGORY_STATUS_ITEMS: ReadonlyArray<{ icon: string; label: string 
   { icon: "▶️", label: "着手可能 / 着手待ち" },
   { icon: "🔄", label: "着手中" },
   { icon: "⏸️", label: "学習済 / 復習済後の着手待ち" },
-  { icon: "✅", label: "履修済 / 検定済" },
+  { icon: "✅", label: "学習完了（全問検定済）" },
   { icon: "⏹️", label: "着手不可（前提単元が未達成）" },
 ] as const;
 

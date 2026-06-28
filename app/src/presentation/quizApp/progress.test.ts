@@ -86,6 +86,35 @@ describe("QuizApp — 進度タブ仕様", () => {
     expect(catTab).not.toBeNull();
   });
 
+  it("進度タブの詳細パネルに学習完了ルール案内が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    expect(document.getElementById("progressCompletionRuleText")?.textContent).toContain(
+      "全問題を検定済（ステージ3）にすると学習完了となります",
+    );
+    expect(document.getElementById("progressCompletionRuleInfoBtn")).not.toBeNull();
+  });
+
+  it("進度タブの学習完了ルール ℹ️ を押すと説明が表示される", async () => {
+    new QuizApp();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
+    progressTab?.click();
+
+    const infoButton = document.getElementById("progressCompletionRuleInfoBtn") as HTMLButtonElement | null;
+    infoButton?.click();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const popover = document.getElementById("progressCompletionRuleInfoPopover");
+    expect(popover).not.toBeNull();
+    expect(popover?.textContent ?? "").toContain("全問題を検定済（ステージ3）にすると学習完了となります。");
+  });
+
   it("進度タブ初期表示はマトリクスタブがアクティブで、並びは学年別→カテゴリ別→マトリクス", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
