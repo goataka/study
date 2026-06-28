@@ -10,7 +10,8 @@ Given("クイズアプリが読み込まれている", async ({ page }) => {
   // ネットワークエラー等で初期化に失敗した場合はページをリロードして再試行する。
   try {
     await waitForStatsInfoLoaded(page, STATS_LOAD_INITIAL_TIMEOUT);
-  } catch {
+  } catch (error) {
+    console.log("初回ロード失敗、リロードして再試行:", error instanceof Error ? error.message : String(error));
     await page.reload({ waitUntil: "load" });
     await waitForStatsInfoLoaded(page);
   }
