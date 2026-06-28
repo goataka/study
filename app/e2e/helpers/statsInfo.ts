@@ -13,12 +13,18 @@ export const STATS_INFO_PATTERN = /全：[1-9]\d*問/;
 export const STATS_LOAD_TIMEOUT = 60_000;
 
 /**
+ * リトライ付き初期ロード時のタイムアウト（ミリ秒）。
+ * 失敗時にリロードするため、通常タイムアウトより短く設定する。
+ */
+export const STATS_LOAD_INITIAL_TIMEOUT = 40_000;
+
+/**
  * statsInfo に問題数が表示されるまで待つ（JS 初期化完了の目安）。
  * [1-9] で先頭を非ゼロにし、\d* で2桁以上に対応（例: 全：1問, 全：108問）。
  * 全0問はロード失敗を示すため、このパターンには一致しない。
  * ただし、サポート・履歴タブなど問題数が0になる特殊タブはタブのアクティブ状態で判定する。
  */
-export async function waitForStatsInfoLoaded(page: Page): Promise<void> {
+export async function waitForStatsInfoLoaded(page: Page, timeout: number = STATS_LOAD_TIMEOUT): Promise<void> {
   await page.waitForFunction(
     (pattern) => {
       const statsInfoText = document.getElementById("statsInfo")?.textContent ?? "";
@@ -29,7 +35,7 @@ export async function waitForStatsInfoLoaded(page: Page): Promise<void> {
     },
     STATS_INFO_PATTERN.source,
     {
-      timeout: STATS_LOAD_TIMEOUT,
+      timeout,
     },
   );
 }

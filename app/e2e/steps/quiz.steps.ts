@@ -1,13 +1,19 @@
 import { createBdd } from "playwright-bdd";
 import { expect } from "@playwright/test";
-import { waitForStatsInfoLoaded } from "../helpers/statsInfo";
+import { waitForStatsInfoLoaded, STATS_LOAD_INITIAL_TIMEOUT } from "../helpers/statsInfo";
 
 const { Before, Given, When, Then } = createBdd();
 
 Given("クイズアプリが読み込まれている", async ({ page }) => {
   await page.goto(".");
-  // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ
-  await waitForStatsInfoLoaded(page);
+  // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ。
+  // ネットワークエラー等で初期化に失敗した場合はページをリロードして再試行する。
+  try {
+    await waitForStatsInfoLoaded(page, STATS_LOAD_INITIAL_TIMEOUT);
+  } catch {
+    await page.reload({ waitUntil: "load" });
+    await waitForStatsInfoLoaded(page);
+  }
 });
 
 Given("クイズアプリの基本UIが読み込まれている", async ({ page }) => {
