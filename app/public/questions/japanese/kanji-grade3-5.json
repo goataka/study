@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-5",
+  "categoryName": "📖 読み（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "5cbb8716-20f4-5687-9da1-694ab2beb1a0",
+      "question": "「県」の読み方をひらがなで書いてください",
+      "choices": ["けん"],
+      "correct": 0,
+      "explanation": "県（けん）: 都道府県の区分の一つ"
+    },
+    {
+      "id": "530d7dd2-dd40-5f7a-82fc-727a81bbddb5",
+      "question": "「向く」の「向」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["む"],
+      "correct": 0,
+      "explanation": "向（む）く: ある方向に顔や体を向けること。「こう」（音読み）とも読む"
+    },
+    {
+      "id": "f843f136-d3e1-5644-be9a-f5deb9d7c992",
+      "question": "「幸せ」の「幸」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["しあわ"],
+      "correct": 0,
+      "explanation": "幸（しあわ）せ: うれしくて満足な状態。「こう」（音読み）とも読む"
+    },
+    {
+      "id": "af6d88c7-5a50-5bac-86e7-584ee194d4de",
+      "question": "「港」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["みなと"],
+      "correct": 0,
+      "explanation": "港（みなと）: 船がとまる場所。「こう」（音読み）とも読む"
+    },
+    {
+      "id": "9735ec65-77cc-5ff5-847e-671dce1bcef4",
+      "question": "「根」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ね"],
+      "correct": 0,
+      "explanation": "根（ね）: 植物が土の中に張るもの。「こん」（音読み）とも読む"
+    },
+    {
+      "id": "2028a50d-3f0f-5219-878f-acacada9e3d0",
+      "question": "「祭り」の「祭」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["まつ"],
+      "correct": 0,
+      "explanation": "祭（まつ）り: 神様をまつったりお祝いするもよおし。「さい」（音読み）とも読む"
+    },
+    {
+      "id": "23b33c71-9378-5062-ae80-2a76fb79c503",
+      "question": "「皿」の読み方をひらがなで書いてください",
+      "choices": ["さら"],
+      "correct": 0,
+      "explanation": "皿（さら）: 食べ物をのせるうつわ"
+    },
+    {
+      "id": "4d01454b-13bc-51ae-b529-fb9ebce66893",
+      "question": "「使う」の「使」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["つか"],
+      "correct": 0,
+      "explanation": "使（つか）う: ものを役立てること。「し」（音読み）とも読む"
+    },
+    {
+      "id": "12836c43-4292-5c98-98df-3189723d70c9",
+      "question": "「指」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ゆび"],
+      "correct": 0,
+      "explanation": "指（ゆび）: 手や足のはしにある細長い部分。「し」（音読み）とも読む"
+    },
+    {
+      "id": "08f04124-f65b-5700-b65d-84d16ad99dec",
+      "question": "「歯」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["は"],
+      "correct": 0,
+      "explanation": "歯（は）: 口の中にある白くかたいもの。「し」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade2"]
+}

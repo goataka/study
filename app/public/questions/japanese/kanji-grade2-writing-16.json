@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-writing-16",
+  "categoryName": "✏️ 書き（151-160字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "84588354-58ae-54c5-84ae-50e7e2079dac",
+      "question": "「きょう」を漢字で書いてください",
+      "choices": ["京"],
+      "correct": 0,
+      "explanation": "「きょう」は「京」と書く。都・首都のこと。「けい」（音読み）とも読む"
+    },
+    {
+      "id": "65555fce-4e8f-5152-a967-2d7cb4ed084c",
+      "question": "「あたる」の「あた」を漢字で書いてください",
+      "choices": ["当"],
+      "correct": 0,
+      "explanation": "「あたる」の「あた」は「当」と書く。的に当たること・担当すること。「とう」（音読み）とも読む"
+    },
+    {
+      "id": "851594ac-eefb-5be3-bbb7-e13b976b461a",
+      "question": "「うしろ」を漢字で書いてください",
+      "choices": ["後"],
+      "correct": 0,
+      "explanation": "「うしろ」は「後」と書く。背中側・あとのこと。「ご」「こう」（音読み）とも読む"
+    },
+    {
+      "id": "2216c23d-1ebd-5a51-b1b3-93ba4f6bd5f1",
+      "question": "「むぎ」を漢字で書いてください",
+      "choices": ["麦"],
+      "correct": 0,
+      "explanation": "「むぎ」は「麦」と書く。穀物の一種（小麦・大麦など）。「ばく」（音読み）とも読む"
+    },
+    {
+      "id": "b1ed7c8a-1694-506c-a1d7-f399a9f12efe",
+      "question": "「みせ」を漢字で書いてください",
+      "choices": ["店"],
+      "correct": 0,
+      "explanation": "「みせ」は「店」と書く。品物を売る場所のこと。「てん」（音読み）とも読む"
+    },
+    {
+      "id": "9c5fc2e9-4fcd-5249-b368-9592420f9243",
+      "question": "「もと」を漢字で書いてください",
+      "choices": ["元"],
+      "correct": 0,
+      "explanation": "「もと」は「元」と書く。根本・はじめのこと。「げん」「がん」（音読み）とも読む"
+    },
+    {
+      "id": "2edb739d-71a5-5e2d-a74d-12701a663d68",
+      "question": "「いく」の「い」を漢字で書いてください（目的地へ向かうこと）",
+      "choices": ["行"],
+      "correct": 0,
+      "explanation": "「いく」の「い」は「行」と書く。目的地へ向かうこと。「こう」「ぎょう」「あん」（音読み）とも読む"
+    },
+    {
+      "id": "dcb15d05-c35a-5e5f-92ad-0695fb1ceab6",
+      "question": "「たかい」の「たか」を漢字で書いてください",
+      "choices": ["高"],
+      "correct": 0,
+      "explanation": "「たかい」の「たか」は「高」と書く。位置や値段が高いこと。「こう」（音読み）とも読む"
+    },
+    {
+      "id": "0a5c624a-38ba-50cf-b3f1-7d7295179213",
+      "question": "「たに」を漢字で書いてください",
+      "choices": ["谷"],
+      "correct": 0,
+      "explanation": "「たに」は「谷」と書く。山と山の間の低い場所のこと。「こく」（音読み）とも読む"
+    },
+    {
+      "id": "f1cad0c7-ae16-536a-864a-990f82d81104",
+      "question": "「はやい」の「はや」を漢字で書いてください",
+      "choices": ["早"],
+      "correct": 0,
+      "explanation": "「はやい」の「はや」は「早」と書く。時間が早いこと・速度が速いこと。「そう」「さっ」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "prerequisites": ["kanji-grade2"]
+}

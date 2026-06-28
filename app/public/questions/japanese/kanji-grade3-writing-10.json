@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-writing-10",
+  "categoryName": "✏️ 書き（91-100字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "2c7f546c-a317-5518-a31d-0a0f59813390",
+      "question": "「きゅう」を漢字で書いてください",
+      "choices": ["究"],
+      "correct": 0,
+      "explanation": "「きゅう」は「究」と書く。深く調べること。「研究」「究める」（きわめる）など"
+    },
+    {
+      "id": "cfd25030-2c37-5a04-a3ab-31b38bd7c0bc",
+      "question": "「ぎょう」を漢字で書いてください",
+      "choices": ["業"],
+      "correct": 0,
+      "explanation": "「ぎょう」は「業」と書く。仕事のこと。「農業」「工業」など。「わざ」とも読む"
+    },
+    {
+      "id": "c9085129-4ddf-5f9f-98ec-4ffbd7cf65c9",
+      "question": "「きょく」を漢字で書いてください",
+      "choices": ["局"],
+      "correct": 0,
+      "explanation": "「きょく」は「局」と書く。仕事をする場所。「放送局」「局長」など"
+    },
+    {
+      "id": "be3e6bc9-1218-5dd1-aa2f-72687c0d3bb8",
+      "question": "「く」を漢字で書いてください（区別 の「く」）",
+      "choices": ["区"],
+      "correct": 0,
+      "explanation": "「区別」の「く」（「く」）は「区」と書く。分けること。「区別」「地区」など"
+    },
+    {
+      "id": "fa3e824e-e871-59df-8bec-35136a70031a",
+      "question": "「ぐ」を漢字で書いてください",
+      "choices": ["具"],
+      "correct": 0,
+      "explanation": "「ぐ」は「具」と書く。道具・材料のこと。「道具」「具体的」など"
+    },
+    {
+      "id": "0e4a62e8-66b8-5859-953e-ec33236d8341",
+      "question": "「けん」を漢字で書いてください（研究 の「けん」）",
+      "choices": ["研"],
+      "correct": 0,
+      "explanation": "「研究」の「けん」（「けん」）は「研」と書く。深く調べること。「研究」「研ぐ」（とぐ）とも読む"
+    },
+    {
+      "id": "79277840-d63a-55c9-9428-671665a8137e",
+      "question": "「こ」を漢字で書いてください",
+      "choices": ["庫"],
+      "correct": 0,
+      "explanation": "「こ」は「庫」と書く。物をしまう建物。「倉庫」「車庫」など"
+    },
+    {
+      "id": "b17d9d50-cab2-56a5-aa51-ec06ed703d46",
+      "question": "「ごう」を漢字で書いてください",
+      "choices": ["号"],
+      "correct": 0,
+      "explanation": "「ごう」は「号」と書く。順番を示す数字や名前。「番号」「号令」など"
+    },
+    {
+      "id": "807070c7-4c42-52af-befc-7700a1a74876",
+      "question": "「し」を漢字で書いてください（仕事 の「し」）",
+      "choices": ["仕"],
+      "correct": 0,
+      "explanation": "「仕事」の「し」（「し」）は「仕」と書く。働くこと。「仕事」「仕える」（つかえる）など"
+    },
+    {
+      "id": "06fd29a5-f1f4-5e96-9b86-f91655a6ca9e",
+      "question": "「しぬ」の「し」を漢字で書いてください（命が終わること）",
+      "choices": ["死"],
+      "correct": 0,
+      "explanation": "「しぬ」の「し」は「死」と書く。命が終わること。「死ぬ」「死者」など"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "prerequisites": ["kanji-grade3"]
+}

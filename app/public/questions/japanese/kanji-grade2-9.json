@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-9",
+  "categoryName": "📖 読み（81-90字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "532983c8-ece4-58ea-8823-2d1a7594aba7",
+      "question": "「鳴」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["なく"],
+      "correct": 0,
+      "explanation": "鳴（な）く: 鳥や虫が声を出すこと。「めい」（音読み）とも読む"
+    },
+    {
+      "id": "8405a240-ce7b-505f-9149-c32c7484e6a7",
+      "question": "「室」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["むろ"],
+      "correct": 0,
+      "explanation": "室（むろ）: 部屋のこと。「しつ」（音読み）とも読む"
+    },
+    {
+      "id": "d8e58b8c-ef3f-5641-be0e-69c28f677a5c",
+      "question": "「里」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["さと"],
+      "correct": 0,
+      "explanation": "里（さと）: 村・ふるさとのこと。「り」（音読み）とも読む"
+    },
+    {
+      "id": "411a801d-17ed-5ba1-aae5-eaf8d487cc95",
+      "question": "「自」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["みずから"],
+      "correct": 0,
+      "explanation": "自（みずから）: 自分自身のこと。「じ」「し」（音読み）とも読む"
+    },
+    {
+      "id": "d23a015a-159c-58aa-879d-1ae8fc1e7d30",
+      "question": "「線」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["せん"],
+      "correct": 0,
+      "explanation": "線（せん）: 細長い線のこと"
+    },
+    {
+      "id": "9bd3edff-2a03-5319-877c-4482e5a55d58",
+      "question": "「来」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["くる"],
+      "correct": 0,
+      "explanation": "来（く）る: こちらへ向かうこと。「らい」「たい」（音読み）とも読む"
+    },
+    {
+      "id": "d63d162c-4e08-506b-9bf9-00236cf5f31b",
+      "question": "「売」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["うる"],
+      "correct": 0,
+      "explanation": "売（う）る: 品物をお金と交換すること。「ばい」（音読み）とも読む"
+    },
+    {
+      "id": "3a513c9b-38ef-57b9-bb84-6da234ba295a",
+      "question": "「頭」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あたま"],
+      "correct": 0,
+      "explanation": "頭（あたま）: からだの一番上の部分。「ず」「とう」（音読み）とも読む"
+    },
+    {
+      "id": "95c600f9-e25f-5b85-96cb-e16e8d53fa42",
+      "question": "「米」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["こめ"],
+      "correct": 0,
+      "explanation": "米（こめ）: イネの実のこと。「べい」「まい」（音読み）とも読む"
+    },
+    {
+      "id": "36608f38-05e7-5dff-a029-284f5d280682",
+      "question": "「弱」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["よわい"],
+      "correct": 0,
+      "explanation": "弱（よわ）い: 力がないこと。「じゃく」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade1"]
+}

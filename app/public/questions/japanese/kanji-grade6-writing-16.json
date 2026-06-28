@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-writing-16",
+  "categoryName": "✏️ 書き（151-160字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "cbf3a062-b0f2-5fbc-a5ae-6a5041dfc82c",
+      "question": "「いな」を漢字で書いてください",
+      "choices": ["否"],
+      "correct": 0,
+      "explanation": "「いな」は「否」と書く。いいえ・そうでないこと。「ひ」（音読み）とも読む"
+    },
+    {
+      "id": "07f0fb59-5d7a-5b6e-9b0f-938cd058a299",
+      "question": "「ひめる」の「ひ」を漢字で書いてください",
+      "choices": ["秘"],
+      "correct": 0,
+      "explanation": "「ひめる」の「ひ」は「秘」と書く。隠しておくこと・内緒にすること。「ひ」（音読み）とも読む"
+    },
+    {
+      "id": "b461f573-52a0-5372-a6ae-fe59ed4b4064",
+      "question": "「はら」を漢字で書いてください",
+      "choices": ["腹"],
+      "correct": 0,
+      "explanation": "「はら」は「腹」と書く。お腹・腹部のこと。「ふく」（音読み）とも読む"
+    },
+    {
+      "id": "00f1f7bd-1727-5c4c-9120-d41c6f85aff6",
+      "question": "「ふるう」の「ふる」を漢字で書いてください",
+      "choices": ["奮"],
+      "correct": 0,
+      "explanation": "「ふるう」の「ふる」は「奮」と書く。力をふるって頑張ること・奮い立つこと。「ふん」（音読み）とも読む"
+    },
+    {
+      "id": "427c28af-54aa-5818-97d6-097c4ca3df9c",
+      "question": "「へい」を漢字で書いてください",
+      "choices": ["陛"],
+      "correct": 0,
+      "explanation": "「へい」は「陛」と書く。天皇や皇帝への敬称。陛下のみに使う"
+    },
+    {
+      "id": "574cb5dc-1e09-59f0-9efb-cfa3be82ba33",
+      "question": "「かた」を漢字で書いてください（片方 の「かた」）",
+      "choices": ["片"],
+      "correct": 0,
+      "explanation": "「片方」の「かた」（「かた」）は「片」と書く。二つのうちの一方・一側。「へん」（音読み）とも読む"
+    },
+    {
+      "id": "bfe0eb40-023b-5918-b028-e454e597e684",
+      "question": "「くれる」の「く」を漢字で書いてください",
+      "choices": ["暮"],
+      "correct": 0,
+      "explanation": "「くれる」の「く」は「暮」と書く。日が沈んで暗くなること・年や季節が終わること。「ぼ」（音読み）とも読む"
+    },
+    {
+      "id": "3fb61746-5cfb-5fe4-a293-15e657ab5f76",
+      "question": "「たから」を漢字で書いてください",
+      "choices": ["宝"],
+      "correct": 0,
+      "explanation": "「たから」は「宝」と書く。大切にしている価値のある物。「ほう」（音読み）とも読む"
+    },
+    {
+      "id": "e50f07d4-e990-5a54-927d-96ff432f340f",
+      "question": "「なくなる」の「な」を漢字で書いてください",
+      "choices": ["亡"],
+      "correct": 0,
+      "explanation": "「なくなる」の「な」は「亡」と書く。死ぬこと・存在しなくなること。「ぼう」「もう」（音読み）とも読む"
+    },
+    {
+      "id": "69f63e60-9fd3-53b6-866d-cebae10e3738",
+      "question": "「ぼう」を漢字で書いてください",
+      "choices": ["棒"],
+      "correct": 0,
+      "explanation": "「ぼう」は「棒」と書く。細長い丸い木・棒状のもの。棒読み・鉄棒などに使う"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "prerequisites": ["kanji-grade6"]
+}

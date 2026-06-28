@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-9",
+  "categoryName": "📖 読み（81-90字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "ae561f3c-0b3e-545f-8f5c-8fa0769cc093",
+      "question": "「刻む」の「刻」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["きざ"],
+      "correct": 0,
+      "explanation": "刻（きざ）む: 細かく切ること・時を刻むこと。「こく」（音読み）とも読む"
+    },
+    {
+      "id": "a7ee58c6-3770-557f-8740-867a352ac963",
+      "question": "「穀物」の「穀」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["こく"],
+      "correct": 0,
+      "explanation": "穀（こく）: 米・麦などの食用植物の種。穀物・穀類などに使う"
+    },
+    {
+      "id": "b4663a31-9876-5e60-bf60-f2443baae25f",
+      "question": "「骨」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ほね"],
+      "correct": 0,
+      "explanation": "骨（ほね）: 体の骨格・苦労すること。「こつ」（音読み）とも読む"
+    },
+    {
+      "id": "8fb3d93c-f4a0-58d4-917a-2ce686e005c5",
+      "question": "「砂」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["すな"],
+      "correct": 0,
+      "explanation": "砂（すな）: 細かい石の粒・砂浜。「さ」「しゃ」（音読み）とも読む"
+    },
+    {
+      "id": "9df6d901-0fd6-5add-9eb0-9552abb5d2a4",
+      "question": "「済む」の「済」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["す"],
+      "correct": 0,
+      "explanation": "済（す）む: 終わること・解決すること。「さい」（音読み）とも読む"
+    },
+    {
+      "id": "b4bf3952-fc14-5274-80b4-9d461d511469",
+      "question": "「対策」の「策」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["さく"],
+      "correct": 0,
+      "explanation": "策（さく）: 計画・方法のこと。対策・政策などに使う"
+    },
+    {
+      "id": "01b42927-fa26-502f-bddc-30d03d4a1e09",
+      "question": "「冊子」の「冊」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["さつ"],
+      "correct": 0,
+      "explanation": "冊（さつ）: 本を数える単位・小さい本。一冊・冊子などに使う"
+    },
+    {
+      "id": "6ee4ff06-6eb9-515c-b149-f38a0f4fe12e",
+      "question": "「蚕」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かいこ"],
+      "correct": 0,
+      "explanation": "蚕（かいこ）: 絹の糸を作る虫。「さん」（音読み）とも読む"
+    },
+    {
+      "id": "70680b75-471c-5410-a62a-cd521de11782",
+      "question": "「至る」の「至」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いた"],
+      "correct": 0,
+      "explanation": "至（いた）る: ある場所や状態に達すること。「し」（音読み）とも読む"
+    },
+    {
+      "id": "90c6ed9f-63b7-55a4-9ba2-89d88a15eed3",
+      "question": "「私」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["わたし"],
+      "correct": 0,
+      "explanation": "私（わたし）: 自分のこと・個人のこと。「し」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade5"]
+}

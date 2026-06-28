@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-5",
+  "categoryName": "📖 読み（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "669aa0a5-ef59-5c6d-950e-7c50a8d13432",
+      "question": "「防ぐ」の「防」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ふせ"],
+      "correct": 0,
+      "explanation": "防（ふせ）ぐ: 悪いことが起きないようにすること。「ぼう」（音読み）とも読む"
+    },
+    {
+      "id": "ccc2154b-2890-52b7-96a5-3bab93e9c343",
+      "question": "「貿易」の読み方をひらがなで書いてください",
+      "choices": ["ぼうえき"],
+      "correct": 0,
+      "explanation": "貿易（ぼうえき）: 国と国との間で物を売り買いすること"
+    },
+    {
+      "id": "39390a11-20a0-575f-bae1-7649a098e7b5",
+      "question": "「布」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ぬの"],
+      "correct": 0,
+      "explanation": "布（ぬの）: 服などに使う織物。「ふ」（音読み）とも読む"
+    },
+    {
+      "id": "6a5c1bf9-4c8f-5da8-a181-1db4a383d1f1",
+      "question": "「評価」の読み方をひらがなで書いてください",
+      "choices": ["ひょうか"],
+      "correct": 0,
+      "explanation": "評価（ひょうか）: 物事のよしあしを判断すること"
+    },
+    {
+      "id": "95420f64-a2b0-57e9-afb4-95aff80c728b",
+      "question": "「出版」の読み方をひらがなで書いてください",
+      "choices": ["しゅっぱん"],
+      "correct": 0,
+      "explanation": "出版（しゅっぱん）: 本などを印刷して世に出すこと"
+    },
+    {
+      "id": "0dcbbd86-5897-5a4f-92d0-9e3d5e72ae5a",
+      "question": "「武士」の読み方をひらがなで書いてください",
+      "choices": ["ぶし"],
+      "correct": 0,
+      "explanation": "武士（ぶし）: 刀を持って戦う武家の人"
+    },
+    {
+      "id": "cb80d317-0517-59cb-92dc-58ef88752be3",
+      "question": "「復習」の読み方をひらがなで書いてください",
+      "choices": ["ふくしゅう"],
+      "correct": 0,
+      "explanation": "復習（ふくしゅう）: 学んだことをもう一度やり直すこと"
+    },
+    {
+      "id": "b49eff18-2491-51a9-bb80-4f7be4c7588b",
+      "question": "「複数」の読み方をひらがなで書いてください",
+      "choices": ["ふくすう"],
+      "correct": 0,
+      "explanation": "複数（ふくすう）: 二つ以上あること"
+    },
+    {
+      "id": "978f5681-7e98-5e61-a189-9d7953a99faf",
+      "question": "「仏教」の読み方をひらがなで書いてください",
+      "choices": ["ぶっきょう"],
+      "correct": 0,
+      "explanation": "仏教（ぶっきょう）: お釈迦様の教えをもとにした宗教"
+    },
+    {
+      "id": "8fd1230b-c32e-524a-9c94-5e0c7a528853",
+      "question": "「粉」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["こな"],
+      "correct": 0,
+      "explanation": "粉（こな）: 細かく砕いたもの。「ふん」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade4"]
+}

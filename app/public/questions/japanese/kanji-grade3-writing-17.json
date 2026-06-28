@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-writing-17",
+  "categoryName": "✏️ 書き（161-170字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "a2598dc6-b093-55c8-91f0-e6a87c8d5631",
+      "question": "「たいら」の「たい」を漢字で書いてください（でこぼこがないこと）",
+      "choices": ["平"],
+      "correct": 0,
+      "explanation": "「たいら」の「たい」は「平」と書く。でこぼこがないこと。「へい」「ひら」とも読む"
+    },
+    {
+      "id": "20d7e742-ec35-52da-96ca-0887ae2d55f7",
+      "question": "「かえす」の「かえ」を漢字で書いてください",
+      "choices": ["返"],
+      "correct": 0,
+      "explanation": "「かえす」の「かえ」は「返」と書く。元に戻すこと。「へん」（音読み）とも読む"
+    },
+    {
+      "id": "e9f55b90-c61a-5b40-845a-074575a5052e",
+      "question": "「べん」を漢字で書いてください（勉強 の「べん」）",
+      "choices": ["勉"],
+      "correct": 0,
+      "explanation": "「勉強」の「べん」（「べん」）は「勉」と書く。学習に励むこと。「勉強」「勤勉」など"
+    },
+    {
+      "id": "b44cb5e1-3048-568c-b6a9-ef977c2783f8",
+      "question": "「はなす」の「はな」を漢字で書いてください（自由にすること）",
+      "choices": ["放"],
+      "correct": 0,
+      "explanation": "「はなす」の「はな」は「放」と書く。自由にすること。「ほう」（音読み）とも読む"
+    },
+    {
+      "id": "e4258a16-a0da-572e-a49d-6bc83fe139d1",
+      "question": "「あじ」を漢字で書いてください",
+      "choices": ["味"],
+      "correct": 0,
+      "explanation": "「あじ」は「味」と書く。食べ物の感触・風味。「み」（音読み）とも読む"
+    },
+    {
+      "id": "185229ca-76fe-5e63-9562-392cafbcf643",
+      "question": "「いのち」を漢字で書いてください",
+      "choices": ["命"],
+      "correct": 0,
+      "explanation": "「いのち」は「命」と書く。生きる力・生命のこと。「めい」（音読み）とも読む"
+    },
+    {
+      "id": "d85baf4d-cb71-5faa-a3cd-d8bd89836064",
+      "question": "「おもて」を漢字で書いてください（表面・顔のこと）",
+      "choices": ["面"],
+      "correct": 0,
+      "explanation": "「おもて」は「面」と書く。表面・顔のこと。「めん」（音読み）とも読む"
+    },
+    {
+      "id": "3ab5f8e9-cef2-526e-b2ec-74de7131794f",
+      "question": "「とう」の「と」を漢字で書いてください（質問すること）",
+      "choices": ["問"],
+      "correct": 0,
+      "explanation": "「とう」の「と」は「問」と書く。質問すること。「もん」（音読み）とも読む"
+    },
+    {
+      "id": "589e6f3b-6dfc-56fb-bba6-1a7a74921fa9",
+      "question": "「やく」を漢字で書いてください（役に立つ の「やく」）",
+      "choices": ["役"],
+      "correct": 0,
+      "explanation": "「役に立つ」の「やく」（「やく」）は「役」と書く。助けになること。「えき」（音読み）とも読む"
+    },
+    {
+      "id": "f02089ad-d4b4-51be-9f4a-0cc9a5644407",
+      "question": "「くすり」を漢字で書いてください",
+      "choices": ["薬"],
+      "correct": 0,
+      "explanation": "「くすり」は「薬」と書く。病気を治す物。「やく」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "prerequisites": ["kanji-grade3"]
+}

@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-secondary-writing-4",
+  "categoryName": "✏️ 書き その１（31-40字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-secondary",
+  "parentCategoryName": "中学生",
+  "example": "背・滋・賢・縦",
+  "questionType": "text-input",
+  "referenceGrade": "中学生",
+  "description": "中学生向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "af989ea7-952c-514d-ab71-4221e3c74ab8",
+      "question": "「けんり」を漢字で書いてください",
+      "choices": ["権利"],
+      "correct": 0,
+      "explanation": "「けんり」は「権利」と書く。何かをすることができる正当な資格・能力"
+    },
+    {
+      "id": "014cfa5e-a12e-5872-82b8-563fd55c4154",
+      "question": "「ぎむ」を漢字で書いてください",
+      "choices": ["義務"],
+      "correct": 0,
+      "explanation": "「ぎむ」は「義務」と書く。必ずしなければならないこと・果たすべき責任"
+    },
+    {
+      "id": "555e236d-6c46-5b2a-93ce-c94f1f7829cd",
+      "question": "「みんしゅしゅぎ」を漢字で書いてください",
+      "choices": ["民主主義"],
+      "correct": 0,
+      "explanation": "「みんしゅしゅぎ」は「民主主義」と書く。国民が政治の主体となる政治の考え方"
+    },
+    {
+      "id": "baff8a3f-ae95-571f-b48a-3cb395c5934f",
+      "question": "「かがく」を漢字で書いてください",
+      "choices": ["科学"],
+      "correct": 0,
+      "explanation": "「かがく」は「科学」と書く。観察や実験で自然の法則を解明する学問"
+    },
+    {
+      "id": "fee5f7b0-9be5-5f7a-8cab-feced26534ec",
+      "question": "「じっけん」を漢字で書いてください",
+      "choices": ["実験"],
+      "correct": 0,
+      "explanation": "「じっけん」は「実験」と書く。仮説を確かめるために実際に試してみること"
+    },
+    {
+      "id": "eee537b1-98ac-57b0-a744-66a436a23052",
+      "question": "「かせつ」を漢字で書いてください",
+      "choices": ["仮説"],
+      "correct": 0,
+      "explanation": "「かせつ」は「仮説」と書く。まだ証明されていない、仮の説や考え"
+    },
+    {
+      "id": "308f2bb3-520c-5ef8-9e67-655f91ef5dc3",
+      "question": "「けんしょう」を漢字で書いてください",
+      "choices": ["検証"],
+      "correct": 0,
+      "explanation": "「けんしょう」は「検証」と書く。事実かどうかを調べて確かめること"
+    },
+    {
+      "id": "47e32cd9-2d6f-5306-9345-9b7bcfd672ab",
+      "question": "「ろんり」を漢字で書いてください",
+      "choices": ["論理"],
+      "correct": 0,
+      "explanation": "「ろんり」は「論理」と書く。正しい筋道・物事を考える秩序だった手順"
+    },
+    {
+      "id": "6aea24e5-24e3-5755-950c-273184a6ac1e",
+      "question": "「しょうめい」を漢字で書いてください",
+      "choices": ["証明"],
+      "correct": 0,
+      "explanation": "「しょうめい」は「証明」と書く。事柄が正しいと根拠を示して示すこと"
+    },
+    {
+      "id": "09f65029-d3f5-5356-99a6-632f86a1dc89",
+      "question": "「こうさつ」を漢字で書いてください",
+      "choices": ["考察"],
+      "correct": 0,
+      "explanation": "「こうさつ」は「考察」と書く。物事をよく調べ、深く考えること"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "prerequisites": ["kanji-secondary"]
+}

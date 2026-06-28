@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-writing-12",
+  "categoryName": "✏️ 書き（111-120字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "4cef1f5b-73b1-55db-a5e7-5713fff2a737",
+      "question": "「くび」を漢字で書いてください",
+      "choices": ["首"],
+      "correct": 0,
+      "explanation": "「くび」は「首」と書く。頭とからだをつなぐ部分。「しゅ」（音読み）とも読む"
+    },
+    {
+      "id": "70962dd6-1301-5963-9ab0-f3f641a93c21",
+      "question": "「くろ」を漢字で書いてください",
+      "choices": ["黒"],
+      "correct": 0,
+      "explanation": "「くろ」は「黒」と書く。色の名前のこと。「こく」（音読み）とも読む"
+    },
+    {
+      "id": "96f6bf20-8792-5624-a046-35dffa600999",
+      "question": "「ほそい」の「ほそ」を漢字で書いてください",
+      "choices": ["細"],
+      "correct": 0,
+      "explanation": "「ほそい」の「ほそ」は「細」と書く。細くて薄いこと。「さい」（音読み）とも読む"
+    },
+    {
+      "id": "90bb68a4-264f-514d-b801-6bc4527d5a5d",
+      "question": "「ばん」を漢字で書いてください",
+      "choices": ["番"],
+      "correct": 0,
+      "explanation": "「ばん」は「番」と書く。順番・番号のこと"
+    },
+    {
+      "id": "c8b8f818-3a67-50b4-9f69-4c2f815a7090",
+      "question": "「ご」を漢字で書いてください",
+      "choices": ["午"],
+      "correct": 0,
+      "explanation": "「ご」は「午」と書く。十二支の7番目。正午のこと"
+    },
+    {
+      "id": "c479ff99-e417-52e3-9f9b-6daaff049a6c",
+      "question": "「かたる」の「かた」を漢字で書いてください（話すこと・ことばのこと）",
+      "choices": ["語"],
+      "correct": 0,
+      "explanation": "「かたる」の「かた」は「語」と書く。話すこと・ことばのこと。「ご」（音読み）とも読む"
+    },
+    {
+      "id": "e19169e0-8cfe-5938-a0f3-d1588822205b",
+      "question": "「しゅう」を漢字で書いてください",
+      "choices": ["週"],
+      "correct": 0,
+      "explanation": "「しゅう」は「週」と書く。7日間のひとまとまりのこと"
+    },
+    {
+      "id": "d00603c6-dbe1-55c4-a7a5-5caba72b8351",
+      "question": "「いえ」を漢字で書いてください",
+      "choices": ["家"],
+      "correct": 0,
+      "explanation": "「いえ」は「家」と書く。人が住む建物のこと。「か」「け」（音読み）とも読む"
+    },
+    {
+      "id": "03be6780-527e-58cd-a69c-a1df8cdb08bf",
+      "question": "「てん」を漢字で書いてください",
+      "choices": ["点"],
+      "correct": 0,
+      "explanation": "「てん」は「点」と書く。小さな点・採点のこと"
+    },
+    {
+      "id": "4245261a-b2ae-57ec-9d0a-06384cc5000c",
+      "question": "「さい」を漢字で書いてください",
+      "choices": ["才"],
+      "correct": 0,
+      "explanation": "「さい」は「才」と書く。年齢・才能のこと"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "prerequisites": ["kanji-grade2"]
+}

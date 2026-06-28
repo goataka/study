@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-11",
+  "categoryName": "📖 読み（101-110字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "fa72adb6-90c9-5855-8763-0f29c8bc9d8d",
+      "question": "「示す」の「示」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["しめ"],
+      "correct": 0,
+      "explanation": "示（しめ）す: 表して知らせること。「じ」「し」（音読み）とも読む"
+    },
+    {
+      "id": "b1c98a9f-493c-500a-8dd1-7c90ff9c3220",
+      "question": "「似る」の「似」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["に"],
+      "correct": 0,
+      "explanation": "似（に）る: 同じように見えること・そっくりなこと。「じ」（音読み）とも読む"
+    },
+    {
+      "id": "8cab3c4a-e6da-52ce-9e45-7592abd6554f",
+      "question": "「知識」の「識」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["しき"],
+      "correct": 0,
+      "explanation": "識（しき）: 知ること・理解すること。「知識」（ちしき）は知っていること"
+    },
+    {
+      "id": "57a991df-1d17-5cf3-ac52-58d9677bff2d",
+      "question": "「質問」の「質」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["しつ"],
+      "correct": 0,
+      "explanation": "質（しつ）: 内容・性質のこと。「質問」（しつもん）は聞くこと"
+    },
+    {
+      "id": "6c68feca-9256-56dc-81f0-f3906bf998d1",
+      "question": "「校舎」の「舎」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["しゃ"],
+      "correct": 0,
+      "explanation": "舎（しゃ）: 建物のこと。「校舎」（こうしゃ）は学校の建物"
+    },
+    {
+      "id": "3bf0d111-2f7e-5431-abe2-3d74ddb2e35b",
+      "question": "「謝る」の「謝」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あやま"],
+      "correct": 0,
+      "explanation": "謝（あやま）る: 悪いことをしたと詫びること。「しゃ」（音読み）とも読む"
+    },
+    {
+      "id": "a78db287-86bf-5724-823a-caeb785e3e81",
+      "question": "「授ける」の「授」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["さず"],
+      "correct": 0,
+      "explanation": "授（さず）ける: 与えること・教えること。「じゅ」（音読み）とも読む"
+    },
+    {
+      "id": "26a44fe2-77eb-5b05-95ac-b547e79620cf",
+      "question": "「修める」の「修」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おさ"],
+      "correct": 0,
+      "explanation": "修（おさ）める: 学問などを身につけること。「しゅう」（音読み）とも読む"
+    },
+    {
+      "id": "a6c6aa52-3f41-5dac-8066-676f4b3c094d",
+      "question": "「述べる」の「述」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["の"],
+      "correct": 0,
+      "explanation": "述（の）べる: 言葉で表すこと・説明すること。「じゅつ」（音読み）とも読む"
+    },
+    {
+      "id": "94d4a28d-4a3c-5b70-8e79-56bfb2498a0a",
+      "question": "「準備」の「準」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["じゅん"],
+      "correct": 0,
+      "explanation": "準（じゅん）: 標準・用意すること。「準備」（じゅんび）は前もって用意すること"
+    }
+  ],
+  "prerequisites": ["kanji-grade4"]
+}

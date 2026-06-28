@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-writing-6",
+  "categoryName": "✏️ 書き（51-60字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "dea5a69a-392a-5dd4-a7cb-fa03b7b83da8",
+      "question": "「みち」を漢字で書いてください",
+      "choices": ["道"],
+      "correct": 0,
+      "explanation": "「みち」は「道」と書く。人や車が通る場所。「どう」（音読み）とも読む"
+    },
+    {
+      "id": "17e604b7-51c6-57d2-975b-bec1f1138885",
+      "question": "「みなみ」を漢字で書いてください",
+      "choices": ["南"],
+      "correct": 0,
+      "explanation": "「みなみ」は「南」と書く。北の反対方向。「なん」（音読み）とも読む"
+    },
+    {
+      "id": "3a8a3e22-31a9-5f16-86ff-fc909c0f3aa9",
+      "question": "「きた」を漢字で書いてください",
+      "choices": ["北"],
+      "correct": 0,
+      "explanation": "「きた」は「北」と書く。南の反対方向。「ほく」（音読み）とも読む"
+    },
+    {
+      "id": "1c42a849-dfe1-5173-8c20-f76fd0c4c3a0",
+      "question": "「にし」を漢字で書いてください",
+      "choices": ["西"],
+      "correct": 0,
+      "explanation": "「にし」は「西」と書く。太陽が沈む方向。「せい」（音読み）とも読む"
+    },
+    {
+      "id": "7a684dbb-a64c-5c76-ba80-988b192185ac",
+      "question": "「の」を漢字で書いてください",
+      "choices": ["野"],
+      "correct": 0,
+      "explanation": "「の」は「野」と書く。広い草原や田畑のこと。「や」（音読み）とも読む"
+    },
+    {
+      "id": "ef4f4eea-fe80-56ab-b5a0-3889c596442e",
+      "question": "「よる」を漢字で書いてください",
+      "choices": ["夜"],
+      "correct": 0,
+      "explanation": "「よる」は「夜」と書く。日が沈んでから暗い時間帯。「や」（音読み）とも読む"
+    },
+    {
+      "id": "23627330-d253-5dd2-9cb9-848377a026ee",
+      "question": "「ひく」の「ひ」を漢字で書いてください",
+      "choices": ["引"],
+      "correct": 0,
+      "explanation": "「ひく」の「ひ」は「引」と書く。手前に力をかけること。「いん」（音読み）とも読む"
+    },
+    {
+      "id": "b9004de9-526f-52bc-bd83-d489b560b034",
+      "question": "「はね」を漢字で書いてください",
+      "choices": ["羽"],
+      "correct": 0,
+      "explanation": "「はね」は「羽」と書く。鳥の体を覆う羽毛のこと。「う」（音読み）とも読む"
+    },
+    {
+      "id": "d8508d59-2527-5219-9308-1144d07c4fe8",
+      "question": "「とおい」の「とお」を漢字で書いてください（距離が長いこと）",
+      "choices": ["遠"],
+      "correct": 0,
+      "explanation": "「とおい」の「とお」は「遠」と書く。距離が長いこと。「えん」（音読み）とも読む"
+    },
+    {
+      "id": "f0da1e2e-cf27-552d-adea-eb73ac479ba8",
+      "question": "「そと」を漢字で書いてください",
+      "choices": ["外"],
+      "correct": 0,
+      "explanation": "「そと」は「外」と書く。建物の外側のこと。「がい」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "prerequisites": ["kanji-grade2"]
+}

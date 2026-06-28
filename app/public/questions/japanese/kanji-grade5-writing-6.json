@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-writing-6",
+  "categoryName": "✏️ 書き（51-60字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "22ed32f5-ed0e-534e-94bc-6556a432920f",
+      "question": "「いん」を漢字で書いてください",
+      "choices": ["因"],
+      "correct": 0,
+      "explanation": "「いん」は「因」と書く。物事が起こるもと。「原因」（げんいん）は何かが起きたわけのこと"
+    },
+    {
+      "id": "7e0da9b1-7739-57af-9d74-16f217cfbe91",
+      "question": "「いとなむ」の「いとな」を漢字で書いてください",
+      "choices": ["営"],
+      "correct": 0,
+      "explanation": "「いとなむ」の「いとな」は「営」と書く。仕事などをして生活すること。「えい」（音読み）とも読む"
+    },
+    {
+      "id": "bbaea86e-6be8-5781-bb8b-7508cf7dcd1f",
+      "question": "「えい」を漢字で書いてください",
+      "choices": ["衛"],
+      "correct": 0,
+      "explanation": "「えい」は「衛」と書く。守ること。「衛星」（えいせい）は惑星の周りを回る天体のこと"
+    },
+    {
+      "id": "70e81d0c-a080-59c7-af4f-fc6988e07585",
+      "question": "「えき」を漢字で書いてください（役に立つこと・もうけのこと）",
+      "choices": ["益"],
+      "correct": 0,
+      "explanation": "「えき」は「益」と書く。役に立つこと・もうけのこと。「利益」（りえき）は得になること"
+    },
+    {
+      "id": "5180da56-f669-549d-a40f-caf7b19955c0",
+      "question": "「えき」を漢字で書いてください（水のように流れる状態の物質）",
+      "choices": ["液"],
+      "correct": 0,
+      "explanation": "「えき」は「液」と書く。水のように流れる状態の物質。「液体」（えきたい）は流れる形の物質"
+    },
+    {
+      "id": "bf5b74e7-dfe5-55e1-95a6-cfc8ecb6acd9",
+      "question": "「おう」を漢字で書いてください",
+      "choices": ["往"],
+      "correct": 0,
+      "explanation": "「おう」は「往」と書く。行くこと。「往復」（おうふく）は行って戻ること"
+    },
+    {
+      "id": "6e98b3c2-c6f7-59e1-a6c5-12c521ef198d",
+      "question": "「さくら」を漢字で書いてください",
+      "choices": ["桜"],
+      "correct": 0,
+      "explanation": "「さくら」は「桜」と書く。春にピンクの花を咲かせる木。「おう」（音読み）とも読む"
+    },
+    {
+      "id": "22101435-ceca-54d2-b21e-d94d70f0dcd6",
+      "question": "「かり」を漢字で書いてください",
+      "choices": ["仮"],
+      "correct": 0,
+      "explanation": "「かり」は「仮」と書く。一時的なこと・本物ではないこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "0ca5a228-6101-55db-8028-e28ec5133e5f",
+      "question": "「かわ」を漢字で書いてください",
+      "choices": ["河"],
+      "correct": 0,
+      "explanation": "「かわ」は「河」と書く。大きな川のこと。「が」（音読み）とも読む"
+    },
+    {
+      "id": "1006ae4c-8091-5e3c-8e18-bd815de18c69",
+      "question": "「こころよい」の「こころよ」を漢字で書いてください",
+      "choices": ["快"],
+      "correct": 0,
+      "explanation": "「こころよい」の「こころよ」は「快」と書く。気持ちよいこと。「かい」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "prerequisites": ["kanji-grade5"]
+}

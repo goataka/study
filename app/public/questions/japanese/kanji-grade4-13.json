@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade4-13",
+  "categoryName": "📖 読み（121-130字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade4",
+  "parentCategoryName": "小学4年",
+  "example": "愛・熱・静・感",
+  "questionType": "text-input",
+  "referenceGrade": "小学4年",
+  "description": "小学4年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "4f4ea4f4-eb29-5469-a071-3cd998b79b5b",
+      "question": "「博物館」の読み方をひらがなで書いてください",
+      "choices": ["はくぶつかん"],
+      "correct": 0,
+      "explanation": "博物館（はくぶつかん）: 歴史や自然の物を展示する施設"
+    },
+    {
+      "id": "f61d7367-ccf8-5bb5-8a0f-b1f124b582b1",
+      "question": "「ご飯」の読み方をひらがなで書いてください",
+      "choices": ["ごはん"],
+      "correct": 0,
+      "explanation": "ご飯（ごはん）: 炊いた米・食事のこと"
+    },
+    {
+      "id": "1e3f8dba-7baf-5f05-9ddb-321f71eed611",
+      "question": "「費用」の読み方をひらがなで書いてください",
+      "choices": ["ひよう"],
+      "correct": 0,
+      "explanation": "費用（ひよう）: 何かをするためにかかるお金"
+    },
+    {
+      "id": "3c22faf2-29ee-52a3-860b-e741051b58c2",
+      "question": "「投票」の読み方をひらがなで書いてください",
+      "choices": ["とうひょう"],
+      "correct": 0,
+      "explanation": "投票（とうひょう）: 選挙などで選ぶために紙に書いて出すこと"
+    },
+    {
+      "id": "4d180a45-0183-5e82-8ce3-4946ed2386fc",
+      "question": "「夫」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おっと"],
+      "correct": 0,
+      "explanation": "夫（おっと）: 結婚した相手の男性。「ふ」（音読み）とも読む"
+    },
+    {
+      "id": "c304545a-6b86-50a7-888b-d8f408fbcb60",
+      "question": "「府」の読み方をひらがなで書いてください",
+      "choices": ["ふ"],
+      "correct": 0,
+      "explanation": "府（ふ）: 都道府県の一つ。大阪府・京都府など"
+    },
+    {
+      "id": "be0441b1-ff93-5539-a5a6-3144cf94ac7f",
+      "question": "「副会長」の読み方をひらがなで書いてください",
+      "choices": ["ふくかいちょう"],
+      "correct": 0,
+      "explanation": "副会長（ふくかいちょう）: 会長を補佐する役職"
+    },
+    {
+      "id": "8fd1230b-c32e-524a-9c94-5e0c7a528853",
+      "question": "「粉」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["こな"],
+      "correct": 0,
+      "explanation": "粉（こな）: 細かくくだいたもの。「ふん」（音読み）とも読む"
+    },
+    {
+      "id": "4f61f2ee-c86c-5ddb-857a-cf4c36e5cb5e",
+      "question": "「便利」の読み方をひらがなで書いてください",
+      "choices": ["べんり"],
+      "correct": 0,
+      "explanation": "便利（べんり）: 使いやすくて役に立つこと"
+    },
+    {
+      "id": "c07799cd-fe7b-5ccc-a091-ec085465dfaf",
+      "question": "「包む」の「包」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["つつ"],
+      "correct": 0,
+      "explanation": "包（つつ）む: 物をおおうこと。「ほう」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade3"]
+}

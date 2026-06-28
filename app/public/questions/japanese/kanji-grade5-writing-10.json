@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-writing-10",
+  "categoryName": "✏️ 書き（91-100字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "34e5106e-2ba7-56be-bcb9-b23ecfc940f2",
+      "question": "「さ」を漢字で書いてください",
+      "choices": ["査"],
+      "correct": 0,
+      "explanation": "「さ」は「査」と書く。調べること。「調査」（ちょうさ）は詳しく調べること"
+    },
+    {
+      "id": "141d316b-d60b-5cd1-89af-db0178b95d0b",
+      "question": "「ざい」を漢字で書いてください",
+      "choices": ["財"],
+      "correct": 0,
+      "explanation": "「ざい」は「財」と書く。金や物の持ち物。「財産」（ざいさん）は資産のこと"
+    },
+    {
+      "id": "814aae33-2743-53de-a5d3-a5aabdc19ef7",
+      "question": "「つみ」を漢字で書いてください",
+      "choices": ["罪"],
+      "correct": 0,
+      "explanation": "「つみ」は「罪」と書く。悪いことをすること・法律を破ること。「ざい」（音読み）とも読む"
+    },
+    {
+      "id": "15c3a8c5-4e13-5d5b-9241-bfe1267eacbd",
+      "question": "「ざつ」を漢字で書いてください",
+      "choices": ["雑"],
+      "correct": 0,
+      "explanation": "「ざつ」は「雑」と書く。様々なものが混じっていること。「雑誌」（ざっし）はいろんな記事が載った本"
+    },
+    {
+      "id": "1b80cfb9-31de-5d2d-922f-5b95ba7a9ebe",
+      "question": "「すっぱい」の「す」を漢字で書いてください",
+      "choices": ["酸"],
+      "correct": 0,
+      "explanation": "「すっぱい」の「す」は「酸」と書く。レモンのような味のこと。「さん」（音読み）とも読む"
+    },
+    {
+      "id": "824786df-3111-58c0-b1b5-5123f6e60ed3",
+      "question": "「さん」を漢字で書いてください",
+      "choices": ["賛"],
+      "correct": 0,
+      "explanation": "「さん」は「賛」と書く。同意すること・支持すること。「賛成」（さんせい）はよいと思って同意すること"
+    },
+    {
+      "id": "fe87de6f-efbd-5fee-9e65-23955f0d406d",
+      "question": "「こころざし」を漢字で書いてください",
+      "choices": ["志"],
+      "correct": 0,
+      "explanation": "「こころざし」は「志」と書く。目指すこと・強い意志のこと。「し」（音読み）とも読む"
+    },
+    {
+      "id": "5c8b99a2-8020-5fe6-9ce0-6b9d0ba2d12f",
+      "question": "「えだ」を漢字で書いてください",
+      "choices": ["枝"],
+      "correct": 0,
+      "explanation": "「えだ」は「枝」と書く。木の幹から分かれた部分。「し」（音読み）とも読む"
+    },
+    {
+      "id": "f926b597-5ab3-5f9d-b807-7beb037c3fe4",
+      "question": "「し」を漢字で書いてください（人を教える人・専門家）",
+      "choices": ["師"],
+      "correct": 0,
+      "explanation": "「し」は「師」と書く。人を教える人・専門家。「教師」（きょうし）は教える仕事の人"
+    },
+    {
+      "id": "06a3aa91-7caa-5280-b46e-431d38261a09",
+      "question": "「かう」の「か」を漢字で書いてください（動物を世話して育てること）",
+      "choices": ["飼"],
+      "correct": 0,
+      "explanation": "「かう」の「か」は「飼」と書く。動物を世話して育てること。「し」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "prerequisites": ["kanji-grade5"]
+}

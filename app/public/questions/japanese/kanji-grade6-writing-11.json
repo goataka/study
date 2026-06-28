@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-writing-11",
+  "categoryName": "✏️ 書き（101-110字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "db5d6f38-d0d1-5d6b-a698-42df1e10c29f",
+      "question": "「うれる」の「う」を漢字で書いてください（果物などが食べごろになること）",
+      "choices": ["熟"],
+      "correct": 0,
+      "explanation": "「うれる」の「う」は「熟」と書く。果物などが食べごろになること。「じゅく」（音読み）とも読む"
+    },
+    {
+      "id": "db86942f-6da3-5ed0-8e4f-49affcf9a938",
+      "question": "「しょ」を漢字で書いてください（物事を適切に扱うこと・場所）",
+      "choices": ["処"],
+      "correct": 0,
+      "explanation": "「しょ」は「処」と書く。物事を適切に扱うこと・場所。処理・処分などに使う"
+    },
+    {
+      "id": "96eb3595-842f-5cc6-af23-4b8f6e0d866e",
+      "question": "「しょ」を漢字で書いてください（名前を書くこと・役所の部署）",
+      "choices": ["署"],
+      "correct": 0,
+      "explanation": "「しょ」は「署」と書く。名前を書くこと・役所の部署。署名・警察署などに使う"
+    },
+    {
+      "id": "b6eb1210-c587-5586-bff2-30a6daa0e89d",
+      "question": "「もろ々」の「もろ」を漢字で書いてください",
+      "choices": ["諸"],
+      "correct": 0,
+      "explanation": "「もろ々」の「もろ」は「諸」と書く。いろいろな・多くの。「しょ」（音読み）とも読む"
+    },
+    {
+      "id": "368342b0-0674-5588-845b-39b119d1641e",
+      "question": "「のぞく」の「のぞ」を漢字で書いてください（取り除くこと・仲間外れにすること）",
+      "choices": ["除"],
+      "correct": 0,
+      "explanation": "「のぞく」の「のぞ」は「除」と書く。取り除くこと・仲間外れにすること。「じょ」（音読み）とも読む"
+    },
+    {
+      "id": "c3e93815-f95d-55b8-8c4f-a0459c9bae56",
+      "question": "「しょう」を漢字で書いてください",
+      "choices": ["将"],
+      "correct": 0,
+      "explanation": "「しょう」は「将」と書く。これから先・大将のこと。将来・将軍などに使う"
+    },
+    {
+      "id": "16950e58-d5ca-5463-9d53-c1a62a69fb8f",
+      "question": "「きず」を漢字で書いてください",
+      "choices": ["傷"],
+      "correct": 0,
+      "explanation": "「きず」は「傷」と書く。体や物の痛んだ部分。「しょう」（音読み）とも読む"
+    },
+    {
+      "id": "5808cc18-d773-551e-8fa7-ee1909a26fe4",
+      "question": "「さわる」の「さわ」を漢字で書いてください",
+      "choices": ["障"],
+      "correct": 0,
+      "explanation": "「さわる」の「さわ」は「障」と書く。さまたげること・支障をきたすこと。「しょう」（音読み）とも読む"
+    },
+    {
+      "id": "ee2ee512-6549-5b8e-b409-b7dcbe6f797d",
+      "question": "「しろ」を漢字で書いてください",
+      "choices": ["城"],
+      "correct": 0,
+      "explanation": "「しろ」は「城」と書く。武士が守りのために建てた建物。「じょう」（音読み）とも読む"
+    },
+    {
+      "id": "0bc46b3b-7e24-5db6-9721-a00d559af965",
+      "question": "「むす」の「む」を漢字で書いてください",
+      "choices": ["蒸"],
+      "correct": 0,
+      "explanation": "「むす」の「む」は「蒸」と書く。蒸気で熱を加えること。「じょう」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "prerequisites": ["kanji-grade6"]
+}

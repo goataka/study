@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-writing-15",
+  "categoryName": "✏️ 書き（141-150字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "bb1b0ee7-45fe-5f05-adc2-30cf20546288",
+      "question": "「やしろ」を漢字で書いてください",
+      "choices": ["社"],
+      "correct": 0,
+      "explanation": "「やしろ」は「社」と書く。神様をまつる建物のこと。「しゃ」（音読み）とも読む"
+    },
+    {
+      "id": "fd558e42-8a7d-5fb3-a5e7-1b34bfcbafa3",
+      "question": "「うち」を漢字で書いてください",
+      "choices": ["内"],
+      "correct": 0,
+      "explanation": "「うち」は「内」と書く。中・内側のこと。「ない」「だい」（音読み）とも読む"
+    },
+    {
+      "id": "38779bdf-e2c9-5d1b-ab61-c558cfee1002",
+      "question": "「しるす」の「しる」を漢字で書いてください",
+      "choices": ["記"],
+      "correct": 0,
+      "explanation": "「しるす」の「しる」は「記」と書く。書き留めること。「き」（音読み）とも読む"
+    },
+    {
+      "id": "3b80bee1-e1f0-51a1-b4e9-ff3065dcbd36",
+      "question": "「ちゃ」を漢字で書いてください",
+      "choices": ["茶"],
+      "correct": 0,
+      "explanation": "「ちゃ」は「茶」と書く。お茶のこと。「さ」（音読み）とも読む"
+    },
+    {
+      "id": "157b7b5d-3e12-51d0-ac21-0538c24ff94d",
+      "question": "「り」を漢字で書いてください",
+      "choices": ["理"],
+      "correct": 0,
+      "explanation": "「り」は「理」と書く。道理・理由のこと"
+    },
+    {
+      "id": "1e762e2c-cf74-59a3-8dbc-c5ac476701a4",
+      "question": "「や」を漢字で書いてください",
+      "choices": ["矢"],
+      "correct": 0,
+      "explanation": "「や」は「矢」と書く。弓で射る道具のこと。「し」（音読み）とも読む"
+    },
+    {
+      "id": "684778cf-dc29-5fce-843b-0a948587aa5f",
+      "question": "「か」を漢字で書いてください（学科・科目のこと）",
+      "choices": ["科"],
+      "correct": 0,
+      "explanation": "「か」は「科」と書く。学科・科目のこと"
+    },
+    {
+      "id": "3fd479da-0c7a-5888-a7cc-4d2cb0388c21",
+      "question": "「あう」の「あ」を漢字で書いてください（一致すること・合わさること）",
+      "choices": ["合"],
+      "correct": 0,
+      "explanation": "「あう」の「あ」は「合」と書く。一致すること・合わさること。「ごう」「かっ」（音読み）とも読む"
+    },
+    {
+      "id": "97832a11-250d-5ad8-a6ea-87f50a07dadf",
+      "question": "「もちいる」の「もち」を漢字で書いてください",
+      "choices": ["用"],
+      "correct": 0,
+      "explanation": "「もちいる」の「もち」は「用」と書く。使うこと・用事のこと。「よう」（音読み）とも読む"
+    },
+    {
+      "id": "036cd879-e021-564a-9276-be17cebe1783",
+      "question": "「け」を漢字で書いてください",
+      "choices": ["毛"],
+      "correct": 0,
+      "explanation": "「け」は「毛」と書く。体に生える細い毛のこと。「もう」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "prerequisites": ["kanji-grade2"]
+}

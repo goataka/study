@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-secondary-writing-3",
+  "categoryName": "✏️ 書き その１（21-30字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-secondary",
+  "parentCategoryName": "中学生",
+  "example": "背・滋・賢・縦",
+  "questionType": "text-input",
+  "referenceGrade": "中学生",
+  "description": "中学生向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "2e4a900f-49c5-582d-be9e-950181f1aee5",
+      "question": "「えいきょう」を漢字で書いてください",
+      "choices": ["影響"],
+      "correct": 0,
+      "explanation": "「えいきょう」は「影響」と書く。あるものが別のものに変化をもたらすこと"
+    },
+    {
+      "id": "1051d79e-eb56-55e0-b46d-a57cb3043d9a",
+      "question": "「こんきょ」を漢字で書いてください",
+      "choices": ["根拠"],
+      "correct": 0,
+      "explanation": "「こんきょ」は「根拠」と書く。判断や主張の基となる理由や証拠"
+    },
+    {
+      "id": "5abe6228-55d0-5193-a182-95454a1e9f39",
+      "question": "「ひひょう」を漢字で書いてください",
+      "choices": ["批評"],
+      "correct": 0,
+      "explanation": "「ひひょう」は「批評」と書く。物事のよしあしを判断して意見を述べること"
+    },
+    {
+      "id": "737336f3-df1e-5ac3-9558-1a38b4342691",
+      "question": "「かんてん」を漢字で書いてください",
+      "choices": ["観点"],
+      "correct": 0,
+      "explanation": "「かんてん」は「観点」と書く。物事を見る立場・視点"
+    },
+    {
+      "id": "dee2b4bb-36e0-5847-8b02-a65bd114fd34",
+      "question": "「たちば」を漢字で書いてください",
+      "choices": ["立場"],
+      "correct": 0,
+      "explanation": "「たちば」は「立場」と書く。その人が置かれている状況や役割・地位"
+    },
+    {
+      "id": "1a876b97-2588-51f4-a69a-6695be3367a6",
+      "question": "「たいわ」を漢字で書いてください",
+      "choices": ["対話"],
+      "correct": 0,
+      "explanation": "「たいわ」は「対話」と書く。向かい合って話し合うこと・ダイアログ"
+    },
+    {
+      "id": "d807608a-3e91-52a7-95c9-eded838b2f3d",
+      "question": "「きょうりょく」を漢字で書いてください",
+      "choices": ["協力"],
+      "correct": 0,
+      "explanation": "「きょうりょく」は「協力」と書く。力を合わせて物事に取り組むこと"
+    },
+    {
+      "id": "3375176e-7d1f-567a-9db5-65462b1ab2b6",
+      "question": "「ちつじょ」を漢字で書いてください",
+      "choices": ["秩序"],
+      "correct": 0,
+      "explanation": "「ちつじょ」は「秩序」と書く。社会や物事が正しく整っている状態・決まりある順序"
+    },
+    {
+      "id": "876ef7dd-9226-5a4a-b63b-f6a6b1762a21",
+      "question": "「じゆう」を漢字で書いてください",
+      "choices": ["自由"],
+      "correct": 0,
+      "explanation": "「じゆう」は「自由」と書く。他から束縛されず自分の意思で行動できること"
+    },
+    {
+      "id": "5ed0f0a4-3c77-5135-94e7-2b6c3a102701",
+      "question": "「びょうどう」を漢字で書いてください",
+      "choices": ["平等"],
+      "correct": 0,
+      "explanation": "「びょうどう」は「平等」と書く。すべての人が同じ扱いを受けること"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "prerequisites": ["kanji-secondary"]
+}

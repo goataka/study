@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade4-writing-2",
+  "categoryName": "✏️ 書き（11-20字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade4",
+  "parentCategoryName": "小学4年",
+  "example": "愛・熱・静・感",
+  "questionType": "text-input",
+  "referenceGrade": "小学4年",
+  "description": "小学4年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "5fdf8d36-c0aa-530a-92e5-29cbddc58f4f",
+      "question": "「たっせい」を漢字で書いてください",
+      "choices": ["達成"],
+      "correct": 0,
+      "explanation": "「たっせい」は「達成」と書く。目標を成し遂げること"
+    },
+    {
+      "id": "4b0ab2b0-6356-5bc0-beae-767fb0fea0b5",
+      "question": "「ぶじ」を漢字で書いてください",
+      "choices": ["無事"],
+      "correct": 0,
+      "explanation": "「ぶじ」は「無事」と書く。問題なく安全なこと"
+    },
+    {
+      "id": "200fe47f-cd77-529a-97e3-9d7329619921",
+      "question": "「いち」を漢字で書いてください",
+      "choices": ["位置"],
+      "correct": 0,
+      "explanation": "「いち」は「位置」と書く。どこにあるかを表すこと"
+    },
+    {
+      "id": "3b7df94b-f70c-59ed-9674-b81beda2cd5b",
+      "question": "「しゅうへん」を漢字で書いてください",
+      "choices": ["周辺"],
+      "correct": 0,
+      "explanation": "「しゅうへん」は「周辺」と書く。まわりのこと"
+    },
+    {
+      "id": "b1190bf2-d195-5dde-9717-c88621f55aee",
+      "question": "「かんせい」を漢字で書いてください",
+      "choices": ["完成"],
+      "correct": 0,
+      "explanation": "「かんせい」は「完成」と書く。できあがること"
+    },
+    {
+      "id": "1b6b7190-844d-50c3-9086-861431d1e7d9",
+      "question": "「えいご」を漢字で書いてください",
+      "choices": ["英語"],
+      "correct": 0,
+      "explanation": "「えいご」は「英語」と書く。イギリスやアメリカで使われる言語"
+    },
+    {
+      "id": "14980ef0-63b0-57e9-ac68-4f6c41613c25",
+      "question": "「しお」を漢字で書いてください",
+      "choices": ["塩"],
+      "correct": 0,
+      "explanation": "「しお」は「塩」と書く。料理に使う白い調味料。「えん」（音読み）とも読む"
+    },
+    {
+      "id": "48f34c02-a06e-5e08-9aa4-cf1603766b92",
+      "question": "「くわえる」の「くわ」を漢字で書いてください",
+      "choices": ["加"],
+      "correct": 0,
+      "explanation": "「くわえる」の「くわ」は「加」と書く。付け足すこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "71409038-2fad-5824-b450-7bb6d32ea779",
+      "question": "「くだもの」を漢字で書いてください",
+      "choices": ["果物"],
+      "correct": 0,
+      "explanation": "「くだもの」は「果物」と書く。リンゴやバナナなどの食べ物"
+    },
+    {
+      "id": "a49cc685-3c45-5052-9a1a-f2dc6e3b65a1",
+      "question": "「おぼえる」の「おぼ」を漢字で書いてください",
+      "choices": ["覚"],
+      "correct": 0,
+      "explanation": "「おぼえる」の「おぼ」は「覚」と書く。記憶すること。「かく」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "prerequisites": ["kanji-grade4"]
+}

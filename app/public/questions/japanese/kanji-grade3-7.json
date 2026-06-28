@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-7",
+  "categoryName": "📖 読み（61-70字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "eae10278-d4ca-5ce3-b17f-f757073ffe5e",
+      "question": "「消える」の「消」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["き"],
+      "correct": 0,
+      "explanation": "消（き）える: なくなること。「しょう」（音読み）とも読む"
+    },
+    {
+      "id": "a124390f-d221-5984-93dd-39e82724f7cd",
+      "question": "「商売」の読み方をひらがなで書いてください",
+      "choices": ["しょうばい"],
+      "correct": 0,
+      "explanation": "商売（しょうばい）: 物を売り買いして利益を得ること"
+    },
+    {
+      "id": "74334788-7647-56d6-9de2-912f1498e841",
+      "question": "「勝つ」の「勝」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["か"],
+      "correct": 0,
+      "explanation": "勝（か）つ: 試合や争いでよい結果になること。「しょう」（音読み）とも読む"
+    },
+    {
+      "id": "24b62b54-921a-5eef-90b8-2e7435d01ae9",
+      "question": "「植える」の「植」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["う"],
+      "correct": 0,
+      "explanation": "植（う）える: 種や苗を土に入れること。「しょく」（音読み）とも読む"
+    },
+    {
+      "id": "78531592-c234-5d24-904a-3b5d529996d3",
+      "question": "「申す」の「申」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["もう"],
+      "correct": 0,
+      "explanation": "申（もう）す: 「言う」の丁寧な言い方。「しん」（音読み）とも読む"
+    },
+    {
+      "id": "7f932d13-7c8e-530f-a288-ffcc2cbd355b",
+      "question": "「真っ赤」の「真」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ま"],
+      "correct": 0,
+      "explanation": "真（ま）っ赤: 完全に赤いこと。「しん」（音読み）とも読む"
+    },
+    {
+      "id": "3da3add1-b4b1-593b-a305-0490ee1ccd6b",
+      "question": "「進む」の「進」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["すす"],
+      "correct": 0,
+      "explanation": "進（すす）む: 前に動いていくこと。「しん」（音読み）とも読む"
+    },
+    {
+      "id": "4bfa3ffb-dfb3-5a89-8ff2-b07fe709ead5",
+      "question": "「全部」の読み方をひらがなで書いてください",
+      "choices": ["ぜんぶ"],
+      "correct": 0,
+      "explanation": "全部（ぜんぶ）: 残らずすべてのこと"
+    },
+    {
+      "id": "47f2a632-fc7c-5b58-bdd2-29bd3c6aa5c8",
+      "question": "「相手」の読み方をひらがなで書いてください",
+      "choices": ["あいて"],
+      "correct": 0,
+      "explanation": "相手（あいて）: いっしょに行動する人・向こう側の人"
+    },
+    {
+      "id": "532704b3-380d-5956-a342-e3848d938667",
+      "question": "「送る」の「送」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おく"],
+      "correct": 0,
+      "explanation": "送（おく）る: ものや人をある場所に届けること。「そう」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade2"]
+}

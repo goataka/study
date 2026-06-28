@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-14",
+  "categoryName": "📖 読み（131-140字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "e7ea431e-2248-5632-8d34-35edf32868ed",
+      "question": "「素材」の「素」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["そ"],
+      "correct": 0,
+      "explanation": "素（そ）: 元になるもの・自然のまま。「素材」（そざい）は材料のこと"
+    },
+    {
+      "id": "99057871-9829-5227-8c65-b280cc3316ab",
+      "question": "「総合」の「総」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["そう"],
+      "correct": 0,
+      "explanation": "総（そう）: すべてをまとめること。「総合」（そうごう）は全部まとめること"
+    },
+    {
+      "id": "3b8e3fbd-f3aa-5a59-a53d-99b74d97d0b1",
+      "question": "「像」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ぞう"],
+      "correct": 0,
+      "explanation": "像（ぞう）: 形・彫り物・イメージのこと。「銅像」（どうぞう）は銅で作った像"
+    },
+    {
+      "id": "1225ba5c-4bed-590d-9e62-42fcfd259aae",
+      "question": "「所属」の「属」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ぞく"],
+      "correct": 0,
+      "explanation": "属（ぞく）: どこかに属すること。「所属」（しょぞく）はどこかのグループに入っていること"
+    },
+    {
+      "id": "acfb1acc-f95e-5da4-9441-7b12eece8963",
+      "question": "「率いる」の「率」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ひき"],
+      "correct": 0,
+      "explanation": "率（ひき）いる: 人を先に立って導くこと。「りつ」「そつ」（音読み）とも読む"
+    },
+    {
+      "id": "be91123d-1baf-5255-9b4c-955813083e9e",
+      "question": "「損なう」の「損」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["そこ"],
+      "correct": 0,
+      "explanation": "損（そこ）なう: 傷つけること・不利益を受けること。「そん」（音読み）とも読む"
+    },
+    {
+      "id": "51337891-8c32-5e1b-b06b-2da5dc1529c7",
+      "question": "「退く」の「退」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["しりぞ"],
+      "correct": 0,
+      "explanation": "退（しりぞ）く: 引き下がること・後に下がること。「たい」（音読み）とも読む"
+    },
+    {
+      "id": "011ca8f8-8d82-5a86-8e4a-e004edc68ca2",
+      "question": "「貸す」の「貸」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["か"],
+      "correct": 0,
+      "explanation": "貸（か）す: 一時的に使わせること。「たい」（音読み）とも読む"
+    },
+    {
+      "id": "61a6febe-a62a-561d-9f67-f6c9af98f0ba",
+      "question": "「態度」の「態」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["たい"],
+      "correct": 0,
+      "explanation": "態（たい）: 様子・ありさまのこと。「態度」（たいど）は行動や様子のこと"
+    },
+    {
+      "id": "30c264a0-1954-565e-86b3-59d30f8a973f",
+      "question": "「団体」の「団」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["だん"],
+      "correct": 0,
+      "explanation": "団（だん）: 集まり・グループのこと。「団体」（だんたい）は人の集まり"
+    }
+  ],
+  "prerequisites": ["kanji-grade4"]
+}

@@ -1,0 +1,34 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-18",
+  "categoryName": "📖 読み（171-172字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "0f53aca5-dcc7-59d0-b988-bf458d90f40f",
+      "question": "「規律」の「律」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["りつ"],
+      "correct": 0,
+      "explanation": "律（りつ）: 決まり・ルールのこと。規律・法律などに使う"
+    },
+    {
+      "id": "ebb592d4-2324-5537-9e83-bf921cfaed20",
+      "question": "「臨む」の「臨」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["のぞ"],
+      "correct": 0,
+      "explanation": "臨（のぞ）む: ある場に向き合うこと・臨場感。「りん」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade5"]
+}

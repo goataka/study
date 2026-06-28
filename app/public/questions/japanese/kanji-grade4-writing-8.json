@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade4-writing-8",
+  "categoryName": "✏️ 書き（71-80字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade4",
+  "parentCategoryName": "小学4年",
+  "example": "愛・熱・静・感",
+  "questionType": "text-input",
+  "referenceGrade": "小学4年",
+  "description": "小学4年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "7b457a51-0792-5145-ba70-ce17a93a29c3",
+      "question": "「かんちょう」を漢字で書いてください",
+      "choices": ["官庁"],
+      "correct": 0,
+      "explanation": "「かんちょう」は「官庁」と書く。国の政府の役所"
+    },
+    {
+      "id": "d4d12f8b-93d5-53db-8900-96f8407fd2f3",
+      "question": "「せいき」を漢字で書いてください",
+      "choices": ["世紀"],
+      "correct": 0,
+      "explanation": "「せいき」は「世紀」と書く。100年間のこと。1世紀・21世紀など"
+    },
+    {
+      "id": "63e1e275-58ae-50d9-ad2b-61fd8e0b2edc",
+      "question": "「よろこぶ」の「よろこ」を漢字で書いてください",
+      "choices": ["喜"],
+      "correct": 0,
+      "explanation": "「よろこぶ」の「よろこ」は「喜」と書く。嬉しく思うこと。「き」（音読み）とも読む"
+    },
+    {
+      "id": "161aca77-1bbe-547f-bac6-ceac8b3c5530",
+      "question": "「はた」を漢字で書いてください",
+      "choices": ["旗"],
+      "correct": 0,
+      "explanation": "「はた」は「旗」と書く。棒に布を付けた目印。「き」（音読み）とも読む"
+    },
+    {
+      "id": "5bfcd6c6-1626-5c24-adda-71984633fba3",
+      "question": "「うつわ」を漢字で書いてください",
+      "choices": ["器"],
+      "correct": 0,
+      "explanation": "「うつわ」は「器」と書く。物を入れる容器。「き」（音読み）とも読む"
+    },
+    {
+      "id": "3ee54376-2f10-5011-98ff-a811db19ecf6",
+      "question": "「なく」の「な」を漢字で書いてください（涙を流すこと）",
+      "choices": ["泣"],
+      "correct": 0,
+      "explanation": "「なく」の「な」は「泣」と書く。涙を流すこと。「きゅう」（音読み）とも読む"
+    },
+    {
+      "id": "9a1c3566-6512-523a-aedb-db6bda3ebf89",
+      "question": "「すくう」の「すく」を漢字で書いてください",
+      "choices": ["救"],
+      "correct": 0,
+      "explanation": "「すくう」の「すく」は「救」と書く。危険から助けること。「きゅう」（音読み）とも読む"
+    },
+    {
+      "id": "4fd06468-f60f-5df1-82ea-06c3c5a71e08",
+      "question": "「ともに」の「とも」を漢字で書いてください",
+      "choices": ["共"],
+      "correct": 0,
+      "explanation": "「ともに」の「とも」は「共」と書く。一緒に・ともに。「きょう」（音読み）とも読む"
+    },
+    {
+      "id": "0678967c-596b-53d3-95a4-33db1add7fe8",
+      "question": "「かがみ」を漢字で書いてください",
+      "choices": ["鏡"],
+      "correct": 0,
+      "explanation": "「かがみ」は「鏡」と書く。姿を映すもの。「きょう」（音読み）とも読む"
+    },
+    {
+      "id": "55c6d2c9-017d-56f3-84f2-122a31a3cdd5",
+      "question": "「きわめる」の「きわ」を漢字で書いてください",
+      "choices": ["極"],
+      "correct": 0,
+      "explanation": "「きわめる」の「きわ」は「極」と書く。限界まで追求すること。「きょく」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "prerequisites": ["kanji-grade4"]
+}

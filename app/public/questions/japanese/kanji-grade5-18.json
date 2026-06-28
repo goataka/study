@@ -1,0 +1,69 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-18",
+  "categoryName": "📖 読み（171-177字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "0f53aca5-dcc7-59d0-b988-bf458d90f40f",
+      "question": "「規律」の「律」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["りつ"],
+      "correct": 0,
+      "explanation": "律（りつ）: 守るべききまり・リズムのこと。「規律」（きりつ）は守るべき決まり"
+    },
+    {
+      "id": "e44ef4e2-6236-51ad-8676-5966b29b1fce",
+      "question": "「留まる」の「留」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["とど"],
+      "correct": 0,
+      "explanation": "留（とど）まる: 動かずにいること・そこに残ること。「りゅう」「る」（音読み）とも読む"
+    },
+    {
+      "id": "2f0713a1-791a-5634-b5db-7407673b1260",
+      "question": "「勢い」の「勢」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いきお"],
+      "correct": 0,
+      "explanation": "勢（いきお）い: 力強い様子・勢力のこと。「せい」（音読み）とも読む"
+    },
+    {
+      "id": "1beb30e2-a5f6-5dcb-8b14-1f0cc388363a",
+      "question": "「支える」の「支」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ささ"],
+      "correct": 0,
+      "explanation": "支（ささ）える: 下から支えること。「し」（音読み）とも読む"
+    },
+    {
+      "id": "0904a4ee-e2f2-547d-bfe0-9f0dc41fc343",
+      "question": "「織る」の「織」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["お"],
+      "correct": 0,
+      "explanation": "織（お）る: 糸を組み合わせて布を作ること。「しょく」（音読み）とも読む"
+    },
+    {
+      "id": "bcf612e9-da5c-59aa-9815-8d2e93325030",
+      "question": "「資源」の「資」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["し"],
+      "correct": 0,
+      "explanation": "資（し）: 元手・資源のこと。「資源」「資料」などに使う"
+    },
+    {
+      "id": "eed16efc-8789-568d-81d4-2b94a7757314",
+      "question": "「限る」の「限」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かぎ"],
+      "correct": 0,
+      "explanation": "限（かぎ）る: 範囲を決めること。「げん」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade4"]
+}

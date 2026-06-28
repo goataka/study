@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-writing-15",
+  "categoryName": "✏️ 書き（141-150字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "6608d487-b851-5e30-83ce-15850986d143",
+      "question": "「くばる」の「くば」を漢字で書いてください",
+      "choices": ["配"],
+      "correct": 0,
+      "explanation": "「くばる」の「くば」は「配」と書く。分けて渡すこと。「はい」（音読み）とも読む"
+    },
+    {
+      "id": "514369de-e8da-5c23-8f0f-ec1413700b47",
+      "question": "「ばい」を漢字で書いてください",
+      "choices": ["倍"],
+      "correct": 0,
+      "explanation": "「ばい」は「倍」と書く。数が何倍かを表す言葉。「二倍」「三倍」など"
+    },
+    {
+      "id": "af1813b7-21af-5eee-875d-08bd734b0b1c",
+      "question": "「はこ」を漢字で書いてください（物を入れる容器）",
+      "choices": ["箱"],
+      "correct": 0,
+      "explanation": "「はこ」は「箱」と書く。物を入れる容器。「はこ」とも読む"
+    },
+    {
+      "id": "d8840fad-5b70-5473-b46e-7c3db6a45f2e",
+      "question": "「はたけ」を漢字で書いてください",
+      "choices": ["畑"],
+      "correct": 0,
+      "explanation": "「はたけ」は「畑」と書く。野菜などを育てる土地。「はた」とも読む"
+    },
+    {
+      "id": "87e27db6-84bd-5d39-8f56-8b2e617dd309",
+      "question": "「はつ」を漢字で書いてください",
+      "choices": ["発"],
+      "correct": 0,
+      "explanation": "「はつ」は「発」と書く。出ること・始まること。「出発」「発明」など"
+    },
+    {
+      "id": "f22a0361-561b-5c8b-8208-bb9b57bf9793",
+      "question": "「さか」を漢字で書いてください",
+      "choices": ["坂"],
+      "correct": 0,
+      "explanation": "「さか」は「坂」と書く。傾いた道。「坂道」「急坂」など"
+    },
+    {
+      "id": "5bbd09a7-04e7-5590-8530-f7fa8ff77dc1",
+      "question": "「いた」を漢字で書いてください",
+      "choices": ["板"],
+      "correct": 0,
+      "explanation": "「いた」は「板」と書く。薄く平たい木。「看板」（かんばん）とも読む"
+    },
+    {
+      "id": "41db5d80-8c4e-5ff6-9625-ec3bcb83be78",
+      "question": "「はん」を漢字で書いてください（反対 の「はん」）",
+      "choices": ["反"],
+      "correct": 0,
+      "explanation": "「反対」の「はん」（「はん」）は「反」と書く。逆のこと。「反対」「反省」など。「そる」「かえる」とも読む"
+    },
+    {
+      "id": "67f26441-5b59-5be4-ae0a-b4be1f0ced68",
+      "question": "「かわ」を漢字で書いてください",
+      "choices": ["皮"],
+      "correct": 0,
+      "explanation": "「かわ」は「皮」と書く。物の外側の薄い膜。「ひ」（音読み）とも読む"
+    },
+    {
+      "id": "3b8013ac-bdce-5cdf-addb-84cbdccc8a10",
+      "question": "「うつくしい」の「うつく」を漢字で書いてください",
+      "choices": ["美"],
+      "correct": 0,
+      "explanation": "「うつくしい」の「うつく」は「美」と書く。きれいなこと。「び」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "prerequisites": ["kanji-grade3"]
+}

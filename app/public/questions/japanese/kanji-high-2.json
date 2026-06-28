@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-high-2",
+  "categoryName": "📖 読み その２（11-20字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-secondary",
+  "parentCategoryName": "中学生",
+  "example": "羅・曖・昧・冶",
+  "questionType": "text-input",
+  "referenceGrade": "中学生",
+  "description": "中学生で習う漢字の読み方（訓読み・音読み）をさらに覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-high/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "9ca1422f-8360-5062-a96a-152f40570f4f",
+      "question": "「漸次」の読み方をひらがなで書いてください",
+      "choices": ["ぜんじ"],
+      "correct": 0,
+      "explanation": "漸次（ぜんじ）: しだいに・少しずつ"
+    },
+    {
+      "id": "cfd84680-a962-555a-bfa1-d575e2aa62ea",
+      "question": "「顕著」の読み方をひらがなで書いてください",
+      "choices": ["けんちょ"],
+      "correct": 0,
+      "explanation": "顕著（けんちょ）: はっきりと目立つこと"
+    },
+    {
+      "id": "4229252a-41c1-5079-bd5f-a931dd5177fd",
+      "question": "「曖昧」の読み方をひらがなで書いてください",
+      "choices": ["あいまい"],
+      "correct": 0,
+      "explanation": "曖昧（あいまい）: はっきりしないこと・はっきり判断できないこと"
+    },
+    {
+      "id": "54ba8ab8-7eb3-5580-a26d-a08d6ba67a62",
+      "question": "「斟酌」の読み方をひらがなで書いてください",
+      "choices": ["しんしゃく"],
+      "correct": 0,
+      "explanation": "斟酌（しんしゃく）: 相手の事情をくみ取って配慮すること"
+    },
+    {
+      "id": "8e72f426-7f4b-5d81-8103-05969d048173",
+      "question": "「忸怩」の読み方をひらがなで書いてください",
+      "choices": ["じくじ"],
+      "correct": 0,
+      "explanation": "忸怩（じくじ）: 恥ずかしくて心苦しいこと（忸怩たる思い）"
+    },
+    {
+      "id": "8194bcb2-5770-5e0f-852b-85b494555cbe",
+      "question": "「懊悩」の読み方をひらがなで書いてください",
+      "choices": ["おうのう"],
+      "correct": 0,
+      "explanation": "懊悩（おうのう）: 思い悩んで苦しむこと・深く煩悶すること"
+    },
+    {
+      "id": "da44e40b-4bd1-5019-a0ef-7921c8bffafb",
+      "question": "「憔悴」の読み方をひらがなで書いてください",
+      "choices": ["しょうすい"],
+      "correct": 0,
+      "explanation": "憔悴（しょうすい）: 心身ともに疲れ果て、やつれること"
+    },
+    {
+      "id": "d212acf9-48b8-5318-a2b3-0fe699914e23",
+      "question": "「蹉跌」の読み方をひらがなで書いてください",
+      "choices": ["さてつ"],
+      "correct": 0,
+      "explanation": "蹉跌（さてつ）: 物事が失敗・挫折すること"
+    },
+    {
+      "id": "2772cc76-de67-519f-9cfa-7d0cde64a0d5",
+      "question": "「矜持」の読み方をひらがなで書いてください",
+      "choices": ["きょうじ"],
+      "correct": 0,
+      "explanation": "矜持（きょうじ）: 自分の能力への自信・誇り・プライド"
+    },
+    {
+      "id": "d3f67972-db51-55e2-92d6-33f40d8c3d3b",
+      "question": "「僭越」の読み方をひらがなで書いてください",
+      "choices": ["せんえつ"],
+      "correct": 0,
+      "explanation": "僭越（せんえつ）: 自分の立場を越えた言動をすること（「僭越ながら」）"
+    }
+  ],
+  "prerequisites": ["kanji-secondary"]
+}

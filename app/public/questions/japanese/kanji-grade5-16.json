@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-16",
+  "categoryName": "📖 読み（151-160字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "1b93746d-6e13-5db9-92b2-9b998da2eda1",
+      "question": "「肥える」の「肥」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["こ"],
+      "correct": 0,
+      "explanation": "肥（こ）える: 太ること・土地が豊かになること。「ひ」（音読み）とも読む"
+    },
+    {
+      "id": "0e69e8fc-a31a-5f12-b197-ca209d82e4d1",
+      "question": "「非常」の「非」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ひ"],
+      "correct": 0,
+      "explanation": "非（ひ）: 否定を表す言葉。「非常」（ひじょう）は普通でないこと"
+    },
+    {
+      "id": "d74444d7-a8b9-5574-a9bd-9991397376db",
+      "question": "「俵」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["たわら"],
+      "correct": 0,
+      "explanation": "俵（たわら）: 米などを入れる袋。「ひょう」（音読み）とも読む"
+    },
+    {
+      "id": "3c848891-e8ba-5c31-968d-bd80cc849ec7",
+      "question": "「貧しい」の「貧」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["まず"],
+      "correct": 0,
+      "explanation": "貧（まず）しい: お金がなく生活が苦しいこと。「ひん」「びん」（音読み）とも読む"
+    },
+    {
+      "id": "c1632380-65e1-528c-8102-1f0694020e2d",
+      "question": "「婦人」の「婦」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ふ"],
+      "correct": 0,
+      "explanation": "婦（ふ）: 女性・奥さんのこと。「婦人」（ふじん）は女性のこと"
+    },
+    {
+      "id": "fa997694-c3a9-5ea9-a0bb-c5b8b40df8d8",
+      "question": "「富む」の「富」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["と"],
+      "correct": 0,
+      "explanation": "富（と）む: 豊かであること・たくさん持っていること。「ふ」（音読み）とも読む"
+    },
+    {
+      "id": "b66bef42-50c1-5b9e-a1f5-951012515b8f",
+      "question": "「弁護士」の「弁」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["べん"],
+      "correct": 0,
+      "explanation": "弁（べん）: 話すこと・弁護すること。「弁護士」（べんごし）は法律の専門家"
+    },
+    {
+      "id": "92b31766-2f21-50ff-8b0a-5999b7088b94",
+      "question": "「保つ」の「保」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["たも"],
+      "correct": 0,
+      "explanation": "保（たも）つ: 持続させること・守ること。「ほ」（音読み）とも読む"
+    },
+    {
+      "id": "fac851c4-d67c-537d-b176-65d477edd5ce",
+      "question": "「墓」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はか"],
+      "correct": 0,
+      "explanation": "墓（はか）: 死者を葬ったところ・お墓。「ぼ」（音読み）とも読む"
+    },
+    {
+      "id": "f7774431-573e-5211-b620-1a818d9017b2",
+      "question": "「報告」の「報」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ほう"],
+      "correct": 0,
+      "explanation": "報（ほう）: 知らせること・返すこと。「報告」（ほうこく）は知らせること"
+    }
+  ],
+  "prerequisites": ["kanji-grade4"]
+}

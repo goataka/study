@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-secondary-4",
+  "categoryName": "📖 読み その１（31-40字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-secondary",
+  "parentCategoryName": "中学生",
+  "example": "背・滋・賢・縦",
+  "questionType": "text-input",
+  "referenceGrade": "中学生",
+  "description": "中学生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "8e2483a9-b271-544b-9da2-008689754dcb",
+      "question": "「権利」の読み方をひらがなで書いてください",
+      "choices": ["けんり"],
+      "correct": 0,
+      "explanation": "権利（けんり）: 何かをすることができる正当な資格・能力"
+    },
+    {
+      "id": "ade6e5ea-16b1-5759-ad59-f0b321e3aa80",
+      "question": "「義務」の読み方をひらがなで書いてください",
+      "choices": ["ぎむ"],
+      "correct": 0,
+      "explanation": "義務（ぎむ）: 必ずしなければならないこと・果たすべき責任"
+    },
+    {
+      "id": "4432fd7e-80d3-585d-9d50-37da26149b71",
+      "question": "「民主主義」の読み方をひらがなで書いてください",
+      "choices": ["みんしゅしゅぎ"],
+      "correct": 0,
+      "explanation": "民主主義（みんしゅしゅぎ）: 国民が政治の主体となる政治の考え方"
+    },
+    {
+      "id": "10d62283-daa0-568c-961e-19d9d09803fd",
+      "question": "「科学」の読み方をひらがなで書いてください",
+      "choices": ["かがく"],
+      "correct": 0,
+      "explanation": "科学（かがく）: 観察や実験で自然の法則を解明する学問"
+    },
+    {
+      "id": "056f2c22-ebb9-51d7-ab27-2e46a3e4d3bc",
+      "question": "「実験」の読み方をひらがなで書いてください",
+      "choices": ["じっけん"],
+      "correct": 0,
+      "explanation": "実験（じっけん）: 仮説を確かめるために実際に試してみること"
+    },
+    {
+      "id": "4048716b-d4d5-5dd6-abe5-4f4f7927445f",
+      "question": "「仮説」の読み方をひらがなで書いてください",
+      "choices": ["かせつ"],
+      "correct": 0,
+      "explanation": "仮説（かせつ）: まだ証明されていない、仮の説や考え"
+    },
+    {
+      "id": "b7602cd4-2c48-5bc4-9bf6-428fb4d15a3d",
+      "question": "「検証」の読み方をひらがなで書いてください",
+      "choices": ["けんしょう"],
+      "correct": 0,
+      "explanation": "検証（けんしょう）: 事実かどうかを調べて確かめること"
+    },
+    {
+      "id": "b06b9b4f-bc57-54ce-9873-2c1b596e214d",
+      "question": "「論理」の読み方をひらがなで書いてください",
+      "choices": ["ろんり"],
+      "correct": 0,
+      "explanation": "論理（ろんり）: 正しい筋道・物事を考える秩序だった手順"
+    },
+    {
+      "id": "f31a9835-7cb8-58aa-98de-67cab36111a6",
+      "question": "「証明」の読み方をひらがなで書いてください",
+      "choices": ["しょうめい"],
+      "correct": 0,
+      "explanation": "証明（しょうめい）: 事柄が正しいと根拠を示して示すこと"
+    },
+    {
+      "id": "cf643765-069e-5327-b6f4-bb0b0dcf476e",
+      "question": "「考察」の読み方をひらがなで書いてください",
+      "choices": ["こうさつ"],
+      "correct": 0,
+      "explanation": "考察（こうさつ）: 物事をよく調べ、深く考えること"
+    }
+  ],
+  "prerequisites": ["kanji-grade6"]
+}

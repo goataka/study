@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-writing-11",
+  "categoryName": "✏️ 書き（101-110字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "650d4044-29e8-51a2-bb98-0e12d987464f",
+      "question": "「し」を漢字で書いてください（言葉を使った芸術作品）",
+      "choices": ["詩"],
+      "correct": 0,
+      "explanation": "「し」は「詩」と書く。言葉を使った芸術作品。「詩人」「詩集」など"
+    },
+    {
+      "id": "ab946c5b-1700-5387-b9d4-48d61e4a03cc",
+      "question": "「こと」を漢字で書いてください",
+      "choices": ["事"],
+      "correct": 0,
+      "explanation": "「こと」は「事」と書く。出来事・物事のこと。「大事」（だいじ）とも読む"
+    },
+    {
+      "id": "278f9b62-6845-5a93-822c-991e9c381b98",
+      "question": "「しき」を漢字で書いてください",
+      "choices": ["式"],
+      "correct": 0,
+      "explanation": "「しき」は「式」と書く。決まったやり方・儀式。「入学式」「式場」など"
+    },
+    {
+      "id": "aa7ce998-dcd1-5ecd-8907-55cfd215be29",
+      "question": "「み」を漢字で書いてください",
+      "choices": ["実"],
+      "correct": 0,
+      "explanation": "「み」は「実」と書く。果物などの実。「じつ」（音読み）とも読む"
+    },
+    {
+      "id": "1310b73f-7b9f-5398-a630-e2f153adcc82",
+      "question": "「うつす」の「うつ」を漢字で書いてください",
+      "choices": ["写"],
+      "correct": 0,
+      "explanation": "「うつす」の「うつ」は「写」と書く。映し取ること。「写真」（しゃしん）とも読む"
+    },
+    {
+      "id": "e87f99df-8d8f-50b9-b593-b73d44f29bb0",
+      "question": "「ぬし」を漢字で書いてください",
+      "choices": ["主"],
+      "correct": 0,
+      "explanation": "「ぬし」は「主」と書く。持ち主・リーダーのこと。「しゅ」（音読み）とも読む"
+    },
+    {
+      "id": "bf0f6b1b-6804-5ff5-8fb4-81ce5b97aae5",
+      "question": "「うける」の「う」を漢字で書いてください（もらうこと）",
+      "choices": ["受"],
+      "correct": 0,
+      "explanation": "「うける」の「う」は「受」と書く。もらうこと。「受験」（じゅけん）とも読む"
+    },
+    {
+      "id": "590ddf61-cac2-5ea1-8c1d-19449b4a6275",
+      "question": "「しゅう」を漢字で書いてください",
+      "choices": ["州"],
+      "correct": 0,
+      "explanation": "「しゅう」は「州」と書く。地域の区分け。「本州」「九州」など"
+    },
+    {
+      "id": "7a187885-18db-59cf-8407-41e12c7ad8b1",
+      "question": "「やど」を漢字で書いてください",
+      "choices": ["宿"],
+      "correct": 0,
+      "explanation": "「やど」は「宿」と書く。泊まる所・宿屋。「しゅく」（音読み）とも読む"
+    },
+    {
+      "id": "a46e6698-37a1-5a38-8d98-aca31330b20b",
+      "question": "「たすける」の「たす」を漢字で書いてください",
+      "choices": ["助"],
+      "correct": 0,
+      "explanation": "「たすける」の「たす」は「助」と書く。力を貸すこと。「助手」（じょしゅ）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "prerequisites": ["kanji-grade3"]
+}

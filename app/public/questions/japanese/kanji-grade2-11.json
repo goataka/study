@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-11",
+  "categoryName": "📖 読み（101-110字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "1361e716-de41-5a44-bb20-50d26e17f465",
+      "question": "「寺」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["てら"],
+      "correct": 0,
+      "explanation": "寺（てら）: お坊さんがいる建物のこと。「じ」（音読み）とも読む"
+    },
+    {
+      "id": "194f9677-f7d1-5e12-aa00-ad856f4a3cdb",
+      "question": "「直」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["なおす"],
+      "correct": 0,
+      "explanation": "直（なお）す: 悪いところを正しくすること。「ちょく」「じき」（音読み）とも読む"
+    },
+    {
+      "id": "420b6291-dbac-57d9-815b-7a9e4beff62f",
+      "question": "「公」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おおやけ"],
+      "correct": 0,
+      "explanation": "公（おおやけ）: みんなのもの・国のこと。「こう」（音読み）とも読む"
+    },
+    {
+      "id": "ad984852-aaa8-572b-8c87-d6103146991b",
+      "question": "「画」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["えがく"],
+      "correct": 0,
+      "explanation": "画（えが）く: 絵をかくこと。「が」「かく」（音読み）とも読む"
+    },
+    {
+      "id": "afd6e26d-60ce-51a3-9035-52d43eb35601",
+      "question": "「肉」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["にく"],
+      "correct": 0,
+      "explanation": "肉（にく）: 動物のからだのやわらかい部分。「にく」と読む"
+    },
+    {
+      "id": "af3ec39a-9bc7-5da7-9df8-f79235c4e5fd",
+      "question": "「何」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["なに"],
+      "correct": 0,
+      "explanation": "何（なに）: 物・事・人を問う言葉。「か」（音読み）とも読む"
+    },
+    {
+      "id": "a98c0f92-ceec-5058-810f-07c64d365fb1",
+      "question": "「場」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ば"],
+      "correct": 0,
+      "explanation": "場（ば）: 場所・その場のこと。「じょう」（音読み）とも読む"
+    },
+    {
+      "id": "33a20499-ea57-5589-8cad-84bd792a8358",
+      "question": "「園」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["その"],
+      "correct": 0,
+      "explanation": "園（その）: 庭・植物を育てる場所。「えん」（音読み）とも読む"
+    },
+    {
+      "id": "ab7e4b45-d576-59ac-bf09-7075ef010c40",
+      "question": "「弓」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ゆみ"],
+      "correct": 0,
+      "explanation": "弓（ゆみ）: 矢を射る道具のこと。「きゅう」（音読み）とも読む"
+    },
+    {
+      "id": "e451821c-9e31-56bc-a903-1bf6b22051f3",
+      "question": "「交」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["まじわる"],
+      "correct": 0,
+      "explanation": "交（まじ）わる: 互いに関わること。「こう」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade1"]
+}

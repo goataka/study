@@ -1,0 +1,89 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade1-3",
+  "categoryName": "📖 読み（21-30字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade1",
+  "parentCategoryName": "小学1年",
+  "example": "山・川・火・水",
+  "questionType": "text-input",
+  "referenceGrade": "小学1年",
+  "description": "小学1年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "3be105a7-7188-5348-89c0-faf810deb6f1",
+      "question": "「大きい」の「大」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おお"],
+      "correct": 0,
+      "explanation": "大（おお）きい: 大きいことを表す。「だい」（音読み）とも読む"
+    },
+    {
+      "id": "2a3bf143-76fd-5d53-a3c1-129cbdda1e18",
+      "question": "「小さい」の「小」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ちい"],
+      "correct": 0,
+      "explanation": "小（ちい）さい: 小さいことを表す。「しょう」（音読み）とも読む"
+    },
+    {
+      "id": "96ee4848-1364-546d-b3a1-8787591a691a",
+      "question": "「上」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["うえ"],
+      "correct": 0,
+      "explanation": "上（うえ）: 高い方向のこと。「じょう」（音読み）とも読む"
+    },
+    {
+      "id": "8ff9c809-7e48-54d7-89f6-745752a38d84",
+      "question": "「下」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["した"],
+      "correct": 0,
+      "explanation": "下（した）: 低い方向のこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "530ac002-8d8e-5986-af34-6fa08699aa45",
+      "question": "「右」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["みぎ"],
+      "correct": 0,
+      "explanation": "右（みぎ）: 右側の方向のこと。「う」（音読み）とも読む"
+    },
+    {
+      "id": "45b617b5-8ad0-59d0-8891-582c638e845f",
+      "question": "「左」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ひだり"],
+      "correct": 0,
+      "explanation": "左（ひだり）: 左側の方向のこと。「さ」（音読み）とも読む"
+    },
+    {
+      "id": "fb9e7023-9eef-5bea-be7b-286c2571e714",
+      "question": "「年」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["とし"],
+      "correct": 0,
+      "explanation": "年（とし）: 一年のこと。「ねん」（音読み）とも読む"
+    },
+    {
+      "id": "ef968441-97fe-5719-8e97-bcc924a81087",
+      "question": "「白」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["しろ"],
+      "correct": 0,
+      "explanation": "白（しろ）: 白い色のこと。「はく」（音読み）とも読む"
+    },
+    {
+      "id": "36e6aaf5-de44-576b-9c8d-7ebddac1cd92",
+      "question": "「赤」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あか"],
+      "correct": 0,
+      "explanation": "赤（あか）: 赤い色のこと。「せき」（音読み）とも読む"
+    },
+    {
+      "id": "1a7e30be-f3fa-5ae8-a12f-f48792aa45d9",
+      "question": "「青」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あお"],
+      "correct": 0,
+      "explanation": "青（あお）: 青い色のこと。「せい」（音読み）とも読む"
+    }
+  ]
+}

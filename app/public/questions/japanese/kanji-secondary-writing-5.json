@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-secondary-writing-5",
+  "categoryName": "✏️ 書き その１（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-secondary",
+  "parentCategoryName": "中学生",
+  "example": "背・滋・賢・縦",
+  "questionType": "text-input",
+  "referenceGrade": "中学生",
+  "description": "中学生向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "1158587d-6a5f-5fed-8ac5-e16e2ef29f37",
+      "question": "「けつろん」を漢字で書いてください",
+      "choices": ["結論"],
+      "correct": 0,
+      "explanation": "「けつろん」は「結論」と書く。考えや議論の最終的なまとめ・判断"
+    },
+    {
+      "id": "7dccbe01-0c95-5480-a98d-178c2fc7070d",
+      "question": "「かてい」を漢字で書いてください",
+      "choices": ["仮定"],
+      "correct": 0,
+      "explanation": "「かてい」は「仮定」と書く。仮にそうだと想定して考えること"
+    },
+    {
+      "id": "0717c102-313f-5c85-a2d7-1d7b003b7cb9",
+      "question": "「ひれい」を漢字で書いてください",
+      "choices": ["比例"],
+      "correct": 0,
+      "explanation": "「ひれい」は「比例」と書く。一方が増えると他方も同じ割合で増える関係"
+    },
+    {
+      "id": "a495389d-a24d-5fc8-88dd-e87f43d1da2c",
+      "question": "「へんりょう」を漢字で書いてください",
+      "choices": ["変量"],
+      "correct": 0,
+      "explanation": "「へんりょう」は「変量」と書く。データの中で変化する数値・統計で扱う量"
+    },
+    {
+      "id": "229bfc00-4cfc-5367-a373-78b135c1dbf2",
+      "question": "「いらい」を漢字で書いてください",
+      "choices": ["依頼"],
+      "correct": 0,
+      "explanation": "「いらい」は「依頼」と書く。相手にお願いして頼むこと"
+    },
+    {
+      "id": "1818047f-de05-5d07-bfd9-b0bc4560a4ab",
+      "question": "「えん」を漢字で書いてください",
+      "choices": ["縁"],
+      "correct": 0,
+      "explanation": "「えん」は「縁」と書く。人と人をつなぐ関係・つながり・きっかけ"
+    },
+    {
+      "id": "80352c75-ac61-58be-baba-294f538a6a0d",
+      "question": "「おこたる」の「おこた」を漢字で書いてください",
+      "choices": ["怠"],
+      "correct": 0,
+      "explanation": "「おこたる」の「おこた」は「怠」と書く。すべきことをせず、なまけること"
+    },
+    {
+      "id": "d21da1d1-93e2-5397-8919-d6e80d48ffea",
+      "question": "「おしむ」の「お」を漢字で書いてください",
+      "choices": ["惜"],
+      "correct": 0,
+      "explanation": "「おしむ」の「お」は「惜」と書く。残念に思うこと・大切にして手放したくないと思うこと"
+    },
+    {
+      "id": "3548c63e-2251-5774-a6d3-99eb9b190540",
+      "question": "「えがく」の「えが」を漢字で書いてください",
+      "choices": ["描"],
+      "correct": 0,
+      "explanation": "「えがく」の「えが」は「描」と書く。絵をかくこと・心の中で思い浮かべること"
+    },
+    {
+      "id": "8ed9eac7-6f5d-5deb-99d2-7edd3f3c75a3",
+      "question": "「ゆれる」の「ゆ」を漢字で書いてください",
+      "choices": ["揺"],
+      "correct": 0,
+      "explanation": "「ゆれる」の「ゆ」は「揺」と書く。左右・上下に動くこと・心が不安定になること"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "prerequisites": ["kanji-secondary"]
+}

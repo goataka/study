@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade4-10",
+  "categoryName": "📖 読み（91-100字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade4",
+  "parentCategoryName": "小学4年",
+  "example": "愛・熱・静・感",
+  "questionType": "text-input",
+  "referenceGrade": "小学4年",
+  "description": "小学4年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "694473f1-553a-51b2-ac5b-52439a50bb13",
+      "question": "「菜」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["な"],
+      "correct": 0,
+      "explanation": "菜（な）: 食べられる植物の葉や茎。「さい」（音読み）とも読む"
+    },
+    {
+      "id": "7364c570-7a44-573f-a417-acb02e12e47f",
+      "question": "「材料」の読み方をひらがなで書いてください",
+      "choices": ["ざいりょう"],
+      "correct": 0,
+      "explanation": "材料（ざいりょう）: 物を作るための原料・もとになるもの"
+    },
+    {
+      "id": "f234313f-e614-56d7-a806-019c4dad3e99",
+      "question": "「昨日」の読み方をひらがなで書いてください",
+      "choices": ["きのう"],
+      "correct": 0,
+      "explanation": "昨日（きのう）: 今日の前の日。「さくじつ」とも読む"
+    },
+    {
+      "id": "04563ced-c440-5475-b461-246e1f9d5096",
+      "question": "「散る」の「散」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ち"],
+      "correct": 0,
+      "explanation": "散（ち）る: ばらばらになること。「さん」（音読み）とも読む"
+    },
+    {
+      "id": "29fec4e4-e5b2-501f-995d-5bd2a921168a",
+      "question": "「残る」の「残」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["のこ"],
+      "correct": 0,
+      "explanation": "残（のこ）る: 余ること・後に残ること。「ざん」（音読み）とも読む"
+    },
+    {
+      "id": "a5037b49-9f06-59a0-9820-f7e47b9826b9",
+      "question": "「氏名」の読み方をひらがなで書いてください",
+      "choices": ["しめい"],
+      "correct": 0,
+      "explanation": "氏名（しめい）: 名字と名前のこと"
+    },
+    {
+      "id": "b7a19b1b-c77d-53d6-8a94-2a13d7e24987",
+      "question": "「歴史」の読み方をひらがなで書いてください",
+      "choices": ["れきし"],
+      "correct": 0,
+      "explanation": "歴史（れきし）: 昔から今までの出来事の記録"
+    },
+    {
+      "id": "201f9354-eed1-5bf0-a4df-a681e7d0a3f2",
+      "question": "「司会」の読み方をひらがなで書いてください",
+      "choices": ["しかい"],
+      "correct": 0,
+      "explanation": "司会（しかい）: 会の進行を取り仕切ること"
+    },
+    {
+      "id": "e59ff74c-67e5-57cd-96b7-6d0b1e83d167",
+      "question": "「辞書」の読み方をひらがなで書いてください",
+      "choices": ["じしょ"],
+      "correct": 0,
+      "explanation": "辞書（じしょ）: 言葉の意味や読み方を調べる本"
+    },
+    {
+      "id": "7911d0a3-f513-5a3a-8a11-22a253647871",
+      "question": "「借りる」の「借」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["か"],
+      "correct": 0,
+      "explanation": "借（か）りる: 一時的に使わせてもらうこと。「しゃく」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade3"]
+}

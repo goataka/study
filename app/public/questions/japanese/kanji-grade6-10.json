@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-10",
+  "categoryName": "📖 読み（91-100字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "ee85e3d8-629d-5f05-8921-62ae40908e4a",
+      "question": "「視力」の「視」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["し"],
+      "correct": 0,
+      "explanation": "視（し）: 見ること・目で確認すること。視力・視野・注視などに使う"
+    },
+    {
+      "id": "a8e214b2-8a40-5374-ae39-f17a3645177a",
+      "question": "「歌詞」の「詞」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["し"],
+      "correct": 0,
+      "explanation": "詞（し）: 言葉・品詞・歌詞など、言葉の種類を表す"
+    },
+    {
+      "id": "f26f9162-15b2-504b-aaa3-6a846954aed0",
+      "question": "「雑誌」の「誌」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["し"],
+      "correct": 0,
+      "explanation": "誌（し）: 定期的に発行される冊子。雑誌・日誌などに使う"
+    },
+    {
+      "id": "da4db04c-2919-52dd-bcf4-a419c1d9831f",
+      "question": "「磁石」の「磁」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["じ"],
+      "correct": 0,
+      "explanation": "磁（じ）: 鉄を引き付ける力・磁気のこと。磁石・磁場などに使う"
+    },
+    {
+      "id": "9990de98-ccaa-5c99-a1d0-d1bfa80e281f",
+      "question": "「射る」の「射」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["い"],
+      "correct": 0,
+      "explanation": "射（い）る: 矢や弾を放つこと。「しゃ」（音読み）とも読む"
+    },
+    {
+      "id": "f5c53869-002f-53a0-a324-28abdafca966",
+      "question": "「捨てる」の「捨」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["す"],
+      "correct": 0,
+      "explanation": "捨（す）てる: 不要なものを取り除くこと。「しゃ」（音読み）とも読む"
+    },
+    {
+      "id": "170edf67-797b-5e83-82f8-940d908cf4c8",
+      "question": "「尺度」の「尺」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["しゃく"],
+      "correct": 0,
+      "explanation": "尺（しゃく）: 長さの単位・ものさし。尺度・縮尺などに使う"
+    },
+    {
+      "id": "6b2e2808-4200-590f-92fe-d7798f63418d",
+      "question": "「樹木」の「樹」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["じゅ"],
+      "correct": 0,
+      "explanation": "樹（じゅ）: 木・立木のこと。樹木・樹林などに使う。訓読みは「き」"
+    },
+    {
+      "id": "6ad9f1d7-ad2f-502b-a457-8502dcbb0082",
+      "question": "「宗教」の「宗」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["しゅう"],
+      "correct": 0,
+      "explanation": "宗（しゅう）: 神仏を信じる教え・一族の中心。宗教・宗派などに使う"
+    },
+    {
+      "id": "3dd20e01-99eb-502e-8751-8e44757b42d7",
+      "question": "「縦」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["たて"],
+      "correct": 0,
+      "explanation": "縦（たて）: 上下の方向。横の反対。「じゅう」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade5"]
+}

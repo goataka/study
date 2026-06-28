@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-17",
+  "categoryName": "📖 読み（161-170字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "05010e10-1323-55b5-9c38-9cb6be45b561",
+      "question": "「一枚」の「枚」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["まい"],
+      "correct": 0,
+      "explanation": "枚（まい）: 薄いものを数える単位。一枚・枚数などに使う"
+    },
+    {
+      "id": "1021abfa-5933-5bdd-ae39-bb2f5deaa177",
+      "question": "「幕」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["まく"],
+      "correct": 0,
+      "explanation": "幕（まく）: 舞台などに張る布・区切り。「ばく」「まく」と読む"
+    },
+    {
+      "id": "5fe48990-4ec8-5e99-a366-2aeffc2846de",
+      "question": "「秘密」の「密」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["みつ"],
+      "correct": 0,
+      "explanation": "密（みつ）: 隠していること・細かくびっしりしていること。秘密・密接などに使う"
+    },
+    {
+      "id": "a58aed03-2975-5b83-a912-98e626426d0f",
+      "question": "「同盟」の「盟」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["めい"],
+      "correct": 0,
+      "explanation": "盟（めい）: 誓い合って結ぶ約束・団体。同盟・連盟などに使う"
+    },
+    {
+      "id": "05684494-01e5-5562-88fd-05dee0d21b7f",
+      "question": "「模型」の「模」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["も"],
+      "correct": 0,
+      "explanation": "模（も）: 形を写したもの・手本のこと。模型・模倣などに使う"
+    },
+    {
+      "id": "62eb52aa-ff57-5964-9b9f-7e2095549f27",
+      "question": "「訳」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["わけ"],
+      "correct": 0,
+      "explanation": "訳（わけ）: 理由・意味のこと。「やく」（音読み）とも読む"
+    },
+    {
+      "id": "2faa3abe-a792-5d5d-95f2-345b2fa49097",
+      "question": "「欲しい」の「欲」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ほ"],
+      "correct": 0,
+      "explanation": "欲（ほ）しい: 手に入れたいと思うこと。「よく」（音読み）とも読む"
+    },
+    {
+      "id": "7adaa76d-1420-5a91-86fb-f422f7c570d4",
+      "question": "「翌日」の「翌」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["よく"],
+      "correct": 0,
+      "explanation": "翌（よく）: 次の・その次のこと。翌日・翌年などに使う"
+    },
+    {
+      "id": "41f8be4b-bf49-5f4c-89ae-2753384f86a0",
+      "question": "「乱れる」の「乱」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["みだ"],
+      "correct": 0,
+      "explanation": "乱（みだ）れる: 整っていたものが崩れること。「らん」（音読み）とも読む"
+    },
+    {
+      "id": "6a09027d-2047-5c2a-a94d-9e667cbfc107",
+      "question": "「一覧」の「覧」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["らん"],
+      "correct": 0,
+      "explanation": "覧（らん）: 見ること・見渡すこと。一覧・観覧などに使う"
+    }
+  ],
+  "prerequisites": ["kanji-grade5"]
+}

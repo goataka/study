@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-writing-11",
+  "categoryName": "✏️ 書き（101-110字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "83d1bad7-9cda-5976-806f-893a9e89347f",
+      "question": "「しめす」の「しめ」を漢字で書いてください",
+      "choices": ["示"],
+      "correct": 0,
+      "explanation": "「しめす」の「しめ」は「示」と書く。表して知らせること。「じ」「し」（音読み）とも読む"
+    },
+    {
+      "id": "511ff90f-675a-5fdb-9bc7-f13173c29d86",
+      "question": "「にる」の「に」を漢字で書いてください",
+      "choices": ["似"],
+      "correct": 0,
+      "explanation": "「にる」の「に」は「似」と書く。同じように見えること・そっくりなこと。「じ」（音読み）とも読む"
+    },
+    {
+      "id": "9d1cb3ec-6f72-5f2a-b094-c10ba3326c99",
+      "question": "「しき」を漢字で書いてください",
+      "choices": ["識"],
+      "correct": 0,
+      "explanation": "「しき」は「識」と書く。知ること・理解すること。「知識」（ちしき）は知っていること"
+    },
+    {
+      "id": "63ef1d6a-8057-591e-aa45-f002da0ba386",
+      "question": "「しつ」を漢字で書いてください",
+      "choices": ["質"],
+      "correct": 0,
+      "explanation": "「しつ」は「質」と書く。内容・性質のこと。「質問」（しつもん）は聞くこと"
+    },
+    {
+      "id": "e88c20b0-e273-5ba7-9c75-0be32ffc8f8e",
+      "question": "「しゃ」を漢字で書いてください",
+      "choices": ["舎"],
+      "correct": 0,
+      "explanation": "「しゃ」は「舎」と書く。建物のこと。「校舎」（こうしゃ）は学校の建物"
+    },
+    {
+      "id": "1ee3d128-fe58-5dbb-a6e8-2e57f97de0c9",
+      "question": "「あやまる」の「あやま」を漢字で書いてください",
+      "choices": ["謝"],
+      "correct": 0,
+      "explanation": "「あやまる」の「あやま」は「謝」と書く。悪いことをしたと詫びること。「しゃ」（音読み）とも読む"
+    },
+    {
+      "id": "4b2c71ed-d8c6-523c-9771-f10593327fc3",
+      "question": "「さずける」の「さず」を漢字で書いてください",
+      "choices": ["授"],
+      "correct": 0,
+      "explanation": "「さずける」の「さず」は「授」と書く。与えること・教えること。「じゅ」（音読み）とも読む"
+    },
+    {
+      "id": "49925218-4695-5c62-a53e-0e399c12e29d",
+      "question": "「おさめる」の「おさ」を漢字で書いてください",
+      "choices": ["修"],
+      "correct": 0,
+      "explanation": "「おさめる」の「おさ」は「修」と書く。学問などを身につけること。「しゅう」（音読み）とも読む"
+    },
+    {
+      "id": "b428ca4f-fb1c-5996-ad3e-87b23b6f5137",
+      "question": "「のべる」の「の」を漢字で書いてください",
+      "choices": ["述"],
+      "correct": 0,
+      "explanation": "「のべる」の「の」は「述」と書く。言葉で表すこと・説明すること。「じゅつ」（音読み）とも読む"
+    },
+    {
+      "id": "0ea89b59-9e5f-55ca-9ec3-12639facba15",
+      "question": "「じゅん」を漢字で書いてください",
+      "choices": ["準"],
+      "correct": 0,
+      "explanation": "「じゅん」は「準」と書く。標準・用意すること。「準備」（じゅんび）は前もって用意すること"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "prerequisites": ["kanji-grade5"]
+}

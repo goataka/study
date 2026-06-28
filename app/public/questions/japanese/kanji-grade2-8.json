@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-8",
+  "categoryName": "📖 読み（71-80字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "16e38b96-2546-5ca1-8492-0f0ec1d42f7a",
+      "question": "「新しい」の「新」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あたら"],
+      "correct": 0,
+      "explanation": "新（あたら）しい: できたばかりのこと。「しん」（音読み）とも読む"
+    },
+    {
+      "id": "4cad28c5-699b-5a27-9dde-20fa88b7c802",
+      "question": "「親」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おや"],
+      "correct": 0,
+      "explanation": "親（おや）: 父や母のこと。「しん」（音読み）とも読む"
+    },
+    {
+      "id": "c5d208e7-3555-5600-9154-e603f0384c27",
+      "question": "「作る」の「作」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["つく"],
+      "correct": 0,
+      "explanation": "作（つく）る: 物を作り上げること。「さく」「さ」（音読み）とも読む"
+    },
+    {
+      "id": "c2cfff46-dfd7-52fe-8a55-abc555ddbec3",
+      "question": "「止まる」の「止」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["と"],
+      "correct": 0,
+      "explanation": "止（と）まる: 動きが止まること。「し」（音読み）とも読む"
+    },
+    {
+      "id": "83761896-463b-5bfd-9804-bcb5f8b1f66e",
+      "question": "「思う」の「思」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おも"],
+      "correct": 0,
+      "explanation": "思（おも）う: 心で感じたり考えたりすること。「し」（音読み）とも読む"
+    },
+    {
+      "id": "ce41a92a-7e31-55e9-802a-58f62561643c",
+      "question": "「通る」の「通」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["とお"],
+      "correct": 0,
+      "explanation": "通（とお）る: 道を通り過ぎること。「つう」（音読み）とも読む"
+    },
+    {
+      "id": "6062725f-cb6e-5681-9716-9bdc72a35a6d",
+      "question": "「地」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ち"],
+      "correct": 0,
+      "explanation": "地（ち）: 大地や土地のこと。「じ」（音読み）とも読む"
+    },
+    {
+      "id": "4da1f5c9-4732-562b-a6db-2ba2c94b853a",
+      "question": "「池」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いけ"],
+      "correct": 0,
+      "explanation": "池（いけ）: 水をたたえた小さなくぼみのこと。「ち」（音読み）とも読む"
+    },
+    {
+      "id": "1f14450f-024d-59b2-88b2-bf4c76dcd9da",
+      "question": "「風」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かぜ"],
+      "correct": 0,
+      "explanation": "風（かぜ）: 空気の流れのこと。「ふう」「ふ」（音読み）とも読む"
+    },
+    {
+      "id": "b1b7c075-0649-57c9-8de8-7fcb098ec164",
+      "question": "「馬」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["うま"],
+      "correct": 0,
+      "explanation": "馬（うま）: 乗り物としても使われる動物。「ば」「ま」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade1"]
+}
