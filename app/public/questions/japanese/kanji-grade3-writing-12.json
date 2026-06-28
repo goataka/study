@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-12",
-  "categoryName": "✏️ 書き（111-120字）",
+  "categoryName": "✏️ 書き（章・乗・神・整・昔・他・対・第・題・炭）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年向けの漢字書き取り問題です。",
+  "description": "小学3年のこのセットでは「章・乗・神・整・昔・他・対・第・題・炭」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "660ca3c4-c50f-57e2-ae8f-481d3df27e52",

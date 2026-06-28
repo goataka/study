@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-17",
-  "categoryName": "✏️ 書き（161-170字）",
+  "categoryName": "✏️ 書き（枚・幕・密・盟・模・訳・欲・翌・乱・覧）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年向けの漢字書き取り問題です。",
+  "description": "小学6年のこのセットでは「枚・幕・密・盟・模・訳・欲・翌・乱・覧」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "081c03bd-2ce2-50b5-8b24-fb27141dccf2",

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-16",
-  "categoryName": "✏️ 書き（151-160字）",
+  "categoryName": "✏️ 書き（否・秘・腹・奮・陛・片・暮・宝・亡・棒）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年向けの漢字書き取り問題です。",
+  "description": "小学6年のこのセットでは「否・秘・腹・奮・陛・片・暮・宝・亡・棒」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "cbf3a062-b0f2-5fbc-a5ae-6a5041dfc82c",

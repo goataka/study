@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-7",
-  "categoryName": "📖 読み（61-70字）",
+  "categoryName": "📖 読み（机・指揮・貴い・疑う・吸う・胸・故郷・筋・系統・警察）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学6年のこのセットでは「机・指揮・貴い・疑う・吸う・胸・故郷・筋・系統・警察」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade6/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

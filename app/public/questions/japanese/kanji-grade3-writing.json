@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing",
-  "categoryName": "✏️ 書き（1-10字）",
+  "categoryName": "✏️ 書き（明・暗・始・終・泳・練習・世界・感・悲・楽）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年向けの漢字書き取り問題です。",
+  "description": "小学3年のこのセットでは「明・暗・始・終・泳・練習・世界・感・悲・楽」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "6932871b-155e-51d7-9b55-aab973a2fe1c",

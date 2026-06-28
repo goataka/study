@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-5",
-  "categoryName": "📖 読み その１（41-50字）",
+  "categoryName": "📖 読み その１（結論・仮定・比例・変量・依頼・縁・怠る・惜しむ・描く・揺れる）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "中学生のこのセットでは「結論・仮定・比例・変量・依頼・縁・怠る・惜しむ・描く・揺れる」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-secondary/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

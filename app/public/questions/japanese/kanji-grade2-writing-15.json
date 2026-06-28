@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-15",
-  "categoryName": "✏️ 書き（141-150字）",
+  "categoryName": "✏️ 書き（社・内・記・茶・理・矢・科・合・用・毛）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年向けの漢字書き取り問題です。",
+  "description": "小学2年のこのセットでは「社・内・記・茶・理・矢・科・合・用・毛」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "bb1b0ee7-45fe-5f05-adc2-30cf20546288",

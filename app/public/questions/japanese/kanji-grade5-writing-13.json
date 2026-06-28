@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-13",
-  "categoryName": "✏️ 書き（121-130字）",
+  "categoryName": "✏️ 書き（精・製・税・績・接・設・舌・絶・銭・祖）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年向けの漢字書き取り問題です。",
+  "description": "小学5年のこのセットでは「精・製・税・績・接・設・舌・絶・銭・祖」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "891a3a18-70d0-5346-ae07-950c67834984",

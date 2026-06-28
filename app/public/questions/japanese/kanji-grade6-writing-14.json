@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-14",
-  "categoryName": "✏️ 書き（131-140字）",
+  "categoryName": "✏️ 書き（臓・退・担・段・値・著・腸・賃・痛・討）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年向けの漢字書き取り問題です。",
+  "description": "小学6年のこのセットでは「臓・退・担・段・値・著・腸・賃・痛・討」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "c2755f06-cf8f-5f53-a168-bb582d5befbf",

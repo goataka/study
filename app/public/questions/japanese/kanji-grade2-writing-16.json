@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-16",
-  "categoryName": "✏️ 書き（151-160字）",
+  "categoryName": "✏️ 書き（京・当・後・麦・店・元・行・高・谷・早）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年向けの漢字書き取り問題です。",
+  "description": "小学2年のこのセットでは「京・当・後・麦・店・元・行・高・谷・早」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "84588354-58ae-54c5-84ae-50e7e2079dac",

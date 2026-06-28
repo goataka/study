@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-6",
-  "categoryName": "📖 読み（51-60字）",
+  "categoryName": "📖 読み（次・持つ・守る・取る・酒・集まる・住む・重い・所・暑い）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学3年のこのセットでは「次・持つ・守る・取る・酒・集まる・住む・重い・所・暑い」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade3/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

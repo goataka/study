@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-2",
-  "categoryName": "📖 読み その１（11-20字）",
+  "categoryName": "📖 読み その１（繁栄・哲学・本質・価値観・象徴・喜ぶ・怒る・悩む・企業・現象）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "中学生のこのセットでは「繁栄・哲学・本質・価値観・象徴・喜ぶ・怒る・悩む・企業・現象」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-secondary/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

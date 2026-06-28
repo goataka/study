@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-18",
-  "categoryName": "✏️ 書き（171-180字）",
+  "categoryName": "✏️ 書き（由・油・有・遊・予・羊・洋・葉・陽・落）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年向けの漢字書き取り問題です。",
+  "description": "小学3年のこのセットでは「由・油・有・遊・予・羊・洋・葉・陽・落」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "0319b920-8f66-58af-a113-b4d8dc3b7b4e",

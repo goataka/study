@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-18",
-  "categoryName": "✏️ 書き（171-177字）",
+  "categoryName": "✏️ 書き（律・留・勢・支・織・資・限）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年向けの漢字書き取り問題です。",
+  "description": "小学5年のこのセットでは「律・留・勢・支・織・資・限」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "41add052-8c5b-5a37-8549-918dc6ea6588",

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-15",
-  "categoryName": "✏️ 書き（141-150字）",
+  "categoryName": "✏️ 書き（党・届・難・乳・俳・拝・背・肺・班・晩）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年向けの漢字書き取り問題です。",
+  "description": "小学6年のこのセットでは「党・届・難・乳・俳・拝・背・肺・班・晩」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "1683e4fd-a75b-52fe-a5bc-c4c600ed5d6a",

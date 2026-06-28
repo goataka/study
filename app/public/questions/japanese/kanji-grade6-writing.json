@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing",
-  "categoryName": "✏️ 書き（1-10字）",
+  "categoryName": "✏️ 書き（宇宙・憲法・批判・探求・異・革命・展望・縮小・複雑・純粋）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年向けの漢字書き取り問題です。",
+  "description": "小学6年のこのセットでは「宇宙・憲法・批判・探求・異・革命・展望・縮小・複雑・純粋」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "686e875b-1835-5f16-b56e-e531e29a3e09",

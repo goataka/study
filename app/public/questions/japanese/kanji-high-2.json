@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-high-2",
-  "categoryName": "📖 読み その２（11-20字）",
+  "categoryName": "📖 読み その２（漸次・顕著・曖昧・斟酌・忸怩・懊悩・憔悴・蹉跌・矜持・僭越）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "羅・曖・昧・冶",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生で習う漢字の読み方（訓読み・音読み）をさらに覚えます。",
+  "description": "中学生のこのセットでは「漸次・顕著・曖昧・斟酌・忸怩・懊悩・憔悴・蹉跌・矜持・僭越」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-high/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

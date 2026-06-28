@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-7",
-  "categoryName": "✏️ 書き（61-70字）",
+  "categoryName": "✏️ 書き（格・額・刊・幹・慣・眼・寄・久・旧・居）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年向けの漢字書き取り問題です。",
+  "description": "小学5年のこのセットでは「格・額・刊・幹・慣・眼・寄・久・旧・居」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "a2c736f9-627b-5a0c-8ae1-1ef4228c37d3",

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-writing-2",
-  "categoryName": "✏️ 書き その１（11-20字）",
+  "categoryName": "✏️ 書き その１（繁栄・哲学・本質・価値観・象徴・喜・怒・悩・企業・現象）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生向けの漢字書き取り問題です。",
+  "description": "中学生のこのセットでは「繁栄・哲学・本質・価値観・象徴・喜・怒・悩・企業・現象」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "2a9bd8bf-14c2-55f9-80ad-8b949fb160b8",

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-13",
-  "categoryName": "✏️ 書き（121-130字）",
+  "categoryName": "✏️ 書き（博物館・ご飯・費用・投票・夫・府・副会長・粉・便利・包）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年向けの漢字書き取り問題です。",
+  "description": "小学4年のこのセットでは「博物館・ご飯・費用・投票・夫・府・副会長・粉・便利・包」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "1d2656d8-ba94-5911-b783-42747504a7b1",
