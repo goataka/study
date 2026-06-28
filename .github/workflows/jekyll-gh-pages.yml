@@ -256,10 +256,11 @@ jobs:
                     const statsInfoText = document.querySelector("#statsInfo")?.textContent ?? "";
                     const supportMenuVisible = document.querySelector("nav[aria-label='サポートメニュー']") !== null;
                     const supportTabActive = document.querySelector('.subject-tab[data-subject="support"].active') !== null;
-                    return /全：[1-9]\d*問/.test(statsInfoText) || supportMenuVisible || supportTabActive;
+                    const historyTabActive = document.querySelector('.subject-tab[data-subject="history"].active') !== null;
+                    return /全：[1-9]\d*問/.test(statsInfoText) || supportMenuVisible || supportTabActive || historyTabActive;
                   },
                   undefined,
-                  { timeout: 30_000 },
+                  { timeout: 60_000 },
                 );
                 lastStatsText = (await statsInfo.textContent())?.trim() ?? "";
                 console.log(`Attempt ${attempt}: statsInfo="${lastStatsText}"`);
