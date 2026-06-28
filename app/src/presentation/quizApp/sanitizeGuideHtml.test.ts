@@ -80,6 +80,25 @@ describe("sanitizeGuideHtml 関数", () => {
     expect(out).toContain('href="#frag"');
     expect(out).toContain('href="./rel"');
   });
+
+  it("baseUrl を渡すと相対 img src を絶対 URL へ解決する", () => {
+    const html = `<html><body><img src="../images/01-header.png"></body></html>`;
+    const out = sanitizeGuideHtml(html, "https://example.com/support/operation-header/");
+    expect(out).toContain('src="https://example.com/support/images/01-header.png"');
+  });
+
+  it("baseUrl 省略時は src を書き換えない", () => {
+    const html = `<html><body><img src="../images/01-header.png"></body></html>`;
+    const out = sanitizeGuideHtml(html);
+    expect(out).toContain('src="../images/01-header.png"');
+  });
+
+  it("baseUrl を渡しても href（ハッシュ・相対）は書き換えない", () => {
+    const html = `<html><body><a href="#subject=english">x</a><a href="./rel">y</a></body></html>`;
+    const out = sanitizeGuideHtml(html, "https://example.com/support/operation-header/");
+    expect(out).toContain('href="#subject=english"');
+    expect(out).toContain('href="./rel"');
+  });
 });
 
 describe("isExternalGuideUrl 関数", () => {

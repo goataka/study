@@ -365,9 +365,15 @@ describe("guideUrl — support/ 側の guide.md 存在チェック", () => {
 
 describe("operation-guide.md — マニュアル画像参照チェック", () => {
   it("機能リファレンスの画像参照が相対パスで、support/images 配下に実在する", () => {
-    const operationGuidePath = path.join(SUPPORT_DIR, "operation-guide.md");
-    const markdown = fs.readFileSync(operationGuidePath, "utf-8");
-    const imageRefs = Array.from(markdown.matchAll(/!\[[^\]]*]\(([^)]+)\)/g), (match) => match[1]);
+    const referenceFiles = fs.readdirSync(SUPPORT_DIR).filter((name) => /^operation-.*\.md$/.test(name));
+
+    expect(referenceFiles.length).toBeGreaterThan(0);
+
+    const imageRefs: string[] = [];
+    for (const file of referenceFiles) {
+      const markdown = fs.readFileSync(path.join(SUPPORT_DIR, file), "utf-8");
+      imageRefs.push(...Array.from(markdown.matchAll(/!\[[^\]]*]\(([^)]+)\)/g), (match) => match[1]));
+    }
 
     expect(imageRefs.length).toBeGreaterThan(0);
 

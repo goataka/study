@@ -54,7 +54,8 @@ export function GuideContent({ guideUrl }: GuideContentProps): React.JSX.Element
       })
       .then((html) => {
         if (cancelled) return;
-        setState({ kind: "ready", url: guideUrl, html: sanitizeGuideHtml(html) });
+        const baseUrl = new URL(resolveGuideFetchUrl(guideUrl), window.location.href).href;
+        setState({ kind: "ready", url: guideUrl, html: sanitizeGuideHtml(html, baseUrl) });
       })
       .catch((err) => {
         if (cancelled) return;

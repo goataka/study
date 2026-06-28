@@ -4,9 +4,9 @@
  * 左列:
  *   - はじめに（サポートトップの md を表示）
  *   - 使い方（🚀 スタートアップ / 📅 毎日の使い方 / 🔖 教科指定の使い方 の3タブで各 md を表示）
+ *   - 機能リファレンス（画面・パーツ毎のサブタブで各 md を表示）
  *   - 教科・単元（CategoryRegistry データから動的生成）
  *   - トラブルシューティング（troubleshooting.md を表示）
- *   - 機能リファレンス（operation-guide.md を表示）
  *
  * 右列: 各メニューに対応するコンテンツをタブで表示する。
  */
@@ -33,9 +33,9 @@ export interface SupportMenuItem {
 export const SUPPORT_MENU_ITEMS: readonly [SupportMenuItem, ...SupportMenuItem[]] = [
   { id: "intro", label: "🏠 はじめに" },
   { id: "usage", label: "📖 使い方" },
+  { id: "reference", label: "🖥️ 機能リファレンス" },
   { id: "contents", label: "📚 教科・単元" },
   { id: "troubleshooting", label: "❓ トラブルシューティング" },
-  { id: "reference", label: "🖥️ 機能リファレンス" },
 ];
 
 // ─── サブタブ定義 ──────────────────────────────────────────────────────────
@@ -50,6 +50,17 @@ const USAGE_TABS: readonly [SubTab, ...SubTab[]] = [
   { id: "startup", label: "🚀 スタートアップ", url: "../support/startup-guide/" },
   { id: "daily", label: "📅 毎日の使い方", url: "../support/daily-guide/" },
   { id: "subject", label: "🔖 教科指定の使い方", url: "../support/subject-guide/" },
+];
+
+const REFERENCE_TABS: readonly [SubTab, ...SubTab[]] = [
+  { id: "header", label: "🧭 ヘッダー", url: "../support/operation-header/" },
+  { id: "start", label: "🚀 スタート画面", url: "../support/operation-start/" },
+  { id: "quiz", label: "✏️ 問題画面", url: "../support/operation-quiz/" },
+  { id: "result", label: "🏁 結果画面", url: "../support/operation-result/" },
+  { id: "progress", label: "📈 進度タブ", url: "../support/operation-progress/" },
+  { id: "guide", label: "📖 ガイドタブ", url: "../support/operation-guide-tab/" },
+  { id: "admin", label: "⚙️ 管理タブ", url: "../support/operation-admin/" },
+  { id: "misc", label: "🔧 全体・その他", url: "../support/operation-misc/" },
 ];
 
 // ─── コンテンツ一覧データ型 ────────────────────────────────────────────────
@@ -255,9 +266,9 @@ export function SupportContentDisplay(): React.JSX.Element {
     >
       {activeMenuId === "intro" && <SupportIntroContent />}
       {activeMenuId === "usage" && <SupportSubTabContent tabs={USAGE_TABS} namespace="usage" />}
+      {activeMenuId === "reference" && <SupportSubTabContent tabs={REFERENCE_TABS} namespace="reference" />}
       {activeMenuId === "contents" && <SupportDynamicContentsDisplay />}
       {activeMenuId === "troubleshooting" && <SupportSingleGuide guideUrl="../support/troubleshooting/" />}
-      {activeMenuId === "reference" && <SupportSingleGuide guideUrl="../support/operation-guide/" />}
     </div>
   );
 }

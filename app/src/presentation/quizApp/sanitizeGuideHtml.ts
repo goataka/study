@@ -41,12 +41,32 @@ function isSafeGuideUrl(raw: string | null): boolean {
 }
 
 /**
+ * 相対 URL を基準 URL に対して解決し、絶対 URL 文字列を返す。
+ * フラグメント（`#...`）やクエリ（`?...`）のみのリンク、既に絶対 URL のものは
+ * SPA ナビゲーションや既存挙動を壊さないため書き換え対象外（null を返す）とする。
+ */
+function resolveRelativeUrl(value: string, baseUrl: string): string | null {
+  const trimmed = value.trim();
+  if (trimmed === "" || trimmed.startsWith("#") || trimmed.startsWith("?")) return null;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed) || trimmed.startsWith("//")) return null;
+  try {
+    return new URL(trimmed, baseUrl).href;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * 解説 HTML をサニタイズして表示用の本体 HTML 文字列を返す。
  *
  * @param html 同一オリジンから fetch した生の HTML
+ * @param baseUrl 画像など相対 URL を解決するための基準 URL（解説ページの URL）。
+ *   省略時は相対 URL の書き換えを行わない。注入先（アプリ）の URL と解説ページの
+ *   ディレクトリが異なる場合、相対 `src`（例: `../images/foo.png`）が壊れるため、
+ *   解説ページ URL を基準に絶対 URL へ解決して画像が表示されるようにする。
  * @returns `<body>` 内の innerHTML（GitHub Pages 系装飾要素を除去した状態）
  */
-export function sanitizeGuideHtml(html: string): string {
+export function sanitizeGuideHtml(html: string, baseUrl?: string): string {
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, "text/html");
 
@@ -71,6 +91,12 @@ export function sanitizeGuideHtml(html: string): string {
       if (name === "href" || name === "src" || name === "xlink:href" || name === "formaction" || name === "action") {
         if (!isSafeGuideUrl(attr.value)) {
           el.removeAttribute(attr.name);
+          return;
+        }
+        // 画像等の相対 src のみ baseUrl 基準で絶対 URL へ解決する（href は対象外）
+        if (name === "src" && baseUrl) {
+          const resolved = resolveRelativeUrl(attr.value, baseUrl);
+          if (resolved !== null) el.setAttribute(attr.name, resolved);
         }
       }
     });
