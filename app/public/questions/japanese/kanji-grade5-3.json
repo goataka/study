@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-3",
-  "categoryName": "📖 読み（過去・確実・基礎・義務・逆転・禁止・現在・個人・増加・断る）",
+  "categoryName": "📖 読み（過去確実基礎義務逆転禁止現在個人増加断）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「過去・確実・基礎・義務・逆転・禁止・現在・個人・増加・断る」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「過去確実基礎義務逆転禁止現在個人増加断」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-3/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "a7e78669-9361-57b3-b1ba-896eb2d91bb0",
       "question": "「過去」の読み方をひらがなで書いてください",
-      "choices": ["かこ"],
+      "choices": [
+        "かこ"
+      ],
       "correct": 0,
       "explanation": "過去（かこ）: 以前のこと・すでに過ぎた時"
     },
     {
       "id": "5a461217-a5a5-57e7-a318-abc68a650ccc",
       "question": "「確実」の読み方をひらがなで書いてください",
-      "choices": ["かくじつ"],
+      "choices": [
+        "かくじつ"
+      ],
       "correct": 0,
       "explanation": "確実（かくじつ）: まちがいなく確かなこと"
     },
     {
       "id": "4d037218-13a6-5406-8c27-40af319283d1",
       "question": "「基礎」の読み方をひらがなで書いてください",
-      "choices": ["きそ"],
+      "choices": [
+        "きそ"
+      ],
       "correct": 0,
       "explanation": "基礎（きそ）: 物の土台・基本となること"
     },
     {
       "id": "ade6e5ea-16b1-5759-ad59-f0b321e3aa80",
       "question": "「義務」の読み方をひらがなで書いてください",
-      "choices": ["ぎむ"],
+      "choices": [
+        "ぎむ"
+      ],
       "correct": 0,
       "explanation": "義務（ぎむ）: 必ずしなければならないこと"
     },
     {
       "id": "1ccc8ec8-7961-57bb-952c-5229f70a4bf0",
       "question": "「逆転」の読み方をひらがなで書いてください",
-      "choices": ["ぎゃくてん"],
+      "choices": [
+        "ぎゃくてん"
+      ],
       "correct": 0,
       "explanation": "逆転（ぎゃくてん）: 形勢が反対になること"
     },
     {
       "id": "0340defa-353f-5f52-9298-aedfa241dcf7",
       "question": "「禁止」の読み方をひらがなで書いてください",
-      "choices": ["きんし"],
+      "choices": [
+        "きんし"
+      ],
       "correct": 0,
       "explanation": "禁止（きんし）: してはいけないこと"
     },
     {
       "id": "13f61951-a32c-5728-8e3c-d328cbc232fd",
       "question": "「現在」の読み方をひらがなで書いてください",
-      "choices": ["げんざい"],
+      "choices": [
+        "げんざい"
+      ],
       "correct": 0,
       "explanation": "現在（げんざい）: 今のこと"
     },
     {
       "id": "47a54980-a727-5f68-a65a-1875f796181d",
       "question": "「個人」の読み方をひらがなで書いてください",
-      "choices": ["こじん"],
+      "choices": [
+        "こじん"
+      ],
       "correct": 0,
       "explanation": "個人（こじん）: 一人ひとりのこと"
     },
     {
       "id": "08bf0073-fee8-5517-93e5-0f862185149c",
       "question": "「増加」の読み方をひらがなで書いてください",
-      "choices": ["ぞうか"],
+      "choices": [
+        "ぞうか"
+      ],
       "correct": 0,
       "explanation": "増加（ぞうか）: 数や量が多くなること"
     },
     {
       "id": "9da044ec-d25b-5b47-8f1f-e9443093ebdd",
       "question": "「断る」の「断」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ことわ"],
+      "choices": [
+        "ことわ"
+      ],
       "correct": 0,
       "explanation": "断（ことわ）る: 申し出を受け入れないこと。「だん」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade4"]
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

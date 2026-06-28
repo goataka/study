@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-writing-2",
-  "categoryName": "✏️ 書き その１（繁栄・哲学・本質・価値観・象徴・喜・怒・悩・企業・現象）",
+  "categoryName": "✏️ 書き その１（繁栄哲学本質価値観象徴喜怒悩企業現象）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「繁栄・哲学・本質・価値観・象徴・喜・怒・悩・企業・現象」の漢字の書き取りを練習します。",
+  "description": "中学生のこのセットでは「繁栄哲学本質価値観象徴喜怒悩企業現象」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "2a9bd8bf-14c2-55f9-80ad-8b949fb160b8",
       "question": "「はんえい」を漢字で書いてください",
-      "choices": ["繁栄"],
+      "choices": [
+        "繁栄"
+      ],
       "correct": 0,
       "explanation": "「はんえい」は「繁栄」と書く。豊かに栄えること"
     },
     {
       "id": "b95048e1-2c3c-516a-b0e3-ac728b5d0839",
       "question": "「てつがく」を漢字で書いてください",
-      "choices": ["哲学"],
+      "choices": [
+        "哲学"
+      ],
       "correct": 0,
       "explanation": "「てつがく」は「哲学」と書く。物事の根本的な意味を考える学問"
     },
     {
       "id": "44368710-c136-5a2f-b709-4f63907796a9",
       "question": "「ほんしつ」を漢字で書いてください",
-      "choices": ["本質"],
+      "choices": [
+        "本質"
+      ],
       "correct": 0,
       "explanation": "「ほんしつ」は「本質」と書く。物事の根本・真の姿"
     },
     {
       "id": "9e8cd89d-5f16-58ff-92ce-25a9e159181a",
       "question": "「かちかん」を漢字で書いてください",
-      "choices": ["価値観"],
+      "choices": [
+        "価値観"
+      ],
       "correct": 0,
       "explanation": "「かちかん」は「価値観」と書く。何に価値があるかについての考え方"
     },
     {
       "id": "fa8afbb7-1f04-5c21-a805-1f7c6f0f4df6",
       "question": "「しょうちょう」を漢字で書いてください",
-      "choices": ["象徴"],
+      "choices": [
+        "象徴"
+      ],
       "correct": 0,
       "explanation": "「しょうちょう」は「象徴」と書く。何かを表すものやしるし"
     },
     {
       "id": "63e1e275-58ae-50d9-ad2b-61fd8e0b2edc",
       "question": "「よろこぶ」の「よろこ」を漢字で書いてください",
-      "choices": ["喜"],
+      "choices": [
+        "喜"
+      ],
       "correct": 0,
       "explanation": "「よろこぶ」の「よろこ」は「喜」と書く。うれしく思うこと・楽しく感じること"
     },
     {
       "id": "17a08332-23b9-50cb-821a-0e25736b4644",
       "question": "「おこる」の「おこ」を漢字で書いてください",
-      "choices": ["怒"],
+      "choices": [
+        "怒"
+      ],
       "correct": 0,
       "explanation": "「おこる」の「おこ」は「怒」と書く。腹を立てること・激しく感情をあらわにすること"
     },
     {
       "id": "3471b521-c7f7-5484-93cf-c15eb3a01ec6",
       "question": "「なやむ」の「なや」を漢字で書いてください",
-      "choices": ["悩"],
+      "choices": [
+        "悩"
+      ],
       "correct": 0,
       "explanation": "「なやむ」の「なや」は「悩」と書く。どうしたらよいか迷い苦しむこと"
     },
     {
       "id": "bcbba16a-435b-5066-895c-4cfb5f1db8fd",
       "question": "「きぎょう」を漢字で書いてください",
-      "choices": ["企業"],
+      "choices": [
+        "企業"
+      ],
       "correct": 0,
       "explanation": "「きぎょう」は「企業」と書く。利益を目的として事業を行う組織"
     },
     {
       "id": "4fbd0e36-31c9-5d22-ad0a-e75a2e4a0c9c",
       "question": "「げんしょう」を漢字で書いてください",
-      "choices": ["現象"],
+      "choices": [
+        "現象"
+      ],
       "correct": 0,
       "explanation": "「げんしょう」は「現象」と書く。目に見える形で現れた出来事や状態"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
-  "prerequisites": ["kanji-secondary"]
+  "guideUrl": "./japanese/kanji/kanji-secondary-2/guide",
+  "prerequisites": [
+    "kanji-secondary"
+  ]
 }

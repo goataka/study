@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-7",
-  "categoryName": "✏️ 書き（机・揮・貴・疑・吸・胸・郷・筋・系・警）",
+  "categoryName": "✏️ 書き（机揮貴疑吸胸郷筋系警）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「机・揮・貴・疑・吸・胸・郷・筋・系・警」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「机揮貴疑吸胸郷筋系警」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "c40e9d4f-15ee-52f1-b34d-0468097eadf1",
       "question": "「つくえ」を漢字で書いてください",
-      "choices": ["机"],
+      "choices": [
+        "机"
+      ],
       "correct": 0,
       "explanation": "「つくえ」は「机」と書く。本や物を置いて使う台。「き」（音読み）とも読む"
     },
     {
       "id": "97aff8f1-9d89-5fca-8136-69f694504851",
       "question": "「き」を漢字で書いてください",
-      "choices": ["揮"],
+      "choices": [
+        "揮"
+      ],
       "correct": 0,
       "explanation": "「き」は「揮」と書く。指揮・発揮など、力をふるうこと。「き」（音読み）とのみ読む"
     },
     {
       "id": "6f8b0d33-93da-5e88-b587-d373646d6b56",
       "question": "「とうとい」の「とうと」を漢字で書いてください",
-      "choices": ["貴"],
+      "choices": [
+        "貴"
+      ],
       "correct": 0,
       "explanation": "「とうとい」の「とうと」は「貴」と書く。価値が高く大切なこと。「き」（音読み）とも読む"
     },
     {
       "id": "d084d747-9a0b-53b8-b567-a4071c3ead2e",
       "question": "「うたがう」の「うたが」を漢字で書いてください",
-      "choices": ["疑"],
+      "choices": [
+        "疑"
+      ],
       "correct": 0,
       "explanation": "「うたがう」の「うたが」は「疑」と書く。本当かどうか確かでないと思うこと。「ぎ」（音読み）とも読む"
     },
     {
       "id": "20ec7eb7-0593-503a-833a-30137deef34f",
       "question": "「すう」の「す」を漢字で書いてください（息や液体を体の中に取り込むこと）",
-      "choices": ["吸"],
+      "choices": [
+        "吸"
+      ],
       "correct": 0,
       "explanation": "「すう」の「す」は「吸」と書く。息や液体を体の中に取り込むこと。「きゅう」（音読み）とも読む"
     },
     {
       "id": "1be783e1-c268-5931-9845-63bb5dc171ef",
       "question": "「むね」を漢字で書いてください",
-      "choices": ["胸"],
+      "choices": [
+        "胸"
+      ],
       "correct": 0,
       "explanation": "「むね」は「胸」と書く。体の前の部分・心のこと。「きょう」（音読み）とも読む"
     },
     {
       "id": "3f98c029-f7de-54f9-987b-54d37d255683",
       "question": "「きょう」を漢字で書いてください",
-      "choices": ["郷"],
+      "choices": [
+        "郷"
+      ],
       "correct": 0,
       "explanation": "「きょう」は「郷」と書く。生まれ育った土地・ふるさと。故郷・郷土などに使う"
     },
     {
       "id": "7b3833ba-57e4-5754-9bfd-cded970e870b",
       "question": "「すじ」を漢字で書いてください",
-      "choices": ["筋"],
+      "choices": [
+        "筋"
+      ],
       "correct": 0,
       "explanation": "「すじ」は「筋」と書く。体の筋肉・話の流れ。「きん」（音読み）とも読む"
     },
     {
       "id": "068afdc9-7f20-5f5c-9215-ad4ac642ebba",
       "question": "「けい」を漢字で書いてください（つながり・系列のこと）",
-      "choices": ["系"],
+      "choices": [
+        "系"
+      ],
       "correct": 0,
       "explanation": "「けい」は「系」と書く。つながり・系列のこと。系統・体系などに使う"
     },
     {
       "id": "7799470d-687e-518b-8e7c-69ff038a6e75",
       "question": "「けい」を漢字で書いてください（危険を知らせること・取り締まること）",
-      "choices": ["警"],
+      "choices": [
+        "警"
+      ],
       "correct": 0,
       "explanation": "「けい」は「警」と書く。危険を知らせること・取り締まること。警察・警告などに使う"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
-  "prerequisites": ["kanji-grade6"]
+  "guideUrl": "./japanese/kanji/kanji-grade6-7/guide",
+  "prerequisites": [
+    "kanji-grade6"
+  ]
 }

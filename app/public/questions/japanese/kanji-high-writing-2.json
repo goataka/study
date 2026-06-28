@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-high-writing-2",
-  "categoryName": "✏️ 書き その２（漸次・顕著・曖昧・斟酌・忸怩・懊悩・憔悴・蹉跌・矜持・僭越）",
+  "categoryName": "✏️ 書き その２（漸次顕著曖昧斟酌忸怩懊悩憔悴蹉跌矜持僭越）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "羅・曖・昧・冶",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「漸次・顕著・曖昧・斟酌・忸怩・懊悩・憔悴・蹉跌・矜持・僭越」の漢字の書き取りを練習します。",
+  "description": "中学生のこのセットでは「漸次顕著曖昧斟酌忸怩懊悩憔悴蹉跌矜持僭越」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "2826dd22-b594-569a-ba09-6b13cfe71d86",
       "question": "「ぜんじ」を漢字で書いてください",
-      "choices": ["漸次"],
+      "choices": [
+        "漸次"
+      ],
       "correct": 0,
       "explanation": "「ぜんじ」は「漸次」と書く。しだいに・少しずつ"
     },
     {
       "id": "3ad2361e-9224-5f6d-9d46-f63349f8ffa0",
       "question": "「けんちょ」を漢字で書いてください",
-      "choices": ["顕著"],
+      "choices": [
+        "顕著"
+      ],
       "correct": 0,
       "explanation": "「けんちょ」は「顕著」と書く。はっきりと目立つこと"
     },
     {
       "id": "e2875939-14f8-554e-9416-e0777cac7a0f",
       "question": "「あいまい」を漢字で書いてください",
-      "choices": ["曖昧"],
+      "choices": [
+        "曖昧"
+      ],
       "correct": 0,
       "explanation": "「あいまい」は「曖昧」と書く。はっきりしないこと・はっきり判断できないこと"
     },
     {
       "id": "89a87c7f-7314-59e6-a3aa-cac5f55703ab",
       "question": "「しんしゃく」を漢字で書いてください",
-      "choices": ["斟酌"],
+      "choices": [
+        "斟酌"
+      ],
       "correct": 0,
       "explanation": "「しんしゃく」は「斟酌」と書く。相手の事情をくみ取って配慮すること"
     },
     {
       "id": "c337ef78-621e-5a2d-9a41-18149e11f735",
       "question": "「じくじ」を漢字で書いてください",
-      "choices": ["忸怩"],
+      "choices": [
+        "忸怩"
+      ],
       "correct": 0,
       "explanation": "「じくじ」は「忸怩」と書く。恥ずかしくて心苦しいこと（忸怩たる思い）"
     },
     {
       "id": "2679930a-a54b-55ec-8845-ae65d3804b53",
       "question": "「おうのう」を漢字で書いてください",
-      "choices": ["懊悩"],
+      "choices": [
+        "懊悩"
+      ],
       "correct": 0,
       "explanation": "「おうのう」は「懊悩」と書く。思い悩んで苦しむこと・深く煩悶すること"
     },
     {
       "id": "b0a58ea0-483d-5ee3-80f4-5c32845b421f",
       "question": "「しょうすい」を漢字で書いてください",
-      "choices": ["憔悴"],
+      "choices": [
+        "憔悴"
+      ],
       "correct": 0,
       "explanation": "「しょうすい」は「憔悴」と書く。心身ともに疲れ果て、やつれること"
     },
     {
       "id": "376430f7-81f2-506a-bb79-b6ed0ad7bdca",
       "question": "「さてつ」を漢字で書いてください",
-      "choices": ["蹉跌"],
+      "choices": [
+        "蹉跌"
+      ],
       "correct": 0,
       "explanation": "「さてつ」は「蹉跌」と書く。物事が失敗・挫折すること"
     },
     {
       "id": "db8cec2d-bbce-5a24-9121-fe17431c5ec8",
       "question": "「きょうじ」を漢字で書いてください",
-      "choices": ["矜持"],
+      "choices": [
+        "矜持"
+      ],
       "correct": 0,
       "explanation": "「きょうじ」は「矜持」と書く。自分の能力への自信・誇り・プライド"
     },
     {
       "id": "838f9ace-08c4-5218-8faa-6ba58faaf6f0",
       "question": "「せんえつ」を漢字で書いてください",
-      "choices": ["僭越"],
+      "choices": [
+        "僭越"
+      ],
       "correct": 0,
       "explanation": "「せんえつ」は「僭越」と書く。自分の立場を越えた言動をすること（「僭越ながら」）"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-high/guide",
-  "prerequisites": ["kanji-high"]
+  "guideUrl": "./japanese/kanji/kanji-high-2/guide",
+  "prerequisites": [
+    "kanji-high"
+  ]
 }

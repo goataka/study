@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-12",
-  "categoryName": "📖 読み（文章・乗る・神様・整える・昔話・他の人・反対・第一・問題・炭火）",
+  "categoryName": "📖 読み（文章乗神様整昔話他の人反対第一問題炭火）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「文章・乗る・神様・整える・昔話・他の人・反対・第一・問題・炭火」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「文章乗神様整昔話他の人反対第一問題炭火」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-12/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "93f87b00-f133-5da9-8623-7600917f211a",
       "question": "「文章」の「章」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["しょう"],
+      "choices": [
+        "しょう"
+      ],
       "correct": 0,
       "explanation": "章（しょう）: 文のまとまり。「文章」「章立て」など"
     },
     {
       "id": "49581aea-7821-5907-808b-08e3d2d4b3cd",
       "question": "「乗る」の「乗」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["の"],
+      "choices": [
+        "の"
+      ],
       "correct": 0,
       "explanation": "乗（の）る: 乗り物に乗ること。「乗車」（じょうしゃ）とも読む"
     },
     {
       "id": "053a61cd-d12a-5bd7-8370-aa5940392325",
       "question": "「神様」の「神」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かみ"],
+      "choices": [
+        "かみ"
+      ],
       "correct": 0,
       "explanation": "神（かみ）様: 神聖な存在。「しん」（音読み）とも読む"
     },
     {
       "id": "3e43ae1d-51a1-57ac-a1c0-20acc8bf075c",
       "question": "「整える」の「整」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ととの"],
+      "choices": [
+        "ととの"
+      ],
       "correct": 0,
       "explanation": "整（ととの）える: きちんとすること。「整理」（せいり）とも読む"
     },
     {
       "id": "0a8d90a1-0599-5583-bae5-83e9588e2161",
       "question": "「昔話」の「昔」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["むかし"],
+      "choices": [
+        "むかし"
+      ],
       "correct": 0,
       "explanation": "昔（むかし）: 過去のこと。「昔話」「大昔」など"
     },
     {
       "id": "d46a038f-4d95-5adb-9646-885941826c00",
       "question": "「他の人」の「他」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ほか"],
+      "choices": [
+        "ほか"
+      ],
       "correct": 0,
       "explanation": "他（ほか）: それ以外のこと。「た」（音読み）とも読む"
     },
     {
       "id": "3019f615-b6bd-5350-8098-0daab89378e3",
       "question": "「反対」の「対」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["たい"],
+      "choices": [
+        "たい"
+      ],
       "correct": 0,
       "explanation": "対（たい）: 向き合うこと・相手のこと。「反対」「対話」など"
     },
     {
       "id": "f8dce4f5-edba-5692-ad32-9195d8fdcdc8",
       "question": "「第一」の「第」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["だい"],
+      "choices": [
+        "だい"
+      ],
       "correct": 0,
       "explanation": "第（だい）: 順番を表す言葉。「第一」「第二」など"
     },
     {
       "id": "4d816ffb-a23f-5de9-b2fe-9dfb8ad79309",
       "question": "「問題」の「題」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["だい"],
+      "choices": [
+        "だい"
+      ],
       "correct": 0,
       "explanation": "題（だい）: テーマ・問題のこと。「問題」「題名」など"
     },
     {
       "id": "77b61a08-6dd9-515c-aba4-555a1c3d7b5e",
       "question": "「炭火」の「炭」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["すみ"],
+      "choices": [
+        "すみ"
+      ],
       "correct": 0,
       "explanation": "炭（すみ）: 木を焼いて作った燃料。「たん」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

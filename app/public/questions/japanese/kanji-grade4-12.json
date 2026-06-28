@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-12",
-  "categoryName": "📖 読み（浅い・戦う・自然・巣・束・側・卒業・孫・帯・単語）",
+  "categoryName": "📖 読み（浅戦自然巣束側卒業孫帯単語）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「浅い・戦う・自然・巣・束・側・卒業・孫・帯・単語」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "description": "小学4年のこのセットでは「浅戦自然巣束側卒業孫帯単語」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade4-12/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "8103bad4-7a64-5602-8ae2-e207a369bad0",
       "question": "「浅い」の「浅」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あさ"],
+      "choices": [
+        "あさ"
+      ],
       "correct": 0,
       "explanation": "浅（あさ）い: 深くないこと。「せん」（音読み）とも読む"
     },
     {
       "id": "7d02ce75-3630-5ec6-ad3b-6b4e31f544ea",
       "question": "「戦う」の「戦」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["たたか"],
+      "choices": [
+        "たたか"
+      ],
       "correct": 0,
       "explanation": "戦（たたか）う: 争うこと・力で勝ち負けを決めること。「せん」（音読み）とも読む"
     },
     {
       "id": "82ebb78f-a0f3-5aa1-9078-2acf108711f1",
       "question": "「自然」の読み方をひらがなで書いてください",
-      "choices": ["しぜん"],
+      "choices": [
+        "しぜん"
+      ],
       "correct": 0,
       "explanation": "自然（しぜん）: 山・川・空など人が作っていないもの"
     },
     {
       "id": "bd9dd42e-7cb6-5eef-8db4-c6ceca9672fb",
       "question": "「巣」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["す"],
+      "choices": [
+        "す"
+      ],
       "correct": 0,
       "explanation": "巣（す）: 鳥や虫が住む場所。「そう」（音読み）とも読む"
     },
     {
       "id": "6811c8f8-7a4c-5784-b9b0-6659e07014d6",
       "question": "「束」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["たば"],
+      "choices": [
+        "たば"
+      ],
       "correct": 0,
       "explanation": "束（たば）: まとめてくくったもの。「そく」（音読み）とも読む"
     },
     {
       "id": "d04ced14-a50c-5993-a5d9-9be3aef9e627",
       "question": "「側」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["がわ"],
+      "choices": [
+        "がわ"
+      ],
       "correct": 0,
       "explanation": "側（がわ）: ある方向の面・横の部分。「そく」（音読み）とも読む"
     },
     {
       "id": "ddff4a1b-a289-5a0f-83e3-5bfb80b199a5",
       "question": "「卒業」の読み方をひらがなで書いてください",
-      "choices": ["そつぎょう"],
+      "choices": [
+        "そつぎょう"
+      ],
       "correct": 0,
       "explanation": "卒業（そつぎょう）: 学校の課程を終えること"
     },
     {
       "id": "77b7a56f-67a7-58c4-837e-0937e1f9af4a",
       "question": "「孫」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["まご"],
+      "choices": [
+        "まご"
+      ],
       "correct": 0,
       "explanation": "孫（まご）: 子どもの子ども。「そん」（音読み）とも読む"
     },
     {
       "id": "d7b14eb3-ed83-5c7a-a956-a5d015f62ced",
       "question": "「帯」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["おび"],
+      "choices": [
+        "おび"
+      ],
       "correct": 0,
       "explanation": "帯（おび）: 着物を締める布。「たい」（音読み）とも読む"
     },
     {
       "id": "ac483fb8-18d3-5cd1-ba27-154478968f2b",
       "question": "「単語」の読み方をひらがなで書いてください",
-      "choices": ["たんご"],
+      "choices": [
+        "たんご"
+      ],
       "correct": 0,
       "explanation": "単語（たんご）: 一つひとつの言葉のまとまり"
     }
   ],
-  "prerequisites": ["kanji-grade3"]
+  "prerequisites": [
+    "kanji-grade3"
+  ]
 }

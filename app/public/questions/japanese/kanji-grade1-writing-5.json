@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-writing-5",
-  "categoryName": "✏️ 書き（犬・見・五・三・子・四・糸・字・耳・七）",
+  "categoryName": "✏️ 書き（犬見五三子四糸字耳七）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「犬・見・五・三・子・四・糸・字・耳・七」の漢字の書き取りを練習します。",
+  "description": "小学1年のこのセットでは「犬見五三子四糸字耳七」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "e3001f2c-4f94-5b00-bf44-0b80b4a6e15a",
       "question": "「いぬ」を漢字で書いてください",
-      "choices": ["犬"],
+      "choices": [
+        "犬"
+      ],
       "correct": 0,
       "explanation": "「いぬ」は「犬」と書く。人と仲良く暮らす動物のこと。「けん」（音読み）とも読む"
     },
     {
       "id": "8945f01e-651a-55cb-ba6f-60c3cb68301e",
       "question": "「みる」の「み」を漢字で書いてください",
-      "choices": ["見"],
+      "choices": [
+        "見"
+      ],
       "correct": 0,
       "explanation": "「みる」の「み」は「見」と書く。目で確かめること。「けん」（音読み）とも読む"
     },
     {
       "id": "9c4719e8-1860-5bd1-800d-a74a84cea3ce",
       "question": "「いつつ」の「いつ」を漢字で書いてください",
-      "choices": ["五"],
+      "choices": [
+        "五"
+      ],
       "correct": 0,
       "explanation": "「いつつ」の「いつ」は「五」と書く。数の5のこと。「ご」（音読み）とも読む"
     },
     {
       "id": "cdd808af-2317-5885-a0ae-050031d5115e",
       "question": "「みっつ」の「みっ」を漢字で書いてください",
-      "choices": ["三"],
+      "choices": [
+        "三"
+      ],
       "correct": 0,
       "explanation": "「みっつ」の「みっ」は「三」と書く。数の3のこと。「さん」（音読み）とも読む"
     },
     {
       "id": "eb40d4f9-9904-5c26-9868-8d2a0f55e302",
       "question": "「こ」を漢字で書いてください",
-      "choices": ["子"],
+      "choices": [
+        "子"
+      ],
       "correct": 0,
       "explanation": "「こ」は「子」と書く。子どものこと。「し」「す」（音読み）とも読む"
     },
     {
       "id": "69447624-a434-591d-a354-68cd7132f39b",
       "question": "「よっつ」の「よっ」を漢字で書いてください",
-      "choices": ["四"],
+      "choices": [
+        "四"
+      ],
       "correct": 0,
       "explanation": "「よっつ」の「よっ」は「四」と書く。数の4のこと。「し」（音読み）とも読む"
     },
     {
       "id": "b01cebb7-529e-55bd-a916-89a6ae51d225",
       "question": "「いと」を漢字で書いてください",
-      "choices": ["糸"],
+      "choices": [
+        "糸"
+      ],
       "correct": 0,
       "explanation": "「いと」は「糸」と書く。布や縫い物に使う細いもの。「し」（音読み）とも読む"
     },
     {
       "id": "123a2a03-7303-5169-8b44-9ff20c0034c4",
       "question": "「じ」を漢字で書いてください",
-      "choices": ["字"],
+      "choices": [
+        "字"
+      ],
       "correct": 0,
       "explanation": "「じ」は「字」と書く。文字のこと。「もじ」「かんじ」などに使う"
     },
     {
       "id": "223c560e-687f-5f6e-9cb6-e4e9159784b4",
       "question": "「みみ」を漢字で書いてください",
-      "choices": ["耳"],
+      "choices": [
+        "耳"
+      ],
       "correct": 0,
       "explanation": "「みみ」は「耳」と書く。音を聞く体の部分。「じ」（音読み）とも読む"
     },
     {
       "id": "ba3e768b-2d5d-5b85-b20d-185158908bff",
       "question": "「ななつ」の「なな」を漢字で書いてください",
-      "choices": ["七"],
+      "choices": [
+        "七"
+      ],
       "correct": 0,
       "explanation": "「ななつ」の「なな」は「七」と書く。数の7のこと。「しち」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
-  "prerequisites": ["kanji-grade1"]
+  "guideUrl": "./japanese/kanji/kanji-grade1-5/guide",
+  "prerequisites": [
+    "kanji-grade1"
+  ]
 }

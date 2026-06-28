@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6",
-  "categoryName": "📖 読み（宇宙・憲法・批判・探求・異なる・革命・展望・縮小・複雑・純粋）",
+  "categoryName": "📖 読み（宇宙憲法批判探求異革命展望縮小複雑純粋）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「宇宙・憲法・批判・探求・異なる・革命・展望・縮小・複雑・純粋」の読み方を練習します。",
+  "description": "小学6年のこのセットでは「宇宙憲法批判探求異革命展望縮小複雑純粋」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade6/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "39e213e6-8c67-54b6-ba29-7f83f5a7932d",
       "question": "「宇宙」の読み方をひらがなで書いてください",
-      "choices": ["うちゅう"],
+      "choices": [
+        "うちゅう"
+      ],
       "correct": 0,
       "explanation": "宇宙（うちゅう）: 地球の外にある広大な空間"
     },
     {
       "id": "8a6d6e9a-8df8-5640-99dc-11bc483990b1",
       "question": "「憲法」の読み方をひらがなで書いてください",
-      "choices": ["けんぽう"],
+      "choices": [
+        "けんぽう"
+      ],
       "correct": 0,
       "explanation": "憲法（けんぽう）: 国の基本的なきまりを定めたもの"
     },
     {
       "id": "27e9969f-e579-5165-99c0-09da173f76c1",
       "question": "「批判」の読み方をひらがなで書いてください",
-      "choices": ["ひはん"],
+      "choices": [
+        "ひはん"
+      ],
       "correct": 0,
       "explanation": "批判（ひはん）: 物事のよしあしを判断すること"
     },
     {
       "id": "a05cddae-3bf0-5972-8b25-e96a8401ecf9",
       "question": "「探求」の読み方をひらがなで書いてください",
-      "choices": ["たんきゅう"],
+      "choices": [
+        "たんきゅう"
+      ],
       "correct": 0,
       "explanation": "探求（たんきゅう）: 深く追い求めること"
     },
     {
       "id": "d0ff1c30-f5cf-5500-a7a2-4076fdb1f8de",
       "question": "「異なる」の「異」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["こと"],
+      "choices": [
+        "こと"
+      ],
       "correct": 0,
       "explanation": "異（こと）なる: 違うこと。「い」（音読み）とも読む"
     },
     {
       "id": "0e8ce715-c26c-554e-b376-afdcb3628395",
       "question": "「革命」の読み方をひらがなで書いてください",
-      "choices": ["かくめい"],
+      "choices": [
+        "かくめい"
+      ],
       "correct": 0,
       "explanation": "革命（かくめい）: 社会や制度を根本から変えること"
     },
     {
       "id": "5e49e752-48ad-5ebd-8bed-d8661beb1c3e",
       "question": "「展望」の読み方をひらがなで書いてください",
-      "choices": ["てんぼう"],
+      "choices": [
+        "てんぼう"
+      ],
       "correct": 0,
       "explanation": "展望（てんぼう）: 遠くを見渡すこと・将来の見通し"
     },
     {
       "id": "96d2c9cb-5173-5df7-a746-0818310d2216",
       "question": "「縮小」の読み方をひらがなで書いてください",
-      "choices": ["しゅくしょう"],
+      "choices": [
+        "しゅくしょう"
+      ],
       "correct": 0,
       "explanation": "縮小（しゅくしょう）: 小さくすること"
     },
     {
       "id": "e6887e33-ba52-50da-afc4-20878b9ba8c2",
       "question": "「複雑」の読み方をひらがなで書いてください",
-      "choices": ["ふくざつ"],
+      "choices": [
+        "ふくざつ"
+      ],
       "correct": 0,
       "explanation": "複雑（ふくざつ）: 入り組んでいて難しいこと"
     },
     {
       "id": "98af09be-6a23-531c-a499-d9908f0c9796",
       "question": "「純粋」の読み方をひらがなで書いてください",
-      "choices": ["じゅんすい"],
+      "choices": [
+        "じゅんすい"
+      ],
       "correct": 0,
       "explanation": "純粋（じゅんすい）: 混じりけがないこと"
     }
   ],
-  "prerequisites": ["kanji-grade5"]
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

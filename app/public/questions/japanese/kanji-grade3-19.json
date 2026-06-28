@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-19",
-  "categoryName": "📖 読み（流れる・旅行・両手・緑色・礼儀・行列・道路・和やか・想う・拾う）",
+  "categoryName": "📖 読み（流旅行両手緑色礼儀行列道路和想拾）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「流れる・旅行・両手・緑色・礼儀・行列・道路・和やか・想う・拾う」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「流旅行両手緑色礼儀行列道路和想拾」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-19/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "0d04c26b-30a9-56b7-9bbb-cfc1d5f36c81",
       "question": "「流れる」の「流」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["なが"],
+      "choices": [
+        "なが"
+      ],
       "correct": 0,
       "explanation": "流（なが）れる: 水などが動くこと。「りゅう」（音読み）とも読む"
     },
     {
       "id": "12da65b7-d552-5d2a-9062-d5bc447bab5c",
       "question": "「旅行」の「旅」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["たび"],
+      "choices": [
+        "たび"
+      ],
       "correct": 0,
       "explanation": "旅（たび）: 遠くへ出かけること。「りょ」（音読み）とも読む"
     },
     {
       "id": "6d6e92a9-411a-5028-a8da-256a9d67d2df",
       "question": "「両手」の「両」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["りょう"],
+      "choices": [
+        "りょう"
+      ],
       "correct": 0,
       "explanation": "両（りょう）手: 二つのこと。「両手」「両親」など"
     },
     {
       "id": "b7e0e301-15ba-5660-8ff3-94b6e2b297e3",
       "question": "「緑色」の「緑」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["みどり"],
+      "choices": [
+        "みどり"
+      ],
       "correct": 0,
       "explanation": "緑（みどり）: 草や木の色。「りょく」（音読み）とも読む"
     },
     {
       "id": "8fdae1d4-c9a6-5a7b-ab88-f824418031b0",
       "question": "「礼儀」の「礼」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["れい"],
+      "choices": [
+        "れい"
+      ],
       "correct": 0,
       "explanation": "礼（れい）: 感謝や挨拶のこと。「礼儀」「礼状」など"
     },
     {
       "id": "7423bc1c-d633-5997-aa74-0cd97c122c93",
       "question": "「行列」の「列」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["れつ"],
+      "choices": [
+        "れつ"
+      ],
       "correct": 0,
       "explanation": "列（れつ）: 並んだもの。「行列」「列車」など"
     },
     {
       "id": "d2b38ef7-5c7a-50ea-b6fe-a176497fd643",
       "question": "「道路」の「路」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ろ"],
+      "choices": [
+        "ろ"
+      ],
       "correct": 0,
       "explanation": "路（ろ）: 道のこと。「道路」「路地」など"
     },
     {
       "id": "a2812dc9-c1b6-5ffa-885c-27ec343f5064",
       "question": "「和やか」の「和」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["なご"],
+      "choices": [
+        "なご"
+      ],
       "correct": 0,
       "explanation": "和（なご）やか: 穏やかなこと。「わ」（音読み）とも読む"
     },
     {
       "id": "732182f1-1138-5ee7-a6bf-58ee3086fa94",
       "question": "「想う」の「想」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["そう"],
+      "choices": [
+        "そう"
+      ],
       "correct": 0,
       "explanation": "想（そう）: 思いをめぐらすこと。「想像」「空想」などに使う"
     },
     {
       "id": "a46a9bd6-fbdb-5fb0-99e1-c7909b449c9f",
       "question": "「拾う」の「拾」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ひろ"],
+      "choices": [
+        "ひろ"
+      ],
       "correct": 0,
       "explanation": "拾（ひろ）う: 落ちているものを取ること。「じゅう」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

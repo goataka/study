@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-13",
-  "categoryName": "📖 読み（精神・製品・税金・成績・接する・設ける・舌・絶える・銭・祖先）",
+  "categoryName": "📖 読み（精神製品税金成績接設舌絶銭祖先）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「精神・製品・税金・成績・接する・設ける・舌・絶える・銭・祖先」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「精神製品税金成績接設舌絶銭祖先」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-13/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "f9549ae7-407b-54ce-8e2b-f3995fa0f4d0",
       "question": "「精神」の「精」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["せい"],
+      "choices": [
+        "せい"
+      ],
       "correct": 0,
       "explanation": "精（せい）: 心・気持ち・力のこと。「精神」（せいしん）は心のこと"
     },
     {
       "id": "d4160943-9475-53ad-aa30-33e1df3d5e57",
       "question": "「製品」の「製」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["せい"],
+      "choices": [
+        "せい"
+      ],
       "correct": 0,
       "explanation": "製（せい）: 作ること。「製品」（せいひん）は工場などで作られた品物"
     },
     {
       "id": "33f6896e-8fc9-5811-9018-9cb6a8f95a16",
       "question": "「税金」の「税」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ぜい"],
+      "choices": [
+        "ぜい"
+      ],
       "correct": 0,
       "explanation": "税（ぜい）: 国や地方に納めるお金。「税金」（ぜいきん）は国民が国に納めるお金"
     },
     {
       "id": "7918fb3d-a4a6-53a0-8d05-fb63d4007bb4",
       "question": "「成績」の「績」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["せき"],
+      "choices": [
+        "せき"
+      ],
       "correct": 0,
       "explanation": "績（せき）: 積み上げた結果。「成績」（せいせき）は学習や仕事の結果"
     },
     {
       "id": "7cd99c51-d2cc-52c5-a567-ea26ff78eb72",
       "question": "「接する」の「接」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["せつ"],
+      "choices": [
+        "せつ"
+      ],
       "correct": 0,
       "explanation": "接（せつ）: 触れること・関わること。「接する」（せっする）は関わりを持つこと"
     },
     {
       "id": "f7cdc209-cfd2-527f-b082-0f870950c53d",
       "question": "「設ける」の「設」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["もう"],
+      "choices": [
+        "もう"
+      ],
       "correct": 0,
       "explanation": "設（もう）ける: 新しく作ること・準備すること。「せつ」（音読み）とも読む"
     },
     {
       "id": "36b0d3ec-0747-5abc-820c-287ff94145ce",
       "question": "「舌」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["した"],
+      "choices": [
+        "した"
+      ],
       "correct": 0,
       "explanation": "舌（した）: 口の中にある器官で、食べ物の味を感じたり話したりするのに使う。「ぜつ」（音読み）とも読む"
     },
     {
       "id": "b031d500-d505-59ee-959e-a292b82a1760",
       "question": "「絶える」の「絶」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["た"],
+      "choices": [
+        "た"
+      ],
       "correct": 0,
       "explanation": "絶（た）える: なくなること・途切れること。「ぜつ」（音読み）とも読む"
     },
     {
       "id": "7d327b8a-3547-5db8-bb5a-60478d0241ba",
       "question": "「銭」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ぜに"],
+      "choices": [
+        "ぜに"
+      ],
       "correct": 0,
       "explanation": "銭（ぜに）: お金のこと。「せん」（音読み）とも読む"
     },
     {
       "id": "fecf0989-e6c3-5aee-a910-33f0508ba05c",
       "question": "「祖先」の「祖」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["そ"],
+      "choices": [
+        "そ"
+      ],
       "correct": 0,
       "explanation": "祖（そ）: 先祖・始まりの人のこと。「祖先」（そせん）はご先祖様のこと"
     }
   ],
-  "prerequisites": ["kanji-grade4"]
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

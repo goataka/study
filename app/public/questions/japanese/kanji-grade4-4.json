@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-4",
-  "categoryName": "📖 読み（参加・産業・試合・失敗・種類・順番・笑う・清潔・静か・節約）",
+  "categoryName": "📖 読み（参加産業試合失敗種類順番笑清潔静節約）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「参加・産業・試合・失敗・種類・順番・笑う・清潔・静か・節約」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "description": "小学4年のこのセットでは「参加産業試合失敗種類順番笑清潔静節約」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade4-4/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "b58e11cb-b0ab-5201-b517-d87decbedcf5",
       "question": "「参加」の読み方をひらがなで書いてください",
-      "choices": ["さんか"],
+      "choices": [
+        "さんか"
+      ],
       "correct": 0,
       "explanation": "参加（さんか）: 仲間に入ること"
     },
     {
       "id": "8a499a0f-159b-54dd-9fa9-b3acdf37700f",
       "question": "「産業」の読み方をひらがなで書いてください",
-      "choices": ["さんぎょう"],
+      "choices": [
+        "さんぎょう"
+      ],
       "correct": 0,
       "explanation": "産業（さんぎょう）: 物を作ったりサービスを提供する仕事"
     },
     {
       "id": "11cb0bf8-aece-508b-8c0d-1799d2188290",
       "question": "「試合」の読み方をひらがなで書いてください",
-      "choices": ["しあい"],
+      "choices": [
+        "しあい"
+      ],
       "correct": 0,
       "explanation": "試合（しあい）: 勝ち負けを決める競争"
     },
     {
       "id": "b317b883-cfc8-59aa-a0ac-e3d94b58e6df",
       "question": "「失敗」の読み方をひらがなで書いてください",
-      "choices": ["しっぱい"],
+      "choices": [
+        "しっぱい"
+      ],
       "correct": 0,
       "explanation": "失敗（しっぱい）: うまくいかないこと"
     },
     {
       "id": "b33d34d3-fb8d-5ec3-89d9-bbaed1255abd",
       "question": "「種類」の読み方をひらがなで書いてください",
-      "choices": ["しゅるい"],
+      "choices": [
+        "しゅるい"
+      ],
       "correct": 0,
       "explanation": "種類（しゅるい）: 種別や分類のこと"
     },
     {
       "id": "19482b73-2c82-5e61-8c67-7ec9ded07ec0",
       "question": "「順番」の読み方をひらがなで書いてください",
-      "choices": ["じゅんばん"],
+      "choices": [
+        "じゅんばん"
+      ],
       "correct": 0,
       "explanation": "順番（じゅんばん）: 決まった並びのこと"
     },
     {
       "id": "2adb4b71-1798-5254-9a60-784056e17f14",
       "question": "「笑う」の「笑」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["わら"],
+      "choices": [
+        "わら"
+      ],
       "correct": 0,
       "explanation": "笑（わら）う: おかしくて口もとがゆるむこと。「しょう」（音読み）とも読む"
     },
     {
       "id": "823e1f5c-7fe1-5234-acea-2505ca58cae3",
       "question": "「清潔」の読み方をひらがなで書いてください",
-      "choices": ["せいけつ"],
+      "choices": [
+        "せいけつ"
+      ],
       "correct": 0,
       "explanation": "清潔（せいけつ）: きれいで汚れのないこと"
     },
     {
       "id": "461cd30f-84ab-5cd0-9dbc-fb27fd77eba4",
       "question": "「静か」の「静」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["しず"],
+      "choices": [
+        "しず"
+      ],
       "correct": 0,
       "explanation": "静（しず）か: 音が少なくてやすらかなこと。「せい」（音読み）とも読む"
     },
     {
       "id": "f6e241c2-dcff-5d90-b4f2-d3adbd5f21ef",
       "question": "「節約」の読み方をひらがなで書いてください",
-      "choices": ["せつやく"],
+      "choices": [
+        "せつやく"
+      ],
       "correct": 0,
       "explanation": "節約（せつやく）: 無駄なく使うこと"
     }
   ],
-  "prerequisites": ["kanji-grade3"]
+  "prerequisites": [
+    "kanji-grade3"
+  ]
 }

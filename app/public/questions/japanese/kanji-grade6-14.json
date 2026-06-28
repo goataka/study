@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-14",
-  "categoryName": "📖 読み（内臓・退く・担う・段階・値段・著す・腸・賃金・痛い・討つ）",
+  "categoryName": "📖 読み（内臓退担段階値段著腸賃金痛討）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「内臓・退く・担う・段階・値段・著す・腸・賃金・痛い・討つ」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「内臓退担段階値段著腸賃金痛討」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-14/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "ddcdb9f2-45f7-5b94-b69d-f2712255acca",
       "question": "「内臓」の「臓」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ぞう"],
+      "choices": [
+        "ぞう"
+      ],
       "correct": 0,
       "explanation": "臓（ぞう）: 体の中にある器官のこと。内臓・心臓・肺臓などに使う"
     },
     {
       "id": "51337891-8c32-5e1b-b06b-2da5dc1529c7",
       "question": "「退く」の「退」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["しりぞ"],
+      "choices": [
+        "しりぞ"
+      ],
       "correct": 0,
       "explanation": "退（しりぞ）く: 後ろへ下がること・身を引くこと。「たい」（音読み）とも読む"
     },
     {
       "id": "b7c41250-645c-57c0-9c05-754cd90a9ac4",
       "question": "「担う」の「担」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["にな"],
+      "choices": [
+        "にな"
+      ],
       "correct": 0,
       "explanation": "担（にな）う: 責任を持って引き受けること。「たん」（音読み）とも読む"
     },
     {
       "id": "272c7f72-60d7-5b64-b84e-92a6d503a805",
       "question": "「段階」の「段」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["だん"],
+      "choices": [
+        "だん"
+      ],
       "correct": 0,
       "explanation": "段（だん）: 階段・程度・段階などの区切り。段階・手段などに使う"
     },
     {
       "id": "c3689290-d99a-55a2-920e-9f1e8931c429",
       "question": "「値段」の「値」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ね"],
+      "choices": [
+        "ね"
+      ],
       "correct": 0,
       "explanation": "値（ね）段: 物の価格。「ち」（音読み）とも読む。「あたい」とも読む"
     },
     {
       "id": "4d55e825-15d8-5725-95d0-cf50e0eebaeb",
       "question": "「著す」の「著」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あらわ"],
+      "choices": [
+        "あらわ"
+      ],
       "correct": 0,
       "explanation": "著（あらわ）す: 本や文章を書くこと。「ちょ」（音読み）とも読む"
     },
     {
       "id": "2834fc7d-7776-5ea4-8e3f-e9d2de2e710c",
       "question": "「腸」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ちょう"],
+      "choices": [
+        "ちょう"
+      ],
       "correct": 0,
       "explanation": "腸（ちょう）: 胃の下にある消化器官。大腸・小腸などに使う"
     },
     {
       "id": "259961ba-11c8-5290-8c68-80417e9fae52",
       "question": "「賃金」の「賃」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ちん"],
+      "choices": [
+        "ちん"
+      ],
       "correct": 0,
       "explanation": "賃（ちん）: 労働の対価・家賃のこと。賃金・家賃などに使う"
     },
     {
       "id": "7aa0bb27-d689-5ccb-9adc-dda3d7048bbd",
       "question": "「痛い」の「痛」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["いた"],
+      "choices": [
+        "いた"
+      ],
       "correct": 0,
       "explanation": "痛（いた）い: 体や心に苦しみを感じること。「つう」（音読み）とも読む"
     },
     {
       "id": "38705246-f4e8-5b66-8476-d0abcd3fcf78",
       "question": "「討つ」の「討」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["う"],
+      "choices": [
+        "う"
+      ],
       "correct": 0,
       "explanation": "討（う）つ: 攻め滅ぼすこと。「とう」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade5"]
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

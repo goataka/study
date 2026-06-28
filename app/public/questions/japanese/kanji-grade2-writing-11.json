@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-11",
-  "categoryName": "✏️ 書き（寺・直・公・画・肉・何・場・園・弓・交）",
+  "categoryName": "✏️ 書き（寺直公画肉何場園弓交）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「寺・直・公・画・肉・何・場・園・弓・交」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「寺直公画肉何場園弓交」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "2f76dfeb-2890-591e-935a-5608b695b288",
       "question": "「てら」を漢字で書いてください",
-      "choices": ["寺"],
+      "choices": [
+        "寺"
+      ],
       "correct": 0,
       "explanation": "「てら」は「寺」と書く。お坊さんがいる建物のこと。「じ」（音読み）とも読む"
     },
     {
       "id": "61bb3a3d-fe6b-5b7f-b725-04be96de65df",
       "question": "「なおす」の「なお」を漢字で書いてください",
-      "choices": ["直"],
+      "choices": [
+        "直"
+      ],
       "correct": 0,
       "explanation": "「なおす」の「なお」は「直」と書く。悪いところを正しくすること。「ちょく」「じき」（音読み）とも読む"
     },
     {
       "id": "d26541f4-a574-5a8f-8eb4-e2274764a52b",
       "question": "「おおやけ」を漢字で書いてください",
-      "choices": ["公"],
+      "choices": [
+        "公"
+      ],
       "correct": 0,
       "explanation": "「おおやけ」は「公」と書く。みんなのもの・国のこと。「こう」（音読み）とも読む"
     },
     {
       "id": "6cbc455b-bd1b-5030-b40a-7a6597aaf829",
       "question": "「えがく」の「えが」を漢字で書いてください",
-      "choices": ["画"],
+      "choices": [
+        "画"
+      ],
       "correct": 0,
       "explanation": "「えがく」の「えが」は「画」と書く。絵をかくこと。「が」「かく」（音読み）とも読む"
     },
     {
       "id": "6ffd5309-4d26-561a-87b4-6884132297fe",
       "question": "「にく」を漢字で書いてください",
-      "choices": ["肉"],
+      "choices": [
+        "肉"
+      ],
       "correct": 0,
       "explanation": "「にく」は「肉」と書く。動物のからだのやわらかい部分。「にく」と読む"
     },
     {
       "id": "56120ec4-f8b8-5c85-826f-a60d0f14412a",
       "question": "「なに」を漢字で書いてください",
-      "choices": ["何"],
+      "choices": [
+        "何"
+      ],
       "correct": 0,
       "explanation": "「なに」は「何」と書く。物・事・人を問う言葉。「か」（音読み）とも読む"
     },
     {
       "id": "0cf46800-9721-5e21-a3fe-c6a2e5137154",
       "question": "「ば」を漢字で書いてください",
-      "choices": ["場"],
+      "choices": [
+        "場"
+      ],
       "correct": 0,
       "explanation": "「ば」は「場」と書く。場所・その場のこと。「じょう」（音読み）とも読む"
     },
     {
       "id": "2929f790-a882-56f6-a48d-3d03f5efe4a5",
       "question": "「その」を漢字で書いてください",
-      "choices": ["園"],
+      "choices": [
+        "園"
+      ],
       "correct": 0,
       "explanation": "「その」は「園」と書く。庭・植物を育てる場所。「えん」（音読み）とも読む"
     },
     {
       "id": "1d0e19a2-b487-58ac-b4e0-e7e48194fa12",
       "question": "「ゆみ」を漢字で書いてください",
-      "choices": ["弓"],
+      "choices": [
+        "弓"
+      ],
       "correct": 0,
       "explanation": "「ゆみ」は「弓」と書く。矢を射る道具のこと。「きゅう」（音読み）とも読む"
     },
     {
       "id": "03f8ad7b-8a58-5487-8587-fcb0b9f90f3e",
       "question": "「まじわる」の「まじ」を漢字で書いてください",
-      "choices": ["交"],
+      "choices": [
+        "交"
+      ],
       "correct": 0,
       "explanation": "「まじわる」の「まじ」は「交」と書く。互いに関わること。「こう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
-  "prerequisites": ["kanji-grade2"]
+  "guideUrl": "./japanese/kanji/kanji-grade2-11/guide",
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

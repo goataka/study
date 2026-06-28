@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-9",
-  "categoryName": "📖 読み（委員会・会員・病院・中央・屋根・化ける・荷物・一階・図書館・期間）",
+  "categoryName": "📖 読み（委員会会員病院中央屋根化荷物一階図書館期間）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「委員会・会員・病院・中央・屋根・化ける・荷物・一階・図書館・期間」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「委員会会員病院中央屋根化荷物一階図書館期間」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-9/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "b7c2891d-a615-572c-9592-1ee00115cb49",
       "question": "「委員会」の「委」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["い"],
+      "choices": [
+        "い"
+      ],
       "correct": 0,
       "explanation": "委（い）員会: 仕事をまかせること。「委ねる」（ゆだねる）とも読む"
     },
     {
       "id": "211284dd-ddc5-5b9e-bcb7-15b63f1ecf6e",
       "question": "「会員」の「員」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["いん"],
+      "choices": [
+        "いん"
+      ],
       "correct": 0,
       "explanation": "員（いん）: 仲間の一人。「会員」「店員」など"
     },
     {
       "id": "891ab317-1314-51f1-9b19-e6fa27d464b0",
       "question": "「病院」の「院」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["いん"],
+      "choices": [
+        "いん"
+      ],
       "correct": 0,
       "explanation": "院（いん）: 建物や施設を表す。「病院」「院長」など"
     },
     {
       "id": "3e1d8609-ebb5-5f24-8461-8a6c861d597f",
       "question": "「中央」の「央」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["おう"],
+      "choices": [
+        "おう"
+      ],
       "correct": 0,
       "explanation": "央（おう）: まんなかのこと。「中央」「央部」など"
     },
     {
       "id": "0a04d260-a6a7-59df-9f23-ff45f8b858a4",
       "question": "「屋根」の「屋」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["や"],
+      "choices": [
+        "や"
+      ],
       "correct": 0,
       "explanation": "屋（や）根: 建物のてっぺんの部分。「本屋」「屋根」など"
     },
     {
       "id": "bfe00ad3-9766-5970-8ce7-9e788e80c7c2",
       "question": "「化ける」の「化」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ば"],
+      "choices": [
+        "ば"
+      ],
       "correct": 0,
       "explanation": "化（ば）ける: 姿が変わること。「化学」（かがく）とも読む"
     },
     {
       "id": "22dc9375-db04-5ee0-a3ed-1c48dbacd078",
       "question": "「荷物」の「荷」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["に"],
+      "choices": [
+        "に"
+      ],
       "correct": 0,
       "explanation": "荷（に）物: 運ぶ物。「荷物」「荷台」など"
     },
     {
       "id": "e66b378e-376d-5035-9935-bcec4e5c0f06",
       "question": "「一階」の「階」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["かい"],
+      "choices": [
+        "かい"
+      ],
       "correct": 0,
       "explanation": "階（かい）: 建物の層。「一階」「二階」など"
     },
     {
       "id": "b9cb801b-06b6-5233-ac43-973a58e4b776",
       "question": "「図書館」の「館」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["かん"],
+      "choices": [
+        "かん"
+      ],
       "correct": 0,
       "explanation": "館（かん）: 大きな建物。「図書館」「体育館」など"
     },
     {
       "id": "aea7dd8e-5982-58b1-aa08-31dbcf0317ec",
       "question": "「期間」の「期」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["き"],
+      "choices": [
+        "き"
+      ],
       "correct": 0,
       "explanation": "期（き）間: ある時の間。「期間」「時期」など"
     }
   ],
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

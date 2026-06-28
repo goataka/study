@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-8",
-  "categoryName": "✏️ 書き（激・穴・源・己・誤・孝・皇・紅・降・鋼）",
+  "categoryName": "✏️ 書き（激穴源己誤孝皇紅降鋼）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「激・穴・源・己・誤・孝・皇・紅・降・鋼」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「激穴源己誤孝皇紅降鋼」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "1f1ef713-55ee-513e-b9d7-ad4b3d00cd75",
       "question": "「はげしい」の「はげ」を漢字で書いてください",
-      "choices": ["激"],
+      "choices": [
+        "激"
+      ],
       "correct": 0,
       "explanation": "「はげしい」の「はげ」は「激」と書く。勢いや強さがすごいこと。「げき」（音読み）とも読む"
     },
     {
       "id": "d45c3ebf-9036-577d-aefc-ac29d1428f42",
       "question": "「あな」を漢字で書いてください",
-      "choices": ["穴"],
+      "choices": [
+        "穴"
+      ],
       "correct": 0,
       "explanation": "「あな」は「穴」と書く。空洞・くぼんだ場所。「けつ」（音読み）とも読む"
     },
     {
       "id": "6be2fa63-03f9-5a0d-bbc4-f35f54e8f6c9",
       "question": "「みなもと」を漢字で書いてください",
-      "choices": ["源"],
+      "choices": [
+        "源"
+      ],
       "correct": 0,
       "explanation": "「みなもと」は「源」と書く。川の始まり・物事の起こり。「げん」（音読み）とも読む"
     },
     {
       "id": "e05a3f8e-7933-5329-aef8-c41a32d7e4ea",
       "question": "「おのれ」を漢字で書いてください",
-      "choices": ["己"],
+      "choices": [
+        "己"
+      ],
       "correct": 0,
       "explanation": "「おのれ」は「己」と書く。自分自身のこと。「こ」「き」（音読み）とも読む"
     },
     {
       "id": "176a898b-0189-5200-baa6-93c04e8194e2",
       "question": "「あやまる」の「あやま」を漢字で書いてください",
-      "choices": ["誤"],
+      "choices": [
+        "誤"
+      ],
       "correct": 0,
       "explanation": "「あやまる」の「あやま」は「誤」と書く。まちがえること。「ご」（音読み）とも読む"
     },
     {
       "id": "ef27dc7d-adc3-50d0-8777-51adb7bcf42f",
       "question": "「こう」を漢字で書いてください",
-      "choices": ["孝"],
+      "choices": [
+        "孝"
+      ],
       "correct": 0,
       "explanation": "「こう」は「孝」と書く。親を大切にすること。孝行・不孝などに使う"
     },
     {
       "id": "86897011-8303-54e7-866f-6d9459debf54",
       "question": "「おう」を漢字で書いてください",
-      "choices": ["皇"],
+      "choices": [
+        "皇"
+      ],
       "correct": 0,
       "explanation": "「おう」は「皇」と書く。天皇・皇帝など、最高の支配者を表す。「こう」（音読み）とも読む"
     },
     {
       "id": "9d1498d7-8325-5d1b-8f80-a750d6adbe67",
       "question": "「べに」を漢字で書いてください",
-      "choices": ["紅"],
+      "choices": [
+        "紅"
+      ],
       "correct": 0,
       "explanation": "「べに」は「紅」と書く。深い赤色・口紅。「こう」「く」（音読み）とも読む"
     },
     {
       "id": "a1e20ef2-e232-51bf-805b-f979143b5fc0",
       "question": "「おりる」の「お」を漢字で書いてください（上から下に移ること）",
-      "choices": ["降"],
+      "choices": [
+        "降"
+      ],
       "correct": 0,
       "explanation": "「おりる」の「お」は「降」と書く。上から下に移ること。「こう」（音読み）とも読む"
     },
     {
       "id": "2eb8d75d-c18f-5199-aec2-0d98f50c1847",
       "question": "「はがね」を漢字で書いてください",
-      "choices": ["鋼"],
+      "choices": [
+        "鋼"
+      ],
       "correct": 0,
       "explanation": "「はがね」は「鋼」と書く。鉄をきたえた硬い金属。「こう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
-  "prerequisites": ["kanji-grade6"]
+  "guideUrl": "./japanese/kanji/kanji-grade6-8/guide",
+  "prerequisites": [
+    "kanji-grade6"
+  ]
 }

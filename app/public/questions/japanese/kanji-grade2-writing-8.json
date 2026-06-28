@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-8",
-  "categoryName": "✏️ 書き（新・親・作・止・思・通・地・池・風・馬）",
+  "categoryName": "✏️ 書き（新親作止思通地池風馬）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「新・親・作・止・思・通・地・池・風・馬」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「新親作止思通地池風馬」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "b0637811-dcb2-5330-a0dc-cab7322590f7",
       "question": "「あたらしい」の「あたら」を漢字で書いてください",
-      "choices": ["新"],
+      "choices": [
+        "新"
+      ],
       "correct": 0,
       "explanation": "「あたらしい」の「あたら」は「新」と書く。できたばかりのこと。「しん」（音読み）とも読む"
     },
     {
       "id": "9f03f79c-049a-53f2-97c6-aad7b7d3d41d",
       "question": "「おや」を漢字で書いてください",
-      "choices": ["親"],
+      "choices": [
+        "親"
+      ],
       "correct": 0,
       "explanation": "「おや」は「親」と書く。父や母のこと。「しん」（音読み）とも読む"
     },
     {
       "id": "dd18219b-6db4-5c54-b43d-d3ac4c7cfd2e",
       "question": "「つくる」の「つく」を漢字で書いてください",
-      "choices": ["作"],
+      "choices": [
+        "作"
+      ],
       "correct": 0,
       "explanation": "「つくる」の「つく」は「作」と書く。物を作り上げること。「さく」「さ」（音読み）とも読む"
     },
     {
       "id": "d9b6bd42-0466-517c-ba61-912bf9ab287a",
       "question": "「とまる」の「と」を漢字で書いてください（動きが止まること）",
-      "choices": ["止"],
+      "choices": [
+        "止"
+      ],
       "correct": 0,
       "explanation": "「とまる」の「と」は「止」と書く。動きが止まること。「し」（音読み）とも読む"
     },
     {
       "id": "22a72c1e-c3f6-564a-93d6-1e0f73e1983c",
       "question": "「おもう」の「おも」を漢字で書いてください",
-      "choices": ["思"],
+      "choices": [
+        "思"
+      ],
       "correct": 0,
       "explanation": "「おもう」の「おも」は「思」と書く。心で感じたり考えたりすること。「し」（音読み）とも読む"
     },
     {
       "id": "56974328-f7dc-5f24-8255-c78df2e1defc",
       "question": "「とおる」の「とお」を漢字で書いてください（道を通り過ぎること）",
-      "choices": ["通"],
+      "choices": [
+        "通"
+      ],
       "correct": 0,
       "explanation": "「とおる」の「とお」は「通」と書く。道を通り過ぎること。「つう」（音読み）とも読む"
     },
     {
       "id": "9712f21a-dc4b-59c5-98af-f12fd55d3c6c",
       "question": "「ち」を漢字で書いてください",
-      "choices": ["地"],
+      "choices": [
+        "地"
+      ],
       "correct": 0,
       "explanation": "「ち」は「地」と書く。大地や土地のこと。「じ」（音読み）とも読む"
     },
     {
       "id": "82d8c853-799b-58f2-a48b-070ce48e25b0",
       "question": "「いけ」を漢字で書いてください",
-      "choices": ["池"],
+      "choices": [
+        "池"
+      ],
       "correct": 0,
       "explanation": "「いけ」は「池」と書く。水をたたえた小さなくぼみのこと。「ち」（音読み）とも読む"
     },
     {
       "id": "e7394a38-1670-5911-b266-37f3e6a3c75d",
       "question": "「かぜ」を漢字で書いてください",
-      "choices": ["風"],
+      "choices": [
+        "風"
+      ],
       "correct": 0,
       "explanation": "「かぜ」は「風」と書く。空気の流れのこと。「ふう」「ふ」（音読み）とも読む"
     },
     {
       "id": "ce12527f-17ff-5040-9f12-9583e56b9be5",
       "question": "「うま」を漢字で書いてください",
-      "choices": ["馬"],
+      "choices": [
+        "馬"
+      ],
       "correct": 0,
       "explanation": "「うま」は「馬」と書く。乗り物としても使われる動物。「ば」「ま」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
-  "prerequisites": ["kanji-grade2"]
+  "guideUrl": "./japanese/kanji/kanji-grade2-8/guide",
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

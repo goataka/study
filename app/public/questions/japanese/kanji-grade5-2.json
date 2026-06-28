@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-2",
-  "categoryName": "📖 読み（構造・採用・測定・比較・統計・圧力・移動・永遠・演奏・応用）",
+  "categoryName": "📖 読み（構造採用測定比較統計圧力移動永遠演奏応用）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「構造・採用・測定・比較・統計・圧力・移動・永遠・演奏・応用」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「構造採用測定比較統計圧力移動永遠演奏応用」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "041cfef6-d4f0-52b8-a8ae-98a2a46821b2",
       "question": "「構造」の読み方をひらがなで書いてください",
-      "choices": ["こうぞう"],
+      "choices": [
+        "こうぞう"
+      ],
       "correct": 0,
       "explanation": "構造（こうぞう）: 物の組み立てや仕組みのこと"
     },
     {
       "id": "acb16c53-0074-5593-912d-44027b2c4227",
       "question": "「採用」の読み方をひらがなで書いてください",
-      "choices": ["さいよう"],
+      "choices": [
+        "さいよう"
+      ],
       "correct": 0,
       "explanation": "採用（さいよう）: 取り入れること・採り上げること"
     },
     {
       "id": "5188a6f2-a8dd-5d96-957a-79606c81510e",
       "question": "「測定」の読み方をひらがなで書いてください",
-      "choices": ["そくてい"],
+      "choices": [
+        "そくてい"
+      ],
       "correct": 0,
       "explanation": "測定（そくてい）: 計って数値で表すこと"
     },
     {
       "id": "95791b7c-8440-5be2-867d-0d9728235f7b",
       "question": "「比較」の読み方をひらがなで書いてください",
-      "choices": ["ひかく"],
+      "choices": [
+        "ひかく"
+      ],
       "correct": 0,
       "explanation": "比較（ひかく）: 二つ以上のものを比べること"
     },
     {
       "id": "6945e108-daa7-543e-8fb6-2b5273b83322",
       "question": "「統計」の読み方をひらがなで書いてください",
-      "choices": ["とうけい"],
+      "choices": [
+        "とうけい"
+      ],
       "correct": 0,
       "explanation": "統計（とうけい）: 数をまとめて表した資料"
     },
     {
       "id": "0aed51d0-a234-5013-a89c-277c40c77e66",
       "question": "「圧力」の読み方をひらがなで書いてください",
-      "choices": ["あつりょく"],
+      "choices": [
+        "あつりょく"
+      ],
       "correct": 0,
       "explanation": "圧力（あつりょく）: 押す力のこと"
     },
     {
       "id": "b07fdf0f-fc60-57ab-995b-bb7d00b2acf3",
       "question": "「移動」の読み方をひらがなで書いてください",
-      "choices": ["いどう"],
+      "choices": [
+        "いどう"
+      ],
       "correct": 0,
       "explanation": "移動（いどう）: 場所を変えること"
     },
     {
       "id": "a65cc27a-74ba-5372-9b72-b8e03009c440",
       "question": "「永遠」の読み方をひらがなで書いてください",
-      "choices": ["えいえん"],
+      "choices": [
+        "えいえん"
+      ],
       "correct": 0,
       "explanation": "永遠（えいえん）: 限りなく続くこと"
     },
     {
       "id": "bef1aabd-a08d-5237-acda-4b68f276964b",
       "question": "「演奏」の読み方をひらがなで書いてください",
-      "choices": ["えんそう"],
+      "choices": [
+        "えんそう"
+      ],
       "correct": 0,
       "explanation": "演奏（えんそう）: 楽器を弾いて音楽を奏でること"
     },
     {
       "id": "ea6eee9e-1d70-58c4-81ee-4987f9c09383",
       "question": "「応用」の読み方をひらがなで書いてください",
-      "choices": ["おうよう"],
+      "choices": [
+        "おうよう"
+      ],
       "correct": 0,
       "explanation": "応用（おうよう）: 原則を別の場面で使うこと"
     }
   ],
-  "prerequisites": ["kanji-grade4"]
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

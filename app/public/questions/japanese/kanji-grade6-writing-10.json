@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-10",
-  "categoryName": "✏️ 書き（視・詞・誌・磁・射・捨・尺・樹・宗・縦）",
+  "categoryName": "✏️ 書き（視詞誌磁射捨尺樹宗縦）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「視・詞・誌・磁・射・捨・尺・樹・宗・縦」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「視詞誌磁射捨尺樹宗縦」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "36494951-5d80-5761-a0eb-83ef8510cb81",
       "question": "「し」を漢字で書いてください（見ること・目で確認すること）",
-      "choices": ["視"],
+      "choices": [
+        "視"
+      ],
       "correct": 0,
       "explanation": "「し」は「視」と書く。見ること・目で確認すること。視力・視野・注視などに使う"
     },
     {
       "id": "5c0aa4e9-04b0-5bff-9b11-3cee0c9c6e96",
       "question": "「し」を漢字で書いてください（言葉・品詞・歌詞など、言葉の種類を表す）",
-      "choices": ["詞"],
+      "choices": [
+        "詞"
+      ],
       "correct": 0,
       "explanation": "「し」は「詞」と書く。言葉・品詞・歌詞など、言葉の種類を表す"
     },
     {
       "id": "f3226aae-d340-5465-a678-b2333ca51770",
       "question": "「し」を漢字で書いてください（定期的に発行される冊子）",
-      "choices": ["誌"],
+      "choices": [
+        "誌"
+      ],
       "correct": 0,
       "explanation": "「し」は「誌」と書く。定期的に発行される冊子。雑誌・日誌などに使う"
     },
     {
       "id": "6b1693f5-4173-591f-b115-342c2e8c49a4",
       "question": "「じ」を漢字で書いてください",
-      "choices": ["磁"],
+      "choices": [
+        "磁"
+      ],
       "correct": 0,
       "explanation": "「じ」は「磁」と書く。鉄を引き付ける力・磁気のこと。磁石・磁場などに使う"
     },
     {
       "id": "9f4c8fb5-fc1a-5a1c-8276-37da90ea5573",
       "question": "「いる」の「い」を漢字で書いてください",
-      "choices": ["射"],
+      "choices": [
+        "射"
+      ],
       "correct": 0,
       "explanation": "「いる」の「い」は「射」と書く。矢や弾を放つこと。「しゃ」（音読み）とも読む"
     },
     {
       "id": "af29497f-6629-506d-a1d8-d5fd8c298ed6",
       "question": "「すてる」の「す」を漢字で書いてください（不要なものを取り除くこと）",
-      "choices": ["捨"],
+      "choices": [
+        "捨"
+      ],
       "correct": 0,
       "explanation": "「すてる」の「す」は「捨」と書く。不要なものを取り除くこと。「しゃ」（音読み）とも読む"
     },
     {
       "id": "66ab0bcb-3ee1-50ee-b0d3-b37f2382e6b6",
       "question": "「しゃく」を漢字で書いてください",
-      "choices": ["尺"],
+      "choices": [
+        "尺"
+      ],
       "correct": 0,
       "explanation": "「しゃく」は「尺」と書く。長さの単位・ものさし。尺度・縮尺などに使う"
     },
     {
       "id": "3cc047c9-ba20-543b-9cce-54244a89405c",
       "question": "「じゅ」を漢字で書いてください",
-      "choices": ["樹"],
+      "choices": [
+        "樹"
+      ],
       "correct": 0,
       "explanation": "「じゅ」は「樹」と書く。木・立木のこと。樹木・樹林などに使う。訓読みは「き」"
     },
     {
       "id": "ba5510c7-f8ab-548c-988c-a5dceeb89e56",
       "question": "「しゅう」を漢字で書いてください",
-      "choices": ["宗"],
+      "choices": [
+        "宗"
+      ],
       "correct": 0,
       "explanation": "「しゅう」は「宗」と書く。神仏を信じる教え・一族の中心。宗教・宗派などに使う"
     },
     {
       "id": "0c1e9c29-d24c-5a98-aacf-b481640b0b21",
       "question": "「たて」を漢字で書いてください",
-      "choices": ["縦"],
+      "choices": [
+        "縦"
+      ],
       "correct": 0,
       "explanation": "「たて」は「縦」と書く。上下の方向。横の反対。「じゅう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
-  "prerequisites": ["kanji-grade6"]
+  "guideUrl": "./japanese/kanji/kanji-grade6-10/guide",
+  "prerequisites": [
+    "kanji-grade6"
+  ]
 }

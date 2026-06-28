@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-2",
-  "categoryName": "📖 読み（温かい・湖・島・医者・身体・悪い・安い・育てる・飲む・運ぶ）",
+  "categoryName": "📖 読み（温湖島医者身体悪安育飲運）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「温かい・湖・島・医者・身体・悪い・安い・育てる・飲む・運ぶ」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「温湖島医者身体悪安育飲運」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "d93d766f-3517-52e0-b297-22574af17458",
       "question": "「温かい」の「温」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あたた"],
+      "choices": [
+        "あたた"
+      ],
       "correct": 0,
       "explanation": "温（あたた）かい: 暖かいこと。「おん」（音読み）とも読む"
     },
     {
       "id": "4dec8be0-b866-5511-aeaa-f66a46545752",
       "question": "「湖」の読み方をひらがなで書いてください",
-      "choices": ["みずうみ"],
+      "choices": [
+        "みずうみ"
+      ],
       "correct": 0,
       "explanation": "湖（みずうみ）: 陸に囲まれた水の広がり"
     },
     {
       "id": "d210d83b-39f0-5d08-8493-0cc98d32272a",
       "question": "「島」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["しま"],
+      "choices": [
+        "しま"
+      ],
       "correct": 0,
       "explanation": "島（しま）: 海や湖に囲まれた陸地。「とう」（音読み）とも読む"
     },
     {
       "id": "3274ee12-6c5a-54dd-81b5-65631d16feda",
       "question": "「医者」の読み方をひらがなで書いてください",
-      "choices": ["いしゃ"],
+      "choices": [
+        "いしゃ"
+      ],
       "correct": 0,
       "explanation": "医者（いしゃ）: 病気を治す専門の人"
     },
     {
       "id": "884ec52a-9d34-55fb-9e4d-85ad1fe347fc",
       "question": "「身体」の読み方をひらがなで書いてください",
-      "choices": ["からだ"],
+      "choices": [
+        "からだ"
+      ],
       "correct": 0,
       "explanation": "身体（からだ）: 体のこと"
     },
     {
       "id": "36d9bcb4-dc74-5293-a07b-7baecab4cebb",
       "question": "「悪い」の「悪」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["わる"],
+      "choices": [
+        "わる"
+      ],
       "correct": 0,
       "explanation": "悪（わる）い: よくないこと。「あく」（音読み）とも読む"
     },
     {
       "id": "37f4b7d2-0876-548d-a785-9d9852754ba8",
       "question": "「安い」の「安」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["やす"],
+      "choices": [
+        "やす"
+      ],
       "correct": 0,
       "explanation": "安（やす）い: ねだんが低いこと。「あん」（音読み）とも読む"
     },
     {
       "id": "a5f8a9be-be34-53f9-a11d-59878af3edc9",
       "question": "「育てる」の「育」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["そだ"],
+      "choices": [
+        "そだ"
+      ],
       "correct": 0,
       "explanation": "育（そだ）てる: 生き物を世話して大きくすること。「いく」（音読み）とも読む"
     },
     {
       "id": "deecee6e-d7f3-52a9-8d00-2c95294dd64c",
       "question": "「飲む」の「飲」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["の"],
+      "choices": [
+        "の"
+      ],
       "correct": 0,
       "explanation": "飲（の）む: 液体を口から取り入れること。「いん」（音読み）とも読む"
     },
     {
       "id": "3080979f-bd07-5d2b-8f60-6dd9ef12beb6",
       "question": "「運ぶ」の「運」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はこ"],
+      "choices": [
+        "はこ"
+      ],
       "correct": 0,
       "explanation": "運（はこ）ぶ: ものをある場所に移すこと。「うん」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

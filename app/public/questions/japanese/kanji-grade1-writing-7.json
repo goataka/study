@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-writing-7",
-  "categoryName": "✏️ 書き（男・竹・中・虫・町・天・田・二・入・八）",
+  "categoryName": "✏️ 書き（男竹中虫町天田二入八）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「男・竹・中・虫・町・天・田・二・入・八」の漢字の書き取りを練習します。",
+  "description": "小学1年のこのセットでは「男竹中虫町天田二入八」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "d57e28be-bb55-52ef-b9d1-617d6da8373e",
       "question": "「おとこ」を漢字で書いてください",
-      "choices": ["男"],
+      "choices": [
+        "男"
+      ],
       "correct": 0,
       "explanation": "「おとこ」は「男」と書く。男性のこと。「だん」「なん」（音読み）とも読む"
     },
     {
       "id": "09d745fa-a2ec-56cf-ae6f-8fa00b37162c",
       "question": "「たけ」を漢字で書いてください",
-      "choices": ["竹"],
+      "choices": [
+        "竹"
+      ],
       "correct": 0,
       "explanation": "「たけ」は「竹」と書く。まっすぐ伸びる植物のこと。「ちく」（音読み）とも読む"
     },
     {
       "id": "8c2381e1-b37a-5502-83a2-c1f534872e2d",
       "question": "「なか」を漢字で書いてください",
-      "choices": ["中"],
+      "choices": [
+        "中"
+      ],
       "correct": 0,
       "explanation": "「なか」は「中」と書く。内側・まんなかのこと。「ちゅう」（音読み）とも読む"
     },
     {
       "id": "ae211d60-dedd-5ada-85c4-fccdcedfb46a",
       "question": "「むし」を漢字で書いてください",
-      "choices": ["虫"],
+      "choices": [
+        "虫"
+      ],
       "correct": 0,
       "explanation": "「むし」は「虫」と書く。小さな生き物のこと。「ちゅう」（音読み）とも読む"
     },
     {
       "id": "a3ec8e68-fb3a-594c-996b-12b46833a0ce",
       "question": "「まち」を漢字で書いてください",
-      "choices": ["町"],
+      "choices": [
+        "町"
+      ],
       "correct": 0,
       "explanation": "「まち」は「町」と書く。人が集まって住んでいる場所のこと。「ちょう」（音読み）とも読む"
     },
     {
       "id": "05924f76-35af-5283-a65e-b71d55e3f8dc",
       "question": "「てん」を漢字で書いてください",
-      "choices": ["天"],
+      "choices": [
+        "天"
+      ],
       "correct": 0,
       "explanation": "「てん」は「天」と書く。空・天上のこと。「あめ」「あま」（訓読み）とも読む"
     },
     {
       "id": "f25365f1-e059-5890-985b-cb71b21f76f0",
       "question": "「た」を漢字で書いてください（稲を育てる水を張った土地のこと）",
-      "choices": ["田"],
+      "choices": [
+        "田"
+      ],
       "correct": 0,
       "explanation": "「た」は「田」と書く。稲を育てる水を張った土地のこと。「でん」（音読み）とも読む"
     },
     {
       "id": "ef0a2bf5-590b-5980-b9e9-73750edf173d",
       "question": "「ふたつ」の「ふた」を漢字で書いてください",
-      "choices": ["二"],
+      "choices": [
+        "二"
+      ],
       "correct": 0,
       "explanation": "「ふたつ」の「ふた」は「二」と書く。数の2のこと。「に」（音読み）とも読む"
     },
     {
       "id": "c84da07e-d345-587d-8e27-c2a0206a0d56",
       "question": "「はいる」の「はい」を漢字で書いてください",
-      "choices": ["入"],
+      "choices": [
+        "入"
+      ],
       "correct": 0,
       "explanation": "「はいる」の「はい」は「入」と書く。外から中へ行くこと。「にゅう」（音読み）とも読む"
     },
     {
       "id": "01a06bb4-5db4-54fe-9167-1d35768f6fba",
       "question": "「やっつ」の「やっ」を漢字で書いてください",
-      "choices": ["八"],
+      "choices": [
+        "八"
+      ],
       "correct": 0,
       "explanation": "「やっつ」の「やっ」は「八」と書く。数の8のこと。「はち」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
-  "prerequisites": ["kanji-grade1"]
+  "guideUrl": "./japanese/kanji/kanji-grade1-7/guide",
+  "prerequisites": [
+    "kanji-grade1"
+  ]
 }

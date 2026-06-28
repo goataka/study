@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-6",
-  "categoryName": "✏️ 書き（印・衣類・景色・各自・管理・軍隊・訓練・積・説明・倉庫）",
+  "categoryName": "✏️ 書き（印衣類景色各自管理軍隊訓練積説明倉庫）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「印・衣類・景色・各自・管理・軍隊・訓練・積・説明・倉庫」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「印衣類景色各自管理軍隊訓練積説明倉庫」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "285f6a86-3376-5517-bb7c-e279f9dcaa94",
       "question": "「しるし」を漢字で書いてください",
-      "choices": ["印"],
+      "choices": [
+        "印"
+      ],
       "correct": 0,
       "explanation": "「しるし」は「印」と書く。目印となるマーク。「いん」（音読み）とも読む"
     },
     {
       "id": "209cd9c3-3332-5316-976a-e58378aa9caa",
       "question": "「いるい」を漢字で書いてください",
-      "choices": ["衣類"],
+      "choices": [
+        "衣類"
+      ],
       "correct": 0,
       "explanation": "「いるい」は「衣類」と書く。服のこと"
     },
     {
       "id": "be6c888e-23d6-5647-b4b9-bde91968ff53",
       "question": "「けしき」を漢字で書いてください",
-      "choices": ["景色"],
+      "choices": [
+        "景色"
+      ],
       "correct": 0,
       "explanation": "「けしき」は「景色」と書く。自然の眺めのこと"
     },
     {
       "id": "ec866611-4226-5bf3-821a-6f80405df82d",
       "question": "「かくじ」を漢字で書いてください",
-      "choices": ["各自"],
+      "choices": [
+        "各自"
+      ],
       "correct": 0,
       "explanation": "「かくじ」は「各自」と書く。それぞれの人"
     },
     {
       "id": "c74e779c-6009-525f-a83c-6e44f1ed1664",
       "question": "「かんり」を漢字で書いてください",
-      "choices": ["管理"],
+      "choices": [
+        "管理"
+      ],
       "correct": 0,
       "explanation": "「かんり」は「管理」と書く。物事をしっかり扱うこと"
     },
     {
       "id": "e62ae952-0794-59ec-a834-9fc399c2b3c2",
       "question": "「ぐんたい」を漢字で書いてください",
-      "choices": ["軍隊"],
+      "choices": [
+        "軍隊"
+      ],
       "correct": 0,
       "explanation": "「ぐんたい」は「軍隊」と書く。国を守るための兵士の集まり"
     },
     {
       "id": "b51b90c6-fc21-581f-8d50-9c62efcb4b95",
       "question": "「くんれん」を漢字で書いてください",
-      "choices": ["訓練"],
+      "choices": [
+        "訓練"
+      ],
       "correct": 0,
       "explanation": "「くんれん」は「訓練」と書く。くり返し練習して上達すること"
     },
     {
       "id": "825f0d1f-c279-53a7-8831-71636e391746",
       "question": "「つむ」の「つ」を漢字で書いてください（重ねて高くすること）",
-      "choices": ["積"],
+      "choices": [
+        "積"
+      ],
       "correct": 0,
       "explanation": "「つむ」の「つ」は「積」と書く。重ねて高くすること。「せき」（音読み）とも読む"
     },
     {
       "id": "1c4daff2-e9d6-5732-81fd-cce9ef0d717e",
       "question": "「せつめい」を漢字で書いてください",
-      "choices": ["説明"],
+      "choices": [
+        "説明"
+      ],
       "correct": 0,
       "explanation": "「せつめい」は「説明」と書く。物事をわかりやすく伝えること"
     },
     {
       "id": "218174cf-fc16-575a-80ea-afc3628c17aa",
       "question": "「そうこ」を漢字で書いてください",
-      "choices": ["倉庫"],
+      "choices": [
+        "倉庫"
+      ],
       "correct": 0,
       "explanation": "「そうこ」は「倉庫」と書く。物をしまっておく建物"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
-  "prerequisites": ["kanji-grade4"]
+  "guideUrl": "./japanese/kanji/kanji-grade4-6/guide",
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

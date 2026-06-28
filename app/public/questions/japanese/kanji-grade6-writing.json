@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing",
-  "categoryName": "✏️ 書き（宇宙・憲法・批判・探求・異・革命・展望・縮小・複雑・純粋）",
+  "categoryName": "✏️ 書き（宇宙憲法批判探求異革命展望縮小複雑純粋）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「宇宙・憲法・批判・探求・異・革命・展望・縮小・複雑・純粋」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「宇宙憲法批判探求異革命展望縮小複雑純粋」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "686e875b-1835-5f16-b56e-e531e29a3e09",
       "question": "「うちゅう」を漢字で書いてください",
-      "choices": ["宇宙"],
+      "choices": [
+        "宇宙"
+      ],
       "correct": 0,
       "explanation": "「うちゅう」は「宇宙」と書く。地球の外にある広大な空間"
     },
     {
       "id": "17f10844-899a-5de8-8b1d-8e4787076367",
       "question": "「けんぽう」を漢字で書いてください",
-      "choices": ["憲法"],
+      "choices": [
+        "憲法"
+      ],
       "correct": 0,
       "explanation": "「けんぽう」は「憲法」と書く。国の基本的なきまりを定めたもの"
     },
     {
       "id": "71e823a9-771e-5082-ba5c-274ea489bcaf",
       "question": "「ひはん」を漢字で書いてください",
-      "choices": ["批判"],
+      "choices": [
+        "批判"
+      ],
       "correct": 0,
       "explanation": "「ひはん」は「批判」と書く。物事のよしあしを判断すること"
     },
     {
       "id": "0ecbfee5-4878-586c-bbb2-a8b1870d9f66",
       "question": "「たんきゅう」を漢字で書いてください",
-      "choices": ["探求"],
+      "choices": [
+        "探求"
+      ],
       "correct": 0,
       "explanation": "「たんきゅう」は「探求」と書く。深く追い求めること"
     },
     {
       "id": "67b4d87e-7f06-5523-9247-e67a92ffb368",
       "question": "「ことなる」の「こと」を漢字で書いてください",
-      "choices": ["異"],
+      "choices": [
+        "異"
+      ],
       "correct": 0,
       "explanation": "「ことなる」の「こと」は「異」と書く。違うこと。「い」（音読み）とも読む"
     },
     {
       "id": "5523dacd-d8df-5ec8-bcee-88a74ca81d83",
       "question": "「かくめい」を漢字で書いてください",
-      "choices": ["革命"],
+      "choices": [
+        "革命"
+      ],
       "correct": 0,
       "explanation": "「かくめい」は「革命」と書く。社会や制度を根本から変えること"
     },
     {
       "id": "e3dcc6d0-67d6-556c-a13c-ecff2c1d615a",
       "question": "「てんぼう」を漢字で書いてください",
-      "choices": ["展望"],
+      "choices": [
+        "展望"
+      ],
       "correct": 0,
       "explanation": "「てんぼう」は「展望」と書く。遠くを見渡すこと・将来の見通し"
     },
     {
       "id": "d45c0b72-7f93-576e-899e-32d5b1a905fb",
       "question": "「しゅくしょう」を漢字で書いてください",
-      "choices": ["縮小"],
+      "choices": [
+        "縮小"
+      ],
       "correct": 0,
       "explanation": "「しゅくしょう」は「縮小」と書く。小さくすること"
     },
     {
       "id": "027469a2-5031-5958-a880-fd270aa2f178",
       "question": "「ふくざつ」を漢字で書いてください",
-      "choices": ["複雑"],
+      "choices": [
+        "複雑"
+      ],
       "correct": 0,
       "explanation": "「ふくざつ」は「複雑」と書く。入り組んでいて難しいこと"
     },
     {
       "id": "68648e90-b8a8-5eb7-bbef-4106662c49f7",
       "question": "「じゅんすい」を漢字で書いてください",
-      "choices": ["純粋"],
+      "choices": [
+        "純粋"
+      ],
       "correct": 0,
       "explanation": "「じゅんすい」は「純粋」と書く。混じりけがないこと"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade6/guide",
-  "prerequisites": ["kanji-grade6"]
+  "prerequisites": [
+    "kanji-grade6"
+  ]
 }

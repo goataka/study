@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-15",
-  "categoryName": "📖 読み（築く・張る・停車・程・敵・適切・銅・導く・道徳・犯す）",
+  "categoryName": "📖 読み（築張停車程敵適切銅導道徳犯）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「築く・張る・停車・程・敵・適切・銅・導く・道徳・犯す」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「築張停車程敵適切銅導道徳犯」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-15/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "54c0ab6d-0e61-576d-854c-3b7546a29eb7",
       "question": "「築く」の「築」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["きず"],
+      "choices": [
+        "きず"
+      ],
       "correct": 0,
       "explanation": "築（きず）く: 作り上げること・建てること。「ちく」（音読み）とも読む"
     },
     {
       "id": "4b3ca692-4460-5de7-95f9-50256921171a",
       "question": "「張る」の「張」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["は"],
+      "choices": [
+        "は"
+      ],
       "correct": 0,
       "explanation": "張（は）る: 広げること・ぴんと伸ばすこと。「ちょう」（音読み）とも読む"
     },
     {
       "id": "abd45111-f1d4-52d4-998b-3081c267010a",
       "question": "「停車」の「停」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["てい"],
+      "choices": [
+        "てい"
+      ],
       "correct": 0,
       "explanation": "停（てい）: 止まること。「停車」（ていしゃ）は乗り物が止まること"
     },
     {
       "id": "522deb74-4297-51ee-9cbe-1664b3329fea",
       "question": "「程」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ほど"],
+      "choices": [
+        "ほど"
+      ],
       "correct": 0,
       "explanation": "程（ほど）: 程度・分量のこと。「てい」（音読み）とも読む"
     },
     {
       "id": "4b92ffce-4a92-5605-ab0b-1bbced5aeff5",
       "question": "「敵」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かたき"],
+      "choices": [
+        "かたき"
+      ],
       "correct": 0,
       "explanation": "敵（かたき）: 戦う相手・競争相手のこと。「てき」（音読み）とも読む"
     },
     {
       "id": "5f04cda3-8410-5b41-876e-64b92c4857b2",
       "question": "「適切」の「適」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["てき"],
+      "choices": [
+        "てき"
+      ],
       "correct": 0,
       "explanation": "適（てき）: ちょうどよいこと・合っていること。「適切」（てきせつ）はちょうどよいこと"
     },
     {
       "id": "5f07a145-d72a-5fbb-ba7b-1968a252aca8",
       "question": "「銅」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["どう"],
+      "choices": [
+        "どう"
+      ],
       "correct": 0,
       "explanation": "銅（どう）: 赤みがかった金属。「銅像」（どうぞう）は銅でできた像"
     },
     {
       "id": "08f39e1b-92e8-511e-8085-cc9047367cf3",
       "question": "「導く」の「導」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["みちび"],
+      "choices": [
+        "みちび"
+      ],
       "correct": 0,
       "explanation": "導（みちび）く: 正しい方向に進めること・引き導くこと。「どう」（音読み）とも読む"
     },
     {
       "id": "6463b215-0dd9-58f6-890f-92cbf1952a3f",
       "question": "「道徳」の「徳」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["とく"],
+      "choices": [
+        "とく"
+      ],
       "correct": 0,
       "explanation": "徳（とく）: 正しい行い・人としての道。「道徳」（どうとく）は正しい行いのこと"
     },
     {
       "id": "b4c1717b-fab7-55bf-a946-b62607471873",
       "question": "「犯す」の「犯」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["おか"],
+      "choices": [
+        "おか"
+      ],
       "correct": 0,
       "explanation": "犯（おか）す: 法律などを破ること・悪いことをすること。「はん」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade4"]
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

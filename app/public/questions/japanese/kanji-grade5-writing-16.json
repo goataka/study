@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-16",
-  "categoryName": "✏️ 書き（肥・非・俵・貧・婦・富・弁・保・墓・報）",
+  "categoryName": "✏️ 書き（肥非俵貧婦富弁保墓報）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「肥・非・俵・貧・婦・富・弁・保・墓・報」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「肥非俵貧婦富弁保墓報」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "aa4c99bd-ee1c-57dd-8c55-06321a02c8bb",
       "question": "「こえる」の「こ」を漢字で書いてください（太ること・土地が豊かになること）",
-      "choices": ["肥"],
+      "choices": [
+        "肥"
+      ],
       "correct": 0,
       "explanation": "「こえる」の「こ」は「肥」と書く。太ること・土地が豊かになること。「ひ」（音読み）とも読む"
     },
     {
       "id": "eb9022ac-4a0b-5ecb-870e-e81435bd7902",
       "question": "「ひ」を漢字で書いてください",
-      "choices": ["非"],
+      "choices": [
+        "非"
+      ],
       "correct": 0,
       "explanation": "「ひ」は「非」と書く。否定を表す言葉。「非常」（ひじょう）は普通でないこと"
     },
     {
       "id": "b5dc353e-c308-5cb7-9a7b-3532d8c88036",
       "question": "「たわら」を漢字で書いてください",
-      "choices": ["俵"],
+      "choices": [
+        "俵"
+      ],
       "correct": 0,
       "explanation": "「たわら」は「俵」と書く。米などを入れる袋。「ひょう」（音読み）とも読む"
     },
     {
       "id": "32877551-f2b8-55e0-a36a-56e74221633d",
       "question": "「まずしい」の「まず」を漢字で書いてください",
-      "choices": ["貧"],
+      "choices": [
+        "貧"
+      ],
       "correct": 0,
       "explanation": "「まずしい」の「まず」は「貧」と書く。お金がなく生活が苦しいこと。「ひん」「びん」（音読み）とも読む"
     },
     {
       "id": "9aad04da-7c76-530c-9c5f-060727d25178",
       "question": "「ふ」を漢字で書いてください",
-      "choices": ["婦"],
+      "choices": [
+        "婦"
+      ],
       "correct": 0,
       "explanation": "「ふ」は「婦」と書く。女性・奥さんのこと。「婦人」（ふじん）は女性のこと"
     },
     {
       "id": "d604f188-40b8-51a5-a856-592acab9e46c",
       "question": "「とむ」の「と」を漢字で書いてください",
-      "choices": ["富"],
+      "choices": [
+        "富"
+      ],
       "correct": 0,
       "explanation": "「とむ」の「と」は「富」と書く。豊かであること・たくさん持っていること。「ふ」（音読み）とも読む"
     },
     {
       "id": "d8ff461a-70c5-5530-b826-c6a7d724f52c",
       "question": "「べん」を漢字で書いてください",
-      "choices": ["弁"],
+      "choices": [
+        "弁"
+      ],
       "correct": 0,
       "explanation": "「べん」は「弁」と書く。話すこと・弁護すること。「弁護士」（べんごし）は法律の専門家"
     },
     {
       "id": "33aad577-e90b-5b8b-952a-00eb2d2a9e4f",
       "question": "「たもつ」の「たも」を漢字で書いてください",
-      "choices": ["保"],
+      "choices": [
+        "保"
+      ],
       "correct": 0,
       "explanation": "「たもつ」の「たも」は「保」と書く。持続させること・守ること。「ほ」（音読み）とも読む"
     },
     {
       "id": "41565cb5-5a81-5dce-9350-482d2f8198f0",
       "question": "「はか」を漢字で書いてください",
-      "choices": ["墓"],
+      "choices": [
+        "墓"
+      ],
       "correct": 0,
       "explanation": "「はか」は「墓」と書く。死者を葬ったところ・お墓。「ぼ」（音読み）とも読む"
     },
     {
       "id": "10393292-0b65-5cd4-8ad1-2027a0986522",
       "question": "「ほう」を漢字で書いてください",
-      "choices": ["報"],
+      "choices": [
+        "報"
+      ],
       "correct": 0,
       "explanation": "「ほう」は「報」と書く。知らせること・返すこと。「報告」（ほうこく）は知らせること"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
-  "prerequisites": ["kanji-grade5"]
+  "guideUrl": "./japanese/kanji/kanji-grade5-16/guide",
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

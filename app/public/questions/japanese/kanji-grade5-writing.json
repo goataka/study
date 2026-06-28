@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing",
-  "categoryName": "✏️ 書き（可能性・責任・判断・解決・提案・確認・状況・貢献・規則・技術）",
+  "categoryName": "✏️ 書き（可能性責任判断解決提案確認状況貢献規則技術）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「可能性・責任・判断・解決・提案・確認・状況・貢献・規則・技術」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「可能性責任判断解決提案確認状況貢献規則技術」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "47082293-44d1-5570-a357-bd5074778c26",
       "question": "「かのうせい」を漢字で書いてください",
-      "choices": ["可能性"],
+      "choices": [
+        "可能性"
+      ],
       "correct": 0,
       "explanation": "「かのうせい」は「可能性」と書く。できる見込みのこと"
     },
     {
       "id": "0febdfd0-bb4d-5c8f-92f9-5d119a263cb7",
       "question": "「せきにん」を漢字で書いてください",
-      "choices": ["責任"],
+      "choices": [
+        "責任"
+      ],
       "correct": 0,
       "explanation": "「せきにん」は「責任」と書く。物事に対して負うべき義務"
     },
     {
       "id": "20ff5ba8-a39e-54eb-8c70-fc45860c5b3b",
       "question": "「はんだん」を漢字で書いてください",
-      "choices": ["判断"],
+      "choices": [
+        "判断"
+      ],
       "correct": 0,
       "explanation": "「はんだん」は「判断」と書く。物事の良し悪しを決めること"
     },
     {
       "id": "e197fd87-c78c-5c7f-9884-4bc62a742f95",
       "question": "「かいけつ」を漢字で書いてください",
-      "choices": ["解決"],
+      "choices": [
+        "解決"
+      ],
       "correct": 0,
       "explanation": "「かいけつ」は「解決」と書く。問題を解き、うまくいくようにすること"
     },
     {
       "id": "97b2711a-b386-5b60-a962-4756f8de2a5f",
       "question": "「ていあん」を漢字で書いてください",
-      "choices": ["提案"],
+      "choices": [
+        "提案"
+      ],
       "correct": 0,
       "explanation": "「ていあん」は「提案」と書く。考えや計画を出すこと"
     },
     {
       "id": "b46ef010-e63c-5665-ad89-6a8d2d99d903",
       "question": "「かくにん」を漢字で書いてください",
-      "choices": ["確認"],
+      "choices": [
+        "確認"
+      ],
       "correct": 0,
       "explanation": "「かくにん」は「確認」と書く。確かめること"
     },
     {
       "id": "26c9f75f-da59-5b95-a047-ec91f28541e1",
       "question": "「じょうきょう」を漢字で書いてください",
-      "choices": ["状況"],
+      "choices": [
+        "状況"
+      ],
       "correct": 0,
       "explanation": "「じょうきょう」は「状況」と書く。物事の様子・ありさま"
     },
     {
       "id": "085c52c2-b5b5-5429-950f-e22ed5e04545",
       "question": "「こうけん」を漢字で書いてください",
-      "choices": ["貢献"],
+      "choices": [
+        "貢献"
+      ],
       "correct": 0,
       "explanation": "「こうけん」は「貢献」と書く。役に立つために力を尽くすこと"
     },
     {
       "id": "d214194c-4b02-5ab7-9339-b7b49131e66b",
       "question": "「きそく」を漢字で書いてください",
-      "choices": ["規則"],
+      "choices": [
+        "規則"
+      ],
       "correct": 0,
       "explanation": "「きそく」は「規則」と書く。守るべききまりのこと"
     },
     {
       "id": "9d961e1d-44dc-5771-a31d-3c94ee1861cf",
       "question": "「ぎじゅつ」を漢字で書いてください",
-      "choices": ["技術"],
+      "choices": [
+        "技術"
+      ],
       "correct": 0,
       "explanation": "「ぎじゅつ」は「技術」と書く。物を作ったり、何かをするための専門的な能力"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade5/guide",
-  "prerequisites": ["kanji-grade5"]
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

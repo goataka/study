@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-writing",
-  "categoryName": "✏️ 書き（山・川・日・月・火・水・木・土・金・空）",
+  "categoryName": "✏️ 書き（山川日月火水木土金空）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「山・川・日・月・火・水・木・土・金・空」の漢字の書き取りを練習します。",
+  "description": "小学1年のこのセットでは「山川日月火水木土金空」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "d6da4587-8789-5406-80a8-7dec56660440",
       "question": "「やま」を漢字で書いてください",
-      "choices": ["山"],
+      "choices": [
+        "山"
+      ],
       "correct": 0,
       "explanation": "「やま」は「山」と書く。地面から高くそびえる地形のこと"
     },
     {
       "id": "00c3ffce-3038-5f2b-809d-8d53086e67f7",
       "question": "「かわ」を漢字で書いてください",
-      "choices": ["川"],
+      "choices": [
+        "川"
+      ],
       "correct": 0,
       "explanation": "「かわ」は「川」と書く。水が流れる地形のこと"
     },
     {
       "id": "adbe20ca-19dc-5ada-9be9-d7b0ec5fd801",
       "question": "「ひ」を漢字で書いてください（太陽のこと）",
-      "choices": ["日"],
+      "choices": [
+        "日"
+      ],
       "correct": 0,
       "explanation": "「ひ」は「日」と書く。太陽のこと。「にち」（音読み）とも読む"
     },
     {
       "id": "cca167c4-1d51-5519-91a5-e1369d5ac8ef",
       "question": "「つき」を漢字で書いてください",
-      "choices": ["月"],
+      "choices": [
+        "月"
+      ],
       "correct": 0,
       "explanation": "「つき」は「月」と書く。夜空に輝く天体のこと。「げつ」（音読み）とも読む"
     },
     {
       "id": "2c1d2a3a-f65b-5579-9034-aaa444f3aec7",
       "question": "「ひ」を漢字で書いてください（燃えるもの）",
-      "choices": ["火"],
+      "choices": [
+        "火"
+      ],
       "correct": 0,
       "explanation": "「ひ」は「火」と書く。燃えるもの。「か」（音読み）とも読む"
     },
     {
       "id": "da2a876d-896e-5d7e-bd59-77ad750bfba9",
       "question": "「みず」を漢字で書いてください",
-      "choices": ["水"],
+      "choices": [
+        "水"
+      ],
       "correct": 0,
       "explanation": "「みず」は「水」と書く。液体の水のこと。「すい」（音読み）とも読む"
     },
     {
       "id": "1edc68fe-c932-5ef9-b831-eb7829297adb",
       "question": "「き」を漢字で書いてください（樹木のこと）",
-      "choices": ["木"],
+      "choices": [
+        "木"
+      ],
       "correct": 0,
       "explanation": "「き」は「木」と書く。樹木のこと。「もく」（音読み）とも読む"
     },
     {
       "id": "ad504411-ac08-5e27-823f-ebedd644d5c9",
       "question": "「つち」を漢字で書いてください",
-      "choices": ["土"],
+      "choices": [
+        "土"
+      ],
       "correct": 0,
       "explanation": "「つち」は「土」と書く。大地・地面のこと。「ど」（音読み）とも読む"
     },
     {
       "id": "20e81410-222a-5a81-bde9-756519ebdda1",
       "question": "「かね」を漢字で書いてください",
-      "choices": ["金"],
+      "choices": [
+        "金"
+      ],
       "correct": 0,
       "explanation": "「かね」は「金」と書く。お金・貴金属のこと。「きん」（音読み）とも読む"
     },
     {
       "id": "437ac7ed-f400-51f3-9f3a-13dddbb4da87",
       "question": "「そら」を漢字で書いてください",
-      "choices": ["空"],
+      "choices": [
+        "空"
+      ],
       "correct": 0,
       "explanation": "「そら」は「空」と書く。大空のこと。「くう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade1/guide",
-  "prerequisites": ["kanji-grade1"]
+  "prerequisites": [
+    "kanji-grade1"
+  ]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-18",
-  "categoryName": "📖 読み（規律・臨む）",
+  "categoryName": "📖 読み（規律臨）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,24 +11,30 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「規律・臨む」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「規律臨」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-18/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "0f53aca5-dcc7-59d0-b988-bf458d90f40f",
       "question": "「規律」の「律」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["りつ"],
+      "choices": [
+        "りつ"
+      ],
       "correct": 0,
       "explanation": "律（りつ）: 決まり・ルールのこと。規律・法律などに使う"
     },
     {
       "id": "ebb592d4-2324-5537-9e83-bf921cfaed20",
       "question": "「臨む」の「臨」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["のぞ"],
+      "choices": [
+        "のぞ"
+      ],
       "correct": 0,
       "explanation": "臨（のぞ）む: ある場に向き合うこと・臨場感。「りん」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade5"]
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

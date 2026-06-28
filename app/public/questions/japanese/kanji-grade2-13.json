@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-13",
-  "categoryName": "📖 読み（歩・会・切・算・図・明・汽・少・数・台）",
+  "categoryName": "📖 読み（歩会切算図明汽少数台）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「歩・会・切・算・図・明・汽・少・数・台」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「歩会切算図明汽少数台」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-13/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "4942e1c8-2c61-5273-8433-5850d6ac1484",
       "question": "「歩」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あるく"],
+      "choices": [
+        "あるく"
+      ],
       "correct": 0,
       "explanation": "歩（ある）く: 足で移動すること。「ほ」「ぶ」（音読み）とも読む"
     },
     {
       "id": "c96cbdb8-113f-5d0b-8108-e0fd92ccd66c",
       "question": "「会」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あう"],
+      "choices": [
+        "あう"
+      ],
       "correct": 0,
       "explanation": "会（あ）う: 人と顔を合わせること。「かい」「え」（音読み）とも読む"
     },
     {
       "id": "4a8bc2da-d2f3-5486-84af-43ec268e333c",
       "question": "「切」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["きる"],
+      "choices": [
+        "きる"
+      ],
       "correct": 0,
       "explanation": "切（き）る: 刃物などでものを切ること。「せつ」「さい」（音読み）とも読む"
     },
     {
       "id": "6a7e46cf-323b-598a-8957-d18f36bbd354",
       "question": "「算」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["さん"],
+      "choices": [
+        "さん"
+      ],
       "correct": 0,
       "explanation": "算（さん）: 計算すること"
     },
     {
       "id": "dec018af-b69a-5ed3-b73e-4f57e9e28fe9",
       "question": "「図」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はかる"],
+      "choices": [
+        "はかる"
+      ],
       "correct": 0,
       "explanation": "図（はか）る: 計画する・図面のこと。「ず」「と」（音読み）とも読む"
     },
     {
       "id": "321fd2b3-af3e-5cc1-934a-d2ed80697884",
       "question": "「明」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あかるい"],
+      "choices": [
+        "あかるい"
+      ],
       "correct": 0,
       "explanation": "明（あか）るい: 光があって明るいこと。「めい」「みょう」（音読み）とも読む"
     },
     {
       "id": "3d792174-a931-52c4-a746-322e68ef9bad",
       "question": "「汽」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["き"],
+      "choices": [
+        "き"
+      ],
       "correct": 0,
       "explanation": "汽（き）: 水蒸気のこと。汽車・汽船など"
     },
     {
       "id": "225fa566-f27f-578f-b7d8-3435f97348a5",
       "question": "「少」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["すくない"],
+      "choices": [
+        "すくない"
+      ],
       "correct": 0,
       "explanation": "少（すく）ない: 数量が少ないこと。「しょう」（音読み）とも読む"
     },
     {
       "id": "eb64372d-4afb-5114-b0f1-4cdaf0a230f3",
       "question": "「数」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かず"],
+      "choices": [
+        "かず"
+      ],
       "correct": 0,
       "explanation": "数（かず）: 数えた結果のこと。「すう」「す」（音読み）とも読む"
     },
     {
       "id": "714a3639-7493-5395-95ec-c56399796452",
       "question": "「台」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["だい"],
+      "choices": [
+        "だい"
+      ],
       "correct": 0,
       "explanation": "台（だい）: 台・乗り物などを数える助数詞"
     }
   ],
-  "prerequisites": ["kanji-grade1"]
+  "prerequisites": [
+    "kanji-grade1"
+  ]
 }

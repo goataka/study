@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-8",
-  "categoryName": "✏️ 書き（息・速・家族・打・待・代・短・着・注意・調）",
+  "categoryName": "✏️ 書き（息速家族打待代短着注意調）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「息・速・家族・打・待・代・短・着・注意・調」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「息速家族打待代短着注意調」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "e24ec5fd-aba6-5c77-82c1-c6e54d2c374c",
       "question": "「いき」を漢字で書いてください",
-      "choices": ["息"],
+      "choices": [
+        "息"
+      ],
       "correct": 0,
       "explanation": "「いき」は「息」と書く。呼吸のこと。「そく」（音読み）とも読む"
     },
     {
       "id": "93b701e3-c9a7-559c-9266-2fd0ffe00bcf",
       "question": "「はやい」の「はや」を漢字で書いてください",
-      "choices": ["速"],
+      "choices": [
+        "速"
+      ],
       "correct": 0,
       "explanation": "「はやい」の「はや」は「速」と書く。スピードが大きいこと。「そく」（音読み）とも読む"
     },
     {
       "id": "f2967f3d-9e4c-505e-afb3-6f3899f99f28",
       "question": "「かぞく」を漢字で書いてください",
-      "choices": ["家族"],
+      "choices": [
+        "家族"
+      ],
       "correct": 0,
       "explanation": "「かぞく」は「家族」と書く。一緒に暮らす親や兄弟などのこと"
     },
     {
       "id": "c9493dfd-7f4e-50a5-81f4-f48011553aad",
       "question": "「うつ」の「う」を漢字で書いてください（たたくこと）",
-      "choices": ["打"],
+      "choices": [
+        "打"
+      ],
       "correct": 0,
       "explanation": "「うつ」の「う」は「打」と書く。たたくこと。「だ」（音読み）とも読む"
     },
     {
       "id": "87a58701-aa22-5a38-a31a-979f4a035eeb",
       "question": "「まつ」の「ま」を漢字で書いてください（来るまでその場にいること）",
-      "choices": ["待"],
+      "choices": [
+        "待"
+      ],
       "correct": 0,
       "explanation": "「まつ」の「ま」は「待」と書く。来るまでその場にいること。「たい」（音読み）とも読む"
     },
     {
       "id": "9a09103f-ac2d-5f99-9219-2b419e7def04",
       "question": "「かわる」の「か」を漢字で書いてください（別のものに変わること）",
-      "choices": ["代"],
+      "choices": [
+        "代"
+      ],
       "correct": 0,
       "explanation": "「かわる」の「か」は「代」と書く。別のものに変わること。「だい」（音読み）とも読む"
     },
     {
       "id": "6c65420a-711a-5100-8a48-0aad641efc1e",
       "question": "「みじかい」の「みじか」を漢字で書いてください",
-      "choices": ["短"],
+      "choices": [
+        "短"
+      ],
       "correct": 0,
       "explanation": "「みじかい」の「みじか」は「短」と書く。長さが少ないこと。「たん」（音読み）とも読む"
     },
     {
       "id": "25deac50-f35f-5c9a-a6c6-874677461c2e",
       "question": "「きる」の「き」を漢字で書いてください（服を身につけること）",
-      "choices": ["着"],
+      "choices": [
+        "着"
+      ],
       "correct": 0,
       "explanation": "「きる」の「き」は「着」と書く。服を身につけること。「ちゃく」（音読み）とも読む"
     },
     {
       "id": "85597869-8956-5c6f-b759-83e701347a9f",
       "question": "「ちゅうい」を漢字で書いてください",
-      "choices": ["注意"],
+      "choices": [
+        "注意"
+      ],
       "correct": 0,
       "explanation": "「ちゅうい」は「注意」と書く。気をつけること"
     },
     {
       "id": "9934fbac-6828-56be-95fd-d02d8c8ab0c6",
       "question": "「しらべる」の「しら」を漢字で書いてください",
-      "choices": ["調"],
+      "choices": [
+        "調"
+      ],
       "correct": 0,
       "explanation": "「しらべる」の「しら」は「調」と書く。物事を確かめること。「ちょう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
-  "prerequisites": ["kanji-grade3"]
+  "guideUrl": "./japanese/kanji/kanji-grade3-8/guide",
+  "prerequisites": [
+    "kanji-grade3"
+  ]
 }

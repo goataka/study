@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-6",
-  "categoryName": "📖 読み（地域・沿う・恩人・灰・内閣・株・干す・巻く・看護・簡単）",
+  "categoryName": "📖 読み（地域沿恩人灰内閣株干巻看護簡単）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「地域・沿う・恩人・灰・内閣・株・干す・巻く・看護・簡単」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「地域沿恩人灰内閣株干巻看護簡単」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-6/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "a18d113f-eb6e-508d-818e-180e030f5f11",
       "question": "「地域」の「域」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["いき"],
+      "choices": [
+        "いき"
+      ],
       "correct": 0,
       "explanation": "域（いき）: ある範囲・区域のこと。地域・区域・領域などに使う"
     },
     {
       "id": "1111d810-ba67-567b-beb9-dcedc99033ba",
       "question": "「沿う」の「沿」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["そ"],
+      "choices": [
+        "そ"
+      ],
       "correct": 0,
       "explanation": "沿（そ）う: 川や道のそばに続いて行くこと。「えん」（音読み）とも読む"
     },
     {
       "id": "026af382-f2d4-5688-8689-edbb66dc7f11",
       "question": "「恩人」の「恩」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["おん"],
+      "choices": [
+        "おん"
+      ],
       "correct": 0,
       "explanation": "恩（おん）: お世話になった気持ち・恩義。恩人・恩師などに使う"
     },
     {
       "id": "974298b7-7917-571c-ac13-28c5112735c5",
       "question": "「灰」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はい"],
+      "choices": [
+        "はい"
+      ],
       "correct": 0,
       "explanation": "灰（はい）: 物が燃えたあとに残る粉。灰色・石灰などに使う。「かい」（音読み）とも読む"
     },
     {
       "id": "27fe5ca1-d3f5-5de5-96c8-8182d8245280",
       "question": "「内閣」の「閣」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["かく"],
+      "choices": [
+        "かく"
+      ],
       "correct": 0,
       "explanation": "閣（かく）: 内閣・閣議など、国の大臣が集まる組織を指す"
     },
     {
       "id": "76c8d909-bd2d-5f49-b87b-9d410b925fca",
       "question": "「株」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かぶ"],
+      "choices": [
+        "かぶ"
+      ],
       "correct": 0,
       "explanation": "株（かぶ）: 切り株・株式など。「しゅ」（音読み）とも読む"
     },
     {
       "id": "ecbf9211-f933-5ae5-8cca-866f2473b38b",
       "question": "「干す」の「干」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ほ"],
+      "choices": [
+        "ほ"
+      ],
       "correct": 0,
       "explanation": "干（ほ）す: 水分をとばして乾かすこと。「かん」（音読み）とも読む"
     },
     {
       "id": "4924e996-9d2c-5875-86b2-6513a21bf8ad",
       "question": "「巻く」の「巻」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ま"],
+      "choices": [
+        "ま"
+      ],
       "correct": 0,
       "explanation": "巻（ま）く: くるくると丸めること。「かん」（音読み）とも読む"
     },
     {
       "id": "b7257d1a-a0b7-5815-83bb-98dd8c5c1458",
       "question": "「看護」の「看」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["かん"],
+      "choices": [
+        "かん"
+      ],
       "correct": 0,
       "explanation": "看（かん）: よく見て世話をすること。看護・看板などに使う"
     },
     {
       "id": "3f056a76-f4d4-525b-8d00-0cd70cd3c19e",
       "question": "「簡単」の「簡」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["かん"],
+      "choices": [
+        "かん"
+      ],
       "correct": 0,
       "explanation": "簡（かん）: 単純でわかりやすいこと。簡単・簡潔などに使う"
     }
   ],
-  "prerequisites": ["kanji-grade5"]
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

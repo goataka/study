@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-5",
-  "categoryName": "📖 読み その１（結論・仮定・比例・変量・依頼・縁・怠る・惜しむ・描く・揺れる）",
+  "categoryName": "📖 読み その１（結論仮定比例変量依頼縁怠惜描揺）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「結論・仮定・比例・変量・依頼・縁・怠る・惜しむ・描く・揺れる」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "description": "中学生のこのセットでは「結論仮定比例変量依頼縁怠惜描揺」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-secondary-5/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "7b1cbbd8-93f6-5fb9-9e2e-764b877afcd4",
       "question": "「結論」の読み方をひらがなで書いてください",
-      "choices": ["けつろん"],
+      "choices": [
+        "けつろん"
+      ],
       "correct": 0,
       "explanation": "結論（けつろん）: 考えや議論の最終的なまとめ・判断"
     },
     {
       "id": "c1d042a8-6052-5670-9bee-2a94c8820350",
       "question": "「仮定」の読み方をひらがなで書いてください",
-      "choices": ["かてい"],
+      "choices": [
+        "かてい"
+      ],
       "correct": 0,
       "explanation": "仮定（かてい）: 仮にそうだと想定して考えること"
     },
     {
       "id": "8f0efe26-82b8-5246-9900-cd56af26e541",
       "question": "「比例」の読み方をひらがなで書いてください",
-      "choices": ["ひれい"],
+      "choices": [
+        "ひれい"
+      ],
       "correct": 0,
       "explanation": "比例（ひれい）: 一方が増えると他方も同じ割合で増える関係"
     },
     {
       "id": "75d3bee1-503a-54a3-96a7-518d0b57fdf7",
       "question": "「変量」の読み方をひらがなで書いてください",
-      "choices": ["へんりょう"],
+      "choices": [
+        "へんりょう"
+      ],
       "correct": 0,
       "explanation": "変量（へんりょう）: データの中で変化する数値・統計で扱う量"
     },
     {
       "id": "e51b182a-9c86-5207-8551-5eb5f989169e",
       "question": "「依頼」の読み方をひらがなで書いてください",
-      "choices": ["いらい"],
+      "choices": [
+        "いらい"
+      ],
       "correct": 0,
       "explanation": "依頼（いらい）: 相手にお願いして頼むこと"
     },
     {
       "id": "883aa4c9-754d-5e2c-9bd5-00c057d9d223",
       "question": "「縁」の読み方をひらがなで書いてください",
-      "choices": ["えん"],
+      "choices": [
+        "えん"
+      ],
       "correct": 0,
       "explanation": "縁（えん）: 人と人をつなぐ関係・つながり・きっかけ"
     },
     {
       "id": "c73750b3-c99b-54e3-b8df-229a3d532cda",
       "question": "「怠る」の読み方をひらがなで書いてください",
-      "choices": ["おこたる"],
+      "choices": [
+        "おこたる"
+      ],
       "correct": 0,
       "explanation": "怠（おこた）る: すべきことをせず、なまけること"
     },
     {
       "id": "7cc00e24-fa00-53bd-8e80-38ccab6a84d7",
       "question": "「惜しむ」の読み方をひらがなで書いてください",
-      "choices": ["おしむ"],
+      "choices": [
+        "おしむ"
+      ],
       "correct": 0,
       "explanation": "惜（お）しむ: 残念に思うこと・大切にして手放したくないと思うこと"
     },
     {
       "id": "ce04ad4e-ddde-5b43-91b0-81723cb54274",
       "question": "「描く」の読み方をひらがなで書いてください",
-      "choices": ["えがく"],
+      "choices": [
+        "えがく"
+      ],
       "correct": 0,
       "explanation": "描（えが）く: 絵をかくこと・心の中で思い浮かべること"
     },
     {
       "id": "f7715fb5-e9d5-5ea6-9f27-a2dcc234fb39",
       "question": "「揺れる」の読み方をひらがなで書いてください",
-      "choices": ["ゆれる"],
+      "choices": [
+        "ゆれる"
+      ],
       "correct": 0,
       "explanation": "揺（ゆ）れる: 左右・上下に動くこと・心が不安定になること"
     }
   ],
-  "prerequisites": ["kanji-grade6"]
+  "prerequisites": [
+    "kanji-grade6"
+  ]
 }

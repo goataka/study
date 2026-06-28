@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-10",
-  "categoryName": "✏️ 書き（菜・材料・昨日・散・残・氏名・歴史・司会・辞書・借）",
+  "categoryName": "✏️ 書き（菜材料昨日散残氏名歴史司会辞書借）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「菜・材料・昨日・散・残・氏名・歴史・司会・辞書・借」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「菜材料昨日散残氏名歴史司会辞書借」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "70c215f8-25a2-5a5f-9193-97e24edfa369",
       "question": "「な」を漢字で書いてください（食べられる植物の葉や茎）",
-      "choices": ["菜"],
+      "choices": [
+        "菜"
+      ],
       "correct": 0,
       "explanation": "「な」は「菜」と書く。食べられる植物の葉や茎。「さい」（音読み）とも読む"
     },
     {
       "id": "5c4a87f7-6f26-5eeb-8d57-89e8a3e99c1f",
       "question": "「ざいりょう」を漢字で書いてください",
-      "choices": ["材料"],
+      "choices": [
+        "材料"
+      ],
       "correct": 0,
       "explanation": "「ざいりょう」は「材料」と書く。物を作るための原料・もとになるもの"
     },
     {
       "id": "e7bef973-bb71-5b0b-85aa-6e204d2ea813",
       "question": "「きのう」を漢字で書いてください",
-      "choices": ["昨日"],
+      "choices": [
+        "昨日"
+      ],
       "correct": 0,
       "explanation": "「きのう」は「昨日」と書く。今日の前の日。「さくじつ」とも読む"
     },
     {
       "id": "669aedfc-8b87-5cab-ab3e-d20961ab7db5",
       "question": "「ちる」の「ち」を漢字で書いてください",
-      "choices": ["散"],
+      "choices": [
+        "散"
+      ],
       "correct": 0,
       "explanation": "「ちる」の「ち」は「散」と書く。ばらばらになること。「さん」（音読み）とも読む"
     },
     {
       "id": "afe0dad5-bfda-53ec-a566-c12374585363",
       "question": "「のこる」の「のこ」を漢字で書いてください",
-      "choices": ["残"],
+      "choices": [
+        "残"
+      ],
       "correct": 0,
       "explanation": "「のこる」の「のこ」は「残」と書く。余ること・後に残ること。「ざん」（音読み）とも読む"
     },
     {
       "id": "9003c737-789e-52dc-a41d-d04bce9d580e",
       "question": "「しめい」を漢字で書いてください",
-      "choices": ["氏名"],
+      "choices": [
+        "氏名"
+      ],
       "correct": 0,
       "explanation": "「しめい」は「氏名」と書く。名字と名前のこと"
     },
     {
       "id": "143308e7-bffe-54ec-8702-d3bae3215017",
       "question": "「れきし」を漢字で書いてください",
-      "choices": ["歴史"],
+      "choices": [
+        "歴史"
+      ],
       "correct": 0,
       "explanation": "「れきし」は「歴史」と書く。昔から今までの出来事の記録"
     },
     {
       "id": "86b0da76-f008-5293-80de-51abbb877d26",
       "question": "「しかい」を漢字で書いてください",
-      "choices": ["司会"],
+      "choices": [
+        "司会"
+      ],
       "correct": 0,
       "explanation": "「しかい」は「司会」と書く。会の進行を取り仕切ること"
     },
     {
       "id": "ffbed59a-2d22-5ce7-a777-fac0c3a8fb88",
       "question": "「じしょ」を漢字で書いてください",
-      "choices": ["辞書"],
+      "choices": [
+        "辞書"
+      ],
       "correct": 0,
       "explanation": "「じしょ」は「辞書」と書く。言葉の意味や読み方を調べる本"
     },
     {
       "id": "2f73b213-df95-53b7-ae7e-24cbea48c5db",
       "question": "「かりる」の「か」を漢字で書いてください（一時的に使わせてもらうこと）",
-      "choices": ["借"],
+      "choices": [
+        "借"
+      ],
       "correct": 0,
       "explanation": "「かりる」の「か」は「借」と書く。一時的に使わせてもらうこと。「しゃく」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
-  "prerequisites": ["kanji-grade4"]
+  "guideUrl": "./japanese/kanji/kanji-grade4-10/guide",
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

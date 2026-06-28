@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-7",
-  "categoryName": "✏️ 書き（格・額・刊・幹・慣・眼・寄・久・旧・居）",
+  "categoryName": "✏️ 書き（格額刊幹慣眼寄久旧居）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「格・額・刊・幹・慣・眼・寄・久・旧・居」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「格額刊幹慣眼寄久旧居」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "a2c736f9-627b-5a0c-8ae1-1ef4228c37d3",
       "question": "「かく」を漢字で書いてください",
-      "choices": ["格"],
+      "choices": [
+        "格"
+      ],
       "correct": 0,
       "explanation": "「かく」は「格」と書く。等級・地位のこと。「格差」（かくさ）は差があること"
     },
     {
       "id": "500048e4-5d5d-5527-a2a9-f9f72e24e3f2",
       "question": "「ひたい」を漢字で書いてください",
-      "choices": ["額"],
+      "choices": [
+        "額"
+      ],
       "correct": 0,
       "explanation": "「ひたい」は「額」と書く。顔の上部のこと。また金額の意味でも使う。「がく」（音読み）とも読む"
     },
     {
       "id": "5f0ffcf5-ed48-5e85-9af5-daa3e48f7c22",
       "question": "「かん」を漢字で書いてください",
-      "choices": ["刊"],
+      "choices": [
+        "刊"
+      ],
       "correct": 0,
       "explanation": "「かん」は「刊」と書く。本や新聞などを出版すること。「発刊」（はっかん）は新しく出版すること"
     },
     {
       "id": "0aed5687-6c31-5d66-a9ce-2a3f0eeaffe1",
       "question": "「みき」を漢字で書いてください",
-      "choices": ["幹"],
+      "choices": [
+        "幹"
+      ],
       "correct": 0,
       "explanation": "「みき」は「幹」と書く。木の太い中心部分。「かん」（音読み）とも読む"
     },
     {
       "id": "50bd0448-32eb-542e-a3cd-26b91aa3d52e",
       "question": "「なれる」の「な」を漢字で書いてください",
-      "choices": ["慣"],
+      "choices": [
+        "慣"
+      ],
       "correct": 0,
       "explanation": "「なれる」の「な」は「慣」と書く。何度もやって馴染むこと。「かん」（音読み）とも読む"
     },
     {
       "id": "189b855b-d5d8-5201-8120-1c8b9f846b75",
       "question": "「め」を漢字で書いてください",
-      "choices": ["眼"],
+      "choices": [
+        "眼"
+      ],
       "correct": 0,
       "explanation": "「め」は「眼」と書く。目のこと・見る力のこと。「がん」（音読み）とも読む"
     },
     {
       "id": "d39bea3d-96ce-5a30-afbd-812f19d15714",
       "question": "「よる」の「よ」を漢字で書いてください",
-      "choices": ["寄"],
+      "choices": [
+        "寄"
+      ],
       "correct": 0,
       "explanation": "「よる」の「よ」は「寄」と書く。近くに行くこと・立ち寄ること。「き」（音読み）とも読む"
     },
     {
       "id": "b40a4e9d-123d-57d5-ac62-e445dde7a6a9",
       "question": "「ひさしい」の「ひさ」を漢字で書いてください",
-      "choices": ["久"],
+      "choices": [
+        "久"
+      ],
       "correct": 0,
       "explanation": "「ひさしい」の「ひさ」は「久」と書く。長い時間が経っていること。「く」「きゅう」（音読み）とも読む"
     },
     {
       "id": "ac57baf6-98bb-52ed-82a0-16c1e4de8039",
       "question": "「きゅう」を漢字で書いてください",
-      "choices": ["旧"],
+      "choices": [
+        "旧"
+      ],
       "correct": 0,
       "explanation": "「きゅう」は「旧」と書く。古い・以前のこと。「旧友」（きゅうゆう）は昔からの友達"
     },
     {
       "id": "ec7765f1-a42b-5197-84dd-b5739c7e3bb3",
       "question": "「いる」の「い」を漢字で書いてください",
-      "choices": ["居"],
+      "choices": [
+        "居"
+      ],
       "correct": 0,
       "explanation": "「いる」の「い」は「居」と書く。その場所にいること。「きょ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
-  "prerequisites": ["kanji-grade5"]
+  "guideUrl": "./japanese/kanji/kanji-grade5-7/guide",
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

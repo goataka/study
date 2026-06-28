@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-12",
-  "categoryName": "📖 読み（首・黒・細・番・午・語・週・家・点・才）",
+  "categoryName": "📖 読み（首黒細番午語週家点才）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「首・黒・細・番・午・語・週・家・点・才」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「首黒細番午語週家点才」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-12/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "2fe69bce-6f54-5d29-befb-eebcdc778d7d",
       "question": "「首」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["くび"],
+      "choices": [
+        "くび"
+      ],
       "correct": 0,
       "explanation": "首（くび）: 頭とからだをつなぐ部分。「しゅ」（音読み）とも読む"
     },
     {
       "id": "4a0f08dc-3daa-5f4b-8929-21e07e258ab2",
       "question": "「黒」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["くろ"],
+      "choices": [
+        "くろ"
+      ],
       "correct": 0,
       "explanation": "黒（くろ）: 色の名前のこと。「こく」（音読み）とも読む"
     },
     {
       "id": "19973db7-3927-56a9-929c-554b1d1f8200",
       "question": "「細」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ほそい"],
+      "choices": [
+        "ほそい"
+      ],
       "correct": 0,
       "explanation": "細（ほそ）い: 細くて薄いこと。「さい」（音読み）とも読む"
     },
     {
       "id": "621279cc-0c3c-5054-857f-584322d7c5f9",
       "question": "「番」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ばん"],
+      "choices": [
+        "ばん"
+      ],
       "correct": 0,
       "explanation": "番（ばん）: 順番・番号のこと"
     },
     {
       "id": "2fb23cc8-d031-59b5-9e43-51dbe1edf6b7",
       "question": "「午」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ご"],
+      "choices": [
+        "ご"
+      ],
       "correct": 0,
       "explanation": "午（ご）: 十二支の7番目。正午のこと"
     },
     {
       "id": "442dfdd7-48f5-5f07-8552-ef6487d5b0e2",
       "question": "「語」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かたる"],
+      "choices": [
+        "かたる"
+      ],
       "correct": 0,
       "explanation": "語（かた）る: 話すこと・ことばのこと。「ご」（音読み）とも読む"
     },
     {
       "id": "e0f978e4-8d26-50ce-83c7-38455aef0cf1",
       "question": "「週」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["しゅう"],
+      "choices": [
+        "しゅう"
+      ],
       "correct": 0,
       "explanation": "週（しゅう）: 7日間のひとまとまりのこと"
     },
     {
       "id": "5e016d5d-8db2-5769-90fe-aecff16c122e",
       "question": "「家」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["いえ"],
+      "choices": [
+        "いえ"
+      ],
       "correct": 0,
       "explanation": "家（いえ）: 人が住む建物のこと。「か」「け」（音読み）とも読む"
     },
     {
       "id": "22bd8860-7219-53e9-80f4-cd07c1231096",
       "question": "「点」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["てん"],
+      "choices": [
+        "てん"
+      ],
       "correct": 0,
       "explanation": "点（てん）: 小さな点・採点のこと"
     },
     {
       "id": "5dcfc12c-6b7f-543f-a6b4-6db4140000d4",
       "question": "「才」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["さい"],
+      "choices": [
+        "さい"
+      ],
       "correct": 0,
       "explanation": "才（さい）: 年齢・才能のこと"
     }
   ],
-  "prerequisites": ["kanji-grade1"]
+  "prerequisites": [
+    "kanji-grade1"
+  ]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-9",
-  "categoryName": "✏️ 書き（鳴・室・里・自・線・来・売・頭・米・弱）",
+  "categoryName": "✏️ 書き（鳴室里自線来売頭米弱）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「鳴・室・里・自・線・来・売・頭・米・弱」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「鳴室里自線来売頭米弱」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "d1721edf-a627-583f-a59e-3f86ef138306",
       "question": "「なく」の「な」を漢字で書いてください",
-      "choices": ["鳴"],
+      "choices": [
+        "鳴"
+      ],
       "correct": 0,
       "explanation": "「なく」の「な」は「鳴」と書く。鳥や虫が声を出すこと。「めい」（音読み）とも読む"
     },
     {
       "id": "606a8e0b-5328-5f58-b7d1-29ba0eb527eb",
       "question": "「むろ」を漢字で書いてください",
-      "choices": ["室"],
+      "choices": [
+        "室"
+      ],
       "correct": 0,
       "explanation": "「むろ」は「室」と書く。部屋のこと。「しつ」（音読み）とも読む"
     },
     {
       "id": "47b5f721-8e63-509f-a53d-58565ecee91a",
       "question": "「さと」を漢字で書いてください",
-      "choices": ["里"],
+      "choices": [
+        "里"
+      ],
       "correct": 0,
       "explanation": "「さと」は「里」と書く。村・ふるさとのこと。「り」（音読み）とも読む"
     },
     {
       "id": "4240817e-7d39-5454-966a-ea1c482ed89b",
       "question": "「みずから」を漢字で書いてください",
-      "choices": ["自"],
+      "choices": [
+        "自"
+      ],
       "correct": 0,
       "explanation": "「みずから」は「自」と書く。自分自身のこと。「じ」「し」（音読み）とも読む"
     },
     {
       "id": "3a4455f1-2a74-56c7-be01-7116a4de9973",
       "question": "「せん」を漢字で書いてください",
-      "choices": ["線"],
+      "choices": [
+        "線"
+      ],
       "correct": 0,
       "explanation": "「せん」は「線」と書く。細長い線のこと"
     },
     {
       "id": "8bd871e7-f55b-5fbc-ab34-96b783305aad",
       "question": "「くる」の「く」を漢字で書いてください（こちらへ向かうこと）",
-      "choices": ["来"],
+      "choices": [
+        "来"
+      ],
       "correct": 0,
       "explanation": "「くる」の「く」は「来」と書く。こちらへ向かうこと。「らい」「たい」（音読み）とも読む"
     },
     {
       "id": "b448cc00-bc8a-5b53-aae7-13e7beff2b30",
       "question": "「うる」の「う」を漢字で書いてください",
-      "choices": ["売"],
+      "choices": [
+        "売"
+      ],
       "correct": 0,
       "explanation": "「うる」の「う」は「売」と書く。品物をお金と交換すること。「ばい」（音読み）とも読む"
     },
     {
       "id": "f36ea509-66e9-57e0-8549-6a1c15ff6db3",
       "question": "「あたま」を漢字で書いてください",
-      "choices": ["頭"],
+      "choices": [
+        "頭"
+      ],
       "correct": 0,
       "explanation": "「あたま」は「頭」と書く。からだの一番上の部分。「ず」「とう」（音読み）とも読む"
     },
     {
       "id": "b621e24c-5e16-5c63-ad27-f25e9caa1568",
       "question": "「こめ」を漢字で書いてください",
-      "choices": ["米"],
+      "choices": [
+        "米"
+      ],
       "correct": 0,
       "explanation": "「こめ」は「米」と書く。イネの実のこと。「べい」「まい」（音読み）とも読む"
     },
     {
       "id": "0663d5ca-3ca5-5256-9d80-999218820a0f",
       "question": "「よわい」の「よわ」を漢字で書いてください",
-      "choices": ["弱"],
+      "choices": [
+        "弱"
+      ],
       "correct": 0,
       "explanation": "「よわい」の「よわ」は「弱」と書く。力がないこと。「じゃく」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
-  "prerequisites": ["kanji-grade2"]
+  "guideUrl": "./japanese/kanji/kanji-grade2-9/guide",
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

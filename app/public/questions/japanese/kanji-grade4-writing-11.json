@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-11",
-  "categoryName": "✏️ 書き（祝・松・唱・焼・象・照・城・信頼・大臣・折）",
+  "categoryName": "✏️ 書き（祝松唱焼象照城信頼大臣折）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「祝・松・唱・焼・象・照・城・信頼・大臣・折」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「祝松唱焼象照城信頼大臣折」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "26299fda-237c-555b-97d4-a7e4b3175b84",
       "question": "「いわう」の「いわ」を漢字で書いてください",
-      "choices": ["祝"],
+      "choices": [
+        "祝"
+      ],
       "correct": 0,
       "explanation": "「いわう」の「いわ」は「祝」と書く。おめでたいことを喜ぶこと。「しゅく」（音読み）とも読む"
     },
     {
       "id": "c15bcd6f-f2e6-5283-8fb7-228892084e99",
       "question": "「まつ」を漢字で書いてください",
-      "choices": ["松"],
+      "choices": [
+        "松"
+      ],
       "correct": 0,
       "explanation": "「まつ」は「松」と書く。冬も緑の常緑樹。「しょう」（音読み）とも読む"
     },
     {
       "id": "54293f0d-974b-5f3d-9202-c753a6d83ff9",
       "question": "「となえる」の「とな」を漢字で書いてください",
-      "choices": ["唱"],
+      "choices": [
+        "唱"
+      ],
       "correct": 0,
       "explanation": "「となえる」の「とな」は「唱」と書く。声に出して言うこと。「しょう」（音読み）とも読む"
     },
     {
       "id": "8497ed0e-e198-5494-8dc0-133d27b1f47f",
       "question": "「やく」の「や」を漢字で書いてください",
-      "choices": ["焼"],
+      "choices": [
+        "焼"
+      ],
       "correct": 0,
       "explanation": "「やく」の「や」は「焼」と書く。火で加熱すること。「しょう」（音読み）とも読む"
     },
     {
       "id": "2e1c16f9-575d-54a2-961f-d900c2467d93",
       "question": "「ぞう」を漢字で書いてください",
-      "choices": ["象"],
+      "choices": [
+        "象"
+      ],
       "correct": 0,
       "explanation": "「ぞう」は「象」と書く。大きな鼻を持つ動物。「しょう」（音読み）とも読む"
     },
     {
       "id": "91876564-b591-56dd-829c-6875e601dd5b",
       "question": "「てる」の「て」を漢字で書いてください",
-      "choices": ["照"],
+      "choices": [
+        "照"
+      ],
       "correct": 0,
       "explanation": "「てる」の「て」は「照」と書く。太陽などの光が当たること。「しょう」（音読み）とも読む"
     },
     {
       "id": "ee2ee512-6549-5b8e-b409-b7dcbe6f797d",
       "question": "「しろ」を漢字で書いてください",
-      "choices": ["城"],
+      "choices": [
+        "城"
+      ],
       "correct": 0,
       "explanation": "「しろ」は「城」と書く。昔の武士が住んでいた建物。「じょう」（音読み）とも読む"
     },
     {
       "id": "58f46eb9-13a4-540c-95c1-2ee38ee4b4f8",
       "question": "「しんらい」を漢字で書いてください",
-      "choices": ["信頼"],
+      "choices": [
+        "信頼"
+      ],
       "correct": 0,
       "explanation": "「しんらい」は「信頼」と書く。信じて頼ること・信用すること"
     },
     {
       "id": "7fd0cf8d-7be2-511b-86cb-e457bd466928",
       "question": "「だいじん」を漢字で書いてください",
-      "choices": ["大臣"],
+      "choices": [
+        "大臣"
+      ],
       "correct": 0,
       "explanation": "「だいじん」は「大臣」と書く。政府の重要な役職"
     },
     {
       "id": "cacb3ede-da9c-508f-bb1f-0bccb20bc953",
       "question": "「おる」の「お」を漢字で書いてください（曲げて形を変えること）",
-      "choices": ["折"],
+      "choices": [
+        "折"
+      ],
       "correct": 0,
       "explanation": "「おる」の「お」は「折」と書く。曲げて形を変えること。「せつ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
-  "prerequisites": ["kanji-grade4"]
+  "guideUrl": "./japanese/kanji/kanji-grade4-11/guide",
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

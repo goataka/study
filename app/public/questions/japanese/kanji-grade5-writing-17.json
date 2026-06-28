@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-17",
-  "categoryName": "✏️ 書き（暴・迷・綿・輸・容・略・乱・卵・覧・裏）",
+  "categoryName": "✏️ 書き（暴迷綿輸容略乱卵覧裏）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「暴・迷・綿・輸・容・略・乱・卵・覧・裏」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「暴迷綿輸容略乱卵覧裏」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "ac33efbd-758d-5216-b76b-ecb26d5551a8",
       "question": "「あばれる」の「あば」を漢字で書いてください",
-      "choices": ["暴"],
+      "choices": [
+        "暴"
+      ],
       "correct": 0,
       "explanation": "「あばれる」の「あば」は「暴」と書く。激しく荒々しく動くこと。「ぼう」「ばく」（音読み）とも読む"
     },
     {
       "id": "a1801f6d-d152-5e0c-86a3-64b0a905e7e9",
       "question": "「まよう」の「まよ」を漢字で書いてください",
-      "choices": ["迷"],
+      "choices": [
+        "迷"
+      ],
       "correct": 0,
       "explanation": "「まよう」の「まよ」は「迷」と書く。どうしたらいいか分からなくなること。「めい」（音読み）とも読む"
     },
     {
       "id": "0ea9744b-320e-5c3c-b9bc-e7b83365f9bc",
       "question": "「わた」を漢字で書いてください",
-      "choices": ["綿"],
+      "choices": [
+        "綿"
+      ],
       "correct": 0,
       "explanation": "「わた」は「綿」と書く。ふわふわした繊維・布の材料。「めん」（音読み）とも読む"
     },
     {
       "id": "f63ea0a3-41b4-5d42-bc37-05e77c8fe72f",
       "question": "「ゆ」を漢字で書いてください",
-      "choices": ["輸"],
+      "choices": [
+        "輸"
+      ],
       "correct": 0,
       "explanation": "「ゆ」は「輸」と書く。運ぶこと。「輸出」（ゆしゅつ）は外国へ物を送ること"
     },
     {
       "id": "0a3dbf26-d64f-543e-8eeb-ba17fd928430",
       "question": "「よう」を漢字で書いてください",
-      "choices": ["容"],
+      "choices": [
+        "容"
+      ],
       "correct": 0,
       "explanation": "「よう」は「容」と書く。受け入れること・様子のこと。「容易」（ようい）は簡単なこと"
     },
     {
       "id": "78157866-7dac-58e1-a16c-4700d166c939",
       "question": "「りゃく」を漢字で書いてください",
-      "choices": ["略"],
+      "choices": [
+        "略"
+      ],
       "correct": 0,
       "explanation": "「りゃく」は「略」と書く。短くすること・省くこと。「省略」（しょうりゃく）は省いて短くすること"
     },
     {
       "id": "c7ad380a-ee4c-5d74-924e-555a7748dcaa",
       "question": "「みだれる」の「みだ」を漢字で書いてください",
-      "choices": ["乱"],
+      "choices": [
+        "乱"
+      ],
       "correct": 0,
       "explanation": "「みだれる」の「みだ」は「乱」と書く。秩序がなくなること・ごちゃごちゃになること。「らん」（音読み）とも読む"
     },
     {
       "id": "dea93b77-0580-58b3-afc3-68c29151b0ab",
       "question": "「たまご」を漢字で書いてください",
-      "choices": ["卵"],
+      "choices": [
+        "卵"
+      ],
       "correct": 0,
       "explanation": "「たまご」は「卵」と書く。鳥などが産む丸いもの・生き物が生まれるもと。「らん」（音読み）とも読む"
     },
     {
       "id": "8d2e7ebd-08aa-5a35-b4a5-65121256835d",
       "question": "「らん」を漢字で書いてください",
-      "choices": ["覧"],
+      "choices": [
+        "覧"
+      ],
       "correct": 0,
       "explanation": "「らん」は「覧」と書く。見ること。「一覧」（いちらん）は全体を一目で見ること"
     },
     {
       "id": "6d61316e-c59a-5738-a0d7-14556cea7c09",
       "question": "「うら」を漢字で書いてください",
-      "choices": ["裏"],
+      "choices": [
+        "裏"
+      ],
       "correct": 0,
       "explanation": "「うら」は「裏」と書く。反対側・隠れた面のこと。「り」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
-  "prerequisites": ["kanji-grade5"]
+  "guideUrl": "./japanese/kanji/kanji-grade5-17/guide",
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

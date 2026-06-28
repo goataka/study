@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-7",
-  "categoryName": "📖 読み（男・竹・中・虫・町・天・田・二・入る・八）",
+  "categoryName": "📖 読み（男竹中虫町天田二入八）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,77 +11,97 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「男・竹・中・虫・町・天・田・二・入る・八」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "description": "小学1年のこのセットでは「男竹中虫町天田二入八」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade1-7/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "915b2854-7e13-5742-af8c-34d822401efc",
       "question": "「男」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["おとこ"],
+      "choices": [
+        "おとこ"
+      ],
       "correct": 0,
       "explanation": "男（おとこ）: 男性のこと。「だん」「なん」（音読み）とも読む"
     },
     {
       "id": "474331f1-8be5-5222-8ec2-7574fe500479",
       "question": "「竹」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["たけ"],
+      "choices": [
+        "たけ"
+      ],
       "correct": 0,
       "explanation": "竹（たけ）: まっすぐ伸びる植物のこと。「ちく」（音読み）とも読む"
     },
     {
       "id": "eb8158c0-da6d-5562-b8ea-4e3f00bdc6d4",
       "question": "「中」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["なか"],
+      "choices": [
+        "なか"
+      ],
       "correct": 0,
       "explanation": "中（なか）: 内側・まんなかのこと。「ちゅう」（音読み）とも読む"
     },
     {
       "id": "94d1fe20-0e49-5694-8066-b35884980273",
       "question": "「虫」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["むし"],
+      "choices": [
+        "むし"
+      ],
       "correct": 0,
       "explanation": "虫（むし）: 小さな生き物のこと。「ちゅう」（音読み）とも読む"
     },
     {
       "id": "f6613848-d24f-510e-aca4-9a67654e1385",
       "question": "「町」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["まち"],
+      "choices": [
+        "まち"
+      ],
       "correct": 0,
       "explanation": "町（まち）: 人が集まって住んでいる場所のこと。「ちょう」（音読み）とも読む"
     },
     {
       "id": "365ecea2-26bb-573d-848e-7d5a77293fcc",
       "question": "「天」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["てん"],
+      "choices": [
+        "てん"
+      ],
       "correct": 0,
       "explanation": "天（てん）: 空・天上のこと。「あめ」「あま」（訓読み）とも読む"
     },
     {
       "id": "f727aa73-391d-5c4e-99c8-ea87d6e04cef",
       "question": "「田」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["た"],
+      "choices": [
+        "た"
+      ],
       "correct": 0,
       "explanation": "田（た）: 稲を育てる水を張った土地のこと。「でん」（音読み）とも読む"
     },
     {
       "id": "834c79ea-3741-5511-8a9f-a64c0cb26d64",
       "question": "「二」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ふた"],
+      "choices": [
+        "ふた"
+      ],
       "correct": 0,
       "explanation": "二（ふた）つ: 数の2のこと。「に」（音読み）とも読む"
     },
     {
       "id": "c7b1c89d-6257-5cff-acd7-d62860cd0adf",
       "question": "「入る」の「入」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はい"],
+      "choices": [
+        "はい"
+      ],
       "correct": 0,
       "explanation": "入（はい）る: 外から中へ行くこと。「にゅう」（音読み）とも読む"
     },
     {
       "id": "64c59e3c-e2fe-5767-ba4a-214e9f88295a",
       "question": "「八」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["やっ"],
+      "choices": [
+        "やっ"
+      ],
       "correct": 0,
       "explanation": "八（やっ）つ: 数の8のこと。「はち」（音読み）とも読む"
     }

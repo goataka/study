@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-6",
-  "categoryName": "📖 読み（道・南・北・西・野・夜・引く・羽・遠い・外）",
+  "categoryName": "📖 読み（道南北西野夜引羽遠外）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「道・南・北・西・野・夜・引く・羽・遠い・外」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「道南北西野夜引羽遠外」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-6/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "14775ddf-cca7-5047-b793-86d0746cde45",
       "question": "「道」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["みち"],
+      "choices": [
+        "みち"
+      ],
       "correct": 0,
       "explanation": "道（みち）: 人や車が通る場所。「どう」（音読み）とも読む"
     },
     {
       "id": "bb42dfe3-c7fb-5c9a-a14a-c8f7bcd62662",
       "question": "「南」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["みなみ"],
+      "choices": [
+        "みなみ"
+      ],
       "correct": 0,
       "explanation": "南（みなみ）: 北の反対方向。「なん」（音読み）とも読む"
     },
     {
       "id": "cb422566-947b-5bdf-98cf-c4d2d7ea0b59",
       "question": "「北」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["きた"],
+      "choices": [
+        "きた"
+      ],
       "correct": 0,
       "explanation": "北（きた）: 南の反対方向。「ほく」（音読み）とも読む"
     },
     {
       "id": "bd970dd4-4440-5d97-861d-205d2a39b6b7",
       "question": "「西」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["にし"],
+      "choices": [
+        "にし"
+      ],
       "correct": 0,
       "explanation": "西（にし）: 太陽が沈む方向。「せい」（音読み）とも読む"
     },
     {
       "id": "e78ffc57-73fb-514b-ba7a-aa3b14676133",
       "question": "「野」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["の"],
+      "choices": [
+        "の"
+      ],
       "correct": 0,
       "explanation": "野（の）: 広い草原や田畑のこと。「や」（音読み）とも読む"
     },
     {
       "id": "6eb4e78a-d1ad-5ef1-a729-98ddd82aea15",
       "question": "「夜」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["よる"],
+      "choices": [
+        "よる"
+      ],
       "correct": 0,
       "explanation": "夜（よる）: 日が沈んでから暗い時間帯。「や」（音読み）とも読む"
     },
     {
       "id": "e7e633c3-38dc-5803-8d52-8247f4814fea",
       "question": "「引く」の「引」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ひ"],
+      "choices": [
+        "ひ"
+      ],
       "correct": 0,
       "explanation": "引（ひ）く: 手前に力をかけること。「いん」（音読み）とも読む"
     },
     {
       "id": "a02dfe64-4953-5ef6-bca3-b5437e107e6c",
       "question": "「羽」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はね"],
+      "choices": [
+        "はね"
+      ],
       "correct": 0,
       "explanation": "羽（はね）: 鳥の体を覆う羽毛のこと。「う」（音読み）とも読む"
     },
     {
       "id": "cc68eebb-c781-5072-8753-b1e79e00351b",
       "question": "「遠い」の「遠」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["とお"],
+      "choices": [
+        "とお"
+      ],
       "correct": 0,
       "explanation": "遠（とお）い: 距離が長いこと。「えん」（音読み）とも読む"
     },
     {
       "id": "8cb8b2c5-75a2-5c64-9520-10f639c262d0",
       "question": "「外」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["そと"],
+      "choices": [
+        "そと"
+      ],
       "correct": 0,
       "explanation": "外（そと）: 建物の外側のこと。「がい」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade1"]
+  "prerequisites": [
+    "kanji-grade1"
+  ]
 }

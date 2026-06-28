@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-7",
-  "categoryName": "📖 読み（角・楽しい・間・丸い・言う・戸・古い・広い・紙・時）",
+  "categoryName": "📖 読み（角楽間丸言戸古広紙時）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「角・楽しい・間・丸い・言う・戸・古い・広い・紙・時」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「角楽間丸言戸古広紙時」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-7/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "180741aa-5ff3-5291-8622-1cafb0bdd951",
       "question": "「角」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かど"],
+      "choices": [
+        "かど"
+      ],
       "correct": 0,
       "explanation": "角（かど）: 曲がり角や頂点のこと。「かく」（音読み）とも読む"
     },
     {
       "id": "51a85838-886f-5320-a5c7-8f49e8ebdc50",
       "question": "「楽しい」の「楽」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["たの"],
+      "choices": [
+        "たの"
+      ],
       "correct": 0,
       "explanation": "楽（たの）しい: 喜びや楽しさがあること。「がく」「らく」（音読み）とも読む"
     },
     {
       "id": "a0d68ee3-ea30-5b65-8cf9-4c592f50a3ea",
       "question": "「間」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あいだ"],
+      "choices": [
+        "あいだ"
+      ],
       "correct": 0,
       "explanation": "間（あいだ）: 二つの物の中間のこと。「かん」「けん」（音読み）とも読む"
     },
     {
       "id": "bf5323f0-51cd-52b1-aaf1-656d39625dd0",
       "question": "「丸い」の「丸」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["まる"],
+      "choices": [
+        "まる"
+      ],
       "correct": 0,
       "explanation": "丸（まる）い: 円形であること。「がん」（音読み）とも読む"
     },
     {
       "id": "5b4c7e9f-636b-5458-a5ac-c4294fe4812a",
       "question": "「言う」の「言」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["い"],
+      "choices": [
+        "い"
+      ],
       "correct": 0,
       "explanation": "言（い）う: 口に出すこと。「げん」「ごん」（音読み）とも読む"
     },
     {
       "id": "b9937cce-600c-562d-a213-ba04362b9fa6",
       "question": "「戸」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["と"],
+      "choices": [
+        "と"
+      ],
       "correct": 0,
       "explanation": "戸（と）: 開け閉めする扉のこと。「こ」（音読み）とも読む"
     },
     {
       "id": "721a05eb-5185-51de-b16b-4bc553f3234e",
       "question": "「古い」の「古」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ふる"],
+      "choices": [
+        "ふる"
+      ],
       "correct": 0,
       "explanation": "古（ふる）い: 時間が経って古くなったこと。「こ」（音読み）とも読む"
     },
     {
       "id": "bf7db5fe-2d73-5f19-8349-71772f89bc8a",
       "question": "「広い」の「広」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ひろ"],
+      "choices": [
+        "ひろ"
+      ],
       "correct": 0,
       "explanation": "広（ひろ）い: 面積が大きいこと。「こう」（音読み）とも読む"
     },
     {
       "id": "40225f52-2106-5a7d-bebe-cbf0ec5292cf",
       "question": "「紙」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かみ"],
+      "choices": [
+        "かみ"
+      ],
       "correct": 0,
       "explanation": "紙（かみ）: 文字を書くための薄いもの。「し」（音読み）とも読む"
     },
     {
       "id": "789f9b7c-31fd-545f-8730-13307774f8a6",
       "question": "「時」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["とき"],
+      "choices": [
+        "とき"
+      ],
       "correct": 0,
       "explanation": "時（とき）: ある瞬間や時間のこと。「じ」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade1"]
+  "prerequisites": [
+    "kanji-grade1"
+  ]
 }

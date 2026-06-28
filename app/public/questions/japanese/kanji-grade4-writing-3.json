@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-3",
-  "categoryName": "✏️ 書き（関係・願・機会・議員・求・競争・協力・健康・経験・最初）",
+  "categoryName": "✏️ 書き（関係願機会議員求競争協力健康経験最初）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「関係・願・機会・議員・求・競争・協力・健康・経験・最初」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「関係願機会議員求競争協力健康経験最初」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "62d9a38d-5b75-5c40-82a8-03937f7392f7",
       "question": "「かんけい」を漢字で書いてください",
-      "choices": ["関係"],
+      "choices": [
+        "関係"
+      ],
       "correct": 0,
       "explanation": "「かんけい」は「関係」と書く。物事どうしのつながり"
     },
     {
       "id": "62f3c942-e03c-5ab8-8171-383e0e606448",
       "question": "「ねがう」の「ねが」を漢字で書いてください",
-      "choices": ["願"],
+      "choices": [
+        "願"
+      ],
       "correct": 0,
       "explanation": "「ねがう」の「ねが」は「願」と書く。こうなってほしいと思うこと。「がん」（音読み）とも読む"
     },
     {
       "id": "3c4e0a4a-c93a-5f8d-ac16-3feff8a3fbef",
       "question": "「きかい」を漢字で書いてください（ちょうどよいとき・チャンス）",
-      "choices": ["機会"],
+      "choices": [
+        "機会"
+      ],
       "correct": 0,
       "explanation": "「きかい」は「機会」と書く。ちょうどよいとき・チャンス"
     },
     {
       "id": "a501db10-9130-53a1-90d6-d8eb5c742415",
       "question": "「ぎいん」を漢字で書いてください",
-      "choices": ["議員"],
+      "choices": [
+        "議員"
+      ],
       "correct": 0,
       "explanation": "「ぎいん」は「議員」と書く。議会で議論する代表者"
     },
     {
       "id": "6682e6c1-0f8c-59ec-be8b-bc6741d2bb7b",
       "question": "「もとめる」の「もと」を漢字で書いてください",
-      "choices": ["求"],
+      "choices": [
+        "求"
+      ],
       "correct": 0,
       "explanation": "「もとめる」の「もと」は「求」と書く。必要なものを得ようとすること。「きゅう」（音読み）とも読む"
     },
     {
       "id": "4e32ba08-7904-5e8d-ab76-ccfd5393698b",
       "question": "「きょうそう」を漢字で書いてください",
-      "choices": ["競争"],
+      "choices": [
+        "競争"
+      ],
       "correct": 0,
       "explanation": "「きょうそう」は「競争」と書く。勝ち負けを争うこと"
     },
     {
       "id": "d807608a-3e91-52a7-95c9-eded838b2f3d",
       "question": "「きょうりょく」を漢字で書いてください",
-      "choices": ["協力"],
+      "choices": [
+        "協力"
+      ],
       "correct": 0,
       "explanation": "「きょうりょく」は「協力」と書く。いっしょに力を合わせること"
     },
     {
       "id": "7f8638f8-2d1f-5df3-88e4-8559dd892187",
       "question": "「けんこう」を漢字で書いてください",
-      "choices": ["健康"],
+      "choices": [
+        "健康"
+      ],
       "correct": 0,
       "explanation": "「けんこう」は「健康」と書く。体が元気な状態"
     },
     {
       "id": "71418db8-3937-5ffa-9b93-9d649b33934d",
       "question": "「けいけん」を漢字で書いてください",
-      "choices": ["経験"],
+      "choices": [
+        "経験"
+      ],
       "correct": 0,
       "explanation": "「けいけん」は「経験」と書く。実際に体験すること"
     },
     {
       "id": "2f97f866-ca55-53fa-8ed1-9b7bd2180de8",
       "question": "「さいしょ」を漢字で書いてください",
-      "choices": ["最初"],
+      "choices": [
+        "最初"
+      ],
       "correct": 0,
       "explanation": "「さいしょ」は「最初」と書く。一番はじめのこと"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
-  "prerequisites": ["kanji-grade4"]
+  "guideUrl": "./japanese/kanji/kanji-grade4-3/guide",
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

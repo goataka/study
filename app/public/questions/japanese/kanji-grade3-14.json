@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-14",
-  "categoryName": "📖 読み（今度・投げる・大豆・お湯・登る・等しい・動く・童話・農業・波）",
+  "categoryName": "📖 読み（今度投大豆お湯登等動童話農業波）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「今度・投げる・大豆・お湯・登る・等しい・動く・童話・農業・波」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「今度投大豆お湯登等動童話農業波」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-14/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "223a1224-dc7a-53c6-816b-decd1ac978db",
       "question": "「今度」の「度」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ど"],
+      "choices": [
+        "ど"
+      ],
       "correct": 0,
       "explanation": "度（ど）: 回数・程度のこと。「今度」「温度」など"
     },
     {
       "id": "715bc1eb-e04b-525b-949e-63b3af0e57f5",
       "question": "「投げる」の「投」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["な"],
+      "choices": [
+        "な"
+      ],
       "correct": 0,
       "explanation": "投（な）げる: ものを飛ばすこと。「投球」（とうきゅう）とも読む"
     },
     {
       "id": "f8bd4b42-f391-55c9-8e4d-c0c8d30cb5de",
       "question": "「大豆」の「豆」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["まめ"],
+      "choices": [
+        "まめ"
+      ],
       "correct": 0,
       "explanation": "豆（まめ）: 植物の種実。「大豆」「豆まき」など"
     },
     {
       "id": "877a1439-e2a3-5e6e-ad56-1439cfcef538",
       "question": "「お湯」の「湯」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ゆ"],
+      "choices": [
+        "ゆ"
+      ],
       "correct": 0,
       "explanation": "湯（ゆ）: 熱いお湯のこと。「とう」（音読み）とも読む"
     },
     {
       "id": "c24c8192-7ff3-5807-925d-b506603878be",
       "question": "「登る」の「登」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["のぼ"],
+      "choices": [
+        "のぼ"
+      ],
       "correct": 0,
       "explanation": "登（のぼ）る: 高い所へ行くこと。「とう」（音読み）とも読む"
     },
     {
       "id": "677a7b6d-588a-5749-b3c7-fba63189093d",
       "question": "「等しい」の「等」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ひと"],
+      "choices": [
+        "ひと"
+      ],
       "correct": 0,
       "explanation": "等（ひと）しい: 同じであること。「など」「とう」（音読み）とも読む"
     },
     {
       "id": "9e088d38-b159-59cb-bdf1-1389d1163165",
       "question": "「動く」の「動」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["うご"],
+      "choices": [
+        "うご"
+      ],
       "correct": 0,
       "explanation": "動（うご）く: 位置が変わること。「どう」（音読み）とも読む"
     },
     {
       "id": "90179e86-5535-5b79-9b2c-4b8279e056cc",
       "question": "「童話」の「童」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["わらべ"],
+      "choices": [
+        "わらべ"
+      ],
       "correct": 0,
       "explanation": "童（わらべ）: 子どものこと。「どう」（音読み）とも読む"
     },
     {
       "id": "0371189c-d887-5ac9-80c5-3edbcfd181fa",
       "question": "「農業」の「農」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["のう"],
+      "choices": [
+        "のう"
+      ],
       "correct": 0,
       "explanation": "農（のう）業: 作物を育てる仕事。「農家」「農業」など"
     },
     {
       "id": "a00a8c4d-76e1-5ab1-b167-74bfad834dd4",
       "question": "「波」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["なみ"],
+      "choices": [
+        "なみ"
+      ],
       "correct": 0,
       "explanation": "波（なみ）: 海や水面のうねり。「は」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

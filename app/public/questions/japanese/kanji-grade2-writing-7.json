@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-7",
-  "categoryName": "✏️ 書き（角・楽・間・丸・言・戸・古・広・紙・時）",
+  "categoryName": "✏️ 書き（角楽間丸言戸古広紙時）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「角・楽・間・丸・言・戸・古・広・紙・時」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「角楽間丸言戸古広紙時」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "9fe7f59e-2de1-5482-9598-361d7bcbe93d",
       "question": "「かど」を漢字で書いてください（曲がり角や頂点のこと）",
-      "choices": ["角"],
+      "choices": [
+        "角"
+      ],
       "correct": 0,
       "explanation": "「かど」は「角」と書く。曲がり角や頂点のこと。「かく」（音読み）とも読む"
     },
     {
       "id": "6f766d5f-fe4f-5216-b69d-ff77e34a01fe",
       "question": "「たのしい」の「たの」を漢字で書いてください",
-      "choices": ["楽"],
+      "choices": [
+        "楽"
+      ],
       "correct": 0,
       "explanation": "「たのしい」の「たの」は「楽」と書く。喜びや楽しさがあること。「がく」「らく」（音読み）とも読む"
     },
     {
       "id": "ffa69d7e-7880-56b5-9f66-ba511f45ad02",
       "question": "「あいだ」を漢字で書いてください",
-      "choices": ["間"],
+      "choices": [
+        "間"
+      ],
       "correct": 0,
       "explanation": "「あいだ」は「間」と書く。二つの物の中間のこと。「かん」「けん」（音読み）とも読む"
     },
     {
       "id": "306db2b4-90b4-5961-9a83-4a06946d84b4",
       "question": "「まるい」の「まる」を漢字で書いてください",
-      "choices": ["丸"],
+      "choices": [
+        "丸"
+      ],
       "correct": 0,
       "explanation": "「まるい」の「まる」は「丸」と書く。円形であること。「がん」（音読み）とも読む"
     },
     {
       "id": "af957851-37fa-5074-9ba1-c627170977b5",
       "question": "「いう」の「い」を漢字で書いてください（口に出すこと）",
-      "choices": ["言"],
+      "choices": [
+        "言"
+      ],
       "correct": 0,
       "explanation": "「いう」の「い」は「言」と書く。口に出すこと。「げん」「ごん」（音読み）とも読む"
     },
     {
       "id": "4fd862ad-51c5-5a7b-919f-5c5cb7d7ab57",
       "question": "「と」を漢字で書いてください（開け閉めする扉のこと）",
-      "choices": ["戸"],
+      "choices": [
+        "戸"
+      ],
       "correct": 0,
       "explanation": "「と」は「戸」と書く。開け閉めする扉のこと。「こ」（音読み）とも読む"
     },
     {
       "id": "686757b7-c391-5347-9b08-5035d412a871",
       "question": "「ふるい」の「ふる」を漢字で書いてください",
-      "choices": ["古"],
+      "choices": [
+        "古"
+      ],
       "correct": 0,
       "explanation": "「ふるい」の「ふる」は「古」と書く。時間が経って古くなったこと。「こ」（音読み）とも読む"
     },
     {
       "id": "1f8daa55-9429-5cf5-ae1b-0da48cdf81e1",
       "question": "「ひろい」の「ひろ」を漢字で書いてください",
-      "choices": ["広"],
+      "choices": [
+        "広"
+      ],
       "correct": 0,
       "explanation": "「ひろい」の「ひろ」は「広」と書く。面積が大きいこと。「こう」（音読み）とも読む"
     },
     {
       "id": "52d1c822-2337-5f21-9b6b-089ca7158e9f",
       "question": "「かみ」を漢字で書いてください",
-      "choices": ["紙"],
+      "choices": [
+        "紙"
+      ],
       "correct": 0,
       "explanation": "「かみ」は「紙」と書く。文字を書くための薄いもの。「し」（音読み）とも読む"
     },
     {
       "id": "a6f50b46-4cee-554d-8ab1-ffa202165cfe",
       "question": "「とき」を漢字で書いてください",
-      "choices": ["時"],
+      "choices": [
+        "時"
+      ],
       "correct": 0,
       "explanation": "「とき」は「時」と書く。ある瞬間や時間のこと。「じ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
-  "prerequisites": ["kanji-grade2"]
+  "guideUrl": "./japanese/kanji/kanji-grade2-7/guide",
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

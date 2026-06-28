@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-5",
-  "categoryName": "📖 読み（犬・見る・五・三・子・四・糸・字・耳・七）",
+  "categoryName": "📖 読み（犬見五三子四糸字耳七）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,77 +11,97 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「犬・見る・五・三・子・四・糸・字・耳・七」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "description": "小学1年のこのセットでは「犬見五三子四糸字耳七」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade1-5/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "85ccf2b8-1ea3-57b4-b94b-9f8246e36a74",
       "question": "「犬」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["いぬ"],
+      "choices": [
+        "いぬ"
+      ],
       "correct": 0,
       "explanation": "犬（いぬ）: 人と仲良く暮らす動物のこと。「けん」（音読み）とも読む"
     },
     {
       "id": "26bb76de-14c4-56fd-b3aa-a3e5c1cba91c",
       "question": "「見る」の「見」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["み"],
+      "choices": [
+        "み"
+      ],
       "correct": 0,
       "explanation": "見（み）る: 目で確かめること。「けん」（音読み）とも読む"
     },
     {
       "id": "70974f80-b690-53ab-9cd2-dfa6f209cb7b",
       "question": "「五」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["いつ"],
+      "choices": [
+        "いつ"
+      ],
       "correct": 0,
       "explanation": "五（いつ）つ: 数の5のこと。「ご」（音読み）とも読む"
     },
     {
       "id": "323bda73-4200-584e-876c-ff03935735f3",
       "question": "「三」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["みっ"],
+      "choices": [
+        "みっ"
+      ],
       "correct": 0,
       "explanation": "三（みっ）つ: 数の3のこと。「さん」（音読み）とも読む"
     },
     {
       "id": "f727aadb-35c9-57bc-9b4a-0ff43ce4ca52",
       "question": "「子」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["こ"],
+      "choices": [
+        "こ"
+      ],
       "correct": 0,
       "explanation": "子（こ）: 子どものこと。「し」「す」（音読み）とも読む"
     },
     {
       "id": "693d2de4-51a8-5265-aa29-f266c9d7174d",
       "question": "「四」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["よっ"],
+      "choices": [
+        "よっ"
+      ],
       "correct": 0,
       "explanation": "四（よっ）つ: 数の4のこと。「し」（音読み）とも読む"
     },
     {
       "id": "6af6778c-dff0-548b-8086-1edae9bed7ea",
       "question": "「糸」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["いと"],
+      "choices": [
+        "いと"
+      ],
       "correct": 0,
       "explanation": "糸（いと）: 布や縫い物に使う細いもの。「し」（音読み）とも読む"
     },
     {
       "id": "f5e9dbbb-67f0-5be3-b78c-4e13bb172c09",
       "question": "「字」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["じ"],
+      "choices": [
+        "じ"
+      ],
       "correct": 0,
       "explanation": "字（じ）: 文字のこと。「もじ」「かんじ」などに使う"
     },
     {
       "id": "d6f946da-30ba-5664-ba7f-5b2c59e656f3",
       "question": "「耳」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["みみ"],
+      "choices": [
+        "みみ"
+      ],
       "correct": 0,
       "explanation": "耳（みみ）: 音を聞く体の部分。「じ」（音読み）とも読む"
     },
     {
       "id": "6ad84b66-69a7-5a31-8b5d-4ed7cf6ee651",
       "question": "「七」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["なな"],
+      "choices": [
+        "なな"
+      ],
       "correct": 0,
       "explanation": "七（なな）つ: 数の7のこと。「しち」（音読み）とも読む"
     }

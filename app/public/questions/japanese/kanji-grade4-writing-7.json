@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-7",
-  "categoryName": "✏️ 書き（案内・以上・囲・栄・一億・貨物・課題・芽・改・機械）",
+  "categoryName": "✏️ 書き（案内以上囲栄一億貨物課題芽改機械）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「案内・以上・囲・栄・一億・貨物・課題・芽・改・機械」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「案内以上囲栄一億貨物課題芽改機械」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "13a0a6c1-53f3-5b9f-9838-d3e267356a66",
       "question": "「あんない」を漢字で書いてください",
-      "choices": ["案内"],
+      "choices": [
+        "案内"
+      ],
       "correct": 0,
       "explanation": "「あんない」は「案内」と書く。道や場所を教えること"
     },
     {
       "id": "8e723882-0f18-5900-ae23-b3e75fff3f57",
       "question": "「いじょう」を漢字で書いてください",
-      "choices": ["以上"],
+      "choices": [
+        "以上"
+      ],
       "correct": 0,
       "explanation": "「いじょう」は「以上」と書く。それより多いか同じであること"
     },
     {
       "id": "97bcecb4-b4e1-5f56-86c7-0abbdbdb4224",
       "question": "「かこむ」の「かこ」を漢字で書いてください",
-      "choices": ["囲"],
+      "choices": [
+        "囲"
+      ],
       "correct": 0,
       "explanation": "「かこむ」の「かこ」は「囲」と書く。まわりを取り囲むこと。「い」（音読み）とも読む"
     },
     {
       "id": "bbd59bad-c7b2-5ec0-9a2d-7c749ae51559",
       "question": "「さかえる」の「さか」を漢字で書いてください",
-      "choices": ["栄"],
+      "choices": [
+        "栄"
+      ],
       "correct": 0,
       "explanation": "「さかえる」の「さか」は「栄」と書く。勢いよく育つこと。「えい」（音読み）とも読む"
     },
     {
       "id": "354787c2-20d6-5f06-9a35-8c410b3998ee",
       "question": "「いちおく」を漢字で書いてください",
-      "choices": ["一億"],
+      "choices": [
+        "一億"
+      ],
       "correct": 0,
       "explanation": "「いちおく」は「一億」と書く。一万の一万倍の数"
     },
     {
       "id": "280ddfca-828a-5376-9f00-fc6a6659e06a",
       "question": "「かもつ」を漢字で書いてください",
-      "choices": ["貨物"],
+      "choices": [
+        "貨物"
+      ],
       "correct": 0,
       "explanation": "「かもつ」は「貨物」と書く。船や電車で運ぶ荷物・品物"
     },
     {
       "id": "90e07a2a-6b7e-572f-a576-5fb52b2ab9ec",
       "question": "「かだい」を漢字で書いてください",
-      "choices": ["課題"],
+      "choices": [
+        "課題"
+      ],
       "correct": 0,
       "explanation": "「かだい」は「課題」と書く。取り組むべき問題・しなければならないこと"
     },
     {
       "id": "69b52bdc-16f0-5b98-87e8-c5349496c502",
       "question": "「め」を漢字で書いてください",
-      "choices": ["芽"],
+      "choices": [
+        "芽"
+      ],
       "correct": 0,
       "explanation": "「め」は「芽」と書く。植物が芽吹くときの小さな部分。「が」（音読み）とも読む"
     },
     {
       "id": "5020db39-9ffd-50d7-9318-942d4228235f",
       "question": "「あらためる」の「あらた」を漢字で書いてください",
-      "choices": ["改"],
+      "choices": [
+        "改"
+      ],
       "correct": 0,
       "explanation": "「あらためる」の「あらた」は「改」と書く。悪いところを直してよくすること。「かい」（音読み）とも読む"
     },
     {
       "id": "b23b921e-9a96-5cb5-aacb-8386137143f7",
       "question": "「きかい」を漢字で書いてください（動力で動く装置・道具）",
-      "choices": ["機械"],
+      "choices": [
+        "機械"
+      ],
       "correct": 0,
       "explanation": "「きかい」は「機械」と書く。動力で動く装置・道具"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
-  "prerequisites": ["kanji-grade4"]
+  "guideUrl": "./japanese/kanji/kanji-grade4-7/guide",
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

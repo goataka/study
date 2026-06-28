@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-10",
-  "categoryName": "📖 読み（調査・財産・罪・雑誌・酸っぱい・賛成・志・枝・教師・飼う）",
+  "categoryName": "📖 読み（調査財産罪雑誌酸賛成志枝教師飼）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「調査・財産・罪・雑誌・酸っぱい・賛成・志・枝・教師・飼う」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「調査財産罪雑誌酸賛成志枝教師飼」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-10/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "25c98b5d-3953-5361-901b-e1c5d9e91706",
       "question": "「調査」の「査」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["さ"],
+      "choices": [
+        "さ"
+      ],
       "correct": 0,
       "explanation": "査（さ）: 調べること。「調査」（ちょうさ）は詳しく調べること"
     },
     {
       "id": "3e3bb2a9-5857-53d8-8e7a-04f21b3fcffe",
       "question": "「財産」の「財」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ざい"],
+      "choices": [
+        "ざい"
+      ],
       "correct": 0,
       "explanation": "財（ざい）: 金や物の持ち物。「財産」（ざいさん）は資産のこと"
     },
     {
       "id": "eb09efc9-e8cb-5686-b122-bed461550acd",
       "question": "「罪」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["つみ"],
+      "choices": [
+        "つみ"
+      ],
       "correct": 0,
       "explanation": "罪（つみ）: 悪いことをすること・法律を破ること。「ざい」（音読み）とも読む"
     },
     {
       "id": "8c3156d0-8fb5-54cc-8222-a35519efc102",
       "question": "「雑誌」の「雑」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ざつ"],
+      "choices": [
+        "ざつ"
+      ],
       "correct": 0,
       "explanation": "雑（ざつ）: 様々なものが混じっていること。「雑誌」（ざっし）はいろんな記事が載った本"
     },
     {
       "id": "6fdef432-f79e-53cb-a02b-b5c31aa5b046",
       "question": "「酸っぱい」の「酸」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["す"],
+      "choices": [
+        "す"
+      ],
       "correct": 0,
       "explanation": "酸（す）っぱい: レモンのような味のこと。「さん」（音読み）とも読む"
     },
     {
       "id": "ff5b90ea-4807-50a3-905b-3843a1039476",
       "question": "「賛成」の「賛」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["さん"],
+      "choices": [
+        "さん"
+      ],
       "correct": 0,
       "explanation": "賛（さん）: 同意すること・支持すること。「賛成」（さんせい）はよいと思って同意すること"
     },
     {
       "id": "f96bebae-51d3-533f-844c-a0ecd28d0cea",
       "question": "「志」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["こころざし"],
+      "choices": [
+        "こころざし"
+      ],
       "correct": 0,
       "explanation": "志（こころざし）: 目指すこと・強い意志のこと。「し」（音読み）とも読む"
     },
     {
       "id": "aab9d0f6-826b-5c09-b207-0d48fc76a749",
       "question": "「枝」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["えだ"],
+      "choices": [
+        "えだ"
+      ],
       "correct": 0,
       "explanation": "枝（えだ）: 木の幹から分かれた部分。「し」（音読み）とも読む"
     },
     {
       "id": "709e822a-45ce-57a9-a9cb-53d378710174",
       "question": "「教師」の「師」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["し"],
+      "choices": [
+        "し"
+      ],
       "correct": 0,
       "explanation": "師（し）: 人を教える人・専門家。「教師」（きょうし）は教える仕事の人"
     },
     {
       "id": "eb09cadd-e6f9-5b63-8dda-76de9bb601e1",
       "question": "「飼う」の「飼」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["か"],
+      "choices": [
+        "か"
+      ],
       "correct": 0,
       "explanation": "飼（か）う: 動物を世話して育てること。「し」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade4"]
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

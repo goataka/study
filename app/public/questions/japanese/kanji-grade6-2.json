@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-2",
-  "categoryName": "📖 読み（矛盾・遺産・誠実・優先・認識・映画・延長・我慢・拡大・割る）",
+  "categoryName": "📖 読み（矛盾遺産誠実優先認識映画延長我慢拡大割）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「矛盾・遺産・誠実・優先・認識・映画・延長・我慢・拡大・割る」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「矛盾遺産誠実優先認識映画延長我慢拡大割」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "154e8d2b-8fe2-516f-8d32-64c7ed268689",
       "question": "「矛盾」の読み方をひらがなで書いてください",
-      "choices": ["むじゅん"],
+      "choices": [
+        "むじゅん"
+      ],
       "correct": 0,
       "explanation": "矛盾（むじゅん）: 前後の話が食い違っていること"
     },
     {
       "id": "85f184cd-1765-5e4f-888a-77b03eeae4f9",
       "question": "「遺産」の読み方をひらがなで書いてください",
-      "choices": ["いさん"],
+      "choices": [
+        "いさん"
+      ],
       "correct": 0,
       "explanation": "遺産（いさん）: 後世に残されたもの"
     },
     {
       "id": "9b3870fc-24cb-5ea0-ba13-7d7e792c9ec6",
       "question": "「誠実」の読み方をひらがなで書いてください",
-      "choices": ["せいじつ"],
+      "choices": [
+        "せいじつ"
+      ],
       "correct": 0,
       "explanation": "誠実（せいじつ）: 真心をもってきちんと行動すること"
     },
     {
       "id": "27086f09-3d7b-525f-851a-e7cd0daae353",
       "question": "「優先」の読み方をひらがなで書いてください",
-      "choices": ["ゆうせん"],
+      "choices": [
+        "ゆうせん"
+      ],
       "correct": 0,
       "explanation": "優先（ゆうせん）: ほかより先にすること"
     },
     {
       "id": "c8e944f4-5fde-50e0-899f-b3ab8ec7ec1f",
       "question": "「認識」の読み方をひらがなで書いてください",
-      "choices": ["にんしき"],
+      "choices": [
+        "にんしき"
+      ],
       "correct": 0,
       "explanation": "認識（にんしき）: 物事をはっきりと理解すること"
     },
     {
       "id": "85bfb696-c8fe-544b-97b0-b8f813c216fb",
       "question": "「映画」の読み方をひらがなで書いてください",
-      "choices": ["えいが"],
+      "choices": [
+        "えいが"
+      ],
       "correct": 0,
       "explanation": "映画（えいが）: スクリーンに映し出される物語"
     },
     {
       "id": "8a6c8670-03be-5abf-881e-6bcd92be52db",
       "question": "「延長」の読み方をひらがなで書いてください",
-      "choices": ["えんちょう"],
+      "choices": [
+        "えんちょう"
+      ],
       "correct": 0,
       "explanation": "延長（えんちょう）: 時間や長さを伸ばすこと"
     },
     {
       "id": "8b0c6938-b292-5924-b3df-9d20b744bba5",
       "question": "「我慢」の読み方をひらがなで書いてください",
-      "choices": ["がまん"],
+      "choices": [
+        "がまん"
+      ],
       "correct": 0,
       "explanation": "我慢（がまん）: つらいことをこらえること"
     },
     {
       "id": "d1af2f95-a8ed-5b9e-973d-12be65e72e4e",
       "question": "「拡大」の読み方をひらがなで書いてください",
-      "choices": ["かくだい"],
+      "choices": [
+        "かくだい"
+      ],
       "correct": 0,
       "explanation": "拡大（かくだい）: 大きく広げること"
     },
     {
       "id": "900ee5ab-6a4a-5d8c-923d-51bb365a501f",
       "question": "「割る」の「割」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["わ"],
+      "choices": [
+        "わ"
+      ],
       "correct": 0,
       "explanation": "割（わ）る: 分けること・切ること。「かつ」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade5"]
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-2",
-  "categoryName": "✏️ 書き（温・湖・島・医者・身体・悪・安・育・飲・運）",
+  "categoryName": "✏️ 書き（温湖島医者身体悪安育飲運）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「温・湖・島・医者・身体・悪・安・育・飲・運」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「温湖島医者身体悪安育飲運」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "f26cfff5-024f-5e6e-a78c-648f69e0dffa",
       "question": "「あたたかい」の「あたた」を漢字で書いてください",
-      "choices": ["温"],
+      "choices": [
+        "温"
+      ],
       "correct": 0,
       "explanation": "「あたたかい」の「あたた」は「温」と書く。暖かいこと。「おん」（音読み）とも読む"
     },
     {
       "id": "220bc3f5-ebe6-58e8-9d76-e16741b46189",
       "question": "「みずうみ」を漢字で書いてください",
-      "choices": ["湖"],
+      "choices": [
+        "湖"
+      ],
       "correct": 0,
       "explanation": "「みずうみ」は「湖」と書く。陸に囲まれた水の広がり"
     },
     {
       "id": "dc5a8e5c-6526-54be-84a9-8653b1e5f773",
       "question": "「しま」を漢字で書いてください",
-      "choices": ["島"],
+      "choices": [
+        "島"
+      ],
       "correct": 0,
       "explanation": "「しま」は「島」と書く。海や湖に囲まれた陸地。「とう」（音読み）とも読む"
     },
     {
       "id": "bee36b8e-8b7b-5f98-a459-42c4fa695985",
       "question": "「いしゃ」を漢字で書いてください",
-      "choices": ["医者"],
+      "choices": [
+        "医者"
+      ],
       "correct": 0,
       "explanation": "「いしゃ」は「医者」と書く。病気を治す専門の人"
     },
     {
       "id": "592dfab3-6b5b-503a-8cc7-83757e92cf99",
       "question": "「からだ」を漢字で書いてください",
-      "choices": ["身体"],
+      "choices": [
+        "身体"
+      ],
       "correct": 0,
       "explanation": "「からだ」は「身体」と書く。体のこと"
     },
     {
       "id": "8d196fcb-808a-547e-9732-6764893ae383",
       "question": "「わるい」の「わる」を漢字で書いてください",
-      "choices": ["悪"],
+      "choices": [
+        "悪"
+      ],
       "correct": 0,
       "explanation": "「わるい」の「わる」は「悪」と書く。よくないこと。「あく」（音読み）とも読む"
     },
     {
       "id": "37990d43-8851-563a-8c66-d6d225de76fb",
       "question": "「やすい」の「やす」を漢字で書いてください",
-      "choices": ["安"],
+      "choices": [
+        "安"
+      ],
       "correct": 0,
       "explanation": "「やすい」の「やす」は「安」と書く。ねだんが低いこと。「あん」（音読み）とも読む"
     },
     {
       "id": "a34644ab-b8b2-5974-aca0-6fe77b6a1ada",
       "question": "「そだてる」の「そだ」を漢字で書いてください",
-      "choices": ["育"],
+      "choices": [
+        "育"
+      ],
       "correct": 0,
       "explanation": "「そだてる」の「そだ」は「育」と書く。生き物を世話して大きくすること。「いく」（音読み）とも読む"
     },
     {
       "id": "ebe6424e-66b2-512e-a5fa-ebd00ea6a004",
       "question": "「のむ」の「の」を漢字で書いてください（液体を口から取り入れること）",
-      "choices": ["飲"],
+      "choices": [
+        "飲"
+      ],
       "correct": 0,
       "explanation": "「のむ」の「の」は「飲」と書く。液体を口から取り入れること。「いん」（音読み）とも読む"
     },
     {
       "id": "f7a3d795-0cb6-5b2d-a69c-89deeeead875",
       "question": "「はこぶ」の「はこ」を漢字で書いてください（ものをある場所に移すこと）",
-      "choices": ["運"],
+      "choices": [
+        "運"
+      ],
       "correct": 0,
       "explanation": "「はこぶ」の「はこ」は「運」と書く。ものをある場所に移すこと。「うん」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
-  "prerequisites": ["kanji-grade3"]
+  "guideUrl": "./japanese/kanji/kanji-grade3-2/guide",
+  "prerequisites": [
+    "kanji-grade3"
+  ]
 }

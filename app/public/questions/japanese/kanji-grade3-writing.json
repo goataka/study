@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing",
-  "categoryName": "✏️ 書き（明・暗・始・終・泳・練習・世界・感・悲・楽）",
+  "categoryName": "✏️ 書き（明暗始終泳練習世界感悲楽）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「明・暗・始・終・泳・練習・世界・感・悲・楽」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「明暗始終泳練習世界感悲楽」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "6932871b-155e-51d7-9b55-aab973a2fe1c",
       "question": "「あかるい」の「あか」を漢字で書いてください",
-      "choices": ["明"],
+      "choices": [
+        "明"
+      ],
       "correct": 0,
       "explanation": "「あかるい」の「あか」は「明」と書く。光が多いこと。「めい」（音読み）とも読む"
     },
     {
       "id": "2bfe329a-ff05-5d39-af98-a1771d8c70a0",
       "question": "「くらい」の「くら」を漢字で書いてください",
-      "choices": ["暗"],
+      "choices": [
+        "暗"
+      ],
       "correct": 0,
       "explanation": "「くらい」の「くら」は「暗」と書く。光が少ないこと。「あん」（音読み）とも読む"
     },
     {
       "id": "38772945-5dd9-5f5b-bbd2-941e638afb30",
       "question": "「はじまる」の「はじ」を漢字で書いてください",
-      "choices": ["始"],
+      "choices": [
+        "始"
+      ],
       "correct": 0,
       "explanation": "「はじまる」の「はじ」は「始」と書く。物事が始まること。「し」（音読み）とも読む"
     },
     {
       "id": "666f0238-021e-5f18-8800-919c614c9979",
       "question": "「おわる」の「お」を漢字で書いてください（物事が終わること）",
-      "choices": ["終"],
+      "choices": [
+        "終"
+      ],
       "correct": 0,
       "explanation": "「おわる」の「お」は「終」と書く。物事が終わること。「しゅう」（音読み）とも読む"
     },
     {
       "id": "cf800a0f-59cb-5b89-bf11-f360124b953f",
       "question": "「およぐ」の「およ」を漢字で書いてください",
-      "choices": ["泳"],
+      "choices": [
+        "泳"
+      ],
       "correct": 0,
       "explanation": "「およぐ」の「およ」は「泳」と書く。水の中を進むこと。「えい」（音読み）とも読む"
     },
     {
       "id": "8674e3ed-1c54-546b-9fee-3b11549c1b7d",
       "question": "「れんしゅう」を漢字で書いてください",
-      "choices": ["練習"],
+      "choices": [
+        "練習"
+      ],
       "correct": 0,
       "explanation": "「れんしゅう」は「練習」と書く。くり返して上達すること"
     },
     {
       "id": "ce720bd2-8610-5b39-a550-9e8c66ce9902",
       "question": "「せかい」を漢字で書いてください",
-      "choices": ["世界"],
+      "choices": [
+        "世界"
+      ],
       "correct": 0,
       "explanation": "「せかい」は「世界」と書く。地球全体のこと"
     },
     {
       "id": "0472e4a9-4565-505d-8d70-a2b8d8e6e6db",
       "question": "「かんじる」の「かん」を漢字で書いてください（心で受け止めること）",
-      "choices": ["感"],
+      "choices": [
+        "感"
+      ],
       "correct": 0,
       "explanation": "「かんじる」の「かん」は「感」と書く。心で受け止めること。「かん」（音読み）とも読む"
     },
     {
       "id": "bdb0838e-1fdf-5a7f-9ab9-c797868e653f",
       "question": "「かなしい」の「かな」を漢字で書いてください",
-      "choices": ["悲"],
+      "choices": [
+        "悲"
+      ],
       "correct": 0,
       "explanation": "「かなしい」の「かな」は「悲」と書く。悲しい気持ち。「ひ」（音読み）とも読む"
     },
     {
       "id": "6f766d5f-fe4f-5216-b69d-ff77e34a01fe",
       "question": "「たのしい」の「たの」を漢字で書いてください",
-      "choices": ["楽"],
+      "choices": [
+        "楽"
+      ],
       "correct": 0,
       "explanation": "「たのしい」の「たの」は「楽」と書く。楽しい気持ち。「がく」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade3/guide",
-  "prerequisites": ["kanji-grade3"]
+  "prerequisites": [
+    "kanji-grade3"
+  ]
 }

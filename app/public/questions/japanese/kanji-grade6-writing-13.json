@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-13",
-  "categoryName": "✏️ 書き（洗・染・善・奏・窓・創・装・層・操・蔵）",
+  "categoryName": "✏️ 書き（洗染善奏窓創装層操蔵）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「洗・染・善・奏・窓・創・装・層・操・蔵」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「洗染善奏窓創装層操蔵」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "2110750e-362f-56c8-bbd0-7b5be9775c89",
       "question": "「あらう」の「あら」を漢字で書いてください",
-      "choices": ["洗"],
+      "choices": [
+        "洗"
+      ],
       "correct": 0,
       "explanation": "「あらう」の「あら」は「洗」と書く。水できれいにすること。「せん」（音読み）とも読む"
     },
     {
       "id": "3433835a-14fd-57a5-961e-ebe4cf5145f2",
       "question": "「そめる」の「そ」を漢字で書いてください（色をつけること）",
-      "choices": ["染"],
+      "choices": [
+        "染"
+      ],
       "correct": 0,
       "explanation": "「そめる」の「そ」は「染」と書く。色をつけること。「せん」（音読み）とも読む"
     },
     {
       "id": "9dd6c80c-7e7d-5c1a-b589-35bfd7e624b6",
       "question": "「よい」の「よ」を漢字で書いてください（正しくてよいこと）",
-      "choices": ["善"],
+      "choices": [
+        "善"
+      ],
       "correct": 0,
       "explanation": "「よい」の「よ」は「善」と書く。正しくてよいこと。「ぜん」（音読み）とも読む"
     },
     {
       "id": "b6eb5cfc-c291-5c12-8c97-1994dece6a17",
       "question": "「かなでる」の「かな」を漢字で書いてください",
-      "choices": ["奏"],
+      "choices": [
+        "奏"
+      ],
       "correct": 0,
       "explanation": "「かなでる」の「かな」は「奏」と書く。楽器を演奏すること。「そう」（音読み）とも読む"
     },
     {
       "id": "b9522bc4-d881-5d8b-8bb7-5d75048b40c8",
       "question": "「まど」を漢字で書いてください",
-      "choices": ["窓"],
+      "choices": [
+        "窓"
+      ],
       "correct": 0,
       "explanation": "「まど」は「窓」と書く。壁に開けた光や風を通す穴。「そう」（音読み）とも読む"
     },
     {
       "id": "3189e7db-c231-567c-8135-1d363756ef08",
       "question": "「つくる」の「つく」を漢字で書いてください",
-      "choices": ["創"],
+      "choices": [
+        "創"
+      ],
       "correct": 0,
       "explanation": "「つくる」の「つく」は「創」と書く。新しいものを生み出すこと。「そう」（音読み）とも読む"
     },
     {
       "id": "aa1e5152-f0c8-51ee-84c6-34c3d05e368d",
       "question": "「よそおう」の「よそお」を漢字で書いてください",
-      "choices": ["装"],
+      "choices": [
+        "装"
+      ],
       "correct": 0,
       "explanation": "「よそおう」の「よそお」は「装」と書く。服を着てみなりを整えること。「そう」「しょう」（音読み）とも読む"
     },
     {
       "id": "dfa0e383-c555-5ab1-8371-2086a2fe1d39",
       "question": "「そう」を漢字で書いてください",
-      "choices": ["層"],
+      "choices": [
+        "層"
+      ],
       "correct": 0,
       "explanation": "「そう」は「層」と書く。重なった部分・階層のこと。地層・階層などに使う"
     },
     {
       "id": "43969501-261f-5f24-a9f7-258d37e3861e",
       "question": "「あやつる」の「あやつ」を漢字で書いてください",
-      "choices": ["操"],
+      "choices": [
+        "操"
+      ],
       "correct": 0,
       "explanation": "「あやつる」の「あやつ」は「操」と書く。自分の思い通りに動かすこと。「そう」（音読み）とも読む"
     },
     {
       "id": "fd46981c-b58f-5a23-8bf8-d17ab85a8487",
       "question": "「くら」を漢字で書いてください",
-      "choices": ["蔵"],
+      "choices": [
+        "蔵"
+      ],
       "correct": 0,
       "explanation": "「くら」は「蔵」と書く。物をしまっておく建物。「ぞう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
-  "prerequisites": ["kanji-grade6"]
+  "guideUrl": "./japanese/kanji/kanji-grade6-13/guide",
+  "prerequisites": [
+    "kanji-grade6"
+  ]
 }

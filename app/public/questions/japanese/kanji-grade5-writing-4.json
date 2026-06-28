@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-4",
-  "categoryName": "✏️ 書き（独立・燃・破・備・豊・暮・領土・余・夢・務）",
+  "categoryName": "✏️ 書き（独立燃破備豊暮領土余夢務）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「独立・燃・破・備・豊・暮・領土・余・夢・務」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「独立燃破備豊暮領土余夢務」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "985bbb76-e3b7-5ae0-bbda-8911c5f8ec3c",
       "question": "「どくりつ」を漢字で書いてください",
-      "choices": ["独立"],
+      "choices": [
+        "独立"
+      ],
       "correct": 0,
       "explanation": "「どくりつ」は「独立」と書く。他に頼らず自分でやっていくこと"
     },
     {
       "id": "f9913257-dbbb-5f5f-ad5e-6bf79c55eba2",
       "question": "「もえる」の「も」を漢字で書いてください",
-      "choices": ["燃"],
+      "choices": [
+        "燃"
+      ],
       "correct": 0,
       "explanation": "「もえる」の「も」は「燃」と書く。火がついて焼けること。「ねん」（音読み）とも読む"
     },
     {
       "id": "587f61b6-3af7-5762-9609-88ffc633ee19",
       "question": "「やぶる」の「やぶ」を漢字で書いてください",
-      "choices": ["破"],
+      "choices": [
+        "破"
+      ],
       "correct": 0,
       "explanation": "「やぶる」の「やぶ」は「破」と書く。壊すこと・やぶくこと。「は」（音読み）とも読む"
     },
     {
       "id": "99335139-084c-5e64-8f50-7d6a473c7154",
       "question": "「そなえる」の「そな」を漢字で書いてください",
-      "choices": ["備"],
+      "choices": [
+        "備"
+      ],
       "correct": 0,
       "explanation": "「そなえる」の「そな」は「備」と書く。必要なものを用意しておくこと。「び」（音読み）とも読む"
     },
     {
       "id": "8a58d699-7680-5579-963a-d45f34967888",
       "question": "「ゆたか」の「ゆた」を漢字で書いてください",
-      "choices": ["豊"],
+      "choices": [
+        "豊"
+      ],
       "correct": 0,
       "explanation": "「ゆたか」の「ゆた」は「豊」と書く。十分にあって満ちていること。「ほう」（音読み）とも読む"
     },
     {
       "id": "45e5e8f0-4423-597a-b77c-4af5ca8041fa",
       "question": "「くらす」の「く」を漢字で書いてください（生活すること）",
-      "choices": ["暮"],
+      "choices": [
+        "暮"
+      ],
       "correct": 0,
       "explanation": "「くらす」の「く」は「暮」と書く。生活すること。「ぼ」（音読み）とも読む"
     },
     {
       "id": "e7a3ce82-2e97-53b9-b052-8d3dc5833d74",
       "question": "「りょうど」を漢字で書いてください",
-      "choices": ["領土"],
+      "choices": [
+        "領土"
+      ],
       "correct": 0,
       "explanation": "「りょうど」は「領土」と書く。国が支配する土地"
     },
     {
       "id": "335821c3-fff1-5189-ae79-413871b03741",
       "question": "「あまる」の「あま」を漢字で書いてください",
-      "choices": ["余"],
+      "choices": [
+        "余"
+      ],
       "correct": 0,
       "explanation": "「あまる」の「あま」は「余」と書く。余分に残ること。「よ」（音読み）とも読む"
     },
     {
       "id": "26b39c8e-5358-5511-ba18-6c6fb682216c",
       "question": "「ゆめ」を漢字で書いてください",
-      "choices": ["夢"],
+      "choices": [
+        "夢"
+      ],
       "correct": 0,
       "explanation": "「ゆめ」は「夢」と書く。眠っているときに見るもの・将来の目標。「む」（音読み）とも読む"
     },
     {
       "id": "4d1534eb-01ae-53c9-926a-543b7d3a092b",
       "question": "「つとめる」の「つと」を漢字で書いてください",
-      "choices": ["務"],
+      "choices": [
+        "務"
+      ],
       "correct": 0,
       "explanation": "「つとめる」の「つと」は「務」と書く。仕事を担当すること。「む」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
-  "prerequisites": ["kanji-grade5"]
+  "guideUrl": "./japanese/kanji/kanji-grade5-4/guide",
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

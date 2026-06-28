@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-18",
-  "categoryName": "📖 読み（理由・油・有る・遊ぶ・予定・羊・洋服・葉・太陽・落ちる）",
+  "categoryName": "📖 読み（理由油有遊予定羊洋服葉太陽落）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「理由・油・有る・遊ぶ・予定・羊・洋服・葉・太陽・落ちる」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「理由油有遊予定羊洋服葉太陽落」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-18/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "d395e9bd-9d7e-5356-8dd0-e2cbca60df83",
       "question": "「理由」の「由」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["よし"],
+      "choices": [
+        "よし"
+      ],
       "correct": 0,
       "explanation": "由（よし）: 理由・経緯のこと。「ゆ」「ゆう」（音読み）とも読む"
     },
     {
       "id": "bd38c3d4-78dc-57c9-9f44-713ea4fffb38",
       "question": "「油」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あぶら"],
+      "choices": [
+        "あぶら"
+      ],
       "correct": 0,
       "explanation": "油（あぶら）: 料理などに使う液体。「ゆ」（音読み）とも読む"
     },
     {
       "id": "e4c53454-ef28-54f0-a8e2-b3f5872f2782",
       "question": "「有る」の「有」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あ"],
+      "choices": [
+        "あ"
+      ],
       "correct": 0,
       "explanation": "有（あ）る: 存在すること。「ゆう」（音読み）とも読む"
     },
     {
       "id": "ec51eceb-ec70-5d87-9cbc-9df5d76dc4ef",
       "question": "「遊ぶ」の「遊」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あそ"],
+      "choices": [
+        "あそ"
+      ],
       "correct": 0,
       "explanation": "遊（あそ）ぶ: 楽しく過ごすこと。「ゆう」（音読み）とも読む"
     },
     {
       "id": "cffee34e-0238-51a0-9e81-e7e78451c64c",
       "question": "「予定」の「予」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["よ"],
+      "choices": [
+        "よ"
+      ],
       "correct": 0,
       "explanation": "予（よ）定: 前もって決めること。「予定」「予習」など"
     },
     {
       "id": "6ddbaaea-40e9-542d-a652-f89e8518256c",
       "question": "「羊」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ひつじ"],
+      "choices": [
+        "ひつじ"
+      ],
       "correct": 0,
       "explanation": "羊（ひつじ）: 毛のある動物。「よう」（音読み）とも読む"
     },
     {
       "id": "05118295-b965-5c9b-a956-c5e29bc5edc6",
       "question": "「洋服」の「洋」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["よう"],
+      "choices": [
+        "よう"
+      ],
       "correct": 0,
       "explanation": "洋（よう）: 西洋・海のこと。「洋服」「太平洋」など"
     },
     {
       "id": "5f36a75a-c5f6-5abc-9761-51aee78e109a",
       "question": "「葉」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["は"],
+      "choices": [
+        "は"
+      ],
       "correct": 0,
       "explanation": "葉（は）: 植物の葉っぱ。「よう」（音読み）とも読む"
     },
     {
       "id": "b5637dfd-f344-5718-add8-3695881b3480",
       "question": "「太陽」の「陽」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["よう"],
+      "choices": [
+        "よう"
+      ],
       "correct": 0,
       "explanation": "陽（よう）: 太陽・明るいこと。「太陽」「陽気」など"
     },
     {
       "id": "25ab6f32-8f13-5f9e-be9b-8b7fe64b6f15",
       "question": "「落ちる」の「落」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["お"],
+      "choices": [
+        "お"
+      ],
       "correct": 0,
       "explanation": "落（お）ちる: 下に落ちること。「らく」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

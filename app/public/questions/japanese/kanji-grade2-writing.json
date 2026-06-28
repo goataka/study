@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing",
-  "categoryName": "✏️ 書き（海・魚・鳥・読・書・聞・話・走・食・父）",
+  "categoryName": "✏️ 書き（海魚鳥読書聞話走食父）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「海・魚・鳥・読・書・聞・話・走・食・父」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「海魚鳥読書聞話走食父」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "57619c41-d819-5a2f-829a-e12730ba7c32",
       "question": "「うみ」を漢字で書いてください",
-      "choices": ["海"],
+      "choices": [
+        "海"
+      ],
       "correct": 0,
       "explanation": "「うみ」は「海」と書く。広大な水の広がり。「かい」（音読み）とも読む"
     },
     {
       "id": "8d3340a0-5226-5a2e-88df-fa0994a77e63",
       "question": "「さかな」を漢字で書いてください",
-      "choices": ["魚"],
+      "choices": [
+        "魚"
+      ],
       "correct": 0,
       "explanation": "「さかな」は「魚」と書く。水の中に住む生き物。「ぎょ」（音読み）とも読む"
     },
     {
       "id": "67ff68a7-23bd-5f45-a5ed-b96d11631d81",
       "question": "「とり」を漢字で書いてください",
-      "choices": ["鳥"],
+      "choices": [
+        "鳥"
+      ],
       "correct": 0,
       "explanation": "「とり」は「鳥」と書く。空を飛ぶ生き物。「ちょう」（音読み）とも読む"
     },
     {
       "id": "dee4cef7-2b4f-533f-b3b6-160e43869bd2",
       "question": "「よむ」の「よ」を漢字で書いてください",
-      "choices": ["読"],
+      "choices": [
+        "読"
+      ],
       "correct": 0,
       "explanation": "「よむ」の「よ」は「読」と書く。文字を読むこと。「どく」（音読み）とも読む"
     },
     {
       "id": "0cf590f2-411a-535b-b155-8f0c93ab3ca2",
       "question": "「かく」の「か」を漢字で書いてください（文字を書くこと）",
-      "choices": ["書"],
+      "choices": [
+        "書"
+      ],
       "correct": 0,
       "explanation": "「かく」の「か」は「書」と書く。文字を書くこと。「しょ」（音読み）とも読む"
     },
     {
       "id": "207c28ae-82a3-5d52-a342-0d3cb0f9ecdb",
       "question": "「きく」の「き」を漢字で書いてください（音を聞くこと）",
-      "choices": ["聞"],
+      "choices": [
+        "聞"
+      ],
       "correct": 0,
       "explanation": "「きく」の「き」は「聞」と書く。音を聞くこと。「ぶん」（音読み）とも読む"
     },
     {
       "id": "c4ec6d1a-2cd7-5902-b0fe-c60a2b4acf17",
       "question": "「はなす」の「はな」を漢字で書いてください",
-      "choices": ["話"],
+      "choices": [
+        "話"
+      ],
       "correct": 0,
       "explanation": "「はなす」の「はな」は「話」と書く。話すこと。「わ」（音読み）とも読む"
     },
     {
       "id": "310d2990-9a9e-5aae-acd9-d7dec72401e9",
       "question": "「はしる」の「はし」を漢字で書いてください",
-      "choices": ["走"],
+      "choices": [
+        "走"
+      ],
       "correct": 0,
       "explanation": "「はしる」の「はし」は「走」と書く。走ること。「そう」（音読み）とも読む"
     },
     {
       "id": "bf4284ec-f46d-52f2-85d0-dee595ab190f",
       "question": "「たべる」の「た」を漢字で書いてください",
-      "choices": ["食"],
+      "choices": [
+        "食"
+      ],
       "correct": 0,
       "explanation": "「たべる」の「た」は「食」と書く。食べること。「しょく」（音読み）とも読む"
     },
     {
       "id": "c3a78ace-a05a-54f0-8f22-cb9e4832ec1b",
       "question": "「ちち」を漢字で書いてください",
-      "choices": ["父"],
+      "choices": [
+        "父"
+      ],
       "correct": 0,
       "explanation": "「ちち」は「父」と書く。お父さんのこと。「ふ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade2/guide",
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

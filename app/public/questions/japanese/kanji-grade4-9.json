@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-9",
-  "categoryName": "📖 読み（郡・型・芸術・欠ける・固い・功績・好き・天候・告げる・差）",
+  "categoryName": "📖 読み（郡型芸術欠固功績好天候告差）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「郡・型・芸術・欠ける・固い・功績・好き・天候・告げる・差」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "description": "小学4年のこのセットでは「郡型芸術欠固功績好天候告差」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade4-9/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "42e8696c-0c40-515b-9516-21827e077517",
       "question": "「郡」の読み方をひらがなで書いてください",
-      "choices": ["ぐん"],
+      "choices": [
+        "ぐん"
+      ],
       "correct": 0,
       "explanation": "郡（ぐん）: 市や町をまとめた地域の行政区分"
     },
     {
       "id": "c6fe9971-60e1-512e-84b3-598bf70ba8e2",
       "question": "「型」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かた"],
+      "choices": [
+        "かた"
+      ],
       "correct": 0,
       "explanation": "型（かた）: 決まった形・パターン。「けい」（音読み）とも読む"
     },
     {
       "id": "883c3d3b-3425-5285-8c42-b566828c06b3",
       "question": "「芸術」の読み方をひらがなで書いてください",
-      "choices": ["げいじゅつ"],
+      "choices": [
+        "げいじゅつ"
+      ],
       "correct": 0,
       "explanation": "芸術（げいじゅつ）: 絵・音楽・彫刻などの美しい表現"
     },
     {
       "id": "7f87a347-2d21-5137-805e-49e656db465d",
       "question": "「欠ける」の「欠」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["か"],
+      "choices": [
+        "か"
+      ],
       "correct": 0,
       "explanation": "欠（か）ける: 一部が足りなくなること。「けつ」（音読み）とも読む"
     },
     {
       "id": "f7a8457e-17bd-56da-8d8d-f436557219ff",
       "question": "「固い」の「固」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かた"],
+      "choices": [
+        "かた"
+      ],
       "correct": 0,
       "explanation": "固（かた）い: やわらかくなくしっかりしていること。「こ」（音読み）とも読む"
     },
     {
       "id": "23101c06-bbb0-54c8-b159-a619f450bb05",
       "question": "「功績」の読み方をひらがなで書いてください",
-      "choices": ["こうせき"],
+      "choices": [
+        "こうせき"
+      ],
       "correct": 0,
       "explanation": "功績（こうせき）: 努力してあげた優れた成果・手柄"
     },
     {
       "id": "0176d121-8500-5c39-b022-7ebfe61c303a",
       "question": "「好き」の「好」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["す"],
+      "choices": [
+        "す"
+      ],
       "correct": 0,
       "explanation": "好（す）き: 気に入っていること。「こう」（音読み）とも読む"
     },
     {
       "id": "410788d0-e4bd-56e8-bc7c-c22bc946980c",
       "question": "「天候」の読み方をひらがなで書いてください",
-      "choices": ["てんこう"],
+      "choices": [
+        "てんこう"
+      ],
       "correct": 0,
       "explanation": "天候（てんこう）: 数日間の天気の状態"
     },
     {
       "id": "9d8dfab1-63cb-5792-beed-db0f5289358f",
       "question": "「告げる」の「告」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["つ"],
+      "choices": [
+        "つ"
+      ],
       "correct": 0,
       "explanation": "告（つ）げる: 知らせること・伝えること。「こく」（音読み）とも読む"
     },
     {
       "id": "f82b3113-2c48-5bb1-b811-c944313bf11f",
       "question": "「差」の読み方をひらがなで書いてください",
-      "choices": ["さ"],
+      "choices": [
+        "さ"
+      ],
       "correct": 0,
       "explanation": "差（さ）: 二つの違い・数の引き算の答え"
     }
   ],
-  "prerequisites": ["kanji-grade3"]
+  "prerequisites": [
+    "kanji-grade3"
+  ]
 }

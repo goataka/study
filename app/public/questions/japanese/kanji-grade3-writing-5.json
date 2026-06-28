@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-5",
-  "categoryName": "✏️ 書き（県・向・幸・港・根・祭・皿・使・指・歯）",
+  "categoryName": "✏️ 書き（県向幸港根祭皿使指歯）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「県・向・幸・港・根・祭・皿・使・指・歯」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「県向幸港根祭皿使指歯」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "8cc4d7d8-c96a-500d-b850-8f0c48470286",
       "question": "「けん」を漢字で書いてください（都道府県の区分の一つ）",
-      "choices": ["県"],
+      "choices": [
+        "県"
+      ],
       "correct": 0,
       "explanation": "「けん」は「県」と書く。都道府県の区分の一つ"
     },
     {
       "id": "2d04bb70-6328-5ff4-a3d5-11849e5fd35b",
       "question": "「むく」の「む」を漢字で書いてください",
-      "choices": ["向"],
+      "choices": [
+        "向"
+      ],
       "correct": 0,
       "explanation": "「むく」の「む」は「向」と書く。ある方向に顔や体を向けること。「こう」（音読み）とも読む"
     },
     {
       "id": "c3f7f40f-443e-53b1-bfb0-1183cac32ced",
       "question": "「しあわせ」の「しあわ」を漢字で書いてください",
-      "choices": ["幸"],
+      "choices": [
+        "幸"
+      ],
       "correct": 0,
       "explanation": "「しあわせ」の「しあわ」は「幸」と書く。うれしくて満足な状態。「こう」（音読み）とも読む"
     },
     {
       "id": "8b07c67e-1142-5196-bfde-b5b3ce57bcef",
       "question": "「みなと」を漢字で書いてください",
-      "choices": ["港"],
+      "choices": [
+        "港"
+      ],
       "correct": 0,
       "explanation": "「みなと」は「港」と書く。船がとまる場所。「こう」（音読み）とも読む"
     },
     {
       "id": "20bd146c-682c-534b-913d-fbc9887a182c",
       "question": "「ね」を漢字で書いてください",
-      "choices": ["根"],
+      "choices": [
+        "根"
+      ],
       "correct": 0,
       "explanation": "「ね」は「根」と書く。植物が土の中に張るもの。「こん」（音読み）とも読む"
     },
     {
       "id": "7628b69c-2364-54d5-b54f-7caa1fc16ec2",
       "question": "「まつり」の「まつ」を漢字で書いてください",
-      "choices": ["祭"],
+      "choices": [
+        "祭"
+      ],
       "correct": 0,
       "explanation": "「まつり」の「まつ」は「祭」と書く。神様をまつったりお祝いするもよおし。「さい」（音読み）とも読む"
     },
     {
       "id": "e37614b5-a2e5-5520-9748-0a51ce1e0d99",
       "question": "「さら」を漢字で書いてください",
-      "choices": ["皿"],
+      "choices": [
+        "皿"
+      ],
       "correct": 0,
       "explanation": "「さら」は「皿」と書く。食べ物をのせるうつわ"
     },
     {
       "id": "3594e5d1-380d-5e7f-9ba4-f78f586469d6",
       "question": "「つかう」の「つか」を漢字で書いてください",
-      "choices": ["使"],
+      "choices": [
+        "使"
+      ],
       "correct": 0,
       "explanation": "「つかう」の「つか」は「使」と書く。ものを役立てること。「し」（音読み）とも読む"
     },
     {
       "id": "47307f29-8a17-50c4-b087-2fec2b30e426",
       "question": "「ゆび」を漢字で書いてください",
-      "choices": ["指"],
+      "choices": [
+        "指"
+      ],
       "correct": 0,
       "explanation": "「ゆび」は「指」と書く。手や足のはしにある細長い部分。「し」（音読み）とも読む"
     },
     {
       "id": "80bfb5d8-43c9-5f37-a832-4d099f1b1438",
       "question": "「は」を漢字で書いてください（口の中にある白くかたいもの）",
-      "choices": ["歯"],
+      "choices": [
+        "歯"
+      ],
       "correct": 0,
       "explanation": "「は」は「歯」と書く。口の中にある白くかたいもの。「し」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
-  "prerequisites": ["kanji-grade3"]
+  "guideUrl": "./japanese/kanji/kanji-grade3-5/guide",
+  "prerequisites": [
+    "kanji-grade3"
+  ]
 }

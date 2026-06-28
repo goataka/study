@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-10",
-  "categoryName": "✏️ 書き（組・同・毎・刀・活・方・原・曜・工・体）",
+  "categoryName": "✏️ 書き（組同毎刀活方原曜工体）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「組・同・毎・刀・活・方・原・曜・工・体」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「組同毎刀活方原曜工体」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "b710cc4d-6d68-5658-b070-1e44956da535",
       "question": "「くむ」の「く」を漢字で書いてください（複数のものを合わせること）",
-      "choices": ["組"],
+      "choices": [
+        "組"
+      ],
       "correct": 0,
       "explanation": "「くむ」の「く」は「組」と書く。複数のものを合わせること。「そ」（音読み）とも読む"
     },
     {
       "id": "c2ba6d1f-155c-5854-ae7b-3171f492ba55",
       "question": "「おなじ」の「おな」を漢字で書いてください",
-      "choices": ["同"],
+      "choices": [
+        "同"
+      ],
       "correct": 0,
       "explanation": "「おなじ」の「おな」は「同」と書く。同じであること。「どう」（音読み）とも読む"
     },
     {
       "id": "6498ffdd-23dc-59fe-8a3a-bb99d92d47f0",
       "question": "「まい」を漢字で書いてください",
-      "choices": ["毎"],
+      "choices": [
+        "毎"
+      ],
       "correct": 0,
       "explanation": "「まい」は「毎」と書く。それぞれの・いつもの意味"
     },
     {
       "id": "0017e443-46ad-5354-84ce-1bae72fe8da7",
       "question": "「かたな」を漢字で書いてください",
-      "choices": ["刀"],
+      "choices": [
+        "刀"
+      ],
       "correct": 0,
       "explanation": "「かたな」は「刀」と書く。金属製の刃物のこと。「とう」（音読み）とも読む"
     },
     {
       "id": "def589ba-29e8-5630-9b85-2ea7885d041f",
       "question": "「かつ」を漢字で書いてください",
-      "choices": ["活"],
+      "choices": [
+        "活"
+      ],
       "correct": 0,
       "explanation": "「かつ」は「活」と書く。生き生きと活動すること"
     },
     {
       "id": "67d74c0b-fedb-55ce-9b8b-6066e85900d2",
       "question": "「かた」を漢字で書いてください（方向・方法・人のこと）",
-      "choices": ["方"],
+      "choices": [
+        "方"
+      ],
       "correct": 0,
       "explanation": "「かた」は「方」と書く。方向・方法・人のこと。「ほう」（音読み）とも読む"
     },
     {
       "id": "7b11fec5-da66-5232-a688-0a82818e4002",
       "question": "「はら」を漢字で書いてください",
-      "choices": ["原"],
+      "choices": [
+        "原"
+      ],
       "correct": 0,
       "explanation": "「はら」は「原」と書く。広い野原のこと。「げん」（音読み）とも読む"
     },
     {
       "id": "821c7dc0-f4e7-5e31-addf-1f1ddd86c695",
       "question": "「よう」を漢字で書いてください",
-      "choices": ["曜"],
+      "choices": [
+        "曜"
+      ],
       "correct": 0,
       "explanation": "「よう」は「曜」と書く。曜日のこと（月曜・火曜など）"
     },
     {
       "id": "1e71fadc-406c-5b6e-90ed-7d5bbf9f9854",
       "question": "「こう」を漢字で書いてください",
-      "choices": ["工"],
+      "choices": [
+        "工"
+      ],
       "correct": 0,
       "explanation": "「こう」は「工」と書く。ものを作ること。「く」（音読み）とも読む"
     },
     {
       "id": "aba89c16-42f8-58cd-bcd5-f9d7a1378744",
       "question": "「からだ」を漢字で書いてください",
-      "choices": ["体"],
+      "choices": [
+        "体"
+      ],
       "correct": 0,
       "explanation": "「からだ」は「体」と書く。人や動物のからだ全体のこと。「たい」「てい」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
-  "prerequisites": ["kanji-grade2"]
+  "guideUrl": "./japanese/kanji/kanji-grade2-10/guide",
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

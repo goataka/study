@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-9",
-  "categoryName": "✏️ 書き（減・故・効・厚・耕・航・興・講・告・混）",
+  "categoryName": "✏️ 書き（減故効厚耕航興講告混）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「減・故・効・厚・耕・航・興・講・告・混」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「減故効厚耕航興講告混」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "2e506ca4-a228-5100-a42b-2825c06c69e0",
       "question": "「へる」の「へ」を漢字で書いてください（少なくなること）",
-      "choices": ["減"],
+      "choices": [
+        "減"
+      ],
       "correct": 0,
       "explanation": "「へる」の「へ」は「減」と書く。少なくなること。「げん」（音読み）とも読む"
     },
     {
       "id": "64829a03-884a-5d44-a0b4-89c9b7cddbac",
       "question": "「こ」を漢字で書いてください（もとのこと・理由のこと）",
-      "choices": ["故"],
+      "choices": [
+        "故"
+      ],
       "correct": 0,
       "explanation": "「こ」は「故」と書く。もとのこと・理由のこと。「故郷」（こきょう）は生まれ育った土地"
     },
     {
       "id": "5dc051b3-bd12-5518-a163-8a29067a93a1",
       "question": "「きく」の「き」を漢字で書いてください",
-      "choices": ["効"],
+      "choices": [
+        "効"
+      ],
       "correct": 0,
       "explanation": "「きく」の「き」は「効」と書く。効果があること。「こう」（音読み）とも読む"
     },
     {
       "id": "3e0fb3ce-84eb-5259-b501-da7e6748954d",
       "question": "「あつい」の「あつ」を漢字で書いてください",
-      "choices": ["厚"],
+      "choices": [
+        "厚"
+      ],
       "correct": 0,
       "explanation": "「あつい」の「あつ」は「厚」と書く。厚みがあること・温かみがあること。「こう」（音読み）とも読む"
     },
     {
       "id": "7028ad5a-a8a3-5884-957b-399016e78814",
       "question": "「たがやす」の「たがや」を漢字で書いてください",
-      "choices": ["耕"],
+      "choices": [
+        "耕"
+      ],
       "correct": 0,
       "explanation": "「たがやす」の「たがや」は「耕」と書く。畑を掘り起こして農作物が育つようにすること。「こう」（音読み）とも読む"
     },
     {
       "id": "591ee06c-5d14-5801-be61-cc57f203ce46",
       "question": "「こう」を漢字で書いてください（船や飛行機で移動すること）",
-      "choices": ["航"],
+      "choices": [
+        "航"
+      ],
       "correct": 0,
       "explanation": "「こう」は「航」と書く。船や飛行機で移動すること。「航海」（こうかい）は船で海を旅すること"
     },
     {
       "id": "db9c6cd4-8624-509f-b725-daa2538db682",
       "question": "「きょう」を漢字で書いてください",
-      "choices": ["興"],
+      "choices": [
+        "興"
+      ],
       "correct": 0,
       "explanation": "「きょう」は「興」と書く。楽しみ・盛んになること。「興味」（きょうみ）は面白いと感じること"
     },
     {
       "id": "221d94ce-b00f-52c7-b226-ef891b24d331",
       "question": "「こう」を漢字で書いてください（話して教えること）",
-      "choices": ["講"],
+      "choices": [
+        "講"
+      ],
       "correct": 0,
       "explanation": "「こう」は「講」と書く。話して教えること。「講義」（こうぎ）は先生が教えること"
     },
     {
       "id": "c3762a46-861d-575e-b34c-4cfe9c44bccf",
       "question": "「つげる」の「つ」を漢字で書いてください",
-      "choices": ["告"],
+      "choices": [
+        "告"
+      ],
       "correct": 0,
       "explanation": "「つげる」の「つ」は「告」と書く。知らせること。「こく」（音読み）とも読む"
     },
     {
       "id": "be61112c-8cda-59bf-a7bd-cfa13b3bab5d",
       "question": "「まぜる」の「ま」を漢字で書いてください",
-      "choices": ["混"],
+      "choices": [
+        "混"
+      ],
       "correct": 0,
       "explanation": "「まぜる」の「ま」は「混」と書く。一緒にすること・まじり合わせること。「こん」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
-  "prerequisites": ["kanji-grade5"]
+  "guideUrl": "./japanese/kanji/kanji-grade5-9/guide",
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

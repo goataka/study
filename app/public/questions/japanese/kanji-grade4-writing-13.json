@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-13",
-  "categoryName": "✏️ 書き（博物館・ご飯・費用・投票・夫・府・副会長・粉・便利・包）",
+  "categoryName": "✏️ 書き（博物館ご飯費用投票夫府副会長粉便利包）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「博物館・ご飯・費用・投票・夫・府・副会長・粉・便利・包」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「博物館ご飯費用投票夫府副会長粉便利包」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "1d2656d8-ba94-5911-b783-42747504a7b1",
       "question": "「はくぶつかん」を漢字で書いてください",
-      "choices": ["博物館"],
+      "choices": [
+        "博物館"
+      ],
       "correct": 0,
       "explanation": "「はくぶつかん」は「博物館」と書く。歴史や自然の物を展示する施設"
     },
     {
       "id": "8ec9bf8f-8478-5900-a664-20d0c965f9f7",
       "question": "「ごはん」を漢字で書いてください",
-      "choices": ["ご飯"],
+      "choices": [
+        "ご飯"
+      ],
       "correct": 0,
       "explanation": "「ごはん」は「ご飯」と書く。炊いた米・食事のこと"
     },
     {
       "id": "64ad8b84-1979-5e07-a1d5-e6cc90482c5b",
       "question": "「ひよう」を漢字で書いてください",
-      "choices": ["費用"],
+      "choices": [
+        "費用"
+      ],
       "correct": 0,
       "explanation": "「ひよう」は「費用」と書く。何かをするためにかかるお金"
     },
     {
       "id": "bc8f31c0-a040-5427-8062-ff041cbabd0d",
       "question": "「とうひょう」を漢字で書いてください",
-      "choices": ["投票"],
+      "choices": [
+        "投票"
+      ],
       "correct": 0,
       "explanation": "「とうひょう」は「投票」と書く。選挙などで選ぶために紙に書いて出すこと"
     },
     {
       "id": "f5eb9715-a7be-54cb-9be1-3dd178136937",
       "question": "「おっと」を漢字で書いてください",
-      "choices": ["夫"],
+      "choices": [
+        "夫"
+      ],
       "correct": 0,
       "explanation": "「おっと」は「夫」と書く。結婚した相手の男性。「ふ」（音読み）とも読む"
     },
     {
       "id": "af5ba0e8-2c66-5254-b4e2-c0fffbf7f6dd",
       "question": "「ふ」を漢字で書いてください（都道府県の一つ）",
-      "choices": ["府"],
+      "choices": [
+        "府"
+      ],
       "correct": 0,
       "explanation": "「ふ」は「府」と書く。都道府県の一つ。大阪府・京都府など"
     },
     {
       "id": "857b293c-6c9d-5f4c-a8cb-31f7ba26f57f",
       "question": "「ふくかいちょう」を漢字で書いてください",
-      "choices": ["副会長"],
+      "choices": [
+        "副会長"
+      ],
       "correct": 0,
       "explanation": "「ふくかいちょう」は「副会長」と書く。会長を補佐する役職"
     },
     {
       "id": "e153481a-2839-5d4a-934b-6a3434a433f9",
       "question": "「こな」を漢字で書いてください",
-      "choices": ["粉"],
+      "choices": [
+        "粉"
+      ],
       "correct": 0,
       "explanation": "「こな」は「粉」と書く。細かくくだいたもの。「ふん」（音読み）とも読む"
     },
     {
       "id": "956871a4-f34c-5cd7-8abf-e88208795be0",
       "question": "「べんり」を漢字で書いてください",
-      "choices": ["便利"],
+      "choices": [
+        "便利"
+      ],
       "correct": 0,
       "explanation": "「べんり」は「便利」と書く。使いやすくて役に立つこと"
     },
     {
       "id": "0a410f48-29e5-5824-a8db-8051fe651b4d",
       "question": "「つつむ」の「つつ」を漢字で書いてください",
-      "choices": ["包"],
+      "choices": [
+        "包"
+      ],
       "correct": 0,
       "explanation": "「つつむ」の「つつ」は「包」と書く。物をおおうこと。「ほう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
-  "prerequisites": ["kanji-grade4"]
+  "guideUrl": "./japanese/kanji/kanji-grade4-13/guide",
+  "prerequisites": [
+    "kanji-grade4"
+  ]
 }

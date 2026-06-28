@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-3",
-  "categoryName": "📖 読み（駅・横・開く・寒い・漢字・岸・起きる・客・急ぐ・球）",
+  "categoryName": "📖 読み（駅横開寒漢字岸起客急球）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「駅・横・開く・寒い・漢字・岸・起きる・客・急ぐ・球」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「駅横開寒漢字岸起客急球」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-3/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "49ed0231-cb53-54da-8a6e-c832ff3509a1",
       "question": "「駅」の読み方をひらがなで書いてください",
-      "choices": ["えき"],
+      "choices": [
+        "えき"
+      ],
       "correct": 0,
       "explanation": "駅（えき）: 電車が止まる場所"
     },
     {
       "id": "428c9d94-c275-5464-aaf1-40fc63b8e871",
       "question": "「横」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["よこ"],
+      "choices": [
+        "よこ"
+      ],
       "correct": 0,
       "explanation": "横（よこ）: 左右の方向のこと。「おう」（音読み）とも読む"
     },
     {
       "id": "fc906fee-bec9-5f77-ba6e-7e10867c0ad1",
       "question": "「開く」の「開」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["あ"],
+      "choices": [
+        "あ"
+      ],
       "correct": 0,
       "explanation": "開（あ）く: とじていたものをひらくこと。「かい」（音読み）とも読む"
     },
     {
       "id": "be92d87c-d156-5c36-9563-888083ea8101",
       "question": "「寒い」の「寒」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["さむ"],
+      "choices": [
+        "さむ"
+      ],
       "correct": 0,
       "explanation": "寒（さむ）い: 気温が低くてひんやりすること。「かん」（音読み）とも読む"
     },
     {
       "id": "92a058ec-865a-5560-aa56-d2e852a3986f",
       "question": "「漢字」の読み方をひらがなで書いてください",
-      "choices": ["かんじ"],
+      "choices": [
+        "かんじ"
+      ],
       "correct": 0,
       "explanation": "漢字（かんじ）: 中国から伝わった文字"
     },
     {
       "id": "4eb334eb-74e4-5237-9b10-b0da7dc2914e",
       "question": "「岸」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["きし"],
+      "choices": [
+        "きし"
+      ],
       "correct": 0,
       "explanation": "岸（きし）: 海や川のはしっこの土地。「がん」（音読み）とも読む"
     },
     {
       "id": "33373f46-064b-52ae-9b9e-a1540e81b43c",
       "question": "「起きる」の「起」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["お"],
+      "choices": [
+        "お"
+      ],
       "correct": 0,
       "explanation": "起（お）きる: ねむりから目がさめること。「き」（音読み）とも読む"
     },
     {
       "id": "e4f423d1-5a8a-55aa-9194-2beb62f6a173",
       "question": "「客」の読み方をひらがなで書いてください",
-      "choices": ["きゃく"],
+      "choices": [
+        "きゃく"
+      ],
       "correct": 0,
       "explanation": "客（きゃく）: 訪ねてくる人・お店に来る人"
     },
     {
       "id": "dd4c149d-fdca-5e12-89d9-147d88acca2b",
       "question": "「急ぐ」の「急」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["いそ"],
+      "choices": [
+        "いそ"
+      ],
       "correct": 0,
       "explanation": "急（いそ）ぐ: はやく動くこと。「きゅう」（音読み）とも読む"
     },
     {
       "id": "ecc4a25b-0aeb-556d-ba07-8cb3acd24d5c",
       "question": "「球」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["たま"],
+      "choices": [
+        "たま"
+      ],
       "correct": 0,
       "explanation": "球（たま）: まるい形のもの。「きゅう」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-15",
-  "categoryName": "📖 読み（配る・二倍・箱・畑を耕す・出発・坂道・板・反対・皮をむく・美しい）",
+  "categoryName": "📖 読み（配二倍箱畑を耕出発坂道板反対皮美）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「配る・二倍・箱・畑を耕す・出発・坂道・板・反対・皮をむく・美しい」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「配二倍箱畑を耕出発坂道板反対皮美」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-15/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "2abb2801-ad7c-596f-856a-da8d65219f6b",
       "question": "「配る」の「配」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["くば"],
+      "choices": [
+        "くば"
+      ],
       "correct": 0,
       "explanation": "配（くば）る: 分けて渡すこと。「はい」（音読み）とも読む"
     },
     {
       "id": "66021a97-822a-56da-ae3f-39fd4d4a0699",
       "question": "「二倍」の「倍」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ばい"],
+      "choices": [
+        "ばい"
+      ],
       "correct": 0,
       "explanation": "倍（ばい）: 数が何倍かを表す言葉。「二倍」「三倍」など"
     },
     {
       "id": "1d19b17a-7a00-5084-8630-b598106c44c8",
       "question": "「箱」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はこ"],
+      "choices": [
+        "はこ"
+      ],
       "correct": 0,
       "explanation": "箱（はこ）: 物を入れる容器。「はこ」とも読む"
     },
     {
       "id": "6960ca8c-c3eb-5fc3-b45d-481eaad96723",
       "question": "「畑を耕す」の「畑」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はたけ"],
+      "choices": [
+        "はたけ"
+      ],
       "correct": 0,
       "explanation": "畑（はたけ）: 野菜などを育てる土地。「はた」とも読む"
     },
     {
       "id": "d5657672-6c71-574a-a8cf-2ef82c896b75",
       "question": "「出発」の「発」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["はつ"],
+      "choices": [
+        "はつ"
+      ],
       "correct": 0,
       "explanation": "発（はつ）: 出ること・始まること。「出発」「発明」など"
     },
     {
       "id": "bbc96fe8-dc27-592c-9b62-8ac12de88bbf",
       "question": "「坂道」の「坂」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["さか"],
+      "choices": [
+        "さか"
+      ],
       "correct": 0,
       "explanation": "坂（さか）: 傾いた道。「坂道」「急坂」など"
     },
     {
       "id": "8254cb07-cc01-5091-80b7-53f540fe004f",
       "question": "「板」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["いた"],
+      "choices": [
+        "いた"
+      ],
       "correct": 0,
       "explanation": "板（いた）: 薄く平たい木。「看板」（かんばん）とも読む"
     },
     {
       "id": "2001ed92-3f92-518d-bfe2-bffc56c60b02",
       "question": "「反対」の「反」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["はん"],
+      "choices": [
+        "はん"
+      ],
       "correct": 0,
       "explanation": "反（はん）対: 逆のこと。「反対」「反省」など。「そる」「かえる」とも読む"
     },
     {
       "id": "44f9dc58-16c0-5ba7-87a8-6348933f9790",
       "question": "「皮をむく」の「皮」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["かわ"],
+      "choices": [
+        "かわ"
+      ],
       "correct": 0,
       "explanation": "皮（かわ）: 物の外側の薄い膜。「ひ」（音読み）とも読む"
     },
     {
       "id": "5b8565c5-154e-5b7f-b11b-3136ed95e549",
       "question": "「美しい」の「美」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["うつく"],
+      "choices": [
+        "うつく"
+      ],
       "correct": 0,
       "explanation": "美（うつく）しい: きれいなこと。「び」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade2"]
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-7",
-  "categoryName": "✏️ 書き（消・商売・勝・植・申・真・進・全部・相手・送）",
+  "categoryName": "✏️ 書き（消商売勝植申真進全部相手送）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「消・商売・勝・植・申・真・進・全部・相手・送」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「消商売勝植申真進全部相手送」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "e34dee8b-1631-5bb2-9ad6-3891a19560d2",
       "question": "「きえる」の「き」を漢字で書いてください（なくなること）",
-      "choices": ["消"],
+      "choices": [
+        "消"
+      ],
       "correct": 0,
       "explanation": "「きえる」の「き」は「消」と書く。なくなること。「しょう」（音読み）とも読む"
     },
     {
       "id": "5dcca67b-62f1-597a-8134-d326ff4168e5",
       "question": "「しょうばい」を漢字で書いてください",
-      "choices": ["商売"],
+      "choices": [
+        "商売"
+      ],
       "correct": 0,
       "explanation": "「しょうばい」は「商売」と書く。物を売り買いして利益を得ること"
     },
     {
       "id": "4f02b879-11e6-5892-8a62-6ed0a441672d",
       "question": "「かつ」の「か」を漢字で書いてください（試合や争いでよい結果になること）",
-      "choices": ["勝"],
+      "choices": [
+        "勝"
+      ],
       "correct": 0,
       "explanation": "「かつ」の「か」は「勝」と書く。試合や争いでよい結果になること。「しょう」（音読み）とも読む"
     },
     {
       "id": "b7ca6a81-8c1f-5aa1-bd11-57318d6f42e3",
       "question": "「うえる」の「う」を漢字で書いてください（種や苗を土に入れること）",
-      "choices": ["植"],
+      "choices": [
+        "植"
+      ],
       "correct": 0,
       "explanation": "「うえる」の「う」は「植」と書く。種や苗を土に入れること。「しょく」（音読み）とも読む"
     },
     {
       "id": "6b5f4ffa-3224-5b1b-8b9c-af49e1007e09",
       "question": "「もうす」の「もう」を漢字で書いてください",
-      "choices": ["申"],
+      "choices": [
+        "申"
+      ],
       "correct": 0,
       "explanation": "「もうす」の「もう」は「申」と書く。「言う」の丁寧な言い方。「しん」（音読み）とも読む"
     },
     {
       "id": "f7497edf-3110-5bc4-8457-4a6046a1653a",
       "question": "「ま」を漢字で書いてください（真っ赤 の「ま」）",
-      "choices": ["真"],
+      "choices": [
+        "真"
+      ],
       "correct": 0,
       "explanation": "「真っ赤」の「ま」（「ま」）は「真」と書く。完全に赤いこと。「しん」（音読み）とも読む"
     },
     {
       "id": "ebfc92bd-3ddb-5be5-907a-785ff681dd99",
       "question": "「すすむ」の「すす」を漢字で書いてください",
-      "choices": ["進"],
+      "choices": [
+        "進"
+      ],
       "correct": 0,
       "explanation": "「すすむ」の「すす」は「進」と書く。前に動いていくこと。「しん」（音読み）とも読む"
     },
     {
       "id": "5c4f394b-5627-54f8-9920-77107cee0186",
       "question": "「ぜんぶ」を漢字で書いてください",
-      "choices": ["全部"],
+      "choices": [
+        "全部"
+      ],
       "correct": 0,
       "explanation": "「ぜんぶ」は「全部」と書く。残らずすべてのこと"
     },
     {
       "id": "66313bd5-8417-50c8-909e-c94548cba603",
       "question": "「あいて」を漢字で書いてください",
-      "choices": ["相手"],
+      "choices": [
+        "相手"
+      ],
       "correct": 0,
       "explanation": "「あいて」は「相手」と書く。いっしょに行動する人・向こう側の人"
     },
     {
       "id": "eedb087f-b713-568d-9458-b1679f107a4d",
       "question": "「おくる」の「おく」を漢字で書いてください",
-      "choices": ["送"],
+      "choices": [
+        "送"
+      ],
       "correct": 0,
       "explanation": "「おくる」の「おく」は「送」と書く。ものや人をある場所に届けること。「そう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
-  "prerequisites": ["kanji-grade3"]
+  "guideUrl": "./japanese/kanji/kanji-grade3-7/guide",
+  "prerequisites": [
+    "kanji-grade3"
+  ]
 }

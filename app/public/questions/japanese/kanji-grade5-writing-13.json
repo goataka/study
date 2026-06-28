@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-13",
-  "categoryName": "✏️ 書き（精・製・税・績・接・設・舌・絶・銭・祖）",
+  "categoryName": "✏️ 書き（精製税績接設舌絶銭祖）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「精・製・税・績・接・設・舌・絶・銭・祖」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「精製税績接設舌絶銭祖」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "891a3a18-70d0-5346-ae07-950c67834984",
       "question": "「せい」を漢字で書いてください（心・気持ち・力のこと）",
-      "choices": ["精"],
+      "choices": [
+        "精"
+      ],
       "correct": 0,
       "explanation": "「せい」は「精」と書く。心・気持ち・力のこと。「精神」（せいしん）は心のこと"
     },
     {
       "id": "163b4866-b530-5bdc-83b7-1e61b36e0c48",
       "question": "「せい」を漢字で書いてください（作ること）",
-      "choices": ["製"],
+      "choices": [
+        "製"
+      ],
       "correct": 0,
       "explanation": "「せい」は「製」と書く。作ること。「製品」（せいひん）は工場などで作られた品物"
     },
     {
       "id": "33b14401-9add-5576-a03f-bfea04f0077a",
       "question": "「ぜい」を漢字で書いてください",
-      "choices": ["税"],
+      "choices": [
+        "税"
+      ],
       "correct": 0,
       "explanation": "「ぜい」は「税」と書く。国や地方に納めるお金。「税金」（ぜいきん）は国民が国に納めるお金"
     },
     {
       "id": "1f1f6fc7-7eb4-570a-9046-3fa1ae5f83a2",
       "question": "「せき」を漢字で書いてください",
-      "choices": ["績"],
+      "choices": [
+        "績"
+      ],
       "correct": 0,
       "explanation": "「せき」は「績」と書く。積み上げた結果。「成績」（せいせき）は学習や仕事の結果"
     },
     {
       "id": "1287f722-c058-561e-b4e5-9c08f1ceac0b",
       "question": "「せつ」を漢字で書いてください",
-      "choices": ["接"],
+      "choices": [
+        "接"
+      ],
       "correct": 0,
       "explanation": "「せつ」は「接」と書く。触れること・関わること。「接する」（せっする）は関わりを持つこと"
     },
     {
       "id": "6e744582-10d2-5aac-83fd-d27f33df7965",
       "question": "「もうける」の「もう」を漢字で書いてください",
-      "choices": ["設"],
+      "choices": [
+        "設"
+      ],
       "correct": 0,
       "explanation": "「もうける」の「もう」は「設」と書く。新しく作ること・準備すること。「せつ」（音読み）とも読む"
     },
     {
       "id": "6926964e-9b8d-5fcc-b4fe-a8daad14b567",
       "question": "「した」を漢字で書いてください",
-      "choices": ["舌"],
+      "choices": [
+        "舌"
+      ],
       "correct": 0,
       "explanation": "「した」は「舌」と書く。口の中にある器官で、食べ物の味を感じたり話したりするのに使う。「ぜつ」（音読み）とも読む"
     },
     {
       "id": "eb1e7232-751c-527e-97d5-46446bf9fcff",
       "question": "「たえる」の「た」を漢字で書いてください",
-      "choices": ["絶"],
+      "choices": [
+        "絶"
+      ],
       "correct": 0,
       "explanation": "「たえる」の「た」は「絶」と書く。なくなること・途切れること。「ぜつ」（音読み）とも読む"
     },
     {
       "id": "fb1cae63-8b32-59e0-89f3-89876380e04f",
       "question": "「ぜに」を漢字で書いてください",
-      "choices": ["銭"],
+      "choices": [
+        "銭"
+      ],
       "correct": 0,
       "explanation": "「ぜに」は「銭」と書く。お金のこと。「せん」（音読み）とも読む"
     },
     {
       "id": "6eb618b1-ee63-5016-80c3-f825d8881576",
       "question": "「そ」を漢字で書いてください（先祖・始まりの人のこと）",
-      "choices": ["祖"],
+      "choices": [
+        "祖"
+      ],
       "correct": 0,
       "explanation": "「そ」は「祖」と書く。先祖・始まりの人のこと。「祖先」（そせん）はご先祖様のこと"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
-  "prerequisites": ["kanji-grade5"]
+  "guideUrl": "./japanese/kanji/kanji-grade5-13/guide",
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

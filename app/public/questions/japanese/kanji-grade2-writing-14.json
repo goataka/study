@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-14",
-  "categoryName": "✏️ 書き（門・半・色・分・計・万・電・買・市・回）",
+  "categoryName": "✏️ 書き（門半色分計万電買市回）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「門・半・色・分・計・万・電・買・市・回」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「門半色分計万電買市回」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "cc79d087-6f35-531d-b0ea-91b88e73bcc9",
       "question": "「かど」を漢字で書いてください（出入り口・家の正面のこと）",
-      "choices": ["門"],
+      "choices": [
+        "門"
+      ],
       "correct": 0,
       "explanation": "「かど」は「門」と書く。出入り口・家の正面のこと。「もん」（音読み）とも読む"
     },
     {
       "id": "6cbe4231-1c3e-596c-aa33-a72e0c1ff3af",
       "question": "「なかば」を漢字で書いてください",
-      "choices": ["半"],
+      "choices": [
+        "半"
+      ],
       "correct": 0,
       "explanation": "「なかば」は「半」と書く。真ん中・半分のこと。「はん」（音読み）とも読む"
     },
     {
       "id": "b51d371d-4b38-5dfb-ba80-6b5c55393d00",
       "question": "「いろ」を漢字で書いてください",
-      "choices": ["色"],
+      "choices": [
+        "色"
+      ],
       "correct": 0,
       "explanation": "「いろ」は「色」と書く。色・見た目のこと。「しょく」「しき」（音読み）とも読む"
     },
     {
       "id": "252adca0-0ad3-571d-a54c-32407e115d46",
       "question": "「わかる」の「わか」を漢字で書いてください",
-      "choices": ["分"],
+      "choices": [
+        "分"
+      ],
       "correct": 0,
       "explanation": "「わかる」の「わか」は「分」と書く。理解すること・分けること。「ぶん」「ふん」「ぷん」（音読み）とも読む"
     },
     {
       "id": "2e07f6b7-513c-5211-a9cf-f9d77c5ccbfd",
       "question": "「はかる」の「はか」を漢字で書いてください（測定すること・計画すること）",
-      "choices": ["計"],
+      "choices": [
+        "計"
+      ],
       "correct": 0,
       "explanation": "「はかる」の「はか」は「計」と書く。測定すること・計画すること。「けい」（音読み）とも読む"
     },
     {
       "id": "a6ca6457-190f-5650-8015-d12cbdf7ba66",
       "question": "「まん」を漢字で書いてください",
-      "choices": ["万"],
+      "choices": [
+        "万"
+      ],
       "correct": 0,
       "explanation": "「まん」は「万」と書く。数の単位（10000）のこと。「ばん」（音読み）とも読む"
     },
     {
       "id": "d564a887-e598-566e-9289-56fe8db9f2b9",
       "question": "「でん」を漢字で書いてください",
-      "choices": ["電"],
+      "choices": [
+        "電"
+      ],
       "correct": 0,
       "explanation": "「でん」は「電」と書く。電気のこと"
     },
     {
       "id": "79f7d629-7c92-5623-97d4-ee30f9bda047",
       "question": "「かう」の「か」を漢字で書いてください（お金を払って物を得ること）",
-      "choices": ["買"],
+      "choices": [
+        "買"
+      ],
       "correct": 0,
       "explanation": "「かう」の「か」は「買」と書く。お金を払って物を得ること。「ばい」（音読み）とも読む"
     },
     {
       "id": "93978b08-dbae-5cba-9211-c7c7f50d28d0",
       "question": "「いち」を漢字で書いてください",
-      "choices": ["市"],
+      "choices": [
+        "市"
+      ],
       "correct": 0,
       "explanation": "「いち」は「市」と書く。品物を売り買いする場所。「し」（音読み）とも読む"
     },
     {
       "id": "229d39ef-2d0b-53ef-87c1-88543b927f11",
       "question": "「まわる」の「まわ」を漢字で書いてください",
-      "choices": ["回"],
+      "choices": [
+        "回"
+      ],
       "correct": 0,
       "explanation": "「まわる」の「まわ」は「回」と書く。円を描くように動くこと。「かい」「え」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
-  "prerequisites": ["kanji-grade2"]
+  "guideUrl": "./japanese/kanji/kanji-grade2-14/guide",
+  "prerequisites": [
+    "kanji-grade2"
+  ]
 }

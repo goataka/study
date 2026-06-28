@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-2",
-  "categoryName": "📖 読み その１（繁栄・哲学・本質・価値観・象徴・喜ぶ・怒る・悩む・企業・現象）",
+  "categoryName": "📖 読み その１（繁栄哲学本質価値観象徴喜怒悩企業現象）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「繁栄・哲学・本質・価値観・象徴・喜ぶ・怒る・悩む・企業・現象」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "description": "中学生のこのセットでは「繁栄哲学本質価値観象徴喜怒悩企業現象」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-secondary-2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "a5de2f6a-ca44-5a50-a295-537e8a1aa2aa",
       "question": "「繁栄」の読み方をひらがなで書いてください",
-      "choices": ["はんえい"],
+      "choices": [
+        "はんえい"
+      ],
       "correct": 0,
       "explanation": "繁栄（はんえい）: 豊かに栄えること"
     },
     {
       "id": "ebc5ba34-22cb-57a4-88d8-4d08ee12d28c",
       "question": "「哲学」の読み方をひらがなで書いてください",
-      "choices": ["てつがく"],
+      "choices": [
+        "てつがく"
+      ],
       "correct": 0,
       "explanation": "哲学（てつがく）: 物事の根本的な意味を考える学問"
     },
     {
       "id": "4585bd3b-ed8c-54ec-aafe-b77839bd4326",
       "question": "「本質」の読み方をひらがなで書いてください",
-      "choices": ["ほんしつ"],
+      "choices": [
+        "ほんしつ"
+      ],
       "correct": 0,
       "explanation": "本質（ほんしつ）: 物事の根本・真の姿"
     },
     {
       "id": "fa4879c9-53b2-55b9-9f0b-340f305e87b5",
       "question": "「価値観」の読み方をひらがなで書いてください",
-      "choices": ["かちかん"],
+      "choices": [
+        "かちかん"
+      ],
       "correct": 0,
       "explanation": "価値観（かちかん）: 何に価値があるかについての考え方"
     },
     {
       "id": "4153555b-fd3c-59b0-977f-76133fbbcf2c",
       "question": "「象徴」の読み方をひらがなで書いてください",
-      "choices": ["しょうちょう"],
+      "choices": [
+        "しょうちょう"
+      ],
       "correct": 0,
       "explanation": "象徴（しょうちょう）: 何かを表すものやしるし"
     },
     {
       "id": "70af21a3-ac0d-509b-9c8a-4a0d89e5c564",
       "question": "「喜ぶ」の読み方をひらがなで書いてください",
-      "choices": ["よろこぶ"],
+      "choices": [
+        "よろこぶ"
+      ],
       "correct": 0,
       "explanation": "喜（よろこ）ぶ: うれしく思うこと・楽しく感じること"
     },
     {
       "id": "e7d631b3-47d6-5928-b88b-d621c99b8839",
       "question": "「怒る」の読み方をひらがなで書いてください",
-      "choices": ["おこる"],
+      "choices": [
+        "おこる"
+      ],
       "correct": 0,
       "explanation": "怒（おこ）る: 腹を立てること・激しく感情をあらわにすること"
     },
     {
       "id": "5d7eee5b-1a4c-5155-a7ca-47b414bd488a",
       "question": "「悩む」の読み方をひらがなで書いてください",
-      "choices": ["なやむ"],
+      "choices": [
+        "なやむ"
+      ],
       "correct": 0,
       "explanation": "悩（なや）む: どうしたらよいか迷い苦しむこと"
     },
     {
       "id": "94a18d8d-63a9-5065-b25a-79cf6a043e2f",
       "question": "「企業」の読み方をひらがなで書いてください",
-      "choices": ["きぎょう"],
+      "choices": [
+        "きぎょう"
+      ],
       "correct": 0,
       "explanation": "企業（きぎょう）: 利益を目的として事業を行う組織"
     },
     {
       "id": "2283ed3d-ca71-5f23-b9e8-f1698133db3f",
       "question": "「現象」の読み方をひらがなで書いてください",
-      "choices": ["げんしょう"],
+      "choices": [
+        "げんしょう"
+      ],
       "correct": 0,
       "explanation": "現象（げんしょう）: 目に見える形で現れた出来事や状態"
     }
   ],
-  "prerequisites": ["kanji-grade6"]
+  "prerequisites": [
+    "kanji-grade6"
+  ]
 }

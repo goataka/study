@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-8",
-  "categoryName": "✏️ 書き（許・境・均・句・型・経・潔・件・険・検）",
+  "categoryName": "✏️ 書き（許境均句型経潔件険検）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「許・境・均・句・型・経・潔・件・険・検」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「許境均句型経潔件険検」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "ce21ef74-30ac-509a-9fea-2368c025f831",
       "question": "「ゆるす」の「ゆる」を漢字で書いてください",
-      "choices": ["許"],
+      "choices": [
+        "許"
+      ],
       "correct": 0,
       "explanation": "「ゆるす」の「ゆる」は「許」と書く。認めること・赦すこと。「きょ」（音読み）とも読む"
     },
     {
       "id": "b009585d-78c5-5223-9b55-8d445574b25d",
       "question": "「さかい」を漢字で書いてください",
-      "choices": ["境"],
+      "choices": [
+        "境"
+      ],
       "correct": 0,
       "explanation": "「さかい」は「境」と書く。区切りのところ・境目のこと。「きょう」「けい」（音読み）とも読む"
     },
     {
       "id": "1bd13dff-54f5-53f7-9bac-502a3fcd8e43",
       "question": "「きん」を漢字で書いてください",
-      "choices": ["均"],
+      "choices": [
+        "均"
+      ],
       "correct": 0,
       "explanation": "「きん」は「均」と書く。等しくそろっていること。「均等」（きんとう）はみんな同じであること"
     },
     {
       "id": "bfe629ff-d9da-58f4-884f-6c0d5d1194f1",
       "question": "「く」を漢字で書いてください（短い言葉のまとまり）",
-      "choices": ["句"],
+      "choices": [
+        "句"
+      ],
       "correct": 0,
       "explanation": "「く」は「句」と書く。短い言葉のまとまり。「俳句」（はいく）は5・7・5の短い詩"
     },
     {
       "id": "e0311d3e-6047-5be4-816f-51465540d204",
       "question": "「かた」を漢字で書いてください",
-      "choices": ["型"],
+      "choices": [
+        "型"
+      ],
       "correct": 0,
       "explanation": "「かた」は「型」と書く。形・パターンのこと。「けい」（音読み）とも読む"
     },
     {
       "id": "556e26e6-9945-520e-bd0a-543dc82510a1",
       "question": "「へる」の「へ」を漢字で書いてください（時間が過ぎること・通り過ぎること）",
-      "choices": ["経"],
+      "choices": [
+        "経"
+      ],
       "correct": 0,
       "explanation": "「へる」の「へ」は「経」と書く。時間が過ぎること・通り過ぎること。「けい」「きょう」（音読み）とも読む"
     },
     {
       "id": "b060aae2-4444-51e9-82d1-bcb898c011e9",
       "question": "「いさぎよい」の「いさぎよ」を漢字で書いてください",
-      "choices": ["潔"],
+      "choices": [
+        "潔"
+      ],
       "correct": 0,
       "explanation": "「いさぎよい」の「いさぎよ」は「潔」と書く。清らかで気持ちよいこと。「けつ」（音読み）とも読む"
     },
     {
       "id": "95fd77cf-94fd-580d-92c4-7411b5e8344d",
       "question": "「けん」を漢字で書いてください（物事・出来事のこと）",
-      "choices": ["件"],
+      "choices": [
+        "件"
+      ],
       "correct": 0,
       "explanation": "「けん」は「件」と書く。物事・出来事のこと。「事件」（じけん）は問題となる出来事"
     },
     {
       "id": "c8343959-e79f-5fd2-8cb3-015d5664ade6",
       "question": "「けわしい」の「けわ」を漢字で書いてください",
-      "choices": ["険"],
+      "choices": [
+        "険"
+      ],
       "correct": 0,
       "explanation": "「けわしい」の「けわ」は「険」と書く。急で危ないこと。「けん」（音読み）とも読む"
     },
     {
       "id": "7e137986-e9f6-57b5-a703-e08671949308",
       "question": "「けん」を漢字で書いてください（調べること）",
-      "choices": ["検"],
+      "choices": [
+        "検"
+      ],
       "correct": 0,
       "explanation": "「けん」は「検」と書く。調べること。「検査」（けんさ）は詳しく調べること"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
-  "prerequisites": ["kanji-grade5"]
+  "guideUrl": "./japanese/kanji/kanji-grade5-8/guide",
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }

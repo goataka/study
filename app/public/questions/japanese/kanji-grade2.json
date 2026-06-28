@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2",
-  "categoryName": "📖 読み（海・魚・鳥・読む・書く・聞く・話す・走る・食べる・父）",
+  "categoryName": "📖 読み（海魚鳥読書聞話走食父）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「海・魚・鳥・読む・書く・聞く・話す・走る・食べる・父」の読み方を練習します。",
+  "description": "小学2年のこのセットでは「海魚鳥読書聞話走食父」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "567c46bf-286d-5871-a18d-ab8bf5de4220",
       "question": "「海」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["うみ"],
+      "choices": [
+        "うみ"
+      ],
       "correct": 0,
       "explanation": "海（うみ）: 広大な水の広がり。「かい」（音読み）とも読む"
     },
     {
       "id": "8cadeb9b-9f4c-543e-ad3b-f5fc69f51bdc",
       "question": "「魚」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["さかな"],
+      "choices": [
+        "さかな"
+      ],
       "correct": 0,
       "explanation": "魚（さかな）: 水の中に住む生き物。「ぎょ」（音読み）とも読む"
     },
     {
       "id": "7842ccb8-f0fe-5899-a7bb-d94b25528173",
       "question": "「鳥」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["とり"],
+      "choices": [
+        "とり"
+      ],
       "correct": 0,
       "explanation": "鳥（とり）: 空を飛ぶ生き物。「ちょう」（音読み）とも読む"
     },
     {
       "id": "2718076c-f051-5a82-ae6e-f0931ef5c634",
       "question": "「読む」の「読」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["よ"],
+      "choices": [
+        "よ"
+      ],
       "correct": 0,
       "explanation": "読（よ）む: 文字を読むこと。「どく」（音読み）とも読む"
     },
     {
       "id": "33f28a39-6aea-5a05-8134-bedb421764d8",
       "question": "「書く」の「書」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["か"],
+      "choices": [
+        "か"
+      ],
       "correct": 0,
       "explanation": "書（か）く: 文字を書くこと。「しょ」（音読み）とも読む"
     },
     {
       "id": "fda96397-201e-5875-851e-9b98b4c2df39",
       "question": "「聞く」の「聞」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["き"],
+      "choices": [
+        "き"
+      ],
       "correct": 0,
       "explanation": "聞（き）く: 音を聞くこと。「ぶん」（音読み）とも読む"
     },
     {
       "id": "756b357b-8945-5225-9623-5aa9d7aa8f04",
       "question": "「話す」の「話」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はな"],
+      "choices": [
+        "はな"
+      ],
       "correct": 0,
       "explanation": "話（はな）す: 話すこと。「わ」（音読み）とも読む"
     },
     {
       "id": "71c75377-1c66-5bb6-b7be-60f49edddb76",
       "question": "「走る」の「走」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["はし"],
+      "choices": [
+        "はし"
+      ],
       "correct": 0,
       "explanation": "走（はし）る: 走ること。「そう」（音読み）とも読む"
     },
     {
       "id": "3cc103a9-ac9d-52e6-bdd6-7edb12cf8dd7",
       "question": "「食べる」の「食」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["た"],
+      "choices": [
+        "た"
+      ],
       "correct": 0,
       "explanation": "食（た）べる: 食べること。「しょく」（音読み）とも読む"
     },
     {
       "id": "c274e88b-70c0-5ed5-ad3f-fc15109d73bb",
       "question": "「父」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ちち"],
+      "choices": [
+        "ちち"
+      ],
       "correct": 0,
       "explanation": "父（ちち）: お父さんのこと。「ふ」（音読み）とも読む"
     }
   ],
-  "prerequisites": ["kanji-grade1"]
+  "prerequisites": [
+    "kanji-grade1"
+  ]
 }

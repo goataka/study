@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-high-writing",
-  "categoryName": "✏️ 書き その２（逸脱・懸念・憂慮・鑑賞・洗練・逡巡・欺・恣意・弊害・冗長）",
+  "categoryName": "✏️ 書き その２（逸脱懸念憂慮鑑賞洗練逡巡欺恣意弊害冗長）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "羅・曖・昧・冶",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「逸脱・懸念・憂慮・鑑賞・洗練・逡巡・欺・恣意・弊害・冗長」の漢字の書き取りを練習します。",
+  "description": "中学生のこのセットでは「逸脱懸念憂慮鑑賞洗練逡巡欺恣意弊害冗長」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "1ff67300-59d5-5c99-849f-28c2a76b6d35",
       "question": "「いつだつ」を漢字で書いてください",
-      "choices": ["逸脱"],
+      "choices": [
+        "逸脱"
+      ],
       "correct": 0,
       "explanation": "「いつだつ」は「逸脱」と書く。本来の道や範囲から外れること"
     },
     {
       "id": "b07f5276-4e6f-522a-be39-11dd287616c7",
       "question": "「けねん」を漢字で書いてください",
-      "choices": ["懸念"],
+      "choices": [
+        "懸念"
+      ],
       "correct": 0,
       "explanation": "「けねん」は「懸念」と書く。心配・気がかりなこと"
     },
     {
       "id": "e2472890-b832-5b14-9884-7e8db350ef82",
       "question": "「ゆうりょ」を漢字で書いてください",
-      "choices": ["憂慮"],
+      "choices": [
+        "憂慮"
+      ],
       "correct": 0,
       "explanation": "「ゆうりょ」は「憂慮」と書く。心配して思い悩むこと"
     },
     {
       "id": "7b3673a9-538e-5d2f-8cd2-16fb11cb07ec",
       "question": "「かんしょう」を漢字で書いてください",
-      "choices": ["鑑賞"],
+      "choices": [
+        "鑑賞"
+      ],
       "correct": 0,
       "explanation": "「かんしょう」は「鑑賞」と書く。芸術などを味わって楽しむこと"
     },
     {
       "id": "e11891eb-0bf0-596d-bdad-0f01b8c8eec5",
       "question": "「せんれん」を漢字で書いてください",
-      "choices": ["洗練"],
+      "choices": [
+        "洗練"
+      ],
       "correct": 0,
       "explanation": "「せんれん」は「洗練」と書く。垢抜けて上品になること"
     },
     {
       "id": "7823999a-7c41-5cc7-83d6-8dbeecfb5e34",
       "question": "「しゅんじゅん」を漢字で書いてください",
-      "choices": ["逡巡"],
+      "choices": [
+        "逡巡"
+      ],
       "correct": 0,
       "explanation": "「しゅんじゅん」は「逡巡」と書く。ためらって行動できないこと"
     },
     {
       "id": "0ed10a81-a6d6-5cbb-b0ac-dac8801eb55d",
       "question": "「あざむく」の「あざむ」を漢字で書いてください",
-      "choices": ["欺"],
+      "choices": [
+        "欺"
+      ],
       "correct": 0,
       "explanation": "「あざむく」の「あざむ」は「欺」と書く。だますこと。「ぎ」（音読み）とも読む"
     },
     {
       "id": "d72a11a1-b6b0-5905-a42a-1f0a901c668d",
       "question": "「しい」を漢字で書いてください",
-      "choices": ["恣意"],
+      "choices": [
+        "恣意"
+      ],
       "correct": 0,
       "explanation": "「しい」は「恣意」と書く。自分勝手な考え方・思いのままに行動すること"
     },
     {
       "id": "e437b16b-aa9b-58a1-8f4c-146228c1ced0",
       "question": "「へいがい」を漢字で書いてください",
-      "choices": ["弊害"],
+      "choices": [
+        "弊害"
+      ],
       "correct": 0,
       "explanation": "「へいがい」は「弊害」と書く。悪い影響・障害となること"
     },
     {
       "id": "3e51f7de-04a6-55af-bbea-e5970be3de2e",
       "question": "「じょうちょう」を漢字で書いてください",
-      "choices": ["冗長"],
+      "choices": [
+        "冗長"
+      ],
       "correct": 0,
       "explanation": "「じょうちょう」は「冗長」と書く。必要以上に長くてくどいこと"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-high/guide",
-  "prerequisites": ["kanji-high"]
+  "prerequisites": [
+    "kanji-high"
+  ]
 }

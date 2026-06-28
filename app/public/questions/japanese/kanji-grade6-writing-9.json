@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-9",
-  "categoryName": "✏️ 書き（刻・穀・骨・砂・済・策・冊・蚕・至・私）",
+  "categoryName": "✏️ 書き（刻穀骨砂済策冊蚕至私）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「刻・穀・骨・砂・済・策・冊・蚕・至・私」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「刻穀骨砂済策冊蚕至私」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "8c39affa-36af-5ecb-aced-b5d831dd3bb3",
       "question": "「きざむ」の「きざ」を漢字で書いてください",
-      "choices": ["刻"],
+      "choices": [
+        "刻"
+      ],
       "correct": 0,
       "explanation": "「きざむ」の「きざ」は「刻」と書く。細かく切ること・時を刻むこと。「こく」（音読み）とも読む"
     },
     {
       "id": "dc9f03a7-917f-5684-8237-d3a6e2b34c57",
       "question": "「こく」を漢字で書いてください",
-      "choices": ["穀"],
+      "choices": [
+        "穀"
+      ],
       "correct": 0,
       "explanation": "「こく」は「穀」と書く。米・麦などの食用植物の種。穀物・穀類などに使う"
     },
     {
       "id": "6c04e7a3-26f2-5f2d-b267-baac249b045a",
       "question": "「ほね」を漢字で書いてください",
-      "choices": ["骨"],
+      "choices": [
+        "骨"
+      ],
       "correct": 0,
       "explanation": "「ほね」は「骨」と書く。体の骨格・苦労すること。「こつ」（音読み）とも読む"
     },
     {
       "id": "238adb6b-6b28-5440-bc91-2a23f7f634b9",
       "question": "「すな」を漢字で書いてください",
-      "choices": ["砂"],
+      "choices": [
+        "砂"
+      ],
       "correct": 0,
       "explanation": "「すな」は「砂」と書く。細かい石の粒・砂浜。「さ」「しゃ」（音読み）とも読む"
     },
     {
       "id": "30f7fa8f-29f5-5cde-bb10-6689d4b4dc29",
       "question": "「すむ」の「す」を漢字で書いてください（終わること・解決すること）",
-      "choices": ["済"],
+      "choices": [
+        "済"
+      ],
       "correct": 0,
       "explanation": "「すむ」の「す」は「済」と書く。終わること・解決すること。「さい」（音読み）とも読む"
     },
     {
       "id": "29607283-8c9e-5db5-90f5-c74838a01921",
       "question": "「さく」を漢字で書いてください",
-      "choices": ["策"],
+      "choices": [
+        "策"
+      ],
       "correct": 0,
       "explanation": "「さく」は「策」と書く。計画・方法のこと。対策・政策などに使う"
     },
     {
       "id": "505fbd69-3705-5b3e-b159-539d6dd2e8fe",
       "question": "「さつ」を漢字で書いてください",
-      "choices": ["冊"],
+      "choices": [
+        "冊"
+      ],
       "correct": 0,
       "explanation": "「さつ」は「冊」と書く。本を数える単位・小さい本。一冊・冊子などに使う"
     },
     {
       "id": "1fd69a73-7bbe-5fe6-b024-bef512c97fe0",
       "question": "「かいこ」を漢字で書いてください",
-      "choices": ["蚕"],
+      "choices": [
+        "蚕"
+      ],
       "correct": 0,
       "explanation": "「かいこ」は「蚕」と書く。絹の糸を作る虫。「さん」（音読み）とも読む"
     },
     {
       "id": "55079fd4-f3b1-524f-99a5-1b92cd6c398b",
       "question": "「いたる」の「いた」を漢字で書いてください（ある場所や状態に達すること）",
-      "choices": ["至"],
+      "choices": [
+        "至"
+      ],
       "correct": 0,
       "explanation": "「いたる」の「いた」は「至」と書く。ある場所や状態に達すること。「し」（音読み）とも読む"
     },
     {
       "id": "ae1507de-14fb-5c69-b5f4-48f1bef3fb71",
       "question": "「わたし」を漢字で書いてください",
-      "choices": ["私"],
+      "choices": [
+        "私"
+      ],
       "correct": 0,
       "explanation": "「わたし」は「私」と書く。自分のこと・個人のこと。「し」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
-  "prerequisites": ["kanji-grade6"]
+  "guideUrl": "./japanese/kanji/kanji-grade6-9/guide",
+  "prerequisites": [
+    "kanji-grade6"
+  ]
 }

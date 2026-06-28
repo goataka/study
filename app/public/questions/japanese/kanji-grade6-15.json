@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-15",
-  "categoryName": "📖 読み（政党・届く・難しい・乳・俳句・拝む・背中・肺・班・今晩）",
+  "categoryName": "📖 読み（政党届難乳俳句拝背中肺班今晩）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,80 +11,102 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「政党・届く・難しい・乳・俳句・拝む・背中・肺・班・今晩」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「政党届難乳俳句拝背中肺班今晩」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-15/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {
       "id": "bf3b5d92-11db-5e95-97ba-680257c622f7",
       "question": "「政党」の「党」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["とう"],
+      "choices": [
+        "とう"
+      ],
       "correct": 0,
       "explanation": "党（とう）: 同じ目的のために集まった集団。政党・党首などに使う"
     },
     {
       "id": "9c1cac83-0c98-50ff-8830-a5d9aef8753a",
       "question": "「届く」の「届」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["とど"],
+      "choices": [
+        "とど"
+      ],
       "correct": 0,
       "explanation": "届（とど）く: 目的地に達すること・行き渡ること。「とどける」とも使う"
     },
     {
       "id": "aff7b047-faa5-57c0-88d8-a9c3c5384ff8",
       "question": "「難しい」の「難」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["むずか"],
+      "choices": [
+        "むずか"
+      ],
       "correct": 0,
       "explanation": "難（むずか）しい: 解くのが大変なこと。「なん」（音読み）とも読む"
     },
     {
       "id": "44936422-d9ad-5762-ad3e-60aab262c24b",
       "question": "「乳」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["ちち"],
+      "choices": [
+        "ちち"
+      ],
       "correct": 0,
       "explanation": "乳（ちち）: 哺乳動物が出す白い液体・お乳。「にゅう」（音読み）とも読む"
     },
     {
       "id": "0df34404-97ce-5b39-98c4-0a087ab94a52",
       "question": "「俳句」の「俳」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["はい"],
+      "choices": [
+        "はい"
+      ],
       "correct": 0,
       "explanation": "俳（はい）: 俳句・俳優など、演芸・芸能に関する字"
     },
     {
       "id": "4c81effc-48cd-5a7c-a8b6-76084e5c4f7c",
       "question": "「拝む」の「拝」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["おが"],
+      "choices": [
+        "おが"
+      ],
       "correct": 0,
       "explanation": "拝（おが）む: 手を合わせて祈ること。「はい」（音読み）とも読む"
     },
     {
       "id": "cd859f5d-2e8b-53f5-ae46-d628a455a2b4",
       "question": "「背中」の「背」の読み方をひらがなで書いてください（訓読み）",
-      "choices": ["せ"],
+      "choices": [
+        "せ"
+      ],
       "correct": 0,
       "explanation": "背（せ）中: 体の後ろ側。「はい」（音読み）とも読む。「そむく」とも読む"
     },
     {
       "id": "5a7f602d-53b0-54e6-9edc-706c35d1814b",
       "question": "「肺」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["はい"],
+      "choices": [
+        "はい"
+      ],
       "correct": 0,
       "explanation": "肺（はい）: 胸にある呼吸のための器官。肺炎・肺活量などに使う"
     },
     {
       "id": "3182527d-95a3-579e-a158-c525de1d1e89",
       "question": "「班」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["はん"],
+      "choices": [
+        "はん"
+      ],
       "correct": 0,
       "explanation": "班（はん）: 小さなグループ・組のこと。班長・班別などに使う"
     },
     {
       "id": "d9d026af-e89f-5241-a09e-15ae2c48481e",
       "question": "「今晩」の「晩」の読み方をひらがなで書いてください（音読み）",
-      "choices": ["ばん"],
+      "choices": [
+        "ばん"
+      ],
       "correct": 0,
       "explanation": "晩（ばん）: 夜・夕方のこと。今晩・晩ごはんなどに使う"
     }
   ],
-  "prerequisites": ["kanji-grade5"]
+  "prerequisites": [
+    "kanji-grade5"
+  ]
 }
