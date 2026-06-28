@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-9",
-  "categoryName": "✏️ 書き（81-90字）",
+  "categoryName": "✏️ 書き（刻・穀・骨・砂・済・策・冊・蚕・至・私）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年向けの漢字書き取り問題です。",
+  "description": "小学6年のこのセットでは「刻・穀・骨・砂・済・策・冊・蚕・至・私」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "8c39affa-36af-5ecb-aced-b5d831dd3bb3",

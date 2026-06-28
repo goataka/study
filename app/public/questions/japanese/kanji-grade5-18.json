@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-18",
-  "categoryName": "📖 読み（171-177字）",
+  "categoryName": "📖 読み（規律・留まる・勢い・支える・織る・資源・限る）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学5年のこのセットでは「規律・留まる・勢い・支える・織る・資源・限る」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade5/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

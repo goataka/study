@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-10",
-  "categoryName": "📖 読み（91-100字）",
+  "categoryName": "📖 読み（組・同・毎・刀・活・方・原・曜・工・体）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学2年のこのセットでは「組・同・毎・刀・活・方・原・曜・工・体」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

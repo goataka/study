@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-16",
-  "categoryName": "📖 読み（151-160字）",
+  "categoryName": "📖 読み（鼻・筆・氷・表面・一秒・品物・負ける・洋服・幸福・物）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学3年のこのセットでは「鼻・筆・氷・表面・一秒・品物・負ける・洋服・幸福・物」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade3/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

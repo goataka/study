@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-writing-2",
-  "categoryName": "✏️ 書き（11-20字）",
+  "categoryName": "✏️ 書き（花・草・森・石・目・口・手・足・学校・先生）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年向けの漢字書き取り問題です。",
+  "description": "小学1年のこのセットでは「花・草・森・石・目・口・手・足・学校・先生」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "35416641-82cc-5f24-9484-04889dfc5a38",

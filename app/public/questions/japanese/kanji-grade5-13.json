@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-13",
-  "categoryName": "📖 読み（121-130字）",
+  "categoryName": "📖 読み（精神・製品・税金・成績・接する・設ける・舌・絶える・銭・祖先）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学5年のこのセットでは「精神・製品・税金・成績・接する・設ける・舌・絶える・銭・祖先」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade5/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

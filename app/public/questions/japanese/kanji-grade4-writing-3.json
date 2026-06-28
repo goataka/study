@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-3",
-  "categoryName": "✏️ 書き（21-30字）",
+  "categoryName": "✏️ 書き（関係・願・機会・議員・求・競争・協力・健康・経験・最初）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年向けの漢字書き取り問題です。",
+  "description": "小学4年のこのセットでは「関係・願・機会・議員・求・競争・協力・健康・経験・最初」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "62d9a38d-5b75-5c40-82a8-03937f7392f7",

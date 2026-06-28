@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-writing-3",
-  "categoryName": "✏️ 書き その１（21-30字）",
+  "categoryName": "✏️ 書き その１（影響・根拠・批評・観点・立場・対話・協力・秩序・自由・平等）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生向けの漢字書き取り問題です。",
+  "description": "中学生のこのセットでは「影響・根拠・批評・観点・立場・対話・協力・秩序・自由・平等」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "2e4a900f-49c5-582d-be9e-950181f1aee5",

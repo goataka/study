@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-17",
-  "categoryName": "📖 読み（161-170字）",
+  "categoryName": "📖 読み（暴れる・迷う・綿・輸出・容易・省略・乱れる・卵・一覧・裏）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学5年のこのセットでは「暴れる・迷う・綿・輸出・容易・省略・乱れる・卵・一覧・裏」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade5/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

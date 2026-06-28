@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-3",
-  "categoryName": "✏️ 書き（21-30字）",
+  "categoryName": "✏️ 書き（過去・確実・基礎・義務・逆転・禁止・現在・個人・増加・断）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年向けの漢字書き取り問題です。",
+  "description": "小学5年のこのセットでは「過去・確実・基礎・義務・逆転・禁止・現在・個人・増加・断」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "408772c8-c3d0-52cf-8179-290f21c96c36",

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-4",
-  "categoryName": "📖 読み（31-40字）",
+  "categoryName": "📖 読み（一・雨・円・王・音・貝・気・九・休む・玉）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学1年のこのセットでは「一・雨・円・王・音・貝・気・九・休む・玉」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade1/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

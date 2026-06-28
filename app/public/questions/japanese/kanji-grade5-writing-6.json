@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-6",
-  "categoryName": "✏️ 書き（51-60字）",
+  "categoryName": "✏️ 書き（因・営・衛・益・液・往・桜・仮・河・快）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年向けの漢字書き取り問題です。",
+  "description": "小学5年のこのセットでは「因・営・衛・益・液・往・桜・仮・河・快」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "22ed32f5-ed0e-534e-94bc-6556a432920f",

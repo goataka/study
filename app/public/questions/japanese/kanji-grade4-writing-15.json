@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-15",
-  "categoryName": "✏️ 書き（141-150字）",
+  "categoryName": "✏️ 書き（命令・冷・例・連・老・苦労・不・付・兵・別）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年向けの漢字書き取り問題です。",
+  "description": "小学4年のこのセットでは「命令・冷・例・連・老・苦労・不・付・兵・別」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "aa4fd6e7-bd94-5336-900e-36c125260011",

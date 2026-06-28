@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-10",
-  "categoryName": "✏️ 書き（91-100字）",
+  "categoryName": "✏️ 書き（査・財・罪・雑・酸・賛・志・枝・師・飼）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年向けの漢字書き取り問題です。",
+  "description": "小学5年のこのセットでは「査・財・罪・雑・酸・賛・志・枝・師・飼」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "34e5106e-2ba7-56be-bcb9-b23ecfc940f2",

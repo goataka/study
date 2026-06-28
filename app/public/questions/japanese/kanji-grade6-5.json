@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-5",
-  "categoryName": "📖 読み（41-50字）",
+  "categoryName": "📖 読み（脳・批評・閉じる・補う・訪ねる・忘れる・優しい・論文・朗読・幼い）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学6年のこのセットでは「脳・批評・閉じる・補う・訪ねる・忘れる・優しい・論文・朗読・幼い」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade6/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

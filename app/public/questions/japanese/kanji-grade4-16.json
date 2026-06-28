@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-16",
-  "categoryName": "📖 読み（151-152字）",
+  "categoryName": "📖 読み（士・目標）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学4年のこのセットでは「士・目標」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade4/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

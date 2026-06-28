@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-6",
-  "categoryName": "✏️ 書き（51-60字）",
+  "categoryName": "✏️ 書き（印・衣類・景色・各自・管理・軍隊・訓練・積・説明・倉庫）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年向けの漢字書き取り問題です。",
+  "description": "小学4年のこのセットでは「印・衣類・景色・各自・管理・軍隊・訓練・積・説明・倉庫」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "285f6a86-3376-5517-bb7c-e279f9dcaa94",

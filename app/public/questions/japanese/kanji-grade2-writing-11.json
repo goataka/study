@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-11",
-  "categoryName": "✏️ 書き（101-110字）",
+  "categoryName": "✏️ 書き（寺・直・公・画・肉・何・場・園・弓・交）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年向けの漢字書き取り問題です。",
+  "description": "小学2年のこのセットでは「寺・直・公・画・肉・何・場・園・弓・交」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "2f76dfeb-2890-591e-935a-5608b695b288",

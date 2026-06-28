@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-7",
-  "categoryName": "✏️ 書き（61-70字）",
+  "categoryName": "✏️ 書き（消・商売・勝・植・申・真・進・全部・相手・送）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年向けの漢字書き取り問題です。",
+  "description": "小学3年のこのセットでは「消・商売・勝・植・申・真・進・全部・相手・送」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "e34dee8b-1631-5bb2-9ad6-3891a19560d2",

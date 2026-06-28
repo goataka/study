@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-6",
-  "categoryName": "✏️ 書き（51-60字）",
+  "categoryName": "✏️ 書き（道・南・北・西・野・夜・引・羽・遠・外）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年向けの漢字書き取り問題です。",
+  "description": "小学2年のこのセットでは「道・南・北・西・野・夜・引・羽・遠・外」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "dea5a69a-392a-5dd4-a7cb-fa03b7b83da8",

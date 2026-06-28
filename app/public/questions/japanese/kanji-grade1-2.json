@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-2",
-  "categoryName": "📖 読み（11-20字）",
+  "categoryName": "📖 読み（花・草・森・石・目・口・手・足・学校・先生）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学1年のこのセットでは「花・草・森・石・目・口・手・足・学校・先生」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade1/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

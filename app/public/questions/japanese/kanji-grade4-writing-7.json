@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-7",
-  "categoryName": "✏️ 書き（61-70字）",
+  "categoryName": "✏️ 書き（案内・以上・囲・栄・一億・貨物・課題・芽・改・機械）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年向けの漢字書き取り問題です。",
+  "description": "小学4年のこのセットでは「案内・以上・囲・栄・一億・貨物・課題・芽・改・機械」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "13a0a6c1-53f3-5b9f-9838-d3e267356a66",

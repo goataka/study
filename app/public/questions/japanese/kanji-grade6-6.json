@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-6",
-  "categoryName": "📖 読み（51-60字）",
+  "categoryName": "📖 読み（地域・沿う・恩人・灰・内閣・株・干す・巻く・看護・簡単）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "description": "小学6年のこのセットでは「地域・沿う・恩人・灰・内閣・株・干す・巻く・看護・簡単」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade6/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
