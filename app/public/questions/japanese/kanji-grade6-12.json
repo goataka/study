@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-12",
+  "categoryName": "📖 読み（111-120字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "773f1c9b-9b47-59fd-a0f6-4d6482c61621",
+      "question": "「針」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はり"],
+      "correct": 0,
+      "explanation": "針（はり）: 縫い物や注射に使う細く尖ったもの。「しん」（音読み）とも読む"
+    },
+    {
+      "id": "d3cdafcb-649f-5618-8999-4aab959057a4",
+      "question": "「仁義」の「仁」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["じん"],
+      "correct": 0,
+      "explanation": "仁（じん）: 思いやりの心・仁義のこと。仁義・仁愛などに使う"
+    },
+    {
+      "id": "267fc101-9706-57d1-8b11-0144cd1ae555",
+      "question": "「垂れる」の「垂」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["た"],
+      "correct": 0,
+      "explanation": "垂（た）れる: 上から下にたれ下がること。「すい」（音読み）とも読む"
+    },
+    {
+      "id": "b4e8d5b6-eb1c-543a-ad09-4af584f16ad0",
+      "question": "「推す」の「推」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["お"],
+      "correct": 0,
+      "explanation": "推（お）す: 前に押すこと・おすすめすること。「すい」（音読み）とも読む"
+    },
+    {
+      "id": "82c07e99-0937-5bba-b303-866166d82b81",
+      "question": "「寸法」の「寸」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["すん"],
+      "correct": 0,
+      "explanation": "寸（すん）: 長さの単位・寸法のこと。一寸・寸法などに使う"
+    },
+    {
+      "id": "085f7cb6-fff5-59a7-9f8a-13ee5d806289",
+      "question": "「盛る」の「盛」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["も"],
+      "correct": 0,
+      "explanation": "盛（も）る: 器に食べ物を入れること・盛んになること。「せい」「じょう」（音読み）とも読む"
+    },
+    {
+      "id": "ac2e8ff1-196c-5d18-bc4c-dae87d73e9c4",
+      "question": "「聖火」の「聖」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["せい"],
+      "correct": 0,
+      "explanation": "聖（せい）: 神聖で尊いこと。聖火・聖人などに使う"
+    },
+    {
+      "id": "36b0d3ec-0747-5abc-820c-287ff94145ce",
+      "question": "「舌」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["した"],
+      "correct": 0,
+      "explanation": "舌（した）: 口の中にある器官・味を感じる部分。「ぜつ」（音読み）とも読む"
+    },
+    {
+      "id": "d01eac44-5042-5f02-b854-2c9c1992c916",
+      "question": "「宣言」の「宣」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["せん"],
+      "correct": 0,
+      "explanation": "宣（せん）: 広く知らせること・宣言。宣言・宣伝などに使う"
+    },
+    {
+      "id": "fca04a47-abe4-52e7-8bcd-96ecc97b4a9a",
+      "question": "「専ら」の「専」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["もっぱ"],
+      "correct": 0,
+      "explanation": "専（もっぱ）ら: ひとつのことだけに集中すること。「せん」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade5"]
+}

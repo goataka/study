@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-17",
+  "categoryName": "📖 読み（161-170字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "16698a77-790b-5caf-8d20-b0f08fd9e7ea",
+      "question": "「平ら」の「平」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["たい"],
+      "correct": 0,
+      "explanation": "平（たい）ら: でこぼこがないこと。「へい」「ひら」とも読む"
+    },
+    {
+      "id": "9543eafb-f1ab-558d-b21a-cda7c52afeed",
+      "question": "「返す」の「返」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かえ"],
+      "correct": 0,
+      "explanation": "返（かえ）す: 元に戻すこと。「へん」（音読み）とも読む"
+    },
+    {
+      "id": "06a19331-5d62-5a65-8d34-79a3bdb86571",
+      "question": "「勉強」の「勉」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["べん"],
+      "correct": 0,
+      "explanation": "勉（べん）強: 学習に励むこと。「勉強」「勤勉」など"
+    },
+    {
+      "id": "f97b99b8-211b-53b2-8cd2-ff887c424a88",
+      "question": "「放す」の「放」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はな"],
+      "correct": 0,
+      "explanation": "放（はな）す: 自由にすること。「ほう」（音読み）とも読む"
+    },
+    {
+      "id": "41510c05-c15b-581f-977b-58d8220b9973",
+      "question": "「味」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あじ"],
+      "correct": 0,
+      "explanation": "味（あじ）: 食べ物の感触・風味。「み」（音読み）とも読む"
+    },
+    {
+      "id": "1f510dc0-5e98-58fa-9b85-fdf5e5579d8f",
+      "question": "「命」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いのち"],
+      "correct": 0,
+      "explanation": "命（いのち）: 生きる力・生命のこと。「めい」（音読み）とも読む"
+    },
+    {
+      "id": "b704386d-4dce-5d78-97fe-ea213e4f9a0a",
+      "question": "「面」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おもて"],
+      "correct": 0,
+      "explanation": "面（おもて）: 表面・顔のこと。「めん」（音読み）とも読む"
+    },
+    {
+      "id": "ddd23370-7a81-5446-a9b8-2f0e77aecebc",
+      "question": "「問う」の「問」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["と"],
+      "correct": 0,
+      "explanation": "問（と）う: 質問すること。「もん」（音読み）とも読む"
+    },
+    {
+      "id": "e882cef0-4d55-53e8-aec8-08913a02660e",
+      "question": "「役に立つ」の「役」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["やく"],
+      "correct": 0,
+      "explanation": "役（やく）に立つ: 助けになること。「えき」（音読み）とも読む"
+    },
+    {
+      "id": "0aa28a76-23e9-5b2d-9884-94adf4a266a6",
+      "question": "「薬」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["くすり"],
+      "correct": 0,
+      "explanation": "薬（くすり）: 病気を治す物。「やく」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade2"]
+}

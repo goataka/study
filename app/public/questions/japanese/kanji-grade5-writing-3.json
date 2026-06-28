@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-writing-3",
+  "categoryName": "✏️ 書き（21-30字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "408772c8-c3d0-52cf-8179-290f21c96c36",
+      "question": "「かこ」を漢字で書いてください",
+      "choices": ["過去"],
+      "correct": 0,
+      "explanation": "「かこ」は「過去」と書く。以前のこと・すでに過ぎた時"
+    },
+    {
+      "id": "f5d67b5b-22b1-5990-a74b-520cb2ea3ed8",
+      "question": "「かくじつ」を漢字で書いてください",
+      "choices": ["確実"],
+      "correct": 0,
+      "explanation": "「かくじつ」は「確実」と書く。まちがいなく確かなこと"
+    },
+    {
+      "id": "c9160c93-d31a-5cfe-83e3-888f48cb0572",
+      "question": "「きそ」を漢字で書いてください",
+      "choices": ["基礎"],
+      "correct": 0,
+      "explanation": "「きそ」は「基礎」と書く。物の土台・基本となること"
+    },
+    {
+      "id": "014cfa5e-a12e-5872-82b8-563fd55c4154",
+      "question": "「ぎむ」を漢字で書いてください",
+      "choices": ["義務"],
+      "correct": 0,
+      "explanation": "「ぎむ」は「義務」と書く。必ずしなければならないこと"
+    },
+    {
+      "id": "305467c8-9d02-5496-a30a-43ffd3da66ee",
+      "question": "「ぎゃくてん」を漢字で書いてください",
+      "choices": ["逆転"],
+      "correct": 0,
+      "explanation": "「ぎゃくてん」は「逆転」と書く。形勢が反対になること"
+    },
+    {
+      "id": "f3d0f9bd-b6c0-587b-9265-b650d4a07195",
+      "question": "「きんし」を漢字で書いてください",
+      "choices": ["禁止"],
+      "correct": 0,
+      "explanation": "「きんし」は「禁止」と書く。してはいけないこと"
+    },
+    {
+      "id": "1ff3242d-d41a-5c7e-9c79-f51ad75b07e9",
+      "question": "「げんざい」を漢字で書いてください",
+      "choices": ["現在"],
+      "correct": 0,
+      "explanation": "「げんざい」は「現在」と書く。今のこと"
+    },
+    {
+      "id": "3e8d2509-ca5b-597c-a100-97b925cc3967",
+      "question": "「こじん」を漢字で書いてください",
+      "choices": ["個人"],
+      "correct": 0,
+      "explanation": "「こじん」は「個人」と書く。一人ひとりのこと"
+    },
+    {
+      "id": "bc86d06e-dd65-5d42-a5ff-d12519df8a46",
+      "question": "「ぞうか」を漢字で書いてください",
+      "choices": ["増加"],
+      "correct": 0,
+      "explanation": "「ぞうか」は「増加」と書く。数や量が多くなること"
+    },
+    {
+      "id": "be25532a-6f97-592e-84d5-2f147d3de2a7",
+      "question": "「ことわる」の「ことわ」を漢字で書いてください",
+      "choices": ["断"],
+      "correct": 0,
+      "explanation": "「ことわる」の「ことわ」は「断」と書く。申し出を受け入れないこと。「だん」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "prerequisites": ["kanji-grade5"]
+}

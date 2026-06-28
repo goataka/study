@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade1-writing-8",
+  "categoryName": "✏️ 書き（71-80字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade1",
+  "parentCategoryName": "小学1年",
+  "example": "山・川・火・水",
+  "questionType": "text-input",
+  "referenceGrade": "小学1年",
+  "description": "小学1年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "788959b6-4398-5fc3-9e3c-dadc9cbba7b6",
+      "question": "「ひゃく」を漢字で書いてください",
+      "choices": ["百"],
+      "correct": 0,
+      "explanation": "「ひゃく」は「百」と書く。数の100のこと。「もも」（訓読み）とも読む"
+    },
+    {
+      "id": "b009f1d9-2572-57dc-92d4-c2156cab6778",
+      "question": "「もじ」を漢字で書いてください",
+      "choices": ["文"],
+      "correct": 0,
+      "explanation": "「もじ」は「文」と書く。書き記したもの。「ふみ」とも読む。「もん」「ぶん」（音読み）とも読む"
+    },
+    {
+      "id": "92f61002-f555-5c85-bd43-39b498d78ce5",
+      "question": "「ほん」を漢字で書いてください",
+      "choices": ["本"],
+      "correct": 0,
+      "explanation": "「ほん」は「本」と書く。読み物のこと。「もと」（訓読み）とも読む"
+    },
+    {
+      "id": "41febdbc-c64d-5015-ac3f-15978682bc0b",
+      "question": "「な」を漢字で書いてください",
+      "choices": ["名"],
+      "correct": 0,
+      "explanation": "「な」は「名」と書く。人や物の呼び方のこと。「めい」（音読み）とも読む"
+    },
+    {
+      "id": "a8a778fc-6c15-5784-ab69-1ef2170f4dca",
+      "question": "「たつ」の「た」を漢字で書いてください（地面に足をついて上に伸びること）",
+      "choices": ["立"],
+      "correct": 0,
+      "explanation": "「たつ」の「た」は「立」と書く。地面に足をついて上に伸びること。「りつ」「りゅう」（音読み）とも読む"
+    },
+    {
+      "id": "fc5ab1fa-5943-555a-9f52-9a638be4a128",
+      "question": "「ちから」を漢字で書いてください",
+      "choices": ["力"],
+      "correct": 0,
+      "explanation": "「ちから」は「力」と書く。強さのこと。「りょく」「りき」（音読み）とも読む"
+    },
+    {
+      "id": "e946f529-3385-562b-879c-56357d1c0c2d",
+      "question": "「はやし」を漢字で書いてください",
+      "choices": ["林"],
+      "correct": 0,
+      "explanation": "「はやし」は「林」と書く。木がたくさん生えている場所（森より小さい）。「りん」（音読み）とも読む"
+    },
+    {
+      "id": "de2cd793-198e-58aa-9085-998a9e93c623",
+      "question": "「むっつ」の「むっ」を漢字で書いてください",
+      "choices": ["六"],
+      "correct": 0,
+      "explanation": "「むっつ」の「むっ」は「六」と書く。数の6のこと。「ろく」（音読み）とも読む"
+    },
+    {
+      "id": "15cf49e3-4fde-5847-ac5b-ed5ca2893147",
+      "question": "「まなぶ」の「まな」を漢字で書いてください",
+      "choices": ["学"],
+      "correct": 0,
+      "explanation": "「まなぶ」の「まな」は「学」と書く。知識を身につけること。「がく」（音読み）とも読む。「学校」（がっこう）にも使う"
+    },
+    {
+      "id": "5daa0d10-1e1e-58d9-88d1-e7a0d87a8715",
+      "question": "「いきる」の「い」を漢字で書いてください",
+      "choices": ["生"],
+      "correct": 0,
+      "explanation": "「いきる」の「い」は「生」と書く。命があること。「うまれる」とも読む。「せい」「しょう」（音読み）とも読む。「先生」（せんせい）にも使う"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "prerequisites": ["kanji-grade1"]
+}

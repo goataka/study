@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-writing-3",
+  "categoryName": "✏️ 書き（21-30字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "18f8849d-6c4d-5484-9e38-998ebe5ac9ca",
+      "question": "「きけん」を漢字で書いてください",
+      "choices": ["危険"],
+      "correct": 0,
+      "explanation": "「きけん」は「危険」と書く。危ないこと・安全でないこと"
+    },
+    {
+      "id": "9b7cfff9-5804-5a4d-bba1-6d09ddc8b2bd",
+      "question": "「けいご」を漢字で書いてください",
+      "choices": ["敬語"],
+      "correct": 0,
+      "explanation": "「けいご」は「敬語」と書く。相手を尊重して使う言葉づかい"
+    },
+    {
+      "id": "5ce856d8-df38-5d92-84ad-69c75ec46d4c",
+      "question": "「げきじょう」を漢字で書いてください",
+      "choices": ["劇場"],
+      "correct": 0,
+      "explanation": "「げきじょう」は「劇場」と書く。演劇や映画を上演する施設"
+    },
+    {
+      "id": "af989ea7-952c-514d-ab71-4221e3c74ab8",
+      "question": "「けんり」を漢字で書いてください",
+      "choices": ["権利"],
+      "correct": 0,
+      "explanation": "「けんり」は「権利」と書く。物事を自由にする資格や力"
+    },
+    {
+      "id": "e114f2c7-b3e1-5bc9-be6e-53f0077a3f19",
+      "question": "「きびしい」の「きび」を漢字で書いてください",
+      "choices": ["厳"],
+      "correct": 0,
+      "explanation": "「きびしい」の「きび」は「厳」と書く。きびしくてゆるみのないこと。「げん」（音読み）とも読む"
+    },
+    {
+      "id": "3d93bcaa-dcee-58df-8e01-f95ba1911310",
+      "question": "「よぶ」の「よ」を漢字で書いてください（声をかけること）",
+      "choices": ["呼"],
+      "correct": 0,
+      "explanation": "「よぶ」の「よ」は「呼」と書く。声をかけること。「こ」（音読み）とも読む"
+    },
+    {
+      "id": "0142bd9e-a0ee-5906-ad11-b7204668f2d2",
+      "question": "「こまる」の「こま」を漢字で書いてください",
+      "choices": ["困"],
+      "correct": 0,
+      "explanation": "「こまる」の「こま」は「困」と書く。解決の方法がなくて悩むこと。「こん」（音読み）とも読む"
+    },
+    {
+      "id": "8e558841-d02d-557b-a649-ffd055a067b0",
+      "question": "「すわる」の「すわ」を漢字で書いてください",
+      "choices": ["座"],
+      "correct": 0,
+      "explanation": "「すわる」の「すわ」は「座」と書く。腰をおろすこと。「ざ」（音読み）とも読む"
+    },
+    {
+      "id": "6cba3145-d4ef-59bb-a8c1-eb7480c3d7f1",
+      "question": "「さいばん」を漢字で書いてください",
+      "choices": ["裁判"],
+      "correct": 0,
+      "explanation": "「さいばん」は「裁判」と書く。法律に基づいて争いを判断すること"
+    },
+    {
+      "id": "fc53e65a-efd2-5ac4-9414-8cc9e1a947cf",
+      "question": "「すがた」を漢字で書いてください",
+      "choices": ["姿"],
+      "correct": 0,
+      "explanation": "「すがた」は「姿」と書く。人や物の形・様子。「し」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "prerequisites": ["kanji-grade6"]
+}

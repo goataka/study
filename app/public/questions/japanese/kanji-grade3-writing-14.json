@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-writing-14",
+  "categoryName": "✏️ 書き（131-140字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "019d9418-70f0-59f7-a074-44bf21739f9a",
+      "question": "「ど」を漢字で書いてください",
+      "choices": ["度"],
+      "correct": 0,
+      "explanation": "「ど」は「度」と書く。回数・程度のこと。「今度」「温度」など"
+    },
+    {
+      "id": "2481debc-5a6b-5d23-9b56-c5626148a3b8",
+      "question": "「なげる」の「な」を漢字で書いてください",
+      "choices": ["投"],
+      "correct": 0,
+      "explanation": "「なげる」の「な」は「投」と書く。ものを飛ばすこと。「投球」（とうきゅう）とも読む"
+    },
+    {
+      "id": "5f0035b1-b6af-5221-83d4-dff4a3cacbc9",
+      "question": "「まめ」を漢字で書いてください",
+      "choices": ["豆"],
+      "correct": 0,
+      "explanation": "「まめ」は「豆」と書く。植物の種実。「大豆」「豆まき」など"
+    },
+    {
+      "id": "4cf62ce3-d265-57a6-9520-d0c3ec90b55d",
+      "question": "「ゆ」を漢字で書いてください",
+      "choices": ["湯"],
+      "correct": 0,
+      "explanation": "「ゆ」は「湯」と書く。熱いお湯のこと。「とう」（音読み）とも読む"
+    },
+    {
+      "id": "4e02e9df-1d50-5673-9738-c4c5849477f8",
+      "question": "「のぼる」の「のぼ」を漢字で書いてください",
+      "choices": ["登"],
+      "correct": 0,
+      "explanation": "「のぼる」の「のぼ」は「登」と書く。高い所へ行くこと。「とう」（音読み）とも読む"
+    },
+    {
+      "id": "9ed5c673-708a-56f7-8279-2882f9fb2ec6",
+      "question": "「ひとしい」の「ひと」を漢字で書いてください",
+      "choices": ["等"],
+      "correct": 0,
+      "explanation": "「ひとしい」の「ひと」は「等」と書く。同じであること。「など」「とう」（音読み）とも読む"
+    },
+    {
+      "id": "4e7367a8-4c71-5c0e-9b57-7918bb9f64db",
+      "question": "「うごく」の「うご」を漢字で書いてください",
+      "choices": ["動"],
+      "correct": 0,
+      "explanation": "「うごく」の「うご」は「動」と書く。位置が変わること。「どう」（音読み）とも読む"
+    },
+    {
+      "id": "bff8ff43-f160-528a-a5a9-9cad6bd9c232",
+      "question": "「わらべ」を漢字で書いてください",
+      "choices": ["童"],
+      "correct": 0,
+      "explanation": "「わらべ」は「童」と書く。子どものこと。「どう」（音読み）とも読む"
+    },
+    {
+      "id": "e8cde939-46a6-53b8-ab6d-b9dd74d5c548",
+      "question": "「のう」を漢字で書いてください（農業 の「のう」）",
+      "choices": ["農"],
+      "correct": 0,
+      "explanation": "「農業」の「のう」（「のう」）は「農」と書く。作物を育てる仕事。「農家」「農業」など"
+    },
+    {
+      "id": "581b1faf-7a10-5520-b230-3e2fb2aea374",
+      "question": "「なみ」を漢字で書いてください",
+      "choices": ["波"],
+      "correct": 0,
+      "explanation": "「なみ」は「波」と書く。海や水面のうねり。「は」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "prerequisites": ["kanji-grade3"]
+}

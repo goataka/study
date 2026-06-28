@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-5",
+  "categoryName": "📖 読み（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "9d5c983c-8d1e-5853-9712-45482c72f61b",
+      "question": "「脳」の読み方をひらがなで書いてください",
+      "choices": ["のう"],
+      "correct": 0,
+      "explanation": "脳（のう）: 頭の中にある体の司令塔"
+    },
+    {
+      "id": "1f7e1ca0-379c-56a2-b945-5b728af95102",
+      "question": "「批評」の読み方をひらがなで書いてください",
+      "choices": ["ひひょう"],
+      "correct": 0,
+      "explanation": "批評（ひひょう）: 物事のよしあしを判断して述べること"
+    },
+    {
+      "id": "23a1a61e-0376-5729-abeb-40c95f355a4d",
+      "question": "「閉じる」の「閉」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["と"],
+      "correct": 0,
+      "explanation": "閉（と）じる: 開いているものをふさぐこと。「へい」（音読み）とも読む"
+    },
+    {
+      "id": "d8763999-2b68-5220-b835-2a0ab56e7f3e",
+      "question": "「補う」の「補」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おぎな"],
+      "correct": 0,
+      "explanation": "補（おぎな）う: 足りない部分を足すこと。「ほ」（音読み）とも読む"
+    },
+    {
+      "id": "9ce3c596-9764-5f37-ba96-e053c2f5a325",
+      "question": "「訪ねる」の「訪」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["たず"],
+      "correct": 0,
+      "explanation": "訪（たず）ねる: 人を会いに行くこと。「ほう」（音読み）とも読む"
+    },
+    {
+      "id": "921f8ab3-3ddb-5c93-a04f-63a32d71f5a2",
+      "question": "「忘れる」の「忘」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["わす"],
+      "correct": 0,
+      "explanation": "忘（わす）れる: 覚えていたことを思い出せなくなること。「ぼう」（音読み）とも読む"
+    },
+    {
+      "id": "31dc2f6b-d8a0-5550-94bd-28f4e78c9108",
+      "question": "「優しい」の「優」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["やさ"],
+      "correct": 0,
+      "explanation": "優（やさ）しい: 思いやりがあること。「ゆう」（音読み）とも読む"
+    },
+    {
+      "id": "cffff0bd-5811-541d-a472-8bda484152cd",
+      "question": "「論文」の読み方をひらがなで書いてください",
+      "choices": ["ろんぶん"],
+      "correct": 0,
+      "explanation": "論文（ろんぶん）: 研究した結果をまとめた文章"
+    },
+    {
+      "id": "118b55d8-4c4b-5923-97f1-cbeb20733280",
+      "question": "「朗読」の読み方をひらがなで書いてください",
+      "choices": ["ろうどく"],
+      "correct": 0,
+      "explanation": "朗読（ろうどく）: 声に出して読むこと"
+    },
+    {
+      "id": "f9e9bf76-f771-58e5-bbe7-433c281b842f",
+      "question": "「幼い」の「幼」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おさな"],
+      "correct": 0,
+      "explanation": "幼（おさな）い: 年齢が小さいこと。「よう」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade5"]
+}

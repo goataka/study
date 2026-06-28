@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-writing-5",
+  "categoryName": "✏️ 書き（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "65f95afc-5d69-5e9d-bda6-66af631618fd",
+      "question": "「ふせぐ」の「ふせ」を漢字で書いてください",
+      "choices": ["防"],
+      "correct": 0,
+      "explanation": "「ふせぐ」の「ふせ」は「防」と書く。悪いことが起きないようにすること。「ぼう」（音読み）とも読む"
+    },
+    {
+      "id": "6a59e949-3880-5b0a-bd42-abcc834813cf",
+      "question": "「ぼうえき」を漢字で書いてください",
+      "choices": ["貿易"],
+      "correct": 0,
+      "explanation": "「ぼうえき」は「貿易」と書く。国と国との間で物を売り買いすること"
+    },
+    {
+      "id": "22f61577-c385-5e2d-90a9-25334263c9b7",
+      "question": "「ぬの」を漢字で書いてください",
+      "choices": ["布"],
+      "correct": 0,
+      "explanation": "「ぬの」は「布」と書く。服などに使う織物。「ふ」（音読み）とも読む"
+    },
+    {
+      "id": "9c3f2476-f8d0-5f37-b7f9-928393cc21c6",
+      "question": "「ひょうか」を漢字で書いてください",
+      "choices": ["評価"],
+      "correct": 0,
+      "explanation": "「ひょうか」は「評価」と書く。物事のよしあしを判断すること"
+    },
+    {
+      "id": "dcf37e50-82e9-5b0e-8e37-b04226798823",
+      "question": "「しゅっぱん」を漢字で書いてください",
+      "choices": ["出版"],
+      "correct": 0,
+      "explanation": "「しゅっぱん」は「出版」と書く。本などを印刷して世に出すこと"
+    },
+    {
+      "id": "d11c36af-4eea-5c26-9f49-d4f9549b90a1",
+      "question": "「ぶし」を漢字で書いてください",
+      "choices": ["武士"],
+      "correct": 0,
+      "explanation": "「ぶし」は「武士」と書く。刀を持って戦う武家の人"
+    },
+    {
+      "id": "948c5c26-670a-571b-8bbb-05b5bd68642a",
+      "question": "「ふくしゅう」を漢字で書いてください",
+      "choices": ["復習"],
+      "correct": 0,
+      "explanation": "「ふくしゅう」は「復習」と書く。学んだことをもう一度やり直すこと"
+    },
+    {
+      "id": "cad7c24a-781c-54ff-bcea-b89cff817513",
+      "question": "「ふくすう」を漢字で書いてください",
+      "choices": ["複数"],
+      "correct": 0,
+      "explanation": "「ふくすう」は「複数」と書く。二つ以上あること"
+    },
+    {
+      "id": "0702c179-0f73-58cc-8223-faf4d540783d",
+      "question": "「ぶっきょう」を漢字で書いてください",
+      "choices": ["仏教"],
+      "correct": 0,
+      "explanation": "「ぶっきょう」は「仏教」と書く。お釈迦様の教えをもとにした宗教"
+    },
+    {
+      "id": "e153481a-2839-5d4a-934b-6a3434a433f9",
+      "question": "「こな」を漢字で書いてください",
+      "choices": ["粉"],
+      "correct": 0,
+      "explanation": "「こな」は「粉」と書く。細かく砕いたもの。「ふん」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "prerequisites": ["kanji-grade5"]
+}

@@ -1,0 +1,34 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade4-16",
+  "categoryName": "📖 読み（151-152字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade4",
+  "parentCategoryName": "小学4年",
+  "example": "愛・熱・静・感",
+  "questionType": "text-input",
+  "referenceGrade": "小学4年",
+  "description": "小学4年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "fc2007e4-0670-52f6-85aa-96df03e977e5",
+      "question": "「士」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["し"],
+      "correct": 0,
+      "explanation": "士（し）: 武士・男性を指す言葉。「武士」「士気」などに使う"
+    },
+    {
+      "id": "644eda90-61c6-5629-87fa-1e705fadb42f",
+      "question": "「目標」の「標」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ひょう"],
+      "correct": 0,
+      "explanation": "標（ひょう）: 目じるし・目標のこと。「目標」「標識」などに使う"
+    }
+  ],
+  "prerequisites": ["kanji-grade3"]
+}

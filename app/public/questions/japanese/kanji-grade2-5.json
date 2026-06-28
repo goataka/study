@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-5",
+  "categoryName": "📖 読み（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "a4996e05-9ad3-533a-925d-9b22e19e5efa",
+      "question": "「船」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ふね"],
+      "correct": 0,
+      "explanation": "船（ふね）: 水の上を進む乗り物。「せん」（音読み）とも読む"
+    },
+    {
+      "id": "01775c8c-24c2-58bc-92a7-a2b9decb5c35",
+      "question": "「前」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["まえ"],
+      "correct": 0,
+      "explanation": "前（まえ）: 正面の方向のこと。「ぜん」（音読み）とも読む"
+    },
+    {
+      "id": "61de8c52-497c-5b51-8b0b-82f800c0b351",
+      "question": "「多い」の「多」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おお"],
+      "correct": 0,
+      "explanation": "多（おお）い: 数や量が大きいこと。「た」（音読み）とも読む"
+    },
+    {
+      "id": "8753eb13-3fb9-593a-8044-37c7437ebad4",
+      "question": "「太い」の「太」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ふと"],
+      "correct": 0,
+      "explanation": "太（ふと）い: 直径が大きいこと。「たい」（音読み）とも読む"
+    },
+    {
+      "id": "640019e2-8903-5863-b79f-445d1e9c7c7e",
+      "question": "「知る」の「知」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["し"],
+      "correct": 0,
+      "explanation": "知（し）る: 情報を得ること。「ち」（音読み）とも読む"
+    },
+    {
+      "id": "50f59247-77c6-5fd0-a895-22b852d954eb",
+      "question": "「昼」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ひる"],
+      "correct": 0,
+      "explanation": "昼（ひる）: 日中のこと。「ちゅう」（音読み）とも読む"
+    },
+    {
+      "id": "4124a661-0cda-58d0-8655-7e537e59d078",
+      "question": "「長い」の「長」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["なが"],
+      "correct": 0,
+      "explanation": "長（なが）い: 長さが大きいこと。「ちょう」（音読み）とも読む"
+    },
+    {
+      "id": "5f0c5a9f-71ce-527f-9813-fc795b127c7a",
+      "question": "「朝」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あさ"],
+      "correct": 0,
+      "explanation": "朝（あさ）: 一日の始まりの時間帯。「ちょう」（音読み）とも読む"
+    },
+    {
+      "id": "1468345e-7a5a-5fca-a4ae-3cf1fd55bd1e",
+      "question": "「東」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ひがし"],
+      "correct": 0,
+      "explanation": "東（ひがし）: 太陽が昇る方向。「とう」（音読み）とも読む"
+    },
+    {
+      "id": "c242efa9-1471-561c-9523-56b55facc0c9",
+      "question": "「答える」の「答」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["こた"],
+      "correct": 0,
+      "explanation": "答（こた）える: 問いに応えること。「とう」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade1"]
+}

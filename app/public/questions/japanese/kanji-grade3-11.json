@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-11",
+  "categoryName": "📖 読み（101-110字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "4e9093c7-617f-50ae-8510-0ce22f0d153b",
+      "question": "「詩を読む」の「詩」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["し"],
+      "correct": 0,
+      "explanation": "詩（し）: 言葉を使った芸術作品。「詩人」「詩集」など"
+    },
+    {
+      "id": "df663446-430c-5bfe-86e2-92dcf9027ac8",
+      "question": "「事」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["こと"],
+      "correct": 0,
+      "explanation": "事（こと）: 出来事・物事のこと。「大事」（だいじ）とも読む"
+    },
+    {
+      "id": "3f766b9d-7d39-5a0f-b358-2d002fb4a68e",
+      "question": "「入学式」の「式」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["しき"],
+      "correct": 0,
+      "explanation": "式（しき）: 決まったやり方・儀式。「入学式」「式場」など"
+    },
+    {
+      "id": "a0b2dc7e-4814-5d03-bce1-fa0616d4a7f3",
+      "question": "「木の実」の「実」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["み"],
+      "correct": 0,
+      "explanation": "実（み）: 果物などの実。「じつ」（音読み）とも読む"
+    },
+    {
+      "id": "61c16ae6-d176-538b-8b59-65f2d0fd23b2",
+      "question": "「写真」の「写」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["うつ"],
+      "correct": 0,
+      "explanation": "写（うつ）す: 映し取ること。「写真」（しゃしん）とも読む"
+    },
+    {
+      "id": "42da9494-ccad-5372-adfb-8ac26277412b",
+      "question": "「主人」の「主」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ぬし"],
+      "correct": 0,
+      "explanation": "主（ぬし）: 持ち主・リーダーのこと。「しゅ」（音読み）とも読む"
+    },
+    {
+      "id": "40d2ab6e-4172-571e-a05e-728b009727a0",
+      "question": "「受ける」の「受」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["う"],
+      "correct": 0,
+      "explanation": "受（う）ける: もらうこと。「受験」（じゅけん）とも読む"
+    },
+    {
+      "id": "e4bffb53-a7f4-5d1c-8846-5639e19084e2",
+      "question": "「州」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["しゅう"],
+      "correct": 0,
+      "explanation": "州（しゅう）: 地域の区分け。「本州」「九州」など"
+    },
+    {
+      "id": "f0293b8b-470b-51c5-8f8d-9ff55475cb49",
+      "question": "「宿泊」の「宿」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["やど"],
+      "correct": 0,
+      "explanation": "宿（やど）: 泊まる所・宿屋。「しゅく」（音読み）とも読む"
+    },
+    {
+      "id": "94261ff3-b6cd-530d-b8a0-0e3d1c4a5367",
+      "question": "「助ける」の「助」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["たす"],
+      "correct": 0,
+      "explanation": "助（たす）ける: 力を貸すこと。「助手」（じょしゅ）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade2"]
+}

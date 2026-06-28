@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-2",
+  "categoryName": "📖 読み（11-20字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "d46c182d-b1c2-5a7c-be3e-906d0575c498",
+      "question": "「母」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はは"],
+      "correct": 0,
+      "explanation": "母（はは）: お母さんのこと。「ぼ」（音読み）とも読む"
+    },
+    {
+      "id": "919ed80b-be2b-53c0-a926-d2341aad225a",
+      "question": "「兄」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あに"],
+      "correct": 0,
+      "explanation": "兄（あに）: お兄さんのこと。「けい」（音読み）とも読む"
+    },
+    {
+      "id": "19bab80a-9ff5-500e-8ce9-1e46572fceeb",
+      "question": "「姉」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あね"],
+      "correct": 0,
+      "explanation": "姉（あね）: お姉さんのこと。「し」（音読み）とも読む"
+    },
+    {
+      "id": "71ef95eb-3f79-5e8e-b800-25718c393234",
+      "question": "「弟」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おとうと"],
+      "correct": 0,
+      "explanation": "弟（おとうと）: 年下の男の兄弟のこと。「てい」（音読み）とも読む"
+    },
+    {
+      "id": "8f6e3e60-8201-5674-9fbf-c5cf833391cb",
+      "question": "「妹」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いもうと"],
+      "correct": 0,
+      "explanation": "妹（いもうと）: 年下の女の兄弟のこと。「まい」（音読み）とも読む"
+    },
+    {
+      "id": "67b68b52-2f42-533f-b2c5-f714e6e85a83",
+      "question": "「友だち」の「友」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["とも"],
+      "correct": 0,
+      "explanation": "友（とも）: 友達のこと。「ゆう」（音読み）とも読む"
+    },
+    {
+      "id": "d70327ec-95dd-5f76-b2f4-e5bd84b7c931",
+      "question": "「春」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はる"],
+      "correct": 0,
+      "explanation": "春（はる）: 春の季節のこと。「しゅん」（音読み）とも読む"
+    },
+    {
+      "id": "45088dac-9195-5621-a6b1-70430d887332",
+      "question": "「夏」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["なつ"],
+      "correct": 0,
+      "explanation": "夏（なつ）: 夏の季節のこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "6d5e8092-d7e8-5d69-aaf6-22715e29a597",
+      "question": "「秋」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あき"],
+      "correct": 0,
+      "explanation": "秋（あき）: 秋の季節のこと。「しゅう」（音読み）とも読む"
+    },
+    {
+      "id": "0fbecdac-81fa-5517-854c-a2e10ee6ae10",
+      "question": "「冬」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ふゆ"],
+      "correct": 0,
+      "explanation": "冬（ふゆ）: 冬の季節のこと。「とう」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade1"]
+}

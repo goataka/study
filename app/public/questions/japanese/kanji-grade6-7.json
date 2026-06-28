@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-7",
+  "categoryName": "📖 読み（61-70字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "7369d534-d0b0-5899-9667-c28e81fcfda5",
+      "question": "「机」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["つくえ"],
+      "correct": 0,
+      "explanation": "机（つくえ）: 本や物を置いて使う台。「き」（音読み）とも読む"
+    },
+    {
+      "id": "1414dc90-e66b-5aef-84c9-2f35ce08a006",
+      "question": "「指揮」の「揮」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["き"],
+      "correct": 0,
+      "explanation": "揮（き）: 指揮・発揮など、力をふるうこと。「き」（音読み）とのみ読む"
+    },
+    {
+      "id": "dea84d08-7cc4-5473-9b92-3e5cff9e406b",
+      "question": "「貴い」の「貴」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["とうと"],
+      "correct": 0,
+      "explanation": "貴（とうと）い: 価値が高く大切なこと。「き」（音読み）とも読む"
+    },
+    {
+      "id": "31e936d5-a993-5a62-b1ee-13ebc0664244",
+      "question": "「疑う」の「疑」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["うたが"],
+      "correct": 0,
+      "explanation": "疑（うたが）う: 本当かどうか確かでないと思うこと。「ぎ」（音読み）とも読む"
+    },
+    {
+      "id": "139ce2c5-540e-5655-8157-13d0448d06d9",
+      "question": "「吸う」の「吸」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["す"],
+      "correct": 0,
+      "explanation": "吸（す）う: 息や液体を体の中に取り込むこと。「きゅう」（音読み）とも読む"
+    },
+    {
+      "id": "7c12faa2-768d-5412-94a3-8d8bf4c4a978",
+      "question": "「胸」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["むね"],
+      "correct": 0,
+      "explanation": "胸（むね）: 体の前の部分・心のこと。「きょう」（音読み）とも読む"
+    },
+    {
+      "id": "a79a4d90-fd0d-5d0f-bd6b-1a1d640790f3",
+      "question": "「故郷」の「郷」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["きょう"],
+      "correct": 0,
+      "explanation": "郷（きょう）: 生まれ育った土地・ふるさと。故郷・郷土などに使う"
+    },
+    {
+      "id": "5ef33a79-5db8-5ea8-88d5-93227ef9a6c1",
+      "question": "「筋」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["すじ"],
+      "correct": 0,
+      "explanation": "筋（すじ）: 体の筋肉・話の流れ。「きん」（音読み）とも読む"
+    },
+    {
+      "id": "ac2c0270-0f72-5479-88d7-03628bf324bb",
+      "question": "「系統」の「系」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["けい"],
+      "correct": 0,
+      "explanation": "系（けい）: つながり・系列のこと。系統・体系などに使う"
+    },
+    {
+      "id": "1dceaa44-9a28-596f-aa76-ade33521f8d5",
+      "question": "「警察」の「警」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["けい"],
+      "correct": 0,
+      "explanation": "警（けい）: 危険を知らせること・取り締まること。警察・警告などに使う"
+    }
+  ],
+  "prerequisites": ["kanji-grade5"]
+}

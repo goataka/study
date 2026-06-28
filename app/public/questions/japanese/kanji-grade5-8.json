@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-8",
+  "categoryName": "📖 読み（71-80字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "5f52b7c8-97af-5525-8666-2259bcb63dbf",
+      "question": "「許す」の「許」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ゆる"],
+      "correct": 0,
+      "explanation": "許（ゆる）す: 認めること・赦すこと。「きょ」（音読み）とも読む"
+    },
+    {
+      "id": "ab4ddba7-668d-5954-b02f-e2e4fb4f8759",
+      "question": "「境」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["さかい"],
+      "correct": 0,
+      "explanation": "境（さかい）: 区切りのところ・境目のこと。「きょう」「けい」（音読み）とも読む"
+    },
+    {
+      "id": "1b5fe1d1-8746-57d6-a6a3-da6412bbdbb0",
+      "question": "「均等」の「均」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["きん"],
+      "correct": 0,
+      "explanation": "均（きん）: 等しくそろっていること。「均等」（きんとう）はみんな同じであること"
+    },
+    {
+      "id": "b902aa19-f9ac-57d6-8184-e1814af89d60",
+      "question": "「俳句」の「句」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["く"],
+      "correct": 0,
+      "explanation": "句（く）: 短い言葉のまとまり。「俳句」（はいく）は5・7・5の短い詩"
+    },
+    {
+      "id": "c6fe9971-60e1-512e-84b3-598bf70ba8e2",
+      "question": "「型」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かた"],
+      "correct": 0,
+      "explanation": "型（かた）: 形・パターンのこと。「けい」（音読み）とも読む"
+    },
+    {
+      "id": "a135170a-1002-5a55-bec9-f9949987a9e3",
+      "question": "「経る」の「経」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["へ"],
+      "correct": 0,
+      "explanation": "経（へ）る: 時間が過ぎること・通り過ぎること。「けい」「きょう」（音読み）とも読む"
+    },
+    {
+      "id": "fcef829d-5723-558d-888c-64120b4c5459",
+      "question": "「潔い」の「潔」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いさぎよ"],
+      "correct": 0,
+      "explanation": "潔（いさぎよ）い: 清らかで気持ちよいこと。「けつ」（音読み）とも読む"
+    },
+    {
+      "id": "2775b583-503d-52fa-ba38-c1ebd91ce97a",
+      "question": "「事件」の「件」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["けん"],
+      "correct": 0,
+      "explanation": "件（けん）: 物事・出来事のこと。「事件」（じけん）は問題となる出来事"
+    },
+    {
+      "id": "133bbaf5-8dfc-5dfd-9220-7a415a18107e",
+      "question": "「険しい」の「険」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["けわ"],
+      "correct": 0,
+      "explanation": "険（けわ）しい: 急で危ないこと。「けん」（音読み）とも読む"
+    },
+    {
+      "id": "d6791e97-923e-5260-8555-12a72dd149d0",
+      "question": "「検査」の「検」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["けん"],
+      "correct": 0,
+      "explanation": "検（けん）: 調べること。「検査」（けんさ）は詳しく調べること"
+    }
+  ],
+  "prerequisites": ["kanji-grade4"]
+}

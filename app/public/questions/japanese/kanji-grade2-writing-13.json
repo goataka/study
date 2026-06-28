@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-writing-13",
+  "categoryName": "✏️ 書き（121-130字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "ecd3a07f-3ed9-534f-91ec-9b44fe00c65e",
+      "question": "「あるく」の「ある」を漢字で書いてください",
+      "choices": ["歩"],
+      "correct": 0,
+      "explanation": "「あるく」の「ある」は「歩」と書く。足で移動すること。「ほ」「ぶ」（音読み）とも読む"
+    },
+    {
+      "id": "2b295061-c504-5028-a34e-c9bed6ecc03c",
+      "question": "「あう」の「あ」を漢字で書いてください（人と顔を合わせること）",
+      "choices": ["会"],
+      "correct": 0,
+      "explanation": "「あう」の「あ」は「会」と書く。人と顔を合わせること。「かい」「え」（音読み）とも読む"
+    },
+    {
+      "id": "6cd66155-b267-5246-98f3-9cc9f09be5f7",
+      "question": "「きる」の「き」を漢字で書いてください（刃物などでものを切ること）",
+      "choices": ["切"],
+      "correct": 0,
+      "explanation": "「きる」の「き」は「切」と書く。刃物などでものを切ること。「せつ」「さい」（音読み）とも読む"
+    },
+    {
+      "id": "a8f039e3-7fd6-5309-a6fc-c6d87e74b672",
+      "question": "「さん」を漢字で書いてください",
+      "choices": ["算"],
+      "correct": 0,
+      "explanation": "「さん」は「算」と書く。計算すること"
+    },
+    {
+      "id": "8fb0114f-b51b-579c-add4-a9b3d56737b3",
+      "question": "「はかる」の「はか」を漢字で書いてください（計画する・図面のこと）",
+      "choices": ["図"],
+      "correct": 0,
+      "explanation": "「はかる」の「はか」は「図」と書く。計画する・図面のこと。「ず」「と」（音読み）とも読む"
+    },
+    {
+      "id": "6932871b-155e-51d7-9b55-aab973a2fe1c",
+      "question": "「あかるい」の「あか」を漢字で書いてください",
+      "choices": ["明"],
+      "correct": 0,
+      "explanation": "「あかるい」の「あか」は「明」と書く。光があって明るいこと。「めい」「みょう」（音読み）とも読む"
+    },
+    {
+      "id": "fae3fbdc-10d4-584b-8826-7d7c26e215be",
+      "question": "「き」を漢字で書いてください（水蒸気のこと）",
+      "choices": ["汽"],
+      "correct": 0,
+      "explanation": "「き」は「汽」と書く。水蒸気のこと。汽車・汽船など"
+    },
+    {
+      "id": "826fe54b-be22-5d7f-94cc-df75bc0c763e",
+      "question": "「すくない」の「すく」を漢字で書いてください",
+      "choices": ["少"],
+      "correct": 0,
+      "explanation": "「すくない」の「すく」は「少」と書く。数量が少ないこと。「しょう」（音読み）とも読む"
+    },
+    {
+      "id": "2e552588-d2f2-5511-bb77-1bb274c5dbfc",
+      "question": "「かず」を漢字で書いてください",
+      "choices": ["数"],
+      "correct": 0,
+      "explanation": "「かず」は「数」と書く。数えた結果のこと。「すう」「す」（音読み）とも読む"
+    },
+    {
+      "id": "7d1b8b19-64b9-506a-ac6b-c35709ff4100",
+      "question": "「だい」を漢字で書いてください",
+      "choices": ["台"],
+      "correct": 0,
+      "explanation": "「だい」は「台」と書く。台・乗り物などを数える助数詞"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "prerequisites": ["kanji-grade2"]
+}

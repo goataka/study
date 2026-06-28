@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-4",
+  "categoryName": "📖 読み（31-40字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "21201957-4d06-5a66-bb2c-781f0b6dddec",
+      "question": "「去る」の「去」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["さ"],
+      "correct": 0,
+      "explanation": "去（さ）る: 離れていくこと。「きょ」（音読み）とも読む"
+    },
+    {
+      "id": "d978f0e7-8584-58a9-951e-1fae4ad4503d",
+      "question": "「橋」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はし"],
+      "correct": 0,
+      "explanation": "橋（はし）: 川などをこえるための構造物。「きょう」（音読み）とも読む"
+    },
+    {
+      "id": "7eddc86b-42d1-5bf8-944f-28d28da00b66",
+      "question": "「曲がる」の「曲」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ま"],
+      "correct": 0,
+      "explanation": "曲（ま）がる: まっすぐでなく折れること。「きょく」（音読み）とも読む"
+    },
+    {
+      "id": "944ee1fb-53de-52d5-abc2-bc41b638fd84",
+      "question": "「銀行」の読み方をひらがなで書いてください",
+      "choices": ["ぎんこう"],
+      "correct": 0,
+      "explanation": "銀行（ぎんこう）: お金を預かったり貸したりする場所"
+    },
+    {
+      "id": "0949d649-6f58-5d42-a604-454c818a5afe",
+      "question": "「苦しい」の「苦」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["くる"],
+      "correct": 0,
+      "explanation": "苦（くる）しい: つらいこと。「く」（音読み）とも読む"
+    },
+    {
+      "id": "fd1db812-a49a-57ab-9547-38551564132f",
+      "question": "「君」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["きみ"],
+      "correct": 0,
+      "explanation": "君（きみ）: 相手をよぶ言葉。「くん」（音読み）とも読む"
+    },
+    {
+      "id": "395171a6-10c6-5e95-ba24-462ba853fb0f",
+      "question": "「係」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かかり"],
+      "correct": 0,
+      "explanation": "係（かかり）: 担当の仕事・役割のこと。「けい」（音読み）とも読む"
+    },
+    {
+      "id": "49911a9d-9112-5ddb-a350-de74ce156fcb",
+      "question": "「軽い」の「軽」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かる"],
+      "correct": 0,
+      "explanation": "軽（かる）い: 重さが少ないこと。「けい」（音読み）とも読む"
+    },
+    {
+      "id": "7a54af4b-e28c-5d8e-9c49-c45c8423196c",
+      "question": "「血」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ち"],
+      "correct": 0,
+      "explanation": "血（ち）: 体の中を流れる赤い液体。「けつ」（音読み）とも読む"
+    },
+    {
+      "id": "3109fa90-ae28-5cea-9cd8-1e23e77ba8e2",
+      "question": "「決める」の「決」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["き"],
+      "correct": 0,
+      "explanation": "決（き）める: 物事をはっきりさせること。「けつ」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade2"]
+}

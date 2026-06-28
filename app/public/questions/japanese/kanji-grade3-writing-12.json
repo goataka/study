@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-writing-12",
+  "categoryName": "✏️ 書き（111-120字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "660ca3c4-c50f-57e2-ae8f-481d3df27e52",
+      "question": "「しょう」を漢字で書いてください",
+      "choices": ["章"],
+      "correct": 0,
+      "explanation": "「しょう」は「章」と書く。文のまとまり。「文章」「章立て」など"
+    },
+    {
+      "id": "9528584b-50f5-5c8b-8017-7d77aff2487d",
+      "question": "「のる」の「の」を漢字で書いてください（乗り物に乗ること）",
+      "choices": ["乗"],
+      "correct": 0,
+      "explanation": "「のる」の「の」は「乗」と書く。乗り物に乗ること。「乗車」（じょうしゃ）とも読む"
+    },
+    {
+      "id": "d1c38d11-98b2-5a46-83a1-b2228f5c1ae4",
+      "question": "「かみ」を漢字で書いてください（神様 の「かみ」）",
+      "choices": ["神"],
+      "correct": 0,
+      "explanation": "「神様」の「かみ」（「かみ」）は「神」と書く。神聖な存在。「しん」（音読み）とも読む"
+    },
+    {
+      "id": "3b1896ba-9b72-5304-9f24-ae5795a9a918",
+      "question": "「ととのえる」の「ととの」を漢字で書いてください",
+      "choices": ["整"],
+      "correct": 0,
+      "explanation": "「ととのえる」の「ととの」は「整」と書く。きちんとすること。「整理」（せいり）とも読む"
+    },
+    {
+      "id": "a3e18a10-ad96-5b0e-ba4a-419eba0096a9",
+      "question": "「むかし」を漢字で書いてください",
+      "choices": ["昔"],
+      "correct": 0,
+      "explanation": "「むかし」は「昔」と書く。過去のこと。「昔話」「大昔」など"
+    },
+    {
+      "id": "eb2b46ad-41ab-5249-b04e-6d45ebc68de9",
+      "question": "「ほか」を漢字で書いてください",
+      "choices": ["他"],
+      "correct": 0,
+      "explanation": "「ほか」は「他」と書く。それ以外のこと。「た」（音読み）とも読む"
+    },
+    {
+      "id": "1712fda8-b63c-56f4-9bc9-c95d1c11f473",
+      "question": "「たい」を漢字で書いてください（向き合うこと・相手のこと）",
+      "choices": ["対"],
+      "correct": 0,
+      "explanation": "「たい」は「対」と書く。向き合うこと・相手のこと。「反対」「対話」など"
+    },
+    {
+      "id": "a4bc7c50-6b18-5d8d-a032-82082e87e4f8",
+      "question": "「だい」を漢字で書いてください（順番を表す言葉）",
+      "choices": ["第"],
+      "correct": 0,
+      "explanation": "「だい」は「第」と書く。順番を表す言葉。「第一」「第二」など"
+    },
+    {
+      "id": "6e282bc3-3faa-5a3a-beff-8e58640a7c26",
+      "question": "「だい」を漢字で書いてください（テーマ・問題のこと）",
+      "choices": ["題"],
+      "correct": 0,
+      "explanation": "「だい」は「題」と書く。テーマ・問題のこと。「問題」「題名」など"
+    },
+    {
+      "id": "9e8e09e4-602d-52e6-968f-cf7dd7b4a9c7",
+      "question": "「すみ」を漢字で書いてください",
+      "choices": ["炭"],
+      "correct": 0,
+      "explanation": "「すみ」は「炭」と書く。木を焼いて作った燃料。「たん」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "prerequisites": ["kanji-grade3"]
+}

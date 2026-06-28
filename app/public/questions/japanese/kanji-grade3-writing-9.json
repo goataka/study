@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-writing-9",
+  "categoryName": "✏️ 書き（81-90字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "8c1ff9bf-2670-5588-ab9c-c118dec72a87",
+      "question": "「い」を漢字で書いてください（委員会 の「い」）",
+      "choices": ["委"],
+      "correct": 0,
+      "explanation": "「委員会」の「い」（「い」）は「委」と書く。仕事をまかせること。「委ねる」（ゆだねる）とも読む"
+    },
+    {
+      "id": "b7c15b6b-9510-5fbd-bb8e-887b60fe02c5",
+      "question": "「いん」を漢字で書いてください（仲間の一人）",
+      "choices": ["員"],
+      "correct": 0,
+      "explanation": "「いん」は「員」と書く。仲間の一人。「会員」「店員」など"
+    },
+    {
+      "id": "847a3586-3395-567d-a4b2-1f64a4174a70",
+      "question": "「いん」を漢字で書いてください（建物や施設を表す）",
+      "choices": ["院"],
+      "correct": 0,
+      "explanation": "「いん」は「院」と書く。建物や施設を表す。「病院」「院長」など"
+    },
+    {
+      "id": "d7353314-50c8-5c47-a9bd-ca5d3f3012e3",
+      "question": "「おう」を漢字で書いてください",
+      "choices": ["央"],
+      "correct": 0,
+      "explanation": "「おう」は「央」と書く。まんなかのこと。「中央」「央部」など"
+    },
+    {
+      "id": "c2062829-9ee5-508c-aa09-f45f8fa536f8",
+      "question": "「や」を漢字で書いてください（屋根 の「や」）",
+      "choices": ["屋"],
+      "correct": 0,
+      "explanation": "「屋根」の「や」（「や」）は「屋」と書く。建物のてっぺんの部分。「本屋」「屋根」など"
+    },
+    {
+      "id": "ad576875-dafa-5864-b70e-f6c8ac81a097",
+      "question": "「ばける」の「ば」を漢字で書いてください",
+      "choices": ["化"],
+      "correct": 0,
+      "explanation": "「ばける」の「ば」は「化」と書く。姿が変わること。「化学」（かがく）とも読む"
+    },
+    {
+      "id": "a35f3efe-c9be-557b-9c97-cafc07c60941",
+      "question": "「に」を漢字で書いてください（荷物 の「に」）",
+      "choices": ["荷"],
+      "correct": 0,
+      "explanation": "「荷物」の「に」（「に」）は「荷」と書く。運ぶ物。「荷物」「荷台」など"
+    },
+    {
+      "id": "1dc7145c-7d2e-578e-b9d1-97c089c82aa6",
+      "question": "「かい」を漢字で書いてください",
+      "choices": ["階"],
+      "correct": 0,
+      "explanation": "「かい」は「階」と書く。建物の層。「一階」「二階」など"
+    },
+    {
+      "id": "3dd714cf-5fa7-5af4-b6b8-6db227357fa2",
+      "question": "「かん」を漢字で書いてください（大きな建物）",
+      "choices": ["館"],
+      "correct": 0,
+      "explanation": "「かん」は「館」と書く。大きな建物。「図書館」「体育館」など"
+    },
+    {
+      "id": "e54c72b0-818d-5570-abe5-f2b29fc49eb0",
+      "question": "「き」を漢字で書いてください（期間 の「き」）",
+      "choices": ["期"],
+      "correct": 0,
+      "explanation": "「期間」の「き」（「き」）は「期」と書く。ある時の間。「期間」「時期」など"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "prerequisites": ["kanji-grade3"]
+}

@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-writing-17",
+  "categoryName": "✏️ 書き（161-170字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "081c03bd-2ce2-50b5-8b24-fb27141dccf2",
+      "question": "「まい」を漢字で書いてください",
+      "choices": ["枚"],
+      "correct": 0,
+      "explanation": "「まい」は「枚」と書く。薄いものを数える単位。一枚・枚数などに使う"
+    },
+    {
+      "id": "0262d99b-e03e-57f8-a0cc-2a51b5c9e44e",
+      "question": "「まく」を漢字で書いてください",
+      "choices": ["幕"],
+      "correct": 0,
+      "explanation": "「まく」は「幕」と書く。舞台などに張る布・区切り。「ばく」「まく」と読む"
+    },
+    {
+      "id": "cd893822-fc05-5a7f-a5c5-e19557b8a92a",
+      "question": "「みつ」を漢字で書いてください",
+      "choices": ["密"],
+      "correct": 0,
+      "explanation": "「みつ」は「密」と書く。隠していること・細かくびっしりしていること。秘密・密接などに使う"
+    },
+    {
+      "id": "36fa3576-7070-5c91-b044-47ce35110882",
+      "question": "「めい」を漢字で書いてください",
+      "choices": ["盟"],
+      "correct": 0,
+      "explanation": "「めい」は「盟」と書く。誓い合って結ぶ約束・団体。同盟・連盟などに使う"
+    },
+    {
+      "id": "b28d8ff5-c17c-5391-b17e-6545373d8dfc",
+      "question": "「も」を漢字で書いてください（形を写したもの・手本のこと）",
+      "choices": ["模"],
+      "correct": 0,
+      "explanation": "「も」は「模」と書く。形を写したもの・手本のこと。模型・模倣などに使う"
+    },
+    {
+      "id": "50e1ff24-e633-5f2e-94e8-4f3c98b62487",
+      "question": "「わけ」を漢字で書いてください",
+      "choices": ["訳"],
+      "correct": 0,
+      "explanation": "「わけ」は「訳」と書く。理由・意味のこと。「やく」（音読み）とも読む"
+    },
+    {
+      "id": "2db09d01-3a63-5f60-9291-2f852914a86d",
+      "question": "「ほしい」の「ほ」を漢字で書いてください（手に入れたいと思うこと）",
+      "choices": ["欲"],
+      "correct": 0,
+      "explanation": "「ほしい」の「ほ」は「欲」と書く。手に入れたいと思うこと。「よく」（音読み）とも読む"
+    },
+    {
+      "id": "516e0da3-3c12-5b88-a2d7-cb97148db7cb",
+      "question": "「よく」を漢字で書いてください",
+      "choices": ["翌"],
+      "correct": 0,
+      "explanation": "「よく」は「翌」と書く。次の・その次のこと。翌日・翌年などに使う"
+    },
+    {
+      "id": "c7ad380a-ee4c-5d74-924e-555a7748dcaa",
+      "question": "「みだれる」の「みだ」を漢字で書いてください",
+      "choices": ["乱"],
+      "correct": 0,
+      "explanation": "「みだれる」の「みだ」は「乱」と書く。整っていたものが崩れること。「らん」（音読み）とも読む"
+    },
+    {
+      "id": "8d2e7ebd-08aa-5a35-b4a5-65121256835d",
+      "question": "「らん」を漢字で書いてください",
+      "choices": ["覧"],
+      "correct": 0,
+      "explanation": "「らん」は「覧」と書く。見ること・見渡すこと。一覧・観覧などに使う"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "prerequisites": ["kanji-grade6"]
+}

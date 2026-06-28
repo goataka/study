@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-writing-5",
+  "categoryName": "✏️ 書き（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "7492d2c6-cb79-5fd2-985e-0a8dac14a426",
+      "question": "「ふね」を漢字で書いてください",
+      "choices": ["船"],
+      "correct": 0,
+      "explanation": "「ふね」は「船」と書く。水の上を進む乗り物。「せん」（音読み）とも読む"
+    },
+    {
+      "id": "5afbed81-2bb0-547b-8583-34544cbee6e9",
+      "question": "「まえ」を漢字で書いてください",
+      "choices": ["前"],
+      "correct": 0,
+      "explanation": "「まえ」は「前」と書く。正面の方向のこと。「ぜん」（音読み）とも読む"
+    },
+    {
+      "id": "098ab0db-c9dd-5c38-9c0a-6cf43004a4f9",
+      "question": "「おおい」の「おお」を漢字で書いてください",
+      "choices": ["多"],
+      "correct": 0,
+      "explanation": "「おおい」の「おお」は「多」と書く。数や量が大きいこと。「た」（音読み）とも読む"
+    },
+    {
+      "id": "c419ecc5-7070-522c-ac4c-ae82a965a71d",
+      "question": "「ふとい」の「ふと」を漢字で書いてください",
+      "choices": ["太"],
+      "correct": 0,
+      "explanation": "「ふとい」の「ふと」は「太」と書く。直径が大きいこと。「たい」（音読み）とも読む"
+    },
+    {
+      "id": "34db68ab-b683-5f30-aa48-bb5801dcfd30",
+      "question": "「しる」の「し」を漢字で書いてください",
+      "choices": ["知"],
+      "correct": 0,
+      "explanation": "「しる」の「し」は「知」と書く。情報を得ること。「ち」（音読み）とも読む"
+    },
+    {
+      "id": "7259e17a-8518-5e10-b66f-c43eb210d59e",
+      "question": "「ひる」を漢字で書いてください",
+      "choices": ["昼"],
+      "correct": 0,
+      "explanation": "「ひる」は「昼」と書く。日中のこと。「ちゅう」（音読み）とも読む"
+    },
+    {
+      "id": "621855f7-7615-55d6-b8d9-83fc0ba8b345",
+      "question": "「ながい」の「なが」を漢字で書いてください",
+      "choices": ["長"],
+      "correct": 0,
+      "explanation": "「ながい」の「なが」は「長」と書く。長さが大きいこと。「ちょう」（音読み）とも読む"
+    },
+    {
+      "id": "579c03a5-4afe-5da7-9042-0ca6408ab07b",
+      "question": "「あさ」を漢字で書いてください",
+      "choices": ["朝"],
+      "correct": 0,
+      "explanation": "「あさ」は「朝」と書く。一日の始まりの時間帯。「ちょう」（音読み）とも読む"
+    },
+    {
+      "id": "5700e03c-c64c-5d46-a0a3-8ee3e751a3cf",
+      "question": "「ひがし」を漢字で書いてください",
+      "choices": ["東"],
+      "correct": 0,
+      "explanation": "「ひがし」は「東」と書く。太陽が昇る方向。「とう」（音読み）とも読む"
+    },
+    {
+      "id": "6da59b16-ebe6-5584-b2e6-a18bca252646",
+      "question": "「こたえる」の「こた」を漢字で書いてください",
+      "choices": ["答"],
+      "correct": 0,
+      "explanation": "「こたえる」の「こた」は「答」と書く。問いに応えること。「とう」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "prerequisites": ["kanji-grade2"]
+}

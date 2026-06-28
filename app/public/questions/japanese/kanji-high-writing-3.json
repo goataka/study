@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-high-writing-3",
+  "categoryName": "✏️ 書き その２（21-30字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-secondary",
+  "parentCategoryName": "中学生",
+  "example": "羅・曖・昧・冶",
+  "questionType": "text-input",
+  "referenceGrade": "中学生",
+  "description": "中学生向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "bf508d6a-1a4e-584d-8936-de24f942de0d",
+      "question": "「うごめく」の「うごめ」を漢字で書いてください",
+      "choices": ["蠢"],
+      "correct": 0,
+      "explanation": "「うごめく」の「うごめ」は「蠢」と書く。小さく不気味にもぞもぞと動くこと"
+    },
+    {
+      "id": "49e99491-a354-5db5-a7f8-5b9188a1cc80",
+      "question": "「ばっこ」を漢字で書いてください",
+      "choices": ["跋扈"],
+      "correct": 0,
+      "explanation": "「ばっこ」は「跋扈」と書く。悪者などが勢いを増してはびこること"
+    },
+    {
+      "id": "98aedc65-e34a-5386-ba25-53e3e10305e8",
+      "question": "「ほうはい」を漢字で書いてください",
+      "choices": ["澎湃"],
+      "correct": 0,
+      "explanation": "「ほうはい」は「澎湃」と書く。水が激しくわき起こるさま・勢いが盛んなさま"
+    },
+    {
+      "id": "386c6be3-5c84-5350-b95c-b3911e91b8ad",
+      "question": "「ふえん」を漢字で書いてください",
+      "choices": ["敷衍"],
+      "correct": 0,
+      "explanation": "「ふえん」は「敷衍」と書く。意味を分かりやすく広げて詳しく説明すること"
+    },
+    {
+      "id": "00193430-2304-5a0f-969a-1ee9d5e3df60",
+      "question": "「ねつぞう」を漢字で書いてください",
+      "choices": ["捏造"],
+      "correct": 0,
+      "explanation": "「ねつぞう」は「捏造」と書く。事実でないことを事実のように作り上げること"
+    },
+    {
+      "id": "2a9078e9-a4d2-5a6b-a3e6-c6ebd38a4e59",
+      "question": "「そんたく」を漢字で書いてください",
+      "choices": ["忖度"],
+      "correct": 0,
+      "explanation": "「そんたく」は「忖度」と書く。相手の気持ちや意図を推し量ること"
+    },
+    {
+      "id": "ddc3f243-e572-54aa-9a21-9c377ab4dfba",
+      "question": "「どうもく」を漢字で書いてください",
+      "choices": ["瞠目"],
+      "correct": 0,
+      "explanation": "「どうもく」は「瞠目」と書く。目を見張るほど驚くこと（「瞠目すべき成果」）"
+    },
+    {
+      "id": "4380c0ab-fbb8-58f7-a0cb-f7a461f017e7",
+      "question": "「かいり」を漢字で書いてください",
+      "choices": ["乖離"],
+      "correct": 0,
+      "explanation": "「かいり」は「乖離」と書く。本来つながるべきものがかけ離れること"
+    },
+    {
+      "id": "afee64a3-7700-5b74-aeab-02fe0aab64ae",
+      "question": "「こうし」を漢字で書いてください",
+      "choices": ["嚆矢"],
+      "correct": 0,
+      "explanation": "「こうし」は「嚆矢」と書く。物事のはじまり・最初の例（「〜を嚆矢とする」）"
+    },
+    {
+      "id": "edc7c227-a492-52f7-a610-0fbd9839c5a6",
+      "question": "「がいぜん」を漢字で書いてください",
+      "choices": ["蓋然"],
+      "correct": 0,
+      "explanation": "「がいぜん」は「蓋然」と書く。ある事柄が起こる可能性・確からしさ（「蓋然性が高い」）"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-high/guide",
+  "prerequisites": ["kanji-high"]
+}

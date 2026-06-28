@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-writing-3",
+  "categoryName": "✏️ 書き（21-30字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "01a2eb9b-f9bc-5ab0-8c4a-bfe08bc5819b",
+      "question": "「くも」を漢字で書いてください",
+      "choices": ["雲"],
+      "correct": 0,
+      "explanation": "「くも」は「雲」と書く。空に浮かぶ水蒸気の集まり。「うん」（音読み）とも読む"
+    },
+    {
+      "id": "81c5e528-a586-5ea6-8ef3-67377ff0bd5e",
+      "question": "「かお」を漢字で書いてください",
+      "choices": ["顔"],
+      "correct": 0,
+      "explanation": "「かお」は「顔」と書く。頭の前面のこと。「がん」（音読み）とも読む"
+    },
+    {
+      "id": "b6307982-4a0a-5978-a6bc-21f892ecf252",
+      "question": "「え」を漢字で書いてください",
+      "choices": ["絵"],
+      "correct": 0,
+      "explanation": "「え」は「絵」と書く。描いた図や絵のこと。「かい」（音読み）とも読む"
+    },
+    {
+      "id": "c62364c4-070e-5fcb-82f3-73087cec0ea9",
+      "question": "「うたう」の「うた」を漢字で書いてください",
+      "choices": ["歌"],
+      "correct": 0,
+      "explanation": "「うたう」の「うた」は「歌」と書く。歌を歌うこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "f81ec851-16c4-5d0c-899f-694fa0ce4f98",
+      "question": "「いわ」を漢字で書いてください",
+      "choices": ["岩"],
+      "correct": 0,
+      "explanation": "「いわ」は「岩」と書く。大きな石のこと。「がん」（音読み）とも読む"
+    },
+    {
+      "id": "dedb92f6-0945-5d39-821f-9bd99d4581c5",
+      "question": "「かえる」の「かえ」を漢字で書いてください",
+      "choices": ["帰"],
+      "correct": 0,
+      "explanation": "「かえる」の「かえ」は「帰」と書く。家に戻ること。「き」（音読み）とも読む"
+    },
+    {
+      "id": "12d1162c-48e8-5174-b233-f336c6163aa3",
+      "question": "「うし」を漢字で書いてください",
+      "choices": ["牛"],
+      "correct": 0,
+      "explanation": "「うし」は「牛」と書く。農耕や酪農に使われる動物。「ぎゅう」（音読み）とも読む"
+    },
+    {
+      "id": "b8e20690-ae41-58a1-82ac-393dfd948121",
+      "question": "「つよい」の「つよ」を漢字で書いてください",
+      "choices": ["強"],
+      "correct": 0,
+      "explanation": "「つよい」の「つよ」は「強」と書く。力があること。「きょう」（音読み）とも読む"
+    },
+    {
+      "id": "dbabb200-2f1a-5690-8c19-7bdbcdca31f6",
+      "question": "「おしえる」の「おし」を漢字で書いてください",
+      "choices": ["教"],
+      "correct": 0,
+      "explanation": "「おしえる」の「おし」は「教」と書く。知識を伝えること。「きょう」（音読み）とも読む"
+    },
+    {
+      "id": "8f01517d-d2ea-5691-b9a9-f04a9b8bf3f9",
+      "question": "「ちかい」の「ちか」を漢字で書いてください",
+      "choices": ["近"],
+      "correct": 0,
+      "explanation": "「ちかい」の「ちか」は「近」と書く。距離が短いこと。「きん」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "prerequisites": ["kanji-grade2"]
+}

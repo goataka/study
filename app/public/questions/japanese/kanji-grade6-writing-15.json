@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-writing-15",
+  "categoryName": "✏️ 書き（141-150字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "1683e4fd-a75b-52fe-a5bc-c4c600ed5d6a",
+      "question": "「とう」を漢字で書いてください",
+      "choices": ["党"],
+      "correct": 0,
+      "explanation": "「とう」は「党」と書く。同じ目的のために集まった集団。政党・党首などに使う"
+    },
+    {
+      "id": "54a22e50-1016-57ab-bbd3-05d5c4a2c085",
+      "question": "「とどく」の「とど」を漢字で書いてください",
+      "choices": ["届"],
+      "correct": 0,
+      "explanation": "「とどく」の「とど」は「届」と書く。目的地に達すること・行き渡ること。「とどける」とも使う"
+    },
+    {
+      "id": "8ce25e5b-0006-513c-9b9b-e10ed0142e0f",
+      "question": "「むずかしい」の「むずか」を漢字で書いてください",
+      "choices": ["難"],
+      "correct": 0,
+      "explanation": "「むずかしい」の「むずか」は「難」と書く。解くのが大変なこと。「なん」（音読み）とも読む"
+    },
+    {
+      "id": "8a77266f-1fd7-5e4b-9a8f-a8d9b23e9be0",
+      "question": "「ちち」を漢字で書いてください",
+      "choices": ["乳"],
+      "correct": 0,
+      "explanation": "「ちち」は「乳」と書く。哺乳動物が出す白い液体・お乳。「にゅう」（音読み）とも読む"
+    },
+    {
+      "id": "2e26ae29-b31a-5b0a-8f43-b071d8388702",
+      "question": "「はい」を漢字で書いてください（俳句・俳優など、演芸・芸能に関する字）",
+      "choices": ["俳"],
+      "correct": 0,
+      "explanation": "「はい」は「俳」と書く。俳句・俳優など、演芸・芸能に関する字"
+    },
+    {
+      "id": "d2fda203-2382-5bb3-938d-771e0fd61664",
+      "question": "「おがむ」の「おが」を漢字で書いてください",
+      "choices": ["拝"],
+      "correct": 0,
+      "explanation": "「おがむ」の「おが」は「拝」と書く。手を合わせて祈ること。「はい」（音読み）とも読む"
+    },
+    {
+      "id": "dbb30d38-6331-5646-bb18-e16556c7d07d",
+      "question": "「せ」を漢字で書いてください（背中 の「せ」）",
+      "choices": ["背"],
+      "correct": 0,
+      "explanation": "「背中」の「せ」（「せ」）は「背」と書く。体の後ろ側。「はい」（音読み）とも読む。「そむく」とも読む"
+    },
+    {
+      "id": "9264c140-05f1-5503-9b2b-e197f7dae891",
+      "question": "「はい」を漢字で書いてください（胸にある呼吸のための器官）",
+      "choices": ["肺"],
+      "correct": 0,
+      "explanation": "「はい」は「肺」と書く。胸にある呼吸のための器官。肺炎・肺活量などに使う"
+    },
+    {
+      "id": "6493202c-3e5d-58c3-8ac8-b6c182df71c6",
+      "question": "「はん」を漢字で書いてください",
+      "choices": ["班"],
+      "correct": 0,
+      "explanation": "「はん」は「班」と書く。小さなグループ・組のこと。班長・班別などに使う"
+    },
+    {
+      "id": "bf11f9a8-5c3c-56d5-998e-8928f95edd2e",
+      "question": "「ばん」を漢字で書いてください",
+      "choices": ["晩"],
+      "correct": 0,
+      "explanation": "「ばん」は「晩」と書く。夜・夕方のこと。今晩・晩ごはんなどに使う"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "prerequisites": ["kanji-grade6"]
+}

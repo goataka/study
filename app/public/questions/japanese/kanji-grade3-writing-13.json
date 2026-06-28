@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-writing-13",
+  "categoryName": "✏️ 書き（121-130字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "04763d62-5646-5888-89e2-c8cc21d5c3a2",
+      "question": "「だん」を漢字で書いてください",
+      "choices": ["談"],
+      "correct": 0,
+      "explanation": "「だん」は「談」と書く。話し合うこと。「相談」「談話」など"
+    },
+    {
+      "id": "3cc31cec-505a-5aef-91c0-5e4908237a80",
+      "question": "「はしら」を漢字で書いてください",
+      "choices": ["柱"],
+      "correct": 0,
+      "explanation": "「はしら」は「柱」と書く。建物を支える棒。「ちゅう」（音読み）とも読む"
+    },
+    {
+      "id": "39fdfac3-c26a-5811-8a69-4786b1e63895",
+      "question": "「ちょう」を漢字で書いてください",
+      "choices": ["帳"],
+      "correct": 0,
+      "explanation": "「ちょう」は「帳」と書く。メモや記録の本。「手帳」「帳面」など"
+    },
+    {
+      "id": "b5e09239-419a-54d0-ac0f-f6d874b05d74",
+      "question": "「おいかける」の「お」を漢字で書いてください（後から行くこと）",
+      "choices": ["追"],
+      "correct": 0,
+      "explanation": "「おいかける」の「お」は「追」と書く。後から行くこと。「追う」「追加」（ついか）など"
+    },
+    {
+      "id": "db7100ef-aae1-591b-be2e-97fdd0fe1299",
+      "question": "「さだめる」の「さだ」を漢字で書いてください",
+      "choices": ["定"],
+      "correct": 0,
+      "explanation": "「さだめる」の「さだ」は「定」と書く。決めること。「定期」（ていき）とも読む"
+    },
+    {
+      "id": "fdf5f6c2-b10c-547d-9580-503097830030",
+      "question": "「にわ」を漢字で書いてください",
+      "choices": ["庭"],
+      "correct": 0,
+      "explanation": "「にわ」は「庭」と書く。家の外の草花がある場所。「てい」（音読み）とも読む"
+    },
+    {
+      "id": "6d1b6024-72d3-5073-a249-f75f0a1c80e4",
+      "question": "「ふえ」を漢字で書いてください",
+      "choices": ["笛"],
+      "correct": 0,
+      "explanation": "「ふえ」は「笛」と書く。吹いて音を出す楽器。「てき」（音読み）とも読む"
+    },
+    {
+      "id": "567b6f68-578b-581c-83a6-5849b1abe829",
+      "question": "「てつ」を漢字で書いてください",
+      "choices": ["鉄"],
+      "correct": 0,
+      "explanation": "「てつ」は「鉄」と書く。金属の一種。「鉄道」「鉄板」など"
+    },
+    {
+      "id": "c52ee852-a023-5bfe-b515-29332a081110",
+      "question": "「ころぶ」の「ころ」を漢字で書いてください",
+      "choices": ["転"],
+      "correct": 0,
+      "explanation": "「ころぶ」の「ころ」は「転」と書く。倒れること。「転車」（てんしゃ）とも読む"
+    },
+    {
+      "id": "92cf3f2c-8073-51eb-937c-4ed6cb9518db",
+      "question": "「みやこ」を漢字で書いてください",
+      "choices": ["都"],
+      "correct": 0,
+      "explanation": "「みやこ」は「都」と書く。首都・大都市のこと。「と」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "prerequisites": ["kanji-grade3"]
+}

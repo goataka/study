@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade3-16",
+  "categoryName": "📖 読み（151-160字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade3",
+  "parentCategoryName": "小学3年",
+  "example": "農・業・漢・字",
+  "questionType": "text-input",
+  "referenceGrade": "小学3年",
+  "description": "小学3年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "022b27e6-e8c8-5089-bec4-c6711c2dcddd",
+      "question": "「鼻」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はな"],
+      "correct": 0,
+      "explanation": "鼻（はな）: においをかぐ器官。「び」（音読み）とも読む"
+    },
+    {
+      "id": "2c184907-a979-56f9-ab7f-cb8ca68d5a3a",
+      "question": "「筆」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ふで"],
+      "correct": 0,
+      "explanation": "筆（ふで）: 字や絵を書く道具。「ひつ」（音読み）とも読む"
+    },
+    {
+      "id": "7bd893f0-68f7-56d1-96d6-57c9948fbc6a",
+      "question": "「氷」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["こおり"],
+      "correct": 0,
+      "explanation": "氷（こおり）: 凍った水。「ひょう」（音読み）とも読む"
+    },
+    {
+      "id": "b7eac8d3-ebec-5b86-9de8-3543cedc0888",
+      "question": "「表面」の「表」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["おもて"],
+      "correct": 0,
+      "explanation": "表（おもて）: 外側・正面のこと。「ひょう」（音読み）とも読む"
+    },
+    {
+      "id": "d23fb5d2-2049-5631-b5f3-f92de3f2ea9a",
+      "question": "「一秒」の「秒」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["びょう"],
+      "correct": 0,
+      "explanation": "秒（びょう）: 時間の単位。「一秒」「秒読み」など"
+    },
+    {
+      "id": "5714aa0f-e38a-59a3-90e0-259b0ec3fb2f",
+      "question": "「品物」の「品」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["しな"],
+      "correct": 0,
+      "explanation": "品（しな）物: 売り買いする物。「ひん」（音読み）とも読む"
+    },
+    {
+      "id": "aa1bf6f0-3940-5ca1-8177-e87d12f55467",
+      "question": "「負ける」の「負」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["ま"],
+      "correct": 0,
+      "explanation": "負（ま）ける: 試合などで勝てないこと。「ふ」（音読み）とも読む"
+    },
+    {
+      "id": "a6a01e0d-6bb6-5c62-b3ef-e1af948dc0da",
+      "question": "「洋服」の「服」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ふく"],
+      "correct": 0,
+      "explanation": "服（ふく）: 着るもの・衣類のこと。「洋服」「制服」など"
+    },
+    {
+      "id": "713b25b4-0626-5e15-90ec-0e1235e71837",
+      "question": "「幸福」の「福」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ふく"],
+      "correct": 0,
+      "explanation": "福（ふく）: 幸せのこと。「幸福」「福祉」など"
+    },
+    {
+      "id": "0012812b-9267-5d96-b2a6-f1de0ee70407",
+      "question": "「物」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["もの"],
+      "correct": 0,
+      "explanation": "物（もの）: 形ある存在・出来事。「もつ」「ぶつ」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade2"]
+}

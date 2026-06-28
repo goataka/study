@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-15",
+  "categoryName": "📖 読み（141-150字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "7c37dbff-73b7-5bec-8a03-9337ba693e1b",
+      "question": "「社」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["やしろ"],
+      "correct": 0,
+      "explanation": "社（やしろ）: 神様をまつる建物のこと。「しゃ」（音読み）とも読む"
+    },
+    {
+      "id": "dfd74b60-9385-53f8-8e68-d42aa817dc48",
+      "question": "「内」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["うち"],
+      "correct": 0,
+      "explanation": "内（うち）: 中・内側のこと。「ない」「だい」（音読み）とも読む"
+    },
+    {
+      "id": "edb2298e-3b22-5236-b55b-a499a32b7689",
+      "question": "「記」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["しるす"],
+      "correct": 0,
+      "explanation": "記（しる）す: 書き留めること。「き」（音読み）とも読む"
+    },
+    {
+      "id": "0e28e7f3-af80-597d-83e3-90dfb7ba607a",
+      "question": "「茶」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["ちゃ"],
+      "correct": 0,
+      "explanation": "茶（ちゃ）: お茶のこと。「さ」（音読み）とも読む"
+    },
+    {
+      "id": "8281390f-6cad-511e-9cbe-a715e3b216f3",
+      "question": "「理」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["り"],
+      "correct": 0,
+      "explanation": "理（り）: 道理・理由のこと"
+    },
+    {
+      "id": "0a9995e8-e46d-58c4-a207-737cee317f92",
+      "question": "「矢」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["や"],
+      "correct": 0,
+      "explanation": "矢（や）: 弓で射る道具のこと。「し」（音読み）とも読む"
+    },
+    {
+      "id": "6f0824cc-8b9f-5cf5-a895-fc8a02385e33",
+      "question": "「科」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["か"],
+      "correct": 0,
+      "explanation": "科（か）: 学科・科目のこと"
+    },
+    {
+      "id": "d80eebc6-fbfe-5e04-9eb2-f6a4f6edd24a",
+      "question": "「合」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あう"],
+      "correct": 0,
+      "explanation": "合（あ）う: 一致すること・合わさること。「ごう」「かっ」（音読み）とも読む"
+    },
+    {
+      "id": "4030137f-5721-5db3-b914-0fab2093e018",
+      "question": "「用」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["もちいる"],
+      "correct": 0,
+      "explanation": "用（もち）いる: 使うこと・用事のこと。「よう」（音読み）とも読む"
+    },
+    {
+      "id": "1314146f-1ba9-5373-b72c-fec1a6868b34",
+      "question": "「毛」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["け"],
+      "correct": 0,
+      "explanation": "毛（け）: 体に生える細い毛のこと。「もう」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade1"]
+}

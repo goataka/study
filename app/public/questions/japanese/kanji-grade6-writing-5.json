@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-writing-5",
+  "categoryName": "✏️ 書き（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "70546370-1122-5a4f-a5c0-d62c866a32a0",
+      "question": "「のう」を漢字で書いてください",
+      "choices": ["脳"],
+      "correct": 0,
+      "explanation": "「のう」は「脳」と書く。頭の中にある体の司令塔"
+    },
+    {
+      "id": "5abe6228-55d0-5193-a182-95454a1e9f39",
+      "question": "「ひひょう」を漢字で書いてください",
+      "choices": ["批評"],
+      "correct": 0,
+      "explanation": "「ひひょう」は「批評」と書く。物事のよしあしを判断して述べること"
+    },
+    {
+      "id": "33cdfcbd-60fd-555e-b43c-77562d86584e",
+      "question": "「とじる」の「と」を漢字で書いてください",
+      "choices": ["閉"],
+      "correct": 0,
+      "explanation": "「とじる」の「と」は「閉」と書く。開いているものをふさぐこと。「へい」（音読み）とも読む"
+    },
+    {
+      "id": "23bfe5b8-e060-56c9-8949-d7d181be4b12",
+      "question": "「おぎなう」の「おぎな」を漢字で書いてください",
+      "choices": ["補"],
+      "correct": 0,
+      "explanation": "「おぎなう」の「おぎな」は「補」と書く。足りない部分を足すこと。「ほ」（音読み）とも読む"
+    },
+    {
+      "id": "25053426-1429-55fe-b423-320700f76adf",
+      "question": "「たずねる」の「たず」を漢字で書いてください",
+      "choices": ["訪"],
+      "correct": 0,
+      "explanation": "「たずねる」の「たず」は「訪」と書く。人を会いに行くこと。「ほう」（音読み）とも読む"
+    },
+    {
+      "id": "b826b7a7-7a96-5fe9-933e-6610f5a9f7f7",
+      "question": "「わすれる」の「わす」を漢字で書いてください",
+      "choices": ["忘"],
+      "correct": 0,
+      "explanation": "「わすれる」の「わす」は「忘」と書く。覚えていたことを思い出せなくなること。「ぼう」（音読み）とも読む"
+    },
+    {
+      "id": "074b228f-bd7b-5bfb-a3f3-b5a112361be0",
+      "question": "「やさしい」の「やさ」を漢字で書いてください",
+      "choices": ["優"],
+      "correct": 0,
+      "explanation": "「やさしい」の「やさ」は「優」と書く。思いやりがあること。「ゆう」（音読み）とも読む"
+    },
+    {
+      "id": "0da65a66-a2da-5375-bd52-bde9749c1f5b",
+      "question": "「ろんぶん」を漢字で書いてください",
+      "choices": ["論文"],
+      "correct": 0,
+      "explanation": "「ろんぶん」は「論文」と書く。研究した結果をまとめた文章"
+    },
+    {
+      "id": "b0b565c0-abdd-524a-9189-135469ba36cd",
+      "question": "「ろうどく」を漢字で書いてください",
+      "choices": ["朗読"],
+      "correct": 0,
+      "explanation": "「ろうどく」は「朗読」と書く。声に出して読むこと"
+    },
+    {
+      "id": "81b35517-424e-58c1-9d7a-b25f650648b3",
+      "question": "「おさない」の「おさな」を漢字で書いてください",
+      "choices": ["幼"],
+      "correct": 0,
+      "explanation": "「おさない」の「おさな」は「幼」と書く。年齢が小さいこと。「よう」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "prerequisites": ["kanji-grade6"]
+}

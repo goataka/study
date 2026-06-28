@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade1-writing-3",
+  "categoryName": "✏️ 書き（21-30字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade1",
+  "parentCategoryName": "小学1年",
+  "example": "山・川・火・水",
+  "questionType": "text-input",
+  "referenceGrade": "小学1年",
+  "description": "小学1年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "6e0e072c-513f-532b-acd0-b1f6c907e89f",
+      "question": "「おおきい」の「おお」を漢字で書いてください",
+      "choices": ["大"],
+      "correct": 0,
+      "explanation": "「おおきい」の「おお」は「大」と書く。大きいことを表す。「だい」（音読み）とも読む"
+    },
+    {
+      "id": "bd24fa78-b3b9-57b3-b9eb-ce2f18d311d3",
+      "question": "「ちいさい」の「ちい」を漢字で書いてください",
+      "choices": ["小"],
+      "correct": 0,
+      "explanation": "「ちいさい」の「ちい」は「小」と書く。小さいことを表す。「しょう」（音読み）とも読む"
+    },
+    {
+      "id": "8838d76a-39df-5694-bd2f-f1dd52209b8e",
+      "question": "「うえ」を漢字で書いてください",
+      "choices": ["上"],
+      "correct": 0,
+      "explanation": "「うえ」は「上」と書く。高い方向のこと。「じょう」（音読み）とも読む"
+    },
+    {
+      "id": "577cf1a4-c3d0-5acd-b697-b0492764b8a0",
+      "question": "「した」を漢字で書いてください",
+      "choices": ["下"],
+      "correct": 0,
+      "explanation": "「した」は「下」と書く。低い方向のこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "a7b9504a-bfb5-5159-b466-d8c138783abe",
+      "question": "「みぎ」を漢字で書いてください",
+      "choices": ["右"],
+      "correct": 0,
+      "explanation": "「みぎ」は「右」と書く。右側の方向のこと。「う」（音読み）とも読む"
+    },
+    {
+      "id": "993305bf-c32c-5a73-a45a-c6172034d6bd",
+      "question": "「ひだり」を漢字で書いてください",
+      "choices": ["左"],
+      "correct": 0,
+      "explanation": "「ひだり」は「左」と書く。左側の方向のこと。「さ」（音読み）とも読む"
+    },
+    {
+      "id": "2b7971df-ca4f-5131-958c-a3fd7248a8da",
+      "question": "「とし」を漢字で書いてください",
+      "choices": ["年"],
+      "correct": 0,
+      "explanation": "「とし」は「年」と書く。一年のこと。「ねん」（音読み）とも読む"
+    },
+    {
+      "id": "fde36626-ab20-54a1-b390-bfd7509c6156",
+      "question": "「しろ」を漢字で書いてください",
+      "choices": ["白"],
+      "correct": 0,
+      "explanation": "「しろ」は「白」と書く。白い色のこと。「はく」（音読み）とも読む"
+    },
+    {
+      "id": "12200a97-8536-5698-bb47-7ae36bdca14e",
+      "question": "「あか」を漢字で書いてください",
+      "choices": ["赤"],
+      "correct": 0,
+      "explanation": "「あか」は「赤」と書く。赤い色のこと。「せき」（音読み）とも読む"
+    },
+    {
+      "id": "1df7becd-0d57-5a81-981b-84f6bf451b69",
+      "question": "「あお」を漢字で書いてください",
+      "choices": ["青"],
+      "correct": 0,
+      "explanation": "「あお」は「青」と書く。青い色のこと。「せい」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "prerequisites": ["kanji-grade1"]
+}

@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade4-writing-5",
+  "categoryName": "✏️ 書き（41-50字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade4",
+  "parentCategoryName": "小学4年",
+  "example": "愛・熱・静・感",
+  "questionType": "text-input",
+  "referenceGrade": "小学4年",
+  "description": "小学4年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "5c7b9ba0-1296-584f-883e-0157818db000",
+      "question": "「えらぶ」の「えら」を漢字で書いてください",
+      "choices": ["選"],
+      "correct": 0,
+      "explanation": "「えらぶ」の「えら」は「選」と書く。いくつかの中から決めること。「せん」（音読み）とも読む"
+    },
+    {
+      "id": "039cdb97-f691-5ce6-aa5e-a788e7b7420b",
+      "question": "「あらそう」の「あらそ」を漢字で書いてください",
+      "choices": ["争"],
+      "correct": 0,
+      "explanation": "「あらそう」の「あらそ」は「争」と書く。互いに張り合うこと。「そう」（音読み）とも読む"
+    },
+    {
+      "id": "63575de7-b329-58e9-b55b-563e5a7d88f7",
+      "question": "「つづける」の「つづ」を漢字で書いてください",
+      "choices": ["続"],
+      "correct": 0,
+      "explanation": "「つづける」の「つづ」は「続」と書く。やめずに同じことをすること。「ぞく」（音読み）とも読む"
+    },
+    {
+      "id": "ca0319e3-6a4e-563d-b55f-67d3f8b7a6db",
+      "question": "「のぞむ」の「のぞ」を漢字で書いてください",
+      "choices": ["望"],
+      "correct": 0,
+      "explanation": "「のぞむ」の「のぞ」は「望」と書く。こうなってほしいと思うこと。「ぼう」（音読み）とも読む"
+    },
+    {
+      "id": "1b385e05-1f2c-5bb5-961f-7a344506e284",
+      "question": "「まんぞく」を漢字で書いてください",
+      "choices": ["満足"],
+      "correct": 0,
+      "explanation": "「まんぞく」は「満足」と書く。不満がなく十分なこと"
+    },
+    {
+      "id": "e40ca2de-856d-5d18-9381-c5f43151fb56",
+      "question": "「やしなう」の「やしな」を漢字で書いてください",
+      "choices": ["養"],
+      "correct": 0,
+      "explanation": "「やしなう」の「やしな」は「養」と書く。育てること。「よう」（音読み）とも読む"
+    },
+    {
+      "id": "7c37b9fb-3cb7-592c-85b4-f8c94b2bb782",
+      "question": "「ろくおん」を漢字で書いてください",
+      "choices": ["録音"],
+      "correct": 0,
+      "explanation": "「ろくおん」は「録音」と書く。音を記録すること"
+    },
+    {
+      "id": "5de0433d-a915-5832-b92a-03c48323cf75",
+      "question": "「あたり」の「あた」を漢字で書いてください",
+      "choices": ["辺"],
+      "correct": 0,
+      "explanation": "「あたり」の「あた」は「辺」と書く。まわりのこと。「へん」（音読み）とも読む"
+    },
+    {
+      "id": "67856396-4d0c-5b18-8591-0d3cdb61fa5d",
+      "question": "「ほうりつ」を漢字で書いてください",
+      "choices": ["法律"],
+      "correct": 0,
+      "explanation": "「ほうりつ」は「法律」と書く。国が定めたきまり"
+    },
+    {
+      "id": "e9bb2a24-128a-5ef4-adc0-6ba5fd42c464",
+      "question": "「みらい」を漢字で書いてください",
+      "choices": ["未来"],
+      "correct": 0,
+      "explanation": "「みらい」は「未来」と書く。これから先のこと"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "prerequisites": ["kanji-grade4"]
+}

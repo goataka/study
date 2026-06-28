@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-16",
+  "categoryName": "📖 読み（151-160字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "b603933c-2ce4-563c-a8b2-b5584d1fba8d",
+      "question": "「京」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["きょう"],
+      "correct": 0,
+      "explanation": "京（きょう）: 都・首都のこと。「けい」（音読み）とも読む"
+    },
+    {
+      "id": "64539578-271b-5692-a7fc-ba1d0daeed50",
+      "question": "「当」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["あたる"],
+      "correct": 0,
+      "explanation": "当（あた）る: 的に当たること・担当すること。「とう」（音読み）とも読む"
+    },
+    {
+      "id": "c6542a63-3dc5-590c-b8a5-b37478867324",
+      "question": "「後」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["うしろ"],
+      "correct": 0,
+      "explanation": "後（うしろ）: 背中側・あとのこと。「ご」「こう」（音読み）とも読む"
+    },
+    {
+      "id": "72bc7164-5abc-59c0-85b3-b01e8abea9fb",
+      "question": "「麦」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["むぎ"],
+      "correct": 0,
+      "explanation": "麦（むぎ）: 穀物の一種（小麦・大麦など）。「ばく」（音読み）とも読む"
+    },
+    {
+      "id": "c6d912c3-8470-5d33-9e48-fe2c7a863cb5",
+      "question": "「店」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["みせ"],
+      "correct": 0,
+      "explanation": "店（みせ）: 品物を売る場所のこと。「てん」（音読み）とも読む"
+    },
+    {
+      "id": "9e089ff0-bc2d-5a96-b386-387386e65c17",
+      "question": "「元」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["もと"],
+      "correct": 0,
+      "explanation": "元（もと）: 根本・はじめのこと。「げん」「がん」（音読み）とも読む"
+    },
+    {
+      "id": "e2239a23-9465-5e7d-9e4e-31df3baf2322",
+      "question": "「行」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いく"],
+      "correct": 0,
+      "explanation": "行（い）く: 目的地へ向かうこと。「こう」「ぎょう」「あん」（音読み）とも読む"
+    },
+    {
+      "id": "b03278e6-353d-5646-8284-bfafd459946e",
+      "question": "「高」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["たかい"],
+      "correct": 0,
+      "explanation": "高（たか）い: 位置や値段が高いこと。「こう」（音読み）とも読む"
+    },
+    {
+      "id": "33d10ed1-b054-584f-b1c3-360f6a3ae746",
+      "question": "「谷」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["たに"],
+      "correct": 0,
+      "explanation": "谷（たに）: 山と山の間の低い場所のこと。「こく」（音読み）とも読む"
+    },
+    {
+      "id": "88baee8c-a7f6-5609-9fed-89a0b1da37f7",
+      "question": "「早」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はやい"],
+      "correct": 0,
+      "explanation": "早（はや）い: 時間が早いこと・速度が速いこと。「そう」「さっ」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade1"]
+}

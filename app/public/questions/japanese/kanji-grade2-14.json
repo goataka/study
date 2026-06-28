@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-14",
+  "categoryName": "📖 読み（131-140字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "ef8ec21c-f562-559b-b0e8-e8e4d28cf418",
+      "question": "「門」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かど"],
+      "correct": 0,
+      "explanation": "門（かど）: 出入り口・家の正面のこと。「もん」（音読み）とも読む"
+    },
+    {
+      "id": "97ad614d-5926-57d4-b8bf-188c3ffb3807",
+      "question": "「半」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["なかば"],
+      "correct": 0,
+      "explanation": "半（なかば）: 真ん中・半分のこと。「はん」（音読み）とも読む"
+    },
+    {
+      "id": "1f3ab40e-f9f5-50d1-9e67-e12a88b47caa",
+      "question": "「色」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いろ"],
+      "correct": 0,
+      "explanation": "色（いろ）: 色・見た目のこと。「しょく」「しき」（音読み）とも読む"
+    },
+    {
+      "id": "050b6de9-e1b3-5517-92f4-3a273645ea79",
+      "question": "「分」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["わかる"],
+      "correct": 0,
+      "explanation": "分（わか）る: 理解すること・分けること。「ぶん」「ふん」「ぷん」（音読み）とも読む"
+    },
+    {
+      "id": "a7474298-856a-5f44-b3dc-21b0d93e22c1",
+      "question": "「計」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["はかる"],
+      "correct": 0,
+      "explanation": "計（はか）る: 測定すること・計画すること。「けい」（音読み）とも読む"
+    },
+    {
+      "id": "d4fb54c3-07cd-5a8c-8849-cb7550cbbfa6",
+      "question": "「万」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["まん"],
+      "correct": 0,
+      "explanation": "万（まん）: 数の単位（10000）のこと。「ばん」（音読み）とも読む"
+    },
+    {
+      "id": "ec38413a-f6e1-5168-8b30-14cd639dc444",
+      "question": "「電」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["でん"],
+      "correct": 0,
+      "explanation": "電（でん）: 電気のこと"
+    },
+    {
+      "id": "2a3a2a87-849f-5640-926a-7bc8a0af5549",
+      "question": "「買」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かう"],
+      "correct": 0,
+      "explanation": "買（か）う: お金を払って物を得ること。「ばい」（音読み）とも読む"
+    },
+    {
+      "id": "3563e4bf-0092-5ade-87cc-0c0eb0a4bd2e",
+      "question": "「市」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いち"],
+      "correct": 0,
+      "explanation": "市（いち）: 品物を売り買いする場所。「し」（音読み）とも読む"
+    },
+    {
+      "id": "d909827c-5ec5-5732-bb77-a70f0a0d28ad",
+      "question": "「回」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["まわる"],
+      "correct": 0,
+      "explanation": "回（まわ）る: 円を描くように動くこと。「かい」「え」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade1"]
+}

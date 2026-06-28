@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade2-writing-2",
+  "categoryName": "✏️ 書き（11-20字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade2",
+  "parentCategoryName": "小学2年",
+  "example": "春・夏・秋・冬",
+  "questionType": "text-input",
+  "referenceGrade": "小学2年",
+  "description": "小学2年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "847d97dc-3748-5cbf-b409-501ceb418cc1",
+      "question": "「はは」を漢字で書いてください",
+      "choices": ["母"],
+      "correct": 0,
+      "explanation": "「はは」は「母」と書く。お母さんのこと。「ぼ」（音読み）とも読む"
+    },
+    {
+      "id": "eb4d8f3e-b957-582d-b568-0e7bbbc0a3bc",
+      "question": "「あに」を漢字で書いてください",
+      "choices": ["兄"],
+      "correct": 0,
+      "explanation": "「あに」は「兄」と書く。お兄さんのこと。「けい」（音読み）とも読む"
+    },
+    {
+      "id": "1146777c-9310-5875-b394-83f6831c420f",
+      "question": "「あね」を漢字で書いてください",
+      "choices": ["姉"],
+      "correct": 0,
+      "explanation": "「あね」は「姉」と書く。お姉さんのこと。「し」（音読み）とも読む"
+    },
+    {
+      "id": "a91a9ee2-f80c-5f26-b8fd-4f756bddbac2",
+      "question": "「おとうと」を漢字で書いてください",
+      "choices": ["弟"],
+      "correct": 0,
+      "explanation": "「おとうと」は「弟」と書く。年下の男の兄弟のこと。「てい」（音読み）とも読む"
+    },
+    {
+      "id": "c29055f6-3a60-538b-819b-e50ff2bda0e6",
+      "question": "「いもうと」を漢字で書いてください",
+      "choices": ["妹"],
+      "correct": 0,
+      "explanation": "「いもうと」は「妹」と書く。年下の女の兄弟のこと。「まい」（音読み）とも読む"
+    },
+    {
+      "id": "ae92a2b5-d8ba-59eb-ad93-902950fc1274",
+      "question": "「とも」を漢字で書いてください",
+      "choices": ["友"],
+      "correct": 0,
+      "explanation": "「とも」は「友」と書く。友達のこと。「ゆう」（音読み）とも読む"
+    },
+    {
+      "id": "e09210db-148f-518a-a57d-c82fab2d95c1",
+      "question": "「はる」を漢字で書いてください",
+      "choices": ["春"],
+      "correct": 0,
+      "explanation": "「はる」は「春」と書く。春の季節のこと。「しゅん」（音読み）とも読む"
+    },
+    {
+      "id": "540cc6c5-bb36-501b-9d12-8033456a4968",
+      "question": "「なつ」を漢字で書いてください",
+      "choices": ["夏"],
+      "correct": 0,
+      "explanation": "「なつ」は「夏」と書く。夏の季節のこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "278a342d-bbea-5b40-91b3-8b9c120a5eea",
+      "question": "「あき」を漢字で書いてください",
+      "choices": ["秋"],
+      "correct": 0,
+      "explanation": "「あき」は「秋」と書く。秋の季節のこと。「しゅう」（音読み）とも読む"
+    },
+    {
+      "id": "ec936781-a7d0-5c0f-9207-574fbcf7b1f8",
+      "question": "「ふゆ」を漢字で書いてください",
+      "choices": ["冬"],
+      "correct": 0,
+      "explanation": "「ふゆ」は「冬」と書く。冬の季節のこと。「とう」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "prerequisites": ["kanji-grade2"]
+}

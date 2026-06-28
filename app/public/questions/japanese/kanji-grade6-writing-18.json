@@ -1,0 +1,34 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade6-writing-18",
+  "categoryName": "✏️ 書き（171-172字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade6",
+  "parentCategoryName": "小学6年",
+  "example": "宙・射・危・険",
+  "questionType": "text-input",
+  "referenceGrade": "小学6年",
+  "description": "小学6年向けの漢字書き取り問題です。",
+  "questions": [
+    {
+      "id": "41add052-8c5b-5a37-8549-918dc6ea6588",
+      "question": "「りつ」を漢字で書いてください",
+      "choices": ["律"],
+      "correct": 0,
+      "explanation": "「りつ」は「律」と書く。決まり・ルールのこと。規律・法律などに使う"
+    },
+    {
+      "id": "01c1cae9-59ef-5ec3-956e-a0e98a852038",
+      "question": "「のぞむ」の「のぞ」を漢字で書いてください（ある場に向き合うこと・臨場感）",
+      "choices": ["臨"],
+      "correct": 0,
+      "explanation": "「のぞむ」の「のぞ」は「臨」と書く。ある場に向き合うこと・臨場感。「りん」（音読み）とも読む"
+    }
+  ],
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "prerequisites": ["kanji-grade6"]
+}

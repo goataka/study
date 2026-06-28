@@ -1,0 +1,90 @@
+{
+  "subject": "japanese",
+  "subjectName": "国語",
+  "category": "kanji-grade5-6",
+  "categoryName": "📖 読み（51-60字）",
+  "topCategory": "kanji",
+  "topCategoryName": "漢字",
+  "topCategoryGuideUrl": "./japanese/kanji/guide",
+  "parentCategory": "kanji-grade5",
+  "parentCategoryName": "小学5年",
+  "example": "護・衛・複・雑",
+  "questionType": "text-input",
+  "referenceGrade": "小学5年",
+  "description": "小学5年生で習う漢字の読み方（訓読み・音読み）を覚えます。",
+  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "parentCategoryGuideUrl": "./japanese/kanji/guide",
+  "questions": [
+    {
+      "id": "adc45b2a-08ce-530c-a6a7-a374ac8b74f1",
+      "question": "「原因」の「因」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["いん"],
+      "correct": 0,
+      "explanation": "因（いん）: 物事が起こるもと。「原因」（げんいん）は何かが起きたわけのこと"
+    },
+    {
+      "id": "64e75c03-0286-5a5d-86d4-c6a30cc40e6b",
+      "question": "「営む」の「営」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["いとな"],
+      "correct": 0,
+      "explanation": "営（いとな）む: 仕事などをして生活すること。「えい」（音読み）とも読む"
+    },
+    {
+      "id": "ca6b7401-392b-5fa5-a65c-dc7e0260ddc5",
+      "question": "「衛星」の「衛」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["えい"],
+      "correct": 0,
+      "explanation": "衛（えい）: 守ること。「衛星」（えいせい）は惑星の周りを回る天体のこと"
+    },
+    {
+      "id": "686503e5-c3fa-5601-9ab6-c1677c567493",
+      "question": "「利益」の「益」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["えき"],
+      "correct": 0,
+      "explanation": "益（えき）: 役に立つこと・もうけのこと。「利益」（りえき）は得になること"
+    },
+    {
+      "id": "fd15d686-1845-58bb-9d52-f9bb631de3a5",
+      "question": "「液体」の「液」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["えき"],
+      "correct": 0,
+      "explanation": "液（えき）: 水のように流れる状態の物質。「液体」（えきたい）は流れる形の物質"
+    },
+    {
+      "id": "1d4f00e7-8255-5a74-ac89-085342d4cb1d",
+      "question": "「往復」の「往」の読み方をひらがなで書いてください（音読み）",
+      "choices": ["おう"],
+      "correct": 0,
+      "explanation": "往（おう）: 行くこと。「往復」（おうふく）は行って戻ること"
+    },
+    {
+      "id": "0c31a55d-c7ef-5125-8cc8-7e1658062795",
+      "question": "「桜」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["さくら"],
+      "correct": 0,
+      "explanation": "桜（さくら）: 春にピンクの花を咲かせる木。「おう」（音読み）とも読む"
+    },
+    {
+      "id": "7b4c36ed-0d32-5f1c-b14e-c815ddb3e342",
+      "question": "「仮」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かり"],
+      "correct": 0,
+      "explanation": "仮（かり）: 一時的なこと・本物ではないこと。「か」（音読み）とも読む"
+    },
+    {
+      "id": "5e7382c2-43e3-5c14-b6a7-566fbe4d567c",
+      "question": "「河」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["かわ"],
+      "correct": 0,
+      "explanation": "河（かわ）: 大きな川のこと。「が」（音読み）とも読む"
+    },
+    {
+      "id": "843a7724-e670-5c77-b97d-d735d98fd3b9",
+      "question": "「快い」の「快」の読み方をひらがなで書いてください（訓読み）",
+      "choices": ["こころよ"],
+      "correct": 0,
+      "explanation": "快（こころよ）い: 気持ちよいこと。「かい」（音読み）とも読む"
+    }
+  ],
+  "prerequisites": ["kanji-grade4"]
+}
