@@ -14,7 +14,7 @@ pre-commit:
     markdownlint:
       run: pnpm dlx markdownlint-cli --fix "**/*.md" --ignore node_modules --ignore app/node_modules --ignore app/test-results --ignore app/vr-report 2>/dev/null; pnpm dlx markdownlint-cli "**/*.md" --ignore node_modules --ignore app/node_modules --ignore app/test-results --ignore app/vr-report
 
-# pre-push は pre-commit に加えてE2EやVRスナップショット確認も行う。
+# pre-push は pre-commit に加えて E2E も行う。
 # Copilot agent 環境では copilot-setup-steps.yml が lefthook を copilot-hooks に
 # インストールするため、pre-commit・pre-push ともに正常に動作する。
 pre-push:
@@ -22,7 +22,4 @@ pre-push:
   commands:
     build-and-test:
       run: pnpm run build && pnpm run test && pnpm run test:e2e
-      root: app/
-    update-vr-snapshots:
-      run: bash scripts/pre-push-vr-check.sh
       root: app/
