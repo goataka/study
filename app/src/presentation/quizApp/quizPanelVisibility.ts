@@ -97,6 +97,11 @@ export function updateQuizPanelVisibility(params: QuizPanelVisibilityParams): vo
     return;
   }
 
+  if (params.subject === "history") {
+    applyHistoryTabLayout(subjectContent);
+    return;
+  }
+
   applyDefaultTabLayout(subjectContent, params);
 }
 
@@ -232,6 +237,47 @@ function applyProgressTabLayout(subjectContent: HTMLElement, params: QuizPanelVi
   } else {
     document.getElementById("selectedUnitInfo")?.classList.add("hidden");
   }
+}
+
+function applyHistoryTabLayout(subjectContent: HTMLElement): void {
+  setCategoryPanelBackground("default");
+  subjectContent.classList.add("category-only");
+  subjectContent.classList.remove("all-subject-layout");
+  subjectContent.classList.remove("all-subject-unit-selected");
+  const quizPanel = subjectContent.querySelector(".quiz-panel") as HTMLElement | null;
+  const notebookSpine = subjectContent.querySelector(".notebook-spine") as HTMLElement | null;
+  quizPanel?.classList.add("hidden");
+  notebookSpine?.classList.add("md:hidden");
+  updateHiddenPanelTabs({
+    "panelTab-guide": true,
+    "panelTab-quiz": true,
+    "panelTab-history": true,
+    "panelTab-questions": true,
+  });
+  setOverallSummaryPanelHidden(true);
+  setProgressDetailPanelHidden(true);
+  [
+    "quizModePanel",
+    "guideContent",
+    "historyContent",
+    "questionListContent",
+    "overallSummaryPanel",
+    "progressDetailPanel",
+  ].forEach((id) => {
+    document.getElementById(id)?.classList.add("hidden");
+  });
+  document.getElementById("allSubjectPanelTitle")?.classList.add("hidden");
+  document.getElementById("allSubjectPanelInfo")?.classList.add("hidden");
+  document.getElementById("overallDateNav")?.classList.add("hidden");
+  document.getElementById("supportMenuTitle")?.classList.add("hidden");
+  document.getElementById("progressGradeFilter")?.classList.add("hidden");
+  document.getElementById("categoryStatusInfo")?.classList.add("hidden");
+  const statusFilterEl = document.querySelector(".category-status-filter") as HTMLElement | null;
+  if (statusFilterEl) statusFilterEl.classList.add("hidden");
+  document.getElementById("selectedUnitInfo")?.classList.add("hidden");
+  document.getElementById("adminContent")?.classList.add("hidden");
+  document.getElementById("supportContent")?.classList.remove("flex");
+  document.getElementById("supportContent")?.classList.add("hidden");
 }
 
 function applyDefaultTabLayout(subjectContent: HTMLElement, params: QuizPanelVisibilityParams): void {

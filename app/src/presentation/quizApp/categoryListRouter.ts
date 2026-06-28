@@ -12,6 +12,7 @@ import type { QuizUseCase } from "../../application/quizUseCase";
 import type { IProgressRepository } from "../../application/ports";
 import { renderAdminContent } from "../adminPanel";
 import { renderSupportPanel } from "./supportPanel";
+import { renderHistorySubjectPanel } from "./historySubjectPanel";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { categoryControlsContentStore } from "../components/categoryControlsContentStore";
 
@@ -73,6 +74,14 @@ export function renderCategoryListRouter(params: RenderCategoryListRouterParams)
     const titleEl = document.getElementById("categoryListTitle");
     if (titleEl) titleEl.textContent = "📚 教科";
     params.renderProgressView();
+    return;
+  }
+
+  if (subject === "history") {
+    categoryControlsContentStore.reset();
+    const titleEl = document.getElementById("categoryListTitle");
+    if (titleEl) titleEl.textContent = "🕒 学習履歴";
+    renderHistorySubjectPanel(params.useCase);
     return;
   }
 

@@ -14,6 +14,7 @@ permalink: /operation-guide/
 - [✏️ 問題画面](../operation-quiz/) — クイズ中の問題エリア・フィードバック・メモ
 - [🏁 結果画面](../operation-result/) — 採点後の結果表示と画面遷移
 - [📈 進度タブ](../operation-progress/) — 教科ごとの進度表示
+- [🕒 履歴タブ](../operation-start/#履歴タブ) — 単元毎 / 問題毎で学習履歴を確認
 - [📖 ガイドタブ](../operation-guide-tab/) — ガイドメニューの仕様
 - [⚙️ 管理タブ](../operation-admin/) — 学習データの管理機能
 - [🔧 全体・その他](../operation-misc/) — URL での直接アクセスや画面サイズ対応などの全体仕様
