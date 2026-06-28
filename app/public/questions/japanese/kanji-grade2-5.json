@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-5",
-  "categoryName": "📖 読み（船・前・多い・太い・知る・昼・長い・朝・東・答える）",
+  "categoryName": "📖 読み（船前多太知昼長朝東答）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「船・前・多い・太い・知る・昼・長い・朝・東・答える」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「船前多太知昼長朝東答」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-5/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

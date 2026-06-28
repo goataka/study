@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-high-writing-3",
-  "categoryName": "✏️ 書き その２（蠢・跋扈・澎湃・敷衍・捏造・忖度・瞠目・乖離・嚆矢・蓋然）",
+  "categoryName": "✏️ 書き その２（蠢跋扈澎湃敷衍捏造忖度瞠目乖離嚆矢蓋然）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "羅・曖・昧・冶",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「蠢・跋扈・澎湃・敷衍・捏造・忖度・瞠目・乖離・嚆矢・蓋然」の漢字の書き取りを練習します。",
+  "description": "中学生のこのセットでは「蠢跋扈澎湃敷衍捏造忖度瞠目乖離嚆矢蓋然」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "bf508d6a-1a4e-584d-8936-de24f942de0d",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-high/guide",
+  "guideUrl": "./japanese/kanji/kanji-high-3/guide",
   "prerequisites": ["kanji-high"]
 }

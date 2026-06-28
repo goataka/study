@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-5",
-  "categoryName": "✏️ 書き（県・向・幸・港・根・祭・皿・使・指・歯）",
+  "categoryName": "✏️ 書き（県向幸港根祭皿使指歯）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「県・向・幸・港・根・祭・皿・使・指・歯」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「県向幸港根祭皿使指歯」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "8cc4d7d8-c96a-500d-b850-8f0c48470286",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3-5/guide",
   "prerequisites": ["kanji-grade3"]
 }

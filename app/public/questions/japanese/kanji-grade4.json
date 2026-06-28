@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4",
-  "categoryName": "📖 読み（努力・観察・季節・変化・成長・結果・必要・初めて・愛情・希望）",
+  "categoryName": "📖 読み（努力観察季節変化成長結果必要初愛情希望）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「努力・観察・季節・変化・成長・結果・必要・初めて・愛情・希望」の読み方を練習します。",
+  "description": "小学4年のこのセットでは「努力観察季節変化成長結果必要初愛情希望」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade4/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

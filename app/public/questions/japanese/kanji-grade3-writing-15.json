@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-15",
-  "categoryName": "✏️ 書き（配・倍・箱・畑・発・坂・板・反・皮・美）",
+  "categoryName": "✏️ 書き（配倍箱畑発坂板反皮美）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「配・倍・箱・畑・発・坂・板・反・皮・美」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「配倍箱畑発坂板反皮美」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "6608d487-b851-5e30-83ce-15850986d143",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3-15/guide",
   "prerequisites": ["kanji-grade3"]
 }

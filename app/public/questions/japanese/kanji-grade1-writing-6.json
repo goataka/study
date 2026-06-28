@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-writing-6",
-  "categoryName": "✏️ 書き（車・十・出・女・人・正・夕・千・早・村）",
+  "categoryName": "✏️ 書き（車十出女人正夕千早村）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「車・十・出・女・人・正・夕・千・早・村」の漢字の書き取りを練習します。",
+  "description": "小学1年のこのセットでは「車十出女人正夕千早村」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "c33e5995-d60c-5005-b7d5-f376c9e2cc1a",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade1-6/guide",
   "prerequisites": ["kanji-grade1"]
 }

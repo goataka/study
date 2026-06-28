@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-high-writing",
-  "categoryName": "✏️ 書き その２（逸脱・懸念・憂慮・鑑賞・洗練・逡巡・欺・恣意・弊害・冗長）",
+  "categoryName": "✏️ 書き その２（逸脱懸念憂慮鑑賞洗練逡巡欺恣意弊害冗長）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "羅・曖・昧・冶",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「逸脱・懸念・憂慮・鑑賞・洗練・逡巡・欺・恣意・弊害・冗長」の漢字の書き取りを練習します。",
+  "description": "中学生のこのセットでは「逸脱懸念憂慮鑑賞洗練逡巡欺恣意弊害冗長」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "1ff67300-59d5-5c99-849f-28c2a76b6d35",

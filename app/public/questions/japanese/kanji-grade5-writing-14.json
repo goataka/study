@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-14",
-  "categoryName": "✏️ 書き（素・総・像・属・率・損・退・貸・態・団）",
+  "categoryName": "✏️ 書き（素総像属率損退貸態団）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「素・総・像・属・率・損・退・貸・態・団」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「素総像属率損退貸態団」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "3756a2a8-38ca-54ee-bcbf-d505c2c7edf0",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5-14/guide",
   "prerequisites": ["kanji-grade5"]
 }

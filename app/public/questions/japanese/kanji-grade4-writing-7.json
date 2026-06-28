@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-7",
-  "categoryName": "✏️ 書き（案内・以上・囲・栄・一億・貨物・課題・芽・改・機械）",
+  "categoryName": "✏️ 書き（案内以上囲栄一億貨物課題芽改機械）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「案内・以上・囲・栄・一億・貨物・課題・芽・改・機械」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「案内以上囲栄一億貨物課題芽改機械」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "13a0a6c1-53f3-5b9f-9838-d3e267356a66",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade4-7/guide",
   "prerequisites": ["kanji-grade4"]
 }

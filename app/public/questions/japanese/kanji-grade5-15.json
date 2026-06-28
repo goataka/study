@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-15",
-  "categoryName": "📖 読み（築く・張る・停車・程・敵・適切・銅・導く・道徳・犯す）",
+  "categoryName": "📖 読み（築張停車程敵適切銅導道徳犯）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「築く・張る・停車・程・敵・適切・銅・導く・道徳・犯す」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「築張停車程敵適切銅導道徳犯」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-15/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

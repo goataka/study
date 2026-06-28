@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-15",
-  "categoryName": "📖 読み（配る・二倍・箱・畑を耕す・出発・坂道・板・反対・皮をむく・美しい）",
+  "categoryName": "📖 読み（配二倍箱畑を耕出発坂道板反対皮美）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「配る・二倍・箱・畑を耕す・出発・坂道・板・反対・皮をむく・美しい」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「配二倍箱畑を耕出発坂道板反対皮美」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-15/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

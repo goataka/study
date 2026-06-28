@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-2",
-  "categoryName": "✏️ 書き（温・湖・島・医者・身体・悪・安・育・飲・運）",
+  "categoryName": "✏️ 書き（温湖島医者身体悪安育飲運）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「温・湖・島・医者・身体・悪・安・育・飲・運」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「温湖島医者身体悪安育飲運」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "f26cfff5-024f-5e6e-a78c-648f69e0dffa",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3-2/guide",
   "prerequisites": ["kanji-grade3"]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-11",
-  "categoryName": "📖 読み（示す・似る・知識・質問・校舎・謝る・授ける・修める・述べる・準備）",
+  "categoryName": "📖 読み（示似知識質問校舎謝授修述準備）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「示す・似る・知識・質問・校舎・謝る・授ける・修める・述べる・準備」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「示似知識質問校舎謝授修述準備」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-11/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

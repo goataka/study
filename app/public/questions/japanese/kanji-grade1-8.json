@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-8",
-  "categoryName": "📖 読み（百・文字・本・名前・立つ・力・林・六・学ぶ・生きる）",
+  "categoryName": "📖 読み（百文字本名前立力林六学生）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「百・文字・本・名前・立つ・力・林・六・学ぶ・生きる」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "description": "小学1年のこのセットでは「百文字本名前立力林六学生」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade1-8/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

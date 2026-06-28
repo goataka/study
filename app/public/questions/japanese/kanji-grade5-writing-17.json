@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-17",
-  "categoryName": "✏️ 書き（暴・迷・綿・輸・容・略・乱・卵・覧・裏）",
+  "categoryName": "✏️ 書き（暴迷綿輸容略乱卵覧裏）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「暴・迷・綿・輸・容・略・乱・卵・覧・裏」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「暴迷綿輸容略乱卵覧裏」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "ac33efbd-758d-5216-b76b-ecb26d5551a8",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5-17/guide",
   "prerequisites": ["kanji-grade5"]
 }

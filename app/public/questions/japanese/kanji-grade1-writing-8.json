@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-writing-8",
-  "categoryName": "✏️ 書き（百・文・本・名・立・力・林・六・学・生）",
+  "categoryName": "✏️ 書き（百文本名立力林六学生）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「百・文・本・名・立・力・林・六・学・生」の漢字の書き取りを練習します。",
+  "description": "小学1年のこのセットでは「百文本名立力林六学生」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "788959b6-4398-5fc3-9e3c-dadc9cbba7b6",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade1-8/guide",
   "prerequisites": ["kanji-grade1"]
 }

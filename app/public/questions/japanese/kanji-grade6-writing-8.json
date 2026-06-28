@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-8",
-  "categoryName": "✏️ 書き（激・穴・源・己・誤・孝・皇・紅・降・鋼）",
+  "categoryName": "✏️ 書き（激穴源己誤孝皇紅降鋼）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「激・穴・源・己・誤・孝・皇・紅・降・鋼」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「激穴源己誤孝皇紅降鋼」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "1f1ef713-55ee-513e-b9d7-ad4b3d00cd75",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6-8/guide",
   "prerequisites": ["kanji-grade6"]
 }

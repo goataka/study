@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-13",
-  "categoryName": "📖 読み（洗う・染める・善い・奏でる・窓・創る・装う・地層・操る・蔵）",
+  "categoryName": "📖 読み（洗染善奏窓創装地層操蔵）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「洗う・染める・善い・奏でる・窓・創る・装う・地層・操る・蔵」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「洗染善奏窓創装地層操蔵」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-13/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-7",
-  "categoryName": "📖 読み（男・竹・中・虫・町・天・田・二・入る・八）",
+  "categoryName": "📖 読み（男竹中虫町天田二入八）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「男・竹・中・虫・町・天・田・二・入る・八」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "description": "小学1年のこのセットでは「男竹中虫町天田二入八」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade1-7/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

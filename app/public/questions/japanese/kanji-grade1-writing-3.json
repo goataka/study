@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-writing-3",
-  "categoryName": "✏️ 書き（大・小・上・下・右・左・年・白・赤・青）",
+  "categoryName": "✏️ 書き（大小上下右左年白赤青）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「大・小・上・下・右・左・年・白・赤・青」の漢字の書き取りを練習します。",
+  "description": "小学1年のこのセットでは「大小上下右左年白赤青」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "6e0e072c-513f-532b-acd0-b1f6c907e89f",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade1-3/guide",
   "prerequisites": ["kanji-grade1"]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-2",
-  "categoryName": "✏️ 書き（矛盾・遺産・誠実・優先・認識・映画・延長・我慢・拡大・割）",
+  "categoryName": "✏️ 書き（矛盾遺産誠実優先認識映画延長我慢拡大割）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「矛盾・遺産・誠実・優先・認識・映画・延長・我慢・拡大・割」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「矛盾遺産誠実優先認識映画延長我慢拡大割」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "229ed56f-7e5f-537e-a8f1-6dd72b8c7789",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6-2/guide",
   "prerequisites": ["kanji-grade6"]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-8",
-  "categoryName": "✏️ 書き（許・境・均・句・型・経・潔・件・険・検）",
+  "categoryName": "✏️ 書き（許境均句型経潔件険検）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「許・境・均・句・型・経・潔・件・険・検」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「許境均句型経潔件険検」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "ce21ef74-30ac-509a-9fea-2368c025f831",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5-8/guide",
   "prerequisites": ["kanji-grade5"]
 }

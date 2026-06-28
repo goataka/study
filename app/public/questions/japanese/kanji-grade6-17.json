@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-17",
-  "categoryName": "📖 読み（一枚・幕・秘密・同盟・模型・訳・欲しい・翌日・乱れる・一覧）",
+  "categoryName": "📖 読み（一枚幕秘密同盟模型訳欲翌日乱一覧）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「一枚・幕・秘密・同盟・模型・訳・欲しい・翌日・乱れる・一覧」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「一枚幕秘密同盟模型訳欲翌日乱一覧」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-17/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

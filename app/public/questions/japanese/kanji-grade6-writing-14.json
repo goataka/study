@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-14",
-  "categoryName": "✏️ 書き（臓・退・担・段・値・著・腸・賃・痛・討）",
+  "categoryName": "✏️ 書き（臓退担段値著腸賃痛討）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「臓・退・担・段・値・著・腸・賃・痛・討」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「臓退担段値著腸賃痛討」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "c2755f06-cf8f-5f53-a168-bb582d5befbf",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6-14/guide",
   "prerequisites": ["kanji-grade6"]
 }

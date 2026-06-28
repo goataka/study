@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-16",
-  "categoryName": "📖 読み（京・当・後・麦・店・元・行・高・谷・早）",
+  "categoryName": "📖 読み（京当後麦店元行高谷早）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「京・当・後・麦・店・元・行・高・谷・早」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「京当後麦店元行高谷早」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-16/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

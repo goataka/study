@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-11",
-  "categoryName": "✏️ 書き（祝・松・唱・焼・象・照・城・信頼・大臣・折）",
+  "categoryName": "✏️ 書き（祝松唱焼象照城信頼大臣折）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「祝・松・唱・焼・象・照・城・信頼・大臣・折」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「祝松唱焼象照城信頼大臣折」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "26299fda-237c-555b-97d4-a7e4b3175b84",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade4-11/guide",
   "prerequisites": ["kanji-grade4"]
 }

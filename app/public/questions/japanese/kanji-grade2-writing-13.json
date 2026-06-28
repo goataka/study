@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-13",
-  "categoryName": "✏️ 書き（歩・会・切・算・図・明・汽・少・数・台）",
+  "categoryName": "✏️ 書き（歩会切算図明汽少数台）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「歩・会・切・算・図・明・汽・少・数・台」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「歩会切算図明汽少数台」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "ecd3a07f-3ed9-534f-91ec-9b44fe00c65e",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2-13/guide",
   "prerequisites": ["kanji-grade2"]
 }

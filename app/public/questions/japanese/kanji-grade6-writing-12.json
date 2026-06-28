@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-12",
-  "categoryName": "✏️ 書き（針・仁・垂・推・寸・盛・聖・舌・宣・専）",
+  "categoryName": "✏️ 書き（針仁垂推寸盛聖舌宣専）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「針・仁・垂・推・寸・盛・聖・舌・宣・専」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「針仁垂推寸盛聖舌宣専」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "3156e6dc-eb34-564a-aa24-26839d13b088",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6-12/guide",
   "prerequisites": ["kanji-grade6"]
 }

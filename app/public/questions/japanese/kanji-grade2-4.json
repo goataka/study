@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-4",
-  "categoryName": "📖 読み（形・光・考える・国・今・心・声・星・晴れる・雪）",
+  "categoryName": "📖 読み（形光考国今心声星晴雪）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「形・光・考える・国・今・心・声・星・晴れる・雪」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「形光考国今心声星晴雪」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-4/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

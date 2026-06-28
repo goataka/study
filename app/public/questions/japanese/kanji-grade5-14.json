@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-14",
-  "categoryName": "📖 読み（素材・総合・像・所属・率いる・損なう・退く・貸す・態度・団体）",
+  "categoryName": "📖 読み（素材総合像所属率損退貸態度団体）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「素材・総合・像・所属・率いる・損なう・退く・貸す・態度・団体」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「素材総合像所属率損退貸態度団体」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-14/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

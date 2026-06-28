@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-6",
-  "categoryName": "✏️ 書き（次・持・守・取・酒・集・住・重・所・暑）",
+  "categoryName": "✏️ 書き（次持守取酒集住重所暑）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「次・持・守・取・酒・集・住・重・所・暑」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「次持守取酒集住重所暑」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "e290b627-795b-5761-8416-e1547fce618e",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3-6/guide",
   "prerequisites": ["kanji-grade3"]
 }

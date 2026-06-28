@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-6",
-  "categoryName": "📖 読み（原因・営む・衛星・利益・液体・往復・桜・仮・河・快い）",
+  "categoryName": "📖 読み（原因営衛星利益液体往復桜仮河快）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「原因・営む・衛星・利益・液体・往復・桜・仮・河・快い」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「原因営衛星利益液体往復桜仮河快」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-6/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

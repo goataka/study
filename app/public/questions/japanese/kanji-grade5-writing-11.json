@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-11",
-  "categoryName": "✏️ 書き（示・似・識・質・舎・謝・授・修・述・準）",
+  "categoryName": "✏️ 書き（示似識質舎謝授修述準）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「示・似・識・質・舎・謝・授・修・述・準」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「示似識質舎謝授修述準」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "83d1bad7-9cda-5976-806f-893a9e89347f",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5-11/guide",
   "prerequisites": ["kanji-grade5"]
 }

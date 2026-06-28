@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-13",
-  "categoryName": "📖 読み（相談・電柱・手帳・追いかける・定める・庭園・笛を吹く・鉄道・転ぶ・都市）",
+  "categoryName": "📖 読み（相談電柱手帳追定庭園笛を吹鉄道転都市）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「相談・電柱・手帳・追いかける・定める・庭園・笛を吹く・鉄道・転ぶ・都市」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「相談電柱手帳追定庭園笛を吹鉄道転都市」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-13/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

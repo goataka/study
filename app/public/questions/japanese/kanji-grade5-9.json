@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-9",
-  "categoryName": "📖 読み（減る・故郷・効く・厚い・耕す・航海・興味・講義・告げる・混ぜる）",
+  "categoryName": "📖 読み（減故郷効厚耕航海興味講義告混）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「減る・故郷・効く・厚い・耕す・航海・興味・講義・告げる・混ぜる」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「減故郷効厚耕航海興味講義告混」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-9/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

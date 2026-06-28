@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-7",
-  "categoryName": "✏️ 書き（机・揮・貴・疑・吸・胸・郷・筋・系・警）",
+  "categoryName": "✏️ 書き（机揮貴疑吸胸郷筋系警）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「机・揮・貴・疑・吸・胸・郷・筋・系・警」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「机揮貴疑吸胸郷筋系警」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "c40e9d4f-15ee-52f1-b34d-0468097eadf1",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6-7/guide",
   "prerequisites": ["kanji-grade6"]
 }

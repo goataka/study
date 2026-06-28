@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-16",
-  "categoryName": "✏️ 書き（肥・非・俵・貧・婦・富・弁・保・墓・報）",
+  "categoryName": "✏️ 書き（肥非俵貧婦富弁保墓報）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「肥・非・俵・貧・婦・富・弁・保・墓・報」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「肥非俵貧婦富弁保墓報」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "aa4c99bd-ee1c-57dd-8c55-06321a02c8bb",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5-16/guide",
   "prerequisites": ["kanji-grade5"]
 }

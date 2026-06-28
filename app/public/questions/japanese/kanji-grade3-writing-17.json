@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-17",
-  "categoryName": "✏️ 書き（平・返・勉・放・味・命・面・問・役・薬）",
+  "categoryName": "✏️ 書き（平返勉放味命面問役薬）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「平・返・勉・放・味・命・面・問・役・薬」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「平返勉放味命面問役薬」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "a2598dc6-b093-55c8-91f0-e6a87c8d5631",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3-17/guide",
   "prerequisites": ["kanji-grade3"]
 }

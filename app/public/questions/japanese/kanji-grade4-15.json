@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-15",
-  "categoryName": "📖 読み（命令・冷たい・例えば・連れる・老いる・苦労・不思議・付ける・兵士・別れる）",
+  "categoryName": "📖 読み（命令冷例連老苦労不思議付兵士別）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「命令・冷たい・例えば・連れる・老いる・苦労・不思議・付ける・兵士・別れる」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "description": "小学4年のこのセットでは「命令冷例連老苦労不思議付兵士別」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade4-15/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

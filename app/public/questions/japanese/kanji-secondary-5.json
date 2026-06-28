@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-5",
-  "categoryName": "📖 読み その１（結論・仮定・比例・変量・依頼・縁・怠る・惜しむ・描く・揺れる）",
+  "categoryName": "📖 読み その１（結論仮定比例変量依頼縁怠惜描揺）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「結論・仮定・比例・変量・依頼・縁・怠る・惜しむ・描く・揺れる」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "description": "中学生のこのセットでは「結論仮定比例変量依頼縁怠惜描揺」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-secondary-5/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-8",
-  "categoryName": "✏️ 書き（息・速・家族・打・待・代・短・着・注意・調）",
+  "categoryName": "✏️ 書き（息速家族打待代短着注意調）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「息・速・家族・打・待・代・短・着・注意・調」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「息速家族打待代短着注意調」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "e24ec5fd-aba6-5c77-82c1-c6e54d2c374c",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3-8/guide",
   "prerequisites": ["kanji-grade3"]
 }

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-9",
-  "categoryName": "✏️ 書き（刻・穀・骨・砂・済・策・冊・蚕・至・私）",
+  "categoryName": "✏️ 書き（刻穀骨砂済策冊蚕至私）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「刻・穀・骨・砂・済・策・冊・蚕・至・私」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「刻穀骨砂済策冊蚕至私」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "8c39affa-36af-5ecb-aced-b5d831dd3bb3",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6-9/guide",
   "prerequisites": ["kanji-grade6"]
 }

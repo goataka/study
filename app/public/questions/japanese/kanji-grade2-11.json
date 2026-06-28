@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-11",
-  "categoryName": "📖 読み（寺・直・公・画・肉・何・場・園・弓・交）",
+  "categoryName": "📖 読み（寺直公画肉何場園弓交）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「寺・直・公・画・肉・何・場・園・弓・交」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「寺直公画肉何場園弓交」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-11/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

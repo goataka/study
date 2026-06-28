@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-8",
-  "categoryName": "📖 読み（激しい・穴・源・己・誤る・孝行・天皇・紅・降りる・鋼）",
+  "categoryName": "📖 読み（激穴源己誤孝行天皇紅降鋼）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「激しい・穴・源・己・誤る・孝行・天皇・紅・降りる・鋼」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「激穴源己誤孝行天皇紅降鋼」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-8/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

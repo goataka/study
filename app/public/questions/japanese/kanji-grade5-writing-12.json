@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-12",
-  "categoryName": "✏️ 書き（序・招・承・証・常・情・条・職・制・政）",
+  "categoryName": "✏️ 書き（序招承証常情条職制政）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「序・招・承・証・常・情・条・職・制・政」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「序招承証常情条職制政」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "79fd797d-eab7-50e0-b84f-3bdede74e657",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5-12/guide",
   "prerequisites": ["kanji-grade5"]
 }

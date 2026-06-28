@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-6",
-  "categoryName": "✏️ 書き（域・沿・恩・灰・閣・株・干・巻・看・簡）",
+  "categoryName": "✏️ 書き（域沿恩灰閣株干巻看簡）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「域・沿・恩・灰・閣・株・干・巻・看・簡」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「域沿恩灰閣株干巻看簡」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "e0c9dbc4-e308-526b-a47c-589805643439",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6-6/guide",
   "prerequisites": ["kanji-grade6"]
 }

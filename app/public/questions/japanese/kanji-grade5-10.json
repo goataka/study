@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-10",
-  "categoryName": "📖 読み（調査・財産・罪・雑誌・酸っぱい・賛成・志・枝・教師・飼う）",
+  "categoryName": "📖 読み（調査財産罪雑誌酸賛成志枝教師飼）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「調査・財産・罪・雑誌・酸っぱい・賛成・志・枝・教師・飼う」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「調査財産罪雑誌酸賛成志枝教師飼」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-10/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-writing-15",
-  "categoryName": "✏️ 書き（築・張・停・程・敵・適・銅・導・徳・犯）",
+  "categoryName": "✏️ 書き（築張停程敵適銅導徳犯）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「築・張・停・程・敵・適・銅・導・徳・犯」の漢字の書き取りを練習します。",
+  "description": "小学5年のこのセットでは「築張停程敵適銅導徳犯」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "e5c7a10e-0fdf-57e8-9742-0281aebb6a90",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade5-15/guide",
   "prerequisites": ["kanji-grade5"]
 }

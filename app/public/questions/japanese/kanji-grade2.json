@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2",
-  "categoryName": "📖 読み（海・魚・鳥・読む・書く・聞く・話す・走る・食べる・父）",
+  "categoryName": "📖 読み（海魚鳥読書聞話走食父）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「海・魚・鳥・読む・書く・聞く・話す・走る・食べる・父」の読み方を練習します。",
+  "description": "小学2年のこのセットでは「海魚鳥読書聞話走食父」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

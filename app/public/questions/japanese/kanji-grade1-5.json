@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-5",
-  "categoryName": "📖 読み（犬・見る・五・三・子・四・糸・字・耳・七）",
+  "categoryName": "📖 読み（犬見五三子四糸字耳七）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「犬・見る・五・三・子・四・糸・字・耳・七」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "description": "小学1年のこのセットでは「犬見五三子四糸字耳七」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade1-5/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

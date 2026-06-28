@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary",
-  "categoryName": "📖 読み その１（概念・抽象・歴史・経済・議会・環境・文化・伝統・道徳・進化）",
+  "categoryName": "📖 読み その１（概念抽象歴史経済議会環境文化伝統道徳進化）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「概念・抽象・歴史・経済・議会・環境・文化・伝統・道徳・進化」の読み方を練習します。",
+  "description": "中学生のこのセットでは「概念抽象歴史経済議会環境文化伝統道徳進化」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-secondary/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

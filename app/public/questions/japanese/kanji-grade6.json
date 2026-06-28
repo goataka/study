@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6",
-  "categoryName": "📖 読み（宇宙・憲法・批判・探求・異なる・革命・展望・縮小・複雑・純粋）",
+  "categoryName": "📖 読み（宇宙憲法批判探求異革命展望縮小複雑純粋）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「宇宙・憲法・批判・探求・異なる・革命・展望・縮小・複雑・純粋」の読み方を練習します。",
+  "description": "小学6年のこのセットでは「宇宙憲法批判探求異革命展望縮小複雑純粋」の読み方を練習します。",
   "guideUrl": "./japanese/kanji/kanji-grade6/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [

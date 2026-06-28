@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-3",
-  "categoryName": "📖 読み（過去・確実・基礎・義務・逆転・禁止・現在・個人・増加・断る）",
+  "categoryName": "📖 読み（過去確実基礎義務逆転禁止現在個人増加断）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「過去・確実・基礎・義務・逆転・禁止・現在・個人・増加・断る」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「過去確実基礎義務逆転禁止現在個人増加断」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-3/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

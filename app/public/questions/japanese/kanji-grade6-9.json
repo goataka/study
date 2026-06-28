@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-9",
-  "categoryName": "📖 読み（刻む・穀物・骨・砂・済む・対策・冊子・蚕・至る・私）",
+  "categoryName": "📖 読み（刻穀物骨砂済対策冊子蚕至私）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「刻む・穀物・骨・砂・済む・対策・冊子・蚕・至る・私」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "description": "小学6年のこのセットでは「刻穀物骨砂済対策冊子蚕至私」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade6-9/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

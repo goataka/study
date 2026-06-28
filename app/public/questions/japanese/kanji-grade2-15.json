@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-15",
-  "categoryName": "📖 読み（社・内・記・茶・理・矢・科・合・用・毛）",
+  "categoryName": "📖 読み（社内記茶理矢科合用毛）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「社・内・記・茶・理・矢・科・合・用・毛」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "description": "小学2年のこのセットでは「社内記茶理矢科合用毛」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade2-15/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-16",
-  "categoryName": "📖 読み（肥える・非常・俵・貧しい・婦人・富む・弁護士・保つ・墓・報告）",
+  "categoryName": "📖 読み（肥非常俵貧婦人富弁護士保墓報告）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「肥える・非常・俵・貧しい・婦人・富む・弁護士・保つ・墓・報告」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「肥非常俵貧婦人富弁護士保墓報告」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-16/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

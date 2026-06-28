@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-12",
-  "categoryName": "📖 読み（文章・乗る・神様・整える・昔話・他の人・反対・第一・問題・炭火）",
+  "categoryName": "📖 読み（文章乗神様整昔話他の人反対第一問題炭火）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「文章・乗る・神様・整える・昔話・他の人・反対・第一・問題・炭火」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "description": "小学3年のこのセットでは「文章乗神様整昔話他の人反対第一問題炭火」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade3-12/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

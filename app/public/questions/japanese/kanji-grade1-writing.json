@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-writing",
-  "categoryName": "✏️ 書き（山・川・日・月・火・水・木・土・金・空）",
+  "categoryName": "✏️ 書き（山川日月火水木土金空）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「山・川・日・月・火・水・木・土・金・空」の漢字の書き取りを練習します。",
+  "description": "小学1年のこのセットでは「山川日月火水木土金空」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "d6da4587-8789-5406-80a8-7dec56660440",

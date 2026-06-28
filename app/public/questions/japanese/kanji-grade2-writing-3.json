@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-3",
-  "categoryName": "✏️ 書き（雲・顔・絵・歌・岩・帰・牛・強・教・近）",
+  "categoryName": "✏️ 書き（雲顔絵歌岩帰牛強教近）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「雲・顔・絵・歌・岩・帰・牛・強・教・近」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「雲顔絵歌岩帰牛強教近」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "01a2eb9b-f9bc-5ab0-8c4a-bfe08bc5819b",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2-3/guide",
   "prerequisites": ["kanji-grade2"]
 }

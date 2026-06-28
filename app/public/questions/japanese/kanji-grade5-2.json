@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-2",
-  "categoryName": "📖 読み（構造・採用・測定・比較・統計・圧力・移動・永遠・演奏・応用）",
+  "categoryName": "📖 読み（構造採用測定比較統計圧力移動永遠演奏応用）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「構造・採用・測定・比較・統計・圧力・移動・永遠・演奏・応用」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「構造採用測定比較統計圧力移動永遠演奏応用」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-secondary-4",
-  "categoryName": "📖 読み その１（権利・義務・民主主義・科学・実験・仮説・検証・論理・証明・考察）",
+  "categoryName": "📖 読み その１（権利義務民主主義科学実験仮説検証論理証明考察）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "背・滋・賢・縦",
   "questionType": "text-input",
   "referenceGrade": "中学生",
-  "description": "中学生のこのセットでは「権利・義務・民主主義・科学・実験・仮説・検証・論理・証明・考察」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-secondary/guide",
+  "description": "中学生のこのセットでは「権利義務民主主義科学実験仮説検証論理証明考察」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-secondary-4/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

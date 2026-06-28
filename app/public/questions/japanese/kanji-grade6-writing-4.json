@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade6-writing-4",
-  "categoryName": "✏️ 書き（若・収・従・存在・尊重・誕生・暖・忠実・展示・認）",
+  "categoryName": "✏️ 書き（若収従存在尊重誕生暖忠実展示認）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "宙・射・危・険",
   "questionType": "text-input",
   "referenceGrade": "小学6年",
-  "description": "小学6年のこのセットでは「若・収・従・存在・尊重・誕生・暖・忠実・展示・認」の漢字の書き取りを練習します。",
+  "description": "小学6年のこのセットでは「若収従存在尊重誕生暖忠実展示認」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "524620de-8b79-5103-ba29-050377f4d055",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade6/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade6-4/guide",
   "prerequisites": ["kanji-grade6"]
 }

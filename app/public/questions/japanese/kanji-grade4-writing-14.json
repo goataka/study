@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade4-writing-14",
-  "categoryName": "✏️ 書き（牧場・末・市民・勇気・有・浴・利用・陸地・良・輪）",
+  "categoryName": "✏️ 書き（牧場末市民勇気有浴利用陸地良輪）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "愛・熱・静・感",
   "questionType": "text-input",
   "referenceGrade": "小学4年",
-  "description": "小学4年のこのセットでは「牧場・末・市民・勇気・有・浴・利用・陸地・良・輪」の漢字の書き取りを練習します。",
+  "description": "小学4年のこのセットでは「牧場末市民勇気有浴利用陸地良輪」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "ba739611-5fb9-5ca1-bec5-fe93c00647ca",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade4/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade4-14/guide",
   "prerequisites": ["kanji-grade4"]
 }

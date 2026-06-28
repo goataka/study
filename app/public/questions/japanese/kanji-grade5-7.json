@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade5-7",
-  "categoryName": "📖 読み（格差・額・発刊・幹・慣れる・眼・寄る・久しい・旧友・居る）",
+  "categoryName": "📖 読み（格差額発刊幹慣眼寄久旧友居）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "護・衛・複・雑",
   "questionType": "text-input",
   "referenceGrade": "小学5年",
-  "description": "小学5年のこのセットでは「格差・額・発刊・幹・慣れる・眼・寄る・久しい・旧友・居る」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade5/guide",
+  "description": "小学5年のこのセットでは「格差額発刊幹慣眼寄久旧友居」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade5-7/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade1-2",
-  "categoryName": "📖 読み（花・草・森・石・目・口・手・足・学校・先生）",
+  "categoryName": "📖 読み（花草森石目口手足学校先生）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,8 +11,8 @@
   "example": "山・川・火・水",
   "questionType": "text-input",
   "referenceGrade": "小学1年",
-  "description": "小学1年のこのセットでは「花・草・森・石・目・口・手・足・学校・先生」の読み方を練習します。",
-  "guideUrl": "./japanese/kanji/kanji-grade1/guide",
+  "description": "小学1年のこのセットでは「花草森石目口手足学校先生」の読み方を練習します。",
+  "guideUrl": "./japanese/kanji/kanji-grade1-2/guide",
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "questions": [
     {

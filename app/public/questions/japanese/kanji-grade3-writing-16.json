@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade3-writing-16",
-  "categoryName": "✏️ 書き（鼻・筆・氷・表・秒・品・負・服・福・物）",
+  "categoryName": "✏️ 書き（鼻筆氷表秒品負服福物）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "農・業・漢・字",
   "questionType": "text-input",
   "referenceGrade": "小学3年",
-  "description": "小学3年のこのセットでは「鼻・筆・氷・表・秒・品・負・服・福・物」の漢字の書き取りを練習します。",
+  "description": "小学3年のこのセットでは「鼻筆氷表秒品負服福物」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "46bef567-6da8-553a-a866-7953af4467f6",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade3/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade3-16/guide",
   "prerequisites": ["kanji-grade3"]
 }

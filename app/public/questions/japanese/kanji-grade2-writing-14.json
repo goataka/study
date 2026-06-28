@@ -2,7 +2,7 @@
   "subject": "japanese",
   "subjectName": "国語",
   "category": "kanji-grade2-writing-14",
-  "categoryName": "✏️ 書き（門・半・色・分・計・万・電・買・市・回）",
+  "categoryName": "✏️ 書き（門半色分計万電買市回）",
   "topCategory": "kanji",
   "topCategoryName": "漢字",
   "topCategoryGuideUrl": "./japanese/kanji/guide",
@@ -11,7 +11,7 @@
   "example": "春・夏・秋・冬",
   "questionType": "text-input",
   "referenceGrade": "小学2年",
-  "description": "小学2年のこのセットでは「門・半・色・分・計・万・電・買・市・回」の漢字の書き取りを練習します。",
+  "description": "小学2年のこのセットでは「門半色分計万電買市回」の漢字の書き取りを練習します。",
   "questions": [
     {
       "id": "cc79d087-6f35-531d-b0ea-91b88e73bcc9",
@@ -85,6 +85,6 @@
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
-  "guideUrl": "./japanese/kanji/kanji-grade2/guide",
+  "guideUrl": "./japanese/kanji/kanji-grade2-14/guide",
   "prerequisites": ["kanji-grade2"]
 }
