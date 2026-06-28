@@ -12,6 +12,7 @@ import {
   setupFetchMockWith3Levels,
   setupFetchMockWithParent,
   mockQuestionFile,
+  StubProgressRepository,
 } from "./testHelpers";
 
 describe("QuizApp — 教科タブ仕様", () => {
@@ -27,12 +28,12 @@ describe("QuizApp — 教科タブ仕様", () => {
     window.history.replaceState({}, "", "/");
   });
 
-  it("問題ロード後にタブに教科（おすすめ・進度・英語・数学・国語・管理・サポート）が7件描画される", async () => {
+  it("問題ロード後にタブに教科（おすすめ・進度・英語・数学・国語・履歴・管理・サポート）が8件描画される", async () => {
     new QuizApp();
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     const tabs = document.querySelectorAll(".subject-tab[data-subject]");
-    expect(tabs.length).toBe(7);
+    expect(tabs.length).toBe(8);
   });
 
   it("問題ロード後に英語タブに role=tab が設定されている", async () => {
@@ -212,6 +213,60 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(supportIndex).toBeGreaterThanOrEqual(0);
     expect(adminIndex).toBeGreaterThanOrEqual(0);
     expect(supportIndex).toBeLessThan(adminIndex);
+  });
+
+  it("履歴タブは国語タブと管理タブの間に表示される", async () => {
+    new QuizApp();
+    await waitForCondition(() => document.querySelector(".subject-tabs .subject-tab[data-subject='history']") !== null);
+
+    const tabs = Array.from(document.querySelectorAll(".subject-tabs [data-subject]"));
+    const japaneseIndex = tabs.findIndex((tab) => tab.getAttribute("data-subject") === "japanese");
+    const historyIndex = tabs.findIndex((tab) => tab.getAttribute("data-subject") === "history");
+    const adminIndex = tabs.findIndex((tab) => tab.getAttribute("data-subject") === "admin");
+
+    expect(japaneseIndex).toBeGreaterThanOrEqual(0);
+    expect(historyIndex).toBeGreaterThanOrEqual(0);
+    expect(adminIndex).toBeGreaterThanOrEqual(0);
+    expect(japaneseIndex).toBeLessThan(historyIndex);
+    expect(historyIndex).toBeLessThan(adminIndex);
+  });
+
+  it("履歴タブでは単元毎と問題毎を切り替えて表示できる", async () => {
+    const now = new Date().toISOString();
+    const repo = new StubProgressRepository();
+    repo.saveHistory([
+      {
+        id: "r1",
+        date: now,
+        subject: "english",
+        subjectName: "英語",
+        category: "phonics-1",
+        categoryName: "フォニックス（1文字）",
+        mode: "random",
+        totalCount: 1,
+        correctCount: 1,
+        entries: [{ questionId: "q1", userAnswerIndex: 0, userAnswerChoiceText: "ア", isCorrect: true }],
+      },
+    ]);
+
+    new QuizApp(repo);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const historyTab = document.querySelector('.subject-tab[data-subject="history"]') as HTMLElement | null;
+    expect(historyTab).not.toBeNull();
+    historyTab?.click();
+
+    await waitForCondition(() => document.getElementById("historySubjectTab-unit") !== null);
+    expect(document.getElementById("historySubjectUnitList")?.classList.contains("hidden")).toBe(false);
+
+    const questionSwitch = document.getElementById("historySubjectTab-question") as HTMLButtonElement | null;
+    expect(questionSwitch).not.toBeNull();
+    questionSwitch?.click();
+
+    await waitForCondition(
+      () => document.getElementById("historySubjectQuestionList")?.classList.contains("hidden") === false,
+    );
+    expect(document.getElementById("historySubjectQuestionList")?.classList.contains("hidden")).toBe(false);
   });
 
   it("サポートボタンを押すと専用サポートパネルが表示される（解説タブではなく）", async () => {

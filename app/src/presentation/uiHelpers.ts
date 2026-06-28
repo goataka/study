@@ -34,6 +34,7 @@ export const SUBJECTS = [
   { id: "english", name: "英語", icon: "🌐", tabBg: "#e8f0ff", tabBgActive: "#d0e4ff" },
   { id: "math", name: "数学", icon: "📐", tabBg: "#e8fff0", tabBgActive: "#d0ffe0" },
   { id: "japanese", name: "国語", icon: "📖", tabBg: "#fff0f0", tabBgActive: "#ffe0e0" },
+  { id: "history", name: "履歴", icon: "🕒", tabBg: "#f3f0ff", tabBgActive: "#e8e0ff" },
   { id: "admin", name: "管理", icon: "⚙️", tabBg: "#f0f4f8", tabBgActive: "#dce8f4" },
 ] as const;
 

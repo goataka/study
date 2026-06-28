@@ -36,6 +36,39 @@ When("{string} タブをクリックする", async ({ page }, tabText: string) =
   await expect(tab).toHaveClass(/active/);
 });
 
+Then("教科タブで「国語」「履歴」「管理」がこの順に表示される", async ({ page }) => {
+  const tabOrder = await page
+    .locator(".subject-tab[data-subject]")
+    .evaluateAll((nodes) => nodes.map((node) => (node as HTMLElement).dataset.subject ?? ""));
+
+  const japaneseIndex = tabOrder.indexOf("japanese");
+  const historyIndex = tabOrder.indexOf("history");
+  const adminIndex = tabOrder.indexOf("admin");
+
+  expect(japaneseIndex).toBeGreaterThanOrEqual(0);
+  expect(historyIndex).toBeGreaterThanOrEqual(0);
+  expect(adminIndex).toBeGreaterThanOrEqual(0);
+  expect(japaneseIndex).toBeLessThan(historyIndex);
+  expect(historyIndex).toBeLessThan(adminIndex);
+});
+
+Then("履歴タブの切替ボタンが表示される", async ({ page }) => {
+  await expect(page.locator("#historySubjectTab-unit")).toBeVisible();
+  await expect(page.locator("#historySubjectTab-question")).toBeVisible();
+});
+
+Then("履歴タブで「単元毎」が表示される", async ({ page }) => {
+  await expect(page.locator("#historySubjectUnitList")).toBeVisible();
+});
+
+When("履歴タブで「問題毎」に切り替える", async ({ page }) => {
+  await page.locator("#historySubjectTab-question").click();
+});
+
+Then("履歴タブで「問題毎」が表示される", async ({ page }) => {
+  await expect(page.locator("#historySubjectQuestionList")).toBeVisible();
+});
+
 Then("ヘッダーが表示されている", async ({ page }) => {
   // スタート画面のヘッダーが表示されていることを確認（#startScreen にスコープを絞る）
   const header = page.locator("#startScreen header");

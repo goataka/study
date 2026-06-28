@@ -6,9 +6,9 @@ import { describe, it, expect } from "vitest";
 import { SUBJECTS, gradeColorClass, calcDualProgressPct, getScoreMessage, getScoreResultClass } from "./uiHelpers";
 
 describe("SUBJECTS 定数", () => {
-  it("「英語」「数学」「国語」「管理」「おすすめ」「進度」をすべて含む", () => {
+  it("「英語」「数学」「国語」「履歴」「管理」「おすすめ」「進度」をすべて含む", () => {
     const ids = SUBJECTS.map((s) => s.id);
-    expect(ids).toEqual(["all", "progress", "english", "math", "japanese", "admin"]);
+    expect(ids).toEqual(["all", "progress", "english", "math", "japanese", "history", "admin"]);
   });
 
   it("各教科は id, name, icon を持つ", () => {
