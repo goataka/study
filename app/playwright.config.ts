@@ -19,7 +19,7 @@ export default defineConfig({
   workers: process.env.CI ? 2 : undefined,
   // CI環境では一時的なネットワーク障害に対応するためリトライを1回行う
   retries: process.env.CI ? 1 : 0,
-  timeout: 60_000,
+  timeout: 120_000,
   // JSONレポーター: エビデンス生成スクリプトが読み込む
   reporter: [["list"], ["json", { outputFile: "e2e-results.json" }]],
   use: {

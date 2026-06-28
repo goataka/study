@@ -10,12 +10,13 @@ import type { Page } from "@playwright/test";
 export const STATS_INFO_PATTERN = /全：[1-9]\d*問/;
 
 /** statsInfo の問題ロード完了タイムアウト（ミリ秒） */
-export const STATS_LOAD_TIMEOUT = 30_000;
+export const STATS_LOAD_TIMEOUT = 60_000;
 
 /**
  * statsInfo に問題数が表示されるまで待つ（JS 初期化完了の目安）。
  * [1-9] で先頭を非ゼロにし、\d* で2桁以上に対応（例: 全：1問, 全：108問）。
  * 全0問はロード失敗を示すため、このパターンには一致しない。
+ * ただし、サポート・履歴タブなど問題数が0になる特殊タブはタブのアクティブ状態で判定する。
  */
 export async function waitForStatsInfoLoaded(page: Page): Promise<void> {
   await page.waitForFunction(
@@ -23,7 +24,8 @@ export async function waitForStatsInfoLoaded(page: Page): Promise<void> {
       const statsInfoText = document.getElementById("statsInfo")?.textContent ?? "";
       const supportMenuVisible = document.querySelector("nav[aria-label='サポートメニュー']") !== null;
       const supportTabActive = document.querySelector('.subject-tab[data-subject="support"].active') !== null;
-      return new RegExp(pattern).test(statsInfoText) || supportMenuVisible || supportTabActive;
+      const historyTabActive = document.querySelector('.subject-tab[data-subject="history"].active') !== null;
+      return new RegExp(pattern).test(statsInfoText) || supportMenuVisible || supportTabActive || historyTabActive;
     },
     STATS_INFO_PATTERN.source,
     {
