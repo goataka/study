@@ -20,7 +20,7 @@ export function expandQuestions(qf: QuestionFile): Question[] {
   const shouldChunkKanji = isChunkedKanjiReadingOrWriting(qf);
   return qf.questions.map((q, index) => {
     const chunkIndex = shouldChunkKanji ? Math.floor(index / KANJI_CHUNK_SIZE) : 0;
-    const partNumber = chunkIndex + 1;
+    const chunkNumber = chunkIndex + 1;
     const chunkStart = chunkIndex * KANJI_CHUNK_SIZE + 1;
     const chunkEnd = Math.min((chunkIndex + 1) * KANJI_CHUNK_SIZE, qf.questions.length);
     const rangeLabel = `（${chunkStart}-${chunkEnd}字）`;
@@ -28,7 +28,7 @@ export function expandQuestions(qf: QuestionFile): Question[] {
       ...q,
       subject: qf.subject,
       subjectName: qf.subjectName,
-      category: shouldChunkKanji && chunkIndex > 0 ? `${qf.category}-${partNumber}` : qf.category,
+      category: shouldChunkKanji && chunkIndex > 0 ? `${qf.category}-${chunkNumber}` : qf.category,
       categoryName: shouldChunkKanji ? `${qf.categoryName}${rangeLabel}` : qf.categoryName,
       topCategory: qf.topCategory,
       topCategoryName: qf.topCategoryName,
