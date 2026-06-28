@@ -16,97 +16,75 @@
     {
       "id": "1ed224d3-fc4f-52e5-8ac1-3d39481ab410",
       "question": "「かたち」を漢字で書いてください",
-      "choices": [
-        "形"
-      ],
+      "choices": ["形"],
       "correct": 0,
       "explanation": "「かたち」は「形」と書く。物の外見のこと。「けい」（音読み）とも読む"
     },
     {
       "id": "0daf07d8-54c1-588c-bf00-f914418097cc",
       "question": "「ひかり」を漢字で書いてください",
-      "choices": [
-        "光"
-      ],
+      "choices": ["光"],
       "correct": 0,
       "explanation": "「ひかり」は「光」と書く。明るく照らすもの。「こう」（音読み）とも読む"
     },
     {
       "id": "cd6b7865-7b25-53e2-b176-27dee36c81d9",
       "question": "「かんがえる」の「かんが」を漢字で書いてください",
-      "choices": [
-        "考"
-      ],
+      "choices": ["考"],
       "correct": 0,
       "explanation": "「かんがえる」の「かんが」は「考」と書く。頭で思うこと。「こう」（音読み）とも読む"
     },
     {
       "id": "af593ba1-541e-58a2-ab78-9dd44dbb5e94",
       "question": "「くに」を漢字で書いてください",
-      "choices": [
-        "国"
-      ],
+      "choices": ["国"],
       "correct": 0,
       "explanation": "「くに」は「国」と書く。国家のこと。「こく」（音読み）とも読む"
     },
     {
       "id": "8ff5436b-a881-5114-b849-0d71921f9316",
       "question": "「いま」を漢字で書いてください",
-      "choices": [
-        "今"
-      ],
+      "choices": ["今"],
       "correct": 0,
       "explanation": "「いま」は「今」と書く。現在のこと。「こん」（音読み）とも読む"
     },
     {
       "id": "ab65bc9f-d0a6-5252-8612-8c1a6ee9c6a7",
       "question": "「こころ」を漢字で書いてください",
-      "choices": [
-        "心"
-      ],
+      "choices": ["心"],
       "correct": 0,
       "explanation": "「こころ」は「心」と書く。気持ちや感情のこと。「しん」（音読み）とも読む"
     },
     {
       "id": "f50ba11c-a1cf-597e-b457-44bbc7533ecc",
       "question": "「こえ」を漢字で書いてください",
-      "choices": [
-        "声"
-      ],
+      "choices": ["声"],
       "correct": 0,
       "explanation": "「こえ」は「声」と書く。口から出る音のこと。「せい」（音読み）とも読む"
     },
     {
       "id": "6a217832-9feb-5ee9-a0b4-6742e29d92bb",
       "question": "「ほし」を漢字で書いてください",
-      "choices": [
-        "星"
-      ],
+      "choices": ["星"],
       "correct": 0,
       "explanation": "「ほし」は「星」と書く。夜空に光る天体のこと。「せい」（音読み）とも読む"
     },
     {
       "id": "6bb5a14a-ab76-5d98-bfe4-89cbb9d1705e",
       "question": "「はれる」の「は」を漢字で書いてください",
-      "choices": [
-        "晴"
-      ],
+      "choices": ["晴"],
       "correct": 0,
       "explanation": "「はれる」の「は」は「晴」と書く。空が晴れること。「せい」（音読み）とも読む"
     },
     {
       "id": "f7988794-7533-53b3-88cf-0c644767ba8a",
       "question": "「ゆき」を漢字で書いてください",
-      "choices": [
-        "雪"
-      ],
+      "choices": ["雪"],
       "correct": 0,
       "explanation": "「ゆき」は「雪」と書く。空から降る白い結晶のこと。「せつ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade2-4/guide",
-  "prerequisites": [
-    "kanji-grade2"
-  ]
+  "prerequisites": ["kanji-grade2"]
 }

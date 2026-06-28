@@ -16,97 +16,75 @@
     {
       "id": "b14c0cfe-7af6-5cfd-a373-1cc4d1a3ae84",
       "question": "「あさい」の「あさ」を漢字で書いてください",
-      "choices": [
-        "浅"
-      ],
+      "choices": ["浅"],
       "correct": 0,
       "explanation": "「あさい」の「あさ」は「浅」と書く。深くないこと。「せん」（音読み）とも読む"
     },
     {
       "id": "76418f52-3a88-5b47-b648-9e5aa1326541",
       "question": "「たたかう」の「たたか」を漢字で書いてください",
-      "choices": [
-        "戦"
-      ],
+      "choices": ["戦"],
       "correct": 0,
       "explanation": "「たたかう」の「たたか」は「戦」と書く。争うこと・力で勝ち負けを決めること。「せん」（音読み）とも読む"
     },
     {
       "id": "80878d4c-2eda-51b5-97e4-5e16947ea31f",
       "question": "「しぜん」を漢字で書いてください",
-      "choices": [
-        "自然"
-      ],
+      "choices": ["自然"],
       "correct": 0,
       "explanation": "「しぜん」は「自然」と書く。山・川・空など人が作っていないもの"
     },
     {
       "id": "164b0059-02cd-563e-87f0-cf5a0730f911",
       "question": "「す」を漢字で書いてください（鳥や虫が住む場所）",
-      "choices": [
-        "巣"
-      ],
+      "choices": ["巣"],
       "correct": 0,
       "explanation": "「す」は「巣」と書く。鳥や虫が住む場所。「そう」（音読み）とも読む"
     },
     {
       "id": "65d20707-7bda-5dcd-9758-01c2716d5721",
       "question": "「たば」を漢字で書いてください",
-      "choices": [
-        "束"
-      ],
+      "choices": ["束"],
       "correct": 0,
       "explanation": "「たば」は「束」と書く。まとめてくくったもの。「そく」（音読み）とも読む"
     },
     {
       "id": "ca08748b-0fef-5fe5-9895-823e717f38aa",
       "question": "「がわ」を漢字で書いてください",
-      "choices": [
-        "側"
-      ],
+      "choices": ["側"],
       "correct": 0,
       "explanation": "「がわ」は「側」と書く。ある方向の面・横の部分。「そく」（音読み）とも読む"
     },
     {
       "id": "1ef83d36-4f11-56e1-92c2-e48718c21f12",
       "question": "「そつぎょう」を漢字で書いてください",
-      "choices": [
-        "卒業"
-      ],
+      "choices": ["卒業"],
       "correct": 0,
       "explanation": "「そつぎょう」は「卒業」と書く。学校の課程を終えること"
     },
     {
       "id": "29155e91-43a8-50af-9b45-d5ce22a02595",
       "question": "「まご」を漢字で書いてください",
-      "choices": [
-        "孫"
-      ],
+      "choices": ["孫"],
       "correct": 0,
       "explanation": "「まご」は「孫」と書く。子どもの子ども。「そん」（音読み）とも読む"
     },
     {
       "id": "84b3848b-253f-5ad5-864d-2045fd46b902",
       "question": "「おび」を漢字で書いてください",
-      "choices": [
-        "帯"
-      ],
+      "choices": ["帯"],
       "correct": 0,
       "explanation": "「おび」は「帯」と書く。着物を締める布。「たい」（音読み）とも読む"
     },
     {
       "id": "3504c20f-4c83-53ac-82f0-2e179880ff26",
       "question": "「たんご」を漢字で書いてください",
-      "choices": [
-        "単語"
-      ],
+      "choices": ["単語"],
       "correct": 0,
       "explanation": "「たんご」は「単語」と書く。一つひとつの言葉のまとまり"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade4-12/guide",
-  "prerequisites": [
-    "kanji-grade4"
-  ]
+  "prerequisites": ["kanji-grade4"]
 }

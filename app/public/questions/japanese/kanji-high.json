@@ -18,95 +18,73 @@
     {
       "id": "5a32452f-9ac6-50a0-8f88-85a4748dd00c",
       "question": "「逸脱」の読み方をひらがなで書いてください",
-      "choices": [
-        "いつだつ"
-      ],
+      "choices": ["いつだつ"],
       "correct": 0,
       "explanation": "逸脱（いつだつ）: 本来の道や範囲から外れること"
     },
     {
       "id": "c1a4bc74-b72f-5fd6-9f3c-c14164e3c374",
       "question": "「懸念」の読み方をひらがなで書いてください",
-      "choices": [
-        "けねん"
-      ],
+      "choices": ["けねん"],
       "correct": 0,
       "explanation": "懸念（けねん）: 心配・気がかりなこと"
     },
     {
       "id": "db4aca7b-4118-5de4-9efe-7705522558f5",
       "question": "「憂慮」の読み方をひらがなで書いてください",
-      "choices": [
-        "ゆうりょ"
-      ],
+      "choices": ["ゆうりょ"],
       "correct": 0,
       "explanation": "憂慮（ゆうりょ）: 心配して思い悩むこと"
     },
     {
       "id": "158789e2-b1ba-57d6-97eb-6c952814d95e",
       "question": "「鑑賞」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんしょう"
-      ],
+      "choices": ["かんしょう"],
       "correct": 0,
       "explanation": "鑑賞（かんしょう）: 芸術などを味わって楽しむこと"
     },
     {
       "id": "070713a7-ea3f-5c6a-9881-c363734293d9",
       "question": "「洗練」の読み方をひらがなで書いてください",
-      "choices": [
-        "せんれん"
-      ],
+      "choices": ["せんれん"],
       "correct": 0,
       "explanation": "洗練（せんれん）: 垢抜けて上品になること"
     },
     {
       "id": "a634c81d-6e13-5ace-8db2-fe70264ec5cf",
       "question": "「逡巡」の読み方をひらがなで書いてください",
-      "choices": [
-        "しゅんじゅん"
-      ],
+      "choices": ["しゅんじゅん"],
       "correct": 0,
       "explanation": "逡巡（しゅんじゅん）: ためらって行動できないこと"
     },
     {
       "id": "2b24dce1-6c8f-5b10-822e-c33e511a43d7",
       "question": "「欺く」の読み方をひらがなで書いてください",
-      "choices": [
-        "あざむ"
-      ],
+      "choices": ["あざむ"],
       "correct": 0,
       "explanation": "欺（あざむ）く: だますこと。「ぎ」（音読み）とも読む"
     },
     {
       "id": "8b76308a-5064-56ad-9fc7-4211a14f1843",
       "question": "「恣意」の読み方をひらがなで書いてください",
-      "choices": [
-        "しい"
-      ],
+      "choices": ["しい"],
       "correct": 0,
       "explanation": "恣意（しい）: 自分勝手な考え方・思いのままに行動すること"
     },
     {
       "id": "e9ff6df6-0271-5201-ae27-5d94dd11a638",
       "question": "「弊害」の読み方をひらがなで書いてください",
-      "choices": [
-        "へいがい"
-      ],
+      "choices": ["へいがい"],
       "correct": 0,
       "explanation": "弊害（へいがい）: 悪い影響・障害となること"
     },
     {
       "id": "bc36ad3f-2f5d-56ea-b65a-8d5a80991241",
       "question": "「冗長」の読み方をひらがなで書いてください",
-      "choices": [
-        "じょうちょう"
-      ],
+      "choices": ["じょうちょう"],
       "correct": 0,
       "explanation": "冗長（じょうちょう）: 必要以上に長くてくどいこと"
     }
   ],
-  "prerequisites": [
-    "kanji-secondary"
-  ]
+  "prerequisites": ["kanji-secondary"]
 }

@@ -16,97 +16,75 @@
     {
       "id": "ab7e49da-4cc2-50ed-b133-d215e6232d6e",
       "question": "「こうぞう」を漢字で書いてください",
-      "choices": [
-        "構造"
-      ],
+      "choices": ["構造"],
       "correct": 0,
       "explanation": "「こうぞう」は「構造」と書く。物の組み立てや仕組みのこと"
     },
     {
       "id": "4b65d69d-745b-52f2-acf5-0bb549bed570",
       "question": "「さいよう」を漢字で書いてください",
-      "choices": [
-        "採用"
-      ],
+      "choices": ["採用"],
       "correct": 0,
       "explanation": "「さいよう」は「採用」と書く。取り入れること・採り上げること"
     },
     {
       "id": "e25e955f-2c12-5a0c-9ab8-7733c88aa451",
       "question": "「そくてい」を漢字で書いてください",
-      "choices": [
-        "測定"
-      ],
+      "choices": ["測定"],
       "correct": 0,
       "explanation": "「そくてい」は「測定」と書く。計って数値で表すこと"
     },
     {
       "id": "bd7ece09-343f-5fa6-a569-0823b5e32d55",
       "question": "「ひかく」を漢字で書いてください",
-      "choices": [
-        "比較"
-      ],
+      "choices": ["比較"],
       "correct": 0,
       "explanation": "「ひかく」は「比較」と書く。二つ以上のものを比べること"
     },
     {
       "id": "3bada21e-8a66-5874-9fe3-2fa88944613d",
       "question": "「とうけい」を漢字で書いてください",
-      "choices": [
-        "統計"
-      ],
+      "choices": ["統計"],
       "correct": 0,
       "explanation": "「とうけい」は「統計」と書く。数をまとめて表した資料"
     },
     {
       "id": "b93794e5-ee6f-58c1-b250-f4304688e36e",
       "question": "「あつりょく」を漢字で書いてください",
-      "choices": [
-        "圧力"
-      ],
+      "choices": ["圧力"],
       "correct": 0,
       "explanation": "「あつりょく」は「圧力」と書く。押す力のこと"
     },
     {
       "id": "0192cea8-2bd6-5899-a904-8bed7248eaa8",
       "question": "「いどう」を漢字で書いてください",
-      "choices": [
-        "移動"
-      ],
+      "choices": ["移動"],
       "correct": 0,
       "explanation": "「いどう」は「移動」と書く。場所を変えること"
     },
     {
       "id": "0c4d4ee3-42d8-512c-9422-bde8707b2c46",
       "question": "「えいえん」を漢字で書いてください",
-      "choices": [
-        "永遠"
-      ],
+      "choices": ["永遠"],
       "correct": 0,
       "explanation": "「えいえん」は「永遠」と書く。限りなく続くこと"
     },
     {
       "id": "1cc94d7e-c1ca-5fa1-8539-4ae15fc80c2c",
       "question": "「えんそう」を漢字で書いてください",
-      "choices": [
-        "演奏"
-      ],
+      "choices": ["演奏"],
       "correct": 0,
       "explanation": "「えんそう」は「演奏」と書く。楽器を弾いて音楽を奏でること"
     },
     {
       "id": "0f2cba2a-bdf1-5643-9af4-9af9602399b7",
       "question": "「おうよう」を漢字で書いてください",
-      "choices": [
-        "応用"
-      ],
+      "choices": ["応用"],
       "correct": 0,
       "explanation": "「おうよう」は「応用」と書く。原則を別の場面で使うこと"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade5-2/guide",
-  "prerequisites": [
-    "kanji-grade5"
-  ]
+  "prerequisites": ["kanji-grade5"]
 }

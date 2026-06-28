@@ -18,23 +18,17 @@
     {
       "id": "0f53aca5-dcc7-59d0-b988-bf458d90f40f",
       "question": "「規律」の「律」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "りつ"
-      ],
+      "choices": ["りつ"],
       "correct": 0,
       "explanation": "律（りつ）: 決まり・ルールのこと。規律・法律などに使う"
     },
     {
       "id": "ebb592d4-2324-5537-9e83-bf921cfaed20",
       "question": "「臨む」の「臨」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "のぞ"
-      ],
+      "choices": ["のぞ"],
       "correct": 0,
       "explanation": "臨（のぞ）む: ある場に向き合うこと・臨場感。「りん」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade5"
-  ]
+  "prerequisites": ["kanji-grade5"]
 }

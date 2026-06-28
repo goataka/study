@@ -18,95 +18,73 @@
     {
       "id": "e0de19c2-a6e6-58e9-9c4b-8a5d5949a801",
       "question": "「命令」の読み方をひらがなで書いてください",
-      "choices": [
-        "めいれい"
-      ],
+      "choices": ["めいれい"],
       "correct": 0,
       "explanation": "命令（めいれい）: 上の人が下の人に言いつけること"
     },
     {
       "id": "5cd584f2-c4e0-525f-8424-0cdb82140020",
       "question": "「冷たい」の「冷」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "つめ"
-      ],
+      "choices": ["つめ"],
       "correct": 0,
       "explanation": "冷（つめ）たい: 温度が低いこと。「れい」（音読み）とも読む"
     },
     {
       "id": "8c45f316-d5c8-523c-8e94-29855d791c91",
       "question": "「例えば」の「例」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "たと"
-      ],
+      "choices": ["たと"],
       "correct": 0,
       "explanation": "例（たと）えば: 説明のために示すこと。「れい」（音読み）とも読む"
     },
     {
       "id": "1cf1d39a-f74d-5a18-9658-f370e2264856",
       "question": "「連れる」の「連」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "つ"
-      ],
+      "choices": ["つ"],
       "correct": 0,
       "explanation": "連（つ）れる: 一緒に連れていくこと。「れん」（音読み）とも読む"
     },
     {
       "id": "66eaf41d-3552-5987-9161-9a982dff2c57",
       "question": "「老いる」の「老」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "お"
-      ],
+      "choices": ["お"],
       "correct": 0,
       "explanation": "老（お）いる: 年をとること。「ろう」（音読み）とも読む"
     },
     {
       "id": "09dd29d3-26f0-5012-b279-510a82e650b6",
       "question": "「苦労」の読み方をひらがなで書いてください",
-      "choices": [
-        "くろう"
-      ],
+      "choices": ["くろう"],
       "correct": 0,
       "explanation": "苦労（くろう）: 苦しみながら努力すること"
     },
     {
       "id": "59b5f267-81ee-561b-8b79-eb2cef6759aa",
       "question": "「不思議」の「不」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "ふ"
-      ],
+      "choices": ["ふ"],
       "correct": 0,
       "explanation": "不（ふ）: 否定を表す接頭語。「不思議」「不可能」などに使う"
     },
     {
       "id": "c70cb75e-5e4c-5a96-beae-0b08a37b9ded",
       "question": "「付ける」の「付」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "つ"
-      ],
+      "choices": ["つ"],
       "correct": 0,
       "explanation": "付（つ）ける: くっつけること。「ふ」（音読み）とも読む"
     },
     {
       "id": "66fcef1c-56cc-5ae4-8268-98bbbccd3776",
       "question": "「兵士」の「兵」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "へい"
-      ],
+      "choices": ["へい"],
       "correct": 0,
       "explanation": "兵（へい）: 軍人・戦士のこと。「兵士」「兵器」などに使う"
     },
     {
       "id": "a761c1b0-0c8f-54e4-8589-0f5e1bdcf7e5",
       "question": "「別れる」の「別」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "わか"
-      ],
+      "choices": ["わか"],
       "correct": 0,
       "explanation": "別（わか）れる: 離れること。「べつ」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

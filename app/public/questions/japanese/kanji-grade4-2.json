@@ -18,95 +18,73 @@
     {
       "id": "73376b80-5430-56b1-b6df-5dc5ce5b9391",
       "question": "「達成」の読み方をひらがなで書いてください",
-      "choices": [
-        "たっせい"
-      ],
+      "choices": ["たっせい"],
       "correct": 0,
       "explanation": "達成（たっせい）: 目標を成し遂げること"
     },
     {
       "id": "f58f91f5-307a-5c4f-9647-1ca025f098aa",
       "question": "「無事」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぶじ"
-      ],
+      "choices": ["ぶじ"],
       "correct": 0,
       "explanation": "無事（ぶじ）: 問題なく安全なこと"
     },
     {
       "id": "3bf57cce-bf2c-5767-854d-1d333b1eacf0",
       "question": "「位置」の読み方をひらがなで書いてください",
-      "choices": [
-        "いち"
-      ],
+      "choices": ["いち"],
       "correct": 0,
       "explanation": "位置（いち）: どこにあるかを表すこと"
     },
     {
       "id": "fe0a5750-8bab-5679-a304-ad5c4b948f27",
       "question": "「周辺」の読み方をひらがなで書いてください",
-      "choices": [
-        "しゅうへん"
-      ],
+      "choices": ["しゅうへん"],
       "correct": 0,
       "explanation": "周辺（しゅうへん）: まわりのこと"
     },
     {
       "id": "99013ab8-8896-5f19-b219-c76ce8377907",
       "question": "「完成」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんせい"
-      ],
+      "choices": ["かんせい"],
       "correct": 0,
       "explanation": "完成（かんせい）: できあがること"
     },
     {
       "id": "e28357b9-6190-562f-9cea-7a5c486f8cf2",
       "question": "「英語」の読み方をひらがなで書いてください",
-      "choices": [
-        "えいご"
-      ],
+      "choices": ["えいご"],
       "correct": 0,
       "explanation": "英語（えいご）: イギリスやアメリカで使われる言語"
     },
     {
       "id": "7e5a26b0-30f0-5d63-8e59-c88cc7670947",
       "question": "「塩」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "しお"
-      ],
+      "choices": ["しお"],
       "correct": 0,
       "explanation": "塩（しお）: 料理に使う白い調味料。「えん」（音読み）とも読む"
     },
     {
       "id": "511e0f3e-2b2a-5fea-a294-46410b49fdcb",
       "question": "「加える」の「加」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くわ"
-      ],
+      "choices": ["くわ"],
       "correct": 0,
       "explanation": "加（くわ）える: 付け足すこと。「か」（音読み）とも読む"
     },
     {
       "id": "7f5285ac-bc12-5974-84cb-448975becea6",
       "question": "「果物」の読み方をひらがなで書いてください",
-      "choices": [
-        "くだもの"
-      ],
+      "choices": ["くだもの"],
       "correct": 0,
       "explanation": "果物（くだもの）: リンゴやバナナなどの食べ物"
     },
     {
       "id": "69299730-14fa-5e8b-a2b4-21f7da4aa109",
       "question": "「覚える」の「覚」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おぼ"
-      ],
+      "choices": ["おぼ"],
       "correct": 0,
       "explanation": "覚（おぼ）える: 記憶すること。「かく」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

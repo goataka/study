@@ -18,95 +18,73 @@
     {
       "id": "0a51ea0e-09da-5ff9-8188-1fc60ca7e641",
       "question": "「明るい」の「明」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あか"
-      ],
+      "choices": ["あか"],
       "correct": 0,
       "explanation": "明（あか）るい: 光が多いこと。「めい」（音読み）とも読む"
     },
     {
       "id": "442e2d5b-4d63-562d-b0f3-363029736d37",
       "question": "「暗い」の「暗」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くら"
-      ],
+      "choices": ["くら"],
       "correct": 0,
       "explanation": "暗（くら）い: 光が少ないこと。「あん」（音読み）とも読む"
     },
     {
       "id": "12775e00-4256-52a8-a3ce-cbbe8e11c84b",
       "question": "「始まる」の「始」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はじ"
-      ],
+      "choices": ["はじ"],
       "correct": 0,
       "explanation": "始（はじ）まる: 物事が始まること。「し」（音読み）とも読む"
     },
     {
       "id": "19bcb60f-8d37-53f3-92e5-f539afae9fdd",
       "question": "「終わる」の「終」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "お"
-      ],
+      "choices": ["お"],
       "correct": 0,
       "explanation": "終（お）わる: 物事が終わること。「しゅう」（音読み）とも読む"
     },
     {
       "id": "9b3930cb-aee7-5615-8fec-1a80c7d98db8",
       "question": "「泳ぐ」の「泳」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "およ"
-      ],
+      "choices": ["およ"],
       "correct": 0,
       "explanation": "泳（およ）ぐ: 水の中を進むこと。「えい」（音読み）とも読む"
     },
     {
       "id": "77eeae7b-bccd-52b5-93e2-c4bc5de65673",
       "question": "「練習」の読み方をひらがなで書いてください",
-      "choices": [
-        "れんしゅう"
-      ],
+      "choices": ["れんしゅう"],
       "correct": 0,
       "explanation": "練習（れんしゅう）: くり返して上達すること"
     },
     {
       "id": "a1dbbd3f-f9ac-5da5-8281-a3d5c5e9b069",
       "question": "「世界」の読み方をひらがなで書いてください",
-      "choices": [
-        "せかい"
-      ],
+      "choices": ["せかい"],
       "correct": 0,
       "explanation": "世界（せかい）: 地球全体のこと"
     },
     {
       "id": "fdc07d3e-45bd-5654-bfcc-e940c745dd10",
       "question": "「感じる」の「感」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かん"
-      ],
+      "choices": ["かん"],
       "correct": 0,
       "explanation": "感（かん）じる: 心で受け止めること。「かん」（音読み）とも読む"
     },
     {
       "id": "0f2ed406-d6fa-57b8-a3ce-e14d54bb0ca9",
       "question": "「悲しい」の「悲」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かな"
-      ],
+      "choices": ["かな"],
       "correct": 0,
       "explanation": "悲（かな）しい: 悲しい気持ち。「ひ」（音読み）とも読む"
     },
     {
       "id": "51a85838-886f-5320-a5c7-8f49e8ebdc50",
       "question": "「楽しい」の「楽」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "たの"
-      ],
+      "choices": ["たの"],
       "correct": 0,
       "explanation": "楽（たの）しい: 楽しい気持ち。「がく」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade2"
-  ]
+  "prerequisites": ["kanji-grade2"]
 }

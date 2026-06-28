@@ -18,95 +18,73 @@
     {
       "id": "4c213bb1-eeae-5007-8c8f-216b62eca711",
       "question": "「官庁」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんちょう"
-      ],
+      "choices": ["かんちょう"],
       "correct": 0,
       "explanation": "官庁（かんちょう）: 国の政府の役所"
     },
     {
       "id": "f243cd71-a5a4-59d0-a667-2bff3bc71f33",
       "question": "「世紀」の読み方をひらがなで書いてください",
-      "choices": [
-        "せいき"
-      ],
+      "choices": ["せいき"],
       "correct": 0,
       "explanation": "世紀（せいき）: 100年間のこと。1世紀・21世紀など"
     },
     {
       "id": "5b7f86c6-a9bd-5bbd-905f-7c3fc213f14b",
       "question": "「喜ぶ」の「喜」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "よろこ"
-      ],
+      "choices": ["よろこ"],
       "correct": 0,
       "explanation": "喜（よろこ）ぶ: 嬉しく思うこと。「き」（音読み）とも読む"
     },
     {
       "id": "318cc250-d7f2-574a-9958-1fb052a5911c",
       "question": "「旗」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はた"
-      ],
+      "choices": ["はた"],
       "correct": 0,
       "explanation": "旗（はた）: 棒に布を付けた目印。「き」（音読み）とも読む"
     },
     {
       "id": "f3f13201-47f2-5b2a-90e5-7480f7bf98c8",
       "question": "「器」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "うつわ"
-      ],
+      "choices": ["うつわ"],
       "correct": 0,
       "explanation": "器（うつわ）: 物を入れる容器。「き」（音読み）とも読む"
     },
     {
       "id": "6f5773be-0372-520b-ab46-5fdcd031253b",
       "question": "「泣く」の「泣」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "な"
-      ],
+      "choices": ["な"],
       "correct": 0,
       "explanation": "泣（な）く: 涙を流すこと。「きゅう」（音読み）とも読む"
     },
     {
       "id": "2ffb72eb-46f3-5d96-839f-c21fd26dd0db",
       "question": "「救う」の「救」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "すく"
-      ],
+      "choices": ["すく"],
       "correct": 0,
       "explanation": "救（すく）う: 危険から助けること。「きゅう」（音読み）とも読む"
     },
     {
       "id": "a96254e9-7c6f-5fcb-b9be-547fbb3aeee4",
       "question": "「共に」の「共」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とも"
-      ],
+      "choices": ["とも"],
       "correct": 0,
       "explanation": "共（とも）に: 一緒に・ともに。「きょう」（音読み）とも読む"
     },
     {
       "id": "88d6aaaf-d1da-57e2-a56c-f68572a1838c",
       "question": "「鏡」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かがみ"
-      ],
+      "choices": ["かがみ"],
       "correct": 0,
       "explanation": "鏡（かがみ）: 姿を映すもの。「きょう」（音読み）とも読む"
     },
     {
       "id": "cb75c2dd-c3f1-56e3-a93f-84511e4e63b3",
       "question": "「極める」の「極」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "きわ"
-      ],
+      "choices": ["きわ"],
       "correct": 0,
       "explanation": "極（きわ）める: 限界まで追求すること。「きょく」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

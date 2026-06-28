@@ -16,70 +16,54 @@
     {
       "id": "41add052-8c5b-5a37-8549-918dc6ea6588",
       "question": "「りつ」を漢字で書いてください",
-      "choices": [
-        "律"
-      ],
+      "choices": ["律"],
       "correct": 0,
       "explanation": "「りつ」は「律」と書く。守るべききまり・リズムのこと。「規律」（きりつ）は守るべき決まり"
     },
     {
       "id": "b1734b01-e94d-5529-b10b-27c008566555",
       "question": "「とどまる」の「とど」を漢字で書いてください",
-      "choices": [
-        "留"
-      ],
+      "choices": ["留"],
       "correct": 0,
       "explanation": "「とどまる」の「とど」は「留」と書く。動かずにいること・そこに残ること。「りゅう」「る」（音読み）とも読む"
     },
     {
       "id": "f205b5e7-e988-577f-910a-c1af1776eea4",
       "question": "「いきおい」の「いきお」を漢字で書いてください",
-      "choices": [
-        "勢"
-      ],
+      "choices": ["勢"],
       "correct": 0,
       "explanation": "「いきおい」の「いきお」は「勢」と書く。力強い様子・勢力のこと。「せい」（音読み）とも読む"
     },
     {
       "id": "cf6662b8-f805-5750-a1bd-8f37a2f4b949",
       "question": "「ささえる」の「ささ」を漢字で書いてください",
-      "choices": [
-        "支"
-      ],
+      "choices": ["支"],
       "correct": 0,
       "explanation": "「ささえる」の「ささ」は「支」と書く。下から支えること。「し」（音読み）とも読む"
     },
     {
       "id": "70a1294d-026f-5338-aba6-235d5f8a512e",
       "question": "「おる」の「お」を漢字で書いてください",
-      "choices": [
-        "織"
-      ],
+      "choices": ["織"],
       "correct": 0,
       "explanation": "「おる」の「お」は「織」と書く。糸を組み合わせて布を作ること。「しょく」（音読み）とも読む"
     },
     {
       "id": "735b1890-8be6-5170-af1e-601837953e9c",
       "question": "「し」を漢字で書いてください（元手・資源のこと）",
-      "choices": [
-        "資"
-      ],
+      "choices": ["資"],
       "correct": 0,
       "explanation": "「し」は「資」と書く。元手・資源のこと。「資源」「資料」などに使う"
     },
     {
       "id": "e451c9f5-272b-5d99-8167-0ecf4a1cd9da",
       "question": "「かぎる」の「かぎ」を漢字で書いてください",
-      "choices": [
-        "限"
-      ],
+      "choices": ["限"],
       "correct": 0,
       "explanation": "「かぎる」の「かぎ」は「限」と書く。範囲を決めること。「げん」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade5-18/guide",
-  "prerequisites": [
-    "kanji-grade5"
-  ]
+  "prerequisites": ["kanji-grade5"]
 }

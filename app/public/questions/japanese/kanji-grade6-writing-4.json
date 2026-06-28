@@ -16,97 +16,75 @@
     {
       "id": "524620de-8b79-5103-ba29-050377f4d055",
       "question": "「わかい」の「わか」を漢字で書いてください",
-      "choices": [
-        "若"
-      ],
+      "choices": ["若"],
       "correct": 0,
       "explanation": "「わかい」の「わか」は「若」と書く。年齢が少ないこと。「じゃく」（音読み）とも読む"
     },
     {
       "id": "00b7da1f-86a6-5b08-98ec-2aa9ca1799e5",
       "question": "「おさめる」の「おさ」を漢字で書いてください",
-      "choices": [
-        "収"
-      ],
+      "choices": ["収"],
       "correct": 0,
       "explanation": "「おさめる」の「おさ」は「収」と書く。中に入れること・まとめること。「しゅう」（音読み）とも読む"
     },
     {
       "id": "5958c98b-8aa9-5942-bb21-9678911bb981",
       "question": "「したがう」の「したが」を漢字で書いてください",
-      "choices": [
-        "従"
-      ],
+      "choices": ["従"],
       "correct": 0,
       "explanation": "「したがう」の「したが」は「従」と書く。言うことを聞いて行動すること。「じゅう」（音読み）とも読む"
     },
     {
       "id": "8eaebb63-eef0-5ca5-a390-bfe6114f13c1",
       "question": "「そんざい」を漢字で書いてください",
-      "choices": [
-        "存在"
-      ],
+      "choices": ["存在"],
       "correct": 0,
       "explanation": "「そんざい」は「存在」と書く。物や人がそこにあること"
     },
     {
       "id": "8942cd88-2ebe-5fcc-84d6-a0c5049f6bf3",
       "question": "「そんちょう」を漢字で書いてください",
-      "choices": [
-        "尊重"
-      ],
+      "choices": ["尊重"],
       "correct": 0,
       "explanation": "「そんちょう」は「尊重」と書く。大切にすること・敬うこと"
     },
     {
       "id": "9a891378-ca42-5ceb-a654-515acdf2910f",
       "question": "「たんじょう」を漢字で書いてください",
-      "choices": [
-        "誕生"
-      ],
+      "choices": ["誕生"],
       "correct": 0,
       "explanation": "「たんじょう」は「誕生」と書く。生まれること"
     },
     {
       "id": "11758b87-64c5-5156-a83a-3a42c6dc4fb3",
       "question": "「あたたかい」の「あたた」を漢字で書いてください",
-      "choices": [
-        "暖"
-      ],
+      "choices": ["暖"],
       "correct": 0,
       "explanation": "「あたたかい」の「あたた」は「暖」と書く。少し熱く感じる気温のこと。「だん」（音読み）とも読む"
     },
     {
       "id": "5acdbf04-8ee4-5dc7-a7f7-101ddc35eb67",
       "question": "「ちゅうじつ」を漢字で書いてください",
-      "choices": [
-        "忠実"
-      ],
+      "choices": ["忠実"],
       "correct": 0,
       "explanation": "「ちゅうじつ」は「忠実」と書く。真心をもって忠誠を尽くすこと"
     },
     {
       "id": "1d1964f6-e489-5368-91e9-a3b0da4e909d",
       "question": "「てんじ」を漢字で書いてください",
-      "choices": [
-        "展示"
-      ],
+      "choices": ["展示"],
       "correct": 0,
       "explanation": "「てんじ」は「展示」と書く。人に見せるために並べること"
     },
     {
       "id": "6ad4c822-1b9d-5336-acff-97c68d55a7ab",
       "question": "「みとめる」の「みと」を漢字で書いてください",
-      "choices": [
-        "認"
-      ],
+      "choices": ["認"],
       "correct": 0,
       "explanation": "「みとめる」の「みと」は「認」と書く。正しいと判断すること。「にん」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade6-4/guide",
-  "prerequisites": [
-    "kanji-grade6"
-  ]
+  "prerequisites": ["kanji-grade6"]
 }

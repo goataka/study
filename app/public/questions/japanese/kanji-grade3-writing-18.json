@@ -16,97 +16,75 @@
     {
       "id": "0319b920-8f66-58af-a113-b4d8dc3b7b4e",
       "question": "「よし」を漢字で書いてください",
-      "choices": [
-        "由"
-      ],
+      "choices": ["由"],
       "correct": 0,
       "explanation": "「よし」は「由」と書く。理由・経緯のこと。「ゆ」「ゆう」（音読み）とも読む"
     },
     {
       "id": "8f7667e9-f678-53ed-898f-3d52879dab5a",
       "question": "「あぶら」を漢字で書いてください",
-      "choices": [
-        "油"
-      ],
+      "choices": ["油"],
       "correct": 0,
       "explanation": "「あぶら」は「油」と書く。料理などに使う液体。「ゆ」（音読み）とも読む"
     },
     {
       "id": "63babd39-fb6d-5bee-b312-1b5341587986",
       "question": "「ある」の「あ」を漢字で書いてください（存在すること）",
-      "choices": [
-        "有"
-      ],
+      "choices": ["有"],
       "correct": 0,
       "explanation": "「ある」の「あ」は「有」と書く。存在すること。「ゆう」（音読み）とも読む"
     },
     {
       "id": "846220fb-02d4-5e97-be01-2f8114d62a17",
       "question": "「あそぶ」の「あそ」を漢字で書いてください",
-      "choices": [
-        "遊"
-      ],
+      "choices": ["遊"],
       "correct": 0,
       "explanation": "「あそぶ」の「あそ」は「遊」と書く。楽しく過ごすこと。「ゆう」（音読み）とも読む"
     },
     {
       "id": "e734baa6-a993-5d25-8e5d-94f3978f77c2",
       "question": "「よ」を漢字で書いてください（予定 の「よ」）",
-      "choices": [
-        "予"
-      ],
+      "choices": ["予"],
       "correct": 0,
       "explanation": "「予定」の「よ」（「よ」）は「予」と書く。前もって決めること。「予定」「予習」など"
     },
     {
       "id": "22b6d8bd-9a11-5f6d-bc7d-a3b6d01ee4e7",
       "question": "「ひつじ」を漢字で書いてください",
-      "choices": [
-        "羊"
-      ],
+      "choices": ["羊"],
       "correct": 0,
       "explanation": "「ひつじ」は「羊」と書く。毛のある動物。「よう」（音読み）とも読む"
     },
     {
       "id": "dcf5f71a-0296-5f89-80a6-66dceb7c154d",
       "question": "「よう」を漢字で書いてください（西洋・海のこと）",
-      "choices": [
-        "洋"
-      ],
+      "choices": ["洋"],
       "correct": 0,
       "explanation": "「よう」は「洋」と書く。西洋・海のこと。「洋服」「太平洋」など"
     },
     {
       "id": "c0c7d2f9-02dd-5c50-b8d4-3d02af359478",
       "question": "「は」を漢字で書いてください（植物の葉っぱ）",
-      "choices": [
-        "葉"
-      ],
+      "choices": ["葉"],
       "correct": 0,
       "explanation": "「は」は「葉」と書く。植物の葉っぱ。「よう」（音読み）とも読む"
     },
     {
       "id": "6217be55-ab79-5a6b-af9b-285e7a8fa7d1",
       "question": "「よう」を漢字で書いてください（太陽・明るいこと）",
-      "choices": [
-        "陽"
-      ],
+      "choices": ["陽"],
       "correct": 0,
       "explanation": "「よう」は「陽」と書く。太陽・明るいこと。「太陽」「陽気」など"
     },
     {
       "id": "4c231759-bb21-5502-8555-847976a000ca",
       "question": "「おちる」の「お」を漢字で書いてください（下に落ちること）",
-      "choices": [
-        "落"
-      ],
+      "choices": ["落"],
       "correct": 0,
       "explanation": "「おちる」の「お」は「落」と書く。下に落ちること。「らく」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade3-18/guide",
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

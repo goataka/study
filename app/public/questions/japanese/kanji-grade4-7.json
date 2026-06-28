@@ -18,95 +18,73 @@
     {
       "id": "7d5a9c4e-7f5a-561c-8970-24ff5f59e823",
       "question": "「案内」の読み方をひらがなで書いてください",
-      "choices": [
-        "あんない"
-      ],
+      "choices": ["あんない"],
       "correct": 0,
       "explanation": "案内（あんない）: 道や場所を教えること"
     },
     {
       "id": "50ca632b-7771-5b90-9263-9ac00545c89e",
       "question": "「以上」の読み方をひらがなで書いてください",
-      "choices": [
-        "いじょう"
-      ],
+      "choices": ["いじょう"],
       "correct": 0,
       "explanation": "以上（いじょう）: それより多いか同じであること"
     },
     {
       "id": "6784e4bb-bf6b-530f-91c6-a0ea3a5b6255",
       "question": "「囲む」の「囲」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かこ"
-      ],
+      "choices": ["かこ"],
       "correct": 0,
       "explanation": "囲（かこ）む: まわりを取り囲むこと。「い」（音読み）とも読む"
     },
     {
       "id": "92d80fd7-1890-5d25-91bd-ba6e41fa3ccb",
       "question": "「栄える」の「栄」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "さか"
-      ],
+      "choices": ["さか"],
       "correct": 0,
       "explanation": "栄（さか）える: 勢いよく育つこと。「えい」（音読み）とも読む"
     },
     {
       "id": "1170b92f-88f7-533b-8fa2-3c33c634b6aa",
       "question": "「一億」の読み方をひらがなで書いてください",
-      "choices": [
-        "いちおく"
-      ],
+      "choices": ["いちおく"],
       "correct": 0,
       "explanation": "一億（いちおく）: 一万の一万倍の数"
     },
     {
       "id": "7d3d3074-ca13-584a-9d76-5d7bf983c3b3",
       "question": "「貨物」の読み方をひらがなで書いてください",
-      "choices": [
-        "かもつ"
-      ],
+      "choices": ["かもつ"],
       "correct": 0,
       "explanation": "貨物（かもつ）: 船や電車で運ぶ荷物・品物"
     },
     {
       "id": "bfc8de11-353b-5e32-9c1f-2f75f5008e8d",
       "question": "「課題」の読み方をひらがなで書いてください",
-      "choices": [
-        "かだい"
-      ],
+      "choices": ["かだい"],
       "correct": 0,
       "explanation": "課題（かだい）: 取り組むべき問題・しなければならないこと"
     },
     {
       "id": "fb86daf6-7f6b-5813-b21f-61531308cda2",
       "question": "「芽」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "め"
-      ],
+      "choices": ["め"],
       "correct": 0,
       "explanation": "芽（め）: 植物が芽吹くときの小さな部分。「が」（音読み）とも読む"
     },
     {
       "id": "73e1be31-ea19-54fa-89b4-509530a42042",
       "question": "「改める」の「改」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あらた"
-      ],
+      "choices": ["あらた"],
       "correct": 0,
       "explanation": "改（あらた）める: 悪いところを直してよくすること。「かい」（音読み）とも読む"
     },
     {
       "id": "7dc8725f-d83c-525b-b8b6-f11568a76235",
       "question": "「機械」の読み方をひらがなで書いてください",
-      "choices": [
-        "きかい"
-      ],
+      "choices": ["きかい"],
       "correct": 0,
       "explanation": "機械（きかい）: 動力で動く装置・道具"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

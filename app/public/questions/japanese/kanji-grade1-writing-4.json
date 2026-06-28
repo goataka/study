@@ -16,97 +16,75 @@
     {
       "id": "bae2c3ae-42a0-5601-9025-418582f15312",
       "question": "「ひとつ」の「ひと」を漢字で書いてください（数の1のこと）",
-      "choices": [
-        "一"
-      ],
+      "choices": ["一"],
       "correct": 0,
       "explanation": "「ひとつ」の「ひと」は「一」と書く。数の1のこと。「いち」（音読み）とも読む"
     },
     {
       "id": "f36ea150-3cdd-5fdb-9e5c-820b999e4215",
       "question": "「あめ」を漢字で書いてください",
-      "choices": [
-        "雨"
-      ],
+      "choices": ["雨"],
       "correct": 0,
       "explanation": "「あめ」は「雨」と書く。空から水が降ってくること。「う」（音読み）とも読む"
     },
     {
       "id": "a341d7f3-761b-5df3-89f8-63457c21fec6",
       "question": "「えん」を漢字で書いてください",
-      "choices": [
-        "円"
-      ],
+      "choices": ["円"],
       "correct": 0,
       "explanation": "「えん」は「円」と書く。日本のお金の単位。まるい形のこと"
     },
     {
       "id": "99f4b7d6-f160-5fd9-b1b6-9adcf65916fa",
       "question": "「おう」を漢字で書いてください",
-      "choices": [
-        "王"
-      ],
+      "choices": ["王"],
       "correct": 0,
       "explanation": "「おう」は「王」と書く。国を治める人のこと"
     },
     {
       "id": "c56cedd3-1790-5af2-92d3-1ebda2c8112a",
       "question": "「おと」を漢字で書いてください",
-      "choices": [
-        "音"
-      ],
+      "choices": ["音"],
       "correct": 0,
       "explanation": "「おと」は「音」と書く。聞こえるもののこと。「おん」（音読み）とも読む"
     },
     {
       "id": "b2c22907-9c04-5413-8ebd-9eb021738f42",
       "question": "「かい」を漢字で書いてください",
-      "choices": [
-        "貝"
-      ],
+      "choices": ["貝"],
       "correct": 0,
       "explanation": "「かい」は「貝」と書く。海や川に住む、かたい殻を持つ生き物のこと"
     },
     {
       "id": "5dbbd7a6-5a0c-5427-a380-32491aa8a395",
       "question": "「き」を漢字で書いてください（空気や気持ちを表す）",
-      "choices": [
-        "気"
-      ],
+      "choices": ["気"],
       "correct": 0,
       "explanation": "「き」は「気」と書く。空気や気持ちを表す。「元気」「天気」などに使う"
     },
     {
       "id": "d239e524-61a4-5530-8803-cb81670b9c59",
       "question": "「ここのつ」の「ここの」を漢字で書いてください",
-      "choices": [
-        "九"
-      ],
+      "choices": ["九"],
       "correct": 0,
       "explanation": "「ここのつ」の「ここの」は「九」と書く。数の9のこと。「く」「きゅう」（音読み）とも読む"
     },
     {
       "id": "878af576-967e-5ce4-84c3-362219fb53fb",
       "question": "「やすむ」の「やす」を漢字で書いてください",
-      "choices": [
-        "休"
-      ],
+      "choices": ["休"],
       "correct": 0,
       "explanation": "「やすむ」の「やす」は「休」と書く。仕事や勉強をやめてゆっくりすること。「きゅう」（音読み）とも読む"
     },
     {
       "id": "f293bd88-b2ea-587d-be62-07b8bd2d9a52",
       "question": "「たま」を漢字で書いてください",
-      "choices": [
-        "玉"
-      ],
+      "choices": ["玉"],
       "correct": 0,
       "explanation": "「たま」は「玉」と書く。丸い形のもの。宝石のこと。「ぎょく」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade1-4/guide",
-  "prerequisites": [
-    "kanji-grade1"
-  ]
+  "prerequisites": ["kanji-grade1"]
 }

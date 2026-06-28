@@ -18,95 +18,73 @@
     {
       "id": "1ff10f2f-f692-5ec5-8747-acd0b6a1d89e",
       "question": "「息」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いき"
-      ],
+      "choices": ["いき"],
       "correct": 0,
       "explanation": "息（いき）: 呼吸のこと。「そく」（音読み）とも読む"
     },
     {
       "id": "46864af4-d2f4-5cf3-88d8-3f3af9a70745",
       "question": "「速い」の「速」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はや"
-      ],
+      "choices": ["はや"],
       "correct": 0,
       "explanation": "速（はや）い: スピードが大きいこと。「そく」（音読み）とも読む"
     },
     {
       "id": "15ac3495-1137-5785-9ae7-8047c40f0e36",
       "question": "「家族」の読み方をひらがなで書いてください",
-      "choices": [
-        "かぞく"
-      ],
+      "choices": ["かぞく"],
       "correct": 0,
       "explanation": "家族（かぞく）: 一緒に暮らす親や兄弟などのこと"
     },
     {
       "id": "48e27f79-2b87-5573-85b2-ed4ce16a6730",
       "question": "「打つ」の「打」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "う"
-      ],
+      "choices": ["う"],
       "correct": 0,
       "explanation": "打（う）つ: たたくこと。「だ」（音読み）とも読む"
     },
     {
       "id": "3742a53f-7bf2-549a-9c23-17da4cf46868",
       "question": "「待つ」の「待」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ま"
-      ],
+      "choices": ["ま"],
       "correct": 0,
       "explanation": "待（ま）つ: 来るまでその場にいること。「たい」（音読み）とも読む"
     },
     {
       "id": "a13d865a-a0d0-5145-b9ea-18e5849dd89c",
       "question": "「代わる」の「代」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "か"
-      ],
+      "choices": ["か"],
       "correct": 0,
       "explanation": "代（か）わる: 別のものに変わること。「だい」（音読み）とも読む"
     },
     {
       "id": "3b7e5bb8-0551-5320-8a2e-c55a731313ae",
       "question": "「短い」の「短」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "みじか"
-      ],
+      "choices": ["みじか"],
       "correct": 0,
       "explanation": "短（みじか）い: 長さが少ないこと。「たん」（音読み）とも読む"
     },
     {
       "id": "101d121d-8303-58d9-b7fd-a33500eeebd5",
       "question": "「着る」の「着」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "き"
-      ],
+      "choices": ["き"],
       "correct": 0,
       "explanation": "着（き）る: 服を身につけること。「ちゃく」（音読み）とも読む"
     },
     {
       "id": "e63ca994-72c4-579e-b717-7d451ddcf974",
       "question": "「注意」の読み方をひらがなで書いてください",
-      "choices": [
-        "ちゅうい"
-      ],
+      "choices": ["ちゅうい"],
       "correct": 0,
       "explanation": "注意（ちゅうい）: 気をつけること"
     },
     {
       "id": "aea40239-9795-550f-853c-b1bd2e3d6bce",
       "question": "「調べる」の「調」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "しら"
-      ],
+      "choices": ["しら"],
       "correct": 0,
       "explanation": "調（しら）べる: 物事を確かめること。「ちょう」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade2"
-  ]
+  "prerequisites": ["kanji-grade2"]
 }

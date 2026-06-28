@@ -18,95 +18,73 @@
     {
       "id": "265d5c4d-8e39-5677-a726-f5b6b4d888d9",
       "question": "「影響」の読み方をひらがなで書いてください",
-      "choices": [
-        "えいきょう"
-      ],
+      "choices": ["えいきょう"],
       "correct": 0,
       "explanation": "影響（えいきょう）: あるものが別のものに変化をもたらすこと"
     },
     {
       "id": "4a5c7fe7-4b2c-5c81-a2bb-bd537a1127b1",
       "question": "「根拠」の読み方をひらがなで書いてください",
-      "choices": [
-        "こんきょ"
-      ],
+      "choices": ["こんきょ"],
       "correct": 0,
       "explanation": "根拠（こんきょ）: 判断や主張の基となる理由や証拠"
     },
     {
       "id": "1f7e1ca0-379c-56a2-b945-5b728af95102",
       "question": "「批評」の読み方をひらがなで書いてください",
-      "choices": [
-        "ひひょう"
-      ],
+      "choices": ["ひひょう"],
       "correct": 0,
       "explanation": "批評（ひひょう）: 物事のよしあしを判断して意見を述べること"
     },
     {
       "id": "1844a6d9-9890-5d36-aa69-e8d7acf311f4",
       "question": "「観点」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんてん"
-      ],
+      "choices": ["かんてん"],
       "correct": 0,
       "explanation": "観点（かんてん）: 物事を見る立場・視点"
     },
     {
       "id": "6c731a61-a5dc-5863-b6b0-d99f7fafb016",
       "question": "「立場」の読み方をひらがなで書いてください",
-      "choices": [
-        "たちば"
-      ],
+      "choices": ["たちば"],
       "correct": 0,
       "explanation": "立場（たちば）: その人が置かれている状況や役割・地位"
     },
     {
       "id": "4c4a1d63-3baa-5332-9c4d-76bab910a3c9",
       "question": "「対話」の読み方をひらがなで書いてください",
-      "choices": [
-        "たいわ"
-      ],
+      "choices": ["たいわ"],
       "correct": 0,
       "explanation": "対話（たいわ）: 向かい合って話し合うこと・ダイアログ"
     },
     {
       "id": "3296cc7a-6616-5c67-86b3-f4ae15195a0c",
       "question": "「協力」の読み方をひらがなで書いてください",
-      "choices": [
-        "きょうりょく"
-      ],
+      "choices": ["きょうりょく"],
       "correct": 0,
       "explanation": "協力（きょうりょく）: 力を合わせて物事に取り組むこと"
     },
     {
       "id": "b6cabf71-8528-5a14-96d6-cc074714f45f",
       "question": "「秩序」の読み方をひらがなで書いてください",
-      "choices": [
-        "ちつじょ"
-      ],
+      "choices": ["ちつじょ"],
       "correct": 0,
       "explanation": "秩序（ちつじょ）: 社会や物事が正しく整っている状態・決まりある順序"
     },
     {
       "id": "455d2428-632d-5e7b-9227-f778e638bf66",
       "question": "「自由」の読み方をひらがなで書いてください",
-      "choices": [
-        "じゆう"
-      ],
+      "choices": ["じゆう"],
       "correct": 0,
       "explanation": "自由（じゆう）: 他から束縛されず自分の意思で行動できること"
     },
     {
       "id": "7a3f1f2e-41bc-5f28-b0bd-8b0bc62eca86",
       "question": "「平等」の読み方をひらがなで書いてください",
-      "choices": [
-        "びょうどう"
-      ],
+      "choices": ["びょうどう"],
       "correct": 0,
       "explanation": "平等（びょうどう）: すべての人が同じ扱いを受けること"
     }
   ],
-  "prerequisites": [
-    "kanji-grade6"
-  ]
+  "prerequisites": ["kanji-grade6"]
 }

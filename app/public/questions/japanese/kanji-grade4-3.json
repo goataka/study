@@ -18,95 +18,73 @@
     {
       "id": "3e8b5f1a-2244-5cf4-8601-e504072b0abe",
       "question": "「関係」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんけい"
-      ],
+      "choices": ["かんけい"],
       "correct": 0,
       "explanation": "関係（かんけい）: 物事どうしのつながり"
     },
     {
       "id": "3130b5cb-db8c-52cb-8e05-210c056c52c8",
       "question": "「願う」の「願」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ねが"
-      ],
+      "choices": ["ねが"],
       "correct": 0,
       "explanation": "願（ねが）う: こうなってほしいと思うこと。「がん」（音読み）とも読む"
     },
     {
       "id": "bd0728ea-cbdd-53a6-9382-6d69cd00aab3",
       "question": "「機会」の読み方をひらがなで書いてください",
-      "choices": [
-        "きかい"
-      ],
+      "choices": ["きかい"],
       "correct": 0,
       "explanation": "機会（きかい）: ちょうどよいとき・チャンス"
     },
     {
       "id": "792591bd-b2f5-5366-91b5-7636c76fb0e3",
       "question": "「議員」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぎいん"
-      ],
+      "choices": ["ぎいん"],
       "correct": 0,
       "explanation": "議員（ぎいん）: 議会で議論する代表者"
     },
     {
       "id": "45a22ce5-541c-5500-a2ac-ba810e481d03",
       "question": "「求める」の「求」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "もと"
-      ],
+      "choices": ["もと"],
       "correct": 0,
       "explanation": "求（もと）める: 必要なものを得ようとすること。「きゅう」（音読み）とも読む"
     },
     {
       "id": "e775ede3-18fb-565b-a190-263e5747548b",
       "question": "「競争」の読み方をひらがなで書いてください",
-      "choices": [
-        "きょうそう"
-      ],
+      "choices": ["きょうそう"],
       "correct": 0,
       "explanation": "競争（きょうそう）: 勝ち負けを争うこと"
     },
     {
       "id": "3296cc7a-6616-5c67-86b3-f4ae15195a0c",
       "question": "「協力」の読み方をひらがなで書いてください",
-      "choices": [
-        "きょうりょく"
-      ],
+      "choices": ["きょうりょく"],
       "correct": 0,
       "explanation": "協力（きょうりょく）: いっしょに力を合わせること"
     },
     {
       "id": "b06fed56-8cd5-501c-882f-19492ad72a0e",
       "question": "「健康」の読み方をひらがなで書いてください",
-      "choices": [
-        "けんこう"
-      ],
+      "choices": ["けんこう"],
       "correct": 0,
       "explanation": "健康（けんこう）: 体が元気な状態"
     },
     {
       "id": "2d5690c8-d9a7-5adb-beab-f33fdd1121cd",
       "question": "「経験」の読み方をひらがなで書いてください",
-      "choices": [
-        "けいけん"
-      ],
+      "choices": ["けいけん"],
       "correct": 0,
       "explanation": "経験（けいけん）: 実際に体験すること"
     },
     {
       "id": "1a8e6fd6-2adb-57f6-a22e-2bf20092635b",
       "question": "「最初」の読み方をひらがなで書いてください",
-      "choices": [
-        "さいしょ"
-      ],
+      "choices": ["さいしょ"],
       "correct": 0,
       "explanation": "最初（さいしょ）: 一番はじめのこと"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

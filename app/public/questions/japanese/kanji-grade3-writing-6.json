@@ -16,97 +16,75 @@
     {
       "id": "e290b627-795b-5761-8416-e1547fce618e",
       "question": "「つぎ」を漢字で書いてください",
-      "choices": [
-        "次"
-      ],
+      "choices": ["次"],
       "correct": 0,
       "explanation": "「つぎ」は「次」と書く。その後に来るもの。「じ」（音読み）とも読む"
     },
     {
       "id": "a8bb3cdf-65a6-5162-b840-0854ee010aed",
       "question": "「もつ」の「も」を漢字で書いてください",
-      "choices": [
-        "持"
-      ],
+      "choices": ["持"],
       "correct": 0,
       "explanation": "「もつ」の「も」は「持」と書く。手でにぎること。「じ」（音読み）とも読む"
     },
     {
       "id": "9fccbb71-9f77-5258-b4c5-23eb52eb4736",
       "question": "「まもる」の「まも」を漢字で書いてください",
-      "choices": [
-        "守"
-      ],
+      "choices": ["守"],
       "correct": 0,
       "explanation": "「まもる」の「まも」は「守」と書く。悪いことから防ぐこと。「しゅ」（音読み）とも読む"
     },
     {
       "id": "d8fac5a2-a39b-574a-b262-e75a4a6fffd1",
       "question": "「とる」の「と」を漢字で書いてください（手でつかむこと）",
-      "choices": [
-        "取"
-      ],
+      "choices": ["取"],
       "correct": 0,
       "explanation": "「とる」の「と」は「取」と書く。手でつかむこと。「しゅ」（音読み）とも読む"
     },
     {
       "id": "a3b79ec4-11a6-5d6d-962a-ada0d55dc262",
       "question": "「さけ」を漢字で書いてください",
-      "choices": [
-        "酒"
-      ],
+      "choices": ["酒"],
       "correct": 0,
       "explanation": "「さけ」は「酒」と書く。アルコールを含む飲み物。「しゅ」（音読み）とも読む"
     },
     {
       "id": "98719f4d-a149-50a2-bcb1-8a33dc17b427",
       "question": "「あつまる」の「あつ」を漢字で書いてください（一か所にあつまること）",
-      "choices": [
-        "集"
-      ],
+      "choices": ["集"],
       "correct": 0,
       "explanation": "「あつまる」の「あつ」は「集」と書く。一か所にあつまること。「しゅう」（音読み）とも読む"
     },
     {
       "id": "a46cc46f-775a-57a3-b338-efea2a8bf842",
       "question": "「すむ」の「す」を漢字で書いてください",
-      "choices": [
-        "住"
-      ],
+      "choices": ["住"],
       "correct": 0,
       "explanation": "「すむ」の「す」は「住」と書く。ある場所でくらすこと。「じゅう」（音読み）とも読む"
     },
     {
       "id": "85dc2a56-d77a-5884-b9ab-b26c7c119a30",
       "question": "「おもい」の「おも」を漢字で書いてください",
-      "choices": [
-        "重"
-      ],
+      "choices": ["重"],
       "correct": 0,
       "explanation": "「おもい」の「おも」は「重」と書く。重さがあること。「じゅう」（音読み）とも読む"
     },
     {
       "id": "d852e9c4-dd94-5351-86ad-32cba5a4e35c",
       "question": "「ところ」を漢字で書いてください",
-      "choices": [
-        "所"
-      ],
+      "choices": ["所"],
       "correct": 0,
       "explanation": "「ところ」は「所」と書く。場所のこと。「しょ」（音読み）とも読む"
     },
     {
       "id": "9a126d73-e688-58e9-b494-cee6090e7078",
       "question": "「あつい」の「あつ」を漢字で書いてください（気温が高くて熱く感じること）",
-      "choices": [
-        "暑"
-      ],
+      "choices": ["暑"],
       "correct": 0,
       "explanation": "「あつい」の「あつ」は「暑」と書く。気温が高くて熱く感じること。「しょ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade3-6/guide",
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

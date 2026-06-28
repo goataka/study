@@ -18,95 +18,73 @@
     {
       "id": "b0ebb25d-b202-581a-b1ef-f3f03151ba4e",
       "question": "「概念」の読み方をひらがなで書いてください",
-      "choices": [
-        "がいねん"
-      ],
+      "choices": ["がいねん"],
       "correct": 0,
       "explanation": "概念（がいねん）: 物事の大まかな考え方・意味のこと"
     },
     {
       "id": "cdb3eef8-4f91-5557-b91f-01a6d4ebed07",
       "question": "「抽象」の読み方をひらがなで書いてください",
-      "choices": [
-        "ちゅうしょう"
-      ],
+      "choices": ["ちゅうしょう"],
       "correct": 0,
       "explanation": "抽象（ちゅうしょう）: 具体的ではなく、一般的・観念的なこと"
     },
     {
       "id": "b7a19b1b-c77d-53d6-8a94-2a13d7e24987",
       "question": "「歴史」の読み方をひらがなで書いてください",
-      "choices": [
-        "れきし"
-      ],
+      "choices": ["れきし"],
       "correct": 0,
       "explanation": "歴史（れきし）: 過去に起きた出来事の記録"
     },
     {
       "id": "8b2f0dfa-60c4-5c4a-9e59-0c186ae4ed08",
       "question": "「経済」の読み方をひらがなで書いてください",
-      "choices": [
-        "けいざい"
-      ],
+      "choices": ["けいざい"],
       "correct": 0,
       "explanation": "経済（けいざい）: 生産・流通・消費にかかわる活動全体"
     },
     {
       "id": "e67f816f-14ae-5e61-8202-29eb0f519b7b",
       "question": "「議会」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぎかい"
-      ],
+      "choices": ["ぎかい"],
       "correct": 0,
       "explanation": "議会（ぎかい）: 選ばれた代表が話し合う機関"
     },
     {
       "id": "07ccafe5-66e7-5094-9f07-5b3dfa8eade7",
       "question": "「環境」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんきょう"
-      ],
+      "choices": ["かんきょう"],
       "correct": 0,
       "explanation": "環境（かんきょう）: 生き物を取り巻く自然や社会の条件"
     },
     {
       "id": "552c56e9-2b92-5cbb-934d-726230847e32",
       "question": "「文化」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぶんか"
-      ],
+      "choices": ["ぶんか"],
       "correct": 0,
       "explanation": "文化（ぶんか）: 人々の生活や考え方、芸術などの総体"
     },
     {
       "id": "1f5b5513-2f06-59e1-bdae-8f8dc1619b6c",
       "question": "「伝統」の読み方をひらがなで書いてください",
-      "choices": [
-        "でんとう"
-      ],
+      "choices": ["でんとう"],
       "correct": 0,
       "explanation": "伝統（でんとう）: 昔から受け継がれてきた習慣や文化"
     },
     {
       "id": "67868cd5-5873-5ca2-94aa-d6d30693f02d",
       "question": "「道徳」の読み方をひらがなで書いてください",
-      "choices": [
-        "どうとく"
-      ],
+      "choices": ["どうとく"],
       "correct": 0,
       "explanation": "道徳（どうとく）: 人としてのあるべき行動の規範"
     },
     {
       "id": "075b1246-3015-5482-a55c-cb3cdbc2ee7f",
       "question": "「進化」の読み方をひらがなで書いてください",
-      "choices": [
-        "しんか"
-      ],
+      "choices": ["しんか"],
       "correct": 0,
       "explanation": "進化（しんか）: 生物が世代を経て変化していくこと"
     }
   ],
-  "prerequisites": [
-    "kanji-grade6"
-  ]
+  "prerequisites": ["kanji-grade6"]
 }

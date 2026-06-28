@@ -18,95 +18,73 @@
     {
       "id": "6d1c0d67-4509-5b81-b77d-fe558c966ff1",
       "question": "「印」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "しるし"
-      ],
+      "choices": ["しるし"],
       "correct": 0,
       "explanation": "印（しるし）: 目印となるマーク。「いん」（音読み）とも読む"
     },
     {
       "id": "45ea6811-fc0d-5ace-8991-17dfb1ad6ce6",
       "question": "「衣類」の読み方をひらがなで書いてください",
-      "choices": [
-        "いるい"
-      ],
+      "choices": ["いるい"],
       "correct": 0,
       "explanation": "衣類（いるい）: 服のこと"
     },
     {
       "id": "91f3698e-3289-5421-b9c9-be61e403ca9f",
       "question": "「景色」の読み方をひらがなで書いてください",
-      "choices": [
-        "けしき"
-      ],
+      "choices": ["けしき"],
       "correct": 0,
       "explanation": "景色（けしき）: 自然の眺めのこと"
     },
     {
       "id": "29e76902-a688-5615-9efd-2fbcfd42f2b3",
       "question": "「各自」の読み方をひらがなで書いてください",
-      "choices": [
-        "かくじ"
-      ],
+      "choices": ["かくじ"],
       "correct": 0,
       "explanation": "各自（かくじ）: それぞれの人"
     },
     {
       "id": "428f0834-2fb3-5ee6-9249-ec63a5212f70",
       "question": "「管理」の読み方をひらがなで書いてください",
-      "choices": [
-        "かんり"
-      ],
+      "choices": ["かんり"],
       "correct": 0,
       "explanation": "管理（かんり）: 物事をしっかり扱うこと"
     },
     {
       "id": "d358aa06-7722-5706-b9a5-cf752b5cad16",
       "question": "「軍隊」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぐんたい"
-      ],
+      "choices": ["ぐんたい"],
       "correct": 0,
       "explanation": "軍隊（ぐんたい）: 国を守るための兵士の集まり"
     },
     {
       "id": "a3f0d7bf-1d97-57ca-9b7d-8531885c9b8b",
       "question": "「訓練」の読み方をひらがなで書いてください",
-      "choices": [
-        "くんれん"
-      ],
+      "choices": ["くんれん"],
       "correct": 0,
       "explanation": "訓練（くんれん）: くり返し練習して上達すること"
     },
     {
       "id": "ddeecfe4-2597-51f3-80df-e25f59396636",
       "question": "「積む」の「積」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "つ"
-      ],
+      "choices": ["つ"],
       "correct": 0,
       "explanation": "積（つ）む: 重ねて高くすること。「せき」（音読み）とも読む"
     },
     {
       "id": "e0949653-cbad-51c1-9182-e0dbae1ddabd",
       "question": "「説明」の読み方をひらがなで書いてください",
-      "choices": [
-        "せつめい"
-      ],
+      "choices": ["せつめい"],
       "correct": 0,
       "explanation": "説明（せつめい）: 物事をわかりやすく伝えること"
     },
     {
       "id": "11b9ab4e-3914-5e2e-b19f-14257835ad67",
       "question": "「倉庫」の読み方をひらがなで書いてください",
-      "choices": [
-        "そうこ"
-      ],
+      "choices": ["そうこ"],
       "correct": 0,
       "explanation": "倉庫（そうこ）: 物をしまっておく建物"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

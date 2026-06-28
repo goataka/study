@@ -16,97 +16,75 @@
     {
       "id": "4a22a30b-431d-59db-a128-d61f8874abd8",
       "question": "「がいねん」を漢字で書いてください",
-      "choices": [
-        "概念"
-      ],
+      "choices": ["概念"],
       "correct": 0,
       "explanation": "「がいねん」は「概念」と書く。物事の大まかな考え方・意味のこと"
     },
     {
       "id": "8cd7f2d8-1542-55cb-a2f2-94b619ab1717",
       "question": "「ちゅうしょう」を漢字で書いてください",
-      "choices": [
-        "抽象"
-      ],
+      "choices": ["抽象"],
       "correct": 0,
       "explanation": "「ちゅうしょう」は「抽象」と書く。具体的ではなく、一般的・観念的なこと"
     },
     {
       "id": "143308e7-bffe-54ec-8702-d3bae3215017",
       "question": "「れきし」を漢字で書いてください",
-      "choices": [
-        "歴史"
-      ],
+      "choices": ["歴史"],
       "correct": 0,
       "explanation": "「れきし」は「歴史」と書く。過去に起きた出来事の記録"
     },
     {
       "id": "7ab14efc-a563-5448-8368-4719267cb7e7",
       "question": "「けいざい」を漢字で書いてください",
-      "choices": [
-        "経済"
-      ],
+      "choices": ["経済"],
       "correct": 0,
       "explanation": "「けいざい」は「経済」と書く。生産・流通・消費にかかわる活動全体"
     },
     {
       "id": "7caf603c-0e34-556c-b7da-1a7db7576b8c",
       "question": "「ぎかい」を漢字で書いてください",
-      "choices": [
-        "議会"
-      ],
+      "choices": ["議会"],
       "correct": 0,
       "explanation": "「ぎかい」は「議会」と書く。選ばれた代表が話し合う機関"
     },
     {
       "id": "b78f7a01-6f56-5bf5-ade5-798e36262e94",
       "question": "「かんきょう」を漢字で書いてください",
-      "choices": [
-        "環境"
-      ],
+      "choices": ["環境"],
       "correct": 0,
       "explanation": "「かんきょう」は「環境」と書く。生き物を取り巻く自然や社会の条件"
     },
     {
       "id": "9824898c-0923-5f6c-bfb9-b0d3d36509f4",
       "question": "「ぶんか」を漢字で書いてください",
-      "choices": [
-        "文化"
-      ],
+      "choices": ["文化"],
       "correct": 0,
       "explanation": "「ぶんか」は「文化」と書く。人々の生活や考え方、芸術などの総体"
     },
     {
       "id": "6e638765-3516-5cd5-9412-66da84043b1d",
       "question": "「でんとう」を漢字で書いてください",
-      "choices": [
-        "伝統"
-      ],
+      "choices": ["伝統"],
       "correct": 0,
       "explanation": "「でんとう」は「伝統」と書く。昔から受け継がれてきた習慣や文化"
     },
     {
       "id": "c93b5aef-a6da-5474-a47d-8175272438a2",
       "question": "「どうとく」を漢字で書いてください",
-      "choices": [
-        "道徳"
-      ],
+      "choices": ["道徳"],
       "correct": 0,
       "explanation": "「どうとく」は「道徳」と書く。人としてのあるべき行動の規範"
     },
     {
       "id": "bbf11e56-31f4-538c-a78b-816b9e950604",
       "question": "「しんか」を漢字で書いてください",
-      "choices": [
-        "進化"
-      ],
+      "choices": ["進化"],
       "correct": 0,
       "explanation": "「しんか」は「進化」と書く。生物が世代を経て変化していくこと"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-secondary/guide",
-  "prerequisites": [
-    "kanji-secondary"
-  ]
+  "prerequisites": ["kanji-secondary"]
 }

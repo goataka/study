@@ -16,97 +16,75 @@
     {
       "id": "35416641-82cc-5f24-9484-04889dfc5a38",
       "question": "「はな」を漢字で書いてください",
-      "choices": [
-        "花"
-      ],
+      "choices": ["花"],
       "correct": 0,
       "explanation": "「はな」は「花」と書く。植物が咲かせるもの。「か」（音読み）とも読む"
     },
     {
       "id": "9217a6cc-195e-59b3-a628-8071d2a8ad78",
       "question": "「くさ」を漢字で書いてください",
-      "choices": [
-        "草"
-      ],
+      "choices": ["草"],
       "correct": 0,
       "explanation": "「くさ」は「草」と書く。地面に生える植物のこと"
     },
     {
       "id": "e5cfe2df-e532-5efc-9c9b-4764f43eac60",
       "question": "「もり」を漢字で書いてください",
-      "choices": [
-        "森"
-      ],
+      "choices": ["森"],
       "correct": 0,
       "explanation": "「もり」は「森」と書く。木がたくさん生えている場所のこと"
     },
     {
       "id": "420d9a4b-1c34-55a0-a2ea-5e9c197acfb4",
       "question": "「いし」を漢字で書いてください",
-      "choices": [
-        "石"
-      ],
+      "choices": ["石"],
       "correct": 0,
       "explanation": "「いし」は「石」と書く。岩の小さなもの。「せき」（音読み）とも読む"
     },
     {
       "id": "9afcfa5c-f25c-52d0-a37e-ea4696924b4f",
       "question": "「め」を漢字で書いてください",
-      "choices": [
-        "目"
-      ],
+      "choices": ["目"],
       "correct": 0,
       "explanation": "「め」は「目」と書く。見るための器官。「もく」（音読み）とも読む"
     },
     {
       "id": "c03e96aa-e819-56e9-9b16-c6e8aab5ee85",
       "question": "「くち」を漢字で書いてください",
-      "choices": [
-        "口"
-      ],
+      "choices": ["口"],
       "correct": 0,
       "explanation": "「くち」は「口」と書く。食べたり話したりする器官。「こう」（音読み）とも読む"
     },
     {
       "id": "6f781b9a-715e-5f53-b633-b62cbfa1c5c7",
       "question": "「て」を漢字で書いてください",
-      "choices": [
-        "手"
-      ],
+      "choices": ["手"],
       "correct": 0,
       "explanation": "「て」は「手」と書く。物をつかむ体の部分。「しゅ」（音読み）とも読む"
     },
     {
       "id": "5632e6c1-b8a8-5c06-8c48-cc06a8c41c80",
       "question": "「あし」を漢字で書いてください",
-      "choices": [
-        "足"
-      ],
+      "choices": ["足"],
       "correct": 0,
       "explanation": "「あし」は「足」と書く。歩くための体の部分。「そく」（音読み）とも読む"
     },
     {
       "id": "648674e0-6239-583d-b243-90a8c8affcf7",
       "question": "「がっこう」を漢字で書いてください",
-      "choices": [
-        "学校"
-      ],
+      "choices": ["学校"],
       "correct": 0,
       "explanation": "「がっこう」は「学校」と書く。勉強をする場所のこと"
     },
     {
       "id": "06a47ba8-8ee5-56a0-8c85-0597833b73a8",
       "question": "「せんせい」を漢字で書いてください",
-      "choices": [
-        "先生"
-      ],
+      "choices": ["先生"],
       "correct": 0,
       "explanation": "「せんせい」は「先生」と書く。教えてくれる人のこと"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade1-2/guide",
-  "prerequisites": [
-    "kanji-grade1"
-  ]
+  "prerequisites": ["kanji-grade1"]
 }

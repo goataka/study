@@ -16,97 +16,75 @@
     {
       "id": "c33e5995-d60c-5005-b7d5-f376c9e2cc1a",
       "question": "「くるま」を漢字で書いてください",
-      "choices": [
-        "車"
-      ],
+      "choices": ["車"],
       "correct": 0,
       "explanation": "「くるま」は「車」と書く。乗り物のこと。「しゃ」（音読み）とも読む"
     },
     {
       "id": "d4d8a7b1-bf7c-5fe9-b2bd-a6c1fb24c221",
       "question": "「とお」を漢字で書いてください",
-      "choices": [
-        "十"
-      ],
+      "choices": ["十"],
       "correct": 0,
       "explanation": "「とお」は「十」と書く。数の10のこと。「じゅう」（音読み）とも読む"
     },
     {
       "id": "1ef12f73-4e91-5200-b694-bf86ef7888ce",
       "question": "「でる」の「で」を漢字で書いてください",
-      "choices": [
-        "出"
-      ],
+      "choices": ["出"],
       "correct": 0,
       "explanation": "「でる」の「で」は「出」と書く。中から外へ行くこと。「しゅつ」（音読み）とも読む"
     },
     {
       "id": "8761ab9c-154d-546c-9a95-ef5debb0df36",
       "question": "「おんな」を漢字で書いてください",
-      "choices": [
-        "女"
-      ],
+      "choices": ["女"],
       "correct": 0,
       "explanation": "「おんな」は「女」と書く。女性のこと。「じょ」「にょ」（音読み）とも読む"
     },
     {
       "id": "134a0e6f-d6ff-56b2-a8fd-3bdf96fc4bbe",
       "question": "「ひと」を漢字で書いてください（人間のこと）",
-      "choices": [
-        "人"
-      ],
+      "choices": ["人"],
       "correct": 0,
       "explanation": "「ひと」は「人」と書く。人間のこと。「じん」「にん」（音読み）とも読む"
     },
     {
       "id": "0f573cd2-f04d-513f-9037-b2e79ba8f76c",
       "question": "「ただしい」の「ただ」を漢字で書いてください",
-      "choices": [
-        "正"
-      ],
+      "choices": ["正"],
       "correct": 0,
       "explanation": "「ただしい」の「ただ」は「正」と書く。間違いがないこと。「せい」「しょう」（音読み）とも読む"
     },
     {
       "id": "56444737-9966-525c-a298-8659bfa28d0e",
       "question": "「ゆう」を漢字で書いてください",
-      "choices": [
-        "夕"
-      ],
+      "choices": ["夕"],
       "correct": 0,
       "explanation": "「ゆう」は「夕」と書く。日が沈む頃の時間のこと。「夕方」「七夕」などに使う"
     },
     {
       "id": "2e405838-139e-5e40-abfa-ee81ab497644",
       "question": "「せん」を漢字で書いてください",
-      "choices": [
-        "千"
-      ],
+      "choices": ["千"],
       "correct": 0,
       "explanation": "「せん」は「千」と書く。数の1000のこと。「ち」（訓読み）とも読む"
     },
     {
       "id": "f1cad0c7-ae16-536a-864a-990f82d81104",
       "question": "「はやい」の「はや」を漢字で書いてください",
-      "choices": [
-        "早"
-      ],
+      "choices": ["早"],
       "correct": 0,
       "explanation": "「はやい」の「はや」は「早」と書く。時間がかからないこと、時刻が前であること。「そう」（音読み）とも読む"
     },
     {
       "id": "5b8d0fda-a943-5089-989e-544731873236",
       "question": "「むら」を漢字で書いてください",
-      "choices": [
-        "村"
-      ],
+      "choices": ["村"],
       "correct": 0,
       "explanation": "「むら」は「村」と書く。小さな集落のこと。「そん」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade1-6/guide",
-  "prerequisites": [
-    "kanji-grade1"
-  ]
+  "prerequisites": ["kanji-grade1"]
 }

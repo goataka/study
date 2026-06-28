@@ -16,25 +16,19 @@
     {
       "id": "82fbb48c-b669-582e-b977-0c7d4f87640c",
       "question": "「し」を漢字で書いてください",
-      "choices": [
-        "士"
-      ],
+      "choices": ["士"],
       "correct": 0,
       "explanation": "「し」は「士」と書く。武士・男性を指す言葉。「武士」「士気」などに使う"
     },
     {
       "id": "c4a7b837-d480-5e1c-b3ce-1e3e2aba52b9",
       "question": "「ひょう」を漢字で書いてください",
-      "choices": [
-        "標"
-      ],
+      "choices": ["標"],
       "correct": 0,
       "explanation": "「ひょう」は「標」と書く。目じるし・目標のこと。「目標」「標識」などに使う"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade4-16/guide",
-  "prerequisites": [
-    "kanji-grade4"
-  ]
+  "prerequisites": ["kanji-grade4"]
 }

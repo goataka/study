@@ -18,95 +18,73 @@
     {
       "id": "c94c5d80-8a7a-5b59-ae7a-935427065ddd",
       "question": "「可能性」の読み方をひらがなで書いてください",
-      "choices": [
-        "かのうせい"
-      ],
+      "choices": ["かのうせい"],
       "correct": 0,
       "explanation": "可能性（かのうせい）: できる見込みのこと"
     },
     {
       "id": "f4e28d12-dc13-5c04-949c-5fe04f19e842",
       "question": "「責任」の読み方をひらがなで書いてください",
-      "choices": [
-        "せきにん"
-      ],
+      "choices": ["せきにん"],
       "correct": 0,
       "explanation": "責任（せきにん）: 物事に対して負うべき義務"
     },
     {
       "id": "5428e434-2366-54f4-a705-677e336701bd",
       "question": "「判断」の読み方をひらがなで書いてください",
-      "choices": [
-        "はんだん"
-      ],
+      "choices": ["はんだん"],
       "correct": 0,
       "explanation": "判断（はんだん）: 物事の良し悪しを決めること"
     },
     {
       "id": "17ce17ad-be3a-5927-a7b3-df685af78f3c",
       "question": "「解決」の読み方をひらがなで書いてください",
-      "choices": [
-        "かいけつ"
-      ],
+      "choices": ["かいけつ"],
       "correct": 0,
       "explanation": "解決（かいけつ）: 問題を解き、うまくいくようにすること"
     },
     {
       "id": "940de278-1ff8-5b94-857b-37311255e4c4",
       "question": "「提案」の読み方をひらがなで書いてください",
-      "choices": [
-        "ていあん"
-      ],
+      "choices": ["ていあん"],
       "correct": 0,
       "explanation": "提案（ていあん）: 考えや計画を出すこと"
     },
     {
       "id": "9b0e95e4-a125-57c8-8d7c-2a823413575e",
       "question": "「確認」の読み方をひらがなで書いてください",
-      "choices": [
-        "かくにん"
-      ],
+      "choices": ["かくにん"],
       "correct": 0,
       "explanation": "確認（かくにん）: 確かめること"
     },
     {
       "id": "b3b1b9d5-8e84-50ed-a3ba-7ba38abe951f",
       "question": "「状況」の読み方をひらがなで書いてください",
-      "choices": [
-        "じょうきょう"
-      ],
+      "choices": ["じょうきょう"],
       "correct": 0,
       "explanation": "状況（じょうきょう）: 物事の様子・ありさま"
     },
     {
       "id": "9cb115b1-fb45-5815-810f-8c297c678a9f",
       "question": "「貢献」の読み方をひらがなで書いてください",
-      "choices": [
-        "こうけん"
-      ],
+      "choices": ["こうけん"],
       "correct": 0,
       "explanation": "貢献（こうけん）: 役に立つために力を尽くすこと"
     },
     {
       "id": "59fb87bb-1c9e-5894-bbba-a9346704f64d",
       "question": "「規則」の読み方をひらがなで書いてください",
-      "choices": [
-        "きそく"
-      ],
+      "choices": ["きそく"],
       "correct": 0,
       "explanation": "規則（きそく）: 守るべききまりのこと"
     },
     {
       "id": "ea367366-ca31-5001-81aa-65da2e00e90e",
       "question": "「技術」の読み方をひらがなで書いてください",
-      "choices": [
-        "ぎじゅつ"
-      ],
+      "choices": ["ぎじゅつ"],
       "correct": 0,
       "explanation": "技術（ぎじゅつ）: 物を作ったり、何かをするための専門的な能力"
     }
   ],
-  "prerequisites": [
-    "kanji-grade4"
-  ]
+  "prerequisites": ["kanji-grade4"]
 }

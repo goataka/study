@@ -16,97 +16,75 @@
     {
       "id": "b51e6ab1-a2a2-5cee-a898-c75d4750f274",
       "question": "「さんか」を漢字で書いてください",
-      "choices": [
-        "参加"
-      ],
+      "choices": ["参加"],
       "correct": 0,
       "explanation": "「さんか」は「参加」と書く。仲間に入ること"
     },
     {
       "id": "897e6814-6095-52df-91af-f9c4d5bffaeb",
       "question": "「さんぎょう」を漢字で書いてください",
-      "choices": [
-        "産業"
-      ],
+      "choices": ["産業"],
       "correct": 0,
       "explanation": "「さんぎょう」は「産業」と書く。物を作ったりサービスを提供する仕事"
     },
     {
       "id": "5b4ee6ee-f4ae-5deb-9fd5-aff6c21c2a03",
       "question": "「しあい」を漢字で書いてください",
-      "choices": [
-        "試合"
-      ],
+      "choices": ["試合"],
       "correct": 0,
       "explanation": "「しあい」は「試合」と書く。勝ち負けを決める競争"
     },
     {
       "id": "9e167d52-7bfa-5640-9490-55aa18d35bfa",
       "question": "「しっぱい」を漢字で書いてください",
-      "choices": [
-        "失敗"
-      ],
+      "choices": ["失敗"],
       "correct": 0,
       "explanation": "「しっぱい」は「失敗」と書く。うまくいかないこと"
     },
     {
       "id": "e5cb9744-ead9-512e-91ab-9146f517cf06",
       "question": "「しゅるい」を漢字で書いてください",
-      "choices": [
-        "種類"
-      ],
+      "choices": ["種類"],
       "correct": 0,
       "explanation": "「しゅるい」は「種類」と書く。種別や分類のこと"
     },
     {
       "id": "f7f79531-c068-5a97-98de-2b6784bc01d7",
       "question": "「じゅんばん」を漢字で書いてください",
-      "choices": [
-        "順番"
-      ],
+      "choices": ["順番"],
       "correct": 0,
       "explanation": "「じゅんばん」は「順番」と書く。決まった並びのこと"
     },
     {
       "id": "8c0a7c42-5c88-5f28-b856-e2885601424a",
       "question": "「わらう」の「わら」を漢字で書いてください",
-      "choices": [
-        "笑"
-      ],
+      "choices": ["笑"],
       "correct": 0,
       "explanation": "「わらう」の「わら」は「笑」と書く。おかしくて口もとがゆるむこと。「しょう」（音読み）とも読む"
     },
     {
       "id": "c3662017-860d-52d1-b3eb-1b99550fd8e1",
       "question": "「せいけつ」を漢字で書いてください",
-      "choices": [
-        "清潔"
-      ],
+      "choices": ["清潔"],
       "correct": 0,
       "explanation": "「せいけつ」は「清潔」と書く。きれいで汚れのないこと"
     },
     {
       "id": "1178630d-ee07-5ebc-9dde-5a4c6bf34b0c",
       "question": "「しずか」の「しず」を漢字で書いてください",
-      "choices": [
-        "静"
-      ],
+      "choices": ["静"],
       "correct": 0,
       "explanation": "「しずか」の「しず」は「静」と書く。音が少なくてやすらかなこと。「せい」（音読み）とも読む"
     },
     {
       "id": "d321ff08-55c8-59c7-82b1-03c853234a97",
       "question": "「せつやく」を漢字で書いてください",
-      "choices": [
-        "節約"
-      ],
+      "choices": ["節約"],
       "correct": 0,
       "explanation": "「せつやく」は「節約」と書く。無駄なく使うこと"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade4-4/guide",
-  "prerequisites": [
-    "kanji-grade4"
-  ]
+  "prerequisites": ["kanji-grade4"]
 }

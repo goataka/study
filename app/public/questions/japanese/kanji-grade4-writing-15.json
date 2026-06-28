@@ -16,97 +16,75 @@
     {
       "id": "aa4fd6e7-bd94-5336-900e-36c125260011",
       "question": "「めいれい」を漢字で書いてください",
-      "choices": [
-        "命令"
-      ],
+      "choices": ["命令"],
       "correct": 0,
       "explanation": "「めいれい」は「命令」と書く。上の人が下の人に言いつけること"
     },
     {
       "id": "30806837-924e-5746-9da2-586eb06bd17a",
       "question": "「つめたい」の「つめ」を漢字で書いてください",
-      "choices": [
-        "冷"
-      ],
+      "choices": ["冷"],
       "correct": 0,
       "explanation": "「つめたい」の「つめ」は「冷」と書く。温度が低いこと。「れい」（音読み）とも読む"
     },
     {
       "id": "bab6bf50-e23a-5415-b22a-a7d34735834d",
       "question": "「たとえば」の「たと」を漢字で書いてください",
-      "choices": [
-        "例"
-      ],
+      "choices": ["例"],
       "correct": 0,
       "explanation": "「たとえば」の「たと」は「例」と書く。説明のために示すこと。「れい」（音読み）とも読む"
     },
     {
       "id": "b6f8d3e6-7be7-5dbb-b18e-904451ec0ab1",
       "question": "「つれる」の「つ」を漢字で書いてください（一緒に連れていくこと）",
-      "choices": [
-        "連"
-      ],
+      "choices": ["連"],
       "correct": 0,
       "explanation": "「つれる」の「つ」は「連」と書く。一緒に連れていくこと。「れん」（音読み）とも読む"
     },
     {
       "id": "45be88be-8beb-599d-9e5c-22c14c730ffe",
       "question": "「おいる」の「お」を漢字で書いてください（年をとること）",
-      "choices": [
-        "老"
-      ],
+      "choices": ["老"],
       "correct": 0,
       "explanation": "「おいる」の「お」は「老」と書く。年をとること。「ろう」（音読み）とも読む"
     },
     {
       "id": "bad7eb9c-09b3-59f1-9c84-24e53d9accf8",
       "question": "「くろう」を漢字で書いてください",
-      "choices": [
-        "苦労"
-      ],
+      "choices": ["苦労"],
       "correct": 0,
       "explanation": "「くろう」は「苦労」と書く。苦しみながら努力すること"
     },
     {
       "id": "965b46cf-f5ef-5b53-9f52-c23161e5cab4",
       "question": "「ふ」を漢字で書いてください（否定を表す接頭語）",
-      "choices": [
-        "不"
-      ],
+      "choices": ["不"],
       "correct": 0,
       "explanation": "「ふ」は「不」と書く。否定を表す接頭語。「不思議」「不可能」などに使う"
     },
     {
       "id": "1c3a63a9-831d-51d0-b285-5a32f7d7e990",
       "question": "「つける」の「つ」を漢字で書いてください（くっつけること）",
-      "choices": [
-        "付"
-      ],
+      "choices": ["付"],
       "correct": 0,
       "explanation": "「つける」の「つ」は「付」と書く。くっつけること。「ふ」（音読み）とも読む"
     },
     {
       "id": "a105b51a-35e1-5b66-8e76-169b81254151",
       "question": "「へい」を漢字で書いてください",
-      "choices": [
-        "兵"
-      ],
+      "choices": ["兵"],
       "correct": 0,
       "explanation": "「へい」は「兵」と書く。軍人・戦士のこと。「兵士」「兵器」などに使う"
     },
     {
       "id": "8c7cfa91-4518-50c0-82d0-1ed130a0314a",
       "question": "「わかれる」の「わか」を漢字で書いてください",
-      "choices": [
-        "別"
-      ],
+      "choices": ["別"],
       "correct": 0,
       "explanation": "「わかれる」の「わか」は「別」と書く。離れること。「べつ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade4-15/guide",
-  "prerequisites": [
-    "kanji-grade4"
-  ]
+  "prerequisites": ["kanji-grade4"]
 }

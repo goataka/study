@@ -16,97 +16,75 @@
     {
       "id": "ba739611-5fb9-5ca1-bec5-fe93c00647ca",
       "question": "「まきば」を漢字で書いてください",
-      "choices": [
-        "牧場"
-      ],
+      "choices": ["牧場"],
       "correct": 0,
       "explanation": "「まきば」は「牧場」と書く。牛や馬などを育てる広い場所"
     },
     {
       "id": "29f9b342-b742-5e14-a3d7-0eca6f451217",
       "question": "「すえ」を漢字で書いてください",
-      "choices": [
-        "末"
-      ],
+      "choices": ["末"],
       "correct": 0,
       "explanation": "「すえ」は「末」と書く。最後・端のこと。「まつ」（音読み）とも読む"
     },
     {
       "id": "624dc5ce-edc5-5e79-af0e-552fec7878fb",
       "question": "「しみん」を漢字で書いてください",
-      "choices": [
-        "市民"
-      ],
+      "choices": ["市民"],
       "correct": 0,
       "explanation": "「しみん」は「市民」と書く。その市に住んでいる人"
     },
     {
       "id": "9987dcb0-0a00-5673-9f5c-24e44ebcea29",
       "question": "「ゆうき」を漢字で書いてください",
-      "choices": [
-        "勇気"
-      ],
+      "choices": ["勇気"],
       "correct": 0,
       "explanation": "「ゆうき」は「勇気」と書く。恐れずに立ち向かう気持ち"
     },
     {
       "id": "63babd39-fb6d-5bee-b312-1b5341587986",
       "question": "「ある」の「あ」を漢字で書いてください（存在すること）",
-      "choices": [
-        "有"
-      ],
+      "choices": ["有"],
       "correct": 0,
       "explanation": "「ある」の「あ」は「有」と書く。存在すること。「ゆう」（音読み）とも読む"
     },
     {
       "id": "db85479c-dbf3-59e8-805c-cacb4f528ab8",
       "question": "「あびる」の「あ」を漢字で書いてください（水や光などを体に受けること）",
-      "choices": [
-        "浴"
-      ],
+      "choices": ["浴"],
       "correct": 0,
       "explanation": "「あびる」の「あ」は「浴」と書く。水や光などを体に受けること。「よく」（音読み）とも読む"
     },
     {
       "id": "426c18a8-70cc-5296-b0e0-b870bc90799a",
       "question": "「りよう」を漢字で書いてください",
-      "choices": [
-        "利用"
-      ],
+      "choices": ["利用"],
       "correct": 0,
       "explanation": "「りよう」は「利用」と書く。役に立てて使うこと"
     },
     {
       "id": "f89458da-c463-5858-8691-27429789a6ed",
       "question": "「りくち」を漢字で書いてください",
-      "choices": [
-        "陸地"
-      ],
+      "choices": ["陸地"],
       "correct": 0,
       "explanation": "「りくち」は「陸地」と書く。海ではない土地のこと"
     },
     {
       "id": "149f71a8-4a06-5b22-9ea2-a38e6fdcec37",
       "question": "「よい」の「よ」を漢字で書いてください",
-      "choices": [
-        "良"
-      ],
+      "choices": ["良"],
       "correct": 0,
       "explanation": "「よい」の「よ」は「良」と書く。優れていること・すぐれていること。「りょう」（音読み）とも読む"
     },
     {
       "id": "296da7f3-4e1a-572f-aaf1-a7e7b0daebfe",
       "question": "「わ」を漢字で書いてください",
-      "choices": [
-        "輪"
-      ],
+      "choices": ["輪"],
       "correct": 0,
       "explanation": "「わ」は「輪」と書く。丸い形・円形のもの。「りん」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade4-14/guide",
-  "prerequisites": [
-    "kanji-grade4"
-  ]
+  "prerequisites": ["kanji-grade4"]
 }

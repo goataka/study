@@ -18,95 +18,73 @@
     {
       "id": "c090d2ae-d126-5207-bd50-5c01dd6bac22",
       "question": "「牧場」の読み方をひらがなで書いてください",
-      "choices": [
-        "まきば"
-      ],
+      "choices": ["まきば"],
       "correct": 0,
       "explanation": "牧場（まきば）: 牛や馬などを育てる広い場所"
     },
     {
       "id": "47eb1600-7296-5862-957a-c7a0916d8246",
       "question": "「末」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "すえ"
-      ],
+      "choices": ["すえ"],
       "correct": 0,
       "explanation": "末（すえ）: 最後・端のこと。「まつ」（音読み）とも読む"
     },
     {
       "id": "e32e44b3-2126-5e08-8562-8020b3079947",
       "question": "「市民」の読み方をひらがなで書いてください",
-      "choices": [
-        "しみん"
-      ],
+      "choices": ["しみん"],
       "correct": 0,
       "explanation": "市民（しみん）: その市に住んでいる人"
     },
     {
       "id": "fe537261-d9c5-5d36-ba63-0f04f377733b",
       "question": "「勇気」の読み方をひらがなで書いてください",
-      "choices": [
-        "ゆうき"
-      ],
+      "choices": ["ゆうき"],
       "correct": 0,
       "explanation": "勇気（ゆうき）: 恐れずに立ち向かう気持ち"
     },
     {
       "id": "e4c53454-ef28-54f0-a8e2-b3f5872f2782",
       "question": "「有る」の「有」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あ"
-      ],
+      "choices": ["あ"],
       "correct": 0,
       "explanation": "有（あ）る: 存在すること。「ゆう」（音読み）とも読む"
     },
     {
       "id": "f4780258-4993-5d7c-8383-ed684029f001",
       "question": "「浴びる」の「浴」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あ"
-      ],
+      "choices": ["あ"],
       "correct": 0,
       "explanation": "浴（あ）びる: 水や光などを体に受けること。「よく」（音読み）とも読む"
     },
     {
       "id": "78dacafb-2562-5ee2-bc51-825a8eb6a029",
       "question": "「利用」の読み方をひらがなで書いてください",
-      "choices": [
-        "りよう"
-      ],
+      "choices": ["りよう"],
       "correct": 0,
       "explanation": "利用（りよう）: 役に立てて使うこと"
     },
     {
       "id": "cb715e58-e87d-5d68-8586-08ea88a23c2a",
       "question": "「陸地」の読み方をひらがなで書いてください",
-      "choices": [
-        "りくち"
-      ],
+      "choices": ["りくち"],
       "correct": 0,
       "explanation": "陸地（りくち）: 海ではない土地のこと"
     },
     {
       "id": "b0db4dca-47f7-52ab-8512-27d624278000",
       "question": "「良い」の「良」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "よ"
-      ],
+      "choices": ["よ"],
       "correct": 0,
       "explanation": "良（よ）い: 優れていること・すぐれていること。「りょう」（音読み）とも読む"
     },
     {
       "id": "10e68af7-4901-56db-9dbb-5dacfd945790",
       "question": "「輪」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "わ"
-      ],
+      "choices": ["わ"],
       "correct": 0,
       "explanation": "輪（わ）: 丸い形・円形のもの。「りん」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

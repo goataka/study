@@ -18,95 +18,73 @@
     {
       "id": "37278414-ef4e-5cb1-88b4-24c3b791dffd",
       "question": "「選ぶ」の「選」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "えら"
-      ],
+      "choices": ["えら"],
       "correct": 0,
       "explanation": "選（えら）ぶ: いくつかの中から決めること。「せん」（音読み）とも読む"
     },
     {
       "id": "1213ad91-f5c3-574a-9f92-03318ccd8cab",
       "question": "「争う」の「争」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あらそ"
-      ],
+      "choices": ["あらそ"],
       "correct": 0,
       "explanation": "争（あらそ）う: 互いに張り合うこと。「そう」（音読み）とも読む"
     },
     {
       "id": "50dc87cb-5a9b-556c-91d8-7a6b73bab215",
       "question": "「続ける」の「続」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "つづ"
-      ],
+      "choices": ["つづ"],
       "correct": 0,
       "explanation": "続（つづ）ける: やめずに同じことをすること。「ぞく」（音読み）とも読む"
     },
     {
       "id": "1ab7340f-f466-5994-9086-590330a03b6a",
       "question": "「望む」の「望」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "のぞ"
-      ],
+      "choices": ["のぞ"],
       "correct": 0,
       "explanation": "望（のぞ）む: こうなってほしいと思うこと。「ぼう」（音読み）とも読む"
     },
     {
       "id": "363d636e-c9fe-56c2-ba82-b39f8d645166",
       "question": "「満足」の読み方をひらがなで書いてください",
-      "choices": [
-        "まんぞく"
-      ],
+      "choices": ["まんぞく"],
       "correct": 0,
       "explanation": "満足（まんぞく）: 不満がなく十分なこと"
     },
     {
       "id": "c68f2d36-d0ce-515c-9eed-271e9e57a099",
       "question": "「養う」の「養」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "やしな"
-      ],
+      "choices": ["やしな"],
       "correct": 0,
       "explanation": "養（やしな）う: 育てること。「よう」（音読み）とも読む"
     },
     {
       "id": "2761d481-badd-589f-a875-5887532d5ffd",
       "question": "「録音」の読み方をひらがなで書いてください",
-      "choices": [
-        "ろくおん"
-      ],
+      "choices": ["ろくおん"],
       "correct": 0,
       "explanation": "録音（ろくおん）: 音を記録すること"
     },
     {
       "id": "68730e21-8637-5482-8277-9b2c49765b45",
       "question": "「辺り」の「辺」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あた"
-      ],
+      "choices": ["あた"],
       "correct": 0,
       "explanation": "辺（あた）り: まわりのこと。「へん」（音読み）とも読む"
     },
     {
       "id": "9eee443e-ad95-551c-8f09-c5996aec2b36",
       "question": "「法律」の読み方をひらがなで書いてください",
-      "choices": [
-        "ほうりつ"
-      ],
+      "choices": ["ほうりつ"],
       "correct": 0,
       "explanation": "法律（ほうりつ）: 国が定めたきまり"
     },
     {
       "id": "25e97532-0ea5-56c5-990b-0c332ca29bac",
       "question": "「未来」の読み方をひらがなで書いてください",
-      "choices": [
-        "みらい"
-      ],
+      "choices": ["みらい"],
       "correct": 0,
       "explanation": "未来（みらい）: これから先のこと"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

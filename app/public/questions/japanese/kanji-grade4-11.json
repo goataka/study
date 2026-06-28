@@ -18,95 +18,73 @@
     {
       "id": "ce639a5d-8b90-55f2-a88e-4ddeb529df1a",
       "question": "「祝う」の「祝」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いわ"
-      ],
+      "choices": ["いわ"],
       "correct": 0,
       "explanation": "祝（いわ）う: おめでたいことを喜ぶこと。「しゅく」（音読み）とも読む"
     },
     {
       "id": "4f897d66-39a4-5885-aa8a-803306e86908",
       "question": "「松」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "まつ"
-      ],
+      "choices": ["まつ"],
       "correct": 0,
       "explanation": "松（まつ）: 冬も緑の常緑樹。「しょう」（音読み）とも読む"
     },
     {
       "id": "f51fdd27-8e2e-5421-8923-faafe0e101a3",
       "question": "「唱える」の「唱」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "とな"
-      ],
+      "choices": ["とな"],
       "correct": 0,
       "explanation": "唱（とな）える: 声に出して言うこと。「しょう」（音読み）とも読む"
     },
     {
       "id": "c369843a-ee94-53e6-adcb-56add578fed9",
       "question": "「焼く」の「焼」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "や"
-      ],
+      "choices": ["や"],
       "correct": 0,
       "explanation": "焼（や）く: 火で加熱すること。「しょう」（音読み）とも読む"
     },
     {
       "id": "cf2d15af-7f11-53d6-ad92-cae5d54dd2af",
       "question": "「象」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ぞう"
-      ],
+      "choices": ["ぞう"],
       "correct": 0,
       "explanation": "象（ぞう）: 大きな鼻を持つ動物。「しょう」（音読み）とも読む"
     },
     {
       "id": "c665e2d2-d8b9-5a57-89b5-72dc8e908ad8",
       "question": "「照る」の「照」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "て"
-      ],
+      "choices": ["て"],
       "correct": 0,
       "explanation": "照（て）る: 太陽などの光が当たること。「しょう」（音読み）とも読む"
     },
     {
       "id": "c3626de1-1a11-5fab-9c63-5414b1630ae1",
       "question": "「城」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "しろ"
-      ],
+      "choices": ["しろ"],
       "correct": 0,
       "explanation": "城（しろ）: 昔の武士が住んでいた建物。「じょう」（音読み）とも読む"
     },
     {
       "id": "73755208-8a75-584a-bc54-01e5d1b5a0ca",
       "question": "「信頼」の読み方をひらがなで書いてください",
-      "choices": [
-        "しんらい"
-      ],
+      "choices": ["しんらい"],
       "correct": 0,
       "explanation": "信頼（しんらい）: 信じて頼ること・信用すること"
     },
     {
       "id": "074d6364-92b5-5944-96cd-e27ba3e84748",
       "question": "「大臣」の読み方をひらがなで書いてください",
-      "choices": [
-        "だいじん"
-      ],
+      "choices": ["だいじん"],
       "correct": 0,
       "explanation": "大臣（だいじん）: 政府の重要な役職"
     },
     {
       "id": "b38727bc-77f0-52c2-90bb-15ee3629ebbb",
       "question": "「折る」の「折」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "お"
-      ],
+      "choices": ["お"],
       "correct": 0,
       "explanation": "折（お）る: 曲げて形を変えること。「せつ」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

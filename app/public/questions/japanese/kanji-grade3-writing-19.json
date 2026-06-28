@@ -16,97 +16,75 @@
     {
       "id": "811f8c8d-9206-5e6a-8936-5c78960f03cc",
       "question": "「ながれる」の「なが」を漢字で書いてください",
-      "choices": [
-        "流"
-      ],
+      "choices": ["流"],
       "correct": 0,
       "explanation": "「ながれる」の「なが」は「流」と書く。水などが動くこと。「りゅう」（音読み）とも読む"
     },
     {
       "id": "e00d49ac-c1da-5a84-be63-d2c9ee6996d1",
       "question": "「たび」を漢字で書いてください",
-      "choices": [
-        "旅"
-      ],
+      "choices": ["旅"],
       "correct": 0,
       "explanation": "「たび」は「旅」と書く。遠くへ出かけること。「りょ」（音読み）とも読む"
     },
     {
       "id": "fd6ef52e-d24a-56b1-963e-8908b01dd777",
       "question": "「りょう」を漢字で書いてください（両手 の「りょう」）",
-      "choices": [
-        "両"
-      ],
+      "choices": ["両"],
       "correct": 0,
       "explanation": "「両手」の「りょう」（「りょう」）は「両」と書く。二つのこと。「両手」「両親」など"
     },
     {
       "id": "82c0d648-02a6-5345-bce8-4138b38a7641",
       "question": "「みどり」を漢字で書いてください",
-      "choices": [
-        "緑"
-      ],
+      "choices": ["緑"],
       "correct": 0,
       "explanation": "「みどり」は「緑」と書く。草や木の色。「りょく」（音読み）とも読む"
     },
     {
       "id": "461ec407-74f6-50e7-ae03-2d7a576b432c",
       "question": "「れい」を漢字で書いてください",
-      "choices": [
-        "礼"
-      ],
+      "choices": ["礼"],
       "correct": 0,
       "explanation": "「れい」は「礼」と書く。感謝や挨拶のこと。「礼儀」「礼状」など"
     },
     {
       "id": "e9a00398-399e-532d-8d24-a08abfe57e5f",
       "question": "「れつ」を漢字で書いてください",
-      "choices": [
-        "列"
-      ],
+      "choices": ["列"],
       "correct": 0,
       "explanation": "「れつ」は「列」と書く。並んだもの。「行列」「列車」など"
     },
     {
       "id": "24f929cf-ff4b-5694-95df-886bac2eaa6a",
       "question": "「ろ」を漢字で書いてください",
-      "choices": [
-        "路"
-      ],
+      "choices": ["路"],
       "correct": 0,
       "explanation": "「ろ」は「路」と書く。道のこと。「道路」「路地」など"
     },
     {
       "id": "21cd4d8d-60b1-504f-9f22-ddf82cfc98a8",
       "question": "「なごやか」の「なご」を漢字で書いてください",
-      "choices": [
-        "和"
-      ],
+      "choices": ["和"],
       "correct": 0,
       "explanation": "「なごやか」の「なご」は「和」と書く。穏やかなこと。「わ」（音読み）とも読む"
     },
     {
       "id": "0969d699-0aec-5334-95aa-c28f5675a7b6",
       "question": "「そう」を漢字で書いてください",
-      "choices": [
-        "想"
-      ],
+      "choices": ["想"],
       "correct": 0,
       "explanation": "「そう」は「想」と書く。思いをめぐらすこと。「想像」「空想」などに使う"
     },
     {
       "id": "459bfc59-394a-532e-b828-4f3401ae87fe",
       "question": "「ひろう」の「ひろ」を漢字で書いてください",
-      "choices": [
-        "拾"
-      ],
+      "choices": ["拾"],
       "correct": 0,
       "explanation": "「ひろう」の「ひろ」は「拾」と書く。落ちているものを取ること。「じゅう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade3-19/guide",
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

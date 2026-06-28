@@ -16,97 +16,75 @@
     {
       "id": "e0c9dbc4-e308-526b-a47c-589805643439",
       "question": "「いき」を漢字で書いてください",
-      "choices": [
-        "域"
-      ],
+      "choices": ["域"],
       "correct": 0,
       "explanation": "「いき」は「域」と書く。ある範囲・区域のこと。地域・区域・領域などに使う"
     },
     {
       "id": "b43a483f-1dcb-5fa1-8394-4c424c1d5b9f",
       "question": "「そう」の「そ」を漢字で書いてください（川や道のそばに続いて行くこと）",
-      "choices": [
-        "沿"
-      ],
+      "choices": ["沿"],
       "correct": 0,
       "explanation": "「そう」の「そ」は「沿」と書く。川や道のそばに続いて行くこと。「えん」（音読み）とも読む"
     },
     {
       "id": "6dd8ffe8-a87c-5c34-a62e-06f55c551268",
       "question": "「おん」を漢字で書いてください",
-      "choices": [
-        "恩"
-      ],
+      "choices": ["恩"],
       "correct": 0,
       "explanation": "「おん」は「恩」と書く。お世話になった気持ち・恩義。恩人・恩師などに使う"
     },
     {
       "id": "6aba0896-e539-5742-bc38-0c272c0e3f1c",
       "question": "「はい」を漢字で書いてください（物が燃えたあとに残る粉）",
-      "choices": [
-        "灰"
-      ],
+      "choices": ["灰"],
       "correct": 0,
       "explanation": "「はい」は「灰」と書く。物が燃えたあとに残る粉。灰色・石灰などに使う。「かい」（音読み）とも読む"
     },
     {
       "id": "58c4a10e-0d0a-539d-97d6-27cd234548c5",
       "question": "「かく」を漢字で書いてください",
-      "choices": [
-        "閣"
-      ],
+      "choices": ["閣"],
       "correct": 0,
       "explanation": "「かく」は「閣」と書く。内閣・閣議など、国の大臣が集まる組織を指す"
     },
     {
       "id": "5c4e9c4e-2806-5813-8a85-8e0cf8fb3f1b",
       "question": "「かぶ」を漢字で書いてください",
-      "choices": [
-        "株"
-      ],
+      "choices": ["株"],
       "correct": 0,
       "explanation": "「かぶ」は「株」と書く。切り株・株式など。「しゅ」（音読み）とも読む"
     },
     {
       "id": "8366371c-2443-592d-b7d0-fb89d70f5604",
       "question": "「ほす」の「ほ」を漢字で書いてください（水分をとばして乾かすこと）",
-      "choices": [
-        "干"
-      ],
+      "choices": ["干"],
       "correct": 0,
       "explanation": "「ほす」の「ほ」は「干」と書く。水分をとばして乾かすこと。「かん」（音読み）とも読む"
     },
     {
       "id": "ee15310d-4f0f-5cab-a982-a5c3107d1ab1",
       "question": "「まく」の「ま」を漢字で書いてください",
-      "choices": [
-        "巻"
-      ],
+      "choices": ["巻"],
       "correct": 0,
       "explanation": "「まく」の「ま」は「巻」と書く。くるくると丸めること。「かん」（音読み）とも読む"
     },
     {
       "id": "10bbc8c6-9de2-5fcb-957a-deb55a3eca57",
       "question": "「かん」を漢字で書いてください（よく見て世話をすること）",
-      "choices": [
-        "看"
-      ],
+      "choices": ["看"],
       "correct": 0,
       "explanation": "「かん」は「看」と書く。よく見て世話をすること。看護・看板などに使う"
     },
     {
       "id": "64c03f97-0ab8-559a-8e54-657de32b45ab",
       "question": "「かん」を漢字で書いてください（単純でわかりやすいこと）",
-      "choices": [
-        "簡"
-      ],
+      "choices": ["簡"],
       "correct": 0,
       "explanation": "「かん」は「簡」と書く。単純でわかりやすいこと。簡単・簡潔などに使う"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade6-6/guide",
-  "prerequisites": [
-    "kanji-grade6"
-  ]
+  "prerequisites": ["kanji-grade6"]
 }

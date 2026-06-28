@@ -18,95 +18,73 @@
     {
       "id": "089141fe-9f9a-5e31-a762-2f05a9e86f65",
       "question": "「蠢く」の読み方をひらがなで書いてください",
-      "choices": [
-        "うごめく"
-      ],
+      "choices": ["うごめく"],
       "correct": 0,
       "explanation": "蠢（うごめ）く: 小さく不気味にもぞもぞと動くこと"
     },
     {
       "id": "35363053-1f8a-5025-802b-14e95bf7ddf0",
       "question": "「跋扈」の読み方をひらがなで書いてください",
-      "choices": [
-        "ばっこ"
-      ],
+      "choices": ["ばっこ"],
       "correct": 0,
       "explanation": "跋扈（ばっこ）: 悪者などが勢いを増してはびこること"
     },
     {
       "id": "ab77794b-8057-5e7a-91d9-8cbc2b178e0c",
       "question": "「澎湃」の読み方をひらがなで書いてください",
-      "choices": [
-        "ほうはい"
-      ],
+      "choices": ["ほうはい"],
       "correct": 0,
       "explanation": "澎湃（ほうはい）: 水が激しくわき起こるさま・勢いが盛んなさま"
     },
     {
       "id": "2e3a5a90-2b81-5e35-950f-51def2b8a99c",
       "question": "「敷衍」の読み方をひらがなで書いてください",
-      "choices": [
-        "ふえん"
-      ],
+      "choices": ["ふえん"],
       "correct": 0,
       "explanation": "敷衍（ふえん）: 意味を分かりやすく広げて詳しく説明すること"
     },
     {
       "id": "6a65e198-3ce5-5048-93bb-6c8ecd324fe5",
       "question": "「捏造」の読み方をひらがなで書いてください",
-      "choices": [
-        "ねつぞう"
-      ],
+      "choices": ["ねつぞう"],
       "correct": 0,
       "explanation": "捏造（ねつぞう）: 事実でないことを事実のように作り上げること"
     },
     {
       "id": "b93ca121-b428-51e0-a5dd-0b0b94d454b1",
       "question": "「忖度」の読み方をひらがなで書いてください",
-      "choices": [
-        "そんたく"
-      ],
+      "choices": ["そんたく"],
       "correct": 0,
       "explanation": "忖度（そんたく）: 相手の気持ちや意図を推し量ること"
     },
     {
       "id": "e5bb28a7-89d8-5246-9e51-d894035de506",
       "question": "「瞠目」の読み方をひらがなで書いてください",
-      "choices": [
-        "どうもく"
-      ],
+      "choices": ["どうもく"],
       "correct": 0,
       "explanation": "瞠目（どうもく）: 目を見張るほど驚くこと（「瞠目すべき成果」）"
     },
     {
       "id": "b3684abc-a98d-507a-b2df-67f3ee006002",
       "question": "「乖離」の読み方をひらがなで書いてください",
-      "choices": [
-        "かいり"
-      ],
+      "choices": ["かいり"],
       "correct": 0,
       "explanation": "乖離（かいり）: 本来つながるべきものがかけ離れること"
     },
     {
       "id": "cfdc4b82-bb65-596e-b7d4-1ab29f6a4670",
       "question": "「嚆矢」の読み方をひらがなで書いてください",
-      "choices": [
-        "こうし"
-      ],
+      "choices": ["こうし"],
       "correct": 0,
       "explanation": "嚆矢（こうし）: 物事のはじまり・最初の例（「〜を嚆矢とする」）"
     },
     {
       "id": "9378a47b-b209-5c23-9a11-1b8f9ea71d36",
       "question": "「蓋然」の読み方をひらがなで書いてください",
-      "choices": [
-        "がいぜん"
-      ],
+      "choices": ["がいぜん"],
       "correct": 0,
       "explanation": "蓋然（がいぜん）: ある事柄が起こる可能性・確からしさ（「蓋然性が高い」）"
     }
   ],
-  "prerequisites": [
-    "kanji-secondary"
-  ]
+  "prerequisites": ["kanji-secondary"]
 }

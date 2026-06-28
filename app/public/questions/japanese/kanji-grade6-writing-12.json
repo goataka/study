@@ -16,97 +16,75 @@
     {
       "id": "3156e6dc-eb34-564a-aa24-26839d13b088",
       "question": "「はり」を漢字で書いてください",
-      "choices": [
-        "針"
-      ],
+      "choices": ["針"],
       "correct": 0,
       "explanation": "「はり」は「針」と書く。縫い物や注射に使う細く尖ったもの。「しん」（音読み）とも読む"
     },
     {
       "id": "dcb37e0b-4a3a-5c30-93dc-917e7abdd478",
       "question": "「じん」を漢字で書いてください",
-      "choices": [
-        "仁"
-      ],
+      "choices": ["仁"],
       "correct": 0,
       "explanation": "「じん」は「仁」と書く。思いやりの心・仁義のこと。仁義・仁愛などに使う"
     },
     {
       "id": "31c19bae-9410-56c3-ab28-d7147f221f44",
       "question": "「たれる」の「た」を漢字で書いてください",
-      "choices": [
-        "垂"
-      ],
+      "choices": ["垂"],
       "correct": 0,
       "explanation": "「たれる」の「た」は「垂」と書く。上から下にたれ下がること。「すい」（音読み）とも読む"
     },
     {
       "id": "34619ed3-bb8e-563c-b61d-181368646918",
       "question": "「おす」の「お」を漢字で書いてください（前に押すこと・おすすめすること）",
-      "choices": [
-        "推"
-      ],
+      "choices": ["推"],
       "correct": 0,
       "explanation": "「おす」の「お」は「推」と書く。前に押すこと・おすすめすること。「すい」（音読み）とも読む"
     },
     {
       "id": "68781acd-7559-50f0-9684-0919bd860782",
       "question": "「すん」を漢字で書いてください",
-      "choices": [
-        "寸"
-      ],
+      "choices": ["寸"],
       "correct": 0,
       "explanation": "「すん」は「寸」と書く。長さの単位・寸法のこと。一寸・寸法などに使う"
     },
     {
       "id": "dee869ec-478d-5932-8a18-e9b70d2358b4",
       "question": "「もる」の「も」を漢字で書いてください（器に食べ物を入れること・盛んになること）",
-      "choices": [
-        "盛"
-      ],
+      "choices": ["盛"],
       "correct": 0,
       "explanation": "「もる」の「も」は「盛」と書く。器に食べ物を入れること・盛んになること。「せい」「じょう」（音読み）とも読む"
     },
     {
       "id": "e061fb66-c5c5-5115-a04a-dee46d50499f",
       "question": "「せい」を漢字で書いてください",
-      "choices": [
-        "聖"
-      ],
+      "choices": ["聖"],
       "correct": 0,
       "explanation": "「せい」は「聖」と書く。神聖で尊いこと。聖火・聖人などに使う"
     },
     {
       "id": "6926964e-9b8d-5fcc-b4fe-a8daad14b567",
       "question": "「した」を漢字で書いてください",
-      "choices": [
-        "舌"
-      ],
+      "choices": ["舌"],
       "correct": 0,
       "explanation": "「した」は「舌」と書く。口の中にある器官・味を感じる部分。「ぜつ」（音読み）とも読む"
     },
     {
       "id": "596f844d-1d64-5d7a-a185-57c4874b6136",
       "question": "「せん」を漢字で書いてください",
-      "choices": [
-        "宣"
-      ],
+      "choices": ["宣"],
       "correct": 0,
       "explanation": "「せん」は「宣」と書く。広く知らせること・宣言。宣言・宣伝などに使う"
     },
     {
       "id": "ff7253c0-5220-5a0c-b664-266538182693",
       "question": "「もっぱら」の「もっぱ」を漢字で書いてください",
-      "choices": [
-        "専"
-      ],
+      "choices": ["専"],
       "correct": 0,
       "explanation": "「もっぱら」の「もっぱ」は「専」と書く。ひとつのことだけに集中すること。「せん」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade6-12/guide",
-  "prerequisites": [
-    "kanji-grade6"
-  ]
+  "prerequisites": ["kanji-grade6"]
 }

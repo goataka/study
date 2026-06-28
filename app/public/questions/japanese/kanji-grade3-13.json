@@ -18,95 +18,73 @@
     {
       "id": "d03e6d6c-b3c6-5f2a-aac8-b42218a6ef1a",
       "question": "「相談」の「談」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "だん"
-      ],
+      "choices": ["だん"],
       "correct": 0,
       "explanation": "談（だん）: 話し合うこと。「相談」「談話」など"
     },
     {
       "id": "147a696b-3a1f-58f2-8d2b-8af6ee27483c",
       "question": "「電柱」の「柱」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "はしら"
-      ],
+      "choices": ["はしら"],
       "correct": 0,
       "explanation": "柱（はしら）: 建物を支える棒。「ちゅう」（音読み）とも読む"
     },
     {
       "id": "7582e3b2-c74c-5bcb-a5bc-b84b74fa9f49",
       "question": "「手帳」の「帳」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "ちょう"
-      ],
+      "choices": ["ちょう"],
       "correct": 0,
       "explanation": "帳（ちょう）: メモや記録の本。「手帳」「帳面」など"
     },
     {
       "id": "677666d0-0004-5077-a641-7a104428d1ab",
       "question": "「追いかける」の「追」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "お"
-      ],
+      "choices": ["お"],
       "correct": 0,
       "explanation": "追（お）いかける: 後から行くこと。「追う」「追加」（ついか）など"
     },
     {
       "id": "a9a7f331-419b-58e5-827b-aaaef67e7692",
       "question": "「定める」の「定」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "さだ"
-      ],
+      "choices": ["さだ"],
       "correct": 0,
       "explanation": "定（さだ）める: 決めること。「定期」（ていき）とも読む"
     },
     {
       "id": "04e73dd6-4a35-5c14-9ac5-bfb2d2d6c225",
       "question": "「庭園」の「庭」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "にわ"
-      ],
+      "choices": ["にわ"],
       "correct": 0,
       "explanation": "庭（にわ）: 家の外の草花がある場所。「てい」（音読み）とも読む"
     },
     {
       "id": "e6661590-8fa5-5eb1-8815-ae2234d99e7c",
       "question": "「笛を吹く」の「笛」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ふえ"
-      ],
+      "choices": ["ふえ"],
       "correct": 0,
       "explanation": "笛（ふえ）: 吹いて音を出す楽器。「てき」（音読み）とも読む"
     },
     {
       "id": "5317a10c-a15e-55e2-a97e-a55ca821bea4",
       "question": "「鉄道」の「鉄」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "てつ"
-      ],
+      "choices": ["てつ"],
       "correct": 0,
       "explanation": "鉄（てつ）: 金属の一種。「鉄道」「鉄板」など"
     },
     {
       "id": "0c8b22b2-1d94-5a53-bfcf-b5ae466b66cd",
       "question": "「転ぶ」の「転」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ころ"
-      ],
+      "choices": ["ころ"],
       "correct": 0,
       "explanation": "転（ころ）ぶ: 倒れること。「転車」（てんしゃ）とも読む"
     },
     {
       "id": "24245d3b-dfda-56a5-bb01-bb0c433fbbc5",
       "question": "「都市」の「都」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "みやこ"
-      ],
+      "choices": ["みやこ"],
       "correct": 0,
       "explanation": "都（みやこ）: 首都・大都市のこと。「と」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade2"
-  ]
+  "prerequisites": ["kanji-grade2"]
 }

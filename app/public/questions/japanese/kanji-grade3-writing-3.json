@@ -16,97 +16,75 @@
     {
       "id": "5fecf1aa-fd0e-5bf4-b5a2-7735393ab37f",
       "question": "「えき」を漢字で書いてください",
-      "choices": [
-        "駅"
-      ],
+      "choices": ["駅"],
       "correct": 0,
       "explanation": "「えき」は「駅」と書く。電車が止まる場所"
     },
     {
       "id": "cd3f2a0b-af93-5aae-b70f-c74b7b2eceb4",
       "question": "「よこ」を漢字で書いてください",
-      "choices": [
-        "横"
-      ],
+      "choices": ["横"],
       "correct": 0,
       "explanation": "「よこ」は「横」と書く。左右の方向のこと。「おう」（音読み）とも読む"
     },
     {
       "id": "57d3711b-dadd-5845-b6eb-0e05af42de19",
       "question": "「あく」の「あ」を漢字で書いてください（とじていたものをひらくこと）",
-      "choices": [
-        "開"
-      ],
+      "choices": ["開"],
       "correct": 0,
       "explanation": "「あく」の「あ」は「開」と書く。とじていたものをひらくこと。「かい」（音読み）とも読む"
     },
     {
       "id": "0d927680-2c0f-5a75-b8fc-93fb2f57737d",
       "question": "「さむい」の「さむ」を漢字で書いてください",
-      "choices": [
-        "寒"
-      ],
+      "choices": ["寒"],
       "correct": 0,
       "explanation": "「さむい」の「さむ」は「寒」と書く。気温が低くてひんやりすること。「かん」（音読み）とも読む"
     },
     {
       "id": "00345cf6-10d2-51cd-a475-af812b1cc543",
       "question": "「かんじ」を漢字で書いてください",
-      "choices": [
-        "漢字"
-      ],
+      "choices": ["漢字"],
       "correct": 0,
       "explanation": "「かんじ」は「漢字」と書く。中国から伝わった文字"
     },
     {
       "id": "0ce57311-176e-5242-8e1f-7d12c100fa40",
       "question": "「きし」を漢字で書いてください",
-      "choices": [
-        "岸"
-      ],
+      "choices": ["岸"],
       "correct": 0,
       "explanation": "「きし」は「岸」と書く。海や川のはしっこの土地。「がん」（音読み）とも読む"
     },
     {
       "id": "4ea15f64-a4b9-50ed-95f7-aaa6d273ea17",
       "question": "「おきる」の「お」を漢字で書いてください（ねむりから目がさめること）",
-      "choices": [
-        "起"
-      ],
+      "choices": ["起"],
       "correct": 0,
       "explanation": "「おきる」の「お」は「起」と書く。ねむりから目がさめること。「き」（音読み）とも読む"
     },
     {
       "id": "92d4b1cf-d66b-5d51-9411-5e2d46a436e3",
       "question": "「きゃく」を漢字で書いてください",
-      "choices": [
-        "客"
-      ],
+      "choices": ["客"],
       "correct": 0,
       "explanation": "「きゃく」は「客」と書く。訪ねてくる人・お店に来る人"
     },
     {
       "id": "b9fefb15-069e-57dc-942a-703b6d3e989b",
       "question": "「いそぐ」の「いそ」を漢字で書いてください",
-      "choices": [
-        "急"
-      ],
+      "choices": ["急"],
       "correct": 0,
       "explanation": "「いそぐ」の「いそ」は「急」と書く。はやく動くこと。「きゅう」（音読み）とも読む"
     },
     {
       "id": "5b3c2fb0-0745-5b63-956f-e8f54def4c7e",
       "question": "「たま」を漢字で書いてください",
-      "choices": [
-        "球"
-      ],
+      "choices": ["球"],
       "correct": 0,
       "explanation": "「たま」は「球」と書く。まるい形のもの。「きゅう」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade3-3/guide",
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

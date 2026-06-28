@@ -18,95 +18,73 @@
     {
       "id": "4ee98c07-160b-57fa-826f-6da8a7e4d43d",
       "question": "「危険」の読み方をひらがなで書いてください",
-      "choices": [
-        "きけん"
-      ],
+      "choices": ["きけん"],
       "correct": 0,
       "explanation": "危険（きけん）: 危ないこと・安全でないこと"
     },
     {
       "id": "5bf8f895-8f68-50bb-953f-7858cb592b5c",
       "question": "「敬語」の読み方をひらがなで書いてください",
-      "choices": [
-        "けいご"
-      ],
+      "choices": ["けいご"],
       "correct": 0,
       "explanation": "敬語（けいご）: 相手を尊重して使う言葉づかい"
     },
     {
       "id": "3674836f-bad7-5a4d-a86a-e2c0873bca9c",
       "question": "「劇場」の読み方をひらがなで書いてください",
-      "choices": [
-        "げきじょう"
-      ],
+      "choices": ["げきじょう"],
       "correct": 0,
       "explanation": "劇場（げきじょう）: 演劇や映画を上演する施設"
     },
     {
       "id": "8e2483a9-b271-544b-9da2-008689754dcb",
       "question": "「権利」の読み方をひらがなで書いてください",
-      "choices": [
-        "けんり"
-      ],
+      "choices": ["けんり"],
       "correct": 0,
       "explanation": "権利（けんり）: 物事を自由にする資格や力"
     },
     {
       "id": "2d0ad93f-d1f5-51d3-a840-c1034c6e0fc8",
       "question": "「厳しい」の「厳」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "きび"
-      ],
+      "choices": ["きび"],
       "correct": 0,
       "explanation": "厳（きび）しい: きびしくてゆるみのないこと。「げん」（音読み）とも読む"
     },
     {
       "id": "663a7613-30c5-5b36-a68b-0fb880d034c9",
       "question": "「呼ぶ」の「呼」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "よ"
-      ],
+      "choices": ["よ"],
       "correct": 0,
       "explanation": "呼（よ）ぶ: 声をかけること。「こ」（音読み）とも読む"
     },
     {
       "id": "c67b0970-b736-58db-bdd5-41fb58143f66",
       "question": "「困る」の「困」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "こま"
-      ],
+      "choices": ["こま"],
       "correct": 0,
       "explanation": "困（こま）る: 解決の方法がなくて悩むこと。「こん」（音読み）とも読む"
     },
     {
       "id": "361fc08c-a185-56c3-b212-42fb29b76364",
       "question": "「座る」の「座」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "すわ"
-      ],
+      "choices": ["すわ"],
       "correct": 0,
       "explanation": "座（すわ）る: 腰をおろすこと。「ざ」（音読み）とも読む"
     },
     {
       "id": "0c576b61-f06d-5855-b3c3-739b4699b4d5",
       "question": "「裁判」の読み方をひらがなで書いてください",
-      "choices": [
-        "さいばん"
-      ],
+      "choices": ["さいばん"],
       "correct": 0,
       "explanation": "裁判（さいばん）: 法律に基づいて争いを判断すること"
     },
     {
       "id": "98737428-e07c-5333-931c-4e079c2e2aed",
       "question": "「姿」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "すがた"
-      ],
+      "choices": ["すがた"],
       "correct": 0,
       "explanation": "姿（すがた）: 人や物の形・様子。「し」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade5"
-  ]
+  "prerequisites": ["kanji-grade5"]
 }

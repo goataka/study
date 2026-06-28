@@ -16,97 +16,75 @@
     {
       "id": "229ed56f-7e5f-537e-a8f1-6dd72b8c7789",
       "question": "「むじゅん」を漢字で書いてください",
-      "choices": [
-        "矛盾"
-      ],
+      "choices": ["矛盾"],
       "correct": 0,
       "explanation": "「むじゅん」は「矛盾」と書く。前後の話が食い違っていること"
     },
     {
       "id": "bdf0066e-b894-5253-9a08-969d35623e75",
       "question": "「いさん」を漢字で書いてください",
-      "choices": [
-        "遺産"
-      ],
+      "choices": ["遺産"],
       "correct": 0,
       "explanation": "「いさん」は「遺産」と書く。後世に残されたもの"
     },
     {
       "id": "97f41728-e9b4-55c6-8ff5-7a6dacf38e3d",
       "question": "「せいじつ」を漢字で書いてください",
-      "choices": [
-        "誠実"
-      ],
+      "choices": ["誠実"],
       "correct": 0,
       "explanation": "「せいじつ」は「誠実」と書く。真心をもってきちんと行動すること"
     },
     {
       "id": "1f51cd70-0212-5369-813b-e530115b7a90",
       "question": "「ゆうせん」を漢字で書いてください",
-      "choices": [
-        "優先"
-      ],
+      "choices": ["優先"],
       "correct": 0,
       "explanation": "「ゆうせん」は「優先」と書く。ほかより先にすること"
     },
     {
       "id": "de089b31-ed21-5044-93e8-8411afde3d15",
       "question": "「にんしき」を漢字で書いてください",
-      "choices": [
-        "認識"
-      ],
+      "choices": ["認識"],
       "correct": 0,
       "explanation": "「にんしき」は「認識」と書く。物事をはっきりと理解すること"
     },
     {
       "id": "a843266b-0733-556f-9915-2911729f17e4",
       "question": "「えいが」を漢字で書いてください",
-      "choices": [
-        "映画"
-      ],
+      "choices": ["映画"],
       "correct": 0,
       "explanation": "「えいが」は「映画」と書く。スクリーンに映し出される物語"
     },
     {
       "id": "409c23c8-3934-5a9e-8653-001880d4c8b4",
       "question": "「えんちょう」を漢字で書いてください",
-      "choices": [
-        "延長"
-      ],
+      "choices": ["延長"],
       "correct": 0,
       "explanation": "「えんちょう」は「延長」と書く。時間や長さを伸ばすこと"
     },
     {
       "id": "e2926360-dfd0-515d-9e28-f95846fec8c2",
       "question": "「がまん」を漢字で書いてください",
-      "choices": [
-        "我慢"
-      ],
+      "choices": ["我慢"],
       "correct": 0,
       "explanation": "「がまん」は「我慢」と書く。つらいことをこらえること"
     },
     {
       "id": "98ea595c-e60f-505e-8b1b-1aa608634279",
       "question": "「かくだい」を漢字で書いてください",
-      "choices": [
-        "拡大"
-      ],
+      "choices": ["拡大"],
       "correct": 0,
       "explanation": "「かくだい」は「拡大」と書く。大きく広げること"
     },
     {
       "id": "37a58b8b-757b-5ad2-92c2-158734c7ed97",
       "question": "「わる」の「わ」を漢字で書いてください",
-      "choices": [
-        "割"
-      ],
+      "choices": ["割"],
       "correct": 0,
       "explanation": "「わる」の「わ」は「割」と書く。分けること・切ること。「かつ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade6-2/guide",
-  "prerequisites": [
-    "kanji-grade6"
-  ]
+  "prerequisites": ["kanji-grade6"]
 }

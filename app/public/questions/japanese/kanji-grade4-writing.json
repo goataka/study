@@ -16,97 +16,75 @@
     {
       "id": "9eb7094b-3d20-5a08-855a-9a3420fddacb",
       "question": "「どりょく」を漢字で書いてください",
-      "choices": [
-        "努力"
-      ],
+      "choices": ["努力"],
       "correct": 0,
       "explanation": "「どりょく」は「努力」と書く。目標に向かってがんばること"
     },
     {
       "id": "30afda87-38cc-50e1-a858-262a2a1e6b4b",
       "question": "「かんさつ」を漢字で書いてください",
-      "choices": [
-        "観察"
-      ],
+      "choices": ["観察"],
       "correct": 0,
       "explanation": "「かんさつ」は「観察」と書く。よく見て調べること"
     },
     {
       "id": "aca144be-19e9-58db-9eed-79e78b50b4d0",
       "question": "「きせつ」を漢字で書いてください",
-      "choices": [
-        "季節"
-      ],
+      "choices": ["季節"],
       "correct": 0,
       "explanation": "「きせつ」は「季節」と書く。春・夏・秋・冬のこと"
     },
     {
       "id": "18787c7a-ec5a-589c-9116-4abbf02c328c",
       "question": "「へんか」を漢字で書いてください",
-      "choices": [
-        "変化"
-      ],
+      "choices": ["変化"],
       "correct": 0,
       "explanation": "「へんか」は「変化」と書く。状態が変わること"
     },
     {
       "id": "9d967ba4-5bc5-5e2a-ae00-a1bbbf1d541c",
       "question": "「せいちょう」を漢字で書いてください",
-      "choices": [
-        "成長"
-      ],
+      "choices": ["成長"],
       "correct": 0,
       "explanation": "「せいちょう」は「成長」と書く。大きくなること・育つこと"
     },
     {
       "id": "f7458b4b-770d-54aa-8dc4-e56a1ea2bf64",
       "question": "「けっか」を漢字で書いてください",
-      "choices": [
-        "結果"
-      ],
+      "choices": ["結果"],
       "correct": 0,
       "explanation": "「けっか」は「結果」と書く。行動のあとに起こること"
     },
     {
       "id": "0da025d1-a58a-501d-9d14-7926bdd166ce",
       "question": "「ひつよう」を漢字で書いてください",
-      "choices": [
-        "必要"
-      ],
+      "choices": ["必要"],
       "correct": 0,
       "explanation": "「ひつよう」は「必要」と書く。なくてはならないこと"
     },
     {
       "id": "4cb2c04f-3834-510a-8a39-2e5dda23afd4",
       "question": "「はじめて」の「はじ」を漢字で書いてください",
-      "choices": [
-        "初"
-      ],
+      "choices": ["初"],
       "correct": 0,
       "explanation": "「はじめて」の「はじ」は「初」と書く。最初のこと。「しょ」（音読み）とも読む"
     },
     {
       "id": "c1024d88-d894-5b88-80d0-85d05a2b85dd",
       "question": "「あいじょう」を漢字で書いてください",
-      "choices": [
-        "愛情"
-      ],
+      "choices": ["愛情"],
       "correct": 0,
       "explanation": "「あいじょう」は「愛情」と書く。大切に思う気持ち"
     },
     {
       "id": "0ecae765-cc19-5b3b-b036-6b0e1e7bfe92",
       "question": "「きぼう」を漢字で書いてください",
-      "choices": [
-        "希望"
-      ],
+      "choices": ["希望"],
       "correct": 0,
       "explanation": "「きぼう」は「希望」と書く。こうなってほしいという願い"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade4/guide",
-  "prerequisites": [
-    "kanji-grade4"
-  ]
+  "prerequisites": ["kanji-grade4"]
 }

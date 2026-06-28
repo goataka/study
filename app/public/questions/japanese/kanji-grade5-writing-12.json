@@ -16,97 +16,75 @@
     {
       "id": "79fd797d-eab7-50e0-b84f-3bdede74e657",
       "question": "「じょ」を漢字で書いてください",
-      "choices": [
-        "序"
-      ],
+      "choices": ["序"],
       "correct": 0,
       "explanation": "「じょ」は「序」と書く。順番・始まりのこと。「順序」（じゅんじょ）は物事の順番"
     },
     {
       "id": "b33f3e7e-0ed9-512a-a47a-54f64abdb2af",
       "question": "「まねく」の「まね」を漢字で書いてください",
-      "choices": [
-        "招"
-      ],
+      "choices": ["招"],
       "correct": 0,
       "explanation": "「まねく」の「まね」は「招」と書く。呼び寄せること・招待すること。「しょう」（音読み）とも読む"
     },
     {
       "id": "1da1c17b-6689-5dee-b60b-84294700cbf4",
       "question": "「しょう」を漢字で書いてください（受け入れること・分かること）",
-      "choices": [
-        "承"
-      ],
+      "choices": ["承"],
       "correct": 0,
       "explanation": "「しょう」は「承」と書く。受け入れること・分かること。「承知」（しょうち）は了解のこと"
     },
     {
       "id": "6db5d621-8559-5f3b-b828-ebd67f756170",
       "question": "「しょう」を漢字で書いてください（確かめるもの・証明するもの）",
-      "choices": [
-        "証"
-      ],
+      "choices": ["証"],
       "correct": 0,
       "explanation": "「しょう」は「証」と書く。確かめるもの・証明するもの。「証拠」（しょうこ）は本当だと示すもの"
     },
     {
       "id": "3f508c4f-81db-5f28-b6c7-036c66a2f2fc",
       "question": "「つね」を漢字で書いてください",
-      "choices": [
-        "常"
-      ],
+      "choices": ["常"],
       "correct": 0,
       "explanation": "「つね」は「常」と書く。いつものこと・普通の状態。「じょう」（音読み）とも読む"
     },
     {
       "id": "c19deb55-4156-5fe8-b0bf-e7ace6e21bcf",
       "question": "「なさけ」の「なさ」を漢字で書いてください",
-      "choices": [
-        "情"
-      ],
+      "choices": ["情"],
       "correct": 0,
       "explanation": "「なさけ」の「なさ」は「情」と書く。思いやりの気持ちのこと。「じょう」（音読み）とも読む"
     },
     {
       "id": "fa427e55-abb6-5668-b49b-b4b14b5afc74",
       "question": "「じょう」を漢字で書いてください",
-      "choices": [
-        "条"
-      ],
+      "choices": ["条"],
       "correct": 0,
       "explanation": "「じょう」は「条」と書く。項目・決まりのこと。「条件」（じょうけん）は満たすべき要件"
     },
     {
       "id": "97589c3b-1e8f-510d-8a78-d19bda973392",
       "question": "「しょく」を漢字で書いてください",
-      "choices": [
-        "職"
-      ],
+      "choices": ["職"],
       "correct": 0,
       "explanation": "「しょく」は「職」と書く。仕事・役目のこと。「職業」（しょくぎょう）はどんな仕事をしているか"
     },
     {
       "id": "6e4f9b1c-0d9e-58f8-9e54-57151e747b40",
       "question": "「せい」を漢字で書いてください（定めること・仕組みのこと）",
-      "choices": [
-        "制"
-      ],
+      "choices": ["制"],
       "correct": 0,
       "explanation": "「せい」は「制」と書く。定めること・仕組みのこと。「制度」（せいど）は決まった仕組み"
     },
     {
       "id": "1632ed8a-57eb-50c0-858a-47aca00d6ffb",
       "question": "「せい」を漢字で書いてください（国を治めること）",
-      "choices": [
-        "政"
-      ],
+      "choices": ["政"],
       "correct": 0,
       "explanation": "「せい」は「政」と書く。国を治めること。「政治」（せいじ）は国や社会を運営すること"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade5-12/guide",
-  "prerequisites": [
-    "kanji-grade5"
-  ]
+  "prerequisites": ["kanji-grade5"]
 }

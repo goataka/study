@@ -18,95 +18,73 @@
     {
       "id": "beacb22b-6e5a-5eb5-8853-838ba6bab8d6",
       "question": "「形」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かたち"
-      ],
+      "choices": ["かたち"],
       "correct": 0,
       "explanation": "形（かたち）: 物の外見のこと。「けい」（音読み）とも読む"
     },
     {
       "id": "b2c763f8-7829-54b3-ae8e-16b67ecb7e0f",
       "question": "「光」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ひかり"
-      ],
+      "choices": ["ひかり"],
       "correct": 0,
       "explanation": "光（ひかり）: 明るく照らすもの。「こう」（音読み）とも読む"
     },
     {
       "id": "fd801ce3-c465-5b88-ba07-1674eda5e93b",
       "question": "「考える」の「考」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "かんが"
-      ],
+      "choices": ["かんが"],
       "correct": 0,
       "explanation": "考（かんが）える: 頭で思うこと。「こう」（音読み）とも読む"
     },
     {
       "id": "2a5e4692-92cb-5bbe-bc30-0168ec76ed70",
       "question": "「国」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "くに"
-      ],
+      "choices": ["くに"],
       "correct": 0,
       "explanation": "国（くに）: 国家のこと。「こく」（音読み）とも読む"
     },
     {
       "id": "98ce96c1-0be7-503e-a00b-06b8e3dc8677",
       "question": "「今」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "いま"
-      ],
+      "choices": ["いま"],
       "correct": 0,
       "explanation": "今（いま）: 現在のこと。「こん」（音読み）とも読む"
     },
     {
       "id": "6675a90d-2b47-5797-90fc-b057c39bb573",
       "question": "「心」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "こころ"
-      ],
+      "choices": ["こころ"],
       "correct": 0,
       "explanation": "心（こころ）: 気持ちや感情のこと。「しん」（音読み）とも読む"
     },
     {
       "id": "943aae32-0454-5bb9-9413-203caa8552c3",
       "question": "「声」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "こえ"
-      ],
+      "choices": ["こえ"],
       "correct": 0,
       "explanation": "声（こえ）: 口から出る音のこと。「せい」（音読み）とも読む"
     },
     {
       "id": "dbaf018b-5a49-5ca0-8e62-fb25ecf88512",
       "question": "「星」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ほし"
-      ],
+      "choices": ["ほし"],
       "correct": 0,
       "explanation": "星（ほし）: 夜空に光る天体のこと。「せい」（音読み）とも読む"
     },
     {
       "id": "01142d6e-491d-5ecc-b2f9-02080f3ee9c4",
       "question": "「晴れる」の「晴」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "は"
-      ],
+      "choices": ["は"],
       "correct": 0,
       "explanation": "晴（は）れる: 空が晴れること。「せい」（音読み）とも読む"
     },
     {
       "id": "3451b937-ca19-5475-af26-f7d3d807bdb0",
       "question": "「雪」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "ゆき"
-      ],
+      "choices": ["ゆき"],
       "correct": 0,
       "explanation": "雪（ゆき）: 空から降る白い結晶のこと。「せつ」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade1"
-  ]
+  "prerequisites": ["kanji-grade1"]
 }

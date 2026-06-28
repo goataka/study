@@ -16,97 +16,75 @@
     {
       "id": "46bef567-6da8-553a-a866-7953af4467f6",
       "question": "「はな」を漢字で書いてください（においをかぐ器官）",
-      "choices": [
-        "鼻"
-      ],
+      "choices": ["鼻"],
       "correct": 0,
       "explanation": "「はな」は「鼻」と書く。においをかぐ器官。「び」（音読み）とも読む"
     },
     {
       "id": "bc5cded4-2191-5a17-8f8e-c276dd40e1c0",
       "question": "「ふで」を漢字で書いてください",
-      "choices": [
-        "筆"
-      ],
+      "choices": ["筆"],
       "correct": 0,
       "explanation": "「ふで」は「筆」と書く。字や絵を書く道具。「ひつ」（音読み）とも読む"
     },
     {
       "id": "3fd079ee-9ae2-53f5-b0bd-bcf684349c4d",
       "question": "「こおり」を漢字で書いてください",
-      "choices": [
-        "氷"
-      ],
+      "choices": ["氷"],
       "correct": 0,
       "explanation": "「こおり」は「氷」と書く。凍った水。「ひょう」（音読み）とも読む"
     },
     {
       "id": "bb8432e0-2a24-5a45-b164-009ae445de2d",
       "question": "「おもて」を漢字で書いてください（外側・正面のこと）",
-      "choices": [
-        "表"
-      ],
+      "choices": ["表"],
       "correct": 0,
       "explanation": "「おもて」は「表」と書く。外側・正面のこと。「ひょう」（音読み）とも読む"
     },
     {
       "id": "6bda7eb3-07e9-592b-a98b-3dadef535822",
       "question": "「びょう」を漢字で書いてください",
-      "choices": [
-        "秒"
-      ],
+      "choices": ["秒"],
       "correct": 0,
       "explanation": "「びょう」は「秒」と書く。時間の単位。「一秒」「秒読み」など"
     },
     {
       "id": "fd600bf0-aedd-54d0-9af2-506e8d2b576c",
       "question": "「しな」を漢字で書いてください（品物 の「しな」）",
-      "choices": [
-        "品"
-      ],
+      "choices": ["品"],
       "correct": 0,
       "explanation": "「品物」の「しな」（「しな」）は「品」と書く。売り買いする物。「ひん」（音読み）とも読む"
     },
     {
       "id": "fb2355d7-5cfe-5338-93ad-ca5f857d1208",
       "question": "「まける」の「ま」を漢字で書いてください（試合などで勝てないこと）",
-      "choices": [
-        "負"
-      ],
+      "choices": ["負"],
       "correct": 0,
       "explanation": "「まける」の「ま」は「負」と書く。試合などで勝てないこと。「ふ」（音読み）とも読む"
     },
     {
       "id": "d22264ba-4e5d-5891-b8d8-d671829ceec5",
       "question": "「ふく」を漢字で書いてください（着るもの・衣類のこと）",
-      "choices": [
-        "服"
-      ],
+      "choices": ["服"],
       "correct": 0,
       "explanation": "「ふく」は「服」と書く。着るもの・衣類のこと。「洋服」「制服」など"
     },
     {
       "id": "4af6bd4b-3678-5f3d-9b2f-5df0f62edd8a",
       "question": "「ふく」を漢字で書いてください（幸せのこと）",
-      "choices": [
-        "福"
-      ],
+      "choices": ["福"],
       "correct": 0,
       "explanation": "「ふく」は「福」と書く。幸せのこと。「幸福」「福祉」など"
     },
     {
       "id": "3f4a6bd8-3995-5620-97f3-3c6003e7bbdb",
       "question": "「もの」を漢字で書いてください",
-      "choices": [
-        "物"
-      ],
+      "choices": ["物"],
       "correct": 0,
       "explanation": "「もの」は「物」と書く。形ある存在・出来事。「もつ」「ぶつ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade3-16/guide",
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

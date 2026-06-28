@@ -18,95 +18,73 @@
     {
       "id": "5de84841-bd85-5187-a041-15701e29dd0b",
       "question": "「若い」の「若」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "わか"
-      ],
+      "choices": ["わか"],
       "correct": 0,
       "explanation": "若（わか）い: 年齢が少ないこと。「じゃく」（音読み）とも読む"
     },
     {
       "id": "6d6f7a48-d420-5121-a6e6-ec7bce4017dd",
       "question": "「収める」の「収」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "おさ"
-      ],
+      "choices": ["おさ"],
       "correct": 0,
       "explanation": "収（おさ）める: 中に入れること・まとめること。「しゅう」（音読み）とも読む"
     },
     {
       "id": "0bb3f5c1-ce0a-5307-a067-b162c6836ac8",
       "question": "「従う」の「従」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "したが"
-      ],
+      "choices": ["したが"],
       "correct": 0,
       "explanation": "従（したが）う: 言うことを聞いて行動すること。「じゅう」（音読み）とも読む"
     },
     {
       "id": "fe918a5c-0eaf-58f3-9f85-aaf532f2affd",
       "question": "「存在」の読み方をひらがなで書いてください",
-      "choices": [
-        "そんざい"
-      ],
+      "choices": ["そんざい"],
       "correct": 0,
       "explanation": "存在（そんざい）: 物や人がそこにあること"
     },
     {
       "id": "9f78573a-2652-5c92-981d-cad4a8ac5825",
       "question": "「尊重」の読み方をひらがなで書いてください",
-      "choices": [
-        "そんちょう"
-      ],
+      "choices": ["そんちょう"],
       "correct": 0,
       "explanation": "尊重（そんちょう）: 大切にすること・敬うこと"
     },
     {
       "id": "440eedc5-7c50-5d6d-816e-420fc3300b22",
       "question": "「誕生」の読み方をひらがなで書いてください",
-      "choices": [
-        "たんじょう"
-      ],
+      "choices": ["たんじょう"],
       "correct": 0,
       "explanation": "誕生（たんじょう）: 生まれること"
     },
     {
       "id": "83f49e1f-8730-5dc8-a032-cfd559266f1e",
       "question": "「暖かい」の「暖」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "あたた"
-      ],
+      "choices": ["あたた"],
       "correct": 0,
       "explanation": "暖（あたた）かい: 少し熱く感じる気温のこと。「だん」（音読み）とも読む"
     },
     {
       "id": "258f3473-07ad-5c87-a577-50604f42619b",
       "question": "「忠実」の読み方をひらがなで書いてください",
-      "choices": [
-        "ちゅうじつ"
-      ],
+      "choices": ["ちゅうじつ"],
       "correct": 0,
       "explanation": "忠実（ちゅうじつ）: 真心をもって忠誠を尽くすこと"
     },
     {
       "id": "b1d25f8f-75e7-54bc-a22f-5610dd12e13e",
       "question": "「展示」の読み方をひらがなで書いてください",
-      "choices": [
-        "てんじ"
-      ],
+      "choices": ["てんじ"],
       "correct": 0,
       "explanation": "展示（てんじ）: 人に見せるために並べること"
     },
     {
       "id": "a45ce5f0-1407-57d1-b96d-b7ca5df397a7",
       "question": "「認める」の「認」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "みと"
-      ],
+      "choices": ["みと"],
       "correct": 0,
       "explanation": "認（みと）める: 正しいと判断すること。「にん」（音読み）とも読む"
     }
   ],
-  "prerequisites": [
-    "kanji-grade5"
-  ]
+  "prerequisites": ["kanji-grade5"]
 }

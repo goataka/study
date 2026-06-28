@@ -16,97 +16,75 @@
     {
       "id": "e5c7a10e-0fdf-57e8-9742-0281aebb6a90",
       "question": "「きずく」の「きず」を漢字で書いてください",
-      "choices": [
-        "築"
-      ],
+      "choices": ["築"],
       "correct": 0,
       "explanation": "「きずく」の「きず」は「築」と書く。作り上げること・建てること。「ちく」（音読み）とも読む"
     },
     {
       "id": "c02985c1-e8f1-5048-8062-7d0ae1358aee",
       "question": "「はる」の「は」を漢字で書いてください",
-      "choices": [
-        "張"
-      ],
+      "choices": ["張"],
       "correct": 0,
       "explanation": "「はる」の「は」は「張」と書く。広げること・ぴんと伸ばすこと。「ちょう」（音読み）とも読む"
     },
     {
       "id": "eb511dea-d3ea-55f9-9a2e-7d62d5761f3b",
       "question": "「てい」を漢字で書いてください",
-      "choices": [
-        "停"
-      ],
+      "choices": ["停"],
       "correct": 0,
       "explanation": "「てい」は「停」と書く。止まること。「停車」（ていしゃ）は乗り物が止まること"
     },
     {
       "id": "4942d96b-a2d6-5a6e-9d23-5c0674d969c5",
       "question": "「ほど」を漢字で書いてください",
-      "choices": [
-        "程"
-      ],
+      "choices": ["程"],
       "correct": 0,
       "explanation": "「ほど」は「程」と書く。程度・分量のこと。「てい」（音読み）とも読む"
     },
     {
       "id": "f0532071-a58a-53da-bbf3-51358189c617",
       "question": "「かたき」を漢字で書いてください",
-      "choices": [
-        "敵"
-      ],
+      "choices": ["敵"],
       "correct": 0,
       "explanation": "「かたき」は「敵」と書く。戦う相手・競争相手のこと。「てき」（音読み）とも読む"
     },
     {
       "id": "aeb3e42d-a0bc-5857-a782-de214aad7835",
       "question": "「てき」を漢字で書いてください",
-      "choices": [
-        "適"
-      ],
+      "choices": ["適"],
       "correct": 0,
       "explanation": "「てき」は「適」と書く。ちょうどよいこと・合っていること。「適切」（てきせつ）はちょうどよいこと"
     },
     {
       "id": "974aacfb-3f5e-57e4-85a1-4037da75f843",
       "question": "「どう」を漢字で書いてください",
-      "choices": [
-        "銅"
-      ],
+      "choices": ["銅"],
       "correct": 0,
       "explanation": "「どう」は「銅」と書く。赤みがかった金属。「銅像」（どうぞう）は銅でできた像"
     },
     {
       "id": "5910754a-7b3b-5524-8754-d444c8d82399",
       "question": "「みちびく」の「みちび」を漢字で書いてください",
-      "choices": [
-        "導"
-      ],
+      "choices": ["導"],
       "correct": 0,
       "explanation": "「みちびく」の「みちび」は「導」と書く。正しい方向に進めること・引き導くこと。「どう」（音読み）とも読む"
     },
     {
       "id": "459b1beb-3107-5197-98c1-1293ab86686b",
       "question": "「とく」を漢字で書いてください",
-      "choices": [
-        "徳"
-      ],
+      "choices": ["徳"],
       "correct": 0,
       "explanation": "「とく」は「徳」と書く。正しい行い・人としての道。「道徳」（どうとく）は正しい行いのこと"
     },
     {
       "id": "3c0103bd-69ff-5436-8253-01062046c5de",
       "question": "「おかす」の「おか」を漢字で書いてください",
-      "choices": [
-        "犯"
-      ],
+      "choices": ["犯"],
       "correct": 0,
       "explanation": "「おかす」の「おか」は「犯」と書く。法律などを破ること・悪いことをすること。「はん」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade5-15/guide",
-  "prerequisites": [
-    "kanji-grade5"
-  ]
+  "prerequisites": ["kanji-grade5"]
 }

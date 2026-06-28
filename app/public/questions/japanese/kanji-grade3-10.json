@@ -18,95 +18,73 @@
     {
       "id": "b5e29370-c36a-50b8-8b6d-a2d240ce3e99",
       "question": "「研究」の「究」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "きゅう"
-      ],
+      "choices": ["きゅう"],
       "correct": 0,
       "explanation": "究（きゅう）: 深く調べること。「研究」「究める」（きわめる）など"
     },
     {
       "id": "0fa3e3dd-a0f3-569a-ad3e-f790e341687f",
       "question": "「農業」の「業」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "ぎょう"
-      ],
+      "choices": ["ぎょう"],
       "correct": 0,
       "explanation": "業（ぎょう）: 仕事のこと。「農業」「工業」など。「わざ」とも読む"
     },
     {
       "id": "9b5bf849-57b8-5f9a-9c98-24e0e1f2337a",
       "question": "「放送局」の「局」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "きょく"
-      ],
+      "choices": ["きょく"],
       "correct": 0,
       "explanation": "局（きょく）: 仕事をする場所。「放送局」「局長」など"
     },
     {
       "id": "1e6812de-4279-51d8-88c8-aecc76e7c2b5",
       "question": "「区別」の「区」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "く"
-      ],
+      "choices": ["く"],
       "correct": 0,
       "explanation": "区（く）別: 分けること。「区別」「地区」など"
     },
     {
       "id": "8f2d0470-dd0a-5da7-88eb-a4142c69d612",
       "question": "「道具」の「具」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "ぐ"
-      ],
+      "choices": ["ぐ"],
       "correct": 0,
       "explanation": "具（ぐ）: 道具・材料のこと。「道具」「具体的」など"
     },
     {
       "id": "8e72e0c3-295c-5f09-a4bb-f1497b22ad31",
       "question": "「研究」の「研」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "けん"
-      ],
+      "choices": ["けん"],
       "correct": 0,
       "explanation": "研（けん）究: 深く調べること。「研究」「研ぐ」（とぐ）とも読む"
     },
     {
       "id": "d15cd133-dea3-508d-9579-a700ab97544e",
       "question": "「倉庫」の「庫」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "こ"
-      ],
+      "choices": ["こ"],
       "correct": 0,
       "explanation": "庫（こ）: 物をしまう建物。「倉庫」「車庫」など"
     },
     {
       "id": "c9176bb2-7a27-5ed8-9a5c-448014f70b40",
       "question": "「番号」の「号」の読み方をひらがなで書いてください（音読み）",
-      "choices": [
-        "ごう"
-      ],
+      "choices": ["ごう"],
       "correct": 0,
       "explanation": "号（ごう）: 順番を示す数字や名前。「番号」「号令」など"
     },
     {
       "id": "38205671-c32d-556e-81a3-dbb76e11900a",
       "question": "「仕事」の「仕」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "し"
-      ],
+      "choices": ["し"],
       "correct": 0,
       "explanation": "仕（し）事: 働くこと。「仕事」「仕える」（つかえる）など"
     },
     {
       "id": "a44881ec-732b-5dcd-8f16-8ac50faffb21",
       "question": "「死ぬ」の「死」の読み方をひらがなで書いてください（訓読み）",
-      "choices": [
-        "し"
-      ],
+      "choices": ["し"],
       "correct": 0,
       "explanation": "死（し）ぬ: 命が終わること。「死ぬ」「死者」など"
     }
   ],
-  "prerequisites": [
-    "kanji-grade2"
-  ]
+  "prerequisites": ["kanji-grade2"]
 }

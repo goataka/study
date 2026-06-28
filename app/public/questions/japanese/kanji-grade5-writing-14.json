@@ -16,97 +16,75 @@
     {
       "id": "3756a2a8-38ca-54ee-bcbf-d505c2c7edf0",
       "question": "「そ」を漢字で書いてください（元になるもの・自然のまま）",
-      "choices": [
-        "素"
-      ],
+      "choices": ["素"],
       "correct": 0,
       "explanation": "「そ」は「素」と書く。元になるもの・自然のまま。「素材」（そざい）は材料のこと"
     },
     {
       "id": "f9c3e84c-5c24-5424-ab37-34d6062d6d05",
       "question": "「そう」を漢字で書いてください",
-      "choices": [
-        "総"
-      ],
+      "choices": ["総"],
       "correct": 0,
       "explanation": "「そう」は「総」と書く。すべてをまとめること。「総合」（そうごう）は全部まとめること"
     },
     {
       "id": "1bd12cd2-cfbd-5a74-aa03-c96880ecc49f",
       "question": "「ぞう」を漢字で書いてください",
-      "choices": [
-        "像"
-      ],
+      "choices": ["像"],
       "correct": 0,
       "explanation": "「ぞう」は「像」と書く。形・彫り物・イメージのこと。「銅像」（どうぞう）は銅で作った像"
     },
     {
       "id": "458a4caa-4617-5c66-addc-3e87524288f5",
       "question": "「ぞく」を漢字で書いてください",
-      "choices": [
-        "属"
-      ],
+      "choices": ["属"],
       "correct": 0,
       "explanation": "「ぞく」は「属」と書く。どこかに属すること。「所属」（しょぞく）はどこかのグループに入っていること"
     },
     {
       "id": "ca8655a1-8db3-5380-9ca9-1f65b9002633",
       "question": "「ひきいる」の「ひき」を漢字で書いてください",
-      "choices": [
-        "率"
-      ],
+      "choices": ["率"],
       "correct": 0,
       "explanation": "「ひきいる」の「ひき」は「率」と書く。人を先に立って導くこと。「りつ」「そつ」（音読み）とも読む"
     },
     {
       "id": "658fd9f1-bb46-5ca4-9452-f103d234bd58",
       "question": "「そこなう」の「そこ」を漢字で書いてください",
-      "choices": [
-        "損"
-      ],
+      "choices": ["損"],
       "correct": 0,
       "explanation": "「そこなう」の「そこ」は「損」と書く。傷つけること・不利益を受けること。「そん」（音読み）とも読む"
     },
     {
       "id": "ffc6fbb8-a017-5f73-b904-5c888da731d0",
       "question": "「しりぞく」の「しりぞ」を漢字で書いてください",
-      "choices": [
-        "退"
-      ],
+      "choices": ["退"],
       "correct": 0,
       "explanation": "「しりぞく」の「しりぞ」は「退」と書く。引き下がること・後に下がること。「たい」（音読み）とも読む"
     },
     {
       "id": "2fdbebc4-4e1b-5e44-945f-cda8d27f9066",
       "question": "「かす」の「か」を漢字で書いてください（一時的に使わせること）",
-      "choices": [
-        "貸"
-      ],
+      "choices": ["貸"],
       "correct": 0,
       "explanation": "「かす」の「か」は「貸」と書く。一時的に使わせること。「たい」（音読み）とも読む"
     },
     {
       "id": "c3db7b89-ec31-5fc4-b088-08bbc2c18ba0",
       "question": "「たい」を漢字で書いてください",
-      "choices": [
-        "態"
-      ],
+      "choices": ["態"],
       "correct": 0,
       "explanation": "「たい」は「態」と書く。様子・ありさまのこと。「態度」（たいど）は行動や様子のこと"
     },
     {
       "id": "fc335c16-fedc-51ff-b3b2-2eeb888ee31b",
       "question": "「だん」を漢字で書いてください",
-      "choices": [
-        "団"
-      ],
+      "choices": ["団"],
       "correct": 0,
       "explanation": "「だん」は「団」と書く。集まり・グループのこと。「団体」（だんたい）は人の集まり"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade5-14/guide",
-  "prerequisites": [
-    "kanji-grade5"
-  ]
+  "prerequisites": ["kanji-grade5"]
 }

@@ -16,97 +16,75 @@
     {
       "id": "f98c8eac-14b1-58a3-b77d-1603bef06ca0",
       "question": "「さる」の「さ」を漢字で書いてください",
-      "choices": [
-        "去"
-      ],
+      "choices": ["去"],
       "correct": 0,
       "explanation": "「さる」の「さ」は「去」と書く。離れていくこと。「きょ」（音読み）とも読む"
     },
     {
       "id": "70608618-3bbc-54e0-a0b1-9c83df70237c",
       "question": "「はし」を漢字で書いてください",
-      "choices": [
-        "橋"
-      ],
+      "choices": ["橋"],
       "correct": 0,
       "explanation": "「はし」は「橋」と書く。川などをこえるための構造物。「きょう」（音読み）とも読む"
     },
     {
       "id": "a49ac970-f029-53d3-820e-f9a39540cfd6",
       "question": "「まがる」の「ま」を漢字で書いてください（まっすぐでなく折れること）",
-      "choices": [
-        "曲"
-      ],
+      "choices": ["曲"],
       "correct": 0,
       "explanation": "「まがる」の「ま」は「曲」と書く。まっすぐでなく折れること。「きょく」（音読み）とも読む"
     },
     {
       "id": "0cbcbd36-9d8b-5c01-9aa1-a3bf50034252",
       "question": "「ぎんこう」を漢字で書いてください",
-      "choices": [
-        "銀行"
-      ],
+      "choices": ["銀行"],
       "correct": 0,
       "explanation": "「ぎんこう」は「銀行」と書く。お金を預かったり貸したりする場所"
     },
     {
       "id": "06040944-5b35-5d68-a149-21cd3588bf66",
       "question": "「くるしい」の「くる」を漢字で書いてください",
-      "choices": [
-        "苦"
-      ],
+      "choices": ["苦"],
       "correct": 0,
       "explanation": "「くるしい」の「くる」は「苦」と書く。つらいこと。「く」（音読み）とも読む"
     },
     {
       "id": "a0d54289-b76a-537d-9d92-ca11930982e1",
       "question": "「きみ」を漢字で書いてください",
-      "choices": [
-        "君"
-      ],
+      "choices": ["君"],
       "correct": 0,
       "explanation": "「きみ」は「君」と書く。相手をよぶ言葉。「くん」（音読み）とも読む"
     },
     {
       "id": "db8ffde7-7a13-50ae-a697-f3316ffab9fd",
       "question": "「かかり」を漢字で書いてください",
-      "choices": [
-        "係"
-      ],
+      "choices": ["係"],
       "correct": 0,
       "explanation": "「かかり」は「係」と書く。担当の仕事・役割のこと。「けい」（音読み）とも読む"
     },
     {
       "id": "e81f90f3-2bd0-576d-8b4c-b3bb7d0e25f3",
       "question": "「かるい」の「かる」を漢字で書いてください",
-      "choices": [
-        "軽"
-      ],
+      "choices": ["軽"],
       "correct": 0,
       "explanation": "「かるい」の「かる」は「軽」と書く。重さが少ないこと。「けい」（音読み）とも読む"
     },
     {
       "id": "cc3cf435-e9ac-5229-9cb1-7e40e488e198",
       "question": "「ち」を漢字で書いてください",
-      "choices": [
-        "血"
-      ],
+      "choices": ["血"],
       "correct": 0,
       "explanation": "「ち」は「血」と書く。体の中を流れる赤い液体。「けつ」（音読み）とも読む"
     },
     {
       "id": "59844a68-ecc8-5e4b-af4b-de4b51d6575d",
       "question": "「きめる」の「き」を漢字で書いてください（物事をはっきりさせること）",
-      "choices": [
-        "決"
-      ],
+      "choices": ["決"],
       "correct": 0,
       "explanation": "「きめる」の「き」は「決」と書く。物事をはっきりさせること。「けつ」（音読み）とも読む"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade3-4/guide",
-  "prerequisites": [
-    "kanji-grade3"
-  ]
+  "prerequisites": ["kanji-grade3"]
 }

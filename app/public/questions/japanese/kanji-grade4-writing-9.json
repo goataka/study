@@ -16,97 +16,75 @@
     {
       "id": "8a4e8c17-ab0c-5727-a8db-4043e7aef7a3",
       "question": "「ぐん」を漢字で書いてください",
-      "choices": [
-        "郡"
-      ],
+      "choices": ["郡"],
       "correct": 0,
       "explanation": "「ぐん」は「郡」と書く。市や町をまとめた地域の行政区分"
     },
     {
       "id": "b9ad4866-b0b2-590e-b5ff-9f4d95e2320a",
       "question": "「かた」を漢字で書いてください（決まった形・パターン）",
-      "choices": [
-        "型"
-      ],
+      "choices": ["型"],
       "correct": 0,
       "explanation": "「かた」は「型」と書く。決まった形・パターン。「けい」（音読み）とも読む"
     },
     {
       "id": "6e6cbbfe-622f-5bea-8c84-351bc64213ec",
       "question": "「げいじゅつ」を漢字で書いてください",
-      "choices": [
-        "芸術"
-      ],
+      "choices": ["芸術"],
       "correct": 0,
       "explanation": "「げいじゅつ」は「芸術」と書く。絵・音楽・彫刻などの美しい表現"
     },
     {
       "id": "93320795-311e-5569-acf6-d932a64081b4",
       "question": "「かける」の「か」を漢字で書いてください（一部が足りなくなること）",
-      "choices": [
-        "欠"
-      ],
+      "choices": ["欠"],
       "correct": 0,
       "explanation": "「かける」の「か」は「欠」と書く。一部が足りなくなること。「けつ」（音読み）とも読む"
     },
     {
       "id": "71257635-b319-50e5-b29b-bbe7f6c29864",
       "question": "「かたい」の「かた」を漢字で書いてください（やわらかくなくしっかりしていること）",
-      "choices": [
-        "固"
-      ],
+      "choices": ["固"],
       "correct": 0,
       "explanation": "「かたい」の「かた」は「固」と書く。やわらかくなくしっかりしていること。「こ」（音読み）とも読む"
     },
     {
       "id": "e5e4284d-717d-5aea-bd39-9bc064835fce",
       "question": "「こうせき」を漢字で書いてください",
-      "choices": [
-        "功績"
-      ],
+      "choices": ["功績"],
       "correct": 0,
       "explanation": "「こうせき」は「功績」と書く。努力してあげた優れた成果・手柄"
     },
     {
       "id": "8fc6282f-dad4-544a-aead-847f713e61ea",
       "question": "「すき」の「す」を漢字で書いてください（気に入っていること）",
-      "choices": [
-        "好"
-      ],
+      "choices": ["好"],
       "correct": 0,
       "explanation": "「すき」の「す」は「好」と書く。気に入っていること。「こう」（音読み）とも読む"
     },
     {
       "id": "411826b4-fef1-505f-bb3c-91e853600065",
       "question": "「てんこう」を漢字で書いてください",
-      "choices": [
-        "天候"
-      ],
+      "choices": ["天候"],
       "correct": 0,
       "explanation": "「てんこう」は「天候」と書く。数日間の天気の状態"
     },
     {
       "id": "9f8a0411-272d-58a1-98dc-bdc95bf7ec9e",
       "question": "「つげる」の「つ」を漢字で書いてください（知らせること・伝えること）",
-      "choices": [
-        "告"
-      ],
+      "choices": ["告"],
       "correct": 0,
       "explanation": "「つげる」の「つ」は「告」と書く。知らせること・伝えること。「こく」（音読み）とも読む"
     },
     {
       "id": "bb47b404-49a4-5b2a-bf3e-69a1afc231be",
       "question": "「さ」を漢字で書いてください",
-      "choices": [
-        "差"
-      ],
+      "choices": ["差"],
       "correct": 0,
       "explanation": "「さ」は「差」と書く。二つの違い・数の引き算の答え"
     }
   ],
   "parentCategoryGuideUrl": "./japanese/kanji/guide",
   "guideUrl": "./japanese/kanji/kanji-grade4-9/guide",
-  "prerequisites": [
-    "kanji-grade4"
-  ]
+  "prerequisites": ["kanji-grade4"]
 }
