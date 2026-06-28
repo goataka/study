@@ -72,7 +72,7 @@ export async function loadGuideContent(
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const html = await response.text();
 
-    const sanitizedBody = sanitizeGuideHtml(html);
+    const sanitizedBody = sanitizeGuideHtml(html, new URL(resolveGuideFetchUrl(guideUrl), window.location.href).href);
 
     // guide-content コンテナを作成（または既存を再利用）して直接挿入する
     let guideContent = container.querySelector<HTMLElement>(".guide-content");
