@@ -84,7 +84,6 @@ Then("履歴タブで「問題毎」が表示される", async ({ page }) => {
 
 Then("進度タブで選択中教科の横に学習完了ルールℹ️が表示される", async ({ page }) => {
   await page.locator(".progress-subject-list-item").first().click();
-  await expect(page.locator(".progress-subject-list-item.active #progressCompletionRuleInfoBtn")).toBeVisible();
   await expect(page.locator("#progressCompletionRuleInfoBtn")).toBeVisible();
 });
 

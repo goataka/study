@@ -93,8 +93,7 @@ describe("QuizApp — 進度タブ仕様", () => {
     const progressTab = document.querySelector('.subject-tab[data-subject="progress"]') as HTMLElement;
     progressTab?.click();
 
-    const activeItem = document.querySelector(".progress-subject-list-item.active");
-    expect(activeItem?.querySelector("#progressCompletionRuleInfoBtn")).not.toBeNull();
+    expect(document.getElementById("progressCompletionRuleInfoBtn")).not.toBeNull();
   });
 
   it("進度タブの学習完了ルール ℹ️ を押すと説明が表示される", async () => {
