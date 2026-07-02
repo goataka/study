@@ -111,7 +111,7 @@ export function SelectedUnitCloseButton({
 const CATEGORY_STAGE_LABEL: Readonly<Record<Exclude<CategoryStage, 0>, string>> = {
   1: "学習済ステージ",
   2: "復習済ステージ",
-  3: "検定済ステージ",
+  3: "学習完了ステージ",
 } as const;
 
 function HeaderRow({

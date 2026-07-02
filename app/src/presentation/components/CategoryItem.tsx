@@ -59,7 +59,7 @@ const STAGE_BADGE_MAP: Readonly<
 > = {
   1: { emoji: CATEGORY_STAGE_EMOJI[1], sizeClass: "text-base", label: "学習済ステージ" },
   2: { emoji: CATEGORY_STAGE_EMOJI[2], sizeClass: "text-lg", label: "復習済ステージ" },
-  3: { emoji: CATEGORY_STAGE_EMOJI[3], sizeClass: "text-xl", label: "検定済ステージ" },
+  3: { emoji: CATEGORY_STAGE_EMOJI[3], sizeClass: "text-xl", label: "学習完了ステージ" },
 } as const;
 
 export function CategoryItem(props: CategoryItemProps): React.JSX.Element {
