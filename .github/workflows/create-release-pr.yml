@@ -3,6 +3,8 @@ name: リリースPR作成
 # develop ブランチからリリースブランチを作成し、main へのPRを作る
 on:
   workflow_dispatch:
+  push:
+    branches: [develop]
 
 permissions:
   contents: write
@@ -19,13 +21,49 @@ jobs:
           ref: develop
           fetch-depth: 0
 
+      - name: develop と main の差分を確認
+        id: check-diff
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          git fetch origin main
+
+          COMMIT_COUNT="$(git rev-list origin/main..HEAD --count)"
+          echo "commit_count=${COMMIT_COUNT}" >> "${GITHUB_OUTPUT}"
+
+          if [ "${COMMIT_COUNT}" -eq 0 ]; then
+            echo "::notice::develop と main に差分がないため、リリースPRの作成をスキップします。"
+          else
+            echo "::notice::develop は main より ${COMMIT_COUNT} コミット進んでいます。"
+          fi
+
+      - name: 既存のリリースPRを確認
+        id: check-existing-pr
+        if: steps.check-diff.outputs.commit_count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          EXISTING_PR="$(gh pr list --base main --state open --json number,headRefName --jq '[.[] | select(.headRefName | startswith("release/"))] | first | .number // ""')"
+
+          echo "existing_pr=${EXISTING_PR}" >> "${GITHUB_OUTPUT}"
+
+          if [ -n "${EXISTING_PR}" ]; then
+            echo "::notice::既存のリリースPR #${EXISTING_PR} が存在するため、新規作成をスキップします。"
+          fi
+
       - name: リリースブランチ名を決定
         id: branch-name
+        if: steps.check-diff.outputs.commit_count != '0' && steps.check-existing-pr.outputs.existing_pr == ''
         run: |
           BRANCH_NAME="release/$(date +'%Y-%m-%d')"
           echo "branch_name=${BRANCH_NAME}" >> "${GITHUB_OUTPUT}"
 
       - name: リリースブランチを作成してプッシュ
+        if: steps.check-diff.outputs.commit_count != '0' && steps.check-existing-pr.outputs.existing_pr == ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -33,12 +71,14 @@ jobs:
           git push origin "${{ steps.branch-name.outputs.branch_name }}"
 
       - name: リリースPRを作成
+        if: steps.check-diff.outputs.commit_count != '0' && steps.check-existing-pr.outputs.existing_pr == ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           RELEASE_DATE="$(date +'%Y-%m-%d')"
+          COMMIT_COUNT="${{ steps.check-diff.outputs.commit_count }}"
           gh pr create \
             --base main \
             --head "${{ steps.branch-name.outputs.branch_name }}" \
             --title "Release: ${RELEASE_DATE}" \
-            --body "develop ブランチからのリリース用PRです。"
+            --body "develop ブランチからのリリース用PRです。（${COMMIT_COUNT} コミット）"
