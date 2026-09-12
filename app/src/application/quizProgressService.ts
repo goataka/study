@@ -74,7 +74,10 @@ export class QuizProgressService {
       delete this.questionStats[id];
     }
     this.removeWrongIds(questionIds);
-    this.save();
+    this.progressRepo.saveMasteredIds(this.masteredIds);
+    this.progressRepo.saveCorrectStreaks(this.correctStreaks);
+    this.progressRepo.saveWrongIds(this.wrongIds);
+    this.progressRepo.saveQuestionStats(this.questionStats);
   }
 
   markQuestionsAsLearned(questionIds: Set<string>): void {
@@ -86,7 +89,9 @@ export class QuizProgressService {
         this.masteredSet.add(id);
       }
     }
-    this.save();
+    this.progressRepo.saveWrongIds(this.wrongIds);
+    this.progressRepo.saveCorrectStreaks(this.correctStreaks);
+    this.progressRepo.saveMasteredIds(this.masteredIds);
   }
 
   unmarkQuestionsAsLearned(questionIds: Set<string>): void {
