@@ -82,10 +82,8 @@ Then("履歴タブで「問題毎」が表示される", async ({ page }) => {
   await expect(page.locator("#historySubjectQuestionList")).toBeVisible();
 });
 
-Then("進度タブの学習完了ルール案内が表示される", async ({ page }) => {
-  await expect(page.locator("#progressCompletionRuleText")).toContainText(
-    "全問題を検定済（ステージ3）にすると学習完了となります",
-  );
+Then("進度タブで選択中教科の横に学習完了ルールℹ️が表示される", async ({ page }) => {
+  await page.locator(".progress-subject-list-item").first().click();
   await expect(page.locator("#progressCompletionRuleInfoBtn")).toBeVisible();
 });
 
@@ -95,7 +93,7 @@ When("進度タブの学習完了ルール詳細を開く", async ({ page }) => 
 
 Then("進度タブの学習完了ルール詳細が表示される", async ({ page }) => {
   await expect(page.locator("#progressCompletionRuleInfoPopover")).toContainText(
-    "全問題を検定済（ステージ3）にすると学習完了となります。",
+    "全問題がステージ3になると学習完了となります。",
   );
 });
 
