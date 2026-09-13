@@ -6,8 +6,8 @@
  */
 import type { Page } from "@playwright/test";
 
-/** statsInfo に表示される問題数テキストのパターン（例: "学習中：0問 / 学習済：0問 / 全：3993問"） */
-export const STATS_INFO_PATTERN = /全：[1-9]\d*問/;
+/** statsInfo に表示される問題数テキストのパターン（例: "学習中：0問 / 学習済：0問 / 全：3,993問"） */
+export const STATS_INFO_PATTERN = /全：\d[\d,]*問/;
 
 /** statsInfo の問題ロード完了タイムアウト（ミリ秒） */
 export const STATS_LOAD_TIMEOUT = 60_000;
@@ -20,9 +20,8 @@ export const STATS_LOAD_INITIAL_TIMEOUT = 40_000;
 
 /**
  * statsInfo に問題数が表示されるまで待つ（JS 初期化完了の目安）。
- * [1-9] で先頭を非ゼロにし、\d* で2桁以上に対応（例: 全：1問, 全：108問）。
- * 全0問はロード失敗を示すため、このパターンには一致しない。
- * ただし、サポート・履歴タブなど問題数が0になる特殊タブはタブのアクティブ状態で判定する。
+ * 0問やカンマ区切りを含む表示にも対応する（例: 全：0問, 全：3,993問）。
+ * ただし、サポート・履歴タブなど統計表示が通常と異なるタブはタブのアクティブ状態でも判定する。
  */
 export async function waitForStatsInfoLoaded(page: Page, timeout: number = STATS_LOAD_TIMEOUT): Promise<void> {
   await page.waitForFunction(

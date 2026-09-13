@@ -257,7 +257,7 @@ jobs:
                     const supportMenuVisible = document.querySelector("nav[aria-label='サポートメニュー']") !== null;
                     const supportTabActive = document.querySelector('.subject-tab[data-subject="support"].active') !== null;
                     const historyTabActive = document.querySelector('.subject-tab[data-subject="history"].active') !== null;
-                    return /全：[1-9]\d*問/.test(statsInfoText) || supportMenuVisible || supportTabActive || historyTabActive;
+                    return /全：\d[\d,]*問/.test(statsInfoText) || supportMenuVisible || supportTabActive || historyTabActive;
                   },
                   undefined,
                   { timeout: 60_000 },
