@@ -7,7 +7,7 @@
 import type { Page } from "@playwright/test";
 
 /** statsInfo に表示される問題数テキストのパターン（例: "学習中：0問 / 学習済：0問 / 全：3,993問"） */
-export const STATS_INFO_PATTERN = /全：\d[\d,]*問/;
+export const STATS_INFO_PATTERN = /全：(?:\d+|\d{1,3}(?:,\d{3})+)問/;
 
 /** statsInfo の問題ロード完了タイムアウト（ミリ秒） */
 export const STATS_LOAD_TIMEOUT = 60_000;
