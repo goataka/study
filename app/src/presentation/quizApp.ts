@@ -38,7 +38,8 @@ import {
   readUserNameInput,
   updateUserNameDisplay as updateUserNameDisplayUi,
 } from "./quizApp/userNameEditor";
-import { getURLParams, parseURLState, syncURLFragment, type ProgressStatusFilter } from "./quizApp/urlStateService";
+import { getURLParams, parseURLState, syncURLFragment } from "./quizApp/urlStateService";
+import { QuizAppProgressViewState } from "./quizApp/progressState";
 import { applyCategoryStatusFilter as applyCategoryStatusFilterFn } from "./quizApp/categoryCollapseState";
 import { findFirstUnlearnedCategory } from "./quizApp/firstUnlearnedFinder";
 import { setupAllListeners } from "./quizApp/setupAllListeners";
@@ -143,17 +144,10 @@ export class QuizApp {
   globalRecommendedCount: number = 3;
   /** 総合タブの現在アクティブなサマリパネル */
   activeOverallPanel: "learned" | "share" = "learned";
-  /** 進度タブで選択中の教科ID */
-  progressSubjectId: string =
-    SUBJECTS.find((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress")?.id ?? "english";
-  /** 進度タブ詳細パネルの表示モード（"grade"=学年別, "category"=カテゴリ別, "matrix"=マトリクス） */
-  progressDetailViewMode: "grade" | "category" | "matrix" = "matrix";
-  /** マトリクス表示の縦横向き（false=学年が行、true=学年が列） */
-  progressMatrixTransposed: boolean = false;
-  /** 進度タブの学習状況フィルター */
-  progressStatusFilter: ProgressStatusFilter = "all";
-  /** 進度タブの対象学年フィルター（null=すべて） */
-  progressGradeFilter: "小学" | "中学" | "高校" | null = null;
+  /** 進度タブの表示・フィルター状態 */
+  progressViewState = new QuizAppProgressViewState(
+    SUBJECTS.find((s) => s.id !== "all" && s.id !== "admin" && s.id !== "progress")?.id ?? "english",
+  );
   /** 解説コンテンツのロードリクエストカウンタ（レースコンディション防止用） */
   guideLoadCounter: number = 0;
   questionListFilter: QuestionListFilter = "all";
@@ -190,6 +184,10 @@ export class QuizApp {
       },
     });
     void this.init();
+  }
+
+  getActiveFilter(): QuizFilter {
+    return this.filter;
   }
 
   // ─── 初期化 ────────────────────────────────────────────────────────────────
@@ -287,10 +285,12 @@ export class QuizApp {
       this.isPanelTabUserSelected = true;
     }
     if (parsed.overallPanel !== undefined) this.activeOverallPanel = parsed.overallPanel;
-    if (parsed.progressSubject !== undefined) this.progressSubjectId = parsed.progressSubject;
-    if (parsed.progressView !== undefined) this.progressDetailViewMode = parsed.progressView;
-    if (parsed.progressStatusFilter !== undefined) this.progressStatusFilter = parsed.progressStatusFilter;
-    if (parsed.progressGradeFilter !== undefined) this.progressGradeFilter = parsed.progressGradeFilter;
+    if (parsed.progressSubject !== undefined) this.progressViewState.progressSubjectId = parsed.progressSubject;
+    if (parsed.progressView !== undefined) this.progressViewState.progressDetailViewMode = parsed.progressView;
+    if (parsed.progressStatusFilter !== undefined)
+      this.progressViewState.progressStatusFilter = parsed.progressStatusFilter;
+    if (parsed.progressGradeFilter !== undefined)
+      this.progressViewState.progressGradeFilter = parsed.progressGradeFilter;
     if (parsed.categoryView !== undefined) this.categoryViewMode = parsed.categoryView;
     if (parsed.questionFilter !== undefined) this.questionListFilter = parsed.questionFilter;
     if (parsed.selectedUnitContext !== undefined) this.selectedUnitContext = parsed.selectedUnitContext;
@@ -325,10 +325,10 @@ export class QuizApp {
         filter: this.filter,
         activePanelTab: this.activePanelTab,
         activeOverallPanel: this.activeOverallPanel,
-        progressSubjectId: this.progressSubjectId,
-        progressDetailViewMode: this.progressDetailViewMode,
-        progressStatusFilter: this.progressStatusFilter,
-        progressGradeFilter: this.progressGradeFilter,
+        progressSubjectId: this.progressViewState.progressSubjectId,
+        progressDetailViewMode: this.progressViewState.progressDetailViewMode,
+        progressStatusFilter: this.progressViewState.progressStatusFilter,
+        progressGradeFilter: this.progressViewState.progressGradeFilter,
         categoryViewMode: this.categoryViewMode,
         questionListFilter: this.questionListFilter,
         selectedUnitContext: this.selectedUnitContext,
@@ -461,12 +461,12 @@ export class QuizApp {
         this.syncURLFragment();
       },
       onProgressStatusFilterChange: (filter) => {
-        this.progressStatusFilter = filter;
+        this.progressViewState.progressStatusFilter = filter;
         D.renderProgressDetailPanel(this);
         this.syncURLFragment();
       },
       onProgressGradeFilterChange: (grade) => {
-        this.progressGradeFilter = grade;
+        this.progressViewState.progressGradeFilter = grade;
         D.renderProgressView(this);
         this.syncURLFragment();
       },

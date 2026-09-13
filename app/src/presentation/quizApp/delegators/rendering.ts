@@ -70,8 +70,9 @@ export type { PanelTab };
 
 export function getSelectionLevel(app: QuizApp): "none" | "topCategory" | "parentCategory" | "unit" {
   if (app.selectedTopCategoryId !== null) return "topCategory";
-  if (app.filter.category === "all" && app.filter.parentCategory !== undefined) return "parentCategory";
-  if (app.filter.category !== "all") return "unit";
+  const filter = app.getActiveFilter();
+  if (filter.category === "all" && filter.parentCategory !== undefined) return "parentCategory";
+  if (filter.category !== "all") return "unit";
   return "none";
 }
 
@@ -83,12 +84,12 @@ export function getEffectiveFilter(app: QuizApp): QuizFilter {
       parentCategory: undefined,
     };
   }
-  return app.filter;
+  return app.getActiveFilter();
 }
 
 export function getSelectionStateAccess(app: QuizApp): SelectionStateAccess {
   return {
-    filter: app.filter,
+    filter: app.getActiveFilter(),
     getSelectedTopCategoryId: () => app.selectedTopCategoryId,
     setSelectedTopCategoryId: (v) => {
       app.selectedTopCategoryId = v;
@@ -119,7 +120,7 @@ export function getSelectionLifecycleEffects(app: QuizApp): SelectionLifecycleEf
 export function getCategoryItemContext(app: QuizApp): CreateCategoryItemParams {
   return {
     useCase: app.useCase,
-    filter: app.filter,
+    filter: app.getActiveFilter(),
     categoryViewMode: app.categoryViewMode,
     setFilter: (subject, categoryId, parentCatId) => {
       app.filter.subject = subject;
@@ -151,7 +152,7 @@ export function getCategorySelectionCallbacks(app: QuizApp): CategorySelectionCa
 
 export function getParentGroupContext(app: QuizApp): BuildParentCategoryGroupParams {
   return {
-    filter: app.filter,
+    filter: app.getActiveFilter(),
     collapsedParentCategories: app.collapsedParentCategories,
     getSelectionLevel: () => getSelectionLevel(app),
     itemCtx: getCategoryItemContext(app),
@@ -217,7 +218,7 @@ export function setupOverallPanelTabs(app: QuizApp): void {
 
 export function setupProgressDetailTabs(app: QuizApp): void {
   setupProgressDetailTabsFn((mode) => {
-    app.progressDetailViewMode = mode;
+    app.progressViewState.progressDetailViewMode = mode;
     renderProgressDetailContent(app);
     app.syncURLFragment();
   });
@@ -323,13 +324,13 @@ export function renderAllSubjectList(app: QuizApp): void {
 export function renderProgressView(app: QuizApp): void {
   renderProgressViewFn({
     useCase: app.useCase,
-    progressSubjectId: app.progressSubjectId,
-    progressDetailViewMode: app.progressDetailViewMode,
-    progressStatusFilter: app.progressStatusFilter,
-    progressGradeFilter: app.progressGradeFilter,
-    progressMatrixTransposed: app.progressMatrixTransposed,
+    progressSubjectId: app.progressViewState.progressSubjectId,
+    progressDetailViewMode: app.progressViewState.progressDetailViewMode,
+    progressStatusFilter: app.progressViewState.progressStatusFilter,
+    progressGradeFilter: app.progressViewState.progressGradeFilter,
+    progressMatrixTransposed: app.progressViewState.progressMatrixTransposed,
     onSelectSubject: (subjectId) => {
-      app.progressSubjectId = subjectId;
+      app.progressViewState.progressSubjectId = subjectId;
       app.selectedUnitContext = null;
       renderCategoryList(app);
       updateStartScreen(app);
@@ -337,7 +338,7 @@ export function renderProgressView(app: QuizApp): void {
     },
     onSelectUnit: (subject, catId, catName) => selectUnitContext(app, subject, catId, catName),
     onToggleMatrixTranspose: () => {
-      app.progressMatrixTransposed = !app.progressMatrixTransposed;
+      app.progressViewState.progressMatrixTransposed = !app.progressViewState.progressMatrixTransposed;
       renderProgressDetailContent(app);
       app.syncURLFragment();
     },
@@ -347,14 +348,14 @@ export function renderProgressView(app: QuizApp): void {
 export function renderProgressDetailPanel(app: QuizApp): void {
   renderProgressDetailPanelFn({
     useCase: app.useCase,
-    progressSubjectId: app.progressSubjectId,
-    progressDetailViewMode: app.progressDetailViewMode,
-    progressStatusFilter: app.progressStatusFilter,
-    progressGradeFilter: app.progressGradeFilter,
-    progressMatrixTransposed: app.progressMatrixTransposed,
+    progressSubjectId: app.progressViewState.progressSubjectId,
+    progressDetailViewMode: app.progressViewState.progressDetailViewMode,
+    progressStatusFilter: app.progressViewState.progressStatusFilter,
+    progressGradeFilter: app.progressViewState.progressGradeFilter,
+    progressMatrixTransposed: app.progressViewState.progressMatrixTransposed,
     onSelectUnit: (subject, catId, catName) => selectUnitContext(app, subject, catId, catName),
     onToggleMatrixTranspose: () => {
-      app.progressMatrixTransposed = !app.progressMatrixTransposed;
+      app.progressViewState.progressMatrixTransposed = !app.progressViewState.progressMatrixTransposed;
       renderProgressDetailContent(app);
       app.syncURLFragment();
     },
@@ -364,14 +365,14 @@ export function renderProgressDetailPanel(app: QuizApp): void {
 export function renderProgressDetailContent(app: QuizApp): void {
   renderProgressDetailContentFn({
     useCase: app.useCase,
-    progressSubjectId: app.progressSubjectId,
-    progressDetailViewMode: app.progressDetailViewMode,
-    progressStatusFilter: app.progressStatusFilter,
-    progressGradeFilter: app.progressGradeFilter,
-    progressMatrixTransposed: app.progressMatrixTransposed,
+    progressSubjectId: app.progressViewState.progressSubjectId,
+    progressDetailViewMode: app.progressViewState.progressDetailViewMode,
+    progressStatusFilter: app.progressViewState.progressStatusFilter,
+    progressGradeFilter: app.progressViewState.progressGradeFilter,
+    progressMatrixTransposed: app.progressViewState.progressMatrixTransposed,
     onSelectUnit: (subject, catId, catName) => selectUnitContext(app, subject, catId, catName),
     onToggleMatrixTranspose: () => {
-      app.progressMatrixTransposed = !app.progressMatrixTransposed;
+      app.progressViewState.progressMatrixTransposed = !app.progressViewState.progressMatrixTransposed;
       renderProgressDetailContent(app);
       app.syncURLFragment();
     },
@@ -399,7 +400,7 @@ export function autoSelectPanelTab(app: QuizApp, allRecords: QuizRecord[]): void
       : null,
     selectionLevel: getSelectionLevel(app),
     isGradeGroupSelected: app.selectedGradeGroup !== null,
-    filter: app.filter,
+    filter: app.getActiveFilter(),
   });
   showPanelTabFn(app.activePanelTab);
 }
