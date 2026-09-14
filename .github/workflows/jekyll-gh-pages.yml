@@ -293,4 +293,17 @@ jobs:
         env:
           PAGES_BASE_URL: ${{ needs.deploy.outputs.page_url }}
           PLAYWRIGHT_WORKERS: "1"
-        run: PLAYWRIGHT_BASE_URL="${PAGES_BASE_URL%/}/rc/" pnpm run test:e2e
+        run: |
+          set -euo pipefail
+          BASE_URL="${PAGES_BASE_URL%/}/rc/"
+          for attempt in 1 2; do
+            if PLAYWRIGHT_BASE_URL="${BASE_URL}" pnpm run test:e2e; then
+              exit 0
+            fi
+            if [ "${attempt}" -eq 1 ]; then
+              echo "::warning::RC環境E2Eに失敗したため30秒後に再試行します。"
+              sleep 30
+            fi
+          done
+          echo "::error::RC環境E2Eテストが再試行後も失敗しました。"
+          exit 1
