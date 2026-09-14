@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: コードのチェックアウト
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
 
       - name: 日本語UTF-8ロケールのセットアップ
         run: |
@@ -40,7 +40,7 @@ jobs:
 
       - name: Playwright ブラウザのキャッシュ設定
         id: playwright-cache
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-chromium-${{ hashFiles('app/pnpm-lock.yaml') }}
