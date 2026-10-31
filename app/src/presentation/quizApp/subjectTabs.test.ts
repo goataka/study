@@ -316,7 +316,10 @@ describe("QuizApp — 教科タブ仕様", () => {
     expect(document.getElementById("historySubjectUnitList")?.textContent).toContain("たし算");
 
     const questionSwitch = document.getElementById("historySubjectTab-question") as HTMLButtonElement | null;
+    const unitSwitch = document.getElementById("historySubjectTab-unit") as HTMLButtonElement | null;
     expect(questionSwitch).not.toBeNull();
+    expect(unitSwitch?.classList.contains("panel-tab")).toBe(true);
+    expect(questionSwitch?.classList.contains("panel-tab")).toBe(true);
     questionSwitch?.click();
 
     await waitForCondition(

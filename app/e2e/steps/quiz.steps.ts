@@ -1,13 +1,20 @@
 import { createBdd } from "playwright-bdd";
 import { expect } from "@playwright/test";
-import { waitForStatsInfoLoaded } from "../helpers/statsInfo";
+import { waitForStatsInfoLoaded, STATS_LOAD_INITIAL_TIMEOUT } from "../helpers/statsInfo";
 
 const { Before, Given, When, Then } = createBdd();
 
 Given("クイズアプリが読み込まれている", async ({ page }) => {
   await page.goto(".");
-  // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ
-  await waitForStatsInfoLoaded(page);
+  // 問題ロード完了（JS初期化完了）を示すテキストが表示されるまで待つ。
+  // ネットワークエラー等で初期化に失敗した場合はページをリロードして再試行する。
+  try {
+    await waitForStatsInfoLoaded(page, STATS_LOAD_INITIAL_TIMEOUT);
+  } catch (error) {
+    console.log("初回ロード失敗、リロードして再試行:", error instanceof Error ? error.message : String(error));
+    await page.reload({ waitUntil: "load" });
+    await waitForStatsInfoLoaded(page);
+  }
 });
 
 Given("クイズアプリの基本UIが読み込まれている", async ({ page }) => {
@@ -82,10 +89,8 @@ Then("履歴タブで「問題毎」が表示される", async ({ page }) => {
   await expect(page.locator("#historySubjectQuestionList")).toBeVisible();
 });
 
-Then("進度タブの学習完了ルール案内が表示される", async ({ page }) => {
-  await expect(page.locator("#progressCompletionRuleText")).toContainText(
-    "全問題を検定済（ステージ3）にすると学習完了となります",
-  );
+Then("進度タブで選択中教科の横に学習完了ルールℹ️が表示される", async ({ page }) => {
+  await page.locator(".progress-subject-list-item").first().click();
   await expect(page.locator("#progressCompletionRuleInfoBtn")).toBeVisible();
 });
 
@@ -95,7 +100,7 @@ When("進度タブの学習完了ルール詳細を開く", async ({ page }) => 
 
 Then("進度タブの学習完了ルール詳細が表示される", async ({ page }) => {
   await expect(page.locator("#progressCompletionRuleInfoPopover")).toContainText(
-    "全問題を検定済（ステージ3）にすると学習完了となります。",
+    "全問題がステージ3になると学習完了となります。",
   );
 });
 

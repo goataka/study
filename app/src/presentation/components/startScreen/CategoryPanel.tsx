@@ -205,7 +205,7 @@ function AllSubjectPanelInfoButton(): React.JSX.Element {
   const infoConditions = [
     "未学習の単元を優先して表示",
     "学習済（📝）は7日後、復習済（📜）は14日後に復習対象として表示",
-    "検定済（🎓）・履修済（✅）は除外",
+    "学習完了（🎓）・履修済（✅）は除外",
     "国語 → 数学 → 英語の順で優先",
   ];
 

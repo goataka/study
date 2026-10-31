@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import type { QuizUseCase, QuizRecord } from "../../application/quizUseCase";
 import { categoryListContentStore } from "../components/categoryListContentStore";
 import { SUBJECTS } from "../uiHelpers";
+import { panelTab, panelTabs } from "../styles/panelTabStyles";
 
 type HistorySubjectMode = "unit" | "question";
 
@@ -146,15 +147,14 @@ function HistorySubjectPanel({ records, useCase }: HistorySubjectPanelProps): Re
                 : "学習履歴がありません。"}
             </p>
           </div>
-          <div className="flex items-center gap-1">
+          <div className={panelTabs()} role="tablist" aria-label="履歴表示切替">
             <button
               id="historySubjectTab-unit"
               type="button"
-              className={`rounded-md border px-2 py-1 text-sm font-semibold ${
-                mode === "unit"
-                  ? "border-[#0366d6] bg-[#e8f0ff] text-[#0366d6]"
-                  : "border-[#d0d7de] bg-white text-[#586069] hover:bg-[#f6f8fa]"
-              }`}
+              className={mode === "unit" ? `${panelTab()} active` : panelTab()}
+              role="tab"
+              aria-selected={mode === "unit"}
+              aria-controls="historySubjectUnitList"
               onClick={() => setMode("unit")}
             >
               単元毎
@@ -162,11 +162,10 @@ function HistorySubjectPanel({ records, useCase }: HistorySubjectPanelProps): Re
             <button
               id="historySubjectTab-question"
               type="button"
-              className={`rounded-md border px-2 py-1 text-sm font-semibold ${
-                mode === "question"
-                  ? "border-[#0366d6] bg-[#e8f0ff] text-[#0366d6]"
-                  : "border-[#d0d7de] bg-white text-[#586069] hover:bg-[#f6f8fa]"
-              }`}
+              className={mode === "question" ? `${panelTab()} active` : panelTab()}
+              role="tab"
+              aria-selected={mode === "question"}
+              aria-controls="historySubjectQuestionList"
               onClick={() => setMode("question")}
             >
               問題毎
