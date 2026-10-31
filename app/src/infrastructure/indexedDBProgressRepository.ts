@@ -184,8 +184,7 @@ export class IndexedDBProgressRepository implements IProgressRepository {
       // ゲストの表示名が保存されていれば反映する
       if (Array.isArray(list)) {
         const guest = list.find((p) => isPlainObject(p) && p.id === GUEST_USER_ID) as
-          | Record<string, unknown>
-          | undefined;
+          Record<string, unknown> | undefined;
         if (guest && typeof guest.name === "string" && guest.name) {
           profiles[0] = { id: GUEST_USER_ID, name: guest.name };
         }
