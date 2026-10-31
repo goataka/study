@@ -94,7 +94,8 @@ describe("QuizApp — 総合タブの教科一覧仕様", () => {
 
     // 目標数を 3 に切り替え
     const btn3 = Array.from(document.querySelectorAll(".overall-rec-count-btn")).find((b) => b.textContent === "3") as
-      HTMLElement | undefined;
+      | HTMLElement
+      | undefined;
     btn3?.click();
     await new Promise((resolve) => setTimeout(resolve, 0));
 

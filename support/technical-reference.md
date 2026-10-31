@@ -147,6 +147,43 @@ https://goataka.github.io/study/v1/questions/japanese/kanji-grade1.json
 | `categoryViewMode` | string | カテゴリ表示モード（`category` / `grade`） |
 | `fontSizeLevel` | string | フォントサイズ設定（`small` / `medium` / `large`） |
 | `overallShareUrl` | string | 活動サマリの共有URL |
+| `recommendedCounts` | object | 教科ごとのおすすめ表示数 |
+| `categoryStages` | object | `subject::category` ごとの単元ステージと最終完了日時 |
+| `globalRecommendedCount` | number | 全教科共通のおすすめ目標数 |
+
+### 進捗データの計算規則
+
+問題 ID ごとの `questionStats` は回答のたびに `total` を 1 増やし、正解時だけ `correct` を 1 増やします。正解率は `correct / total × 100` です。
+
+`masteredIds` は習得済み問題 ID の集合です。未習得問題は同じ問題を 3 回連続正解すると追加され、途中で不正解になると連続数が 0 に戻ります。単元ステージが 1 以上の復習問題は 1 回正解で追加されます。いったん追加された問題は、不正解でも集合から削除されません。
+
+`categoryStages` のレコードは次の形式です。
+
+```json
+{
+  "english::alphabet": {
+    "stage": 1,
+    "lastCompletedAt": "2026-09-11T00:00:00.000Z"
+  }
+}
+```
+
+ステージは `0=未学習`、`1=学習済`、`2=復習済`、`3=検定済` です。単元進捗率は `masteredIds` に含まれる単元内問題数を単元の全問題数で割り、`Math.round(値 × 100)` で整数化します。0 問の単元は 0% です。
+
+### 履歴レコード
+
+クイズを採点すると、次の値を持つ履歴レコードを先頭に追加します。
+
+| フィールド | 型 | 説明 |
+|-----------|-----|------|
+| `date` | string | 作成時刻（ISO 8601） |
+| `subject` / `category` | string | 対象の教科・単元（全体指定時は `all`） |
+| `mode` | string | `random` / `retry` / `practice` / `manual` |
+| `totalCount` | number | 出題数 |
+| `correctCount` | number | 正解数 |
+| `entries` | array | 問題ごとの正誤、回答、正解 |
+
+履歴は新しいものから最大 100 件を保持します。手動で単元を履修済みにした場合は `mode: "manual"`、`entries: []` となります。
 
 ### 注意事項
 

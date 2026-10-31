@@ -38,7 +38,9 @@ export function resolveEffectiveMode(mode: QuizMode, quizOrder: "random" | "stra
 
 /** 同期的にセッション作成を試みた結果。 */
 export type TryStartQuizOutcome =
-  { kind: "success"; session: QuizSession } | { kind: "all-mastered" } | { kind: "error"; message: string };
+  | { kind: "success"; session: QuizSession }
+  | { kind: "all-mastered" }
+  | { kind: "error"; message: string };
 
 /**
  * 設定に基づいて新しいクイズセッションを同期的に試みる。
